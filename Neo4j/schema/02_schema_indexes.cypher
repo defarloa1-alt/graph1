@@ -33,12 +33,12 @@ CREATE INDEX work_qid_lookup IF NOT EXISTS FOR (w:Work) ON (w.qid);
 CREATE INDEX year_number_index IF NOT EXISTS FOR (y:Year) ON (y.year);
 CREATE INDEX year_iso_index IF NOT EXISTS FOR (y:Year) ON (y.iso);
 
-// Claim and Evidence lookup
-CREATE INDEX claim_id_index IF NOT EXISTS FOR (c:Claim) ON (c.unique_id);
-CREATE INDEX evidence_id_index IF NOT EXISTS FOR (e:Evidence) ON (e.evidence_id);
+// Claim and RetrievalContext lookup
+CREATE INDEX claim_id_index IF NOT EXISTS FOR (c:Claim) ON (c.claim_id);
+CREATE INDEX retrieval_context_id_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.retrieval_id);
 
 // Subject & Agent lookup
-CREATE INDEX subject_id_index IF NOT EXISTS FOR (sc:SubjectConcept) ON (sc.unique_id);
+CREATE INDEX subject_id_index IF NOT EXISTS FOR (sc:SubjectConcept) ON (sc.subject_id);
 CREATE INDEX agent_id_index IF NOT EXISTS FOR (a:Agent) ON (a.agent_id);
 
 // ============================================================================
@@ -83,12 +83,12 @@ CREATE INDEX event_type_index IF NOT EXISTS FOR (e:Event) ON (e.event_type);
 // ============================================================================
 
 // Confidence scores (for QA filtering, data quality checks)
-CREATE INDEX claim_confidence_index IF NOT EXISTS FOR (c:Claim) ON (c.overall_confidence);
-CREATE INDEX evidence_confidence_index IF NOT EXISTS FOR (e:Evidence) ON (e.source_confidence);
+CREATE INDEX claim_confidence_index IF NOT EXISTS FOR (c:Claim) ON (c.confidence);
 CREATE INDEX subject_confidence_index IF NOT EXISTS FOR (sc:SubjectConcept) ON (sc.authority_confidence);
 
-// Source tier classification (for workflow routing)
-CREATE INDEX evidence_source_tier_index IF NOT EXISTS FOR (e:Evidence) ON (e.source_tier);
+// Retrieval context routing/inspection (for claims provenance workflows)
+CREATE INDEX retrieval_context_agent_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.agent_id);
+CREATE INDEX retrieval_context_timestamp_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.timestamp);
 
 // ============================================================================
 // ANALYSIS RUN INDEXES (for A/B testing & version comparison)
@@ -153,7 +153,7 @@ FOR (sc:SubjectConcept) ON (sc.label);
 // Common traversal patterns:
 // ENTITY -> LIVED_DURING -> PERIOD -> STARTS_IN_YEAR -> YEAR
 // ENTITY -> HAS_SUBJECT_CONCEPT -> SUBJECT -> FACET_ANCHOR -> FACET
-// CLAIM -> EVIDENCED_BY -> EVIDENCE -> SOURCE -> WORK -> ABOUT -> SUBJECT
+// CLAIM -> HAS_TRACE -> REASONING_TRACE <- USED_FOR - RETRIEVAL_CONTEXT -> WORK -> ABOUT -> SUBJECT
 
 // ============================================================================
 // INDEX MAINTENANCE NOTES

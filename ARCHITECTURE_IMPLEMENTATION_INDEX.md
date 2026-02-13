@@ -252,10 +252,10 @@ Section 6: Claims Layer
   │   └─ 02_schema_indexes: claim_id_index, claim_confidence_index
   │   └─ ⏳ Phase 3: Populate claims from extracted facts
   │
-  ├─ 6.2 Evidence Nodes
-  │   └─ 01_schema_constraints: evidence_id_unique
-  │   └─ 02_schema_indexes: evidence_id_index, evidence_confidence_index
-  │   └─ ⏳ Phase 3: Link to Work/Source nodes
+  ├─ 6.2 Retrieval Context Nodes
+  │   └─ 01_schema_constraints: retrieval_context_id_unique
+  │   └─ 02_schema_indexes: retrieval_context_id_index, retrieval_context_agent_index
+  │   └─ ⏳ Phase 3: Link retrieval context to ReasoningTrace and Work nodes
 ```
 
 ### Agent Layer (Section 5) → Future Implementation

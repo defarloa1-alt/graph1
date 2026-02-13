@@ -27,8 +27,7 @@ CREATE CONSTRAINT place_entity_id_unique IF NOT EXISTS
 FOR (p:Place) REQUIRE p.entity_id IS UNIQUE;
 
 CREATE CONSTRAINT place_qid_unique IF NOT EXISTS
-FOR (p:Place) REQUIRE p.qid IS UNIQUE
-  WHEN p.qid IS NOT NULL;
+FOR (p:Place) REQUIRE p.qid IS UNIQUE;
 
 CREATE CONSTRAINT place_pleiades_id_unique IF NOT EXISTS
 FOR (p:Place) REQUIRE p.pleiades_id IS UNIQUE
@@ -51,8 +50,7 @@ CREATE CONSTRAINT event_entity_id_unique IF NOT EXISTS
 FOR (e:Event) REQUIRE e.entity_id IS UNIQUE;
 
 CREATE CONSTRAINT event_qid_unique IF NOT EXISTS
-FOR (e:Event) REQUIRE e.qid IS UNIQUE
-  WHEN e.qid IS NOT NULL;
+FOR (e:Event) REQUIRE e.qid IS UNIQUE;
 
 // Period entity uniqueness
 CREATE CONSTRAINT period_entity_id_unique IF NOT EXISTS
@@ -94,8 +92,7 @@ CREATE CONSTRAINT work_entity_id_unique IF NOT EXISTS
 FOR (w:Work) REQUIRE w.entity_id IS UNIQUE;
 
 CREATE CONSTRAINT work_qid_unique IF NOT EXISTS
-FOR (w:Work) REQUIRE w.qid IS UNIQUE
-  WHEN w.qid IS NOT NULL;
+FOR (w:Work) REQUIRE w.qid IS UNIQUE;
 
 // Position uniqueness
 CREATE CONSTRAINT position_entity_id_unique IF NOT EXISTS
@@ -147,15 +144,18 @@ FOR (fc:FacetCategory) REQUIRE fc.key IS UNIQUE;
 
 // SubjectConcept uniqueness
 CREATE CONSTRAINT subject_concept_id_unique IF NOT EXISTS
-FOR (sc:SubjectConcept) REQUIRE sc.unique_id IS UNIQUE;
+FOR (sc:SubjectConcept) REQUIRE sc.subject_id IS UNIQUE;
 
 // Claim uniqueness
 CREATE CONSTRAINT claim_id_unique IF NOT EXISTS
-FOR (c:Claim) REQUIRE c.unique_id IS UNIQUE;
+FOR (c:Claim) REQUIRE c.claim_id IS UNIQUE;
 
-// Evidence uniqueness
-CREATE CONSTRAINT evidence_id_unique IF NOT EXISTS
-FOR (e:Evidence) REQUIRE e.evidence_id IS UNIQUE;
+CREATE CONSTRAINT claim_cipher_unique IF NOT EXISTS
+FOR (c:Claim) REQUIRE c.cipher IS UNIQUE;
+
+// Retrieval context uniqueness (Claims Layer evidence retrieval record)
+CREATE CONSTRAINT retrieval_context_id_unique IF NOT EXISTS
+FOR (rc:RetrievalContext) REQUIRE rc.retrieval_id IS UNIQUE;
 
 // Agent uniqueness
 CREATE CONSTRAINT agent_id_unique IF NOT EXISTS
@@ -176,9 +176,16 @@ FOR (e:Entity) REQUIRE e.entity_type IS NOT NULL;
 CREATE CONSTRAINT human_has_name IF NOT EXISTS
 FOR (h:Human) REQUIRE h.name IS NOT NULL;
 
+// Required QID on core externally aligned entity types
+CREATE CONSTRAINT human_has_qid IF NOT EXISTS
+FOR (h:Human) REQUIRE h.qid IS NOT NULL;
+
 // Place entities must have label
 CREATE CONSTRAINT place_has_label IF NOT EXISTS
 FOR (p:Place) REQUIRE p.label IS NOT NULL;
+
+CREATE CONSTRAINT place_has_qid IF NOT EXISTS
+FOR (p:Place) REQUIRE p.qid IS NOT NULL;
 
 // Year entities must have year number
 CREATE CONSTRAINT year_has_year_number IF NOT EXISTS
@@ -191,6 +198,9 @@ FOR (e:Event) REQUIRE e.label IS NOT NULL;
 CREATE CONSTRAINT event_has_start_date IF NOT EXISTS
 FOR (e:Event) REQUIRE e.start_date IS NOT NULL;
 
+CREATE CONSTRAINT event_has_qid IF NOT EXISTS
+FOR (e:Event) REQUIRE e.qid IS NOT NULL;
+
 // Period entities must have label and bounds
 CREATE CONSTRAINT period_has_label IF NOT EXISTS
 FOR (p:Period) REQUIRE p.label IS NOT NULL;
@@ -202,12 +212,19 @@ FOR (p:Period) REQUIRE p.start IS NOT NULL;
 CREATE CONSTRAINT subject_concept_has_label IF NOT EXISTS
 FOR (sc:SubjectConcept) REQUIRE sc.label IS NOT NULL;
 
-// Claim must have claim_text and overall_confidence
+CREATE CONSTRAINT subject_concept_has_subject_id IF NOT EXISTS
+FOR (sc:SubjectConcept) REQUIRE sc.subject_id IS NOT NULL;
+
+// Work entities must have qid for external alignment
+CREATE CONSTRAINT work_has_qid IF NOT EXISTS
+FOR (w:Work) REQUIRE w.qid IS NOT NULL;
+
+// Claim must have text and confidence
 CREATE CONSTRAINT claim_has_text IF NOT EXISTS
-FOR (c:Claim) REQUIRE c.claim_text IS NOT NULL;
+FOR (c:Claim) REQUIRE c.text IS NOT NULL;
 
 CREATE CONSTRAINT claim_has_confidence IF NOT EXISTS
-FOR (c:Claim) REQUIRE c.overall_confidence IS NOT NULL;
+FOR (c:Claim) REQUIRE c.confidence IS NOT NULL;
 
 // ============================================================================
 // RELATIONSHIP CONSTRAINTS

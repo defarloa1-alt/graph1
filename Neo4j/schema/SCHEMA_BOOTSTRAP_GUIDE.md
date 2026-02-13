@@ -195,7 +195,7 @@ Expected output after initialization:
 ```cypher
 CREATE CONSTRAINT human_qid_unique FOR (h:Human) REQUIRE h.qid IS UNIQUE;
 CREATE CONSTRAINT year_year_number_unique FOR (y:Year) REQUIRE y.year IS UNIQUE;
-CREATE CONSTRAINT claim_id_unique FOR (c:Claim) REQUIRE c.unique_id IS UNIQUE;
+CREATE CONSTRAINT claim_id_unique FOR (c:Claim) REQUIRE c.claim_id IS UNIQUE;
 ```
 
 **Impact:** Write operations ~5-10% slower; read operations unaffected; data quality guaranteed.
@@ -207,7 +207,7 @@ CREATE CONSTRAINT claim_id_unique FOR (c:Claim) REQUIRE c.unique_id IS UNIQUE;
 **Examples:**
 ```cypher
 CREATE CONSTRAINT entity_has_id FOR (e:Entity) REQUIRE e.entity_id IS NOT NULL;
-CREATE CONSTRAINT claim_has_confidence FOR (c:Claim) REQUIRE c.overall_confidence IS NOT NULL;
+CREATE CONSTRAINT claim_has_confidence FOR (c:Claim) REQUIRE c.confidence IS NOT NULL;
 ```
 
 **Impact:** Prevents incomplete entity creation; enforces data standards.
@@ -562,7 +562,7 @@ CREATE (human)-[:HAS_SUBJECT_CONCEPT]->(subject)
 ```cypher
 -- Entity as claim subject
 MATCH (human:Human {qid: "Q1048"})
-MATCH (claim:Claim {claim_text: "Caesar crossed the Rubicon"})
+MATCH (claim:Claim {text: "Caesar crossed the Rubicon"})
 CREATE (claim)-[:ABOUT]->(human)
 ```
 
@@ -591,7 +591,7 @@ CREATE (agent)-[:EVALUATES]->(event)
 - A: Rebuild indexes: `CALL db.indexes.rebuild()` and analyze query with `EXPLAIN`
 
 **Q: Duplicate entity_id values detected**
-- A: Data import script has bugs; check import_fast_subjects_to_neo4j.py for unique_id generation
+- A: Data import script has bugs; check import_fast_subjects_to_neo4j.py for identifier generation
 
 ---
 

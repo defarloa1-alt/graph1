@@ -127,8 +127,8 @@ RETURN subject, entity, r, event
 
 **Architectural Impact:**
 - SubjectConcepts are **first-class citizens**, not tags
-- Entityâ†’Subject relationships are **mandatory** for entities to be discoverable
-- Agent routing uses Subjectâ†’LCC mappings (not entity types)
+- Entity † Subject relationships are **mandatory** for entities to be discoverable
+- Agent routing uses Subject † LCC mappings (not entity types)
 
 ---
 
