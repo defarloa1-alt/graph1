@@ -23,6 +23,43 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-13 15:45 | Backlink Policy Canonicalization + Datatype Routing Clarification
+# ==============================================================================
+# Category: Architecture, Capability, Docs
+# Summary: Replaced noisy backlink notes with a strict canonical strategy tied to datatype/value-type routing gates
+# Files:
+#   - Neo4j/FEDERATION_BACKLINK_STRATEGY.md
+#   - AI_CONTEXT.md
+# Reason: Keep only actionable backlink logic and explicitly define how datatype/value_type control ingest behavior.
+# Notes:
+#   - Locked in reverse-triple approach (`?source ?prop ?target`) over page-level backlink APIs.
+#   - Added mandatory stop conditions (depth, budget, allowlists, abort thresholds).
+#   - Clarified operational use of datatype/value_type for routing, safety, and cost control.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-13 15:20 | Wikidata Statement Datatype Profiling + Spec
+# ==============================================================================
+# Category: Capability, Architecture, Docs
+# Summary: Added full-statement datatype profiling workflow and formal ingestion spec
+# Files:
+#   - scripts/tools/wikidata_statement_datatype_profile.py
+#   - scripts/tools/wikidata_sample_statement_records.py
+#   - scripts/tools/wikidata_fetch_all_statements.py
+#   - md/Architecture/Wikidata_Statement_Datatype_Ingestion_Spec.md
+#   - statement data types.md
+#   - JSON/wikidata/statements/Q1048_statement_datatype_profile_summary.json
+#   - JSON/wikidata/statements/Q1048_statement_datatype_profile_by_property.csv
+#   - JSON/wikidata/statements/Q1048_statement_datatype_profile_datatype_pairs.csv
+#   - JSON/wikidata/statements/Q1048_statements_sample_100.csv
+# Reason: Move from ad hoc property handling to datatype-driven federation ingestion design.
+# Notes:
+#   - Verified on Q1048 full statements export (451 statements, 324 properties).
+#   - Datatype profile captured counts for wikibase-item/external-id/time/monolingualtext/etc.
+#   - Provides concrete basis for external-id federation mapping and qualifier/reference retention.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-13 13:30 | AI Context Memory Bank
 # ==============================================================================
 # Category: Docs, Architecture

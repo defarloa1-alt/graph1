@@ -1,0 +1,175 @@
+{
+  "qid": "Q1048",
+  "label": "Julius Caesar",
+  "statement_count": 451,
+  "property_count": 324,
+  "datatype_counts": {
+    "wikibase-item": 145,
+    "external-id": 286,
+    "string": 4,
+    "time": 6,
+    "monolingualtext": 7,
+    "commonsMedia": 2,
+    "quantity": 1
+  },
+  "value_type_counts": {
+    "wikibase-entityid": 145,
+    "string": 292,
+    "time": 6,
+    "monolingualtext": 7,
+    "quantity": 1
+  },
+  "rank_counts": {
+    "normal": 444,
+    "deprecated": 4,
+    "preferred": 3
+  },
+  "with_qualifiers": 105,
+  "with_references": 109,
+  "qualifier_rate": 0.2328159645232816,
+  "reference_rate": 0.24168514412416853,
+  "top_properties": [
+    {
+      "property": "P1343",
+      "count": 17
+    },
+    {
+      "property": "P39",
+      "count": 16
+    },
+    {
+      "property": "P451",
+      "count": 15
+    },
+    {
+      "property": "P106",
+      "count": 10
+    },
+    {
+      "property": "P1299",
+      "count": 7
+    },
+    {
+      "property": "P1017",
+      "count": 5
+    },
+    {
+      "property": "P2799",
+      "count": 5
+    },
+    {
+      "property": "P157",
+      "count": 5
+    },
+    {
+      "property": "P12800",
+      "count": 5
+    },
+    {
+      "property": "P214",
+      "count": 4
+    },
+    {
+      "property": "P569",
+      "count": 4
+    },
+    {
+      "property": "P40",
+      "count": 3
+    },
+    {
+      "property": "P26",
+      "count": 3
+    },
+    {
+      "property": "P2966",
+      "count": 3
+    },
+    {
+      "property": "P1889",
+      "count": 3
+    },
+    {
+      "property": "P8750",
+      "count": 3
+    },
+    {
+      "property": "P3909",
+      "count": 3
+    },
+    {
+      "property": "P1049",
+      "count": 3
+    },
+    {
+      "property": "P1038",
+      "count": 3
+    },
+    {
+      "property": "P570",
+      "count": 2
+    },
+    {
+      "property": "P53",
+      "count": 2
+    },
+    {
+      "property": "P1412",
+      "count": 2
+    },
+    {
+      "property": "P1807",
+      "count": 2
+    },
+    {
+      "property": "P3373",
+      "count": 2
+    },
+    {
+      "property": "P3430",
+      "count": 2
+    }
+  ],
+  "datatype_examples": {
+    "wikibase-item": [
+      "Q314710",
+      "Q235087",
+      "Q39589",
+      "Q1405",
+      "Q235423"
+    ],
+    "external-id": [
+      "286265178",
+      "3886159477573127990003",
+      "96230682",
+      "100183222",
+      "n79021400"
+    ],
+    "string": [
+      "Julius Caesar",
+      "Gaius Iulius Caesar",
+      "Divus Iulius"
+    ],
+    "time": [
+      "{\"time\": \"-0100-07-12T00:00:00Z\", \"precision\": 10, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/",
+      "{\"time\": \"-0100-07-13T00:00:00Z\", \"precision\": 11, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/",
+      "{\"time\": \"-0102-00-00T00:00:00Z\", \"precision\": 9, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/Q",
+      "{\"time\": \"-0100-00-00T00:00:00Z\", \"precision\": 9, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/Q",
+      "{\"time\": \"-0044-03-15T00:00:00Z\", \"precision\": 11, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/"
+    ],
+    "monolingualtext": [
+      "{\"text\": \"GAIVS IVLIVS CAESAR\", \"language\": \"la\"}",
+      "{\"text\": \"DIVVS IVLIVS\", \"language\": \"la\"}",
+      "{\"text\": \"Καὶ σὺ τέκνον\", \"language\": \"grc\"}",
+      "{\"text\": \"ista quidem vis est!\", \"language\": \"la\"}",
+      "{\"text\": \"μιαρώτατε Κάσκα, τί ποιεῖς?\", \"language\": \"grc\"}"
+    ],
+    "commonsMedia": [
+      "Retrato de Julio César (26724093101) (cropped).jpg",
+      "Hy-Հուլիոս Կեսար (Julius Caesar).ogg"
+    ],
+    "quantity": [
+      "{\"amount\": \"+3\", \"unit\": \"1\", \"lowerBound\": null, \"upperBound\": null}"
+    ]
+  }
+}

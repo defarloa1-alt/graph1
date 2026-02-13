@@ -67,6 +67,44 @@ Relationships:
 - Migration scripts were synced to corrected historical logic (BCE-safe bucketing and labels).
 - Documentation was updated to reflect `FOLLOWED_BY`-only year sequencing.
 
+## Federation Datatype Work (verified 2026-02-13)
+
+### New capability
+- Full statement export and datatype profiling are now in place for federation design.
+
+Artifacts:
+- Full statements export: `JSON/wikidata/statements/Q1048_statements_full.json`
+- 100-row flattened sample: `JSON/wikidata/statements/Q1048_statements_sample_100.csv`
+- Datatype profile summary: `JSON/wikidata/statements/Q1048_statement_datatype_profile_summary.json`
+- Datatype profile by property: `JSON/wikidata/statements/Q1048_statement_datatype_profile_by_property.csv`
+- Datatype/value-type pairs: `JSON/wikidata/statements/Q1048_statement_datatype_profile_datatype_pairs.csv`
+
+Scripts:
+- `scripts/tools/wikidata_fetch_all_statements.py`
+- `scripts/tools/wikidata_sample_statement_records.py`
+- `scripts/tools/wikidata_statement_datatype_profile.py`
+
+Spec:
+- `md/Architecture/Wikidata_Statement_Datatype_Ingestion_Spec.md`
+
+Observed Q1048 profile baseline:
+- statements: 451
+- properties: 324
+- datatypes: 7
+- value types: 5
+- qualifier coverage: 23.28%
+- reference coverage: 24.17%
+
+## Backlink Policy Refinement (verified 2026-02-13)
+
+- Canonical backlink policy was cleaned and tightened:
+  - `Neo4j/FEDERATION_BACKLINK_STRATEGY.md`
+- Key lock-ins:
+  - Backlink source is semantic reverse triples, not MediaWiki page `linkshere`.
+  - `datatype` + `value_type` are mandatory routing gates, not optional metadata.
+  - Stop conditions are required (`max_depth`, per-seed budgets, class/property allowlists).
+  - Backlink candidates must pass the same datatype profiling workflow as direct statements.
+
 ## Recommended Next Steps
 - If rebuilding backbone from scratch:
   1. Run `python scripts/backbone/temporal/genYearsToNeo.py --start -2000 --end 2025`
