@@ -1,0 +1,79 @@
+Neo4j Import Instructions
+============================================================
+
+Step 1: Copy CSV files to Neo4j import directory
+------------------------------------------------------------
+Find your Neo4j import directory:
+  Windows: C:\Users\<User>\.Neo4jDesktop\relate-data\dbmss\<dbms-id>\import
+  Mac: ~/Library/Application Support/Neo4j Desktop/.../import
+  Linux: ~/.config/Neo4j Desktop/.../import
+
+Copy these files there:
+  - year_nodes.csv
+  - sequential_relationships.csv
+  - period_mappings.csv
+  - Temporal/time_periods.csv
+
+Step 2: Import Periods (if not already done)
+------------------------------------------------------------
+LOAD CSV WITH HEADERS FROM 'file:///Temporal/time_periods.csv' AS row
+MERGE (period:Concept:Period {
+  qid: row.QID,
+  unique_id: row.QID + '_CONCEPT_' + toUpper(replace(row.Period, ' ', '_'))
+})
+SET period.label = row.Period,
+    period.type = 'Time Period',
+    period.type_qid = 'Q186081',
+    period.start_year = toInteger(row.Start_Year),
+    period.end_year = toInteger(row.End_Year),
+    period.region = row.Region,
+    period.temporal_backbone = true;
+
+Step 3: Import Year Nodes
+------------------------------------------------------------
+LOAD CSV WITH HEADERS FROM 'file:///year_nodes.csv' AS row
+CREATE (y:Year {
+  year_value: toInteger(row.`year_value:int`),
+  label: row.label,
+  iso_date: row.iso_date,
+  era: row.era,
+  temporal_backbone: true
+});
+
+Step 4: Create Indexes (improves performance)
+------------------------------------------------------------
+CREATE INDEX year_value_idx IF NOT EXISTS FOR (y:Year) ON (y.year_value);
+CREATE INDEX period_qid_idx IF NOT EXISTS FOR (p:Period) ON (p.qid);
+
+Step 5: Import Sequential Relationships
+------------------------------------------------------------
+LOAD CSV WITH HEADERS FROM 'file:///sequential_relationships.csv' AS row
+MATCH (from:Year {year_value: toInteger(row.`from_year:int`)})
+MATCH (to:Year {year_value: toInteger(row.`to_year:int`)})
+MERGE (from)-[:FOLLOWED_BY]->(to)
+MERGE (to)-[:PRECEDED_BY]->(from);
+
+Step 6: Import Period Mappings
+------------------------------------------------------------
+// Import DURING relationships
+LOAD CSV WITH HEADERS FROM 'file:///period_mappings.csv' AS row
+WITH row WHERE row.relationship_type = 'DURING'
+MATCH (y:Year {year_value: toInteger(row.`year_value:int`)})
+MATCH (p:Period {qid: row.period_qid})
+MERGE (y)-[r:DURING]->(p)
+SET r.confidence = toFloat(row.`confidence:float`);
+
+// Import PART_OF relationships
+LOAD CSV WITH HEADERS FROM 'file:///period_mappings.csv' AS row
+WITH row WHERE row.relationship_type = 'PART_OF'
+MATCH (y:Year {year_value: toInteger(row.`year_value:int`)})
+MATCH (p:Period {qid: row.period_qid})
+MERGE (y)-[r:PART_OF]->(p)
+SET r.confidence = toFloat(row.`confidence:float`);
+
+Step 7: Verify Import
+------------------------------------------------------------
+MATCH (y:Year) RETURN count(y) as year_count;
+MATCH (p:Period) RETURN count(p) as period_count;
+MATCH ()-[r:FOLLOWED_BY]->() RETURN count(r) as followed_by_count;
+MATCH ()-[r:DURING]->() RETURN count(r) as during_count;

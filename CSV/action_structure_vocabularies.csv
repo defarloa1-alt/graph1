@@ -1,0 +1,56 @@
+Category,Type,Code,Description,Examples
+Goal Type,Political,POL,Political objectives - governance, power, institutions,Overthrow monarchy, Establish republic, Gain territory, Reform government
+Goal Type,Personal,PERS,Personal objectives - desires, ambitions, status,Satisfy desire, Assert power, Gain revenge, Maintain status
+Goal Type,Military,MIL,Military objectives - victory, defense, conquest,Defeat enemy, Defend territory, Conquer region, Maintain security
+Goal Type,Economic,ECON,Economic objectives - wealth, resources, trade,Acquire wealth, Control trade routes, Extract resources, Stabilize economy
+Goal Type,Constitutional,CONST,Constitutional objectives - laws, institutions, systems,Create new institution, Reform laws, Establish precedent, Change system
+Goal Type,Moral,MORAL,Moral objectives - justice, ethics, righteousness,Seek justice, Right wrong, Protect innocent, Uphold values
+Goal Type,Cultural,CULT,Cultural objectives - identity, traditions, beliefs,Preserve culture, Spread religion, Maintain traditions, Cultural dominance
+Goal Type,Religious,RELIG,Religious objectives - faith, conversion, doctrine,Convert population, Establish religion, Defend faith, Religious reform
+Goal Type,Diplomatic,DIPL,Diplomatic objectives - alliances, negotiations, peace,Form alliance, Negotiate peace, Maintain relations, Gain support
+Goal Type,Survival,SURV,Survival objectives - life, safety, existence,Preserve life, Avoid death, Maintain existence, Ensure safety
+Trigger Type,Circumstantial,CIRCUM,External circumstances or opportunities,Opportunity presented, Right time/place, Favorable conditions, Chance occurrence
+Trigger Type,Moral,MORAL_TRIGGER,Moral outrage or ethical imperative,Moral outrage, Injustice observed, Ethical violation, Conscience
+Trigger Type,Emotional,EMOT,Emotional response or state,Anger, Fear, Grief, Love, Hatred, Desire
+Trigger Type,Political,POL_TRIGGER,Political events or situations,Threat to power, Loss of control, Political opportunity, Crisis
+Trigger Type,Personal,PERS_TRIGGER,Personal experiences or events,Personal loss, Betrayal, Insult, Injury, Personal crisis
+Trigger Type,External Threat,EXT_THREAT,External danger or aggression,Enemy attack, Invasion, External pressure, Coercion
+Trigger Type,Internal Pressure,INT_PRESS,Internal political or social pressure,Popular uprising, Internal conflict, Dissent, Opposition
+Trigger Type,Legal,LEGAL,Legal requirements or violations,Legal obligation, Law broken, Legal opportunity, Court order
+Trigger Type,Ambition,AMB,Personal ambition or desire for power,Desire for power, Ambition, Greed, Avarice, Status seeking
+Trigger Type,Opportunity,OPPORT,Available opportunity to act,Window of opportunity, Favorable moment, Chance to act, Opening
+Action Type,Political Revolution,REVOL,Political overthrow or regime change,Overthrow government, Rebel against authority, Seize power, Establish new system
+Action Type,Military Action,MIL_ACT,Military operations or warfare,Battle, Siege, Campaign, Defense, Attack
+Action Type,Criminal Act,CRIME,Illegal or criminal behavior,Murder, Theft, Rape, Assault, Fraud
+Action Type,Diplomatic Action,DIPL_ACT,Diplomatic activities,Negotiation, Alliance formation, Treaty signing, Envoy dispatch
+Action Type,Constitutional Innovation,CONST_INNOV,Creating new institutions or systems,Establish new office, Create institution, Design system, Constitutional reform
+Action Type,Economic Action,ECON_ACT,Economic activities,Trade, Taxation, Confiscation, Distribution, Market intervention
+Action Type,Legal Action,LEGAL_ACT,Legal proceedings or enforcement,Trial, Execution, Proscription, Banishment, Pardon
+Action Type,Social Action,SOC_ACT,Social movements or cultural actions,Protest, Cultural change, Social reform, Movement
+Action Type,Religious Action,RELIG_ACT,Religious activities or practices,Conversion, Religious ceremony, Doctrine establishment, Heresy suppression
+Action Type,Personal Action,PERS_ACT,Personal behaviors or decisions,Marriage, Suicide, Flight, Renunciation, Adoption
+Action Type,Administrative,ADMIN,Administrative or governance actions,Appointment, Organization, Administration, Management
+Action Type,Causal Chain,CAUSAL,Events that cause other events,Cascade of events, Chain reaction, Triggering sequence
+Action Type,Tyrannical Governance,TYRANNY,Abusive or oppressive rule,Suppression, Violent rule, Ignoring laws, Fear tactics
+Action Type,Defensive Action,DEFENSIVE,Defensive measures or responses,Defense, Resistance, Counter-attack, Protection
+Action Type,Offensive Action,OFFENSIVE,Aggressive or offensive measures,Attack, Invasion, Conquest, Aggression
+Result Type,Political Transformation,POL_TRANS,Fundamental political change,Regime change, System transformation, Power shift, Political restructuring
+Result Type,Institutional Creation,INST_CREATE,New institutions or offices created,New office established, Institution founded, System created, Precedent set
+Result Type,Conquest,CONQUEST,Military conquest or victory,Territory gained, Enemy defeated, Victory achieved, Conquest completed
+Result Type,Defeat,DEFEAT,Military or political defeat,Loss, Retreat, Surrender, Failure
+Result Type,Alliance,ALLIANCE,Formation of alliances or partnerships,Alliance formed, Partnership created, Agreement reached
+Result Type,Tragic,TRAGIC,Tragic or negative personal outcomes,Death, Suicide, Loss, Suffering, Tragedy
+Result Type,Success,SUCCESS,Successful achievement of goals,Goal achieved, Victory, Success, Accomplishment
+Result Type,Failure,FAILURE,Failed attempt or outcome,Goal not achieved, Failure, Defeat, Setback
+Result Type,Stability,STABILITY,Maintenance or creation of stability,Peace established, Stability maintained, Order restored
+Result Type,Instability,INSTABILITY,Destabilization or chaos,Chaos created, Instability, Disorder, Unrest
+Result Type,Legal Outcome,LEGAL_OUTCOME,Legal consequences or results,Conviction, Acquittal, Legal change, Legal precedent
+Result Type,Cultural Change,CULT_CHANGE,Cultural transformations,Culture changed, Tradition altered, Identity shifted
+Result Type,Personal Outcome,PERS_OUTCOME,Personal consequences,Status changed, Personal loss, Personal gain, Life altered
+Result Type,Economic Outcome,ECON_OUTCOME,Economic consequences,Wealth gained, Economic change, Trade established, Resources acquired
+Result Type,Social Change,SOC_CHANGE,Social transformations,Social reform, Movement success, Society changed
+Result Type,Religious Outcome,RELIG_OUTCOME,Religious consequences,Conversion achieved, Religion established, Doctrine changed
+Result Type,Moral Victory,MORAL_VICT,Moral or ethical success,Justice served, Right upheld, Moral victory
+Result Type,Moral Failure,MORAL_FAIL,Moral or ethical failure,Injustice, Moral failure, Wrong committed
+Result Type,Neutral Outcome,NEUTRAL,Neither clearly positive nor negative,Status quo, Ambiguous result, Mixed outcome
+

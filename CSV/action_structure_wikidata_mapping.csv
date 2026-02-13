@@ -1,0 +1,55 @@
+Category,Our_Code,Our_Type,Wikidata_QID,Wikidata_Label,Alignment_Type,Notes
+Goal Type,POL,Political,Q7163,politics,Concept QID,Map to politics concept
+Goal Type,PERS,Personal,Q5,human,Concept QID,Personal motivations relate to human nature
+Goal Type,MIL,Military,Q49892,military,Concept QID,Map to military concept
+Goal Type,ECON,Economic,Q11425,economics,Concept QID,Map to economics concept
+Goal Type,CONST,Constitutional,Q7755,constitution,Entity Type QID,Already in entity CSV - matches Constitution entity type
+Goal Type,MORAL,Moral,Q177639,ethics,Concept QID,Map to ethics/moral philosophy concept
+Goal Type,CULT,Cultural,Q11042,culture,Concept QID,Map to culture concept
+Goal Type,RELIG,Religious,Q9174,religion,Entity Type QID,Already in entity CSV - matches Religion entity type
+Goal Type,DIPL,Diplomatic,Q1889,diplomacy,Concept QID,Map to diplomacy concept
+Goal Type,SURV,Survival,Q2057971,survival,Concept QID,Map to survival concept
+Trigger Type,CIRCUM,Circumstantial,Q18108648,opportunity,Concept QID,External circumstances map to opportunity concept
+Trigger Type,MORAL_TRIGGER,Moral,Q177639,ethics,Concept QID,Same as moral goal type
+Trigger Type,EMOT,Emotional,Q9418,emotion,Concept QID,Map to emotion concept
+Trigger Type,POL_TRIGGER,Political,Q7163,politics,Concept QID,Same as political goal type
+Trigger Type,PERS_TRIGGER,Personal,Q5,human,Concept QID,Personal triggers relate to human experiences
+Trigger Type,EXT_THREAT,External Threat,Q41207,threat,Concept QID,Map to threat concept
+Trigger Type,INT_PRESS,Internal Pressure,Q7163,politics,Concept QID,Internal political/social pressure maps to politics
+Trigger Type,LEGAL,Legal,Q4932206,law,Concept QID,Map to law concept
+Trigger Type,AMB,Ambition,Q5,human,Concept QID,Personal ambition relates to human nature
+Trigger Type,OPPORT,Opportunity,Q18108648,opportunity,Concept QID,Map to opportunity concept
+Action Type,REVOL,Political Revolution,Q10931,revolution,Entity Type QID,Already in entity CSV - matches Revolution event type
+Action Type,MIL_ACT,Military Action,Q178561,battle,Entity Type QID,Already in entity CSV - matches Battle event type
+Action Type,CRIME,Criminal Act,Q3820,massacre,Entity Type QID,Already in entity CSV - matches Massacre event type (also Q173816 criminal act)
+Action Type,DIPL_ACT,Diplomatic Action,Q93288,treaty,Entity Type QID,Already in entity CSV - matches Treaty entity type
+Action Type,CONST_INNOV,Constitutional Innovation,Q7755,constitution,Entity Type QID,Already in entity CSV - matches Constitution entity type
+Action Type,ECON_ACT,Economic Action,Q1331793,trade agreement,Entity Type QID,Already in entity CSV - matches Trade Agreement entity type
+Action Type,LEGAL_ACT,Legal Action,Q1787438,decree,Entity Type QID,Already in entity CSV - matches Decree entity type
+Action Type,SOC_ACT,Social Action,Q11042,culture,Concept QID,Social movements map to culture concept
+Action Type,RELIG_ACT,Religious Action,Q9174,religion,Entity Type QID,Already in entity CSV - matches Religion entity type
+Action Type,PERS_ACT,Personal Action,Q5,human,Concept QID,Personal actions relate to human behavior
+Action Type,ADMIN,Administrative,Q294414,public office,Entity Type QID,Already in entity CSV - matches Public Office position type
+Action Type,CAUSAL,Causal Chain,Q1656682,event,Entity Type QID,Already in entity CSV - matches Event entity type (causal chain of events)
+Action Type,TYRANNY,Tyrannical Governance,Q7188,government,Entity Type QID,Already in entity CSV - matches Government organization type (tyranny is form of governance)
+Action Type,DEFENSIVE,Defensive Action,Q49892,military,Concept QID,Defensive actions map to military concept
+Action Type,OFFENSIVE,Offensive Action,Q49892,military,Concept QID,Offensive actions map to military concept
+Result Type,POL_TRANS,Political Transformation,Q10931,revolution,Entity Type QID,Matches Revolution event type (transformation outcome)
+Result Type,INST_CREATE,Institutional Creation,Q294414,public office,Entity Type QID,Already in entity CSV - matches Public Office position type
+Result Type,CONQUEST,Conquest,Q178561,battle,Entity Type QID,Matches Battle event type (military victory)
+Result Type,DEFEAT,Defeat,Q178561,battle,Entity Type QID,Matches Battle event type (military defeat)
+Result Type,ALLIANCE,Alliance,Q93288,treaty,Entity Type QID,Matches Treaty entity type
+Result Type,TRAGIC,Tragic,Q3820,massacre,Entity Type QID,Matches Massacre event type (tragic outcomes)
+Result Type,SUCCESS,Success,Q178561,battle,Concept QID,Success often maps to victory in military context
+Result Type,FAILURE,Failure,Q178561,battle,Concept QID,Failure often maps to defeat in military context
+Result Type,STABILITY,Stability,Q11687,peace,Concept QID,Stability maps to peace concept
+Result Type,INSTABILITY,Instability,Q198,war,Entity Type QID,Already in entity CSV - matches War event type
+Result Type,LEGAL_OUTCOME,Legal Outcome,Q1787438,decree,Entity Type QID,Already in entity CSV - matches Decree entity type
+Result Type,CULT_CHANGE,Cultural Change,Q11042,culture,Concept QID,Cultural changes map to culture concept
+Result Type,PERS_OUTCOME,Personal Outcome,Q5,human,Concept QID,Personal outcomes relate to human experiences
+Result Type,ECON_OUTCOME,Economic Outcome,Q11425,economics,Concept QID,Economic outcomes map to economics concept
+Result Type,SOC_CHANGE,Social Change,Q11042,culture,Concept QID,Social changes map to culture/society concept
+Result Type,RELIG_OUTCOME,Religious Outcome,Q9174,religion,Entity Type QID,Already in entity CSV - matches Religion entity type
+Result Type,MORAL_VICT,Moral Victory,Q177639,ethics,Concept QID,Moral victories map to ethics concept
+Result Type,MORAL_FAIL,Moral Failure,Q177639,ethics,Concept QID,Moral failures map to ethics concept
+Result Type,NEUTRAL,Neutral Outcome,Q7163,politics,Concept QID,Neutral outcomes often in political context - status quo

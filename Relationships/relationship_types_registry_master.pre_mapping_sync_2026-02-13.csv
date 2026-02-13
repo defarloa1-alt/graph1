@@ -1,0 +1,301 @@
+category,relationship_type,description,wikidata_property,directionality,parent_relationship,specificity_level,lcc_code,lcsh_heading,fast_id,status,note,source,version,lifecycle_status
+Application,DERIVED_FROM,Material extracted or derived from source organism,,forward,,1,T,Technology,1145002,active,Material extraction from biological source,discovery_schema,1.0,candidate
+Application,DERIVES_MATERIAL,Source organism used to derive material,,inverse,,1,T,Technology,1145002,active,Inverse of DERIVED_FROM,discovery_schema,1.0,candidate
+Application,DYED_BY,Dye used to dye object,,inverse,,1,T,Technology,1145002,active,Inverse of DYED_WITH,discovery_schema,1.0,candidate
+Application,DYED_WITH,Object dyed with dye or pigment,,forward,,1,T,Technology,1145002,active,Dyeing/tinting relationship,discovery_schema,1.0,candidate
+Application,MATERIAL_IN,Material used in,P186,inverse,,1,T,Technology,1145002,active,,bidirectional_csv,1.0,implemented
+Application,MATERIAL_USED,Made from,P186,forward,,1,T,Technology,1145002,active,,bidirectional_csv,1.0,implemented
+Application,PRODUCED_IN,Material produced or manufactured in location,,forward,,1,T,Technology,1145002,active,Production location for materials,discovery_schema,1.0,candidate
+Application,PRODUCES_MATERIAL,Location produces this material,,inverse,,1,T,Technology,1145002,active,Inverse of PRODUCED_IN,discovery_schema,1.0,candidate
+Application,USE,Used for,P366,forward,,1,T,Technology,1145002,active,,bidirectional_csv,1.0,implemented
+Application,USED_BY,Used by entity,P366,inverse,,1,T,Technology,1145002,active,,bidirectional_csv,1.0,implemented
+Attribution,ANALYZES,Citation provides analysis of entity,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,ATTRIBUTED_TO,Citation attributed to author,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,DESCRIBES,Citation describes entity/event,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,EXTRACTED_FROM,Citation extracted from work,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,INTERPRETS,Citation interprets entity/event,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,MENTIONS,Citation mentions entity,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,NAME,Has name,P2561,unidirectional,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,NAMED_AFTER,Named for,P138,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,NAMESAKE_OF,Is namesake of,P138,inverse,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,QUOTES,Citation is direct quote from source,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Attribution,SUMMARIZES,Citation summarizes entity/event,,forward,,1,Z,Bibliography,831351,active,,bidirectional_csv,1.0,implemented
+Authorship,ARCHITECT,Designed by,P84,forward,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,AUTHOR,Created by,P50,forward,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,COMMISSIONED,Commissioned creation of work,,forward,,2,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,COMMISSIONED_BY,Work commissioned by,,inverse,,2,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,COMPOSER,Composed by,P86,forward,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,COMPOSITION_OF,Composed by,P86,inverse,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,CREATION_OF,Created by,P170,inverse,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,CREATOR,Created by,P170,forward,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,DESIGNED,Architect designed,P84,inverse,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,DISCOVERED_BY,Discovered by,P61,forward,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,DISCOVERER_OF,Person discovered,P61,inverse,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Authorship,WORK_OF,Work created by,P50,inverse,,1,PN,Authorship,821688,active,,bidirectional_csv,1.0,implemented
+Causality,ACTION_JUSTIFIED_BY,Action justified by claim,,inverse,CAUSED,2,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Causality,CAUSED,Caused event,,unidirectional,,1,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Causality,CAUSED_BY,Caused by,P828,unidirectional,,1,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Causality,CONTRIBUTED_BY,Outcome had this entity as contributing factor,P828,inverse,,1,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Causality,CONTRIBUTED_TO,Entity contributed as factor to outcome,P828,forward,,1,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Causality,JUSTIFIED_ACTION,Claimed justification for action,,forward,CAUSED,2,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Causality,MARKED_START,Event marked beginning of new period,,forward,CAUSED,2,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Causality,START_MARKED_BY,Period had its beginning marked by event,,inverse,CAUSED,2,BD,Causation,849680,active,,bidirectional_csv,1.0,implemented
+Comparative,ADVANTAGE,Type has advantage,,forward,,1,T,Technology,1145002,active,Advantage descriptor,discovery_schema,1.0,candidate
+Comparative,DISADVANTAGE,Type has disadvantage,,forward,,1,T,Technology,1145002,active,Disadvantage descriptor,discovery_schema,1.0,candidate
+Comparative,INFERIOR_TO,Type is inferior to another type,,forward,,1,T,Technology,1145002,active,Inferiority comparison,discovery_schema,1.0,candidate
+Comparative,SUPERIOR_TO,Type is superior to another type,,forward,,1,T,Technology,1145002,active,Superiority comparison,discovery_schema,1.0,candidate
+Cultural,ASSIMILATED,Culture that absorbed another group,,inverse,,1,GN,Culture,885059,active,,extraction_appendix,1.0,implemented
+Cultural,ASSIMILATED_TO,Group/people assimilated into another culture,,forward,,1,GN,Culture,885059,active,,extraction_appendix,1.0,implemented
+Cultural,CLAIMS_HERITAGE_FROM,Group claims heritage from earlier polity,,forward,,1,GN,Culture,885059,active,,bidirectional_csv,1.0,implemented
+Cultural,EVOLVED_FROM,Form evolved from another form,,inverse,,1,GN,Culture,885059,active,,bidirectional_csv,1.0,implemented
+Cultural,EVOLVED_INTO,Form evolved into another form,,forward,,1,GN,Culture,885059,active,,bidirectional_csv,1.0,implemented
+Cultural,HERITAGE_OF,Earlier polity is claimed heritage of later group,,inverse,,1,GN,Culture,885059,active,,bidirectional_csv,1.0,implemented
+Cultural,MYTHIC_ORIGIN_OF,Mythic place is origin of group,,inverse,,1,GN,Culture,885059,active,,bidirectional_csv,1.0,implemented
+Cultural,ORIGIN_MYTH,Group has mythic/legendary place of origin,,forward,,1,GN,Culture,885059,active,,bidirectional_csv,1.0,implemented
+Diplomatic,DIPLOMATIC_ACTION,,,,,,,,,active,Present in canonical seed but absent in source CSV,seed_only,1.0,implemented
+Diplomatic,ACCEPTED_OFFER,Accepted diplomatic offer/proposal,,forward,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,APPEALED_TO,Entity appealed/requested help from another,,forward,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,NEGOTIATED_AGAINST,Counterpart negotiated with entity,,symmetric,RELATED_TO,3,JZ,Diplomacy,894415,active,,bidirectional_csv,1.0,implemented
+Diplomatic,NEGOTIATED_WITH,Entity negotiated with counterpart,,symmetric,RELATED_TO,3,JZ,Diplomacy,894415,active,,bidirectional_csv,1.0,implemented
+Diplomatic,OFFERED_SELF_TO,Offered themselves as subjects/allies to another entity,,forward,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,OFFER_ACCEPTED_BY,Diplomatic offer was accepted by entity,,inverse,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,OFFER_REJECTED_BY,Diplomatic offer was rejected by entity,,inverse,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,RECEIVED_APPEAL_FROM,Entity received appeal/request for help,,inverse,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,RECEIVED_ENVOYS_FROM,Received diplomatic envoys/representatives from entity,,inverse,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,RECEIVED_OFFER_FROM,Received offer of subjection/alliance from entity,,inverse,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,REJECTED_OFFER,Rejected diplomatic offer/proposal,,forward,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Diplomatic,SENT_ENVOYS_TO,Sent diplomatic envoys/representatives,,forward,,1,JZ,Diplomacy,894415,active,,extraction_appendix,1.0,implemented
+Economic,AVAILABLE_TO,Type available to social group,,forward,,1,HB,Economics,902116,active,Social availability,discovery_schema,1.0,candidate
+Economic,CONFISCATED_LAND_FROM,Confiscated land from,,forward,ECONOMIC_ACTION,2,HB,Economics,902116,active,,bidirectional_csv,1.0,implemented
+Economic,COST,Type has cost/value characteristic,,forward,,1,HB,Economics,902116,active,Cost descriptor,discovery_schema,1.0,candidate
+Economic,DISTRIBUTED_LAND_TO,Distributed confiscated/conquered land,,forward,,1,HB,Economics,902116,active,,extraction_appendix,1.0,implemented
+Economic,ECONOMIC_ACTION,Generic economic action,,unidirectional,,1,HB,Economics,902116,active,,bidirectional_csv,1.0,implemented
+Economic,EXPERIENCED_RECESSION,Economy experienced recession,,forward,,1,HB,Economics,902116,active,,bidirectional_csv,1.0,implemented
+Economic,LAND_CONFISCATED_BY,Had land confiscated by,,inverse,ECONOMIC_ACTION,2,HB,Economics,902116,active,,bidirectional_csv,1.0,implemented
+Economic,LAND_DISTRIBUTED_BY,Land was distributed by entity,,inverse,,1,HB,Economics,902116,active,,extraction_appendix,1.0,implemented
+Economic,PRODUCED_BY,Good/service produced by entity,P1056,inverse,,1,HB,Economics,902116,active,,bidirectional_csv,1.0,implemented
+Economic,PRODUCES_GOOD,Entity produces good or service,P1056,forward,,1,HB,Economics,902116,active,,bidirectional_csv,1.0,implemented
+Economic,RECESSION_IN,Recession occurred in economy,,inverse,,1,HB,Economics,902116,active,,bidirectional_csv,1.0,implemented
+Economic,RESTRICTED_TO,Type restricted to group,,forward,,1,HB,Economics,902116,active,Social restriction,discovery_schema,1.0,candidate
+Economic,SOLD_INTO_SLAVERY,Sold people into slavery,,forward,,1,HB,Economics,902116,active,,extraction_appendix,1.0,implemented
+Economic,SOLD_INTO_SLAVERY_BY,People were sold into slavery by entity,,inverse,,1,HB,Economics,902116,active,,extraction_appendix,1.0,implemented
+Economic,TAXED,Taxation,,forward,,1,HB,Economics,902116,active,,roman_republic_csv,1.0,implemented
+Economic,VALUED_AT,Type valued at amount,,forward,,1,HB,Economics,902116,active,Monetary value,discovery_schema,1.0,candidate
+Evolution,CEASED_USE_IN,Type ceased to be used in period,P582,forward,,1,QB,Time,1151043,active,Cessation period,discovery_schema,1.0,candidate
+Evolution,DISPLACED_BY,Type was displaced by another type,,forward,,1,GN,Culture,885059,active,Displacement relationship,discovery_schema,1.0,candidate
+Evolution,INTRODUCED_BY,Type was introduced by event,,forward,,1,QB,Time,1151043,active,Introduction event,discovery_schema,1.0,candidate
+Evolution,INTRODUCED_IN,Type was introduced in period,P580,forward,,1,QB,Time,1151043,active,Introduction period,discovery_schema,1.0,candidate
+Evolution,OBSOLETE_AFTER,Type became obsolete after event,P582,forward,,1,QB,Time,1151043,active,Obsolescence event,discovery_schema,1.0,candidate
+Evolution,OBSOLETE_DUE_TO,Type became obsolete due to reason,,forward,,1,GN,Culture,885059,active,Reason for obsolescence,discovery_schema,1.0,candidate
+Evolution,PHASED_OUT_BECAUSE,Type was phased out because of reason,,forward,,1,GN,Culture,885059,active,Reason for phasing out,discovery_schema,1.0,candidate
+Evolution,PREVALENT_DURING,Type was prevalent during period,,forward,,1,QB,Time,1151043,active,Period of common use with temporal bounds,discovery_schema,1.0,candidate
+Evolution,REPLACED_BY,Type was replaced by another type,P1366,forward,,1,GN,Culture,885059,active,Replacement relationship,discovery_schema,1.0,candidate
+Evolution,SUPERSEDED_BY,Type was superseded by another type,P1366,forward,,1,GN,Culture,885059,active,Supersession relationship,discovery_schema,1.0,candidate
+Familial,ADOPTED,Adopter legally adopted person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,bidirectional_csv,1.0,candidate
+Familial,ADOPTED_BY,Person was legally adopted by adopter,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,bidirectional_csv,1.0,candidate
+Familial,AUNT_OF,Aunt of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,implemented
+Familial,BROTHER_IN_LAW,Person is brother-in-law,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,BROTHER_IN_LAW_OF,Brother-in-law of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,CHILD_OF,Person is child of parent,,forward,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,COUSIN_OF,Person is cousin,,symmetric,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,implemented
+Familial,DAUGHTER_IN_LAW,Person is daughter-in-law,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,DAUGHTER_IN_LAW_OF,Daughter-in-law of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,FAMILIAL_RELATION,Generic familial relationship,,unidirectional,,1,HQ,Family,1728849,active,,bidirectional_csv,1.0,candidate
+Familial,FATHER_IN_LAW,Person is father-in-law,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,FATHER_IN_LAW_OF,Father-in-law of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,FATHER_OF,Father of child,,forward,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,GRANDCHILD_OF,Grandchild of grandparent,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,GRANDPARENT_OF,Grandparent of grandchild,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,HALF_SIBLING_OF,Person is half-sibling,,symmetric,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,implemented
+Familial,MOTHER_IN_LAW,Person is mother-in-law,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,MOTHER_IN_LAW_OF,Mother-in-law of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,MOTHER_OF,Mother of child,,forward,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,NEPHEW_OR_NIECE_OF,Person is nephew or niece,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,implemented
+Familial,PARENT_OF,Parent of child,,inverse,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,SIBLING_OF,Person is sibling,,forward,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,SISTER_IN_LAW,Person is sister-in-law,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,SISTER_IN_LAW_OF,Sister-in-law of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,SON_IN_LAW,Person is son-in-law,,inverse,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,SON_IN_LAW_OF,Son-in-law of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,candidate
+Familial,SPOUSE_OF,Person is spouse (symmetric),,symmetric,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,STEPCHILD_OF,Person is stepchild of stepparent,,forward,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,STEPPARENT_OF,Stepparent of stepchild,,inverse,FAMILIAL_RELATION,2,HQ,Family,1728849,active,,bidirectional_csv,1.0,implemented
+Familial,UNCLE_OF,Uncle of person,,forward,FAMILIAL_RELATION,3,HQ,Family,1728849,active,,familial_expansion,1.0,implemented
+Functional,DESIGNED_FOR,Purpose for which type was designed,,forward,,1,T,Technology,1145002,active,Design purpose,discovery_schema,1.0,candidate
+Functional,EFFECTIVE_AGAINST,Type is effective against target,,forward,,1,T,Technology,1145002,active,Effectiveness relationship,discovery_schema,1.0,candidate
+Functional,INEFFECTIVE_AGAINST,Type is ineffective against target,,forward,,1,T,Technology,1145002,active,Ineffectiveness relationship,discovery_schema,1.0,candidate
+Functional,OPTIMAL_IN,Type is optimal in context/situation,,forward,,1,T,Technology,1145002,active,Optimal context,discovery_schema,1.0,candidate
+Geographic,BIRTHPLACE_OF,Place is birthplace of person,P19,inverse,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,BORN_IN,Person was born in place,P19,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,CAMPAIGN_IN,Military campaign location,,forward,,1,G,Geography,940469,active,,roman_republic_csv,1.0,implemented
+Geographic,DEATH_PLACE_OF,Place is death place of person,P20,inverse,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,DIED_IN,Person died in place,P20,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,EXILED,Person was exiled to place,,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,EXILED_BY,Place exiled person (jurisdiction),,inverse,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,FLED_FROM,Fled from location,,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,FLED_TO,Fled to location (exile/escape),,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,FOUNDED,Established place,P112,forward,,1,G,Geography,940469,active,,roman_republic_csv,1.0,implemented
+Geographic,HAS_PART,Place comprises/contains place component,P527,inverse,,2,G,Geography,940469,active,Use for spatial composition - country HAS_PART regions,spatial_composition,1.0,candidate
+Geographic,LIVED_IN,Person lived in or resided in a place,,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,LOCATED_IN,Entity is located in place,,forward,,1,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,LOCATION_OF,Place is location of entity,,inverse,,1,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,MIGRATED_FROM,Group migrated from a place,,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,MIGRATED_TO,Group migrated to a place,,forward,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Geographic,PART_OF,Place is part of larger place,P361,forward,,2,G,Geography,940469,active,Use for spatial composition - region PART_OF country,spatial_composition,1.0,candidate
+Geographic,RENAMED,Renamed place or entity,P1448,forward,,1,G,Geography,940469,active,,extraction_appendix,1.0,implemented
+Geographic,RENAMED_TO,Place was renamed to new name,P1448,inverse,,1,G,Geography,940469,active,,extraction_appendix,1.0,implemented
+Geographic,RESIDENCE_OF,Place was residence of a person,,inverse,LOCATED_IN,2,G,Geography,940469,active,,bidirectional_csv,1.0,implemented
+Honorific,AWARDED_TO,Award was given to person,P166,inverse,HONORED,2,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Honorific,AWARD_RECEIVED,Person received award or decoration,P166,forward,HONORED,2,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Honorific,DECORATED_WITH,Person decorated with award,,forward,HONORED,3,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Honorific,DECORATION_OF,Decoration was awarded to person,,inverse,HONORED,3,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Honorific,GRANTED_TITLE,Title was granted to person,,forward,HONORED,3,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Honorific,HONORED,Honored or praised person,,forward,HONORED,1,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Honorific,HONORED_BY,Was honored by,,inverse,HONORED,1,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Honorific,TITLE_GRANTED_BY,Person was granted title by grantor,,inverse,HONORED,3,CR,Honors,959979,active,,bidirectional_csv,1.0,implemented
+Ideological,ADHERES_TO,Person or organization adheres to ideology,P1142,forward,,1,HM,Ideology,967151,active,,bidirectional_csv,1.0,implemented
+Ideological,IDEOLOGY_OF,Ideology is adhered to by person/organization,P1142,inverse,,1,HM,Ideology,967151,active,,bidirectional_csv,1.0,implemented
+Institutional,APPOINTED,Entity appointed person to office,P39,forward,,1,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,APPOINTED_BY,Person was appointed by entity,P39,inverse,,1,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,INSTITUTIONAL_ACTION,Generic institutional action,,unidirectional,,1,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,LEGITIMATED,Institution legitimated authority,,forward,,1,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,LEGITIMATED_BY,Authority was legitimated by institution,,inverse,,1,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,REFORMED,Reformed institution/system,,forward,INSTITUTIONAL_ACTION,2,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,REFORMED_BY,Was reformed by,,inverse,INSTITUTIONAL_ACTION,2,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,REINSTATED,Reinstated dormant office/institution,,forward,INSTITUTIONAL_ACTION,2,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Institutional,REINSTATED_BY,Was reinstated by,,inverse,INSTITUTIONAL_ACTION,2,JF,Political institutions,1069240,active,,bidirectional_csv,1.0,implemented
+Legal,CHARGED_WITH,Person was charged with crime,,forward,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,CHARGES_AGAINST,Crime was charged against person,,inverse,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,CONDEMNATION_OF,Condemnation without trial of person,,inverse,LEGAL_ACTION,3,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,CONDEMNED_WITHOUT_TRIAL,Condemned without judicial trial,,forward,LEGAL_ACTION,3,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,CONVICTED_OF,Person was convicted of crime,P1399,forward,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,CONVICTION_OF,Crime had person convicted,,inverse,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,EXECUTED,Entity executed individual/small group,,forward,LEGAL_ACTION,3,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,EXECUTED_BY,Individual was executed by entity,,inverse,LEGAL_ACTION,3,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,IMPRISONED_IN,Person was imprisoned in facility,,forward,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,IMPRISONMENT_OF,Facility held person imprisoned,,inverse,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,LEGAL_ACTION,Generic legal action,,unidirectional,,1,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,SENTENCED_TO,Person was sentenced to punishment,,forward,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Legal,SENTENCE_OF,Punishment was sentenced to person,,inverse,LEGAL_ACTION,2,K,Law,993678,active,,bidirectional_csv,1.0,implemented
+Linguistic,LANGUAGE_OF,Language was spoken by people/group,P1412,inverse,,1,P,Language and languages,992154,active,,extraction_appendix,1.0,implemented
+Linguistic,SPOKE_LANGUAGE,People/group spoke a language,P1412,forward,,1,P,Language and languages,992154,active,,extraction_appendix,1.0,implemented
+Measurement,HAS_INDICATOR,Entity has quantified indicator,,forward,,1,QA,Measurement,1715944,active,,bidirectional_csv,1.0,implemented
+Measurement,INDICATOR_OF,Quantified indicator describes entity,,inverse,,1,QA,Measurement,1715944,active,,bidirectional_csv,1.0,implemented
+Membership,HAS_MEMBER,Group has member,,inverse,,1,HS,Organizations,1047747,active,,bidirectional_csv,1.0,implemented
+Membership,MEMBER_OF,Person is member of group,,forward,,1,HS,Organizations,1047747,active,,bidirectional_csv,1.0,implemented
+Military,BATTLED_IN,Entity fought in battle,,forward,MILITARY_ACTION,2,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,BATTLE_PARTICIPANT,Entity was participant in battle,,inverse,MILITARY_ACTION,2,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,BESIEGED,Laid siege to place,,forward,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,BESIEGED_BY,Place was besieged by,,inverse,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,BETRAYED,Entity betrayed trust/loyalty,,forward,MILITARY_ACTION,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,BETRAYED_BY,Entity was betrayed,,inverse,MILITARY_ACTION,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,COMMANDED_BY,Was commanded by,,inverse,POSITION_HELD,2,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,DEFEATED,Defeated opponent in battle/campaign,,forward,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,DEFEATED_BY,Was defeated by opponent,,inverse,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,DEFECTED_FROM,Defected from,,inverse,RELATED_TO,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,DEFECTED_TO,Defected to join,,forward,RELATED_TO,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,FOUGHT_IN,Entity participated in battle/war,,forward,MILITARY_ACTION,1,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,GARRISONED,Left military garrison in place,,forward,,1,U,Military art and science,1020874,active,,extraction_appendix,1.0,implemented
+Military,GARRISONED_BY,Place was garrisoned by military force,,inverse,,1,U,Military art and science,1020874,active,,extraction_appendix,1.0,implemented
+Military,LEVELLED,Completely destroyed/razed to ground,,forward,,1,U,Military art and science,1020874,active,,extraction_appendix,1.0,implemented
+Military,LEVELLED_BY,Place was completely destroyed/razed,,inverse,,1,U,Military art and science,1020874,active,,extraction_appendix,1.0,implemented
+Military,MASSACRED,Massacred group of people,,forward,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,MASSACRED_BY,Was massacred by,,inverse,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,MILITARY_ACTION,Generic military action,,unidirectional,,1,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,SACKED,Pillaged or sacked place,,forward,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,SACKED_BY,Place was sacked by,,inverse,FOUGHT_IN,3,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Military,SALLIED_FROM,Made military sortie/sally from besieged place,,forward,,1,U,Military art and science,1020874,active,,extraction_appendix,1.0,implemented
+Military,SERVED_UNDER,Served under commander,,forward,POSITION_HELD,2,U,Military art and science,1020874,active,,bidirectional_csv,1.0,implemented
+Moral,COMMITTED_SUICIDE,Person committed suicide,,forward,,3,BJ,Ethics,915833,active,,bidirectional_csv,1.0,candidate
+Moral,RESPONSIBILITY_OF,Atrocity/policy had person/regime responsible,,inverse,CAUSED,3,BJ,Ethics,915833,active,,bidirectional_csv,1.0,candidate
+Moral,RESPONSIBLE_FOR,Person or regime held responsible for atrocity/policy,,forward,CAUSED,3,BJ,Ethics,915833,active,,bidirectional_csv,1.0,candidate
+Political,ADVISED,Institution advised another,,forward,,1,JA,Political science,1069263,active,,roman_republic_csv,1.0,implemented
+Political,ALLIED_VIA_MARRIAGE,Political alliance via marriage,,forward,ALLIED_WITH,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,ALLIED_WITH,Maintained formal/strategic alliance,,forward,RELATED_TO,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,APPLIES_TO_JURISDICTION,Law/office applies to territory,P1001,forward,,1,JA,Political science,1069263,active,,roman_republic_csv,1.0,implemented
+Political,CAUSED_COLLAPSE_OF,Entity caused collapse of polity,P576,inverse,POLITICAL_CHANGE,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,COLLAPSED,Political entity ceased to function,P576,forward,POLITICAL_CHANGE,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,COMPETED_WITH,Political rivalry,,symmetric,,1,JA,Political science,1069263,active,,roman_republic_csv,1.0,implemented
+Political,CONQUERED,Entity conquered territory/polity,,forward,CONTROLLED,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,CONQUERED_BY,Territory was conquered by entity,,inverse,CONTROLLED,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,CONTROLLED,Political entity controlled territory,P17,forward,POLITICAL_CONTROL,1,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,CONTROLLED_BY,Territory was controlled by entity,P17,inverse,POLITICAL_CONTROL,1,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,DECLARED_FOR,Publicly declared support for,,forward,RELATED_TO,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,DECLARED_FOR_BY,Received declaration of support from,,inverse,RELATED_TO,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,DEPOSED,Removed from power,,forward,,1,JA,Political science,1069263,active,,roman_republic_csv,1.0,implemented
+Political,DESIGNATED_HEIR_OF,Person was designated as heir,,forward,POLITICAL_CHANGE,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,ENDED_EXISTENCE_OF,Event ended existence of entity,P582,inverse,POLITICAL_STATUS,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,candidate
+Political,GAINED_SOVEREIGNTY_OVER,Gained political sovereignty over entity,,inverse,,1,JA,Political science,1069263,active,,extraction_appendix,1.0,implemented
+Political,GOVERNED,Person governed a place,,forward,,1,JA,Political science,1069263,active,,roman_republic_csv,1.0,implemented
+Political,HAS_TRIBUTARY,Empire had tributary polity,,inverse,CONTROLLED,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,HEIR_TO,Person's heir was designated,,inverse,POLITICAL_CHANGE,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,LOST_SOVEREIGNTY,Lost political independence/sovereignty,,forward,,1,JA,Political science,1069263,active,,extraction_appendix,1.0,implemented
+Political,MANIPULATED,Manipulated entity/person,,forward,INFLUENCED,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,MANIPULATED_BY,Was manipulated by,,inverse,INFLUENCED,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,MARRIAGE_ALLIANCE_WITH,Marriage alliance partner,,inverse,ALLIED_WITH,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,OPPOSED,Person/group opposed another,,forward,,1,JA,Political science,1069263,active,,roman_republic_csv,1.0,implemented
+Political,OUTLAWED,Declared person an outlaw/enemy,,forward,LEGAL_ACTION,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,OUTLAWED_BY,Was outlawed by authority,,inverse,LEGAL_ACTION,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,POLITICAL_CHANGE,Generic political change,,unidirectional,,1,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,POLITICAL_CONTROL,Generic political control,,unidirectional,,1,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,POLITICAL_STATUS,Generic political status,,unidirectional,,1,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,PROSCRIBED,Officially proscribed (Roman proscription),,forward,LEGAL_ACTION,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,implemented
+Political,PROSCRIPTION_OF,Subject of proscription,,inverse,LEGAL_ACTION,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,candidate
+Political,SUBJUGATED,Conquered/subdued and incorporated into empire,,forward,,1,JA,Political science,1069263,active,,extraction_appendix,1.0,candidate
+Political,SUBJUGATED_BY,Was conquered/subdued and incorporated,,inverse,,1,JA,Political science,1069263,active,,extraction_appendix,1.0,candidate
+Political,SUCCEEDED_BY,Person was succeeded by successor,,inverse,POLITICAL_CHANGE,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,candidate
+Political,SUCCESSOR_OF,Successor succeeded person,,forward,POLITICAL_CHANGE,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,candidate
+Political,SURVIVED_UNTIL,Entity survived until event/date,P582,forward,POLITICAL_STATUS,2,JA,Political science,1069263,active,,bidirectional_csv,1.0,candidate
+Political,TRIBUTARY_OF,Polity paid tribute to empire,,forward,CONTROLLED,3,JA,Political science,1069263,active,,bidirectional_csv,1.0,candidate
+Political,VETOED,Person blocked another's action,,forward,,1,JA,Political science,1069263,active,,roman_republic_csv,1.0,candidate
+Position,APPOINTED_TO,Was appointed to position,,forward,POSITION_HELD,2,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Position,COLLEAGUE_WITH,Shared office contemporaneously,,symmetric,RELATED_TO,2,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Position,COMMANDED,Commanded forces,,forward,POSITION_HELD,2,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Position,OFFICE_HELD_BY,Office was held by person,P39,inverse,,1,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Position,POSITION_HELD,Person held a position or office,P39,forward,,1,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Position,RESIGNATION_OF,Resignation from office by person,,inverse,POSITION_HELD,3,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Position,RESIGNED_FROM,Voluntarily resigned from office,,forward,POSITION_HELD,3,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Position,SERVED_AS,Served in role as,,forward,POSITION_HELD,2,JF,Public officers,1082238,active,,bidirectional_csv,1.0,candidate
+Production,MADE_USING_TECHNIQUE,Type made using technique,P2079,forward,,1,T,Technology,1145002,active,Manufacturing technique,discovery_schema,1.0,candidate
+Production,MANUFACTURED_BY,Type manufactured by organization,P176,forward,,1,T,Technology,1145002,active,Manufacturing organization,discovery_schema,1.0,candidate
+Production,MANUFACTURED_IN,Type manufactured in location,P1071,forward,,1,T,Technology,1145002,active,Manufacturing location,discovery_schema,1.0,candidate
+Production,REQUIRES_MATERIAL,Type requires material for production,,forward,,1,T,Technology,1145002,active,Required material,discovery_schema,1.0,candidate
+Production,REQUIRES_SKILL,Type requires skill to make,,forward,,1,T,Technology,1145002,active,Required skill,discovery_schema,1.0,candidate
+Production,TYPICALLY_MADE_OF,Material type is typically made from,P186,forward,,1,T,Technology,1145002,active,Typical material composition,discovery_schema,1.0,candidate
+Reasoning,I1_INFERRED_FROM,Knowledge inferred from evidence,,forward,,1,,Reasoning,,active,CRMinf property - links evidence to inference,crminf_alignment,1.0,candidate
+Reasoning,I2_BELIEVED_TO_HOLD,Belief about a fact,,forward,,1,,Reasoning,,active,CRMinf property - links inference/belief to conclusion,crminf_alignment,1.0,candidate
+Reasoning,I3_HAS_NOTE,Has note or explanation,,forward,,1,,Reasoning,,active,CRMinf property - notes about inference,crminf_alignment,1.0,candidate
+Reasoning,I4_HAS_UNCERTAINTY,Has uncertainty quantification,,forward,,1,,Reasoning,,active,CRMinf property - uncertainty level,crminf_alignment,1.0,candidate
+Reasoning,I7_HAS_OBJECT,Old belief being revised,,forward,,1,,Reasoning,,active,CRMinf property - belief revision object,crminf_alignment,1.0,candidate
+Reasoning,I8_HAS_RESULT,New/revised belief,,forward,,1,,Reasoning,,active,CRMinf property - belief revision result,crminf_alignment,1.0,candidate
+Relations,ALLY_OF,Was ally of,,forward,RELATED_TO,2,HM,Social relations,1122778,active,,bidirectional_csv,1.0,candidate
+Relations,ALLY_OF_BY,Had ally,,inverse,RELATED_TO,2,HM,Social relations,1122778,active,,bidirectional_csv,1.0,candidate
+Relations,ENEMY_OF,Was enemy of,,forward,RELATED_TO,2,HM,Social relations,1122778,active,,bidirectional_csv,1.0,candidate
+Relations,ENEMY_OF_BY,Had enemy,,inverse,RELATED_TO,2,HM,Social relations,1122778,active,,bidirectional_csv,1.0,candidate
+Relations,INFLUENCED,Influenced entity/person,,forward,RELATED_TO,2,HM,Social relations,1122778,active,,bidirectional_csv,1.0,candidate
+Relations,INFLUENCED_BY,Was influenced by,,inverse,RELATED_TO,2,HM,Social relations,1122778,active,,bidirectional_csv,1.0,candidate
+Relations,RELATED_TO,Generic social/political relation,,unidirectional,,1,HM,Social relations,1122778,active,,bidirectional_csv,1.0,candidate
+Religious,CONVERTED_BY,Religion/agent converted person,P140,inverse,,1,BL,Religion,1093763,active,,bidirectional_csv,1.0,candidate
+Religious,CONVERTED_TO,Person converted to religion,P140,forward,,1,BL,Religion,1093763,active,,bidirectional_csv,1.0,candidate
+Religious,DOMAIN_DEITY,Domain has this deity,,inverse,,1,BL,Religion,1093763,active,,bidirectional_csv,1.0,candidate
+Religious,GOD_OF,Deity is god of domain,,forward,,1,BL,Religion,1093763,active,,bidirectional_csv,1.0,candidate
+Religious,HAS_PATRON_DEITY,Group has patron/tutelary deity,,inverse,,1,BL,Religion,1093763,active,,bidirectional_csv,1.0,candidate
+Religious,PATRON_DEITY_OF,Deity is patron/tutelary god of group,,forward,,1,BL,Religion,1093763,active,,bidirectional_csv,1.0,candidate
+Social,CLIENT_OF,Client to patron,,inverse,,1,HM,Social structure,1123372,active,,roman_republic_csv,1.0,candidate
+Social,FREED_BY,Manumission,,inverse,,1,HM,Social structure,1123372,active,,roman_republic_csv,1.0,candidate
+Social,OWNED,Ownership of slaves,,forward,,1,HM,Social structure,1123372,active,,roman_republic_csv,1.0,candidate
+Social,PATRON_OF,Patron-client relationship,,forward,,1,HM,Social structure,1123372,active,,roman_republic_csv,1.0,candidate
+Social,WEARS,Person wears clothing or garment,,forward,,1,HM,Social structure,1123372,active,Wearing clothing,discovery_schema,1.0,candidate
+Social,WORN_BY,Garment is worn by person,,inverse,,1,HM,Social structure,1123372,active,Inverse of WEARS,discovery_schema,1.0,candidate
+Temporal,CONTAINS_EVENT,Period contains event,,inverse,,1,QB,Time,1151043,active,Inverse of DURING,temporal_corrections,1.0,candidate
+Temporal,CONTAINS_PERIOD,Period contains sub-period,P527,inverse,,2,QB,Time,1151043,active,Use this instead of HAS_PART for temporal period containment,temporal_corrections,1.0,candidate
+Temporal,DURING,Event occurred during period,,forward,,1,QB,Time,1151043,active,For events within time periods,temporal_corrections,1.0,candidate
+Temporal,OVERLAPS_WITH,Periods overlap temporally,,symmetric,,1,QB,Time,1151043,active,For temporal overlap between periods,temporal_corrections,1.0,candidate
+Temporal,SUB_PERIOD_OF,Smaller period within larger period,P361,forward,,2,QB,Time,1151043,active,Use this instead of PART_OF for temporal period containment,temporal_corrections,1.0,candidate
+Temporal,WITHIN_TIMESPAN,Entity exists within timespan,,forward,,1,QB,Time,1151043,active,For entities with defined temporal bounds,temporal_corrections,1.0,candidate
+Trade,EXPORTED_TO,Exported goods to,,forward,,1,HF,Commerce,869279,active,,bidirectional_csv,1.0,candidate
+Trade,IMPORTED_FROM,Imported goods from,,forward,,1,HF,Commerce,869279,active,,bidirectional_csv,1.0,candidate
+Trade,MAJOR_TRADING_PARTNER,Country/region with significant bilateral trade,,symmetric,,1,HF,Commerce,869279,active,,bidirectional_csv,1.0,candidate
+Typological,ALTERNATIVE_TO,Alternative/equivalent to another type,,symmetric,,1,GN,Culture,885059,active,Equivalent alternatives,discovery_schema,1.0,candidate
+Typological,HAS_VARIANT,Has variant or subtype,,inverse,,1,GN,Culture,885059,active,Inverse of VARIANT_OF,discovery_schema,1.0,candidate
+Typological,VARIANT_OF,Is variant or subtype of,,forward,,1,GN,Culture,885059,active,Subtype relationship for objects/materials,discovery_schema,1.0,candidate

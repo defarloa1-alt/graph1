@@ -1,0 +1,5 @@
+# Git LFS tracking for large data dumps
+FAST/*.marcxml filter=lfs diff=lfs merge=lfs -text
+LCSH/skos_subjects/** filter=lfs diff=lfs merge=lfs -text
+Geographic/*.out filter=lfs diff=lfs merge=lfs -text
+Subjects/*.gz filter=lfs diff=lfs merge=lfs -text

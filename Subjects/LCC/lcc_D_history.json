@@ -1,0 +1,229 @@
+[
+  {
+    "id": "DA1-995",
+    "code": "DA1-995",
+    "prefix": "DA",
+    "start": 1.0,
+    "end": 995.0,
+    "label": "History of Great Britain",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "DA10-18.2",
+      "DA20-690",
+      "DA700-745",
+      "DA750-890",
+      "DA900-995"
+    ]
+  },
+  {
+    "id": "DA10-18.2",
+    "code": "DA10-18.2",
+    "prefix": "DA",
+    "start": 10.0,
+    "end": 18.2,
+    "label": "British Empire. Commonwealth of Nations. The Commonwealth",
+    "note": null,
+    "primary_parent": "DA1-995",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DA20-690",
+    "code": "DA20-690",
+    "prefix": "DA",
+    "start": 20.0,
+    "end": 690.0,
+    "label": "England",
+    "note": null,
+    "primary_parent": "DA1-995",
+    "secondary_parents": [],
+    "children": [
+      "DA20-27.5",
+      "DA28-592",
+      "DA600-667",
+      "DA670-690"
+    ]
+  },
+  {
+    "id": "DA20-27.5",
+    "code": "DA20-27.5",
+    "prefix": "DA",
+    "start": 20.0,
+    "end": 27.5,
+    "label": "General",
+    "note": null,
+    "primary_parent": "DA20-690",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DA28-592",
+    "code": "DA28-592",
+    "prefix": "DA",
+    "start": 28.0,
+    "end": 592.0,
+    "label": "History",
+    "note": null,
+    "primary_parent": "DA20-690",
+    "secondary_parents": [],
+    "children": [
+      "DA28-35",
+      "DA40-89.6",
+      "DA90-125",
+      "DA129-592"
+    ]
+  },
+  {
+    "id": "DA28-35",
+    "code": "DA28-35",
+    "prefix": "DA",
+    "start": 28.0,
+    "end": 35.0,
+    "label": "General",
+    "note": null,
+    "primary_parent": "DA28-592",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DA40-89.6",
+    "code": "DA40-89.6",
+    "prefix": "DA",
+    "start": 40.0,
+    "end": 89.6,
+    "label": "Political, military, naval, and Air Force history. Foreign relations",
+    "note": null,
+    "primary_parent": "DA28-592",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DA90-125",
+    "code": "DA90-125",
+    "prefix": "DA",
+    "start": 90.0,
+    "end": 125.0,
+    "label": "Antiquities. Social life and customs. Ethnography",
+    "note": null,
+    "primary_parent": "DA28-592",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DA129-592",
+    "code": "DA129-592",
+    "prefix": "DA",
+    "start": 129.0,
+    "end": 592.0,
+    "label": "By period",
+    "note": null,
+    "primary_parent": "DA28-592",
+    "secondary_parents": [],
+    "children": [
+      "DA129-260",
+      "DA300-592"
+    ]
+  },
+  {
+    "id": "DA129-260",
+    "code": "DA129-260",
+    "prefix": "DA",
+    "start": 129.0,
+    "end": 260.0,
+    "label": "Early and medieval to 1485",
+    "note": null,
+    "primary_parent": "DA129-592",
+    "secondary_parents": [],
+    "children": [
+      "DA140-199",
+      "DA200-260"
+    ]
+  },
+  {
+    "id": "DA140-199",
+    "code": "DA140-199",
+    "prefix": "DA",
+    "start": 140.0,
+    "end": 199.0,
+    "label": "Celts. Romans. Saxons. Danes. Normans",
+    "note": null,
+    "primary_parent": "DA129-260",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DA200-260",
+    "code": "DA200-260",
+    "prefix": "DA",
+    "start": 200.0,
+    "end": 260.0,
+    "label": "1154-1485. Angevins. Plantagenets. Lancaster-York",
+    "note": null,
+    "primary_parent": "DA129-260",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DA300-592",
+    "code": "DA300-592",
+    "prefix": "DA",
+    "start": 300.0,
+    "end": 592.0,
+    "label": "Modern, 1485-",
+    "note": null,
+    "primary_parent": "DA129-592",
+    "secondary_parents": [],
+    "children": [
+      "DA310-360",
+      "DA350-360",
+      "DA385-398",
+      "DA400-429",
+      "DA430-463",
+      "DA498-503",
+      "DA505-522",
+      "DA550-565",
+      "DA566-592"
+    ]
+  },
+  {
+    "id": "DAW1001-1051",
+    "code": "DAW1001-1051",
+    "prefix": "DAW",
+    "start": 1001.0,
+    "end": 1051.0,
+    "label": "History of Central Europe",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "DAW1001-1028",
+      "DAW1031-1051"
+    ]
+  },
+  {
+    "id": "DAW1001-1028",
+    "code": "DAW1001-1028",
+    "prefix": "DAW",
+    "start": 1001.0,
+    "end": 1028.0,
+    "label": "General",
+    "note": null,
+    "primary_parent": "DAW1001-1051",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "DAW1031-1051",
+    "code": "DAW1031-1051",
+    "prefix": "DAW",
+    "start": 1031.0,
+    "end": 1051.0,
+    "label": "History",
+    "note": null,
+    "primary_parent": "DAW1001-1051",
+    "secondary_parents": [],
+    "children": []
+  }
+]

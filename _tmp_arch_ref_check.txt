@@ -1,0 +1,27 @@
+﻿$files = @(
+  '.\Key Files\2-12-26 Chrystallum Architecture - BODY.md',
+  '.\Key Files\2-12-26 Chrystallum Architecture - APPENDICES.md'
+)
+$pattern = '[A-Za-z0-9_./\\ -]+\.(md|csv|json|py|txt|cypher)'
+$refs = @()
+foreach ($f in $files) {
+  $lines = Get-Content $f
+  for ($i=0; $i -lt $lines.Count; $i++) {
+    $line = $lines[$i]
+    $ms = [regex]::Matches($line, $pattern)
+    foreach ($m in $ms) {
+      $ref = $m.Value.Trim()
+      # reduce obvious prose captures
+      if ($ref.Length -lt 4) { continue }
+      $ref = $ref -replace '^`|`$',''
+      $ref = $ref -replace '^\(|\)$',''
+      $refs += [PSCustomObject]@{file=$f;line=$i+1;ref=$ref}
+    }
+  }
+}
+$refs = $refs | Sort-Object ref -Unique
+foreach ($r in $refs) {
+  $candidate = Join-Path 'C:\Projects\Graph1' $r.ref
+  $exists = Test-Path $candidate
+  "{0}:{1} | {2} | exists={3}" -f $r.file,$r.line,$r.ref,$exists
+}

@@ -1,0 +1,664 @@
+{
+  "registry": "Chrystallum Facet Registry",
+  "version": "2026-02-12-consolidated",
+  "source_files": [
+    "Facets/Latest Facets.json",
+    "Facets/Ref facets.json",
+    "Facets/Ref_Anchors.json"
+  ],
+  "facet_count": 16,
+  "facets": [
+    {
+      "key": "archaeological",
+      "facet_class": "ArchaeologicalFacet",
+      "label": "Archaeological",
+      "definition": "Material cultures, site phases, stratigraphic horizons",
+      "anchor_count": 5,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q1190554",
+          "label": "archaeological culture",
+          "source": "latest"
+        },
+        {
+          "qid": "Q839954",
+          "label": "archaeological site",
+          "source": "latest"
+        },
+        {
+          "qid": "Q220341",
+          "label": "stratigraphy",
+          "source": "latest"
+        },
+        {
+          "qid": "Q23498",
+          "label": "archaeological culture",
+          "source": "ref"
+        },
+        {
+          "qid": "Q11759",
+          "label": "Stone Age",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "artistic",
+      "facet_class": "ArtisticFacet",
+      "label": "Artistic",
+      "definition": "Art movements, architectural styles, aesthetic regimes",
+      "anchor_count": 4,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q968159",
+          "label": "art movement",
+          "source": "latest"
+        },
+        {
+          "qid": "Q32880",
+          "label": "architectural style",
+          "source": "latest"
+        },
+        {
+          "qid": "Q735",
+          "label": "art",
+          "source": "latest"
+        },
+        {
+          "qid": "Q2018526",
+          "label": "arts",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "cultural",
+      "facet_class": "CulturalFacet",
+      "label": "Cultural",
+      "definition": "Cultural formations, identity regimes, symbolic systems",
+      "anchor_count": 5,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q11042",
+          "label": "culture",
+          "source": "latest"
+        },
+        {
+          "qid": "Q1792644",
+          "label": "cultural identity",
+          "source": "latest"
+        },
+        {
+          "qid": "Q178885",
+          "label": "cultural history",
+          "source": "latest"
+        },
+        {
+          "qid": "Q7860",
+          "label": "culture",
+          "source": "ref"
+        },
+        {
+          "qid": "Q2198779",
+          "label": "cultural movement",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "demographic",
+      "facet_class": "DemographicFacet",
+      "label": "Demographic",
+      "definition": "Population structure, migration, urbanization waves",
+      "anchor_count": 7,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q8436",
+          "label": "demography",
+          "source": "latest"
+        },
+        {
+          "qid": "Q61509",
+          "label": "migration",
+          "source": "latest"
+        },
+        {
+          "qid": "Q161078",
+          "label": "urbanization",
+          "source": "latest"
+        },
+        {
+          "qid": "Q134737",
+          "label": "demography",
+          "source": "ref"
+        },
+        {
+          "qid": "Q131288",
+          "label": "migration",
+          "source": "ref"
+        },
+        {
+          "qid": "Q33829",
+          "label": "population",
+          "source": "ref"
+        },
+        {
+          "qid": "Q174814",
+          "label": "urbanization",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "diplomatic",
+      "facet_class": "DiplomaticFacet",
+      "label": "Diplomatic",
+      "definition": "Interstate relations, treaties, alliances, diplomatic systems",
+      "anchor_count": 6,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q187947",
+          "label": "diplomacy",
+          "source": "latest"
+        },
+        {
+          "qid": "Q131569",
+          "label": "treaty",
+          "source": "latest"
+        },
+        {
+          "qid": "Q601401",
+          "label": "alliance",
+          "source": "latest"
+        },
+        {
+          "qid": "Q1065",
+          "label": "United Nations",
+          "source": "ref"
+        },
+        {
+          "qid": "Q41298",
+          "label": "treaty",
+          "source": "ref"
+        },
+        {
+          "qid": "Q178049",
+          "label": "alliance",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "economic",
+      "facet_class": "EconomicFacet",
+      "label": "Economic",
+      "definition": "Economic systems, trade regimes, financial structures",
+      "anchor_count": 7,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q8134",
+          "label": "economy",
+          "source": "latest"
+        },
+        {
+          "qid": "Q7406919",
+          "label": "economic system",
+          "source": "latest"
+        },
+        {
+          "qid": "Q193563",
+          "label": "trade route",
+          "source": "latest"
+        },
+        {
+          "qid": "Q47574",
+          "label": "financial system",
+          "source": "latest"
+        },
+        {
+          "qid": "Q8148",
+          "label": "economic sector",
+          "source": "ref"
+        },
+        {
+          "qid": "Q179289",
+          "label": "economic system",
+          "source": "ref"
+        },
+        {
+          "qid": "Q161652",
+          "label": "trade",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "environmental",
+      "facet_class": "EnvironmentalFacet",
+      "label": "Environmental",
+      "definition": "Climate regimes, ecological shifts, environmental phases",
+      "anchor_count": 6,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q7937",
+          "label": "climate",
+          "source": "latest"
+        },
+        {
+          "qid": "Q8072",
+          "label": "ecosystem",
+          "source": "latest"
+        },
+        {
+          "qid": "Q7868",
+          "label": "environment",
+          "source": "latest"
+        },
+        {
+          "qid": "Q2169031",
+          "label": "climate change",
+          "source": "ref"
+        },
+        {
+          "qid": "Q2249676",
+          "label": "natural environment",
+          "source": "ref"
+        },
+        {
+          "qid": "Q864",
+          "label": "natural disaster",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "geographic",
+      "facet_class": "GeographicFacet",
+      "label": "Geographic",
+      "definition": "Spatial regions, cultural-geographic zones, territorial extents",
+      "anchor_count": 4,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q1620908",
+          "label": "historical region",
+          "source": "latest"
+        },
+        {
+          "qid": "Q6256",
+          "label": "country",
+          "source": "latest"
+        },
+        {
+          "qid": "Q82794",
+          "label": "region",
+          "source": "latest"
+        },
+        {
+          "qid": "Q193622",
+          "label": "cultural area",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "intellectual",
+      "facet_class": "IntellectualFacet",
+      "label": "Intellectual",
+      "definition": "Schools of thought, philosophical or scholarly movements",
+      "anchor_count": 6,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q192110",
+          "label": "intellectual history",
+          "source": "latest"
+        },
+        {
+          "qid": "Q4663903",
+          "label": "philosophical movement",
+          "source": "latest"
+        },
+        {
+          "qid": "Q5891",
+          "label": "philosophy",
+          "source": "latest"
+        },
+        {
+          "qid": "Q179805",
+          "label": "philosophical movement",
+          "source": "ref"
+        },
+        {
+          "qid": "Q2738074",
+          "label": "intellectual movement",
+          "source": "ref"
+        },
+        {
+          "qid": "Q5418",
+          "label": "Enlightenment",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "linguistic",
+      "facet_class": "LinguisticFacet",
+      "label": "Linguistic",
+      "definition": "Language families, linguistic shifts, script traditions",
+      "anchor_count": 4,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q315",
+          "label": "language",
+          "source": "latest"
+        },
+        {
+          "qid": "Q34770",
+          "label": "language family",
+          "source": "latest"
+        },
+        {
+          "qid": "Q8192",
+          "label": "writing system",
+          "source": "latest"
+        },
+        {
+          "qid": "Q25295",
+          "label": "language family",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "military",
+      "facet_class": "MilitaryFacet",
+      "label": "Military",
+      "definition": "Warfare, conquests, military systems, strategic eras",
+      "anchor_count": 5,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q8473",
+          "label": "military",
+          "source": "latest"
+        },
+        {
+          "qid": "Q198",
+          "label": "war",
+          "source": "latest"
+        },
+        {
+          "qid": "Q192781",
+          "label": "military history",
+          "source": "latest"
+        },
+        {
+          "qid": "Q180684",
+          "label": "conflict",
+          "source": "ref"
+        },
+        {
+          "qid": "Q8418",
+          "label": "military unit",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "political",
+      "facet_class": "PoliticalFacet",
+      "label": "Political",
+      "definition": "States, empires, governance systems, political eras",
+      "anchor_count": 5,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q3624078",
+          "label": "political system",
+          "source": "latest"
+        },
+        {
+          "qid": "Q3024240",
+          "label": "form of government",
+          "source": "latest"
+        },
+        {
+          "qid": "Q11514315",
+          "label": "political history",
+          "source": "latest"
+        },
+        {
+          "qid": "Q7275",
+          "label": "state",
+          "source": "ref"
+        },
+        {
+          "qid": "Q17156793",
+          "label": "form of government",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "religious",
+      "facet_class": "ReligiousFacet",
+      "label": "Religious",
+      "definition": "Religious movements, institutions, doctrinal eras",
+      "anchor_count": 5,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q9174",
+          "label": "religion",
+          "source": "latest"
+        },
+        {
+          "qid": "Q16970",
+          "label": "religious denomination",
+          "source": "latest"
+        },
+        {
+          "qid": "Q1826286",
+          "label": "religious movement",
+          "source": "latest"
+        },
+        {
+          "qid": "Q879146",
+          "label": "religious order",
+          "source": "ref"
+        },
+        {
+          "qid": "Q11633259",
+          "label": "religious organization",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "scientific",
+      "facet_class": "ScientificFacet",
+      "label": "Scientific",
+      "definition": "Scientific paradigms, revolutions, epistemic frameworks",
+      "anchor_count": 4,
+      "quality_flags": [],
+      "source_priority": "ref",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q336",
+          "label": "science",
+          "source": "ref"
+        },
+        {
+          "qid": "Q11862829",
+          "label": "academic discipline",
+          "source": "ref"
+        },
+        {
+          "qid": "Q193344",
+          "label": "scientific theory",
+          "source": "ref"
+        },
+        {
+          "qid": "Q6683",
+          "label": "scientific revolution",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "social",
+      "facet_class": "SocialFacet",
+      "label": "Social",
+      "definition": "Social structures, class systems, kinship regimes",
+      "anchor_count": 6,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q8436",
+          "label": "demography",
+          "source": "latest"
+        },
+        {
+          "qid": "Q5891",
+          "label": "philosophy",
+          "source": "latest"
+        },
+        {
+          "qid": "Q178885",
+          "label": "cultural history",
+          "source": "latest"
+        },
+        {
+          "qid": "Q49773",
+          "label": "social movement",
+          "source": "ref"
+        },
+        {
+          "qid": "Q189290",
+          "label": "social class",
+          "source": "ref"
+        },
+        {
+          "qid": "Q3359485",
+          "label": "social structure",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "technological",
+      "facet_class": "TechnologicalFacet",
+      "label": "Technological",
+      "definition": "Technological regimes, tool complexes, material innovations",
+      "anchor_count": 7,
+      "quality_flags": [
+        "qid_label_conflict"
+      ],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q11016",
+          "label": "technology",
+          "source": "latest"
+        },
+        {
+          "qid": "Q8148",
+          "label": "tool",
+          "source": "latest"
+        },
+        {
+          "qid": "Q11053",
+          "label": "innovation",
+          "source": "latest"
+        },
+        {
+          "qid": "Q11759",
+          "label": "industrial revolution",
+          "source": "latest"
+        },
+        {
+          "qid": "Q2695280",
+          "label": "tool",
+          "source": "ref"
+        },
+        {
+          "qid": "Q39546",
+          "label": "machine",
+          "source": "ref"
+        },
+        {
+          "qid": "Q178651",
+          "label": "innovation",
+          "source": "ref"
+        }
+      ]
+    }
+  ]
+}

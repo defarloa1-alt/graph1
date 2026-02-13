@@ -1,0 +1,229 @@
+{
+  "main": {
+    "id": "110e0325e0b6021c",
+    "type": "split",
+    "children": [
+      {
+        "id": "cd9cd4ed6ad31801",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "07876eb666763912",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2-12-26 Chrystallum Architecture - CONSOLIDATED"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7be90003d56b0ca1",
+    "type": "split",
+    "children": [
+      {
+        "id": "498ef5e5e96d15c1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3e99074504874fc7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "1a3a7ec2680b0011",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "e18c1944956e8f30",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "823b7d0fcf317f53",
+    "type": "split",
+    "children": [
+      {
+        "id": "de72b0ed2c960c23",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cd0c93e4384c53c0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "bdd periodo.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for bdd periodo"
+            }
+          },
+          {
+            "id": "4be79e56d3583d7b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "bdd periodo.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from bdd periodo"
+            }
+          },
+          {
+            "id": "dd2a81613d476886",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "a72b624c4312732a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "ac52bea06c97a48b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "bdd periodo.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of bdd periodo"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "07876eb666763912",
+  "lastOpenFiles": [
+    "md/Reference/P_VALUE_AUDIT_2026-02-13.md",
+    "CSV/project_p_values_canonical.csv",
+    "scripts/tools/build_project_p_reference_and_audit.py",
+    "CSV/wikiPvalues_alias_index.csv",
+    "Relationships/relationship_type_p_suggestions_relaxed_alias_2026-02-13.csv",
+    "Relationships/relationship_type_p_suggestions_exact_alias_2026-02-13.csv",
+    "Relationships/relationship_types_registry_master.pre_property_catalog_enrichment_2026-02-13.csv",
+    "scripts/tools/enrich_relationship_registry_from_property_catalog.py",
+    "CSV/wikiPvalues_enriched.csv",
+    "CSV/wikiPvalues_sample_200_enriched.csv",
+    "CSV/wikiPvalues_sample_200.csv",
+    "2-12-26-federations.md",
+    "Archive/Key Files/UPDATE_SUMMARY_2026-02-12.md",
+    "Archive/Key Files/SESSION_2_PROGRESS_SUMMARY.md",
+    "Archive/Key Files/CONSOLIDATION_REPORT.md",
+    "Archive/Key Files/FILE_IMPACT_ANALYSIS.md",
+    "Archive/Key Files/FACETS_IMPACT_ANALYSIS.md",
+    "Archive/Key Files/CLAIMS_ARCHITECTURE_UPDATE.md",
+    "Archive/Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.recovered-2026-02-13.md",
+    "Archive/Key Files/2-12-26 DOCUMENT SPLIT INSTRUCTIONS.md",
+    "Archive/Key Files/2-12-26 Chrystallum Architecture - DRAFT.md",
+    "Archive/Key Files/2-12-26 Chrystallum Architecture - BODY.md",
+    "Archive/Key Files/2-12-26 Chrystallum Architecture - APPENDICES.md",
+    "Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.recovered-2026-02-13.md",
+    "Key Files/2-12-26 Chrystallum Architecture - BODY.md",
+    "Key Files/2-12-26 Chrystallum Architecture - APPENDICES.md",
+    "Key Files/ARCHITECTURE_IMPLEMENTATION_INDEX.md",
+    "Key Files/2-12-26 DOCUMENT SPLIT INSTRUCTIONS.md",
+    "Neo4j/TEMPORAL_FACET_STRATEGY.md",
+    "Neo4j/FEDERATION_BACKLINK_STRATEGY.md",
+    "PHASE_1_CHECKLIST.md",
+    "ARCHITECTURE_IMPLEMENTATION_INDEX.md",
+    "2-13-26-federation-impact.md",
+    "Neo4j/IMPLEMENTATION_ROADMAP.md",
+    "Neo4j/schema/SCHEMA_BOOTSTRAP_GUIDE.md",
+    "Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md",
+    "Key Files/Diagrams/cypher_patterns.png",
+    "Key Files/Diagrams/neo4j_graph_structure.png",
+    "Pasted image 20260212143207.png",
+    "Subjects/Triple_Canon_Knowledge_Architecture__Conceptual_to_Logical_Model.png"
+  ]
+}

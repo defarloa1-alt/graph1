@@ -1,0 +1,158 @@
+Latest Facets
+{
+  "facets": [
+    {
+      "key": "political",
+      "label": "Political",
+      "definition": "States, empires, governance systems, political eras",
+      "anchors": [
+        { "label": "political system", "qid": "Q3624078" },
+        { "label": "form of government", "qid": "Q3024240" },
+        { "label": "political history", "qid": "Q11514315" }
+      ]
+    },
+    {
+      "key": "cultural",
+      "label": "Cultural",
+      "definition": "Cultural formations, identity regimes, symbolic systems",
+      "anchors": [
+        { "label": "culture", "qid": "Q11042" },
+        { "label": "cultural identity", "qid": "Q1792644" },
+        { "label": "cultural history", "qid": "Q178885" }
+      ]
+    },
+    {
+      "key": "technological",
+      "label": "Technological",
+      "definition": "Technological regimes, tool complexes, material innovations",
+      "anchors": [
+        { "label": "technology", "qid": "Q11016" },
+        { "label": "tool", "qid": "Q8148" },
+        { "label": "innovation", "qid": "Q11053" },
+        { "label": "industrial revolution", "qid": "Q11759" }
+      ]
+    },
+    {
+      "key": "religious",
+      "label": "Religious",
+      "definition": "Religious movements, institutions, doctrinal eras",
+      "anchors": [
+        { "label": "religion", "qid": "Q9174" },
+        { "label": "religious denomination", "qid": "Q16970" },
+        { "label": "religious movement", "qid": "Q1826286" }
+      ]
+    },
+    {
+      "key": "economic",
+      "label": "Economic",
+      "definition": "Economic systems, trade regimes, financial structures",
+      "anchors": [
+        { "label": "economy", "qid": "Q8134" },
+        { "label": "economic system", "qid": "Q7406919" },
+        { "label": "trade route", "qid": "Q193563" },
+        { "label": "financial system", "qid": "Q47574" }
+      ]
+    },
+    {
+      "key": "military",
+      "label": "Military",
+      "definition": "Warfare, conquests, military systems, strategic eras",
+      "anchors": [
+        { "label": "military", "qid": "Q8473" },
+        { "label": "war", "qid": "Q198" },
+        { "label": "military history", "qid": "Q192781" }
+      ]
+    },
+    {
+      "key": "environmental",
+      "label": "Environmental",
+      "definition": "Climate regimes, ecological shifts, environmental phases",
+      "anchors": [
+        { "label": "climate", "qid": "Q7937" },
+        { "label": "ecosystem", "qid": "Q8072" },
+        { "label": "environment", "qid": "Q7868" }
+      ]
+    },
+    {
+      "key": "demographic",
+      "label": "Demographic",
+      "definition": "Population structure, migration, urbanization waves",
+      "anchors": [
+        { "label": "demography", "qid": "Q8436" },
+        { "label": "migration", "qid": "Q61509" },
+        { "label": "urbanization", "qid": "Q161078" }
+      ]
+    },
+    {
+      "key": "intellectual",
+      "label": "Intellectual",
+      "definition": "Schools of thought, philosophical or scholarly movements",
+      "anchors": [
+        { "label": "intellectual history", "qid": "Q192110" },
+        { "label": "philosophical movement", "qid": "Q4663903" },
+        { "label": "philosophy", "qid": "Q5891" }
+      ]
+    },
+    {
+      "key": "artistic",
+      "label": "Artistic",
+      "definition": "Art movements, architectural styles, aesthetic regimes",
+      "anchors": [
+        { "label": "art movement", "qid": "Q968159" },
+        { "label": "architectural style", "qid": "Q32880" },
+        { "label": "art", "qid": "Q735" }
+      ]
+    },
+    {
+      "key": "social",
+      "label": "Social",
+      "definition": "Social structures, class systems, kinship regimes",
+      "anchors": [
+        { "label": "demography", "qid": "Q8436" },
+        { "label": "philosophy", "qid": "Q5891" },
+        { "label": "cultural history", "qid": "Q178885" }
+      ]
+    },
+    {
+      "key": "linguistic",
+      "label": "Linguistic",
+      "definition": "Language families, linguistic shifts, script traditions",
+      "anchors": [
+        { "label": "language", "qid": "Q315" },
+        { "label": "language family", "qid": "Q34770" },
+        { "label": "writing system", "qid": "Q8192" }
+      ]
+    },
+    {
+      "key": "archaeological",
+      "label": "Archaeological",
+      "definition": "Material cultures, site phases, stratigraphic horizons",
+      "anchors": [
+        { "label": "archaeological culture", "qid": "Q1190554" },
+        { "label": "archaeological site", "qid": "Q839954" },
+        { "label": "stratigraphy", "qid": "Q220341" }
+      ]
+    },
+    {
+      "key": "diplomatic",
+      "label": "Diplomatic",
+      "definition": "Interstate relations, treaties, alliances, diplomatic systems",
+      "anchors": [
+        { "label": "diplomacy", "qid": "Q187947" },
+        { "label": "treaty", "qid": "Q131569" },
+        { "label": "alliance", "qid": "Q601401" }
+      ]
+    },
+    {
+      "key": "geographic",
+      "label": "Geographic",
+      "definition": "Spatial regions, cultural-geographic zones, territorial extents",
+      "anchors": [
+        { "label": "historical region", "qid": "Q1620908" },
+        { "label": "country", "qid": "Q6256" },
+        { "label": "region", "qid": "Q82794" }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,530 @@
+"""
+Import PeriodO canonical period definitions into Neo4j.
+
+Downloads the full PeriodO dataset and creates:
+- Period nodes with fuzzy temporal intervals
+- SKOS semantic relationships (NARROWER, BROADER, RELATED)
+- Authority tracking for provenance
+
+Run: python import_periodo.py
+"""
+
+import os
+import sys
+import requests
+from neo4j import GraphDatabase
+from dotenv import load_dotenv
+from datetime import datetime
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+# Load environment variables
+load_dotenv()
+
+# Neo4j connection
+NEO4J_URI = os.getenv("NEO4J_URI")
+NEO4J_USER = os.getenv("NEO4J_USER")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
+
+# PeriodO API endpoint
+PERIODO_API = "http://n2t.net/ark:/99152/p0d.json"
+
+
+class PeriodOImporter:
+    """Import PeriodO periods into Neo4j."""
+    
+    def __init__(self, uri, user, password):
+        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        
+    def close(self):
+        self.driver.close()
+        
+    def create_constraints(self):
+        """Create uniqueness constraints and indexes."""
+        with self.driver.session() as session:
+            logger.info("Creating constraints and indexes...")
+            
+            # Uniqueness constraint on periodo_id
+            session.run("""
+                CREATE CONSTRAINT periodo_id_unique IF NOT EXISTS
+                FOR (p:Period) REQUIRE p.periodo_id IS UNIQUE
+            """)
+            
+            # Index on label for searching
+            session.run("""
+                CREATE INDEX period_label_idx IF NOT EXISTS
+                FOR (p:Period) ON (p.label)
+            """)
+            
+            # Index on temporal properties for range queries
+            session.run("""
+                CREATE INDEX period_temporal_idx IF NOT EXISTS
+                FOR (p:Period) ON (p.startMin, p.startMax, p.endMin, p.endMax)
+            """)
+            
+            logger.info("Constraints and indexes created")
+            
+    def parse_year(self, year_value):
+        """
+        Parse xsd:gYear format to integer.
+        
+        Args:
+            year_value: String like "-0599" (600 BCE) or "1453" (1453 CE)
+            
+        Returns:
+            Integer year (negative for BCE)
+        """
+        if not year_value:
+            return None
+            
+        # Remove leading zeros and convert
+        year_str = str(year_value).lstrip('0') or '0'
+        return int(year_str)
+        
+    def parse_temporal_extent(self, interval_data):
+        """
+        Parse OWL-Time interval to earliestYear/latestYear.
+        
+        Args:
+            interval_data: Dict with 'in' key containing year/earliestYear/latestYear
+            
+        Returns:
+            Tuple of (earliest, latest) as integers
+        """
+        if not interval_data:
+            return (None, None)
+            
+        # Get the datetime description
+        time_desc = interval_data.get('in', {})
+        
+        # Check for precise year first
+        if 'year' in time_desc:
+            year = self.parse_year(time_desc['year'])
+            return (year, year)
+            
+        # Otherwise use range
+        earliest = self.parse_year(time_desc.get('earliestYear'))
+        latest = self.parse_year(time_desc.get('latestYear'))
+        
+        return (earliest, latest)
+        
+    def is_generic_temporal_period(self, label, period_data):
+        """
+        Filter for generic temporal vocabulary vs interpretive periods.
+        
+        INCLUDE: Generic temporal containers (Bronze Age, 1st Century BCE)
+        EXCLUDE: Interpretive periods (Roman Republic, Julio-Claudian Dynasty)
+        
+        Agents will extract interpretive periods from sources with proper provenance.
+        
+        Args:
+            label: Period label
+            period_data: Full period JSON-LD object
+            
+        Returns:
+            True if generic temporal period (should import)
+        """
+        label_lower = label.lower()
+        
+        # INCLUDE: Generic temporal vocabulary
+        generic_temporal_keywords = [
+            # Time units
+            'century', 'millennium', 'decade',
+            # Archaeological ages
+            'age', 'period', 'era', 'epoch',
+            'stone age', 'bronze age', 'iron age',
+            'paleolithic', 'mesolithic', 'neolithic',
+            'chalcolithic', 'eneolithic',
+            # Phase qualifiers
+            'early', 'middle', 'late', 'proto-',
+            'archaic', 'classical', 'hellenistic',
+            'pre-', 'post-',
+            # Geological/climate
+            'holocene', 'pleistocene', 'younger dryas'
+        ]
+        
+        if any(keyword in label_lower for keyword in generic_temporal_keywords):
+            return True
+            
+        # EXCLUDE: Interpretive/political periods (agent-created)
+        interpretive_keywords = [
+            # Political entities
+            'republic', 'empire', 'kingdom', 'dynasty',
+            'principate', 'dominate', 'tetrarchy',
+            # Events
+            'war', 'battle', 'campaign', 'siege',
+            'revolution', 'revolt', 'crisis', 'conflict',
+            # Rulers
+            'reign of', 'rule of', 'under',
+            # Specific named periods
+            'renaissance', 'reformation', 'enlightenment',
+            'victorian', 'elizabethan', 'augustan'
+        ]
+        
+        if any(keyword in label_lower for keyword in interpretive_keywords):
+            return False
+            
+        # Default: exclude (conservative - only import clear temporal vocabulary)
+        return False
+        
+    def import_period(self, period_id, period_data, authority_data):
+        """
+        Import a single period into Neo4j.
+        
+        Args:
+            period_id: PeriodO identifier (e.g., "p0roman_republic")
+            period_data: Period JSON-LD object
+            authority_data: Authority JSON-LD object
+        """
+        # Extract label
+        label = period_data.get('label', 'Unknown Period')
+        
+        # Extract temporal extent
+        start_interval = period_data.get('start', {})
+        stop_interval = period_data.get('stop', {})
+        
+        startMin, startMax = self.parse_temporal_extent(start_interval)
+        endMin, endMax = self.parse_temporal_extent(stop_interval)
+        
+        # Extract spatial coverage
+        spatial_desc = period_data.get('spatialCoverageDescription', '')
+        
+        # Extract authority info
+        authority_label = authority_data.get('source', {}).get('title', 'Unknown Authority')
+        authority_id = period_data.get('inScheme', '')
+        
+        # Get original temporal descriptions (text from source)
+        start_label = start_interval.get('label', '')
+        stop_label = stop_interval.get('label', '')
+        
+        # Extract notes
+        notes = period_data.get('note', '')
+        editorial_note = period_data.get('editorialNote', '')
+        
+        # Extract spatial links (Wikidata, GeoNames, etc.)
+        spatial_links = period_data.get('spatialCoverage', [])
+        if isinstance(spatial_links, dict):
+            spatial_links = [spatial_links]
+        spatial_qids = [
+            link.get('id', '').split('/')[-1] 
+            for link in spatial_links 
+            if 'wikidata.org' in link.get('id', '')
+        ]
+        
+        # Build Cypher query
+        query = """
+        MERGE (p:Period {periodo_id: $periodo_id})
+        SET p.label = $label,
+            p.startMin = $startMin,
+            p.startMax = $startMax,
+            p.endMin = $endMin,
+            p.endMax = $endMax,
+            p.start_label = $start_label,
+            p.stop_label = $stop_label,
+            p.spatial_coverage = $spatial_desc,
+            p.spatial_qids = $spatial_qids,
+            p.authority_id = $authority_id,
+            p.authority_label = $authority_label,
+            p.notes = $notes,
+            p.editorial_note = $editorial_note,
+            p.source = 'periodo_canonical',
+            p.imported_at = datetime()
+        RETURN p.periodo_id as id
+        """
+        
+        with self.driver.session() as session:
+            result = session.run(query, 
+                periodo_id=period_id,
+                label=label,
+                startMin=startMin,
+                startMax=startMax,
+                endMin=endMin,
+                endMax=endMax,
+                start_label=start_label,
+                stop_label=stop_label,
+                spatial_desc=spatial_desc,
+                spatial_qids=spatial_qids,
+                authority_id=authority_id,
+                authority_label=authority_label,
+                notes=notes,
+                editorial_note=editorial_note
+            )
+            
+            # Connect to Year backbone
+            self.connect_to_year_backbone(period_id, startMin, startMax, endMin, endMax)
+            
+            return result.single()['id']
+            
+    def connect_to_year_backbone(self, period_id, start_min, start_max, end_min, end_max):
+        """
+        Connect Period to all Year nodes within its temporal range.
+        Creates CONTAINS_YEAR edges from Period to every Year in [startMin, endMax].
+        This enables graphical navigation: clicking a Year shows all overlapping Periods.
+        
+        Args:
+            period_id: Period periodo_id
+            start_min, start_max, end_min, end_max: Year values (integers)
+        """
+        if start_min is None or end_max is None:
+            return
+        
+        # Safety check: skip periods with extremely large ranges (>2000 years)
+        # These are likely entire eras and would create too many edges
+        range_size = end_max - start_min + 1
+        if range_size > 2000:
+            logging.warning(f"Skipping year connections for {period_id}: range too large ({range_size} years)")
+            return
+        
+        # Generate list of all years in the period's range
+        year_range = list(range(start_min, end_max + 1))
+        
+        with self.driver.session() as session:
+            # Batch create CONTAINS_YEAR edges for all years in range
+            session.run("""
+                MATCH (p:Period {periodo_id: $periodo_id})
+                UNWIND $years AS year_value
+                MATCH (y:Year {year: year_value})
+                MERGE (p)-[:CONTAINS_YEAR]->(y)
+            """, periodo_id=period_id, years=year_range)
+            
+    def import_relationships(self, period_id, period_data):
+        """
+        Import SKOS semantic relationships and LCSH links.
+        
+        Args:
+            period_id: Source period ID
+            period_data: Period JSON-LD object with broader/narrower/related
+        """
+        relationships = []
+        
+        # NARROWER relationships
+        narrower = period_data.get('narrower', [])
+        if isinstance(narrower, str):
+            narrower = [narrower]
+        for target_id in narrower:
+            relationships.append((period_id, 'NARROWER', target_id))
+            
+        # BROADER relationships
+        broader = period_data.get('broader', [])
+        if isinstance(broader, str):
+            broader = [broader]
+        for target_id in broader:
+            relationships.append((period_id, 'BROADER', target_id))
+            
+        # RELATED relationships
+        related = period_data.get('related', [])
+        if isinstance(related, str):
+            related = [related]
+        for target_id in related:
+            relationships.append((period_id, 'RELATED', target_id))
+            
+        # LCSH links (check exactMatch and closeMatch)
+        lcsh_matches = []
+        
+        # exactMatch for LCSH IDs
+        exact_match = period_data.get('exactMatch', [])
+        if isinstance(exact_match, str):
+            exact_match = [exact_match]
+        for match_uri in exact_match:
+            if 'id.loc.gov/authorities/subjects/' in match_uri:
+                lcsh_id = match_uri.split('/')[-1]  # Extract sh85115055
+                lcsh_matches.append(lcsh_id)
+                
+        # closeMatch for LCSH IDs
+        close_match = period_data.get('closeMatch', [])
+        if isinstance(close_match, str):
+            close_match = [close_match]
+        for match_uri in close_match:
+            if 'id.loc.gov/authorities/subjects/' in match_uri:
+                lcsh_id = match_uri.split('/')[-1]
+                lcsh_matches.append(lcsh_id)
+                
+        # Create LCSH relationships (only if Subject already exists in backbone)
+        if lcsh_matches:
+            with self.driver.session() as session:
+                for lcsh_id in lcsh_matches:
+                    try:
+                        result = session.run("""
+                            MATCH (p:Period {periodo_id: $period_id})
+                            MATCH (s:Subject {lcsh_id: $lcsh_id})
+                            MERGE (p)-[:MATCHES_LCSH]->(s)
+                            RETURN s.lcsh_heading as heading
+                        """, period_id=period_id, lcsh_id=lcsh_id)
+                        
+                        record = result.single()
+                        if record:
+                            logger.info(f"✓ Linked Period {period_id} to LCSH backbone: {lcsh_id} ({record['heading']})")
+                        else:
+                            logger.debug(f"LCSH {lcsh_id} found in PeriodO but not in Subject backbone yet")
+                    except Exception as e:
+                        logger.warning(f"Could not link Period {period_id} to LCSH {lcsh_id}: {e}")
+            
+        # Create relationships in batch
+        if relationships:
+            query = """
+            UNWIND $rels as rel
+            MATCH (p1:Period {periodo_id: rel.source})
+            MATCH (p2:Period {periodo_id: rel.target})
+            CALL apoc.create.relationship(p1, rel.type, {}, p2) YIELD rel as r
+            RETURN count(r) as count
+            """
+            
+            rel_data = [
+                {'source': src, 'type': rel_type, 'target': tgt}
+                for src, rel_type, tgt in relationships
+            ]
+            
+            with self.driver.session() as session:
+                try:
+                    session.run(query, rels=rel_data)
+                except Exception as e:
+                    # Fallback if APOC not available
+                    logger.warning(f"APOC not available, creating relationships individually: {e}")
+                    for src, rel_type, tgt in relationships:
+                        fallback_query = f"""
+                        MATCH (p1:Period {{periodo_id: $source}})
+                        MATCH (p2:Period {{periodo_id: $target}})
+                        MERGE (p1)-[:{rel_type}]->(p2)
+                        """
+                        session.run(fallback_query, source=src, target=tgt)
+                        
+    def fetch_periodo_data(self):
+        """Download full PeriodO dataset."""
+        logger.info(f"Fetching PeriodO data from {PERIODO_API}...")
+        
+        try:
+            response = requests.get(PERIODO_API, timeout=60)
+            response.raise_for_status()
+            data = response.json()
+            logger.info(f"Successfully downloaded PeriodO dataset")
+            return data
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Failed to fetch PeriodO data: {e}")
+            sys.exit(1)
+            
+    def import_all(self):
+        """Main import workflow."""
+        logger.info("Starting PeriodO import...")
+        
+        # Create constraints
+        self.create_constraints()
+        
+        # Fetch data
+        periodo_data = self.fetch_periodo_data()
+        
+        # Get authorities
+        authorities = periodo_data.get('authorities', {})
+        logger.info(f"Found {len(authorities)} authorities")
+        
+        # Phase 1: Import all periods
+        total_periods = 0
+        period_list = []
+        
+        for authority_id, authority_data in authorities.items():
+            periods = authority_data.get('periods', {})
+            logger.info(f"Importing {len(periods)} periods from {authority_data.get('source', {}).get('title', 'Unknown')}")
+            
+            for period_id, period_data in periods.items():
+                try:
+                    # Extract clean ID (remove URL prefix)
+                    clean_id = period_id.split('/')[-1] if '/' in period_id else period_id
+                    label = period_data.get('label', 'Unknown Period')
+                    
+                    # Filter: only import generic temporal periods
+                    if not self.is_generic_temporal_period(label, period_data):
+                        logger.debug(f"Skipping interpretive period: {label}")
+                        continue
+                    
+                    self.import_period(clean_id, period_data, authority_data)
+                    period_list.append((clean_id, period_data))
+                    total_periods += 1
+                    
+                    if total_periods % 100 == 0:
+                        logger.info(f"Imported {total_periods} periods...")
+                        
+                except Exception as e:
+                    logger.error(f"Error importing period {period_id}: {e}")
+                    continue
+                    
+        logger.info(f"Phase 1 complete: Imported {total_periods} periods")
+        
+        # Phase 2: Import relationships
+        logger.info("Importing SKOS relationships...")
+        relationship_count = 0
+        
+        for period_id, period_data in period_list:
+            try:
+                self.import_relationships(period_id, period_data)
+                relationship_count += 1
+                
+                if relationship_count % 100 == 0:
+                    logger.info(f"Processed relationships for {relationship_count} periods...")
+                    
+            except Exception as e:
+                logger.error(f"Error importing relationships for {period_id}: {e}")
+                continue
+                
+        logger.info(f"Phase 2 complete: Processed relationships for {relationship_count} periods")
+        
+        # Summary
+        with self.driver.session() as session:
+            stats = session.run("""
+                MATCH (p:Period)
+                WHERE p.source = 'periodo_canonical'
+                RETURN count(p) as period_count
+            """).single()
+            
+            rel_stats = session.run("""
+                MATCH (p1:Period)-[r:NARROWER|BROADER|RELATED]->(p2:Period)
+                WHERE p1.source = 'periodo_canonical' AND p2.source = 'periodo_canonical'
+                RETURN count(r) as rel_count
+            """).single()
+            
+            lcsh_stats = session.run("""
+                MATCH (p:Period)-[r:MATCHES_LCSH]->(s:Subject)
+                WHERE p.source = 'periodo_canonical'
+                RETURN count(r) as lcsh_count
+            """).single()
+            
+            year_stats = session.run("""
+                MATCH (p:Period)-[r:EARLIEST_START|LATEST_START|EARLIEST_END|LATEST_END]->(y:Year)
+                WHERE p.source = 'periodo_canonical'
+                RETURN count(DISTINCT p) as periods_with_years
+            """).single()
+            
+            logger.info(f"""
+            ============================================
+            PeriodO Import Complete
+            ============================================
+            Periods imported: {stats['period_count']}
+            SKOS relationships: {rel_stats['rel_count']}
+            LCSH backbone links: {lcsh_stats['lcsh_count']}
+            Periods linked to Years: {year_stats['periods_with_years']}
+            Source: {PERIODO_API}
+            Timestamp: {datetime.now().isoformat()}
+            ============================================
+            """)
+
+
+def main():
+    """Run PeriodO import."""
+    if not all([NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD]):
+        logger.error("Missing Neo4j credentials in .env file")
+        sys.exit(1)
+        
+    importer = PeriodOImporter(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
+    
+    try:
+        importer.import_all()
+    finally:
+        importer.close()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,17 @@
+# SPARQL query to generate a clean discipline registry (QID and label, only real disciplines)
+# You can run this at https://query.wikidata.org/
+
+SELECT ?discipline ?disciplineLabel WHERE {
+  VALUES ?class {
+    wd:Q11862829   # academic discipline
+    wd:Q2465832    # branch of science
+    wd:Q336        # applied science
+    wd:Q8068       # engineering discipline
+    wd:Q34749      # social science
+    wd:Q80071      # humanities discipline
+  }
+  ?discipline wdt:P31 ?class .
+  ?discipline a wikibase:Item .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}py
+ORDER BY ?disciplineLabel

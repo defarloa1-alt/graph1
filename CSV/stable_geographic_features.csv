@@ -1,0 +1,36 @@
+Feature_Type,Feature_Name,QID,GeoNames_ID,Latitude,Longitude,Stability,Notes
+Continent,Africa,Q15,,0,25,Very High,Second-largest continent
+Continent,Antarctica,Q51,,,-90,0,Very High,Southernmost continent
+Continent,Asia,Q48,,,35,100,Very High,Largest continent
+Continent,Europe,Q46,,,50,10,Very High,Western Eurasia
+Continent,North America,Q49,,,45,-100,Very High,Northern Western Hemisphere
+Continent,South America,Q18,,-15,-60,Very High,Southern Western Hemisphere
+Continent,Australia,Q3960,,-25,135,Very High,Smallest continent / Oceania
+Ocean,Pacific Ocean,Q98,,-10,-140,Very High,Largest ocean
+Ocean,Atlantic Ocean,Q97,,0,-30,Very High,Second-largest ocean
+Ocean,Indian Ocean,Q1239,,-20,80,Very High,Third-largest ocean
+Ocean,Arctic Ocean,Q788,,90,0,Very High,Northernmost ocean
+Ocean,Southern Ocean,Q7354,,-65,0,Very High,Encircles Antarctica
+Sea,Mediterranean Sea,Q4918,2512117,35,18,Very High,Between Europe Africa and Asia
+Sea,Red Sea,Q23406,8504588,20,38,Very High,Between Africa and Asia
+Sea,Black Sea,Q166,630673,43,35,Very High,Between Europe and Asia
+Island,Great Britain,Q23666,2648147,53,-2,Very High,Largest British Isle
+Island,Ireland,Q22890,2963597,53,-8,Very High,Second-largest British Isle
+Island,Madagascar,Q1019,1062947,-20,47,Very High,Fourth-largest island
+Island,Japan,Q17,1861060,36,138,Very High,Japanese archipelago (main islands)
+Mountain,Mount Everest,Q513,290030,27.988,86.925,High,Highest mountain (8849m)
+Mountain,Alps,Q1286,2661786,46.5,9,High,European mountain range
+Mountain,Himalayas,Q5451,1252558,28,84,High,Asian mountain range
+Mountain,Andes,Q5456,3439704,-20,-67,High,South American mountain range
+Mountain,Rocky Mountains,Q5463,5547070,50,-115,High,North American mountain range
+River,Nile,Q3392,373009,30,31,High,Longest river (6650 km)
+River,Amazon,Q3783,3407762,-3,-60,High,Largest by discharge
+River,Yangtze,Q5413,1784580,30,118,High,Longest in Asia
+River,Mississippi,Q1497,4430529,32,-90,High,Major North American river
+River,Danube,Q1653,2999878,48,20,High,Major European river
+River,Rhine,Q584,2847618,51,6.5,High,Major European river
+River,Tigris,Q1231,99068,33,44,High,Historical Mesopotamian river
+River,Euphrates,Q34589,99072,33.5,44.5,High,Historical Mesopotamian river
+River,Tiber,Q12835,3165185,41.9,12.5,High,River through Rome
+
+

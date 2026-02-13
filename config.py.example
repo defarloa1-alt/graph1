@@ -1,0 +1,12 @@
+# Configuration file for Chrystallum scripts
+# Copy this to config.py and fill in your API keys
+
+# Perplexity API Key (optional - for period enrichment)
+# Get from: https://www.perplexity.ai/
+PERPLEXITY_API_KEY = "your-perplexity-api-key-here"
+
+# Neo4j Connection (if different from defaults)
+NEO4J_URI = "bolt://localhost:7687"
+NEO4J_USER = "neo4j"
+NEO4J_PASSWORD = "Chrystallum"
+

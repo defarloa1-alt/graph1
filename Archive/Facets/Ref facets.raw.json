@@ -1,0 +1,195 @@
+Facets
+[
+  {
+    "facet_class": "PoliticalFacet",
+    "label": "Political",
+    "definition": "States, empires, governance systems, political eras",
+    "anchor_qids": ["Q3624078", "Q3024240", "Q7275", "Q17156793"],
+    "wiki_ids": [
+      {"qid": "Q3624078", "label": "sovereign state"},
+      {"qid": "Q3024240", "label": "historical country"},
+      {"qid": "Q7275", "label": "state"},
+      {"qid": "Q17156793", "label": "form of government"}
+    ]
+  },
+  {
+    "facet_class": "CulturalFacet",
+    "label": "Cultural",
+    "definition": "Cultural formations, identity regimes, symbolic systems",
+    "anchor_qids": ["Q7860", "Q11042", "Q1792644", "Q2198779"],
+    "wiki_ids": [
+      {"qid": "Q7860", "label": "culture"},
+      {"qid": "Q11042", "label": "civilization"},
+      {"qid": "Q1792644", "label": "art style"},
+      {"qid": "Q2198779", "label": "cultural movement"}
+    ]
+  },
+  {
+    "facet_class": "TechnologicalFacet",
+    "label": "Technological",
+    "definition": "Technological regimes, tool complexes, material innovations",
+    "anchor_qids": ["Q11016", "Q2695280", "Q39546", "Q178651"],
+    "wiki_ids": [
+      {"qid": "Q11016", "label": "technology"},
+      {"qid": "Q2695280", "label": "tool"},
+      {"qid": "Q39546", "label": "machine"},
+      {"qid": "Q178651", "label": "innovation"}
+    ]
+  },
+  {
+    "facet_class": "ReligiousFacet",
+    "label": "Religious",
+    "definition": "Religious movements, institutions, doctrinal eras",
+    "anchor_qids": ["Q9174", "Q1826286", "Q879146", "Q11633259"],
+    "wiki_ids": [
+      {"qid": "Q9174", "label": "religion"},
+      {"qid": "Q1826286", "label": "religious movement"},
+      {"qid": "Q879146", "label": "religious order"},
+      {"qid": "Q11633259", "label": "religious organization"}
+    ]
+  },
+  {
+    "facet_class": "EconomicFacet",
+    "label": "Economic",
+    "definition": "Economic systems, trade regimes, financial structures",
+    "anchor_qids": ["Q8134", "Q8148", "Q179289", "Q161652"],
+    "wiki_ids": [
+      {"qid": "Q8134", "label": "economics"},
+      {"qid": "Q8148", "label": "economic sector"},
+      {"qid": "Q179289", "label": "economic system"},
+      {"qid": "Q161652", "label": "trade"}
+    ]
+  },
+  {
+    "facet_class": "MilitaryFacet",
+    "label": "Military",
+    "definition": "Warfare, conquests, military systems, strategic eras",
+    "anchor_qids": ["Q8473", "Q198", "Q180684", "Q8418"],
+    "wiki_ids": [
+      {"qid": "Q8473", "label": "military"},
+      {"qid": "Q198", "label": "war"},
+      {"qid": "Q180684", "label": "conflict"},
+      {"qid": "Q8418", "label": "military unit"}
+    ]
+  },
+  {
+    "facet_class": "EnvironmentalFacet",
+    "label": "Environmental",
+    "definition": "Climate regimes, ecological shifts, environmental phases",
+    "anchor_qids": ["Q7937", "Q2169031", "Q2249676", "Q864"],
+    "wiki_ids": [
+      {"qid": "Q7937", "label": "climate"},
+      {"qid": "Q2169031", "label": "climate change"},
+      {"qid": "Q2249676", "label": "natural environment"},
+      {"qid": "Q864", "label": "natural disaster"}
+    ]
+  },
+  {
+    "facet_class": "DemographicFacet",
+    "label": "Demographic",
+    "definition": "Population structure, migration, urbanization waves",
+    "anchor_qids": ["Q134737", "Q131288", "Q33829", "Q174814"],
+    "wiki_ids": [
+      {"qid": "Q134737", "label": "demography"},
+      {"qid": "Q131288", "label": "migration"},
+      {"qid": "Q33829", "label": "population"},
+      {"qid": "Q174814", "label": "urbanization"}
+    ]
+  },
+  {
+    "facet_class": "IntellectualFacet",
+    "label": "Intellectual",
+    "definition": "Schools of thought, philosophical or scholarly movements",
+    "anchor_qids": ["Q5891", "Q179805", "Q2738074", "Q5418"],
+    "wiki_ids": [
+      {"qid": "Q5891", "label": "philosophy"},
+      {"qid": "Q179805", "label": "philosophical movement"},
+      {"qid": "Q2738074", "label": "intellectual movement"},
+      {"qid": "Q5418", "label": "Enlightenment"}
+    ]
+  },
+  {
+    "facet_class": "ScientificFacet",
+    "label": "Scientific",
+    "definition": "Scientific paradigms, revolutions, epistemic frameworks",
+    "anchor_qids": ["Q336", "Q11862829", "Q193344", "Q6683"],
+    "wiki_ids": [
+      {"qid": "Q336", "label": "science"},
+      {"qid": "Q11862829", "label": "academic discipline"},
+      {"qid": "Q193344", "label": "scientific theory"},
+      {"qid": "Q6683", "label": "scientific revolution"}
+    ]
+  },
+  {
+    "facet_class": "ArtisticFacet",
+    "label": "Artistic",
+    "definition": "Art movements, architectural styles, aesthetic regimes",
+    "anchor_qids": ["Q968159", "Q32880", "Q735", "Q2018526"],
+    "wiki_ids": [
+      {"qid": "Q968159", "label": "art movement"},
+      {"qid": "Q32880", "label": "architectural style"},
+      {"qid": "Q735", "label": "art"},
+      {"qid": "Q2018526", "label": "arts"}
+    ]
+  },
+  {
+    "facet_class": "SocialFacet",
+    "label": "Social",
+    "definition": "Social structures, class systems, kinship regimes",
+    "anchor_qids": ["Q49773", "Q189290", "Q3359485", "Q8436"],
+    "wiki_ids": [
+      {"qid": "Q49773", "label": "social movement"},
+      {"qid": "Q189290", "label": "social class"},
+      {"qid": "Q3359485", "label": "social structure"},
+      {"qid": "Q8436", "label": "family"}
+    ]
+  },
+  {
+    "facet_class": "LinguisticFacet",
+    "label": "Linguistic",
+    "definition": "Language families, linguistic shifts, script traditions",
+    "anchor_qids": ["Q315", "Q25295", "Q34770", "Q8192"],
+    "wiki_ids": [
+      {"qid": "Q315", "label": "language"},
+      {"qid": "Q25295", "label": "language family"},
+      {"qid": "Q34770", "label": "language"},
+      {"qid": "Q8192", "label": "writing system"}
+    ]
+  },
+  {
+    "facet_class": "ArchaeologicalFacet",
+    "label": "Archaeological",
+    "definition": "Material cultures, site phases, stratigraphic horizons",
+    "anchor_qids": ["Q23498", "Q839954", "Q220341", "Q11759"],
+    "wiki_ids": [
+      {"qid": "Q23498", "label": "archaeological culture"},
+      {"qid": "Q839954", "label": "archaeological site"},
+      {"qid": "Q220341", "label": "Three-age system"},
+      {"qid": "Q11759", "label": "Stone Age"}
+    ]
+  },
+  {
+    "facet_class": "DiplomaticFacet",
+    "label": "Diplomatic",
+    "definition": "Interstate relations, treaties, alliances, diplomatic systems",
+    "anchor_qids": ["Q1065", "Q41298", "Q131569", "Q178049"],
+    "wiki_ids": [
+      {"qid": "Q1065", "label": "United Nations"},
+      {"qid": "Q41298", "label": "treaty"},
+      {"qid": "Q131569", "label": "diplomatic mission"},
+      {"qid": "Q178049", "label": "alliance"}
+    ]
+  },
+  {
+    "facet_class": "GeographicFacet",
+    "label": "Geographic",
+    "definition": "Spatial regions, cultural-geographic zones, territorial extents",
+    "anchor_qids": ["Q82794", "Q6256", "Q193622", "Q1620908"],
+    "wiki_ids": [
+      {"qid": "Q82794", "label": "geographic region"},
+      {"qid": "Q6256", "label": "country"},
+      {"qid": "Q193622", "label": "cultural area"},
+      {"qid": "Q1620908", "label": "historical region"}
+    ]
+  }
+]

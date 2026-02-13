@@ -1,0 +1,669 @@
+[
+  {
+    "id": "PT1-4897",
+    "code": "PT1-4897",
+    "prefix": "PT",
+    "start": 1.0,
+    "end": 4897.0,
+    "label": "German literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "PT1-80",
+      "PT83-873",
+      "PT881-951",
+      "PT1100-1479",
+      "PT1501-2688",
+      "PT2700-2728",
+      "PT3701-3971",
+      "PT4801-4897"
+    ]
+  },
+  {
+    "id": "PT1-80",
+    "code": "PT1-80",
+    "prefix": "PT",
+    "start": 1.0,
+    "end": 80.0,
+    "label": "Literary history and criticism",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT83-873",
+    "code": "PT83-873",
+    "prefix": "PT",
+    "start": 83.0,
+    "end": 873.0,
+    "label": "History of German literature",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": [
+      "PT175-230",
+      "PT236-405",
+      "PT500-597",
+      "PT605-709",
+      "PT711-871"
+    ]
+  },
+  {
+    "id": "PT175-230",
+    "code": "PT175-230",
+    "prefix": "PT",
+    "start": 175.0,
+    "end": 230.0,
+    "label": "Medieval",
+    "note": null,
+    "primary_parent": "PT83-873",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT236-405",
+    "code": "PT236-405",
+    "prefix": "PT",
+    "start": 236.0,
+    "end": 405.0,
+    "label": "Modern",
+    "note": null,
+    "primary_parent": "PT83-873",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT500-597",
+    "code": "PT500-597",
+    "prefix": "PT",
+    "start": 500.0,
+    "end": 597.0,
+    "label": "Poetry",
+    "note": null,
+    "primary_parent": "PT83-873",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT605-709",
+    "code": "PT605-709",
+    "prefix": "PT",
+    "start": 605.0,
+    "end": 709.0,
+    "label": "Drama",
+    "note": null,
+    "primary_parent": "PT83-873",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT711-871",
+    "code": "PT711-871",
+    "prefix": "PT",
+    "start": 711.0,
+    "end": 871.0,
+    "label": "Prose",
+    "note": null,
+    "primary_parent": "PT83-873",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT881-951",
+    "code": "PT881-951",
+    "prefix": "PT",
+    "start": 881.0,
+    "end": 951.0,
+    "label": "Folk literature",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": [
+      "PT923-937"
+    ]
+  },
+  {
+    "id": "PT923-937",
+    "code": "PT923-937",
+    "prefix": "PT",
+    "start": 923.0,
+    "end": 937.0,
+    "label": "Faust legend",
+    "note": null,
+    "primary_parent": "PT881-951",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1100-1479",
+    "code": "PT1100-1479",
+    "prefix": "PT",
+    "start": 1100.0,
+    "end": 1479.0,
+    "label": "Collections",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": [
+      "PT1100-1141",
+      "PT1151-1241",
+      "PT1251-1299",
+      "PT1301-1360",
+      "PT1371-1374",
+      "PT1375-1479"
+    ]
+  },
+  {
+    "id": "PT1100-1141",
+    "code": "PT1100-1141",
+    "prefix": "PT",
+    "start": 1100.0,
+    "end": 1141.0,
+    "label": "General",
+    "note": null,
+    "primary_parent": "PT1100-1479",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1151-1241",
+    "code": "PT1151-1241",
+    "prefix": "PT",
+    "start": 1151.0,
+    "end": 1241.0,
+    "label": "Poetry",
+    "note": null,
+    "primary_parent": "PT1100-1479",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1251-1299",
+    "code": "PT1251-1299",
+    "prefix": "PT",
+    "start": 1251.0,
+    "end": 1299.0,
+    "label": "Drama",
+    "note": null,
+    "primary_parent": "PT1100-1479",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1301-1360",
+    "code": "PT1301-1360",
+    "prefix": "PT",
+    "start": 1301.0,
+    "end": 1360.0,
+    "label": "Prose",
+    "note": null,
+    "primary_parent": "PT1100-1479",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1371-1374",
+    "code": "PT1371-1374",
+    "prefix": "PT",
+    "start": 1371.0,
+    "end": 1374.0,
+    "label": "Early to 1950. Old and Middle High German",
+    "note": null,
+    "primary_parent": "PT1100-1479",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1375-1479",
+    "code": "PT1375-1479",
+    "prefix": "PT",
+    "start": 1375.0,
+    "end": 1479.0,
+    "label": "Middle High German",
+    "note": null,
+    "primary_parent": "PT1100-1479",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1501-2688",
+    "code": "PT1501-2688",
+    "prefix": "PT",
+    "start": 1501.0,
+    "end": 2688.0,
+    "label": "Individual authors or works",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": [
+      "PT1501-1695",
+      "PT1701-1797",
+      "PT1799-2592",
+      "PT2600-2653",
+      "PT2660-2688"
+    ]
+  },
+  {
+    "id": "PT1501-1695",
+    "code": "PT1501-1695",
+    "prefix": "PT",
+    "start": 1501.0,
+    "end": 1695.0,
+    "label": "Middle High German, ca. 1050-1450/1500",
+    "note": null,
+    "primary_parent": "PT1501-2688",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1701-1797",
+    "code": "PT1701-1797",
+    "prefix": "PT",
+    "start": 1701.0,
+    "end": 1797.0,
+    "label": "1500-ca. 1700",
+    "note": null,
+    "primary_parent": "PT1501-2688",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT1799-2592",
+    "code": "PT1799-2592",
+    "prefix": "PT",
+    "start": 1799.0,
+    "end": 2592.0,
+    "label": "1700-ca. 1860/70",
+    "note": null,
+    "primary_parent": "PT1501-2688",
+    "secondary_parents": [],
+    "children": [
+      "PT1891-2239"
+    ]
+  },
+  {
+    "id": "PT1891-2239",
+    "code": "PT1891-2239",
+    "prefix": "PT",
+    "start": 1891.0,
+    "end": 2239.0,
+    "label": "Goethe",
+    "note": null,
+    "primary_parent": "PT1799-2592",
+    "secondary_parents": [],
+    "children": [
+      "PT1891-2017"
+    ]
+  },
+  {
+    "id": "PT1891-2017",
+    "code": "PT1891-2017",
+    "prefix": "PT",
+    "start": 1891.0,
+    "end": 2017.0,
+    "label": "Works",
+    "note": null,
+    "primary_parent": "PT1891-2239",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT2600-2653",
+    "code": "PT2600-2653",
+    "prefix": "PT",
+    "start": 2600.0,
+    "end": 2653.0,
+    "label": "1860/70-1960",
+    "note": null,
+    "primary_parent": "PT1501-2688",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT2660-2688",
+    "code": "PT2660-2688",
+    "prefix": "PT",
+    "start": 2660.0,
+    "end": 2688.0,
+    "label": "1961-2000",
+    "note": null,
+    "primary_parent": "PT1501-2688",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT2700-2728",
+    "code": "PT2700-2728",
+    "prefix": "PT",
+    "start": 2700.0,
+    "end": 2728.0,
+    "label": "2001-",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT3701-3971",
+    "code": "PT3701-3971",
+    "prefix": "PT",
+    "start": 3701.0,
+    "end": 3971.0,
+    "label": "Provincial, local, colonial, etc.",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": [
+      "PT3701-3746"
+    ]
+  },
+  {
+    "id": "PT3701-3746",
+    "code": "PT3701-3746",
+    "prefix": "PT",
+    "start": 3701.0,
+    "end": 3746.0,
+    "label": "East Germany",
+    "note": null,
+    "primary_parent": "PT3701-3971",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT4801-4897",
+    "code": "PT4801-4897",
+    "prefix": "PT",
+    "start": 4801.0,
+    "end": 4897.0,
+    "label": "Low German literature",
+    "note": null,
+    "primary_parent": "PT1-4897",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT5001-5980",
+    "code": "PT5001-5980",
+    "prefix": "PT",
+    "start": 5001.0,
+    "end": 5980.0,
+    "label": "Dutch literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "PT5001-5348",
+      "PT5400-5547",
+      "PT5555-5881.36",
+      "PT5901-5980"
+    ]
+  },
+  {
+    "id": "PT5001-5348",
+    "code": "PT5001-5348",
+    "prefix": "PT",
+    "start": 5001.0,
+    "end": 5348.0,
+    "label": "Literary history and criticism",
+    "note": null,
+    "primary_parent": "PT5001-5980",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT5400-5547",
+    "code": "PT5400-5547",
+    "prefix": "PT",
+    "start": 5400.0,
+    "end": 5547.0,
+    "label": "Collections",
+    "note": null,
+    "primary_parent": "PT5001-5980",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT5555-5881.36",
+    "code": "PT5555-5881.36",
+    "prefix": "PT",
+    "start": 5555.0,
+    "end": 5881.36,
+    "label": "Individual authors or works",
+    "note": null,
+    "primary_parent": "PT5001-5980",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT5901-5980",
+    "code": "PT5901-5980",
+    "prefix": "PT",
+    "start": 5901.0,
+    "end": 5980.0,
+    "label": "Provincial, local, foreign",
+    "note": null,
+    "primary_parent": "PT5001-5980",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT6000-6467.36",
+    "code": "PT6000-6467.36",
+    "prefix": "PT",
+    "start": 6000.0,
+    "end": 6467.36,
+    "label": "Flemish literature since 1830",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "PT6000-6199",
+      "PT6300-6397",
+      "PT6400-6467.36"
+    ]
+  },
+  {
+    "id": "PT6000-6199",
+    "code": "PT6000-6199",
+    "prefix": "PT",
+    "start": 6000.0,
+    "end": 6199.0,
+    "label": "Literary history and criticism",
+    "note": null,
+    "primary_parent": "PT6000-6467.36",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT6300-6397",
+    "code": "PT6300-6397",
+    "prefix": "PT",
+    "start": 6300.0,
+    "end": 6397.0,
+    "label": "Collections",
+    "note": null,
+    "primary_parent": "PT6000-6467.36",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT6400-6467.36",
+    "code": "PT6400-6467.36",
+    "prefix": "PT",
+    "start": 6400.0,
+    "end": 6467.36,
+    "label": "Individual authors or works",
+    "note": null,
+    "primary_parent": "PT6000-6467.36",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT6500-6593.36",
+    "code": "PT6500-6593.36",
+    "prefix": "PT",
+    "start": 6500.0,
+    "end": 6593.36,
+    "label": "Afrikaans literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "PT6500-6530",
+      "PT6550-6575",
+      "PT6590-6593.36"
+    ]
+  },
+  {
+    "id": "PT6500-6530",
+    "code": "PT6500-6530",
+    "prefix": "PT",
+    "start": 6500.0,
+    "end": 6530.0,
+    "label": "Literary history and criticism",
+    "note": null,
+    "primary_parent": "PT6500-6593.36",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT6550-6575",
+    "code": "PT6550-6575",
+    "prefix": "PT",
+    "start": 6550.0,
+    "end": 6575.0,
+    "label": "Collections",
+    "note": null,
+    "primary_parent": "PT6500-6593.36",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT6590-6593.36",
+    "code": "PT6590-6593.36",
+    "prefix": "PT",
+    "start": 6590.0,
+    "end": 6593.36,
+    "label": "Individual authors or works",
+    "note": null,
+    "primary_parent": "PT6500-6593.36",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT7001-7099",
+    "code": "PT7001-7099",
+    "prefix": "PT",
+    "start": 7001.0,
+    "end": 7099.0,
+    "label": "Scandinavian literature",
+    "note": null,
+    "primary_parent": "PT7001-7099",
+    "secondary_parents": [],
+    "children": [
+      "PT7001-7099"
+    ]
+  },
+  {
+    "id": "PT7001-7099",
+    "code": "PT7001-7099",
+    "prefix": "PT",
+    "start": 7001.0,
+    "end": 7099.0,
+    "label": "General",
+    "note": null,
+    "primary_parent": "PT7001-7099",
+    "secondary_parents": [],
+    "children": [
+      "PT7001-7099"
+    ]
+  },
+  {
+    "id": "PT7101-7338",
+    "code": "PT7101-7338",
+    "prefix": "PT",
+    "start": 7101.0,
+    "end": 7338.0,
+    "label": "Old Norse literature: Old Icelandic and Old Norwegian",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT7351-7550",
+    "code": "PT7351-7550",
+    "prefix": "PT",
+    "start": 7351.0,
+    "end": 7550.0,
+    "label": "Modern Icelandic literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT7581-7599",
+    "code": "PT7581-7599",
+    "prefix": "PT",
+    "start": 7581.0,
+    "end": 7599.0,
+    "label": "Faroese literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT7601-8260",
+    "code": "PT7601-8260",
+    "prefix": "PT",
+    "start": 7601.0,
+    "end": 8260.0,
+    "label": "Danish literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT8301-9155",
+    "code": "PT8301-9155",
+    "prefix": "PT",
+    "start": 8301.0,
+    "end": 9155.0,
+    "label": "Norwegian literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "PT9000-9094"
+    ]
+  },
+  {
+    "id": "PT9000-9094",
+    "code": "PT9000-9094",
+    "prefix": "PT",
+    "start": 9000.0,
+    "end": 9094.0,
+    "label": "Landsmaal or New Norwegian",
+    "note": null,
+    "primary_parent": "PT8301-9155",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PT9201-9999",
+    "code": "PT9201-9999",
+    "prefix": "PT",
+    "start": 9201.0,
+    "end": 9999.0,
+    "label": "Swedish literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": []
+  }
+]
