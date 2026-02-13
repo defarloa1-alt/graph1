@@ -23,6 +23,20 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-13 16:00 | Consolidated Architecture Update for Federation Dispatcher
+# ==============================================================================
+# Category: Architecture, Docs
+# Summary: Updated consolidated architecture spec with normative dispatcher/backlink control-plane rules
+# Files:
+#   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+#   - AI_CONTEXT.md
+# Reason: Align canonical architecture doc with implemented federation routing, gating, and frontier controls.
+# Notes:
+#   - Added Section 8.6 (dispatcher routes, temporal precision gate, class controls, frontier guard).
+#   - Updated Appendix K scope and pipeline contract to include dispatcher + quarantine behavior.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-13 15:56 | Dispatcher Routing + Frontier Control in Backlink Harvester
 # ==============================================================================
 # Category: Capability, Architecture, Docs

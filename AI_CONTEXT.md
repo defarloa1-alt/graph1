@@ -123,6 +123,10 @@ Q1048 sample (bounded run):
 - overall status: `pass`
 - dispatcher route metrics now emitted in report (`route_counts`, `quarantine_reasons`)
 - frontier metrics now emitted (`frontier_eligible`, `frontier_excluded`, per-entity `frontier_eligible`)
+- consolidated architecture updated:
+  - `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`
+  - new normative section `8.6 Federation Dispatcher and Backlink Control Plane`
+  - Appendix K updated with dispatcher/backlink operational contract
 
 ## Backlink Profiler Implementation (verified 2026-02-13)
 

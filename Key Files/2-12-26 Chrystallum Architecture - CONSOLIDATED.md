@@ -5367,6 +5367,87 @@ Is this data being processed?
 
 ---
 
+## **8.6 Federation Dispatcher and Backlink Control Plane**
+
+All Wikidata statement ingestion MUST use a deterministic dispatcher keyed by:
+- `mainsnak.datatype`
+- `mainsnak.datavalue.type` (`value_type`)
+
+This is the control plane for routing topology vs identity vs attributes.
+
+### **8.6.1 Dispatcher Routes (Normative)**
+
+| Pair (`datatype + value_type`) | Route | Required Action |
+|---|---|---|
+| `wikibase-item + wikibase-entityid` | `edge_candidate` | Candidate graph edge write (subject to schema/class checks) |
+| `external-id + string` | `federation_id` | Store namespaced external ID and run dedupe/merge check |
+| `time + time` with precision >= threshold | `temporal_anchor` | Parse and anchor to temporal backbone |
+| `time + time` with precision < threshold | `temporal_uncertain` | Route to uncertain bucket, do not treat as precise anchor |
+| `string + string`, `monolingualtext + monolingualtext`, `url + string` | `node_property` | Store as literal/content attributes |
+| `quantity + quantity` | `measured_attribute` | Store normalized numeric payload |
+| `globe-coordinate + globecoordinate` | `geo_attribute` | Route to geographic handler |
+| `commonsMedia + string` | `media_reference` | Store media reference metadata |
+| missing `datavalue` | `quarantine_missing_datavalue` | Quarantine with reason |
+| unsupported pair | `quarantine_unsupported_pair` | Quarantine with reason |
+
+### **8.6.2 Temporal Precision Gate**
+
+Use Wikidata precision codes:
+- `9` year
+- `10` month
+- `11` day
+
+Default policy:
+- minimum precision for `temporal_anchor` is `9` (year)
+- lower precision routes to `temporal_uncertain`
+
+No temporal statement is silently dropped.
+
+### **8.6.3 Class Controls and Backlink Admission**
+
+For reverse-link expansion:
+1. Start from reverse triples `?source ?property ?target`.
+2. Resolve source classes via `P31`.
+3. Expand class lineage via bounded `P279` walk.
+4. Admit only schema-allowlisted classes.
+5. Optionally reject explicit denylisted classes (`P31` denylist).
+
+### **8.6.4 Frontier Eligibility Guard (Anti-Hairball Rule)**
+
+Accepted nodes can still be excluded from traversal frontier.
+
+Default exclusion rules:
+- `edge_candidate_count == 0` -> exclude (`no_edge_candidates`)
+- `literal_heavy_ratio > 0.80` -> exclude (`literal_heavy`)
+
+These exclusions affect recursion/frontier growth, not node retention.
+
+### **8.6.5 Provenance and Safety Requirements**
+
+Every materialized backlink edge MUST include:
+- `source_system`
+- `source_mode`
+- `source_property`
+- `retrieved_at`
+
+Every run MUST emit:
+- route counts
+- quarantine reason counts
+- unsupported pair rate
+- unresolved class rate
+- frontier eligible/excluded counts
+
+Silent drops are prohibited.
+
+### **8.6.6 Operational Reference**
+
+Canonical tooling:
+- `scripts/tools/wikidata_backlink_harvest.py`
+- `scripts/tools/wikidata_backlink_profile.py`
+- `JSON/wikidata/backlinks/README.md`
+
+---
+
 # **9. Workflows & Agent Coordination**
 
 ## **9.0 Workflow Overview**
@@ -7327,7 +7408,7 @@ record = {
 
 ## **K.1 Scope**
 
-Normative federation architecture is defined in Section 4.5. This appendix provides operational query patterns.
+Normative federation architecture is defined in Section 4.4 and Section 8.6. This appendix provides operational query patterns.
 
 ## **K.2 Authoritative Files**
 
@@ -7368,7 +7449,11 @@ LIMIT 500
 1. Resolve label -> QID.
 2. Pull authority property bundle.
 3. Optionally run backlink expansion for context discovery.
-4. Classify results by source entity type and ingest with provenance.
+4. Classify results by source entity type (`P31`, bounded `P279`) and ingest with provenance.
+5. Route every statement through dispatcher (`datatype + value_type`).
+6. Apply temporal precision gate before temporal anchoring.
+7. Apply frontier eligibility guard before recursive expansion.
+8. Quarantine unsupported or malformed statements with explicit reason.
 
 ## **K.5 Property Lookup Contract (Reference-Book Pattern)**
 
@@ -7411,6 +7496,23 @@ Use a tool-backed property catalog lookup pattern instead (local reference store
 - No low-confidence property mappings may be written directly to canonical registry.
 - Low-confidence results MUST be written to review backlog and human-approved first.
 - Identifier handling constraints in Appendix M still apply (tool resolution only, no LLM free-form ID generation).
+
+## **K.6 Dispatcher and Backlink Operations**
+
+Canonical scripts:
+- `scripts/tools/wikidata_backlink_harvest.py`
+- `scripts/tools/wikidata_backlink_profile.py`
+
+Canonical report location:
+- `JSON/wikidata/backlinks/`
+
+Required report fields (minimum):
+- `route_counts`
+- `quarantine_reasons`
+- `unsupported_pair_rate`
+- `unresolved_class_rate`
+- `frontier_eligible`
+- `frontier_excluded`
 
 ---
 
