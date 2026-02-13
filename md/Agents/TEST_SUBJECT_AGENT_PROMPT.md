@@ -143,7 +143,7 @@ When answering questions about Roman Republic events, people, or places, ALWAYS 
 **IMPORTANT (Updated Dec 2025):** When you provide a Wikidata QID, the system will automatically look up ALL classification identifiers from Wikidata:
 
 **System automatically fetches:**
-1. **P244 (LCSH ID)** - Primary backbone identifier ⭐ (best event coverage: 86%)
+1. **P244 (Library of Congress authority ID)** - Primary backbone identifier ⭐ (best event coverage: 86%)
 2. **P1149 (LCC)** - Library of Congress Classification - AGENT ROUTING ⭐ (100% coverage for history)
 3. **P1036 (Dewey Decimal)** - Supplementary property (sparse: ~12% coverage)
 4. **P2163 (FAST ID)** - Supplementary property (~54% coverage)
@@ -283,7 +283,7 @@ LCSH: sh85145739 → Subject Node (primary key)
 LCC: DG254 → Agent_DG254 (Late Republic specialist) 🎯 ROUTING
   ↓ Wikidata P1036
 Dewey: 937.052 → Supplementary property only
-  ↓ Wikidata P2163 (optional)
+  ↓ Wikidata P2163 (FAST ID, optional)
 FAST: (may not exist) → Supplementary property only
 ```
 
@@ -492,7 +492,7 @@ When describing relationships, use ONLY these types from `canonical_relationship
 
 **Classification Backbone Integration (Automatic - Updated Dec 2025):**
 - You provide entity QIDs
-- System queries Wikidata for P244 (LCSH), P1036 (Dewey), P1149 (LCC), P2163 (FAST)
+- System queries Wikidata for P244 (Library of Congress authority ID), P1036 (Dewey), P1149 (LCC), P2163 (FAST ID)
 - Subject nodes created/linked automatically with LCSH as primary key
 - Dewey code determines which agent handles the query
 - You don't need to specify classification codes manually!

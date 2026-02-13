@@ -17,7 +17,7 @@ Byzantine Empire:
   - facet: 'civilization'
 ```
 
-**What we're losing:** These multiple facets represent different Wikidata P31 (instanceOf) values - they're valuable multi-dimensional classifications!
+**What we're losing:** These multiple facets represent different Wikidata P31 (instance of) values - they're valuable multi-dimensional classifications!
 
 ## Current Approach (Losing Data)
 

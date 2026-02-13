@@ -228,7 +228,7 @@ Z: Bibliography, Library Science
 
 **Routing:**
 1. Extract entities → Julius Caesar (Q1048)
-2. Query Wikidata → P244 (LCSH): sh85070783, P1149 (LCC): DG260.C5
+2. Query Wikidata → P244 (Library of Congress authority ID): sh85070783, P1149 (LCC): DG260.C5
 3. Find Subject node → lcsh:sh85070783, lcc_code: DG260.C5
 4. Route to most specific agent:
    - Check `Agent_DG260.C5` → doesn't exist

@@ -83,16 +83,16 @@ with driver.session() as session:
         # Subject Backbone
         print(f"\n  🏷️  SUBJECT BACKBONE (Classification):")
         if r['lcsh_id_P244']:
-            print(f"     P244 (LCSH):   {r['lcsh_id_P244']} - {r['lcsh_label']}")
+            print(f"     P244 (Library of Congress authority ID): {r['lcsh_id_P244']} - {r['lcsh_label']}")
             print(f"     P1149 (LCC):   {r['lcc_code_P1149']} → Agent routing ⭐")
             if r['dewey_P1036']:
                 print(f"     P1036 (Dewey): {r['dewey_P1036']}")
             else:
                 print(f"     P1036 (Dewey): (not available)")
             if r['fast_id_P2163']:
-                print(f"     P2163 (FAST):  {r['fast_id_P2163']}")
+                print(f"     P2163 (FAST ID): {r['fast_id_P2163']}")
             else:
-                print(f"     P2163 (FAST):  (not available)")
+                print(f"     P2163 (FAST ID): (not available)")
         else:
             print(f"     Status:        ⚠️  No subject link")
         
