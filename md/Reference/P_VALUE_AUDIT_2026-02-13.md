@@ -11,143 +11,143 @@
 
 - `P1` in FAST\FASTTopical.marcxml | Geographic\TERM.out | Neo4j\schema\03_schema_initialization.cypher | Python\fast\key\FASTTopical_parsed.csv | Python\import_roman_republic_subgraph.py
 - `P2` in CIDOC\CRMinf_v0.7_.rdfs.txt | FAST\FASTTopical.marcxml | Neo4j\schema\03_schema_initialization.cypher | Python\fast\key\FASTTopical_parsed.csv | Python\import_roman_republic_subgraph.py
-- `P3` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
+- `P3` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
 - `P4` in FAST\FASTTopical.marcxml | Key Files\2-12-26 Chrystallum Architecture - CONSOLIDATED.md | LCSH\skos_subjects\chunks\subjects_chunk_52.jsonld | LCSH\skos_subjects\concepts_only.jsonld | LCSH\skos_subjects\subjects.skosrdf.jsonld
 - `P5` in FAST\FASTTopical.marcxml | LCSH\skos_subjects\chunks\subjects_chunk_51.jsonld | LCSH\skos_subjects\concepts_only.jsonld | LCSH\skos_subjects\subjects.skosrdf.jsonld | LCSH\skos_subjects\subjects_full_valid.jsonld
-- `P06` in Subjects\sample_token_qid_enriched.csv
+- `P06` in Subjects\sample_token_qid_enriched.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
 - `P7` in FAST\FASTTopical.marcxml | Key Files\2-12-26 Chrystallum Architecture - CONSOLIDATED.md | Python\fast\key\FASTTopical_parsed.csv | md\Architecture\CIDOC-CRM_Alignment_Summary.md | md\Architecture\CIDOC-CRM_Wikidata_Alignment_Strategy.md
-- `P8` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P9` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P11` in Key Files\2-12-26 Chrystallum Architecture - CONSOLIDATED.md | md\Architecture\CIDOC-CRM_Alignment_Summary.md | md\Architecture\CIDOC-CRM_Wikidata_Alignment_Strategy.md | md\CIDOC\CIDOC-CRM_Explanation.md
-- `P13` in Geographic\SOURCE.out
+- `P8` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P9` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P11` in Key Files\2-12-26 Chrystallum Architecture - CONSOLIDATED.md | md\Architecture\CIDOC-CRM_Alignment_Summary.md | md\Architecture\CIDOC-CRM_Wikidata_Alignment_Strategy.md | md\CIDOC\CIDOC-CRM_Explanation.md | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P13` in Geographic\SOURCE.out | md\Reference\P_VALUE_AUDIT_2026-02-13.md
 - `P23` in FAST\FASTTopical.marcxml | LCSH\skos_subjects\chunks\subjects_chunk_20.jsonld | LCSH\skos_subjects\concepts_only.jsonld | LCSH\skos_subjects\subjects.skosrdf.jsonld | LCSH\skos_subjects\subjects_full_valid.jsonld
-- `P24` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
+- `P24` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
 - `P28` in FAST\FASTTopical.marcxml | LCSH\skos_subjects\chunks\subjects_chunk_15.jsonld | LCSH\skos_subjects\concepts_only.jsonld | LCSH\skos_subjects\subjects.skosrdf.jsonld | LCSH\skos_subjects\subjects_full_valid.jsonld
-- `P29` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P32` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P33` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P34` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P42` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P43` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P44` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P45` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P46` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P48` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P49` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P52` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P55` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P56` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P60` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P62` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P63` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P64` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P67` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P68` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P72` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P73` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P74` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P75` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P76` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P77` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P79` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P82` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
+- `P29` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P32` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P33` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P34` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P42` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P43` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P44` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P45` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P46` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P48` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P49` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P52` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P55` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P56` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P60` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P62` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P63` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P64` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P67` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P68` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P72` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P73` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P74` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P75` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P76` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P77` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P79` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P82` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
 - `P83` in FAST\FASTTopical.marcxml | LCSH\skos_subjects\chunks\subjects_chunk_6.jsonld | LCSH\skos_subjects\concepts_only.jsonld | LCSH\skos_subjects\subjects.skosrdf.jsonld | LCSH\skos_subjects\subjects_full_valid.jsonld
-- `P89` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P93` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P95` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv
-- `P96` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P99` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv
-- `P116` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P120` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P130` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P132` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P147` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P151` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
+- `P89` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P93` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P95` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P96` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P99` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P116` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P120` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P130` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P132` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P147` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P151` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
 - `P152` in Relationships\relationship_types_registry_master.csv | Relationships\relationship_types_registry_master.pre_property_catalog_enrichment_2026-02-13.csv | Relationships\relationship_types_registry_master.pre_pvalue_curation2_2026-02-13.csv | Relationships\relationship_types_registry_master.pre_pvalue_curation_2026-02-13.csv | Relationships\relationship_types_seed.cypher
 - `P160` in FAST\FASTTopical.marcxml | LCSH\skos_subjects\chunks\subjects_chunk_19.jsonld | LCSH\skos_subjects\concepts_only.jsonld | LCSH\skos_subjects\subjects.skosrdf.jsonld | LCSH\skos_subjects\subjects_full_valid.jsonld
-- `P165` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P203` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P204` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P211` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P216` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P222` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P224` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P226` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P228` in Subjects\CIP\2-11-26-property_id,property_label,first_seen_in.csv
-- `P251` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P252` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P253` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P254` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P255` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P257` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P259` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P262` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P265` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P266` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P273` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P283` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P284` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P285` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P288` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P292` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P293` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P294` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P295` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P302` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv
-- `P307` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P310` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P311` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P313` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P316` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P318` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P319` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P321` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv
-- `P323` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P324` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P325` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv
-- `P326` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv
-- `P327` in Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv
-- `P333` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P343` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P357` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P365` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P384` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P394` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P422` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P456` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P475` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P482` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P544` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P572` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P573` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P583` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P584` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P614` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P615` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P623` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P642` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P666` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P727` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P728` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P753` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P754` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P755` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P796` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P857` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P955` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P997` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P1008` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P1009` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P1091` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P1927` in 2-13-26-federation-impact.md | Neo4j\IMPLEMENTATION_ROADMAP.md | Neo4j\TEMPORAL_FACET_STRATEGY.md | Neo4j\schema\SCHEMA_BOOTSTRAP_GUIDE.md
-- `P2439` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P2495` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P2615` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P6834` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P7859` in 2-13-26-federation-impact.md | Neo4j\IMPLEMENTATION_ROADMAP.md | Neo4j\schema\SCHEMA_BOOTSTRAP_GUIDE.md
-- `P22567` in Geographic\SOURCE.out
-- `P61115` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
-- `P61124` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv
+- `P165` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P203` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P204` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P211` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P216` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P222` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P224` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P226` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P228` in Subjects\CIP\2-11-26-property_id,property_label,first_seen_in.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P251` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P252` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P253` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P254` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P255` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P257` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P259` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P262` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P265` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P266` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P273` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P283` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P284` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P285` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P288` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P292` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P293` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P294` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P295` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P302` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P307` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P310` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P311` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P313` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P316` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P318` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P319` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P321` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P323` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P324` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P325` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P326` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P327` in Subjects\LCC\lcc_P_PA_language_backbone.json | Subjects\lcc_flat.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P333` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P343` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P357` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P365` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P384` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P394` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P422` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P456` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P475` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P482` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P544` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P572` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P573` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P583` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P584` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P614` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P615` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P623` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P642` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P666` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P727` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P728` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P753` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P754` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P755` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P796` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P857` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P955` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P997` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P1008` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P1009` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P1091` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P1927` in 2-13-26-federation-impact.md | Neo4j\IMPLEMENTATION_ROADMAP.md | Neo4j\TEMPORAL_FACET_STRATEGY.md | Neo4j\schema\SCHEMA_BOOTSTRAP_GUIDE.md | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P2439` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P2495` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P2615` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P6834` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P7859` in 2-13-26-federation-impact.md | Neo4j\IMPLEMENTATION_ROADMAP.md | Neo4j\schema\SCHEMA_BOOTSTRAP_GUIDE.md | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P22567` in Geographic\SOURCE.out | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P61115` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
+- `P61124` in FAST\FASTTopical.marcxml | Python\fast\key\FASTTopical_parsed.csv | md\Reference\P_VALUE_AUDIT_2026-02-13.md
 
 ## Parenthetical Label Mismatches (Sample)
 
