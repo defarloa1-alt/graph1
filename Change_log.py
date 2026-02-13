@@ -23,6 +23,18 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-13 13:30 | AI Context Memory Bank
+# ==============================================================================
+# Category: Docs, Architecture
+# Summary: Created AI_CONTEXT.md as persistent memory bank for AI agents
+# Files:
+#   - AI_CONTEXT.md (project state, recent actions, active todos)
+# Reason: Enable AI agents to understand project state across sessions
+# Notes: Documents dual-spine temporal architecture, migration scripts, next steps
+#        Added workflow note: file must be committed/pushed to persist across sessions
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-13 12:00 | Git Setup & Documentation
 # ==============================================================================
 # Category: Docs, Infrastructure
