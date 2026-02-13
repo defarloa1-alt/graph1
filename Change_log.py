@@ -23,6 +23,61 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-13 15:56 | Dispatcher Routing + Frontier Control in Backlink Harvester
+# ==============================================================================
+# Category: Capability, Architecture, Docs
+# Summary: Upgraded backlink harvester from pair counting to explicit dispatcher routing with frontier eligibility controls
+# Files:
+#   - scripts/tools/wikidata_backlink_harvest.py
+#   - JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json
+#   - Neo4j/FEDERATION_BACKLINK_STRATEGY.md
+#   - AI_CONTEXT.md
+# Reason: Enforce topology/identity/attribute separation operationally and prevent traversal hairballs.
+# Notes:
+#   - Added statement routing buckets (edge_candidate, federation_id, temporal_anchor, node_property, quarantine, etc.).
+#   - Added temporal precision gate (`--min-temporal-precision`, default year=9).
+#   - Added optional class denylist (`--p31-denylist-qid`).
+#   - Added frontier exclusion logic (`no_edge_candidates` and literal-heavy threshold).
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-13 15:55 | Standalone Backlink Candidate Profiler
+# ==============================================================================
+# Category: Capability, Docs
+# Summary: Added standalone profiler for backlink candidate QID sets without running harvest
+# Files:
+#   - scripts/tools/wikidata_backlink_profile.py
+#   - JSON/wikidata/backlinks/Q1048_backlink_profile_accepted_summary.json
+#   - JSON/wikidata/backlinks/Q1048_backlink_profile_accepted_by_entity.csv
+#   - JSON/wikidata/backlinks/Q1048_backlink_profile_accepted_pair_counts.csv
+#   - JSON/wikidata/backlinks/README.md
+#   - Neo4j/FEDERATION_BACKLINK_STRATEGY.md
+#   - AI_CONTEXT.md
+# Reason: Enable fast datatype/value_type policy assessment for candidate sets from report/list inputs.
+# Notes:
+#   - Accepts input from report sections (`accepted`, `rejected`, `all`) or explicit QID lists.
+#   - Emits summary + per-entity + pair-count artifacts for operational review.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-13 15:50 | Backlink Harvester Script + Run Report Capability
+# ==============================================================================
+# Category: Capability, Architecture, Docs
+# Summary: Implemented controlled Wikidata backlink harvester with class and datatype policy gates
+# Files:
+#   - scripts/tools/wikidata_backlink_harvest.py
+#   - JSON/wikidata/backlinks/README.md
+#   - JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json
+#   - Neo4j/FEDERATION_BACKLINK_STRATEGY.md
+#   - AI_CONTEXT.md
+# Reason: Move backlink strategy from concept to executable workflow with measurable acceptance/rejection criteria.
+# Notes:
+#   - Enforces property allowlist + schema class allowlist (`P31` with `P279` ancestor walk).
+#   - Emits accepted/rejected lists and rejection reasons (including budget constraints).
+#   - Applies datatype/value_type gate on accepted source nodes before downstream ingestion.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-13 15:45 | Backlink Policy Canonicalization + Datatype Routing Clarification
 # ==============================================================================
 # Category: Architecture, Capability, Docs

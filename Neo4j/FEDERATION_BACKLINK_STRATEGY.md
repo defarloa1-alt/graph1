@@ -53,6 +53,14 @@ Required provenance on every materialized edge:
 - `source_property = "Pxxx"`
 - `retrieved_at`
 
+Dispatcher routes (implemented in harvester):
+- `edge_candidate` for `wikibase-item + wikibase-entityid`
+- `federation_id` for `external-id + string`
+- `temporal_anchor` for `time + time` with precision >= configured floor
+- `temporal_uncertain` for low-precision or ambiguous time values
+- `node_property` / `measured_attribute` / `geo_attribute` / `media_reference` for non-topology payloads
+- `quarantine_missing_datavalue` / `quarantine_unsupported_pair` for safety handling
+
 ## 5. Stop Conditions
 Mandatory controls per run:
 - `max_depth`: default `1` (no recursive walk unless explicitly requested).
@@ -60,11 +68,16 @@ Mandatory controls per run:
 - `max_new_nodes_per_seed`: default `100`.
 - `property_allowlist`: explicit set only.
 - `class_allowlist`: schema-backed set only.
+- optional `p31_denylist`: explicit class blocklist for known noisy/meta classes.
 - `denylist_namespaces`: non-item namespaces excluded.
 
 Abort run if:
 - unsupported datatype pair rate exceeds threshold (default `>10%`),
 - unresolved class mapping rate exceeds threshold (default `>20%`).
+
+Traversal frontier guard:
+- If accepted node has `edge_candidate_count = 0`, exclude from frontier.
+- If accepted node `literal_heavy_ratio > 0.80`, exclude from frontier by default.
 
 ## 6. Minimal SPARQL Pattern
 ```sparql
@@ -90,7 +103,7 @@ Backlink workflow must emit the same profile outputs so we can compare:
 - unsupported datatype pair rates
 
 ## 8. Immediate Implementation Plan
-1. Add `scripts/tools/wikidata_backlink_harvest.py` (seed query + class filter).
-2. Add `scripts/tools/wikidata_backlink_profile.py` (datatype/value-type gating on candidates).
-3. Add run report in `JSON/wikidata/backlinks/` with accepted/rejected reasons.
+1. Implemented: `scripts/tools/wikidata_backlink_harvest.py` (seed query + class filter + datatype gate + run report).
+2. Implemented: `scripts/tools/wikidata_backlink_profile.py` (standalone datatype/value-type profiling for candidate QID sets).
+3. Implemented: run reports in `JSON/wikidata/backlinks/` with accepted/rejected reasons.
 4. Keep depth at `1` until false positive rate is measured.

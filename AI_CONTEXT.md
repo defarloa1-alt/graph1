@@ -105,6 +105,41 @@ Observed Q1048 profile baseline:
   - Stop conditions are required (`max_depth`, per-seed budgets, class/property allowlists).
   - Backlink candidates must pass the same datatype profiling workflow as direct statements.
 
+## Backlink Harvester Implementation (verified 2026-02-13)
+
+- New script:
+  - `scripts/tools/wikidata_backlink_harvest.py`
+- Report output location:
+  - `JSON/wikidata/backlinks/`
+- Sample run artifact:
+  - `JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json`
+
+Q1048 sample (bounded run):
+- backlink rows: 87
+- candidate sources considered: 25
+- accepted: 10
+- unresolved class rate: 20.00% (gate pass at default 20%)
+- unsupported datatype pair rate: 0.00% (gate pass)
+- overall status: `pass`
+- dispatcher route metrics now emitted in report (`route_counts`, `quarantine_reasons`)
+- frontier metrics now emitted (`frontier_eligible`, `frontier_excluded`, per-entity `frontier_eligible`)
+
+## Backlink Profiler Implementation (verified 2026-02-13)
+
+- New script:
+  - `scripts/tools/wikidata_backlink_profile.py`
+- Profiling artifacts (Q1048 accepted candidates):
+  - `JSON/wikidata/backlinks/Q1048_backlink_profile_accepted_summary.json`
+  - `JSON/wikidata/backlinks/Q1048_backlink_profile_accepted_by_entity.csv`
+  - `JSON/wikidata/backlinks/Q1048_backlink_profile_accepted_pair_counts.csv`
+
+Q1048 profile sample:
+- requested QIDs: 10
+- resolved entities: 10
+- statements: 342
+- unsupported pair rate: 0.00%
+- overall status: `pass`
+
 ## Recommended Next Steps
 - If rebuilding backbone from scratch:
   1. Run `python scripts/backbone/temporal/genYearsToNeo.py --start -2000 --end 2025`

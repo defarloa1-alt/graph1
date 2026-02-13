@@ -1,0 +1,1177 @@
+{
+  "generated_at": "2026-02-13T20:56:31.113818+00:00",
+  "seed_qid": "Q1048",
+  "config": {
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 120,
+    "max_sources_per_seed": 25,
+    "max_new_nodes_per_seed": 10,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 25,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P112",
+      "P138",
+      "P710",
+      "P737",
+      "P828",
+      "P1441"
+    ],
+    "property_count": 6,
+    "classes_count": 150,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 87,
+    "candidate_sources_before_budget": 61,
+    "candidate_sources_considered": 25,
+    "accepted_before_node_budget": 20,
+    "accepted": 10,
+    "rejected": 51,
+    "entities_profiled": 10,
+    "frontier_eligible": 10,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.2,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "class_not_allowed": 5,
+    "source_budget_exceeded": 36,
+    "node_budget_exceeded": 10
+  },
+  "datatype_profile_summary": {
+    "statement_count": 342,
+    "missing_datavalue_statement_count": 1,
+    "with_qualifiers": 55,
+    "with_references": 85,
+    "qualifier_rate": 0.1608187134502924,
+    "reference_rate": 0.24853801169590642,
+    "datatype_counts": {
+      "string": 9,
+      "external-id": 99,
+      "wikibase-item": 187,
+      "time": 10,
+      "globe-coordinate": 8,
+      "commonsMedia": 11,
+      "monolingualtext": 4,
+      "url": 4,
+      "quantity": 10
+    },
+    "value_type_counts": {
+      "string": 123,
+      "wikibase-entityid": 187,
+      "time": 9,
+      "globecoordinate": 8,
+      "monolingualtext": 4,
+      "quantity": 10,
+      "": 1
+    },
+    "pair_counts": {
+      "string|string": 9,
+      "external-id|string": 99,
+      "wikibase-item|wikibase-entityid": 187,
+      "time|time": 9,
+      "globe-coordinate|globecoordinate": 8,
+      "commonsMedia|string": 11,
+      "monolingualtext|monolingualtext": 4,
+      "url|string": 4,
+      "quantity|quantity": 10,
+      "time|": 1
+    },
+    "route_counts": {
+      "node_property": 17,
+      "federation_id": 99,
+      "edge_candidate": 187,
+      "temporal_anchor": 9,
+      "geo_attribute": 8,
+      "media_reference": 11,
+      "measured_attribute": 10,
+      "quarantine_missing_datavalue": 1
+    },
+    "rank_counts": {
+      "normal": 340,
+      "deprecated": 1,
+      "preferred": 1
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 1
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 10,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q11184",
+      "label": "Julian calendar",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q210953",
+        "Q669102",
+        "Q9337488"
+      ],
+      "matched_classes": [
+        "Q210953",
+        "Q669102",
+        "Q9337488"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885",
+        "Q39546"
+      ],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 51,
+        "with_qualifiers": 10,
+        "with_references": 12,
+        "qualifier_rate": 0.19607843137254902,
+        "reference_rate": 0.23529411764705882,
+        "route_counts": {
+          "node_property": 2,
+          "federation_id": 29,
+          "edge_candidate": 19,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0392156862745098,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1583842",
+      "label": "Emerita Augusta",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q117025897",
+        "Q756780",
+        "Q839954"
+      ],
+      "matched_classes": [
+        "Q117025897",
+        "Q756780",
+        "Q839954"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 45,
+        "with_qualifiers": 8,
+        "with_references": 12,
+        "qualifier_rate": 0.17777777777777778,
+        "reference_rate": 0.26666666666666666,
+        "route_counts": {
+          "node_property": 2,
+          "geo_attribute": 1,
+          "edge_candidate": 30,
+          "federation_id": 10,
+          "media_reference": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08888888888888889,
+        "edge_candidate_count": 30,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2017668",
+      "label": "Le Défi de César",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q1144661",
+        "Q2431196",
+        "Q776061"
+      ],
+      "matched_classes": [
+        "Q1144661",
+        "Q2431196",
+        "Q776061"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724",
+        "Q39546"
+      ],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.045454545454545456,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 17,
+          "federation_id": 1,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13636363636363635,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3920725",
+      "label": "Julius Caesar Bridge",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q1068842",
+        "Q2502622",
+        "Q911663"
+      ],
+      "matched_classes": [
+        "Q1068842",
+        "Q2502622",
+        "Q911663"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q12280",
+        "Q34442",
+        "Q386724"
+      ],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 7,
+          "geo_attribute": 1,
+          "temporal_anchor": 1,
+          "measured_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q569978",
+      "label": "Caesars Palace",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q133215",
+        "Q27686",
+        "Q8719053"
+      ],
+      "matched_classes": [
+        "Q133215",
+        "Q27686"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q16334295"
+      ],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 39,
+        "with_qualifiers": 12,
+        "with_references": 24,
+        "qualifier_rate": 0.3076923076923077,
+        "reference_rate": 0.6153846153846154,
+        "route_counts": {
+          "node_property": 3,
+          "edge_candidate": 19,
+          "federation_id": 10,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "geo_attribute": 1,
+          "measured_attribute": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.20512820512820512,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q106841551",
+      "label": "Colonia Laus Iulia Corinthiensis",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q2202509",
+        "Q756780"
+      ],
+      "matched_classes": [
+        "Q2202509",
+        "Q756780"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.15384615384615385,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23076923076923078,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1133288",
+      "label": "Temple of Caesar",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q44539",
+        "Q867143"
+      ],
+      "matched_classes": [
+        "Q44539",
+        "Q867143"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q44539"
+      ],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 37,
+        "with_qualifiers": 1,
+        "with_references": 11,
+        "qualifier_rate": 0.02702702702702703,
+        "reference_rate": 0.2972972972972973,
+        "route_counts": {
+          "node_property": 3,
+          "geo_attribute": 1,
+          "federation_id": 14,
+          "media_reference": 3,
+          "edge_candidate": 15,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1891891891891892,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q119206",
+      "label": "Julian Alps",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q3965305",
+        "Q46831"
+      ],
+      "matched_classes": [
+        "Q3965305",
+        "Q46831"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 78,
+        "with_qualifiers": 9,
+        "with_references": 15,
+        "qualifier_rate": 0.11538461538461539,
+        "reference_rate": 0.19230769230769232,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 52,
+          "geo_attribute": 1,
+          "federation_id": 18,
+          "media_reference": 2,
+          "measured_attribute": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10256410256410256,
+        "edge_candidate_count": 52,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q188751",
+      "label": "Caesar",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q355567",
+        "Q4164871"
+      ],
+      "matched_classes": [
+        "Q355567",
+        "Q4164871"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4164871"
+      ],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 8,
+        "with_references": 2,
+        "qualifier_rate": 0.2962962962962963,
+        "reference_rate": 0.07407407407407407,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 13,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07407407407407407,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q320210",
+      "label": "Caesar's Rhine bridges",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q428759",
+        "Q673234"
+      ],
+      "matched_classes": [
+        "Q428759",
+        "Q673234"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q12280"
+      ],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.15789473684210525,
+        "reference_rate": 0.2631578947368421,
+        "route_counts": {
+          "node_property": 2,
+          "geo_attribute": 1,
+          "federation_id": 3,
+          "edge_candidate": 7,
+          "measured_attribute": 2,
+          "media_reference": 2,
+          "temporal_anchor": 1,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3684210526315789,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q25238182",
+      "label": "crossing the Rubicon",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q13418847",
+        "Q184511",
+        "Q4350791",
+        "Q467011"
+      ],
+      "backlink_hits": 4
+    },
+    {
+      "qid": "Q124800412",
+      "label": "Q124800412",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q15711870",
+        "Q2962925"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q137907746",
+      "label": "Júlio César",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12308941",
+        "Q1243157"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1789521",
+      "label": "Giulio Cesare",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q182531",
+        "Q847109"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q50822621",
+      "label": "Julio César",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12308941",
+        "Q1243157"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1247098",
+      "label": "Caesar's Comet",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q1060455"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12734616",
+      "label": "Lusus Troiae",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q902378"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q131029915",
+      "label": "Q131029915",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q15275719"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q167440",
+      "label": "Legio IV Macedonica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q168553",
+      "label": "Legio XIII Gemina",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q180943",
+      "label": "Caesar cipher",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q22683858",
+      "label": "Debate over the execution of Catiline's supporters",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q179875"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q228036",
+      "label": "cesarean section",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q796194"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q25207142",
+      "label": "French ship César",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q264934"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q253539",
+      "label": "Legio X Gemina",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2618230",
+      "label": "18458 Caesar",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q3863"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2738549",
+      "label": "Caesarsboom",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q811534"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q280868",
+      "label": "Battle of Gergovia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q29288",
+      "label": "Caesar",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q134768"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3396592",
+      "label": "pont Jules-César",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12280"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3448621",
+      "label": "rue Jules-César",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3665313",
+      "label": "Caesar cut",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q327496"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3694616",
+      "label": "Corso Giulio Cesare",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q38040394",
+      "label": "Caesarova kašna",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12029081"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3902216",
+      "label": "Piazza Giulio Cesare",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q174782"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q49053259",
+      "label": "Mount Julius Caesar",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q8502"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q5018164",
+      "label": "Cal McLish",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q50711037",
+      "label": "Novum Comum",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q756780"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q52750731",
+      "label": "L. L. Giulio Cesare",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q3831968"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q52914955",
+      "label": "Liceo G.Cesare - M.Valgimigli",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q5518"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q56870106",
+      "label": "Q56870106",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q953806"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q631476",
+      "label": "Julius Caesar",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q55818"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q63283650",
+      "label": "HV Caesar",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q847017"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q634719",
+      "label": "Legio III Gallica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6416967",
+      "label": "Lucca Conference",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q321839"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6852241",
+      "label": "military campaigns of Julius Caesar",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q70493194",
+      "label": "Caesar",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q70253004"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q85087148",
+      "label": "Avenue Jules César - Julius Caesarlaan",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q875563",
+      "label": "Giulio Cesare in Egitto",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q58483083"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q917212",
+      "label": "Legio I Germanica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q9358",
+      "label": "Friedrich Nietzsche",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P737"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3831934",
+      "label": "Giulio Cesare",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q41176",
+        "Q5518"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q668691",
+      "label": "Chaussée Jules César",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q14752696",
+        "Q194029"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q856968",
+      "label": "Forum of Caesar",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q174782",
+        "Q839954"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q86215133",
+      "label": "Pseudo-Caesar",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q5",
+        "Q92306274"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q104848509",
+      "label": "Caesar's Retreat",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q131295"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q106982704",
+      "label": "Piazzale Giulio Cesare",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q174782"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q108390243",
+      "label": "Viale Giulio Cesare",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q110959673",
+      "label": "Q110959673",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q111821370",
+      "label": "Jules César",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q2175765"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q121",
+      "label": "July",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q47018901"
+      ],
+      "backlink_hits": 1
+    }
+  ]
+}
