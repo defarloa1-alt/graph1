@@ -172,7 +172,7 @@ def import_subgraph(driver):
         
         print("  ✅ 6 events created")
         
-        print("\n[STEP 3] Creating Person nodes...")
+        print("\n[STEP 3] Creating Human nodes...")
         
         persons = [
             ("Q188117", "Q5", "E21_Person", "Lucius Tarquinius Superbus", "-0542", "-0495"),
@@ -188,7 +188,7 @@ def import_subgraph(driver):
         
         for qid, type_qid, cidoc, label, birth, death in persons:
             session.run("""
-                MERGE (p:Person {qid: $qid})
+                MERGE (p:Human {qid: $qid})
                 SET p.type_qid = $type_qid,
                     p.cidoc_class = $cidoc,
                     p.label = $label,
@@ -201,7 +201,7 @@ def import_subgraph(driver):
                     p.unique_id = 'person:' + $qid
             """, qid=qid, type_qid=type_qid, cidoc=cidoc, label=label, birth=birth, death=death)
         
-        print(f"  ✅ {len(persons)} persons created")
+        print(f"  ✅ {len(persons)} humans created")
         
         print("\n[STEP 4] Creating Place nodes...")
         
@@ -259,24 +259,28 @@ def import_subgraph(driver):
         
         print("  ✅ 2 organizations created")
         
-        print("\n[STEP 6] Linking to temporal backbone (Year nodes)...")
-        
-        # Link events to years
-        year_links = [
-            ("Q23402", -509),
-            ("Q161954", -49),
-            ("Q106398", -44),
-            ("Q23401", -27),
+        print("\n[STEP 6] Linking events to temporal backbone (Year nodes)...")
+
+        # Link events to STARTS_IN_YEAR / ENDS_IN_YEAR anchors.
+        event_ranges = [
+            ("Q23402", -509, -509),
+            ("Q47084", -264, -146),
+            ("Q912145", -133, -121),
+            ("Q161954", -49, -49),
+            ("Q106398", -44, -44),
+            ("Q23401", -27, -27),
         ]
-        
-        for event_qid, year_value in year_links:
+
+        for event_qid, start_year, end_year in event_ranges:
             session.run("""
                 MATCH (e:Event {qid: $event_qid})
-                MATCH (y:Year {year_value: $year_value})
-                MERGE (e)-[:POINT_IN_TIME]->(y)
-            """, event_qid=event_qid, year_value=year_value)
-        
-        print(f"  ✅ {len(year_links)} event→year links created")
+                MATCH (y_start:Year {year: $start_year})
+                MATCH (y_end:Year {year: $end_year})
+                MERGE (e)-[:STARTS_IN_YEAR]->(y_start)
+                MERGE (e)-[:ENDS_IN_YEAR]->(y_end)
+            """, event_qid=event_qid, start_year=start_year, end_year=end_year)
+
+        print(f"  ✅ {len(event_ranges)} event start/end year anchors created")
         
         print("\n[STEP 7] Linking events to period...")
         
@@ -313,7 +317,7 @@ def import_subgraph(driver):
         
         # Tarquinius overthrown
         session.run("""
-            MATCH (p:Person {qid: "Q188117"})
+            MATCH (p:Human {qid: "Q188117"})
             MATCH (e:Event {qid: "Q23402"})
             MERGE (p)-[:OVERTHROWN_BY]->(e)
         """)
@@ -327,8 +331,8 @@ def import_subgraph(driver):
         
         # Gracchi initiated reforms
         session.run("""
-            MATCH (p1:Person {qid: "Q189411"})
-            MATCH (p2:Person {qid: "Q296646"})
+            MATCH (p1:Human {qid: "Q189411"})
+            MATCH (p2:Human {qid: "Q296646"})
             MATCH (e:Event {qid: "Q912145"})
             MERGE (p1)-[:INITIATED]->(e)
             MERGE (p2)-[:INITIATED]->(e)
@@ -336,56 +340,56 @@ def import_subgraph(driver):
         
         # Marius opposed Sulla
         session.run("""
-            MATCH (p1:Person {qid: "Q159419"})
-            MATCH (p2:Person {qid: "Q46654"})
+            MATCH (p1:Human {qid: "Q159419"})
+            MATCH (p2:Human {qid: "Q46654"})
             MERGE (p1)-[:OPPOSED_BY]->(p2)
         """)
         
         # Pompey allied with Caesar (First Triumvirate)
         session.run("""
-            MATCH (p1:Person {qid: "Q297162"})
-            MATCH (p2:Person {qid: "Q1048"})
+            MATCH (p1:Human {qid: "Q297162"})
+            MATCH (p2:Human {qid: "Q1048"})
             MERGE (p1)-[:ALLIED_WITH {start: -60, end: -53, alliance: "First Triumvirate"}]->(p2)
         """)
         
         # Pompey opposed Caesar (Civil War)
         session.run("""
-            MATCH (p1:Person {qid: "Q297162"})
-            MATCH (p2:Person {qid: "Q1048"})
+            MATCH (p1:Human {qid: "Q297162"})
+            MATCH (p2:Human {qid: "Q1048"})
             MERGE (p1)-[:OPPOSED_BY {start: -49}]->(p2)
         """)
         
         # Caesar crossed Rubicon
         session.run("""
-            MATCH (p:Person {qid: "Q1048"})
+            MATCH (p:Human {qid: "Q1048"})
             MATCH (pl:Place {qid: "Q14378"})
             MERGE (p)-[:CROSSED {date: "-0049-01-10"}]->(pl)
         """)
         
         # Caesar participated in crossing
         session.run("""
-            MATCH (p:Person {qid: "Q1048"})
+            MATCH (p:Human {qid: "Q1048"})
             MATCH (e:Event {qid: "Q161954"})
             MERGE (p)-[:PARTICIPATED_IN {role: "leader"}]->(e)
         """)
         
         # Brutus assassinated Caesar
         session.run("""
-            MATCH (p1:Person {qid: "Q193616"})
-            MATCH (p2:Person {qid: "Q1048"})
+            MATCH (p1:Human {qid: "Q193616"})
+            MATCH (p2:Human {qid: "Q1048"})
             MERGE (p1)-[:ASSASSINATED {date: "-0044-03-15"}]->(p2)
         """)
         
         # Caesar victim of assassination
         session.run("""
-            MATCH (p:Person {qid: "Q1048"})
+            MATCH (p:Human {qid: "Q1048"})
             MATCH (e:Event {qid: "Q106398"})
             MERGE (p)-[:PARTICIPATED_IN {role: "victim"}]->(e)
         """)
         
         # Augustus established Empire
         session.run("""
-            MATCH (p:Person {qid: "Q1405"})
+            MATCH (p:Human {qid: "Q1405"})
             MATCH (e:Event {qid: "Q23401"})
             MERGE (p)-[:ESTABLISHED]->(e)
         """)
@@ -434,14 +438,14 @@ def import_subgraph(driver):
         
         # Link to existing subjects (Caesar and Augustus already in DB)
         session.run("""
-            MATCH (p:Person {qid: "Q1048"})
+            MATCH (p:Human {qid: "Q1048"})
             MATCH (s:Subject {lcsh_id: "n79021400"})
             MERGE (p)-[:SUBJECT_OF]->(s)
         """)
         print("  ✅ Julius Caesar → Subject (n79021400, LCC: DG261-267)")
         
         session.run("""
-            MATCH (p:Person {qid: "Q1405"})
+            MATCH (p:Human {qid: "Q1405"})
             MATCH (s:Subject {lcsh_id: "n79033006"})
             MERGE (p)-[:SUBJECT_OF]->(s)
         """)
@@ -508,7 +512,7 @@ def verify_import(driver):
         # Count nodes by type
         result = session.run("""
             MATCH (n)
-            WHERE n.qid IS NOT NULL OR n.year_value IS NOT NULL OR n.lcsh_id IS NOT NULL
+            WHERE n.qid IS NOT NULL OR n.year IS NOT NULL OR n.lcsh_id IS NOT NULL
             RETURN labels(n)[0] as label, count(n) as count
             ORDER BY label
         """)
@@ -558,7 +562,7 @@ def main():
         print("="*80)
         print("\nRun these Cypher queries to explore:")
         print("1. MATCH (e:Event)-[:SUBJECT_OF]->(s:Subject) RETURN e.label, s.lcc_code")
-        print("2. MATCH (p:Person {qid: 'Q1048'})-[r]->() RETURN type(r), r")
+        print("2. MATCH (p:Human {qid: 'Q1048'})-[r]->() RETURN type(r), r")
         print("3. MATCH path=(e1:Event)-[:FOLLOWED_BY*]->(e2:Event) RETURN path LIMIT 1")
         print()
         

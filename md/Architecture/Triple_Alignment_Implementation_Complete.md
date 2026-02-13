@@ -1,4 +1,4 @@
-# Triple Alignment Implementation Complete
+﻿# Triple Alignment Implementation Complete
 
 ## Summary
 
@@ -26,18 +26,18 @@ Successfully implemented triple alignment for Chrystallum's knowledge graph sche
 ### 2. Alignment Coverage
 
 **Well-Aligned Categories** (100% or high coverage):
-- ✅ **Temporal**: WITHIN_TIMESPAN, DURING, START_EDGE, END_EDGE, CONTAINS_EVENT, SUB_PERIOD_OF
-- ✅ **Spatial**: LOCATED_IN, BORN_IN, DIED_IN, LIVED_IN, FOUNDED
-- ✅ **Participants**: FOUGHT_IN, COMMANDED, SERVED_UNDER, BATTLED_IN
-- ✅ **Causal**: CAUSED, CAUSED_BY, CONTRIBUTED_TO, RESULTED_IN
-- ✅ **Authorship**: AUTHOR, CREATOR, ARCHITECT, WORK_OF
-- ✅ **Political**: CONTROLLED, GOVERNED, APPOINTED, POSITION_HELD
+- âœ… **Temporal**: PART_OF, DURING, START_EDGE, END_EDGE, CONTAINS_EVENT, SUB_PERIOD_OF
+- âœ… **Spatial**: LOCATED_IN, BORN_IN, DIED_IN, LIVED_IN, FOUNDED
+- âœ… **Participants**: FOUGHT_IN, COMMANDED, SERVED_UNDER, BATTLED_IN
+- âœ… **Causal**: CAUSED, CAUSED_BY, CONTRIBUTED_TO, RESULTED_IN
+- âœ… **Authorship**: AUTHOR, CREATOR, ARCHITECT, WORK_OF
+- âœ… **Political**: CONTROLLED, GOVERNED, APPOINTED, POSITION_HELD
 
 **Categories Needing Expansion**:
-- ⚠️ Diplomatic: Most relationships are Chrystallum-specific
-- ⚠️ Economic: Some map to E8_Acquisition, but many are unique
-- ⚠️ Legal: Could map to E7_Activity with qualifiers
-- ⚠️ Social: Patron-client relationships are Chrystallum-specific
+- âš ï¸ Diplomatic: Most relationships are Chrystallum-specific
+- âš ï¸ Economic: Some map to E8_Acquisition, but many are unique
+- âš ï¸ Legal: Could map to E7_Activity with qualifiers
+- âš ï¸ Social: Patron-client relationships are Chrystallum-specific
 
 ### 3. Utility Scripts Created
 
@@ -84,10 +84,10 @@ Successfully implemented triple alignment for Chrystallum's knowledge graph sche
 - **Wikidata**: `P131` (located in administrative territorial entity)
 - **CIDOC-CRM**: `P7_took_place_at` (took place at)
 
-### Relationship Type: `WITHIN_TIMESPAN`
-- **Chrystallum**: `WITHIN_TIMESPAN`
+### Relationship Type: `PART_OF`
+- **Chrystallum**: `PART_OF`
 - **Wikidata**: (none - temporal relationships)
-- **CIDOC-CRM**: `P4_has_time-span` (has time-span)
+- **CIDOC-CRM**: `P86_falls_within` (falls within)
 
 ### Relationship Type: `AUTHOR`
 - **Chrystallum**: `AUTHOR`
@@ -203,5 +203,6 @@ relationship = {
 - ISO 21127:2023 Standard
 - Wikidata Query Service: https://query.wikidata.org
 - CIDOC-CRM Explanation: `arch/Cidoc/CIDOC-CRM_Explanation.md`
+
 
 

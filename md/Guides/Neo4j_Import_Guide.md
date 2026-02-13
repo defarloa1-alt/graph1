@@ -1,4 +1,4 @@
-# Neo4j Temporal Backbone Import Guide
+﻿# Neo4j Temporal Backbone Import Guide
 
 ## Overview
 
@@ -79,7 +79,7 @@ This method creates:
 1. Historical period nodes
 2. Year nodes (one per year)
 3. Sequential relationships (FOLLOWED_BY, PRECEDED_BY)
-4. Period mappings (DURING, PART_OF)
+4. Period mappings (PART_OF)
 
 #### Quick Start Examples
 
@@ -180,7 +180,7 @@ python scripts/import_year_nodes_to_neo4j.py --start 1 --end 100 --import --pass
   label: '753 BCE',
   type: 'Time Period',
   type_qid: 'Q186081',
-  year_value: -753,
+  year: -753,
   iso8601_start: '-0753-01-01',
   iso8601_end: '-0753-12-31',
   temporal_backbone: true
@@ -190,22 +190,22 @@ python scripts/import_year_nodes_to_neo4j.py --start 1 --end 100 --import --pass
 #### 3. Sequential Relationships
 ```cypher
 // Forward
-(:Year {year_value: -753})-[:FOLLOWED_BY {
+(:Year {year: -753})-[:FOLLOWED_BY {
   temporal_sequence: 'chronological',
   temporal_backbone: true
-}]->(:Year {year_value: -752})
+}]->(:Year {year: -752})
 
 // Backward
-(:Year {year_value: -752})-[:PRECEDED_BY {
+(:Year {year: -752})-[:PRECEDED_BY {
   temporal_sequence: 'chronological',
   temporal_backbone: true
-}]->(:Year {year_value: -753})
+}]->(:Year {year: -753})
 ```
 
 #### 4. Period Mappings
 ```cypher
 // Primary period
-(:Year {year_value: -753})-[:DURING {
+(:Year {year: -753})-[:DURING {
   relationship_type: 'temporal_classification',
   classification_type: 'primary_geographic',
   region: 'Italy',
@@ -214,7 +214,7 @@ python scripts/import_year_nodes_to_neo4j.py --start 1 --end 100 --import --pass
 }]->(:Period {qid: 'Q17167'})  // Roman Kingdom
 
 // Coincident period
-(:Year {year_value: -753})-[:PART_OF {
+(:Year {year: -753})-[:PART_OF {
   relationship_type: 'temporal_classification',
   classification_type: 'coincident_geographic',
   region: 'Global',
@@ -243,14 +243,14 @@ RETURN count(y) as total_years;
 #### 2. Verify Sequential Chain
 ```cypher
 // Check sequential relationships exist
-MATCH (y1:Year {year_value: -753})-[:FOLLOWED_BY*10]->(y2:Year)
-RETURN y1.label, y2.label, y2.year_value;
+MATCH (y1:Year {year: -753})-[:FOLLOWED_BY*10]->(y2:Year)
+RETURN y1.label, y2.label, y2.year;
 ```
 
 #### 3. Verify Period Mappings
 ```cypher
 // Years in Roman Republic
-MATCH (y:Year)-[:DURING]->(p:Period {qid: 'Q17193'})
+MATCH (y:Year)-[:PART_OF]->(p:Period {qid: 'Q17193'})
 RETURN count(y) as years_in_roman_republic;
 
 // Expected: 482 years (-509 to -27)
@@ -267,7 +267,7 @@ RETURN p1.label, p2.label,
 #### 5. Test Year Classification
 ```cypher
 // What periods does year -100 belong to?
-MATCH (y:Year {year_value: -100})-[r:WITHIN_TIMESPAN]->(p:Period)
+MATCH (y:Year {year: -100})-[r:PART_OF]->(p:Period)
 RETURN y.label, type(r) as relationship, p.label, p.region, r.classification_type;
 ```
 
@@ -294,7 +294,7 @@ RETURN y.label, type(r) as relationship, p.label, p.region, r.classification_typ
 
 1. **Create indexes FIRST:**
 ```cypher
-CREATE INDEX year_value IF NOT EXISTS FOR (y:Year) ON (y.year_value);
+CREATE INDEX year IF NOT EXISTS FOR (y:Year) ON (y.year);
 CREATE INDEX period_qid IF NOT EXISTS FOR (p:Period) ON (p.qid);
 ```
 
@@ -324,7 +324,7 @@ CREATE INDEX period_qid IF NOT EXISTS FOR (p:Period) ON (p.qid);
 **Cause:** Too many nodes/relationships without indexes  
 **Solution:** Create indexes before importing:
 ```cypher
-CREATE INDEX year_value IF NOT EXISTS FOR (y:Year) ON (y.year_value);
+CREATE INDEX year IF NOT EXISTS FOR (y:Year) ON (y.year);
 CREATE INDEX period_qid IF NOT EXISTS FOR (p:Period) ON (p.qid);
 ```
 
@@ -381,29 +381,29 @@ python scripts/import_year_nodes_to_neo4j.py --start 1800 --end 2025 --import --
 // Link your events to years
 MATCH (event:Event)
 WHERE event.start_date CONTAINS '-509'
-MATCH (year:Year {year_value: -509})
-MERGE (event)-[:POINT_IN_TIME]->(year);
+MATCH (year:Year {year: -509})
+MERGE (event)-[:STARTS_IN_YEAR]->(year);
 
 // Find events in Roman Republic
-MATCH (event:Event)-[:POINT_IN_TIME]->(year:Year)-[:DURING]->(period:Period {qid: 'Q17193'})
-RETURN event.label, year.year_value, period.label;
+MATCH (event:Event)-[:STARTS_IN_YEAR]->(year:Year)-[:PART_OF]->(period:Period {qid: 'Q17193'})
+RETURN event.label, year.year, period.label;
 ```
 
 ### Temporal Range Queries
 ```cypher
 // Find all entities between two years
-MATCH path = (start:Year {year_value: -100})-[:FOLLOWED_BY*]->(end:Year {year_value: -50})
+MATCH path = (start:Year {year: -100})-[:FOLLOWED_BY*]->(end:Year {year: -50})
 WITH nodes(path) as year_nodes
-MATCH (entity)-[:POINT_IN_TIME]->(year:Year)
+MATCH (entity)-[:STARTS_IN_YEAR]->(year:Year)
 WHERE year IN year_nodes
-RETURN entity.label, year.year_value
-ORDER BY year.year_value;
+RETURN entity.label, year.year
+ORDER BY year.year;
 ```
 
 ### Cross-Regional Comparison
 ```cypher
 // What was happening in different regions in year 1400?
-MATCH (year:Year {year_value: 1400})-[:WITHIN_TIMESPAN]->(period:Period)
+MATCH (year:Year {year: 1400})-[:PART_OF]->(period:Period)
 RETURN period.label, period.region
 ORDER BY period.region;
 ```
@@ -419,13 +419,13 @@ After importing the temporal backbone:
    MATCH (entity:Entity)
    WHERE entity.start_date IS NOT NULL
    WITH entity, toInteger(substring(entity.start_date, 0, 4)) as year_num
-   MATCH (year:Year {year_value: year_num})
-   MERGE (entity)-[:POINT_IN_TIME]->(year);
+   MATCH (year:Year {year: year_num})
+   MERGE (entity)-[:STARTS_IN_YEAR]->(year);
    ```
 
 2. **Classify entities by period:**
    ```cypher
-   MATCH (entity)-[:POINT_IN_TIME]->(year:Year)-[:DURING]->(period:Period)
+   MATCH (entity)-[:STARTS_IN_YEAR]->(year:Year)-[:PART_OF]->(period:Period)
    SET entity.historical_period = period.label,
        entity.historical_period_qid = period.qid;
    ```
@@ -447,4 +447,5 @@ After importing the temporal backbone:
 ---
 
 *Last Updated: 2025-01-09*
+
 

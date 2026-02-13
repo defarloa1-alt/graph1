@@ -1,4 +1,4 @@
-# CIDOC-CRM and Wikidata Alignment Strategy
+﻿# CIDOC-CRM and Wikidata Alignment Strategy
 
 ## Overview
 
@@ -35,8 +35,8 @@ For each relationship type in `canonical_relationship_types.csv`, we add:
 
 | Chrystallum | Wikidata | CIDOC-CRM | Notes |
 |-------------|----------|-----------|-------|
-| `WITHIN_TIMESPAN` | - | `P4_has_time-span` | Event → Time-Span |
-| `DURING` | - | `P4_has_time-span` | Event → Time-Span |
+| `PART_OF` | - | `P86_falls_within` | Year/period falls within larger temporal span |
+| `DURING` | - | `P4_has_time-span` | Event â†’ Time-Span |
 | `START_EDGE` | - | `P82a_begin_of_the_begin` | Time-Span property |
 | `END_EDGE` | - | `P82b_end_of_the_end` | Time-Span property |
 
@@ -44,52 +44,52 @@ For each relationship type in `canonical_relationship_types.csv`, we add:
 
 | Chrystallum | Wikidata | CIDOC-CRM | Notes |
 |-------------|----------|-----------|-------|
-| `LOCATED_IN` | `P131` | `P7_took_place_at` | Event → Place |
-| `BORN_IN` | `P19` | `P7_took_place_at` (via E67_Birth) | Birth event → Place |
-| `DIED_IN` | `P20` | `P7_took_place_at` (via E69_Death) | Death event → Place |
-| `LIVED_IN` | - | `P74_has_current_or_former_residence` | Person → Place |
+| `LOCATED_IN` | `P131` | `P7_took_place_at` | Event â†’ Place |
+| `BORN_IN` | `P19` | `P7_took_place_at` (via E67_Birth) | Birth event â†’ Place |
+| `DIED_IN` | `P20` | `P7_took_place_at` (via E69_Death) | Death event â†’ Place |
+| `LIVED_IN` | - | `P74_has_current_or_former_residence` | Person â†’ Place |
 
 #### Participant Relationships
 
 | Chrystallum | Wikidata | CIDOC-CRM | Notes |
 |-------------|----------|-----------|-------|
-| `PARTICIPATED_IN` | `P710` | `P11_had_participant` | Event → Person/Group |
-| `COMMANDED` | - | `P11_had_participant` (with role) | Event → Person (role: commander) |
-| `SERVED_UNDER` | - | `P11_had_participant` (with role) | Event → Person (role: subordinate) |
+| `PARTICIPATED_IN` | `P710` | `P11_had_participant` | Event â†’ Person/Group |
+| `COMMANDED` | - | `P11_had_participant` (with role) | Event â†’ Person (role: commander) |
+| `SERVED_UNDER` | - | `P11_had_participant` (with role) | Event â†’ Person (role: subordinate) |
 
 #### Causal Relationships
 
 | Chrystallum | Wikidata | CIDOC-CRM | Notes |
 |-------------|----------|-----------|-------|
-| `CAUSED` | `P828` | `P15_was_influenced_by` | Effect → Cause (inverse) |
-| `CAUSED_BY` | `P828` | `P15_was_influenced_by` | Effect → Cause |
-| `RESULTED_IN` | - | `P10i_contains` | Super-event → Sub-event |
+| `CAUSED` | `P828` | `P15_was_influenced_by` | Effect â†’ Cause (inverse) |
+| `CAUSED_BY` | `P828` | `P15_was_influenced_by` | Effect â†’ Cause |
+| `RESULTED_IN` | - | `P10i_contains` | Super-event â†’ Sub-event |
 | `CONTRIBUTED_TO` | `P828` | `P15_was_influenced_by` | Contributing factor |
 
 #### Authorship/Creation Relationships
 
 | Chrystallum | Wikidata | CIDOC-CRM | Notes |
 |-------------|----------|-----------|-------|
-| `AUTHOR` | `P50` | `P14_carried_out_by` (via E12_Production) | Production event → Person |
-| `CREATOR` | `P170` | `P14_carried_out_by` (via E12_Production) | Production event → Person |
-| `ARCHITECT` | `P84` | `P14_carried_out_by` (via E12_Production) | Production event → Person |
-| `WORK_OF` | `P50` | `P108i_was_produced_by` | Work → Production event |
+| `AUTHOR` | `P50` | `P14_carried_out_by` (via E12_Production) | Production event â†’ Person |
+| `CREATOR` | `P170` | `P14_carried_out_by` (via E12_Production) | Production event â†’ Person |
+| `ARCHITECT` | `P84` | `P14_carried_out_by` (via E12_Production) | Production event â†’ Person |
+| `WORK_OF` | `P50` | `P108i_was_produced_by` | Work â†’ Production event |
 
 #### Political/Control Relationships
 
 | Chrystallum | Wikidata | CIDOC-CRM | Notes |
 |-------------|----------|-----------|-------|
-| `CONTROLLED` | `P17` | `P53_has_former_or_current_location` | Object → Place (for territories) |
-| `GOVERNED` | - | `P11_had_participant` (via E7_Activity) | Governance activity → Person |
-| `APPOINTED` | `P39` | `P11_had_participant` (via E7_Activity) | Appointment event → Person |
+| `CONTROLLED` | `P17` | `P53_has_former_or_current_location` | Object â†’ Place (for territories) |
+| `GOVERNED` | - | `P11_had_participant` (via E7_Activity) | Governance activity â†’ Person |
+| `APPOINTED` | `P39` | `P11_had_participant` (via E7_Activity) | Appointment event â†’ Person |
 
 #### Familial Relationships
 
 | Chrystallum | Wikidata | CIDOC-CRM | Notes |
 |-------------|----------|-----------|-------|
-| `CHILD_OF` | `P40` | `P98_was_born` (via E67_Birth) | Birth event → Parent |
-| `SPOUSE_OF` | `P26` | `P11_had_participant` (via E7_Activity) | Marriage event → Person |
-| `PARENT_OF` | `P40` | `P98_was_born` (via E67_Birth) | Birth event → Child |
+| `CHILD_OF` | `P40` | `P98_was_born` (via E67_Birth) | Birth event â†’ Parent |
+| `SPOUSE_OF` | `P26` | `P11_had_participant` (via E7_Activity) | Marriage event â†’ Person |
+| `PARENT_OF` | `P40` | `P98_was_born` (via E67_Birth) | Birth event â†’ Child |
 
 ## Entity Class Alignment
 
@@ -224,7 +224,7 @@ Add to relationships:
   cidoc_crm_property: "P7_took_place_at"
 }]->(rubicon)
 
-(crossing)-[:WITHIN_TIMESPAN {
+(crossing)-[:DURING {
   cidoc_crm_property: "P4_has_time-span"
 }]->(timeSpan:TimeSpan {
   cidoc_crm_class: "E52_Time-Span",
@@ -265,5 +265,6 @@ RETURN e, r, p
 - ISO 21127:2023 Standard
 - Wikidata Property Documentation: https://www.wikidata.org/wiki/Wikidata:List_of_properties
 - CIDOC-CRM Alignment Guide: See `arch/Cidoc/CIDOC-CRM_Explanation.md`
+
 
 

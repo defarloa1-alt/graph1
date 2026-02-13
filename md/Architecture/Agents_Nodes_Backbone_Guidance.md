@@ -19,7 +19,7 @@
 
 ```
 Entity -[SUBJECT_OF]-> FAST Node (REQUIRED - this is the backbone!)
-       -[OCCURRED_IN]-> Period (Optional context)
+       -[DURING]-> Period (Optional context)
        -[LOCATED_AT]-> Place (Optional context)
 ```
 
@@ -131,10 +131,10 @@ Event â†’ "Rome--History--Republic" (FAST: 1411640)  âœ…
 
 | Type | Count | Purpose |
 |------|-------|---------|
-| WITHIN_TIMESPAN | 672 | Year â†’ Period |
+| PART_OF | 672 | Year â†’ Period |
 | SUB_PERIOD_OF | 290 | Period hierarchy |
 | FOLLOWED_BY/PRECEDED_BY | 1342 | Year sequence |
-| OCCURRED_IN | 3 | Event â†’ Period |
+| DURING | 3 | Event â†’ Period |
 | LOCATED_AT | 3 | Event â†’ Place |
 | **SUBJECT_OF** | **3** | **Event â†’ FAST (backbone!)** |
 
@@ -155,7 +155,7 @@ Each has:
 FAST Node (what it's about) â† The "vertex" anchor
     â†“ SUBJECT_OF
 Event (the entity)
-    â†“ OCCURRED_IN
+    â†“ DURING
 Period â†’ Parent Period (temporal dimension)
     â†“ LOCATED_AT
 Place â†’ Parent Place (geographic dimension)
@@ -168,7 +168,7 @@ Place â†’ Parent Place (geographic dimension)
 **See complete subgraphs:**
 ```cypher
 MATCH subgraph = (e:Event)-[:SUBJECT_OF]->(fast:Subject)
-OPTIONAL MATCH temporal = (e)-[:OCCURRED_IN]->(p:Period)-[:SUB_PERIOD_OF]->(parent)
+OPTIONAL MATCH temporal = (e)-[:DURING]->(p:Period)-[:SUB_PERIOD_OF]->(parent)
 OPTIONAL MATCH geographic = (e)-[:LOCATED_AT]->(place:Place)-[:LOCATED_IN]->(country)
 RETURN subgraph, temporal, geographic;
 ```
@@ -263,7 +263,7 @@ RETURN subgraph, temporal, geographic;
 **Original acceptance criteria:**
 > "Graph should display time period connected to years, including child time periods. it should display geo regions connected to places, including child regions. it should display the associated fast category and edges"
 
-- âœ… Time periods â†’ years (672 WITHIN_TIMESPAN)
+- âœ… Time periods â†’ years (672 PART_OF)
 - âœ… Child time periods (290 SUB_PERIOD_OF)
 - âœ… Geo regions â†’ places (36 places with LOCATED_IN)
 - âœ… Child regions (hierarchical)
@@ -301,5 +301,7 @@ RETURN subgraph, temporal, geographic;
 **Validation queries working**
 
 Next: Generate new subgraphs with SME agent! ðŸš€
+
+
 
 

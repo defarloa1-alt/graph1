@@ -1,4 +1,4 @@
-# Temporal Period Classification - Comprehensive Documentation
+﻿# Temporal Period Classification - Comprehensive Documentation
 
 ## Table of Contents
 
@@ -99,7 +99,7 @@ Every year from the earliest period to present becomes a node.
   - Time Period is defined in schema as: "Temporal interval" (Q186081)
   - Year nodes represent discrete time units, making them Time Period entities
   - Historical periods (Roman Kingdom, Early Modern Period) are also Time Period entities
-  - This creates a consistent temporal entity hierarchy: Year → Period → Historical Period
+  - This creates a consistent temporal entity hierarchy: Year â†’ Period â†’ Historical Period
 
 **Example:**
 ```cypher
@@ -109,7 +109,7 @@ Every year from the earliest period to present becomes a node.
   label: '753 BCE',
   type: 'Time Period',
   type_qid: 'Q186081',
-  year_value: -753,
+  year: -753,
   iso8601_start: '-0753-01-01',
   iso8601_end: '-0753-12-31',
   test_case: 'temporal_backbone'
@@ -245,12 +245,12 @@ Based on `Temporal/time_periods.csv`:
 **Purpose**: Rule-based classifier that determines historical periods from dates.
 
 **Features:**
-- ✅ Parses various date formats (ISO 8601, negative years for BCE, year-only)
-- ✅ Handles overlapping periods (e.g., Middle Ages and Ancient History)
-- ✅ Supports regional context (Europe, China, Islamic world, etc.)
-- ✅ Calculates confidence scores based on boundary proximity
-- ✅ Provides period definitions for LLM prompts
-- ✅ Handles BCE dates correctly (Python datetime doesn't support negative years)
+- âœ… Parses various date formats (ISO 8601, negative years for BCE, year-only)
+- âœ… Handles overlapping periods (e.g., Middle Ages and Ancient History)
+- âœ… Supports regional context (Europe, China, Islamic world, etc.)
+- âœ… Calculates confidence scores based on boundary proximity
+- âœ… Provides period definitions for LLM prompts
+- âœ… Handles BCE dates correctly (Python datetime doesn't support negative years)
 
 **Key Methods:**
 - `classify_date(date_string, region=None)`: Main classification function
@@ -303,7 +303,7 @@ Middle Ages,500,1500,Q12554,Europe,Medieval period - overlaps with Ancient Histo
 **Format**: `YYYY-MM-DD` for dates, `YYYY-MM-DDTHH:MM:SS` for date-time
 
 **Key Features:**
-- Arranges temporal elements from largest to smallest: year → month → day → hour → minute → second
+- Arranges temporal elements from largest to smallest: year â†’ month â†’ day â†’ hour â†’ minute â†’ second
 - Supports time intervals: `2007-11-13/15` means from Nov 13 to Nov 15
 - Duration notation: `P3Y6M4DT12H30M5S` = 3 years, 6 months, 4 days, 12 hours, 30 minutes, 5 seconds
 - Proleptic Gregorian calendar for dates before 1582
@@ -515,12 +515,12 @@ Instead of rigidly mapping years to periods:
 
 1. **Year Nodes** - Concrete, unambiguous temporal anchors
    ```cypher
-   (year:Concept {year_value: -49, label: "49 BCE"})
+   (year:Concept {year: -49, label: "49 BCE"})
    ```
 
 2. **Events Linked to Years** - Concrete historical facts
    ```cypher
-   (event:Event {label: "Caesar Crosses Rubicon"})-[:POINT_IN_TIME]->(year)
+   (event:Event {label: "Caesar Crosses Rubicon"})-[:STARTS_IN_YEAR]->(year)
    ```
 
 3. **Period Definitions as Reference Vocabulary** - NOT canonical mappings
@@ -616,19 +616,19 @@ Store period definitions as **multi-definition entities**:
 **Problem:**
 ```python
 # QID tokenization:
-"Q3281534" → [Q, 328, 15, 34]  # LLM cannot recognize
-"Q17167" → [Q, 171, 67]         # Fragments prevent lookup
+"Q3281534" â†’ [Q, 328, 15, 34]  # LLM cannot recognize
+"Q17167" â†’ [Q, 171, 67]         # Fragments prevent lookup
 
 # Date tokenization:
-"20250312" → [202, 503, 12]    # 45% accuracy drop
-"-0753-01-01" → [-, 0, 753, -, 01, -, 01]  # Breaks structure
+"20250312" â†’ [202, 503, 12]    # 45% accuracy drop
+"-0753-01-01" â†’ [-, 0, 753, -, 01, -, 01]  # Breaks structure
 ```
 
 **Solution: Atomic String Handling**
-- ❌ NEVER let LLM process QIDs, coordinates, or ISO dates
-- ✅ ALWAYS use tools to resolve these identifiers
-- ✅ Store natural language AND system identifiers
-- ✅ Two-stage extraction: LLM extracts labels → Tools resolve identifiers
+- âŒ NEVER let LLM process QIDs, coordinates, or ISO dates
+- âœ… ALWAYS use tools to resolve these identifiers
+- âœ… Store natural language AND system identifiers
+- âœ… Two-stage extraction: LLM extracts labels â†’ Tools resolve identifiers
 
 **See:** `archive/QID_Tokenization_Issue.md` for full analysis
 
@@ -640,9 +640,9 @@ Store period definitions as **multi-definition entities**:
    - Date text: "October 29, 1929", "49 BCE"
 
 2. **Tools Resolve to Atomic Identifiers:**
-   - Period → QID: "Roman Republic" → "Q17167"
-   - Place → Coordinates + QID: "Rome" → (41.9028, 12.4964) + "Q220"
-   - Date → ISO 8601: "October 29, 1929" → "1929-10-29"
+   - Period â†’ QID: "Roman Republic" â†’ "Q17167"
+   - Place â†’ Coordinates + QID: "Rome" â†’ (41.9028, 12.4964) + "Q220"
+   - Date â†’ ISO 8601: "October 29, 1929" â†’ "1929-10-29"
 
 3. **Store Both Formats:**
    ```json
@@ -679,9 +679,9 @@ If a temporal term appears consistently in scholarly literature, **CAPTURE IT** 
 
 ## Status and Next Steps
 
-### ✅ Completed Implementation
+### âœ… Completed Implementation
 
-1. **`temporal_period_classifier.py`** ✅
+1. **`temporal_period_classifier.py`** âœ…
    - Tool-augmented temporal period classifier
    - Parses dates in multiple formats (ISO 8601, negative years, year-only)
    - Handles overlapping periods and regional context
@@ -689,19 +689,19 @@ If a temporal term appears consistently in scholarly literature, **CAPTURE IT** 
    - **Fixed**: BCE date parsing (Python datetime doesn't support negative years)
    - **Ready to use**
 
-2. **`Temporal/time_periods.csv`** ✅
+2. **`Temporal/time_periods.csv`** âœ…
    - Period definitions with Wikidata QIDs
    - Includes global and regional periods
    - Extensible via CSV editing
    - **Ready to use**
 
-3. **Documentation** ✅
+3. **Documentation** âœ…
    - Complete documentation consolidated
    - Usage examples
    - Integration guidance
    - **Complete**
 
-### ⚠️ Files Needing Updates
+### âš ï¸ Files Needing Updates
 
 #### Priority 1: Core Workflow Integration
 
@@ -725,9 +725,9 @@ If a temporal term appears consistently in scholarly literature, **CAPTURE IT** 
 
 ### Testing Checklist
 
-1. ✅ **Test Classifier Standalone** - Complete
-2. ⚠️ **Test with LangGraph Workflow** - After updating workflow
-3. ⚠️ **Test Neo4j Queries** - After updating query tools
+1. âœ… **Test Classifier Standalone** - Complete
+2. âš ï¸ **Test with LangGraph Workflow** - After updating workflow
+3. âš ï¸ **Test Neo4j Queries** - After updating query tools
 
 ### Quick Start
 
@@ -769,16 +769,16 @@ print(result['primary_period']['period_name'])  # "Middle Ages"
 ### 1. Find Years in Period
 ```cypher
 MATCH (year:Concept {type: 'Time Period'})-[:DURING]->(period:Concept {qid: 'Q17193'})
-WHERE year.year_value BETWEEN -509 AND -27
-RETURN year.year_value, year.label
-ORDER BY year.year_value
+WHERE year.year BETWEEN -509 AND -27
+RETURN year.year, year.label
+ORDER BY year.year
 ```
 
 ### 2. Find Periods for Year Range
 ```cypher
-MATCH (startYear:Concept {year_value: -509})
-      -[:FOLLOWED_BY*]->(endYear:Concept {year_value: -27})
-MATCH (year:Concept {type: 'Time Period'})-[:WITHIN_TIMESPAN]->(period:Concept)
+MATCH (startYear:Concept {year: -509})
+      -[:FOLLOWED_BY*]->(endYear:Concept {year: -27})
+MATCH (year:Concept {type: 'Time Period'})-[:PART_OF]->(period:Concept)
 WHERE year IN nodes(path)
 RETURN DISTINCT period.label, period.qid
 ```
@@ -793,10 +793,10 @@ RETURN period.label, count(year) as year_count
 ```cypher
 // Find year where period changes (e.g., -509 BCE: Kingdom to Republic)
 MATCH (year:Concept {type: 'Time Period'})-[r1:DURING]->(period1:Concept)
-MATCH (prevYear:Concept {year_value: year.year_value - 1, type: 'Time Period'})
+MATCH (prevYear:Concept {year: year.year - 1, type: 'Time Period'})
       -[r2:DURING]->(period2:Concept)
 WHERE period1.qid <> period2.qid
-RETURN year.year_value, period1.label as to_period, period2.label as from_period
+RETURN year.year, period1.label as to_period, period2.label as from_period
 ```
 
 ### 5. Event Temporal Anchoring
@@ -806,7 +806,7 @@ RETURN year.year_value, period1.label as to_period, period2.label as from_period
   label: 'Sulla Named Dictator',
   start_date: '-0082-01-01'
 })
--[:POINT_IN_TIME {
+-[:STARTS_IN_YEAR {
   temporal_anchor: 'year',
   date_precision: 'year',
   test_case: 'kingdom_to_sulla'
@@ -838,4 +838,5 @@ RETURN year.year_value, period1.label as to_period, period2.label as from_period
 - `docs/Neo4j_Import_Guide.md` - Detailed import instructions
 - `docs/Critical_Review.md` - Bug analysis and fixes
 - `archive/` - Historical documentation (QID corrections, tokenization issues)
+
 

@@ -828,8 +828,7 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `PRECEDED_BY` â†’ `:Year` (previous year in sequence)
 
 **Optional Edges:**
-- `BELONGS_TO_DECADE` â†’ `:Decade` (if decade nodes exist)
-- `BELONGS_TO_CENTURY` â†’ `:Century` (if century nodes exist)
+- `PART_OF` â†’ `:Decade` / `:Century` / `:Millennium` (if hierarchy nodes exist)
 
 **Usage Pattern:** Every temporally grounded entity or claim must tether to one or more Year nodes.
 
@@ -1144,7 +1143,7 @@ These extend the Human entity model with Roman naming conventions.
 
 ---
 
-### **3.2.5 FacetAssessment** ðŸŸ¡ **NEW NODE TYPE**
+### **3.2.5 FacetAssessment**  **NEW NODE TYPE**
 
 **Node Label:** `:FacetAssessment`
 
@@ -1189,7 +1188,7 @@ Battle of Pharsalus (48 BCE) single AnalysisRun with multiple assessments:
 
 ---
 
-### **3.2.6 FacetCategory** ðŸŸ¡ **NEW NODE TYPE**
+### **3.2.6 FacetCategory**** NEW NODE TYPE**
 
 **Node Label:** `:FacetCategory`
 
@@ -1238,6 +1237,7 @@ Temporal modeling is handled separately in Section 3.4.
 14. **Linguistic:** Languages, writing systems
 15. **Archaeological:** Material culture, excavation
 16. **Diplomatic:** Treaties, alliances, negotiations
+17. Communication: mass media and the communication of messages and ideology
 
 **Implementation:** Entities link to SubjectConcepts representing these facets (see Section 4):
 ```cypher
@@ -3782,7 +3782,7 @@ The **Relationship Layer** defines canonical relationship types connecting entit
 | **Reasoning** | 6 | Inference, belief adoption | BELIEF_ABOUT, EVIDENCE_FOR |
 | **Production** | 6 | Creation, manufacturing | DEPICTS, DISCOVERED_BY |
 | **Social** | 6 | Patronage, social ties | PATRON_TO, SUPPORTER_OF |
-| **Temporal** | 6 | Time relationships | DURING, WITHIN_TIMESPAN |
+| **Temporal** | 6 | Time relationships | DURING, PART_OF |
 | **Functional** | 4 | Purpose, use | USE, USED_BY |
 | **Comparative** | 4 | Superiority, inferiority | SUPERIOR_TO, ADVANTAGE |
 | **Trade** | 3 | Commerce, exchange | TRADED_WITH, EXPORTED_TO |
@@ -3817,7 +3817,7 @@ The **Relationship Layer** defines canonical relationship types connecting entit
 | **BORN_IN** | P19 (place of birth) | crm:P7_took_place_at | E67_Birth |
 | **CAUSED** | P828 (has cause) | crm:P15_was_influenced_by | â€” |
 | **APPOINTED** | P39 (position held) | crm:P14.1_in_the_role_of | E13_Attribute_Assignment |
-| **WITHIN_TIMESPAN** | â€” | crm:P4_has_time-span | â€” |
+| **PART_OF** | â€” | crm:P86_falls_within | â€” |
 | **FOUNDED** | P112 (founded by) | crm:P14_carried_out_by | E63_Beginning_of_Existence |
 
 ### **Coverage Statistics**
@@ -4255,7 +4255,7 @@ RETURN facility.label, COUNT(person) AS prisoner_count
 | Relationship Type | Directionality | CIDOC-CRM | Description |
 |-------------------|----------------|-----------|-------------|
 | **DURING** | forward | P4_has_time-span | Event occurred during period |
-| **WITHIN_TIMESPAN** | forward | P4_has_time-span | Entity existed within temporal bounds |
+| **PART_OF** | forward | P86_falls_within | Year/decade/century falls within larger temporal span |
 | **SUB_PERIOD_OF** | forward | P9_consists_of | Period is subdivision of larger period |
 | **CONTAINS_EVENT** | inverse | P9i_forms_part_of | Period contains event |
 | **START_EDGE** | forward | P4_has_time-span | Marks beginning of period |
@@ -6574,7 +6574,7 @@ CREATE INDEX qid_index IF NOT EXISTS FOR (e:Entity) ON (e.qid);
 CREATE INDEX fast_id_index IF NOT EXISTS FOR (s:SubjectConcept) ON (s.fast_id);
 
 // Temporal indexes
-CREATE INDEX year_value_index IF NOT EXISTS FOR (y:Year) ON (y.year);
+CREATE INDEX year_index IF NOT EXISTS FOR (y:Year) ON (y.year);
 CREATE INDEX event_start_date_index IF NOT EXISTS FOR (e:Event) ON (e.start_date);
 
 // Claims workflow
@@ -7436,7 +7436,7 @@ Defines triple alignment approach: Chrystallum relation type <-> Wikidata proper
 |---|---|---|
 | `PARTICIPATED_IN` | `P710` | `P11_had_participant` |
 | `LOCATED_IN` | `P131` | `P7_took_place_at` |
-| `WITHIN_TIMESPAN` | n/a | `P4_has_time-span` |
+| `PART_OF` | n/a | `P86_falls_within` |
 | `CAUSED` | `P828` | `P15_was_influenced_by` |
 | `AUTHOR` | `P50` | `P14_carried_out_by` via `E12_Production` |
 
@@ -7564,4 +7564,3 @@ Defines optional-but-supported extension properties that enrich entities without
 ---
 
 (End of consolidated document snapshot)
-

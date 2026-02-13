@@ -154,7 +154,7 @@ User Query
 (caesar)-[:OPPOSED_BY]->(senate)
 (caesar)-[:COMMANDED]->(legion)
 (crossing)-[:CAUSED]->(civil_war)
-(crossing)-[:POINT_IN_TIME]->(year_49)
+(crossing)-[:STARTS_IN_YEAR]->(year_49)
 ```
 
 **Metric:** Edges-per-query matters more than nodes-per-query
@@ -221,5 +221,6 @@ Then implement all at once.
 **Next Step:** Design multi-agent coordination and claim resolution  
 
 **Key Takeaway:** The work here identified the right questions, even if the answers aren't ready yet.
+
 
 

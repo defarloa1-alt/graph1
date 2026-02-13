@@ -67,24 +67,26 @@ def rebuild_year_backbone(uri="bolt://127.0.0.1:7687", user="neo4j", password="C
                     label = f"{year} CE"
                 
                 session.run("""
-                    MERGE (y:Year {year_value: $year_value})
+                    MERGE (y:Year {year: $year})
                     ON CREATE SET
+                        y.year_value = $year,
                         y.label = $label,
                         y.name = $label,
                         y.iso8601_start = $iso_start,
                         y.iso8601_end = $iso_end,
                         y.cidoc_crm_class = 'E52_Time-Span',
-                        y.unique_id = 'YEAR_' + toString($year_value),
+                        y.unique_id = 'YEAR_' + toString($year),
                         y.temporal_backbone = true,
                         y.created = datetime()
                     ON MATCH SET
+                        y.year_value = coalesce(y.year_value, $year),
                         y.label = $label,
                         y.name = $label,
                         y.iso8601_start = $iso_start,
                         y.iso8601_end = $iso_end,
                         y.cidoc_crm_class = 'E52_Time-Span'
                 """, {
-                    'year_value': year,
+                    'year': year,
                     'label': label,
                     'iso_start': iso_start,
                     'iso_end': iso_end
@@ -102,7 +104,7 @@ def rebuild_year_backbone(uri="bolt://127.0.0.1:7687", user="neo4j", password="C
             
             result = session.run("""
                 MATCH (y1:Year), (y2:Year)
-                WHERE y2.year_value = y1.year_value + 1
+                WHERE y2.year = y1.year + 1
                 MERGE (y1)-[r1:FOLLOWED_BY]->(y2)
                 MERGE (y2)-[r2:PRECEDED_BY]->(y1)
                 RETURN count(r1) as count
@@ -116,8 +118,8 @@ def rebuild_year_backbone(uri="bolt://127.0.0.1:7687", user="neo4j", password="C
             result = session.run("""
                 MATCH (y:Year)
                 RETURN count(y) as total_years,
-                       min(y.year_value) as min_year,
-                       max(y.year_value) as max_year
+                       min(y.year) as min_year,
+                       max(y.year) as max_year
             """)
             stats = result.single()
             

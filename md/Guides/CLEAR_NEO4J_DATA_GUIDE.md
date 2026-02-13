@@ -1,11 +1,11 @@
-# Clear Neo4j Data - Quick Guide
+﻿# Clear Neo4j Data - Quick Guide
 
 **Date:** December 11, 2025  
 **Purpose:** Guide to clearing Neo4j data for fresh imports
 
 ---
 
-## 🗑️ Available Clear Scripts
+## ðŸ—‘ï¸ Available Clear Scripts
 
 ### 1. Clear Temporal Backbone Data
 
@@ -31,7 +31,7 @@ clear_temporal_data.bat YourPassword
 **What gets deleted:**
 - All `:Period` nodes
 - All `:Year` nodes
-- All `WITHIN_TIMESPAN` relationships
+- All `PART_OF` relationships
 - All `FOLLOWED_BY` relationships
 - All period-related relationships
 
@@ -53,11 +53,11 @@ cd scripts\backbone\temporal
 reimport_all.bat
 ```
 
-**Warning:** ⚠️ This is a complete wipe and reimport!
+**Warning:** âš ï¸ This is a complete wipe and reimport!
 
 ---
 
-## 🌍 Geographic Data
+## ðŸŒ Geographic Data
 
 **Note:** There's currently no dedicated clear script for geographic data, but you can:
 
@@ -87,7 +87,7 @@ MATCH (p:Place) RETURN count(p);
 
 ---
 
-## 🔥 Clear Everything (Nuclear Option)
+## ðŸ”¥ Clear Everything (Nuclear Option)
 
 **To clear ALL backbone data:**
 
@@ -112,7 +112,7 @@ DELETE r;
 
 ---
 
-## 📋 Quick Reference
+## ðŸ“‹ Quick Reference
 
 | What to Clear | Batch File | Location |
 |---------------|------------|----------|
@@ -123,7 +123,7 @@ DELETE r;
 
 ---
 
-## ⚠️ Warnings
+## âš ï¸ Warnings
 
 1. **Backup First:** If you have important data, export it first
 2. **Irreversible:** Deletions cannot be undone
@@ -132,7 +132,7 @@ DELETE r;
 
 ---
 
-## ✅ Verification
+## âœ… Verification
 
 After clearing, verify in Neo4j Browser:
 
@@ -151,7 +151,7 @@ RETURN count(r);  // Should be 0
 
 ---
 
-## 🚀 After Clearing
+## ðŸš€ After Clearing
 
 Once cleared, you can:
 
@@ -170,3 +170,4 @@ Once cleared, you can:
 ---
 
 **Last Updated:** December 11, 2025
+

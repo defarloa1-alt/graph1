@@ -1,4 +1,4 @@
-# Temporal Data Extraction: Atomic vs Tokenizable Handling
+﻿# Temporal Data Extraction: Atomic vs Tokenizable Handling
 
 ## Purpose
 
@@ -16,12 +16,12 @@ From research: **Date tokenization fragmentation increases errors by up to 10%**
 
 ```
 Input:  "Q3281534" (Wikidata QID for Modern Period)
-Tokens: [Q, 328, 15, 34]  ❌ FRAGMENTED
-Result: LLM cannot recognize as identifier → lookup fails
+Tokens: [Q, 328, 15, 34]  âŒ FRAGMENTED
+Result: LLM cannot recognize as identifier â†’ lookup fails
 
 Input:  "20250312" (ISO date without delimiters)
-Tokens: [202, 503, 12]  ❌ FRAGMENTED  
-Result: LLM cannot parse date → 45% accuracy drop
+Tokens: [202, 503, 12]  âŒ FRAGMENTED  
+Result: LLM cannot parse date â†’ 45% accuracy drop
 ```
 
 **Key Finding:** Tool-augmented reasoning achieves **95.31% accuracy** vs 34.5% for pure LLM.
@@ -30,7 +30,7 @@ Result: LLM cannot parse date → 45% accuracy drop
 
 ## Part 1: Natural Language Terms (CAN TOKENIZE)
 
-### ✅ Period Names
+### âœ… Period Names
 
 **Examples:**
 - "The Great Depression"
@@ -42,16 +42,16 @@ Result: LLM cannot parse date → 45% accuracy drop
 
 **Tokenization:**
 ```python
-"The Great Depression" → [The, Great, Depression]  ✅ OK
-"Roman Republic" → [Roman, Republic]  ✅ OK
+"The Great Depression" â†’ [The, Great, Depression]  âœ… OK
+"Roman Republic" â†’ [Roman, Republic]  âœ… OK
 ```
 
 **LLM Processing:**
-- ✅ Can extract from text
-- ✅ Understands semantic meaning
-- ✅ Can identify in multiple languages
-- ✅ Can handle fuzzy boundaries
-- ✅ Recognizes even when dates not specified
+- âœ… Can extract from text
+- âœ… Understands semantic meaning
+- âœ… Can identify in multiple languages
+- âœ… Can handle fuzzy boundaries
+- âœ… Recognizes even when dates not specified
 
 **Extraction Pattern:**
 ```json
@@ -70,7 +70,7 @@ Result: LLM cannot parse date → 45% accuracy drop
 
 ---
 
-### ✅ Human-Readable Dates
+### âœ… Human-Readable Dates
 
 **Examples:**
 - "October 29, 1929"
@@ -82,17 +82,17 @@ Result: LLM cannot parse date → 45% accuracy drop
 
 **Tokenization:**
 ```python
-"October 29, 1929" → [October, 29, ,, 1929]  ✅ OK
-"49 BCE" → [49, BCE]  ✅ OK
-"late 1800s" → [late, 1800s]  ✅ OK
+"October 29, 1929" â†’ [October, 29, ,, 1929]  âœ… OK
+"49 BCE" â†’ [49, BCE]  âœ… OK
+"late 1800s" â†’ [late, 1800s]  âœ… OK
 ```
 
 **LLM Processing:**
-- ✅ Can extract from natural language
-- ✅ Understands various date formats
-- ✅ Can handle imprecise dates ("late 1800s")
-- ✅ Can recognize BCE/CE notation
-- ✅ Can extract relative dates ("50 years later")
+- âœ… Can extract from natural language
+- âœ… Understands various date formats
+- âœ… Can handle imprecise dates ("late 1800s")
+- âœ… Can recognize BCE/CE notation
+- âœ… Can extract relative dates ("50 years later")
 
 **Extraction Pattern:**
 ```json
@@ -109,7 +109,7 @@ Result: LLM cannot parse date → 45% accuracy drop
 
 ---
 
-### ✅ Era/Period References with Fuzzy Boundaries
+### âœ… Era/Period References with Fuzzy Boundaries
 
 **Examples:**
 - "during the Renaissance"
@@ -148,13 +148,13 @@ Result: LLM cannot parse date → 45% accuracy drop
 
 ## Part 2: System Identifiers (MUST BE ATOMIC)
 
-### ❌ Wikidata QIDs
+### âŒ Wikidata QIDs
 
 **Format:** Q followed by digits (e.g., Q3281534, Q17167, Q8698)
 
 **Problem with Tokenization:**
 ```python
-# ❌ BAD - Gets fragmented:
+# âŒ BAD - Gets fragmented:
 qid = "Q3281534"  # Modern Period
 tokens = tokenize(qid)  # [Q, 328, 15, 34]
 llm.ask(f"What period is {qid}?")  # LLM cannot recognize - fragments prevent understanding
@@ -162,7 +162,7 @@ llm.ask(f"What period is {qid}?")  # LLM cannot recognize - fragments prevent un
 
 **Correct Handling:**
 ```python
-# ✅ GOOD - Treat as atomic string:
+# âœ… GOOD - Treat as atomic string:
 qid = "Q3281534"  # Atomic string, NOT tokenized by LLM
 period_data = wikidata_api.get_entity(qid)  # Tool lookup
 
@@ -176,11 +176,11 @@ period_data = wikidata_api.get_entity(qid)  # Tool lookup
 ```
 
 **Critical Rules:**
-1. ❌ NEVER pass QID to LLM for interpretation
-2. ✅ ALWAYS use as lookup key in tools/APIs
-3. ✅ Store as string in database
-4. ✅ Use tool-augmented resolution
-5. ✅ Treat QIDs as opaque identifiers (like database primary keys)
+1. âŒ NEVER pass QID to LLM for interpretation
+2. âœ… ALWAYS use as lookup key in tools/APIs
+3. âœ… Store as string in database
+4. âœ… Use tool-augmented resolution
+5. âœ… Treat QIDs as opaque identifiers (like database primary keys)
 
 **Why This Matters:**
 From research: QIDs suffer same tokenization fragmentation as dates, causing lookup failures and entity resolution errors.
@@ -189,8 +189,8 @@ From research: QIDs suffer same tokenization fragmentation as dates, causing loo
 ```json
 {
   "period": {
-    "label": "Modern Period",        // ✅ Human-readable (LLM can extract)
-    "qid": "Q3281534",              // ❌ Atomic string (tool resolved, no LLM processing)
+    "label": "Modern Period",        // âœ… Human-readable (LLM can extract)
+    "qid": "Q3281534",              // âŒ Atomic string (tool resolved, no LLM processing)
     "source": "wikidata",
     "validation": "verified_2025_01_09"
   }
@@ -199,18 +199,18 @@ From research: QIDs suffer same tokenization fragmentation as dates, causing loo
 
 ---
 
-### ❌ ISO 8601 Dates (System Format)
+### âŒ ISO 8601 Dates (System Format)
 
 **Format:** YYYY-MM-DD, -YYYY-MM-DD (for BCE)
 
 **Problem with Tokenization:**
 ```python
-# ❌ BAD - Without delimiters:
+# âŒ BAD - Without delimiters:
 date = "20250312"
 tokens = tokenize(date)  # [202, 503, 12]
 llm.ask(f"Parse this date: {date}")  # 45% accuracy
 
-# ⚠️ BETTER - With delimiters:
+# âš ï¸ BETTER - With delimiters:
 date = "2025-03-12"
 tokens = tokenize(date)  # [2025, -, 03, -, 12]
 # Less fragmentation, but still use tool for parsing
@@ -218,7 +218,7 @@ tokens = tokenize(date)  # [2025, -, 03, -, 12]
 
 **Correct Handling:**
 ```python
-# ✅ GOOD - Tool-augmented parsing:
+# âœ… GOOD - Tool-augmented parsing:
 date_text = "October 29, 1929"  # LLM extracts this (natural language)
 iso_date = parse_date_tool(date_text)  # Tool converts to ISO
 
@@ -226,23 +226,23 @@ iso_date = parse_date_tool(date_text)  # Tool converts to ISO
 ```
 
 **Rules for ISO Dates:**
-1. ❌ NEVER use continuous numbers: "20250312"
-2. ✅ ALWAYS use delimiters: "2025-03-12"
-3. ✅ Let tools parse, not LLM
-4. ✅ Store as atomic string
-5. ✅ Use ISO 8601 as canonical format
+1. âŒ NEVER use continuous numbers: "20250312"
+2. âœ… ALWAYS use delimiters: "2025-03-12"
+3. âœ… Let tools parse, not LLM
+4. âœ… Store as atomic string
+5. âœ… Use ISO 8601 as canonical format
 
 **BCE Dates Handling:**
 ```python
-# ✅ GOOD:
+# âœ… GOOD:
 year_bce = -753  # Numeric value for calculations
 iso_date = "-0753-01-01"  # Atomic string (ISO 8601 format)
 
 # Storage format:
 {
-  "date_text": "753 BCE",          // ✅ Human-readable (LLM extracted)
-  "date_iso8601": "-0753-01-01",   // ❌ Atomic string (tool formatted)
-  "year_value": -753,              // Numeric for queries
+  "date_text": "753 BCE",          // âœ… Human-readable (LLM extracted)
+  "date_iso8601": "-0753-01-01",   // âŒ Atomic string (tool formatted)
+  "year": -753,              // Numeric for queries
   "precision": "year",
   "calendar": "proleptic_gregorian"
 }
@@ -250,9 +250,9 @@ iso_date = "-0753-01-01"  # Atomic string (ISO 8601 format)
 
 ---
 
-### ❌ Year Node Identifiers
+### âŒ Year Node Identifiers
 
-**Format:** YEAR_{year_value}
+**Format:** YEAR_{year}
 
 **Problem:**
 ```python
@@ -263,13 +263,13 @@ year_node_id = "YEAR_-753"  # Atomic string identifier
 
 **Correct Handling:**
 ```python
-# ✅ Year value for calculation (numeric):
-year_value = -753  # Integer, can use in math
+# âœ… Year value for calculation (numeric):
+year = -753  # Integer, can use in math
 
-# ✅ Year as node ID (atomic string):
+# âœ… Year as node ID (atomic string):
 year_id = "YEAR_-753"  # String identifier, don't let LLM parse
 
-# ✅ Year in ISO format (atomic string):
+# âœ… Year in ISO format (atomic string):
 iso_date = "-0753-01-01"  # Atomic string for storage/queries
 ```
 
@@ -365,15 +365,15 @@ extracted = llm.extract_temporal_references(text)
 {
   "period_mentions": [
     {
-      "term": "Roman Republic",       # ✅ Natural language
-      "date_hint": "509-27 BCE",      # ✅ Natural language
+      "term": "Roman Republic",       # âœ… Natural language
+      "date_hint": "509-27 BCE",      # âœ… Natural language
       "term_consistency": "high"
     }
   ],
   "event_dates": [
     {
       "event": "crossed the Rubicon",
-      "date": "49 BCE",                # ✅ Natural language
+      "date": "49 BCE",                # âœ… Natural language
       "precision": "year"
     }
   ]
@@ -414,12 +414,12 @@ resolved = {
     "event": "Crossed Rubicon",
     
     "temporal_data": {
-      "date_text": "49 BCE",                  // ✅ Human (LLM extracted)
-      "date_iso8601": "-0049-01-01",          // ❌ Atomic (tool formatted)
-      "year_value": -49,                      // Numeric for queries
+      "date_text": "49 BCE",                  // âœ… Human (LLM extracted)
+      "date_iso8601": "-0049-01-01",          // âŒ Atomic (tool formatted)
+      "year": -49,                      // Numeric for queries
       
-      "period_text": "Roman Republic",       // ✅ Human (LLM extracted)
-      "period_qid": "Q17167",                 // ❌ Atomic (tool resolved)
+      "period_text": "Roman Republic",       // âœ… Human (LLM extracted)
+      "period_qid": "Q17167",                 // âŒ Atomic (tool resolved)
       
       "extraction_confidence": 0.95,
       "date_precision": "year"
@@ -468,51 +468,51 @@ Extract temporal references in their natural language form:
 
 AFTER extraction, tools will convert to system formats:
 
-1. **Period names → QIDs:**
+1. **Period names â†’ QIDs:**
    - You extract: "Roman Republic"
-   - Tool converts: "Q17167" ← ATOMIC STRING, don't let LLM process this
+   - Tool converts: "Q17167" â† ATOMIC STRING, don't let LLM process this
 
-2. **Date text → ISO 8601:**
+2. **Date text â†’ ISO 8601:**
    - You extract: "October 29, 1929"
-   - Tool converts: "1929-10-29" ← ATOMIC STRING
+   - Tool converts: "1929-10-29" â† ATOMIC STRING
 
-3. **Year references → Numeric:**
+3. **Year references â†’ Numeric:**
    - You extract: "49 BCE"
-   - Tool converts: -49 ← NUMERIC VALUE
+   - Tool converts: -49 â† NUMERIC VALUE
 
 ### What You Should NOT Do
 
-❌ Don't try to parse QIDs:
+âŒ Don't try to parse QIDs:
    Bad: "What period is Q3281534?"
    Why: QID gets tokenized to [Q, 328, 15, 34] - LLM cannot recognize
    
-❌ Don't try to parse ISO dates:
+âŒ Don't try to parse ISO dates:
    Bad: "Parse date: -0753-01-01"
    Why: Tokenization breaks date structure
    
-❌ Don't generate QIDs:
+âŒ Don't generate QIDs:
    Bad: "The QID for this is probably Q12345"
    Why: QIDs are assigned by Wikidata, not generated
 
-❌ Don't skip fuzzy periods:
+âŒ Don't skip fuzzy periods:
    Bad: Ignoring "The Great Depression" because end date is debated
    Why: Term consistency is more valuable than date precision
 
 ### What You SHOULD Do
 
-✅ Extract natural language:
+âœ… Extract natural language:
    Good: "Period mentioned: 'The Great Depression'"
    
-✅ Extract date text as written:
+âœ… Extract date text as written:
    Good: "Date mentioned: 'October 1929'"
    
-✅ Note uncertainty:
+âœ… Note uncertainty:
    Good: "Approximate date: 'late 1920s' (precision: decade)"
    
-✅ Capture fuzzy periods with term consistency:
+âœ… Capture fuzzy periods with term consistency:
    Good: "Period 'The Great Depression' widely used; dates approximately 1929-1939/1941"
    
-✅ Link to boundary events:
+âœ… Link to boundary events:
    Good: "Period began with 'stock market crash'; ended with 'economic recovery' or 'WWII entry'"
 ```
 
@@ -619,39 +619,39 @@ AFTER extraction, tools will convert to system formats:
 
 1. **Asking LLM to interpret QIDs:**
    ```python
-   # ❌ WRONG:
+   # âŒ WRONG:
    prompt = f"What time period is {qid}?"
    
-   # ✅ CORRECT:
+   # âœ… CORRECT:
    period_data = wikidata_lookup(qid)  # Tool handles atomic string
    ```
 
 2. **Letting LLM parse ISO dates:**
    ```python
-   # ❌ WRONG:
+   # âŒ WRONG:
    prompt = f"Convert {iso_date} to year"
    
-   # ✅ CORRECT:
+   # âœ… CORRECT:
    year = datetime.fromisoformat(iso_date).year  # Tool parses
    ```
 
 3. **Using dates without delimiters:**
    ```python
-   # ❌ WRONG:
+   # âŒ WRONG:
    date = "20250312"  # Gets fragmented badly: [202, 503, 12]
    
-   # ✅ CORRECT:
+   # âœ… CORRECT:
    date = "2025-03-12"  # Delimiters help reduce fragmentation
    date = parse_date_tool(date_text)  # Even better: tool parsing
    ```
 
 4. **Rejecting fuzzy periods:**
    ```python
-   # ❌ WRONG:
+   # âŒ WRONG:
    if not has_exact_dates(period):
        skip_extraction()  # Don't do this!
    
-   # ✅ CORRECT:
+   # âœ… CORRECT:
    if has_high_term_consistency(period):
        extract_period(period, note_uncertainty=True)
    ```
@@ -662,44 +662,44 @@ AFTER extraction, tools will convert to system formats:
 
 **Critical:** These identifiers are used for backbone alignment and geographic lookups. They MUST NEVER be passed to LLMs.
 
-### ❌ FAST IDs (Faceted Application of Subject Terminology)
+### âŒ FAST IDs (Faceted Application of Subject Terminology)
 
 **Format:** 7-digit numeric (e.g., `1145002`, `831351`, `1069263`)
 
 **Problem with Tokenization:**
 ```python
-# ❌ BAD - Gets fragmented:
+# âŒ BAD - Gets fragmented:
 fast_id = "1145002"  # Technology classification
 tokens = tokenize(fast_id)  # [114, 500, 2] or [1145, 002]
-llm.ask(f"What is FAST ID {fast_id}?")  # ❌ LLM cannot recognize - fragments prevent lookup
+llm.ask(f"What is FAST ID {fast_id}?")  # âŒ LLM cannot recognize - fragments prevent lookup
 
 # Example fragmentation impact:
-"1145002" → [114, 500, 2]     # Lookup fails
-"831351"  → [831, 351]         # Lookup fails  
-"1069263" → [106, 92, 63]      # Lookup fails
+"1145002" â†’ [114, 500, 2]     # Lookup fails
+"831351"  â†’ [831, 351]         # Lookup fails  
+"1069263" â†’ [106, 92, 63]      # Lookup fails
 ```
 
 **Correct Handling:**
 ```python
-# ✅ GOOD - Treat as atomic string:
+# âœ… GOOD - Treat as atomic string:
 fast_id = "1145002"  # Atomic string, NOT tokenized
 subject_data = fast_api.lookup(fast_id)  # Tool lookup
 
 # Storage format:
 {
   "relationship_type": "USE",
-  "fast_id": "1145002",              # ❌ Atomic (tool lookup only)
-  "lcsh_heading": "Technology",      # ✅ Human-readable (LLM can extract)
-  "lcc_code": "T"                    # ❌ Atomic (tool lookup only)
+  "fast_id": "1145002",              # âŒ Atomic (tool lookup only)
+  "lcsh_heading": "Technology",      # âœ… Human-readable (LLM can extract)
+  "lcc_code": "T"                    # âŒ Atomic (tool lookup only)
 }
 ```
 
 **Critical Rules:**
-1. ❌ NEVER pass FAST ID to LLM for interpretation
-2. ✅ ALWAYS store as string (not integer)
-3. ✅ ALWAYS use as lookup key in FAST API/database
-4. ✅ Treat as opaque identifier (like database primary key)
-5. ✅ Extract LCSH heading with LLM, resolve to FAST ID with tool
+1. âŒ NEVER pass FAST ID to LLM for interpretation
+2. âœ… ALWAYS store as string (not integer)
+3. âœ… ALWAYS use as lookup key in FAST API/database
+4. âœ… Treat as opaque identifier (like database primary key)
+5. âœ… Extract LCSH heading with LLM, resolve to FAST ID with tool
 
 **Why This Matters:**
 - FAST IDs are used in ALL 236 canonical relationship types
@@ -709,44 +709,44 @@ subject_data = fast_api.lookup(fast_id)  # Tool lookup
 
 ---
 
-### ❌ LCC Codes (Library of Congress Classification)
+### âŒ LCC Codes (Library of Congress Classification)
 
 **Format:** Letter(s) + optional numbers and ranges (e.g., `T`, `JA`, `DG241-269`, `QC851-859`)
 
 **Problem with Tokenization:**
 ```python
-# ❌ BAD - Complex codes fragment:
+# âŒ BAD - Complex codes fragment:
 lcc_code = "DG241-269"  # Roman history classification
 tokens = tokenize(lcc_code)  # [DG, 241, -, 269] or [D, G, 24, 1, -, 26, 9]
-llm.ask(f"What subject is LCC {lcc_code}?")  # ❌ Classification lookup fails
+llm.ask(f"What subject is LCC {lcc_code}?")  # âŒ Classification lookup fails
 
 # Example fragmentation:
-"DG241-269"  → [DG, 241, -, 269]   # Range broken
-"QC851-859"  → [QC, 851, -, 859]   # Range broken
-"T"          → [T]                  # Simple but still atomic
-"JA"         → [JA]                 # Should not pass to LLM
+"DG241-269"  â†’ [DG, 241, -, 269]   # Range broken
+"QC851-859"  â†’ [QC, 851, -, 859]   # Range broken
+"T"          â†’ [T]                  # Simple but still atomic
+"JA"         â†’ [JA]                 # Should not pass to LLM
 ```
 
 **Correct Handling:**
 ```python
-# ✅ GOOD - Treat as atomic string:
+# âœ… GOOD - Treat as atomic string:
 lcc_code = "DG241-269"  # Atomic string
 classification = lcc_api.lookup(lcc_code)  # Tool lookup
 
 # Storage format:
 {
-  "lcc_code": "DG241-269",              # ❌ Atomic (tool lookup only)
-  "lcsh_heading": "Roman history",      # ✅ Human-readable (LLM can extract)
-  "fast_id": "1069263"                  # ❌ Atomic (tool lookup only)
+  "lcc_code": "DG241-269",              # âŒ Atomic (tool lookup only)
+  "lcsh_heading": "Roman history",      # âœ… Human-readable (LLM can extract)
+  "fast_id": "1069263"                  # âŒ Atomic (tool lookup only)
 }
 ```
 
 **Critical Rules:**
-1. ❌ NEVER pass LCC code to LLM for interpretation
-2. ✅ ALWAYS store as string
-3. ✅ ALWAYS preserve exact format including hyphens and ranges
-4. ✅ Use as lookup key in LCC classification system
-5. ✅ Extract subject heading with LLM, resolve to LCC code with tool
+1. âŒ NEVER pass LCC code to LLM for interpretation
+2. âœ… ALWAYS store as string
+3. âœ… ALWAYS preserve exact format including hyphens and ranges
+4. âœ… Use as lookup key in LCC classification system
+5. âœ… Extract subject heading with LLM, resolve to LCC code with tool
 
 **Why This Matters:**
 - LCC codes classify all subject domains
@@ -756,42 +756,42 @@ classification = lcc_api.lookup(lcc_code)  # Tool lookup
 
 ---
 
-### ❌ MARC Codes (Machine-Readable Cataloging)
+### âŒ MARC Codes (Machine-Readable Cataloging)
 
 **Format:** `sh` + 8 digits (e.g., `sh85115058`)
 
 **Problem with Tokenization:**
 ```python
-# ❌ BAD - Alphanumeric fragmentation:
+# âŒ BAD - Alphanumeric fragmentation:
 marc_code = "sh85115058"  # Subject heading identifier
 tokens = tokenize(marc_code)  # [sh, 851, 150, 58] or [sh, 8511, 5058]
-llm.ask(f"What is MARC {marc_code}?")  # ❌ Bibliographic lookup fails
+llm.ask(f"What is MARC {marc_code}?")  # âŒ Bibliographic lookup fails
 
 # Example fragmentation:
-"sh85115058" → [sh, 851, 150, 58]  # Prefix separated, numbers fragmented
-"sh85140989" → [sh, 851, 409, 89]  # Similar fragmentation pattern
+"sh85115058" â†’ [sh, 851, 150, 58]  # Prefix separated, numbers fragmented
+"sh85140989" â†’ [sh, 851, 409, 89]  # Similar fragmentation pattern
 ```
 
 **Correct Handling:**
 ```python
-# ✅ GOOD - Treat as atomic string:
+# âœ… GOOD - Treat as atomic string:
 marc_code = "sh85115058"  # Atomic string
 bibliographic_data = marc_api.lookup(marc_code)  # Tool lookup
 
 # Storage format:
 {
-  "marc_code": "sh85115058",            # ❌ Atomic (tool lookup only)
-  "subject_heading": "Political science",  # ✅ Human-readable (LLM can extract)
-  "fast_id": "1069263"                  # ❌ Atomic (tool lookup only)
+  "marc_code": "sh85115058",            # âŒ Atomic (tool lookup only)
+  "subject_heading": "Political science",  # âœ… Human-readable (LLM can extract)
+  "fast_id": "1069263"                  # âŒ Atomic (tool lookup only)
 }
 ```
 
 **Critical Rules:**
-1. ❌ NEVER pass MARC code to LLM
-2. ✅ ALWAYS store as atomic string
-3. ✅ Use for bibliographic system lookups only
-4. ✅ Treat "sh" prefix as part of atomic identifier
-5. ✅ Extract subject with LLM, resolve to MARC code with tool
+1. âŒ NEVER pass MARC code to LLM
+2. âœ… ALWAYS store as atomic string
+3. âœ… Use for bibliographic system lookups only
+4. âœ… Treat "sh" prefix as part of atomic identifier
+5. âœ… Extract subject with LLM, resolve to MARC code with tool
 
 **Why This Matters:**
 - MARC codes link to bibliographic systems
@@ -801,46 +801,46 @@ bibliographic_data = marc_api.lookup(marc_code)  # Tool lookup
 
 ---
 
-### ❌ Pleiades IDs (Ancient Geography)
+### âŒ Pleiades IDs (Ancient Geography)
 
 **Format:** 6-digit numeric (e.g., `423025` for Rome)
 
 **Problem with Tokenization:**
 ```python
-# ❌ BAD - Numeric fragmentation:
+# âŒ BAD - Numeric fragmentation:
 pleiades_id = "423025"  # Rome location
 tokens = tokenize(pleiades_id)  # [423, 025] or [42, 30, 25] or [4230, 25]
-llm.ask(f"What location is Pleiades {pleiades_id}?")  # ❌ Ancient geography lookup fails
+llm.ask(f"What location is Pleiades {pleiades_id}?")  # âŒ Ancient geography lookup fails
 
 # Example fragmentation:
-"423025" → [423, 025]    # Leading zero lost, lookup fails
-"579885" → [579, 885]    # Ancient Athens - fragmented
-"197" → [197]            # Shorter IDs also atomic
+"423025" â†’ [423, 025]    # Leading zero lost, lookup fails
+"579885" â†’ [579, 885]    # Ancient Athens - fragmented
+"197" â†’ [197]            # Shorter IDs also atomic
 ```
 
 **Correct Handling:**
 ```python
-# ✅ GOOD - Treat as atomic string:
+# âœ… GOOD - Treat as atomic string:
 pleiades_id = "423025"  # Atomic string (preserves leading zeros)
 ancient_place = pleiades_api.lookup(pleiades_id)  # Tool lookup
 pleiades_url = f"https://pleiades.stoa.org/places/{pleiades_id}"  # URL construction
 
 # Storage format:
 {
-  "label": "Roma",                      # ✅ Human-readable (LLM can extract)
-  "pleiades_id": "423025",              # ❌ Atomic (tool lookup only)
+  "label": "Roma",                      # âœ… Human-readable (LLM can extract)
+  "pleiades_id": "423025",              # âŒ Atomic (tool lookup only)
   "pleiades_link": "https://pleiades.stoa.org/places/423025",
-  "coordinates": [41.8919, 12.5113],    # ✅ Numeric (not string)
-  "qid": "Q220"                         # ❌ Atomic (tool lookup only)
+  "coordinates": [41.8919, 12.5113],    # âœ… Numeric (not string)
+  "qid": "Q220"                         # âŒ Atomic (tool lookup only)
 }
 ```
 
 **Critical Rules:**
-1. ❌ NEVER pass Pleiades ID to LLM
-2. ✅ ALWAYS store as string (not integer) to preserve leading zeros
-3. ✅ Use for Pleiades API lookups
-4. ✅ Construct URLs: `https://pleiades.stoa.org/places/{id}`
-5. ✅ Extract place name with LLM, resolve to Pleiades ID with tool
+1. âŒ NEVER pass Pleiades ID to LLM
+2. âœ… ALWAYS store as string (not integer) to preserve leading zeros
+3. âœ… Use for Pleiades API lookups
+4. âœ… Construct URLs: `https://pleiades.stoa.org/places/{id}`
+5. âœ… Extract place name with LLM, resolve to Pleiades ID with tool
 
 **Why This Matters:**
 - Pleiades is the authoritative gazetteer for ancient places
@@ -850,45 +850,45 @@ pleiades_url = f"https://pleiades.stoa.org/places/{pleiades_id}"  # URL construc
 
 ---
 
-### ❌ GeoNames IDs (Modern Geography)
+### âŒ GeoNames IDs (Modern Geography)
 
 **Format:** Numeric ID, variable length (e.g., `2643743` for London, `6455259` for Paris)
 
 **Problem with Tokenization:**
 ```python
-# ❌ BAD - Numeric fragmentation:
+# âŒ BAD - Numeric fragmentation:
 geonames_id = "2643743"  # London
 tokens = tokenize(geonames_id)  # [264, 37, 43] or [2643, 743]
-llm.ask(f"What location is GeoNames {geonames_id}?")  # ❌ Modern geography lookup fails
+llm.ask(f"What location is GeoNames {geonames_id}?")  # âŒ Modern geography lookup fails
 
 # Example fragmentation:
-"2643743" → [264, 37, 43]   # London - fragmented
-"6455259" → [645, 52, 59]   # Paris - fragmented
-"3169070" → [316, 90, 70]   # Rome - fragmented
+"2643743" â†’ [264, 37, 43]   # London - fragmented
+"6455259" â†’ [645, 52, 59]   # Paris - fragmented
+"3169070" â†’ [316, 90, 70]   # Rome - fragmented
 ```
 
 **Correct Handling:**
 ```python
-# ✅ GOOD - Treat as atomic string:
+# âœ… GOOD - Treat as atomic string:
 geonames_id = "2643743"  # Atomic string
 modern_place = geonames_api.lookup(geonames_id)  # Tool lookup
 
 # Storage format (from generate_place_entities.py):
 {
-  "label": "London",                    # ✅ Human-readable (LLM can extract)
-  "qid": "Q84",                         # ❌ Atomic (tool lookup only)
-  "geonames_id": "2643743",             # ❌ Atomic (tool lookup only)
-  "latitude": 51.5074,                  # ✅ Numeric (not string)
-  "longitude": -0.1278                  # ✅ Numeric (not string)
+  "label": "London",                    # âœ… Human-readable (LLM can extract)
+  "qid": "Q84",                         # âŒ Atomic (tool lookup only)
+  "geonames_id": "2643743",             # âŒ Atomic (tool lookup only)
+  "latitude": 51.5074,                  # âœ… Numeric (not string)
+  "longitude": -0.1278                  # âœ… Numeric (not string)
 }
 ```
 
 **Critical Rules:**
-1. ❌ NEVER pass GeoNames ID to LLM
-2. ✅ ALWAYS store as string
-3. ✅ Use for GeoNames API lookups
-4. ✅ Extract place name with LLM, resolve to GeoNames ID with tool
-5. ✅ Strip whitespace when reading from CSV (`.strip()`)
+1. âŒ NEVER pass GeoNames ID to LLM
+2. âœ… ALWAYS store as string
+3. âœ… Use for GeoNames API lookups
+4. âœ… Extract place name with LLM, resolve to GeoNames ID with tool
+5. âœ… Strip whitespace when reading from CSV (`.strip()`)
 
 **Why This Matters:**
 - GeoNames is the primary gazetteer for modern places
@@ -898,18 +898,18 @@ modern_place = geonames_api.lookup(geonames_id)  # Tool lookup
 
 ---
 
-### ✅ LCSH Headings (Natural Language - CAN Tokenize)
+### âœ… LCSH Headings (Natural Language - CAN Tokenize)
 
 **Format:** Human-readable subject heading (e.g., "Technology", "Political science", "Geography")
 
-**Status:** ✅ **SAFE** - This is natural language, NOT an identifier
+**Status:** âœ… **SAFE** - This is natural language, NOT an identifier
 
-**Tokenization:** ✅ **OK** - Designed to be tokenized
+**Tokenization:** âœ… **OK** - Designed to be tokenized
 ```python
-# ✅ SAFE - Natural language:
+# âœ… SAFE - Natural language:
 lcsh = "Political science"
-tokens = tokenize(lcsh)  # [Political, science]  ✅ OK
-llm.ask(f"Classify the topic: {lcsh}")  # ✅ LLM can process natural language
+tokens = tokenize(lcsh)  # [Political, science]  âœ… OK
+llm.ask(f"Classify the topic: {lcsh}")  # âœ… LLM can process natural language
 ```
 
 **Current Usage:**
@@ -918,36 +918,36 @@ llm.ask(f"Classify the topic: {lcsh}")  # ✅ LLM can process natural language
 - Purpose: Human understanding and search
 
 **Important:** LCSH headings are natural language labels, NOT system identifiers. They pair with atomic identifiers:
-- LCSH heading: "Technology" (✅ LLM can extract)
-- FAST ID: "1145002" (❌ Tool resolves)
-- LCC code: "T" (❌ Tool resolves)
+- LCSH heading: "Technology" (âœ… LLM can extract)
+- FAST ID: "1145002" (âŒ Tool resolves)
+- LCC code: "T" (âŒ Tool resolves)
 
 ---
 
 ## Summary
 
 ### Natural Language (LLM CAN Tokenize)
-- ✅ Period names: "The Great Depression", "Roman Republic"
-- ✅ Date text: "October 29, 1929", "49 BCE"
-- ✅ Temporal phrases: "during", "throughout", "by the end of"
-- ✅ Fuzzy periods: "The Space Race" (even without exact dates)
-- ✅ LCSH headings: "Technology", "Political science" (subject labels)
+- âœ… Period names: "The Great Depression", "Roman Republic"
+- âœ… Date text: "October 29, 1929", "49 BCE"
+- âœ… Temporal phrases: "during", "throughout", "by the end of"
+- âœ… Fuzzy periods: "The Space Race" (even without exact dates)
+- âœ… LCSH headings: "Technology", "Political science" (subject labels)
 
 ### System Identifiers (MUST Be Atomic)
-- ❌ Wikidata QIDs: "Q3281534", "Q17167" (never let LLM process)
-- ❌ ISO dates: "-0753-01-01", "1929-10-29" (tool parsing only)
-- ❌ Year node IDs: "YEAR_-753" (atomic identifiers)
-- ❌ FAST IDs: "1145002", "831351" (backbone alignment - tool only)
-- ❌ LCC codes: "T", "DG241-269" (classification - tool only)
-- ❌ MARC codes: "sh85115058" (bibliographic - tool only)
-- ❌ Pleiades IDs: "423025" (ancient geography - tool only)
-- ❌ GeoNames IDs: "2643743" (modern geography - tool only)
+- âŒ Wikidata QIDs: "Q3281534", "Q17167" (never let LLM process)
+- âŒ ISO dates: "-0753-01-01", "1929-10-29" (tool parsing only)
+- âŒ Year node IDs: "YEAR_-753" (atomic identifiers)
+- âŒ FAST IDs: "1145002", "831351" (backbone alignment - tool only)
+- âŒ LCC codes: "T", "DG241-269" (classification - tool only)
+- âŒ MARC codes: "sh85115058" (bibliographic - tool only)
+- âŒ Pleiades IDs: "423025" (ancient geography - tool only)
+- âŒ GeoNames IDs: "2643743" (modern geography - tool only)
 
 ### Critical Principles
-1. ✅ **Term consistency > Date precision** - Capture well-known periods even if fuzzy
-2. ✅ **Two-stage processing** - LLM extracts labels, tools resolve identifiers
-3. ✅ **Store both formats** - Human-readable + machine-readable
-4. ❌ **Never let LLM process system identifiers** - Tokenization breaks them
+1. âœ… **Term consistency > Date precision** - Capture well-known periods even if fuzzy
+2. âœ… **Two-stage processing** - LLM extracts labels, tools resolve identifiers
+3. âœ… **Store both formats** - Human-readable + machine-readable
+4. âŒ **Never let LLM process system identifiers** - Tokenization breaks them
 
 ### Workflow
 1. LLM extracts natural language terms
@@ -962,4 +962,5 @@ llm.ask(f"Classify the topic: {lcsh}")  # ✅ LLM can process natural language
 *Related: Geographic_Data_Extraction_Guide.md, relations/IDENTIFIER_ATOMICITY_AUDIT.md*  
 *Research: Tool-augmented reasoning: 95.31% accuracy vs 34.5% pure LLM*  
 *Critical Update: Added backbone alignment & geographic identifier atomicity rules*
+
 

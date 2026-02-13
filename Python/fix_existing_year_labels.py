@@ -13,7 +13,8 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='repla
 
 def fix_year_labels(uri="bolt://127.0.0.1:7687", user="neo4j", password="Chrystallum"):
     """
-    Fix existing Year nodes - set label property from name or year_value
+    Fix existing Year nodes - set label property from name or year.
+    Keeps compatibility with legacy year_value.
     """
     print("="*80)
     print("FIX YEAR NODE LABELS")
@@ -45,15 +46,15 @@ def fix_year_labels(uri="bolt://127.0.0.1:7687", user="neo4j", password="Chrysta
             print("\n[STEP 2] Sample Year nodes before fix...")
             result = session.run("""
                 MATCH (y:Year)
-                RETURN y.year_value as year, y.label as label, y.name as name
-                ORDER BY y.year_value
+                RETURN coalesce(y.year, y.year_value) as year, y.label as label, y.name as name
+                ORDER BY coalesce(y.year, y.year_value)
                 LIMIT 3
             """)
             
             for record in result:
                 print(f"  Year {record['year']}: label='{record['label']}', name='{record['name']}'")
             
-            # Fix: Copy name to label, or generate from year_value
+            # Fix: Copy name to label, or generate from year/year_value
             print("\n[STEP 3] Fixing labels...")
             
             # Strategy 1: If name exists, copy to label
@@ -66,22 +67,25 @@ def fix_year_labels(uri="bolt://127.0.0.1:7687", user="neo4j", password="Chrysta
             from_name = result.single()['updated']
             print(f"  Set label from name: {from_name} nodes")
             
-            # Strategy 2: If no name, generate from year_value
+            # Strategy 2: If no name, generate from year/year_value
             result = session.run("""
                 MATCH (y:Year)
                 WHERE (y.label IS NULL OR y.label = '')
-                  AND y.year_value IS NOT NULL
+                  AND coalesce(y.year, y.year_value) IS NOT NULL
+                WITH y, coalesce(y.year, y.year_value) AS year_num
                 SET y.label = CASE 
-                    WHEN y.year_value < 0 THEN toString(abs(y.year_value)) + ' BCE'
-                    ELSE toString(y.year_value) + ' CE'
+                    WHEN year_num < 0 THEN toString(abs(year_num)) + ' BCE'
+                    ELSE toString(year_num) + ' CE'
                 END,
                 y.name = y.label,
+                y.year = year_num,
+                y.year_value = year_num,
                 y.cidoc_crm_class = 'E52_Time-Span',
-                y.unique_id = 'YEAR_' + toString(y.year_value)
+                y.unique_id = 'YEAR_' + toString(year_num)
                 RETURN count(y) as updated
             """)
             from_year = result.single()['updated']
-            print(f"  Generated label from year_value: {from_year} nodes")
+            print(f"  Generated label from year value: {from_year} nodes")
             
             # Verify
             print("\n[STEP 4] Verification...")
@@ -101,8 +105,8 @@ def fix_year_labels(uri="bolt://127.0.0.1:7687", user="neo4j", password="Chrysta
             print("\n[STEP 5] Sample Year nodes after fix...")
             result = session.run("""
                 MATCH (y:Year)
-                RETURN y.year_value as year, y.label as label, y.name as name
-                ORDER BY y.year_value
+                RETURN coalesce(y.year, y.year_value) as year, y.label as label, y.name as name
+                ORDER BY coalesce(y.year, y.year_value)
                 LIMIT 5
             """)
             

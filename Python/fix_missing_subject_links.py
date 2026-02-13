@@ -91,17 +91,18 @@ with driver.session() as session:
     
     result = session.run("""
         MATCH (e:Event)
-        OPTIONAL MATCH (e)-[:POINT_IN_TIME]->(y:Year)
+        OPTIONAL MATCH (e)-[:STARTS_IN_YEAR]->(y_start:Year)
+        OPTIONAL MATCH (e)-[:ENDS_IN_YEAR]->(y_end:Year)
         OPTIONAL MATCH (e)-[:SUBJECT_OF]->(s:Subject)
         WHERE e.qid IS NOT NULL
-        RETURN 
+        RETURN
             e.label AS event,
             e.date_iso8601 AS date,
-            y.year_value AS year,
+            coalesce(y_start.year, y_end.year, y_start.year_value, y_end.year_value) AS year,
             s.lcsh_id AS subject_id,
             s.lcc_code AS lcc,
             s.label AS subject
-        ORDER BY y.year_value
+        ORDER BY coalesce(y_start.year, y_end.year, y_start.year_value, y_end.year_value)
     """)
     
     print("\n" + "-" * 120)

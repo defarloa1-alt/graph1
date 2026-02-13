@@ -1,4 +1,4 @@
-# Chrystallum Ontology Principles
+﻿# Chrystallum Ontology Principles
 
 **Date:** December 12, 2025  
 **Status:** Corrected after initial implementation
@@ -7,7 +7,7 @@
 
 ## Core Principle: Structure vs. Topics
 
-### ❌ WRONG: Mixing Structure and Topics
+### âŒ WRONG: Mixing Structure and Topics
 
 **Initial mistake:**
 ```cypher
@@ -22,7 +22,7 @@
 
 ---
 
-## ✅ CORRECT: Separation of Concerns
+## âœ… CORRECT: Separation of Concerns
 
 ### 1. **Structure** = Entity Types + Hierarchies
 
@@ -31,7 +31,7 @@
 ```cypher
 // Temporal navigation
 (year:Year)-[:FOLLOWED_BY]->(next_year:Year)
-(year:Year)-[:WITHIN_TIMESPAN]->(period:Period)
+(year:Year)-[:PART_OF]->(period:Period)
 (period:Period)-[:SUB_PERIOD_OF]->(parent_period:Period)
 
 // Spatial navigation  
@@ -84,7 +84,7 @@
 
 ```cypher
 // Find events in a period
-MATCH (e:Event)-[:OCCURRED_IN]->(p:Period {label: "Roman Republic"})
+MATCH (e:Event)-[:DURING]->(p:Period {label: "Roman Republic"})
 RETURN e;
 
 // Navigate period hierarchy
@@ -93,7 +93,7 @@ WHERE child.label = "Roman Republic"
 RETURN path;
 
 // Find events in a year
-MATCH (y:Year {year_value: -44})<-[:OCCURRED_IN]-(e:Event)
+MATCH (y:Year {year: -44})<-[:STARTS_IN_YEAR]-(e:Event)
 RETURN e;
 ```
 
@@ -118,25 +118,25 @@ RETURN military_event, political_event;
 
 ## What Should NOT Be Subjects
 
-### ❌ Structural Categories
+### âŒ Structural Categories
 
 These are redundant because they're already in the entity type:
 
-- ❌ "Time" - use `:Period` and `:Year` entity types
-- ❌ "Geography" - use `:Place` entity type
-- ❌ "People" - use `:Person` entity type
-- ❌ "Events" - use `:Event` entity type
-- ❌ "Organizations" - use `:Organization` entity type
+- âŒ "Time" - use `:Period` and `:Year` entity types
+- âŒ "Geography" - use `:Place` entity type
+- âŒ "People" - use `:Person` entity type
+- âŒ "Events" - use `:Event` entity type
+- âŒ "Organizations" - use `:Organization` entity type
 
-### ✅ Topical Themes
+### âœ… Topical Themes
 
 These add semantic value:
 
-- ✅ "Military history" - describes what the event is about
-- ✅ "Political science" - describes the thematic domain
-- ✅ "Religious practices" - describes the topical category
-- ✅ "Economic policy" - describes the subject matter
-- ✅ "Social relations" - describes the theme
+- âœ… "Military history" - describes what the event is about
+- âœ… "Political science" - describes the thematic domain
+- âœ… "Religious practices" - describes the topical category
+- âœ… "Economic policy" - describes the subject matter
+- âœ… "Social relations" - describes the theme
 
 ---
 
@@ -147,15 +147,15 @@ These add semantic value:
 ```cypher
 // User wants: "Find all events about politics in the Roman Republic"
 
-// ❌ WRONG approach (if Period linked to "Time" subject):
-MATCH (e:Event)-[:OCCURRED_IN]->(p:Period)-[:CATEGORIZED_AS]->(:Subject {label: "Time"})
+// âŒ WRONG approach (if Period linked to "Time" subject):
+MATCH (e:Event)-[:DURING]->(p:Period)-[:CATEGORIZED_AS]->(:Subject {label: "Time"})
 WHERE p.label = "Roman Republic"
 RETURN e;
 // Returns: ALL events (because all periods are "Time") - useless!
 
-// ✅ CORRECT approach (topical subjects):
+// âœ… CORRECT approach (topical subjects):
 MATCH (e:Event)-[:SUBJECT_OF]->(s:Subject {domain: "political"})
-MATCH (e)-[:OCCURRED_IN]->(p:Period {label: "Roman Republic"})
+MATCH (e)-[:DURING]->(p:Period {label: "Roman Republic"})
 RETURN e;
 // Returns: Only political events in Roman Republic - useful!
 ```
@@ -177,11 +177,11 @@ RETURN e;
 
 | Relationship | Count | Purpose |
 |--------------|-------|---------|
-| `WITHIN_TIMESPAN` | 672 | Year → Period (temporal structure) |
-| `SUB_PERIOD_OF` | 290 | Period → Period (temporal hierarchy) |
-| `FOLLOWED_BY` | 671 | Year → Year (temporal sequence) |
-| `DEFINED_BY` | ~200 | PropertyRegistry → Subject (relationship types → topics) |
-| `SUBJECT_OF` | 0 | **Reserved for future use** (Event/Person → Subject) |
+| `PART_OF` | 672 | Year â†’ Period (temporal structure) |
+| `SUB_PERIOD_OF` | 290 | Period â†’ Period (temporal hierarchy) |
+| `FOLLOWED_BY` | 671 | Year â†’ Year (temporal sequence) |
+| `DEFINED_BY` | ~200 | PropertyRegistry â†’ Subject (relationship types â†’ topics) |
+| `SUBJECT_OF` | 0 | **Reserved for future use** (Event/Person â†’ Subject) |
 
 **Note:** `CATEGORIZED_AS` relationships removed - they were structurally redundant.
 
@@ -209,7 +209,7 @@ When agents generate subgraphs, they should:
     }
   ],
   "edges": [
-    {"from": "event", "to": "period", "type": "OCCURRED_IN"}
+    {"from": "event", "to": "period", "type": "DURING"}
   ]
 }
 ```
@@ -244,25 +244,25 @@ When agents generate subgraphs, they should:
 ### 3. Don't Create Redundant Subjects
 
 ```json
-// ❌ WRONG - Don't do this:
+// âŒ WRONG - Don't do this:
 {
   "nodes": [
     {"type": "Period", "label": "Roman Republic"},
-    {"type": "Subject", "label": "Time"}  // ❌ Redundant!
+    {"type": "Subject", "label": "Time"}  // âŒ Redundant!
   ],
   "edges": [
-    {"from": "period", "to": "time_subject", "type": "SUBJECT_OF"}  // ❌ Wrong!
+    {"from": "period", "to": "time_subject", "type": "SUBJECT_OF"}  // âŒ Wrong!
   ]
 }
 
-// ✅ CORRECT - Do this instead:
+// âœ… CORRECT - Do this instead:
 {
   "nodes": [
     {"type": "Period", "label": "Roman Republic"},
     {"type": "Period", "label": "Ancient Rome"}  // Parent period
   ],
   "edges": [
-    {"from": "roman_republic", "to": "ancient_rome", "type": "SUB_PERIOD_OF"}  // ✅ Right!
+    {"from": "roman_republic", "to": "ancient_rome", "type": "SUB_PERIOD_OF"}  // âœ… Right!
   ]
 }
 ```
@@ -274,13 +274,15 @@ When agents generate subgraphs, they should:
 **Ontology = Structure + Topics**
 
 - **Structure:** What entities ARE (types + hierarchies)
-  - Navigate: Period → Period, Place → Place, Year → Year
+  - Navigate: Period â†’ Period, Place â†’ Place, Year â†’ Year
   - Entity types: `:Period`, `:Place`, `:Year`, `:Person`, `:Event`
 
 - **Topics:** What entities are ABOUT (thematic classification)
-  - Discover: Event → Subject, Person → Subject
+  - Discover: Event â†’ Subject, Person â†’ Subject
   - Subjects: Politics, Military, Religion, Culture, Economics
 
 **Never mix them!**
+
+
 
 

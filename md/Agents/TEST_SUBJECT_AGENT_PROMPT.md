@@ -70,7 +70,7 @@ Every node you create must match its schema. See `md/Reference/NODE_SCHEMA_CANON
 **Event Node:**
 - REQUIRED: `qid`, `type_qid`, `cidoc_class: "E5_Event"`, `label`, `unique_id`, `date_iso8601`
 - SHOULD HAVE: `start_date`, `end_date`, `start_date_min`, `start_date_max`, `end_date_min`, `end_date_max`, `temporal_uncertainty`, `location_qid`, `goal_type`, `trigger_type`, `action_type`, `result_type`
-- MUST CONNECT: `INSTANCE_OF â†’ Concept`, `POINT_IN_TIME â†’ Year`
+- MUST CONNECT: `INSTANCE_OF â†’ Concept`, `STARTS_IN_YEAR â†’ Year`
 - SHOULD CONNECT: `LOCATED_IN â†’ Place`, `DURING â†’ Period`, `PARTICIPATED_IN â† Person`
 
 **Place Node:**
@@ -414,7 +414,7 @@ When describing relationships, use ONLY these types from `canonical_relationship
 (rubicon)-[:BORDERS]->(gaul:Place {qid: "Q38060"})
 
 // Temporal
-(crossing)-[:POINT_IN_TIME]->(year49:Year {year_value: -49})
+(crossing)-[:STARTS_IN_YEAR]->(year49:Year {year: -49})
 (crossing)-[:DURING]->(late_republic:Period {qid: "Q1747689"})
 (crossing)-[:PRECEDED_BY]->(gallic_wars:Event {qid: "Q179826"})
 (crossing)-[:FOLLOWED_BY]->(civil_war:Event {qid: "Q46083"})
@@ -695,8 +695,8 @@ When describing relationships, use ONLY these types from `canonical_relationship
   temporal_backbone: true
 }]->(rubicon)
 
-(crossing)-[:POINT_IN_TIME]->
-  (year_49:Year {year_value: -49})
+(crossing)-[:STARTS_IN_YEAR]->
+  (year_49:Year {year: -49})
 
 (crossing)-[:DURING]->
   (late_republic:Period {qid: "Q1747689"})
@@ -862,5 +862,6 @@ You succeed when:
 **Subject Domain:** Roman Republic (753 BCE - 27 BCE)  
 **Purpose:** Validate Chrystallum extraction and structuring capabilities  
 **Test Focus:** QIDs, canonical relationships, CIDOC-CRM, temporal/geographic structuring
+
 
 

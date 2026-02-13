@@ -63,16 +63,19 @@ def import_year_nodes(uri="bolt://localhost:7687", user="neo4j", password="Chrys
                 label = f"{year} CE"
             
             result = session.run("""
-                MERGE (y:Year {year_value: $year_value})
+                MERGE (y:Year {year: $year})
                 ON CREATE SET
+                    y.year_value = $year,
                     y.label = $label,
                     y.iso8601_start = $iso_start,
                     y.iso8601_end = $iso_end,
                     y.temporal_backbone = true,
                     y.created = datetime()
-                RETURN y.year_value as year
+                ON MATCH SET
+                    y.year_value = coalesce(y.year_value, $year)
+                RETURN y.year as year
             """, {
-                'year_value': year,
+                'year': year,
                 'label': label,
                 'iso_start': iso_start,
                 'iso_end': iso_end
@@ -92,7 +95,7 @@ def import_year_nodes(uri="bolt://localhost:7687", user="neo4j", password="Chrys
         
         result = session.run("""
             MATCH (y1:Year), (y2:Year)
-            WHERE y2.year_value = y1.year_value + 1
+            WHERE y2.year = y1.year + 1
             MERGE (y1)-[r1:FOLLOWED_BY]->(y2)
             MERGE (y2)-[r2:PRECEDED_BY]->(y1)
             ON CREATE SET 

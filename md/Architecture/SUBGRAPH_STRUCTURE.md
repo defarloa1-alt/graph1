@@ -1,4 +1,4 @@
-# Subgraph Structure - Agent Output Format
+﻿# Subgraph Structure - Agent Output Format
 
 **Date:** December 12, 2025  
 **Status:** Schema Complete, Ready for Implementation
@@ -11,9 +11,9 @@
 
 ```
 Subject (ALWAYS) - What the subgraph is ABOUT
-   ↓
+   â†“
 Entities (Event/Person/Organization) - The historical content
-   ↓
+   â†“
 Connected to Backbone:
    - Time period hierarchy (when)
    - Geographic hierarchy (where)
@@ -60,7 +60,7 @@ Connected to Backbone:
   fast_id: "...",
   domain: "political"
 })
-  ↓ SUBJECT_OF
+  â†“ SUBJECT_OF
   
 // ENTITY (the event)
 (:Event {
@@ -68,25 +68,25 @@ Connected to Backbone:
   date: "-509",
   description: "End of Roman Kingdom, beginning of Republic"
 })
-  ↓ OCCURRED_IN
+  â†“ DURING
   
 // TIME HIERARCHY
 (:Period {label: "Roman Kingdom", start: -753, end: -509})
-  ↓ FOLLOWED_BY
+  â†“ FOLLOWED_BY
 (:Period {label: "Roman Republic", start: -509, end: -27})
-  ↓ SUB_PERIOD_OF
+  â†“ SUB_PERIOD_OF
 (:Period {label: "Ancient Rome", start: -753, end: 476})
 
-  ↓ LOCATED_AT
+  â†“ LOCATED_AT
 // GEOGRAPHIC HIERARCHY
 (:Place {label: "Rome", type: "city"})
-  ↓ LOCATED_IN
+  â†“ LOCATED_IN
 (:Place {label: "Italy", type: "country"})
 
-  ↓ RESULTED_IN
+  â†“ RESULTED_IN
 // RELATED ENTITIES
 (:Organization {label: "Roman Republic"})
-  ↓ SUBJECT_OF
+  â†“ SUBJECT_OF
 (:Subject {label: "Political institutions"})
 ```
 
@@ -100,7 +100,7 @@ Connected to Backbone:
 // SUBJECTS (multi-topic)
 (:Subject {label: "Political science", fast_id: "1069263"})
 (:Subject {label: "Military history", fast_id: "1020874"})
-  ↓ SUBJECT_OF
+  â†“ SUBJECT_OF
   
 // ENTITY
 (:Event {
@@ -109,19 +109,19 @@ Connected to Backbone:
   end_date: "-79",
   description: "Sulla's authoritarian rule"
 })
-  ↓ OCCURRED_IN
+  â†“ DURING
   
 // TIME HIERARCHY
-(:Year {year_value: -82})
-  ↓ WITHIN_TIMESPAN
+(:Year {year: -82})
+  â†“ PART_OF
 (:Period {label: "Roman Republic"})
-  ↓ SUB_PERIOD_OF
+  â†“ SUB_PERIOD_OF
 (:Period {label: "Ancient Rome"})
 
-  ↓ LOCATED_AT
+  â†“ LOCATED_AT
 // GEOGRAPHIC HIERARCHY
 (:Place {label: "Rome"})
-  ↓ LOCATED_IN
+  â†“ LOCATED_IN
 (:Place {label: "Italy"})
 ```
 
@@ -135,7 +135,7 @@ Connected to Backbone:
 // SUBJECTS
 (:Subject {label: "Political leaders", fast_id: "..."})
 (:Subject {label: "Military commanders", fast_id: "..."})
-  ↓ SUBJECT_OF
+  â†“ SUBJECT_OF
   
 // ENTITY
 (:Person {
@@ -144,29 +144,29 @@ Connected to Backbone:
   birth_date: "-100-07-12",
   death_date: "-44-03-15"
 })
-  ↓ LIVED_DURING
+  â†“ LIVED_DURING
   
 // TIME HIERARCHY
 (:Period {label: "Late Roman Republic"})
-  ↓ SUB_PERIOD_OF
+  â†“ SUB_PERIOD_OF
 (:Period {label: "Roman Republic"})
-  ↓ SUB_PERIOD_OF
+  â†“ SUB_PERIOD_OF
 (:Period {label: "Ancient Rome"})
 
-  ↓ BORN_IN / DIED_IN
+  â†“ BORN_IN / DIED_IN
 // GEOGRAPHIC HIERARCHY
 (:Place {label: "Rome"})
-  ↓ LOCATED_IN
+  â†“ LOCATED_IN
 (:Place {label: "Italy"})
 
-  ↓ PARTICIPATED_IN
+  â†“ PARTICIPATED_IN
 // RELATED EVENTS
 (:Event {label: "Gallic Wars"})
-  ↓ SUBJECT_OF
+  â†“ SUBJECT_OF
 (:Subject {label: "Military campaigns"})
 
 (:Event {label: "Crossing of the Rubicon"})
-  ↓ SUBJECT_OF
+  â†“ SUBJECT_OF
 (:Subject {label: "Political transitions"})
 ```
 
@@ -178,9 +178,9 @@ Connected to Backbone:
 
 | Subgraph | Central Entity | Subject Needed | Period Needed | Place Needed | Status |
 |----------|----------------|----------------|---------------|--------------|--------|
-| 1 | Overthrow of Monarchy | Political transitions | Roman Kingdom → Republic | Rome → Italy | ❌ Not linked |
-| 2 | Republic transition | Political science | Roman Kingdom → Republic | Rome → Italy | ❌ Not linked |
-| 3 | Sulla's Dictatorship | Political + Military | Roman Republic | Rome → Italy | ❌ Not linked |
+| 1 | Overthrow of Monarchy | Political transitions | Roman Kingdom â†’ Republic | Rome â†’ Italy | âŒ Not linked |
+| 2 | Republic transition | Political science | Roman Kingdom â†’ Republic | Rome â†’ Italy | âŒ Not linked |
+| 3 | Sulla's Dictatorship | Political + Military | Roman Republic | Rome â†’ Italy | âŒ Not linked |
 
 ---
 
@@ -197,7 +197,7 @@ CREATE (e)-[:SUBJECT_OF]->(s);
 ```cypher
 MATCH (e:Event {label: "Overthrow of Roman Monarchy"})
 MATCH (p:Period {label: "Roman Kingdom"})
-CREATE (e)-[:OCCURRED_IN]->(p);
+CREATE (e)-[:DURING]->(p);
 ```
 
 ### Step 3: Link Events to Places
@@ -260,19 +260,19 @@ When an agent generates a subgraph, it should return:
 
 ## Testing Plan
 
-### Phase 1: Link Existing 3 Events ✅ READY
+### Phase 1: Link Existing 3 Events âœ… READY
 1. Create SUBJECT_OF relationships
-2. Create OCCURRED_IN relationships
+2. Create DURING relationships
 3. Create LOCATED_AT relationships
 4. Verify 3 complete subgraphs
 
-### Phase 2: Agent Generation 🔄 NEXT
+### Phase 2: Agent Generation ðŸ”„ NEXT
 1. Create test prompt for SME agent (Roman Republic historian)
 2. Generate subgraph JSON for a new event
 3. Import to Neo4j
 4. Validate against schema
 
-### Phase 3: Validation & Conflict 🔜 FUTURE
+### Phase 3: Validation & Conflict ðŸ”œ FUTURE
 1. Multi-agent claims
 2. Confidence scoring
 3. Conflict resolution
@@ -282,10 +282,10 @@ When an agent generates a subgraph, it should return:
 ## Summary
 
 **Current Status:**
-- ✅ Schemas complete (Person, Event, Subject, Period, Place)
-- ✅ Backbone ready (23 subjects, 86 periods, 36 places)
-- ✅ 3 events exist
-- ❌ Events not linked to backbone
+- âœ… Schemas complete (Person, Event, Subject, Period, Place)
+- âœ… Backbone ready (23 subjects, 86 periods, 36 places)
+- âœ… 3 events exist
+- âŒ Events not linked to backbone
 
 **Next Steps:**
 1. Link 3 existing events to create 3 complete subgraph vertices
@@ -293,5 +293,7 @@ When an agent generates a subgraph, it should return:
 3. Document as examples for agent training
 
 **Subgraph Vertices = Events/People/Organizations properly linked to Subject + Time + Geography backbones**
+
+
 
 

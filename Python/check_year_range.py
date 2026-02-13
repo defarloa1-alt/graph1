@@ -15,8 +15,8 @@ try:
         result = session.run("""
             MATCH (y:Year)
             RETURN count(y) as total,
-                   min(y.year_value) as min_year,
-                   max(y.year_value) as max_year
+                   min(coalesce(y.year, y.year_value)) as min_year,
+                   max(coalesce(y.year, y.year_value)) as max_year
         """)
         
         stats = result.single()
@@ -39,9 +39,9 @@ try:
         # Check years beyond 2025
         result = session.run("""
             MATCH (y:Year)
-            WHERE y.year_value > 2025
-            RETURN y.year_value as year, y.label as label, y.name as name
-            ORDER BY y.year_value
+            WHERE coalesce(y.year, y.year_value) > 2025
+            RETURN coalesce(y.year, y.year_value) as year, y.label as label, y.name as name
+            ORDER BY coalesce(y.year, y.year_value)
         """)
         
         beyond_2025 = list(result)
@@ -60,9 +60,9 @@ try:
         print("\n=== Sample Years at Boundaries ===")
         result = session.run("""
             MATCH (y:Year)
-            WHERE y.year_value IN [-753, -509, -82, 1, 1000, 2024, 2025]
-            RETURN y.year_value as year, y.label as label, y.name as name
-            ORDER BY y.year_value
+            WHERE coalesce(y.year, y.year_value) IN [-753, -509, -82, 1, 1000, 2024, 2025]
+            RETURN coalesce(y.year, y.year_value) as year, y.label as label, y.name as name
+            ORDER BY coalesce(y.year, y.year_value)
         """)
         
         for record in result:

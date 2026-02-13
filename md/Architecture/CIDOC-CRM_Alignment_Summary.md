@@ -1,4 +1,4 @@
-# CIDOC-CRM Alignment Summary
+﻿# CIDOC-CRM Alignment Summary
 
 ## Overview
 
@@ -15,33 +15,33 @@ Successfully added CIDOC-CRM property and class alignments to the canonical rela
 ### Well-Aligned Categories
 
 **Temporal** (100% coverage):
-- `WITHIN_TIMESPAN` → `P4_has_time-span`
-- `DURING` → `P4_has_time-span`
-- `START_EDGE` → `P82a_begin_of_the_begin`
-- `END_EDGE` → `P82b_end_of_the_end`
-- `CONTAINS_EVENT` → `P10i_contains`
-- `SUB_PERIOD_OF` → `P10_falls_within`
+- `PART_OF` â†’ `P86_falls_within`
+- `DURING` â†’ `P4_has_time-span`
+- `START_EDGE` â†’ `P82a_begin_of_the_begin`
+- `END_EDGE` â†’ `P82b_end_of_the_end`
+- `CONTAINS_EVENT` â†’ `P10i_contains`
+- `SUB_PERIOD_OF` â†’ `P10_falls_within`
 
 **Spatial** (High coverage):
-- `LOCATED_IN` → `P7_took_place_at`
-- `BORN_IN` → `P7_took_place_at` (E67_Birth)
-- `DIED_IN` → `P7_took_place_at` (E69_Death)
-- `LIVED_IN` → `P74_has_current_or_former_residence`
+- `LOCATED_IN` â†’ `P7_took_place_at`
+- `BORN_IN` â†’ `P7_took_place_at` (E67_Birth)
+- `DIED_IN` â†’ `P7_took_place_at` (E69_Death)
+- `LIVED_IN` â†’ `P74_has_current_or_former_residence`
 
 **Participants** (High coverage):
-- `PARTICIPATED_IN` → `P11_had_participant`
-- `COMMANDED` → `P11_had_participant` (with role qualifier)
-- `BATTLED_IN` → `P11_had_participant`
+- `PARTICIPATED_IN` â†’ `P11_had_participant`
+- `COMMANDED` â†’ `P11_had_participant` (with role qualifier)
+- `BATTLED_IN` â†’ `P11_had_participant`
 
 **Causal** (High coverage):
-- `CAUSED` → `P15_was_influenced_by`
-- `CONTRIBUTED_TO` → `P15_was_influenced_by`
-- `RESULTED_IN` → `P10i_contains`
+- `CAUSED` â†’ `P15_was_influenced_by`
+- `CONTRIBUTED_TO` â†’ `P15_was_influenced_by`
+- `RESULTED_IN` â†’ `P10i_contains`
 
 **Authorship** (High coverage):
-- `AUTHOR` → `P14_carried_out_by` (E12_Production)
-- `CREATOR` → `P14_carried_out_by` (E12_Production)
-- `WORK_OF` → `P108i_was_produced_by` (E12_Production)
+- `AUTHOR` â†’ `P14_carried_out_by` (E12_Production)
+- `CREATOR` â†’ `P14_carried_out_by` (E12_Production)
+- `WORK_OF` â†’ `P108i_was_produced_by` (E12_Production)
 
 ### Categories Needing More Alignment
 
@@ -118,5 +118,6 @@ RETURN e, r, p
 - CIDOC-CRM Specification: https://www.cidoc-crm.org/
 - ISO 21127:2023 Standard
 - CIDOC-CRM Explanation: `arch/Cidoc/CIDOC-CRM_Explanation.md`
+
 
 

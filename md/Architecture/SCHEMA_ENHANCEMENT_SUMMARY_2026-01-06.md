@@ -30,7 +30,7 @@ Comprehensive enhancement of Chrystallum Knowledge Graph schemas based on CP rev
 
 #### âœ… Enhanced Event Schema
 - **Granularity Types:** atomic (hours/days), composite (weeks/months), period_event (months/years)
-- **New Relationships:** PART_OF (eventâ†’event), OCCURRED_IN (eventâ†’period)
+- **New Relationships:** PART_OF (eventâ†’event), DURING (eventâ†’period)
 - **Properties:** Added granularity field, temporal extent support
 - **Key Innovation:** Enables stacked timeline visualization (Battleâ†’Campaignâ†’Warâ†’Period)
 
@@ -43,8 +43,8 @@ Comprehensive enhancement of Chrystallum Knowledge Graph schemas based on CP rev
 - **Key Sections:**
   - OCCURRED_ON edge (eventâ†’year with month/day/precision/confidence)
   - PART_OF edge (eventâ†’event with role/sequence/significance)
-  - OCCURRED_IN edge (eventâ†’period with certainty/authority)
-  - WITHIN_TIMESPAN edge (yearâ†’period)
+  - DURING edge (eventâ†’period with certainty/authority)
+  - PART_OF edge (yearâ†’period)
 - **Query Patterns:** Find events on dates, build stacked timelines, handle conflicting dates
 - **Agent Integration:** Templates for extraction agents to create proper temporal edges
 
@@ -79,7 +79,7 @@ Added three major new sections:
 
 **Event Containment Hierarchy:**
 - 4-layer temporal stack visualization
-- PART_OF vs OCCURRED_IN distinction
+- PART_OF vs DURING distinction
 - Example: Battle of Pharsalusâ†’Greek Campaignâ†’Civil Warâ†’Roman Republic
 
 **Institution vs Simple Relationship:**
@@ -103,7 +103,7 @@ Added three major new sections:
 (composite:Event)   â†’  Soviet Counteroffensive  
     â†“ PART_OF
 (period_event:Event) â†’  Operation Barbarossa
-    â†“ OCCURRED_IN
+    â†“ DURING
 (period:Period)     â†’  World War II (PeriodO)
 ```
 
@@ -173,7 +173,7 @@ Added three major new sections:
 |----------------|--------|----------------|
 | Event granularity (atomic/composite/period_event) | âœ… Complete | Enhanced Event schema + EVENT_CONTAINMENT_GUIDE.md |
 | PART_OF for event containment | âœ… Complete | TEMPORAL_EDGE_PROPERTIES.md |
-| OCCURRED_IN for period anchoring | âœ… Complete | TEMPORAL_EDGE_PROPERTIES.md |
+| DURING for period anchoring | âœ… Complete | TEMPORAL_EDGE_PROPERTIES.md |
 | Elevate complex relationships to entities | âœ… Complete | Institution + LegalRestriction schemas |
 | Patronage/slavery as institutions | âœ… Complete | Institution node schema with examples |
 | Legal restrictions as entities | âœ… Complete | LegalRestriction node schema |
@@ -232,7 +232,7 @@ For Roman history dataset:
 - [ ] Create PART_OF relationships for battleâ†’campaign containment
 - [ ] Add OCCURRED_ON edge properties (month/day/precision/confidence)
 - [ ] Import PeriodO definitions for Roman periods
-- [ ] Link events to PeriodO periods via OCCURRED_IN
+- [ ] Link events to PeriodO periods via DURING
 - [ ] Validate temporal hierarchies
 - [ ] Test stacked timeline queries
 
@@ -359,4 +359,6 @@ Probabilities normalized to sum to 1.0, showing relative confidence in each inte
 - âœ… Update workflow (Python Bayesian inference)
 
 **Ready for:** Agent implementation with uncertainty quantification and belief updating.
+
+
 

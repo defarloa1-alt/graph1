@@ -68,7 +68,7 @@
 "show_all_lcc_codes.py","Python\lcsh\scripts\show_all_lcc_codes.py","Display all LCC codes with full details including LCSH labels","active"
 "test_subject_queries.py","Python\lcsh\scripts\test_subject_queries.py","Test Subject Node Queries","active"
 "link_composite_events_to_years.py","Python\link_composite_events_to_years.py","Link composite events to their start/end years","active"
-"link_years_to_periods.py","Python\link_years_to_periods.py","Link Year nodes to Period nodes via WITHIN_TIMESPAN relationships","active"
+"link_years_to_periods.py","Python\link_years_to_periods.py","Link Year nodes to Period nodes via canonical PART_OF relationships (migrates WITHIN_TIMESPAN)","active"
 "list_instance_of_labels.py","Python\list_instance_of_labels.py","No explicit purpose in header.","active"
 "prefix_period_labels_with_location.py","Python\prefix_period_labels_with_location.py","Prefix Period labels with their location (e.g., 'China: Spring and Autumn')","active"
 "rebuild_year_backbone.py","Python\rebuild_year_backbone.py","Rebuild Year backbone in Neo4j","active"

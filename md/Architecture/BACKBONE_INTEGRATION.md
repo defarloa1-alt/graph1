@@ -1,4 +1,4 @@
-# Backbone Integration Architecture
+﻿# Backbone Integration Architecture
 
 **Date:** December 12, 2025  
 **Core Principle:** Subject nodes are the integration layer between Chrystallum and standardized taxonomies
@@ -18,39 +18,39 @@ They are not just classifications - they are **integration points** that connect
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                   CHRYSTALLUM GRAPH                         │
-│                                                             │
-│  ┌─────────┐                                               │
-│  │ Event   │                                               │
-│  │ Person  │                                               │
-│  │ Org     │                                               │
-│  └────┬────┘                                               │
-│       │ SUBJECT_OF                                         │
-│       ↓                                                     │
-│  ┌─────────────────────────────┐                          │
-│  │   SUBJECT NODE              │                          │
-│  │   (Integration Layer)       │                          │
-│  │                             │                          │
-│  │  fast_id: "1411640"         │ ←─── FAST Backbone      │
-│  │  lcsh_heading: "Rome--..."  │ ←─── LCSH Backbone      │
-│  │  lcc_code: "DG241-269"      │ ←─── LCC Backbone       │
-│  │                             │                          │
-│  └─────────────────────────────┘                          │
-│       ↓                                                     │
-│   BACKBONE ALIGNMENT                                       │
-└─────────────────────────────────────────────────────────────┘
-       ↓
-┌─────────────────────────────────────────────────────────────┐
-│              EXTERNAL SYSTEMS                               │
-│                                                             │
-│  • Library of Congress Catalog                             │
-│  • WorldCat                                                 │
-│  • Digital Humanities Projects                             │
-│  • Wikidata                                                 │
-│  • Academic Databases                                       │
-│  • Museum Collections                                       │
-└─────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                   CHRYSTALLUM GRAPH                         â”‚
+â”‚                                                             â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”                                               â”‚
+â”‚  â”‚ Event   â”‚                                               â”‚
+â”‚  â”‚ Person  â”‚                                               â”‚
+â”‚  â”‚ Org     â”‚                                               â”‚
+â”‚  â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜                                               â”‚
+â”‚       â”‚ SUBJECT_OF                                         â”‚
+â”‚       â†“                                                     â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                          â”‚
+â”‚  â”‚   SUBJECT NODE              â”‚                          â”‚
+â”‚  â”‚   (Integration Layer)       â”‚                          â”‚
+â”‚  â”‚                             â”‚                          â”‚
+â”‚  â”‚  fast_id: "1411640"         â”‚ â†â”€â”€â”€ FAST Backbone      â”‚
+â”‚  â”‚  lcsh_heading: "Rome--..."  â”‚ â†â”€â”€â”€ LCSH Backbone      â”‚
+â”‚  â”‚  lcc_code: "DG241-269"      â”‚ â†â”€â”€â”€ LCC Backbone       â”‚
+â”‚  â”‚                             â”‚                          â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                          â”‚
+â”‚       â†“                                                     â”‚
+â”‚   BACKBONE ALIGNMENT                                       â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+       â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚              EXTERNAL SYSTEMS                               â”‚
+â”‚                                                             â”‚
+â”‚  â€¢ Library of Congress Catalog                             â”‚
+â”‚  â€¢ WorldCat                                                 â”‚
+â”‚  â€¢ Digital Humanities Projects                             â”‚
+â”‚  â€¢ Wikidata                                                 â”‚
+â”‚  â€¢ Academic Databases                                       â”‚
+â”‚  â€¢ Museum Collections                                       â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
@@ -158,7 +158,7 @@ CREATE (entity)-[:SUBJECT_OF]->(s)
 
 MATCH (s:Subject {fast_id: $external_fast_id})
 MATCH (s)<-[:SUBJECT_OF]-(entity)
-OPTIONAL MATCH (entity)-[:OCCURRED_IN]->(period:Period)
+OPTIONAL MATCH (entity)-[:DURING]->(period:Period)
 OPTIONAL MATCH (entity)-[:LOCATED_AT]->(place:Place)
 RETURN entity, period, place;
 ```
@@ -185,12 +185,12 @@ ORDER BY call_number;
 
 ### 1. Subject Nodes Are NOT Just Tags
 
-**❌ Wrong thinking:**
+**âŒ Wrong thinking:**
 ```
 Subject = "category" or "tag"
 ```
 
-**✅ Correct thinking:**
+**âœ… Correct thinking:**
 ```
 Subject = backbone integration point
 Subject = bridge to Library of Congress
@@ -202,10 +202,10 @@ Subject = interoperability layer
 **Subject granularity should match the shelf you'd find in a library:**
 
 ```
-❌ Too broad:   "History"
-❌ Too broad:   "Political science"
-✅ Just right:  "Rome--History--Republic"
-✅ Even better: "Rome--History--Republic--Punic Wars"
+âŒ Too broad:   "History"
+âŒ Too broad:   "Political science"
+âœ… Just right:  "Rome--History--Republic"
+âœ… Even better: "Rome--History--Republic--Punic Wars"
 ```
 
 ### 3. Atomic Identifiers Required
@@ -213,10 +213,10 @@ Subject = interoperability layer
 **FAST IDs, LCC codes, and LCSH headings are ATOMIC:**
 
 ```cypher
-// ✅ Correct
+// âœ… Correct
 fast_id: "1411640"
 
-// ❌ Wrong
+// âŒ Wrong
 fast_id: "FAST 1411640" // LLM might tokenize this
 fast_id: 1411640        // Must be string, not integer
 ```
@@ -278,17 +278,17 @@ fast_id: 1411640        // Must be string, not integer
 
 | Backbone | Status | Count | Notes |
 |----------|--------|-------|-------|
-| FAST IDs | ✅ Active | 24 | Includes 1 specific (Rome--History--Republic) |
-| LCSH headings | ✅ Active | 24 | Stored on Subject nodes |
-| LCC codes | ✅ Active | 24 | Call number system |
+| FAST IDs | âœ… Active | 24 | Includes 1 specific (Rome--History--Republic) |
+| LCSH headings | âœ… Active | 24 | Stored on Subject nodes |
+| LCC codes | âœ… Active | 24 | Call number system |
 
 ### Entity Integration
 
 | Entity Type | Subject Links | Status |
 |-------------|---------------|--------|
-| Event | 3 events → 1 Subject | ✅ Complete |
-| Person | 0 | ⏳ Future |
-| Organization | 0 | ⏳ Future |
+| Event | 3 events â†’ 1 Subject | âœ… Complete |
+| Person | 0 | â³ Future |
+| Organization | 0 | â³ Future |
 
 ### Queries Enabled
 
@@ -363,5 +363,6 @@ They are not just classifications - they are the **tie points** that connect Chr
 **Every entity in Chrystallum must link to a Subject node to be integrated with the standardized knowledge ecosystem.**
 
 This is what makes Chrystallum interoperable with the broader knowledge infrastructure.
+
 
 

@@ -30,7 +30,7 @@ The Chrystallum knowledge graph backbone is a three-layer foundation:
 
 | Relationship | Count | Direction | Purpose |
 |--------------|-------|-----------|---------|
-| `WITHIN_TIMESPAN` | 672 | Year â†’ Period | Link years to periods |
+| `PART_OF` | 672 | Year â†’ Period | Link years to periods |
 | `SUB_PERIOD_OF` | 290 | Period â†’ Period | Period hierarchy |
 | `CATEGORIZED_AS` | 122 | Entity â†’ Subject | Subject classification |
 | `DEFINED_BY` | 235 | PropertyRegistry â†’ Subject | Backbone alignment |
@@ -87,16 +87,16 @@ The Chrystallum knowledge graph backbone is a three-layer foundation:
 ### Basic Backbone View
 ```cypher
 // See temporal backbone with subjects
-MATCH (y:Year)-[:WITHIN_TIMESPAN]->(p:Period)-[:CATEGORIZED_AS]->(s:Subject)
-WHERE y.year_value IN [-753, -509, -264, -133, -82]
+MATCH (y:Year)-[:PART_OF]->(p:Period)-[:CATEGORIZED_AS]->(s:Subject)
+WHERE y.year IN [-753, -509, -264, -133, -82]
 RETURN y, p, s;
 ```
 
 ### Complete Backbone
 ```cypher
 // Temporal + Geographic + Subject layers
-MATCH temporal = (y:Year)-[:WITHIN_TIMESPAN]->(p:Period)-[:CATEGORIZED_AS]->(time_subject:Subject)
-WHERE y.year_value % 50 = 0
+MATCH temporal = (y:Year)-[:PART_OF]->(p:Period)-[:CATEGORIZED_AS]->(time_subject:Subject)
+WHERE y.year % 50 = 0
 OPTIONAL MATCH hierarchy = (p)-[:SUB_PERIOD_OF]->(parent:Period)
 OPTIONAL MATCH geographic = (place:Place)-[:CATEGORIZED_AS]->(geo_subject:Subject)
 RETURN temporal, hierarchy, geographic
@@ -165,7 +165,7 @@ python load_relationship_registry.py --password Chrystallum
 
 **Test Query:**
 ```cypher
-MATCH temporal = (y:Year)-[:WITHIN_TIMESPAN]->(p:Period)
+MATCH temporal = (y:Year)-[:PART_OF]->(p:Period)
 OPTIONAL MATCH period_subject = (p)-[:CATEGORIZED_AS]->(time_subject:Subject)
 OPTIONAL MATCH period_hierarchy = (p)-[:SUB_PERIOD_OF]->(parent:Period)
 OPTIONAL MATCH geographic = (place:Place)-[:CATEGORIZED_AS]->(geo_subject:Subject)
@@ -191,7 +191,7 @@ RETURN s.fast_id, type(s.fast_id)
 ```cypher
 // All entities linked to backbone
 MATCH (n)
-WHERE NOT (n)-[:CATEGORIZED_AS|WITHIN_TIMESPAN|SUB_PERIOD_OF|DEFINED_BY]-()
+WHERE NOT (n)-[:CATEGORIZED_AS|PART_OF|SUB_PERIOD_OF|DEFINED_BY]-()
 AND n:Period OR n:Place OR n:Year OR n:PropertyRegistry
 RETURN count(n)
 // Returns: 0 âœ…
@@ -228,7 +228,7 @@ CREATE (e:Event {
 })
 CREATE (period:Period {label: "Roman Republic"})
 CREATE (p)-[:PARTICIPATED_IN]->(e)
-CREATE (e)-[:OCCURRED_IN]->(period)
+CREATE (e)-[:DURING]->(period)
 ```
 
 ---
@@ -304,6 +304,8 @@ CREATE (e)-[:OCCURRED_IN]->(period)
 ---
 
 **Status:** âœ… Ready for agent testing and subgraph generation!
+
+
 
 
 

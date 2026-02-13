@@ -1,4 +1,4 @@
-# Wikidata SPARQL Patterns for Implementation
+﻿# Wikidata SPARQL Patterns for Implementation
 
 ## Overview
 
@@ -22,17 +22,17 @@ This document extracts useful patterns from SPARQL query research for querying W
 
 These Wikidata properties are best treated as roles (context-dependent):
 
-- **P39 – position held**: Offices and posts (mayor, CEO, senator)
-- **P463 – member of**: Membership in organizations, committees, boards
-- **P710 – participant**: Participation in events, meetings, competitions
-- **P453 – character role**: Role/character an actor plays in a work
-- **P2868 – subject has role**: Generic role qualifier (carries role Q-ids)
-- **P3831 – object has role**: Complement of P2868
+- **P39 â€“ position held**: Offices and posts (mayor, CEO, senator)
+- **P463 â€“ member of**: Membership in organizations, committees, boards
+- **P710 â€“ participant**: Participation in events, meetings, competitions
+- **P453 â€“ character role**: Role/character an actor plays in a work
+- **P2868 â€“ subject has role**: Generic role qualifier (carries role Q-ids)
+- **P3831 â€“ object has role**: Complement of P2868
 
 **Properties better as occupations or attributes:**
-- **P106 – occupation**: Long-term professions (global descriptors)
-- **P21 – sex or gender**, **P569/P570 – birth/death**: Intrinsic properties
-- **P108 – employer**, **P1416 – affiliation**: Point to organizations
+- **P106 â€“ occupation**: Long-term professions (global descriptors)
+- **P21 â€“ sex or gender**, **P569/P570 â€“ birth/death**: Intrinsic properties
+- **P108 â€“ employer**, **P1416 â€“ affiliation**: Point to organizations
 
 ## SPARQL Query Patterns
 
@@ -227,8 +227,8 @@ MERGE (p)-[r:REL_INSTANCE {pid: "P39"}]->(o)
 
 MERGE (r)-[:HAS_FAST]->(f)
 MERGE (r)-[:HAS_TYPE]->(rt)
-MERGE (r)-[:STARTED_IN]->(y1)
-MERGE (r)-[:ENDED_IN]->(y2)
+MERGE (r)-[:STARTS_IN_YEAR]->(y1)
+MERGE (r)-[:ENDS_IN_YEAR]->(y2)
 ```
 
 ### Pattern 2: Full Relation-Instance Node (for richer qualifiers)
@@ -248,8 +248,8 @@ MERGE (role:Role {qid: "Q_ROLE"})
 CREATE (rel:RelationInstance {id: apoc.create.uuid(), pid: "P39"})
 MERGE (rel)-[:HAS_TYPE]->(rt)
 MERGE (rel)-[:ABOUT_FAST]->(f)
-MERGE (rel)-[:STARTED_IN]->(y1)
-MERGE (rel)-[:ENDED_IN]->(y2)
+MERGE (rel)-[:STARTS_IN_YEAR]->(y1)
+MERGE (rel)-[:ENDS_IN_YEAR]->(y2)
 MERGE (rel)-[:HAS_ROLE]->(role)
 
 MERGE (p)-[:PARTICIPATES_AS_SUBJECT]->(rel)
@@ -300,5 +300,6 @@ MERGE (rel)-[:PARTICIPATES_AS_OBJECT]->(o)
 - Property P39 (position held): https://www.wikidata.org/wiki/Property:P39
 - Property P2868 (subject has role): https://www.wikidata.org/wiki/Property:P2868
 - Occupation class (Q28640): https://www.wikidata.org/wiki/Q28640
+
 
 
