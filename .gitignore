@@ -46,7 +46,6 @@ config.py
 *.sqlite
 *.sqlite3
 data/
-neo4j/
 
 # Large data dumps
 FAST/*.marcxml
