@@ -1,4 +1,4 @@
-# Advice: Period Enrichment Strategy
+﻿# Advice: Period Enrichment Strategy
 
 ## Recommended Approach
 
@@ -68,7 +68,8 @@ python scripts/backbone/temporal/enrich_periods_with_perplexity.py
 - Events should be in `:Event` nodes, not `:Period` nodes
 
 ### 3. Schema Compliance
-- Matches `NODE_TYPE_SCHEMAS.md` specification
+- Matches `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` specification
+- Supports temporal bounding-box properties (`start_date_min/max`, `end_date_min/max`, and `earliest_/latest_` aliases)
 - Enables proper faceted search
 - Supports multi-dimensional classification
 
@@ -170,4 +171,5 @@ If you prefer manual control:
    RETURN p.label, p.start_year, p.end_year
    LIMIT 10;
    ```
+
 

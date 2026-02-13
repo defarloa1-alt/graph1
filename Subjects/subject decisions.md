@@ -1,4 +1,4 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
+﻿<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 ## Summary \& Strategic Direction
 
@@ -19,15 +19,15 @@ Replace your score-threshold with a **tiered authority framework**:
 
 | Tier | Has LCSH? | Has Wikidata? | Has Wikipedia? | Decision | Confidence |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| **1** | ✅ | ✅ | ✅ | INCLUDE | 98% |
-| **2** | ✅ | ✅ | ❌ | INCLUDE | 90% |
-| **3** | ✅ | ❌ | ❌ | INCLUDE | 70% |
-| **❌** | ❌ | - | - | EXCLUDE | 0% |
+| **1** | âœ… | âœ… | âœ… | INCLUDE | 98% |
+| **2** | âœ… | âœ… | âŒ | INCLUDE | 90% |
+| **3** | âœ… | âŒ | âŒ | INCLUDE | 70% |
+| **âŒ** | âŒ | - | - | EXCLUDE | 0% |
 
 **Why?**
 
 - Your **LCSH ID is already the gate** (Library of Congress already vetted it)
-- **Score ≥ 5 is not a gate**—it's diagnostic of facet richness
+- **Score â‰¥ 5 is not a gate**â€”it's diagnostic of facet richness
 - **Wikidata + Wikipedia are federation signals**, not inclusion gates
 
 
@@ -37,17 +37,17 @@ Replace your score-threshold with a **tiered authority framework**:
 - **Score 6-8**: Moderate richness (multi-agent capable)
 - **Score 9+**: Hub potential (connects multiple domains)
 
-Not "valid/invalid"—but "specialized vs. central."
+Not "valid/invalid"â€”but "specialized vs. central."
 
 ### **For Your Library Use Case**
 
 When you see a claim about the Roman Republic:
 
-1. ✅ Look up LCSH ID → sh85115055
-2. ✅ Check authority tier → Tier 1 (LCSH+Wikidata+Wikipedia all present)
-3. ✅ Get Dewey/LCC codes → 937.05 / DG235-254
-4. ✅ Route to agents based on facet scores (Military, Political, Cultural all strong)
-5. ✅ Answer: "Look in History section, Roman subsection, specifically DG235-254"
+1. âœ… Look up LCSH ID â†’ sh85115055
+2. âœ… Check authority tier â†’ Tier 1 (LCSH+Wikidata+Wikipedia all present)
+3. âœ… Get Dewey/LCC codes â†’ 937.05 / DG235-254
+4. âœ… Route to agents based on facet scores (Military, Political, Cultural all strong)
+5. âœ… Answer: "Look in History section, Roman subsection, specifically DG235-254"
 
 I've written a comprehensive 470-line strategy doc saved as `subject_backbone_analysis.md` that covers:
 
@@ -60,7 +60,7 @@ I've written a comprehensive 470-line strategy doc saved as `subject_backbone_an
 **TL;DR:** Don't think "which score gates inclusion." Think "which authority level determines confidence," and "which facet scores determine agent routing."
 <span style="display:none">[^1_1][^1_2][^1_3][^1_4][^1_5][^1_6][^1_7][^1_8]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^1_1]: neo4j_graph_structure.jpg
 
@@ -76,7 +76,7 @@ I've written a comprehensive 470-line strategy doc saved as `subject_backbone_an
 
 [^1_7]: LLM-Prompt-for-subject-scoring.md
 
-[^1_8]: NODE_TYPE_SCHEMAS.md
+[^1_8]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 
 ---
@@ -91,23 +91,23 @@ Perfect! The document is now available for you to download using the button abov
 
 **TIER 1** (Include with 98% confidence)
 
-- ✅ LCSH ID + ✅ Wikidata + ✅ Wikipedia
-- Example: *Pithecia* (score 8.25) — canonical subject
+- âœ… LCSH ID + âœ… Wikidata + âœ… Wikipedia
+- Example: *Pithecia* (score 8.25) â€” canonical subject
 
 **TIER 2** (Include with 90% confidence)
 
-- ✅ LCSH ID + ✅ Wikidata + ❌ Wikipedia
+- âœ… LCSH ID + âœ… Wikidata + âŒ Wikipedia
 - Still valid; just less documented
 
 **TIER 3** (Include with 70% confidence)
 
-- ✅ LCSH ID only
-- Example: *Loop tiling* (score 4.0) — valid but specialized
+- âœ… LCSH ID only
+- Example: *Loop tiling* (score 4.0) â€” valid but specialized
 - Library of Congress already vetted it
 
 **TIER 4** (EXCLUDE)
 
-- ❌ No LCSH ID
+- âŒ No LCSH ID
 - Not part of your backbone
 
 
@@ -117,21 +117,21 @@ Perfect! The document is now available for you to download using the button abov
 - **Score 6-8**: Multi-faceted (routes to 2-3 agents)
 - **Score 9+**: Hub potential (routes to many agents)
 
-Not "include/exclude" — but **"how rich is the routing potential?"**
+Not "include/exclude" â€” but **"how rich is the routing potential?"**
 
 ### **For your "library section" use case:**
 
 When someone submits a claim about the Roman Republic:
 
-1. Look up LCSH → sh85115055
+1. Look up LCSH â†’ sh85115055
 2. Get Dewey (937.05) + LCC (DG235-254)
-3. Check facets → Political, Military, Cultural all strong
+3. Check facets â†’ Political, Military, Cultural all strong
 4. Answer: **"History section, Roman subsection, shelf DG235-254"**
 
 The document includes decision trees, Cypher patterns, and a 3-phase implementation roadmap. Download it and let me know if you have questions about any specific section!
 <span style="display:none">[^2_1][^2_2][^2_3][^2_4][^2_5][^2_6][^2_7][^2_8]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^2_1]: subjects_scores_sorted_by_lcshid.json
 
@@ -147,7 +147,7 @@ The document includes decision trees, Cypher patterns, and a 3-phase implementat
 
 [^2_7]: neo4j_graph_structure.jpg
 
-[^2_8]: NODE_TYPE_SCHEMAS.md
+[^2_8]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 
 ---
@@ -156,11 +156,11 @@ The document includes decision trees, Cypher patterns, and a 3-phase implementat
 
 **Exactly!** You've hit the nail on the head.
 
-If **everything in your source file already has an LCSH ID**, then yes—**include everything**. The Library of Congress already did the curation work for you.
+If **everything in your source file already has an LCSH ID**, then yesâ€”**include everything**. The Library of Congress already did the curation work for you.
 
 ## But Here's the Nuance:
 
-You're not asking "what to include"—you're asking **"how to classify what you're including."**
+You're not asking "what to include"â€”you're asking **"how to classify what you're including."**
 
 The tier system tells you:
 
@@ -178,18 +178,18 @@ When a claim comes in:
 
 **Tier 1 subject** (e.g., *Pithecia*):
 
-- ✅ Can federate to Wikidata for enrichment
-- ✅ Can link to Wikipedia for context
-- ✅ Has rich facet coverage → route to multiple agents
-- ✅ High confidence in metadata quality
+- âœ… Can federate to Wikidata for enrichment
+- âœ… Can link to Wikipedia for context
+- âœ… Has rich facet coverage â†’ route to multiple agents
+- âœ… High confidence in metadata quality
 
 **Tier 3 subject** (e.g., *Loop tiling*):
 
-- ⚠️ Cannot federate (no Wikidata QID)
-- ⚠️ Limited external context
-- ⚠️ Narrow facet coverage → route to single specialized agent
-- ⚠️ Lower confidence in metadata completeness
-- ✅ **But still valid** because LCSH vouches for it
+- âš ï¸ Cannot federate (no Wikidata QID)
+- âš ï¸ Limited external context
+- âš ï¸ Narrow facet coverage â†’ route to single specialized agent
+- âš ï¸ Lower confidence in metadata completeness
+- âœ… **But still valid** because LCSH vouches for it
 
 ***
 
@@ -205,7 +205,7 @@ But **"What can I DO with this subject?"**
 
 ***
 
-## Your Score Also Matters—But Differently
+## Your Score Also Mattersâ€”But Differently
 
 The score tells you **facet richness**, which determines **agent routing complexity**:
 
@@ -287,12 +287,12 @@ for subject in lcsh_source_file:
 
 Your "score threshold" question was actually **"How do I know which subjects are good for multi-agent routing vs. specialized single-agent handling?"**
 
-**Answer:** Score 6+ → multi-agent capable. Score <6 → single-agent specialized. But include them all.
+**Answer:** Score 6+ â†’ multi-agent capable. Score <6 â†’ single-agent specialized. But include them all.
 
 Does this reframe make sense?
 <span style="display:none">[^3_1][^3_2][^3_3][^3_4][^3_5][^3_6][^3_7][^3_8]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^3_1]: subjects_scores_sorted_by_lcshid.json
 
@@ -308,7 +308,7 @@ Does this reframe make sense?
 
 [^3_7]: neo4j_graph_structure.jpg
 
-[^3_8]: NODE_TYPE_SCHEMAS.md
+[^3_8]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 
 ---
@@ -327,7 +327,7 @@ Perfect! I see the issue now. This is **LCSH's geographic subdivision pattern** 
 
 - `sh00000016-781`: "Oregon--Trail Creek (Jackson County)"
 
-Notice the **`-781` suffix** — this is LCSH's code for **geographic subdivisions**.
+Notice the **`-781` suffix** â€” this is LCSH's code for **geographic subdivisions**.
 
 ***
 
@@ -343,11 +343,11 @@ LCSH maintains **two access points** for geographic subjects:
     - Used when you're searching BY state first
     - The `editorialNote` says: *"Resource automatically generated from LCCN sh00000016"*
 
-This is like having two catalog cards for the same book—one filed under title, one under author.
+This is like having two catalog cards for the same bookâ€”one filed under title, one under author.
 
 ***
 
-## Your Strategy: Don't Treat as Duplicates — Treat as Variants
+## Your Strategy: Don't Treat as Duplicates â€” Treat as Variants
 
 ### **Option 1: Collapse to Primary Subject (Recommended)**
 
@@ -388,10 +388,10 @@ CREATE (subject:Subject {
 
 ### **Why This Works:**
 
-1. **Prevents duplicate scoring** — You score once, not twice
-2. **Maintains searchability** — Both "Trail Creek (Jackson County)" AND "Oregon--Trail Creek" find the same node
-3. **Preserves LCSH semantics** — The `-781` variants are just access points, not separate concepts
-4. **Simplifies agent routing** — One subject = one set of facet scores
+1. **Prevents duplicate scoring** â€” You score once, not twice
+2. **Maintains searchability** â€” Both "Trail Creek (Jackson County)" AND "Oregon--Trail Creek" find the same node
+3. **Preserves LCSH semantics** â€” The `-781` variants are just access points, not separate concepts
+4. **Simplifies agent routing** â€” One subject = one set of facet scores
 
 ***
 
@@ -492,7 +492,7 @@ These are **4 distinct subjects** (watershed vs. creek), but each has **2 forms*
 (creek)-[:PART_OF]->(watershed)
 ```
 
-**Not 4 separate subjects** — just 2 subjects with 2 access points each.
+**Not 4 separate subjects** â€” just 2 subjects with 2 access points each.
 
 ***
 
@@ -539,7 +539,7 @@ for base_id, variants in subjects_by_base.items():
 
 ## Bottom Line:
 
-**These aren't duplicates—they're LCSH's intentional access point variants.**
+**These aren't duplicatesâ€”they're LCSH's intentional access point variants.**
 
 - **Don't score both** (waste of API calls)
 - **Collapse into primary** (clean graph structure)
@@ -549,7 +549,7 @@ for base_id, variants in subjects_by_base.items():
 Does this clarify the disambiguation approach?
 <span style="display:none">[^4_1][^4_2][^4_3][^4_4][^4_5][^4_6][^4_7][^4_8][^4_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^4_1]: subjects_sample_valid.jsonld
 
@@ -567,7 +567,7 @@ Does this clarify the disambiguation approach?
 
 [^4_8]: neo4j_graph_structure.jpg
 
-[^4_9]: NODE_TYPE_SCHEMAS.md
+[^4_9]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 
 ---
@@ -582,22 +582,22 @@ Perfect! Here's your complete guide to LCSH subdivision types. Download it above
 
 ### **The 4 Content-Based Types:**
 
-1. **Topical (\$x)** — `Dogs--Breeding`
-→ **Create separate subjects**, link via BROADER_THAN
-2. **Geographic (\$z)** — `Oregon--Trail Creek` (the `-781` you saw!)
-→ **COLLAPSE into primary subject** as variants
-3. **Chronological (\$y)** — `France--History--Revolution, 1789-1799`
-→ **Create separate subjects**, link to Period nodes
-4. **Form (\$v)** — `Law--Encyclopedias`
-→ **Store as properties**, not separate subjects
+1. **Topical (\$x)** â€” `Dogs--Breeding`
+â†’ **Create separate subjects**, link via BROADER_THAN
+2. **Geographic (\$z)** â€” `Oregon--Trail Creek` (the `-781` you saw!)
+â†’ **COLLAPSE into primary subject** as variants
+3. **Chronological (\$y)** â€” `France--History--Revolution, 1789-1799`
+â†’ **Create separate subjects**, link to Period nodes
+4. **Form (\$v)** â€” `Law--Encyclopedias`
+â†’ **Store as properties**, not separate subjects
 
 ### **The 5 Usage-Based Categories:**
 
-1. **General free-floating** (H 1095) — Can use anywhere
-2. **Classes of persons** (H 1100) — `Lawyers--Malpractice`
-3. **Individual names** (H 1105-H 1120) — `Shakespeare--Bibliography`
-4. **Place names** (H 1140) — `California--History`
-5. **Pattern headings** (H 1146-H 1200) — Category-specific (Animals, Diseases, etc.)
+1. **General free-floating** (H 1095) â€” Can use anywhere
+2. **Classes of persons** (H 1100) â€” `Lawyers--Malpractice`
+3. **Individual names** (H 1105-H 1120) â€” `Shakespeare--Bibliography`
+4. **Place names** (H 1140) â€” `California--History`
+5. **Pattern headings** (H 1146-H 1200) â€” Category-specific (Animals, Diseases, etc.)
 
 ### **The Key Insight for Your "-781" Problem:**
 
@@ -624,7 +624,7 @@ The document includes:
 **Bottom line:** `-781` and `-780` suffixes = **auto-generated geographic variants**. Always collapse to the base ID.
 <span style="display:none">[^5_1][^5_10][^5_11][^5_12][^5_13][^5_14][^5_15][^5_16][^5_17][^5_18][^5_19][^5_2][^5_20][^5_21][^5_22][^5_23][^5_24][^5_25][^5_26][^5_27][^5_28][^5_29][^5_3][^5_30][^5_31][^5_32][^5_33][^5_34][^5_35][^5_36][^5_37][^5_38][^5_39][^5_4][^5_40][^5_41][^5_42][^5_43][^5_44][^5_45][^5_46][^5_47][^5_48][^5_49][^5_5][^5_50][^5_51][^5_52][^5_53][^5_54][^5_55][^5_56][^5_57][^5_6][^5_7][^5_8][^5_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^5_1]: subjects_scores_sorted_by_lcshid.json
 
@@ -640,7 +640,7 @@ The document includes:
 
 [^5_7]: neo4j_graph_structure.jpg
 
-[^5_8]: NODE_TYPE_SCHEMAS.md
+[^5_8]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^5_9]: subjects_sample_valid.jsonld
 
@@ -776,9 +776,9 @@ Looking at your data, each LCSH record has **multiple `cs:ChangeSet` entries**:
 
 Looking at your `subjects_sample_valid.jsonld`:
 
-- ✅ All records show `"new"` + `"revised"` patterns
-- ✅ **NONE show `"deleted"` or `"canceled"`**
-- ✅ The most recent `createdDate` is **2025-03-24** (recent revisions)
+- âœ… All records show `"new"` + `"revised"` patterns
+- âœ… **NONE show `"deleted"` or `"canceled"`**
+- âœ… The most recent `createdDate` is **2025-03-24** (recent revisions)
 
 **This means: Your sample file contains only ACTIVE subjects.**
 
@@ -792,7 +792,7 @@ From the Library of Congress documentation:
 
 - The heading is **removed entirely** from LCSH
 - Replaced with a different heading
-- Example: "Illegal aliens" → "Noncitizens" (2021 change)
+- Example: "Illegal aliens" â†’ "Noncitizens" (2021 change)
 
 **What you'll see in the data:**
 
@@ -810,7 +810,7 @@ From the Library of Congress documentation:
 
 - The old heading becomes a **non-preferred term**
 - Catalogers are redirected to use the new form
-- Example: "Automobiles, Racing" → USE "Racing cars"
+- Example: "Automobiles, Racing" â†’ USE "Racing cars"
 
 **What you'll see:**
 
@@ -826,7 +826,7 @@ From the Library of Congress documentation:
 ### **Option 3: Heading Revision (Most Common)**
 
 - The heading **label changes** but LCSH ID stays the same
-- Example: "Mount McKinley" → "Denali, Mount"
+- Example: "Mount McKinley" â†’ "Denali, Mount"
 - Same `sh` number, different label
 
 **What you'll see:**
@@ -947,22 +947,22 @@ if latest['reason'] == 'revised':
 
 **Answer: Not exactly "duplicates," but there are 3 scenarios to watch for:**
 
-### **Scenario 1: Label Changed, Same LCSH ID** ✅ Safe
+### **Scenario 1: Label Changed, Same LCSH ID** âœ… Safe
 
 ```
 sh85012345 (2000): "Mount McKinley"
-sh85012345 (2015): "Denali, Mount"  ← Use this (most recent)
+sh85012345 (2015): "Denali, Mount"  â† Use this (most recent)
 ```
 
 **Your action:** Create ONE Subject node with current label, store old label as `altLabel`
 
 ***
 
-### **Scenario 2: Subject Split into Multiple New Headings** ⚠️ Watch Out
+### **Scenario 2: Subject Split into Multiple New Headings** âš ï¸ Watch Out
 
 ```
 sh85001111 (old): "Indians of North America" (deprecated 2013)
-  ↓ Split into:
+  â†“ Split into:
 sh85099999 (new): "Native Americans--United States"
 sh85099998 (new): "First Nations--Canada"
 ```
@@ -975,11 +975,11 @@ sh85099998 (new): "First Nations--Canada"
 
 ***
 
-### **Scenario 3: Geographic Variants (What You Already Saw)** ✅ Expected
+### **Scenario 3: Geographic Variants (What You Already Saw)** âœ… Expected
 
 ```
 sh00000016: "Trail Creek (Jackson County, Or.)"
-sh00000016-781: "Oregon--Trail Creek (Jackson County)"  ← Auto-generated variant
+sh00000016-781: "Oregon--Trail Creek (Jackson County)"  â† Auto-generated variant
 ```
 
 **Your action:** Collapse to primary (already covered in previous doc)
@@ -1044,16 +1044,16 @@ for record in lcsh_jsonld:
     result = process_lcsh_record(record)
     
     if result['action'] == 'SKIP':
-        print(f"⚠️  SKIP {lcsh_id}: {result['reason']}")
+        print(f"âš ï¸  SKIP {lcsh_id}: {result['reason']}")
         if result.get('replacement'):
-            print(f"   → Use {result['replacement']} instead")
+            print(f"   â†’ Use {result['replacement']} instead")
     
     elif result['action'] == 'COLLAPSE':
-        print(f"📋 COLLAPSE {lcsh_id} into {result['primary_id']}")
+        print(f"ðŸ“‹ COLLAPSE {lcsh_id} into {result['primary_id']}")
         add_variant_to_primary(result['primary_id'], result['variant_label'])
     
     elif result['action'] == 'CREATE':
-        print(f"✅ CREATE {lcsh_id}: {result['label']}")
+        print(f"âœ… CREATE {lcsh_id}: {result['label']}")
         create_subject_node(record, result)
 ```
 
@@ -1064,9 +1064,9 @@ for record in lcsh_jsonld:
 
 Based on your sample file, **you're in good shape** because:
 
-1. ✅ **No deleted headings** — All records show `new` + `revised` only
-2. ✅ **Recent revisions** — 2025-03-24 timestamps indicate current data
-3. ✅ **Clear variant indicators** — Geographic variants have `-781` suffix + editorial notes
+1. âœ… **No deleted headings** â€” All records show `new` + `revised` only
+2. âœ… **Recent revisions** â€” 2025-03-24 timestamps indicate current data
+3. âœ… **Clear variant indicators** â€” Geographic variants have `-781` suffix + editorial notes
 
 **BUT** you should still implement deprecation detection for:
 
@@ -1107,7 +1107,7 @@ CREATE (subject:Subject {
 
 **"Are there records superseded by newer ones?"**
 
-**Yes, potentially** — but NOT in your sample data. However:
+**Yes, potentially** â€” but NOT in your sample data. However:
 
 - **Your system MUST check** `cs:changeReason` for `"deleted"` or `"canceled"`
 - **Your system SHOULD track** revision dates and use the most recent label
@@ -1118,7 +1118,7 @@ CREATE (subject:Subject {
 Does this address your concern about the change log?
 <span style="display:none">[^6_1][^6_10][^6_11][^6_12][^6_13][^6_14][^6_15][^6_16][^6_17][^6_18][^6_19][^6_2][^6_20][^6_21][^6_22][^6_23][^6_24][^6_25][^6_26][^6_27][^6_28][^6_29][^6_3][^6_4][^6_5][^6_6][^6_7][^6_8][^6_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^6_1]: subjects_scores_sorted_by_lcshid.json
 
@@ -1134,7 +1134,7 @@ Does this address your concern about the change log?
 
 [^6_7]: neo4j_graph_structure.jpg
 
-[^6_8]: NODE_TYPE_SCHEMAS.md
+[^6_8]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^6_9]: subjects_sample_valid.jsonld
 
@@ -1188,7 +1188,7 @@ Brilliant observation! This is a **real historical accuracy problem** that most 
 You've identified a fundamental tension:
 
 **Current LCSH approach:** Uses "Denali, Mount" everywhere (single canonical form)
-**Historical reality:** "Mount McKinley" (1896-2015) → "Denali" (2015-present)
+**Historical reality:** "Mount McKinley" (1896-2015) â†’ "Denali" (2015-present)
 
 When researching a 1950s mountaineering expedition, calling it "Denali" is **anachronistic and historically inaccurate**.
 
@@ -1318,13 +1318,13 @@ claim = {
 historical_name = resolve_historical_name(claim['subject'], claim['date'])
 # Returns: "Mount McKinley"
 
-print(f"✅ Claim uses historically accurate name: {historical_name}")
+print(f"âœ… Claim uses historically accurate name: {historical_name}")
 ```
 
 
 ***
 
-## The Broader Schema: Entity ≠ Name
+## The Broader Schema: Entity â‰  Name
 
 This requires separating **what something IS** from **what it's called at time T**:
 
@@ -1593,7 +1593,7 @@ This is especially powerful for your historical knowledge graph because it prese
 Does this approach work for your use case?
 <span style="display:none">[^7_1][^7_2][^7_3][^7_4][^7_5][^7_6][^7_7][^7_8][^7_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^7_1]: subjects_scores_sorted_by_lcshid.json
 
@@ -1609,7 +1609,7 @@ Does this approach work for your use case?
 
 [^7_7]: neo4j_graph_structure.jpg
 
-[^7_8]: NODE_TYPE_SCHEMAS.md
+[^7_8]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^7_9]: subjects_sample_valid.jsonld
 
@@ -1641,19 +1641,19 @@ Perfect! You now have a complete end-to-end implementation guide covering:
 
 You now have:
 
-✅ **LCSH as backbone** — Include all subjects with LCSH IDs
-✅ **Authority tiers** — Tag confidence level (TIER 1/2/3)
-✅ **Disambiguation handling** — Collapse geographic variants, track deprecations
-✅ **Temporal awareness** — Names valid only for specific date ranges
-✅ **Agent routing** — Based on facet scores, not score thresholds
-✅ **Historical accuracy** — "Mount McKinley" for 1950s claims, "Denali, Mount" for 2024
+âœ… **LCSH as backbone** â€” Include all subjects with LCSH IDs
+âœ… **Authority tiers** â€” Tag confidence level (TIER 1/2/3)
+âœ… **Disambiguation handling** â€” Collapse geographic variants, track deprecations
+âœ… **Temporal awareness** â€” Names valid only for specific date ranges
+âœ… **Agent routing** â€” Based on facet scores, not score thresholds
+âœ… **Historical accuracy** â€” "Mount McKinley" for 1950s claims, "Denali, Mount" for 2024
 
 Your model railroad can now show "Mount McKinley" authentically for 1950s scenes while your system knows it's the same entity as "Denali, Mount" today!
 
 Download the guide above and you have a complete, production-ready implementation strategy. Let me know if you want to dive deeper into any specific section or work through a particular subject type.
 <span style="display:none">[^8_1][^8_2][^8_3][^8_4][^8_5][^8_6][^8_7][^8_8][^8_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^8_1]: subjects_scores_sorted_by_lcshid.json
 
@@ -1669,7 +1669,7 @@ Download the guide above and you have a complete, production-ready implementatio
 
 [^8_7]: neo4j_graph_structure.jpg
 
-[^8_8]: NODE_TYPE_SCHEMAS.md
+[^8_8]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^8_9]: subjects_sample_valid.jsonld
 
@@ -1678,7 +1678,7 @@ Download the guide above and you have a complete, production-ready implementatio
 
 # same issues with geo
 
-Yes—the geographic layer has the **same two core issues** as subjects: variant forms and time-sensitive names. The fix is parallel to what you just did for LCSH.
+Yesâ€”the geographic layer has the **same two core issues** as subjects: variant forms and time-sensitive names. The fix is parallel to what you just did for LCSH.
 
 ## 1. Separate place entity from its names
 
@@ -1691,24 +1691,24 @@ Treat the *place* as a stable **GeographicEntity** and model names as **time-sco
     - `is_official`, `is_preferred`
     - `authority` (USGS, local gov, etc.).[^9_1]
 
-This lets the graph answer “what was this called in 450 BCE?” versus “what is it called now?” while the sunburst or UI can still show a single current label.[^9_1]
+This lets the graph answer â€œwhat was this called in 450 BCE?â€ versus â€œwhat is it called now?â€ while the sunburst or UI can still show a single current label.[^9_1]
 
 ## 2. Model hierarchy separately from naming
 
-Use your hierarchy (Earth → Continent → Region → Country → Province → City) as **parent/part-of links between GeographicEntity nodes**, not between labels.[^9_1]
+Use your hierarchy (Earth â†’ Continent â†’ Region â†’ Country â†’ Province â†’ City) as **parent/part-of links between GeographicEntity nodes**, not between labels.[^9_1]
 
 - Example edges:
     - `(:GeographicEntity {name:'Attica'})-[:PART_OF]->(:GeographicEntity {name:'Greece'})`
     - `(:GeographicEntity {name:'Athens'})-[:PART_OF]->(:GeographicEntity {name:'Attica'})`
 
-Your sunburst then reads from these entities and just renders their *current* preferred name, but the KG still holds older forms (e.g., Byzantion → Constantinople → Istanbul) with date ranges.[^9_1]
+Your sunburst then reads from these entities and just renders their *current* preferred name, but the KG still holds older forms (e.g., Byzantion â†’ Constantinople â†’ Istanbul) with date ranges.[^9_1]
 
-## 3. Apply the same “concept vs occurrence” trick as periods
+## 3. Apply the same â€œconcept vs occurrenceâ€ trick as periods
 
 The period pipeline doc already split: **Period** vs **PeriodOccurrence** scoped by region. Do the same for geography.[^9_1]
 
-- `GeographicEntity` = concept (e.g., “Attica” as a region).
-- `GeographicOccurrence` (optional) = specific political/administrative incarnation with start/end dates (e.g., “Athenian polis of Attica, 508–322 BCE”).[^9_1]
+- `GeographicEntity` = concept (e.g., â€œAtticaâ€ as a region).
+- `GeographicOccurrence` (optional) = specific political/administrative incarnation with start/end dates (e.g., â€œAthenian polis of Attica, 508â€“322 BCEâ€).[^9_1]
 
 Then:
 
@@ -1721,9 +1721,9 @@ Then:
 - **Name changes** (Mt McKinley / Denali, Byzantion / Constantinople / Istanbul):
     - One entity, multiple time-scoped names.
 - **Historical maps / model railroads**:
-    - Renderer asks: “for year X, which variant name should I display for this entity?” and labels the map accordingly.
+    - Renderer asks: â€œfor year X, which variant name should I display for this entity?â€ and labels the map accordingly.
 - **Current UI widgets (sunburst)**:
-    - Default to each entity’s current preferred name, but you can add a “time slider” later that swaps labels using the same `resolve_historical_name(year)` pattern used for periods.[^9_1]
+    - Default to each entityâ€™s current preferred name, but you can add a â€œtime sliderâ€ later that swaps labels using the same `resolve_historical_name(year)` pattern used for periods.[^9_1]
 
 
 ## 5. Implementation hint
@@ -1738,7 +1738,7 @@ For the geo sunburst specifically:
 If you paste a small sample of your geo TSV/JSON (the one feeding `geo-chat-2.js`), a concrete Cypher + JS shaping example can be sketched next.
 <span style="display:none">[^9_10][^9_11][^9_12][^9_2][^9_3][^9_4][^9_5][^9_6][^9_7][^9_8][^9_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^9_1]: perplexity-change-on-geo.md
 
@@ -1760,7 +1760,7 @@ If you paste a small sample of your geo TSV/JSON (the one feeding `geo-chat-2.js
 
 [^9_10]: neo4j_graph_structure.jpg
 
-[^9_11]: NODE_TYPE_SCHEMAS.md
+[^9_11]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^9_12]: subjects_sample_valid.jsonld
 
@@ -1784,16 +1784,16 @@ The rest of the array is ignored for normal navigation, so performance is like a
 
 ## 2. Navigation still uses IDs, not names
 
-Your graph navigation (clicking continents → regions → cities) should use **stable IDs**:
+Your graph navigation (clicking continents â†’ regions â†’ cities) should use **stable IDs**:
 
 - Node key: `entityId` (or `lcsh_id` / `wikidata_qid`).
 - Edges: `parentId` / `PART_OF` between those IDs.
 
-Named variants sit on the node as metadata. Clicking a slice just travels edges by ID; it doesn’t care which human-readable label was chosen.[^10_1]
+Named variants sit on the node as metadata. Clicking a slice just travels edges by ID; it doesnâ€™t care which human-readable label was chosen.[^10_1]
 
-## 3. Optional “context label” mode
+## 3. Optional â€œcontext labelâ€ mode
 
-If you later add a **time slider** or “view as of year X”:
+If you later add a **time slider** or â€œview as of year Xâ€:
 
 - Keep the navigation identical.
 - Only change how you compute `displayLabel`:
@@ -1817,9 +1817,9 @@ The UI still renders the same tree; only labels change.[^10_1]
 Low-cost extras that use the array without heavy querying:
 
 - Tooltip on hover:
-    - “Also known as: Byzantion (–330), Constantinople (330–1930)”
+    - â€œAlso known as: Byzantion (â€“330), Constantinople (330â€“1930)â€
 - Search:
-    - Index `named_variants[].name` so typing “Constantinople” hits the Istanbul node, but navigation loads the same entity.[^10_1]
+    - Index `named_variants[].name` so typing â€œConstantinopleâ€ hits the Istanbul node, but navigation loads the same entity.[^10_1]
 
 
 ## 5. Practical guideline
@@ -1831,10 +1831,10 @@ Low-cost extras that use the array without heavy querying:
     - how you show history (tooltips / alt views),
     - and how you resolve old names to the right node.
 
-So the arrays make the graph *smarter* without making the UI *heavier*; they’re a richer label field, not extra navigation depth.
+So the arrays make the graph *smarter* without making the UI *heavier*; theyâ€™re a richer label field, not extra navigation depth.
 <span style="display:none">[^10_10][^10_11][^10_12][^10_2][^10_3][^10_4][^10_5][^10_6][^10_7][^10_8][^10_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^10_1]: perplexity-change-on-geo.md
 
@@ -1852,7 +1852,7 @@ So the arrays make the graph *smarter* without making the UI *heavier*; they’r
 
 [^10_8]: neo4j_graph_structure.jpg
 
-[^10_9]: NODE_TYPE_SCHEMAS.md
+[^10_9]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^10_10]: subjects_sample_valid.jsonld
 
@@ -1890,13 +1890,13 @@ So the arrays make the graph *smarter* without making the UI *heavier*; they’r
 <mx:subfield code="a">Aparecida, Nossa Senhora</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
-<mx:subfield code="a">Conceição Aparecida, Nossa Senhora de</mx:subfield>
+<mx:subfield code="a">ConceicÌ§aÌƒo Aparecida, Nossa Senhora de</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
 <mx:subfield code="a">Nossa Senhora Aparecida</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
-<mx:subfield code="a">Nossa Senhora da Conceição Aparecida</mx:subfield>
+<mx:subfield code="a">Nossa Senhora da ConceicÌ§aÌƒo Aparecida</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
 <mx:subfield code="a">Our Lady of Aparecida</mx:subfield>
@@ -2012,7 +2012,7 @@ So the arrays make the graph *smarter* without making the UI *heavier*; they’r
 <mx:subfield code="a">Hutterian Brethren</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
-<mx:subfield code="a">Hutterische Brüder</mx:subfield>
+<mx:subfield code="a">Hutterische BruÌˆder</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
 <mx:subfield code="a">Hutterite Brethren</mx:subfield>
@@ -2076,16 +2076,16 @@ So the arrays make the graph *smarter* without making the UI *heavier*; they’r
 <mx:subfield code="f">fast</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="150" ind1=" " ind2=" ">
-<mx:subfield code="a">Hokkedō (Tōdaiji, Nara-shi, Japan)</mx:subfield>
+<mx:subfield code="a">HokkedoÌ„ (ToÌ„daiji, Nara-shi, Japan)</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
-<mx:subfield code="a">Lotus Hall (Tōdaiji, Nara-shi, Japan)</mx:subfield>
+<mx:subfield code="a">Lotus Hall (ToÌ„daiji, Nara-shi, Japan)</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
-<mx:subfield code="a">Sangatsudō (Tōdaiji, Nara-shi, Japan)</mx:subfield>
+<mx:subfield code="a">SangatsudoÌ„ (ToÌ„daiji, Nara-shi, Japan)</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="450" ind1=" " ind2=" ">
-<mx:subfield code="a">Third Month Hall (Tōdaiji, Nara-shi, Japan)</mx:subfield>
+<mx:subfield code="a">Third Month Hall (ToÌ„daiji, Nara-shi, Japan)</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="550" ind1=" " ind2=" ">
 <mx:subfield code="a">Rooms</mx:subfield>
@@ -2097,7 +2097,7 @@ So the arrays make the graph *smarter* without making the UI *heavier*; they’r
 </mx:datafield>
 <mx:datafield tag="510" ind1="2" ind2=" ">
 <mx:subfield code="w">g</mx:subfield>
-<mx:subfield code="a">Tōdaiji (Nara-shi, Japan)</mx:subfield>
+<mx:subfield code="a">ToÌ„daiji (Nara-shi, Japan)</mx:subfield>
 <mx:subfield code="0">(OCoLC)fst00554951</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="688" ind1=" " ind2=" ">
@@ -2107,7 +2107,7 @@ So the arrays make the graph *smarter* without making the UI *heavier*; they’r
 <mx:subfield code="a">WC (2022) Subject Usage: 5</mx:subfield>
 </mx:datafield>
 <mx:datafield tag="750" ind1=" " ind2="0">
-<mx:subfield code="a">Hokkedō (Tōdaiji, Nara-shi, Japan)</mx:subfield>
+<mx:subfield code="a">HokkedoÌ„ (ToÌ„daiji, Nara-shi, Japan)</mx:subfield>
 <mx:subfield code="0">(DLC)sh 85135776 </mx:subfield>
 </mx:datafield>
 
@@ -2155,25 +2155,25 @@ So the arrays make the graph *smarter* without making the UI *heavier*; they’r
 </mx:record>
 [mx:record](mx:record)
 
-Yes, FAST and LCC should play a role—but as **secondary authority crosswalks**, not as additional “backbone” vocabularies competing with LCSH.
+Yes, FAST and LCC should play a roleâ€”but as **secondary authority crosswalks**, not as additional â€œbackboneâ€ vocabularies competing with LCSH.
 
 ## How FAST Should Be Used
 
 FAST gives you:
 
-- A FAST ID (`fst…`) per concept, with:
+- A FAST ID (`fstâ€¦`) per concept, with:
     - **Preferred label** in tag 150.
     - **Synonyms/variants** in 450.
     - **Broader / related** in 5XX fields.
     - **Usage counts** in 688 (LC vs WorldCat usage).
-    - **Crosswalks** back to LCSH in 750 `$0 (DLC)sh…` and to Wikidata/Wikipedia in 750 `$2 wikidata` / `$4 RM`.
+    - **Crosswalks** back to LCSH in 750 `$0 (DLC)shâ€¦` and to Wikidata/Wikipedia in 750 `$2 wikidata` / `$4 RM`.
 
-In your graph, that’s ideal as **extra properties on the existing Subject node**, not a separate node system:
+In your graph, thatâ€™s ideal as **extra properties on the existing Subject node**, not a separate node system:
 
 - `fast_id: "fst00537821"`
 - `fast_pref_label: "Quantum systems"`
-- `fast_alt_labels: ["Quantum system", …]`
-- `fast_broader_ids: ["fst01085128", …]`
+- `fast_alt_labels: ["Quantum system", â€¦]`
+- `fast_broader_ids: ["fst01085128", â€¦]`
 - `fast_usage_lc_2022: 8`
 - `fast_usage_wc_2022: 199`
 - `fast_wikidata_qid: "Q21193136"`
@@ -2188,36 +2188,36 @@ You **do not** need separate FAST-only Subject nodes unless you deliberately wan
 
 ## How LCC (Classification) Should Be Used
 
-Your LCC sample file (shelfmarks like `G2024…`) should **not** become separate subject entities. Instead it should:
+Your LCC sample file (shelfmarks like `G2024â€¦`) should **not** become separate subject entities. Instead it should:
 
 - Attach to Subject nodes as **classification hints**:
     - `lcc_class: "G2024"`
     - Maybe `lcc_caption`, `lcc_topic_note`.
-- Drive **“where in the library?”** answers and shelf/range visualizations.
+- Drive **â€œwhere in the library?â€** answers and shelf/range visualizations.
 
 So for a place or topic:
 
 - Subject: `Hutterian Brethren`
 - LCSH: `sh2009005985`
 - FAST: `fst00583942`
-- LCC: something in `BX8119.H9…` (from the LCC file)
+- LCC: something in `BX8119.H9â€¦` (from the LCC file)
 - Wikidata: `Q258344`
 
 All point to **one** Subject node.
 
 ## Recommended Role in Your Subject Model
 
-- **Backbone:** LCSH subjects (what you’re already doing).
+- **Backbone:** LCSH subjects (what youâ€™re already doing).
 - **Federation:**
     - Wikidata / Wikipedia (global graph + narrative context).
     - FAST (library-centric synonym set + usage metrics).
     - LCC \& Dewey (physical/virtual shelf location).
 - **Implementation:** FAST and LCC live as **properties and crosswalk edges** on Subject, not as parallel hierarchies you must fully mirror.
 
-This keeps the graph coherent—one subject per concept—with multiple authority IDs for matching, search, and library-navigation features.
+This keeps the graph coherentâ€”one subject per conceptâ€”with multiple authority IDs for matching, search, and library-navigation features.
 <span style="display:none">[^11_1][^11_10][^11_11][^11_12][^11_13][^11_2][^11_3][^11_4][^11_5][^11_6][^11_7][^11_8][^11_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^11_1]: LCC_G2024OUT.xlsx
 
@@ -2235,7 +2235,7 @@ This keeps the graph coherent—one subject per concept—with multiple authorit
 
 [^11_8]: neo4j_graph_structure.jpg
 
-[^11_9]: NODE_TYPE_SCHEMAS.md
+[^11_9]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^11_10]: subjects_sample_valid.jsonld
 
@@ -2256,7 +2256,7 @@ Answer skipped.
 
 # continue with last
 
-Yes—that document is exactly right for what you are trying to do.
+Yesâ€”that document is exactly right for what you are trying to do.
 
 ## Core confirmation
 
@@ -2272,13 +2272,13 @@ The unified mapping explicitly shows that roughly **two-thirds of your canonical
 
 Use this mental test from the doc:
 
-- If a fact can answer “**when, where, who, in what role, according to whom**?”, it belongs as a **reified node/event/note**, not just a property.[^13_1]
-- If it is **timeless and definitional** (e.g., “is made of steel”, “is child of”), keep it as a property.[^13_1]
+- If a fact can answer â€œ**when, where, who, in what role, according to whom**?â€, it belongs as a **reified node/event/note**, not just a property.[^13_1]
+- If it is **timeless and definitional** (e.g., â€œis made of steelâ€, â€œis child ofâ€), keep it as a property.[^13_1]
 
-Your “note” pattern is just a lightweight reified node: it turns a flat property into something that can participate in further relationships, which is exactly what a KG is for.
+Your â€œnoteâ€ pattern is just a lightweight reified node: it turns a flat property into something that can participate in further relationships, which is exactly what a KG is for.
 <span style="display:none">[^13_10][^13_11][^13_12][^13_13][^13_14][^13_2][^13_3][^13_4][^13_5][^13_6][^13_7][^13_8][^13_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^13_1]: unified-mapping-with-reification.md
 
@@ -2296,7 +2296,7 @@ Your “note” pattern is just a lightweight reified node: it turns a flat prop
 
 [^13_8]: neo4j_graph_structure.jpg
 
-[^13_9]: NODE_TYPE_SCHEMAS.md
+[^13_9]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^13_10]: subjects_sample_valid.jsonld
 
@@ -2313,7 +2313,7 @@ Your “note” pattern is just a lightweight reified node: it turns a flat prop
 
 # i mean does any of your mention of properties actually mean they need to be promoted
 
-For what you are building, **yes**: several things mentioned earlier as “properties” are better modeled as nodes or note-like reified structures.
+For what you are building, **yes**: several things mentioned earlier as â€œpropertiesâ€ are better modeled as nodes or note-like reified structures.
 
 ## 1. Safe to keep as properties
 
@@ -2322,11 +2322,11 @@ These can comfortably stay as simple properties on a Subject or Place:
 - Stable identifiers: LCSH ID, FAST ID, Wikidata QID, LCC, Dewey.[^14_1]
 - Current display label (one string used in UI).[^14_1]
 - Simple booleans/flags: `wikipedia_link`, `authority_tier`, `is_deprecated`.[^14_1]
-- Facet scores (your 0–1 numbers for Political, Military, etc.), if used only for routing/weighting.[^14_1]
+- Facet scores (your 0â€“1 numbers for Political, Military, etc.), if used only for routing/weighting.[^14_1]
 
 These do not, by themselves, carry narrative structure.
 
-## 2. Things previously called “properties” that really should be promoted
+## 2. Things previously called â€œpropertiesâ€ that really should be promoted
 
 Given your goal (historical reasoning, world-building, provenance), these should be **reified**:
 
@@ -2334,17 +2334,17 @@ Given your goal (historical reasoning, world-building, provenance), these should
     - Rather than a flat `altLabels` array, use a `NameVariant` (or note) with `name`, `valid_from`, `valid_until`, `source`.
     - You already leaned this way with named variant arrays; the next step is to treat each as a node if you want to connect them to specific sources or authorities.[^14_1]
 - **Geographic or administrative status over time**
-    - “X is part of Y” *from 1800–1918* is an event/state, not just `parentId`.
+    - â€œX is part of Yâ€ *from 1800â€“1918* is an event/state, not just `parentId`.
     - If you want to model shifting borders or control, promote these to state/events (e.g., `TerritorialControl`).[^14_1]
 - **Authorship / creation when process matters**
     - If you care about *when*, *where*, or *under what conditions* something was created, model a `Creation` event rather than only `author: Person`.[^14_1]
 - **Any relationship you plan to time-slice, map, or source**
-    - If you foresee queries like “who governed this in 1930?” or “what was this called according to source X?”, that relation should be a node with properties and links to sources.[^14_1]
+    - If you foresee queries like â€œwho governed this in 1930?â€ or â€œwhat was this called according to source X?â€, that relation should be a node with properties and links to sources.[^14_1]
 
 
 ## 3. How to interpret past mentions
 
-So, whenever earlier responses suggested “add a property” and the data:
+So, whenever earlier responses suggested â€œadd a propertyâ€ and the data:
 
 - has its own **timeline**,
 - might differ by **region/authority/source**, or
@@ -2352,10 +2352,10 @@ So, whenever earlier responses suggested “add a property” and the data:
 
 then, in *your* design, treat that as a candidate for **promotion to a node / note** rather than a plain property.[^14_1]
 
-Everything else (IDs, current label, routing scores) can remain as properties without undermining the KG’s purpose.
+Everything else (IDs, current label, routing scores) can remain as properties without undermining the KGâ€™s purpose.
 <span style="display:none">[^14_10][^14_11][^14_12][^14_13][^14_14][^14_2][^14_3][^14_4][^14_5][^14_6][^14_7][^14_8][^14_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^14_1]: unified-mapping-with-reification.md
 
@@ -2373,7 +2373,7 @@ Everything else (IDs, current label, routing scores) can remain as properties wi
 
 [^14_8]: neo4j_graph_structure.jpg
 
-[^14_9]: NODE_TYPE_SCHEMAS.md
+[^14_9]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^14_10]: subjects_sample_valid.jsonld
 
@@ -2384,4 +2384,5 @@ Everything else (IDs, current label, routing scores) can remain as properties wi
 [^14_13]: perplexity-change-on-geo.md
 
 [^14_14]: LCC_G2024OUT.xlsx
+
 

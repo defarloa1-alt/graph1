@@ -1,4 +1,4 @@
-# Agents Directory
+﻿# Agents Directory
 
 **Purpose:** Agent prompts, guides, and documentation for Chrystallum multi-agent system  
 **Date:** December 12, 2025  
@@ -10,26 +10,26 @@
 
 ```
 agents/
-├── prompts/                              Agent system prompts and guides
-│   ├── system/                          Agent system prompts
-│   │   ├── extraction_agent.txt         Main extraction agent
-│   │   └── person_research_agent.txt    Person research specialist
-│   ├── guides/                          Extraction methodology guides
-│   │   ├── geographic_extraction.md     Geographic data handling
-│   │   └── temporal_extraction.md       Temporal data handling
-│   └── templates/                       Python utilities
-│       └── load_prompts.py              Prompt loader utilities
-│
-├── CHATGPT_AGENT_PROMPT.md              System maintenance agent (archived)
-├── AGENT_TRAINING_FILES.md              Training files list (archived)
-├── AGENT_IMPLEMENTATION_GUIDE.md        Implementation guide (archived)
-├── AGENT_README.md                      Agent overview (archived)
-│
-├── TEST_SUBJECT_AGENT_PROMPT.md         Test subject SME agent (archived)
-├── TEST_SUBJECT_AGENT_FILES.md          Test subject training files (archived)
-│
-├── GRAPH_INSIGHT_SUMMARY.md             Why relationships matter (concepts)
-└── README.md                            Archive explanation from 2025-12-12
+â”œâ”€â”€ prompts/                              Agent system prompts and guides
+â”‚   â”œâ”€â”€ system/                          Agent system prompts
+â”‚   â”‚   â”œâ”€â”€ extraction_agent.txt         Main extraction agent
+â”‚   â”‚   â””â”€â”€ person_research_agent.txt    Person research specialist
+â”‚   â”œâ”€â”€ guides/                          Extraction methodology guides
+â”‚   â”‚   â”œâ”€â”€ geographic_extraction.md     Geographic data handling
+â”‚   â”‚   â””â”€â”€ temporal_extraction.md       Temporal data handling
+â”‚   â””â”€â”€ templates/                       Python utilities
+â”‚       â””â”€â”€ load_prompts.py              Prompt loader utilities
+â”‚
+â”œâ”€â”€ CHATGPT_AGENT_PROMPT.md              System maintenance agent (archived)
+â”œâ”€â”€ AGENT_TRAINING_FILES.md              Training files list (archived)
+â”œâ”€â”€ AGENT_IMPLEMENTATION_GUIDE.md        Implementation guide (archived)
+â”œâ”€â”€ AGENT_README.md                      Agent overview (archived)
+â”‚
+â”œâ”€â”€ TEST_SUBJECT_AGENT_PROMPT.md         Test subject SME agent (archived)
+â”œâ”€â”€ TEST_SUBJECT_AGENT_FILES.md          Test subject training files (archived)
+â”‚
+â”œâ”€â”€ GRAPH_INSIGHT_SUMMARY.md             Why relationships matter (concepts)
+â””â”€â”€ README.md                            Archive explanation from 2025-12-12
 ```
 
 ---
@@ -84,11 +84,11 @@ The following files represent **earlier design iterations** that were archived b
 - `TEST_SUBJECT_AGENT_FILES.md` - Training files and test data
 
 **Status:** Good concept, but needs architecture decisions:
-- Should return JSON (not Cypher) ✅ Confirmed
-- Should include confidence scores with reasoning ✅ Confirmed
-- Should include citations as nodes ✅ Confirmed
-- How to handle claim conflicts ❌ Not defined
-- Multi-agent coordination ❌ Not defined
+- Should return JSON (not Cypher) âœ… Confirmed
+- Should include confidence scores with reasoning âœ… Confirmed
+- Should include citations as nodes âœ… Confirmed
+- How to handle claim conflicts âŒ Not defined
+- Multi-agent coordination âŒ Not defined
 
 ### Conceptual Documentation
 - `GRAPH_INSIGHT_SUMMARY.md` - Why relationships are the core value of graphs
@@ -103,10 +103,10 @@ The following files represent **earlier design iterations** that were archived b
 ### Multi-Agent Coordination
 ```
 User Query 
-  → SME Agent (JSON claims with confidence)
-  → Mediating Agent (validates, resolves conflicts)
-  → Persistence Agent (converts to Cypher, imports)
-  → Neo4j
+  â†’ SME Agent (JSON claims with confidence)
+  â†’ Mediating Agent (validates, resolves conflicts)
+  â†’ Persistence Agent (converts to Cypher, imports)
+  â†’ Neo4j
 ```
 
 **Questions:**
@@ -159,7 +159,7 @@ User Query
 - Temporal extraction methodology
 
 **Data Schema (in root):**
-- NODE_TYPE_SCHEMAS.md - Node type templates (Person, Event, Place, etc.)
+- md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md - Node type templates (Person, Event, Place, etc.)
 
 ### What's Still Being Designed
 
@@ -208,7 +208,7 @@ User Query
 ### For Agent Development
 - `prompts/system/` - Current agent system prompts
 - `prompts/guides/` - Extraction methodology
-- `NODE_TYPE_SCHEMAS.md` (in root) - Node structure requirements
+- `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` - Node structure requirements
 
 ### For Architecture Planning
 - `GRAPH_INSIGHT_SUMMARY.md` - Graph-first thinking concepts
@@ -217,7 +217,7 @@ User Query
 
 ### For Implementation
 - `prompts/templates/load_prompts.py` - Prompt utilities
-- `NODE_TYPE_SCHEMAS.md` (in root) - Validation schemas
+- `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` - Validation schemas
 - Canonical relationship types (in relations/)
 
 ---
@@ -225,5 +225,6 @@ User Query
 **Status:** Active development with archived explorations  
 **Next:** Define multi-agent architecture, then implement  
 **Key Insight:** Agents should return JSON claims (not Cypher), include confidence/citations, handle conflicts via mediation
+
 
 

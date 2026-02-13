@@ -25,6 +25,8 @@ import requests
 from pathlib import Path
 from typing import List, Dict, Optional
 
+from temporal_bounds import build_temporal_bbox
+
 # Fix Windows console encoding
 if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
@@ -158,11 +160,16 @@ def query_periods_by_dewey_range(dewey_min: int, dewey_max: int) -> List[Dict]:
         lcsh_uri = b.get('lcsh', {}).get('value', '')
         lcsh_id = lcsh_uri.split('/')[-1] if lcsh_uri else ''
         
-        # Temporal (use most specific available)
-        start_date = (b.get('start', {}).get('value', '') or 
-                     b.get('inception', {}).get('value', ''))
-        end_date = (b.get('end', {}).get('value', '') or 
-                   b.get('dissolved', {}).get('value', ''))
+        # Temporal (use most specific available), then normalize to a 4-point envelope.
+        start_date = (
+            b.get('start', {}).get('value', '')
+            or b.get('inception', {}).get('value', '')
+        )
+        end_date = (
+            b.get('end', {}).get('value', '')
+            or b.get('dissolved', {}).get('value', '')
+        )
+        temporal = build_temporal_bbox(start_date=start_date, end_date=end_date)
         
         # Extract region/country
         country_qid = ''
@@ -187,8 +194,7 @@ def query_periods_by_dewey_range(dewey_min: int, dewey_max: int) -> List[Dict]:
             'qid': qid,
             'label': b.get('itemLabel', {}).get('value', ''),
             'description': b.get('itemDescription', {}).get('value', ''),
-            'start_date': start_date,
-            'end_date': end_date,
+            **temporal,
             'dewey_decimal': b.get('dewey', {}).get('value', ''),
             'lcsh_id': lcsh_id,
             'lcc_code': b.get('lcc', {}).get('value', ''),
@@ -264,7 +270,10 @@ def write_csv(periods: List[Dict], output_file: str):
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
     fieldnames = [
-        'qid', 'label', 'description', 'start_date', 'end_date',
+        'qid', 'label', 'description',
+        'start_date', 'end_date',
+        'start_date_min', 'start_date_max', 'end_date_min', 'end_date_max',
+        'earliest_start', 'latest_start', 'earliest_end', 'latest_end',
         'dewey_decimal', 'lcsh_id', 'lcc_code', 'fast_id', 'region'
     ]
     

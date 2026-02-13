@@ -1,15 +1,15 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
+﻿<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 # building chrystallum a knowledge graph of history we are developing a standardization, trying to map to wikidata as much as possible, but where we think more granularity is needed, we do it anyway with our graph structure.  is this common practice in a graph? are we overlooking something? our system is driven by a backbone that requires each node to map to a single lcc/lcsh/fast backbone to tie them all togher where each subject manages llms in that subject and returns a subgraph to persist the lllm response. look at this from different perspectives and advise
 
-Excellent—let me analyze your Chrystallum architecture from multiple perspectives. You've built something sophisticated. Here are my observations:
+Excellentâ€”let me analyze your Chrystallum architecture from multiple perspectives. You've built something sophisticated. Here are my observations:
 
 ## ARCHITECTURE ASSESSMENT
 
-### ✅ WHAT YOU'RE DOING RIGHT
+### âœ… WHAT YOU'RE DOING RIGHT
 
 **1. Controlled Proliferation with Purpose**
-Your model *is* standard practice in mature knowledge graphs. You're not blindly replicating Wikidata—you're extending it where historical knowledge demands finer granularity. This is exactly what major projects do:
+Your model *is* standard practice in mature knowledge graphs. You're not blindly replicating Wikidataâ€”you're extending it where historical knowledge demands finer granularity. This is exactly what major projects do:
 
 - **Library of Congress** - Maps to LC classification but creates local subject headings
 - **Europeana** - Uses Wikidata + custom cultural properties
@@ -22,11 +22,11 @@ Your "where think more granularity is needed, we do it anyway" is professional p
 This is your *single point of consensus*. Each node maps to exactly one library standard = single LLM subject authority. This solves:
 
 - **Version control** - All claims about "Roman military tactics" funnel through one FAST ID
-- **Disambiguation** - Caesar the person ≠ Caesar as title, but they connect through the same backbone entry
+- **Disambiguation** - Caesar the person â‰  Caesar as title, but they connect through the same backbone entry
 - **Scalability** - 100 LLMs debating "Politics" all return subgraphs to the same subject node
 
 **3. Subgraph Persistence Design is Solid**
-Your architecture of LLM response → subgraph → persistent layer is correct. This means:
+Your architecture of LLM response â†’ subgraph â†’ persistent layer is correct. This means:
 
 - LLM hallucinations don't corrupt the backbone
 - Conflicting claims stay localized
@@ -34,24 +34,24 @@ Your architecture of LLM response → subgraph → persistent layer is correct. 
 
 ***
 
-## ⚠️ POTENTIAL BLIND SPOTS
+## âš ï¸ POTENTIAL BLIND SPOTS
 
 ### 1. **The Many-to-Many Problem You Haven't Yet Named**
 
 Your current model assumes:
 
 ```
-Node → Single LCSH/FAST → Single Subject Authority
+Node â†’ Single LCSH/FAST â†’ Single Subject Authority
 ```
 
 But historical reality often breaks this:
 
 **Example: The Gracchi Brothers' Land Reforms (Roman History)**
 
-- LCSH: "Land reform—Rome"
-- LCSH: "Agrarian laws—Rome"
-- LCSH: "Social conflict—Rome"
-- LCSH: "Populism—Rome" (anachronistic but used)
+- LCSH: "Land reformâ€”Rome"
+- LCSH: "Agrarian lawsâ€”Rome"
+- LCSH: "Social conflictâ€”Rome"
+- LCSH: "Populismâ€”Rome" (anachronistic but used)
 
 Your current architecture maps one node to **one** backbone entry. What happens when historical reality requires **simultaneous** representation in multiple frameworks?
 
@@ -85,8 +85,8 @@ A decision matrix:
 
 | Decision | Criterion | Example |
 | :-- | :-- | :-- |
-| Create new Period | Unique geopolitical entity + distinct events + named by sources | "Late Roman Republic" separate from "Roman Republic" ✓ |
-| Create new Relationship | Cannot be expressed via parent + property | "CONDEMNED_WITHOUT_TRIAL" ≠ parent "LEGAL_ACTION" + property |
+| Create new Period | Unique geopolitical entity + distinct events + named by sources | "Late Roman Republic" separate from "Roman Republic" âœ“ |
+| Create new Relationship | Cannot be expressed via parent + property | "CONDEMNED_WITHOUT_TRIAL" â‰  parent "LEGAL_ACTION" + property |
 | Create custom Concept | Concept appears in primary sources + LCSH gap + 3+ events reference it | "Liberti" (freed slaves) in Roman law |
 | Use existing standard | LCSH/FAST/CIDOC covers it already | Use CIDOC E21_Person, don't create PERSON_TYPE |
 
@@ -101,12 +101,12 @@ Your SUBGRAPH_STRUCTURE defines subject + entities + time + geography. But:
 
 Does it include:
 
-- ✅ Sulla (person)
-- ✅ Events during dictatorship
-- ✅ Organizations reformed
-- ❓ Military predecessors who influenced Sulla?
-- ❓ Later figures who reacted to him?
-- ❓ Civil war causes vs. dictatorship itself?
+- âœ… Sulla (person)
+- âœ… Events during dictatorship
+- âœ… Organizations reformed
+- â“ Military predecessors who influenced Sulla?
+- â“ Later figures who reacted to him?
+- â“ Civil war causes vs. dictatorship itself?
 
 **Current State:** Your docs say "3 events = 3 subgraph vertices" but don't define stopping rules.
 
@@ -139,7 +139,7 @@ But what happens here:
 
 **Military historian LLM says:** "Siege of Alesia (52 BCE) was militarily decisive, psychologically devastating to Gauls"
 
-**Political historian LLM says:** "Siege of Alesia was primarily a political statement—consolidating Roman authority over Gaul"
+**Political historian LLM says:** "Siege of Alesia was primarily a political statementâ€”consolidating Roman authority over Gaul"
 
 **Economic historian LLM says:** "Siege of Alesia redistributed wealth from Gallic elite to Roman treasury"
 
@@ -159,7 +159,7 @@ All three are writing subgraphs to the same event node. Your architecture *persi
 
 You have 86 periods. For Roman history alone, this seems light if you're trying to support granular history. That might be by design (coarse-grained periods only, events fill detail), but:
 
-**Question:** Are your periods like Library of Congress subject period subdivisions ("Roman Republic—To 30 B.C.") or like proper chronological entities (Event-independent Period nodes)?
+**Question:** Are your periods like Library of Congress subject period subdivisions ("Roman Republicâ€”To 30 B.C.") or like proper chronological entities (Event-independent Period nodes)?
 
 **This Matters For:**
 
@@ -169,7 +169,7 @@ You have 86 periods. For Roman history alone, this seems light if you're trying 
 
 ***
 
-## 🎯 WHAT YOU'RE OVERLOOKING
+## ðŸŽ¯ WHAT YOU'RE OVERLOOKING
 
 ### **1. Lineage \& Provenance**
 
@@ -188,9 +188,9 @@ You're building an LLM-sourced knowledge graph but I don't see:
 Add to every claim:
 
 ```
-ATTRIBUTED_TO → (LLM_Agent | Historical_Source)
-I7_HAS_OBJECT → (Prior_Belief | null)  // CIDOC-CRM for revisions
-confidence_score → 0.0-1.0
+ATTRIBUTED_TO â†’ (LLM_Agent | Historical_Source)
+I7_HAS_OBJECT â†’ (Prior_Belief | null)  // CIDOC-CRM for revisions
+confidence_score â†’ 0.0-1.0
 ```
 
 
@@ -258,19 +258,19 @@ Two LLMs disagree. Now what?
 **Suggest:**
 
 ```cypher
-(event:Event)-[:HAS_CLAIM {confidence: 0.85, llm_agent: "military", date_asserted: "2025-12-12"}]→(claim:Claim)
-(claim)-[:CONFLICTS_WITH]→(other_claim:Claim {confidence: 0.65, llm_agent: "political"})
+(event:Event)-[:HAS_CLAIM {confidence: 0.85, llm_agent: "military", date_asserted: "2025-12-12"}]â†’(claim:Claim)
+(claim)-[:CONFLICTS_WITH]â†’(other_claim:Claim {confidence: 0.65, llm_agent: "political"})
 (conflict:Conflict)-[:RESOLUTION_STATUS {status: "unresolved|expert_pending|resolved"}]
 ```
 
 
 ***
 
-## 🚀 STRATEGIC RECOMMENDATIONS
+## ðŸš€ STRATEGIC RECOMMENDATIONS
 
 ### **Priority 1: Document Granularity Governance**
 
-Add a decision matrix to NODE_TYPE_SCHEMAS.md that explains when to create custom nodes/relationships vs. using Wikidata standards.
+Add a decision matrix to md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md that explains when to create custom nodes/relationships vs. using Wikidata standards.
 
 ### **Priority 2: Formalize Subgraph Boundaries**
 
@@ -329,10 +329,10 @@ Document the workflow:
 
 **Yes, you're doing something common:**
 
-- DBpedia extends Wikipedia/Wikidata ✓
-- YAGO extends Wikipedia + Wikidata ✓
-- WikidataWD-plus projects routinely add custom properties ✓
-- CIDOC-CRM users always add domain specializations ✓
+- DBpedia extends Wikipedia/Wikidata âœ“
+- YAGO extends Wikipedia + Wikidata âœ“
+- WikidataWD-plus projects routinely add custom properties âœ“
+- CIDOC-CRM users always add domain specializations âœ“
 
 **But you're NOT seeing it often documented because most projects treat it as:**
 
@@ -347,9 +347,9 @@ The backbone is brilliant. The subgraph structure is sound. What's missing is th
 Want me to build out a formal **Governance Decision Matrix** or **Conflict Resolution SOP** as a living document?
 <span style="display:none">[^1_1][^1_2][^1_3]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
-[^1_1]: NODE_TYPE_SCHEMAS.md
+[^1_1]: md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 [^1_2]: canonical_relationship_types.csv
 
@@ -393,7 +393,7 @@ You're using confidence as **arbiter**, not boolean truth. This is sophisticated
 
 ### **3. Multi-SME Debate Architecture**
 
-You mention "interagent debates"—this is the missing piece most KGs don't have. This means:
+You mention "interagent debates"â€”this is the missing piece most KGs don't have. This means:
 
 - Military historian generates subgraph about Alesia
 - Political historian generates conflicting subgraph
@@ -450,10 +450,10 @@ Final = clamp(Base + Modifiers, 0.0, 1.0)
 
 | Decision | Threshold | Example |
 |----------|-----------|---------|
-| ACCEPT (no debate) | New ≥ 0.80 AND (Existing = 0 OR New > Existing + 0.15) | New=0.85, Existing=0.65 → REPLACE |
-| ADDITIVE (coexist) | 0.20 < difference < 0.15 OR both ≥ 0.60 | New=0.70, Existing=0.65 → DEBATE |
-| REJECT | New < Existing - 0.15 AND Existing ≥ 0.60 | New=0.50, Existing=0.70 → REJECT |
-| ESCALATE TO DEBATE | Difference < 0.15 AND both ≥ 0.50 AND topics overlap | Both ~0.70 → INVOKE DEBATE |
+| ACCEPT (no debate) | New â‰¥ 0.80 AND (Existing = 0 OR New > Existing + 0.15) | New=0.85, Existing=0.65 â†’ REPLACE |
+| ADDITIVE (coexist) | 0.20 < difference < 0.15 OR both â‰¥ 0.60 | New=0.70, Existing=0.65 â†’ DEBATE |
+| REJECT | New < Existing - 0.15 AND Existing â‰¥ 0.60 | New=0.50, Existing=0.70 â†’ REJECT |
+| ESCALATE TO DEBATE | Difference < 0.15 AND both â‰¥ 0.50 AND topics overlap | Both ~0.70 â†’ INVOKE DEBATE |
 ```
 
 
@@ -471,7 +471,7 @@ You mention debates can be implemented. Here's what needs specification:
 Automatic triggers:
 1. Same entity + same backbone subject
 2. Confidence scores within 15% of each other
-3. Both scores ≥ 0.50 (too low = mutual skepticism)
+3. Both scores â‰¥ 0.50 (too low = mutual skepticism)
 4. Different LLM agents (different expertise domains)
 
 Optional manual triggers:
@@ -542,7 +542,7 @@ Optional manual triggers:
 | REPLACE | One agent revises down, other wins | Mark loser `deprecated` | Rare; happens when new evidence found |
 | ADDITIVE | Both maintain confidence within range | Both claims persist, cross-linked | Flag as historiographical dispute |
 | EXPERT_ESCALATE | Agents deadlock | Send to domain expert for judgment | Human makes final call |
-| BOTH_REJECTED | Both agents lower ≤ 0.40 | Remove both, mark "insufficient evidence" | Claim needs new research |
+| BOTH_REJECTED | Both agents lower â‰¤ 0.40 | Remove both, mark "insufficient evidence" | Claim needs new research |
 | SYNTHESIZE | Agents find middle ground | Create new claim at negotiated confidence | E.g., "Caesar 5'7\"-5'11\", exact height unknown" |
 
 ```
@@ -582,7 +582,7 @@ Confidence: 0.90
 
 **Current architecture question:** Are these:
 
-- **A) Three separate events?** (Assassination ≠ Redistribution ≠ Crisis)
+- **A) Three separate events?** (Assassination â‰  Redistribution â‰  Crisis)
 - **B) One event, three subject angles?** (Same historical moment, different lenses)
 - **C) One event, three claims about it?** (Gracchi reforms *caused* political instability, etc.)
 
@@ -592,26 +592,26 @@ Confidence: 0.90
 # Multi-Subject Claim Handling
 
 ## Case A: Genuinely Different Events
-→ ADDITIVE (no conflict, different entities)
-→ Create edges linking them (PRECEDED_BY, CAUSED, etc.)
-→ No debate needed
+â†’ ADDITIVE (no conflict, different entities)
+â†’ Create edges linking them (PRECEDED_BY, CAUSED, etc.)
+â†’ No debate needed
 
 ## Case B: Same Event, Different Subject Angles
-→ Check: Do claims conflict OR complement?
+â†’ Check: Do claims conflict OR complement?
   
   Complement (Event happened for multiple reasons):
-    → ADDITIVE 
-    → Create multiple (Event)-[:SUBJECT_OF]-(Subject) edges
-    → All perspectives preserved
+    â†’ ADDITIVE 
+    â†’ Create multiple (Event)-[:SUBJECT_OF]-(Subject) edges
+    â†’ All perspectives preserved
     
   Conflict (Incompatible causal claims):
-    → DEBATE required
-    → Example: "Reforms were voluntary" vs. "Reforms were coercive"
+    â†’ DEBATE required
+    â†’ Example: "Reforms were voluntary" vs. "Reforms were coercive"
     
 ## Case C: One Event Linked to Multiple Subjects
-→ Automatic ADDITIVE
-→ This is graph design feature, not conflict
-→ All SMEs are correct simultaneously
+â†’ Automatic ADDITIVE
+â†’ This is graph design feature, not conflict
+â†’ All SMEs are correct simultaneously
 
 ## Detection Algorithm
 
@@ -622,7 +622,7 @@ def classify_multi_subject_claim(new_claim, existing_claim):
 if (new_claim.entity_id == existing_claim.entity_id and
 new_claim.primary_subject == existing_claim.primary_subject and
 date_overlap(new_claim.date, existing_claim.date)):
-return "SAME_EVENT_SAME_SUBJECT" → debate_required
+return "SAME_EVENT_SAME_SUBJECT" â†’ debate_required
 
     # Same entity + different backbone subjects
     elif (new_claim.entity_id == existing_claim.entity_id and
@@ -630,13 +630,13 @@ return "SAME_EVENT_SAME_SUBJECT" → debate_required
         
         # Check if claims are complementary or contradictory
         if claims_compatible(new_claim, existing_claim):
-            return "SAME_EVENT_MULTI_SUBJECT" → additive
+            return "SAME_EVENT_MULTI_SUBJECT" â†’ additive
         else:
-            return "SAME_EVENT_CONFLICTING_ANGLES" → debate_required
+            return "SAME_EVENT_CONFLICTING_ANGLES" â†’ debate_required
     
     # Different entities, same subject
     else:
-        return "DIFFERENT_EVENT" → additive
+        return "DIFFERENT_EVENT" â†’ additive
     ```
 
 ```
@@ -656,12 +656,12 @@ Right now you mention debates are possible. You need to specify *which agent arb
 ### Model 1: Peer Review (Symmetric)
 ```
 
-Military SME ↔ Political SME
-↓
+Military SME â†” Political SME
+â†“
 Debate recorded
-↓
+â†“
 Confidence scores adjusted
-↓
+â†“
 Both sign off OR escalate to expert
 
 ```
@@ -674,9 +674,9 @@ Both sign off OR escalate to expert
 
 Claim 1: Military expert (confidence 0.88)
 Claim 2: Social historian (confidence 0.82)
-↓
+â†“
 Route to: "Military during social change" expert
-↓
+â†“
 Expert SME decides:
 
 - Is military aspect primary? (weight claim 1 more)
@@ -706,7 +706,7 @@ Highest alignment wins, others marked "minority view"
 
 ## Recommendation for Chrystallum
 
-**Use hybrid: Model 1 → Model 2**
+**Use hybrid: Model 1 â†’ Model 2**
 1. Agents debate (Peer Review) for 1-2 rounds
 2. If deadlock, escalate to domain-specialized expert
 3. Record full debate chain as provenance
@@ -825,13 +825,13 @@ I'd recommend creating:
 ```
 
 decision_agent_spec.md
-├── Confidence Scoring Rubric (your values, not defaults)
-├── Decision Thresholds Matrix
-├── Duplicate Detection Algorithm
-├── Multi-SME Debate Protocol
-├── Conflict Lock Mechanism
-├── Debate Arbitration Models
-└── Claim Status State Machine
+â”œâ”€â”€ Confidence Scoring Rubric (your values, not defaults)
+â”œâ”€â”€ Decision Thresholds Matrix
+â”œâ”€â”€ Duplicate Detection Algorithm
+â”œâ”€â”€ Multi-SME Debate Protocol
+â”œâ”€â”€ Conflict Lock Mechanism
+â”œâ”€â”€ Debate Arbitration Models
+â””â”€â”€ Claim Status State Machine
 
 ```
 
@@ -845,7 +845,7 @@ Want me to template out that spec doc in full? Or focus on one section (the deba
 
 # good response. i only gave u very partial artifacts. regarding multisubject gracchi - well to me it is one event, which different personal perspectives. pick the most granular, and edge out to the other events
 
-Perfect—**that's the right call**. Let me formalize what you just articulated:
+Perfectâ€”**that's the right call**. Let me formalize what you just articulated:
 
 ![Agent Decision Framework: From Ingestion to Graph Update](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4a8dddda26d6d29519168cfe15a1b53c/84c3dbce-b749-430a-a77b-52a776cb702c/f323ea8d.png)
 
@@ -869,8 +869,8 @@ When multiple perspectives describe the same historical moment:
 ### Why This Works
 
 **1. Graph Queries Become Tractable**
-- Start at atomic event → traverse outward to context
-- Don't start at "Roman Republic Period" → traverse to 10,000 events
+- Start at atomic event â†’ traverse outward to context
+- Don't start at "Roman Republic Period" â†’ traverse to 10,000 events
 - Bounded search space
 
 **2. Preserves Historiographical Nuance**
@@ -928,7 +928,7 @@ CREATE (constitutional_crisis:Event {
   granularity: "period_event"  // <--- Interpretive, long-duration
 })
 
-// EDGES: ATOMIC → COMPOSITE
+// EDGES: ATOMIC â†’ COMPOSITE
 CREATE (assassination)-[:PART_OF]->(land_reform)
 CREATE (assassination)-[:TRIGGERED]->(constitutional_crisis)
 
@@ -1253,7 +1253,7 @@ All queryable, all attributed, no duplicates.
 
 ***
 
-## FORMALIZATION: Add to NODE_TYPE_SCHEMAS.md
+## FORMALIZATION: Add to md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
 
 ```markdown
 ## Event Granularity Property
@@ -1262,7 +1262,7 @@ All Event nodes MUST include `granularity` property:
 
 | Value | Definition | Example | Agent Behavior |
 |-------|------------|---------|----------------|
-| `atomic` | Single discrete moment, observable, short duration (≤7 days) | "Assassination of Julius Caesar" | **Default anchor for multi-perspective claims** |
+| `atomic` | Single discrete moment, observable, short duration (â‰¤7 days) | "Assassination of Julius Caesar" | **Default anchor for multi-perspective claims** |
 | `composite` | Collection of atomic events, explicit start/end | "Gallic Wars", "Punic Wars" | Link atomic events via -[:PART_OF]-> |
 | `period_event` | Historiographical construct, interpretive, vague boundaries | "Fall of Roman Republic", "Crisis of Third Century" | Use only when sources explicitly frame it as period |
 | `macro_event` | Abstract causal/thematic grouping, no specific dates | "Roman Expansion", "Hellenization" | Avoid; use Period nodes instead |
@@ -1318,7 +1318,7 @@ Add to your `decision_agent_spec.md`:
 
 When claims have:
 
-- Temporal overlap ≥ 50% of shorter event's duration
+- Temporal overlap â‰¥ 50% of shorter event's duration
 - Same primary location
 - Different primary subjects OR different granularities
 
@@ -1355,7 +1355,7 @@ This is **elegant** because:
 Want me to draft the full `event_granularity_specification.md` with examples from your Roman Republic domain?
 <span style="display:none">[^3_10][^3_11][^3_12][^3_13][^3_14][^3_15][^3_16][^3_17][^3_18][^3_19][^3_2][^3_20][^3_21][^3_22][^3_23][^3_24][^3_25][^3_26][^3_27][^3_28][^3_29][^3_3][^3_30][^3_31][^3_32][^3_33][^3_34][^3_35][^3_36][^3_37][^3_38][^3_4][^3_5][^3_6][^3_7][^3_8][^3_9]</span>
 
-<div align="center">⁂</div>
+<div align="center">â‚</div>
 
 [^3_1]: https://masa.hypotheses.org/files/2019/10/1.-CIDOC-CRM-Intro-5.pdf
 [^3_2]: https://academic.oup.com/jcde/article/12/1/53/7917624
@@ -1410,7 +1410,7 @@ Model **one core historical event** at the **most granular level that is histori
 
 This specification defines how Chrystallum:
 
-- Decides **what counts as “one event”**
+- Decides **what counts as â€œone eventâ€**
 - Chooses the **anchor event** when multiple perspectives exist
 - Connects **composite, period-wide, and macro interpretations** to that anchor
 - Handles **multi-subject and multi-agent** contributions without duplication or loss of nuance
@@ -1427,7 +1427,7 @@ All `:Event` nodes MUST carry a `granularity` property.
 
 | Value           | Definition                                                     | Typical Duration              | Example (Roman)                            |
 |----------------|-----------------------------------------------------------------|-------------------------------|--------------------------------------------|
-| `atomic`       | Single discrete, historically observable happening              | Seconds to days (≤ 7 days)    | Assassination of Caesar (44 BCE); Crossing the Rubicon (49 BCE) |
+| `atomic`       | Single discrete, historically observable happening              | Seconds to days (â‰¤ 7 days)    | Assassination of Caesar (44 BCE); Crossing the Rubicon (49 BCE) |
 | `composite`    | Named grouping of multiple atomic events                        | Weeks to years                | Gallic Wars; Gracchi Land Reforms         |
 | `period_event` | Historiographical construct spanning larger intervals           | Years to decades              | Fall of the Roman Republic; Crisis of the Third Century |
 | `macro_event`  | High-level, abstract process with no sharp temporal boundaries  | Decades to centuries          | Roman Expansion; Hellenization             |
@@ -1473,8 +1473,8 @@ def classify_event_granularity(event):
 Key tests:
 
 - **Atomic**: specific date or very narrow range; specific participants; direct action.
-- **Composite**: explicit start/end, multiple parts; commonly used as a “campaign” or “reform program”.
-- **Period-event**: historians name a span as “X crisis/era”; used as interpretive container.
+- **Composite**: explicit start/end, multiple parts; commonly used as a â€œcampaignâ€ or â€œreform programâ€.
+- **Period-event**: historians name a span as â€œX crisis/eraâ€; used as interpretive container.
 - **Macro-event**: very broad processes (often better represented as Period nodes instead).
 
 ***
@@ -1493,9 +1493,9 @@ When multiple claims describe what is essentially the same historical happening:
 
 Claims:
 
-- Claim A (Political SME): “Assassination of Tiberius Gracchus” – `atomic`
-- Claim B (Economic SME): “Gracchi Land Reforms” – `composite`
-- Claim C (Constitutional SME): “Onset of Late Republic Constitutional Crisis” – `period_event`
+- Claim A (Political SME): â€œAssassination of Tiberius Gracchusâ€ â€“ `atomic`
+- Claim B (Economic SME): â€œGracchi Land Reformsâ€ â€“ `composite`
+- Claim C (Constitutional SME): â€œOnset of Late Republic Constitutional Crisisâ€ â€“ `period_event`
 
 Resolution:
 
@@ -1563,7 +1563,7 @@ CREATE (reforms:Subject {
 CREATE (assassination)-[:SUBJECT_OF]->(reforms);
 ```
 
-The same event is legitimately “about” multiple subjects.
+The same event is legitimately â€œaboutâ€ multiple subjects.
 
 ### 5.2 Perspective Edges
 
@@ -1575,7 +1575,7 @@ CREATE (assassination)-[:INTERPRETED_AS {
   perspective: "political",
   confidence: 0.86,
   agent: "political_historian_llm",
-  reasoning: "Senate’s violent response to popular sovereignty challenge"
+  reasoning: "Senateâ€™s violent response to popular sovereignty challenge"
 }]->(:Concept {label: "Constitutional crisis"});
 
 // Economic interpretation
@@ -1601,7 +1601,7 @@ To standardize how events relate across granularities, use these relationship pa
 - `(:Event {granularity: "composite"})-[:PART_OF]->(:Event {granularity: "period_event"})`
 - `(:Event {granularity: "period_event"})-[:PART_OF]->(:Period)` (your Period backbone)
 
-Example: Caesar’s civil war chain:
+Example: Caesarâ€™s civil war chain:
 
 ```cypher
 // Atomic
@@ -1674,15 +1674,15 @@ Another agent:
 ### 7.2 Resolution Steps (Conceptual)
 
 1. **Group by temporal + spatial overlap**
-    - Same place, overlapping dates → candidate group.
-2. **Classify each claim’s granularity** (using rules in §3).
+    - Same place, overlapping dates â†’ candidate group.
+2. **Classify each claimâ€™s granularity** (using rules in Â§3).
 3. **Choose anchor**:
-    - If any `atomic` present → pick highest-confidence `atomic`.
+    - If any `atomic` present â†’ pick highest-confidence `atomic`.
     - Else pick shortest duration event.
 4. **For non-anchor claims**:
-    - If their timespan contains anchor → `anchor-[:PART_OF]->composite`.
-    - If they are historiographical/periodic → `anchor-[:TRIGGERED|CAUSED]->period_event`.
-    - If they are clearly distinct episodes → keep as separate events, connected with `PRECEDED_BY/RELATED_TO`.
+    - If their timespan contains anchor â†’ `anchor-[:PART_OF]->composite`.
+    - If they are historiographical/periodic â†’ `anchor-[:TRIGGERED|CAUSED]->period_event`.
+    - If they are clearly distinct episodes â†’ keep as separate events, connected with `PRECEDED_BY/RELATED_TO`.
 
 This logic plugs into your existing duplicate/additive/replacement decision agent; granularity is an additional axis it uses.
 
@@ -1690,7 +1690,7 @@ This logic plugs into your existing duplicate/additive/replacement decision agen
 
 ## 8. Query Patterns Enabled
 
-### 8.1 “Show me everything about the Gracchi crisis, but keep it manageable”
+### 8.1 â€œShow me everything about the Gracchi crisis, but keep it manageableâ€
 
 ```cypher
 MATCH (crisis:Event {label: "Late Republic Constitutional Crisis"})
@@ -1700,7 +1700,7 @@ ORDER BY atomic.date_iso8601;
 ```
 
 
-### 8.2 “Give me all perspectives on Alesia”
+### 8.2 â€œGive me all perspectives on Alesiaâ€
 
 ```cypher
 MATCH (battle:Event {label: "Battle of Alesia"})
@@ -1710,7 +1710,7 @@ RETURN r.perspective, r.confidence, concept.label, r.agent;
 ```
 
 
-### 8.3 “List composite events in Late Roman Republic”
+### 8.3 â€œList composite events in Late Roman Republicâ€
 
 ```cypher
 MATCH (period:Period {label: "Late Roman Republic"})
@@ -1725,9 +1725,9 @@ RETURN e.label, e.start_year, e.end_year;
 
 This spec must align with:
 
-- **Period backbone** – Periods are temporal containers, often above `period_event`.
-- **Place backbone** – Place hierarchies apply at all granularities.
-- **Subject backbone (LCC/LCSH/FAST)** – Multiple subject links per event allowed and encouraged.
+- **Period backbone** â€“ Periods are temporal containers, often above `period_event`.
+- **Place backbone** â€“ Place hierarchies apply at all granularities.
+- **Subject backbone (LCC/LCSH/FAST)** â€“ Multiple subject links per event allowed and encouraged.
 
 Example of full integration for a single anchor event:
 
@@ -1767,9 +1767,10 @@ To operationalize this spec:
 - Add tests:
     - Given a set of overlapping Roman events, verify the anchor selection and edge wiring is as specified.
 - Document examples:
-    - Gracchi, Rubicon, Sulla’s dictatorship, Caesar’s assassination as canonical patterns.
+    - Gracchi, Rubicon, Sullaâ€™s dictatorship, Caesarâ€™s assassination as canonical patterns.
 
 ***
 
-If you want, the next step could be a concrete **`event_granularity_spec.md` file** in your repo with this content slimmed into repo-ready form (headings/phrasing tailored to your style) plus 2–3 more worked Roman examples.
+If you want, the next step could be a concrete **`event_granularity_spec.md` file** in your repo with this content slimmed into repo-ready form (headings/phrasing tailored to your style) plus 2â€“3 more worked Roman examples.
+
 

@@ -1,4 +1,4 @@
-# Period Enrichment with Perplexity
+﻿# Period Enrichment with Perplexity
 
 ## Overview
 
@@ -105,17 +105,17 @@ Enriching Periods with Perplexity Analysis
 Input: Subjects/periods_import.cypher
 Output: Subjects/periods_import_enriched.cypher
 
-📊 Step 1: Parsing periods from Cypher file...
+ðŸ“Š Step 1: Parsing periods from Cypher file...
    Found 1005 periods
 
-🤖 Step 2: Analyzing periods with Perplexity...
+ðŸ¤– Step 2: Analyzing periods with Perplexity...
    [1/1005] Analyzing: Prehistoric Brussels... Facets: ArchaeologicalFacet
    [2/1005] Analyzing: Habsburg Netherlands... Facets: PoliticalFacet, CulturalFacet
    [3/1005] Analyzing: Battle of Pharsalus... Facets: MilitaryFacet [EVENT - WILL SKIP]
    ...
 
-📝 Step 3: Generating enriched Cypher file...
-✅ Generated Subjects/periods_import_enriched.cypher with 950 periods
+ðŸ“ Step 3: Generating enriched Cypher file...
+âœ… Generated Subjects/periods_import_enriched.cypher with 950 periods
 
 ================================================================================
 Summary
@@ -123,7 +123,7 @@ Summary
 Total analyzed: 1005
 Periods: 950
 Events (filtered out): 55
-✅ Enriched file ready: Subjects/periods_import_enriched.cypher
+âœ… Enriched file ready: Subjects/periods_import_enriched.cypher
 ================================================================================
 ```
 
@@ -165,9 +165,11 @@ Events (filtered out): 55
 
 ## Schema Compliance
 
-The output follows the schema defined in `Key Files/NODE_TYPE_SCHEMAS.md`:
+The output follows the schema defined in `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md`:
 - Uses typed facet nodes (`:PoliticalFacet`, `:CulturalFacet`, etc.)
 - Uses specific relationship types (`HAS_POLITICAL_FACET`, etc.)
 - Each facet has `unique_id` and `label` properties
+- Emits temporal bounding-box fields for periods (`start_date_min/max`, `end_date_min/max`, plus `earliest_/latest_` aliases)
 - Properly structured for faceted search and filtering
+
 

@@ -48,14 +48,34 @@ CREATE INDEX agent_id_index IF NOT EXISTS FOR (a:Agent) ON (a.agent_id);
 // Event temporal boundaries
 CREATE INDEX event_start_date_index IF NOT EXISTS FOR (e:Event) ON (e.start_date);
 CREATE INDEX event_end_date_index IF NOT EXISTS FOR (e:Event) ON (e.end_date);
+CREATE INDEX event_start_date_min_index IF NOT EXISTS FOR (e:Event) ON (e.start_date_min);
+CREATE INDEX event_start_date_max_index IF NOT EXISTS FOR (e:Event) ON (e.start_date_max);
+CREATE INDEX event_end_date_min_index IF NOT EXISTS FOR (e:Event) ON (e.end_date_min);
+CREATE INDEX event_end_date_max_index IF NOT EXISTS FOR (e:Event) ON (e.end_date_max);
+CREATE INDEX event_temporal_bbox_index IF NOT EXISTS FOR (e:Event) ON (e.start_date_min, e.end_date_max);
 
 // Period temporal boundaries
 CREATE INDEX period_start_index IF NOT EXISTS FOR (p:Period) ON (p.start);
 CREATE INDEX period_end_index IF NOT EXISTS FOR (p:Period) ON (p.end);
+CREATE INDEX period_earliest_start_index IF NOT EXISTS FOR (p:Period) ON (p.earliest_start);
+CREATE INDEX period_latest_start_index IF NOT EXISTS FOR (p:Period) ON (p.latest_start);
+CREATE INDEX period_earliest_end_index IF NOT EXISTS FOR (p:Period) ON (p.earliest_end);
+CREATE INDEX period_latest_end_index IF NOT EXISTS FOR (p:Period) ON (p.latest_end);
+CREATE INDEX period_start_date_min_index IF NOT EXISTS FOR (p:Period) ON (p.start_date_min);
+CREATE INDEX period_start_date_max_index IF NOT EXISTS FOR (p:Period) ON (p.start_date_max);
+CREATE INDEX period_end_date_min_index IF NOT EXISTS FOR (p:Period) ON (p.end_date_min);
+CREATE INDEX period_end_date_max_index IF NOT EXISTS FOR (p:Period) ON (p.end_date_max);
+CREATE INDEX period_temporal_bbox_index IF NOT EXISTS FOR (p:Period) ON (p.earliest_start, p.latest_end);
+CREATE INDEX period_temporal_bbox_minmax_index IF NOT EXISTS FOR (p:Period) ON (p.start_date_min, p.end_date_max);
 
 // Human birth/death dates
 CREATE INDEX human_birth_date_index IF NOT EXISTS FOR (h:Human) ON (h.birth_date);
 CREATE INDEX human_death_date_index IF NOT EXISTS FOR (h:Human) ON (h.death_date);
+CREATE INDEX human_birth_date_min_index IF NOT EXISTS FOR (h:Human) ON (h.birth_date_min);
+CREATE INDEX human_birth_date_max_index IF NOT EXISTS FOR (h:Human) ON (h.birth_date_max);
+CREATE INDEX human_death_date_min_index IF NOT EXISTS FOR (h:Human) ON (h.death_date_min);
+CREATE INDEX human_death_date_max_index IF NOT EXISTS FOR (h:Human) ON (h.death_date_max);
+CREATE INDEX human_lifespan_bbox_index IF NOT EXISTS FOR (h:Human) ON (h.birth_date_min, h.death_date_max);
 
 // PlaceVersion temporal bounds
 CREATE INDEX place_version_start_index IF NOT EXISTS FOR (pv:PlaceVersion) ON (pv.start_date);

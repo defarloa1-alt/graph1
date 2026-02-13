@@ -28,6 +28,33 @@ TIME_PERIOD_CLASSES = {
     "Q36507": "calendar era"
 }
 
+
+def _pick(*values: str) -> str:
+    for v in values:
+        if v and str(v).strip():
+            return str(v).strip()
+    return ""
+
+
+def build_temporal_bbox(start_date: str = "", end_date: str = "") -> Dict[str, str]:
+    """Normalize point or interval dates into a 4-point temporal envelope."""
+    s_min = _pick(start_date)
+    s_max = _pick(start_date)
+    e_min = _pick(end_date)
+    e_max = _pick(end_date)
+    return {
+        "start_date": _pick(start_date, s_min, s_max),
+        "end_date": _pick(end_date, e_min, e_max),
+        "start_date_min": s_min,
+        "start_date_max": s_max,
+        "end_date_min": e_min,
+        "end_date_max": e_max,
+        "earliest_start": s_min,
+        "latest_start": s_max,
+        "earliest_end": e_min,
+        "latest_end": e_max,
+    }
+
 def query_wikidata(sparql: str, max_retries: int = 3) -> Dict:
     """Execute SPARQL query with retry logic."""
     headers = {
@@ -126,6 +153,10 @@ def retrieve_periods_for_class(class_qid: str, class_label: str) -> List[Dict]:
         lcsh_uri = b.get('lcsh', {}).get('value', '')
         lcsh_id = lcsh_uri.split('/')[-1] if lcsh_uri else ''
         
+        start_date = b.get('start', {}).get('value', '') or b.get('inception', {}).get('value', '')
+        end_date = b.get('end', {}).get('value', '') or b.get('dissolved', {}).get('value', '')
+        temporal = build_temporal_bbox(start_date=start_date, end_date=end_date)
+
         # Build period dictionary
         period = {
             'qid': qid,
@@ -134,9 +165,8 @@ def retrieve_periods_for_class(class_qid: str, class_label: str) -> List[Dict]:
             'label': b.get('itemLabel', {}).get('value', ''),
             'description': b.get('itemDescription', {}).get('value', ''),
             
-            # Temporal (use most specific available)
-            'start_date': b.get('start', {}).get('value', '') or b.get('inception', {}).get('value', ''),
-            'end_date': b.get('end', {}).get('value', '') or b.get('dissolved', {}).get('value', ''),
+            # Temporal envelope (4-point model + aliases)
+            **temporal,
             'point_in_time': b.get('pointInTime', {}).get('value', ''),
             
             # Raw temporal fields (for analysis)
@@ -174,7 +204,10 @@ def write_to_csv(all_periods: List[Dict], output_path: Path):
     """Write all periods to CSV file."""
     fieldnames = [
         'qid', 'class_qid', 'class_label', 'label', 'description',
-        'start_date', 'end_date', 'point_in_time',
+        'start_date', 'end_date',
+        'start_date_min', 'start_date_max', 'end_date_min', 'end_date_max',
+        'earliest_start', 'latest_start', 'earliest_end', 'latest_end',
+        'point_in_time',
         'raw_start', 'raw_end', 'raw_inception', 'raw_dissolved',
         'lcsh_id', 'dewey_decimal', 'lcc_code', 'fast_id',
         'part_of_qid', 'part_of_label',

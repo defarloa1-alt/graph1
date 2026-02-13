@@ -1,16 +1,16 @@
-# Quick Start: Period Enrichment with Perplexity
+﻿# Quick Start: Period Enrichment with Perplexity
 
-## ✅ Ready to Use
+## âœ… Ready to Use
 
 The script is ready! It successfully parsed **1005 periods** from your file.
 
 ## Quick Start (3 Steps)
 
-### Step 1: Test Parsing (Already Done ✅)
+### Step 1: Test Parsing (Already Done âœ…)
 ```bash
 python scripts/backbone/temporal/test_period_parsing.py
 ```
-✅ Confirmed: 1005 periods found
+âœ… Confirmed: 1005 periods found
 
 ### Step 2: Run Enrichment
 
@@ -24,7 +24,7 @@ python scripts/backbone/temporal/test_period_parsing.py
    ```bash
    python scripts/backbone/temporal/enrich_periods_with_perplexity.py
    ```
-   ⏱️ Takes ~15-30 minutes for 1005 periods
+   â±ï¸ Takes ~15-30 minutes for 1005 periods
 
 **Option B: Without API (Rule-Based, Instant)**
 ```bash
@@ -58,10 +58,10 @@ MERGE (p)-[:HAS_POLITICAL_FACET]->(f)
 
 ## Benefits
 
-1. ✅ **Proper Facet Structure** - Typed facets per schema
-2. ✅ **Event Filtering** - Removes battles/wars that aren't periods
-3. ✅ **Schema Compliance** - Matches NODE_TYPE_SCHEMAS.md
-4. ✅ **Better Queries** - Easy faceted search
+1. âœ… **Proper Facet Structure** - Typed facets per schema
+2. âœ… **Event Filtering** - Removes battles/wars that aren't periods
+3. âœ… **Schema Compliance** - Matches md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md (including temporal bbox fields)
+4. âœ… **Better Queries** - Easy faceted search
 
 ## Sample Output
 
@@ -77,16 +77,16 @@ Example output:
 [2/1005] Analyzing: Habsburg Netherlands... Facets: PoliticalFacet, CulturalFacet
 [3/1005] Analyzing: Battle of Pharsalus... Facets: MilitaryFacet [EVENT - WILL SKIP]
 ...
-✅ Generated Subjects/periods_import_enriched.cypher with 950 periods
+âœ… Generated Subjects/periods_import_enriched.cypher with 950 periods
 ```
 
 ## Files Created
 
-- ✅ `scripts/backbone/temporal/enrich_periods_with_perplexity.py` - Main script
-- ✅ `scripts/backbone/temporal/test_period_parsing.py` - Test script
-- ✅ `scripts/backbone/temporal/README_PERIOD_ENRICHMENT.md` - Full docs
-- ✅ `scripts/backbone/temporal/ADVICE_PERIOD_ENRICHMENT.md` - Detailed advice
-- ✅ `config.py.example` - Config template
+- âœ… `scripts/backbone/temporal/enrich_periods_with_perplexity.py` - Main script
+- âœ… `scripts/backbone/temporal/test_period_parsing.py` - Test script
+- âœ… `scripts/backbone/temporal/README_PERIOD_ENRICHMENT.md` - Full docs
+- âœ… `scripts/backbone/temporal/ADVICE_PERIOD_ENRICHMENT.md` - Detailed advice
+- âœ… `config.py.example` - Config template
 
 ## Next Steps
 
@@ -102,4 +102,6 @@ See `ADVICE_PERIOD_ENRICHMENT.md` for:
 - Troubleshooting
 - Manual classification options
 - Query examples
+
+
 

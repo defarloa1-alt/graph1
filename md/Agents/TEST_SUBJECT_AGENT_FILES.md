@@ -1,4 +1,4 @@
-# Test Subject Agent - Training Files
+﻿# Test Subject Agent - Training Files
 
 **Purpose:** Files to train a Roman Republic expert agent for testing Chrystallum extraction  
 **Agent Type:** Test Subject (not system documentation)  
@@ -6,7 +6,7 @@
 
 ---
 
-## 🎯 What This Agent Tests
+## ðŸŽ¯ What This Agent Tests
 
 This agent will help validate:
 1. **QID extraction accuracy** - Are Wikidata IDs captured correctly?
@@ -18,38 +18,38 @@ This agent will help validate:
 
 ---
 
-## 📋 Required Training Files
+## ðŸ“‹ Required Training Files
 
 ### 1. Core Instructions
-✅ **TEST_SUBJECT_AGENT_PROMPT.md** - The agent's role and response format
-✅ **NODE_TYPE_SCHEMAS.md** - Required properties and edges for each node type
+âœ… **TEST_SUBJECT_AGENT_PROMPT.md** - The agent's role and response format
+âœ… **md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md** - Required properties and edges for each node type
 
 ### 2. Reference Data (CRITICAL)
-✅ **Relationships/relationship_types_registry_master.csv** - ONLY these 236 relationship types allowed
-✅ **Temporal/time_periods.csv** - Period definitions with QIDs
-✅ **CSV/action_structure_vocabularies.csv** - Goal/Trigger/Action/Result codes
+âœ… **Relationships/relationship_types_registry_master.csv** - ONLY these 236 relationship types allowed
+âœ… **Temporal/time_periods.csv** - Period definitions with QIDs
+âœ… **CSV/action_structure_vocabularies.csv** - Goal/Trigger/Action/Result codes
 
 ### 3. Standards & Schemas
-✅ **arch/Cidoc/CIDOC-CRM_vs_Chrystallum_Comparison.md** - CIDOC-CRM alignment guide
-✅ **arch/Cidoc/CIDOC-CRM_Explanation.md** - E-class and P-property explanations
-✅ **Docs/Property_Extensions_Implementation_Guide.md** - How to structure properties
+âœ… **arch/Cidoc/CIDOC-CRM_vs_Chrystallum_Comparison.md** - CIDOC-CRM alignment guide
+âœ… **arch/Cidoc/CIDOC-CRM_Explanation.md** - E-class and P-property explanations
+âœ… **Docs/Property_Extensions_Implementation_Guide.md** - How to structure properties
 
 ### 4. Example Extractions
-✅ **Docs/examples/Caesar_Rubicon_Example.md** - Complete worked example
-✅ **Docs/examples/India_Cotton_Trade_Extraction.md** - Extraction pattern examples
+âœ… **Docs/examples/Caesar_Rubicon_Example.md** - Complete worked example
+âœ… **Docs/examples/India_Cotton_Trade_Extraction.md** - Extraction pattern examples
 
 ### 5. Extraction Guides
-✅ **temporal/docs/Temporal_Data_Extraction_Guide.md** - How to extract temporal data
-✅ **temporal/docs/Geographic_Data_Extraction_Guide.md** - How to extract geographic data (if exists)
+âœ… **temporal/docs/Temporal_Data_Extraction_Guide.md** - How to extract temporal data
+âœ… **temporal/docs/Geographic_Data_Extraction_Guide.md** - How to extract geographic data (if exists)
 
 ### 6. Roman Republic Context (Optional - create these)
-⚠️ **Create: Roman_Republic_Entities.csv** - Key people, places, events with QIDs
-⚠️ **Create: Roman_Republic_Timeline.csv** - Key dates and events
-⚠️ **Create: Roman_Republic_Relationships.csv** - Common relationship patterns
+âš ï¸ **Create: Roman_Republic_Entities.csv** - Key people, places, events with QIDs
+âš ï¸ **Create: Roman_Republic_Timeline.csv** - Key dates and events
+âš ï¸ **Create: Roman_Republic_Relationships.csv** - Common relationship patterns
 
 ---
 
-## 📝 Files to CREATE for Better Testing
+## ðŸ“ Files to CREATE for Better Testing
 
 ### Roman_Republic_Entities.csv
 
@@ -127,7 +127,7 @@ Gaul,Q38060,CONQUERED_BY,Julius Caesar,Q1048,-0058 to -0050,Roman province
 
 ---
 
-## 🧪 Testing Workflow
+## ðŸ§ª Testing Workflow
 
 ### 1. Create the Agent
 1. Upload `TEST_SUBJECT_AGENT_PROMPT.md` as instructions
@@ -152,12 +152,12 @@ The agent's responses should include:
 
 ### 4. Validate Against Framework
 Check if extraction system captures:
-- ✅ All QIDs correctly
-- ✅ Relationship types from canonical list
-- ✅ Dates converted to ISO 8601
-- ✅ CIDOC classes assigned
-- ✅ Geographic coordinates
-- ✅ Goal/Trigger/Action/Result patterns
+- âœ… All QIDs correctly
+- âœ… Relationship types from canonical list
+- âœ… Dates converted to ISO 8601
+- âœ… CIDOC classes assigned
+- âœ… Geographic coordinates
+- âœ… Goal/Trigger/Action/Result patterns
 
 ### 5. Measure Accuracy
 Score the extraction:
@@ -169,7 +169,7 @@ Score the extraction:
 
 ---
 
-## 📊 Success Metrics
+## ðŸ“Š Success Metrics
 
 ### Target Accuracy (After Extraction)
 
@@ -184,7 +184,7 @@ Score the extraction:
 
 ---
 
-## 🔄 Iterative Improvement
+## ðŸ”„ Iterative Improvement
 
 ### If QID accuracy is low:
 - Add more examples to agent prompt
@@ -208,7 +208,7 @@ Score the extraction:
 
 ---
 
-## 💡 Testing Strategy
+## ðŸ’¡ Testing Strategy
 
 ### Phase 1: Simple Entities (Week 1)
 Test extraction of:
@@ -226,7 +226,7 @@ Test extraction of:
 Test extraction of:
 - Multi-party events (Assassination)
 - Long-duration events (Gallic Wars)
-- Cascading events (Rubicon → Civil War → Dictatorship)
+- Cascading events (Rubicon â†’ Civil War â†’ Dictatorship)
 
 ### Phase 4: Full Narratives (Week 4)
 Test extraction of:
@@ -237,7 +237,7 @@ Test extraction of:
 
 ---
 
-## 🎯 Example Test Query
+## ðŸŽ¯ Example Test Query
 
 **Query:** "Tell me about Caesar crossing the Rubicon"
 
@@ -281,20 +281,20 @@ Test extraction of:
 ```
 
 **What to Validate:**
-- ✅ Event QID (Q161954) captured
-- ✅ Date in ISO 8601 (-0049-01-10)
-- ✅ Caesar QID (Q1048) captured
-- ✅ Location QID (Q14378) captured
-- ✅ Relationship type (CROSSED) is canonical
-- ✅ Action structure has all 4 components
+- âœ… Event QID (Q161954) captured
+- âœ… Date in ISO 8601 (-0049-01-10)
+- âœ… Caesar QID (Q1048) captured
+- âœ… Location QID (Q14378) captured
+- âœ… Relationship type (CROSSED) is canonical
+- âœ… Action structure has all 4 components
 
 ---
 
-## 📚 Minimum Files for Testing
+## ðŸ“š Minimum Files for Testing
 
 **Start with these 6 files:**
 1. TEST_SUBJECT_AGENT_PROMPT.md
-2. NODE_TYPE_SCHEMAS.md ← **NEW: Critical for proper node structure**
+2. md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md â† **NEW: Critical for proper node structure**
 3. Relationships/relationship_types_registry_master.csv
 4. Temporal/time_periods.csv
 5. Roman_Republic_Entities.csv (create from template above)
@@ -313,4 +313,5 @@ Test extraction of:
 **Domain:** Roman Republic (753 BCE - 27 BCE)  
 **Success:** High accuracy on QIDs, relationships, dates, CIDOC classes  
 **Next Step:** Query agent, extract responses, validate against framework
+
 

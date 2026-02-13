@@ -1,7 +1,7 @@
-# LCC-Based Agent Routing Architecture
+﻿# LCC-Based Agent Routing Architecture
 
 **Date:** December 13, 2025  
-**Status:** ✅ Implemented  
+**Status:** âœ… Implemented  
 **Reason:** Dewey Decimal has only 12.3% coverage for history subjects in Wikidata
 
 ---
@@ -11,8 +11,8 @@
 After importing LCC Class D (History) subjects from Wikidata:
 
 ```
-Dewey Decimal:  16/130 subjects (12.3%) ❌
-LCC Codes:      130/130 subjects (100%) ✅
+Dewey Decimal:  16/130 subjects (12.3%) âŒ
+LCC Codes:      130/130 subjects (100%) âœ…
 FAST IDs:       73/130 subjects (56.2%)
 ```
 
@@ -32,25 +32,25 @@ FAST IDs:       73/130 subjects (56.2%)
 
 **Hierarchy Example:**
 ```
-D                    ← History (World history)
-├─ DA                ← Great Britain
-├─ DB                ← Austria, Liechtenstein, Hungary, Czechoslovakia
-├─ DC                ← France, Andorra, Monaco
-├─ DD                ← Germany
-├─ DE                ← Mediterranean Region, Greco-Roman World
-├─ DF                ← Greece
-├─ DG                ← Italy, Malta
-│  ├─ DG11-DG365     ← Italy: Description and travel
-│  ├─ DG51-DG365     ← Antiquities, Social life, Civilization
-│  ├─ DG201-DG365    ← History
-│  │  ├─ DG235-DG254 ← Roman Republic (510-27 B.C.)
-│  │  │  ├─ DG247-DG249.4  ← Second Punic War
-│  │  │  └─ DG247.97       ← Battle of Zama
-│  │  ├─ DG260-DG285 ← Roman Empire (27 B.C.-476 A.D.)
-│  │  └─ DG311-DG365 ← Medieval and modern Italy (476-)
-│  └─ DG401-DG583    ← Local history and description
-├─ DH                ← Low Countries (Belgium, Luxembourg, Netherlands)
-└─ ...
+D                    â† History (World history)
+â”œâ”€ DA                â† Great Britain
+â”œâ”€ DB                â† Austria, Liechtenstein, Hungary, Czechoslovakia
+â”œâ”€ DC                â† France, Andorra, Monaco
+â”œâ”€ DD                â† Germany
+â”œâ”€ DE                â† Mediterranean Region, Greco-Roman World
+â”œâ”€ DF                â† Greece
+â”œâ”€ DG                â† Italy, Malta
+â”‚  â”œâ”€ DG11-DG365     â† Italy: Description and travel
+â”‚  â”œâ”€ DG51-DG365     â† Antiquities, Social life, Civilization
+â”‚  â”œâ”€ DG201-DG365    â† History
+â”‚  â”‚  â”œâ”€ DG235-DG254 â† Roman Republic (510-27 B.C.)
+â”‚  â”‚  â”‚  â”œâ”€ DG247-DG249.4  â† Second Punic War
+â”‚  â”‚  â”‚  â””â”€ DG247.97       â† Battle of Zama
+â”‚  â”‚  â”œâ”€ DG260-DG285 â† Roman Empire (27 B.C.-476 A.D.)
+â”‚  â”‚  â””â”€ DG311-DG365 â† Medieval and modern Italy (476-)
+â”‚  â””â”€ DG401-DG583    â† Local history and description
+â”œâ”€ DH                â† Low Countries (Belgium, Luxembourg, Netherlands)
+â””â”€ ...
 ```
 
 ---
@@ -59,22 +59,22 @@ D                    ← History (World history)
 
 ### Seed Agents (Broad Classes)
 ```
-Agent_D    → World History (all periods, all regions)
-Agent_DA   → British History
-Agent_DG   → Italian & Roman History
-Agent_DF   → Greek History
+Agent_D    â†’ World History (all periods, all regions)
+Agent_DA   â†’ British History
+Agent_DG   â†’ Italian & Roman History
+Agent_DF   â†’ Greek History
 ```
 
 ### Specialist Agents (Spawned Dynamically)
 ```
 Agent_D spawns:
-  → Agent_DG (Italian/Roman specialist)
+  â†’ Agent_DG (Italian/Roman specialist)
 
 Agent_DG spawns:
-  → Agent_DG235-254 (Roman Republic specialist)
+  â†’ Agent_DG235-254 (Roman Republic specialist)
   
 Agent_DG235-254 spawns:
-  → Agent_DG247 (Punic Wars specialist)
+  â†’ Agent_DG247 (Punic Wars specialist)
 ```
 
 ### Query Routing Logic
@@ -116,9 +116,9 @@ def route_query_to_agent(subject_lcc_code):
   "label": "Rome--History--Republic, 510-30 B.C.",
   "unique_id": "lcsh:sh85115055",
   
-  "lcc_code": "DG235-254",  // ← AGENT ROUTING KEY ⭐
-  "dewey_decimal": "937.05", // ← Optional (12% coverage)
-  "fast_id": "fst01210191"   // ← Optional (56% coverage)
+  "lcc_code": "DG235-254",  // â† AGENT ROUTING KEY â­
+  "dewey_decimal": "937.05", // â† Optional (12% coverage)
+  "fast_id": "fst01210191"   // â† Optional (56% coverage)
 }
 ```
 
@@ -130,7 +130,7 @@ def route_query_to_agent(subject_lcc_code):
 
 ```
 Total Subjects:     130
-With LCC codes:     130 (100%) ✅
+With LCC codes:     130 (100%) âœ…
 With Dewey codes:   16 (12.3%)
 With FAST codes:    73 (56.2%)
 ```
@@ -149,23 +149,23 @@ With FAST codes:    73 (56.2%)
 ## Benefits of LCC Routing
 
 ### 1. Complete Coverage
-- ✅ 100% of history subjects have LCC codes (vs. 12% for Dewey)
-- ✅ No missing classifications = no routing failures
+- âœ… 100% of history subjects have LCC codes (vs. 12% for Dewey)
+- âœ… No missing classifications = no routing failures
 
 ### 2. Hierarchical Structure
-- ✅ Clear parent-child relationships (D → DG → DG235)
-- ✅ Enables systematic agent spawning
-- ✅ Agents know their expertise boundaries
+- âœ… Clear parent-child relationships (D â†’ DG â†’ DG235)
+- âœ… Enables systematic agent spawning
+- âœ… Agents know their expertise boundaries
 
 ### 3. Geographic & Topical Organization
-- ✅ Regional focus clear from code (DG = Italy, DF = Greece)
-- ✅ Topical focus clear from numbers (DG235-254 = Republic)
-- ✅ Natural expertise domains for agents
+- âœ… Regional focus clear from code (DG = Italy, DF = Greece)
+- âœ… Topical focus clear from numbers (DG235-254 = Republic)
+- âœ… Natural expertise domains for agents
 
 ### 4. Library Standard
-- ✅ Used by Library of Congress and major research libraries
-- ✅ Stable, well-documented
-- ✅ Comprehensive authority files available
+- âœ… Used by Library of Congress and major research libraries
+- âœ… Stable, well-documented
+- âœ… Comprehensive authority files available
 
 ---
 
@@ -177,7 +177,7 @@ With FAST codes:    73 (56.2%)
 - `graph3-1/Batch/rebuild_class_d_backbone.bat` - Full pipeline
 
 ### Schemas
-- `NODE_TYPE_SCHEMAS.md` - Subject node schema with LCC routing
+- `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` - Subject node schema with LCC routing
 - `Agents/prompts/system/TEST_SUBJECT_AGENT_PROMPT.md` - Agent prompt with LCC explanation
 
 ### Documentation
@@ -211,7 +211,7 @@ Z: Bibliography, Library Science
 
 ### Priority for Chrystallum (History-Focused)
 
-1. **D** (History - World) ✅ DONE
+1. **D** (History - World) âœ… DONE
 2. **E** (American History - General)
 3. **F** (United States, Canada, Latin America)
 4. **G** (Geography, Anthropology)
@@ -227,13 +227,13 @@ Z: Bibliography, Library Science
 **Query:** "Tell me about Julius Caesar's consulship"
 
 **Routing:**
-1. Extract entities → Julius Caesar (Q1048)
-2. Query Wikidata → P244 (Library of Congress authority ID): sh85070783, P1149 (LCC): DG260.C5
-3. Find Subject node → lcsh:sh85070783, lcc_code: DG260.C5
+1. Extract entities â†’ Julius Caesar (Q1048)
+2. Query Wikidata â†’ P244 (Library of Congress authority ID): sh85070783, P1149 (LCC): DG260.C5
+3. Find Subject node â†’ lcsh:sh85070783, lcc_code: DG260.C5
 4. Route to most specific agent:
-   - Check `Agent_DG260.C5` → doesn't exist
-   - Check `Agent_DG260-285` (Roman Empire) → doesn't exist
-   - Check `Agent_DG235-254` (Roman Republic) → **EXISTS** ✅
+   - Check `Agent_DG260.C5` â†’ doesn't exist
+   - Check `Agent_DG260-285` (Roman Empire) â†’ doesn't exist
+   - Check `Agent_DG235-254` (Roman Republic) â†’ **EXISTS** âœ…
 5. Spawn `Agent_DG260-285` as child of `Agent_DG235-254`
 6. Assign query to `Agent_DG260-285`
 
@@ -243,8 +243,8 @@ Z: Bibliography, Library Science
 
 **Routing:**
 1. Identify multiple subjects:
-   - Greek democracy → LCC: DF78-DF78.8 (Ancient Greece)
-   - Roman democracy → LCC: DG235-254 (Roman Republic)
+   - Greek democracy â†’ LCC: DF78-DF78.8 (Ancient Greece)
+   - Roman democracy â†’ LCC: DG235-254 (Roman Republic)
 2. Detect cross-domain query
 3. Spawn collaboration:
    - `Agent_DF78` (Greek specialist)
@@ -258,13 +258,13 @@ Z: Bibliography, Library Science
 
 | Feature | Dewey Decimal | LCC |
 |---------|---------------|-----|
-| Coverage (History) | 12.3% ❌ | 100% ✅ |
-| Hierarchical | Yes ✅ | Yes ✅ |
-| Geographic focus | Weak | Strong ✅ |
-| In Wikidata | Sparse | Complete ✅ |
-| Agent suitability | Poor (gaps) | Excellent ✅ |
+| Coverage (History) | 12.3% âŒ | 100% âœ… |
+| Hierarchical | Yes âœ… | Yes âœ… |
+| Geographic focus | Weak | Strong âœ… |
+| In Wikidata | Sparse | Complete âœ… |
+| Agent suitability | Poor (gaps) | Excellent âœ… |
 
-**Winner:** LCC for agent routing ✅
+**Winner:** LCC for agent routing âœ…
 
 **Dewey Status:** Retained as optional property for cross-referencing
 
@@ -282,10 +282,10 @@ def parse_lcc_code(lcc_code):
     Parse LCC code into components
     
     Examples:
-      "D" → class="D", subclass=None, number=None
-      "DG" → class="D", subclass="G", number=None
-      "DG541" → class="D", subclass="G", number="541"
-      "DG235-254" → class="D", subclass="G", number="235-254"
+      "D" â†’ class="D", subclass=None, number=None
+      "DG" â†’ class="D", subclass="G", number=None
+      "DG541" â†’ class="D", subclass="G", number="541"
+      "DG235-254" â†’ class="D", subclass="G", number="235-254"
     """
     match = re.match(r'^([A-Z])([A-Z])?(\d+[\d\.-]*)?$', lcc_code)
     if match:
@@ -313,14 +313,15 @@ Examples:
 
 ## Status
 
-✅ **Architecture designed**  
-✅ **Class D subjects imported (130 subjects)**  
-✅ **Documentation complete**  
-⏳ **Agent spawning logic** (next step)  
-⏳ **Cross-domain queries** (future)  
-⏳ **Other LCC classes** (E, F, G, etc.)
+âœ… **Architecture designed**  
+âœ… **Class D subjects imported (130 subjects)**  
+âœ… **Documentation complete**  
+â³ **Agent spawning logic** (next step)  
+â³ **Cross-domain queries** (future)  
+â³ **Other LCC classes** (E, F, G, etc.)
 
 ---
 
 **Conclusion:** LCC provides complete, hierarchical classification coverage for history subjects, making it the ideal foundation for agent routing in Chrystallum. Dewey Decimal, while valuable, has insufficient coverage in Wikidata to serve this purpose.
+
 

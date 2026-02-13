@@ -1,10 +1,10 @@
-# Agent Work Archive - December 12, 2025
+﻿# Agent Work Archive - December 12, 2025
 
 ## Why Archived
 
 These documents were created during an exploration of ChatGPT agent architectures for the Chrystallum framework. They were archived because:
 
-1. **Architecture still being defined** - Multi-agent coordination (SME → Mediating → Persistence) needs more design work
+1. **Architecture still being defined** - Multi-agent coordination (SME â†’ Mediating â†’ Persistence) needs more design work
 2. **Key decisions pending** - How to handle claim conflicts, citation as nodes, confidence-based merging
 3. **Premature implementation** - Better to design the architecture carefully before building agent prompts
 
@@ -45,7 +45,7 @@ These documents were created during an exploration of ChatGPT agent architecture
 ## What's NOT Archived (Still Active)
 
 ### Core Framework Files (Kept in Root)
-- `NODE_TYPE_SCHEMAS.md` - Node type templates (Person, Event, Place, etc.)
+- `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` - Node type templates (Person, Event, Place, etc.)
   - **Why kept:** Useful regardless of agent architecture
   - Defines required properties and edges for each node type
   - Can be used by any extraction system (agents, manual, automated)
@@ -88,10 +88,10 @@ New:      (Caesar)-[:BORN_IN {confidence: 0.9}]->(Subura)
 **Proposed Flow:**
 ```
 User Query 
-  → SME Agent (JSON claims with confidence)
-  → Mediating Agent (validates, resolves conflicts)
-  → Persistence Agent (converts to Cypher, imports)
-  → Neo4j
+  â†’ SME Agent (JSON claims with confidence)
+  â†’ Mediating Agent (validates, resolves conflicts)
+  â†’ Persistence Agent (converts to Cypher, imports)
+  â†’ Neo4j
 ```
 
 **Questions:**
@@ -122,7 +122,7 @@ User Query
 **Scenarios:**
 - **Additive:** New claim extends existing (Caesar crossed Rubicon + Caesar born in Rome)
 - **Conflicting:** New claim contradicts (born in Rome vs born in Subura)
-- **Refining:** New claim adds detail (born in Rome → born in Subura district of Rome)
+- **Refining:** New claim adds detail (born in Rome â†’ born in Subura district of Rome)
 
 **Questions:**
 - How to detect each scenario?
@@ -169,7 +169,7 @@ User Query
 - Geographic entities need coordinates
 
 **To Carry Forward:**
-- Schema-driven generation (use NODE_TYPE_SCHEMAS.md)
+- Schema-driven generation (use md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md)
 - Canonical relationship types only
 - CIDOC-CRM alignment
 - Wikidata integration
@@ -180,11 +180,11 @@ User Query
 
 Come back to this archive when:
 
-1. ✅ Multi-agent architecture is designed
-2. ✅ Claim/conflict resolution strategy is defined
-3. ✅ Citation model is specified
-4. ✅ Confidence calculation is designed
-5. ✅ Agent coordination protocol is established
+1. âœ… Multi-agent architecture is designed
+2. âœ… Claim/conflict resolution strategy is defined
+3. âœ… Citation model is specified
+4. âœ… Confidence calculation is designed
+5. âœ… Agent coordination protocol is established
 
 Then extract:
 - Useful patterns from TEST_SUBJECT_AGENT_PROMPT.md
@@ -221,4 +221,5 @@ Then implement all at once.
 **Next Step:** Design multi-agent coordination and claim resolution  
 
 **Key Takeaway:** The work here identified the right questions, even if the answers aren't ready yet.
+
 

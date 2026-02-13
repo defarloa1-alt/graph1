@@ -1,4 +1,4 @@
-# Schema Enhancement Summary - January 6, 2026
+﻿# Schema Enhancement Summary - January 6, 2026
 
 ## Overview
 
@@ -8,65 +8,65 @@ Comprehensive enhancement of Chrystallum Knowledge Graph schemas based on CP rev
 
 ## Changes Implemented
 
-### 1. Node Schema Additions (NODE_TYPE_SCHEMAS.md)
+### 1. Node Schema Additions (md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md)
 
-#### ✅ Institution Node Schema
+#### âœ… Institution Node Schema
 - **Purpose:** Model complex social systems (patronage, slavery) as first-class entities
 - **Properties:** institution_type, obligations, rights, temporal validity, legal basis
 - **Use Cases:** Roman patronage system, slavery institution, foreign resident protection
 - **Key Innovation:** Elevates relationships with duration, roles, and obligations to entities
 
-#### ✅ LegalRestriction Node Schema
+#### âœ… LegalRestriction Node Schema
 - **Purpose:** Model legal rules, rights exclusions, and class-based restrictions
 - **Properties:** restriction_type, applies_to, legal_basis, penalty, temporal validity
 - **Use Cases:** Plebeian office exclusions, patron requirements, slave property rights
 - **Key Innovation:** Tracks rule creation, enforcement, and repeal as temporal events
 
-#### ✅ Claim Node Schema
+#### âœ… Claim Node Schema
 - **Purpose:** Model uncertain historical assertions with provenance and confidence
 - **Properties:** claim_type, confidence, perspective, source, evidence, alternative_claims
 - **Use Cases:** Ethnic origin hypotheses, disputed dates, conflicting casualty figures
 - **Key Innovation:** Preserves scholarly debate and multi-perspective history
 
-#### ✅ Enhanced Event Schema
+#### âœ… Enhanced Event Schema
 - **Granularity Types:** atomic (hours/days), composite (weeks/months), period_event (months/years)
-- **New Relationships:** PART_OF (event→event), OCCURRED_IN (event→period)
+- **New Relationships:** PART_OF (eventâ†’event), OCCURRED_IN (eventâ†’period)
 - **Properties:** Added granularity field, temporal extent support
-- **Key Innovation:** Enables stacked timeline visualization (Battle→Campaign→War→Period)
+- **Key Innovation:** Enables stacked timeline visualization (Battleâ†’Campaignâ†’Warâ†’Period)
 
 ---
 
 ### 2. New Architecture Documents
 
-#### ✅ TEMPORAL_EDGE_PROPERTIES.md
+#### âœ… TEMPORAL_EDGE_PROPERTIES.md
 - **Content:** Complete specification for temporal relationship properties
 - **Key Sections:**
-  - OCCURRED_ON edge (event→year with month/day/precision/confidence)
-  - PART_OF edge (event→event with role/sequence/significance)
-  - OCCURRED_IN edge (event→period with certainty/authority)
-  - WITHIN_TIMESPAN edge (year→period)
+  - OCCURRED_ON edge (eventâ†’year with month/day/precision/confidence)
+  - PART_OF edge (eventâ†’event with role/sequence/significance)
+  - OCCURRED_IN edge (eventâ†’period with certainty/authority)
+  - WITHIN_TIMESPAN edge (yearâ†’period)
 - **Query Patterns:** Find events on dates, build stacked timelines, handle conflicting dates
 - **Agent Integration:** Templates for extraction agents to create proper temporal edges
 
-#### ✅ EVENT_CONTAINMENT_GUIDE.md
+#### âœ… EVENT_CONTAINMENT_GUIDE.md
 - **Content:** Implementation guide for event granularity hierarchies
 - **Key Patterns:**
   - Single battle in campaign
-  - Multi-layer stack (4 levels: atomic→composite→period_event→period)
+  - Multi-layer stack (4 levels: atomicâ†’compositeâ†’period_eventâ†’period)
   - Multiple battles in campaign
   - Overlapping events (parallel campaigns)
 - **Query Patterns:** Get event stacks, find sub-events, build timeline visualizations
 - **UI Rendering:** Pseudo-code for stacked timeline visualization
 - **Validation Rules:** Granularity must increase, no circular containment, temporal nesting
 
-#### ✅ PERIODO_INTEGRATION_GUIDE.md
+#### âœ… PERIODO_INTEGRATION_GUIDE.md
 - **Content:** Complete guide to integrating PeriodO fuzzy temporal intervals
 - **Key Concepts:**
   - 4-part fuzzy intervals (startMin, startMax, endMin, endMax)
   - Authority tracking (Oxford Classical Dictionary, Cambridge Ancient History, etc.)
   - Multi-vocality (multiple definitions per period label)
   - Spatial coverage (geographic scope of periods)
-- **ETL Pipeline:** Python code for PeriodO→Neo4j transformation
+- **ETL Pipeline:** Python code for PeriodOâ†’Neo4j transformation
 - **Query Patterns:** Fuzzy temporal matching, period comparison, spatial coverage
 - **Temporal Logic:** Core zones vs transition zones
 
@@ -74,13 +74,13 @@ Comprehensive enhancement of Chrystallum Knowledge Graph schemas based on CP rev
 
 ### 3. Updated Documentation
 
-#### ✅ ONTOLOGY_PRINCIPLES.md (Enhanced)
+#### âœ… ONTOLOGY_PRINCIPLES.md (Enhanced)
 Added three major new sections:
 
 **Event Containment Hierarchy:**
 - 4-layer temporal stack visualization
 - PART_OF vs OCCURRED_IN distinction
-- Example: Battle of Pharsalus→Greek Campaign→Civil War→Roman Republic
+- Example: Battle of Pharsalusâ†’Greek Campaignâ†’Civil Warâ†’Roman Republic
 
 **Institution vs Simple Relationship:**
 - Decision heuristic (when to elevate relationships to entities)
@@ -98,13 +98,13 @@ Added three major new sections:
 
 ### Pattern 1: Event Granularity Hierarchy
 ```
-(atomic:Event)      →  Battle of Stalingrad
-    ↓ PART_OF
-(composite:Event)   →  Soviet Counteroffensive  
-    ↓ PART_OF
-(period_event:Event) →  Operation Barbarossa
-    ↓ OCCURRED_IN
-(period:Period)     →  World War II (PeriodO)
+(atomic:Event)      â†’  Battle of Stalingrad
+    â†“ PART_OF
+(composite:Event)   â†’  Soviet Counteroffensive  
+    â†“ PART_OF
+(period_event:Event) â†’  Operation Barbarossa
+    â†“ OCCURRED_IN
+(period:Period)     â†’  World War II (PeriodO)
 ```
 
 ### Pattern 2: Institution as Entity
@@ -117,11 +117,11 @@ Added three major new sections:
 ### Pattern 3: Multi-Perspective Claims
 ```
 (claim1:Claim {confidence: 0.4, perspective: "Livy"})
-    ↓ CLAIMS
+    â†“ CLAIMS
 (event:Event)
-    ↑ CLAIMS
+    â†‘ CLAIMS
 (claim2:Claim {confidence: 0.6, perspective: "Polybius"})
-    ↓ CONTRADICTS
+    â†“ CONTRADICTS
 (claim1)
 ```
 
@@ -140,48 +140,48 @@ Added three major new sections:
 ## Benefits Realized
 
 ### For Agents
-- ✅ Clear schemas for Institution, LegalRestriction, Claim nodes
-- ✅ Heuristics to decide when relationships become entities
-- ✅ Templates for temporal edge properties
-- ✅ Validation rules for event containment
+- âœ… Clear schemas for Institution, LegalRestriction, Claim nodes
+- âœ… Heuristics to decide when relationships become entities
+- âœ… Templates for temporal edge properties
+- âœ… Validation rules for event containment
 
 ### For Timeline UI
-- ✅ Stacked event visualization (Battle→Campaign→War→Period)
-- ✅ Precise date rendering with month/day granularity
-- ✅ Fuzzy period boundaries (PeriodO transition zones)
-- ✅ Multi-perspective timeline (different historians, different dates)
+- âœ… Stacked event visualization (Battleâ†’Campaignâ†’Warâ†’Period)
+- âœ… Precise date rendering with month/day granularity
+- âœ… Fuzzy period boundaries (PeriodO transition zones)
+- âœ… Multi-perspective timeline (different historians, different dates)
 
 ### For Queries
-- ✅ Find events in date ranges with precision filters
-- ✅ Build event hierarchies (get all battles in a war)
-- ✅ Compare period definitions across authorities
-- ✅ Track legal rule changes over time
+- âœ… Find events in date ranges with precision filters
+- âœ… Build event hierarchies (get all battles in a war)
+- âœ… Compare period definitions across authorities
+- âœ… Track legal rule changes over time
 
 ### For Historical Accuracy
-- ✅ Preserves scholarly uncertainty (confidence scores)
-- ✅ Models contested periodization (multiple PeriodO definitions)
-- ✅ Tracks provenance (who made which claim)
-- ✅ Supports conflicting sources (Livy vs Polybius)
+- âœ… Preserves scholarly uncertainty (confidence scores)
+- âœ… Models contested periodization (multiple PeriodO definitions)
+- âœ… Tracks provenance (who made which claim)
+- âœ… Supports conflicting sources (Livy vs Polybius)
 
 ---
 
 ## Alignment with CP Review
 
-### CP Review Recommendation → Implementation
+### CP Review Recommendation â†’ Implementation
 
 | Recommendation | Status | Implementation |
 |----------------|--------|----------------|
-| Event granularity (atomic/composite/period_event) | ✅ Complete | Enhanced Event schema + EVENT_CONTAINMENT_GUIDE.md |
-| PART_OF for event containment | ✅ Complete | TEMPORAL_EDGE_PROPERTIES.md |
-| OCCURRED_IN for period anchoring | ✅ Complete | TEMPORAL_EDGE_PROPERTIES.md |
-| Elevate complex relationships to entities | ✅ Complete | Institution + LegalRestriction schemas |
-| Patronage/slavery as institutions | ✅ Complete | Institution node schema with examples |
-| Legal restrictions as entities | ✅ Complete | LegalRestriction node schema |
-| Multi-perspective claims | ✅ Complete | Claim node schema |
-| Temporal edge properties (month/day) | ✅ Complete | TEMPORAL_EDGE_PROPERTIES.md |
-| PeriodO fuzzy intervals | ✅ Complete | PERIODO_INTEGRATION_GUIDE.md |
-| Authority tracking | ✅ Complete | Period schema + PeriodO guide |
-| Stacked timeline visualization | ✅ Complete | EVENT_CONTAINMENT_GUIDE.md + rendering examples |
+| Event granularity (atomic/composite/period_event) | âœ… Complete | Enhanced Event schema + EVENT_CONTAINMENT_GUIDE.md |
+| PART_OF for event containment | âœ… Complete | TEMPORAL_EDGE_PROPERTIES.md |
+| OCCURRED_IN for period anchoring | âœ… Complete | TEMPORAL_EDGE_PROPERTIES.md |
+| Elevate complex relationships to entities | âœ… Complete | Institution + LegalRestriction schemas |
+| Patronage/slavery as institutions | âœ… Complete | Institution node schema with examples |
+| Legal restrictions as entities | âœ… Complete | LegalRestriction node schema |
+| Multi-perspective claims | âœ… Complete | Claim node schema |
+| Temporal edge properties (month/day) | âœ… Complete | TEMPORAL_EDGE_PROPERTIES.md |
+| PeriodO fuzzy intervals | âœ… Complete | PERIODO_INTEGRATION_GUIDE.md |
+| Authority tracking | âœ… Complete | Period schema + PeriodO guide |
+| Stacked timeline visualization | âœ… Complete | EVENT_CONTAINMENT_GUIDE.md + rendering examples |
 
 **Alignment:** 100% of CP review recommendations implemented
 
@@ -190,7 +190,7 @@ Added three major new sections:
 ## Files Modified/Created
 
 ### Modified:
-- `NODE_TYPE_SCHEMAS.md` - Added Institution, LegalRestriction, Claim schemas; enhanced Event schema
+- `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` - Added Institution, LegalRestriction, Claim schemas; enhanced Event schema
 - `md/Architecture/ONTOLOGY_PRINCIPLES.md` - Added event containment, institution patterns, multi-perspective claims
 
 ### Created:
@@ -215,7 +215,7 @@ Added three major new sections:
 
 ### 3. Validation Tools
 - Build schema validators for new node types
-- Validate temporal nesting (atomic→composite→period_event)
+- Validate temporal nesting (atomicâ†’compositeâ†’period_event)
 - Check fuzzy interval logic (startMin < startMax < endMin < endMax)
 - Verify edge properties completeness
 
@@ -229,7 +229,7 @@ For Roman history dataset:
 - [ ] Create LegalRestriction nodes for Roman legal system
 - [ ] Model Claim nodes for disputed events (Battle of Lake Regillus dates)
 - [ ] Add event granularity to existing Event nodes
-- [ ] Create PART_OF relationships for battle→campaign containment
+- [ ] Create PART_OF relationships for battleâ†’campaign containment
 - [ ] Add OCCURRED_ON edge properties (month/day/precision/confidence)
 - [ ] Import PeriodO definitions for Roman periods
 - [ ] Link events to PeriodO periods via OCCURRED_IN
@@ -241,12 +241,12 @@ For Roman history dataset:
 ## Summary
 
 **Comprehensive architecture enhancement** addressing all CP review recommendations:
-- ✅ **3 new node types** (Institution, LegalRestriction, Claim)
-- ✅ **Enhanced Event schema** (granularity, containment)
-- ✅ **Complete edge specifications** (temporal properties)
-- ✅ **Bayesian uncertainty modeling** (prior/posterior probabilities)
-- ✅ **4 new implementation guides** (temporal edges, event containment, PeriodO, Bayesian)
-- ✅ **Updated ontology principles** (event hierarchies, institutions, claims, uncertainty)
+- âœ… **3 new node types** (Institution, LegalRestriction, Claim)
+- âœ… **Enhanced Event schema** (granularity, containment)
+- âœ… **Complete edge specifications** (temporal properties)
+- âœ… **Bayesian uncertainty modeling** (prior/posterior probabilities)
+- âœ… **4 new implementation guides** (temporal edges, event containment, PeriodO, Bayesian)
+- âœ… **Updated ontology principles** (event hierarchies, institutions, claims, uncertainty)
 
 **Result:** Chrystallum now supports:
 - Stacked timeline visualization
@@ -304,30 +304,30 @@ Based on further CP review recommendations, **Bayesian probabilistic reasoning**
 - Best practices
 
 **Updated:**
-- `NODE_TYPE_SCHEMAS.md` - Claim schema with Bayesian fields
+- `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` - Claim schema with Bayesian fields
 - `TEMPORAL_EDGE_PROPERTIES.md` - Bayesian temporal uncertainty
 - `ONTOLOGY_PRINCIPLES.md` - Bayesian uncertainty section
 
 ### Key Benefits
 
 **For Historical Rigor:**
-- ✅ **Quantified uncertainty** - Not binary true/false
-- ✅ **Transparent provenance** - Who made which claim
-- ✅ **Evidence-based updates** - Beliefs change as evidence emerges
-- ✅ **Multi-perspective preservation** - Competing claims coexist
-- ✅ **Epistemic humility** - Acknowledges uncertainty
+- âœ… **Quantified uncertainty** - Not binary true/false
+- âœ… **Transparent provenance** - Who made which claim
+- âœ… **Evidence-based updates** - Beliefs change as evidence emerges
+- âœ… **Multi-perspective preservation** - Competing claims coexist
+- âœ… **Epistemic humility** - Acknowledges uncertainty
 
 **For Users:**
-- ✅ **Confidence bars** - Visual uncertainty representation
-- ✅ **Competing interpretations** - Side-by-side claim comparison
-- ✅ **Belief evolution** - Timeline showing how beliefs changed
-- ✅ **Evidence transparency** - See what supports each claim
+- âœ… **Confidence bars** - Visual uncertainty representation
+- âœ… **Competing interpretations** - Side-by-side claim comparison
+- âœ… **Belief evolution** - Timeline showing how beliefs changed
+- âœ… **Evidence transparency** - See what supports each claim
 
 **For Scholars:**
-- ✅ **Rigorous methodology** - Principled uncertainty quantification
-- ✅ **Debate preservation** - Competing hypotheses maintained
-- ✅ **Update tracking** - History of belief changes
-- ✅ **Normalization** - Competing claims sum to 1.0
+- âœ… **Rigorous methodology** - Principled uncertainty quantification
+- âœ… **Debate preservation** - Competing hypotheses maintained
+- âœ… **Update tracking** - History of belief changes
+- âœ… **Normalization** - Competing claims sum to 1.0
 
 ### Implementation Locations
 
@@ -351,11 +351,12 @@ Probabilities normalized to sum to 1.0, showing relative confidence in each inte
 ### Status
 
 **Complete:** Bayesian uncertainty modeling fully integrated into:
-- ✅ Node schemas (Claim with prior/posterior)
-- ✅ Edge specifications (temporal, role, causal)
-- ✅ Implementation guide (BAYESIAN_UNCERTAINTY_MODELING.md)
-- ✅ Query patterns (find contested events, track updates)
-- ✅ UI rendering (confidence bars, competing claims)
-- ✅ Update workflow (Python Bayesian inference)
+- âœ… Node schemas (Claim with prior/posterior)
+- âœ… Edge specifications (temporal, role, causal)
+- âœ… Implementation guide (BAYESIAN_UNCERTAINTY_MODELING.md)
+- âœ… Query patterns (find contested events, track updates)
+- âœ… UI rendering (confidence bars, competing claims)
+- âœ… Update workflow (Python Bayesian inference)
 
 **Ready for:** Agent implementation with uncertainty quantification and belief updating.
+
