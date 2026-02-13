@@ -92,7 +92,7 @@ Tracks **how we know** and **why we believe** historical claims:
 | MARRIAGE_ALLIANCE_WITH | Event Node | E7_Activity | (political marriage as alliance event) | — |
 | NEGOTIATED_WITH | Event Node | E7_Activity | negotiators, topics, date, location, outcome | — |
 | NEGOTIATED_AGAINST | Event Node | E7_Activity | opposing_negotiators, context | — |
-| COLLAPSED | Event Node | E64_End_of_Existence | polity, date, causes, successor_states | P576 (dissolved date) |
+| COLLAPSED | Event Node | E64_End_of_Existence | polity, date, causes, successor_states | P576 (dissolved, abolished or demolished date) |
 | CAUSED_COLLAPSE_OF | Event Node | E64_End_of_Existence | (inverse: collapsed) | — |
 | CONTROLLED | Event Node | E7_Activity | controller, territory, start_date, end_date, type | P17 (country) |
 | CONTROLLED_BY | Event Node | E7_Activity | (inverse: controlled) | — |
@@ -195,8 +195,8 @@ Tracks **how we know** and **why we believe** historical claims:
 | FLED_FROM | Event Node | E9_Move | fleeing_person, origin, date, cause | — |
 | LIVED_IN | State Node | E7_Activity | resident, location, start_date, end_date, status | — |
 | RESIDENCE_OF | State Node | E7_Activity | (inverse: lived_in) | — |
-| LOCATED_IN | Property | P53 (has location) | — | — |
-| LOCATION_OF | Property | P53i (is location of) | — | — |
+| LOCATED_IN | Property | P53_has_former_or_current_location | — | — |
+| LOCATION_OF | Property | P53i_is_former_or_current_location_of | — | — |
 | CAMPAIGN_IN | Event Node | E7_Activity | campaign, location, date, participant | — |
 | RENAMED | Event Node | E15_Identifier_Assignment | entity, old_name, new_name, date, authority | P1448 (official name) |
 | RENAMED_TO | Event Node | E15_Identifier_Assignment | (inverse: renamed) | — |

@@ -29,7 +29,7 @@ High leverage for Ancient History and Geography.
 | Pleiades | `P1584` | Classics | Definitive gazetteer for ancient places |
 | Trismegistos | `P1958` | Classics | Master IDs for ancient texts/places |
 | DARE | `P1936` | Geography | Digital Atlas of the Roman Empire coordinates |
-| PeriodO | `P1927` | Time | Standardized historical period definitions |
+| PeriodO | `P9350` | Time | Standardized historical period definitions |
 | Nomisma | `P1928` | Numismatics | Coin and monetary history alignment |
 | Perseus | `P4046` | Texts | Primary source text linking |
 
@@ -40,7 +40,7 @@ Broad modern authority coverage.
 | System | Property | Scope | Why It Matters |
 |---|---|---|---|
 | VIAF | `P214` | Global | Crosswalk across major national library authorities |
-| WorldCat | `P7859` | Bibliographic | Bibliographic discovery and holdings |
+| WorldCat Entities | `P10832` | Bibliographic | Global bibliographic entity identity linking |
 | GND | `P227` | German | Key for classical scholarship and authority control |
 | ISNI | `P213` | Global | ISO-standard identity link |
 
@@ -77,11 +77,11 @@ SELECT ?lcsh ?fast ?lcc ?dewey ?viaf ?gnd ?isni ?worldcat ?tgn ?pleiades ?trisme
   OPTIONAL { ?item wdt:P214 ?viaf . }          # VIAF
   OPTIONAL { ?item wdt:P227 ?gnd . }           # GND
   OPTIONAL { ?item wdt:P213 ?isni . }          # ISNI
-  OPTIONAL { ?item wdt:P7859 ?worldcat . }     # WorldCat
+  OPTIONAL { ?item wdt:P10832 ?worldcat . }    # WorldCat Entities
   OPTIONAL { ?item wdt:P1667 ?tgn . }          # Getty TGN
   OPTIONAL { ?item wdt:P1584 ?pleiades . }     # Pleiades
   OPTIONAL { ?item wdt:P1958 ?trismegistos . } # Trismegistos
-  OPTIONAL { ?item wdt:P1927 ?periodo . }      # PeriodO
+  OPTIONAL { ?item wdt:P9350 ?periodo . }      # PeriodO
   OPTIONAL { ?item wdt:P1928 ?nomisma . }      # Nomisma
   OPTIONAL { ?item wdt:P4046 ?perseus . }      # Perseus
 }

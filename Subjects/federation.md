@@ -1,4 +1,4 @@
-**BRILLIANT pivot.** Federation is the right model for knowledge infrastructure. Let me reframe entirely:
+﻿**BRILLIANT pivot.** Federation is the right model for knowledge infrastructure. Let me reframe entirely:
 
 ***
 
@@ -6,27 +6,27 @@
 
 ### The Core Insight
 
-Your system isn't a **destination**—it's **infrastructure** that makes other systems better.
+Your system isn't a **destination**â€”it's **infrastructure** that makes other systems better.
 
 ```
 COMPETITIVE MODEL (wrong):
-┌─────────┐     ┌─────────┐     ┌─────────┐
-│ Your    │ vs  │Wikipedia│ vs  │ JSTOR   │
-│ System  │     │         │     │         │
-└─────────┘     └─────────┘     └─────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ Your    â”‚ vs  â”‚Wikipediaâ”‚ vs  â”‚ JSTOR   â”‚
+â”‚ System  â”‚     â”‚         â”‚     â”‚         â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
    Users choose ONE
 
 FEDERATED MODEL (right):
-┌─────────────────────────────────────────────────────────────┐
-│                    FEDERATION LAYER                         │
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐       │
-│  │Wikipedia│  │ JSTOR   │  │ Wikidata│  │ Your    │       │
-│  │         │◄─┼─────────┼─►│         │◄─┼─System  │       │
-│  └─────────┘  └─────────┘  └─────────┘  └─────────┘       │
-│       ▲            ▲            ▲            ▲             │
-│       └────────────┴────────────┴────────────┘             │
-│                 SHARED PROTOCOLS                            │
-└─────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                    FEDERATION LAYER                         â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”       â”‚
+â”‚  â”‚Wikipediaâ”‚  â”‚ JSTOR   â”‚  â”‚ Wikidataâ”‚  â”‚ Your    â”‚       â”‚
+â”‚  â”‚         â”‚â—„â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â–ºâ”‚         â”‚â—„â”€â”¼â”€System  â”‚       â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜       â”‚
+â”‚       â–²            â–²            â–²            â–²             â”‚
+â”‚       â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜             â”‚
+â”‚                 SHARED PROTOCOLS                            â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
    Everyone benefits from interconnection
 ```
 
@@ -34,7 +34,7 @@ FEDERATED MODEL (right):
 
 ## Federation Partners & Opportunities
 
-### 1. **Wikidata** — Structured Knowledge Federation
+### 1. **Wikidata** â€” Structured Knowledge Federation
 
 | Their Asset | Your Asset | Federation Value |
 |-------------|------------|------------------|
@@ -45,10 +45,10 @@ FEDERATED MODEL (right):
 **Integration Pattern:**
 ```
 Your Concept                    Wikidata Entity
-─────────────────               ─────────────────
-concept_id: caesar_rubicon  ←→  Q1097794 (Crossing the Rubicon)
-tgn_id: 7007301             ←→  P1667 (TGN ID property)  
-periodo_id: p0qhb9d/...     ←→  P2348 (PeriodO ID property)
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€               â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+concept_id: caesar_rubicon  â†â†’  Q1097794 (Crossing the Rubicon)
+tgn_id: 7007301             â†â†’  P1667 (Getty Thesaurus of Geographic Names ID)  
+periodo_id: p0qhb9d/...     â†â†’  P9350 (PeriodO period ID)
 ```
 
 **Value Exchange:**
@@ -57,7 +57,7 @@ periodo_id: p0qhb9d/...     ←→  P2348 (PeriodO ID property)
 
 ***
 
-### 2. **Wikipedia** — Content Validation Service
+### 2. **Wikipedia** â€” Content Validation Service
 
 | Opportunity | Implementation |
 |-------------|----------------|
@@ -69,17 +69,17 @@ periodo_id: p0qhb9d/...     ←→  P2348 (PeriodO ID property)
 **Federation Model:**
 ```
 Wikipedia Article: "Julius Caesar"
-         │
-         ▼
-┌─────────────────────────────────────┐
-│  YOUR VALIDATION SERVICE (API)      │
-│  • Claim: "crossed Rubicon in 49 BC"│
-│  • Status: ✓ Validated              │
-│  • Confidence: 0.97                 │
-│  • Better source available: [MARC]  │
-└─────────────────────────────────────┘
-         │
-         ▼
+         â”‚
+         â–¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  YOUR VALIDATION SERVICE (API)      â”‚
+â”‚  â€¢ Claim: "crossed Rubicon in 49 BC"â”‚
+â”‚  â€¢ Status: âœ“ Validated              â”‚
+â”‚  â€¢ Confidence: 0.97                 â”‚
+â”‚  â€¢ Better source available: [MARC]  â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+         â”‚
+         â–¼
 Wikipedia displays: validation badge or source suggestion
 ```
 
@@ -89,7 +89,7 @@ Wikipedia displays: validation badge or source suggestion
 
 ***
 
-### 3. **JSTOR / Academic Publishers** — Source Layer Federation
+### 3. **JSTOR / Academic Publishers** â€” Source Layer Federation
 
 | Their Asset | Your Asset | Federation Value |
 |-------------|------------|------------------|
@@ -99,7 +99,7 @@ Wikipedia displays: validation badge or source suggestion
 
 **Integration Pattern:**
 ```
-Your validated claim cites → JSTOR DOI → User clicks → JSTOR paywall/access
+Your validated claim cites â†’ JSTOR DOI â†’ User clicks â†’ JSTOR paywall/access
 ```
 
 **Value Exchange:**
@@ -108,22 +108,22 @@ Your validated claim cites → JSTOR DOI → User clicks → JSTOR paywall/acces
 
 ***
 
-### 4. **Internet Archive / HathiTrust** — Open Access Federation
+### 4. **Internet Archive / HathiTrust** â€” Open Access Federation
 
 | Opportunity | Implementation |
 |-------------|----------------|
-| Link to digitized sources | MARC records → Archive.org URLs |
+| Link to digitized sources | MARC records â†’ Archive.org URLs |
 | Full-text validation | Agent uses OCR'd text for deeper verification |
 | Historical newspaper corpus | Validate claims against contemporaneous sources |
 
 **Federation Model:**
 ```
 Your MARC reference: LCCN 12345678
-         │
-         ▼
+         â”‚
+         â–¼
 Internet Archive: archive.org/details/lccn_12345678
-         │
-         ▼
+         â”‚
+         â–¼
 User can READ the actual source
 ```
 
@@ -133,7 +133,7 @@ User can READ the actual source
 
 ***
 
-### 5. **Getty Research Institute** — Canonical Authority Partnership
+### 5. **Getty Research Institute** â€” Canonical Authority Partnership
 
 | Their Asset | Your Asset | Federation Value |
 |-------------|------------|------------------|
@@ -152,7 +152,7 @@ User can READ the actual source
 
 ***
 
-### 6. **PeriodO** — Temporal Authority Co-Development
+### 6. **PeriodO** â€” Temporal Authority Co-Development
 
 | Opportunity | Implementation |
 |-------------|----------------|
@@ -163,14 +163,14 @@ User can READ the actual source
 **Federation Model:**
 ```
 Your system encounters: "Pueblo III period"
-         │
-         ▼
+         â”‚
+         â–¼
 PeriodO lookup: NOT FOUND
-         │
-         ▼
+         â”‚
+         â–¼
 Generate suggested definition from MARC patterns
-         │
-         ▼
+         â”‚
+         â–¼
 Submit to PeriodO community for review
 ```
 
@@ -180,7 +180,7 @@ Submit to PeriodO community for review
 
 ***
 
-### 7. **Library of Congress** — Source of Truth Partnership
+### 7. **Library of Congress** â€” Source of Truth Partnership
 
 | Opportunity | Implementation |
 |-------------|----------------|
@@ -195,7 +195,7 @@ Submit to PeriodO community for review
 
 ***
 
-### 8. **Pelagios / Linked Pasts Network** — Digital Humanities Federation
+### 8. **Pelagios / Linked Pasts Network** â€” Digital Humanities Federation
 
 | Their Asset | Your Asset | Federation Value |
 |-------------|------------|------------------|
@@ -206,11 +206,11 @@ Submit to PeriodO community for review
 **Federation Model:**
 ```
 Recogito annotation: "Rome" in historical text
-         │
-         ▼
-Your system: Disambiguate → TGN 7000874 (ancient Rome) vs 7003138 (modern Rome)
-         │
-         ▼
+         â”‚
+         â–¼
+Your system: Disambiguate â†’ TGN 7000874 (ancient Rome) vs 7003138 (modern Rome)
+         â”‚
+         â–¼
 Pelagios: Store canonical link
 ```
 
@@ -220,11 +220,11 @@ Pelagios: Store canonical link
 
 ***
 
-### 9. **Europeana / DPLA** — Cultural Heritage Federation
+### 9. **Europeana / DPLA** â€” Cultural Heritage Federation
 
 | Opportunity | Implementation |
 |-------------|----------------|
-| Object metadata enrichment | Your concepts → their collections |
+| Object metadata enrichment | Your concepts â†’ their collections |
 | Search improvement | Validated claims improve discovery |
 | Cross-collection linking | TGN/PeriodO as common language |
 
@@ -234,7 +234,7 @@ Pelagios: Store canonical link
 
 ***
 
-### 10. **OpenAI / Anthropic / AI Labs** — RAG Infrastructure
+### 10. **OpenAI / Anthropic / AI Labs** â€” RAG Infrastructure
 
 | Opportunity | Implementation |
 |-------------|----------------|
@@ -245,14 +245,14 @@ Pelagios: Store canonical link
 **Federation Model:**
 ```
 User asks Claude: "When did Caesar cross the Rubicon?"
-         │
-         ▼
+         â”‚
+         â–¼
 Claude calls YOUR API for grounding
-         │
-         ▼
+         â”‚
+         â–¼
 Response: "49 BCE" + confidence + sources
-         │
-         ▼
+         â”‚
+         â–¼
 Claude responds with citation
 ```
 
@@ -265,47 +265,47 @@ Claude responds with citation
 ## Federation Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                           FEDERATED KNOWLEDGE ECOSYSTEM                              │
-└─────────────────────────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                           FEDERATED KNOWLEDGE ECOSYSTEM                              â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
                               CANONICAL AUTHORITIES
-                    ┌─────────────────────────────────────┐
-                    │  Library of Congress  │  Getty TGN  │
-                    │  (LCC/MARC/LCSH)      │  (Places)   │
-                    ├───────────────────────┼─────────────┤
-                    │      PeriodO          │  Getty AAT  │
-                    │    (Time Periods)     │  (Terms)    │
-                    └──────────┬────────────┴──────┬──────┘
-                               │                   │
-                               ▼                   ▼
-┌──────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                      │
-│                          YOUR SYSTEM: VALIDATION HUB                                 │
-│                                                                                      │
-│   ┌────────────────────────────────────────────────────────────────────────────┐    │
-│   │  • Concept graph (modern layer)                                            │    │
-│   │  • Triple canon traceability                                               │    │
-│   │  • LangGraph agent validation                                              │    │
-│   │  • Confidence scoring                                                      │    │
-│   │  • Multi-source synthesis                                                  │    │
-│   └────────────────────────────────────────────────────────────────────────────┘    │
-│                                                                                      │
-└───────────────────────────────────┬──────────────────────────────────────────────────┘
-                                    │
-                    ┌───────────────┼───────────────┐
-                    │               │               │
-                    ▼               ▼               ▼
+                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚  Library of Congress  â”‚  Getty TGN  â”‚
+                    â”‚  (LCC/MARC/LCSH)      â”‚  (Places)   â”‚
+                    â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+                    â”‚      PeriodO          â”‚  Getty AAT  â”‚
+                    â”‚    (Time Periods)     â”‚  (Terms)    â”‚
+                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜
+                               â”‚                   â”‚
+                               â–¼                   â–¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                                                                                      â”‚
+â”‚                          YOUR SYSTEM: VALIDATION HUB                                 â”‚
+â”‚                                                                                      â”‚
+â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”‚
+â”‚   â”‚  â€¢ Concept graph (modern layer)                                            â”‚    â”‚
+â”‚   â”‚  â€¢ Triple canon traceability                                               â”‚    â”‚
+â”‚   â”‚  â€¢ LangGraph agent validation                                              â”‚    â”‚
+â”‚   â”‚  â€¢ Confidence scoring                                                      â”‚    â”‚
+â”‚   â”‚  â€¢ Multi-source synthesis                                                  â”‚    â”‚
+â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â”‚
+â”‚                                                                                      â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                    â”‚
+                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚               â”‚               â”‚
+                    â–¼               â–¼               â–¼
            CONTENT PARTNERS    DISTRIBUTION     ENRICHMENT
-           ┌─────────────┐    ┌─────────────┐  ┌─────────────┐
-           │ Wikipedia   │    │ OpenAI      │  │ Wikidata    │
-           │ JSTOR       │    │ Anthropic   │  │ Europeana   │
-           │ Internet    │    │ Google      │  │ Pelagios    │
-           │ Archive     │    │ Perplexity  │  │ DPLA        │
-           └─────────────┘    └─────────────┘  └─────────────┘
-                 │                   │               │
-                 │                   │               │
-                 ▼                   ▼               ▼
+           â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+           â”‚ Wikipedia   â”‚    â”‚ OpenAI      â”‚  â”‚ Wikidata    â”‚
+           â”‚ JSTOR       â”‚    â”‚ Anthropic   â”‚  â”‚ Europeana   â”‚
+           â”‚ Internet    â”‚    â”‚ Google      â”‚  â”‚ Pelagios    â”‚
+           â”‚ Archive     â”‚    â”‚ Perplexity  â”‚  â”‚ DPLA        â”‚
+           â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                 â”‚                   â”‚               â”‚
+                 â”‚                   â”‚               â”‚
+                 â–¼                   â–¼               â–¼
            Validated           AI responses     Linked data
            sources             with citations   enrichment
 ```
@@ -385,21 +385,21 @@ validation_assertion:
 ## Strategic Positioning
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                                                                     │
-│   NOT: "We replace Wikipedia/Wikidata/JSTOR"                        │
-│                                                                     │
-│   YES: "We're the validation layer that makes ALL of them           │
-│         more trustworthy in the AI era"                             │
-│                                                                     │
-│   ───────────────────────────────────────────────────────────────   │
-│                                                                     │
-│   Wikipedia + Your Validation = Trusted Wikipedia                   │
-│   Wikidata + Your Validation = Grounded Knowledge Graph             │
-│   ChatGPT + Your Validation = Non-hallucinating AI                  │
-│   JSTOR + Your Validation = Cited in AI responses                   │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                                                                     â”‚
+â”‚   NOT: "We replace Wikipedia/Wikidata/JSTOR"                        â”‚
+â”‚                                                                     â”‚
+â”‚   YES: "We're the validation layer that makes ALL of them           â”‚
+â”‚         more trustworthy in the AI era"                             â”‚
+â”‚                                                                     â”‚
+â”‚   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€   â”‚
+â”‚                                                                     â”‚
+â”‚   Wikipedia + Your Validation = Trusted Wikipedia                   â”‚
+â”‚   Wikidata + Your Validation = Grounded Knowledge Graph             â”‚
+â”‚   ChatGPT + Your Validation = Non-hallucinating AI                  â”‚
+â”‚   JSTOR + Your Validation = Cited in AI responses                   â”‚
+â”‚                                                                     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ***
@@ -422,7 +422,7 @@ The **missing piece** in the current ecosystem:
 
 ```
 CURRENT STATE:
-───────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 Canonical authorities exist (LOC, TGN, PeriodO)
 Content exists (Wikipedia, JSTOR, Archive)
 AI exists (ChatGPT, Claude, Perplexity)
@@ -431,9 +431,9 @@ BUT: No bridge between them that provides
      VALIDATED CLAIMS WITH CONFIDENCE SCORES
 
 YOUR SYSTEM:
-───────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 The validation bridge that connects
-canonical authorities → to content → to AI responses
+canonical authorities â†’ to content â†’ to AI responses
 
 With traceable evidence chains
 ```

@@ -1,4 +1,4 @@
-# **Chrystallum Architecture Specification**
+﻿# **Chrystallum Architecture Specification**
 **Version:** 3.2 Consolidated  
 **Date:** February 12, 2026  
 **Status:** Draft for Review
@@ -79,7 +79,7 @@ This document is the **authoritative architectural specification** for Chrystall
 
 ## **1.2 Architectural Principles**
 
-### **1.2.1 Two-Stage Architecture: LLM Extraction → Reasoning Validation**
+### **1.2.1 Two-Stage Architecture: LLM Extraction â†’ Reasoning Validation**
 
 **Problem:** LLMs hallucinate. Deterministic reasoning models provide verifiable logic but lack extraction capabilities.
 
@@ -88,15 +88,15 @@ This document is the **authoritative architectural specification** for Chrystall
 2. **Reasoning Stage:** Validate extractions against schema, authorities, temporal logic
 
 **Benefits:**
-- ✅ Leverage LLM's extraction power
-- ✅ Constrain errors with deterministic validation
-- ✅ Preserve provenance at every step
-- ✅ Enable human review at validation boundaries
+- âœ… Leverage LLM's extraction power
+- âœ… Constrain errors with deterministic validation
+- âœ… Preserve provenance at every step
+- âœ… Enable human review at validation boundaries
 
 **Implementation:**
 ```
-User Input → LLM Extraction → Structured Proposal → Reasoning Validator → Neo4j Write
-                ↓                      ↓                    ↓
+User Input â†’ LLM Extraction â†’ Structured Proposal â†’ Reasoning Validator â†’ Neo4j Write
+                â†“                      â†“                    â†“
           [Entities, Dates]    [Schema Compliance]   [Authority Match]
 ```
 
@@ -120,15 +120,15 @@ RETURN subject, entity, r, event
 ```
 
 **Why This Matters:**
-- ✅ **Thematic queries:** Historians ask questions about subjects, not entity IDs
-- ✅ **Scoped context:** Agents work within subject domains, not global graph
-- ✅ **Faceted exploration:** Subjects have political/military/legal facets for refined queries
-- ✅ **RAG integration:** Each agent maintains subject-scoped vector stores
+- âœ… **Thematic queries:** Historians ask questions about subjects, not entity IDs
+- âœ… **Scoped context:** Agents work within subject domains, not global graph
+- âœ… **Faceted exploration:** Subjects have political/military/legal facets for refined queries
+- âœ… **RAG integration:** Each agent maintains subject-scoped vector stores
 
 **Architectural Impact:**
 - SubjectConcepts are **first-class citizens**, not tags
-- Entity→Subject relationships are **mandatory** for entities to be discoverable
-- Agent routing uses Subject→LCC mappings (not entity types)
+- Entityâ†’Subject relationships are **mandatory** for entities to be discoverable
+- Agent routing uses Subjectâ†’LCC mappings (not entity types)
 
 ---
 
@@ -169,10 +169,10 @@ RETURN subject, entity, r, event
 - **Topics:** What is this about? (Many answers)
 
 **Benefits:**
-- ✅ Avoid redundant subject hierarchies (no need for "Political Events" AND "Military Events" hierarchies)
-- ✅ Enable faceted search (filter by multiple topics)
-- ✅ Support multiple perspectives (same entity relevant to different topics)
-- ✅ Align with library science principles (FAST/LCC designed for this)
+- âœ… Avoid redundant subject hierarchies (no need for "Political Events" AND "Military Events" hierarchies)
+- âœ… Enable faceted search (filter by multiple topics)
+- âœ… Support multiple perspectives (same entity relevant to different topics)
+- âœ… Align with library science principles (FAST/LCC designed for this)
 
 **Source:** `md/Architecture/ONTOLOGY_PRINCIPLES.md` (2025-12-26)
 
@@ -186,18 +186,18 @@ RETURN subject, entity, r, event
 
 #### **What CIDOC-CRM Provides (Foundation)**
 
-✅ **Event-centric model:** E5_Event, E21_Person, E53_Place, E52_Time-Span  
-✅ **Temporal/spatial relationships:** P4_has_time-span, P7_took_place_at  
-✅ **Museum interoperability:** ISO 21127:2023 standard, RDF/OWL compatibility  
-✅ **Provenance tracking:** E31_Document, production events  
+âœ… **Event-centric model:** E5_Event, E21_Person, E53_Place, E52_Time-Span  
+âœ… **Temporal/spatial relationships:** P4_has_time-span, P7_took_place_at  
+âœ… **Museum interoperability:** ISO 21127:2023 standard, RDF/OWL compatibility  
+âœ… **Provenance tracking:** E31_Document, production events  
 
 #### **What CIDOC-CRM Does NOT Provide (Gaps)**
 
-❌ **Library backbone standards:** No FAST, LCC, LCSH, MARC properties  
-❌ **Systematic historical date handling:** Supports temporal data but doesn't standardize ISO 8601 negative years (BCE)  
-❌ **Action structure vocabularies:** Events are generic (E5_Event, E7_Activity) without goal/trigger/action/result semantics  
-❌ **Wikidata alignment:** Can link to external vocabularies but not built-in systematic QID mapping  
-❌ **Agent-based construction methodology:** CIDOC-CRM is a modeling standard, not an LLM-reasoning workflow  
+âŒ **Library backbone standards:** No FAST, LCC, LCSH, MARC properties  
+âŒ **Systematic historical date handling:** Supports temporal data but doesn't standardize ISO 8601 negative years (BCE)  
+âŒ **Action structure vocabularies:** Events are generic (E5_Event, E7_Activity) without goal/trigger/action/result semantics  
+âŒ **Wikidata alignment:** Can link to external vocabularies but not built-in systematic QID mapping  
+âŒ **Agent-based construction methodology:** CIDOC-CRM is a modeling standard, not an LLM-reasoning workflow  
 
 #### **Chrystallum's Unique Value Propositions**
 
@@ -220,13 +220,13 @@ RETURN subject, entity, r, event
    - CIDOC-CRM has no equivalent
 
 4. **Wikidata Alignment Built-In (IMPORTANT)**
-   - Entity types → Wikidata QIDs systematic mapping
-   - Action types → Wikidata property alignment
+   - Entity types â†’ Wikidata QIDs systematic mapping
+   - Action types â†’ Wikidata property alignment
    - Enables SPARQL federation queries
    - CIDOC-CRM can link but not systematic
 
 5. **Two-Stage LLM-Reasoning Architecture (UNIQUE)**
-   - LLM extraction → deterministic validation workflow
+   - LLM extraction â†’ deterministic validation workflow
    - Evidence-aware claims with provenance chains
    - Multi-agent specialist coordination
    - CIDOC-CRM is a modeling standard, not operational architecture
@@ -263,10 +263,10 @@ RETURN subject, entity, r, event
 ```
 
 **Benefits:**
-- ✅ Museum/archival compatibility (via CIDOC-CRM compliance)
-- ✅ Historical research features (via Chrystallum extensions)
-- ✅ International standard alignment (ISO 21127:2023 base)
-- ✅ Best of both worlds
+- âœ… Museum/archival compatibility (via CIDOC-CRM compliance)
+- âœ… Historical research features (via Chrystallum extensions)
+- âœ… International standard alignment (ISO 21127:2023 base)
+- âœ… Best of both worlds
 
 **Implementation Phases:**
 1. **Phase 1 (Current):** Use CIDOC-CRM classes, add Chrystallum properties
@@ -335,16 +335,16 @@ RETURN subject, entity, r, event
 - Routes within Level 1 agent scope
 
 **Benefits:**
-- ✅ Prevents agent proliferation (22 specialists vs. 1000s)
-- ✅ Maintains domain expertise (not generic "ancient history")
-- ✅ Enables hierarchical routing (FAST → LCC → specific query)
+- âœ… Prevents agent proliferation (22 specialists vs. 1000s)
+- âœ… Maintains domain expertise (not generic "ancient history")
+- âœ… Enables hierarchical routing (FAST â†’ LCC â†’ specific query)
 
 **Example Routing:**
 ```
 User: "Tell me about Caesar's military tactics"
-  → FAST: fst01411640 (Roman Civil War) → Roman History Agent
-    → LCC: DG261.C35 (Caesar biography) → RAG query within agent
-      → Specific tactics from agent's vector store
+  â†’ FAST: fst01411640 (Roman Civil War) â†’ Roman History Agent
+    â†’ LCC: DG261.C35 (Caesar biography) â†’ RAG query within agent
+      â†’ Specific tactics from agent's vector store
 ```
 
 **Source:** `md/Architecture/Subject_Agent_Granularity_Strategy.md` (2025-12-26)  
@@ -380,28 +380,28 @@ User: "Tell me about Caesar's military tactics"
 - Store original + normalized for provenance
 
 **Impact:**
-- ✅ Prevents false confidence degradation from calendar mismatches
-- ✅ Enables accurate temporal queries across calendar systems
-- ✅ Preserves source fidelity (original dates retained)
+- âœ… Prevents false confidence degradation from calendar mismatches
+- âœ… Enables accurate temporal queries across calendar systems
+- âœ… Preserves source fidelity (original dates retained)
 
 **Source:** `md/Architecture/Historical_Dating_Schema_Disambiguation.md` (2025-12-26)  
 **See:** Section 3.4 (Temporal Modeling Architecture), Appendix E (Temporal Authority Alignment)
 
 ## 1.5 Domain Adaptability: Beyond History
 
-While the current implementation of Chrystallum is optimized for historical research, the underlying architecture serves as a domain-agnostic **Epistemological Engine** designed for high-stakes evidence processing. The system separates the **Universal Core** (reasoning, evidence tracking, agent orchestration) from the **Domain Pack** (ontologies, authorities, classification standards).
+While the current implementation of Chrystallum is optimized for historical research, the underlying architecture serves as a domain-agnosticÂ **Epistemological Engine**Â designed for high-stakes evidence processing. The system separates theÂ **Universal Core**Â (reasoning, evidence tracking, agent orchestration) from theÂ **Domain Pack**Â (ontologies, authorities, classification standards).
 
-This modular design allows the architecture to be re-skinned for other evidence-heavy domains—such as Law, Intelligence Analysis, or Corporate Strategy—by swapping the authority modules while retaining the core logic of truth construction.
+This modular design allows the architecture to be re-skinned for other evidence-heavy domainsâ€”such as Law, Intelligence Analysis, or Corporate Strategyâ€”by swapping the authority modules while retaining the core logic of truth construction.
 
 ## 1.5.1 The Universal Core ("The Operating System")
 
 These architectural components are fundamental to any system requiring rigorous validation of unstructured text:
 
-- **Evidence-Aware Claims Architecture:** The pipeline (`Source` $\to$ `Extraction` $\to$ `Claim` $\to$ `Validation`) is universal. Whether the source is a 1st-century chronicle (History) or a sworn deposition (Law), the requirement to trace an assertion back to a specific line of text remains identical.
+- **Evidence-Aware Claims Architecture:**Â The pipeline (`Source`Â $\to$Â `Extraction`Â $\to$Â `Claim`Â $\to$Â `Validation`) is universal. Whether the source is a 1st-century chronicle (History) or a sworn deposition (Law), the requirement to trace an assertion back to a specific line of text remains identical.
     
-- **Two-Stage Validation Pattern:** The separation of **LLM Extraction** (probabilistic proposal) from **Deterministic Validation** (rule-based verification) enables the use of AI in high-stakes environments where hallucination is unacceptable.
+- **Two-Stage Validation Pattern:**Â The separation ofÂ **LLM Extraction**Â (probabilistic proposal) fromÂ **Deterministic Validation**Â (rule-based verification) enables the use of AI in high-stakes environments where hallucination is unacceptable.
     
-- **Multi-Agent Orchestration:** The pattern of using stateless, specialized agents to reason against a schema is transferable. A "Military Historian Agent" checking troop movements uses the same logic as a "Tort Law Agent" checking liability elements.
+- **Multi-Agent Orchestration:**Â The pattern of using stateless, specialized agents to reason against a schema is transferable. A "Military Historian Agent" checking troop movements uses the same logic as a "Tort Law Agent" checking liability elements.
     
 
 ## 1.5.2 The Domain Pack ("The Cartridge")
@@ -410,24 +410,24 @@ Adaptation requires replacing the specific semantic "cartridges" used for classi
 
 |Component|Historical Configuration (Current)|Legal Configuration (Example)|
 |---|---|---|
-|**Classification**|**LCC Class D** (History)|**LCC Class K** (Law) / **West Key Number System**|
-|**Ontology**|**CIDOC-CRM** (Events, Cultural Heritage)|**LKIF** (Legal Knowledge Interchange Format)|
-|**Entities**|`Person`, `Place`, `Event`, `Dynasty`|`Plaintiff`, `Defendant`, `Contract`, `Statute`|
-|**Backbone**|**PeriodO** (Temporal), **Pleiades** (Spatial)|**Jurisdiction** (e.g., SDNY), **Statutes of Limitation**|
-|**Validation**|Historical Consensus & Source Criticality|**Stare Decisis** & Rules of Evidence|
+|**Classification**|**LCC Class D**Â (History)|**LCC Class K**Â (Law) /Â **West Key Number System**|
+|**Ontology**|**CIDOC-CRM**Â (Events, Cultural Heritage)|**LKIF**Â (Legal Knowledge Interchange Format)|
+|**Entities**|`Person`,Â `Place`,Â `Event`,Â `Dynasty`|`Plaintiff`,Â `Defendant`,Â `Contract`,Â `Statute`|
+|**Backbone**|**PeriodO**Â (Temporal),Â **Pleiades**Â (Spatial)|**Jurisdiction**Â (e.g., SDNY),Â **Statutes of Limitation**|
+|**Validation**|Historical Consensus & Source Criticality|**Stare Decisis**Â & Rules of Evidence|
 
 ## 1.5.3 Use Case Example: Legal Discovery
 
-In a legal context, Chrystallum transforms from a historical analyzer into a **Case Construction Engine**:
+In a legal context, Chrystallum transforms from a historical analyzer into aÂ **Case Construction Engine**:
 
-- **Ingestion:** Instead of ancient texts, the system ingests discovery corpora (emails, contracts, depositions).
+- **Ingestion:**Â Instead of ancient texts, the system ingests discovery corpora (emails, contracts, depositions).
     
-- **Entity Resolution:** "Crossing the Rubicon" becomes "The Merger Meeting of Jan 10."
+- **Entity Resolution:**Â "Crossing the Rubicon" becomes "The Merger Meeting of Jan 10."
     
-- **Argumentation:** The **CRMinf** logic used to infer historical intent is repurposed to infer **legal intent** (_mens rea_) or knowledge, linking disparate facts (an email, a calendar entry, a bank transfer) into a coherent, evidence-backed legal argument.
+- **Argumentation:**Â TheÂ **CRMinf**Â logic used to infer historical intent is repurposed to inferÂ **legal intent**Â (_mens rea_) or knowledge, linking disparate facts (an email, a calendar entry, a bank transfer) into a coherent, evidence-backed legal argument.
     
 
-**Conclusion:** Chrystallum is not merely a historical tool; it is a general-purpose architecture for **structured knowledge construction from unstructured evidence**, applicable wherever truth must be derived from text with verifiable provenance.
+**Conclusion:**Â Chrystallum is not merely a historical tool; it is a general-purpose architecture forÂ **structured knowledge construction from unstructured evidence**, applicable wherever truth must be derived from text with verifiable provenance.
 
 ---
 
@@ -446,8 +446,8 @@ Chrystallum organizes knowledge in **six layers**:
 
 **Data Flow:**
 ```
-User Input → LLM Extraction → Claim Proposal → Agent Validation → Neo4j Write
-    ↓             ↓                  ↓               ↓              ↓
+User Input â†’ LLM Extraction â†’ Claim Proposal â†’ Agent Validation â†’ Neo4j Write
+    â†“             â†“                  â†“               â†“              â†“
 [Text]      [Entities, Dates]  [Structured]  [Verified]     [Canonical Graph]
 ```
 
@@ -507,25 +507,25 @@ Every assertion in Chrystallum has **explicit provenance chains**:
 
 ```
 Source (Work/Document)
-  → Passage/Citation (specific text)
-    → Agent Extraction (who, when, how)
-      → Claim (structured assertion)
-        → Belief (confidence-weighted conclusion)
-          → Review (validation decision)
-            → Entity/Relationship (canonical graph)
+  â†’ Passage/Citation (specific text)
+    â†’ Agent Extraction (who, when, how)
+      â†’ Claim (structured assertion)
+        â†’ Belief (confidence-weighted conclusion)
+          â†’ Review (validation decision)
+            â†’ Entity/Relationship (canonical graph)
 ```
 
 **Chain Properties:**
 - **Backward traceability:** From any entity, query the claims that support it
 - **Forward traceability:** From any source, query the entities it contributes to
 - **Temporal tracking:** Know when each assertion was made and by whom
-- **Confidence propagation:** Higher-tier sources → higher confidence claims
+- **Confidence propagation:** Higher-tier sources â†’ higher confidence claims
 
 **Benefits:**
-- ✅ Transparent research: "Why does the graph say this?"
-- ✅ Dispute resolution: Multiple conflicting claims visible with evidence
-- ✅ Historical scholarship: Track evolution of interpretations
-- ✅ Trust calibration: Users see confidence levels and sources
+- âœ… Transparent research: "Why does the graph say this?"
+- âœ… Dispute resolution: Multiple conflicting claims visible with evidence
+- âœ… Historical scholarship: Track evolution of interpretations
+- âœ… Trust calibration: Users see confidence levels and sources
 
 **See:** Section 6 (Claims Layer), Section 10 (Quality Assurance)
 
@@ -581,15 +581,15 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `temporal_uncertainty` (boolean): Flag for uncertain dates
 
 **Optional Edges:**
-- `BORN_IN` → `:Place` (birthplace)
-- `DIED_IN` → `:Place` (deathplace)
-- `MEMBER_OF` → `:Organization`
-- `PART_OF_GENS` → `:Gens` (Roman naming)
-- `HAS_POSITION` → `:Position` (offices held)
-- `PARTICIPATED_IN` → `:Event`
-- `LIVED_DURING` → `:Period`
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept` (classification)
-- `SUBJECT_OF` → `:Claim` (provenance)
+- `BORN_IN` â†’ `:Place` (birthplace)
+- `DIED_IN` â†’ `:Place` (deathplace)
+- `MEMBER_OF` â†’ `:Organization`
+- `PART_OF_GENS` â†’ `:Gens` (Roman naming)
+- `HAS_POSITION` â†’ `:Position` (offices held)
+- `PARTICIPATED_IN` â†’ `:Event`
+- `LIVED_DURING` â†’ `:Period`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept` (classification)
+- `SUBJECT_OF` â†’ `:Claim` (provenance)
 
 ---
 
@@ -617,11 +617,11 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `cidoc_crm_class`: `"E53_Place"`
 
 **Required Edges:**
-- `LOCATED_IN` → `:Place` (spatial hierarchy)
+- `LOCATED_IN` â†’ `:Place` (spatial hierarchy)
 
 **Optional Edges:**
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
-- `SUBJECT_OF` → `:Claim`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+- `SUBJECT_OF` â†’ `:Claim`
 
 **Note:** For historical "shifting borders" problem, use **`:PlaceVersion`** pattern (see below).
 
@@ -642,12 +642,12 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `confidence` (float): Authority confidence (0.0-1.0)
 
 **Required Edges:**
-- `VERSION_OF` → `:Place` (links to stable identity)
-- `HAS_GEOMETRY` → `:Geometry` (spatial representation)
+- `VERSION_OF` â†’ `:Place` (links to stable identity)
+- `HAS_GEOMETRY` â†’ `:Geometry` (spatial representation)
 
 **Optional Edges:**
-- `BROADER_THAN` → `:PlaceVersion` (administrative hierarchy)
-- `NARROWER_THAN` → `:PlaceVersion`
+- `BROADER_THAN` â†’ `:PlaceVersion` (administrative hierarchy)
+- `NARROWER_THAN` â†’ `:PlaceVersion`
 
 **Use Pattern:**
 ```cypher
@@ -705,15 +705,15 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `result_type` (string): From result vocabulary
 
 **Required Edges:**
-- `OCCURRED_AT` → `:Place` or `:PlaceVersion` (location)
-- `OCCURRED_DURING` → `:Period` (temporal context)
-- `STARTS_IN_YEAR` → `:Year` (start year)
-- `ENDS_IN_YEAR` → `:Year` (end year)
+- `OCCURRED_AT` â†’ `:Place` or `:PlaceVersion` (location)
+- `OCCURRED_DURING` â†’ `:Period` (temporal context)
+- `STARTS_IN_YEAR` â†’ `:Year` (start year)
+- `ENDS_IN_YEAR` â†’ `:Year` (end year)
 
 **Optional Edges:**
-- `PARTICIPANT` → `:Human`, `:Organization`
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
-- `SUBJECT_OF` → `:Claim`
+- `PARTICIPANT` â†’ `:Human`, `:Organization`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+- `SUBJECT_OF` â†’ `:Claim`
 
 ---
 
@@ -743,15 +743,15 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `spatial_coverage` (array): Geographic scope (e.g., `["Italy", "Mediterranean"]`)
 
 **Required Edges:**
-- `STARTS_IN_YEAR` → `:Year` (nominal start)
-- `ENDS_IN_YEAR` → `:Year` (nominal end)
+- `STARTS_IN_YEAR` â†’ `:Year` (nominal start)
+- `ENDS_IN_YEAR` â†’ `:Year` (nominal end)
 
 **Optional Edges:**
-- `BROADER_THAN` → `:Period` (hierarchy, e.g., Empire > Early Empire)
-- `NARROWER_THAN` → `:Period`
-- `ALIGNED_WITH` → `:Period` (cross-authority alignment)
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
-- `SUBJECT_OF` → `:Claim`
+- `BROADER_THAN` â†’ `:Period` (hierarchy, e.g., Empire > Early Empire)
+- `NARROWER_THAN` â†’ `:Period`
+- `ALIGNED_WITH` â†’ `:Period` (cross-authority alignment)
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+- `SUBJECT_OF` â†’ `:Claim`
 
 ---
 
@@ -772,12 +772,12 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `calendar` (string): Default calendar system (e.g., `"proleptic Julian"`)
 
 **Required Edges:**
-- `FOLLOWED_BY` → `:Year` (next year in sequence)
-- `PRECEDED_BY` → `:Year` (previous year in sequence)
+- `FOLLOWED_BY` â†’ `:Year` (next year in sequence)
+- `PRECEDED_BY` â†’ `:Year` (previous year in sequence)
 
 **Optional Edges:**
-- `BELONGS_TO_DECADE` → `:Decade` (if decade nodes exist)
-- `BELONGS_TO_CENTURY` → `:Century` (if century nodes exist)
+- `BELONGS_TO_DECADE` â†’ `:Decade` (if decade nodes exist)
+- `BELONGS_TO_CENTURY` â†’ `:Century` (if century nodes exist)
 
 **Usage Pattern:** Every temporally grounded entity or claim must tether to one or more Year nodes.
 
@@ -804,13 +804,13 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `cidoc_crm_class`: `"E74_Group"`
 
 **Required Edges:**
-- `LOCATED_IN` → `:Place`
+- `LOCATED_IN` â†’ `:Place`
 
 **Optional Edges:**
-- `HAS_MEMBER` → `:Human`
-- `PARTICIPATED_IN` → `:Event`
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
-- `SUBJECT_OF` → `:Claim`
+- `HAS_MEMBER` â†’ `:Human`
+- `PARTICIPATED_IN` â†’ `:Event`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+- `SUBJECT_OF` â†’ `:Claim`
 
 ---
 
@@ -831,11 +831,11 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `abolition_date` (ISO 8601 string)
 
 **Required Edges:**
-- `LOCATED_IN` → `:Place`
+- `LOCATED_IN` â†’ `:Place`
 
 **Optional Edges:**
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
-- `SUBJECT_OF` → `:Claim`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+- `SUBJECT_OF` â†’ `:Claim`
 
 ---
 
@@ -853,12 +853,12 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `entity_type` (string): Always `"Dynasty"`
 
 **Required Edges:**
-- `RULED` → `:Place` (geographic extent)
-- `HAS_MEMBER` → `:Human` (rulers)
+- `RULED` â†’ `:Place` (geographic extent)
+- `HAS_MEMBER` â†’ `:Human` (rulers)
 
 **Optional Edges:**
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
-- `SUBJECT_OF` → `:Claim`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+- `SUBJECT_OF` â†’ `:Claim`
 
 ---
 
@@ -875,12 +875,12 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `entity_type` (string): Always `"LegalRestriction"`
 
 **Required Edges:**
-- `ISSUED_BY` → `:Organization`
-- `APPLIED_TO` → `:Human`, `:Organization`, `:Place`
+- `ISSUED_BY` â†’ `:Organization`
+- `APPLIED_TO` â†’ `:Human`, `:Organization`, `:Place`
 
 **Optional Edges:**
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
-- `SUBJECT_OF` → `:Claim`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+- `SUBJECT_OF` â†’ `:Claim`
 
 ---
 
@@ -888,7 +888,7 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 
 **Node Label:** `:Work`
 
-**Purpose:** Represents texts, inscriptions, manuscripts, artifacts, and modern scholarship. Critical for provenance chain (Work → Passage → Claim).
+**Purpose:** Represents texts, inscriptions, manuscripts, artifacts, and modern scholarship. Critical for provenance chain (Work â†’ Passage â†’ Claim).
 
 **Required Properties:**
 - `entity_id` (string): Internal unique identifier (e.g., `"wrk_000666"`)
@@ -907,12 +907,12 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `cidoc_crm_class`: `"E73_Information_Object"`
 
 **Required Edges:**
-- `WRITTEN_BY` → `:Human`
+- `WRITTEN_BY` â†’ `:Human`
 
 **Optional Edges:**
-- `ABOUT` → `:Entity`, `:SubjectConcept` (aboutness)
-- `CITED_IN` → `:Claim` (provenance)
-- `RETRIEVED_FROM` → `:RetrievalContext` (LLM extraction context)
+- `ABOUT` â†’ `:Entity`, `:SubjectConcept` (aboutness)
+- `CITED_IN` â†’ `:Claim` (provenance)
+- `RETRIEVED_FROM` â†’ `:RetrievalContext` (LLM extraction context)
 
 ---
 
@@ -931,12 +931,12 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `position_type` (string): `"political"`, `"military"`, `"religious"`, `"administrative"`
 
 **Required Edges:**
-- `HELD_BY` → `:Human`
-- `DURING` → `:Period` or `:Year`
+- `HELD_BY` â†’ `:Human`
+- `DURING` â†’ `:Period` or `:Year`
 
 **Optional Edges:**
-- `IN_ORGANIZATION` → `:Organization`
-- `AT_LOCATION` → `:Place`
+- `IN_ORGANIZATION` â†’ `:Organization`
+- `AT_LOCATION` â†’ `:Place`
 
 ---
 
@@ -952,7 +952,7 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `entity_type` (string): Always `"Material"`
 
 **Optional Edges:**
-- `USED_IN` → `:Object`
+- `USED_IN` â†’ `:Object`
 
 ---
 
@@ -975,11 +975,11 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `cidoc_crm_class`: `"E22_Human-Made_Object"`
 
 **Optional Edges:**
-- `MADE_OF` → `:Material`
-- `FOUND_AT` → `:Place`
-- `DEPICTS` → `:Human`, `:Event`
-- `CREATED_BY` → `:Human`
-- `DATED_TO` → `:Period`, `:Year`
+- `MADE_OF` â†’ `:Material`
+- `FOUND_AT` â†’ `:Place`
+- `DEPICTS` â†’ `:Human`, `:Event`
+- `CREATED_BY` â†’ `:Human`
+- `DATED_TO` â†’ `:Period`, `:Year`
 
 ---
 
@@ -1001,10 +1001,10 @@ The **Entity Layer** represents real-world historical entities: people, places, 
 - `cidoc_crm_class`: `"E7_Activity"`
 
 **Optional Edges:**
-- `PERFORMED_BY` → `:Human`, `:Organization`
-- `OCCURRED_AT` → `:Place`
-- `DURING` → `:Period`
-- `HAS_SUBJECT_CONCEPT` → `:SubjectConcept`
+- `PERFORMED_BY` â†’ `:Human`, `:Organization`
+- `OCCURRED_AT` â†’ `:Place`
+- `DURING` â†’ `:Period`
+- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
 
 ---
 
@@ -1024,10 +1024,10 @@ These extend the Human entity model with Roman naming conventions.
 - `entity_type` (string): Always `"Gens"`
 
 **Required Edges:**
-- `HAS_MEMBER` → `:Human`
+- `HAS_MEMBER` â†’ `:Human`
 
 **Optional Edges:**
-- `SUBJECT_OF` → `:Claim`
+- `SUBJECT_OF` â†’ `:Claim`
 
 ---
 
@@ -1061,7 +1061,7 @@ These extend the Human entity model with Roman naming conventions.
 
 ---
 
-### **3.2.4 AnalysisRun** 🟡 **NEW NODE TYPE**
+### **3.2.4 AnalysisRun** ðŸŸ¡ **NEW NODE TYPE**
 
 **Node Label:** `:AnalysisRun`
 
@@ -1079,10 +1079,10 @@ These extend the Human entity model with Roman naming conventions.
 - `status` (enum): `"in_progress"`, `"completed"`, `"failed"`
 
 **Required Edges:**
-- `HAS_ANALYSIS_RUN` ← `:Claim` (incoming edge from claim being analyzed)
+- `HAS_ANALYSIS_RUN` â† `:Claim` (incoming edge from claim being analyzed)
 
 **Related Edges:**
-- `HAS_FACET_ASSESSMENT` → `:FacetAssessment` (one per facet evaluated)
+- `HAS_FACET_ASSESSMENT` â†’ `:FacetAssessment` (one per facet evaluated)
 
 **Purpose/Key Insight:**
 - Single claim can have multiple AnalysisRuns over time
@@ -1092,7 +1092,7 @@ These extend the Human entity model with Roman naming conventions.
 
 ---
 
-### **3.2.5 FacetAssessment** 🟡 **NEW NODE TYPE**
+### **3.2.5 FacetAssessment** ðŸŸ¡ **NEW NODE TYPE**
 
 **Node Label:** `:FacetAssessment`
 
@@ -1109,13 +1109,13 @@ These extend the Human entity model with Roman naming conventions.
 - `evidence_count` (integer): Number of supporting sources cited
 
 **Required Edges:**
-- `HAS_FACET_ASSESSMENT` ← `:AnalysisRun` (incoming edge from parent run)
-- [`ASSESSES_FACET`](ASSESSES_FACET) → `:Facet` subclass (e.g., `:PoliticalFacet`, `:MilitaryFacet`)
-- [`EVALUATED_BY`](EVALUATED_BY) → `:Agent` (which agent made this assessment)
+- `HAS_FACET_ASSESSMENT` â† `:AnalysisRun` (incoming edge from parent run)
+- [`ASSESSES_FACET`](ASSESSES_FACET) â†’ `:Facet` subclass (e.g., `:PoliticalFacet`, `:MilitaryFacet`)
+- [`EVALUATED_BY`](EVALUATED_BY) â†’ `:Agent` (which agent made this assessment)
 
 **Star Pattern Insight:**
 - Single claim can have assessments across all 16 facets simultaneously
-- Each facet evaluation is independent (political_confidence ≠ military_confidence)
+- Each facet evaluation is independent (political_confidence â‰  military_confidence)
 - Each assessment can cite different sources
 - Enables UI tabs: "Political view" | "Military view" | "Economic view" etc.
 - Enables agent specialization: political expert only evaluates political facets
@@ -1137,7 +1137,7 @@ Battle of Pharsalus (48 BCE) single AnalysisRun with multiple assessments:
 
 ---
 
-### **3.2.6 FacetCategory** 🟡 **NEW NODE TYPE**
+### **3.2.6 FacetCategory** ðŸŸ¡ **NEW NODE TYPE**
 
 **Node Label:** `:FacetCategory`
 
@@ -1152,19 +1152,19 @@ Battle of Pharsalus (48 BCE) single AnalysisRun with multiple assessments:
 - `color` (hex): UI color for facet category tabs/visualizations
 
 **Related Edges:**
-- `IN_FACET_CATEGORY` ← `:Facet` (all facets link to their category)
-- `OWNS_CATEGORY` ← `:Agent` (agents specialize in specific facet categories)
+- `IN_FACET_CATEGORY` â† `:Facet` (all facets link to their category)
+- `OWNS_CATEGORY` â† `:Agent` (agents specialize in specific facet categories)
 
 **Example:**
 ```cypher
 (:FacetCategory {key: "POLITICAL", label: "Political"})
-  ← (:PoliticalFacet {unique_id: "POLITICALFACET_Q3624078"})
-  ← (:Agent {agent_id: "AGENT_POLITICAL_V1"})-[:OWNS_CATEGORY]
+  â† (:PoliticalFacet {unique_id: "POLITICALFACET_Q3624078"})
+  â† (:Agent {agent_id: "AGENT_POLITICAL_V1"})-[:OWNS_CATEGORY]
 ```
 
 ---
 
-## **3.3 Facets (Entity-Level Classification) – Star Pattern Architecture**
+## **3.3 Facets (Entity-Level Classification) â€“ Star Pattern Architecture**
 
 Entities can be classified along **16 analytical dimensions** (facets) for multi-dimensional discovery.
 Canonical source of truth: `Facets/facet_registry_master.json` (with tabular export at `Facets/facet_registry_master.csv`).
@@ -1424,13 +1424,13 @@ The **Subject Layer** provides the **conceptual backbone** of Chrystallum's onto
 - The **SKOS-like hierarchy** (polyhierarchical classification)
 - The **multi-authority metadata model** (LCSH, FAST, LCC, Dewey, Wikidata, VIAF, GND)
 - The **Topic Spine** (canonical curated hierarchy)
-- The **CIP → QID → LCC → LCSH → FAST chain** (cross-authority alignment)
+- The **CIP â†’ QID â†’ LCC â†’ LCSH â†’ FAST chain** (cross-authority alignment)
 - The **Academic Discipline model**
-- The **Entity → Subject mapping rules**
-- The **Work → Subject aboutness model**
+- The **Entity â†’ Subject mapping rules**
+- The **Work â†’ Subject aboutness model**
 - The **Agent domain assignment logic**
 
-**Core Principle:** There is **no separate Concept entity**—all conceptual categories are **SubjectConcepts**.
+**Core Principle:** There is **no separate Concept entity**â€”all conceptual categories are **SubjectConcepts**.
 
 **Relationship to Entities:**
 
@@ -1448,14 +1448,14 @@ The **Subject Layer** provides the **conceptual backbone** of Chrystallum's onto
 ### **LCC = Structure (ONE Path)**
 - **Purpose:** Organizational backbone for classification
 - **Pattern:** ONE entity gets ONE LCC assignment (primary classification)
-- **Example:** Julius Caesar → `DG` (Roman History)
+- **Example:** Julius Caesar â†’ `DG` (Roman History)
 - **Usage:** Agent routing, primary subject determination
 - **Metaphor:** Library shelf location (one place)
 
 ### **FAST = Topics (MANY Tags)**
 - **Purpose:** Semantic discovery across multiple dimensions
 - **Pattern:** ONE entity gets MANY FAST assignments (faceted tagging)
-- **Example:** Julius Caesar → `Roman politics`, `Military leaders`, `Assassinations`, `Civil war`
+- **Example:** Julius Caesar â†’ `Roman politics`, `Military leaders`, `Assassinations`, `Civil war`
 - **Usage:** Cross-domain queries, thematic research
 - **Metaphor:** Index entries (many keywords)
 
@@ -1479,7 +1479,7 @@ The **Subject Layer** provides the **conceptual backbone** of Chrystallum's onto
   -[:HAS_SUBJECT_CONCEPT]->(:SubjectConcept {fast_id: "fst09876543"})
 ```
 
-**Source:** `md/Architecture/ONTOLOGY_PRINCIPLES.md` (2025-12-26) — foundational architectural decision
+**Source:** `md/Architecture/ONTOLOGY_PRINCIPLES.md` (2025-12-26) â€” foundational architectural decision
 
 ---
 
@@ -1507,7 +1507,7 @@ Represents a conceptual category, topic, theme, or subject heading, including:
 | Property | Type | Example |
 |----------|------|---------|
 | `subject_id` | string | `"subj_000123"` |
-| `label` | string | `"Rome—Politics and government—510–30 B.C."` |
+| `label` | string | `"Romeâ€”Politics and governmentâ€”510â€“30 B.C."` |
 | `facet` | string | `"Political"` |
 
 ### **Optional Properties**
@@ -1534,12 +1534,12 @@ Represents a conceptual category, topic, theme, or subject heading, including:
 
 ### **Optional Edges**
 
-- `ALIGNED_WITH` → SubjectConcept (cross-authority alignment)
-- `HAS_FACET` → Facet (complex facet hierarchies)
-- `ABOUT_ENTITY` → Entity (semantic grounding)
-- `ABOUT_PERIOD` → Period  
-- `ABOUT_EVENT` → Event
-- `SUBJECT_OF` → Claim (provenance)
+- `ALIGNED_WITH` â†’ SubjectConcept (cross-authority alignment)
+- `HAS_FACET` â†’ Facet (complex facet hierarchies)
+- `ABOUT_ENTITY` â†’ Entity (semantic grounding)
+- `ABOUT_PERIOD` â†’ Period  
+- `ABOUT_EVENT` â†’ Event
+- `SUBJECT_OF` â†’ Claim (provenance)
 
 ---
 
@@ -1577,7 +1577,7 @@ Temporal modeling is handled separately in Section 3.4.
 | `label` | string | `"Political"` |
 
 **Required Edges:**
-- `HAS_FACET` → SubjectConcept (for complex facet hierarchies)
+- `HAS_FACET` â†’ SubjectConcept (for complex facet hierarchies)
 
 ### **Facet Policy (Hybrid Approach)**
 
@@ -1655,7 +1655,7 @@ Each SubjectConcept can carry metadata from **multiple authority standards** for
 
 ---
 
-## **4.5 Entity → Subject Mapping Rules**
+## **4.5 Entity â†’ Subject Mapping Rules**
 
 Entities link to SubjectConcepts to establish classification and discoverability.
 
@@ -1669,12 +1669,12 @@ Entities link to SubjectConcepts to establish classification and discoverability
 
 | Entity Type | Mapping Strategy | Example |
 |-------------|------------------|---------|
-| **Human** | Biography, occupation, era, associated events | Caesar → "Roman politics", "Military leaders", "Dictators" |
-| **Event** | Event type, participants, location, historical period | Battle of Actium → "Naval battles", "Roman civil wars", "Greco-Roman warfare" |
-| **Place** | Geographic hierarchy, cultural regions | Rome → "Ancient cities", "Italian history", "Capital cities" |
-| **Period** | Historical classification, culture, facet | Roman Republic → "Ancient Rome", "Republican government", "Classical period" |
-| **Work** | Aboutness (see Section 4.6) | Plutarch's *Life of Caesar* → "Roman biography", "Classical literature" |
-| **Organization** | Organization type, function, domain | Roman Senate → "Legislative bodies", "Roman institutions", "Republican government" |
+| **Human** | Biography, occupation, era, associated events | Caesar â†’ "Roman politics", "Military leaders", "Dictators" |
+| **Event** | Event type, participants, location, historical period | Battle of Actium â†’ "Naval battles", "Roman civil wars", "Greco-Roman warfare" |
+| **Place** | Geographic hierarchy, cultural regions | Rome â†’ "Ancient cities", "Italian history", "Capital cities" |
+| **Period** | Historical classification, culture, facet | Roman Republic â†’ "Ancient Rome", "Republican government", "Classical period" |
+| **Work** | Aboutness (see Section 4.6) | Plutarch's *Life of Caesar* â†’ "Roman biography", "Classical literature" |
+| **Organization** | Organization type, function, domain | Roman Senate â†’ "Legislative bodies", "Roman institutions", "Republican government" |
 
 ### **Cypher Example**
 
@@ -1686,7 +1686,7 @@ CREATE (p)-[:HAS_SUBJECT_CONCEPT]->(sc)
 
 ---
 
-## **4.6 Work → Subject Aboutness Model**
+## **4.6 Work â†’ Subject Aboutness Model**
 
 Works (texts, inscriptions, scholarship) link to SubjectConcepts via the **aboutness** relationship to support RAG retrieval and claim provenance.
 
@@ -1748,7 +1748,7 @@ SubjectConcept {is_spine_node: true}
 
 ---
 
-## **4.8 CIP → QID → LCC → LCSH → FAST Chain**
+## **4.8 CIP â†’ QID â†’ LCC â†’ LCSH â†’ FAST Chain**
 
 This is the **cross-authority alignment pipeline** for subject normalization and agent domain inference.
 
@@ -1756,13 +1756,13 @@ This is the **cross-authority alignment pipeline** for subject normalization and
 
 ```
 CIP category (modern academic classification)
-    ↓ maps to
+    â†“ maps to
 Wikidata QID (linked open data concept)
-    ↓ maps to
+    â†“ maps to
 LCC class/subclass (library classification backbone)
-    ↓ maps to
+    â†“ maps to
 LCSH heading (library subject authority)
-    ↓ maps to
+    â†“ maps to
 FAST heading (faceted subject tags)
 ```
 
@@ -1805,8 +1805,8 @@ Academic disciplines are modeled as SubjectConcepts with special properties.
 
 ### **Discipline Edges**
 
-- `BROADER_THAN` → parent discipline (e.g., History → Ancient History)
-- `RELATED_TO` → adjacent disciplines (e.g., History ↔ Archaeology)
+- `BROADER_THAN` â†’ parent discipline (e.g., History â†’ Ancient History)
+- `RELATED_TO` â†’ adjacent disciplines (e.g., History â†” Archaeology)
 
 ### **Usage**
 
@@ -1834,7 +1834,7 @@ The **Library of Congress Classification (LCC)** provides the primary **organiza
 | B | Philosophy, Psychology, Religion |
 | C | Auxiliary Sciences of History |
 | D | World History |
-| E–F | American History |
+| Eâ€“F | American History |
 | G | Geography, Anthropology |
 | H | Social Sciences |
 | J | Political Science |
@@ -1993,7 +1993,7 @@ RETURN sc
 
 The **Agent Layer** defines the **intelligent actors** in Chrystallum that perform classification, extraction, reasoning, validation, and coordination.
 
-**Agents** in Chrystallum are **not** LLMs—they are **graph-native reasoning actors** with:
+**Agents** in Chrystallum are **not** LLMsâ€”they are **graph-native reasoning actors** with:
 - **Explicit domain scopes** (defined via Subject Layer)
 - **Explicit memory** (cached knowledge, previous decisions)
 - **Explicit reasoning traces** (transparent decision logic)
@@ -2047,16 +2047,16 @@ The **Agent Layer** defines the **intelligent actors** in Chrystallum that perfo
 
 ### **Required Edges**
 
-- `OWNS_DOMAIN` → SubjectConcept (domain expertise)
-- `REVIEWED` → Review (validation history)
-- `MADE_CLAIM` → Claim (claim authorship)
+- `OWNS_DOMAIN` â†’ SubjectConcept (domain expertise)
+- `REVIEWED` â†’ Review (validation history)
+- `MADE_CLAIM` â†’ Claim (claim authorship)
 
 ### **Optional Edges**
 
-- `TRAINED_ON` → Work (training corpus)
-- `INCLUDES_CONCEPT` → SubjectConcept (expanded domain)
-- `MEMORY_OF` → AgentMemory (cached knowledge)
-- `PERFORMED_BY` → Synthesis (reasoning activity)
+- `TRAINED_ON` â†’ Work (training corpus)
+- `INCLUDES_CONCEPT` â†’ SubjectConcept (expanded domain)
+- `MEMORY_OF` â†’ AgentMemory (cached knowledge)
+- `PERFORMED_BY` â†’ Synthesis (reasoning activity)
 
 ---
 
@@ -2068,9 +2068,9 @@ The **Agent Layer** defines the **intelligent actors** in Chrystallum that perfo
 
 ```
 roman_republic_agent (Subject Agent)
-    OWNS_DOMAIN → "Roman Republic" (SubjectConcept)
-    OWNS_DOMAIN → "Roman politics" (SubjectConcept)
-    OWNS_DOMAIN → "Civil war" (SubjectConcept)
+    OWNS_DOMAIN â†’ "Roman Republic" (SubjectConcept)
+    OWNS_DOMAIN â†’ "Roman politics" (SubjectConcept)
+    OWNS_DOMAIN â†’ "Civil war" (SubjectConcept)
 ```
 
 ### **Responsibilities**
@@ -2110,7 +2110,7 @@ CREATE (agent)-[:OWNS_DOMAIN]->(sc2)
 
 ```
 event_agent (Entity Agent)
-    OWNS_ENTITY_TYPE → Event
+    OWNS_ENTITY_TYPE â†’ Event
 ```
 
 ### **Responsibilities**
@@ -2158,7 +2158,7 @@ Chrystallum uses a **two-level agent routing strategy** to balance expertise pre
 ```cypher
 // User query: "Caesar crosses Rubicon"
 // Topic classification: "Roman History" (FAST)
-// → Route to roman_history_agent
+// â†’ Route to roman_history_agent
 ```
 
 ### **Level 2: LCC Subdivisions (Dynamic Routing)**
@@ -2170,13 +2170,13 @@ Chrystallum uses a **two-level agent routing strategy** to balance expertise pre
 - DG83: Roman Republic (510-27 BCE)
 - DG290-365: Medieval & Modern Italy
 
-**Agent Count:** Dynamic—agents specialize in LCC subclasses as needed
+**Agent Count:** Dynamicâ€”agents specialize in LCC subclasses as needed
 
 **Routing Mechanism:**
 ```cypher
 // Within roman_history_agent domain
 // LCC classification: DG83 (Roman Republic)
-// → Route to roman_republic_specialist_agent (LCC DG83)
+// â†’ Route to roman_republic_specialist_agent (LCC DG83)
 ```
 
 ### **Why Two-Level?**
@@ -2220,7 +2220,7 @@ claims_coordinator
 - Trigger claim promotion to canonical graph (Section 6.9)
 - Synthesize conflicting claims (Section 6.7)
 
-### **Facet-Based Agent Assignment** 🟡 **NEW**
+### **Facet-Based Agent Assignment** ðŸŸ¡ **NEW**
 
 **Agent Specialization by Facet Category:**
 
@@ -2352,7 +2352,7 @@ Agents maintain **explicit memory** of previous decisions, patterns, and cached 
 | `created_at` | ISO 8601 string | `"2026-02-12T11:00:00Z"` |
 
 **Required Edges:**
-- `MEMORY_OF` → Agent
+- `MEMORY_OF` â†’ Agent
 
 ### **Memory Types**
 
@@ -2414,9 +2414,9 @@ AgentMemory {
 ```
 
 **Cache Invalidation Rules:**
-1. Agent version increments → invalidate all caches
-2. Expiry timestamp reached → refresh cache
-3. Upstream SubjectConcept updated → invalidate related caches
+1. Agent version increments â†’ invalidate all caches
+2. Expiry timestamp reached â†’ refresh cache
+3. Upstream SubjectConcept updated â†’ invalidate related caches
 
 **Source:** Old conversation analysis (cache versioning for vertex jump concept)
 
@@ -2473,7 +2473,7 @@ CREATE (mem:AgentMemory {
   memory_id: "mem_000789",
   agent_id: "roman_republic_agent",
   memory_type: "cached_knowledge",
-  content: "Roman Republic period boundaries: start=-510, end=-27, uncertainty=±5 years",
+  content: "Roman Republic period boundaries: start=-510, end=-27, uncertainty=Â±5 years",
   agent_version: "v1.0",
   cache_expiry: "2026-03-12T00:00:00Z",
   created_at: "2026-02-12T12:00:00Z"
@@ -2491,7 +2491,7 @@ CREATE (mem)-[:MEMORY_OF]->(agent)
 
 ## **6.0 Claims Layer Overview**
 
-The **Claims Layer** provides evidence-aware assertion management with transparent provenance, multi-agent validation, and cryptographic verification. Claims are not simple edges—they are **complex subgraphs** representing complete evidence chains.
+The **Claims Layer** provides evidence-aware assertion management with transparent provenance, multi-agent validation, and cryptographic verification. Claims are not simple edgesâ€”they are **complex subgraphs** representing complete evidence chains.
 
 **Core Concept:** Every assertion in Chrystallum has explicit provenance from source material through agent extraction to validated canonical graph representation.
 
@@ -2536,14 +2536,14 @@ The Claims Layer manages the complete lifecycle of evidence-based assertions, fr
 ### **Provenance Chain:**
 ```
 Work (Source Entity - Section 3) 
-  → Agent (Extraction)
-    → Claim (Assertion + Cipher)
-      → ReasoningTrace (How derived)
-      → RetrievalContext (Evidence used)
-      → Review (Validation by peers)
-        → Synthesis (Consensus building)
-          → Status Update (proposed → validated)
-            → Promotion (to canonical graph)
+  â†’ Agent (Extraction)
+    â†’ Claim (Assertion + Cipher)
+      â†’ ReasoningTrace (How derived)
+      â†’ RetrievalContext (Evidence used)
+      â†’ Review (Validation by peers)
+        â†’ Synthesis (Consensus building)
+          â†’ Status Update (proposed â†’ validated)
+            â†’ Promotion (to canonical graph)
 ```
 
 ### **System Architecture Context**
@@ -2551,8 +2551,8 @@ Work (Source Entity - Section 3)
 **Two Separate Systems:**
 | System | Storage | Shared? | Purpose |
 |--------|---------|---------|---------|
-| **Neo4j Graph** | Nodes & edges | ✅ YES | Structural knowledge, claims, provenance |
-| **Vector Stores** | Text embeddings | ❌ NO | Semantic retrieval per agent (private) |
+| **Neo4j Graph** | Nodes & edges | âœ… YES | Structural knowledge, claims, provenance |
+| **Vector Stores** | Text embeddings | âŒ NO | Semantic retrieval per agent (private) |
 
 **Key Principle:** Claims, Reviews, Reasoning Traces, and Agent Memory live in the **shared graph**. Text embeddings and document chunks live in **private per-agent vector stores**.
 
@@ -2692,7 +2692,7 @@ CREATE (agent)-[:REVIEWED]->(review)-[:REVIEWS]->(claim)
 
 ---
 
-## **6.4 Content-Addressable Claim Identification** 🔥 NEW
+## **6.4 Content-Addressable Claim Identification** ðŸ”¥ NEW
 
 ### **Claim Cipher Generation**
 
@@ -2717,7 +2717,7 @@ claim_cipher = Hash(
 
 ### **Why Content-Addressable Claims?**
 
-#### **1. Automatic Deduplication** ✅
+#### **1. Automatic Deduplication** âœ…
 
 ```python
 # Agent A extracts claim from Plutarch at 10:00 AM
@@ -2728,7 +2728,7 @@ claim_data_A = {
     "relationship": "CAUSED",
     "timestamp": "2026-02-12T10:00:00Z"
 }
-cipher_A = Hash(claim_data_A)  # → "claim_abc123..."
+cipher_A = Hash(claim_data_A)  # â†’ "claim_abc123..."
 
 # Agent B extracts SAME claim from Plutarch at 2:00 PM
 claim_data_B = {
@@ -2738,7 +2738,7 @@ claim_data_B = {
     "relationship": "CAUSED",
     "timestamp": "2026-02-12T14:00:00Z"  # Different time!
 }
-cipher_B = Hash(claim_data_B)  # → "claim_abc123..." (SAME!)
+cipher_B = Hash(claim_data_B)  # â†’ "claim_abc123..." (SAME!)
 
 # Graph check prevents duplicate
 if exists_in_graph(cipher_B):
@@ -2751,13 +2751,13 @@ else:
 ```
 
 **Benefits:**
-- Multiple agents validating same claim → higher confidence, not duplicates
+- Multiple agents validating same claim â†’ higher confidence, not duplicates
 - Automatic consensus detection
 - No manual deduplication needed
 
 ---
 
-#### **2. Cryptographic Verification** ✅
+#### **2. Cryptographic Verification** âœ…
 
 ```python
 # University A creates claim
@@ -2778,11 +2778,11 @@ downloaded_claim = fetch_claim(cipher)
 recomputed_cipher = Hash(downloaded_claim.data)
 
 if recomputed_cipher == cipher:
-    # ✅ Claim data matches cipher - integrity verified
+    # âœ… Claim data matches cipher - integrity verified
     # Can cite with cryptographic proof
     cite_with_proof(cipher, state_root)
 else:
-    # ❌ Data corrupted or tampered
+    # âŒ Data corrupted or tampered
     reject_claim("Integrity verification failed")
 ```
 
@@ -2793,9 +2793,9 @@ else:
 
 ---
 
-#### **3. Claim as Subgraph Cluster** ✅
+#### **3. Claim as Subgraph Cluster** âœ…
 
-**A claim isn't a single node—it's a complete evidence structure:**
+**A claim isn't a single nodeâ€”it's a complete evidence structure:**
 
 ```cypher
 // The cipher identifies the entire subgraph cluster
@@ -2817,7 +2817,7 @@ else:
 
 ---
 
-#### **4. Framework/Review Attachment via Cipher** ✅
+#### **4. Framework/Review Attachment via Cipher** âœ…
 
 ```cypher
 // Frameworks analyze claim via cipher reference
@@ -2856,7 +2856,7 @@ RETURN f
 
 ---
 
-#### **5. Claim Versioning Built-In** ✅
+#### **5. Claim Versioning Built-In** âœ…
 
 ```cypher
 // Original claim extracted with confidence 0.85
@@ -2868,7 +2868,7 @@ RETURN f
 })
 
 // New evidence raises confidence to 0.95
-// Different confidence → different cipher!
+// Different confidence â†’ different cipher!
 (claim_v2:Claim {
   cipher: "claim_xyz789...",  // Different cipher
   confidence: 0.95,
@@ -3047,7 +3047,7 @@ RETURN c.cipher, c.claim_id, c.confidence
 
 ---
 
-## **6.6 Distributed Academic Knowledge Networks** 🚀
+## **6.6 Distributed Academic Knowledge Networks** ðŸš€
 
 ### **Vision: P2P Verified Citations**
 
@@ -3080,16 +3080,16 @@ cite_claim(
 downloaded = fetch_claim("claim_abc123...")
 verified = verify_cipher(downloaded)  # Cryptographic proof
 if verified:
-    # ✅ Citation is authentic and unaltered
+    # âœ… Citation is authentic and unaltered
     use_in_research(downloaded)
 ```
 
 **Enables:**
-- ✅ Federated institutional repositories
-- ✅ P2P knowledge sharing
-- ✅ Reproducible science
-- ✅ Academic claims with built-in provenance
-- ✅ No central authority needed
+- âœ… Federated institutional repositories
+- âœ… P2P knowledge sharing
+- âœ… Reproducible science
+- âœ… Academic claims with built-in provenance
+- âœ… No central authority needed
 
 ---
 
@@ -3246,7 +3246,7 @@ CREATE (claim)-[:PROPOSES]->(pedge)
 
 | Property | Type | Example | Notes |
 |----------|------|---------|-------|
-| `steps` | string[] | `["Retrieved passages...", "Connected X→Y"]` | Human-readable reasoning steps |
+| `steps` | string[] | `["Retrieved passages...", "Connected Xâ†’Y"]` | Human-readable reasoning steps |
 | `sources_consulted` | string[] | `["Goldsworthy p.145", "Plutarch 32"]` | Bibliographic strings |
 | `retrieved_passages` | JSON[] | `[{"source": "Goldsworthy p.145", "text": "..."}]` | Key passages |
 | `intermediate_claims` | string[] | `["claim_000120"]` | Supporting claims |
@@ -3273,7 +3273,7 @@ CREATE (trace:ReasoningTrace {
   pattern: "causal_chain",
   steps: [
     "Retrieved passages from Plutarch and Suetonius",
-    "Connected civil war → dictatorship promotion",
+    "Connected civil war â†’ dictatorship promotion",
     "Verified with scholarly sources"
   ],
   confidence: 0.85,
@@ -3352,7 +3352,7 @@ RETURN claim.claim_id, claim.status, claim.consensus_score
 Claims progress through a validation lifecycle from initial proposal to final disposition:
 
 ```
-proposed → (validated | disputed | rejected)
+proposed â†’ (validated | disputed | rejected)
 ```
 
 ### **Status Definitions**
@@ -3362,13 +3362,13 @@ proposed → (validated | disputed | rejected)
 - Not yet visible in canonical graph
 - Requires review by domain agents
 
-**validated** - Supported by sufficient reviews (consensus_score ≥ 0.8)
+**validated** - Supported by sufficient reviews (consensus_score â‰¥ 0.8)
 - High confidence from multiple reviewers
-- Support from ≥70% of reviews
+- Support from â‰¥70% of reviews
 - Proposed subgraph promoted to canonical graph
 - Visible in standard queries
 
-**disputed** - Mixed or low-confidence reviews (0.5 ≤ consensus_score < 0.8)
+**disputed** - Mixed or low-confidence reviews (0.5 â‰¤ consensus_score < 0.8)
 - Conflicting agent opinions
 - Requires additional evidence or human review
 - Not promoted to canonical graph
@@ -3743,7 +3743,7 @@ The **Relationship Layer** defines canonical relationship types connecting entit
 
 ---
 
-## **7.3 Triple Alignment: Chrystallum ↔ Wikidata ↔ CIDOC-CRM**
+## **7.3 Triple Alignment: Chrystallum â†” Wikidata â†” CIDOC-CRM**
 
 ### **Alignment Strategy**
 
@@ -3759,14 +3759,14 @@ The **Relationship Layer** defines canonical relationship types connecting entit
 
 | Chrystallum Type | Wikidata Property | CIDOC-CRM Property | CIDOC-CRM Class |
 |------------------|-------------------|--------------------|-----------------|
-| **LOCATED_IN** | P131 (located in) | P7 (took place at) | — |
-| **AUTHOR** | P50 (author) | P14 (carried out by) | E12_Production |
-| **FOUGHT_IN** | P607 (conflict) | P11 (had participant) | E7_Activity |
-| **BORN_IN** | P19 (place of birth) | P7 (took place at) | E67_Birth |
-| **CAUSED** | P828 (has cause) | P15 (was influenced by) | — |
-| **APPOINTED** | P39 (position held) | P14_1 (in the role of) | E13_Attribute_Assignment |
-| **WITHIN_TIMESPAN** | — | P4 (has time-span) | — |
-| **FOUNDED** | P112 (founded by) | P14 (carried out by) | E63_Beginning_of_Existence |
+| **LOCATED_IN** | P131 (located in the administrative territorial entity) | crm:P7_took_place_at | â€” |
+| **AUTHOR** | P50 (author) | crm:P14_carried_out_by | E12_Production |
+| **FOUGHT_IN** | P607 (conflict) | crm:P11_had_participant | E7_Activity |
+| **BORN_IN** | P19 (place of birth) | crm:P7_took_place_at | E67_Birth |
+| **CAUSED** | P828 (has cause) | crm:P15_was_influenced_by | â€” |
+| **APPOINTED** | P39 (position held) | crm:P14.1_in_the_role_of | E13_Attribute_Assignment |
+| **WITHIN_TIMESPAN** | â€” | crm:P4_has_time-span | â€” |
+| **FOUNDED** | P112 (founded by) | crm:P14_carried_out_by | E63_Beginning_of_Existence |
 
 ### **Coverage Statistics**
 
@@ -3784,12 +3784,12 @@ The **Relationship Layer** defines canonical relationship types connecting entit
 
 ### **Directionality Types**
 
-**1. Forward (Source → Target)**
+**1. Forward (Source â†’ Target)**
 ```cypher
 (:Human {name: "Caesar"})-[:FOUGHT_IN]->(:Event {label: "Battle of Pharsalus"})
 ```
 
-**2. Inverse (Target ← Source)**
+**2. Inverse (Target â† Source)**
 ```cypher
 (:Event {label: "Battle of Pharsalus"})-[:BATTLE_PARTICIPANT]->(:Human {name: "Caesar"})
 ```
@@ -3843,34 +3843,34 @@ Common patterns enabling natural queries from either entity:
 **Military Hierarchy:**
 ```
 MILITARY_ACTION (level 1)
-  ├─ FOUGHT_IN (level 2)
-  ├─ COMMANDED_BY (level 2)
-  │   └─ COMMANDED_CAVALRY_IN (level 3)
-  ├─ DEFEATED (level 2)
-  └─ BESIEGED (level 2)
+  â”œâ”€ FOUGHT_IN (level 2)
+  â”œâ”€ COMMANDED_BY (level 2)
+  â”‚   â””â”€ COMMANDED_CAVALRY_IN (level 3)
+  â”œâ”€ DEFEATED (level 2)
+  â””â”€ BESIEGED (level 2)
 ```
 
 **Political Hierarchy:**
 ```
 POLITICAL_ACTION (level 1)
-  ├─ APPOINTED (level 2)
-  │   └─ APPOINTED_CONSUL (level 3)
-  ├─ GOVERNED (level 2)
-  └─ DEPOSED (level 2)
+  â”œâ”€ APPOINTED (level 2)
+  â”‚   â””â”€ APPOINTED_CONSUL (level 3)
+  â”œâ”€ GOVERNED (level 2)
+  â””â”€ DEPOSED (level 2)
 ```
 
 **Economic Hierarchy:**
 ```
 ECONOMIC_ACTION (level 1)
-  ├─ TAXED (level 2)
-  ├─ CONFISCATED_LAND_FROM (level 2)
-  └─ DISTRIBUTED_LAND_TO (level 2)
+  â”œâ”€ TAXED (level 2)
+  â”œâ”€ CONFISCATED_LAND_FROM (level 2)
+  â””â”€ DISTRIBUTED_LAND_TO (level 2)
 ```
 
 **Benefits:**
 - Enables query generalization (find all `MILITARY_ACTION` relationships)
 - Supports progressive refinement (start broad, drill down to specifics)
-- Facilitates agent routing (broad categories → specialist agents)
+- Facilitates agent routing (broad categories â†’ specialist agents)
 
 ---
 
@@ -3939,21 +3939,21 @@ Action structure types align with Wikidata qualifiers:
 | Relationship Type | Directionality | Wikidata | CIDOC-CRM | Description |
 |-------------------|----------------|----------|-----------|-------------|
 | **FOUGHT_IN** | forward | P607 | P11_had_participant | Person participated in battle/war |
-| **BATTLE_PARTICIPANT** | inverse | — | P11i_participated_in | Battle had this participant |
-| **DEFEATED** | forward | — | — | Victor defeated vanquished entity |
-| **DEFEATED_BY** | inverse | — | — | Vanquished was defeated by victor |
-| **COMMANDED_BY** | forward | — | P14_carried_out_by | Military unit commanded by person |
-| **SERVED_UNDER** | forward | — | — | Person served under commander |
-| **BESIEGED** | forward | — | — | Entity besieged location |
-| **BESIEGED_BY** | inverse | — | — | Location was besieged by entity |
+| **BATTLE_PARTICIPANT** | inverse | â€” | P11i_participated_in | Battle had this participant |
+| **DEFEATED** | forward | â€” | â€” | Victor defeated vanquished entity |
+| **DEFEATED_BY** | inverse | â€” | â€” | Vanquished was defeated by victor |
+| **COMMANDED_BY** | forward | â€” | P14_carried_out_by | Military unit commanded by person |
+| **SERVED_UNDER** | forward | â€” | â€” | Person served under commander |
+| **BESIEGED** | forward | â€” | â€” | Entity besieged location |
+| **BESIEGED_BY** | inverse | â€” | â€” | Location was besieged by entity |
 | **CONQUERED** | forward | P47 | E8_Acquisition | Entity conquered territory |
 | **CONQUERED_BY** | inverse | P47 | E8_Acquisition | Territory conquered by entity |
-| **MASSACRED** | forward | — | — | Entity massacred group |
-| **LEVELLED** | forward | — | E6_Destruction | Entity destroyed/leveled location |
-| **SACKED** | forward | — | — | Entity sacked/pillaged location |
-| **GARRISONED** | forward | — | — | Entity garrisoned troops at location |
-| **BETRAYED** | forward | — | — | Entity betrayed another entity |
-| **DEFECTED_TO** | forward | — | E85_Joining | Entity defected to another allegiance |
+| **MASSACRED** | forward | â€” | â€” | Entity massacred group |
+| **LEVELLED** | forward | â€” | E6_Destruction | Entity destroyed/leveled location |
+| **SACKED** | forward | â€” | â€” | Entity sacked/pillaged location |
+| **GARRISONED** | forward | â€” | â€” | Entity garrisoned troops at location |
+| **BETRAYED** | forward | â€” | â€” | Entity betrayed another entity |
+| **DEFECTED_TO** | forward | â€” | E85_Joining | Entity defected to another allegiance |
 
 **Example Cypher:**
 ```cypher
@@ -3980,19 +3980,19 @@ RETURN subordinate.name, subordinate.rank
 |-------------------|----------------|----------|-----------|-------------|
 | **APPOINTED** | forward | P39 | E13_Attribute_Assignment | Appointer appointed person to office |
 | **APPOINTED_BY** | inverse | P39 | E13_Attribute_Assignment | Person was appointed by appointer |
-| **GOVERNED** | forward | — | — | Person governed jurisdiction during period |
-| **CONTROLLED** | forward | P17 | — | Entity controlled territory/institution |
-| **ALLIED_WITH** | symmetric | — | — | Entities formed alliance |
-| **OPPOSED** | symmetric | — | — | Entities were in opposition |
-| **DEPOSED** | forward | — | E86_Leaving | Entity deposed ruler from power |
-| **PROSCRIBED** | forward | — | E13_Attribute_Assignment | Authority proscribed person (outlawed with property confiscation) |
-| **OUTLAWED** | forward | — | E13_Attribute_Assignment | Authority outlawed person |
-| **LEGITIMATED** | forward | — | — | Entity legitimated authority's power |
-| **DECLARED_FOR** | forward | — | — | Entity declared allegiance to another |
-| **COMPETED_WITH** | symmetric | — | — | Entities competed for power/office |
-| **ADVISED** | forward | — | — | Advisor advised leader/institution |
-| **MANIPULATED** | forward | — | — | Entity manipulated another for political aims |
-| **HEIR_TO** | forward | P1365 | — | Person designated heir to position/realm |
+| **GOVERNED** | forward | â€” | â€” | Person governed jurisdiction during period |
+| **CONTROLLED** | forward | P17 | â€” | Entity controlled territory/institution |
+| **ALLIED_WITH** | symmetric | â€” | â€” | Entities formed alliance |
+| **OPPOSED** | symmetric | â€” | â€” | Entities were in opposition |
+| **DEPOSED** | forward | â€” | E86_Leaving | Entity deposed ruler from power |
+| **PROSCRIBED** | forward | â€” | E13_Attribute_Assignment | Authority proscribed person (outlawed with property confiscation) |
+| **OUTLAWED** | forward | â€” | E13_Attribute_Assignment | Authority outlawed person |
+| **LEGITIMATED** | forward | â€” | â€” | Entity legitimated authority's power |
+| **DECLARED_FOR** | forward | â€” | â€” | Entity declared allegiance to another |
+| **COMPETED_WITH** | symmetric | â€” | â€” | Entities competed for power/office |
+| **ADVISED** | forward | â€” | â€” | Advisor advised leader/institution |
+| **MANIPULATED** | forward | â€” | â€” | Entity manipulated another for political aims |
+| **HEIR_TO** | forward | P1365 | â€” | Person designated heir to position/realm |
 
 **Example Cypher:**
 ```cypher
@@ -4017,25 +4017,25 @@ RETURN ally.name, length(path) AS degrees_of_alliance
 
 | Relationship Type | Directionality | Wikidata | CIDOC-CRM | Description |
 |-------------------|----------------|----------|-----------|-------------|
-| **FATHER_OF** | forward | P40 | — | Person is father of child |
-| **CHILD_OF** | inverse | P22 | — | Person is child of parent |
-| **MARRIED_TO** | symmetric | P26 | — | Person married to spouse |
-| **SIBLING_OF** | symmetric | P3373 | — | Person is sibling |
-| **HALF_SIBLING_OF** | symmetric | P3373 | — | Person is half-sibling |
-| **GRANDPARENT_OF** | forward | — | — | Person is grandparent of grandchild |
-| **GRANDCHILD_OF** | inverse | — | — | Person is grandchild of grandparent |
-| **COUSIN_OF** | symmetric | — | — | Person is cousin |
-| **AUNT_OF** | forward | — | — | Person is aunt/uncle |
-| **ADOPTED_BY** | forward | — | — | Person was adopted by adopter |
-| **FATHER_IN_LAW_OF** | forward | — | — | Person is father-in-law |
-| **BROTHER_IN_LAW_OF** | forward | — | — | Person is brother-in-law |
-| **DAUGHTER_IN_LAW_OF** | forward | — | — | Person is daughter-in-law |
+| **FATHER_OF** | forward | P40 | â€” | Person is father of child |
+| **CHILD_OF** | inverse | P22 | â€” | Person is child of parent |
+| **MARRIED_TO** | symmetric | P26 | â€” | Person married to spouse |
+| **SIBLING_OF** | symmetric | P3373 | â€” | Person is sibling |
+| **HALF_SIBLING_OF** | symmetric | P3373 | â€” | Person is half-sibling |
+| **GRANDPARENT_OF** | forward | â€” | â€” | Person is grandparent of grandchild |
+| **GRANDCHILD_OF** | inverse | â€” | â€” | Person is grandchild of grandparent |
+| **COUSIN_OF** | symmetric | â€” | â€” | Person is cousin |
+| **AUNT_OF** | forward | â€” | â€” | Person is aunt/uncle |
+| **ADOPTED_BY** | forward | â€” | â€” | Person was adopted by adopter |
+| **FATHER_IN_LAW_OF** | forward | â€” | â€” | Person is father-in-law |
+| **BROTHER_IN_LAW_OF** | forward | â€” | â€” | Person is brother-in-law |
+| **DAUGHTER_IN_LAW_OF** | forward | â€” | â€” | Person is daughter-in-law |
 
 **Roman-Specific Familial:**
-| **MEMBER_OF_GENS** | forward | — | — | Person member of Roman gens (clan) |
-| **GENS_OF** | inverse | — | — | Gens contains this person |
-| **HAS_PRAENOMEN** | forward | — | — | Person has Roman praenomen (personal name) |
-| **HAS_COGNOMEN** | forward | — | — | Person has Roman cognomen (family branch name) |
+| **MEMBER_OF_GENS** | forward | â€” | â€” | Person member of Roman gens (clan) |
+| **GENS_OF** | inverse | â€” | â€” | Gens contains this person |
+| **HAS_PRAENOMEN** | forward | â€” | â€” | Person has Roman praenomen (personal name) |
+| **HAS_COGNOMEN** | forward | â€” | â€” | Person has Roman cognomen (family branch name) |
 
 **Example Cypher:**
 ```cypher
@@ -4062,15 +4062,15 @@ RETURN person1.name, person2.name, person2.gens_name
 |-------------------|----------------|----------|-----------|-------------|
 | **BORN_IN** | forward | P19 | P7_took_place_at | Person born in location |
 | **DIED_IN** | forward | P20 | P7_took_place_at | Person died in location |
-| **LIVED_IN** | forward | P551 | — | Person resided in location during period |
+| **LIVED_IN** | forward | P551 | â€” | Person resided in location during period |
 | **LOCATED_IN** | forward | P131 | P7_took_place_at | Entity located in geographic region |
-| **MIGRATED_TO** | forward | — | P26_moved_to | Group migrated to destination |
-| **MIGRATED_FROM** | forward | — | P27_moved_from | Group migrated from origin |
-| **EXILED** | forward | — | — | Authority exiled person to location |
-| **FLED_TO** | forward | — | — | Person fled to safe location |
-| **FLED_FROM** | forward | — | — | Person fled from dangerous location |
+| **MIGRATED_TO** | forward | â€” | P26_moved_to | Group migrated to destination |
+| **MIGRATED_FROM** | forward | â€” | P27_moved_from | Group migrated from origin |
+| **EXILED** | forward | â€” | â€” | Authority exiled person to location |
+| **FLED_TO** | forward | â€” | â€” | Person fled to safe location |
+| **FLED_FROM** | forward | â€” | â€” | Person fled from dangerous location |
 | **FOUNDED** | forward | P112 | E63_Beginning_of_Existence | Founder established place/institution in location |
-| **CAMPAIGN_IN** | forward | — | — | Military campaign occurred in region |
+| **CAMPAIGN_IN** | forward | â€” | â€” | Military campaign occurred in region |
 | **RENAMED** | forward | P1448 | E15_Identifier_Assignment | Entity renamed place |
 
 **Example Cypher:**
@@ -4095,15 +4095,15 @@ RETURN person.name, person.exile_start_date
 
 | Relationship Type | Directionality | Wikidata | Description |
 |-------------------|----------------|----------|-------------|
-| **NEGOTIATED_WITH** | symmetric | — | Entities engaged in negotiations |
-| **SENT_ENVOYS_TO** | forward | — | Sender dispatched envoys to recipient |
-| **RECEIVED_ENVOYS_FROM** | inverse | — | Recipient received envoys from sender |
-| **APPEALED_TO** | forward | — | Appellant requested help from entity |
-| **RECEIVED_APPEAL_FROM** | inverse | — | Entity received request for help |
-| **ACCEPTED_OFFER** | forward | — | Entity accepted diplomatic offer |
-| **REJECTED_OFFER** | forward | — | Entity rejected diplomatic offer |
-| **OFFERED_SELF_TO** | forward | — | Entity offered allegiance/submission |
-| **RECEIVED_OFFER_FROM** | inverse | — | Entity received offer of allegiance |
+| **NEGOTIATED_WITH** | symmetric | â€” | Entities engaged in negotiations |
+| **SENT_ENVOYS_TO** | forward | â€” | Sender dispatched envoys to recipient |
+| **RECEIVED_ENVOYS_FROM** | inverse | â€” | Recipient received envoys from sender |
+| **APPEALED_TO** | forward | â€” | Appellant requested help from entity |
+| **RECEIVED_APPEAL_FROM** | inverse | â€” | Entity received request for help |
+| **ACCEPTED_OFFER** | forward | â€” | Entity accepted diplomatic offer |
+| **REJECTED_OFFER** | forward | â€” | Entity rejected diplomatic offer |
+| **OFFERED_SELF_TO** | forward | â€” | Entity offered allegiance/submission |
+| **RECEIVED_OFFER_FROM** | inverse | â€” | Entity received offer of allegiance |
 
 **Example Cypher:**
 ```cypher
@@ -4133,16 +4133,16 @@ RETURN entity1.name, entity2.name, war.label
 
 | Relationship Type | Directionality | Wikidata | Description |
 |-------------------|----------------|----------|-------------|
-| **CONFISCATED_LAND_FROM** | forward | — | Authority confiscated property from owner |
-| **DISTRIBUTED_LAND_TO** | forward | — | Authority distributed land to recipients |
-| **TAXED** | forward | — | Authority taxed entity/territory |
+| **CONFISCATED_LAND_FROM** | forward | â€” | Authority confiscated property from owner |
+| **DISTRIBUTED_LAND_TO** | forward | â€” | Authority distributed land to recipients |
+| **TAXED** | forward | â€” | Authority taxed entity/territory |
 | **PRODUCES_GOOD** | forward | P1056 | Entity produces goods/services |
 | **PRODUCED_BY** | inverse | P1056 | Goods produced by entity |
-| **TRADED_WITH** | symmetric | — | Entities engaged in trade |
-| **EXPORTED_TO** | forward | — | Entity exported goods to destination |
-| **IMPORTED_FROM** | forward | — | Entity imported goods from source |
-| **SOLD_INTO_SLAVERY** | forward | — | Entity sold people into slavery |
-| **EXPERIENCED_RECESSION** | forward | — | Economy experienced recession during period |
+| **TRADED_WITH** | symmetric | â€” | Entities engaged in trade |
+| **EXPORTED_TO** | forward | â€” | Entity exported goods to destination |
+| **IMPORTED_FROM** | forward | â€” | Entity imported goods from source |
+| **SOLD_INTO_SLAVERY** | forward | â€” | Entity sold people into slavery |
+| **EXPERIENCED_RECESSION** | forward | â€” | Economy experienced recession during period |
 
 **Example Cypher:**
 ```cypher
@@ -4169,13 +4169,13 @@ RETURN region.label, good.name, COUNT(*) AS export_volume
 
 | Relationship Type | Directionality | Wikidata | CIDOC-CRM | Description |
 |-------------------|----------------|----------|-----------|-------------|
-| **CHARGED_WITH** | forward | — | E13_Attribute_Assignment | Person charged with crime |
+| **CHARGED_WITH** | forward | â€” | E13_Attribute_Assignment | Person charged with crime |
 | **CONVICTED_OF** | forward | P1399 | E13_Attribute_Assignment | Person convicted of crime |
-| **SENTENCED_TO** | forward | — | E13_Attribute_Assignment | Person sentenced to punishment |
-| **EXECUTED** | forward | — | E69_Death | Authority executed person |
-| **IMPRISONED_IN** | forward | — | — | Person imprisoned in facility |
-| **CONDEMNED_WITHOUT_TRIAL** | forward | — | — | Authority condemned person without legal process |
-| **LEGAL_ACTION** | unidirectional | — | — | Generic legal proceeding |
+| **SENTENCED_TO** | forward | â€” | E13_Attribute_Assignment | Person sentenced to punishment |
+| **EXECUTED** | forward | â€” | E69_Death | Authority executed person |
+| **IMPRISONED_IN** | forward | â€” | â€” | Person imprisoned in facility |
+| **CONDEMNED_WITHOUT_TRIAL** | forward | â€” | â€” | Authority condemned person without legal process |
+| **LEGAL_ACTION** | unidirectional | â€” | â€” | Generic legal proceeding |
 
 **Example Cypher:**
 ```cypher
@@ -4298,24 +4298,24 @@ ON (r.goal_type, r.action_type, r.result_type)
 - Unknown types flagged for review
 
 **2. Directionality Compliance**
-- Forward relationships: Source → Target  
-- Inverse relationships: Target ← Source
+- Forward relationships: Source â†’ Target  
+- Inverse relationships: Target â† Source
 - Symmetric relationships: Both directions created
 - Unidirectional: Only specified direction allowed
 
 **3. Domain/Range Constraints (Selected)**
 ```cypher
-// BORN_IN: Human → Place
+// BORN_IN: Human â†’ Place
 MATCH (h:Human)-[:BORN_IN]->(p)
 WHERE NOT p:Place
 RETURN "Invalid BORN_IN target" AS error, h.entity_id, id(p)
 
-// AUTHOR: Human → Work
+// AUTHOR: Human â†’ Work
 MATCH (h:Human)-[:AUTHOR]->(w)
 WHERE NOT w:Work
 RETURN "Invalid AUTHOR target" AS error, h.entity_id, id(w)
 
-// FATHER_OF: Human → Human  
+// FATHER_OF: Human â†’ Human  
 MATCH (h1:Human)-[:FATHER_OF]->(h2)
 WHERE NOT h2:Human
 RETURN "Invalid FATHER_OF target" AS error, h1.entity_id, id(h2)
@@ -4496,7 +4496,7 @@ This section describes Chrystallum's technical implementation: the runtime envir
 - **Frontend**: React + Cytoscape.js for graph visualization
 
 **Implementation Philosophy:**
-- **Two-stage architecture**: LLM extraction → deterministic validation (Section 1.2.1)
+- **Two-stage architecture**: LLM extraction â†’ deterministic validation (Section 1.2.1)
 - **Evidence-aware**: Complete provenance chains for all knowledge
 - **Safety-first**: Explicit identifier handling rules prevent data corruption
 
@@ -4550,8 +4550,8 @@ class Neo4jConnection:
 
 **Architecture Pattern:**
 ```
-User Query → CoordinatorAgent → SubjectAgent → EntityAgent → Neo4j Write
-                ↓                    ↓              ↓
+User Query â†’ CoordinatorAgent â†’ SubjectAgent â†’ EntityAgent â†’ Neo4j Write
+                â†“                    â†“              â†“
            Route by LCC      Extract entities  Validate/Resolve
 ```
 
@@ -4748,7 +4748,7 @@ def entity_agent(state: AgentState) -> AgentState:
 
 ### **8.3.1 Sequential Processing**
 
-**Pattern**: Execute agents in order (coordinator → subject → entity → writer)
+**Pattern**: Execute agents in order (coordinator â†’ subject â†’ entity â†’ writer)
 
 **Use Case**: Standard entity extraction and resolution
 
@@ -4812,7 +4812,7 @@ workflow.add_edge(["entity_validator", "duplicate_checker"], "merge_results")
 
 **Pattern**: Agent can route back to earlier stage
 
-**Use Case**: Entity resolution fails → request more context from subject agent
+**Use Case**: Entity resolution fails â†’ request more context from subject agent
 
 ```python
 def check_validation_status(state: AgentState) -> str:
@@ -4865,7 +4865,7 @@ def extract_entities_and_relationships(text: str, domain: str) -> Dict:
     return parsed
 ```
 
-**⚠️ CRITICAL**: Never pass system identifiers (QIDs, FAST IDs, LCC codes) to LLM. See Section 8.5.
+**âš ï¸ CRITICAL**: Never pass system identifiers (QIDs, FAST IDs, LCC codes) to LLM. See Section 8.5.
 
 ---
 
@@ -4909,7 +4909,7 @@ def fast_lookup(subject_label: str, subject_type: str) -> Optional[str]:
     return fast_id  # Return as atomic string
 ```
 
-**⚠️ CRITICAL**: These functions return **atomic strings** (QIDs, FAST IDs). Never pass these to LLMs. See Section 8.5.
+**âš ï¸ CRITICAL**: These functions return **atomic strings** (QIDs, FAST IDs). Never pass these to LLMs. See Section 8.5.
 
 ---
 
@@ -4927,7 +4927,7 @@ def fast_lookup(subject_label: str, subject_type: str) -> Optional[str]:
 
 ---
 
-## **8.5 Identifier Handling & LLM Safety** 🔴 **CRITICAL**
+## **8.5 Identifier Handling & LLM Safety** ðŸ”´ **CRITICAL**
 
 ### **8.5.1 The Tokenization Problem**
 
@@ -4935,7 +4935,7 @@ def fast_lookup(subject_label: str, subject_type: str) -> Optional[str]:
 
 **Example of Fragmentation:**
 ```python
-# ❌ DANGER - Passing FAST ID to LLM:
+# âŒ DANGER - Passing FAST ID to LLM:
 fast_id = "1145002"  # Technology (7-digit atomic identifier)
 llm_response = llm.ask(f"What subject is FAST ID {fast_id}?")
 
@@ -4943,57 +4943,57 @@ llm_response = llm.ask(f"What subject is FAST ID {fast_id}?")
 #   Input: "What subject is FAST ID 1145002?"
 #   Tokens: ["What", "subject", "is", "FAST", "ID", "114", "500", "2", "?"]
 #                                                      ^^^^^^^^^^^^^^^^^^^
-#                                                      ❌ FRAGMENTED!
+#                                                      âŒ FRAGMENTED!
 
 # LLM cannot recognize "1145002" as a single identifier
 # Lookup fails, backbone alignment breaks silently
 
-# ❌ Similar fragmentation for other identifiers:
+# âŒ Similar fragmentation for other identifiers:
 lcc_code = "DG241-269"  # Roman history
-# Tokens: ["DG", "241", "-", "269"]  ❌ FRAGMENTED!
+# Tokens: ["DG", "241", "-", "269"]  âŒ FRAGMENTED!
 
 marc_code = "sh85115058"  # Subject heading
-# Tokens: ["sh", "851", "150", "58"]  ❌ FRAGMENTED!
+# Tokens: ["sh", "851", "150", "58"]  âŒ FRAGMENTED!
 
 pleiades_id = "423025"  # Rome
-# Tokens: ["423", "025"]  ❌ FRAGMENTED!
+# Tokens: ["423", "025"]  âŒ FRAGMENTED!
 
 qid = "Q17193"  # Roman Republic
-# Tokens: ["Q", "17", "19", "3"]  ❌ FRAGMENTED!
+# Tokens: ["Q", "17", "19", "3"]  âŒ FRAGMENTED!
 ```
 
 **Consequence**: If agents accidentally pass these identifiers to LLMs:
-- FAST backbone alignment fails → subject classification breaks
-- Pleiades lookups fail → ancient geography breaks
-- MARC integration fails → bibliographic links break
-- QID lookups fail → entity resolution breaks
+- FAST backbone alignment fails â†’ subject classification breaks
+- Pleiades lookups fail â†’ ancient geography breaks
+- MARC integration fails â†’ bibliographic links break
+- QID lookups fail â†’ entity resolution breaks
 - **Silent failures** - no obvious errors, just bad data
 
 ---
 
-### **8.5.2 The Two-Stage Processing Pattern** ✅
+### **8.5.2 The Two-Stage Processing Pattern** âœ…
 
-**CORRECT PATTERN**: LLM extracts natural language labels → Tools resolve to atomic identifiers
+**CORRECT PATTERN**: LLM extracts natural language labels â†’ Tools resolve to atomic identifiers
 
 ```python
-# ✅ CORRECT - Two-stage processing:
+# âœ… CORRECT - Two-stage processing:
 
 # Stage 1: LLM extracts natural language labels
 text = "During the Roman Republic, Rome was the capital"
 extracted = llm.extract({
-    "period": "Roman Republic",    # ✅ Natural language (LLM can process)
-    "place": "Rome"                 # ✅ Natural language (LLM can process)
+    "period": "Roman Republic",    # âœ… Natural language (LLM can process)
+    "place": "Rome"                 # âœ… Natural language (LLM can process)
 })
 
 # Stage 2: Tools resolve labels to atomic identifiers (NO LLM)
 resolved = {
     "period": {
-        "label": "Roman Republic",                      # ✅ Human-readable
+        "label": "Roman Republic",                      # âœ… Human-readable
         "qid": wikidata_tool.lookup("Roman Republic"),  # "Q17193" (atomic)
         "fast_id": fast_tool.lookup("Roman Republic")   # "1411640" (atomic)
     },
     "place": {
-        "label": "Rome",                           # ✅ Human-readable
+        "label": "Rome",                           # âœ… Human-readable
         "qid": wikidata_tool.lookup("Rome"),       # "Q220" (atomic)
         "pleiades_id": pleiades_tool.lookup("Rome") # "423025" (atomic)
     }
@@ -5001,9 +5001,9 @@ resolved = {
 
 # Stage 3: Store both formats in Neo4j
 graph.create_node({
-    "label": "Roman Republic",      # ✅ Natural (for display, search)
-    "qid": "Q17193",                # ❌ Atomic (for lookups, NEVER pass to LLM)
-    "fast_id": "1411640"            # ❌ Atomic (for backbone, NEVER pass to LLM)
+    "label": "Roman Republic",      # âœ… Natural (for display, search)
+    "qid": "Q17193",                # âŒ Atomic (for lookups, NEVER pass to LLM)
+    "fast_id": "1411640"            # âŒ Atomic (for backbone, NEVER pass to LLM)
 })
 ```
 
@@ -5015,19 +5015,19 @@ graph.create_node({
 
 | Identifier Type | Example | LLM Safe? | How to Handle | Tokenization Risk |
 |-----------------|---------|-----------|---------------|-------------------|
-| **Period name** | "Roman Republic" | ✅ YES | Extract with LLM | ✅ None (designed for it) |
-| **Date text** | "49 BCE" | ✅ YES | Extract with LLM, convert with tool | ✅ None |
-| **Place name** | "Rome" | ✅ YES | Extract with LLM | ✅ None |
-| **Subject heading** | "Political science" | ✅ YES | Extract with LLM | ✅ None |
+| **Period name** | "Roman Republic" | âœ… YES | Extract with LLM | âœ… None (designed for it) |
+| **Date text** | "49 BCE" | âœ… YES | Extract with LLM, convert with tool | âœ… None |
+| **Place name** | "Rome" | âœ… YES | Extract with LLM | âœ… None |
+| **Subject heading** | "Political science" | âœ… YES | Extract with LLM | âœ… None |
 | | | | | |
-| **Wikidata QID** | **"Q17193"** | **❌ NO** | **Tool lookup only** | 🔴 **HIGH** |
-| **FAST ID** | **"1145002"** | **❌ NO** | **Tool lookup only** | 🔴 **HIGH** |
-| **LCC code (range)** | **"DG241-269"** | **❌ NO** | **Tool lookup only** | 🔴 **HIGH** |
-| **LCC code (simple)** | **"T"** | **❌ NO** | **Tool lookup only** | 🟡 **MEDIUM** |
-| **MARC code** | **"sh85115058"** | **❌ NO** | **Tool lookup only** | 🔴 **HIGH** |
-| **Pleiades ID** | **"423025"** | **❌ NO** | **Tool lookup only** | 🔴 **HIGH** |
-| **GeoNames ID** | **"2643743"** | **❌ NO** | **Tool lookup only** | 🟡 **MEDIUM** |
-| **ISO 8601 date** | **"-0753-01-01"** | **❌ NO** | **Tool-formatted only** | 🔴 **HIGH** |
+| **Wikidata QID** | **"Q17193"** | **âŒ NO** | **Tool lookup only** | ðŸ”´ **HIGH** |
+| **FAST ID** | **"1145002"** | **âŒ NO** | **Tool lookup only** | ðŸ”´ **HIGH** |
+| **LCC code (range)** | **"DG241-269"** | **âŒ NO** | **Tool lookup only** | ðŸ”´ **HIGH** |
+| **LCC code (simple)** | **"T"** | **âŒ NO** | **Tool lookup only** | ðŸŸ¡ **MEDIUM** |
+| **MARC code** | **"sh85115058"** | **âŒ NO** | **Tool lookup only** | ðŸ”´ **HIGH** |
+| **Pleiades ID** | **"423025"** | **âŒ NO** | **Tool lookup only** | ðŸ”´ **HIGH** |
+| **GeoNames ID** | **"2643743"** | **âŒ NO** | **Tool lookup only** | ðŸŸ¡ **MEDIUM** |
+| **ISO 8601 date** | **"-0753-01-01"** | **âŒ NO** | **Tool-formatted only** | ðŸ”´ **HIGH** |
 
 ---
 
@@ -5050,23 +5050,23 @@ def extract_and_resolve_entities(source_text: str) -> List[Dict]:
     Return JSON list of entities.
     """
     
-    # ✅ GOOD: LLM processes natural language only
+    # âœ… GOOD: LLM processes natural language only
     raw_entities = llm.extract(llm_prompt)
     
     # Stage 2: Tools resolve to atomic identifiers (NO LLM)
     resolved_entities = []
     for entity in raw_entities:
-        label = entity["label"]      # ✅ Natural language string
+        label = entity["label"]      # âœ… Natural language string
         entity_type = entity["type"]
         
-        # ✅ GOOD: Tool-based resolution (NO LLM involved)
+        # âœ… GOOD: Tool-based resolution (NO LLM involved)
         qid = wikidata_api.search(label, entity_type)  # Returns atomic string
         fast_id = fast_api.lookup(label, entity_type)  # Returns atomic string
         
         resolved_entities.append({
-            "label": label,           # ✅ Natural (human-readable)
-            "qid": qid,               # ❌ Atomic (machine lookup key)
-            "fast_id": fast_id,       # ❌ Atomic (machine lookup key)
+            "label": label,           # âœ… Natural (human-readable)
+            "qid": qid,               # âŒ Atomic (machine lookup key)
+            "fast_id": fast_id,       # âŒ Atomic (machine lookup key)
             "entity_type": entity_type
         })
     
@@ -5095,11 +5095,11 @@ def classify_query_to_lcc(query: str) -> str:
     Return: The domain NAME (not the code).
     """
     
-    # ✅ GOOD: LLM processes natural language domain names
+    # âœ… GOOD: LLM processes natural language domain names
     domain_name = llm.extract(llm_prompt)  # Returns "History", not "D"
     
     # Tool converts name to LCC code (NO LLM)
-    lcc_code = lcc_mapping[domain_name]    # "History" → "D"
+    lcc_code = lcc_mapping[domain_name]    # "History" â†’ "D"
     
     return lcc_code  # Returns atomic string "D" (NEVER pass back to LLM)
 ```
@@ -5110,7 +5110,7 @@ def classify_query_to_lcc(query: str) -> str:
 def align_entity_to_backbone(entity_label: str, entity_type: str) -> Dict:
     """Align entity to FAST/LCC/LCSH backbone standards."""
     
-    # ✅ GOOD: All lookups use natural language labels, not codes
+    # âœ… GOOD: All lookups use natural language labels, not codes
     fast_id = fast_api.lookup(entity_label, entity_type)
     lcc_code = lcc_api.classify(entity_label, entity_type)
     lcsh_heading = lcsh_api.lookup(entity_label)
@@ -5140,7 +5140,7 @@ def align_entity_to_backbone(entity_label: str, entity_type: str) -> Dict:
 - [ ] No ISO dates (YYYY-MM-DD format, especially with negative years)
 - [ ] No dates without delimiters (YYYYMMDD)
 
-**If any detected → Remove from prompt and use tool lookup instead!**
+**If any detected â†’ Remove from prompt and use tool lookup instead!**
 
 ---
 
@@ -5202,15 +5202,15 @@ if not result['is_safe']:
 
 ```json
 {
-  "label": "Roman Republic",           // ✅ Natural (LLM extracts)
-  "qid": "Q17193",                     // ❌ Atomic (tool resolves)
-  "fast_id": "1411640",                // ❌ Atomic (tool resolves)
-  "lcc_code": "DG241-269",             // ❌ Atomic (tool resolves)
-  "lcsh_heading": "Rome--History--Republic",  // ✅ Natural (human-readable)
-  "marc_code": "sh85115058",           // ❌ Atomic (tool resolves)
-  "start_date_text": "509 BCE",        // ✅ Natural (LLM extracts)
-  "start_date_iso": "-0509-01-01",    // ❌ Atomic (tool formats)
-  "start_year": -509                   // ✅ Numeric (calculations)
+  "label": "Roman Republic",           // âœ… Natural (LLM extracts)
+  "qid": "Q17193",                     // âŒ Atomic (tool resolves)
+  "fast_id": "1411640",                // âŒ Atomic (tool resolves)
+  "lcc_code": "DG241-269",             // âŒ Atomic (tool resolves)
+  "lcsh_heading": "Rome--History--Republic",  // âœ… Natural (human-readable)
+  "marc_code": "sh85115058",           // âŒ Atomic (tool resolves)
+  "start_date_text": "509 BCE",        // âœ… Natural (LLM extracts)
+  "start_date_iso": "-0509-01-01",    // âŒ Atomic (tool formats)
+  "start_year": -509                   // âœ… Numeric (calculations)
 }
 ```
 
@@ -5218,13 +5218,13 @@ if not result['is_safe']:
 
 ```json
 {
-  "label": "Rome",                     // ✅ Natural (LLM extracts)
-  "qid": "Q220",                       // ❌ Atomic (tool resolves)
-  "pleiades_id": "423025",             // ❌ Atomic (tool resolves)
-  "geonames_id": "3169070",            // ❌ Atomic (tool resolves)
-  "latitude": 41.9028,                 // ✅ Numeric (not string!)
-  "longitude": 12.4964,                // ✅ Numeric (not string!)
-  "description": "Capital of the Roman Empire"  // ✅ Natural (LLM extracts)
+  "label": "Rome",                     // âœ… Natural (LLM extracts)
+  "qid": "Q220",                       // âŒ Atomic (tool resolves)
+  "pleiades_id": "423025",             // âŒ Atomic (tool resolves)
+  "geonames_id": "3169070",            // âŒ Atomic (tool resolves)
+  "latitude": 41.9028,                 // âœ… Numeric (not string!)
+  "longitude": 12.4964,                // âœ… Numeric (not string!)
+  "description": "Capital of the Roman Empire"  // âœ… Natural (LLM extracts)
 }
 ```
 
@@ -5232,43 +5232,43 @@ if not result['is_safe']:
 
 ### **8.5.8 Common Anti-Patterns (AVOID)**
 
-#### **❌ Anti-Pattern 1: Passing QID to LLM**
+#### **âŒ Anti-Pattern 1: Passing QID to LLM**
 
 ```python
-# ❌ WRONG - QID gets tokenized and fragmented
+# âŒ WRONG - QID gets tokenized and fragmented
 qid = "Q17193"
 llm_response = llm.ask(f"What period is {qid}?")
 # Tokens: ["What", "period", "is", "Q", "17", "19", "3", "?"]
 # Result: LLM doesn't recognize QID, gives garbage response
 
-# ✅ CORRECT - Use tool lookup
+# âœ… CORRECT - Use tool lookup
 qid = "Q17193"
 wikidata_data = wikidata_api.get_entity(qid)  # Tool-based, no LLM
 period_label = wikidata_data["labels"]["en"]["value"]
 ```
 
-#### **❌ Anti-Pattern 2: Asking LLM to Generate FAST IDs**
+#### **âŒ Anti-Pattern 2: Asking LLM to Generate FAST IDs**
 
 ```python
-# ❌ WRONG - LLM cannot generate valid FAST IDs
+# âŒ WRONG - LLM cannot generate valid FAST IDs
 subject_text = "political science"
 llm_response = llm.ask(f"What is the FAST ID for {subject_text}?")
 # LLM might hallucinate: "1145002" (could be wrong)
 
-# ✅ CORRECT - Use FAST API or lookup table
+# âœ… CORRECT - Use FAST API or lookup table
 fast_id = fast_api.lookup(subject_text)  # Authoritative source
 ```
 
-#### **❌ Anti-Pattern 3: Constructing LLM Prompts with Identifiers**
+#### **âŒ Anti-Pattern 3: Constructing LLM Prompts with Identifiers**
 
 ```python
-# ❌ WRONG - Identifier in prompt gets tokenized
+# âŒ WRONG - Identifier in prompt gets tokenized
 fast_id = "1145002"
 lcc_code = "DG241-269"
 llm_prompt = f"Classify this entity with FAST ID {fast_id} and LCC code {lcc_code}"
 # Tokenization breaks both identifiers
 
-# ✅ CORRECT - Use labels in prompts, identifiers for lookups
+# âœ… CORRECT - Use labels in prompts, identifiers for lookups
 label = "Roman history"
 llm_prompt = f"Classify this entity about {label}"
 # After LLM response, use tools to get FAST/LCC
@@ -5279,27 +5279,27 @@ llm_prompt = f"Classify this entity about {label}"
 ### **8.5.9 Emergency Decision Tree**
 
 Is this data being processed?  
-│  
-├─ Natural language text? (period name, date text, place name)  
-│  └─ ✅ LLM can extract it  
-│  
-├─ System identifier? (QID, FAST ID, LCC, MARC, Pleiades, GeoNames)  
-│  └─ ❌ Tool resolves it, NEVER pass to LLM  
-│  
-├─ ISO 8601 date?  
-│  └─ ❌ Tool formats it, NEVER pass to LLM  
-│  
-├─ Numeric value? (year, coordinate)  
-│  └─ ✅ Store as number, use in calculations  
-│  
-└─ Unsure?  
-   └─ Default to ❌ Tool handling (safer to over-protect)
+â”‚  
+â”œâ”€ Natural language text? (period name, date text, place name)  
+â”‚  â””â”€ âœ… LLM can extract it  
+â”‚  
+â”œâ”€ System identifier? (QID, FAST ID, LCC, MARC, Pleiades, GeoNames)  
+â”‚  â””â”€ âŒ Tool resolves it, NEVER pass to LLM  
+â”‚  
+â”œâ”€ ISO 8601 date?  
+â”‚  â””â”€ âŒ Tool formats it, NEVER pass to LLM  
+â”‚  
+â”œâ”€ Numeric value? (year, coordinate)  
+â”‚  â””â”€ âœ… Store as number, use in calculations  
+â”‚  
+â””â”€ Unsure?  
+   â””â”€ Default to âŒ Tool handling (safer to over-protect)
 
 ---
 
 ### **8.5.10 Summary: Identifier Safety Rules**
 
-| ✅ LLM Can Process | ❌ LLM Cannot Process (Atomic) |
+| âœ… LLM Can Process | âŒ LLM Cannot Process (Atomic) |
 |-------------------|--------------------------------|
 | Period names | Wikidata QIDs |
 | Place names | FAST IDs |
@@ -5340,8 +5340,8 @@ This section describes the operational workflows that govern how agents collabor
 ### **9.1.1 Workflow Steps**
 
 ```
-Source Text → SubjectAgent → EntityAgent → ClaimAgent → Neo4j (Claim nodes)
-                  ↓              ↓             ↓
+Source Text â†’ SubjectAgent â†’ EntityAgent â†’ ClaimAgent â†’ Neo4j (Claim nodes)
+                  â†“              â†“             â†“
             (Extract)      (Validate)    (Structure)
 ```
 
@@ -5440,8 +5440,8 @@ def claim_generation_workflow(source_text: str, source_work_qid: str, agent_id: 
 ### **9.2.1 Workflow Steps**
 
 ```
-Claim (proposed) → ReviewerAgent → Review Node → Consensus Calculation → Status Update
-                       ↓               ↓                ↓
+Claim (proposed) â†’ ReviewerAgent â†’ Review Node â†’ Consensus Calculation â†’ Status Update
+                       â†“               â†“                â†“
                   (Evaluate)      (Record)        (Aggregate)
 ```
 
@@ -5464,8 +5464,8 @@ Claim (proposed) → ReviewerAgent → Review Node → Consensus Calculation →
 - Update claim status based on thresholds
 
 **Step 5: Update Claim Status**
-- `validated` (consensus ≥ 0.8 + 70% support)
-- `disputed` (consensus ≥ 0.5 but mixed reviews)
+- `validated` (consensus â‰¥ 0.8 + 70% support)
+- `disputed` (consensus â‰¥ 0.5 but mixed reviews)
 - `rejected` (consensus < 0.5)
 
 ---
@@ -5586,9 +5586,9 @@ def determine_status(consensus: float, reviews: List[Dict]) -> str:
 When multiple agents propose conflicting claims about the same subject:
 
 ```
-ClaimA (Agent1) ─┐
-ClaimB (Agent2) ─┼─> SynthesisAgent → Synthesis Node → Resolved Claim
-ClaimC (Agent3) ─┘
+ClaimA (Agent1) â”€â”
+ClaimB (Agent2) â”€â”¼â”€> SynthesisAgent â†’ Synthesis Node â†’ Resolved Claim
+ClaimC (Agent3) â”€â”˜
 ```
 
 **Example Conflict:**
@@ -5668,8 +5668,8 @@ def synthesis_workflow(claim_ids: List[str], synthesis_agent_id: str) -> Dict:
 Convert validated claims from evidence layer to canonical graph:
 
 ```
-Claim (validated) → Promotion Process → Canonical Entity/Relationship + Provenance Link
-      ↓                    ↓                           ↓
+Claim (validated) â†’ Promotion Process â†’ Canonical Entity/Relationship + Provenance Link
+      â†“                    â†“                           â†“
 (status=validated)   (4-step process)     (SUPPORTED_BY edge to claim)
 ```
 
@@ -5827,7 +5827,7 @@ class WorkflowMonitor:
 
 ---
 
-## **9.6 Facet Assessment Workflow** 🟡 **STAR PATTERN - Multi-Dimensional Analysis**
+## **9.6 Facet Assessment Workflow** ðŸŸ¡ **STAR PATTERN - Multi-Dimensional Analysis**
 
 ### **9.6.1 Overview: Star Pattern for Claims**
 
@@ -5835,14 +5835,14 @@ class WorkflowMonitor:
 
 **The Star Pattern:**
 ```
-                ┌──→ MilitaryFacet
-                │
-   ┌──→ Belief ─┼──→ DiplomaticFacet
-   │            │
-Claim ────────┼──→ PoliticalFacet
-   │          │
-   └───────────┤──→ EconomicFacet
-               └──→ [12 other facet vectors]
+                â”Œâ”€â”€â†’ MilitaryFacet
+                â”‚
+   â”Œâ”€â”€â†’ Belief â”€â”¼â”€â”€â†’ DiplomaticFacet
+   â”‚            â”‚
+Claim â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â†’ PoliticalFacet
+   â”‚          â”‚
+   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤â”€â”€â†’ EconomicFacet
+               â””â”€â”€â†’ [12 other facet vectors]
 ```
 
 **Key Property:** One AnalysisRun creates multiple independent FacetAssessments, each with its own confidence score, rationale, and source citations.
@@ -6140,7 +6140,7 @@ ORDER BY abs(score_difference) DESC;
 
 1. **Multi-Dimensional Analysis:** Single event analyzed across all 16 analytical axes
 2. **Agent Specialization:** Political expert evaluates political facet, military expert evaluates military facet
-3. **Independent Confidence:** Each facet has its own confidence score (military_conf ≠ political_conf)
+3. **Independent Confidence:** Each facet has its own confidence score (military_conf â‰  political_conf)
 4. **Separate Sourcing:** Each facet cites relevant sources (military from military historians, political from political historians)
 5. **UI Tabs:** Display "Political" | "Military" | "Economic" | etc. tabs for easy navigation
 6. **Re-Runnable:** Compare analysis "v1" vs "v2" to track prompt/model improvements
@@ -6277,10 +6277,10 @@ Base confidence can be adjusted based on additional factors:
 | Factor | Adjustment | Rationale |
 |--------|------------|-----------|
 | **Multiple attestations** | +0.05 per additional source (max +0.15) | Corroboration increases confidence |
-| **Agent consensus** | +0.10 if ≥80% agent agreement | Multi-agent validation |
+| **Agent consensus** | +0.10 if â‰¥80% agent agreement | Multi-agent validation |
 | **Temporal proximity** | +0.05 if contemporary source | Closer to events = more reliable |
 | **Conflict detected** | -0.15 | Conflicting claims reduce confidence |
-| **Agent expertise** | ±0.05 | Specialist agents weight higher |
+| **Agent expertise** | Â±0.05 | Specialist agents weight higher |
 
 ```python
 def calculate_adjusted_confidence(base_confidence: float, factors: Dict) -> float:
@@ -6359,7 +6359,7 @@ class AgentPerformanceMetrics:
             (1 - self.metrics["hallucination_rate"]) * 0.3
         )
         
-        # Weight adjustment: ±20% based on performance
+        # Weight adjustment: Â±20% based on performance
         adjustment = (performance_score - 0.5) * 0.4
         return 1.0 + adjustment  # Range: [0.8, 1.2]
 ```
@@ -6676,9 +6676,9 @@ Chrystallum's future development focuses on three areas:
 
 **Architecture:**
 ```
-University A Graph ─┐
-University B Graph ─┼─> Shared Claim Registry (ciphers)
-Research Lab Graph ─┘         ↓
+University A Graph â”€â”
+University B Graph â”€â”¼â”€> Shared Claim Registry (ciphers)
+Research Lab Graph â”€â”˜         â†“
                           Cross-instance validation
 ```
 
@@ -6712,8 +6712,8 @@ Research Lab Graph ─┘         ↓
   "labels": {
     "en": "Gaius Julius Caesar",
     "la": "Gaius Iulius Caesar",
-    "fr": "Jules César",
-    "de": "Gaius Julius Cäsar"
+    "fr": "Jules CÃ©sar",
+    "de": "Gaius Julius CÃ¤sar"
   },
   "primary_language": "la",  # Latin for ancient Roman figure
   "label_preferred": "Gaius Iulius Caesar"  # Use Latin form
@@ -6743,7 +6743,7 @@ Research Lab Graph ─┘         ↓
 
 **Workflow:**
 ```
-Researcher Hypothesis → Decompose into testable claims → Query graph for supporting/challenging evidence → Calculate hypothesis confidence
+Researcher Hypothesis â†’ Decompose into testable claims â†’ Query graph for supporting/challenging evidence â†’ Calculate hypothesis confidence
 ```
 
 **Example:**
@@ -7512,3 +7512,4 @@ Defines optional-but-supported extension properties that enrich entities without
 ---
 
 (End of consolidated document snapshot)
+
