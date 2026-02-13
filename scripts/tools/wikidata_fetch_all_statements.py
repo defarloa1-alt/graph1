@@ -10,7 +10,7 @@ statement-level data including:
 
 Usage:
   python scripts/tools/wikidata_fetch_all_statements.py --qid Q1048
-  python scripts/tools/wikidata_fetch_all_statements.py --qid Q1048 --output out/q1048_statements.json
+  python scripts/tools/wikidata_fetch_all_statements.py --qid Q1048 --output JSON/wikidata/statements/Q1048_statements_full.json
 """
 
 from __future__ import annotations
