@@ -1,4 +1,4 @@
-# Chrystallum Architecture → Implementation Reference Index
+﻿# Chrystallum Architecture â†’ Implementation Reference Index
 
 **Date:** February 13, 2026  
 **Purpose:** Cross-reference between architecture specification and implementation files  
@@ -8,22 +8,24 @@
 
 ## Quick Navigation
 
-### Architecture Sections → Implementation Files
+### Architecture Sections â†’ Implementation Files
 
 | Architecture Section | Implementation Files | Status |
 |---|---|---|
-| **Section 3: Entity Layer** | `Neo4j/schema/01_schema_constraints.cypher` | ✅ 60+ constraints |
-| | `Neo4j/schema/02_schema_indexes.cypher` | ✅ 50+ indexes |
-| | `Neo4j/schema/03_schema_initialization.cypher` | ✅ Bootstrap entities |
-| **Section 3.4: Temporal Modeling** | `Neo4j/schema/03_schema_initialization.cypher` (lines: Year backbone) | ✅ 4,026 nodes |
-| **Section 4: Subject Layer** | `Python/fast/scripts/import_fast_subjects_to_neo4j.py` | ✅ FAST → Cypher |
-| **Section 4.3: Temporal Authority** | (See Section 3.4 + PeriodO integration) | ⏳ Phase 2 |
-| **Section 4.4: Geographic Authority** | (Pleiades/TGN linking - Phase 2) | ⏳ Phase 2 |
-| **Section 4.5: Wikidata Integration** | `Neo4j/IMPLEMENTATION_ROADMAP.md` (Step 4: Federation Supercharging) | ⏳ Phase 2 |
-| **Section 5: Agent Architecture** | `Python/agents/chrystallum_agents.py` (TBD Phase 3) | ⏳ Phase 3 |
-| **Section 6: Claims Layer** | (Claims initialization - Phase 3) | ⏳ Phase 3 |
-| **Section 8: Technology Stack** | `Neo4j/IMPLEMENTATION_ROADMAP.md` (Neo4j 5.0+, LangGraph orchestration) | ✅ Documented |
-| **Section 10: Quality Assurance** | (QA pipeline - Phase 3) | ⏳ Phase 3 |
+| **Section 3: Entity Layer** | `Neo4j/schema/01_schema_constraints.cypher` | âœ… 60+ constraints |
+| | `Neo4j/schema/02_schema_indexes.cypher` | âœ… 50+ indexes |
+| | `Neo4j/schema/03_schema_initialization.cypher` | âœ… Bootstrap entities |
+| | `Neo4j/schema/05_temporal_hierarchy_levels.cypher` | âœ… Decade/Century/Millennium hierarchy |
+| **Section 3.4: Temporal Modeling** | `Neo4j/schema/03_schema_initialization.cypher` (lines: Year backbone) | âœ… 4,026 nodes |
+| | `Python/migrate_temporal_hierarchy_levels.py` | âœ… Safe migration tool |
+| **Section 4: Subject Layer** | `Python/fast/scripts/import_fast_subjects_to_neo4j.py` | âœ… FAST â†’ Cypher |
+| **Section 4.3: Temporal Authority** | (See Section 3.4 + PeriodO integration) | â³ Phase 2 |
+| **Section 4.4: Geographic Authority** | (Pleiades/TGN linking - Phase 2) | â³ Phase 2 |
+| **Section 4.5: Wikidata Integration** | `Neo4j/IMPLEMENTATION_ROADMAP.md` (Step 4: Federation Supercharging) | â³ Phase 2 |
+| **Section 5: Agent Architecture** | `Python/agents/chrystallum_agents.py` (TBD Phase 3) | â³ Phase 3 |
+| **Section 6: Claims Layer** | (Claims initialization - Phase 3) | â³ Phase 3 |
+| **Section 8: Technology Stack** | `Neo4j/IMPLEMENTATION_ROADMAP.md` (Neo4j 5.0+, LangGraph orchestration) | âœ… Documented |
+| **Section 10: Quality Assurance** | (QA pipeline - Phase 3) | â³ Phase 3 |
 
 ---
 
@@ -102,7 +104,7 @@
   - Constraint strategy & rationale
   - Index strategy & performance benchmarks
   - Initialization details & verification queries
-  - Scaling recommendations (1K → 1M+ entities)
+  - Scaling recommendations (1K â†’ 1M+ entities)
   - Maintenance & operations guide
   - Troubleshooting guide
 
@@ -137,11 +139,11 @@
 
 #### fast/scripts/import_fast_subjects_to_neo4j.py
 - **Lines:** 400+
-- **Purpose:** LCSH/FAST subjects → Cypher import statements
+- **Purpose:** LCSH/FAST subjects â†’ Cypher import statements
 - **Maps to:** Section 4 (Subject Layer)
 - **Input:** JSONLD or CSV subjects (FAST/LCSH records)
 - **Output:** Cypher CREATE statements (bulk import)
-- **Status:** ✅ Tested on 50-subject sample
+- **Status:** âœ… Tested on 50-subject sample
 - **Next:** Full FASTTopical_parsed.csv import (100K+ subjects)
 
 **Functionality:**
@@ -179,114 +181,114 @@ See section above (duplicate entry for clarity)
 
 ---
 
-## Architecture → Implementation Mapping Detail
+## Architecture â†’ Implementation Mapping Detail
 
-### Entity Layer (Section 3) → Neo4j Schema
+### Entity Layer (Section 3) â†’ Neo4j Schema
 
 ```
 Section 3.1: Core Entity Types (14 types)
-  ├─ Human (PERSON entities)
-  │   └─ 01_schema_constraints: human_entity_id_unique, human_qid_unique, human_viaf_id_unique
-  │   └─ 02_schema_indexes: human_entity_id_index, human_qid_lookup, human_viaf_lookup, human_birth_date_index
-  │   └─ 03_schema_initialization: Create Julius Caesar (test entity)
-  │
-  ├─ Place (GEOGRAPHIC entities)
-  │   └─ 01_schema_constraints: place_entity_id_unique, place_qid_unique, place_pleiades_id_unique
-  │   └─ 02_schema_indexes: place_entity_id_index, place_tgn_lookup, place_pleiades_lookup
-  │   └─ 03_schema_initialization: Create Rome, Italy, Mediterranean (foundational)
-  │
-  ├─ Event (TEMPORAL entities)
-  │   └─ 01_schema_constraints: event_entity_id_unique, event_qid_unique
-  │   └─ 02_schema_indexes: event_entity_id_index, event_start_date_index, event_end_date_index
-  │   └─ (FUTURE) Events import pipeline (Phase 2)
-  │
-  ├─ Period (HISTORIOGRAPHIC temporal spans)
-  │   └─ 01_schema_constraints: period_entity_id_unique, period_qid_unique
-  │   └─ 02_schema_indexes: period_entity_id_index, period_start_index, period_end_index, period_facet_index
-  │   └─ 03_schema_initialization: Create Roman Republic, Empire, Late Republic
-  │
-  ├─ Year (TEMPORAL BACKBONE - critical)
-  │   └─ 01_schema_constraints: year_entity_id_unique, year_year_number_unique
-  │   └─ 02_schema_indexes: year_entity_id_index, year_number_index, year_iso_index
-  │   └─ 03_schema_initialization: CREATE 4,026 Year nodes (-2000 to 2025) with sequential linkage
-  │
-  ├─ Organization, Institution, Dynasty, Position, Work, etc.
-  │   └─ Each has corresponding constraints & indexes in 01 & 02
-  │   └─ 03_schema_initialization: Examples for Senate, Gens Julia
+  â”œâ”€ Human (PERSON entities)
+  â”‚   â””â”€ 01_schema_constraints: human_entity_id_unique, human_qid_unique, human_viaf_id_unique
+  â”‚   â””â”€ 02_schema_indexes: human_entity_id_index, human_qid_lookup, human_viaf_lookup, human_birth_date_index
+  â”‚   â””â”€ 03_schema_initialization: Create Julius Caesar (test entity)
+  â”‚
+  â”œâ”€ Place (GEOGRAPHIC entities)
+  â”‚   â””â”€ 01_schema_constraints: place_entity_id_unique, place_qid_unique, place_pleiades_id_unique
+  â”‚   â””â”€ 02_schema_indexes: place_entity_id_index, place_tgn_lookup, place_pleiades_lookup
+  â”‚   â””â”€ 03_schema_initialization: Create Rome, Italy, Mediterranean (foundational)
+  â”‚
+  â”œâ”€ Event (TEMPORAL entities)
+  â”‚   â””â”€ 01_schema_constraints: event_entity_id_unique, event_qid_unique
+  â”‚   â””â”€ 02_schema_indexes: event_entity_id_index, event_start_date_index, event_end_date_index
+  â”‚   â””â”€ (FUTURE) Events import pipeline (Phase 2)
+  â”‚
+  â”œâ”€ Period (HISTORIOGRAPHIC temporal spans)
+  â”‚   â””â”€ 01_schema_constraints: period_entity_id_unique, period_qid_unique
+  â”‚   â””â”€ 02_schema_indexes: period_entity_id_index, period_start_index, period_end_index, period_facet_index
+  â”‚   â””â”€ 03_schema_initialization: Create Roman Republic, Empire, Late Republic
+  â”‚
+  â”œâ”€ Year (TEMPORAL BACKBONE - critical)
+  â”‚   â””â”€ 01_schema_constraints: year_entity_id_unique, year_year_number_unique
+  â”‚   â””â”€ 02_schema_indexes: year_entity_id_index, year_number_index, year_iso_index
+  â”‚   â””â”€ 03_schema_initialization: CREATE 4,026 Year nodes (-2000 to 2025) with sequential linkage
+  â”‚
+  â”œâ”€ Organization, Institution, Dynasty, Position, Work, etc.
+  â”‚   â””â”€ Each has corresponding constraints & indexes in 01 & 02
+  â”‚   â””â”€ 03_schema_initialization: Examples for Senate, Gens Julia
 ```
 
-### Subject Layer (Section 4) → Subject Import Pipeline
+### Subject Layer (Section 4) â†’ Subject Import Pipeline
 
 ```
 Section 4: Subject Layer
-  ├─ 4.0 Overview: Multi-authority alignment
-  │   └─ Python/fast/scripts/import_fast_subjects_to_neo4j.py: Implements alignment
-  │
-  ├─ 4.1 SubjectConcept Node Schema
-  │   └─ import_fast_subjects_to_neo4j.py: Creates (:Subject) nodes with required properties
-  │
-  ├─ 4.2 Facets (16 Analytical Dimensions)
-  │   └─ 03_schema_initialization: Create 16 FacetCategory nodes
-  │   └─ import_fast_subjects_to_neo4j.py: Link subjects to facets
-  │
-  ├─ 4.3 Temporal Authority Alignment (ISO 8601, PeriodO)
-  │   └─ FUTURE: PeriodO integration (Phase 2)
-  │
-  ├─ 4.4 Geographic Authority Integration (TGN, Pleiades, Geonames)
-  │   └─ FUTURE: Geographic federation pipeline (Phase 2)
-  │
-  ├─ 4.5 Wikidata Integration Patterns
-  │   └─ FUTURE: Federation supercharging (Phase 2, Step 4)
-  │   └─ Neo4j/IMPLEMENTATION_ROADMAP.md: Documents approach
+  â”œâ”€ 4.0 Overview: Multi-authority alignment
+  â”‚   â””â”€ Python/fast/scripts/import_fast_subjects_to_neo4j.py: Implements alignment
+  â”‚
+  â”œâ”€ 4.1 SubjectConcept Node Schema
+  â”‚   â””â”€ import_fast_subjects_to_neo4j.py: Creates (:Subject) nodes with required properties
+  â”‚
+  â”œâ”€ 4.2 Facets (16 Analytical Dimensions)
+  â”‚   â””â”€ 03_schema_initialization: Create 16 FacetCategory nodes
+  â”‚   â””â”€ import_fast_subjects_to_neo4j.py: Link subjects to facets
+  â”‚
+  â”œâ”€ 4.3 Temporal Authority Alignment (ISO 8601, PeriodO)
+  â”‚   â””â”€ FUTURE: PeriodO integration (Phase 2)
+  â”‚
+  â”œâ”€ 4.4 Geographic Authority Integration (TGN, Pleiades, Geonames)
+  â”‚   â””â”€ FUTURE: Geographic federation pipeline (Phase 2)
+  â”‚
+  â”œâ”€ 4.5 Wikidata Integration Patterns
+  â”‚   â””â”€ FUTURE: Federation supercharging (Phase 2, Step 4)
+  â”‚   â””â”€ Neo4j/IMPLEMENTATION_ROADMAP.md: Documents approach
 ```
 
-### Claims Layer (Section 6) → Future Implementation
+### Claims Layer (Section 6) â†’ Future Implementation
 
 ```
 Section 6: Claims Layer
-  ├─ 6.0 Overview: Evidence-aware assertions
-  │   └─ ⏳ Phase 3: Create claims initialization script
-  │
-  ├─ 6.1 Claim Node Schema
-  │   └─ 01_schema_constraints: claim_id_unique, claim_has_confidence
-  │   └─ 02_schema_indexes: claim_id_index, claim_confidence_index
-  │   └─ ⏳ Phase 3: Populate claims from extracted facts
-  │
-  ├─ 6.2 Retrieval Context Nodes
-  │   └─ 01_schema_constraints: retrieval_context_id_unique
-  │   └─ 02_schema_indexes: retrieval_context_id_index, retrieval_context_agent_index
-  │   └─ ⏳ Phase 3: Link retrieval context to ReasoningTrace and Work nodes
+  â”œâ”€ 6.0 Overview: Evidence-aware assertions
+  â”‚   â””â”€ â³ Phase 3: Create claims initialization script
+  â”‚
+  â”œâ”€ 6.1 Claim Node Schema
+  â”‚   â””â”€ 01_schema_constraints: claim_id_unique, claim_has_confidence
+  â”‚   â””â”€ 02_schema_indexes: claim_id_index, claim_confidence_index
+  â”‚   â””â”€ â³ Phase 3: Populate claims from extracted facts
+  â”‚
+  â”œâ”€ 6.2 Retrieval Context Nodes
+  â”‚   â””â”€ 01_schema_constraints: retrieval_context_id_unique
+  â”‚   â””â”€ 02_schema_indexes: retrieval_context_id_index, retrieval_context_agent_index
+  â”‚   â””â”€ â³ Phase 3: Link retrieval context to ReasoningTrace and Work nodes
 ```
 
-### Agent Layer (Section 5) → Future Implementation
+### Agent Layer (Section 5) â†’ Future Implementation
 
 ```
 Section 5: Agent Architecture
-  ├─ 5.0 Overview: 16 facet-specialist agents + coordinator
-  │   └─ ⏳ Phase 3: Python/agents/chrystallum_agents.py
-  │
-  ├─ 5.5 Agent Domain Assignment
-  │   └─ 02_schema_indexes: subject_tier_index (for routing)
-  │   └─ ⏳ Phase 3: Agent-to-facet mapping
+  â”œâ”€ 5.0 Overview: 16 facet-specialist agents + coordinator
+  â”‚   â””â”€ â³ Phase 3: Python/agents/chrystallum_agents.py
+  â”‚
+  â”œâ”€ 5.5 Agent Domain Assignment
+  â”‚   â””â”€ 02_schema_indexes: subject_tier_index (for routing)
+  â”‚   â””â”€ â³ Phase 3: Agent-to-facet mapping
 ```
 
 ---
 
-## Federation Strategy → Implementation
+## Federation Strategy â†’ Implementation
 
 **Reference Document:** `2-13-26-federation-impact.md`
 
 ```
 Federation Tiers (4 levels):
   1. Golden Tier (LCSH, FAST, LCC, Dewey)
-     └─ Already handled by FAST import pipeline
+     â””â”€ Already handled by FAST import pipeline
      
   2. Silver Tier (TGN, Pleiades, Trismegistos, DARE, PeriodO, Nomisma, Perseus)
-     └─ ⏳ Phase 2, Step 4: Federation Supercharging
-     └─ Python/neo4j/scripts/federation_supercharger.py (TBD)
+     â””â”€ â³ Phase 2, Step 4: Federation Supercharging
+     â””â”€ Python/neo4j/scripts/federation_supercharger.py (TBD)
      
   3. Bronze Tier (VIAF, WorldCat, GND, ISNI)
-     └─ ⏳ Phase 2, Step 4: Multi-hop federation chains
+     â””â”€ â³ Phase 2, Step 4: Multi-hop federation chains
      
 Implementation Strategy:
   - Fetch SPARQL universe when entity ingested/enriched
@@ -303,42 +305,42 @@ Implementation Strategy:
 ```
 Phase 1: Neo4j Bootstrap
   01_schema_constraints.cypher
-    ↓
+    â†“
   02_schema_indexes.cypher
-    ↓
+    â†“
   03_schema_initialization.cypher
-    ↓
+    â†“
   (VERIFY with SCHEMA_BOOTSTRAP_GUIDE.md)
 
 Phase 2: FAST & Federation
   Python/fast/scripts/import_fast_subjects_to_neo4j.py
-    ├─ Input: subjects_sample_50.jsonld OR FASTTopical_parsed.csv
-    ├─ Output: subjects_import_sample.cypher OR fast_full_import.cypher
-    └─ Import to Neo4j
-  ↓
+    â”œâ”€ Input: subjects_sample_50.jsonld OR FASTTopical_parsed.csv
+    â”œâ”€ Output: subjects_import_sample.cypher OR fast_full_import.cypher
+    â””â”€ Import to Neo4j
+  â†“
   (FUTURE) Python/neo4j/scripts/federation_supercharger.py (Step 4a)
-    ├─ Queries Wikidata SPARQL for each subject
-    ├─ Caches authority_links on Subject nodes
-    └─ Creates ALIGNED_WITH federation edges
-  ↓
+    â”œâ”€ Queries Wikidata SPARQL for each subject
+    â”œâ”€ Caches authority_links on Subject nodes
+    â””â”€ Creates ALIGNED_WITH federation edges
+  â†“
   (FUTURE) Python/neo4j/scripts/backlink_enricher.py (Step 4b)
-    ├─ Queries Wikidata reverse relationships (P710, P1441, P737, P828, P138, P112)
-    ├─ Buckets by property + P31 (instance_of classification)
-    ├─ Materializes edges: PARTICIPATED_IN, DEPICTED_IN, INFLUENCED, EPONYM_OF, etc.
-    └─ Queues ambiguous edges for agent review
-  ↓
+    â”œâ”€ Queries Wikidata reverse relationships (P710, P1441, P737, P828, P138, P112)
+    â”œâ”€ Buckets by property + P31 (instance_of classification)
+    â”œâ”€ Materializes edges: PARTICIPATED_IN, DEPICTED_IN, INFLUENCED, EPONYM_OF, etc.
+    â””â”€ Queues ambiguous edges for agent review
+  â†“
   (FUTURE) Python/neo4j/scripts/temporal_facet_populator.py (Step 3)
-    ├─ Queries PeriodO for all periods containing event dates
-    ├─ Classifies by facet (Historiographical, Scientific, Religious, Economic, PeriodO, Fuzzy)
-    ├─ Materializes OCCURRED_DURING edges with facet labels
-    └─ Supports spatio-temporal bounding (Late Bronze Age varies by region)
+    â”œâ”€ Queries PeriodO for all periods containing event dates
+    â”œâ”€ Classifies by facet (Historiographical, Scientific, Religious, Economic, PeriodO, Fuzzy)
+    â”œâ”€ Materializes OCCURRED_DURING edges with facet labels
+    â””â”€ Supports spatio-temporal bounding (Late Bronze Age varies by region)
 
 Phase 3: Agents & Claims
   Python/agents/chrystallum_agents.py (TBD)
-    ├─ Implements 16 facet-specialist agents
-    ├─ Routes claims to agents
-    └─ Generates FacetAssessment nodes
-  ↓
+    â”œâ”€ Implements 16 facet-specialist agents
+    â”œâ”€ Routes claims to agents
+    â””â”€ Generates FacetAssessment nodes
+  â†“
   (FUTURE) Claims evaluation pipeline
 ```
 
@@ -364,19 +366,19 @@ Phase 3: Agents & Claims
 
 ## Cross-References for Verification
 
-✅ **All section references are linked:**
-- Section 3 → Neo4j schema files
-- Section 4 → FAST import + federation roadmap
-- Section 5 → Agent implementation roadmap
-- Section 6 → Claims implementation roadmap
-- Section 8-9 → IMPLEMENTATION_ROADMAP.md
-- Section 10 → IMPLEMENTATION_ROADMAP.md (Phase 3)
+âœ… **All section references are linked:**
+- Section 3 â†’ Neo4j schema files
+- Section 4 â†’ FAST import + federation roadmap
+- Section 5 â†’ Agent implementation roadmap
+- Section 6 â†’ Claims implementation roadmap
+- Section 8-9 â†’ IMPLEMENTATION_ROADMAP.md
+- Section 10 â†’ IMPLEMENTATION_ROADMAP.md (Phase 3)
 
-✅ **Phase 2 Enrichment (Recently Added):**
+âœ… **Phase 2 Enrichment (Recently Added):**
 - FEDERATION_BACKLINK_STRATEGY.md: Backlink enrichment strategy & implementation (Step 4b)
 - TEMPORAL_FACET_STRATEGY.md: Poly-temporal framework for multi-authority time (Step 3)
 
-⏳ **Future cross-references (Phase 2-3):**
+â³ **Future cross-references (Phase 2-3):**
 - Add links to federation_supercharger.py (Step 4a) when created
 - Add links to backlink_enricher.py (Step 4b) when created
 - Add links to temporal_facet_populator.py (Step 3) when created
@@ -390,7 +392,7 @@ Phase 3: Agents & Claims
 **For Implementation:**
 1. Start with **IMPLEMENTATION_ROADMAP.md** for step-by-step guidance
 2. Reference **SCHEMA_BOOTSTRAP_GUIDE.md** for schema design details
-3. Execute scripts in order: 01 → 02 → 03
+3. Execute scripts in order: 01 â†’ 02 â†’ 03
 4. Follow Phase progression for data imports
 
 **For Architecture Review:**

@@ -118,7 +118,7 @@ Every year from the earliest period to present becomes a node.
 
 #### 2. Temporal Sequence Edges
 
-Each year is connected to the next/previous year using bidirectional temporal relationships:
+Each year is connected to the next year using a single canonical temporal relationship:
 
 ```cypher
 // Year -753 FOLLOWED_BY Year -752
@@ -127,18 +127,11 @@ Each year is connected to the next/previous year using bidirectional temporal re
   temporal_sequence: 'chronological',
   test_case: 'temporal_backbone'
 }]->(yr752BCE)
-
-// Year -752 PRECEDED_BY Year -753
-(yr752BCE)-[:PRECEDED_BY {
-  direction: 'inverse',
-  temporal_sequence: 'chronological',
-  test_case: 'temporal_backbone'
-}]->(yr753BCE)
 ```
 
 **Relationship Types:**
 - `FOLLOWED_BY` (P156) - Year X is followed by Year Y
-- `PRECEDED_BY` (P155) - Year Y is preceded by Year X
+- Reverse chronology is queried via incoming `FOLLOWED_BY` edges
 
 #### 3. Year to Period Mapping (Multi-Period Support)
 
@@ -307,7 +300,7 @@ Middle Ages,500,1500,Q12554,Europe,Medieval period - overlaps with Ancient Histo
 - Supports time intervals: `2007-11-13/15` means from Nov 13 to Nov 15
 - Duration notation: `P3Y6M4DT12H30M5S` = 3 years, 6 months, 4 days, 12 hours, 30 minutes, 5 seconds
 - Proleptic Gregorian calendar for dates before 1582
-- Years 0000-9999 (year 0000 = 1 BC)
+- ISO 8601 supports years 0000-9999 (astronomical numbering, year 0000 = 1 BCE), but Chrystallum historical mode omits a `Year {year: 0}` node and bridges `-1 -> 1`
 
 **Limitations:**
 - Eurocentric (Gregorian calendar only)

@@ -78,7 +78,7 @@ cat temporal/cypher/import_periods_to_neo4j.cypher | cypher-shell -u neo4j -p <p
 This method creates:
 1. Historical period nodes
 2. Year nodes (one per year)
-3. Sequential relationships (FOLLOWED_BY, PRECEDED_BY)
+3. Sequential relationships (`FOLLOWED_BY` only)
 4. Period mappings (PART_OF)
 
 #### Quick Start Examples
@@ -189,17 +189,11 @@ python scripts/import_year_nodes_to_neo4j.py --start 1 --end 100 --import --pass
 
 #### 3. Sequential Relationships
 ```cypher
-// Forward
+// Canonical temporal sequence
 (:Year {year: -753})-[:FOLLOWED_BY {
   temporal_sequence: 'chronological',
   temporal_backbone: true
 }]->(:Year {year: -752})
-
-// Backward
-(:Year {year: -752})-[:PRECEDED_BY {
-  temporal_sequence: 'chronological',
-  temporal_backbone: true
-}]->(:Year {year: -753})
 ```
 
 #### 4. Period Mappings
@@ -285,10 +279,10 @@ RETURN y.label, type(r) as relationship, p.label, p.region, r.classification_typ
 - Takes ~5-15 minutes
 - Example: Ancient History complete (-3000 to 650) = 3651 years
 
-### Full Range (5026 years)
+### Full Range (5025 years in historical mode)
 - Use `--full-range` option
 - Takes ~15-30 minutes
-- Creates 5026 year nodes + 10,052 sequential relationships + ~15,000+ period mappings
+- Creates 5025 year nodes + 5,024 sequential relationships + ~15,000+ period mappings
 
 ### Optimization Tips
 

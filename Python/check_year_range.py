@@ -23,18 +23,27 @@ try:
         total = stats['total']
         min_year = stats['min_year']
         max_year = stats['max_year']
-        
+        expected_total = (max_year - min_year + 1) - (1 if min_year <= 0 <= max_year else 0)
+
         print("=" * 70)
         print("YEAR NODES ANALYSIS")
         print("=" * 70)
         print(f"\nTotal Year nodes: {total}")
         print(f"Year range: {min_year} to {max_year}")
-        print(f"Expected range: {max_year - min_year + 1} years")
+        print(f"Expected range (historical, no year 0): {expected_total} years")
         print(f"Actual nodes: {total}")
-        
-        if total != (max_year - min_year + 1):
-            gap = (max_year - min_year + 1) - total
+
+        if total != expected_total:
+            gap = expected_total - total
             print(f"\n[WARNING] Gap detected: {gap} years missing!")
+        
+        year_zero_count = session.run(
+            "MATCH (:Year {year: 0}) RETURN count(*) AS c"
+        ).single()["c"]
+        if year_zero_count > 0:
+            print(f"\n[ISSUE] Found Year 0 nodes: {year_zero_count} (historical mode expects 0)")
+        else:
+            print("\n[OK] No Year 0 nodes")
         
         # Check years beyond 2025
         result = session.run("""
@@ -60,7 +69,7 @@ try:
         print("\n=== Sample Years at Boundaries ===")
         result = session.run("""
             MATCH (y:Year)
-            WHERE coalesce(y.year, y.year_value) IN [-753, -509, -82, 1, 1000, 2024, 2025]
+            WHERE coalesce(y.year, y.year_value) IN [-753, -509, -82, -1, 1, 1000, 2024, 2025]
             RETURN coalesce(y.year, y.year_value) as year, y.label as label, y.name as name
             ORDER BY coalesce(y.year, y.year_value)
         """)

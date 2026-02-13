@@ -10,14 +10,14 @@
 // ============================================================================
 // YEAR BACKBONE INITIALIZATION
 // ============================================================================
-// Creates continuous linked list of Year nodes from -2000 to 2025
+// Creates continuous linked list of Year nodes from -2000 to 2025 (historical style: no year 0)
 // Critical for all temporal reasoning in Chrystallum
 // This is a FOUNDATIONAL OPERATION - run only once
 // ============================================================================
 
 // Create Year nodes with forward linkage (FOLLOWED_BY)
-// Using UNWIND to batch create 4025 nodes efficiently
-UNWIND range(-2000, 2025) AS year_num
+// Using UNWIND to batch create 4025 nodes efficiently (skip year 0)
+UNWIND [y IN range(-2000, 2025) WHERE y <> 0] AS year_num
 WITH year_num,
      toString(abs(year_num)) AS abs_year,
      CASE WHEN year_num < 0 THEN '-' + toString(abs_year) ELSE toString(year_num) END AS iso_year,
@@ -29,18 +29,16 @@ CREATE (y:Year {
   label: label,
   entity_type: 'Year'
 })
+WITH y
+ORDER BY y.year
 WITH collect(y) AS years
 // Link years sequentially using apoc (if available) or manual linking
 // For small sequential operations, use FOREACH
 UNWIND range(0, size(years)-2) AS idx
 WITH years[idx] AS current, years[idx+1] AS next
 CREATE (current)-[:FOLLOWED_BY]->(next)
-CREATE (next)-[:PRECEDED_BY]->(current)
 
-// Note: If apoc is not available, use this alternative:
-// MATCH (y1:Year), (y2:Year)
-// WHERE y1.year + 1 = y2.year
-// CREATE (y1)-[:FOLLOWED_BY]->(y2);
+// Note: Keep ordered-collect linking for historical mode (no year 0) so -1 links to 1.
 
 // Verify Year backbone creation
 MATCH (y:Year) 
@@ -48,7 +46,7 @@ RETURN count(*) AS total_years,
        min(y.year) AS earliest_year, 
        max(y.year) AS latest_year;
        
-// Expected result: total_years=4026, earliest_year=-2000, latest_year=2025
+// Expected result: total_years=4025, earliest_year=-2000, latest_year=2025, no year 0
 
 ---
 
@@ -349,7 +347,7 @@ RETURN p1.label + ' is located in ' + p2.label AS hierarchy;
 // SCHEMA INITIALIZATION COMPLETE
 // ============================================================================
 // Successfully created:
-// - Year backbone (4026 nodes, -2000 to 2025)
+// - Year backbone (4025 nodes, -2000 to 2025, no year 0)
 // - 16 FacetCategory nodes
 // - Foundational places (Rome, Italy, Mediterranean)
 // - Foundational periods (Republic, Empire, Late Republic)

@@ -11,7 +11,7 @@
 This guide describes the Neo4j schema bootstrap for Chrystallum. The schema is derived from **Section 3: Entity Layer** of the consolidated architecture specification and implements:
 
 - **30+ Entity Types** (Human, Place, Event, Period, Organization, Work, etc.)
-- **4,026 Year Backbone Nodes** (temporal grid from -2000 to 2025)
+- **4,025 Year Backbone Nodes** (temporal grid from -2000 to 2025, historical style without year 0)
 - **16 Facet Categories** (analytical dimensions)
 - **60+ Uniqueness Constraints** (data integrity)
 - **50+ Indexes** (query performance)
@@ -102,7 +102,7 @@ Expected output after initialization:
 ### Relationships (by Direction)
 
 #### Temporal Relationships
-- `FOLLOWED_BY` / `PRECEDED_BY` → Year backbone linkage
+- `FOLLOWED_BY` -> Year backbone linkage (reverse chronology via incoming `FOLLOWED_BY`)
 - `STARTS_IN_YEAR` / `ENDS_IN_YEAR` → Entity temporal grounding
 - `OCCURS_DURING` → Entity within period
 - `DURING` → Position/activity assignment to time
@@ -275,22 +275,24 @@ CREATE INDEX period_culture_date_index FOR (p:Period) ON (p.culture, p.start, p.
 
 **Algorithm:**
 ```cypher
-UNWIND range(-2000, 2025) AS year_num
+UNWIND [y IN range(-2000, 2025) WHERE y <> 0] AS year_num
 CREATE (y:Year {year: year_num, ...})
--- Then link sequentially --
-MATCH (y1:Year), (y2:Year) WHERE y1.year + 1 = y2.year
+WITH y ORDER BY y.year
+WITH collect(y) AS years
+UNWIND range(0, size(years)-2) AS i
+WITH years[i] AS y1, years[i+1] AS y2
 CREATE (y1)-[:FOLLOWED_BY]->(y2)
 ```
 
 **Performance:**
-- Creation: ~5-10 seconds for 4,026 nodes
-- Linking: ~10-20 seconds for 4,025 relationships
+- Creation: ~5-10 seconds for 4,025 nodes
+- Linking: ~10-20 seconds for 4,024 relationships
 - Total: ~20-30 seconds
 
 **Verification:**
 ```cypher
-MATCH (y:Year) RETURN count(*) AS total; -- Should be 4,026
-MATCH (y1:Year)-[:FOLLOWED_BY]->(y2:Year) RETURN count(*) AS links; -- Should be 4,025
+MATCH (y:Year) RETURN count(*) AS total; -- Should be 4,025
+MATCH (y1:Year)-[:FOLLOWED_BY]->(y2:Year) RETURN count(*) AS links; -- Should be 4,024
 ```
 
 ### Foundational Entity Creation
@@ -618,3 +620,4 @@ CREATE (agent)-[:EVALUATES]->(event)
 **Schema Version:** 1.0  
 **Last Updated:** 2026-02-13  
 **Maintained By:** Chrystallum Architecture Team
+

@@ -11,7 +11,7 @@
 This guide provides a **step-by-step implementation path** for Phase 1: Neo4j Schema Bootstrap. After completing this phase, you will have:
 
 ✅ Neo4j database with production schema  
-✅ Year backbone (temporal grid -2000 to 2025)  
+✅ Year backbone (temporal grid -2000 to 2025, historical style with no year 0)  
 ✅ Foundational entities (Rome, Caesar, key periods, facets)  
 ✅ Ready-to-ingest FAST subject import pipeline  
 ✅ Test data for agent development
@@ -43,7 +43,7 @@ cypher-shell -u neo4j -p <your_password> < Neo4j/schema/03_schema_initialization
 MATCH (n) RETURN labels(n)[0] AS label, count(*) AS count ORDER BY count DESC;
 
 -- Expected output (~4,100 nodes):
--- Year: 4026
+-- Year: 4025
 -- FacetCategory: 16
 -- Place: 3
 -- Period: 3
@@ -663,7 +663,7 @@ pandas==2.1.0
 
 **Phase 1 Complete When:**
 - [ ] Neo4j database initialized with all constraints & indexes
-- [ ] Year backbone confirmed (4,026 nodes linked sequentially)
+- [ ] Year backbone confirmed (4,025 nodes linked sequentially, no year 0)
 - [ ] 100K+ FAST subjects imported with TIER_3 classification
 - [ ] All queries return in <100ms
 - [ ] Foundational entities (Caesar, Rome, Senate) linked correctly
@@ -723,7 +723,7 @@ c:\Projects\Graph1\
 
 **Expected output:**
 ```
-Year:            4026
+Year:            4025
 FacetCategory:   16
 Place:           3
 Period:          3
