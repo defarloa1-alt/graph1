@@ -147,6 +147,10 @@ Events (filtered out): 55
    RETURN type(r), f.label, count(*) as count
    ORDER BY count DESC
    ```
+4. **Validate temporal bounding boxes before import (recommended):**
+   ```bash
+   python scripts/backbone/temporal/validate_temporal_bbox_csv.py --input ../../data/backbone/temporal/historical_periods_taxonomy.csv
+   ```
 
 ## Troubleshooting
 

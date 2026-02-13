@@ -106,6 +106,39 @@ git push -u origin master
 
 ---
 
+## **Using VS Code (Recommended)**
+
+VS Code has built-in Git features that simplify the workflow.
+
+### **After Making a Commit**
+
+VS Code will show a **"Sync Changes"** button in the Source Control panel.
+
+**"Sync Changes" is better than manual `git push` because:**
+- ✅ Pulls remote changes first (prevents conflicts)
+- ✅ Then pushes your commits
+- ✅ Equivalent to: `git pull` + `git push`
+
+**Use "Sync Changes" for daily workflow** — it's the safest option.
+
+### **VS Code Git Workflow**
+
+1. Open Source Control panel (Ctrl+Shift+G)
+2. Review changed files
+3. Stage files (click `+` next to files, or `+` next to "Changes" to stage all)
+4. Enter commit message in text box
+5. Click **"Commit"** button
+6. Click **"Sync Changes"** button
+
+### **When to Use Manual Commands**
+
+Use manual `git push` only when:
+- You're certain no one else has pushed changes
+- You're scripting/automating Git operations
+- VS Code isn't available
+
+---
+
 ## **Common Scenarios**
 
 ### **Scenario 1: You edited multiple files and want to push everything**

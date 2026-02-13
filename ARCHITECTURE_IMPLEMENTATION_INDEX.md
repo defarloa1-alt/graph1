@@ -352,6 +352,7 @@ Phase 3: Agents & Claims
 | **01_schema_constraints.cypher** | Data integrity | 600+ | Neo4j/schema/ |
 | **02_schema_indexes.cypher** | Performance | 400+ | Neo4j/schema/ |
 | **03_schema_initialization.cypher** | Bootstrap | 500+ | Neo4j/schema/ |
+| **04_temporal_bbox_queries.cypher** | Temporal overlap/query templates | 100+ | Neo4j/schema/ |
 | **SCHEMA_BOOTSTRAP_GUIDE.md** | Schema docs | 600+ | Neo4j/schema/ |
 | **IMPLEMENTATION_ROADMAP.md** | Phase 1-3 plan | 500+ | Neo4j/ |
 | **FEDERATION_BACKLINK_STRATEGY.md** | Backlink enrichment | 630+ | Neo4j/ |
