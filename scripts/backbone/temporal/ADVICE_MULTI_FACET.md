@@ -1,10 +1,10 @@
-# Advice: Preserving Multi-Facet Period Data
+﻿# Advice: Preserving Multi-Facet Period Data
 
 ## The Issue
 
 The original file had **1005 period entries**, but many were duplicates with different facets:
 
-**Example: Same period, multiple instanceOf classifications**
+**Example: Same period, multiple instance of classifications**
 ```
 Habsburg Netherlands:
   - facet: 'historical period'
@@ -27,9 +27,9 @@ Byzantine Empire:
 - Result: 118 unique periods with single facet each
 
 **Problem:**
-- ❌ Loses rich multi-facet data
-- ❌ Period can be both 'political' AND 'cultural'
-- ❌ Can't query "find periods that are both dynasties and historical countries"
+- âŒ Loses rich multi-facet data
+- âŒ Period can be both 'political' AND 'cultural'
+- âŒ Can't query "find periods that are both dynasties and historical countries"
 
 ## Recommended Solution: Keep ALL Facets
 
@@ -114,7 +114,7 @@ Then import additional facets separately.
 **Best approach: Modify the script** to keep ALL facets (Option 1)
 
 **Why:**
-- Preserves all Wikidata instanceOf data
+- Preserves all Wikidata instance of data
 - Allows multi-dimensional classification
 - Enables richer queries
 - Still validates (dates, location, not event, date range)
@@ -149,4 +149,5 @@ MERGE (p)-[:HAS_POLITICAL_FACET]->(f)
 3. **Re-run enrichment** to get full multi-facet data
 
 Want me to update the script to keep multiple facets per period?
+
 

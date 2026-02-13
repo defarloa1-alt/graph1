@@ -64,7 +64,7 @@ The `canonical_relationship_types.csv` now includes:
    - `status`, `note`, `source`, `version`
 
 2. **New CIDOC-CRM columns**:
-   - `cidoc_crm_property`: CIDOC-CRM property ID (e.g., "P11", "P7", "P4")
+   - `cidoc_crm_property`: CIDOC-CRM property ID (e.g., "crm:P11", "crm:P7", "crm:P4")
    - `cidoc_crm_class`: CIDOC-CRM class if relationship maps to event class (e.g., "E67_Birth", "E12_Production")
    - `cidoc_crm_notes`: Notes on alignment (role qualifiers, inverse properties, etc.)
 
@@ -73,7 +73,7 @@ The `canonical_relationship_types.csv` now includes:
 ### Query by CIDOC-CRM Property
 
 ```cypher
-// Find all relationships using CIDOC-CRM P11 (had participant)
+// Find all relationships using CIDOC-CRM crm:P11 (had participant)
 MATCH (e:Event)-[r]->(p)
 WHERE r.cidoc_crm_property = "P11_had_participant"
 RETURN e, r, p

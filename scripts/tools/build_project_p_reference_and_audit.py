@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Build canonical project P-value reference list and audit mismatches."""
+"""Build canonical project P-value reference list and audit mismatches.
+
+Scope is intentionally curated toward active docs/code and excludes:
+- bulk source dumps (e.g., FAST/LCSH raw exports),
+- generated audit artifacts,
+- snapshot/backup registry files.
+"""
 
 from __future__ import annotations
 
@@ -11,8 +17,9 @@ from pathlib import Path
 from typing import Iterable
 
 
-PID_RE = re.compile(r"\b(P\d+)\b", re.IGNORECASE)
-PID_LABEL_RE = re.compile(r"\b(P\d+)\s*\(([^)\n]{2,80})\)", re.IGNORECASE)
+PID_TOKEN = r"P(?:[1-9]\d*)"
+PID_RE = re.compile(rf"(?<!crm:)\b({PID_TOKEN})\b(?![-.]\d)")
+PID_LABEL_RE = re.compile(rf"(?<!crm:)\b({PID_TOKEN})\s*\(([^)\n]{{2,80}})\)")
 REL_TABLE_RE = re.compile(r"^\|\s*\*\*([A-Z0-9_]+)\*\*\s*\|\s*(P\d+)\b", re.ASCII)
 TOKEN_RE = re.compile(r"[a-z0-9]+", re.ASCII)
 
@@ -32,7 +39,17 @@ def norm(s: str) -> str:
 
 
 def iter_text_files(root: Path) -> Iterable[Path]:
-    skip_dirs = {".git", ".obsidian", "Archive", "__pycache__", ".venv", "venv"}
+    skip_dirs = {
+        ".git",
+        ".obsidian",
+        "Archive",
+        "__pycache__",
+        ".venv",
+        "venv",
+        "FAST",
+        "LCSH",
+        "CIDOC",
+    }
     skip_suffixes = {
         ".png",
         ".jpg",
@@ -44,19 +61,37 @@ def iter_text_files(root: Path) -> Iterable[Path]:
         ".xls",
         ".zip",
         ".pyc",
+        ".marcxml",
+        ".jsonld",
+        ".gz",
+        ".db",
+        ".out",
     }
     skip_names = {
         "wikiPvalues.csv",
         "wikiPvalues_enriched.csv",
         "wikiPvalues_alias_index.csv",
+        "project_p_values_canonical.csv",
+        "project_p_values_canonical_enriched.csv",
+    }
+    skip_rel_fragments = {
+        str(Path("Python") / "fast" / ""),
+        str(Path("md") / "Reference" / "P_VALUE_AUDIT_"),
+        str(Path("Relationships") / "relationship_types_registry_master.pre_"),
+        str(Path("Relationships") / "wikidata_p_unmapped_backlog_"),
+        str(Path("Subjects") / "CIP" / ""),
     }
     for p in root.rglob("*"):
         if not p.is_file():
             continue
-        rel_parts = set(p.relative_to(root).parts)
+        rel = p.relative_to(root)
+        rel_parts = set(rel.parts)
         if rel_parts & skip_dirs:
             continue
         if p.name in skip_names:
+            continue
+        rel_str = str(rel).replace("/", "\\")
+        if any(frag in rel_str for frag in skip_rel_fragments):
             continue
         if p.suffix.lower() in skip_suffixes:
             continue
@@ -247,4 +282,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

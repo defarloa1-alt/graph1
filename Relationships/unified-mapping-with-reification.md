@@ -283,8 +283,8 @@ Tracks **how we know** and **why we believe** historical claims:
 | MOTHER_OF | Property | P96_by_mother | Biological fact |
 | SIBLING_OF | Property | P107_has_member (family) | Biological/structural fact |
 | SPOUSE_OF | Property | P107_has_member (family) | Relational (unless marriage event is important) |
-| GRANDPARENT_OF | Property | P152 chain | Derived from parent relations |
-| GRANDCHILD_OF | Property | P152 chain | Derived from parent relations |
+| GRANDPARENT_OF | Property | P152_has_parent_chain | Derived from parent relations |
+| GRANDCHILD_OF | Property | P152_has_parent_chain | Derived from parent relations |
 | [All in-law relations] | Property | P107_has_member (family group) | Family structure |
 | STEPPARENT_OF, STEPCHILD_OF | Property | P107_has_member (family) | Legal/social fact (or reify adoption) |
 | FATHER_IN_LAW_OF, etc. | Property | P107_has_member (family) | Relational through marriage |

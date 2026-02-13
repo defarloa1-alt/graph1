@@ -350,7 +350,7 @@ In CIDOC-CRM, **events are the primary way to represent change, actions, and occ
 | Property | Description | Example |
 |----------|-------------|---------|
 | **P11_had_participant** | Event had participant | Event → Person/Group/Object |
-| **P14.1_in_the_role_of** | Participant's role | Qualifier on P11 |
+| **P14.1_in_the_role_of** | Participant's role | Qualifier on crm:P11 |
 | **P14.2_performed** | Person performed activity | Person → Activity |
 
 ### Causal Properties

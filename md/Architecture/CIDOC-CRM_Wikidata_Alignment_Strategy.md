@@ -26,7 +26,7 @@ This document outlines the strategy for aligning Chrystallum's relationship type
 ### Mapping Strategy
 
 For each relationship type in `canonical_relationship_types.csv`, we add:
-- `cidoc_crm_property`: CIDOC-CRM property ID (e.g., "P11", "P7", "P4")
+- `cidoc_crm_property`: CIDOC-CRM property ID (e.g., "crm:P11", "crm:P7", "crm:P4")
 - `cidoc_crm_class`: CIDOC-CRM class if relationship maps to an event class
 
 ### Key Mappings
