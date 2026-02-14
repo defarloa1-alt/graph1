@@ -23,6 +23,39 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 12:04 | SysML + Implementation Index Consolidated Realignment
+# ==============================================================================
+# Category: Architecture, Docs, Integration
+# Summary: Realigned SysML model and implementation cross-reference indexes to consolidated architecture as sole source of truth
+# Files:
+#   - Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md
+#   - Key Files/ARCHITECTURE_IMPLEMENTATION_INDEX.md
+#   - ARCHITECTURE_IMPLEMENTATION_INDEX.md
+# Reason: Remove split-era drift and enforce consolidated section-number mapping for onboarding and implementation.
+# Notes:
+#   - SysML updated with block responsibilities, typed port payload contracts, federation dispatcher flow, claim lifecycle states, and deterministic agent routing.
+#   - Implementation indexes now map Phase 1-3 directly to consolidated section numbers.
+#   - BODY/APPENDICES are no longer used as architecture sources; appendices treated as in-document consolidated content.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 11:36 | Neo4j Schema Lock-In: Canonical Labels + ID Hash Hardening
+# ==============================================================================
+# Category: Schema, Architecture, Docs
+# Summary: Updated Neo4j constraints/indexes to enforce canonical first-class label policy and new id_hash lookup/uniqueness model
+# Files:
+#   - Neo4j/schema/01_schema_constraints.cypher
+#   - Neo4j/schema/02_schema_indexes.cypher
+# Reason: Remove residual legacy-label drift risk and align schema layer with approved node model before import.
+# Notes:
+#   - Added canonical label lock header + legacy mapping policy (`Subject/Concept` -> `SubjectConcept`, `Person` -> `Human`).
+#   - Added `id_hash` uniqueness constraints for first-class labels.
+#   - Added `id_hash` lookup indexes and status indexes for first-class labels.
+#   - Added explicit `Claim.cipher` index and `Claim.cipher IS NOT NULL` constraint.
+#   - Updated traversal comments to use `SUBJECT_CONCEPT` wording.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 11:24 | Consolidated Spec: First-Class Node Normative Lock
 # ==============================================================================
 # Category: Architecture, Docs, Schema

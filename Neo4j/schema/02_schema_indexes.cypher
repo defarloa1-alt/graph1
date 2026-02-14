@@ -8,6 +8,19 @@
 // ============================================================================
 
 // ============================================================================
+// CANONICAL LABEL LOCK (2026-02-14)
+// ============================================================================
+// Canonical first-class labels:
+//   SubjectConcept, Human, Gens, Praenomen, Cognomen, Event, Place, Period,
+//   Dynasty, Institution, LegalRestriction, Claim, Organization, Year
+//
+// Legacy mapping (must not be materialized as active labels):
+//   Subject -> SubjectConcept
+//   Concept -> SubjectConcept
+//   Person  -> Human
+//   Communication -> facet/domain axis (not first-class node label)
+
+// ============================================================================
 // PRIMARY KEY INDEXES (used heavily in lookups & joins)
 // ============================================================================
 
@@ -19,6 +32,22 @@ CREATE INDEX event_entity_id_index IF NOT EXISTS FOR (e:Event) ON (e.entity_id);
 CREATE INDEX period_entity_id_index IF NOT EXISTS FOR (p:Period) ON (p.entity_id);
 CREATE INDEX organization_entity_id_index IF NOT EXISTS FOR (o:Organization) ON (o.entity_id);
 CREATE INDEX year_entity_id_index IF NOT EXISTS FOR (y:Year) ON (y.entity_id);
+
+// Canonical ID hash lookups
+CREATE INDEX subject_concept_id_hash_index IF NOT EXISTS FOR (sc:SubjectConcept) ON (sc.id_hash);
+CREATE INDEX human_id_hash_index IF NOT EXISTS FOR (h:Human) ON (h.id_hash);
+CREATE INDEX gens_id_hash_index IF NOT EXISTS FOR (g:Gens) ON (g.id_hash);
+CREATE INDEX praenomen_id_hash_index IF NOT EXISTS FOR (p:Praenomen) ON (p.id_hash);
+CREATE INDEX cognomen_id_hash_index IF NOT EXISTS FOR (c:Cognomen) ON (c.id_hash);
+CREATE INDEX event_id_hash_index IF NOT EXISTS FOR (e:Event) ON (e.id_hash);
+CREATE INDEX place_id_hash_index IF NOT EXISTS FOR (p:Place) ON (p.id_hash);
+CREATE INDEX period_id_hash_index IF NOT EXISTS FOR (p:Period) ON (p.id_hash);
+CREATE INDEX dynasty_id_hash_index IF NOT EXISTS FOR (d:Dynasty) ON (d.id_hash);
+CREATE INDEX institution_id_hash_index IF NOT EXISTS FOR (i:Institution) ON (i.id_hash);
+CREATE INDEX legal_restriction_id_hash_index IF NOT EXISTS FOR (l:LegalRestriction) ON (l.id_hash);
+CREATE INDEX claim_id_hash_index IF NOT EXISTS FOR (c:Claim) ON (c.id_hash);
+CREATE INDEX organization_id_hash_index IF NOT EXISTS FOR (o:Organization) ON (o.id_hash);
+CREATE INDEX year_id_hash_index IF NOT EXISTS FOR (y:Year) ON (y.id_hash);
 
 // Wikidata QID lookups (federation anchor - critical performance)
 CREATE INDEX qid_lookup_index IF NOT EXISTS FOR (e:Entity) ON (e.qid);
@@ -35,6 +64,7 @@ CREATE INDEX year_iso_index IF NOT EXISTS FOR (y:Year) ON (y.iso);
 
 // Claim and RetrievalContext lookup
 CREATE INDEX claim_id_index IF NOT EXISTS FOR (c:Claim) ON (c.claim_id);
+CREATE INDEX claim_cipher_index IF NOT EXISTS FOR (c:Claim) ON (c.cipher);
 CREATE INDEX retrieval_context_id_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.retrieval_id);
 
 // Subject & Agent lookup
@@ -94,6 +124,22 @@ CREATE INDEX facet_category_key_index IF NOT EXISTS FOR (fc:FacetCategory) ON (f
 
 // Authority tier classification
 CREATE INDEX subject_tier_index IF NOT EXISTS FOR (sc:SubjectConcept) ON (sc.authority_tier);
+
+// First-class node status lifecycle
+CREATE INDEX subject_concept_status_index IF NOT EXISTS FOR (sc:SubjectConcept) ON (sc.status);
+CREATE INDEX human_status_index IF NOT EXISTS FOR (h:Human) ON (h.status);
+CREATE INDEX gens_status_index IF NOT EXISTS FOR (g:Gens) ON (g.status);
+CREATE INDEX praenomen_status_index IF NOT EXISTS FOR (p:Praenomen) ON (p.status);
+CREATE INDEX cognomen_status_index IF NOT EXISTS FOR (c:Cognomen) ON (c.status);
+CREATE INDEX event_status_index IF NOT EXISTS FOR (e:Event) ON (e.status);
+CREATE INDEX place_status_index IF NOT EXISTS FOR (p:Place) ON (p.status);
+CREATE INDEX period_status_index IF NOT EXISTS FOR (p:Period) ON (p.status);
+CREATE INDEX dynasty_status_index IF NOT EXISTS FOR (d:Dynasty) ON (d.status);
+CREATE INDEX institution_status_index IF NOT EXISTS FOR (i:Institution) ON (i.status);
+CREATE INDEX legal_restriction_status_index IF NOT EXISTS FOR (l:LegalRestriction) ON (l.status);
+CREATE INDEX claim_status_index IF NOT EXISTS FOR (c:Claim) ON (c.status);
+CREATE INDEX organization_status_index IF NOT EXISTS FOR (o:Organization) ON (o.status);
+CREATE INDEX year_status_index IF NOT EXISTS FOR (y:Year) ON (y.status);
 
 // Event type classification
 CREATE INDEX event_type_index IF NOT EXISTS FOR (e:Event) ON (e.event_type);
@@ -172,8 +218,8 @@ FOR (sc:SubjectConcept) ON (sc.label);
 
 // Common traversal patterns:
 // ENTITY -> LIVED_DURING -> PERIOD -> STARTS_IN_YEAR -> YEAR
-// ENTITY -> HAS_SUBJECT_CONCEPT -> SUBJECT -> FACET_ANCHOR -> FACET
-// CLAIM -> HAS_TRACE -> REASONING_TRACE <- USED_FOR - RETRIEVAL_CONTEXT -> WORK -> ABOUT -> SUBJECT
+// ENTITY -> HAS_SUBJECT_CONCEPT -> SUBJECT_CONCEPT -> FACET_ANCHOR -> FACET
+// CLAIM -> HAS_TRACE -> REASONING_TRACE <- USED_FOR - RETRIEVAL_CONTEXT -> WORK -> ABOUT -> SUBJECT_CONCEPT
 
 // ============================================================================
 // INDEX MAINTENANCE NOTES

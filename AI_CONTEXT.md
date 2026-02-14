@@ -90,6 +90,9 @@ Applied updates:
 - The consolidated architecture now includes an explicit normative lock:
   - `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`, Section `3.0.1 Canonical First-Class Node Set (Normative)`.
   - Section 3.3 facet count corrected to 17 with explicit communication facet policy.
+- Neo4j schema files were aligned to this lock:
+  - `Neo4j/schema/01_schema_constraints.cypher`: canonical label lock note + first-class `id_hash` uniqueness + `Claim.cipher` required.
+  - `Neo4j/schema/02_schema_indexes.cypher`: first-class `id_hash` and `status` indexes + explicit `Claim.cipher` index.
 
 ## Consolidated Doc Consistency Pass (verified 2026-02-14)
 
@@ -97,6 +100,21 @@ Applied updates:
 - Clarified dispatcher no-bypass rule and aligned terminology between:
   - Section `8.6` route/gate rules
   - Appendix `K.4-K.6` operational contract
+
+## SysML + Implementation Index Realignment (verified 2026-02-14)
+
+- SysML model now references consolidated architecture as the sole normative source:
+  - `Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md`
+- Updated SysML coverage to include:
+  - block responsibilities aligned to consolidated sections
+  - typed port payload contracts
+  - federation dispatcher flow control (Section 8.6)
+  - claim lifecycle states (`proposed|validated|disputed|rejected`)
+  - deterministic agent routing policy
+- Both implementation indexes were rewritten as consolidated-only crosswalks:
+  - `Key Files/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+- BODY/APPENDICES are no longer used as architecture source documents in the index mapping.
 
 ## Backlink Discovery Mode Upgrade (verified 2026-02-14)
 

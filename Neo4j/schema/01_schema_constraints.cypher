@@ -8,6 +8,19 @@
 // ============================================================================
 
 // ============================================================================
+// CANONICAL LABEL LOCK (2026-02-14)
+// ============================================================================
+// Canonical first-class labels:
+//   SubjectConcept, Human, Gens, Praenomen, Cognomen, Event, Place, Period,
+//   Dynasty, Institution, LegalRestriction, Claim, Organization, Year
+//
+// Legacy mapping (must not be materialized as active labels):
+//   Subject -> SubjectConcept
+//   Concept -> SubjectConcept
+//   Person  -> Human
+//   Communication -> facet/domain axis (not first-class node label)
+
+// ============================================================================
 // CORE ENTITY UNIQUENESS CONSTRAINTS
 // ============================================================================
 
@@ -122,6 +135,63 @@ FOR (p:Praenomen) REQUIRE p.entity_id IS UNIQUE;
 CREATE CONSTRAINT cognomen_entity_id_unique IF NOT EXISTS
 FOR (c:Cognomen) REQUIRE c.entity_id IS UNIQUE;
 
+// Canonical ID hash uniqueness (new normalized ID policy)
+CREATE CONSTRAINT subject_concept_id_hash_unique IF NOT EXISTS
+FOR (sc:SubjectConcept) REQUIRE sc.id_hash IS UNIQUE
+  WHEN sc.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT human_id_hash_unique IF NOT EXISTS
+FOR (h:Human) REQUIRE h.id_hash IS UNIQUE
+  WHEN h.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT gens_id_hash_unique IF NOT EXISTS
+FOR (g:Gens) REQUIRE g.id_hash IS UNIQUE
+  WHEN g.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT praenomen_id_hash_unique IF NOT EXISTS
+FOR (p:Praenomen) REQUIRE p.id_hash IS UNIQUE
+  WHEN p.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT cognomen_id_hash_unique IF NOT EXISTS
+FOR (c:Cognomen) REQUIRE c.id_hash IS UNIQUE
+  WHEN c.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT event_id_hash_unique IF NOT EXISTS
+FOR (e:Event) REQUIRE e.id_hash IS UNIQUE
+  WHEN e.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT place_id_hash_unique IF NOT EXISTS
+FOR (p:Place) REQUIRE p.id_hash IS UNIQUE
+  WHEN p.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT period_id_hash_unique IF NOT EXISTS
+FOR (p:Period) REQUIRE p.id_hash IS UNIQUE
+  WHEN p.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT dynasty_id_hash_unique IF NOT EXISTS
+FOR (d:Dynasty) REQUIRE d.id_hash IS UNIQUE
+  WHEN d.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT institution_id_hash_unique IF NOT EXISTS
+FOR (i:Institution) REQUIRE i.id_hash IS UNIQUE
+  WHEN i.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT legal_restriction_id_hash_unique IF NOT EXISTS
+FOR (l:LegalRestriction) REQUIRE l.id_hash IS UNIQUE
+  WHEN l.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT claim_id_hash_unique IF NOT EXISTS
+FOR (c:Claim) REQUIRE c.id_hash IS UNIQUE
+  WHEN c.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT organization_id_hash_unique IF NOT EXISTS
+FOR (o:Organization) REQUIRE o.id_hash IS UNIQUE
+  WHEN o.id_hash IS NOT NULL;
+
+CREATE CONSTRAINT year_id_hash_unique IF NOT EXISTS
+FOR (y:Year) REQUIRE y.id_hash IS UNIQUE
+  WHEN y.id_hash IS NOT NULL;
+
 // ============================================================================
 // ANALYSIS & ASSESSMENT NODE UNIQUENESS
 // ============================================================================
@@ -225,6 +295,9 @@ FOR (c:Claim) REQUIRE c.text IS NOT NULL;
 
 CREATE CONSTRAINT claim_has_confidence IF NOT EXISTS
 FOR (c:Claim) REQUIRE c.confidence IS NOT NULL;
+
+CREATE CONSTRAINT claim_has_cipher IF NOT EXISTS
+FOR (c:Claim) REQUIRE c.cipher IS NOT NULL;
 
 // ============================================================================
 // RELATIONSHIP CONSTRAINTS
