@@ -103,6 +103,8 @@ CREATE CONSTRAINT claim_has_timestamp IF NOT EXISTS
 FOR (c:Claim) REQUIRE c.timestamp IS NOT NULL;
 CREATE CONSTRAINT claim_has_status IF NOT EXISTS
 FOR (c:Claim) REQUIRE c.status IS NOT NULL;
+CREATE CONSTRAINT claim_has_authority_source IF NOT EXISTS
+FOR (c:Claim) REQUIRE c.authority_source IS NOT NULL;
 
 // RetrievalContext
 CREATE CONSTRAINT retrieval_context_id_unique IF NOT EXISTS
@@ -196,11 +198,13 @@ CREATE INDEX claim_confidence_index IF NOT EXISTS FOR (c:Claim) ON (c.confidence
 CREATE INDEX claim_timestamp_index IF NOT EXISTS FOR (c:Claim) ON (c.timestamp);
 CREATE INDEX claim_source_agent_index IF NOT EXISTS FOR (c:Claim) ON (c.source_agent);
 CREATE INDEX claim_label_index IF NOT EXISTS FOR (c:Claim) ON (c.label);
+CREATE INDEX claim_authority_source_index IF NOT EXISTS FOR (c:Claim) ON (c.authority_source);
 
 // RetrievalContext
 CREATE INDEX retrieval_context_id_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.retrieval_id);
 CREATE INDEX retrieval_context_agent_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.agent_id);
 CREATE INDEX retrieval_context_timestamp_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.timestamp);
+CREATE INDEX retrieval_context_authority_source_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.authority_source);
 
 // Agent
 CREATE INDEX agent_id_index IF NOT EXISTS FOR (a:Agent) ON (a.agent_id);

@@ -24,6 +24,23 @@
 - [x] Multiple test modes
 - [x] Interactive REPL
 
+### Facet Model (Normalized)
+- 17 facets total (includes `communication`)
+- Use lowercase facet keys from `Facets/facet_registry_master.json`
+- One claim per facet; use `facet: "NA"` when a facet is not supported by evidence
+
+### Launch Training Workflow (Seed QID)
+- Seed: `Q17167` (Roman Republic)
+- Run statements + datatype profile + backlinks + proposal
+- Proposal capped at **1000 nodes**, then stop for human review
+- Optional second pass after review
+
+**Training Constraints (Required):**
+- Record run metadata in the proposal: mode, caps, and whether trimming occurred.
+- If the proposal exceeds 1000 nodes, document the trimming rule used (drop lowest-priority nodes).
+- Log `class_allowlist_mode` and any overrides used during harvest.
+- If any budget caps are hit, mark the proposal as partial and recommend a second pass.
+
 ---
 
 ## 🚀 GET STARTED (5 minutes)
@@ -196,14 +213,14 @@ Test 2: Find Romans
 ```
 [Test 1] Low confidence claim (proposed)
 ✓ Claim created
-  claim_id: claim_evt_123_occurred_during_prd_456
+  claim_id: claim_<12hex>
   cipher: a1b2c3d4e5f6... (SHA256)
   status: created
   promoted: false
 
 [Test 2] High confidence claim (should promote)
 ✓ Claim created and promoted
-  claim_id: claim_evt_123_located_in_plc_789
+  claim_id: claim_<12hex>
   cipher: g7h8i9j0k1l2... (SHA256)
   status: promoted
   promoted: true

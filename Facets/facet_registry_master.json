@@ -6,7 +6,7 @@
     "Facets/Ref facets.json",
     "Facets/Ref_Anchors.json"
   ],
-  "facet_count": 16,
+  "facet_count": 17,
   "facets": [
     {
       "key": "archaeological",
@@ -656,6 +656,48 @@
         {
           "qid": "Q178651",
           "label": "innovation",
+          "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "communication",
+      "facet_class": "CommunicationFacet",
+      "label": "Communication",
+      "definition": "Communications, messaging, narratives, propaganda, ceremonies, oral traditions; how claims/events were transmitted and framed",
+      "anchor_count": 6,
+      "quality_flags": [],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q11029",
+          "label": "communication",
+          "source": "latest"
+        },
+        {
+          "qid": "Q1047",
+          "label": "message",
+          "source": "latest"
+        },
+        {
+          "qid": "Q11420",
+          "label": "ceremony",
+          "source": "latest"
+        },
+        {
+          "qid": "Q19832",
+          "label": "propaganda",
+          "source": "latest"
+        },
+        {
+          "qid": "Q2883829",
+          "label": "oral tradition",
+          "source": "ref"
+        },
+        {
+          "qid": "Q33829",
+          "label": "narrative",
           "source": "ref"
         }
       ]

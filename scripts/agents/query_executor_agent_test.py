@@ -233,7 +233,11 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
         subject_qid: Optional[str] = None,
         retrieval_source: str = "agent_extraction",
         reasoning_notes: str = "",
-        facet: str = "general"
+        facet: Optional[str] = None,
+        authority_source: Optional[str] = None,
+        authority_ids: Optional[Any] = None,
+        claim_type: str = "relational",
+        claim_signature: Optional[Any] = None
     ) -> Dict[str, Any]:
         """
         Submit a claim via the ingestion pipeline
@@ -248,6 +252,10 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
             retrieval_source: Data source
             reasoning_notes: Agent reasoning
             facet: Domain facet
+            authority_source: Authority system (e.g., wikidata, lcsh, freebase)
+            authority_ids: Authority IDs (e.g., QID, LCSH ID, string identifier)
+            claim_type: Claim type (e.g., 'relational', 'temporal', 'motivational')
+            claim_signature: Deterministic signature (QID + full statement signature)
             
         Returns:
             Ingestion result dict
@@ -255,6 +263,10 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
         print(f"\n▶ Submit Claim: {label}")
         print(f"  Entity: {entity_id} -{relationship_type}-> {target_id}")
         print(f"  Confidence: {confidence:.2f}")
+
+        facet = facet.strip().lower() if facet else ""
+        if not facet:
+            raise ValueError("facet is required (lowercase registry key)")
         
         result = self.pipeline.ingest_claim(
             entity_id=entity_id,
@@ -265,7 +277,12 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
             subject_qid=subject_qid,
             retrieval_source=retrieval_source,
             reasoning_notes=reasoning_notes,
-            facet=facet
+            facet=facet,
+            claim_signature=claim_signature,
+            claim_type=claim_type,
+            source_agent="agent_query_executor",
+            authority_source=authority_source,
+            authority_ids=authority_ids
         )
         
         if result["status"] == "error":
@@ -274,6 +291,10 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
             promoted = " (PROMOTED)" if result["promoted"] else ""
             print(f"\n✓ Claim created{promoted}: {result['claim_id']}")
             print(f"  Cipher: {result['cipher'][:16]}...")
+            print(f"  Posterior: {result.get('posterior_probability')}")
+            print(f"  Critical fallacy: {result.get('critical_fallacy')}")
+            if result.get("fallacies_detected"):
+                print(f"  Fallacies: {', '.join(result['fallacies_detected'])}")
         
         return result
 
@@ -321,12 +342,20 @@ def test_claim_submission():
         confidence=0.75,
         label="Battle of Actium occurred during Roman Republic",
         subject_qid="Q17167",
+        authority_source="wikidata",
+        authority_ids={"Q17167": "P31", "Q193304": "P580"},
         reasoning_notes="Agent observed historical sources confirming event timing",
-        facet="military"
+        facet="military",
+        claim_signature={
+            "qid": "Q17167",
+            "pvalues": ["P31", "P361"],
+            "values": {"P31": "Q3024240", "P361": "Q17167"}
+        }
     )
     
-    # Example: High confidence claim (should promote)
-    print("\n[Test 2] High confidence claim (should promote if prerequisites met)")
+    # Example: High confidence descriptive claim (should promote)
+    print("\n[Test 2] High confidence DESCRIPTIVE claim (geographic facet)")
+    print("  Claim type: 'locational' (descriptive)")
     result2 = executor.submit_claim(
         entity_id="evt_battle_of_actium_q193304",
         relationship_type="LOCATED_IN",
@@ -334,9 +363,49 @@ def test_claim_submission():
         confidence=0.95,
         label="Battle of Actium took place at Actium",
         subject_qid="Q17167",
+        authority_source="wikidata",
+        authority_ids={"Q41747": "P276"},
         reasoning_notes="Direct historical source confirmation with high reliability",
-        facet="geography"
+        facet="geographic",
+        claim_type="locational",
+        claim_signature={
+            "qid": "Q17167",
+            "pvalues": ["P276", "P361"],
+            "values": {"P276": "Q41747", "P361": "Q17167"}
+        }
     )
+    print(f"  Result: {result2['status']}, Promoted: {result2['promoted']}")
+    if result2.get('fallacies_detected'):
+        print(f"  Fallacy Flag: {result2.get('fallacy_flag_intensity')} (detected: {result2['fallacies_detected']})")
+    
+    # Example: High confidence INTERPRETIVE claim (should promote, but flag fallacies)
+    print("\n[Test 3] High confidence INTERPRETIVE claim (political facet)")
+    print("  Claim type: 'motivational' (interpretive)")
+    print("  Note: Promotes on metrics, but fallacies flagged 'high' for review")
+    result3 = executor.submit_claim(
+        entity_id="fig_julius_caesar_q1",
+        relationship_type="MOTIVATED_BY",
+        target_id="evt_gallic_wars_q123",
+        confidence=0.92,
+        label="Julius Caesar wanted to conquer Gaul for political power",
+        subject_qid="Q1",
+        authority_source="wikidata",
+        authority_ids={"Q1": "P31"},
+        reasoning_notes="Caesar's motivations were to gain military prestige and wealth for political ambitions",
+        facet="political",
+        claim_type="motivational",
+        claim_signature={
+            "qid": "Q1",
+            "pvalues": ["P31", "P361"],
+            "values": {"P31": "Q214650", "P361": "Q1"}
+        }
+    )
+    print(f"  Result: {result3['status']}, Promoted: {result3['promoted']}")
+    if result3.get('fallacies_detected'):
+        print(f"  Fallacy Flag: {result3.get('fallacy_flag_intensity')} (detected: {result3['fallacies_detected']})")
+    if result3.get('fallacies_detected'):
+        print(f"  Fallacies: {result3['fallacies_detected']}")
+        print(f"  Critical: {result3['critical_fallacy']} → Blocks promotion if true")
     
     executor.close()
 

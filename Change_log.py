@@ -23,6 +23,198 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 22:50 | Fischer Fallacy Flagging (Flag-Only, No Hard Blocks)
+# ==============================================================================
+# Category: Architecture, Policy Change
+# Summary: Refactored from hard-block approach to flag-only; all fallacies flagged for review, promotion based on metrics
+# Files:
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - scripts/agents/query_executor_agent_test.py
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+#   - AI_CONTEXT.md
+# Reason: Fallacy heuristics are imperfect and should not block valid claims; metrics (confidence + posterior) are more reliable
+# Notes:
+#   - Promotion rule is universal: confidence >= 0.90 AND posterior >= 0.90 → promoted = true
+#   - All fallacies always detected and flagged; fallacy_flag_intensity guides downstream review prioritization
+#   - New method: _determine_fallacy_flag_intensity(critical_fallacy, claim_type, facet) → "none" | "low" | "high"
+#   - High intensity: interpretive claims warrant closer review (motivational, political, causal, etc.)
+#   - Low intensity: descriptive claims lower concern (temporal, geographic, taxonomic, etc.)
+#   - Fallacies preserved in audit trail in response dict
+#   - Test cases show all profiles promoting on metrics, with varying flag intensities
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 22:45 | Selective Fischer Fallacy Gating Policy Matrix
+# ==============================================================================
+# Category: Capability, Architecture
+# Summary: [DEPRECATED - replaced by flag-only approach] Initially implemented hard-block gating; replaced by flag-only in 22:50 update
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 22:15 | Authority Provenance Tracking for All Claims
+# ==============================================================================
+# Category: Capability, Schema, Docs, Integration
+# Summary: Added authority/source capture fields to enable upstream traceability to Wikidata, LCSH, and other authority systems
+# Files:
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - scripts/agents/query_executor_agent_test.py
+#   - Neo4j/schema/07_core_pipeline_schema.cypher
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+#   - AI_CONTEXT.md
+# Reason: Ensure all claims can capture and persist their authority source and IDs for provenance tracking
+# Notes:
+#   - New parameters: authority_source (string), authority_ids (string/dict/list)
+#   - Authority fields persist on both Claim and RetrievalContext nodes
+#   - Schema constraint: Claim.authority_source IS NOT NULL
+#   - Normalization helper: _normalize_authority_ids() supports flexible formats
+#   - Test examples show Wikidata QID and LCSH identifier patterns
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 21:30 | Fischer Fallacy Guardrails + Bayesian Posterior in Claim Pipeline
+# ==============================================================================
+# Category: Capability, Integration
+# Summary: Added historian-logic engine with Fischer-style fallacy detection and Bayesian scoring, then wired promotion to posterior+fallacy gates
+# Files:
+#   - scripts/tools/historian_logic_engine.py
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - scripts/agents/query_executor_agent_test.py
+#   - md/Agents/AGENT_README.md
+#   - AI_CONTEXT.md
+# Reason: Enforce reasoning-quality controls during claim ingestion and promotion, not just post-hoc review.
+# Notes:
+#   - New persisted claim fields: prior_probability, likelihood, posterior_probability, bayesian_score,
+#     fallacies_detected, fallacy_penalty, critical_fallacy
+#   - Promotion now requires confidence >= 0.90, posterior_probability >= 0.90, and no critical fallacy
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 19:05 | Strict Claim Signature Enforcement
+# ==============================================================================
+# Category: Capability, Schema, Docs
+# Summary: Enforced strict claim_signature structure and QID match for deterministic claim IDs
+# Files:
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - scripts/agents/README.md
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+# Reason: Ensure claim IDs are derived from QID + full statement signature with consistent semantics
+# Notes:
+#   - claim_signature must include qid, pvalues, values
+#   - qid must match subject_qid
+#   - pvalues/values must use P-IDs and be non-empty
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 18:50 | Claim ID Now QID + Statement Signature
+# ==============================================================================
+# Category: Capability, Schema, Docs
+# Summary: Claim IDs now derived from subject QID + full statement signature; facet is required explicitly
+# Files:
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - scripts/agents/query_executor_agent_test.py
+#   - scripts/agents/README.md
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+# Reason: Align claim ID semantics with QID+P-value signature requirement and prevent implicit facet defaults
+# Notes:
+#   - claim_signature accepted as string/dict/list (JSON normalized)
+#   - subject_qid is required for deterministic claim_id
+#   - facet missing now raises error
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 18:30 | Claim Pipeline Schema Compatibility + Doc Fixes
+# ==============================================================================
+# Category: Capability, Schema, Docs
+# Summary: Aligned ClaimIngestionPipeline with core schema requirements and normalized doc examples
+# Files:
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - scripts/agents/query_executor_agent_test.py
+#   - Neo4j/schema/run_qid_pipeline.py
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+#   - QUERY_EXECUTOR_QUICK_REFERENCE.md
+#   - scripts/agents/README.md
+#   - AI_CONTEXT.md
+# Reason: Fix required fields/IDs, ensure deterministic claim IDs, and update examples to match runtime behavior
+# Notes:
+#   - Claim now sets text/claim_type/source_agent/timestamp and uses deterministic claim_id
+#   - RetrievalContext uses retrieval_id; AnalysisRun uses run_id with pipeline_version
+#   - FacetAssessment now sets score
+#   - QID pipeline uses facet_key for factual assessment IDs and variable facet IDs for temporal claims
+#   - Docs updated for hashed claim IDs and canonical labels
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 18:05 | Facet Normalization + Training Constraints Applied
+# ==============================================================================
+# Category: Capability, Docs, Integration
+# Summary: Normalized facet defaults/casing in claim ingestion and agent test; added training constraints to docs and prompt
+# Files:
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - scripts/agents/query_executor_agent_test.py
+#   - md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md
+#   - scripts/agents/README.md
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+#   - QUERY_EXECUTOR_QUICK_REFERENCE.md
+#   - AI_CONTEXT.md
+# Reason: Align facets with registry keys and ensure training runs document caps and trimming behavior
+# Notes:
+#   - Default facet now lowercase `political`
+#   - `geography` example corrected to `geographic`
+#   - Training constraints require metadata, trimming rules, allowlist mode, and cap-hit reporting
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 17:45 | Facet Normalization + Training Workflow Docs
+# ==============================================================================
+# Category: Docs, Integration
+# Summary: Normalized facet keys to lowercase in QID runner and updated agent docs with training workflow and 17-facet model
+# Files:
+#   - Neo4j/schema/run_qid_pipeline.py
+#   - Neo4j/schema/run_qid_pipeline.ps1
+#   - scripts/agents/README.md
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+#   - QUERY_EXECUTOR_QUICK_REFERENCE.md
+# Reason: Align facet keys with registry, document launch training workflow, and clarify 1-claim-per-facet model
+# Notes:
+#   - Facet keys now lowercase; labels remain title-cased
+#   - Training workflow uses Q17167, expanded backlink caps, proposal cap 1000 nodes, optional second pass
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 17:20 | Parameterized QID Pipeline Runner + Roman Republic Shortcut
+# ==============================================================================
+# Category: Capability, Integration
+# Summary: Added generic QID pipeline runner with deterministic IDs and BCE-safe parsing, plus a Roman Republic shortcut
+# Files:
+#   - Neo4j/schema/run_qid_pipeline.py
+#   - Neo4j/schema/run_qid_pipeline.ps1
+#   - Neo4j/schema/run_roman_republic_q17167_pipeline.ps1
+# Reason: Provide a reusable, parameterized pipeline for seed/reset/promotion/verify flows using QIDs
+# Notes:
+#   - Deterministic IDs derived from QIDs (qid_token)
+#   - BCE date/year parsing supports negative years and ISO dates
+#   - PowerShell wrapper enforces --flag=value to preserve negative values
+#   - Roman Republic run verified: validated claim + OCCURRED_DURING/OCCURRED_AT + SUPPORTED_BY counts 1/1/1
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 17:00 | Communication Facet Added (Facet 17) + 1-Claim-Per-Facet Model
+# ==============================================================================
+# Category: Capability, Schema
+# Summary: Added Communication as 17th facet; established 1-claim-per-facet pattern
+# Files:
+#   - Facets/facet_registry_master.json (updated facet_count 16 -> 17)
+#   - md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md (new Pattern 6 with communication guidance)
+# Reason: Enable agents to consider messaging, narrative framing, propaganda, ceremonies as evidence dimensions
+# Notes:
+#   - Communication facet: "How and when was this communicated?"
+#   - Model: One claim per facet per entity-relationship (not all facets always apply)
+#   - Agent guidance: Respond with facet: "NA" if no strong evidence for that facet
+#   - Communication examples: Victory narratives, merchant networks, missionary messaging, sermons
+#   - Anchors: Q11029 (communication), Q1047 (message), Q11420 (ceremony), Q19832 (propaganda), Q2883829 (oral tradition), Q33829 (narrative)
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 16:45 | Query Executor Agent + Claim Pipeline - Production Ready
 # ==============================================================================
 # Category: Capability, Integration, Agent, Schema

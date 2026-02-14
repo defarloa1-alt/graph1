@@ -361,18 +361,21 @@ Q1048 profile sample:
   - `scripts/tools/claim_ingestion_pipeline.py` (460 lines)
   - Entry point: `ingest_claim(entity_id, relationship_type, target_id, confidence, ...)`
   - Returns: `{status: 'created'|'promoted'|'error', claim_id, cipher, promoted}`
-  - Workflow: Validate -> Hash -> Create -> Link -> Promote (if confidence >= 0.90)
+  - Workflow: Validate -> Hash -> Create -> Link -> Promote
+    (if confidence >= 0.90 and posterior_probability >= 0.90 and no critical fallacy)
   - Intermediary nodes: RetrievalContext, AnalysisRun, FacetAssessment
   - Traceability: SUPPORTED_BY edges + canonical relationship promotion
 
 ### Facet Integration
-- Agent now aware of 16-facet registry from `Facets/facet_registry_master.json`:
+- Agent now aware of 17-facet registry from `Facets/facet_registry_master.json`:
   - archaeological, artistic, cultural, demographic, diplomatic, economic
   - environmental, geographic, intellectual, linguistic, military, political
-  - religious, scientific, social, technological
-- Facet registry status: ACTIVE (16 facets, not 17 as previously estimated)
+  - religious, scientific, social, technological, communication (NEW)
+- Facet registry status: ACTIVE (17 facets total)
+- 1-Claim-Per-Facet Model: Agent evaluates each entity-relationship against all facets; responds with "NA" if facet doesn't apply
+- Communication facet specifically asks: "How and when was this communicated? Propaganda? Ceremony? Evidence of transmission?"
 - Claims include `facet` parameter for FacetAssessment node creation
-- Agent prompt updated with facet reference patterns
+- Agent prompt updated with facet reference patterns and communication guidance
 
 ### Documentation Package
 - System prompt: `md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md` (400+ lines, with facet patterns)
@@ -388,6 +391,133 @@ Q1048 profile sample:
 - Status: ✅ Syntax validated, ready for testing
 - Deployment: Files staged for git commit (awaiting push)
 
+## Parameterized QID Pipeline Runner (verified 2026-02-14)
+
+### New Generic Runner
+- Added a parameterized pipeline runner for period/event/place QIDs:
+  - `Neo4j/schema/run_qid_pipeline.py`
+  - Deterministic IDs derived from QIDs (`qid_token`)
+  - BCE-safe year/date parsing (negative years + ISO dates)
+  - Single run handles reset, seed, promotion, and verification
+  - Facet keys normalized to lowercase; labels title-cased
+
+### PowerShell Wrapper
+- Added wrapper with strict `--flag=value` args to preserve negative years/dates:
+  - `Neo4j/schema/run_qid_pipeline.ps1`
+
+### Roman Republic Shortcut
+- Shortcut wrapper with Roman Republic defaults:
+  - `Neo4j/schema/run_roman_republic_q17167_pipeline.ps1`
+- Validation executed successfully:
+  - validated temporal claim
+  - canonical `OCCURRED_DURING` and `OCCURRED_AT`
+  - `SUPPORTED_BY` counts = 1/1/1 (event/period/place)
+
+### Training Workflow Constraints (Q17167)
+- Record run metadata in the proposal: mode, caps, and whether trimming occurred.
+- If the proposal exceeds 1000 nodes, document the trimming rule used (drop lowest-priority nodes).
+- Log `class_allowlist_mode` and any overrides used during harvest.
+- If any budget caps are hit, mark the proposal as partial and recommend a second pass.
+
+## Historian Logic Upgrade (verified 2026-02-14)
+
+- Implemented both requested reasoning controls in the live claim path:
+  - Fischer-style fallacy heuristics
+  - Bayesian posterior scoring
+- New module:
+  - `scripts/tools/historian_logic_engine.py`
+- Integrated into claim pipeline:
+  - `scripts/tools/claim_ingestion_pipeline.py`
+  - claim properties now persist: `prior_probability`, `likelihood`, `posterior_probability`,
+    `fallacies_detected`, `fallacy_penalty`, `critical_fallacy`, `bayesian_score`
+- Promotion gate now requires all:
+  - `confidence >= 0.90`
+  - `posterior_probability >= 0.90`
+  - `critical_fallacy = false`
+- Query executor now prints posterior/fallacy outputs after submission:
+  - `scripts/agents/query_executor_agent_test.py`
+### Example Usage
+```
+Neo4j\schema\run_qid_pipeline.ps1 `
+  -PeriodQid "Q17167" -PeriodLabel "Roman Republic" -PeriodStart "-0510" -PeriodEnd "-0027" `
+  -EventQid "Q193304" -EventLabel "Battle of Actium" -EventDate "-0031-09-02" -EventType "battle" `
+  -PlaceQid "Q41747" -PlaceLabel "Actium" -PlaceType "place" -ModernCountry "Greece" `
+  -ResetEntities -LegacyRomanClean
+```
+
+## Fischer Fallacy Flagging (Upgraded 2026-02-14 22:50)
+
+- Refactored from hard-blocking to **flag-only** approach for all fallacies
+- Promotion policy: Based purely on **confidence >= 0.90 AND posterior >= 0.90**
+- Fallacy handling:
+  - **All fallacies are always detected and flagged**, regardless of claim profile
+  - Fallacies **never block promotion** but are returned in response for downstream consumption
+  - New method: `_determine_fallacy_flag_intensity(critical_fallacy, claim_type, facet)` → "none" | "low" | "high"
+- Flag intensity categorizes by claim profile:
+  - **High intensity:** Fallacies detected in interpretive claims (causal, motivational, narrative, political, diplomatic, etc.)
+    → Warrant closer human review upstream before acceptance
+  - **Low intensity:** Fallacies detected in descriptive claims (temporal, locational, geographic, scientific, etc.)
+    → Lower concern; promotes normally
+  - **None:** No fallacies detected
+- Return value updated:
+  - Replaced `fallacy_gate_mode` with `fallacy_flag_intensity`
+  - Enables downstream systems to prioritize review based on risk profile, not enforce gates
+
+### Rationale
+- Promotion decisions should be based on **scientific metrics** (confidence + posterior), not on heuristic fallacy detection
+- All fallacies are preserved in response for **audit trail and human review**
+- Flag intensity guides downstream **prioritization**, not enforcement
+- Historical knowledge graphs benefit from **uncertainty preservation** and **selective human review**, not automated blocking
+
+## Authority Provenance Tracking (verified 2026-02-14)
+
+- Implemented authority/source capture fields for all claims
+- New fields persist on both Claim and RetrievalContext nodes:
+  - `authority_source` (string): authority system name (e.g., "wikidata", "lcsh", "freebase")
+  - `authority_ids` (string/dict/list): identifiers from the source system
+- Schema updates:
+  - `Neo4j/schema/07_core_pipeline_schema.cypher`
+  - Added constraint: `Claim` must have `authority_source IS NOT NULL`
+  - Added indexes: `Claim.authority_source`, `RetrievalContext.authority_source`
+- Pipeline support:
+  - `scripts/tools/claim_ingestion_pipeline.py`
+  - `ingest_claim()` now accepts `authority_source` and `authority_ids` parameters
+  - `_normalize_authority_ids()` helper method supports string, dict, list formats
+  - Both `_create_claim_node()` and `_create_retrieval_context()` persist authority fields
+- Test integration:
+  - `scripts/agents/query_executor_agent_test.py`
+  - `submit_claim()` accepts authority parameters
+  - Example claims show authority tracking for Wikidata QIDs and LCSH identifiers
+- Documentation:
+  - `scripts/agents/QUERY_EXECUTOR_QUICKSTART.md`
+  - Added comprehensive section on authority provenance with 3 usage examples
+
+### Example Authority Usage
+```python
+# Wikidata authority with QID
+executor.submit_claim(
+    entity_id="evt_battle_q193304",
+    relationship_type="OCCURRED_DURING",
+    target_id="prd_roman_q17167",
+    confidence=0.95,
+    label="Battle of Actium in Roman Republic",
+    authority_source="wikidata",
+    authority_ids={"Q17167": "P31", "Q193304": "P580"},
+    facet="military"
+)
+
+# LCSH authority with subject headings
+executor.submit_claim(
+    entity_id="subj_history_rome",
+    relationship_type="CLASSIFIED_BY",
+    target_id="subj_military_history",
+    confidence=0.90,
+    authority_source="lcsh",
+    authority_ids={"sh85110847": "History of Rome"},
+    facet="communication"
+)
+```
+
 ## Recommended Next Steps
 - If rebuilding backbone from scratch:
   1. Run `python scripts/backbone/temporal/genYearsToNeo.py --start -2000 --end 2025`
@@ -400,3 +530,4 @@ Q1048 profile sample:
   2. Run: `python scripts/agents/query_executor_agent_test.py test`
   3. Run: `python scripts/agents/query_executor_agent_test.py claims`
   4. Verify claim nodes in graph: `MATCH (c:Claim) RETURN c`
+

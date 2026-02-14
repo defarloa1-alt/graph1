@@ -99,13 +99,13 @@ python query_executor_agent_test.py claims
 ```
 [Test 1] Low confidence claim (proposed)
 status: created
-claim_id: claim_evt_battle_of_actium_q193304_occurred_during_prd_roman_republic_q17167
+claim_id: claim_<12hex>
 cipher: <64-char SHA256 hash>
 promoted: false
 
 [Test 2] High confidence claim (should promote if prerequisites met)
 status: promoted
-claim_id: claim_evt_battle_of_actium_q193304_located_in_plc_actium_q41747
+claim_id: claim_<12hex>
 cipher: <64-char SHA256 hash>
 promoted: true
 ```
@@ -116,6 +116,206 @@ promoted: true
 - Low confidence: promoted=false
 - High confidence: promoted=true (if context nodes exist)
 - SUPPORTED_BY relationships visible in graph
+
+---
+
+## Facet Model (Normalized)
+
+- Facet keys are **lowercase** and sourced from `Facets/facet_registry_master.json`.
+- There are **17 facets**, including `communication`.
+- Model: **one claim per facet** per entity-relationship; use `facet: "NA"` when evidence is insufficient.
+
+Example:
+```python
+executor.submit_claim(
+    entity_id="evt_battle_of_actium_q193304",
+    relationship_type="OCCURRED_DURING",
+    target_id="prd_roman_republic_q17167",
+    confidence=0.95,
+    label="Battle of Actium in Roman Republic",
+    facet="military",
+    claim_signature={
+        "qid": "Q17167",
+        "pvalues": ["P31", "P361"],
+        "values": {"P31": "Q3024240", "P361": "Q17167"}
+    }
+)
+```
+
+**Strict signature requirement:**
+- `claim_signature` must be a dict with `qid`, `pvalues` (list of P-IDs), and `values` (dict keyed by P-IDs).
+- `claim_signature.qid` must match `subject_qid`.
+
+Communication facet prompt:
+```
+How and when was this communicated? Propaganda, ceremony, messaging, narrative framing?
+If no evidence -> facet: "NA"
+```
+
+---
+
+## Authority Provenance Tracking
+
+The claim ingestion pipeline supports capturing authority/source information for all claims. This enables upstream traceability to external data sources like Wikidata, LCSH, or other authority systems.
+
+### Authority Fields
+
+When submitting a claim, you can specify:
+- **`authority_source`** (string): The authority system name (e.g., `"wikidata"`, `"lcsh"`, `"freebase"`)
+- **`authority_ids`** (string, dict, or list): Authority identifiers from the source system
+
+### Examples
+
+**Example 1: Wikidata Authority with QID**
+```python
+executor.submit_claim(
+    entity_id="evt_battle_of_actium_q193304",
+    relationship_type="OCCURRED_DURING",
+    target_id="prd_roman_republic_q17167",
+    confidence=0.95,
+    label="Battle of Actium in Roman Republic",
+    subject_qid="Q17167",
+    facet="military",
+    authority_source="wikidata",
+    authority_ids={"Q17167": "P31", "Q193304": "P580"},
+    claim_signature={
+        "qid": "Q17167",
+        "pvalues": ["P31", "P361"],
+        "values": {"P31": "Q3024240", "P361": "Q17167"}
+    }
+)
+```
+
+**Example 2: LCSH Authority with Subject Headings**
+```python
+executor.submit_claim(
+    entity_id="subj_history_of_rome",
+    relationship_type="CLASSIFIED_BY",
+    target_id="subj_military_history",
+    confidence=0.90,
+    label="Roman military history classified as military history",
+    authority_source="lcsh",
+    authority_ids={"sh85110847": "History of Rome", "sh85088321": "Military history"},
+    facet="communication"
+)
+```
+
+**Example 3: Authority as Simple String**
+```python
+executor.submit_claim(
+    entity_id="plc_rome_q220",
+    relationship_type="IS_CAPITAL_OF",
+    target_id="prd_italian_kingdom_q172579",
+    confidence=0.98,
+    label="Rome is the capital of Italy",
+    authority_source="wikidata",
+    authority_ids="Q220",  # Simple string ID
+    facet="geographic"
+)
+```
+
+### Storage
+
+Authority information is persisted on:
+- **Claim nodes**: `authority_source`, `authority_ids` properties
+- **RetrievalContext nodes**: `authority_source`, `authority_ids` properties
+
+This allows queries to trace claims back to their original authority sources.
+
+---
+
+## Fischer Fallacy Flagging
+
+**All fallacies are detected and flagged.** Promotion decisions are based **purely on scientific metrics** (confidence + posterior), never on fallacy presence. Flag intensity guides downstream human review prioritization.
+
+### Promotion Rule (Universal)
+
+```
+IF confidence >= 0.90 AND posterior >= 0.90
+   THEN promoted = true
+   (fallacies flagged as 'none', 'low', or 'high' for downstream triage)
+ELSE
+   promoted = false
+```
+
+### Fallacy Flag Intensity
+
+All detected fallacies are categorized by risk profile to guide downstream review:
+
+**Flag Intensity: 'high'** (Interpretive Claims)
+- Applies to claims with reasoning about motivations, causation, meaning, or narrative
+- **Warrant closer human review** before acceptance into knowledge graph
+- Claim Types: `causal`, `interpretive`, `motivational`, `narrative`
+- Facets: `political`, `diplomatic`, `religious`, `social`, `communication`, `intellectual`, `military`, `cultural`, `economic`
+
+**Flag Intensity: 'low'** (Descriptive Claims)
+- Applies to purely factual or structural claims (what, where, when, who, classification)
+- **Lower concern**; promotable with normal review
+- Claim Types: `temporal`, `locational`, `taxonomic`, `identity`
+- Facets: `geographic`, `environmental`, `archaeological`, `scientific`, `technological`, `demographic`, `linguistic`, `artistic`
+
+**Flag Intensity: 'none'** (No Fallacies Detected)
+- Claim promoted normally with no fallacy concerns
+
+### Examples
+
+**Example 1: Promoted with High-Intensity Flag**
+```python
+executor.submit_claim(
+    entity_id="fig_caesar_q1",
+    relationship_type="MOTIVATED_BY",
+    target_id="evt_gallic_wars_q123",
+    confidence=0.92,
+    label="Caesar wanted to conquer Gaul for political ambitions",
+    facet="political",
+    claim_type="motivational",
+    reasoning_notes="Caesar's intentions were to gain military prestige for political power"
+)
+# Result: PROMOTED = true (confidence + posterior ≥ 0.90)
+# Fallacy: "post_hoc_causation" detected
+# Flag: fallacy_flag_intensity = "high" → triggers human review before acceptance
+```
+
+**Example 2: Promoted with Low-Intensity Flag**
+```python
+executor.submit_claim(
+    entity_id="evt_actium_q193304",
+    relationship_type="LOCATED_IN",
+    target_id="plc_actium_q41747",
+    confidence=0.95,
+    label="Battle of Actium took place at Actium",
+    facet="geographic",
+    claim_type="locational",
+    reasoning_notes="Historical sources confirm battle location"
+)
+# Result: PROMOTED = true (confidence + posterior ≥ 0.90)
+# Fallacy: None detected OR detected but low concern
+# Flag: fallacy_flag_intensity = "low" or "none" → normal review flow
+```
+
+### Rationale
+
+- **Metrics-based promotion:** Confidence + posterior probability are scientific; fallacy heuristics are imperfect and should not block valid claims
+- **Preserved audit trail:** All fallacies are logged and flagged in response; downstream systems and humans can decide what action to take
+- **Risk-stratified review:** Flag intensity enables humans to prioritize review effort on high-risk claims (interpretive reasoning) vs. low-risk claims (factual assertions)
+
+---
+
+## Launch Training Workflow (Seed QID)
+
+On launch, the agent runs a one-time training pass for `Q17167` (Roman Republic):
+- Full statements export + datatype profiling
+- Backlink harvest (expanded caps) + backlink profiling
+- Proposal generation capped at **1000 nodes**
+- Stop for human review before any Neo4j ingestion
+
+Optional: run a second pass with adjusted limits after review.
+
+**Training Constraints (Required):**
+- Record run metadata in the proposal: mode, caps, and whether trimming occurred.
+- If the proposal exceeds 1000 nodes, document the trimming rule used (drop lowest-priority nodes).
+- Log `class_allowlist_mode` and any overrides used during harvest.
+- If any budget caps are hit, mark the proposal as partial and recommend a second pass.
 
 ---
 

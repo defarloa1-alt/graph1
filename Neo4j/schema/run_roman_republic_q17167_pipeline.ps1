@@ -8,26 +8,26 @@ param(
 $ErrorActionPreference = "Stop"
 
 $schemaDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$runner = Join-Path $schemaDir "run_cypher_file.py"
+$runner = Join-Path $schemaDir "run_qid_pipeline.ps1"
 
-$orderedFiles = @(
-    "16_roman_republic_q17167_reset.cypher",
-    "09_core_pipeline_pilot_seed.cypher",
-    "11_event_period_claim_seed.cypher",
-    "13_claim_label_backfill.cypher",
-    "14_claim_promotion_seed.cypher",
-    "10_core_pipeline_pilot_verify.cypher",
-    "12_event_period_claim_verify.cypher",
-    "15_claim_promotion_verify.cypher"
-)
-
-foreach ($file in $orderedFiles) {
-    $path = Join-Path $schemaDir $file
-    Write-Host "Running $file"
-    & $Python $runner $path --uri $Uri --user $User --password $Password
-    if ($LASTEXITCODE -ne 0) {
-        throw "Pipeline failed while running $file (exit code: $LASTEXITCODE)"
-    }
-}
+& $runner `
+    -PeriodQid "Q17167" `
+    -PeriodLabel "Roman Republic" `
+    -PeriodStart "-0510" `
+    -PeriodEnd "-0027" `
+    -EventQid "Q193304" `
+    -EventLabel "Battle of Actium" `
+    -EventDate "-0031-09-02" `
+    -EventType "battle" `
+    -PlaceQid "Q41747" `
+    -PlaceLabel "Actium" `
+    -PlaceType "place" `
+    -ModernCountry "Greece" `
+    -ResetEntities `
+    -LegacyRomanClean `
+    -Python $Python `
+    -Uri $Uri `
+    -User $User `
+    -Password $Password
 
 Write-Host "Roman Republic Q17167 pipeline complete."

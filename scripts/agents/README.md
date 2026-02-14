@@ -69,6 +69,62 @@ result = executor.submit_claim(
 }
 ```
 
+## Facet Model (Normalized)
+
+- Facet keys are **lowercase** and sourced from `Facets/facet_registry_master.json`.
+- There are **17 facets**, including `communication`.
+- Model: **one claim per facet** per entity-relationship; use `facet: "NA"` when no evidence supports a facet.
+
+Example (claim submission with facet):
+```python
+result = executor.submit_claim(
+    entity_id="evt_battle_of_actium_q193304",
+    relationship_type="OCCURRED_DURING",
+    target_id="prd_roman_republic_q17167",
+    confidence=0.95,
+    label="Battle of Actium in Roman Republic",
+    facet="military",
+    claim_signature={
+        "qid": "Q17167",
+        "pvalues": ["P31", "P361"],
+        "values": {"P31": "Q3024240", "P361": "Q17167"}
+    }
+)
+```
+
+**Strict signature requirement:**
+- `claim_signature` must be a dict with `qid`, `pvalues` (list of P-IDs), and `values` (dict keyed by P-IDs).
+- `claim_signature.qid` must match `subject_qid`.
+
+Communication facet prompt:
+```
+How and when was this communicated? Propaganda, ceremony, messaging, narrative framing?
+If no evidence -> facet: "NA"
+```
+
+## Launch Training Workflow (Seed QID)
+
+On launch, the agent runs a one-time training pass for `Q17167` (Roman Republic):
+- Full statements export + datatype profiling
+- Backlink harvest (expanded caps) + backlink profiling
+- Proposal generation capped at **1000 nodes**
+- Stop for human review before any Neo4j ingestion
+
+Optional: run a second pass with adjusted limits after review.
+
+**Training Constraints (Required):**
+- Record run metadata in the proposal: mode, caps, and whether trimming occurred.
+- If the proposal exceeds 1000 nodes, document the trimming rule used (drop lowest-priority nodes).
+- Log `class_allowlist_mode` and any overrides used during harvest.
+- If any budget caps are hit, mark the proposal as partial and recommend a second pass.
+
+## Related Tooling (QID Pipeline Runner)
+
+Reusable pipeline runner for period/event/place QIDs:
+- `Neo4j/schema/run_qid_pipeline.py`
+- `Neo4j/schema/run_qid_pipeline.ps1`
+- Roman shortcut: `Neo4j/schema/run_roman_republic_q17167_pipeline.ps1`
+
 ## Architecture
 
 ### Agent Layer (Direct Query Execution)
@@ -169,9 +225,12 @@ Equivalent to Mode 1.
 **Agent Generates Cypher:**
 ```cypher
 MATCH (n:Event) WHERE n.date_start = "-0031-01-01" RETURN n
-MATCH (h:Human)-[r]-(q:SubjectConcept) WHERE q.id = "subj_q17167_001" RETURN h
-MATCH (s:SubjectConcept) WHERE "military" IN s.facets RETURN s
-MATCH (l:Location) WHERE l.region = "North Africa" RETURN l
+MATCH (h:Human)-[r]-(q:SubjectConcept) WHERE q.subject_id = "subj_q17167_001" RETURN h
+MATCH (fa:FacetAssessment {facet: "military"})
+MATCH (fa)-[:EVALUATED_BY]-(claim:Claim)
+MATCH (claim)-[:SUBJECT_OF]->(entity)
+RETURN entity
+MATCH (l:Place) WHERE l.region = "North Africa" RETURN l
 ```
 
 ## Claim Examples
