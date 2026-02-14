@@ -347,6 +347,47 @@ Q1048 profile sample:
 - unsupported pair rate: 0.00%
 - overall status: `pass`
 
+## Query Executor Agent + Claim Pipeline (verified 2026-02-14)
+
+### New Agent Implementation
+- Added production-ready Query Executor Agent:
+  - `scripts/agents/query_executor_agent_test.py` (391 lines)
+  - ChatGPT-powered with dynamic schema discovery
+  - Integrated claim submission via ClaimIngestionPipeline
+  - 5 CLI modes: test, claims, interactive, single query, default
+
+### Claim Ingestion Pipeline
+- New pipeline:
+  - `scripts/tools/claim_ingestion_pipeline.py` (460 lines)
+  - Entry point: `ingest_claim(entity_id, relationship_type, target_id, confidence, ...)`
+  - Returns: `{status: 'created'|'promoted'|'error', claim_id, cipher, promoted}`
+  - Workflow: Validate -> Hash -> Create -> Link -> Promote (if confidence >= 0.90)
+  - Intermediary nodes: RetrievalContext, AnalysisRun, FacetAssessment
+  - Traceability: SUPPORTED_BY edges + canonical relationship promotion
+
+### Facet Integration
+- Agent now aware of 16-facet registry from `Facets/facet_registry_master.json`:
+  - archaeological, artistic, cultural, demographic, diplomatic, economic
+  - environmental, geographic, intellectual, linguistic, military, political
+  - religious, scientific, social, technological
+- Facet registry status: ACTIVE (16 facets, not 17 as previously estimated)
+- Claims include `facet` parameter for FacetAssessment node creation
+- Agent prompt updated with facet reference patterns
+
+### Documentation Package
+- System prompt: `md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md` (400+ lines, with facet patterns)
+- Agent README: `scripts/agents/README.md` (400+ lines)
+- Quickstart: `scripts/agents/QUERY_EXECUTOR_QUICKSTART.md` (300+ lines)
+- Quick reference: `QUERY_EXECUTOR_QUICK_REFERENCE.md`
+- Implementation summary: `Key Files/2026-02-14 Query Executor Implementation.md`
+
+### Execution Model
+- Agent layer: Direct neo4j-driver + OpenAI API (no MCP overhead for agents)
+- Pipeline layer: Python validation + transactional Neo4j writes
+- Separation: ChatGPT handles query/format, pipeline handles validation/promotion
+- Status: ✅ Syntax validated, ready for testing
+- Deployment: Files staged for git commit (awaiting push)
+
 ## Recommended Next Steps
 - If rebuilding backbone from scratch:
   1. Run `python scripts/backbone/temporal/genYearsToNeo.py --start -2000 --end 2025`
@@ -354,3 +395,8 @@ Q1048 profile sample:
 - Verify with:
   - `python Python/check_year_range.py`
   - graph checks for orphan years (`Year` without `PART_OF -> Decade`).
+- Test Query Executor Agent:
+  1. Set `NEO4J_PASSWORD` and `OPENAI_API_KEY` environment variables
+  2. Run: `python scripts/agents/query_executor_agent_test.py test`
+  3. Run: `python scripts/agents/query_executor_agent_test.py claims`
+  4. Verify claim nodes in graph: `MATCH (c:Claim) RETURN c`

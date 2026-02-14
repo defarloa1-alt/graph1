@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
 """
 Chrystallum Query Executor Agent - Test Implementation
-Purpose: Execute live Neo4j queries based on natural language input
+Purpose: Execute live Neo4j queries and submit claims
 Date: February 14, 2026
 Status: Initial test
+
+Usage:
+  python query_executor_agent_test.py                    # Run basic query tests
+  python query_executor_agent_test.py test              # Run predefined test queries
+  python query_executor_agent_test.py claims            # Run claim submission tests
+  python query_executor_agent_test.py interactive       # Run interactive REPL mode
+  python query_executor_agent_test.py "<natural query>" # Execute single query
+
+Environment Variables (Required):
+  NEO4J_PASSWORD      - Password for Neo4j authentication
+  OPENAI_API_KEY      - OpenAI API key for ChatGPT access
+  NEO4J_URI           - Neo4j connection string (default: bolt://localhost:7687)
+  NEO4J_USERNAME      - Neo4j username (default: neo4j)
+  NEO4J_DATABASE      - Neo4j database name (default: neo4j)
 """
 
 import os
@@ -12,6 +26,10 @@ import sys
 from typing import Optional, Dict, Any, List
 from neo4j import GraphDatabase, Driver, Session
 import openai
+
+# Import claim pipeline
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'tools'))
+from claim_ingestion_pipeline import ClaimIngestionPipeline
 
 # Configuration
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
@@ -25,7 +43,7 @@ class ChromatogramQueryExecutor:
     """Query executor agent for Chrystallum knowledge graph"""
 
     def __init__(self):
-        """Initialize Neo4j driver and OpenAI client"""
+        """Initialize Neo4j driver, OpenAI client, and claim pipeline"""
         if not NEO4J_PASSWORD:
             raise ValueError("NEO4J_PASSWORD environment variable not set")
         if not OPENAI_API_KEY:
@@ -38,10 +56,14 @@ class ChromatogramQueryExecutor:
         
         openai.api_key = OPENAI_API_KEY
         
+        # Initialize claim pipeline
+        self.pipeline = ClaimIngestionPipeline(self.driver, database=NEO4J_DATABASE)
+        
         # Discover schema on init
         self.schema = self._discover_schema()
         print(f"✓ Connected to Neo4j at {NEO4J_URI}")
         print(f"✓ Schema discovered: {len(self.schema['labels'])} labels, {len(self.schema['relationship_types'])} relationship types")
+        print(f"✓ Claim pipeline initialized")
 
     def _discover_schema(self) -> Dict[str, Any]:
         """Discover available labels and relationship types from Neo4j"""
@@ -201,6 +223,60 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
             except Exception as e:
                 print(f"Error: {e}")
 
+    def submit_claim(
+        self,
+        entity_id: str,
+        relationship_type: str,
+        target_id: str,
+        confidence: float,
+        label: str,
+        subject_qid: Optional[str] = None,
+        retrieval_source: str = "agent_extraction",
+        reasoning_notes: str = "",
+        facet: str = "general"
+    ) -> Dict[str, Any]:
+        """
+        Submit a claim via the ingestion pipeline
+        
+        Args:
+            entity_id: Source entity ID
+            relationship_type: Relationship type name
+            target_id: Target entity ID
+            confidence: Confidence score 0.0-1.0
+            label: Human-readable claim label
+            subject_qid: Wikidata subject QID
+            retrieval_source: Data source
+            reasoning_notes: Agent reasoning
+            facet: Domain facet
+            
+        Returns:
+            Ingestion result dict
+        """
+        print(f"\n▶ Submit Claim: {label}")
+        print(f"  Entity: {entity_id} -{relationship_type}-> {target_id}")
+        print(f"  Confidence: {confidence:.2f}")
+        
+        result = self.pipeline.ingest_claim(
+            entity_id=entity_id,
+            relationship_type=relationship_type,
+            target_id=target_id,
+            confidence=confidence,
+            label=label,
+            subject_qid=subject_qid,
+            retrieval_source=retrieval_source,
+            reasoning_notes=reasoning_notes,
+            facet=facet
+        )
+        
+        if result["status"] == "error":
+            print(f"\n✗ Submission failed: {result['error']}")
+        else:
+            promoted = " (PROMOTED)" if result["promoted"] else ""
+            print(f"\n✓ Claim created{promoted}: {result['claim_id']}")
+            print(f"  Cipher: {result['cipher'][:16]}...")
+        
+        return result
+
     def close(self):
         """Close Neo4j driver connection"""
         self.driver.close()
@@ -226,6 +302,44 @@ def test_basic_queries():
         print()
     
     executor.close()
+
+
+def test_claim_submission():
+    """Test claim submission workflow"""
+    executor = ChromatogramQueryExecutor()
+    
+    print("\n" + "="*60)
+    print("Testing Claim Submission Workflow")
+    print("="*60)
+    
+    # Example: Low confidence claim (proposed)
+    print("\n[Test 1] Low confidence claim (proposed)")
+    result = executor.submit_claim(
+        entity_id="evt_battle_of_actium_q193304",
+        relationship_type="OCCURRED_DURING",
+        target_id="prd_roman_republic_q17167",
+        confidence=0.75,
+        label="Battle of Actium occurred during Roman Republic",
+        subject_qid="Q17167",
+        reasoning_notes="Agent observed historical sources confirming event timing",
+        facet="military"
+    )
+    
+    # Example: High confidence claim (should promote)
+    print("\n[Test 2] High confidence claim (should promote if prerequisites met)")
+    result2 = executor.submit_claim(
+        entity_id="evt_battle_of_actium_q193304",
+        relationship_type="LOCATED_IN",
+        target_id="plc_actium_q41747",
+        confidence=0.95,
+        label="Battle of Actium took place at Actium",
+        subject_qid="Q17167",
+        reasoning_notes="Direct historical source confirmation with high reliability",
+        facet="geography"
+    )
+    
+    executor.close()
+
 
 
 def test_interactive():
@@ -257,17 +371,20 @@ if __name__ == "__main__":
         sys.exit(1)
     
     # Run tests or interactive mode
-    if len(sys.argv) > 1 and sys.argv[1] == "interactive":
-        test_interactive()
-    else:
-        # Run basic tests if no args, or single query if provided
-        if len(sys.argv) > 1 and sys.argv[1] != "test":
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "interactive":
+            test_interactive()
+        elif sys.argv[1] == "claims":
+            test_claim_submission()
+        elif sys.argv[1] == "test":
+            test_basic_queries()
+        else:
             # Single query mode
             executor = ChromatogramQueryExecutor()
             try:
                 result = executor.query(" ".join(sys.argv[1:]))
             finally:
                 executor.close()
-        else:
-            # Test mode
-            test_basic_queries()
+    else:
+        # Default: run basic tests
+        test_basic_queries()

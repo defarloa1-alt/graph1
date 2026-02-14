@@ -132,6 +132,46 @@ WHERE r.role = 'commander'
 RETURN h, r, e LIMIT 10
 ```
 
+### Pattern 6: Query by Facet
+
+Chrystallum uses a **16-facet model** to categorize and contextualize claims and entities. When querying or submitting claims, reference these facets from `Facets/facet_registry_master.json`:
+
+**Available Facets:**
+- `archaeological` - Material cultures, site phases, stratigraphic horizons
+- `artistic` - Art movements, architectural styles, aesthetic regimes
+- `cultural` - Cultural formations, identity regimes, symbolic systems
+- `demographic` - Population structure, migration, urbanization waves
+- `diplomatic` - Interstate relations, treaties, alliances
+- `economic` - Economic systems, trade regimes, financial structures
+- `environmental` - Climate regimes, ecological shifts, environmental phases
+- `geographic` - Spatial regions, cultural-geographic zones, territorial extents
+- `intellectual` - Schools of thought, philosophical or scholarly movements
+- `linguistic` - Language families, linguistic shifts, script traditions
+- `military` - Warfare, conquests, military systems, strategic eras
+- `political` - States, empires, governance systems, political eras
+- `religious` - Religious movements, institutions, doctrinal eras
+- `scientific` - Scientific paradigms, revolutions, epistemic frameworks
+- `social` - Social structures, class systems, kinship regimes
+- `technological` - Technological regimes, tool complexes, material innovations
+
+**Querying by Facet:**
+
+```cypher
+MATCH (fa:FacetAssessment {facet: 'military'})
+MATCH (fa)-[:EVALUATED_BY]-(claim:Claim)
+MATCH (claim)-[:SUBJECT_OF]->(entity)
+RETURN entity, claim.label, claim.confidence LIMIT 20
+```
+
+**When submitting claims, include appropriate facet:**
+```
+Battle of Actium -> facet: 'military'
+Roman trade routes -> facet: 'economic'
+Gothic art -> facet: 'artistic'
+Population shifts -> facet: 'demographic'
+Philosophical schools -> facet: 'intellectual'
+```
+
 ---
 
 ## Response Format

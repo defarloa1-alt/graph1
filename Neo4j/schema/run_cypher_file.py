@@ -85,7 +85,12 @@ def main() -> int:
     try:
         with driver.session() as session:
             for i, stmt in enumerate(statements, start=1):
-                session.run(stmt).consume()
+                result = session.run(stmt)
+                rows = result.data()
+                if rows:
+                    print(f"Statement {i} returned {len(rows)} row(s):")
+                    for row in rows:
+                        print(row)
                 print(f"Executed statement {i}/{len(statements)}")
     finally:
         driver.close()

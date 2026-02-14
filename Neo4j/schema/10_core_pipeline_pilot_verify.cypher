@@ -5,13 +5,13 @@
 // Purpose: Verify seeded pilot cluster for SubjectConcept + Agent + Claim flow.
 // ============================================================================
 
-MATCH (sc:SubjectConcept {subject_id: 'subj_roman_republic_001'})
-OPTIONAL MATCH (a:Agent {agent_id: 'agent_roman_republic_v1'})-[:OWNS_DOMAIN]->(sc)
-OPTIONAL MATCH (a)-[:MADE_CLAIM]->(c:Claim {claim_id: 'claim_roman_republic_end_27bce_001'})
+MATCH (sc:SubjectConcept {subject_id: 'subj_q17167_roman_republic'})
+OPTIONAL MATCH (a:Agent {agent_id: 'agent_q17167_roman_republic_v1'})-[:OWNS_DOMAIN]->(sc)
+OPTIONAL MATCH (a)-[:MADE_CLAIM]->(c:Claim {claim_id: 'claim_q17167_end_date_neg0027'})
 OPTIONAL MATCH (sc)-[:SUBJECT_OF]->(c)
-OPTIONAL MATCH (c)-[:USED_CONTEXT]->(rc:RetrievalContext {retrieval_id: 'retr_roman_republic_q17167_001'})
-OPTIONAL MATCH (c)-[:HAS_ANALYSIS_RUN]->(run:AnalysisRun {run_id: 'run_roman_republic_001'})
-OPTIONAL MATCH (run)-[:HAS_FACET_ASSESSMENT]->(fa:FacetAssessment {assessment_id: 'fa_roman_republic_pol_001'})
+OPTIONAL MATCH (c)-[:USED_CONTEXT]->(rc:RetrievalContext {retrieval_id: 'retr_q17167_wikidata_end_date_neg0027'})
+OPTIONAL MATCH (c)-[:HAS_ANALYSIS_RUN]->(run:AnalysisRun {run_id: 'run_q17167_end_date_neg0027'})
+OPTIONAL MATCH (run)-[:HAS_FACET_ASSESSMENT]->(fa:FacetAssessment {assessment_id: 'fa_q17167_political_end_date_neg0027'})
 OPTIONAL MATCH (fa)-[:ASSESSES_FACET]->(f:Facet {facet_id: 'facet_political'})
 RETURN
   sc.subject_id AS subject_id,
