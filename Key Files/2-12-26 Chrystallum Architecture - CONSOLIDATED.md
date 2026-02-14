@@ -5373,9 +5373,10 @@ All Wikidata statement ingestion MUST use a deterministic dispatcher keyed by:
 - `mainsnak.datatype`
 - `mainsnak.datavalue.type` (`value_type`)
 
-This is the control plane for routing topology vs identity vs attributes.
+This control plane separates topology, federation identity, and literal attributes.
+No statement may bypass dispatcher routing.
 
-### **8.6.1 Dispatcher Routes (Normative)**
+### **8.6.1 Dispatcher Route Matrix (Normative)**
 
 | Pair (`datatype + value_type`) | Route | Required Action |
 |---|---|---|
@@ -5420,7 +5421,7 @@ Default exclusion rules:
 - `edge_candidate_count == 0` -> exclude (`no_edge_candidates`)
 - `literal_heavy_ratio > 0.80` -> exclude (`literal_heavy`)
 
-These exclusions affect recursion/frontier growth, not node retention.
+These exclusions affect recursion and frontier growth, not node retention.
 
 ### **8.6.5 Provenance and Safety Requirements**
 
@@ -5430,7 +5431,7 @@ Every materialized backlink edge MUST include:
 - `source_property`
 - `retrieved_at`
 
-Every run MUST emit:
+Every run report MUST emit:
 - route counts
 - quarantine reason counts
 - unsupported pair rate
@@ -5445,6 +5446,8 @@ Canonical tooling:
 - `scripts/tools/wikidata_backlink_harvest.py`
 - `scripts/tools/wikidata_backlink_profile.py`
 - `JSON/wikidata/backlinks/README.md`
+
+Operational contract details are defined in Appendix K.4 through K.6.
 
 ---
 
@@ -7450,9 +7453,9 @@ LIMIT 500
 2. Pull authority property bundle.
 3. Optionally run backlink expansion for context discovery.
 4. Classify results by source entity type (`P31`, bounded `P279`) and ingest with provenance.
-5. Route every statement through dispatcher (`datatype + value_type`).
-6. Apply temporal precision gate before temporal anchoring.
-7. Apply frontier eligibility guard before recursive expansion.
+5. Route every statement through the dispatcher (`datatype + value_type`).
+6. Apply the temporal precision gate before temporal anchoring.
+7. Apply the frontier eligibility guard before recursive expansion.
 8. Quarantine unsupported or malformed statements with explicit reason.
 
 ## **K.5 Property Lookup Contract (Reference-Book Pattern)**

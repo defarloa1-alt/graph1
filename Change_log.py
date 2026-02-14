@@ -23,6 +23,21 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 09:25 | Section 8.6 and Appendix K Consistency Pass
+# ==============================================================================
+# Category: Docs, Architecture
+# Summary: Tightened wording and section consistency for federation dispatcher text in consolidated architecture
+# Files:
+#   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+# Reason: Ensure Section 8.6 reads natively with surrounding Section 8 style and aligns with Appendix K contract language.
+# Notes:
+#   - Clarified dispatcher as mandatory control plane and no-bypass rule.
+#   - Renamed 8.6.1 heading to "Dispatcher Route Matrix (Normative)" for consistency.
+#   - Harmonized run-report wording and frontier phrasing.
+#   - Added explicit cross-reference from 8.6.6 to Appendix K.4-K.6.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 09:20 | Canonical Sources Synced to Main Nodes Baseline
 # ==============================================================================
 # Category: Docs, Schema

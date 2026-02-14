@@ -88,6 +88,13 @@ Applied updates:
   - `Subject, Person, Gens, Praenomen, Cognomen, Event, Place, Period, Concept, Dynasty, Institution, LegalRestriction, Claim, Organization, Year, Communication`
 - A normalization gap note is retained to map legacy labels (`Subject`/`Concept`) to consolidated architecture terminology (`SubjectConcept`).
 
+## Consolidated Doc Consistency Pass (verified 2026-02-14)
+
+- Performed a wording/structure pass for Section `8.6 Federation Dispatcher and Backlink Control Plane` and Appendix K pipeline wording.
+- Clarified dispatcher no-bypass rule and aligned terminology between:
+  - Section `8.6` route/gate rules
+  - Appendix `K.4-K.6` operational contract
+
 ## Federation Datatype Work (verified 2026-02-13)
 
 ### New capability
