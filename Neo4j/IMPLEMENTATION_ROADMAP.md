@@ -304,7 +304,7 @@ class BacklinkEnricher:
         for concept in buckets["influences"]:
             cypher_statements.append(f"""
             MATCH (entity:Entity {{entity_id: '{entity_id}'}})
-            MATCH (concept:Concept {{qid: '{concept['qid']}'}})
+            MATCH (concept:SubjectConcept {{qid: '{concept['qid']}'}})
             CREATE (entity)-[:INFLUENCED {{
               source: 'wikidata_backlink',
               property: 'P737',

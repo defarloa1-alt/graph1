@@ -67,6 +67,27 @@ Relationships:
 - Migration scripts were synced to corrected historical logic (BCE-safe bucketing and labels).
 - Documentation was updated to reflect `FOLLOWED_BY`-only year sequencing.
 
+## Concept Label Canonicalization (verified 2026-02-14)
+
+Decision locked:
+- `Concept` is deprecated as a node label.
+- `SubjectConcept` is canonical.
+
+Migration note:
+- `md/Architecture/CONCEPT_TO_SUBJECTCONCEPT_MIGRATION_2026-02-14.md`
+
+Applied updates:
+- Removed legacy multi-label examples like `:Person:Concept`, `:Place:Concept`, `:Event:Concept`.
+- Updated prompts/guides/roadmap snippets to map concept-like targets to `:SubjectConcept`.
+- Updated canonical source index to point to the migration note.
+
+## Main-Node Baseline Sync (verified 2026-02-14)
+
+- `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` now references `Key Files/Main nodes.md` as the current operational main-node baseline.
+- The operational list was synchronized to:
+  - `Subject, Person, Gens, Praenomen, Cognomen, Event, Place, Period, Concept, Dynasty, Institution, LegalRestriction, Claim, Organization, Year, Communication`
+- A normalization gap note is retained to map legacy labels (`Subject`/`Concept`) to consolidated architecture terminology (`SubjectConcept`).
+
 ## Federation Datatype Work (verified 2026-02-13)
 
 ### New capability

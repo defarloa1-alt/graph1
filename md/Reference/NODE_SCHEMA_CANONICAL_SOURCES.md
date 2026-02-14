@@ -4,15 +4,18 @@
 
 Use the following as source of truth:
 
-1. `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`
+1. `Key Files/Main nodes.md`
+- Current operational main-node list used as baseline labels.
+
+2. `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`
 - Section 3: Entity Layer
 - Section 4.1: SubjectConcept Node Schema
 - Section 6.2: Claim Node Schema
 
-2. `Neo4j/schema/01_schema_constraints.cypher`
+3. `Neo4j/schema/01_schema_constraints.cypher`
 - Enforced required properties and uniqueness constraints.
 
-3. `Neo4j/schema/02_schema_indexes.cypher`
+4. `Neo4j/schema/02_schema_indexes.cypher`
 - Operational index model aligned to canonical property names.
 
 Temporal modeling note:
@@ -28,25 +31,29 @@ Legacy-to-canonical label mapping:
 - `Subject` -> `SubjectConcept`
 - `Concept` -> `SubjectConcept` (no separate `Concept` node in canonical architecture)
 
-Canonical first-class domain nodes (current baseline):
-- `Human`
-- `Place`
-- `Event`
-- `Period`
-- `Year`
-- `Organization`
-- `Institution`
-- `Dynasty`
-- `LegalRestriction`
-- `Work`
+Migration note:
+- `md/Architecture/CONCEPT_TO_SUBJECTCONCEPT_MIGRATION_2026-02-14.md`
+
+Current operational main nodes (from `Key Files/Main nodes.md`):
+- `Subject`
+- `Person`
 - `Gens`
 - `Praenomen`
 - `Cognomen`
-- `Position`
-- `Object`
-- `Material`
-- `Activity`
-- `SubjectConcept` (in Section 4.1, first-class for thematic backbone)
+- `Event`
+- `Place`
+- `Period`
+- `Concept`
+- `Dynasty`
+- `Institution`
+- `LegalRestriction`
+- `Claim`
+- `Organization`
+- `Year`
+- `Communication`
+
+Normalization gap note:
+- The operational list above includes legacy labels (`Subject`, `Concept`) that map to `SubjectConcept` in the consolidated architecture model.
 
 Canonical supporting nodes (spatiotemporal and pipeline support):
 - `PlaceVersion`

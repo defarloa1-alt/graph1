@@ -51,7 +51,7 @@ Open Neo4j Browser and run:
 ```cypher
 // Load historical periods
 LOAD CSV WITH HEADERS FROM 'file:///time_periods.csv' AS row
-MERGE (period:Concept:Period {
+MERGE (period:Period {
   qid: row.QID,
   unique_id: row.QID + '_CONCEPT_' + toUpper(replace(row.Period, ' ', '_'))
 })
@@ -156,7 +156,7 @@ python scripts/import_year_nodes_to_neo4j.py --start 1 --end 100 --import --pass
 
 #### 1. Period Nodes
 ```cypher
-(:Concept:Period {
+(:Period {
   qid: 'Q17193',
   unique_id: 'Q17193_CONCEPT_ROMAN_REPUBLIC',
   label: 'Roman Republic',
@@ -174,7 +174,7 @@ python scripts/import_year_nodes_to_neo4j.py --start 1 --end 100 --import --pass
 
 #### 2. Year Nodes
 ```cypher
-(:Concept:Year {
+(:Year {
   id: 'year_-753',
   unique_id: 'YEAR_-753',
   label: '753 BCE',

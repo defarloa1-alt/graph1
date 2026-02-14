@@ -65,18 +65,18 @@ Every node you create must match its schema. See `md/Reference/NODE_SCHEMA_CANON
 **Person Node:**
 - REQUIRED: `qid`, `type_qid: "Q5"`, `cidoc_class: "E21_Person"`, `label`, `unique_id`
 - SHOULD HAVE: `birth_date`, `death_date`, `birth_date_min`, `birth_date_max`, `death_date_min`, `death_date_max`, `birth_place_qid`, `death_place_qid`
-- MUST CONNECT: `INSTANCE_OF â†’ Concept`, `BORN_IN â†’ Place`, `DIED_IN â†’ Place`
+- MUST CONNECT: `INSTANCE_OF â†’ SubjectConcept`, `BORN_IN â†’ Place`, `DIED_IN â†’ Place`
 
 **Event Node:**
 - REQUIRED: `qid`, `type_qid`, `cidoc_class: "E5_Event"`, `label`, `unique_id`, `date_iso8601`
 - SHOULD HAVE: `start_date`, `end_date`, `start_date_min`, `start_date_max`, `end_date_min`, `end_date_max`, `temporal_uncertainty`, `location_qid`, `goal_type`, `trigger_type`, `action_type`, `result_type`
-- MUST CONNECT: `INSTANCE_OF â†’ Concept`, `STARTS_IN_YEAR â†’ Year`
+- MUST CONNECT: `INSTANCE_OF â†’ SubjectConcept`, `STARTS_IN_YEAR â†’ Year`
 - SHOULD CONNECT: `LOCATED_IN â†’ Place`, `DURING â†’ Period`, `PARTICIPATED_IN â† Person`
 
 **Place Node:**
 - REQUIRED: `qid`, `type_qid`, `cidoc_class: "E53_Place"`, `label`, `unique_id`
 - SHOULD HAVE: `coordinates [lat, lon]`, `stability`, `feature_type`
-- MUST CONNECT: `INSTANCE_OF â†’ Concept`, `LOCATED_IN â†’ Place`
+- MUST CONNECT: `INSTANCE_OF â†’ SubjectConcept`, `LOCATED_IN â†’ Place`
 
 **Period Node:**
 - REQUIRED: `qid`, `type_qid: "Q186081"`, `cidoc_class: "E4_Period"`, `label`, `unique_id`, `start_year`, `end_year`
@@ -656,7 +656,7 @@ When describing relationships, use ONLY these types from `canonical_relationship
 ### Nodes (Vertices)
 ```cypher
 // Primary node
-(caesar:Person:Concept {
+(caesar:Person {
   qid: "Q1048",
   type_qid: "Q5",
   cidoc_class: "E21_Person",
@@ -666,7 +666,7 @@ When describing relationships, use ONLY these types from `canonical_relationship
 })
 
 // Related nodes
-(rubicon:Place:Concept {
+(rubicon:Place {
   qid: "Q14378",
   type_qid: "Q4022",
   cidoc_class: "E53_Place",
@@ -674,7 +674,7 @@ When describing relationships, use ONLY these types from `canonical_relationship
   coordinates: [44.0667, 12.25]
 })
 
-(crossing:Event:Concept {
+(crossing:Event {
   qid: "Q161954",
   type_qid: "Q1190554",
   cidoc_class: "E5_Event",
@@ -712,9 +712,9 @@ When describing relationships, use ONLY these types from `canonical_relationship
 ### Import Statement (Optional)
 ```cypher
 // Direct Neo4j import
-CREATE (caesar:Person:Concept {qid: "Q1048", ...})
-CREATE (rubicon:Place:Concept {qid: "Q14378", ...})
-CREATE (crossing:Event:Concept {qid: "Q161954", ...})
+CREATE (caesar:Person {qid: "Q1048", ...})
+CREATE (rubicon:Place {qid: "Q14378", ...})
+CREATE (crossing:Event {qid: "Q161954", ...})
 CREATE (caesar)-[:CROSSED {date: "-0049-01-10", ...}]->(rubicon)
 CREATE (crossing)-[:PARTICIPATED_IN {role: "leader"}]->(caesar)
 ```

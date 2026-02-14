@@ -23,6 +23,43 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 09:20 | Canonical Sources Synced to Main Nodes Baseline
+# ==============================================================================
+# Category: Docs, Schema
+# Summary: Updated canonical node-source reference to reflect operational main-node list in Key Files/Main nodes.md
+# Files:
+#   - md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
+#   - Change_log.py
+# Reason: User identified mismatch between canonical-sources node list and current main-node list.
+# Notes:
+#   - Added `Key Files/Main nodes.md` as top source for current operational main nodes.
+#   - Replaced first-class baseline list with the exact Main nodes list.
+#   - Preserved normalization note for legacy labels (`Subject`/`Concept`) vs consolidated architecture mapping.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 09:03 | Concept Label Deprecation Enforcement (Concept -> SubjectConcept)
+# ==============================================================================
+# Category: Schema, Docs, Refactor
+# Summary: Enforced canonical SubjectConcept usage across active prompts/guides and added formal migration note
+# Files:
+#   - md/Agents/TEST_SUBJECT_AGENT_PROMPT.md
+#   - md/Guides/Neo4j_Import_Guide.md
+#   - Neo4j/IMPLEMENTATION_ROADMAP.md
+#   - md/Architecture/Backbone_Alignment_Validation_Tools.md
+#   - md/Architecture/Technical_Persistence_Flow.md
+#   - md/Architecture/Langraph_Workflow.md
+#   - md/Core/building chrystallum a knowledge graph of history.md
+#   - md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
+#   - md/Architecture/CONCEPT_TO_SUBJECTCONCEPT_MIGRATION_2026-02-14.md
+# Reason: Prevent schema drift and ensure agents/scripts stop emitting legacy :Concept labels.
+# Notes:
+#   - Legacy `:Concept` usage in active examples was removed or mapped to `:SubjectConcept`.
+#   - `Person:Concept`/`Place:Concept`/`Event:Concept` examples were normalized to concrete labels only.
+#   - Wikidata concept/ideology inputs are now explicitly mapped to `SubjectConcept` in roadmap examples.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-13 19:06 | Node Schema Legacy-to-Canonical Mapping Clarification
 # ==============================================================================
 # Category: Docs, Architecture

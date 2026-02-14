@@ -650,7 +650,7 @@ def persist_to_neo4j(state: ChrystallumState) -> ChrystallumState:
 
             entity_type = entity['type']
 
-            category = entity.get('category', 'Concept')
+            category = entity.get('category', 'SubjectConcept')
 
             query = f"""
 

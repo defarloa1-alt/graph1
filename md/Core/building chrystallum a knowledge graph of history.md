@@ -893,7 +893,7 @@ Your approach mirrors this: start with the discrete observable event, build cont
 
 ```cypher
 // MOST GRANULAR EVENT (atomic, observable)
-CREATE (assassination:Event:Concept {
+CREATE (assassination:Event {
   qid: "Q...",
   label: "Assassination of Tiberius Gracchus",
   date_iso8601: "-0133-06",
@@ -1148,14 +1148,14 @@ def resolve_multi_perspective_event(claims):
   agent: "political_historian_llm",
   confidence: 0.82,
   interpretation: "Political consolidation act"
-}]->(political_consolidation:Concept)
+}]->(political_consolidation:SubjectConcept)
 
 (battle)-[:ECONOMIC_CONSEQUENCE {
   perspective: "economic", 
   agent: "economic_historian_llm",
   confidence: 0.75,
   interpretation: "Wealth transfer event"
-}]->(wealth_transfer:Concept)
+}]->(wealth_transfer:SubjectConcept)
 
 // COMPOSITE CONTEXT
 (battle)-[:PART_OF]->(alesia_campaign:Event {
@@ -1435,7 +1435,7 @@ All `:Event` nodes MUST carry a `granularity` property.
 In Cypher:
 
 ```cypher
-CREATE (e:Event:Concept {
+CREATE (e:Event {
   qid: "Q161954",
   label: "Crossing of the Rubicon",
   date_iso8601: "-0049-01-10",
@@ -1507,7 +1507,7 @@ Cypher sketch:
 
 ```cypher
 // Anchor
-CREATE (assassination:Event:Concept {
+CREATE (assassination:Event {
   label: "Assassination of Tiberius Gracchus",
   date_iso8601: "-0133-06-10",
   granularity: "atomic",
@@ -1515,7 +1515,7 @@ CREATE (assassination:Event:Concept {
 });
 
 // Composite context
-CREATE (reforms:Event:Concept {
+CREATE (reforms:Event {
   label: "Gracchi Land Reforms",
   start_year: -133,
   end_year: -121,
@@ -1523,7 +1523,7 @@ CREATE (reforms:Event:Concept {
 });
 
 // Period-level interpretation
-CREATE (crisis:Event:Concept {
+CREATE (crisis:Event {
   label: "Late Republic Constitutional Crisis",
   start_year: -133,
   end_year: -27,
@@ -1576,7 +1576,7 @@ CREATE (assassination)-[:INTERPRETED_AS {
   confidence: 0.86,
   agent: "political_historian_llm",
   reasoning: "Senateâ€™s violent response to popular sovereignty challenge"
-}]->(:Concept {label: "Constitutional crisis"});
+}]->(:SubjectConcept {label: "Constitutional crisis"});
 
 // Economic interpretation
 CREATE (assassination)-[:ECONOMIC_CONSEQUENCE {
@@ -1584,7 +1584,7 @@ CREATE (assassination)-[:ECONOMIC_CONSEQUENCE {
   confidence: 0.78,
   agent: "economic_historian_llm",
   reasoning: "Conflict over redistribution of ager publicus"
-}]->(:Concept {label: "Elite wealth protection"});
+}]->(:SubjectConcept {label: "Elite wealth protection"});
 ```
 
 The anchor remains a single event node; perspectives grow as **edges and attached concepts**.
@@ -1704,7 +1704,7 @@ ORDER BY atomic.date_iso8601;
 
 ```cypher
 MATCH (battle:Event {label: "Battle of Alesia"})
-OPTIONAL MATCH (battle)-[r]->(concept:Concept)
+OPTIONAL MATCH (battle)-[r]->(concept:SubjectConcept)
 WHERE type(r) IN ["INTERPRETED_AS", "ECONOMIC_CONSEQUENCE"]
 RETURN r.perspective, r.confidence, concept.label, r.agent;
 ```
@@ -1737,7 +1737,7 @@ MATCH (rome:Place {label: "Rome"})
 MATCH (subject1:Subject {label: "Political violence"})
 MATCH (subject2:Subject {label: "Agrarian reform"})
 
-CREATE (assassination:Event:Concept {
+CREATE (assassination:Event {
   qid: "QXXXX",
   label: "Assassination of Tiberius Gracchus",
   date_iso8601: "-0133-06-10",

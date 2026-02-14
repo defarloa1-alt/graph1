@@ -25,7 +25,7 @@ def extract_knowledge_with_llm(text: str, agent_id: str) -> dict:
 
     `Extract:`
 
-    `1. Entities (Person, Place, Event, Concept)`
+    `1. Entities (Person, Place, Event, SubjectConcept)`
 
     `2. Claims (facts/statements)`
 

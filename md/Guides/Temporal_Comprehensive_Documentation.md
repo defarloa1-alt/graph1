@@ -103,7 +103,7 @@ Every year from the earliest period to present becomes a node.
 
 **Example:**
 ```cypher
-(yr753BCE:Concept {
+(yr753BCE:Year {
   id: 'year_-753',
   unique_id: 'YEAR_-753',
   label: '753 BCE',
@@ -152,7 +152,7 @@ Each year node is mapped to **ALL applicable** historical period classifications
   classification_source: 'Temporal/time_periods.csv',
   region: 'Italy',
   test_case: 'temporal_backbone'
-}]->(romanKingdom:Concept {
+}]->(romanKingdom:Period {
   id: 'Q17167',
   unique_id: 'Q17167_CONCEPT_ROMAN_KINGDOM',
   label: 'Roman Kingdom',
@@ -177,7 +177,7 @@ Each year node is mapped to **ALL applicable** historical period classifications
   region: 'China',
   classification_source: 'Temporal/time_periods.csv',
   test_case: 'temporal_backbone'
-}]->(mingDynasty:Concept {
+}]->(mingDynasty:Period {
   id: 'Q11623',
   unique_id: 'Q11623_CONCEPT_CHINESE_MING_DYNASTY',
   label: 'Chinese Ming Dynasty',
@@ -508,7 +508,7 @@ Instead of rigidly mapping years to periods:
 
 1. **Year Nodes** - Concrete, unambiguous temporal anchors
    ```cypher
-   (year:Concept {year: -49, label: "49 BCE"})
+   (year:Year {year: -49, label: "49 BCE"})
    ```
 
 2. **Events Linked to Years** - Concrete historical facts
@@ -761,7 +761,7 @@ print(result['primary_period']['period_name'])  # "Middle Ages"
 
 ### 1. Find Years in Period
 ```cypher
-MATCH (year:Concept {type: 'Time Period'})-[:DURING]->(period:Concept {qid: 'Q17193'})
+MATCH (year:Year)-[:DURING]->(period:Period {qid: 'Q17193'})
 WHERE year.year BETWEEN -509 AND -27
 RETURN year.year, year.label
 ORDER BY year.year
@@ -769,25 +769,25 @@ ORDER BY year.year
 
 ### 2. Find Periods for Year Range
 ```cypher
-MATCH (startYear:Concept {year: -509})
-      -[:FOLLOWED_BY*]->(endYear:Concept {year: -27})
-MATCH (year:Concept {type: 'Time Period'})-[:PART_OF]->(period:Concept)
+MATCH (startYear:Year {year: -509})
+      -[:FOLLOWED_BY*]->(endYear:Year {year: -27})
+MATCH (year:Year)-[:PART_OF]->(period:Period)
 WHERE year IN nodes(path)
 RETURN DISTINCT period.label, period.qid
 ```
 
 ### 3. Count Years in Period
 ```cypher
-MATCH (year:Concept {type: 'Time Period'})-[:DURING]->(period:Concept {qid: 'Q17193'})
+MATCH (year:Year)-[:DURING]->(period:Period {qid: 'Q17193'})
 RETURN period.label, count(year) as year_count
 ```
 
 ### 4. Find Transition Years
 ```cypher
 // Find year where period changes (e.g., -509 BCE: Kingdom to Republic)
-MATCH (year:Concept {type: 'Time Period'})-[r1:DURING]->(period1:Concept)
-MATCH (prevYear:Concept {year: year.year - 1, type: 'Time Period'})
-      -[r2:DURING]->(period2:Concept)
+MATCH (year:Year)-[r1:DURING]->(period1:Period)
+MATCH (prevYear:Year {year: year.year - 1})
+      -[r2:DURING]->(period2:Period)
 WHERE period1.qid <> period2.qid
 RETURN year.year, period1.label as to_period, period2.label as from_period
 ```

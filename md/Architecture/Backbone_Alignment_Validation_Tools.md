@@ -8,7 +8,7 @@
 
 CREATE CONSTRAINT backbone_fast_required_concept IF NOT EXISTS
 
-FOR (n:Concept) 
+FOR (n:SubjectConcept) 
 
 REQUIRE n.backbone_fast IS NOT NULL;
 
@@ -518,7 +518,7 @@ def create_node_with_backbone_validation(
 
     query = """
 
-    CREATE (node:Concept {
+    CREATE (node:SubjectConcept {
 
       id: $id,
 
@@ -620,7 +620,7 @@ create_node_tool = Tool(
 
 MATCH (n)
 
-WHERE (n:Concept OR n:Claim OR n:Event OR n:Person OR n:Organization)
+WHERE (n:SubjectConcept OR n:Claim OR n:Event OR n:Person OR n:Organization)
 
   AND NOT exists(n.backbone_fast)
 
@@ -710,7 +710,7 @@ class NodeWithBackbone(BaseModel):
 
     label: str
 
-    entity_type: str = Field(..., description="Concept, Claim, Event, etc.")
+    entity_type: str = Field(..., description="SubjectConcept, Claim, Event, etc.")
 
     backbone_fast: str = Field(..., description="FAST subject code - REQUIRED")
 
