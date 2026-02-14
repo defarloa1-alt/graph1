@@ -23,6 +23,21 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 15:36 | Claim Promotion Pilot (14/15) Implemented and Verified
+# ==============================================================================
+# Category: Capability, Integration, Schema
+# Summary: Added first claim-promotion workflow and verification scripts for validated-claim -> canonical provenance linkage
+# Files:
+#   - Neo4j/schema/14_claim_promotion_seed.cypher
+#   - Neo4j/schema/15_claim_promotion_verify.cypher
+# Reason: Move from claim storage to controlled promotion into canonical graph with traceability.
+# Notes:
+#   - Promotion guard: confidence threshold + required context edges.
+#   - Promotion outputs: claim status/flags, canonical relationship metadata, `SUPPORTED_BY` provenance edges.
+#   - Parser-safe fix applied to keep period `SUPPORTED_BY` merge in same bound-variable statement.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 15:25 | Claim Label Requirement + Backfill
 # ==============================================================================
 # Category: Schema, Integration

@@ -10,6 +10,9 @@ MATCH (p:Period {entity_id: 'prd_roman_republic_q17167'})
 OPTIONAL MATCH (e)-[r:OCCURRED_DURING]->(p)
 OPTIONAL MATCH (e)-[se:SUPPORTED_BY]->(c)
 OPTIONAL MATCH (p)-[sp:SUPPORTED_BY]->(c)
+WITH c, r,
+     count(se) AS event_supported_by_count,
+     count(sp) AS period_supported_by_count
 RETURN
   c.claim_id AS claim_id,
   c.label AS claim_label,
@@ -19,6 +22,5 @@ RETURN
   type(r) AS canonical_rel_type,
   r.promoted_from_claim_id AS rel_promoted_from_claim_id,
   r.promotion_status AS rel_promotion_status,
-  se.claim_id AS event_supported_by_claim_id,
-  sp.claim_id AS period_supported_by_claim_id;
-
+  event_supported_by_count,
+  period_supported_by_count;

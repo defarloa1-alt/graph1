@@ -12,11 +12,15 @@
 // - Applies a simple guard: confidence >= 0.90 and required context edges present
 // ============================================================================
 
-// 1) Promote claim status when guard passes
+// 1) Promote claim status when guard passes (parser-safe guard pattern)
 MATCH (c:Claim {claim_id: 'claim_actium_in_republic_31bce_001'})
+OPTIONAL MATCH (c)-[:USED_CONTEXT]->(rc:RetrievalContext)
+WITH c, count(rc) AS rc_count
+OPTIONAL MATCH (c)-[:HAS_ANALYSIS_RUN]->(ar:AnalysisRun)
+WITH c, rc_count, count(ar) AS ar_count
 WHERE c.confidence >= 0.90
-  AND EXISTS { MATCH (c)-[:USED_CONTEXT]->(:RetrievalContext) }
-  AND EXISTS { MATCH (c)-[:HAS_ANALYSIS_RUN]->(:AnalysisRun) }
+  AND rc_count > 0
+  AND ar_count > 0
 SET c.status = 'validated',
     c.promotion_date = toString(datetime()),
     c.promoted = true;
@@ -36,9 +40,8 @@ MATCH (e:Event {entity_id: 'evt_battle_of_actium_q193304'})
 MATCH (p:Period {entity_id: 'prd_roman_republic_q17167'})
 MERGE (e)-[se:SUPPORTED_BY]->(c)
 SET se.claim_id = c.claim_id,
-    se.promotion_date = toString(datetime());
-
+    se.promotion_date = toString(datetime())
+WITH c, p
 MERGE (p)-[sp:SUPPORTED_BY]->(c)
 SET sp.claim_id = c.claim_id,
     sp.promotion_date = toString(datetime());
-

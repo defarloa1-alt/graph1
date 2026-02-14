@@ -197,6 +197,18 @@ Applied updates:
   - `claim_roman_republic_end_27bce_001` -> `Roman Republic Ended in 27 BCE`
   - `claim_actium_in_republic_31bce_001` -> `Battle of Actium in Roman Republic (31 BCE)`
 
+## Claim Promotion Pilot (verified 2026-02-14)
+
+- Added promotion scripts:
+  - `Neo4j/schema/14_claim_promotion_seed.cypher`
+  - `Neo4j/schema/15_claim_promotion_verify.cypher`
+- Promoted claim:
+  - `claim_actium_in_republic_31bce_001` -> `status=validated`, `promoted=true`
+- Canonical/provenance wiring verified:
+  - `(:Event {evt_battle_of_actium_q193304})-[:OCCURRED_DURING]->(:Period {prd_roman_republic_q17167})`
+  - `Event-[:SUPPORTED_BY]->Claim` count = 1
+  - `Period-[:SUPPORTED_BY]->Claim` count = 1
+
 ## Backlink Discovery Mode Upgrade (verified 2026-02-14)
 
 - `scripts/tools/wikidata_backlink_harvest.py` now supports:
