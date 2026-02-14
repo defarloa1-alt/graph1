@@ -128,10 +128,74 @@ Applied updates:
 - Expected name sets are generated from:
   - `Neo4j/schema/01_schema_constraints.cypher`
   - `Neo4j/schema/02_schema_indexes.cypher`
-- Syntax correction applied after first run error:
-  - all `SHOW` clauses are now executed inside `CALL { ... }` subqueries to avoid `WITH -> SHOW` parser failures.
-- Compatibility hardening:
-  - runner rewritten as a single statement using `db.constraints()` and `db.indexes()` for Neo4j Browser/cypher-shell consistency.
+- Compatibility lock:
+  - use `SHOW CONSTRAINTS` / `SHOW INDEXES` directly (no dependency on `db.constraints()` or `db.indexes()`, which may be unavailable in some builds)
+  - aggregate-safe pattern is required: collect in `WITH`, then compare lists in later `WITH`/`RETURN` stages
+
+## Core Pipeline Schema Phase (verified 2026-02-14)
+
+- Added focused schema bootstrap:
+  - `Neo4j/schema/07_core_pipeline_schema.cypher`
+- Added phase-matched validator:
+  - `Neo4j/schema/08_core_pipeline_validation_runner.cypher`
+- Phase scope:
+  - `Human`, `Place`, `Event`, `Period`, `SubjectConcept`, `Claim`,
+    `RetrievalContext`, `Agent`, `AnalysisRun`, `FacetAssessment`
+- Execution model:
+  - Run after temporal backbone baseline (`Year/Decade/Century/Millennium`)
+  - Uses `IF NOT EXISTS` for all constraints/indexes so reruns are safe
+- Validation model:
+  - PASS/FAIL is based on missing required names only (extra indexes/constraints are informational)
+  - parser compatibility note: if Neo4j rejects `SHOW` composition, use:
+    - `Neo4j/schema/08_core_pipeline_validation_runner.cypher` for browser-safe inventories
+    - `python Neo4j/schema/08_core_pipeline_validation_runner.py` for authoritative PASS/FAIL
+
+## Core Pipeline Pilot Seed (verified 2026-02-14)
+
+- Added minimal non-temporal pilot seed:
+  - `Neo4j/schema/09_core_pipeline_pilot_seed.cypher`
+  - `Neo4j/schema/10_core_pipeline_pilot_verify.cypher`
+- Pilot cluster includes:
+  - `SubjectConcept` (`subj_roman_republic_001`)
+  - `Agent` (`agent_roman_republic_v1`)
+  - `Claim` (`claim_roman_republic_end_27bce_001`)
+  - `RetrievalContext`, `AnalysisRun`, `Facet`, `FacetAssessment`
+- Seeded edges:
+  - `OWNS_DOMAIN`, `MADE_CLAIM`, `SUBJECT_OF`, `USED_CONTEXT`,
+    `HAS_ANALYSIS_RUN`, `HAS_FACET_ASSESSMENT`, `ASSESSES_FACET`, `EVALUATED_BY`
+- Compatibility adjustment applied:
+  - use `toString(datetime())` (not `datetime().toString()`) for this Neo4j parser/version.
+
+## Event-Period Claim Pilot (verified 2026-02-14)
+
+- Added concrete entity-grounded pilot:
+  - `Neo4j/schema/11_event_period_claim_seed.cypher`
+  - `Neo4j/schema/12_event_period_claim_verify.cypher`
+- Seeded entities:
+  - `Period`: Roman Republic (`Q17167`)
+  - `Event`: Battle of Actium (`Q193304`)
+  - `Place`: Actium (`Q41747`)
+- Seeded second claim flow:
+  - `claim_actium_in_republic_31bce_001`
+  - retrieval: `retr_actium_q193304_001`
+  - analysis run: `run_actium_001`
+  - facet assessment: `fa_actium_mil_001`
+- Added parser hardening for script execution:
+  - `Neo4j/schema/run_cypher_file.py` now splits statements on semicolons only when outside quoted strings.
+
+## Claim Label Enforcement (verified 2026-02-14)
+
+- Core schema now requires `Claim.label`:
+  - `Neo4j/schema/07_core_pipeline_schema.cypher`
+  - constraint: `claim_has_label`
+  - index: `claim_label_index`
+- Validator updated for new requirement:
+  - `Neo4j/schema/08_core_pipeline_validation_runner.py`
+- Backfill script added:
+  - `Neo4j/schema/13_claim_label_backfill.cypher`
+- Current pilot claim labels:
+  - `claim_roman_republic_end_27bce_001` -> `Roman Republic Ended in 27 BCE`
+  - `claim_actium_in_republic_31bce_001` -> `Battle of Actium in Roman Republic (31 BCE)`
 
 ## Backlink Discovery Mode Upgrade (verified 2026-02-14)
 

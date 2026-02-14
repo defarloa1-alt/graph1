@@ -23,6 +23,90 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 15:25 | Claim Label Requirement + Backfill
+# ==============================================================================
+# Category: Schema, Integration
+# Summary: Made `Claim.label` required in core schema and backfilled existing claim labels for graph readability
+# Files:
+#   - Neo4j/schema/07_core_pipeline_schema.cypher
+#   - Neo4j/schema/08_core_pipeline_validation_runner.py
+#   - Neo4j/schema/09_core_pipeline_pilot_seed.cypher
+#   - Neo4j/schema/10_core_pipeline_pilot_verify.cypher
+#   - Neo4j/schema/11_event_period_claim_seed.cypher
+#   - Neo4j/schema/12_event_period_claim_verify.cypher
+#   - Neo4j/schema/13_claim_label_backfill.cypher
+# Reason: Improve graph visualization and enforce consistent human-readable claim identity.
+# Notes:
+#   - Added `claim_has_label` existence constraint and `claim_label_index`.
+#   - Backfilled existing claims from `text` where labels were missing.
+#   - Updated pilot verify queries to return `claim_label`.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 15:00 | Event-Period Claim Pilot + Cypher Runner Parser Hardening
+# ==============================================================================
+# Category: Capability, Schema, Integration
+# Summary: Added concrete Event/Period/Place claim pilot flow and hardened .cypher runner to handle semicolons inside string literals
+# Files:
+#   - Neo4j/schema/11_event_period_claim_seed.cypher
+#   - Neo4j/schema/12_event_period_claim_verify.cypher
+#   - Neo4j/schema/run_cypher_file.py
+# Reason: Extend pilot from abstract claim chain to entity-grounded claim suitable for promotion-flow testing.
+# Notes:
+#   - Added Roman Republic period (`Q17167`), Battle of Actium event (`Q193304`), and Actium place (`Q41747`).
+#   - Added second temporal claim: `claim_actium_in_republic_31bce_001` with retrieval context, analysis run, and facet assessment.
+#   - Updated runner statement parser to split only on semicolons outside quoted strings.
+# ============================================================================== 
+
+# ==============================================================================
+# 2026-02-14 14:34 | Core Pipeline Pilot Seed Flow (SubjectConcept-Agent-Claim)
+# ==============================================================================
+# Category: Capability, Schema, Integration
+# Summary: Added and validated minimal non-temporal pilot cluster for core claim flow
+# Files:
+#   - Neo4j/schema/09_core_pipeline_pilot_seed.cypher
+#   - Neo4j/schema/10_core_pipeline_pilot_verify.cypher
+# Reason: Provide concrete first ingest target after temporal-only baseline and core schema lock.
+# Notes:
+#   - Seeded nodes: SubjectConcept, Agent, Claim, RetrievalContext, AnalysisRun, Facet, FacetAssessment.
+#   - Seeded edges: OWNS_DOMAIN, MADE_CLAIM, SUBJECT_OF, USED_CONTEXT, HAS_ANALYSIS_RUN, HAS_FACET_ASSESSMENT, ASSESSES_FACET, EVALUATED_BY.
+#   - Compatibility fix: replaced `datetime().toString()` with `toString(datetime())`.
+#   - Cleaned failed intermediate artifacts (8 non-temporal edges + 16 unlabeled nodes) before final seed run.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 14:16 | Core Validator Compatibility Split (Cypher Inventory + Python PASS/FAIL)
+# ==============================================================================
+# Category: Capability, Schema, Docs
+# Summary: Reworked core pipeline validator for Neo4j environments that only support top-level SHOW
+# Files:
+#   - Neo4j/schema/08_core_pipeline_validation_runner.cypher
+#   - Neo4j/schema/08_core_pipeline_validation_runner.py
+# Reason: `SHOW ... WITH` and `CALL { SHOW ... }` patterns failed on target parser.
+# Notes:
+#   - Cypher file now provides browser-safe inventory queries only.
+#   - Python runner performs authoritative PASS/FAIL checks (constraints + non-constraint indexes + online state).
+#   - Expected index set excludes fields already covered by uniqueness constraints (no duplicate-index false failures).
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 13:44 | Core Pipeline Schema Bootstrap (Phase 1) + Targeted Validator
+# ==============================================================================
+# Category: Schema, Capability, Docs
+# Summary: Added focused core-pipeline schema bootstrap and matching validation runner for non-temporal rollout on top of temporal baseline
+# Files:
+#   - Neo4j/schema/07_core_pipeline_schema.cypher
+#   - Neo4j/schema/08_core_pipeline_validation_runner.cypher
+#   - AI_CONTEXT.md
+# Reason: Move from all-in bootstrap to a controlled next phase that can be applied and validated incrementally.
+# Notes:
+#   - Scope locked to: `Human`, `Place`, `Event`, `Period`, `SubjectConcept`, `Claim`,
+#     `RetrievalContext`, `Agent`, `AnalysisRun`, `FacetAssessment`.
+#   - Validation runner checks required presence only (extras are informational), so temporal-only artifacts do not cause false failures.
+#   - Core runner pattern uses `SHOW CONSTRAINTS` / `SHOW INDEXES` with aggregate-safe `WITH` staging.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 12:56 | Bootstrap Runner Parser Compatibility (SHOW Removed)
 # ==============================================================================
 # Category: Capability, Schema
