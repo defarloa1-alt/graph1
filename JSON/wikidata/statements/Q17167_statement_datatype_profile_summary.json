@@ -1,0 +1,174 @@
+{
+  "qid": "Q17167",
+  "label": "Roman Republic",
+  "statement_count": 80,
+  "property_count": 61,
+  "datatype_counts": {
+    "string": 2,
+    "wikibase-item": 39,
+    "external-id": 28,
+    "commonsMedia": 3,
+    "time": 4,
+    "globe-coordinate": 1,
+    "quantity": 2,
+    "monolingualtext": 1
+  },
+  "value_type_counts": {
+    "string": 31,
+    "wikibase-entityid": 39,
+    "time": 4,
+    "globecoordinate": 1,
+    "quantity": 2,
+    "monolingualtext": 1,
+    "": 2
+  },
+  "rank_counts": {
+    "normal": 75,
+    "preferred": 3,
+    "deprecated": 2
+  },
+  "with_qualifiers": 14,
+  "with_references": 20,
+  "qualifier_rate": 0.175,
+  "reference_rate": 0.25,
+  "top_properties": [
+    {
+      "property": "P793",
+      "count": 7
+    },
+    {
+      "property": "P31",
+      "count": 4
+    },
+    {
+      "property": "P527",
+      "count": 3
+    },
+    {
+      "property": "P30",
+      "count": 3
+    },
+    {
+      "property": "P194",
+      "count": 2
+    },
+    {
+      "property": "P3219",
+      "count": 2
+    },
+    {
+      "property": "P1366",
+      "count": 2
+    },
+    {
+      "property": "P2936",
+      "count": 2
+    },
+    {
+      "property": "P2046",
+      "count": 2
+    },
+    {
+      "property": "P156",
+      "count": 2
+    },
+    {
+      "property": "P373",
+      "count": 1
+    },
+    {
+      "property": "P910",
+      "count": 1
+    },
+    {
+      "property": "P646",
+      "count": 1
+    },
+    {
+      "property": "P242",
+      "count": 1
+    },
+    {
+      "property": "P140",
+      "count": 1
+    },
+    {
+      "property": "P38",
+      "count": 1
+    },
+    {
+      "property": "P576",
+      "count": 1
+    },
+    {
+      "property": "P1900",
+      "count": 1
+    },
+    {
+      "property": "P3417",
+      "count": 1
+    },
+    {
+      "property": "P2348",
+      "count": 1
+    },
+    {
+      "property": "P571",
+      "count": 1
+    },
+    {
+      "property": "P1792",
+      "count": 1
+    },
+    {
+      "property": "P1417",
+      "count": 1
+    },
+    {
+      "property": "P1282",
+      "count": 1
+    },
+    {
+      "property": "P244",
+      "count": 1
+    }
+  ],
+  "datatype_examples": {
+    "string": [
+      "Roman Republic",
+      "historic:period=roman_republic"
+    ],
+    "wikibase-item": [
+      "Q11514315",
+      "Q1307214",
+      "Q48349",
+      "Q3024240",
+      "Q6944405"
+    ],
+    "external-id": [
+      "/m/06frc",
+      "dates/lod/69",
+      "Roman-Republic",
+      "rome-et-empire-romain-la-republique",
+      "instauration-de-la-republique-romaine"
+    ],
+    "commonsMedia": [
+      "Republica Romana.svg"
+    ],
+    "time": [
+      "{\"time\": \"-0027-01-16T00:00:00Z\", \"precision\": 11, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/",
+      "{\"time\": \"-0509-00-00T00:00:00Z\", \"precision\": 9, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/Q",
+      "{\"time\": \"-0027-00-00T00:00:00Z\", \"precision\": 9, \"timezone\": 0, \"before\": 0, \"after\": 0, \"calendarmodel\": \"http://www.wikidata.org/entity/Q"
+    ],
+    "globe-coordinate": [
+      "{\"latitude\": 41.9, \"longitude\": 12.5, \"precision\": 12.069076298334622, \"globe\": \"http://www.wikidata.org/entity/Q2\"}"
+    ],
+    "quantity": [
+      "{\"amount\": \"+10000\", \"unit\": \"http://www.wikidata.org/entity/Q712226\", \"lowerBound\": null, \"upperBound\": null}",
+      "{\"amount\": \"+1950000\", \"unit\": \"http://www.wikidata.org/entity/Q712226\", \"lowerBound\": null, \"upperBound\": null}"
+    ],
+    "monolingualtext": [
+      "{\"text\": \"Res publica Romana\", \"language\": \"la\"}"
+    ]
+  }
+}

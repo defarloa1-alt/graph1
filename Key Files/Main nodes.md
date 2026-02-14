@@ -1,17 +1,15 @@
-#Main nodes
-Subject
-Person
+# Main nodes (canonical first-class)
+SubjectConcept
+Human
 Gens
 Praenomen
 Cognomen
 Event
 Place
 Period
-Concept
 Dynasty
 Institution
 LegalRestriction
 Claim
 Organization
 Year
-Communication

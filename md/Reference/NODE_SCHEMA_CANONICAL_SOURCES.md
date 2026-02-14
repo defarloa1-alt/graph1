@@ -35,25 +35,23 @@ Migration note:
 - `md/Architecture/CONCEPT_TO_SUBJECTCONCEPT_MIGRATION_2026-02-14.md`
 
 Current operational main nodes (from `Key Files/Main nodes.md`):
-- `Subject`
-- `Person`
+- `SubjectConcept`
+- `Human`
 - `Gens`
 - `Praenomen`
 - `Cognomen`
 - `Event`
 - `Place`
 - `Period`
-- `Concept`
 - `Dynasty`
 - `Institution`
 - `LegalRestriction`
 - `Claim`
 - `Organization`
 - `Year`
-- `Communication`
 
-Normalization gap note:
-- The operational list above includes legacy labels (`Subject`, `Concept`) that map to `SubjectConcept` in the consolidated architecture model.
+Main-node policy note:
+- `Communication` is modeled as a facet/domain axis (e.g., propaganda, mass media), not a first-class node label.
 
 Canonical supporting nodes (spatiotemporal and pipeline support):
 - `PlaceVersion`

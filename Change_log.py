@@ -23,6 +23,75 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 11:24 | Consolidated Spec: First-Class Node Normative Lock
+# ==============================================================================
+# Category: Architecture, Docs, Schema
+# Summary: Added explicit normative first-class node section to consolidated architecture and formalized Communication as facet-only
+# Files:
+#   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+# Reason: Eliminate ambiguity between operational lists and architecture spec before schema refactor/Neo4j rollout.
+# Notes:
+#   - Added Section `3.0.1 Canonical First-Class Node Set (Normative)`.
+#   - Locked legacy label mapping in spec text (`Subject/Concept` -> `SubjectConcept`, `Person` -> `Human`).
+#   - Updated Section 3.3 facet count to 17 and clarified `Communication` as facet/domain dimension only.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 11:15 | First-Class Node Lock + Communication Demotion
+# ==============================================================================
+# Category: Schema, Docs
+# Summary: Locked canonical first-class node list and removed legacy labels from operational baseline docs
+# Files:
+#   - Key Files/Main nodes.md
+#   - md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
+#   - AI_CONTEXT.md
+# Reason: Finalize node-model decisions before broader claim/federation expansion.
+# Notes:
+#   - Main nodes now: `SubjectConcept, Human, Gens, Praenomen, Cognomen, Event, Place, Period, Dynasty, Institution, LegalRestriction, Claim, Organization, Year`.
+#   - Legacy labels removed from baseline list: `Subject`, `Person`, `Concept`.
+#   - `Communication` is now facet/domain-only (not a first-class node label).
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 10:19 | Republic Agent SubjectConcept Seed Pack (Q17167)
+# ==============================================================================
+# Category: Capability, Docs
+# Summary: Added import-ready SubjectConcept seed pack for Republic agent domain with facet tags/confidence
+# Files:
+#   - JSON/wikidata/proposals/Q17167_republic_agent_subject_concepts.csv
+#   - JSON/wikidata/proposals/Q17167_republic_agent_subject_concepts.json
+# Reason: Provide concrete first-pass SubjectConcept implementation set for Roman Republic multi-facet routing.
+# Notes:
+#   - 17 proposed SubjectConcept nodes.
+#   - Includes discipline flag, primary facet/confidence, and parent hierarchy proposals.
+#   - JSON includes facet_confidence vectors and BROADER_THAN relationship proposals.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 10:08 | Q17167 Critical Test: Claim-Rich Subgraph Proposal
+# ==============================================================================
+# Category: Capability, Integration, Docs
+# Summary: Executed end-to-end Q17167 direct+backlink analysis and generated claim/subgraph proposal artifacts
+# Files:
+#   - scripts/tools/wikidata_generate_claim_subgraph_proposal.py
+#   - JSON/wikidata/statements/Q17167_statements_full.json
+#   - JSON/wikidata/statements/Q17167_statement_datatype_profile_summary.json
+#   - JSON/wikidata/statements/Q17167_statement_datatype_profile_by_property.csv
+#   - JSON/wikidata/statements/Q17167_statement_datatype_profile_datatype_pairs.csv
+#   - JSON/wikidata/backlinks/Q17167_backlink_harvest_report.json
+#   - JSON/wikidata/backlinks/Q17167_backlink_profile_accepted_summary.json
+#   - JSON/wikidata/backlinks/Q17167_backlink_profile_accepted_by_entity.csv
+#   - JSON/wikidata/backlinks/Q17167_backlink_profile_accepted_pair_counts.csv
+#   - JSON/wikidata/proposals/Q17167_claim_subgraph_proposal.json
+#   - JSON/wikidata/proposals/Q17167_claim_subgraph_proposal.md
+# Reason: Validate federation/backlink pipeline against a high-value historical seed and produce a concrete subgraph claim proposal.
+# Notes:
+#   - Seed: `Q17167` (Roman Republic)
+#   - Discovery harvest: candidates considered=227, accepted=150, gate status=pass
+#   - Proposal output: nodes=178, relationship claims=197 (direct=39, backlink=158), attribute claims=41
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 09:58 | Backlink Harvester Discovery Mode + Expanded Budgets
 # ==============================================================================
 # Category: Capability, Docs, Architecture

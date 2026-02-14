@@ -85,8 +85,11 @@ Applied updates:
 
 - `md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md` now references `Key Files/Main nodes.md` as the current operational main-node baseline.
 - The operational list was synchronized to:
-  - `Subject, Person, Gens, Praenomen, Cognomen, Event, Place, Period, Concept, Dynasty, Institution, LegalRestriction, Claim, Organization, Year, Communication`
-- A normalization gap note is retained to map legacy labels (`Subject`/`Concept`) to consolidated architecture terminology (`SubjectConcept`).
+  - `SubjectConcept, Human, Gens, Praenomen, Cognomen, Event, Place, Period, Dynasty, Institution, LegalRestriction, Claim, Organization, Year`
+- `Communication` was demoted from first-class node status and is now treated as a facet/domain axis.
+- The consolidated architecture now includes an explicit normative lock:
+  - `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`, Section `3.0.1 Canonical First-Class Node Set (Normative)`.
+  - Section 3.3 facet count corrected to 17 with explicit communication facet policy.
 
 ## Consolidated Doc Consistency Pass (verified 2026-02-14)
 
@@ -109,6 +112,52 @@ Applied updates:
 - Discovery run verified on `Q1048`:
   - report: `JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json`
   - includes `mode: discovery` and `class_allowlist_mode: disabled`
+
+## Q17167 Critical Test (verified 2026-02-14)
+
+Objective completed:
+- Generate a claim-rich subgraph proposal for `Q17167` using direct statements + backlinks.
+
+Pipeline executed:
+- Direct statements export:
+  - `JSON/wikidata/statements/Q17167_statements_full.json`
+- Direct datatype profile:
+  - `JSON/wikidata/statements/Q17167_statement_datatype_profile_summary.json`
+  - `JSON/wikidata/statements/Q17167_statement_datatype_profile_by_property.csv`
+  - `JSON/wikidata/statements/Q17167_statement_datatype_profile_datatype_pairs.csv`
+- Discovery backlink harvest:
+  - `JSON/wikidata/backlinks/Q17167_backlink_harvest_report.json`
+- Backlink accepted profile:
+  - `JSON/wikidata/backlinks/Q17167_backlink_profile_accepted_summary.json`
+  - `JSON/wikidata/backlinks/Q17167_backlink_profile_accepted_by_entity.csv`
+  - `JSON/wikidata/backlinks/Q17167_backlink_profile_accepted_pair_counts.csv`
+
+New generator capability:
+- `scripts/tools/wikidata_generate_claim_subgraph_proposal.py`
+  - merges direct claims + accepted backlinks
+  - maps predicate PIDs to canonical relationship types via registry
+  - emits machine + human artifacts:
+    - `JSON/wikidata/proposals/Q17167_claim_subgraph_proposal.json`
+    - `JSON/wikidata/proposals/Q17167_claim_subgraph_proposal.md`
+
+Q17167 proposal snapshot:
+- nodes: `178`
+- relationship claims: `197`
+  - direct: `39`
+  - backlink: `158`
+- attribute claims: `41`
+- backlink gate status: `pass`
+
+## Republic Agent SubjectConcept Seed Pack (verified 2026-02-14)
+
+- Added implementation-ready seed files for Republic-agent domain concepts:
+  - `JSON/wikidata/proposals/Q17167_republic_agent_subject_concepts.csv`
+  - `JSON/wikidata/proposals/Q17167_republic_agent_subject_concepts.json`
+- Pack contents:
+  - 17 proposed `SubjectConcept` nodes
+  - `discipline=true`, primary facet, primary confidence
+  - multi-facet confidence vectors (JSON)
+  - parent hierarchy using `BROADER_THAN` relationship proposals
 
 ## Federation Datatype Work (verified 2026-02-13)
 

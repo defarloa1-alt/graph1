@@ -591,13 +591,36 @@ Source (Work/Document)
 
 ## **3.0 Overview**
 
-The **Entity Layer** represents real-world historical entities: people, places, events, organizations, works, objects, and concepts. Entities are the **nodes** in the knowledge graph, connected by relationships.
+The **Entity Layer** represents real-world historical entities: people, places, events, organizations, works, and related historical structures. Entities are the **nodes** in the knowledge graph, connected by relationships.
 
 **Core Principles:**
 1. **Entity types are semantic, not structural:** `Human` vs `Organization` matters for reasoning
 2. **Entities are identified by authorities:** `qid` (Wikidata), `viaf_id` (persons), `pleiades_id` (places)
 3. **Entities have temporal existence:** `start_date`, `end_date`, `date_precision`
 4. **Entities are classified by subjects:** `backbone_lcc`, `backbone_fast` for discovery
+
+### **3.0.1 Canonical First-Class Node Set (Normative)**
+
+The canonical first-class node set for active implementation is:
+- `SubjectConcept`
+- `Human`
+- `Gens`
+- `Praenomen`
+- `Cognomen`
+- `Event`
+- `Place`
+- `Period`
+- `Dynasty`
+- `Institution`
+- `LegalRestriction`
+- `Claim`
+- `Organization`
+- `Year`
+
+Policy lock-ins:
+- `Subject` and `Concept` are legacy labels and MUST map to `SubjectConcept`.
+- `Person` is legacy wording and MUST map to `Human`.
+- `Communication` is NOT a first-class node label; it is modeled as a facet/domain axis in Section 3.3.
 
 ---
 
@@ -1217,7 +1240,7 @@ Battle of Pharsalus (48 BCE) single AnalysisRun with multiple assessments:
 
 ## **3.3 Facets (Entity-Level Classification) â€“ Star Pattern Architecture**
 
-Entities can be classified along **16 analytical dimensions** (facets) for multi-dimensional discovery.
+Entities can be classified along **17 analytical dimensions** (facets) for multi-dimensional discovery.
 Canonical source of truth: `Facets/facet_registry_master.json` (with tabular export at `Facets/facet_registry_master.csv`).
 Temporal modeling is handled separately in Section 3.4.
 
@@ -1237,7 +1260,10 @@ Temporal modeling is handled separately in Section 3.4.
 14. **Linguistic:** Languages, writing systems
 15. **Archaeological:** Material culture, excavation
 16. **Diplomatic:** Treaties, alliances, negotiations
-17. Communication: mass media and the communication of messages and ideology
+17. **Communication:** mass media, messaging, propaganda, and ideology transmission
+
+Facet policy:
+- `Communication` remains a facet/domain dimension and is not materialized as `:Communication` in the first-class node set.
 
 **Implementation:** Entities link to SubjectConcepts representing these facets (see Section 4):
 ```cypher
