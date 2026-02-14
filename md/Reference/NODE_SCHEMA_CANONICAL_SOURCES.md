@@ -23,3 +23,41 @@ Temporal modeling note:
 
 If examples in older docs conflict with these sources, follow these sources.
 
+Legacy-to-canonical label mapping:
+- `Person` -> `Human`
+- `Subject` -> `SubjectConcept`
+- `Concept` -> `SubjectConcept` (no separate `Concept` node in canonical architecture)
+
+Canonical first-class domain nodes (current baseline):
+- `Human`
+- `Place`
+- `Event`
+- `Period`
+- `Year`
+- `Organization`
+- `Institution`
+- `Dynasty`
+- `LegalRestriction`
+- `Work`
+- `Gens`
+- `Praenomen`
+- `Cognomen`
+- `Position`
+- `Object`
+- `Material`
+- `Activity`
+- `SubjectConcept` (in Section 4.1, first-class for thematic backbone)
+
+Canonical supporting nodes (spatiotemporal and pipeline support):
+- `PlaceVersion`
+- `Geometry`
+- `Claim`
+- `Review`
+- `ProposedEdge`
+- `ReasoningTrace`
+- `Synthesis`
+- `AnalysisRun`
+- `FacetAssessment`
+- `FacetCategory`
+- `AgentMemory`
+

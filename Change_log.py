@@ -23,6 +23,20 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-13 19:06 | Node Schema Legacy-to-Canonical Mapping Clarification
+# ==============================================================================
+# Category: Docs, Architecture
+# Summary: Added explicit legacy label mapping and canonical first-class node list reference
+# Files:
+#   - md/Reference/NODE_SCHEMA_CANONICAL_SOURCES.md
+# Reason: Resolve confusion between archived node schemas and current consolidated architecture labels.
+# Notes:
+#   - `Person` -> `Human`
+#   - `Subject`/`Concept` -> `SubjectConcept`
+#   - Documented canonical domain and supporting node labels in one place.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-13 16:00 | Consolidated Architecture Update for Federation Dispatcher
 # ==============================================================================
 # Category: Architecture, Docs
