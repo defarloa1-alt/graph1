@@ -23,6 +23,59 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 12:56 | Bootstrap Runner Parser Compatibility (SHOW Removed)
+# ==============================================================================
+# Category: Capability, Schema
+# Summary: Replaced SHOW-based validation with db.constraints()/db.indexes() only
+# Files:
+#   - Neo4j/schema/06_bootstrap_validation_runner.cypher
+# Reason: Target Neo4j parser rejected SHOW in composed query context.
+# Notes:
+#   - Runner now contains no SHOW clauses and starts with `WITH`.
+#   - File saved UTF-8 without BOM.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 12:45 | Bootstrap Runner Compatibility Rewrite (Single Statement)
+# ==============================================================================
+# Category: Capability, Schema
+# Summary: Rewrote bootstrap validator as a single Cypher statement using db.constraints()/db.indexes()
+# Files:
+#   - Neo4j/schema/06_bootstrap_validation_runner.cypher
+# Reason: Ensure reliable execution in Neo4j Browser and avoid multi-statement/SHOW parser edge cases.
+# Notes:
+#   - Single RETURN now emits: missing/unexpected constraints, missing/unexpected indexes, non-online indexes, and overall PASS/FAIL.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 12:22 | Bootstrap Validation Runner Syntax Fix (SHOW + WITH)
+# ==============================================================================
+# Category: Capability, Schema, Docs
+# Summary: Fixed Cypher syntax in validation runner by moving SHOW clauses into CALL subqueries
+# Files:
+#   - Neo4j/schema/06_bootstrap_validation_runner.cypher
+# Reason: Neo4j does not allow `SHOW ...` directly after `WITH` in this script pattern.
+# Notes:
+#   - Reworked audits to use `CALL { SHOW ... RETURN collect(...) }`.
+#   - Preserved all expected constraint/index name checks and final PASS/FAIL summary.
+# ==============================================================================
+
+# ==============================================================================
+# 2026-02-14 12:18 | Bootstrap Dry-Validation Runner for Constraints/Indexes
+# ==============================================================================
+# Category: Capability, Schema, Docs
+# Summary: Added single Cypher runner to validate SHOW CONSTRAINTS/SHOW INDEXES against expected bootstrap schema names
+# Files:
+#   - Neo4j/schema/06_bootstrap_validation_runner.cypher
+# Reason: Provide fast post-bootstrap verification and drift detection before data ingestion.
+# Notes:
+#   - Expectations are generated from:
+#     - `Neo4j/schema/01_schema_constraints.cypher`
+#     - `Neo4j/schema/02_schema_indexes.cypher`
+#   - Includes inventories, missing/unexpected name audits, index state health, and final PASS/FAIL summary row.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 12:04 | SysML + Implementation Index Consolidated Realignment
 # ==============================================================================
 # Category: Architecture, Docs, Integration

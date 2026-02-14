@@ -116,6 +116,23 @@ Applied updates:
   - `ARCHITECTURE_IMPLEMENTATION_INDEX.md`
 - BODY/APPENDICES are no longer used as architecture source documents in the index mapping.
 
+## Bootstrap Validation Runner (verified 2026-02-14)
+
+- Added a single dry-validation Cypher runner:
+  - `Neo4j/schema/06_bootstrap_validation_runner.cypher`
+- Validates:
+  - `SHOW CONSTRAINTS` name set vs expected
+  - `SHOW INDEXES` user-created name set vs expected
+  - non-ONLINE user index detection
+  - final PASS/FAIL summary row
+- Expected name sets are generated from:
+  - `Neo4j/schema/01_schema_constraints.cypher`
+  - `Neo4j/schema/02_schema_indexes.cypher`
+- Syntax correction applied after first run error:
+  - all `SHOW` clauses are now executed inside `CALL { ... }` subqueries to avoid `WITH -> SHOW` parser failures.
+- Compatibility hardening:
+  - runner rewritten as a single statement using `db.constraints()` and `db.indexes()` for Neo4j Browser/cypher-shell consistency.
+
 ## Backlink Discovery Mode Upgrade (verified 2026-02-14)
 
 - `scripts/tools/wikidata_backlink_harvest.py` now supports:
