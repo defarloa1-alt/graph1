@@ -13,8 +13,17 @@ Recommended file naming:
 Example:
 ```bash
 python scripts/tools/wikidata_backlink_harvest.py --seed-qid Q1048
+python scripts/tools/wikidata_backlink_harvest.py --seed-qid Q1048 --mode discovery
 python scripts/tools/wikidata_backlink_profile.py --input-report JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json --source-section accepted
 ```
+
+Mode behavior:
+- `production` (default): constrained budgets and class allowlist gate enabled.
+- `discovery`: expanded budgets, schema properties unioned into property surface, class allowlist gate disabled by default.
+
+Mode default budgets:
+- `production`: `sparql_limit=500`, `max_sources_per_seed=200`, `max_new_nodes_per_seed=100`
+- `discovery`: `sparql_limit=2000`, `max_sources_per_seed=1000`, `max_new_nodes_per_seed=500`
 
 Report contents include:
 - candidate and accepted/rejected source counts

@@ -23,6 +23,24 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 09:58 | Backlink Harvester Discovery Mode + Expanded Budgets
+# ==============================================================================
+# Category: Capability, Docs, Architecture
+# Summary: Added explicit discovery/production modes to backlink harvester with mode-aware budget and class-gate behavior
+# Files:
+#   - scripts/tools/wikidata_backlink_harvest.py
+#   - JSON/wikidata/backlinks/README.md
+#   - JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json
+# Reason: Support broad hierarchy learning runs without weakening production controls.
+# Notes:
+#   - New `--mode {production,discovery}`.
+#   - Discovery defaults: `sparql_limit=2000`, `max_sources_per_seed=1000`, `max_new_nodes_per_seed=500`.
+#   - Discovery auto behavior: unions schema relationship properties into property surface and disables class allowlist gate by default.
+#   - New `--class-allowlist-mode {auto,schema,disabled}` for explicit gate control.
+#   - Verified run: `Q1048` report now records `mode: discovery` and `class_allowlist_mode: disabled`.
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 09:25 | Section 8.6 and Appendix K Consistency Pass
 # ==============================================================================
 # Category: Docs, Architecture

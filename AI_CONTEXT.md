@@ -95,6 +95,21 @@ Applied updates:
   - Section `8.6` route/gate rules
   - Appendix `K.4-K.6` operational contract
 
+## Backlink Discovery Mode Upgrade (verified 2026-02-14)
+
+- `scripts/tools/wikidata_backlink_harvest.py` now supports:
+  - `--mode production` (default constrained behavior)
+  - `--mode discovery` (expanded budgets + broader property surface)
+- New mode-aware defaults:
+  - production: `sparql_limit=500`, `max_sources_per_seed=200`, `max_new_nodes_per_seed=100`
+  - discovery: `sparql_limit=2000`, `max_sources_per_seed=1000`, `max_new_nodes_per_seed=500`
+- New class gate control:
+  - `--class-allowlist-mode {auto,schema,disabled}`
+  - `auto` resolves to `disabled` in discovery and `schema` in production
+- Discovery run verified on `Q1048`:
+  - report: `JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json`
+  - includes `mode: discovery` and `class_allowlist_mode: disabled`
+
 ## Federation Datatype Work (verified 2026-02-13)
 
 ### New capability

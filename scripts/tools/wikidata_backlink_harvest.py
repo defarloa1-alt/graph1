@@ -39,6 +39,41 @@ QID_RE = re.compile(r"Q\d+$", re.IGNORECASE)
 PID_RE = re.compile(r"P\d+$", re.IGNORECASE)
 
 DEFAULT_PROPERTY_ALLOWLIST = ["P710", "P1441", "P138", "P112", "P737", "P828"]
+DISCOVERY_PROPERTY_BOOTSTRAP = [
+    # Core semantic links used in current production profile.
+    "P710",
+    "P1441",
+    "P138",
+    "P112",
+    "P737",
+    "P828",
+    # Structural/hierarchy and contextual expansion signals.
+    "P31",
+    "P279",
+    "P361",
+    "P527",
+    "P131",
+    "P17",
+    "P39",
+    "P106",
+    "P921",
+    "P101",
+    "P2578",
+    "P2579",
+]
+
+MODE_DEFAULTS: Dict[str, Dict[str, int]] = {
+    "production": {
+        "sparql_limit": 500,
+        "max_sources_per_seed": 200,
+        "max_new_nodes_per_seed": 100,
+    },
+    "discovery": {
+        "sparql_limit": 2000,
+        "max_sources_per_seed": 1000,
+        "max_new_nodes_per_seed": 500,
+    },
+}
 
 # Supported pair routing contract aligned with datatype ingestion spec.
 SUPPORTED_DATATYPE_VALUE_PAIRS: Set[Tuple[str, str]] = {
@@ -173,6 +208,66 @@ def _load_schema_allowlists(schema_path: Path) -> Tuple[Set[str], Set[str]]:
     return classes, properties
 
 
+def _resolve_runtime_settings(
+    *,
+    mode: str,
+    property_args: Optional[List[str]],
+    use_schema_relationship_properties: bool,
+    schema_property_allowlist: Set[str],
+    class_allowlist: Set[str],
+    class_allowlist_mode: str,
+    sparql_limit: Optional[int],
+    max_sources_per_seed: Optional[int],
+    max_new_nodes_per_seed: Optional[int],
+) -> Dict[str, Any]:
+    if mode not in MODE_DEFAULTS:
+        raise ValueError(f"Unsupported mode: {mode}")
+
+    defaults = MODE_DEFAULTS[mode]
+    resolved_sparql_limit = max(1, sparql_limit or defaults["sparql_limit"])
+    resolved_max_sources = max(1, max_sources_per_seed or defaults["max_sources_per_seed"])
+    resolved_max_new_nodes = max(1, max_new_nodes_per_seed or defaults["max_new_nodes_per_seed"])
+
+    if property_args:
+        property_allowlist = [_normalize_pid(p) for p in property_args]
+    elif mode == "discovery":
+        property_allowlist = [_normalize_pid(p) for p in DISCOVERY_PROPERTY_BOOTSTRAP]
+    else:
+        property_allowlist = [_normalize_pid(p) for p in DEFAULT_PROPERTY_ALLOWLIST]
+
+    if mode == "discovery":
+        # Discovery mode always expands property surface using schema mappings.
+        property_allowlist = sorted(
+            set(property_allowlist) | schema_property_allowlist,
+            key=lambda x: int(x[1:]),
+        )
+    elif use_schema_relationship_properties:
+        property_allowlist = sorted(
+            set(property_allowlist) | schema_property_allowlist,
+            key=lambda x: int(x[1:]),
+        )
+    else:
+        property_allowlist = sorted(set(property_allowlist), key=lambda x: int(x[1:]))
+
+    if class_allowlist_mode == "auto":
+        effective_class_allowlist_mode = "disabled" if mode == "discovery" else "schema"
+    else:
+        effective_class_allowlist_mode = class_allowlist_mode
+
+    class_allowlist_enabled = effective_class_allowlist_mode == "schema"
+    effective_class_allowlist = class_allowlist if class_allowlist_enabled else set()
+
+    return {
+        "sparql_limit": resolved_sparql_limit,
+        "max_sources_per_seed": resolved_max_sources,
+        "max_new_nodes_per_seed": resolved_max_new_nodes,
+        "property_allowlist": property_allowlist,
+        "class_allowlist_mode": effective_class_allowlist_mode,
+        "class_allowlist_enabled": class_allowlist_enabled,
+        "class_allowlist": effective_class_allowlist,
+    }
+
+
 def _fetch_backlink_rows(
     seed_qid: str,
     property_allowlist: List[str],
@@ -295,6 +390,7 @@ def _classify_candidates(
     class_allowlist: Set[str],
     ancestors_map: Dict[str, Set[str]],
     p31_denylist: Set[str],
+    class_allowlist_enabled: bool,
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], Counter[str]]:
     accepted: List[Dict[str, Any]] = []
     rejected: List[Dict[str, Any]] = []
@@ -327,6 +423,20 @@ def _classify_candidates(
                     "properties": sorted(row["properties"]),
                     "p31": p31_list,
                     "p31_deny_hits": deny_hits,
+                    "backlink_hits": row["backlink_hits"],
+                }
+            )
+            continue
+
+        if not class_allowlist_enabled:
+            accepted.append(
+                {
+                    "qid": row["qid"],
+                    "label": row["label"],
+                    "properties": sorted(row["properties"]),
+                    "p31": p31_list,
+                    "matched_classes": p31_list,
+                    "matched_allowlist_ancestors": [],
                     "backlink_hits": row["backlink_hits"],
                 }
             )
@@ -627,6 +737,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed-qid", required=True, help="Seed item QID (example: Q1048).")
     parser.add_argument(
+        "--mode",
+        choices=["production", "discovery"],
+        default="production",
+        help="Run mode. discovery expands budgets and property surface for hierarchy learning.",
+    )
+    parser.add_argument(
         "--schema",
         default="JSON/chrystallum_schema.json",
         help="Path to schema JSON containing entity Wikidata QIDs.",
@@ -647,14 +763,35 @@ def main() -> None:
         help="Union schema relationship P-values into property allowlist.",
     )
     parser.add_argument(
+        "--class-allowlist-mode",
+        choices=["auto", "schema", "disabled"],
+        default="auto",
+        help="Class gate mode. auto=disabled in discovery, schema in production.",
+    )
+    parser.add_argument(
         "--p31-denylist-qid",
         action="append",
         help="Reject candidates if any P31 matches this QID (repeatable).",
     )
     parser.add_argument("--max-depth", type=int, default=1, help="Backlink traversal depth (currently only 1 supported).")
-    parser.add_argument("--sparql-limit", type=int, default=500, help="Row limit for reverse-triple SPARQL query.")
-    parser.add_argument("--max-sources-per-seed", type=int, default=200, help="Budget cap for candidate source nodes.")
-    parser.add_argument("--max-new-nodes-per-seed", type=int, default=100, help="Budget cap for accepted source nodes.")
+    parser.add_argument(
+        "--sparql-limit",
+        type=int,
+        default=None,
+        help="Row limit for reverse-triple SPARQL query. Mode defaults: production=500, discovery=2000.",
+    )
+    parser.add_argument(
+        "--max-sources-per-seed",
+        type=int,
+        default=None,
+        help="Budget cap for candidate source nodes. Mode defaults: production=200, discovery=1000.",
+    )
+    parser.add_argument(
+        "--max-new-nodes-per-seed",
+        type=int,
+        default=None,
+        help="Budget cap for accepted source nodes. Mode defaults: production=100, discovery=500.",
+    )
     parser.add_argument(
         "--unresolved-class-threshold",
         type=float,
@@ -703,15 +840,28 @@ def main() -> None:
         raise FileNotFoundError(schema_path)
 
     class_allowlist, schema_property_allowlist = _load_schema_allowlists(schema_path)
-    property_allowlist = [_normalize_pid(p) for p in (args.property or DEFAULT_PROPERTY_ALLOWLIST)]
-    if args.use_schema_relationship_properties:
-        property_allowlist = sorted(set(property_allowlist) | schema_property_allowlist, key=lambda x: int(x[1:]))
-    else:
-        property_allowlist = sorted(set(property_allowlist), key=lambda x: int(x[1:]))
+    resolved = _resolve_runtime_settings(
+        mode=args.mode,
+        property_args=args.property,
+        use_schema_relationship_properties=args.use_schema_relationship_properties,
+        schema_property_allowlist=schema_property_allowlist,
+        class_allowlist=class_allowlist,
+        class_allowlist_mode=args.class_allowlist_mode,
+        sparql_limit=args.sparql_limit,
+        max_sources_per_seed=args.max_sources_per_seed,
+        max_new_nodes_per_seed=args.max_new_nodes_per_seed,
+    )
+    property_allowlist = resolved["property_allowlist"]
+    class_allowlist_mode = resolved["class_allowlist_mode"]
+    class_allowlist_enabled = resolved["class_allowlist_enabled"]
+    effective_class_allowlist = resolved["class_allowlist"]
+    sparql_limit = resolved["sparql_limit"]
+    max_sources_per_seed = resolved["max_sources_per_seed"]
+    max_new_nodes_per_seed = resolved["max_new_nodes_per_seed"]
 
     if not property_allowlist:
         raise RuntimeError("Property allowlist is empty.")
-    if not class_allowlist:
+    if class_allowlist_enabled and not effective_class_allowlist:
         raise RuntimeError("Class allowlist is empty.")
     p31_denylist = set()
     for raw_qid in args.p31_denylist_qid or []:
@@ -720,13 +870,13 @@ def main() -> None:
     raw_rows = _fetch_backlink_rows(
         seed_qid=seed_qid,
         property_allowlist=property_allowlist,
-        limit=max(1, args.sparql_limit),
+        limit=sparql_limit,
         timeout_s=args.timeout_s,
     )
     candidate_map = _build_candidates(raw_rows)
     kept_candidates, dropped_by_source_budget = _limit_candidates(
         candidate_map,
-        max_sources=max(1, args.max_sources_per_seed),
+        max_sources=max_sources_per_seed,
     )
 
     p31_classes: Set[str] = set()
@@ -741,14 +891,15 @@ def main() -> None:
 
     accepted, rejected, rejection_counts = _classify_candidates(
         candidates=kept_candidates,
-        class_allowlist=class_allowlist,
+        class_allowlist=effective_class_allowlist,
         ancestors_map=ancestors_map,
         p31_denylist=p31_denylist,
+        class_allowlist_enabled=class_allowlist_enabled,
     )
 
     accepted = sorted(accepted, key=lambda x: (-x["backlink_hits"], -len(x["properties"]), x["qid"]))
-    accepted_limited = accepted[: max(1, args.max_new_nodes_per_seed)]
-    accepted_dropped_by_node_budget = accepted[max(1, args.max_new_nodes_per_seed) :]
+    accepted_limited = accepted[:max_new_nodes_per_seed]
+    accepted_dropped_by_node_budget = accepted[max_new_nodes_per_seed:]
 
     # Add explicit budget rejection rows for transparency.
     for row in dropped_by_source_budget:
@@ -826,12 +977,13 @@ def main() -> None:
         "generated_at": _now_utc(),
         "seed_qid": seed_qid,
         "config": {
+            "mode": args.mode,
             "schema_path": str(schema_path),
             "output_dir": str(args.output_dir),
             "max_depth": args.max_depth,
-            "sparql_limit": args.sparql_limit,
-            "max_sources_per_seed": args.max_sources_per_seed,
-            "max_new_nodes_per_seed": args.max_new_nodes_per_seed,
+            "sparql_limit": sparql_limit,
+            "max_sources_per_seed": max_sources_per_seed,
+            "max_new_nodes_per_seed": max_new_nodes_per_seed,
             "unresolved_class_threshold": args.unresolved_class_threshold,
             "unsupported_pair_threshold": args.unsupported_pair_threshold,
             "min_temporal_precision": args.min_temporal_precision,
@@ -844,7 +996,8 @@ def main() -> None:
         "allowlists": {
             "properties": property_allowlist,
             "property_count": len(property_allowlist),
-            "classes_count": len(class_allowlist),
+            "class_allowlist_mode": class_allowlist_mode,
+            "classes_count": len(effective_class_allowlist),
             "p31_denylist": sorted(p31_denylist),
         },
         "counts": {
