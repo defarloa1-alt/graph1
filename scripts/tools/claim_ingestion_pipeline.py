@@ -25,6 +25,438 @@ except ModuleNotFoundError:  # pragma: no cover
     from .historian_logic_engine import HistorianLogicEngine
 
 
+class QIDResolver:
+    """
+    LLM-assisted Wikidata QID resolution for entities
+    
+    Resolves entity labels to Wikidata QIDs using fuzzy search + context scoring.
+    Falls back to provisional local QIDs if no match found.
+    
+    Decision: PHASE_1_DECISIONS_LOCKED.md#decision-1-qid-resolution-via-llm
+    """
+    
+    def __init__(self, wikidata_search_endpoint: str = "https://www.wikidata.org/w/api.php"):
+        """
+        Initialize QID resolver
+        
+        Args:
+            wikidata_search_endpoint: Wikidata API endpoint for searches
+        """
+        self.search_endpoint = wikidata_search_endpoint
+        self.cache = {}  # Simple in-memory cache for repeated lookups
+    
+    def resolve_qid(
+        self,
+        entity_label: str,
+        context: Optional[Dict[str, Any]] = None,
+        confidence_threshold: float = 0.75
+    ) -> Dict[str, Any]:
+        """
+        Attempt to resolve entity to Wikidata QID
+        
+        Args:
+            entity_label: "Marcus Brutus", "Battle of Pharsalus", etc.
+            context: {
+                "period": "Roman Republic",
+                "role": "conspirator",
+                "birth_year": -85,
+                "death_year": -42,
+                "gens": "Junia"
+            }
+            confidence_threshold: Minimum confidence to accept match (default 0.75)
+        
+        Returns:
+            Success:
+                {
+                    "qid": "Q83416",
+                    "confidence": 0.98,
+                    "method": "wikidata_resolved",
+                    "label": "Marcus Junius Brutus",
+                    "candidates": [...],
+                    "match_factors": {
+                        "label_similarity": 0.95,
+                        "context_alignment": 0.92,
+                        "temporal_match": 1.0
+                    }
+                }
+            Fallback (provisional):
+                {
+                    "qid": "local_entity_a8f9e2c4",
+                    "confidence": None,
+                    "method": "provisional_local",
+                    "note": "No Wikidata match; enable post-hoc linking",
+                    "entity_label": "Marcus Brutus"
+                }
+        """
+        # Check cache first
+        cache_key = f"{entity_label}:{json.dumps(context, sort_keys=True) if context else ''}"
+        if cache_key in self.cache:
+            return self.cache[cache_key]
+        
+        # 1. Wikidata fuzzy search
+        try:
+            candidates = self._wikidata_search(entity_label, limit=10)
+        except Exception as e:
+            # Network error or API failure → fallback immediately
+            return self._create_provisional_qid(entity_label, error=str(e))
+        
+        if not candidates:
+            # No results from Wikidata
+            return self._create_provisional_qid(entity_label, note="No search results")
+        
+        # 2. Score candidates using context
+        scored_candidates = self._score_candidates(candidates, context)
+        
+        # 3. Select best match
+        best = max(scored_candidates, key=lambda x: x['confidence'])
+        
+        if best['confidence'] >= confidence_threshold:
+            result = {
+                "qid": best['qid'],
+                "confidence": best['confidence'],
+                "method": "wikidata_resolved",
+                "label": best['label'],
+                "description": best.get('description', ''),
+                "candidates": scored_candidates,  # Track alternatives
+                "match_factors": best.get('match_factors', {})
+            }
+        else:
+            # Best match below threshold → fallback to provisional
+            result = self._create_provisional_qid(
+                entity_label,
+                note=f"Best match confidence {best['confidence']:.2f} below threshold {confidence_threshold}"
+            )
+        
+        # Cache result
+        self.cache[cache_key] = result
+        return result
+    
+    def _wikidata_search(self, entity_label: str, limit: int = 10) -> List[Dict]:
+        """
+        Query Wikidata API for entity matches
+        
+        Returns:
+            [
+                {
+                    "qid": "Q83416",
+                    "label": "Marcus Junius Brutus",
+                    "description": "Roman politician (85 BC - 42 BC)"
+                },
+                ...
+            ]
+        """
+        # TODO: Implement actual Wikidata API call
+        # For Phase 1, return empty list (will trigger provisional fallback)
+        # In Phase 2, implement full SPARQL/API integration
+        return []
+    
+    def _score_candidates(
+        self,
+        candidates: List[Dict],
+        context: Optional[Dict[str, Any]]
+    ) -> List[Dict]:
+        """
+        Score candidates based on context alignment
+        
+        Factors:
+        - Label similarity (fuzzy string match)
+        - Temporal alignment (birth/death years)
+        - Role/occupation match
+        - Geographic alignment
+        - Gens/family alignment (for Romans)
+        
+        Returns:
+            [
+                {
+                    "qid": "Q83416",
+                    "label": "Marcus Junius Brutus",
+                    "confidence": 0.98,
+                    "match_factors": {
+                        "label_similarity": 0.95,
+                        "temporal_match": 1.0,
+                        "role_match": 0.92
+                    }
+                },
+                ...
+            ]
+        """
+        scored = []
+        
+        for candidate in candidates:
+            score = 0.0
+            factors = {}
+            
+            # TODO: Implement actual scoring logic
+            # For Phase 1, return low confidence to trigger provisional fallback
+            # In Phase 2, implement full semantic + temporal + role scoring
+            
+            scored.append({
+                **candidate,
+                "confidence": score,
+                "match_factors": factors
+            })
+        
+        return sorted(scored, key=lambda x: x['confidence'], reverse=True)
+    
+    def _create_provisional_qid(
+        self,
+        entity_label: str,
+        note: str = "No Wikidata match",
+        error: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Create provisional local QID for entities without Wikidata match
+        
+        Format: local_entity_{hash}
+        
+        Returns:
+            {
+                "qid": "local_entity_a8f9e2c4",
+                "confidence": None,
+                "method": "provisional_local",
+                "note": "...",
+                "entity_label": "Marcus Brutus"
+            }
+        """
+        # Hash entity label for deterministic provisional QID
+        label_hash = hashlib.sha256(entity_label.encode('utf-8')).hexdigest()[:8]
+        
+        return {
+            "qid": f"local_entity_{label_hash}",
+            "confidence": None,
+            "method": "provisional_local",
+            "note": note,
+            "entity_label": entity_label,
+            "error": error
+        }
+
+
+class RoleValidator:
+    """
+    Dynamic role reference with LLM constraint checking
+    
+    Validates role labels against canonical registry with LLM fuzzy matching.
+    Prevents role invention while supporting natural language inputs.
+    
+    Decision: PHASE_1_DECISIONS_LOCKED.md#decision-3-edge-properties-with-dynamic-role-reference
+    """
+    
+    def __init__(self, role_registry_path: str = "Relationships/role_qualifier_reference.json"):
+        """
+        Initialize role validator
+        
+        Args:
+            role_registry_path: Path to canonical role registry JSON
+        """
+        with open(role_registry_path, 'r', encoding='utf-8') as f:
+            self.registry = json.load(f)
+        
+        self.all_valid_roles = self._flatten_registry()
+        self.alias_map = self._build_alias_map()
+    
+    def _flatten_registry(self) -> List[str]:
+        """Extract all valid role keys from registry"""
+        roles = []
+        for category, role_dict in self.registry.items():
+            if category == "meta":
+                continue
+            roles.extend(role_dict.keys())
+        return roles
+    
+    def _build_alias_map(self) -> Dict[str, str]:
+        """Build map of alias → canonical_role"""
+        alias_map = {}
+        for category, role_dict in self.registry.items():
+            if category == "meta":
+                continue
+            for role_key, role_data in role_dict.items():
+                # Add self-mapping
+                alias_map[role_key.lower()] = role_key
+                # Add alias mappings
+                if "aliases" in role_data:
+                    for alias in role_data["aliases"]:
+                        alias_map[alias.lower()] = role_key
+        return alias_map
+    
+    def validate_role(
+        self,
+        role_label: str,
+        facet: Optional[str] = None,
+        fuzzy_threshold: float = 0.80
+    ) -> Dict[str, Any]:
+        """
+        Validate role against canonical list
+        
+        Args:
+            role_label: "commander", "leading the cavalry charge", "senator", etc.
+            facet: "military", "political", etc. (optional context for ambiguity resolution)
+            fuzzy_threshold: Minimum similarity for fuzzy match acceptance (default 0.80)
+        
+        Returns:
+            Valid:
+                {
+                    "canonical_role": "commander",
+                    "confidence": 1.0,
+                    "valid": True,
+                    "method": "exact_match",
+                    "p_value": "P598",
+                    "description": "Military commander with strategic authority",
+                    "context_facets": ["military"]
+                }
+            Fuzzy match:
+                {
+                    "canonical_role": "commander",
+                    "confidence": 0.92,
+                    "valid": True,
+                    "method": "alias_match",
+                    "input_label": "leading forces",
+                    "alternatives": [...other high-scoring candidates]
+                }
+            Invalid:
+                {
+                    "canonical_role": None,
+                    "confidence": None,
+                    "valid": False,
+                    "method": "no_match",
+                    "input_label": "foo_bar_role",
+                    "valid_roles": [list of canonical roles],
+                    "suggestion": "Role not recognized; use canonical list"
+                }
+        """
+        role_label_normalized = role_label.strip().lower()
+        
+        # 1. Exact match (canonical role)
+        if role_label_normalized in [r.lower() for r in self.all_valid_roles]:
+            canonical = [r for r in self.all_valid_roles if r.lower() == role_label_normalized][0]
+            role_data = self._lookup_role_data(canonical)
+            return {
+                "canonical_role": canonical,
+                "confidence": 1.0,
+                "valid": True,
+                "method": "exact_match",
+                "p_value": role_data.get("p_value"),
+                "description": role_data.get("description"),
+                "context_facets": role_data.get("context_facets", [])
+            }
+        
+        # 2. Alias match (from registry)
+        if role_label_normalized in self.alias_map:
+            canonical = self.alias_map[role_label_normalized]
+            role_data = self._lookup_role_data(canonical)
+            return {
+                "canonical_role": canonical,
+                "confidence": 0.95,
+                "valid": True,
+                "method": "alias_match",
+                "input_label": role_label,
+                "p_value": role_data.get("p_value"),
+                "description": role_data.get("description"),
+                "context_facets": role_data.get("context_facets", [])
+            }
+        
+        # 3. LLM fuzzy match (semantic similarity)
+        candidates = self._llm_fuzzy_match(role_label, facet)
+        if candidates:
+            best = max(candidates, key=lambda x: x['confidence'])
+            if best['confidence'] >= fuzzy_threshold:
+                return {
+                    "canonical_role": best['role'],
+                    "confidence": best['confidence'],
+                    "valid": True,
+                    "method": "llm_fuzzy_match",
+                    "input_label": role_label,
+                    "alternatives": candidates[:5],  # Top 5 alternatives
+                    "p_value": best.get("p_value"),
+                    "description": best.get("description"),
+                    "context_facets": best.get("context_facets", [])
+                }
+        
+        # 4. No valid match
+        return {
+            "canonical_role": None,
+            "confidence": None,
+            "valid": False,
+            "method": "no_match",
+            "input_label": role_label,
+            "valid_roles": self.all_valid_roles[:50],  # Sample of valid roles
+            "suggestion": "Role not recognized; use canonical role registry or submit for addition"
+        }
+    
+    def _lookup_role_data(self, canonical_role: str) -> Dict[str, Any]:
+        """Lookup full role data from registry"""
+        for category, role_dict in self.registry.items():
+            if category == "meta":
+                continue
+            if canonical_role in role_dict:
+                return role_dict[canonical_role]
+        return {}
+    
+    def _llm_fuzzy_match(
+        self,
+        role_label: str,
+        facet: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        LLM-powered fuzzy matching
+        
+        Example: "leading the cavalry" → "commander" (0.92 confidence)
+        
+        Returns:
+            [
+                {
+                    "role": "commander",
+                    "confidence": 0.92,
+                    "p_value": "P598",
+                    "description": "...",
+                    "context_facets": ["military"]
+                },
+                ...
+            ]
+        """
+        # TODO: Implement actual LLM semantic matching
+        # For Phase 1, use simple substring/keyword matching
+        # In Phase 2, integrate LLM API for semantic similarity
+        
+        similarity_scores = []
+        role_label_lower = role_label.lower()
+        
+        # Simple keyword matching as Phase 1 implementation
+        for valid_role in self.all_valid_roles:
+            role_data = self._lookup_role_data(valid_role)
+            
+            # Check if any alias contains keywords from input
+            role_keywords = valid_role.lower().split('_')
+            input_keywords = re.findall(r'\w+', role_label_lower)
+            
+            matches = sum(1 for word in input_keywords if any(word in keyword for keyword in role_keywords))
+            
+            # Also check aliases
+            if "aliases" in role_data:
+                for alias in role_data["aliases"]:
+                    alias_keywords = alias.lower().split()
+                    matches += sum(1 for word in input_keywords if any(word in ak for ak in alias_keywords))
+            
+            if matches > 0:
+                # Simple scoring: matches / total_input_words
+                score = min(matches / len(input_keywords), 1.0) * 0.85  # Cap at 0.85 for fuzzy
+                
+                # Facet boost: if facet matches role's context facets, boost score
+                if facet and "context_facets" in role_data:
+                    if facet in role_data["context_facets"]:
+                        score = min(score * 1.15, 0.95)  # 15% boost, cap at 0.95
+                
+                if score >= 0.50:  # Minimum threshold to consider
+                    similarity_scores.append({
+                        'role': valid_role,
+                        'confidence': round(score, 2),
+                        'p_value': role_data.get("p_value"),
+                        'description': role_data.get("description"),
+                        'context_facets': role_data.get("context_facets", [])
+                    })
+        
+        return sorted(similarity_scores, key=lambda x: x['confidence'], reverse=True)
+
+
 class ClaimIngestionPipeline:
     """Ingestion pipeline for claims into Chrystallum"""
 

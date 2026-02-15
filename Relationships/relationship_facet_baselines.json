@@ -1,0 +1,494 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "date": "2026-02-14",
+    "description": "Per-facet confidence baselines for relationship types (Phase 1 Decision: Option B)",
+    "usage": "Claim ingestion pipeline uses this to apply facet-specific confidence baselines",
+    "decision_reference": "PHASE_1_DECISIONS_LOCKED.md#decision-2-per-facet-confidence-baselines"
+  },
+  "genealogical_relationships": {
+    "PARENT_OF": {
+      "facets": {
+        "demographic": 0.92,
+        "social": 0.85,
+        "political": 0.75
+      },
+      "default_baseline": 0.90,
+      "note": "Political facet lower due to adoption/informal arrangements"
+    },
+    "CHILD_OF": {
+      "facets": {
+        "demographic": 0.92,
+        "social": 0.85,
+        "political": 0.75
+      },
+      "default_baseline": 0.90,
+      "note": "Inverse of PARENT_OF; same confidence structure"
+    },
+    "FATHER_OF": {
+      "facets": {
+        "demographic": 0.92,
+        "social": 0.88
+      },
+      "default_baseline": 0.92,
+      "note": "More specific than PARENT_OF; slightly higher baseline"
+    },
+    "MOTHER_OF": {
+      "facets": {
+        "demographic": 0.92,
+        "social": 0.88
+      },
+      "default_baseline": 0.92,
+      "note": "More specific than PARENT_OF; slightly higher baseline"
+    },
+    "SPOUSE_OF": {
+      "facets": {
+        "social": 0.90,
+        "political": 0.92,
+        "demographic": 0.88,
+        "economic": 0.85
+      },
+      "default_baseline": 0.90,
+      "note": "Political facet higher due to alliance importance; economic for dowry/inheritance"
+    },
+    "SIBLING_OF": {
+      "facets": {
+        "demographic": 0.85,
+        "social": 0.88,
+        "political": 0.75
+      },
+      "default_baseline": 0.85,
+      "note": "Lower than parent/child due to half-siblings and adoption ambiguity"
+    },
+    "HALF_SIBLING_OF": {
+      "facets": {
+        "demographic": 0.80,
+        "social": 0.82
+      },
+      "default_baseline": 0.80,
+      "note": "Lower due to potential record ambiguity"
+    },
+    "GRANDPARENT_OF": {
+      "facets": {
+        "demographic": 0.88,
+        "social": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Derived relationship; slightly lower than direct parent"
+    },
+    "GRANDCHILD_OF": {
+      "facets": {
+        "demographic": 0.88,
+        "social": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Inverse of GRANDPARENT_OF"
+    },
+    "AUNT_OF": {
+      "facets": {
+        "demographic": 0.75,
+        "social": 0.78
+      },
+      "default_baseline": 0.75,
+      "note": "Extended family; lower confidence"
+    },
+    "UNCLE_OF": {
+      "facets": {
+        "demographic": 0.75,
+        "social": 0.78
+      },
+      "default_baseline": 0.75,
+      "note": "Extended family; lower confidence"
+    },
+    "COUSIN_OF": {
+      "facets": {
+        "demographic": 0.70,
+        "social": 0.75
+      },
+      "default_baseline": 0.70,
+      "note": "Extended family; often ambiguous in historical records"
+    },
+    "ANCESTOR_OF": {
+      "facets": {
+        "demographic": 0.75,
+        "social": 0.70,
+        "cultural": 0.65
+      },
+      "default_baseline": 0.70,
+      "note": "Distant lineage claims; cultural facet includes mythical ancestors"
+    },
+    "DESCENDANT_OF": {
+      "facets": {
+        "demographic": 0.75,
+        "social": 0.70,
+        "cultural": 0.65
+      },
+      "default_baseline": 0.70,
+      "note": "Inverse of ANCESTOR_OF"
+    },
+    "MEMBER_OF_GENS": {
+      "facets": {
+        "social": 0.90,
+        "political": 0.85,
+        "cultural": 0.88,
+        "demographic": 0.85
+      },
+      "default_baseline": 0.88,
+      "note": "Roman gens affiliation; well-documented in Republic era"
+    },
+    "HAS_GENS_MEMBER": {
+      "facets": {
+        "social": 0.90,
+        "political": 0.85,
+        "cultural": 0.88,
+        "demographic": 0.85
+      },
+      "default_baseline": 0.88,
+      "note": "Inverse of MEMBER_OF_GENS"
+    },
+    "ADOPTED_BY": {
+      "facets": {
+        "social": 0.85,
+        "political": 0.88,
+        "demographic": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Political facet higher for testamentary adoption (e.g., Octavian → Augustus)"
+    },
+    "GUARDIAN_OF": {
+      "facets": {
+        "social": 0.82,
+        "economic": 0.80
+      },
+      "default_baseline": 0.80,
+      "note": "Legal guardianship; economic facet for property management"
+    }
+  },
+  "participation_relationships": {
+    "PARTICIPATED_IN": {
+      "facets": {
+        "military": 0.85,
+        "political": 0.85,
+        "diplomatic": 0.88,
+        "social": 0.80,
+        "religious": 0.82,
+        "cultural": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Generic participation; context-dependent; role qualifier increases confidence"
+    },
+    "HAD_PARTICIPANT": {
+      "facets": {
+        "military": 0.85,
+        "political": 0.85,
+        "diplomatic": 0.88,
+        "social": 0.80,
+        "religious": 0.82,
+        "cultural": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Inverse of PARTICIPATED_IN"
+    },
+    "COMMANDED": {
+      "facets": {
+        "military": 0.90,
+        "political": 0.88
+      },
+      "default_baseline": 0.90,
+      "note": "Military command well-documented; political for command authority context"
+    },
+    "COMMANDED_BY": {
+      "facets": {
+        "military": 0.90,
+        "political": 0.88
+      },
+      "default_baseline": 0.90,
+      "note": "Inverse of COMMANDED"
+    },
+    "FOUGHT_IN": {
+      "facets": {
+        "military": 0.85,
+        "demographic": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Combat participation; demographic for casualty tracking"
+    },
+    "FOUGHT_AT": {
+      "facets": {
+        "military": 0.85,
+        "demographic": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Inverse of FOUGHT_IN"
+    },
+    "DIED_AT": {
+      "facets": {
+        "demographic": 0.95,
+        "military": 0.98,
+        "social": 0.90
+      },
+      "default_baseline": 0.95,
+      "note": "Death events well-documented; military facet for combat deaths"
+    },
+    "DEATH_LOCATION": {
+      "facets": {
+        "demographic": 0.95,
+        "military": 0.98,
+        "social": 0.90
+      },
+      "default_baseline": 0.95,
+      "note": "Inverse of DIED_AT"
+    },
+    "NEGOTIATED_TREATY": {
+      "facets": {
+        "diplomatic": 0.88,
+        "political": 0.85,
+        "communication": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Treaty negotiation role; communication for messaging/ceremony"
+    },
+    "TREATY_NEGOTIATOR": {
+      "facets": {
+        "diplomatic": 0.88,
+        "political": 0.85,
+        "communication": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Inverse of NEGOTIATED_TREATY"
+    },
+    "WITNESSED_EVENT": {
+      "facets": {
+        "communication": 0.80,
+        "political": 0.78,
+        "social": 0.75
+      },
+      "default_baseline": 0.78,
+      "note": "Observer role; lower confidence due to indirect evidence"
+    },
+    "WITNESSED_BY": {
+      "facets": {
+        "communication": 0.80,
+        "political": 0.78,
+        "social": 0.75
+      },
+      "default_baseline": 0.78,
+      "note": "Inverse of WITNESSED_EVENT"
+    }
+  },
+  "political_relationships": {
+    "HELD_OFFICE": {
+      "facets": {
+        "political": 0.95,
+        "social": 0.90
+      },
+      "default_baseline": 0.95,
+      "note": "Political offices well-documented (consul, praetor, etc.)"
+    },
+    "ELECTED_TO": {
+      "facets": {
+        "political": 0.92,
+        "social": 0.88
+      },
+      "default_baseline": 0.92,
+      "note": "Electoral victories documented in fasti"
+    },
+    "APPOINTED_TO": {
+      "facets": {
+        "political": 0.90,
+        "social": 0.85
+      },
+      "default_baseline": 0.90,
+      "note": "Appointments (dictator, proconsul)"
+    },
+    "GOVERNED": {
+      "facets": {
+        "political": 0.92,
+        "geographic": 0.90,
+        "military": 0.85
+      },
+      "default_baseline": 0.92,
+      "note": "Provincial governorships well-recorded"
+    }
+  },
+  "military_relationships": {
+    "CONQUERED": {
+      "facets": {
+        "military": 0.92,
+        "political": 0.90,
+        "geographic": 0.88
+      },
+      "default_baseline": 0.90,
+      "note": "Military conquests well-documented"
+    },
+    "DEFEATED": {
+      "facets": {
+        "military": 0.90,
+        "political": 0.88
+      },
+      "default_baseline": 0.90,
+      "note": "Military defeats recorded by victors"
+    },
+    "BESIEGED": {
+      "facets": {
+        "military": 0.88,
+        "political": 0.85
+      },
+      "default_baseline": 0.88,
+      "note": "Siege warfare events"
+    }
+  },
+  "diplomatic_relationships": {
+    "ALLIED_WITH": {
+      "facets": {
+        "diplomatic": 0.90,
+        "political": 0.92,
+        "military": 0.88
+      },
+      "default_baseline": 0.90,
+      "note": "Alliances documented in treaties"
+    },
+    "TREATY_WITH": {
+      "facets": {
+        "diplomatic": 0.95,
+        "political": 0.92
+      },
+      "default_baseline": 0.95,
+      "note": "Formal treaties well-preserved"
+    },
+    "AT_WAR_WITH": {
+      "facets": {
+        "military": 0.92,
+        "diplomatic": 0.90,
+        "political": 0.88
+      },
+      "default_baseline": 0.90,
+      "note": "Wars extensively documented"
+    }
+  },
+  "social_relationships": {
+    "PATRON_OF": {
+      "facets": {
+        "social": 0.85,
+        "economic": 0.82,
+        "political": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Patronage networks; economic for support"
+    },
+    "CLIENT_OF": {
+      "facets": {
+        "social": 0.85,
+        "economic": 0.82,
+        "political": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Inverse of PATRON_OF"
+    },
+    "ENSLAVED_BY": {
+      "facets": {
+        "social": 0.88,
+        "economic": 0.85,
+        "demographic": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Slavery relationships; economic for property aspect"
+    },
+    "FREED_BY": {
+      "facets": {
+        "social": 0.90,
+        "economic": 0.85,
+        "demographic": 0.88
+      },
+      "default_baseline": 0.88,
+      "note": "Manumission; well-documented legal act"
+    }
+  },
+  "intellectual_relationships": {
+    "TAUGHT": {
+      "facets": {
+        "intellectual": 0.88,
+        "social": 0.85,
+        "communication": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Teacher-student relationships"
+    },
+    "STUDIED_UNDER": {
+      "facets": {
+        "intellectual": 0.88,
+        "social": 0.85,
+        "communication": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Inverse of TAUGHT"
+    },
+    "WROTE": {
+      "facets": {
+        "intellectual": 0.92,
+        "communication": 0.90,
+        "artistic": 0.85
+      },
+      "default_baseline": 0.90,
+      "note": "Authorship well-documented"
+    }
+  },
+  "religious_relationships": {
+    "PRIEST_OF": {
+      "facets": {
+        "religious": 0.92,
+        "political": 0.88,
+        "social": 0.85
+      },
+      "default_baseline": 0.90,
+      "note": "Priesthoods recorded in fasti"
+    },
+    "WORSHIPPED_AT": {
+      "facets": {
+        "religious": 0.85,
+        "social": 0.80,
+        "cultural": 0.82
+      },
+      "default_baseline": 0.82,
+      "note": "Religious practices; cultural context"
+    },
+    "DEDICATED_TO": {
+      "facets": {
+        "religious": 0.88,
+        "artistic": 0.85,
+        "cultural": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Temple/monument dedications"
+    }
+  },
+  "economic_relationships": {
+    "TRADED_WITH": {
+      "facets": {
+        "economic": 0.82,
+        "diplomatic": 0.80,
+        "social": 0.75
+      },
+      "default_baseline": 0.80,
+      "note": "Trade relationships; less directly documented"
+    },
+    "OWNED": {
+      "facets": {
+        "economic": 0.85,
+        "social": 0.82,
+        "political": 0.80
+      },
+      "default_baseline": 0.85,
+      "note": "Property ownership"
+    },
+    "INHERITED_FROM": {
+      "facets": {
+        "economic": 0.88,
+        "social": 0.85,
+        "demographic": 0.82
+      },
+      "default_baseline": 0.85,
+      "note": "Inheritance; testamentary evidence"
+    }
+  }
+}

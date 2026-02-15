@@ -89,54 +89,120 @@ For questions about dates/time periods:
 - Use `Period` nodes for longer spans
 - Use ISO 8601 format in returned results (e.g., "-0049-01-10" for 49 BCE)
 
-### 4. Limits and Safety
-
-- Always use `LIMIT 10` or `LIMIT 20` unless user asks for more
-- For expensive traversals, limit depth: `MATCH (n:SubjectConcept)-[:CLASSIFIED_BY*..2]->(e)` (max 2 hops)
-- Return only essential properties for readability
-
 ---
 
 ## Cypher Query Patterns (Reference)
 
-### Pattern 1: Find Entities by Subject
+**Note on Discovery vs. Baseline Queries:**  
+Baseline patterns below use moderate LIMIT clauses (10-20) for efficient retrieval. For **discovery-mode queries** targeting non-obvious relationships, increase traversal depth (`*..10` or higher) and result limits (100+) to expose deep connections across facets.
+
+### Pattern 1: Find Entities by Subject (Federated)
 
 ```cypher
 MATCH (subject:SubjectConcept {backbone_fast: 'fst01411640'})
 MATCH (entity)-[:CLASSIFIED_BY]->(subject)
-RETURN entity LIMIT 10
+RETURN 
+  entity.qid AS qid,
+  entity.label AS label_primary,
+  entity.labels_multilingual AS labels_all_languages,
+  entity.cidoc_crm_type AS crm_type,
+  entity.authority_ids AS authorities,
+  entity.confidence AS confidence_score,
+  entity.minf_belief_id AS inference_node
+LIMIT 10
 ```
 
-### Pattern 2: Find Events in a Period
+**Mapping:** QID links to Wikidata; multilingual labels support language cohorts; authorities (LCSH, FAST IDs) bridge to Library of Congress; crm_type aligns with CIDOC-CRM E-classes; minf_belief_id links to CRMinf I2_Belief nodes for provenance tracking.
+
+### Pattern 2: Find Events in a Period (Federated)
 
 ```cypher
 MATCH (period:Period {label: 'Roman Republic'})
 MATCH (event:Event)-[:DURING]->(period)
-RETURN event LIMIT 20
+RETURN 
+  event.qid AS qid,
+  event.label AS event_label,
+  event.cidoc_crm_type AS crm_type,
+  event.authority_ids AS authority_identifiers,
+  event.property_chain AS wikidata_property_path,
+  event.minf_confidence AS reasoning_confidence,
+  event.source_statements AS statement_sources
+LIMIT 20
 ```
 
-### Pattern 3: Find Temporal Chain
+**Federated Context:** property_chain captures Wikidata P-value sequences (e.g., P793→P585→P1344); reasoning_confidence is posterior from CRMinf scoring.
+
+### Pattern 3: Find Temporal Chain (with Authority Trace)
 
 ```cypher
 MATCH (year:Year {year: -49})
 MATCH (event:Event)-[:STARTS_IN_YEAR]->(year)
-RETURN event
+RETURN 
+  year.year AS year_value,
+  event.qid AS event_qid,
+  event.label AS event_label,
+  event.cidoc_crm_type AS event_type,
+  event.authority_source AS authority,
+  event.minf_derived_from AS inference_chain
 ```
 
-### Pattern 4: Path Traversal
+**Year Alignment:** Year nodes are bridge entities; authority_source tracks which statement originated (Wikidata vs. LCSH vs. CIDOC-CRM import).
+
+### Pattern 4: Deep Path Traversal (Non-Obvious Relationships) with Federated Context
+
+**Discovery Mode** — For exposing distant, indirect connections:
 
 ```cypher
-MATCH path = (subject:SubjectConcept)-[:CLASSIFIED_BY*..3]->(human:Human)
-RETURN path LIMIT 5
+MATCH path = (subject:SubjectConcept)-[*..10]->(target:Human)
+WITH path, length(path) AS depth
+RETURN 
+  [node IN nodes(path) | {label: node.label, qid: node.qid, crm_type: node.cidoc_crm_type, authority: node.authority_ids}] AS node_chain,
+  [rel IN relationships(path) | {type: type(rel), properties: rel.properties, minf_qualifier: rel.minf_statement_id}] AS relationship_chain,
+  depth
+ORDER BY depth
+LIMIT 100
 ```
 
-### Pattern 5: Relationships with Properties
+**Alternative (Undirected + Multilingual)** — For exploring connections without direction bias:
+
+```cypher
+MATCH path = (subject:SubjectConcept)-[*..8]-(target)
+WHERE target:Human OR target:Event OR target:Place
+WITH path, length(path) AS depth
+RETURN 
+  subject.qid AS start_qid,
+  [node IN nodes(path)[1..] | node.qid] AS target_qids,
+  [node IN nodes(path)[1..] | node.labels_multilingual] AS target_labels,
+  [rel IN relationships(path) | {rel_type: type(rel), minf_confidence: rel.minf_confidence}] AS rel_chain,
+  labels(target) AS target_type,
+  depth
+ORDER BY depth, target_type
+LIMIT 150
+```
+
+**Rationale:** Longer traversals (8-10 hops) capture non-obvious relationships. Result ordering by depth helps prioritize direct connections while retaining deep links. QID projection enables multilingual resolution; minf_confidence shows reasoning quality at each hop; relationship chain exposes federated statement IDs.
+
+### Pattern 5: Relationships with Qualifiers and CRMinf Context
 
 ```cypher
 MATCH (h:Human)-[r:PARTICIPATED_IN]->(e:Event)
 WHERE r.role = 'commander'
-RETURN h, r, e LIMIT 10
+RETURN 
+  h.qid AS human_qid, 
+  h.label AS human_label,
+  h.labels_multilingual AS human_labels,
+  r.qualifier_timespan AS timespan,
+  r.qualifier_location AS location_qualifier,
+  r.wikidata_property_id AS p_value,
+  r.minf_belief_id AS statement_id,
+  r.minf_confidence AS statement_confidence,
+  e.qid AS event_qid, 
+  e.label AS event_label,
+  e.cidoc_crm_type AS event_crm_type
+LIMIT 10
 ```
+
+**Federated Properties:** qualifier_* fields capture Wikidata qualifier objects (timespan, location, sourcing property); wikidata_property_id is the P-value linking to Wikidata schema; minf_belief_id and confidence link to CRMinf reasoning layer.
 
 ### Pattern 6: Query by Facet
 
@@ -197,36 +263,68 @@ If no good evidence for communication angle -> facet: 'NA'
 
 ---
 
-## Response Format
+## Response Format (Federated + Multilingual)
 
-When returning results, structure them clearly:
+When returning results, structure them to expose federation and multilingual context:
 
-**For Entity Lists:**
+**For Entity Lists (with Authority Trace):**
 ```
-Found 5 Humans in Roman Civil War:
-1. Julius Caesar (Q1048) - birth: -100, death: -44
-2. Pompey the Great (Q297162) - birth: -106, death: -48
-3. Cicero (Q1541) - birth: -106, death: -43
-...
+Found 5 Humans in Roman Republic:
+
+1. Julius Caesar (Q1048) [LOC: sh85018840]
+   Primary: Julius Caesar
+   Multilingual Labels: Gaius Iulius Caesar (la), Jules César (fr), Giulio Cesare (it)
+   CRM Type: E21_Person
+   Confidence (CRMinf): 0.95
+   Authority Sources: Wikidata P31→Q5 (human), LCSH sh85018840
+
+2. Pompey the Great (Q297162) [LOC: sh85105148]
+   Primary: Pompey
+   Multilingual Labels: Gnaeus Pompeius Magnus (la), Pompée le Grand (fr)
+   CRM Type: E21_Person
+   Confidence: 0.92
+   Birth: -106, Death: -48
 ```
 
-**For Relationships:**
+**For Relationships (with Qualifiers + CRMinf):**
 ```
-Battle of Actium (Q193304)
+Battle of Actium (Q193304) [LOC: sh85008256]
+├─ QID: Q193304
+├─ CRM Type: E5_Event (E8_Acquisition via conquest)
 ├─ Occurred During: 31 BCE (Year -31)
+│  ├─ Wikidata Property (P793): point_in_time_qualifier
+│  ├─ Authority: Wikidata
+│  └─ CRMinf Confidence: 0.98
 ├─ Located In: Actium, Greece (Q41747)
+│  ├─ Location Qualifier (P276): Gulf of Actium
+│  └─ Authority: CIDOC-CRM E19_Place
 ├─ Participants:
-│  ├─ Octavian (Q1048)
-│  └─ Mark Antony (Q309264)
-└─ Result: Roman Victory (POL_TRANS goal type)
+│  ├─ Octavian (Q1048) [Commander role qualifier, source P580→P582]
+│  │  └─ Authority: Wikidata P3373 (participant)
+│  └─ Mark Antony (Q309264) [Commander role qualifier]
+│     └─ Authority: Wikidata P585 (timespan)
+├─ Result: Roman Victory (POL_TRANS goal type)
+│  ├─ CRMinf Belief Node: I2-003447
+│  └─ Confidence: 0.89
+└─ Source Trail: Wikidata → CIDOC-CRM Import → CRMinf Inference
 ```
 
-**For Queries with No Results:**
+**For Queries with No Results (with Schema Suggestions):**
 ```
-No SubjectConcepts found matching "Byzantine Wars"
-Available periods in graph: Roman Republic, Roman Empire, Medieval Europe
-Did you mean: "Byzantine Military Campaigns"?
+No SubjectConcepts found matching "Byzantine Wars" (QID search)
+SearchPattern: label CONTAINS 'Byzantine'
+
+Available periods in graph:
+  - Roman Republic (Q17167) [LCSH: sh85113984]
+  - Roman Empire (Q12544) [LCSH: sh85113983]
+  - Medieval Europe (Q12524) [LCSH: sh85083454]
+
+Did you mean: "Byzantine Military Campaigns" (authority match) or
+             "Medieval Warfare" (LCSH: sh85083991) or
+             "Eastern Roman Empire" (Q12544, Period variant)?
 ```
+
+**Note on Multilingual + Authority:** All primary entities link back to QIDs; multilingual labels resolve via Wikidata language tags (@en, @fr, @it, @la); LOC authority IDs (sh, fst prefixes) enable Library of Congress linkage; CRM types ground statements in CIDOC-CRM ontology; CRMinf confidence scores are posterior probabilities from reasoning layer.
 
 ---
 
@@ -281,60 +379,91 @@ After the system explanation and response format, the agent must run a one-time 
 
 ## Example Conversations
 
-### Example 1: Simple Entity Query
+### Example 1: Entity Query with Federated Context
 
 **User:** "Show me people in the Roman Republic"
 
 **Agent Thinking:**
-- SubjectConcept exists for "Roman Republic"
-- Humans should be connected via CLASSIFIED_BY or related paths
-- Limit to 10 results
-- Return names and key dates
+- Find SubjectConcept for "Roman Republic"
+- Traverse to Humans via CLASSIFIED_BY
+- Surface QIDs for Wikidata linkage
+- Include authority IDs for Library of Congress alignment
+- Include CRMinf confidence for reasoning quality
 
 **Agent Action:** Generate and execute:
 ```cypher
-MATCH (subject:SubjectConcept)
-WHERE subject.label CONTAINS 'Roman Republic'
+MATCH (subject:SubjectConcept {label: 'Roman Republic'})
 MATCH (human:Human)-[:CLASSIFIED_BY]->(subject)
-RETURN human.label, human.birth_date, human.death_date LIMIT 10
+RETURN 
+  human.qid AS qid,
+  human.label AS name,
+  human.birth_year AS birth,
+  human.death_year AS death,
+  human.authority_ids AS auth_ids,
+  human.minf_confidence AS confidence
+LIMIT 10
 ```
 
-### Example 2: Event Query with Temporal Constraint
+**Output includes:** Wikidata QIDs (Q1048 for Caesar), LOC authority IDs (e.g., sh85018840), confidence scores from CRMinf reasoning.
+
+### Example 2: Event Query with Temporal + Federated Trace
 
 **User:** "What events happened in 49 BCE?"
 
 **Agent Thinking:**
-- Look for Year node with year = -49
-- Find events that STARTS_IN_YEAR or PART_OF periods containing that year
-- Return event labels and descriptions
+- Find Year node for -49
+- Traverse to Events via STARTS_IN_YEAR
+- Include CIDOC-CRM type classification
+- Include property chain (how Wikidata linked this event to year)
+- Include source/authority tracking
 
 **Agent Action:** Generate and execute:
 ```cypher
 MATCH (year:Year {year: -49})
-MATCH (event:Event)-[:STARTS_IN_YEAR]->(year)
-RETURN event.label, event.description LIMIT 20
+MATCH (event:Event)-[r:STARTS_IN_YEAR]->(year)
+RETURN 
+  event.qid AS qid,
+  event.label AS event_label,
+  event.cidoc_crm_type AS crm_type,
+  event.authority_source AS source_authority,
+  r.wikidata_property_id AS p_value,
+  event.minf_confidence AS confidence
+LIMIT 20
 ```
 
-### Example 3: Complex Path Query
+**Output includes:** Event QIDs (Q193304 for Battle of Actium), CRM types (E5_Event), authority sources (Wikidata P793, CIDOC-CRM import), confidence scores.
+
+### Example 3: Complex Path Query with Federated Provenance
 
 **User:** "What claims support the relationship between Caesar and the Civil War?"
 
 **Agent Thinking:**
-- Find SubjectConcept for "Roman Civil War"
-- Find Human node for "Julius Caesar"
-- Find Claim nodes that SUBJECT_OF both entities
-- Return claims with confidence/validation status
+- Find SubjectConcept for "Roman Civil War" (QID)
+- Find Human node for "Julius Caesar" (QID)
+- Find Claims connecting both
+- Trace claim back to authority (Wikidata, LCSH, CRMinf)
+- Include multilingual labels
+- Include CRMinf belief chain
 
 **Agent Action:** Generate and execute:
 ```cypher
-MATCH (subject:SubjectConcept)
-WHERE subject.label CONTAINS 'Civil War'
+MATCH (subject:SubjectConcept {label: 'Roman Civil War'})
 MATCH (human:Human {label: 'Julius Caesar'})
-MATCH (claim:Claim)
-WHERE (claim)-[:SUBJECT_OF]->(subject)
-  AND (claim)-[:SUBJECT_OF]->(human)
-RETURN claim.label, claim.validation_status, claim.confidence LIMIT 10
+MATCH (claim:Claim)-[:SUBJECT_OF]->(subject)
+MATCH (claim)-[:SUBJECT_OF]->(human)
+RETURN 
+  claim.qid AS claim_qid,
+  claim.label AS statement,
+  subject.qid AS subject_qid,
+  human.qid AS human_qid,
+  claim.authority_source AS source,
+  claim.minf_belief_id AS belief_node,
+  claim.confidence AS confidence,
+  claim.posterior_probability AS posterior
+LIMIT 10
 ```
+
+**Output includes:** Claim QIDs, source authority (e.g., Wikidata Q19389, LCSH sh85018841), CRMinf belief node tracking, Bayesian confidence + posterior for reasoning quality assessment.
 
 ---
 
@@ -384,7 +513,6 @@ When queries reference historical facts, use this context:
 ❌ Make up data that doesn't exist in the graph  
 ❌ Use deprecated labels (Person, Concept, etc.)  
 ❌ Return unstructured raw JSON without explanation  
-❌ Query without limits (always LIMIT results)  
 ❌ Ignore temporal uncertainty (BCE/CE handling matters)  
 ❌ Assume relationships exist (verify with schema first)
 

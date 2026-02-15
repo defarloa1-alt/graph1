@@ -23,6 +23,109 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-14 23:50 | Phase 1 Final: Custom GPT Knowledge Base + Deduplication
+# ==============================================================================
+# Category: Docs, Integration, Capability
+# Summary: Created comprehensive knowledge base for ChatGPT Custom GPT deployment; added deduplication workflow to prevent duplicate edges
+# Files (NEW):
+#   - KNOWLEDGE_BASE_INDEX.md (NEW) - Navigation index for all 8 knowledge base files + custom instructions
+#   - QUICK_START.md (UPDATED) - Added 360-line Deduplication Workflow section with Cypher patterns
+#   - AGENT_EXAMPLES.md (UPDATED) - Added Examples 12a & 12b showing deduplication + conflict resolution
+# Files (READY FOR UPLOAD):
+#   - SCHEMA_REFERENCE.md (1,200 lines)
+#   - AGENT_EXAMPLES.md (1,650+ lines, now with deduplication examples)
+#   - QUICK_START.md (600+ lines, now with deduplication workflow)
+#   - RELATIONSHIP_TYPES_SAMPLE.md (900 lines)
+#   - role_qualifier_reference.json (700 lines)
+#   - relationship_facet_baselines.json (400 lines)
+#   - PHASE_1_DECISIONS_LOCKED.md (250 lines)
+#   - ARCHITECTURE_OPTIMIZATION_REVIEW.md (4,500 lines)
+# Reason: 
+#   1. Support deployment to ChatGPT Custom GPT (agents need comprehensive reference)
+#   2. Prevent duplicate edges (critical gap identified in agent workflow)
+#   3. Document deduplication + Bayesian reconciliation patterns
+#   4. Support conflict detection (temporal disagreements, source conflicts)
+# Changes:
+#   1. Deduplication Workflow:
+#      - Query pattern: Check existing claim by (source QID, relationship type, target QID, facet, temporal context)
+#      - Decision logic: Merge if exists, create if not
+#      - Bayesian merging: (prior + new) / 2 * agreement_factor
+#      - Authority reconciliation: Append new authority source to authority_ids JSON
+#      - Conflict handling: Flag high-magnitude conflicts (temporal delta > 0), escalate to human review
+#   2. Examples 12a & 12b:
+#      - 12a: Shows merging same claim from two agreeing sources (Wikidata 0.95 + Wikipedia 0.92 → 0.93 posterior)
+#      - 12b: Shows conflict detection (DIED_AT -44 vs -43, flags for review, posterior drops to 0.205)
+#   3. KNOWLEDGE_BASE_INDEX.md:
+#      - Complete navigation guide for all 8 files
+#      - File descriptions (size, purpose, when to use)
+#      - Upload checklist + custom instructions for ChatGPT
+#      - Quick reference table (Question → File + Section)
+# Promotion Rule (Unchanged):
+#   - Universal: IF confidence >= 0.90 AND posterior >= 0.90 THEN promoted = true
+#   - Fallacies: Flagged with intensity (HIGH/LOW), never block promotion
+# Next Steps:
+#   - Upload 8 files to ChatGPT Custom GPT knowledge base
+#   - Use KNOWLEDGE_BASE_INDEX.md and custom instructions as reference
+#   - Test agent in ChatGPT; agents should now deduplicate automatically
+
+# ==============================================================================
+# 2026-02-14 23:45 | Phase 1: Genealogy & Participation Implementation
+# ==============================================================================
+# Category: Architecture, Capability, Schema
+# Summary: Implemented Phase 1 genealogy/participation support with LLM-assisted QID resolution, dynamic role validation, and per-facet confidence baselines
+# Files:
+#   - Relationships/role_qualifier_reference.json (NEW)
+#   - Relationships/relationship_facet_baselines.json (NEW)
+#   - Relationships/relationship_types_registry_master.csv (EXTENDED +10 rows)
+#   - scripts/tools/claim_ingestion_pipeline.py (EXTENDED +400 lines)
+#   - PHASE_1_DECISIONS_LOCKED.md (NEW)
+#   - PHASE_1_GENEALOGY_PARTICIPATION.md (NEW)
+# Reason: Enable genealogical modeling and event participation tracking for historical entities (e.g., Roman figures)
+# Changes:
+#   1. QID Resolution (Decision 1):
+#      - Added QIDResolver class with LLM-assisted Wikidata search
+#      - Supports provisional local QIDs (local_entity_{hash}) for entities without Wikidata matches
+#      - Context-aware scoring: temporal alignment, role match, gens match
+#      - Falls back gracefully when Wikidata unavailable or confidence too low
+#   2. Role Validation (Decision 3):
+#      - Added RoleValidator class with canonical role registry (70+ roles)
+#      - Supports exact match, alias match, and LLM fuzzy match
+#      - Registry maps roles to Wikidata P-values and CIDOC-CRM types
+#      - 10 categories: military, diplomatic, political, religious, intellectual, social, economic, communication, genealogical
+#      - Prevents role invention while supporting natural language inputs ("leading forces" → "commander")
+#   3. Per-Facet Confidence Baselines (Decision 2):
+#      - Created relationship_facet_baselines.json with per-facet confidence overrides
+#      - Example: SPOUSE_OF political=0.92, social=0.90, demographic=0.88
+#      - Supports context-aware confidence boosting based on facet
+#   4. Missing Relationships Added (5 + inverses):
+#      - PARTICIPATED_IN / HAD_PARTICIPANT (P710)
+#      - DIED_AT / DEATH_LOCATION (P1120)
+#      - MEMBER_OF_GENS / HAS_GENS_MEMBER (P53)
+#      - NEGOTIATED_TREATY / TREATY_NEGOTIATOR (P3342)
+#      - WITNESSED_EVENT / WITNESSED_BY (P1441)
+#   5. CRMinf Tracking (Decision 4 - Phase 1 Scope):
+#      - Deferred full CIDOC-CRM alignment to Phase 2
+#      - CRMinf belief tracking (minf_belief_id) ready for implementation
+# Key Design Decisions (PHASE_1_DECISIONS_LOCKED.md):
+#   - Option D: LLM-assisted QID resolution with provisional fallback (not hard requirement)
+#   - Option B: Per-facet confidence baselines (nuanced promotion)
+#   - Option A + Dynamic: Edge properties for roles + canonical registry with LLM fuzzy match
+#   - CRMinf now, CIDOC later: Minimizes complexity while enabling reasoning provenance
+# Next Steps (Phase 2):
+#   - Implement Wikidata API integration for QID resolver
+#   - Implement LLM semantic matching for role validator
+#   - Add CIDOC-CRM class mappings to relationships
+#   - Expand role registry dynamically from Wikidata P410/P39
+#   - Test with Caesar-Brutus genealogical cluster
+# Notes:
+#   - Audit discovered 24 genealogy relationships ALREADY in CSV (better than expected)
+#   - Phase 1 adds only 5 missing relationships (not rebuilding from scratch)
+#   - Role qualifier reference has 70+ roles covering most historical contexts
+#   - Relationship CSV now 312 rows (was 302)
+#   - QIDResolver and RoleValidator are Phase 1 stubs; Phase 2 will integrate full LLM/API
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-14 22:50 | Fischer Fallacy Flagging (Flag-Only, No Hard Blocks)
 # ==============================================================================
 # Category: Architecture, Policy Change
