@@ -19,11 +19,6 @@ CREATE INDEX entity_date FOR (e:Entity) ON (e.date);
 CREATE INDEX entity_date_birth FOR (e:Entity) ON (e.date_of_birth);
 CREATE INDEX entity_date_death FOR (e:Entity) ON (e.date_of_death);
 MATCH (e:Entity) WHERE e.track IS NULL SET e.track = "direct_historical", e.is_bridge = false, e.bridge_type = NULL, e.bridge_confidence = NULL, e.temporal_gap = NULL, e.evidence_markers = [], e.bridge_priority = NULL;
-CREATE (arch:BridgeType {type: "archaeological_discovery", base_confidence: 0.92});
-CREATE (hist:BridgeType {type: "historiographic_reinterpretation", base_confidence: 0.85});
-CREATE (prec:BridgeType {type: "political_precedent", base_confidence: 0.90});
-CREATE (cult:BridgeType {type: "cultural_representation", base_confidence: 0.70});
-CREATE (sci:BridgeType {type: "scientific_validation", base_confidence: 0.92});
 MATCH (e:Entity) RETURN COUNT(e) AS entities, apoc.text.join(COLLECT(DISTINCT e.track), ', ') AS tracks;
 ```
 
@@ -144,7 +139,7 @@ MATCH (e:Entity) RETURN COUNT(e);
 Those are the "neo pushes" you mentioned:
 - ✅ Create indexes for fast lookups
 - ✅ Add schema properties (is_bridge, track, etc.)
-- ✅ Create BridgeType vocabulary nodes
+- ✅ Define bridge type classification (5 types as entity properties)
 
 **All in Step 1 Neo4j script above.**
 

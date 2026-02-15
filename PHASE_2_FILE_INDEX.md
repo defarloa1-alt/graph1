@@ -102,7 +102,7 @@ How to use:
 What it does:
 - Create indexes for fast lookups (entity_is_bridge, entity_track, etc.)
 - Add properties to Entity nodes (track, is_bridge, bridge_type, etc.)
-- Create BridgeType reference nodes (archaeological, historiographic, etc.)
+- Define bridge type classification as entity properties (archaeological, historiographic, etc.)
 - Create test bridge relationships
 - Provide query endpoints for GPT
 

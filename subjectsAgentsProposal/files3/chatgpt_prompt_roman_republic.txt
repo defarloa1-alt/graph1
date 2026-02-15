@@ -1,0 +1,102 @@
+You are an expert on the Roman Republic (509-27 BC). You have deep knowledge across all aspects: military, political, social, economic, diplomatic, religious, legal, literary, cultural, technological, agricultural, artistic, philosophical, scientific, geographic, and biographical.
+
+Your task is to generate 25-30 historically significant claims about the Roman Republic. These claims should:
+
+1. Be SPECIFIC to the Roman Republic
+2. Be HISTORICALLY ACCURATE and significant
+3. Include EVIDENCE (source reference)
+4. Cite an AUTHORITY when applicable (LCSH ID, LCC code, Wikidata QID, or scholarly source)
+5. Assign a CONFIDENCE score (0.0-1.0)
+6. Be tagged with relevant facet(s) - claims can have multiple facets
+
+IMPORTANT: 
+- Generate claims NATURALLY based on historical importance
+- Some facets will have many claims (Military, Political likely 5-8 each)
+- Some facets may have few or even ZERO claims (this is OK!)
+- Don't force yourself to generate a claim for every facet
+- Focus on the most important/well-documented aspects of Roman Republic
+
+THE 17 AVAILABLE FACETS (for tagging claims):
+1. Military
+2. Political  
+3. Social
+4. Economic
+5. Diplomatic
+6. Religious
+7. Legal
+8. Literary
+9. Cultural
+10. Technological
+11. Agricultural
+12. Artistic
+13. Philosophical
+14. Scientific
+15. Geographic
+16. Biographical
+17. Communication (meta-facet: how information was transmitted)
+
+For each claim, return a JSON object with this structure:
+
+{
+  "claim_text": "The Roman legion's maniple formation, adopted during the Samnite Wars, provided tactical flexibility superior to the earlier phalanx system.",
+  "primary_facet": "Military",
+  "related_facets": ["Political", "Technological"],
+  "evidence": {
+    "source_type": "scholarly_consensus",
+    "source_text": "The transition from phalanx to manipular legion occurred circa 315 BC, as documented in Livy's Ab Urbe Condita and confirmed by archaeological evidence from Samnite War battlefields.",
+    "authority": {
+      "type": "LCSH",
+      "id": "sh85080392",
+      "label": "Maniple (Military science)"
+    }
+  },
+  "confidence": 0.92,
+  "temporal": {
+    "start_year": -315,
+    "end_year": -107,
+    "period": "Middle Republic"
+  }
+}
+
+CRITICAL RULES:
+- Generate 25-30 claims total (NOT one per facet)
+- Claims should be historically significant and well-documented
+- Tag each claim with primary_facet (the main focus) and related_facets (0 or more)
+- It's OK if some facets have zero claims - focus on what's historically important
+- Military and Political will likely have the most claims (5-8 each)
+- Evidence must be REAL (verifiable sources)
+- Authorities can be LCSH IDs, LCC codes, or Wikidata QIDs - use real IDs when you know them, otherwise omit the authority field
+- Confidence scoring:
+  * 0.90-0.98: Well-attested facts
+  * 0.80-0.89: Scholarly consensus
+  * 0.60-0.79: Debated topics
+  * 0.40-0.59: Speculative
+- Communication facet analyzes HOW information was transmitted
+- Use negative years for BC dates (e.g., -264 for 264 BC)
+
+Return the complete output as a single JSON object with this structure:
+
+{
+  "subject": {
+    "subject_id": "chrystallum:roman_republic",
+    "label": "Roman Republic",
+    "temporal": {
+      "start_year": -509,
+      "end_year": -27,
+      "period_label": "Roman Republic"
+    }
+  },
+  "claims": [
+    { ... claim 1 ... },
+    { ... claim 2 ... },
+    ... 25-30 total claims ...
+  ],
+  "metadata": {
+    "generated_by": "ChatGPT-4",
+    "timestamp": "2026-02-15T12:00:00Z",
+    "agent_version": "smoke_test_v2",
+    "total_claims": 27
+  }
+}
+
+Generate 25-30 historically significant claims now, distributed naturally across facets based on importance and documentation.

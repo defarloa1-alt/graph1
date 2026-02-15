@@ -1,0 +1,104 @@
+cidoc_class,wikidata_qid,wikidata_property,mapping_type,confidence,notes,chrystallum_fallback
+E1_CRM_Entity,Q35120,,Direct,High,Top-level ontology class - implicit in all Wikidata items,Use Entity base class
+E2_Temporal_Entity,Q1190554,,Approximate,Medium,Wikidata Q1190554 (occurrence) is narrower than CRM Temporal Entity,Use Event with temporal properties
+E4_Period,Q11514315,P2348,Composite,Medium,Use QID + P2348 (time period) property,Create Period node with facets
+E5_Event,Q1656682,P31,Direct,High,Direct mapping to Wikidata event concept,Use Event entity type
+E7_Activity,Q1914636,P31,Direct,High,Intentional actions map directly,Use Event with activity subtype
+E8_Acquisition,Q185363,P580,Composite,Medium,Use P580 start time + acquisition context,Store as Event with ACQUISITION facet
+E9_Move,Q79030,P582+P276,Composite,Medium,Combine end time + location for movement events,Use Event with TRANSPORT facet
+E10_Transfer_of_Custody,Q2235114,P580,Composite,Low,No direct Wikidata equivalent for custody concept,Store as Claim with custody_change type
+E11_Modification,Q1150070,P580,Composite,Medium,Alterations to objects - use temporal qualifier,Use Event with MODIFICATION facet
+E12_Production,Q739302,P571,Composite,High,Map to inception date + production context,Use Event with PRODUCTION facet
+E13_Attribute_Assignment,,,Custom,High,**CRITICAL: No Wikidata equivalent** - use P1480 sourcing circumstances as partial,**Chrystallum Claim node with provenance**
+E18_Physical_Thing,Q223557,,Direct,High,Physical objects concept maps directly,Use Entity with physical=True
+E19_Physical_Object,Q488383,P31,Direct,High,Movable physical objects,Use Artifact entity type
+E21_Person,Q5,P31,Direct,High,Individual humans - perfect mapping,Use Human entity type
+E22_Human_Made_Object,Q16887380,P31,Direct,High,Artifacts and human-created objects,Use Artifact entity type
+E24_Physical_Human_Made_Thing,,,Approximate,Medium,Superclass with no direct Wikidata equivalent,Use Artifact with subtype qualifiers
+E25_Human_Made_Feature,Q811430,P31,Approximate,Medium,Buildings/roads/walls - partial overlap with construction,Use Place with feature_type property
+E26_Physical_Feature,Q33837,P31,Approximate,Medium,Natural landforms,Use Place with natural=True
+E27_Site,Q839954,P31,Direct,High,Archaeological sites map directly,Use Place with site_type property
+E28_Conceptual_Object,Q151885,,Approximate,Low,Abstract concepts - very broad mapping,Use SubjectConcept entity type
+E31_Document,Q49848,P31,Direct,High,Written records map directly,Use CreativeWork entity type
+E33_Linguistic_Object,Q17537576,P31,Approximate,Medium,Creative works approximate linguistic objects,Use CreativeWork with language properties
+E35_Title,Q3409032,P1476,Composite,High,Use P1476 (title) property with QID context,Store in Entity.label with title_type
+E36_Visual_Item,Q3305213,P18,Composite,Medium,Images/depictions - use P18 image property,Use CreativeWork with visual subtype
+E39_Actor,Q24229398,,Approximate,Medium,Agents (people/groups) - Wikidata concept is narrower,Use Human OR Organization based on context
+E41_Appellation,Q82799,P2561,Composite,High,Names - use P2561 name property,Store in Entity.label with appellation_type
+E42_Identifier,Q6545185,P1545,Composite,Medium,Catalog numbers/IDs - P1545 series ordinal,Store in Entity.entity_id with id_type
+E52_Time_Span,,,None,High,Not standalone item in Wikidata - use P580/P582 qualifiers only,Use temporal properties on relationships
+E53_Place,Q82794,P276,Direct,High,Geographic regions map directly,**Use Place entity OR PlaceVersion for temporal**
+E55_Type,Q28777,P31,Direct,High,Classification types - use P31 instance of NOT P279,Use SubjectConcept with type_hierarchy
+E63_Beginning_of_Existence,Q14623204,P571,Composite,High,Birth/creation/formation events - use inception,Use Event with CREATION facet
+E64_End_of_Existence,Q12769393,P576,Composite,High,Death/destruction events - use dissolved/abolished,Use Event with DESTRUCTION facet
+E65_Creation,Q386724,P170+P571,Composite,High,Conceptual creation - combine creator + inception,Use Event with CREATION facet + creator
+E67_Birth,Q3950,P569,Direct,High,Person birth - direct mapping to date of birth,Use Event with BIRTH facet
+E69_Death,Q4,P570,Direct,High,Person death - direct mapping to date of death,Use Event with DEATH facet
+E6_Destruction,Q18669875,P582+P1120,Composite,Medium,Destruction of objects/buildings with casualties,Use Event with DESTRUCTION facet
+E73_Information_Object,Q11028,,Approximate,Low,Information concept very broad in Wikidata,Use CreativeWork or Claim based on context
+E74_Group,Q16334295,P31,Direct,High,Groups of humans - organizations/families,Use Organization entity type
+E77_Persistent_Item,,,None,High,Abstract superclass - not needed in Wikidata,Use appropriate subclass (Person/Thing/Concept)
+I1_Argumentation,,,Custom,High,**CRMinf: No Wikidata equivalent**,**Chrystallum MultiAgentDebate OR Claim cluster**
+I2_Belief,,,Custom,High,**CRMinf: No Wikidata equivalent**,**Chrystallum Claim node with confidence**
+I4_Proposition_Set,,,Custom,High,**CRMinf: Multiple related beliefs**,**Chrystallum Claim cluster with shared context**
+I5_Inference_Making,Q1643989,,Custom,High,**CRMinf: Inference process - partial overlap**,**Chrystallum MultiAgentDebate engine**
+I6_Belief_Value,,,Custom,High,**CRMinf: Confidence score - use P1480 partially**,**Chrystallum Claim.confidence (0.0-1.0)**
+I7_Belief_Adoption,,,Custom,Medium,**CRMinf: Accepting claim after validation**,**Chrystallum Claim status transition to FACT**
+I10_Provenance_Statement,,P1343,Custom,Medium,**CRMinf: Evidence provenance - P1343 partial**,**Chrystallum Claim.source_provenance chain**
+P1_is_identified_by,,P1476|P2561,Composite,High,Context-dependent: P1476 for titles P2561 for names,Use Entity.label with appellation_type
+P2_has_type,,P31,Direct,High,Classification using instance of,Store in Entity.type
+P4_has_time_span,,P580+P582,Composite,High,Use start time + end time properties,Store in temporal properties on node/relationship
+P7_took_place_at,,P276,Direct,High,Event location,Use OCCURRED_AT relationship with P276 mapping
+P9_consists_of,,,,Low,Temporal decomposition - no direct property,Use temporal qualifiers on relationships
+P10_falls_within,,,None,Medium,Period containment - use temporal overlap logic,Calculate from temporal bounds
+P11_had_participant,,P710,Direct,High,General participation in events,Use HAS_PARTICIPANT relationship
+P14_carried_out_by,,P170|P1640,Composite,High,Context-dependent: P170 creator P1640 curator,Use CARRIED_OUT_BY with context
+P15_was_influenced_by,,P737,Direct,High,Influences on activity,Use INFLUENCED_BY relationship
+P16_used_specific_object,,P518,Approximate,Medium,Tool usage - P518 applies to part is partial,Store as USED_TOOL relationship with qualifiers
+P17_was_motivated_by,,P828,Approximate,Medium,Motivation - P828 has cause is close,Use MOTIVATED_BY relationship
+P22_transferred_title_to,,P1830+P580,Composite,Medium,Ownership transfer - use P1830 owner + start time,Store as TRANSFERRED_TO with temporal
+P23_transferred_title_from,,P1830+P582,Composite,Medium,Previous owner - use P1830 owner + end time,Store as TRANSFERRED_FROM with temporal
+P31_has_modified,,,Composite,Medium,Object modification - combine P31 + sourcing circumstances,Use MODIFIED relationship with confidence
+P32_used_general_technique,,P2079,Approximate,Medium,Technique/method - P2079 fabrication method partial,Store as USED_TECHNIQUE relationship
+P33_used_specific_technique,,P2079,Approximate,Medium,Specific technique,Store as USED_TECHNIQUE with specificity qualifier
+P46_is_composed_of,,P527,Direct,High,Physical parts - has part property,Use HAS_PART relationship
+P48_has_preferred_identifier,,P528,Direct,High,Preferred ID in catalog system,Store in Entity.entity_id with preferred=True
+P49_has_former_or_current_keeper,,P485,Approximate,Medium,Custodianship - P485 archives at is partial,Use KEPT_BY relationship with temporal
+P51_has_former_or_current_owner,,P127,Direct,High,Ownership relationship,Use OWNED_BY relationship with temporal
+P53_has_former_or_current_location,,P276+P580/P582,Composite,High,Object location with temporal qualifiers,Use LOCATED_AT with temporal bounds
+P54_has_current_permanent_location,,P276,Direct,High,Current location without temporal qualifier,Use LOCATED_AT with current=True
+P55_has_current_location,,P276,Approximate,Medium,Temporary location - may change,Use LOCATED_AT with temporary=True
+P56_bears_feature,,P1299,Approximate,Low,Features on objects - depicted by is weak mapping,Store as HAS_FEATURE relationship
+P62_depicts,,P180,Direct,High,Visual representation of subject,Use DEPICTS relationship
+P65_shows_visual_item,,P18,Direct,High,Image of physical thing,Store as Entity.image_url with P18 property
+P67_refers_to,,P921,Approximate,Medium,Subject matter - main subject is narrower,Use REFERS_TO relationship
+P68_foresees_use_of,,P366,Approximate,Medium,Intended purpose - has use property,Store as HAS_PURPOSE relationship
+P70_documents,,P1343,Direct,High,Documentary reference,Use DOCUMENTED_IN relationship
+P74_has_current_or_former_residence,,P551,Direct,High,Person residence with temporal,Use RESIDED_AT relationship with temporal
+P81_ongoing_throughout,,P585,Direct,High,Specific point in time,Use temporal.point_in_time property
+P82_at_some_time_within,,P585,Approximate,Medium,Approximate dating - use P585 with qualifier uncertainty,Use temporal.circa with confidence reduction
+P86_falls_within,,,None,Medium,Temporal containment - calculate from bounds,Use temporal overlap queries
+P87_is_identified_by,,P625,Direct,High,Geographic coordinates for places,Store in Place.coordinates with P625
+P89_falls_within,,P131,Direct,High,Administrative territorial containment,Use LOCATED_IN_ADMIN relationship
+P92_brought_into_existence,,P571,Direct,High,Generic creation/inception,Use CREATED relationship with P571
+P94_has_created,,P170+P571,Composite,High,Conceptual creation with creator + date,Use CREATED_BY relationship with temporal
+P95_has_formed,,P571+P112,Composite,High,Group formation with founder,Use FORMED_BY relationship with temporal
+P96_by_mother,,P25,Direct,High,Birth mother relationship,Use BORN_FROM_MOTHER relationship
+P97_from_father,,P22,Direct,High,Birth father relationship,Use BORN_FROM_FATHER relationship
+P106_is_composed_of,,P527,Direct,High,Conceptual parts,Use HAS_PART relationship with conceptual=True
+P107_has_current_or_former_member,,P463,Direct,High,Group membership,Use HAS_MEMBER relationship with temporal
+P108_has_produced,,P170,Direct,High,Production of physical thing,Use PRODUCED_BY relationship
+P127_has_broader_term,,P279,Direct,High,Hierarchical subclass relationship,Use HAS_BROADER_TERM in subject hierarchy
+P129_is_about,,P921,Direct,High,Primary topic/subject,Use ABOUT relationship
+P130_shows_features_of,,P1889,Approximate,Low,Similarity - different from property is weak,Store as SIMILAR_TO relationship with qualifiers
+P137_exemplifies,,P31+P279,Composite,Medium,Prototype relationship using instance + subclass,Use EXEMPLIFIES relationship
+P138_represents,,P1299,Approximate,Medium,Symbolic representation,Use REPRESENTS relationship
+P140_assigned_attribute_to,,,Custom,High,**E13 core: No direct Wikidata equivalent**,**Chrystallum Claim.subject (what received attribute)**
+P141_assigned,,,Custom,High,**E13 core: The actual attribute assigned**,**Chrystallum Claim.object (what was assigned)**
+P148_has_component,,P527,Direct,High,Generic parts relationship,Use HAS_COMPONENT relationship
+P160_has_temporal_projection,,P580+P582,Composite,Medium,Spacetime volumes - use temporal bounds,Use temporal properties on Event nodes
+P177_assigned_property_type,,,Custom,High,**E13 core: No Wikidata equivalent for meta-properties**,**Chrystallum Claim.relationship_type**
+P186_produced_thing_of_product_type,,P31+P170,Composite,Medium,Type-based production,Use PRODUCED relationship with type qualifier
+J2_concluded_that,,,Custom,High,**CRMinf: Inference conclusion**,**Chrystallum MultiAgentDebate.consensus_claim**
+J4_that,,,Custom,High,**CRMinf: The proposition itself**,**Chrystallum Claim.label**
+J5_holds_to_be,,,Custom,High,**CRMinf: Belief value/confidence**,**Chrystallum Claim.confidence**

@@ -10,6 +10,9 @@
 
 **What Phase 2A+2B Delivers:**
 - ~2,100 discovered entities (1,847 direct historical + 251 temporal bridges)
+- ~40,000+ claims across 17 facets (domain + Communication meta-facet)
+- Natural 0-to-many claim distribution (not forced 1:1)
+- 150-200 entities routed for specialized Communication agent analysis
 - Validation of two-track temporal validation architecture
 - Real data for Chrystallum Place/PlaceVersion design
 - 15 test cases for quality assurance
@@ -62,13 +65,6 @@
   RETURN count(name) AS entity_indexes
   // Expected: 6
   ```
-- [ ] **BridgeTypes created:** Run this verification:
-  ```cypher
-  MATCH (bt:BridgeType)
-  RETURN bt.type, bt.base_confidence
-  ORDER BY bt.type
-  // Expected: 5 rows (archaeological, cultural, historiographic, political_precedent, scientific)
-  ```
 - [ ] **Temporal backbone intact:** Run this verification:
   ```cypher
   MATCH (y:Year) RETURN count(y) AS year_count
@@ -87,6 +83,9 @@
 - [ ] **Execution guide reviewed:** `PHASE_2_QUICK_START.md`
 - [ ] **Expected output understood:** `EXPECTED_OUTPUT_TWO_TRACK_VALIDATION.md`
 - [ ] **Integration roadmap reviewed:** `CHRYSTALLUM_PHASE2_INTEGRATION.md`
+- [ ] **New: Facet model reviewed:** 17-facet model with Communication meta-facet (see `SUBJECTSAGENTS_PROPOSAL_EVALUATION.md`)
+- [ ] **New: Claim distribution understood:** 0-to-many claims (not forced 1:1) per entity (see `subjectsAgentsProposal/files3/`)
+- [ ] **New: Communication routing understood:** Entities with primacy >= 0.75 go to CommunicationAgent
 - [ ] **15 test cases identified:** Ready to run post-execution
 
 ---
@@ -96,8 +95,8 @@
 ### **Step 1: Verify Neo4j (2 minutes)**
 
 ```cypher
-// Run all three checks above
-// Confirm: 6 entity indexes, 5 BridgeTypes, 4025 Year nodes
+// Run both checks above
+// Confirm: 6 entity indexes, 4025 Year nodes
 ```
 
 **GO if:** All three queries return expected counts  
@@ -116,7 +115,15 @@ Execute PHASE 2A+2B: Simultaneous parallel backlink harvest with two-track valid
 Period: Q17167 (Roman Republic, -509 to -27 BCE)
 Depth: 8 hops
 Validation: Two-track (direct historical + temporal bridges)
-Output format: JSON as specified in instructions.
+
+NEW FEATURES:
+- Generate 15-35 claims per entity (natural 0-to-many distribution, not forced 1:1)
+- Use 17-facet model (16 domain + Communication meta-facet)
+- Include primary_facet + related_facets for each claim
+- Route communication-heavy entities (primacy >= 0.75) for specialized analysis
+- Include evidence, authority (LCSH/LCC/Wikidata), and confidence per claim
+
+Output format: JSON as specified in instructions (with claims and facet distribution).
 
 Begin discovery.
 ```
@@ -240,7 +247,7 @@ See `CHRYSTALLUM_PHASE2_INTEGRATION.md` Section "Analysis Questions" for full li
 
 **Phase 2A+2B is COMPLETE when:**
 
-- [x] ✅ Neo4j schema deployed (6 indexes, 5 BridgeTypes)
+- [x] ✅ Neo4j schema deployed (6 indexes)
 - [ ] ✅ GPT executed Phase 2A+2B without errors
 - [ ] ✅ ~2,100 entities loaded to Neo4j
 - [ ] ✅ Entity type distribution matches expected (Human, Event, Place, Organization)
@@ -315,7 +322,7 @@ See `CHRYSTALLUM_PHASE2_INTEGRATION.md` Section "Analysis Questions" for full li
   - Timeline: ~5 minutes
 
 - [ ] **Neo4j Pre-Flight:** Run 3 verification queries (Section A above)
-  - Verify: 6 entity indexes, 5 BridgeTypes, 4025 Year nodes
+  - Verify: 6 entity indexes, 4025 Year nodes
   - Timeline: 2 min
 
 - [ ] **Execute Phase 2A+2B:** Follow `PHASE_2_QUICK_START.md`

@@ -39,12 +39,16 @@ SET e.track = "direct_historical",
     e.evidence_markers = [],
     e.bridge_priority = NULL;
 
-// ===== CREATE BRIDGE TYPE VOCABULARY =====
-CREATE (arch:BridgeType {type: "archaeological_discovery", base_confidence: 0.92});
-CREATE (hist:BridgeType {type: "historiographic_reinterpretation", base_confidence: 0.85});
-CREATE (prec:BridgeType {type: "political_precedent", base_confidence: 0.90});
-CREATE (cult:BridgeType {type: "cultural_representation", base_confidence: 0.70});
-CREATE (sci:BridgeType {type: "scientific_validation", base_confidence: 0.92});
+// ===== BRIDGE TYPE CLASSIFICATION =====
+// Bridge type classification uses entity properties:
+// - bridge_type: "archaeological_discovery" | "historiographic_reinterpretation" | 
+//                "political_precedent" | "cultural_representation" | "scientific_validation"
+// - bridge_confidence: base confidence values
+//   * archaeological_discovery: 0.92
+//   * historiographic_reinterpretation: 0.85
+//   * political_precedent: 0.90
+//   * cultural_representation: 0.70
+//   * scientific_validation: 0.92
 
 // ===== VERIFY SETUP =====
 MATCH (e:Entity)
