@@ -586,10 +586,12 @@ Week 4: Implement enrichment → Validate with test cases
 - Hierarchical place nesting (containment relationships)
 
 **Files Created:**
-- `CHRYSTALLUM_PLACE_SEEDING_REQUIREMENTS.md` - Full SysML + ETL specification
-- `PLACE_VERSION_NEO4J_SCHEMA.cypher` - Schema for Place/PlaceVersion/Geometry
 - `CHRYSTALLUM_PHASE2_INTEGRATION.md` - Phase 2 → PlaceVersion transformation roadmap
 - `GO_COMMAND_CHECKLIST.md` - Final approval checklist
+
+**Planned Files (Deferred):**
+- `CHRYSTALLUM_PLACE_SEEDING_REQUIREMENTS.md` - Full SysML + ETL specification
+- `PLACE_VERSION_NEO4J_SCHEMA.cypher` - Schema for Place/PlaceVersion/Geometry
 
 ### Schema Evolution Pattern
 

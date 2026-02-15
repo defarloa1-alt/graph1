@@ -308,6 +308,12 @@ See `CHRYSTALLUM_PHASE2_INTEGRATION.md` Section "Analysis Questions" for full li
   - Prompt: "Validate two-phase approach, success criteria, pre-flight checklist, rollback plan"
   - Timeline: ~10 min review
 
+- [ ] **Load CIDOC-CRM + CRMinf reference nodes (Option 1):**
+  - Script: `scripts/reference/load_cidoc_crminf_to_neo4j.py`
+  - Input files: `CIDOC/CIDOC_CRM_v7.1.2_JSON-LD_Context.jsonld`, `CIDOC/CRMinf_v0.7_.rdfs.txt`
+  - Output: `CIDOC_Class`, `CIDOC_Property`, `CRMinf_Class`, `CRMinf_Property`
+  - Timeline: ~5 minutes
+
 - [ ] **Neo4j Pre-Flight:** Run 3 verification queries (Section A above)
   - Verify: 6 entity indexes, 5 BridgeTypes, 4025 Year nodes
   - Timeline: 2 min
