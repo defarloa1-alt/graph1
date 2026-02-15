@@ -24,6 +24,141 @@ Maintained by LLM agents to preserve context across sessions.
 Chrystallum Knowledge Graph
 Goal: Build a federated historical knowledge graph using Neo4j, Python, and LangGraph.
 
+## Latest Update: Step 2 Complete - Current State Introspection & Claim Tracking (2026-02-15)
+
+### Critical Problem: LLMs Don't Persist Between Sessions
+**User Requirement:** "the llm cannot be counted on to persist between sessions, and it needs to know what the subgraph for the SubjectConcept currently looks like and whether an external SubjectConcept agent has made a claim against any of those nodes and edges"
+
+**Solution:** Comprehensive state introspection API for agents to reload graph state at session start.
+
+**File:** `STEP_2_COMPLETE.md` (comprehensive documentation)
+
+**What Was Built:**
+
+1. **Current State Introspection Methods** (8 new methods in `scripts/agents/facet_agent_framework.py`)
+   - **`get_session_context()`** - **CRITICAL:** Call first! Loads SubjectConcept snapshot, pending claims, agent stats
+   - `get_subjectconcept_subgraph(limit)` - Current SubjectConcept nodes and relationships
+   - `find_claims_for_node(node_id)` - All claims referencing a specific node
+   - `find_claims_for_relationship(source_id, target_id, rel_type)` - Claims about relationships
+   - `get_node_provenance(node_id)` - Which claim(s) created/modified this node
+   - `get_claim_history(node_id)` - Full audit trail for a node (chronological)
+   - `list_pending_claims(facet, min_confidence, limit)` - Claims awaiting validation
+   - `find_agent_contributions(agent_id, limit)` - What this agent has proposed (stats + list)
+
+2. **Claim Lifecycle & Provenance Model**
+   - **Status lifecycle:** `proposed` → `validated` → `promoted=true` (or `rejected`)
+   - **Auto-promotion:** `confidence >= 0.90` AND `posterior_probability >= 0.90`
+   - **Node provenance:** `(Node)-[:SUPPORTED_BY]->(Claim)` after promotion
+   - **Relationship provenance:** `promoted_from_claim_id` property on relationships
+   - **Traceability:** Full audit trail via claim history queries
+
+3. **Updated System Prompts** (`facet_agent_system_prompts.json`)
+   - All 17 facet prompts now include "CURRENT STATE INTROSPECTION (STEP 2)" section
+   - Session initialization workflow documented
+   - "BEFORE PROPOSING NEW CLAIMS" checklist
+   - Collaborative awareness guidance
+   - Version bumped to `2026-02-15-step2`
+   - Script: `scripts/update_facet_prompts_step2.py` (automation)
+
+**Claim Structure Reference:**
+```cypher
+(Claim {
+  claim_id, cipher, status, source_agent, facet, confidence,
+  prior_probability, likelihood, posterior_probability,
+  fallacies_detected, critical_fallacy,
+  timestamp, promoted, promotion_date,
+  label, text, claim_type,
+  authority_source, authority_ids
+})
+
+// Relationships
+(Claim)-[:ASSERTS]->(Entity)              // Claims reference entities
+(Entity)-[:SUPPORTED_BY]->(Claim)         // Provenance after promotion
+(Claim)-[:USED_CONTEXT]->(RetrievalContext)
+(Claim)-[:HAS_ANALYSIS_RUN]->(AnalysisRun)
+(Claim)-[:HAS_FACET_ASSESSMENT]->(FacetAssessment)
+
+// Promoted relationships
+(Source)-[r:REL_TYPE {promoted_from_claim_id: "claim_abc"}]->(Target)
+```
+
+**Key Benefits:**
+- **Session Recovery:** Agents can reload state with single `get_session_context()` call
+- **Duplicate Avoidance:** Check existing nodes/claims before proposing
+- **Provenance Tracking:** Full audit trail (who created what, when)
+- **Collaboration:** Agents see each other's contributions
+- **Quality Metrics:** Track promotion rates per agent/facet
+
+**Integration with Step 1:**
+- Step 1: Agents know WHAT the schema IS (labels, relationships, tiers)
+- Step 2: Agents know WHAT currently EXISTS (nodes, edges, claims)
+- Combined: Schema + State introspection = informed claim proposals
+
+**Status:**
+- ✅ 8 state introspection methods implemented
+- ✅ Session context initialization complete
+- ✅ Provenance tracking queryable
+- ✅ System prompts updated (17 facets)
+- ⏸️ Integration tests (awaiting Neo4j deployment)
+
+**Next Steps:** User will guide Step 3-N of agent process review.
+
+---
+
+## Step 1: Agent Architecture Understanding (2026-02-15)
+
+### Implementation: Hybrid Meta-Graph + Curated Docs Approach
+**Decision:** Agents can introspect schema via queryable meta-graph while historians read rationale in curated docs.
+
+**File:** `STEP_1_COMPLETE.md` (comprehensive summary)
+
+**What Was Built:**
+
+1. **Meta-Schema Graph** (`Neo4j/schema/06_meta_schema_graph.cypher` - 783 lines)
+   - 6 `_Schema:AuthorityTier` nodes (5.5-layer stack with confidence floors)
+   - 14 `_Schema:NodeLabel` nodes (SubjectConcept, Human, Event, Place, etc.)
+   - 17 `_Schema:FacetReference` meta-tags (Military, Political, Economic, etc.)
+   - Sample `_Schema:RelationshipType` nodes (expandable to 312 from registry)
+   - `_Schema:Property` nodes with validation rules
+   - 5 `_Schema:ValidationRule` nodes
+   - 6 query examples for agent usage
+   - 5 indexes for fast introspection
+
+2. **Agent Introspection Methods** (`scripts/agents/facet_agent_framework.py`)
+   - `introspect_node_label(label_name)` - Get label definition, tier, properties
+   - `discover_relationships_between(source, target)` - Find valid relationship types
+   - `get_required_properties(label_name)` - Get required properties for validation
+   - `get_authority_tier(tier)` - Get layer definition, gates, confidence floor
+   - `list_facets(filter_key)` - Get facet definitions with Wikidata anchors
+   - `validate_claim_structure(claim_dict)` - Validate claim before proposal
+   - `get_layer25_properties()` - Get P31/P279/P361 properties for semantic expansion
+   - `_discover_schema()` - Existing method that lists all labels and relationships
+
+3. **Updated System Prompts** (`facet_agent_system_prompts.json`)
+   - All 17 facet prompts now include "SCHEMA INTROSPECTION (NEW)" section
+   - Lists available introspection methods
+   - Provides example meta-graph queries
+   - Documents validation workflow
+   - Shows authority stack with confidence floors
+   - Script: `scripts/update_facet_prompts_with_schema.py` (automated update)
+
+**Status:**
+- ✅ Meta-schema Cypher script complete
+- ✅ Agent introspection methods added
+- ✅ System prompts updated for all 17 facets
+- ⏸️ Meta-schema deployment pending Neo4j credentials
+- ⏸️ Introspection tests pending deployment
+
+**Benefits:**
+- Agents can query schema without hardcoding
+- Validation happens before claim proposal
+- Self-documenting architecture via introspection
+- Single source of truth for schema
+- Authority stack confidence floors queryable
+- Facet boundaries clear with Wikidata anchors
+
+---
+
 ## Current Architecture State (verified 2026-02-13)
 
 ### 1. Temporal Backbone (Calendrical Spine)

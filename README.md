@@ -46,6 +46,26 @@ python Neo4j/schema/run_cypher_file.py Neo4j/schema/02_schema_indexes.cypher
 
 **You're ready!** ✓
 
+### 5. Launch Web UI (Optional)
+
+**Gradio (Recommended):**
+```bash
+pip install gradio
+launch_gradio_ui.bat        # Windows
+./launch_gradio_ui.sh       # Linux/Mac
+```
+Opens: http://localhost:7860
+
+**Streamlit:**
+```bash
+pip install streamlit
+launch_streamlit_ui.bat     # Windows
+./launch_streamlit_ui.sh    # Linux/Mac
+```
+Opens: http://localhost:8501
+
+📖 See [UI_SETUP_GUIDE.md](UI_SETUP_GUIDE.md) for details
+
 ---
 
 ## 📚 What Is This?
@@ -121,6 +141,7 @@ python scripts/phase_2_5_discovery_runner.py
 | Document | Purpose | Read Time |
 |----------|---------|-----------|
 | [SETUP_GUIDE.md](SETUP_GUIDE.md) | Complete setup instructions | 10 min |
+| [UI_SETUP_GUIDE.md](UI_SETUP_GUIDE.md) | Web UI (Gradio/Streamlit) | 10 min |
 | [FACET_AGENT_README.md](scripts/agents/FACET_AGENT_README.md) | Agent architecture & usage | 15 min |
 | [INDEX_MINING_PHASE_2_5_LAUNCH.md](INDEX_MINING_PHASE_2_5_LAUNCH.md) | Phase 2.5 workflow | 10 min |
 | [COMPLETE_INTEGRATED_ARCHITECTURE.md](COMPLETE_INTEGRATED_ARCHITECTURE.md) | Full architecture | 30 min |
@@ -173,6 +194,32 @@ for book in books[:3]:
     print(f"{book['title']} - Score: {book['quality_score']}")
 ```
 
+### Web UI (Gradio/Streamlit)
+Two UI options for interactive queries:
+
+**Launch Gradio:**
+```bash
+pip install gradio
+python scripts/ui/agent_gradio_app.py
+# Opens: http://localhost:7860
+```
+
+**Launch Streamlit:**
+```bash
+pip install streamlit
+streamlit run scripts/ui/agent_streamlit_app.py
+# Opens: http://localhost:8501
+```
+
+**Features:**
+- 🎯 Single Facet Mode: Query specific domain agent
+- 🔍 Auto-Route Mode: AI detects relevant facets
+- ⚙️ Configuration validation UI
+- 📖 Built-in help and examples
+- 🔒 Localhost only (secure by default)
+
+📖 Full guide: [UI_SETUP_GUIDE.md](UI_SETUP_GUIDE.md)
+
 ---
 
 ## 🗂️ Project Structure
@@ -184,6 +231,9 @@ Graph1/
 │   │   ├── facet_agent_framework.py       # Base FacetAgent + Router
 │   │   ├── book_discovery_agent.py        # Perplexity book discovery
 │   │   └── FACET_AGENT_README.md          # Agent documentation
+│   ├── ui/
+│   │   ├── agent_gradio_app.py            # Gradio web interface
+│   │   └── agent_streamlit_app.py         # Streamlit web interface
 │   ├── phase_2_5_discovery_runner.py      # Orchestrate 17-facet discovery
 │   └── config_loader.py                    # Secure API key management
 ├── facet_agent_system_prompts.json         # 17 facet-specific prompts
@@ -193,6 +243,8 @@ Graph1/
 ├── .env.example                             # Environment variable template
 ├── setup_config.bat                         # Windows setup script
 ├── setup_config.sh                          # Linux/Mac setup script
+├── launch_gradio_ui.bat / .sh               # Launch Gradio UI
+├── launch_streamlit_ui.bat / .sh            # Launch Streamlit UI
 └── requirements.txt                         # Python dependencies
 ```
 

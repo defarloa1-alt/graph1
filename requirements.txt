@@ -16,4 +16,8 @@ openai==2.8.1
 python-dotenv==1.0.0
 
 # Utilities
-pydantic==2.5.3
+pydantic>=2.7.4
+
+# Web UI Frameworks (optional)
+gradio>=4.0.0
+streamlit>=1.30.0
