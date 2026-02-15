@@ -19,8 +19,13 @@ from typing import Optional, Dict, Any, List, Tuple
 from datetime import datetime
 import re
 
-PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# Import configuration loader
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from config_loader import (
+    PERPLEXITY_API_KEY,
+    OPENAI_API_KEY,
+    validate_agent_config
+)
 
 
 class BookDiscoveryAgent:
@@ -42,8 +47,8 @@ class BookDiscoveryAgent:
 
     def __init__(self):
         """Initialize discovery agent"""
-        if not PERPLEXITY_API_KEY:
-            raise ValueError("PERPLEXITY_API_KEY environment variable not set")
+        # Validate configuration
+        validate_agent_config(require_openai=False, require_perplexity=True, require_neo4j=False)
         
         self.api_key = PERPLEXITY_API_KEY
         self.base_url = "https://api.perplexity.ai/chat/completions"
@@ -379,9 +384,11 @@ STRICT OUTPUT: Return ONLY the JSON array, no other text."""
 if __name__ == "__main__":
     print("Chrystallum Book Discovery Agent")
     print("=" * 60)
-    
-    if not PERPLEXITY_API_KEY:
-        print("⚠ PERPLEXITY_API_KEY not set. Skipping test.")
+
+    try:
+        validate_agent_config(require_perplexity=True, require_neo4j=False)
+    except ValueError as e:
+        print(f"✗ Configuration Error:\n{e}")
         sys.exit(1)
     
     agent = BookDiscoveryAgent()

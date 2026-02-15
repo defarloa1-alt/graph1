@@ -20,17 +20,20 @@ from abc import ABC, abstractmethod
 from neo4j import GraphDatabase, Driver
 import openai
 
-# Import base executor
+# Import configuration loader
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from config_loader import (
+    OPENAI_API_KEY,
+    NEO4J_URI,
+    NEO4J_USERNAME,
+    NEO4J_PASSWORD,
+    NEO4J_DATABASE,
+    validate_agent_config
+)
+
+# Import claim pipeline
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'tools'))
 from claim_ingestion_pipeline import ClaimIngestionPipeline
-
-# Configuration
-NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-NEO4J_USERNAME = os.getenv("NEO4J_USERNAME", "neo4j")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
-NEO4J_DATABASE = os.getenv("NEO4J_DATABASE", "neo4j")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
 
 
 class FacetAgent(ABC):
@@ -48,10 +51,8 @@ class FacetAgent(ABC):
             facet_label: Display label (e.g., 'Military')
             system_prompt: Facet-specific system prompt
         """
-        if not NEO4J_PASSWORD:
-            raise ValueError("NEO4J_PASSWORD environment variable not set")
-        if not OPENAI_API_KEY:
-            raise ValueError("OPENAI_API_KEY environment variable not set")
+        # Validate configuration
+        validate_agent_config(require_openai=True, require_neo4j=True)
 
         self.facet_key = facet_key
         self.facet_label = facet_label
