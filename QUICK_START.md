@@ -205,13 +205,39 @@ For comprehensive information, consult:
 
 | Document | Purpose |
 |----------|---------|
+| **[md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md](md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md)** | **SYSTEM PROMPT for ChatGPT** (paste into "Instructions" field) |
 | [SCHEMA_REFERENCE.md](SCHEMA_REFERENCE.md) | Complete node types, properties, constraints, 17-facet definitions |
 | [RELATIONSHIP_TYPES_SAMPLE.md](RELATIONSHIP_TYPES_SAMPLE.md) | 312+ relationships with P-values, per-facet baselines, aliases |
 | [AGENT_EXAMPLES.md](AGENT_EXAMPLES.md) | 11 detailed usage examples with input/output patterns |
-| [ARCHITECTURE_OPTIMIZATION_REVIEW.md](ARCHITECTURE_OPTIMIZATION_REVIEW.md) | Phase 2 roadmap, Neo4j optimization strategies, processing pipelines |
+| [COMPLETE_INTEGRATED_ARCHITECTURE.md](COMPLETE_INTEGRATED_ARCHITECTURE.md) | 5.5-layer system architecture with Layer 2.5 hierarchy queries |
 | [role_qualifier_reference.json](role_qualifier_reference.json) | 70+ canonical roles with CIDOC-CRM types, context facets, aliases |
 | [relationship_facet_baselines.json](relationship_facet_baselines.json) | 50+ relationships with per-facet confidence overrides |
-| [PHASE_1_DECISIONS_LOCKED.md](PHASE_1_DECISIONS_LOCKED.md) | Phase 1 architectural decisions with rationale |
+| [md/Agents/CHATGPT_QUICK_UPLOAD_CHECKLIST.md](md/Agents/CHATGPT_QUICK_UPLOAD_CHECKLIST.md) | Quick reference for ChatGPT file upload (10 minimum files) |
+| [md/Agents/CHATGPT_UPLOAD_PACKAGE.md](md/Agents/CHATGPT_UPLOAD_PACKAGE.md) | Complete ChatGPT setup guide with verification tests |
+
+---
+
+## ChatGPT Setup (TODAY)
+
+**To deploy this system as a custom ChatGPT agent:**
+
+1. **Create new custom GPT** at https://chatgpt.com/gpts/editor
+2. **Instructions field** (bottom right):
+   - Open: [md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md](md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md)
+   - Copy entire contents (531 lines)
+   - Paste into "Instructions" field
+3. **Upload files** (File uploads section):
+   - Quick start: Use [md/Agents/CHATGPT_QUICK_UPLOAD_CHECKLIST.md](md/Agents/CHATGPT_QUICK_UPLOAD_CHECKLIST.md) to see which 10 minimum files to upload
+   - Complete guide: Use [md/Agents/CHATGPT_UPLOAD_PACKAGE.md](md/Agents/CHATGPT_UPLOAD_PACKAGE.md) for all 20+ optional files and upload strategy
+4. **Save & test** with one of the verification tests (see upload checklist)
+
+**Files ready to upload:**
+- `md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md` ← System prompt (paste into Instructions)
+- `QUICK_START.md` ← This file
+- `SCHEMA_REFERENCE.md` ← Schema definitions
+- `COMPLETE_INTEGRATED_ARCHITECTURE.md` ← Architecture overview
+- `IMPLEMENTATION_ROADMAP.md` ← Timeline & phases
+- + 15 more optional files (see quick checklist)
 
 ---
 
@@ -685,11 +711,32 @@ Phase 6: Final ingested: ~2,200 claims (net gain: 1,900 claims)
 
 ## Support & Escalation
 
-- **Schema questions:** See [SCHEMA_REFERENCE.md](SCHEMA_REFERENCE.md)
-- **Relationship questions:** See [RELATIONSHIP_TYPES_SAMPLE.md](RELATIONSHIP_TYPES_SAMPLE.md) + [relationship_facet_baselines.json](relationship_facet_baselines.json)
-- **Role questions:** See [role_qualifier_reference.json](role_qualifier_reference.json)
-- **Example-based:** See [AGENT_EXAMPLES.md](AGENT_EXAMPLES.md)
-- **Architecture/Phase 2:** See [ARCHITECTURE_OPTIMIZATION_REVIEW.md](ARCHITECTURE_OPTIMIZATION_REVIEW.md)
+- **Schema questions:** See [SCHEMA_REFERENCE.md](SCHEMA_REFERENCE.md) (root)
+- **Relationship questions:** See [RELATIONSHIP_TYPES_SAMPLE.md](md/Agents/Archive/RELATIONSHIP_TYPES_SAMPLE.md) + [relationship_facet_baselines.json](JSON/relationship_facet_baselines.json)
+- **Role questions:** See [role_qualifier_reference.json](JSON/role_qualifier_reference.json)
+- **Example-based:** See [AGENT_EXAMPLES.md](md/Agents/Archive/AGENT_EXAMPLES.md)
+- **Architecture:** See [COMPLETE_INTEGRATED_ARCHITECTURE.md](COMPLETE_INTEGRATED_ARCHITECTURE.md) (root)
+
+---
+
+## Files to Provide to ChatGPT Again
+
+**Essential files to upload (with paths):**
+
+1. **[md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md](md/Agents/QUERY_EXECUTOR_AGENT_PROMPT.md)** ← PASTE INTO INSTRUCTIONS
+2. [QUICK_START.md](QUICK_START.md) (root)
+3. [SCHEMA_REFERENCE.md](SCHEMA_REFERENCE.md) (root)
+4. [COMPLETE_INTEGRATED_ARCHITECTURE.md](COMPLETE_INTEGRATED_ARCHITECTURE.md) (root)
+5. [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md) (root)
+6. [VISUAL_INDEX.md](VISUAL_INDEX.md) (root)
+7. [Discipline.md](Discipline.md) (root)
+8. [JSON/role_qualifier_reference.json](JSON/role_qualifier_reference.json)
+9. [JSON/relationship_facet_baselines.json](JSON/relationship_facet_baselines.json)
+10. [AI_CONTEXT.md](AI_CONTEXT.md) (root)
+
+**Quick reference guides:**
+- [md/Agents/CHATGPT_QUICK_UPLOAD_CHECKLIST.md](md/Agents/CHATGPT_QUICK_UPLOAD_CHECKLIST.md) ← Use this for quick deployment
+- [md/Agents/CHATGPT_UPLOAD_PACKAGE.md](md/Agents/CHATGPT_UPLOAD_PACKAGE.md) ← Use this for complete deployment
 
 ---
 
