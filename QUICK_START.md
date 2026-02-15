@@ -420,6 +420,269 @@ A: Create BOTH as separate claims:
 
 ---
 
+## Discovery During Training (Aggressive Mode)
+
+**When processing primary sources, agents may discover related content through hyperlinks, backlinks, and cross-references.** This section defines how to handle discoveries from related links during training.
+
+### Discovery Configuration
+
+| Setting | Value | Rationale |
+|---------|-------|-----------|
+| **Discovery Depth** | 8 hops | Deep discovery maximizes relationship finding; natural dedup catches errors |
+| **Node Limit** | 10,000 (default, configurable) | Preserve discoveries; prevent loss of data; configurable per call |
+| **Authority Marker** | `secondary_authority: "3kl"` | Flag claims from discovered links (vs. primary text) |
+| **Conflict Strategy** | Capture all, resolve later | Trust dedup workflow; don't pre-filter |
+| **Deduplication** | Natural (graph-based) | Additive claims ✓; complete dupes caught by dedup |
+
+### Workflow: Aggressive Discovery
+
+**Phase 1: Primary Ingestion**
+
+```
+Input: Wikipedia article "Alexander the Great"
+- Extract: 127 entities, 400+ relationships
+- Create/merge claims in graph
+```
+
+**Configuration: Node Limit**
+
+```
+DEFAULT: 10,000 node cap (preserve discoveries)
+OVERRIDE: Caller can specify per invocation
+  discover(source_qid, max_nodes=10000)  // explicit
+  discover(source_qid)                   // uses default
+  discover(source_qid, max_nodes=5000)   // constrain if needed
+```
+
+**Rationale:** 10k default preserves all discovered entities without data loss. Override available if storage/performance requires constraint.
+
+**Phase 2: Follow Discovered Links**
+
+From primary article, discover related links:
+
+```
+Primary: Q8380 (Alexander the Great)
+  ↓
+Discovered (Hop 1): Q3391 (Aristotle - mentor link)
+Discovered (Hop 2): Q3766 (Battle of Gaugamela - participated-in link)
+Discovered (Hop 3): Q1048 (Julius Caesar - military comparison in article)
+... continue to Hop 8
+```
+
+**Phase 3: Process Each Discovered Link**
+
+For each discovered link, extract claims:
+
+```
+Discovered Link: Aristotle article (Q3391)
+  New entities: 45 from Aristotle article
+  New relationships: 120+ (roles, teaching, philosophy)
+  
+  Mark each claim:
+  {
+    "source_link": "Q3391 (Aristotle)",
+    "discovery_hop": 1,
+    "secondary_authority": "3kl",  // Flag as secondary
+    "original_primary_source": "Q8380 (Alexander the Great)"
+  }
+```
+
+**Phase 4: Temporal Window Validation**
+
+**Problem with fixed windows (±40 years):**
+- Blocks legitimate scholarly relationships: Napoleon studied Alexander's campaigns (2092 year gap, but valid)
+- Allows temporal contradictions: Caesar born 100 BCE, Jesus born 0 CE (50 year gap but no lifespan overlap = impossible meeting)
+- Ignores relationship semantics: "studied" ≠ "fought alongside" ≠ "influenced"
+
+**Solution: Relationship-Type-Aware Validation**
+
+Different relationship types have different temporal rules:
+
+**Tier 1: Strict Temporal Overlap Required**
+These need **contemporaneous existence** (both alive at same time):
+- `MET_WITH`, `FOUGHT_ALONGSIDE`, `MARRIED_TO`, `TAUGHT`
+- Validation: lifespan overlap ≥ 1 year
+- Example: Caesar (100-44 BCE) and Cicero (106-43 BCE) can meet ✓ (overlap ~56 years)
+- Example: Caesar and Jesus cannot meet ✗ (no overlap)
+
+**Tier 2: Directional Temporal Constraints**
+These need **sequence** but allow **any gap**:
+- `STUDIED_CAMPAIGNS_OF` - source studies target (after target's era OK)
+- `EMULATED` - source copies target (target must precede or be contemporary)
+- `INFLUENCED_LEGACY_OF` - source influenced by target (target must precede source)
+- Validation: source date vs target date, allows posthumous study
+- Example: Napoleon (1769-1821) studied Alexander (-356 to -323) ✓ valid (2092 year gap OK for intellectual relationship)
+- Example: Alexander influenced Napoleon (backwards) ✗ rejected (dead cannot influence living)
+
+**Tier 3: Atemporal / Concept Relationships**
+These work across **any temporal gap**, no constraint:
+- `SIMILAR_STRATEGY_TO`, `CLASSIFIED_AS`, `BROADER_THAN`
+- Validation: none (apply to concepts, not people)
+- Example: "Napoleon's strategy similar to Alexander's strategy" ✓ atemporal
+
+**Implementation:**
+During training, validate each discovered claim:
+```cypher
+// Example: Check if Napoleon-STUDIED_CAMPAIGNS_OF-Alexander is valid
+IF relationship_type == 'STUDIED_CAMPAIGNS_OF' THEN
+  // Directional: allow any gap, check sequence
+  IF napoleon.birth_year > alexander.death_year THEN
+    valid = true  // Can study after death
+  ELSE IF overlaps(napoleon.lifespan, alexander.lifespan) THEN
+    valid = true  // Can study contemporary
+  ELSE
+    valid = false  // Cannot study before target exists
+END
+
+// Example: Check if Caesar-MET_WITH-Jesus is valid
+IF relationship_type == 'MET_WITH' THEN
+  // Strict: require overlap
+  IF overlap(caesar.lifespan, jesus.lifespan) > 0 THEN
+    valid = true
+  ELSE
+    valid = false
+END
+```
+
+**Expected Discovery Flow:**
+```
+Primary: Wikipedia "Roman Republic"
+├─ Extract: 300 base claims
+├─ Discover hop 1: 30 entities (temporal validation: all within ±300 years)
+├─ Discover hop 2: 60 entities (mixed temporal)
+├─ Discover hop 8: Include all valid types
+│   ✓ STUDIED_CAMPAIGNS_OF across centuries (directional OK)
+│   ✓ INFLUENCED_LEGACY_OF across eras (directional OK)
+│   ✓ MET_WITH only if lifespans overlap (strict validation)
+│   ✓ SIMILAR_STRATEGY_TO regardless of time (atemporal)
+├─ Remove: Anachronistic direct interactions (MET_WITH without overlap)
+└─ Result: ~2,100 discovered claims (all temporally valid by relationship type)
+```
+
+This removes the arbitrary ±40 year cutoff while still preventing impossible claims.
+
+
+### Authority Handling: `3kl` Marker
+
+The `3kl` marker indicates **secondary authority** status:
+
+```json
+// Primary source (direct from article):
+{
+  "confidence": 0.92,
+  "authority_source": "Wikipedia article on Alexander",
+  "authority_ids": {"wikipedia": ["Alexander_the_Great"]},
+  "secondary_authority": null
+}
+
+// Secondary source (discovered link):
+{
+  "confidence": 0.92,  // Initial confidence
+  "authority_source": "Wikipedia article on Aristotle (discovered link)",
+  "authority_ids": {"wikipedia": ["Aristotle"]},
+  "secondary_authority": "3kl",
+  "discovery_depth": 1,
+  "discovery_chain": ["Alexander → Aristotle"]
+}
+```
+
+### Conflict Resolution: Capture & Resolve Later
+
+**When primary and discovered claims conflict, capture BOTH:**
+
+```
+Primary source says: "Alexander captured Babylon in -331"
+Discovered link says: "Alexander arrived in Babylon -331"
+
+Strategy: Create BOTH claims
+1. CAPTURED event (from primary)
+2. ARRIVED_AT event (from discovered)
+
+Later reconciliation: Historian review determines if these are:
+  a) Same event (different descriptions) → Merge
+  b) Different events (arrival ≠ capture) → Keep separate
+  c) Conflicting (captured -331 vs -332) → Flag for decision
+```
+
+### Deduplication Handles Discovery Artifacts
+
+**Complete duplicates are caught by dedup workflow:**
+
+```cypher
+// If discovered link leads to duplicate claim:
+MATCH (alexander:Human {qid: "Q8380"})-[rel:PARTICIPATED_IN {facet: "military"}]->(battle {qid: "Q201705"})
+WHERE rel.year = -331
+RETURN rel
+// Found! Existing claim already in graph
+// Dedup workflow: Merge authorities, don't create duplicate
+```
+
+**Additive claims are preserved:**
+
+```cypher
+// If discovered link adds new relationship:
+MATCH (alexander:Human {qid: "Q8380"})-[rel:STUDIED_UNDER]->(aristotle:Human {qid: "Q3391"})
+WHERE rel IS NULL
+// Not found! Create new relationship with secondary_authority: "3kl"
+SET rel.discovery_source = "Wikipedia Aristotle article"
+```
+
+### Expected Outcomes: Discovery Mode
+
+| Scenario | Action | Result |
+|----------|--------|--------|
+| Discovered claim = primary claim | Merge authorities | Single edge, combined posterior |
+| Discovered claim = new relationship | Create with `3kl` flag | New edge, secondary authority |
+| Discovered claim = conflicting | Capture both | Both edges flagged for review |
+| Discovered link = anachronistic (temporal validation fails) | Reject | Not ingested (relationship semantics validation) |
+
+### Example: Full Discovery Workflow
+
+**Primary:** Wikipedia "Roman Civil War"
+
+```
+Phase 1: Extract 300 relationships
+Phase 2: Follow discovered links (8 hops)
+  Hop 1: Caesar articles (30 entities)
+  Hop 2: Pompey, Antony, Octavian articles (60 entities)
+  Hop 3: Senate, political figures (45 entities)
+  ...
+  Hop 8: Boundary reached
+Phase 3: Add discovered claims with secondary_authority: "3kl"
+Phase 4: Final claim count: ~2,400 (primary 300 + discovered 2,100)
+Phase 5: Dedup workflow runs
+  - Duplicates merged (600 relationships were already present)
+  - Additive claims created (1,500 new relationships)
+  - Conflicts flagged (10 temporal disagreements for human review)
+Phase 6: Final ingested: ~2,200 claims (net gain: 1,900 claims)
+```
+
+### When to Use Discovery Mode
+
+✅ **Enable (8 hops):**
+- Processing foundational entities (Q8380 Alexander, Q1048 Caesar, Q17167 Roman Republic)
+- Building comprehensive historical subgraphs
+- Harvesting Wikidata backlinks for a period
+- Willing to accept potential noise for coverage
+
+❌ **Disable (0 hops, primary only):**
+- Processing niche claims that shouldn't proliferate
+- Working with incomplete or unreliable sources
+- When temporal window is very narrow
+- When you want to minimize false positives
+
+### Risk & Mitigation
+
+| Risk | Mitigation |
+|------|-----------|
+| **Temporal spam** (anachronistic claims) | Relationship-type-aware validation (strict overlap vs directional sequence vs atemporal) |
+| **Duplicate explosion** | Trust dedup workflow; monitor merge ratio |
+| **Low-confidence discoveries** | `secondary_authority: "3kl"` marks suspicious claims for review |
+| **Authority explosion** | Cap authority_ids JSON field (max 20 sources per claim) |
+| **Dataset too large** | Override node limit at call time: `discover(qid, max_nodes=5000)` |
+
+---
+
 ## Support & Escalation
 
 - **Schema questions:** See [SCHEMA_REFERENCE.md](SCHEMA_REFERENCE.md)

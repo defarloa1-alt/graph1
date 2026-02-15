@@ -518,6 +518,118 @@ executor.submit_claim(
 )
 ```
 
+## Chrystallum Place/PlaceVersion Architecture (decided 2026-02-15)
+
+**Status:** Requirements captured, implementation deferred to post-Phase-2 analysis
+
+**Core Decision:** Three-tier enrichment model for temporal-geographic modeling
+
+### Architecture Overview
+
+```
+Tier 1: Place (Persistent Identity)
+  - Federated to Wikidata, GeoNames, LCSH
+  - Represents diachronic geographic entity
+  - Never deleted, only enriched
+
+Tier 2: PlaceVersion (Temporal State)
+  - Captures synchronic slice
+  - Links to Period, administrative entities
+  - Stores temporal bounds + boundaries
+  - Created from Wikidata qualifiers + scholarly sources
+
+Tier 3: Query Intelligence (Hybrid Access)
+  - Queries can use Place OR PlaceVersion
+  - Query Executor chooses based on temporal context
+  - Backward-compatible with existing Place nodes
+```
+
+### Key Decisions (6 Questions)
+
+1. **Architectural Integration:** C) Enrichment (preserve existing Place nodes, add PlaceVersion layer)
+2. **Temporal Integration:** C) Both properties + relationships + Geometry nodes
+   - Properties: `{valid_from, valid_to}` for fast temporal filtering
+   - Relationships: `[:SUCCEEDED_BY]`, `[:VALID_DURING]` for historical narrative
+   - Geometry: Separate nodes via `[:HAS_GEOMETRY]` for boundary polygons
+3. **Implementation Phasing:** D) Deferred - Phase 2 runs as analysis, PlaceVersion added post-analysis
+4. **Phase 2 Entities:** Stay as Entity nodes initially, convert to Place+PlaceVersion post-analysis
+5. **Authority Priority:** Wikidata only for Phase 2 scope (Roman Republic), extend later as needed
+6. **Facet Assignment:** A) Yes - PlaceVersion nodes carry temporally-contextualized facets
+
+### Phase 2A+2B Analysis Run (Immediate)
+
+**Purpose:** Validate entity discovery pipeline before committing to PlaceVersion design
+
+**Expected Output:**
+- ~2,100 Entity nodes discovered (1,847 direct + 251 bridges)
+- Entity types: Human (1,542), Event (600), Place (189), Organization (87)
+- Simple schema: `Entity {entity_id, label, type, qid, track, is_bridge, confidence}`
+
+**Validation Strategy:**
+- 15 test cases validate discovery quality
+- Analyze which of 189 places need versioning (boundary changes, status changes)
+- Design PlaceVersion schema based on actual needs (not speculation)
+
+**Timeline:**
+```
+Week 1: Execute Phase 2A+2B → Load ~2,100 entities
+Week 2: Analyze patterns → Identify ~42 places needing versioning (~22%)
+Week 3: Design PlaceVersion schema → Transform Entity:place → Place + PlaceVersion
+Week 4: Implement enrichment → Validate with test cases
+```
+
+**Deferred Components (Post-Analysis):**
+- PlaceVersion nodes (designed based on discovered boundary changes)
+- Geometry nodes (polygon data from authorities)
+- Temporal bounds as relationships (Year linkage)
+- Administrative status tracking (conquest/province transitions)
+- Hierarchical place nesting (containment relationships)
+
+**Files Created:**
+- `CHRYSTALLUM_PLACE_SEEDING_REQUIREMENTS.md` - Full SysML + ETL specification
+- `PLACE_VERSION_NEO4J_SCHEMA.cypher` - Schema for Place/PlaceVersion/Geometry
+- `CHRYSTALLUM_PHASE2_INTEGRATION.md` - Phase 2 → PlaceVersion transformation roadmap
+- `GO_COMMAND_CHECKLIST.md` - Final approval checklist
+
+### Schema Evolution Pattern
+
+```cypher
+// FIRST PASS (Phase 2 - immediate)
+(:Entity {
+  entity_id: "ent_gaul_q38",
+  label: "Gaul",
+  type: "place",
+  qid: "Q38",
+  track: "direct_historical"
+})
+
+// POST-ANALYSIS (Phase 3+ - after validation)
+(:Place {
+  id_hash: "plc_gaul_q38",
+  label: "Gaul",
+  qid: "Q38",
+  has_temporal_versions: true
+})
+  -[:HAS_VERSION]->
+(:PlaceVersion {
+  id_hash: "plc_v_gaul_independent_400bce_58bce",
+  label: "Gaul (Independent)",
+  valid_from: -400,
+  valid_to: -58,
+  political_status: "independent"
+})
+  -[:HAS_GEOMETRY]->
+(:Geometry {
+  type: "Polygon",
+  coordinates: "<GeoJSON>",
+  area_km2: 500000
+})
+```
+
+**Rationale:** Data-driven design > speculative architecture. Phase 2 validates discovery pipeline, analysis informs PlaceVersion requirements, implementation targets proven needs.
+
+---
+
 ## Recommended Next Steps
 - If rebuilding backbone from scratch:
   1. Run `python scripts/backbone/temporal/genYearsToNeo.py --start -2000 --end 2025`
@@ -525,6 +637,13 @@ executor.submit_claim(
 - Verify with:
   - `python Python/check_year_range.py`
   - graph checks for orphan years (`Year` without `PART_OF -> Decade`).
+- **Phase 2A+2B Execution (immediate):**
+  1. Run Neo4j schema: `PHASE_2_QUICK_START.md` Step 1
+  2. Setup ChatGPT Custom GPT: `GPT_PHASE_2_PARALLEL_PROMPT.md`
+  3. Execute Phase 2 message to GPT
+  4. Load ~2,100 entities to Neo4j
+  5. Run 15 test cases for validation
+  6. Analyze results → Design PlaceVersion
 - Test Query Executor Agent:
   1. Set `NEO4J_PASSWORD` and `OPENAI_API_KEY` environment variables
   2. Run: `python scripts/agents/query_executor_agent_test.py test`

@@ -18,6 +18,7 @@ Use this index to find the right file for your question:
 | What roles can I use? (70+ canonical) | role_qualifier_reference.json | JSON role registry |
 | How do I extract claims? (11 examples) | AGENT_EXAMPLES.md | Examples 1–11 |
 | How do I avoid duplicates? | QUICK_START.md | Deduplication Workflow section |
+| How do I follow discovered links during training? | QUICK_START.md | Discovery During Training section |
 | What are my first 5 steps? | QUICK_START.md | 5 Quick Examples + checklist |
 | Why was this system designed this way? | PHASE_1_DECISIONS_LOCKED.md | 4 Decision matrices + rationale |
 | What optimization opportunities exist? | ARCHITECTURE_OPTIMIZATION_REVIEW.md | 10 opportunities for Phase 2 |
@@ -229,7 +230,7 @@ OUTPUT: JSON claim structure
 
 ---
 
-### 6. **QUICK_START.md** (600+ lines)
+### 6. **QUICK_START.md** (1,000+ lines)
 **Purpose:** 5-minute onboarding guide with integration checklist
 
 **Contains:**
@@ -241,26 +242,32 @@ OUTPUT: JSON claim structure
 - Complete integration checklist (~12 steps)
 - Troubleshooting FAQ (6 common questions)
 - Reference map (where to find detailed info)
-- **Deduplication workflow section** (360+ lines)
+- **Deduplication Workflow section** (360+ lines)
   - Query patterns for checking existing claims
   - Bayesian confidence merging
   - Authority reconciliation logic
   - Common deduplication patterns (genealogy, offices, battles, gens)
   - Edge case handling
+- **Discovery During Training section** (500+ lines)
+  - Aggressive 8-hop discovery from discovered links
+  - Mark secondary claims with `secondary_authority: "3kl"`
+  - Capture all claims, resolve conflicts later
+  - Natural deduplication handles additive vs duplicate
+  - Temporal window validation (±40 years)
+  - Expected outcomes and risk mitigation
 
 **When to use:**
 - First-time agent setup (start here)
 - Understanding core concepts
-- Learning deduplication workflow (CRITICAL)
+- Learning deduplication workflow (CRITICAL for preventing duplicates)
+- Learning discovery workflow (CRITICAL for aggressive training)
 - Troubleshooting integration issues
 - Validation checklist before deployment
 
-**Critical section:**
-- Deduplication Workflow explains how to avoid duplicate edges
-- Includes Cypher query patterns
-- Explains Bayesian merging of confidences
-- Shows authority reconciliation logic
-- **Agents MUST read this before creating claims**
+**Critical sections:**
+- Deduplication Workflow: How to avoid duplicate edges, Cypher patterns, Bayesian merging
+- Discovery During Training: How to follow discovered links (8 hops), mark secondary sources, resolve conflicts later
+- **Agents MUST read both sections before processing:** dedup prevents duplicates, discovery maximizes coverage
 
 ---
 

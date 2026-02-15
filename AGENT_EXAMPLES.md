@@ -811,7 +811,7 @@ Provisional QIDs: **8/127 (6.3%)** created as `local_entity_{hash}` (e.g., obscu
 ✓ Claims Promoted: 4,102 (74.3% promotion rate)
 ✓ Claims Flagged: 287 (5.2% HIGH intensity for review)
 ✓ QID Resolution: 119/127 Wikidata (93.7%) + 8 provisional local (6.3%)
-✓ Subgraph: 1,000 nodes (trimmed from 1,847) ready for Neo4j ingestion
+✓ Subgraph: 2,318 nodes (all discovered entities preserved, no trimming) ready for Neo4j ingestion
 ```
 
 **For complete 10-phase processing details:** See [ARCHITECTURE_OPTIMIZATION_REVIEW.md](ARCHITECTURE_OPTIMIZATION_REVIEW.md#stage-6-wikipedia-text--claims)

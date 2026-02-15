@@ -26,6 +26,7 @@ Appendices remain part of the consolidated file, not separate source documents.
 | **Section 4: Subject Layer** | `scripts/backbone/subject/create_subject_nodes.py`, `Python/fast/scripts/import_fast_subjects_to_neo4j.py` | SubjectConcept authority alignment |
 | **Section 4.3: Temporal Authorities** | `Temporal/` assets, temporal scripts, PeriodO integration scripts (as available) | Authority alignment + uncertain date handling |
 | **Section 4.4: Geographic Authorities** | `Geographic/` assets, place normalization scripts | TGN/Pleiades/GeoNames integration |
+| **Section 4.4.1: Place/PlaceVersion (Chrystallum)** | `CHRYSTALLUM_PLACE_SEEDING_REQUIREMENTS.md`, `PLACE_VERSION_NEO4J_SCHEMA.cypher`, `CHRYSTALLUM_PHASE2_INTEGRATION.md` | Temporal-geographic modeling with boundary versioning (deferred to post-Phase-2 analysis) |
 | **Section 4.5: Wikidata Integration** | `scripts/tools/wikidata_fetch_all_statements.py`, `scripts/tools/wikidata_statement_datatype_profile.py`, `scripts/tools/wikidata_backlink_harvest.py`, `scripts/tools/wikidata_backlink_profile.py` | Federation + backlink pipeline |
 | **Section 5: Agent Architecture** | `md/Agents/` prompts/specs, orchestration docs in `md/Architecture/` | Domain routing + specialization |
 | **Section 6: Claims Layer** | `Neo4j/schema/01_schema_constraints.cypher` (Claim constraints), claim proposal artifacts in `JSON/wikidata/proposals/` | claim_id + cipher + lifecycle |
@@ -42,8 +43,10 @@ Appendices remain part of the consolidated file, not separate source documents.
 | Phase | Scope | Primary consolidated sections | Primary files |
 |---|---|---|---|
 | **Phase 1** | Schema + temporal backbone baseline | **3**, **3.4**, **10** | `Neo4j/schema/01_schema_constraints.cypher`, `Neo4j/schema/02_schema_indexes.cypher`, `Neo4j/schema/03_schema_initialization.cypher`, `Neo4j/schema/05_temporal_hierarchy_levels.cypher` |
+| **Phase 2A+2B** | Backlink harvest + two-track validation (analysis run) | **4.5**, **8.6**, **9** | `GPT_PHASE_2_PARALLEL_PROMPT.md`, `temporal_bridge_discovery.py`, `PHASE_2_QUICK_START.md`, `NEO4J_SCHEMA_UPDATES_PHASE2.md` |
 | **Phase 2** | Federation + enrichment | **4.3**, **4.4**, **4.5**, **8.6**, **9** | `scripts/tools/wikidata_*`, `Neo4j/FEDERATION_BACKLINK_STRATEGY.md`, geographic/temporal federation scripts |
 | **Phase 3** | Agent orchestration + claims lifecycle | **5**, **6**, **7**, **8**, **9**, **10** | agent specs/prompts, claim workflow scripts, relationship registries |
+| **Phase 4+** | Place/PlaceVersion enrichment | **4.4.1**, **3.4** | `CHRYSTALLUM_PLACE_SEEDING_REQUIREMENTS.md`, `PLACE_VERSION_NEO4J_SCHEMA.cypher`, transformation scripts (TBD) |
 
 ---
 
