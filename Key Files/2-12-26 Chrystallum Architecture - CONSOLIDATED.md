@@ -59,6 +59,8 @@ This document is the **authoritative architectural specification** for Chrystall
 - Appendix P: Semantic Enrichment & Ontology Alignment (CIDOC-CRM/CRMinf)
 - Appendix Q: Operational Modes & Agent Orchestration
 - Appendix R: Federation Strategy & Multi-Authority Integration
+- Appendix S: BabelNet Lexical Authority Integration
+- Appendix T: Subject Facet Agent Workflow - "Day in the Life"
 
 ---
 
@@ -12053,6 +12055,1368 @@ Current implementations in codebase:
 ---
 
 **(End of Appendix R)**
+
+---
+
+## **APPENDIX S: BabelNet Lexical Authority Integration**
+
+### **S.1 Positioning and Layer Architecture**
+
+BabelNet operates as a **multilingual lexical layer** positioned at **Layer 2.5** in the Chrystallum architecture:
+
+- **Layer 1:** Core ontology (SubjectConcept nodes, Claims, Relationships)
+- **Layer 2:** Federation authorities (Wikidata, LCSH, FAST, TGN, Pleiades)
+- **Layer 2.5:** BabelNet (lexical/semantic enrichment)
+- **Layer 3:** Facet Authority (SFAs generating domain-specific ontologies)
+
+**Architectural Position:**
+- **Not a primary fact authority** (Wikidata holds factual ground truth)
+- **Lexical sidecar** for multilingual labels, glosses, synsets, and cross-language entity linking
+- **Semantic enrichment** for term disambiguation and synonym expansion
+- **Cross-reference hub** linking WordNet, Wikipedia, Wikidata, and language-specific resources
+
+**Key Distinction:**
+- Wikidata provides **factual claims** (dates, locations, relationships) → confidence 0.90
+- BabelNet provides **lexical/semantic context** (multilingual labels, senses, glosses) → confidence 0.75-0.85
+- Combined alignment (BabelNet synset + Wikidata QID) → confidence boost +0.05
+
+---
+
+### **S.2 Core Use Cases**
+
+#### **S.2.1 SubjectConcept Lexical Enrichment**
+
+**Scenario:** A SubjectConcept node for "Roman Republic" needs multilingual labels and glosses.
+
+**Workflow:**
+1. SubjectConcept has `wikidata_id: Q17167`, `label: "Roman Republic"`, `facet: "political"`
+2. Call BabelNet API with English label + QID to retrieve synset
+3. Extract multilingual labels (Latin: *Res publica Romana*, French: *République romaine*, etc.)
+4. Store on SubjectConcept:
+   - `babelnet_id: bn:00068294n`
+   - `alt_labels: {"la": "Res publica Romana", "fr": "République romaine", ...}`
+   - `glosses: {"en": "ancient Roman state...", "fr": "état romain ancien...", ...}`
+5. Enrich SFA prompts with multilingual vocabulary for cross-language reasoning
+
+**Benefits:**
+- Enhanced query matching across languages
+- Richer context for LLM-based clustering and classification
+- Support for non-English historical sources
+
+#### **S.2.2 Cross-Lingual Entity Linking**
+
+**Scenario:** User query in French: *"République romaine et ses consuls"*
+
+**Workflow:**
+1. Parse query, extract surface form: *"République romaine"*
+2. Query BabelNet for French lexicalization → retrieves BabelNet synset `bn:00068294n`
+3. Map synset to Wikidata QID (BabelNet includes Wikidata links) → Q17167
+4. Retrieve SubjectConcept node with `wikidata_id: Q17167`
+5. Execute graph query with language-agnostic identifier
+
+**Benefits:**
+- Normalize cross-language queries to canonical identifiers
+- Support multilingual research workflows
+- Expand retrieval with synonyms and related terms
+
+#### **S.2.3 Facet-Aware Sense Disambiguation**
+
+**Scenario:** Disambiguate "legion" in military vs. religious contexts.
+
+**Workflow:**
+1. SFA encounters term "legion" in text extraction
+2. Query BabelNet → returns multiple synsets:
+   - `bn:00051234n`: military unit (hypernym: armed forces)
+   - `bn:00051235n`: large number (hypernym: multitude)
+   - `bn:00051236n`: demon (hypernym: evil spirit)
+3. **Facet filter:** Military SFA prioritizes military synset based on hypernym match
+4. Store chosen `babelnet_id` on SubjectConcept as part of lexical profile
+5. Use synset to inform CIDOC-CRM class alignment (E74 Group for military unit)
+
+**Benefits:**
+- Reduce ambiguity in multi-sense terms
+- Align lexical choices with ontology structure
+- Provide explainable reasoning for sense selection
+
+#### **S.2.4 Graph-RAG Over SubjectConcept + BabelNet**
+
+**Scenario:** Discover conceptual neighbors for "dictator" to propose new SubjectConcepts.
+
+**Workflow:**
+1. SubjectConcept exists for "Dictator (Roman)"
+2. Query BabelNet synset relations: hypernyms (*magistrate*, *ruler*), hyponyms (*tyrant*, *autocrat*)
+3. For each related synset, check if corresponding SubjectConcept exists
+4. Propose new shell nodes for missing concepts (e.g., "Roman Magistrate")
+5. Submit proposals through Subject Ontology Proposal validation pipeline
+
+**Benefits:**
+- Semi-automated ontology expansion
+- Discover gaps in subject coverage
+- Maintain lexical coherence across related concepts
+
+---
+
+### **S.3 Implementation Patterns**
+
+#### **S.3.1 API Integration Pattern**
+
+BabelNet follows the same federation API patterns documented in **Appendix R.10**.
+
+**Cross-Reference:** See [Appendix R.10](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-r-federation-strategy--multi-authority-integration) for:
+- R.10.1: Generic API request pattern with retry logic
+- R.10.2: Wikidata API example (similar structure for BabelNet)
+- R.10.9: Error handling patterns
+- R.10.10: Rate limiting and caching strategies
+
+#### **S.3.2 BabelNet API Access Example**
+
+```python
+import requests
+from typing import Optional, Dict
+import os
+
+def fetch_babelnet_synset(synset_id: str, api_key: str = None) -> Optional[Dict]:
+    """
+    Fetch BabelNet synset with multilingual labels and glosses.
+    
+    Args:
+        synset_id: BabelNet synset ID (e.g., 'bn:00068294n')
+        api_key: BabelNet API key (defaults to BABELNET_API_KEY env var)
+    
+    Returns:
+        JSON response with synset data, or None on error
+    """
+    api_key = api_key or os.getenv("BABELNET_API_KEY")
+    if not api_key:
+        raise ValueError("BabelNet API key required")
+    
+    API_URL = "https://babelnet.io/v9/getSynset"
+    params = {
+        "id": synset_id,
+        "key": api_key,
+        "targetLang": "EN,IT,FR,DE,ES,LA"  # Multilingual support
+    }
+    headers = {"User-Agent": "Chrystallum/1.0"}
+    
+    try:
+        # Standard pattern from R.10.1
+        response = requests.get(
+            API_URL, 
+            params=params, 
+            headers=headers, 
+            timeout=30
+        )
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 429:
+            # Rate limit exceeded - see R.10.10 for retry logic
+            print(f"Rate limit exceeded: {e}")
+        return None
+    except requests.exceptions.Timeout:
+        print(f"Timeout fetching synset {synset_id}")
+        return None
+    except Exception as e:
+        print(f"Error fetching BabelNet synset: {e}")
+        return None
+
+def enrich_node_from_babelnet(node_id: str, wikidata_qid: str, label: str) -> Dict:
+    """
+    Enrich SubjectConcept node with BabelNet lexical data.
+    
+    Workflow:
+    1. Query BabelNet for synsets matching label + QID
+    2. Extract multilingual labels, glosses, synset relations
+    3. Store babelnet_id, alt_labels, glosses on node
+    4. Return enrichment metadata with confidence score
+    """
+    # Search BabelNet by Wikidata QID
+    api_key = os.getenv("BABELNET_API_KEY")
+    search_url = "https://babelnet.io/v9/getIds"
+    params = {
+        "lemma": label,
+        "searchLang": "EN",
+        "key": api_key,
+        "source": f"WIKIDATA:{wikidata_qid}"
+    }
+    
+    response = requests.get(search_url, params=params, timeout=30)
+    if response.status_code == 200:
+        synset_ids = response.json()
+        if synset_ids:
+            # Fetch full synset data for first match
+            synset_data = fetch_babelnet_synset(synset_ids[0]["id"], api_key)
+            if synset_data:
+                return {
+                    "babelnet_id": synset_ids[0]["id"],
+                    "alt_labels": extract_multilingual_labels(synset_data),
+                    "glosses": extract_glosses(synset_data),
+                    "confidence": 0.80,  # Base confidence for BabelNet alignment
+                    "source": "BabelNet v9"
+                }
+    
+    return {"confidence": 0.0, "error": "No synset found"}
+
+def extract_multilingual_labels(synset_data: Dict) -> Dict[str, str]:
+    """Extract multilingual labels from BabelNet synset response."""
+    labels = {}
+    for sense in synset_data.get("senses", []):
+        lang = sense.get("language", "")
+        lemma = sense.get("properties", {}).get("fullLemma", "")
+        if lang and lemma:
+            labels[lang] = lemma
+    return labels
+
+def extract_glosses(synset_data: Dict) -> Dict[str, str]:
+    """Extract glosses (short definitions) from BabelNet synset."""
+    glosses = {}
+    for gloss in synset_data.get("glosses", []):
+        lang = gloss.get("language", "")
+        text = gloss.get("gloss", "")
+        if lang and text:
+            glosses[lang] = text
+    return glosses
+```
+
+#### **S.3.3 Caching and Rate Limiting**
+
+**BabelNet API Limits:**
+- **Free tier:** 1,000 requests/day
+- **Paid subscription:** 10,000-100,000 requests/day (tiered pricing)
+
+**Caching Strategy** (see Appendix R.10.10):
+- Cache synset responses in Redis with 30-day TTL
+- Use file-based cache for development: `cache/babelnet/{synset_id}.json`
+- Cache key: `babelnet:synset:{synset_id}`
+
+**Implementation:**
+```python
+import json
+from pathlib import Path
+
+def get_cached_synset(synset_id: str) -> Optional[Dict]:
+    cache_path = Path(f"cache/babelnet/{synset_id}.json")
+    if cache_path.exists():
+        return json.loads(cache_path.read_text())
+    return None
+
+def cache_synset(synset_id: str, data: Dict):
+    cache_path = Path(f"cache/babelnet/{synset_id}.json")
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(json.dumps(data, indent=2))
+```
+
+---
+
+### **S.4 Confidence Scoring for BabelNet-Derived Properties**
+
+#### **S.4.1 Base Confidence Levels**
+
+**BabelNet Synset Alignment:** 0.75-0.85 confidence
+- **Rationale:** BabelNet is a lexical/semantic authority, not a factual authority
+- **Lower than Wikidata (0.90)** because:
+  - Lexical relationships are more subjective than factual claims
+  - Synset boundaries and sense distinctions vary by resource
+  - Multilingual alignments introduce translation ambiguity
+
+**Confidence Ranges:**
+- **0.85:** BabelNet synset with Wikidata QID alignment + high statement count
+- **0.80:** BabelNet synset with Wikidata QID alignment (standard case)
+- **0.75:** BabelNet synset without Wikidata alignment (WordNet/Wikipedia only)
+
+#### **S.4.2 Confidence Boost Patterns**
+
+**BabelNet + Wikidata Alignment:** +0.05 confidence boost
+- When BabelNet synset includes `WIKIDATA:Q12345` link and QID matches existing SubjectConcept
+- Example: Base 0.80 → 0.85 with QID confirmation
+
+**Multi-Source Lexical Convergence:** +0.10 confidence boost
+- When BabelNet synset aligns with:
+  - Wikidata QID
+  - LCSH preferred term
+  - FAST heading
+- Example: Base 0.75 → 0.85 with triple alignment
+
+**Facet-Specific Disambiguation:** +0.05 confidence boost
+- When chosen synset hypernym matches facet domain
+- Example: Military SFA selects military synset for "legion" → +0.05
+
+#### **S.4.3 Confidence Degradation**
+
+**Ambiguous Synset Selection:** -0.10 confidence penalty
+- Multiple candidate synsets with similar scores
+- No clear facet-based discriminator
+
+**Missing Wikidata Link:** -0.05 confidence penalty
+- BabelNet synset lacks Wikidata connection
+- Reliance on WordNet/Wikipedia only
+
+#### **S.4.4 Example Confidence Calculations**
+
+**Scenario 1: High-Confidence Alignment**
+- SubjectConcept: "Roman Republic" (wikidata_id: Q17167)
+- BabelNet synset: bn:00068294n
+- BabelNet includes: WIKIDATA:Q17167 link
+- Synset has 15+ language lexicalizations
+- **Confidence:** 0.80 (base) + 0.05 (QID match) = **0.85**
+
+**Scenario 2: Medium-Confidence Alignment**
+- SubjectConcept: "Roman Legion"
+- BabelNet synset: bn:00051234n (military unit)
+- Multiple candidate synsets, facet filter applied
+- **Confidence:** 0.80 (base) + 0.05 (facet match) = **0.85**
+
+**Scenario 3: Low-Confidence Alignment**
+- SubjectConcept: "Ancient Assembly"
+- BabelNet synset: bn:00012345n
+- No Wikidata link, ambiguous sense
+- **Confidence:** 0.75 (base) - 0.05 (no QID) - 0.10 (ambiguous) = **0.60**
+
+---
+
+### **S.5 Integration with SFA Workflow**
+
+#### **S.5.1 Phase 3.5: Lexical Enrichment (Optional)**
+
+**Position:** After Initialize Mode (Phase 3), before Ontology Proposal (Phase 4)
+
+**Workflow:**
+1. SFA completes Initialize Mode, creates SubjectConcept nodes with Wikidata enrichment
+2. **Lexical Enrichment Phase (Optional):**
+   - For each new SubjectConcept with `wikidata_id`:
+     - Call `enrich_node_from_babelnet(node_id, wikidata_qid, label)`
+     - Store `babelnet_id`, `alt_labels`, `glosses` on node properties
+     - Log enrichment with confidence score
+   - Skip nodes without Wikidata QID (cannot reliably align)
+3. Proceed to Ontology Proposal with enriched lexical context
+
+**Benefits:**
+- Richer multilingual labels for clustering and classification
+- Enhanced LLM prompts with glosses and synonyms
+- Cross-language support for future queries
+
+**Configuration:**
+```python
+# In facet_agent_framework.py
+if config.get("babelnet_enrichment_enabled", False):
+    for node in new_nodes:
+        if node.get("wikidata_id"):
+            enrichment = enrich_node_from_babelnet(
+                node["id"], 
+                node["wikidata_id"], 
+                node["label"]
+            )
+            if enrichment.get("confidence", 0) >= 0.75:
+                update_node_properties(node["id"], enrichment)
+```
+
+#### **S.5.2 Phase 5: Training Mode Disambiguation**
+
+**Use Case:** Polysemous term disambiguation during claim generation
+
+**Scenario:** Military SFA encounters "cohort" in text:
+- Could mean: military unit, statistical group, companion group
+
+**Workflow:**
+1. Extract term "cohort" from historical text
+2. Query BabelNet for synsets matching "cohort"
+3. **Facet-aware filtering:**
+   - Military SFA prioritizes synset with hypernym "military unit"
+   - Filters out statistical/demographic senses
+4. Store chosen `babelnet_id` on new SubjectConcept or claim metadata
+5. Use synset to guide CIDOC-CRM class assignment
+
+**Benefits:**
+- Reduce ambiguity in extracted terms
+- Align lexical choices with domain expertise
+- Provide explainable term selection
+
+**Cross-Reference:** See **Appendix T.3** (Training Mode workflow) for implementation details.
+
+---
+
+### **S.6 Configuration and Authentication**
+
+#### **S.6.1 API Key Management**
+
+**BabelNet API requires paid subscription** (after free tier exhaustion)
+
+**Environment Variable:**
+```bash
+export BABELNET_API_KEY="your_api_key_here"
+```
+
+**Configuration in config.py:**
+```python
+BABELNET_CONFIG = {
+    "api_key": os.getenv("BABELNET_API_KEY"),
+    "base_url": "https://babelnet.io/v9",
+    "rate_limit": 1000,  # requests/day for free tier
+    "timeout": 30,  # seconds
+    "cache_enabled": True,
+    "cache_ttl": 2592000,  # 30 days
+}
+```
+
+#### **S.6.2 Rate Limit Tracking**
+
+**Free Tier:** 1,000 requests/day
+- Track daily usage in Redis: `babelnet:usage:{date}`
+- Implement circuit breaker when approaching limit
+
+**Implementation:**
+```python
+import redis
+from datetime import date
+
+def check_rate_limit() -> bool:
+    r = redis.Redis()
+    today = date.today().isoformat()
+    key = f"babelnet:usage:{today}"
+    count = r.incr(key)
+    if count == 1:
+        r.expire(key, 86400)  # 24 hours
+    return count <= 1000  # Free tier limit
+```
+
+#### **S.6.3 Fallback Strategies**
+
+**When BabelNet Unavailable:**
+1. **Use cached synsets** for previously seen terms
+2. **Skip lexical enrichment** for new terms (graceful degradation)
+3. **Fall back to Wikidata labels** only (mono-lingual)
+4. **Log skipped enrichments** for manual review
+
+---
+
+### **S.7 Cross-References**
+
+**Related Appendices:**
+- **[Appendix R.10](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#r10-api-implementation-patterns):** Federation API patterns (request structure, error handling, caching)
+- **[Appendix T](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-t-subject-facet-agent-workflow---day-in-the-life):** SFA workflow integration points (Phase 3.5, Phase 5 disambiguation)
+- **[Appendix P](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-p-semantic-enrichment--ontology-alignment-cidoc-crmcrminf):** CIDOC-CRM alignment for lexical concepts (E55 Type for BabelNet synsets)
+- **[Appendix K](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-k-wikidata-integration-patterns):** Wikidata integration patterns (primary fact authority)
+- **[Appendix Q](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-q-operational-modes--agent-orchestration):** Operational Modes (Initialize, Training)
+
+**Implementation Files:**
+- `scripts/federation/babelnet_client.py`: BabelNet API client (to be created)
+- `scripts/agents/facet_agent_framework.py`: SFA orchestration with BabelNet integration
+- `config.py`: BabelNet configuration settings
+
+**External Resources:**
+- BabelNet API Documentation: https://babelnet.io/guide
+- BabelNet Paper (ACM 2012): https://dl.acm.org/doi/10.5555/2887533.2887534
+- Multilingual Linked Data Report: http://www.w3.org/2015/09/bpmlod-reports/multilingual-dictionaries/
+
+---
+
+**(End of Appendix S)**
+
+---
+
+## **APPENDIX T: Subject Facet Agent Workflow - "Day in the Life"**
+
+A newly instantiated SubjectFacetAgent (SFA) follows a structured workflow that ensures disciplined knowledge construction through schema introspection, state loading, federation bootstrap, ontology proposal, and training. This appendix documents the complete lifecycle of an SFA from instantiation to claim generation.
+
+---
+
+### **T.1 Wake-Up and Self-Orientation**
+
+#### **T.1.1 Agent Instantiation**
+
+**Factory Pattern:**
+```python
+from scripts.agents.facet_agent_framework import FacetAgentFactory
+
+factory = FacetAgentFactory()
+agent = factory.get_agent("military")  # or political, religious, economic, etc.
+```
+
+**Supported Facets:**
+- `military`: Military units, campaigns, tactics, leadership
+- `political`: Governments, institutions, offices, political events
+- `religious`: Beliefs, practices, institutions, figures
+- `economic`: Trade, currency, production, labor
+- `cultural`: Arts, literature, daily life, customs
+- `geographic`: Places, regions, territories, boundaries
+
+#### **T.1.2 Schema Introspection (Step 1)**
+
+**Purpose:** Learn "what is allowed" at the schema level before touching data.
+
+**Actions:**
+1. **Node schema introspection:**
+   ```python
+   schema = agent.introspect_node_label("SubjectConcept")
+   # Returns: required properties, optional properties, tier, validation rules
+   ```
+
+2. **Layer 2.5 property discovery:**
+   ```python
+   properties = agent.get_layer25_properties()
+   # Returns: P31 (instance of), P279 (subclass of), P361 (part of), etc.
+   # These are the allowed Wikidata properties for hierarchy traversal
+   ```
+
+3. **Relationship discovery:**
+   ```python
+   relationships = agent.discover_relationships_between("Human", "Event")
+   # Returns: PARTICIPATED_IN, COMMANDED, WITNESSED, etc.
+   ```
+
+**Output:** SFA now knows:
+- Required properties for SubjectConcept nodes
+- Valid Wikidata properties for federation
+- Allowed relationship types for claims
+
+**Cross-Reference:** See [Appendix M](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-m-identifier-safety-reference) for schema validation patterns.
+
+---
+
+### **T.2 Session Start: Load Current State**
+
+#### **T.2.1 State Introspection (Step 2)**
+
+**Purpose:** Learn "what already exists" and "what I have done before."
+
+**Actions:**
+```python
+context = agent.get_session_context()
+# Returns:
+# - sample_nodes: Recent SubjectConcept nodes in this facet
+# - sample_relationships: Recent relationships involving these nodes
+# - pending_claims: Claims awaiting validation
+# - agent_history: This agent's past contributions and promotion rate
+# - meta_schema_version: Schema version for compatibility check
+```
+
+#### **T.2.2 Subgraph and Provenance Checks**
+
+**Check for existing anchor:**
+```python
+subgraph = agent.get_subjectconcept_subgraph(limit=200)
+# Search for planned anchor node (e.g., "Roman Republic")
+anchor_exists = any(node.label == "Roman Republic" for node in subgraph)
+```
+
+**Provenance analysis:**
+```python
+if anchor_exists:
+    node_id = get_node_id("Roman Republic")
+    claims = agent.find_claims_for_node(node_id)
+    provenance = agent.get_node_provenance(node_id)
+    # Avoid duplicate claims, understand existing coverage
+```
+
+**Agent contribution tracking:**
+```python
+contributions = agent.find_agent_contributions()
+# Returns: claims_proposed, claims_promoted, claims_rejected, promotion_rate
+# Use to adjust confidence thresholds
+```
+
+**Cross-Reference:** See [Appendix Q](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-q-operational-modes--agent-orchestration) for state management patterns.
+
+---
+
+### **T.3 Initialize Mode: Bootstrap Domain from Wikidata**
+
+#### **T.3.1 Mode Activation and Logging (Step 5)**
+
+**Purpose:** Bootstrap a new domain area from a trusted Wikidata anchor.
+
+**Execution:**
+```python
+result_init = agent.execute_initialize_mode(
+    anchor_qid="Q17167",  # Roman Republic
+    depth=2,  # Traverse hierarchy 2 levels deep
+    autosubmit_claims=False,  # Manual review required
+    ui_callback=ui_log_callback  # Real-time logging
+)
+```
+
+#### **T.3.2 Initialize Mode Workflow**
+
+**Step-by-Step Process:**
+
+1. **Fetch Wikidata anchor entity:**
+   ```python
+   entity = fetch_wikidata_entity("Q17167")
+   # Returns: labels, descriptions, aliases, statements, sitelinks
+   ```
+
+2. **Auto-enrich/create root SubjectConcept:**
+   ```python
+   node_id = enrich_node_from_wikidata(
+       wikidata_qid="Q17167",
+       facet="political",
+       create_if_missing=True
+   )
+   # Sets: label, description, alt_labels, wikidata_id, statement_count
+   ```
+
+3. **Validate completeness (Step 3.5):**
+   ```python
+   completeness = validate_node_completeness(node_id)
+   # Checks: required properties present, label/description quality
+   # Returns: score 0.0-1.0, missing_fields, validation_errors
+   if completeness["score"] < 0.70:
+       log_warning("Low completeness", completeness)
+       return  # Abort if below threshold
+   ```
+
+4. **Enrich with CIDOC-CRM alignment:**
+   ```python
+   enrich_with_ontology_alignment(node_id, entity)
+   # Maps Wikidata P31 types to CIDOC-CRM classes
+   # Sets: cidoc_crm_class (e.g., E74_Group, E4_Period)
+   ```
+
+5. **Traverse hierarchy with allowed properties:**
+   ```python
+   related = discover_hierarchy_from_entity(
+       qid="Q17167",
+       depth=2,
+       properties=["P31", "P279", "P361", "P527"]  # From Layer 2.5
+   )
+   # Returns: related entities, relationship types, hierarchy structure
+   ```
+
+6. **Generate claims from Wikidata statements:**
+   ```python
+   claims = generate_claims_from_wikidata(
+       node_id=node_id,
+       entity=entity,
+       base_confidence=0.90,  # Wikidata authority
+       facet="political"
+   )
+   # Each claim enriched with CRMinf belief metadata
+   # Tagged with facet, source, extraction_time
+   ```
+
+7. **Optional auto-submit high-confidence claims:**
+   ```python
+   if autosubmit_claims:
+       for claim in claims:
+           if claim["confidence"] >= 0.90:
+               submit_claim_for_validation(claim)
+   ```
+
+8. **Log all actions:**
+   ```python
+   logger.log_action(
+       action_type="INITIALIZE",
+       node_id=node_id,
+       details={"qid": "Q17167", "depth": 2, "claims_generated": len(claims)}
+   )
+   ```
+
+**Output:**
+```python
+{
+    "nodes_created": 15,
+    "relationships_discovered": 42,
+    "claims_generated": 68,
+    "completeness_score": 0.87,
+    "cidoc_crm_class": "E4_Period",
+    "log_file": "logs/military_initialize_20260216_143022.json"
+}
+```
+
+**Cross-Reference:** See [Appendix K](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-k-wikidata-integration-patterns) for Wikidata API patterns.
+
+---
+
+### **T.3.5 Lexical Enrichment (Optional)**
+
+#### **T.3.5.1 BabelNet Integration Phase**
+
+**Position:** After Initialize Mode (Phase 3), before Ontology Proposal (Phase 4)
+
+**Purpose:** Enrich SubjectConcept nodes with multilingual labels, glosses, and synsets for enhanced cross-language support and semantic disambiguation.
+
+**Workflow:**
+
+1. **Check configuration:**
+   ```python
+   if config.get("babelnet_enrichment_enabled", False):
+       api_key = os.getenv("BABELNET_API_KEY")
+       if not api_key:
+           log_warning("BabelNet enrichment skipped: API key not configured")
+           return
+   ```
+
+2. **Enrich each new SubjectConcept:**
+   ```python
+   for node in result_init["nodes_created"]:
+       if node.get("wikidata_id"):  # Require Wikidata alignment
+           enrichment = enrich_node_from_babelnet(
+               node_id=node["id"],
+               wikidata_qid=node["wikidata_id"],
+               label=node["label"]
+           )
+           
+           if enrichment.get("confidence", 0) >= 0.75:
+               # Store BabelNet data on node
+               update_node_properties(node["id"], {
+                   "babelnet_id": enrichment["babelnet_id"],
+                   "alt_labels": json.dumps(enrichment["alt_labels"]),
+                   "glosses": json.dumps(enrichment["glosses"]),
+                   "babelnet_confidence": enrichment["confidence"]
+               })
+               
+               log_action(
+                   action_type="LEXICAL_ENRICHMENT",
+                   node_id=node["id"],
+                   details=enrichment
+               )
+   ```
+
+3. **Handle enrichment failures gracefully:**
+   ```python
+   # Lexical enrichment is optional - don't block on failure
+   try:
+       enrich_from_babelnet()
+   except BabelNetAPIError as e:
+       log_warning(f"BabelNet enrichment failed: {e}")
+       # Continue to Ontology Proposal without BabelNet data
+   ```
+
+**Benefits:**
+- Multilingual query support (French, German, Latin, etc.)
+- Richer context for LLM-based clustering in Ontology Proposal
+- Term disambiguation during Training Mode
+
+**Configuration:**
+```python
+# config.py
+BABELNET_ENRICHMENT = {
+    "enabled": True,
+    "min_confidence": 0.75,
+    "required_languages": ["EN", "LA", "FR", "DE"],
+    "skip_on_failure": True  # Graceful degradation
+}
+```
+
+**Cross-Reference:** See **[Appendix S](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-s-babelnet-lexical-authority-integration)** for detailed BabelNet integration patterns.
+
+---
+
+### **T.4 Subject Ontology Proposal (Bridge Step, via SCA Component)**
+
+#### **T.4.1 Ontology Proposal Execution (Step 5 Bridge)**
+
+**Purpose:** Structure discovered entities into conceptual clusters with claim templates and validation rules.
+
+**Execution:**
+```python
+result_onto = agent.propose_subject_ontology(ui_callback=ui_log_callback)
+```
+
+#### **T.4.2 Ontology Proposal Workflow**
+
+**Step-by-Step Process:**
+
+1. **Collect entities from Initialize Mode:**
+   ```python
+   nodes = result_init["nodes_created"]
+   # Each node has: label, wikidata_id, P31/P279 types
+   ```
+
+2. **Fetch full Wikidata entities:**
+   ```python
+   for node in nodes:
+       entity = fetch_wikidata_entity(node["wikidata_id"])
+       type_chains = extract_type_hierarchy(entity)  # P31/P279 chains
+   ```
+
+3. **LLM clustering pass:**
+   ```python
+   clusters = llm_cluster_types(
+       types=type_chains,
+       facet="military",
+       prompt_template="cluster_military_concepts"
+   )
+   # Returns: conceptual clusters (e.g., Military Leadership, Military Operations)
+   ```
+
+4. **Convert clusters to ontology classes:**
+   ```python
+   ontology_classes = []
+   for cluster in clusters:
+       ontology_class = {
+           "class_name": cluster["name"],
+           "parent_class": cluster.get("parent", "SubjectConcept"),
+           "member_count": len(cluster["members"]),
+           "characteristics": cluster["description"],
+           "example_members": cluster["members"][:5]
+       }
+       ontology_classes.append(ontology_class)
+   ```
+
+5. **Generate claim templates:**
+   ```python
+   templates = generate_claim_templates(ontology_classes)
+   # Example: "All Military Commanders have property:rank with value:MilitaryRank"
+   ```
+
+6. **Define validation rules:**
+   ```python
+   rules = [
+       {"type": "membership", "rule": "All members must have P31 pointing to class"},
+       {"type": "cardinality", "rule": "rank property: 1-3 values per entity"},
+       {"type": "temporal", "rule": "service dates must be within lifetime"},
+       {"type": "cross_facet", "rule": "military unit must align with geographic location"}
+   ]
+   ```
+
+7. **Compute strength score:**
+   ```python
+   strength_score = compute_ontology_strength(
+       member_count=len(nodes),
+       template_coverage=len(templates) / len(nodes),
+       rule_coverage=len(rules)
+   )
+   # Returns: 0.0-1.0 score indicating ontology quality
+   ```
+
+8. **Store ontology on agent instance:**
+   ```python
+   agent.proposed_ontology = {
+       "classes": ontology_classes,
+       "templates": templates,
+       "rules": rules,
+       "strength_score": strength_score,
+       "created_at": datetime.now().isoformat()
+   }
+   ```
+
+**Output:**
+```python
+{
+    "classes": [
+        {
+            "class_name": "MilitaryLeadership",
+            "parent_class": "SubjectConcept",
+            "member_count": 8,
+            "characteristics": "Individuals who commanded military units...",
+            "example_members": ["Julius Caesar", "Pompey", "Scipio Africanus"]
+        },
+        # ... more classes
+    ],
+    "templates": [
+        "MilitaryLeadership has rank: MilitaryRank",
+        "MilitaryLeadership commanded: MilitaryUnit"
+    ],
+    "rules": [...],
+    "strength_score": 0.82
+}
+```
+
+**Cross-Reference:** See [Appendix P](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-p-semantic-enrichment--ontology-alignment-cidoc-crmcrminf) for CIDOC-CRM alignment during ontology proposal.
+
+---
+
+### **T.5 Training Mode: Extended Claim Generation**
+
+#### **T.5.1 Training Mode Execution**
+
+**Purpose:** Generate claims guided by proposed ontology, with validation and quality controls.
+
+**Execution:**
+```python
+result_train = agent.execute_training_mode(
+    max_iterations=50,
+    target_claims=300,
+    min_confidence=0.80,
+    autosubmit_high_confidence=False,
+    ui_callback=ui_log_callback
+)
+```
+
+#### **T.5.2 Training Mode Workflow**
+
+**Per-Node Processing Loop:**
+
+1. **Reload context (detect inter-agent changes):**
+   ```python
+   context = agent.get_session_context()
+   # See if other facets have added claims or nodes
+   ```
+
+2. **Prioritize nodes using ontology:**
+   ```python
+   priority_nodes = sort_by_ontology_class(
+       nodes=context["sample_nodes"],
+       ontology=agent.proposed_ontology
+   )
+   # Process high-priority classes first (e.g., MilitaryLeadership)
+   ```
+
+3. **For each node:**
+
+   a. **Ensure Wikidata QID exists:**
+   ```python
+   if not node.get("wikidata_id"):
+       enrichment = enrich_node_from_wikidata(node["id"])
+       if not enrichment.get("wikidata_id"):
+           log_warning(f"Skipping node {node['id']}: no QID")
+           continue
+   ```
+
+   b. **Validate completeness:**
+   ```python
+   completeness = validate_node_completeness(node["id"])
+   log_metric("completeness", completeness["score"])
+   if completeness["score"] < 0.70:
+       attempt_auto_enrichment(node["id"])
+   ```
+
+   c. **Fetch Wikidata entity:**
+   ```python
+   entity = fetch_wikidata_entity(node["wikidata_id"])
+   ```
+
+   d. **Generate claims filtered by ontology:**
+   ```python
+   claims = generate_claims_from_wikidata(
+       node_id=node["id"],
+       entity=entity,
+       base_confidence=0.90,
+       facet=agent.facet_key,
+       templates=agent.proposed_ontology["templates"],  # Filter by templates
+       rules=agent.proposed_ontology["rules"]  # Validate against rules
+   )
+   ```
+
+   e. **Use BabelNet for polysemous term disambiguation:**
+   ```python
+   # NEW: BabelNet integration for ambiguous terms
+   if claim.get("value_label") in POLYSEMOUS_TERMS:
+       babelnet_synset = disambiguate_with_babelnet(
+           term=claim["value_label"],
+           facet=agent.facet_key,
+           context=node["label"]
+       )
+       if babelnet_synset:
+           claim["babelnet_synset"] = babelnet_synset["synset_id"]
+           claim["sense_gloss"] = babelnet_synset["gloss"]
+   ```
+   **Cross-Reference:** See **[Appendix S.5](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#s52-phase-5-training-mode-disambiguation)** for BabelNet disambiguation patterns.
+
+   f. **Enrich claims with CRMinf:**
+   ```python
+   for claim in claims:
+       enrich_claim_with_crminf(
+           claim=claim,
+           belief_type="I4_Proposition_Set",
+           confidence=claim["confidence"]
+       )
+   ```
+
+   g. **Validate CIDOC alignment:**
+   ```python
+   cidoc_valid = validate_cidoc_alignment(node["id"], claim)
+   if not cidoc_valid:
+       log_warning(f"CIDOC alignment failed for claim {claim['id']}")
+       claim["confidence"] *= 0.90  # Confidence penalty
+   ```
+
+   h. **Filter by minimum confidence:**
+   ```python
+   claims = [c for c in claims if c["confidence"] >= min_confidence]
+   ```
+
+   i. **Auto-submit high-confidence claims:**
+   ```python
+   if autosubmit_high_confidence:
+       for claim in claims:
+           if claim["confidence"] >= 0.90:
+               submit_claim_for_validation(claim)
+   ```
+
+   j. **Log each claim proposal:**
+   ```python
+   for claim in claims:
+       logger.log_action(
+           action_type="CLAIM_PROPOSED",
+           node_id=node["id"],
+           details={
+               "label": claim["label"],
+               "confidence": claim["confidence"],
+               "rationale": claim["rationale"]
+           }
+       )
+   ```
+
+4. **Track metrics:**
+   ```python
+   metrics = {
+       "nodes_processed": iteration_count,
+       "claims_proposed": total_claims,
+       "avg_confidence": mean(claim_confidences),
+       "avg_completeness": mean(completeness_scores),
+       "claims_per_second": total_claims / elapsed_time
+   }
+   ```
+
+**Output:**
+```python
+{
+    "nodes_processed": 45,
+    "claims_proposed": 287,
+    "avg_confidence": 0.86,
+    "avg_completeness": 0.83,
+    "claims_per_second": 2.4,
+    "log_file": "logs/military_training_20260216_150345.json"
+}
+```
+
+**Cross-Reference:** See [Appendix N](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-n-property-extensions--advanced-attributes) for advanced claim properties.
+
+---
+
+### **T.6 Between Tasks: Collaboration and Introspection**
+
+#### **T.6.1 Cross-Facet Awareness**
+
+**Monitor other facets:**
+```python
+# Check pending claims from all facets
+all_pending = list_pending_claims()  # No facet filter
+
+# Adjust behavior based on system load
+if len(all_pending) > 1000:
+    # Reduce proposal rate if validation queue is backed up
+    agent.proposal_rate *= 0.75
+```
+
+#### **T.6.2 Self-Monitoring**
+
+**Track promotion rate:**
+```python
+contributions = agent.find_agent_contributions()
+promotion_rate = contributions["claims_promoted"] / contributions["claims_proposed"]
+
+if promotion_rate < 0.70:
+    # Increase confidence threshold if many claims are rejected
+    agent.min_confidence += 0.05
+    log_warning(f"Low promotion rate ({promotion_rate:.2f}), increasing threshold")
+```
+
+#### **T.6.3 Provenance Analysis**
+
+**Understand node history:**
+```python
+for node in priority_nodes:
+    provenance = get_node_provenance(node["id"])
+    claim_history = get_claim_history(node["id"])
+    
+    # Avoid duplicate claims
+    existing_claims = [c["label"] for c in claim_history]
+    new_claims = [c for c in proposed_claims if c["label"] not in existing_claims]
+```
+
+**Cross-Reference:** See [Appendix Q](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-q-operational-modes--agent-orchestration) for multi-agent coordination patterns.
+
+---
+
+### **T.7 End of "Day": Session Summary**
+
+#### **T.7.1 Logger Summary**
+
+**Final metrics:**
+```python
+summary = logger.generate_summary()
+# Returns:
+# - action_counts: {INITIALIZE: 1, REASONING: 45, QUERY: 203, CLAIM_PROPOSED: 287}
+# - error_counts: {API_TIMEOUT: 3, VALIDATION_FAILED: 12}
+# - claim_stats: {proposed: 287, high_confidence: 198, low_confidence: 89}
+# - completeness_avg: 0.83
+# - session_duration: 4520.3 seconds
+```
+
+#### **T.7.2 Persistence (Future Work)**
+
+**Store ontology:**
+```python
+# Future: persist ontology for next session
+save_ontology(
+    facet=agent.facet_key,
+    ontology=agent.proposed_ontology,
+    version=agent.ontology_version
+)
+```
+
+**Store session metrics:**
+```python
+# Future: track agent performance over time
+save_session_metrics(
+    agent_id=agent.agent_id,
+    metrics=summary,
+    timestamp=datetime.now()
+)
+```
+
+---
+
+### **T.8 Federation Enrichment Integration**
+
+#### **T.8.1 Multi-Authority Enrichment Pattern**
+
+**Purpose:** Enrich SubjectConcept nodes with data from multiple federation authorities beyond Wikidata.
+
+**Workflow Position:** After Phase 3 (Initialize Mode), optionally before or alongside Phase 3.5 (Lexical Enrichment)
+
+**Supported Authorities:**
+- **Pleiades:** Ancient place identifiers and coordinates
+- **VIAF:** Person authority with multi-national library identifiers
+- **GeoNames:** Geographic name authority with modern coordinates
+- **FAST:** Subject heading alignment
+- **TGN:** Getty Thesaurus of Geographic Names
+
+**Implementation:**
+```python
+def enrich_node_from_federation(
+    node_id: str,
+    authorities: List[str] = ["pleiades", "viaf", "geonames"]
+) -> Dict:
+    """
+    Enrich node with data from multiple federation authorities.
+    
+    Follows patterns from Appendix R.10.
+    """
+    enrichments = {}
+    
+    for authority in authorities:
+        try:
+            if authority == "pleiades" and node.get("entity_type") == "Place":
+                pleiades_data = enrich_from_pleiades(
+                    label=node["label"],
+                    wikidata_qid=node.get("wikidata_id")
+                )
+                if pleiades_data:
+                    enrichments["pleiades_id"] = pleiades_data["id"]
+                    enrichments["ancient_coordinates"] = pleiades_data["coords"]
+                    enrichments["confidence"] = 0.85
+            
+            elif authority == "viaf" and node.get("entity_type") == "Person":
+                viaf_data = enrich_from_viaf(
+                    label=node["label"],
+                    wikidata_qid=node.get("wikidata_id")
+                )
+                if viaf_data:
+                    enrichments["viaf_id"] = viaf_data["id"]
+                    enrichments["library_identifiers"] = viaf_data["identifiers"]
+                    enrichments["confidence"] = 0.85
+            
+            elif authority == "geonames":
+                geonames_data = enrich_from_geonames(
+                    label=node["label"],
+                    wikidata_qid=node.get("wikidata_id")
+                )
+                if geonames_data:
+                    enrichments["geonames_id"] = geonames_data["id"]
+                    enrichments["modern_coordinates"] = geonames_data["coords"]
+                    enrichments["confidence"] = 0.80
+        
+        except FederationAPIError as e:
+            log_warning(f"{authority} enrichment failed: {e}")
+            continue
+    
+    # Stack evidence from multiple sources
+    if len(enrichments) > 1:
+        enrichments["confidence"] = min(0.95, enrichments["confidence"] + 0.10)
+    
+    return enrichments
+```
+
+**Usage in Initialize Mode:**
+```python
+# After creating SubjectConcept nodes from Wikidata
+for node in result_init["nodes_created"]:
+    if config.get("federation_enrichment_enabled", True):
+        federation_data = enrich_node_from_federation(
+            node_id=node["id"],
+            authorities=["pleiades", "viaf", "geonames"]
+        )
+        if federation_data:
+            update_node_properties(node["id"], federation_data)
+```
+
+**Confidence Stacking:**
+- **Single authority:** 0.80-0.85 confidence
+- **Two authorities:** +0.10 boost → 0.90-0.95
+- **Three+ authorities:** +0.15 boost → 0.95-1.00 (capped)
+
+**Cross-Reference:** See **[Appendix R.10](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#r10-api-implementation-patterns)** for detailed API implementation patterns for each authority.
+
+---
+
+### **T.9 Error Recovery and Retry Patterns**
+
+#### **T.9.1 API Timeout Handling**
+
+**Pattern from Appendix R.10.10:**
+```python
+import time
+from typing import Optional
+
+def fetch_with_retry(
+    fetch_func,
+    max_retries: int = 3,
+    backoff_factor: float = 2.0,
+    timeout: int = 30
+) -> Optional[Dict]:
+    """
+    Retry API calls with exponential backoff.
+    """
+    for attempt in range(max_retries):
+        try:
+            return fetch_func(timeout=timeout)
+        except requests.exceptions.Timeout:
+            if attempt < max_retries - 1:
+                wait_time = backoff_factor ** attempt
+                log_warning(f"Timeout on attempt {attempt + 1}, retrying in {wait_time}s")
+                time.sleep(wait_time)
+            else:
+                log_error("Max retries exceeded, giving up")
+                return None
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 429:  # Rate limit
+                wait_time = int(e.response.headers.get("Retry-After", 60))
+                log_warning(f"Rate limited, waiting {wait_time}s")
+                time.sleep(wait_time)
+            else:
+                raise
+    return None
+```
+
+**Usage in Training Mode:**
+```python
+entity = fetch_with_retry(
+    lambda timeout: fetch_wikidata_entity(node["wikidata_id"], timeout=timeout),
+    max_retries=3
+)
+if not entity:
+    log_error(f"Failed to fetch entity for node {node['id']}")
+    continue  # Skip this node, move to next
+```
+
+#### **T.9.2 Completeness Validation Failures**
+
+**Scenario:** Node fails completeness check (Step 3.5)
+
+**Recovery Strategy:**
+```python
+completeness = validate_node_completeness(node_id)
+
+if completeness["score"] < 0.70:
+    # Attempt auto-enrichment
+    missing_fields = completeness["missing_fields"]
+    
+    if "description" in missing_fields:
+        # Fetch from Wikidata if not already present
+        entity = fetch_wikidata_entity(node["wikidata_id"])
+        if entity.get("descriptions", {}).get("en"):
+            update_node_property(
+                node_id,
+                "description",
+                entity["descriptions"]["en"]["value"]
+            )
+    
+    if "alt_labels" in missing_fields:
+        # Fetch from BabelNet or Wikidata aliases
+        alt_labels = fetch_alt_labels(node["wikidata_id"])
+        if alt_labels:
+            update_node_property(node_id, "alt_labels", json.dumps(alt_labels))
+    
+    # Re-validate
+    completeness = validate_node_completeness(node_id)
+    
+    if completeness["score"] < 0.70:
+        log_warning(f"Node {node_id} still incomplete after enrichment")
+        # Mark for manual review
+        tag_node_for_review(node_id, reason="low_completeness")
+```
+
+#### **T.9.3 Claim Validation Errors**
+
+**Scenario:** Generated claim fails validation rules
+
+**Recovery Strategy:**
+```python
+def generate_and_validate_claims(node_id, entity, ontology_rules):
+    claims = generate_claims_from_wikidata(node_id, entity)
+    
+    validated_claims = []
+    for claim in claims:
+        validation = validate_claim(claim, ontology_rules)
+        
+        if validation["valid"]:
+            validated_claims.append(claim)
+        else:
+            # Attempt to fix common validation errors
+            if validation["error"] == "missing_temporal_bound":
+                # Add default temporal bound from entity lifespan
+                claim["temporal_start"] = entity.get("birth_date")
+                claim["temporal_end"] = entity.get("death_date")
+                
+                # Re-validate
+                validation = validate_claim(claim, ontology_rules)
+                if validation["valid"]:
+                    validated_claims.append(claim)
+                else:
+                    log_warning(f"Claim {claim['id']} still invalid after fix")
+            
+            elif validation["error"] == "cardinality_violation":
+                # Lower confidence and flag for review
+                claim["confidence"] *= 0.80
+                claim["validation_warning"] = validation["error"]
+                validated_claims.append(claim)
+            
+            else:
+                # Cannot auto-fix, log and skip
+                log_error(f"Claim validation failed: {validation['error']}")
+    
+    return validated_claims
+```
+
+**Cross-Reference:** See [Appendix R.10.9](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-r-federation-strategy--multi-authority-integration) for federation-specific error handling.
+
+---
+
+### **T.10 Cross-References**
+
+**Related Appendices:**
+- **[Appendix R.10](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-r-federation-strategy--multi-authority-integration):** Federation API implementation patterns, error handling, caching
+- **[Appendix S](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-s-babelnet-lexical-authority-integration):** BabelNet lexical enrichment (Phase 3.5, Training Mode disambiguation)
+- **[Appendix O](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-o-facet-training-resources-registry):** Training resources for facet-specific knowledge
+- **[Appendix P](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-p-semantic-enrichment--ontology-alignment-cidoc-crmcrminf):** CIDOC-CRM alignment during enrichment
+- **[Appendix Q](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-q-operational-modes--agent-orchestration):** Operational modes (Initialize, Training, Validation)
+- **[Appendix K](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-k-wikidata-integration-patterns):** Wikidata integration patterns
+- **[Appendix M](2-12-26 Chrystallum Architecture - CONSOLIDATED.md#appendix-m-identifier-safety-reference):** Schema validation and identifier safety
+
+**Implementation Files:**
+- `scripts/agents/facet_agent_framework.py`: SFA orchestration and workflow
+- `scripts/agents/subject_concept_agent.py`: SubjectConceptAgent (SCA) for ontology proposal
+- `scripts/federation/wikidata_client.py`: Wikidata API client
+- `scripts/federation/babelnet_client.py`: BabelNet API client (to be created)
+- `scripts/validation/completeness_validator.py`: Completeness validation (Step 3.5)
+- `scripts/logging/agent_logger.py`: Agent action logging
+
+**Key Integration Points:**
+- **Phase 1:** Schema introspection (STEP_1_COMPLETE.md)
+- **Phase 2:** State loading (STEP_2_COMPLETE.md)
+- **Phase 3:** Initialize Mode (STEP_5_COMPLETE.md)
+- **Phase 3.5:** Completeness validation (STEP_3_COMPLETE.md)
+- **Phase 4:** CIDOC-CRM enrichment (STEP_4_COMPLETE.md)
+- **Phase 5:** Subject Ontology Proposal (STEP_5_SUBJECT_ONTOLOGY_PROPOSAL.md)
+- **Phase 6:** Training Mode (STEP_3_COMPLETE.md, STEP_5_COMPLETE.md)
+
+---
+
+**(End of Appendix T)**
 
 ---
 

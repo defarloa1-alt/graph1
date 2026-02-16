@@ -23,6 +23,100 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-16 19:30 | APPENDICES S & T: BABELNET + SFA WORKFLOW CONSOLIDATION
+# ==============================================================================
+# Category: Documentation, Architecture, Agent Workflow, Lexical Authority
+# Summary: Consolidated Facets folder documentation into Appendices S and T.
+#          Added BabelNet as Layer 2.5 lexical authority and complete SFA
+#          workflow from schema introspection through training mode.
+#
+# CONSOLIDATION ACTIONS:
+#
+# Action 1: Appendix S Created - BabelNet Lexical Authority Integration (~452 lines)
+#   - S.1: Positioning at Layer 2.5 (between Wikidata Layer 2 and Facet Authority Layer 3)
+#   - S.2: Core Use Cases (4 scenarios)
+#     * Multilingual lexical enrichment (alt_labels, glosses per language)
+#     * Cross-lingual entity linking (République romaine → Q17167 → SubjectConcept)
+#     * Facet-aware sense disambiguation (Political SFA → political synsets)
+#     * Graph-RAG enhancement via synset relations (hypernym/hyponym proposals)
+#   - S.3: Implementation Patterns
+#     * fetch_babelnet_synset() code example following R.10.2 Wikidata pattern
+#     * Cross-reference to Appendix R.10 API implementation guide
+#   - S.4: Confidence Scoring for BabelNet-Derived Properties
+#     * Base confidence: 0.75-0.85 (lower than Wikidata 0.90)
+#     * Rationale: Lexical/semantic authority, not factual authority
+#     * Confidence bump: +0.05 when synset aligns with existing Wikidata QID
+#   - S.5: Integration with SFA Workflow (Phase 3.5 and Phase 5)
+#   - S.6: Configuration and Authentication
+#     * BABELNET_API_KEY environment variable
+#     * Rate limit: 1000 requests/day (free tier)
+#     * Paid subscription for production use
+#   - S.7: Cross-References to Appendices R.10, T, P, K, Q
+#
+# Action 2: Appendix T Created - Subject Facet Agent Workflow (~902 lines)
+#   - Complete "Day in the Life" workflow with 7 phases + 3 new sections
+#   - T.1: Wake-up and Self-Orientation (Schema introspection)
+#   - T.2: Session Start - Load Current State (Context loading, provenance checks)
+#   - T.3: Initialize Mode - Bootstrap from Wikidata (anchor QID, depth traversal)
+#   - T.3.5: NEW - Lexical Enrichment (Optional BabelNet integration)
+#     * Call BabelNet API for multilingual labels, glosses, synsets
+#     * Store babelnet_id, alt_labels, glosses on SubjectConcept nodes
+#     * Cross-reference to Appendix S
+#   - T.4: Subject Ontology Proposal (LLM clustering, claim templates, validation rules)
+#   - T.5: Training Mode - Extended Claim Generation
+#     * NEW: BabelNet polysemous term disambiguation
+#     * Ontology-guided claim generation with CIDOC-CRM/CRMinf enrichment
+#   - T.6: Collaboration and Introspection (Pending claims, contribution monitoring)
+#   - T.7: Session Summary (Logger writes action counts, metrics)
+#   - T.8: NEW - Federation Enrichment Integration
+#     * enrich_node_from_federation() orchestration
+#     * Pleiades, VIAF, GeoNames API calls (Appendix R.10 patterns)
+#     * Multi-federation entity enrichment workflow
+#   - T.9: NEW - Error Recovery and Retry Patterns
+#     * API timeout handling (from R.10.10 safe_fetch_with_retry)
+#     * Completeness validation failures (Step 3.5)
+#     * Claim validation errors with logging
+#   - T.10: Cross-References to Appendices R.10, S, O, P, Q, K, M
+#
+# Action 3: Source Files Archived
+#   - Archive/Facets/2-16-26-Babelnet.md (content migrated to Appendix S)
+#   - Archive/Facets/2-16-26-Day in the life of a facet.md (content migrated to Appendix T)
+#
+# FILES:
+# - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+#   * Appendices S and T added (~1,364 lines total)
+#   * Document size: 13,952 → 15,316 lines (+1,364 lines)
+#   * Table of Contents updated with new appendices
+# - Archive/Facets/ (2 files archived)
+#
+# REASON:
+# - Continue single source of truth consolidation (Facets/*.md → CONSOLIDATED.md)
+# - BabelNet identified as valuable Layer 2.5 lexical authority for multilingual support
+# - SFA workflow documentation needed canonical reference showing complete lifecycle
+# - Integration points between federation (R.10), lexical authority (S), and agent workflow (T)
+#
+# INTEGRATION POINTS:
+# - Appendix S.3 references R.10 API implementation patterns
+# - Appendix T.3.5 references S.5 for BabelNet integration
+# - Appendix T.8 references R.10 for federation enrichment
+# - Appendix T.9 references R.10.10 for error handling patterns
+# - All appendices cross-linked via S.7 and T.10 sections
+#
+# BENEFITS:
+# - ✅ BabelNet positioned as optional lexical enhancement (not required dependency)
+# - ✅ Complete SFA workflow documented: 7 phases from wake-up to session summary
+# - ✅ Confidence scoring guidance: Wikidata 0.90, BabelNet 0.75-0.85, Federation +0.10-0.20
+# - ✅ Integration points clearly defined: Phase 3.5 (lexical), Phase 5 (disambiguation), T.8 (federation)
+# - ✅ Error recovery patterns documented with retry logic and completeness validation
+# - ✅ Cross-reference network complete: R.10 ↔ S ↔ T ↔ O/P/Q
+#
+# LAYER ARCHITECTURE CLARIFICATION:
+# - Layer 2: Wikidata (primary federation broker, conf 0.90)
+# - Layer 2.5: BabelNet (lexical/semantic sidecar, conf 0.75-0.85)
+# - Layer 3: Facet Authority (17 UPPERCASE canonical facets)
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-16 19:00 | APPENDIX R.10: PRACTICAL API IMPLEMENTATION GUIDE
 # ==============================================================================
 # Category: Documentation, Implementation, Federation

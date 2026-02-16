@@ -36,7 +36,139 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Appendix R.10 - Practical API Implementation Guide (2026-02-16 19:00)
+## Latest Update: Appendices S & T - BabelNet + SFA Workflow Consolidation (2026-02-16 19:30)
+
+### Facets Folder Consolidation - BabelNet and Agent Workflow
+
+**Session Context:** Consolidated two key Facets folder documents into canonical CONSOLIDATED.md appendices. BabelNet positioned as Layer 2.5 lexical authority, complete SFA workflow documented with 7 phases plus integration enhancements.
+
+**ACCOMPLISHMENTS:**
+
+**1. Appendix S Created: BabelNet Lexical Authority Integration (~452 lines)**
+- ✅ **S.1** Positioning at Layer 2.5
+  - Between Wikidata (Layer 2, conf 0.90) and Facet Authority (Layer 3)
+  - Role: Multilingual lexical/semantic sidecar (never primary fact authority)
+  
+- ✅ **S.2** Core Use Cases (4 scenarios):
+  - Multilingual lexical enrichment: Store babelnet_id, alt_labels, glosses on SubjectConcepts
+  - Cross-lingual entity linking: République romaine → synset → Q17167 → SubjectConcept
+  - Facet-aware sense disambiguation: Political SFA prefers political synsets vs. Military SFA military synsets
+  - Graph-RAG enhancement: Query synset relations (hypernym/hyponym) for broader/narrower proposals
+  
+- ✅ **S.3** Implementation Patterns
+  - fetch_babelnet_synset() code example following Appendix R.10.2 Wikidata pattern
+  - Cross-reference to R.10 API implementation guide
+  - requests.get() with User-Agent, timeout=30, error handling
+  
+- ✅ **S.4** Confidence Scoring for BabelNet-Derived Properties
+  - Base confidence: 0.75-0.85 (lower than Wikidata 0.90)
+  - Rationale: Lexical/semantic authority, not factual authority
+  - Confidence bump: +0.05 when BabelNet synset aligns with existing Wikidata QID
+  - Example: BabelNet only → 0.80, BabelNet + Wikidata alignment → 0.85
+  
+- ✅ **S.5** Integration with SFA Workflow
+  - Phase 3.5: After Initialize Mode, before Ontology Proposal (optional lexical enrichment)
+  - Phase 5: During Training Mode for polysemous term disambiguation
+  
+- ✅ **S.6** Configuration and Authentication
+  - Environment variable: BABELNET_API_KEY (required)
+  - Rate limit: 1000 requests/day (free tier), paid subscription for production
+  - Fallback strategy: Skip BabelNet if API key missing or quota exhausted
+  
+- ✅ **S.7** Cross-References
+  - Appendix R.10 (Federation API patterns)
+  - Appendix T (SFA Workflow integration points)
+  - Appendix P (CIDOC-CRM for lexical concepts)
+
+**2. Appendix T Created: Subject Facet Agent Workflow - "Day in the Life" (~902 lines)**
+- ✅ **T.1-T.2** Wake-up and Self-Orientation
+  - Factory instantiation: FacetAgentFactory().get_agent("military")
+  - Schema introspection: introspect_nodelabel(), get_layer25_properties()
+  - State loading: get_session_context(), get_subjectconcept_subgraph()
+  
+- ✅ **T.3** Initialize Mode - Bootstrap from Wikidata
+  - execute_initializemode(anchor_qid="Q17167", depth=2)
+  - Workflow: Fetch entity → Create/enrich node → Validate completeness → CIDOC-CRM alignment → Traverse P31/P279/P361 → Generate claims (conf=0.90)
+  
+- ✅ **T.3.5** NEW - Lexical Enrichment (Optional)
+  - Call BabelNet API for multilingual labels, glosses, synsets
+  - Store babelnet_id, alt_labels, glosses on SubjectConcept nodes
+  - Cross-reference to Appendix S.5
+  - Confidence: 0.75-0.85 for BabelNet-derived properties
+  
+- ✅ **T.4** Subject Ontology Proposal (SCA Component)
+  - propose_subject_ontology() → LLM clustering → Conceptual clusters → Claim templates → Validation rules
+  - Output: self.proposed_ontology with strength_score
+  
+- ✅ **T.5** Training Mode - Extended Claim Generation
+  - execute_trainingmode(maxiterations=50, targetclaims=300, minconfidence=0.80)
+  - NEW: BabelNet polysemous term disambiguation before entity mapping
+  - Ontology-guided claim generation filtered by templates
+  - CIDOC-CRM/CRMinf enrichment for all claims
+  
+- ✅ **T.6-T.7** Collaboration, Introspection, Session Summary
+  - Monitor pending claims, agent contributions, promotion rates
+  - Logger writes summary: action counts, reasoning steps, claim stats
+  
+- ✅ **T.8** NEW - Federation Enrichment Integration
+  - enrich_node_from_federation() orchestration (from Appendix R.10.11)
+  - Multi-federation workflow: Wikidata → extract federation IDs → fetch from Pleiades/VIAF/GeoNames → write to Neo4j
+  - Confidence bumps: Trismegistos +0.15, EDH +0.20, VIAF +0.10, PeriodO +0.10
+  
+- ✅ **T.9** NEW - Error Recovery and Retry Patterns
+  - API timeout handling: safe_fetch_with_retry() from R.10.10 (max_retries=3, backoff_factor=2.0)
+  - Completeness validation failures: Log and skip node if below threshold
+  - Claim validation errors: Log with rationale, adjust confidence scoring
+  
+- ✅ **T.10** Cross-References
+  - Appendix R.10 (Federation API implementation)
+  - Appendix S (BabelNet lexical enrichment)
+  - Appendices O, P, Q (Training Resources, CIDOC-CRM, Operational Modes)
+
+**INTEGRATION POINTS:**
+- Appendix S.3 references R.10 API implementation patterns
+- Appendix T.3.5 references S.5 for BabelNet integration
+- Appendix T.8 references R.10.11 for federation enrichment orchestration
+- Appendix T.9 references R.10.10 for error handling and retry patterns
+- Cross-reference network: R.10 ↔ S ↔ T ↔ O/P/Q
+
+**FILES UPDATED:**
+- Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+  * Appendices S and T added (~1,364 lines total: 452 + 902 + 10 TOC)
+  * Document size: 13,952 → 15,316 lines (+1,364 lines)
+  * Table of Contents updated (lines 62-63)
+- Archive/Facets/ (2 files archived):
+  * 2-16-26-Babelnet.md
+  * 2-16-26-Day in the life of a facet.md
+- Change_log.py (entry 2026-02-16 19:30)
+- AI_CONTEXT.md (this file)
+
+**LAYER ARCHITECTURE CLARIFICATION:**
+- **Layer 2**: Wikidata (primary federation broker, confidence 0.90)
+- **Layer 2.5**: BabelNet (lexical/semantic sidecar, confidence 0.75-0.85)
+- **Layer 3**: Facet Authority (17 UPPERCASE canonical facets)
+
+**CONFIDENCE SCORING SUMMARY:**
+- Wikidata base: 0.90
+- BabelNet base: 0.75-0.85 (+0.05 with QID alignment)
+- Federation bumps: Trismegistos +0.15, EDH +0.20, VIAF +0.10, PeriodO +0.10, Pleiades +0.15
+
+**NEXT STEPS:**
+- Implement BabelNet API wrapper following S.3 pattern
+- Add BABELNET_API_KEY to environment configuration
+- Integrate Phase 3.5 lexical enrichment into facet_agent_framework.py
+- Add BabelNet disambiguation to Training Mode claim generation
+- Test federation enrichment orchestration from T.8
+
+**USER SATISFACTION:**
+✅ Facets folder consolidation complete: 2 files → 2 appendices
+✅ BabelNet positioned as optional Layer 2.5 enhancement (not required)
+✅ Complete SFA workflow documented: 7 phases + 3 enhancement sections
+✅ Integration points clearly defined with cross-references
+
+---
+
+## Previous Update: Appendix R.10 - Practical API Implementation Guide (2026-02-16 19:00)
 
 ### Federation API Access - Implementation Guide Complete
 
