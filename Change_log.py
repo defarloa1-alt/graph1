@@ -23,6 +23,62 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-16 23:50 | HOUSEKEEPING SESSION: SMOKE TEST FIX + DISK RECOVERY
+# ==============================================================================
+# Category: Refactor, Integration, Infrastructure
+# Summary: Fixed smoke test UI factory pattern, recovered 4.34GB disk space,
+#          verified authority file usage. All production agents now properly
+#          instantiate with real LLM integration.
+#
+# SMOKE TEST FIX: Factory Pattern Correction
+#
+# Problem: UI code called non-existent factory.get_agent() method
+# Root Cause: Broken factory pattern - FacetAgentFactory has no get_agent() impl
+# Solution: Changed all UI calls to SubjectConceptAgent.spawn_agent(facet_key, mode='real')
+#
+# Files Modified:
+#   - scripts/ui/agent_gradio_app.py (5 locations: lines 88, 121, 182, 254, 365)
+#   - scripts/ui/agent_streamlit_app.py (2 locations)
+#   - Both now properly instantiate real agents with OPENAI_API_KEY integration
+#
+# Verification: spawn_agent() defaults to mode='real' ensuring LLM integration
+#
+# DISK SPACE RECOVERY: 4.34 GB FREED
+#
+# Verified Authority File Usage:
+#   - LCSH full dumps (subjects_full_valid.jsonld, subjects.skosrdf.jsonld, concepts_only.jsonld)
+#     Status: NOT imported by production agents
+#     Reason: Parsing scripts download fresh from id.loc.gov API
+#     Chunks (68 files): Only used by one-time utility scripts (enrich_tsv_with_lcsh.py)
+#
+#   - FAST (FASTTopical.marcxml)
+#     Status: NOT imported by production agents
+#     Reason: No active code references it
+#
+# Cleanup Actions:
+#   Deleted: 3.24 GB (LCSH full dumps + 68 chunks)
+#   Deleted: 0.88 GB (FASTTopical.marcxml)
+#   Deleted: 0.23 GB (Archive/Python backups)
+#   Total Freed: 4.34 GB ✅
+#
+# Retention Rationale:
+#   - geographic_registry_master.csv (3.5 KB) - Active lookup
+#   - Geographic_Raw_Exports/ (1.2 GB) - Backup archive (can re-download from Getty TGN)
+#   - FASTChronological.marcxml (0.92 MB) - Minimal, retained
+#
+# GEOGRAPHIC CLEANUP: 1.2 GB Archived (Previous Session)
+#
+# Previous session archived Getty TGN raw exports (20 *.out files):
+#   - Verified geographic_registry_master.csv is authoritative lookup
+#   - Parsing scripts download fresh from Getty, don't use local files
+#   - Archive location: Archive/Geographic_Raw_Exports/ (safe backup)
+#
+# Workflow Verified:
+#   - Geographic facet assignments use geographic_registry_master.csv
+#   - No production code reads *.out files
+#   - Curated registry (place_to_facet mapping) is the source of truth
+#
+# ==============================================================================
 # 2026-02-16 23:45 | PRIORITY 10 COMPLETE: ENRICHMENT PIPELINE + V1 KERNEL EXPANSION
 # ==============================================================================
 # Category: Architecture, Integration, Capability

@@ -36,7 +36,23 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Priority 10 Complete - Enrichment Pipeline + V1 Kernel Expansion (2026-02-16 23:45)
+## Latest Update: Housekeeping Session Complete - Smoke Test Fix + Disk Recovery (2026-02-16 23:50)
+
+### Infrastructure Optimization & Bug Fixes
+
+**Session Summary:** Fixed critical smoke test bug in UI factory pattern; verified authority file usage; freed 4.34 GB disk space. All production agents now properly instantiate real FacetAgents with LLM integration.
+
+**Key Outcomes:**
+1. **Smoke Test Fix** - UI agents now instantiate real (mode='real') instead of calling non-existent factory method
+2. **Disk Recovery** - 4.34 GB freed (LCSH dumps + FAST + backups)
+3. **Authority Verification** - Confirmed LCSH is core standard; full dumps are archived (not imported); production uses fresh downloads from LC API
+4. **Geographic Finalized** - 1.2 GB Getty TGN exports safely archived; curated registry confirmed active
+
+**Files Updated:** `scripts/ui/agent_gradio_app.py`, `scripts/ui/agent_streamlit_app.py` (7 total locations)
+
+---
+
+## Previous Update: Priority 10 Complete - Enrichment Pipeline + V1 Kernel Expansion (2026-02-16 23:45)
 
 ### Production-Ready Wikidata Integration with Expanded Baseline
 
