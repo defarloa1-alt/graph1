@@ -36,7 +36,98 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Documentation Consolidation - Steps 4-5 Integrated into CONSOLIDATED.md (2026-02-16 18:00)
+## Latest Update: Federation Strategy Consolidation - Appendix R Complete (2026-02-16 18:30)
+
+### Federation Folder Consolidation
+
+**Session Context:** Consolidated Federation folder documentation into canonical CONSOLIDATED.md Appendix R. Three operational guides merged into single comprehensive federation strategy.
+
+**ACCOMPLISHMENTS:**
+
+**1. Appendix R Created: Federation Strategy & Multi-Authority Integration (~1,640 lines)**
+- ✅ **R.1** Federation Architecture Principles: Wikidata as broker (not final authority), two-hop enrichment, confidence floors, edge patterns (ALIGNED_WITH, SAME_AS, DERIVED_FROM, CONFLICTS_WITH)
+- ✅ **R.2** Current Federation Layers (6 operational):
+  - Subject Authority (LCC/LCSH/FAST/Wikidata) — most mature
+  - Temporal (Year backbone + PeriodO) — strong
+  - Facet (17 canonical) — strong conceptual
+  - Relationship Semantics (CIDOC/CRMinf/Wikidata) — in progress
+  - Geographic (registries + authorities) — early/transition
+  - Agent/Claims (architecturally defined) — partial implementation
+- ✅ **R.3** Stacked Evidence Ladder: 3-tier confidence progression for People, Places, Events
+  - **People**: Wikidata/VIAF → Trismegistos/PIR → LGPN/DDbDP
+  - **Places**: Pleiades → TM_Geo/DARE → GeoNames/OSM
+  - **Events**: Wikidata → EDH/Trismegistos → DDbDP
+  - **Rule**: "Move candidate node as far down evidence ladder as possible before solid"
+- ✅ **R.4** Federation Usage Patterns by Authority (8 major federations):
+  - Wikidata (central hub, Layer 2, 0.90 confidence floor)
+  - Pleiades (ancient places backbone, temporal validity constraints)
+  - Trismegistos (epigraphic/papyrological, +0.15 confidence bump)
+  - EDH (Latin inscriptions, +0.20 epigraphic evidence)
+  - VIAF (people/works disambiguation, +0.10 name authority)
+  - GeoNames/OSM (modern coordinates, UI-only)
+  - PeriodO (named periods, +0.10 temporal bounds)
+  - Getty AAT + LCSH/FAST (concepts/institutions)
+- ✅ **R.5** Potential Federation Enhancements (5 future layers):
+  - Evidence Federation (source docs as first-class nodes)
+  - Identity Federation (crosswalk VIAF/GND/Wikidata/LoC)
+  - Authority Conflict Federation (adjudication rules)
+  - Geo-Temporal Federation (place-time validity per period)
+  - Agent Capability Federation (machine-readable scope routing)
+- ✅ **R.6** API Reference Summary: Compact table with 12 authorities + confidence impact
+- ✅ **R.7** Integration with Authority Precedence: Tier 1/2/3 crosswalk patterns connecting to Appendix P, O
+- ✅ **R.8-R.9** Source files and cross-references
+
+**2. Federation Folder Cleanup**
+- ✅ **Archived (3 files)**:
+  - `Federation/2-12-26-federations.md` → `Archive/Federation/2-12-26-federations.md` (6 current + 5 potential federations)
+  - `Federation/2-16-26-FederationCandidates.md` → `Archive/Federation/2-16-26-FederationCandidates.md` (8 federation usage patterns)
+  - `Federation/FederationUsage.txt` → `Archive/Federation/FederationUsage.txt` (stacked evidence ladder narrative)
+- ✅ **Kept in Federation folder**:
+  - `Federation Impact Report_ Chrystallum Data Targets.md` (537 lines, detailed API reference, hierarchical federation network topology)
+
+**3. CONSOLIDATED.md Structure Update**
+- ✅ **Table of Contents** updated to include Appendix R
+- ✅ **Document growth**: 9,912 lines → 11,552 lines (+1,640 lines federation strategy)
+- **File**: `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (v3.4)
+
+**INTEGRATION HIGHLIGHTS:**
+
+**Stacked Evidence Ladder validates Authority Precedence (Appendices O, P):**
+- **Tier 1 (LCSH/FAST)**: Subject Authority Federation always checked first
+- **Tier 2 (LCC/CIP)**: Fallback for concepts without Tier 1 coverage
+- **Tier 3 (Wikidata + domain)**: Trismegistos, EDH, Pleiades for domain-specific grounding
+
+**Confidence Bumps align with CRMinf Belief Tracking (Appendix P):**
+- Trismegistos presence: +0.15 (primary source evidence)
+- EDH inscriptions: +0.20 (epigraphic corroboration)
+- VIAF authority: +0.10 (name disambiguation)
+- PeriodO bounds: +0.10 (temporal validation)
+
+**Cross-Domain Query Federation (Appendix Q ↔ Appendix R):**
+- SCA "senator to mollusk" example now grounded in:
+  - Political facet → LCSH/FAST Subject Authority → VIAF for senator identity
+  - Scientific facet → Wikidata P31/P279 → Trismegistos for mollusk documentary evidence
+  - Cultural facet → Getty AAT for textile/dye concepts → Pleiades for production sites
+
+**BENEFITS:**
+- **Single source of truth**: Federation strategy consolidated (no need to check multiple Federation/*.md files)
+- **Operational playbook**: "How to use each external system" guidance explicit
+- **Evidence-based confidence**: Stacked ladder provides deterministic confidence calculation rules
+- **Multi-authority routing**: Wikidata as broker with two-hop enrichment (QID → external ID → provider graph)
+- **Temporal/spatial validation**: Pleiades validity periods + PeriodO bounds constrain event plausibility
+
+**FILES ARCHIVED:**
+- `Archive/Federation/2-12-26-federations.md` (federation architecture, potential enhancements)
+- `Archive/Federation/2-16-26-FederationCandidates.md` (federation usage patterns)
+- `Archive/Federation/FederationUsage.txt` (stacked evidence ladder narrative)
+
+**COMMITS PENDING:**
+- Commit: CONSOLIDATED.md Appendix R + Federation folder cleanup + AI_CONTEXT.md update
+- Change log entry created in CHANGE_LOG.py for "Federation Strategy Consolidation" session
+
+---
+
+## Previous Update: Documentation Consolidation - Steps 4-5 Integrated into CONSOLIDATED.md (2026-02-16 18:00)
 
 ### Architecture Consolidation Complete
 

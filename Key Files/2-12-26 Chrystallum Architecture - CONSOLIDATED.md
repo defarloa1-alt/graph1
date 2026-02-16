@@ -58,6 +58,7 @@ This document is the **authoritative architectural specification** for Chrystall
 - Appendix O: Facet Training Resources Registry
 - Appendix P: Semantic Enrichment & Ontology Alignment (CIDOC-CRM/CRMinf)
 - Appendix Q: Operational Modes & Agent Orchestration
+- Appendix R: Federation Strategy & Multi-Authority Integration
 
 ---
 
@@ -9905,6 +9906,1644 @@ print(f"⚡ Performance: {result['claims_per_second']:.2f} claims/sec")
 ---
 
 **(End of Appendix Q)**
+
+---
+
+# **Appendix R: Federation Strategy & Multi-Authority Integration**
+
+## **R.1 Federation Architecture Principles**
+
+Chrystallum employs **federation** as a core architectural pattern to reconcile, validate, and enrich historical data across multiple authoritative systems. Rather than depending on a single source of truth, the system orchestrates a **multi-hop enrichment network** where Wikidata serves as a discovery broker and domain-specific authorities provide canonical grounding.
+
+### **R.1.1 Wikidata as Federation Broker, Not Final Authority**
+
+Wikidata functions as the **identity hub and router** in the federation architecture:
+
+- **Discovery layer**: Provides QIDs, labels, descriptions, and external identifier properties (P214, P1584, P1566, etc.)
+- **Routing mechanism**: External ID properties serve as jump-off points to domain authorities (VIAF, Pleiades, GeoNames, Trismegistos, etc.)
+- **Confidence positioning**: Resides at Layer 2 Federation with confidence floor 0.90
+- **Epistemic status**: Treated as broad identity hint, not canonical source
+
+**Key principle**: Always resolve candidate entities to Wikidata QID first, then follow federation links to deeper authorities. Wikidata assertions are *discovery inputs*, not *verified outputs*.
+
+### **R.1.2 Two-Hop Enrichment Pattern**
+
+Federation follows a systematic two-hop pattern:
+
+```cypher
+// Hop 1: Wikidata resolution
+MATCH (candidate:Entity {label: "Emerita Augusta"})
+MERGE (wd:WikidataEntity {qid: "Q13560"})
+CREATE (candidate)-[:ALIGNED_WITH]->(wd)
+
+// Hop 2: Domain authority enrichment
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P1584"}]->(pleiades_id)
+MERGE (place:PleiadesPlace {id: pleiades_id})
+WITH place
+CALL apoc.load.json("https://pleiades.stoa.org/places/" + place.id + "/json") 
+YIELD value
+SET place.names = value.names,
+    place.temporal_range = value.temporalRange,
+    place.coordinates = value.reprPoint
+CREATE (candidate)-[:SAME_AS {confidence: 0.95}]->(place)
+```
+
+This pattern ensures:
+1. **Broad discovery** via Wikidata's extensive coverage
+2. **Deep grounding** via specialist authorities
+3. **Provenance tracking** at each hop
+4. **Confidence scoring** based on federation depth
+
+### **R.1.3 Confidence Floors and Layer 2 Federation Positioning**
+
+Federation authorities are tiered by epistemic strength:
+
+- **Layer 1 (0.95-1.0)**: Domain-specific canonical authorities
+  - LCSH/FAST for subjects
+  - Pleiades for ancient places
+  - PIR/PLRE for Roman prosopography
+  - EDH for Latin inscriptions
+
+- **Layer 2 (0.85-0.94)**: Broad integration hubs
+  - Wikidata (0.90 baseline)
+  - VIAF (0.88 for persons, 0.85 for works)
+  - Getty AAT (0.90 for hierarchical concepts)
+
+- **Layer 3 (0.70-0.84)**: Complementary sources and derived data
+  - GeoNames/OSM (0.75 for modern coordinates)
+  - Crowdsourced content (case-by-case evaluation)
+
+**Confidence boost rules**:
+- Adding epigraphic evidence (EDH/Trismegistos): +0.15 to +0.20
+- Cross-validation by 2+ authorities: +0.10
+- Temporal/geographic constraint satisfaction: +0.10
+- Primary source linkage: +0.15
+
+### **R.1.4 Federation Edge Patterns**
+
+The system uses typed federation relationships to capture different alignment strengths:
+
+```cypher
+// SAME_AS: High-confidence identity match (0.90+)
+(candidate)-[:SAME_AS {confidence: 0.95, 
+                       verified_at: datetime(),
+                       method: "P1584_resolution"}]->(pleiades)
+
+// ALIGNED_WITH: Probable match requiring validation (0.70-0.89)
+(candidate)-[:ALIGNED_WITH {confidence: 0.80,
+                            conflicts: ["date_range_mismatch"],
+                            review_required: true}]->(wikidata)
+
+// DERIVED_FROM: Extracted/inferred from authority
+(claim)-[:DERIVED_FROM {extraction_date: date(),
+                        confidence: 0.85,
+                        extractor_version: "v2.3"}]->(viaf_record)
+
+// CONFLICTS_WITH: Explicit disagreement requiring adjudication
+(source_a)-[:CONFLICTS_WITH {conflict_type: "temporal_range",
+                             source_a_value: "-509/-27",
+                             source_b_value: "-500/-31",
+                             resolution: null}]->(source_b)
+```
+
+These edge types enable:
+- **Confidence propagation**: `SAME_AS` edges boost target confidence
+- **Review triggers**: `ALIGNED_WITH` and `CONFLICTS_WITH` flag human review
+- **Provenance chains**: `DERIVED_FROM` tracks extraction lineage
+- **Quality metrics**: Edge distributions measure federation health
+
+---
+
+## **R.2 Current Federation Layers (6 Operational)**
+
+### **R.2.1 Subject Authority Federation** 
+**Status**: Most mature
+
+**Authorities**: LCC/LCSH/FAST/Wikidata
+
+**Coverage**: Entire subject classification backbone, routing for specialist agents, bibliographic crosswalks
+
+**Key artifacts**:
+- `query_lcsh_enriched.tsv` (LCSH mappings)
+- `Python/lcsh/scripts`, `Python/fast/scripts` (ingestion pipelines)
+- `LCC_AGENT_ROUTING.md` (agent scope definitions)
+
+**Usage pattern**:
+1. Resolve subject string → LCSH/FAST heading
+2. Map heading → LCC call number range
+3. Route to appropriate Specialist Facet Agent based on LCC class
+4. Cross-reference Wikidata P-codes for international concept alignment
+5. Apply facet tags from shared registry
+
+### **R.2.2 Temporal Federation**
+**Status**: Strong
+
+**Authorities**: Year backbone + curated periods + PeriodO alignment
+
+**Coverage**: All temporal concepts, period-based lensing, date normalization
+
+**Key artifacts**:
+- `time_periods.csv` (1,083 curated periods)
+- `periodo-dataset.csv` (PeriodO mappings)
+- `scripts/backbone/temporal` (Year node generation)
+
+**Usage pattern**:
+1. Parse temporal expression (label, date range, uncertainty markers)
+2. Create/link to Year nodes (ISO-normalized)
+3. Resolve period label → PeriodO ID with explicit bounds
+4. Attach Period nodes to Events/Persons/Places as temporal envelopes
+5. Validate temporal plausibility (events must fall within period bounds)
+6. Support period-based lensing ("show only Late Republic events")
+
+### **R.2.3 Facet Federation**
+**Status**: Strong conceptual, moderate automation
+
+**Authorities**: 17 canonical facets applied across subject and temporal layers
+
+**Coverage**: Cross-cutting conceptual dimensions (warfare, religion, law, etc.)
+
+**Key artifacts**:
+- `facet_registry_master.json` (canonical facet definitions)
+- `period_facet_tagger.py` (automated facet assignment)
+- Agent scope definitions (facet-based routing)
+
+**Usage pattern**:
+1. Analyze entity/event for facet applicability
+2. Assign facet tags from registry (e.g., `WARFARE`, `LEGAL_TOPICS`, `GEOGRAPHY`)
+3. Use facet tags for:
+   - Agent routing (LCC + facet → specialist agent)
+   - Cross-domain queries ("all warfare-related concepts across periods")
+   - Framework-specific emphasis (Marxist framework privileges `ECONOMICS`)
+
+### **R.2.4 Relationship Semantics Federation**
+**Status**: In progress
+
+**Authorities**: CIDOC-CRM/CRMinf + Wikidata predicates
+
+**Coverage**: Canonical relationship vocabulary, action structures, event participation roles
+
+**Key artifacts**:
+- `action_structure_vocabularies.csv` (relationship types)
+- `action_structure_wikidata_mapping.csv` (Wikidata P-code mappings)
+- Architecture relationship sections (CIDOC alignment)
+
+**Usage pattern**:
+1. Extract relationship from claim text
+2. Map to canonical vocabulary entry (e.g., "commanded" → `COMMANDED_MILITARY_UNIT`)
+3. Align to CIDOC-CRM class (e.g., `E7 Activity`, `PC14 carried out by`)
+4. Cross-reference Wikidata predicate (e.g., P598 `commander of`)
+5. Store all mappings for cross-system queries
+
+### **R.2.5 Geographic Federation**
+**Status**: Early/transition
+
+**Authorities**: Geographic registry + authority extracts (stabilizing)
+
+**Coverage**: Place concepts, modern/ancient name variants, coordinate resolution
+
+**Key artifacts**:
+- `geographic_registry_master.csv` (place registry)
+- Large authority extract files (Getty, GeoNames)
+
+**Current challenges**:
+- Source selection (Getty language vs. place pull)
+- Ancient vs. modern place disambiguation
+- Coordinate precision for historical periods
+
+**Usage pattern** (in development):
+1. Resolve place string → registry entry
+2. Distinguish ancient (Pleiades) vs. modern (GeoNames) context
+3. Pull name variants and temporal validity
+4. Use coordinates for visualization only, not primary ontology
+
+### **R.2.6 Agent/Claims Federation**
+**Status**: Architecturally defined, partial implementation
+
+**Authorities**: Specialist agents with defined scopes + review/synthesis workflow
+
+**Coverage**: Agent capability declarations, claim provenance, review chains
+
+**Key artifacts**:
+- `2-12-26 Chrystallum Architecture - DRAFT.md` (agent model)
+- `facet_agent_system_prompts.json` (agent definitions)
+- `SCA_SFA_ARCHITECTURE_PACKAGE.md` (workflow specification)
+
+**Usage pattern**:
+1. Route claim → appropriate Specialist Facet Agent based on LCC/facet/period
+2. SFA generates claim with provenance metadata
+3. Seed Claim Agent reviews for conflicts and gaps
+4. Framework-specific lensing applies interpretive emphasis
+5. All steps tracked as federation of agent contributions
+
+---
+
+## **R.3 Stacked Evidence Ladder**
+
+**Core Principle**: Move candidate nodes as far down the evidence ladder as possible before they are considered "solid." Each tier provides a different kind of epistemic support, and depth down the ladder translates to higher confidence scores and stronger validation.
+
+### **R.3.1 People/Names** (3-tier ladder)
+
+#### **Tier 1: Broad Identity** (Wikidata + VIAF)
+
+**Purpose**: Establish high-level identity for persons, especially elites, authors, and subjects of modern works
+
+**Authorities**: Wikidata QID, VIAF (via P214)
+
+**How to use**:
+- Resolve person string → Wikidata QID (e.g., "Gaius Julius Caesar" → Q1048)
+- Follow P214 to VIAF cluster for canonical name forms in multiple languages
+- Check VIAF for cluster quality:
+  - Single clean cluster = strong identity
+  - Multiple clusters = name collision, treat with caution
+- Use for prosopography of elites, author attribution, modern scholarly linking
+
+**Confidence rule**: Wikidata-only person = **textual/unconfirmed** (0.70-0.75)
+
+```cypher
+// Tier 1 enrichment
+MATCH (p:Person {label: "Gaius Julius Caesar"})
+MERGE (wd:WikidataEntity {qid: "Q1048"})
+CREATE (p)-[:ALIGNED_WITH {confidence: 0.75}]->(wd)
+WITH p, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P214"}]->(viaf_id)
+MERGE (viaf:VIAFRecord {id: viaf_id})
+CREATE (p)-[:DERIVED_FROM {confidence: 0.80, layer: "identity"}]->(viaf)
+SET p.canonical_names = viaf.name_variants,
+    p.identity_tier = 1
+```
+
+#### **Tier 2: Historical Grounding** (Trismegistos People + PIR/PLRE)
+
+**Purpose**: Confirm person appears in primary documentary evidence with historical context (offices, locations, dates)
+
+**Authorities**: Trismegistos People (TM_People), PIR (Prosopographia Imperii Romani), PLRE (Prosopography of the Later Roman Empire)
+
+**How to use**:
+- Check TM_People for papyrological/epigraphic attestations
+- For Roman elites, resolve to PIR/PLRE prosopography ID
+- Extract structured data:
+  - Offices held (consul, praetor, legatus)
+  - Attested locations with date ranges
+  - Family relationships (gens, cognomen patterns)
+- Use as **hard constraints**:
+  - Do not allow events outside person's active date window
+  - Geography envelope from attested locations
+  - Office-based event participation rules (can't command legion without military office)
+
+**Confidence rule**: Wikidata + VIAF + Trismegistos + PIR = **strongly attested historical person** (0.90-0.95)
+
+```cypher
+// Tier 2 enrichment
+MATCH (p:Person)-[:ALIGNED_WITH]->(wd:WikidataEntity)
+WITH p, wd
+// Check Trismegistos
+CALL apoc.load.json("https://www.trismegistos.org/person/" + tm_id) YIELD value
+MERGE (tm:TrismegistosPerson {id: value.person_id})
+CREATE (p)-[:SAME_AS {confidence: 0.90, evidence_type: "documentary"}]->(tm)
+SET p.attested_documents = value.document_count,
+    p.date_range = [value.earliest_date, value.latest_date],
+    p.attested_locations = value.places,
+    p.identity_tier = 2
+// Add PIR for Roman elites
+MERGE (pir:PIREntry {id: pir_id})
+CREATE (p)-[:SAME_AS {confidence: 0.95, prosopography: "PIR"}]->(pir)
+SET p.offices = pir.offices,
+    p.cursus_honorum = pir.career_path
+```
+
+#### **Tier 3: Micro-Evidence** (LGPN + DDbDP)
+
+**Purpose**: Ground person in specific documentary/onomastic evidence at the micro-historical level
+
+**Authorities**: LGPN (Lexicon of Greek Personal Names), DDbDP (Duke Databank of Documentary Papyri)
+
+**How to use**:
+- **For Greek names**: Query LGPN for name frequency and geographic distribution
+  - Use to support cultural/ethnic inferences ("common freedman name in Alexandria")
+  - Check name variants and spelling patterns
+- **For documentary papyri**: Link person to specific DDbDP documents
+  - Create Evidence nodes for each papyrus mentioning person
+  - Extract roles: party to contract, witness, official, recipient
+  - Link Evidence → Person → Document → Place → Date for full provenance chain
+
+**Confidence rule**: Tier 3 grounding = **micro-attested with primary source linkage** (0.95-0.98)
+
+```cypher
+// Tier 3 enrichment: Documentary evidence nodes
+MATCH (p:Person)-[:SAME_AS]->(tm:TrismegistosPerson)
+WITH p, tm
+UNWIND tm.document_ids AS doc_id
+MERGE (doc:Document {tm_id: doc_id})
+MERGE (ev:Evidence {id: "ev_" + doc_id})
+SET ev.type = "papyrological",
+    ev.text = doc.transcription,
+    ev.material = "papyrus",
+    ev.findspot = doc.provenance,
+    ev.date_range = doc.date
+CREATE (ev)-[:DOCUMENTS]->(p)
+CREATE (ev)-[:FOUND_AT]->(place:Place {pleiades_id: doc.pleiades_place})
+CREATE (ev)-[:DATED_TO]->(year:Year {iso_year: doc.middle_date})
+SET p.evidence_count = size(collect(DISTINCT doc_id)),
+    p.identity_tier = 3
+
+// LGPN onomastic support
+MERGE (lgpn:LGPNEntry {name: p.label})
+SET lgpn.frequency = lgpn_frequency,
+    lgpn.geographic_distribution = lgpn_regions
+CREATE (p)-[:ONOMASTIC_SUPPORT]->(lgpn)
+```
+
+**Attestation strength summary**:
+- **Wikidata-only**: Textual reference, unverified (0.70-0.75)
+- **VIAF + Wikidata**: Author/creator authority (0.80-0.85)
+- **VIAF + Trismegistos + PIR**: Strongly attested elite (0.90-0.95)
+- **VIAF + TM + PIR + DDbDP**: Micro-attested with full provenance (0.95-0.98)
+
+---
+
+### **R.3.2 Places** (3-tier ladder)
+
+#### **Tier 1: Conceptual Place** (Pleiades)
+
+**Purpose**: Establish ancient geographic concept with temporal validity and name variants
+
+**Authority**: Pleiades (via P1584)
+
+**How to use**:
+- Resolve ancient place → Pleiades ID
+- Pleiades provides:
+  - **Conceptual place** (not just coordinate point)
+  - Ancient and modern name variants
+  - **Temporal validity periods** (which historical periods the place exists in)
+  - Coordinate ranges (often approximate, reflecting uncertainty)
+- Use as **canonical place key** for ancient geography
+- Apply temporal validity to constrain events:
+  - Events using this place must fall within its valid period
+  - Flag anachronistic references (e.g., "Constantinople" used before founding)
+
+**Confidence rule**: Pleiades place grounding + temporal validity = +0.10 to base confidence
+
+```cypher
+// Tier 1: Pleiades resolution
+MATCH (place:Place {label: "Emerita Augusta"})
+MERGE (wd:WikidataEntity {qid: "Q13560"})
+CREATE (place)-[:ALIGNED_WITH]->(wd)
+WITH place, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P1584"}]->(pleiades_id)
+CALL apoc.load.json("https://pleiades.stoa.org/places/" + pleiades_id + "/json") 
+YIELD value
+MERGE (pleiades:PleiadesPlace {id: pleiades_id})
+SET pleiades.names = value.names,
+    pleiades.temporal_range = value.temporalRange,
+    pleiades.coordinates = value.reprPoint,
+    pleiades.periods = value.periods
+CREATE (place)-[:SAME_AS {confidence: 0.90, temporal_validity: pleiades.temporal_range}]->(pleiades)
+SET place.ancient_names = [n in value.names WHERE n.language IN ['grc', 'la'] | n.nameTransliterated],
+    place.modern_names = [n in value.names WHERE n.language = 'en' | n.nameTransliterated],
+    place.valid_periods = pleiades.periods
+```
+
+#### **Tier 2: Granular Geography** (Trismegistos Geo + DARE)
+
+**Purpose**: Village-level, quarter-level, and network geography for fine-grained historical context
+
+**Authorities**: 
+- **Trismegistos Geo (TM_Geo)**: Village/quarter level, especially Egypt/Eastern Mediterranean
+- **DARE (Digital Atlas of the Roman Empire)**: Roads, military installations, administrative geography
+
+**How to use**:
+- **TM_Geo for local places**:
+  - Resolve village/quarter names to TM_Geo IDs
+  - Map TM_Geo → Pleiades to anchor micro-places in global ancient map
+  - Use for papyrus provenance, fine-grained population studies
+- **DARE for network geography**:
+  - Validate route plausibility between places using Roman road network
+  - Locate military sites, administrative centers, border installations
+  - Calculate distances and travel times for event modeling
+
+**Confidence rule**: Tier 2 granularity + network validation = +0.15 beyond Tier 1
+
+```cypher
+// Tier 2: Trismegistos Geo (micro-geography)
+MATCH (place:Place {label: "Theadelphia"})
+CALL apoc.load.json("https://www.trismegistos.org/place/" + tm_geo_id) YIELD value
+MERGE (tm_place:TMGeoPlace {id: tm_geo_id})
+SET tm_place.type = "village",
+    tm_place.nome = value.administrative_unit,
+    tm_place.parent_place = value.parent
+CREATE (place)-[:SAME_AS {confidence: 0.92, granularity: "village"}]->(tm_place)
+// Link to parent Pleiades region
+MATCH (parent:PleiadesPlace {id: tm_place.parent_pleiades})
+CREATE (place)-[:PART_OF]->(parent)
+
+// DARE road network validation
+MATCH (event:Event)-[:OCCURRED_AT]->(origin:Place),
+      (event)-[:DESTINATION]->(destination:Place)
+WITH event, origin, destination
+CALL dare.validateRoute(origin.pleiades_id, destination.pleiades_id) YIELD isPlausible, distance_km, travel_days
+WHERE isPlausible = true
+SET event.validated_route = true,
+    event.distance_km = distance_km,
+    event.travel_time_estimate = travel_days
+```
+
+#### **Tier 3: Modern Ground Truth** (GeoNames/OSM)
+
+**Purpose**: Precise modern coordinates and admin boundaries for visualization only
+
+**Authorities**: GeoNames (via P1566), OpenStreetMap
+
+**How to use**:
+- Use **only for UI maps and modern context**
+- Never as primary historical geography
+- Pull precise coordinates, bounding boxes, current admin units
+- Useful for:
+  - Map visualization layers
+  - Modern place-name resolution for user queries
+  - Spatial indexing for approximation queries
+
+**Critical constraint**: GeoNames/OSM provide modern geography. Roman provinces, ancient boundaries, and historical place concepts come from Pleiades/DARE/TM_Geo, not modern systems.
+
+```cypher
+// Tier 3: Modern coordinates (UI-only)
+MATCH (place:Place)-[:SAME_AS]->(pleiades:PleiadesPlace)
+WITH place, pleiades
+MATCH (wd:WikidataEntity)-[:HAS_EXTERNAL_ID {property: "P1566"}]->(geonames_id)
+WHERE (place)-[:ALIGNED_WITH]->(wd)
+CALL apoc.load.json("http://api.geonames.org/getJSON?geonameId=" + geonames_id) 
+YIELD value
+MERGE (gn:GeoNamesPlace {id: geonames_id})
+SET gn.lat = value.lat,
+    gn.lng = value.lng,
+    gn.modern_name = value.name,
+    gn.admin_units = [value.countryName, value.adminName1],
+    gn.bbox = value.bbox
+CREATE (place)-[:HAS_MODERN_LOCATION {usage: "visualization_only"}]->(gn)
+SET place.map_coordinates = point({latitude: gn.lat, longitude: gn.lng})
+// Do NOT use for historical assertions
+```
+
+---
+
+### **R.3.3 Events/Claims/Communications** (3-tier ladder)
+
+#### **Tier 1: Named Events** (Wikidata)
+
+**Purpose**: Discover event seeds from Wikidata's named events and basic participation structure
+
+**Authority**: Wikidata (battles, reforms, assassinations, foundations, treaties)
+
+**How to use**:
+- Query Wikidata for events related to entities, periods, or places
+- Extract basic structure:
+  - Event type (P31): battle, reform, assassination, etc.
+  - Participants (P710): with roles like "commander," "victim," "location"
+  - Date (P585, P580-P582): point in time or start-end
+  - Place (P276, P17): where event occurred
+- Treat as **event seeds, not fully trusted events**
+- Propose Event node with:
+  - Event type classification
+  - Ordered participant roles
+  - Temporal and spatial anchors
+  - Confidence: 0.75 (seed level)
+
+**Confidence rule**: Wikidata event seed = 0.75, requires corroboration for acceptance
+
+```cypher
+// Tier 1: Wikidata event seed discovery
+CALL apoc.load.json("https://www.wikidata.org/wiki/Special:EntityData/Q48314.json") 
+YIELD value
+WITH value.entities["Q48314"] AS battle
+MERGE (event:Event {wikidata_qid: "Q48314"})
+SET event.label = battle.labels.en.value,
+    event.type = "battle",
+    event.confidence_tier = 1,
+    event.base_confidence = 0.75,
+    event.requires_corroboration = true
+// Extract participants
+FOREACH (claim IN battle.claims.P710 |
+  MERGE (participant:Entity {qid: claim.mainsnak.datavalue.value.id})
+  CREATE (event)-[:HAS_PARTICIPANT {role: claim.qualifiers.P3831[0].datavalue.value.id}]->(participant)
+)
+// Extract temporal and spatial
+SET event.date_point = battle.claims.P585[0].mainsnak.datavalue.value.time,
+    event.place_qid = battle.claims.P276[0].mainsnak.datavalue.value.id
+```
+
+#### **Tier 2: Epigraphic/Documentary Evidence** (EDH + Trismegistos Texts)
+
+**Purpose**: Corroborate events with primary epigraphic or documentary sources
+
+**Authorities**: 
+- **EDH (Epigraphic Database Heidelberg)**: Latin inscriptions (via P2192)
+- **Trismegistos Texts**: Papyri and inscriptions catalog
+
+**How to use**:
+- For each event seed, search authorities for inscriptions/papyri mentioning:
+  - Event participants (persons, organizations)
+  - Event location and date range
+  - Event type keywords (battle, dedication, victory, law)
+- Create **Communication/Evidence nodes** for each source:
+  - Full text transcription
+  - Material type (marble, bronze, papyrus)
+  - Dimensions and physical description
+  - Findspot (linked to Place nodes via Pleiades/GeoNames)
+  - Date range (linked to Year nodes)
+- Link to Event with typed role:
+  - `PRIMARY_EPIGRAPHIC_EVIDENCE`: Inscription directly commemorating event
+  - `CONTEMPORARY_DOCUMENT`: Papyrus from event's time period referencing it
+  - `LATER_COMMEMORATIVE`: Post-event memorial or historical inscription
+- **Raise Event confidence** when at least one epigraphic record corroborates participants/date/place
+
+**Confidence rule**: Event with EDH/TM textual evidence = +0.20 confidence (up to 0.95)
+
+```cypher
+// Tier 2: EDH inscription evidence
+MATCH (event:Event {label: "Battle of Pharsalus"})
+WITH event
+// Search EDH for inscriptions mentioning event participants
+CALL apoc.load.json("https://edh.ub.uni-heidelberg.de/data/api/inscriptions/search?person=Caesar") 
+YIELD value
+UNWIND value.items AS inscription
+MERGE (ev:Evidence {edh_id: inscription.id})
+SET ev.type = "inscription",
+    ev.material = inscription.materialDescription,
+    ev.text_latin = inscription.text,
+    ev.findspot = inscription.findspot,
+    ev.date_range = [inscription.notBefore, inscription.notAfter],
+    ev.dimensions = inscription.dimensions
+CREATE (ev)-[:DOCUMENTS {role: "PRIMARY_EPIGRAPHIC_EVIDENCE"}]->(event)
+// Link to place
+MERGE (place:Place {pleiades_id: inscription.pleiadesId})
+CREATE (ev)-[:FOUND_AT]->(place)
+// Link to date
+CREATE (ev)-[:DATED_TO]->(year:Year {iso_year: inscription.middleDate})
+// Boost event confidence
+SET event.evidence_count = coalesce(event.evidence_count, 0) + 1,
+    event.confidence_tier = 2,
+    event.base_confidence = event.base_confidence + 0.20
+```
+
+```cypher
+// Tier 2: Trismegistos documentary papyri
+MATCH (event:Event)-[:HAS_PARTICIPANT]->(person:Person)
+WITH event, person
+MATCH (person)-[:SAME_AS]->(tm:TrismegistosPerson)
+WITH event, tm
+CALL apoc.load.json("https://www.trismegistos.org/text/search?person_id=" + tm.id) 
+YIELD value
+UNWIND value.texts AS text
+MERGE (doc:Document {tm_text_id: text.id})
+SET doc.type = text.type,
+    doc.material = text.material,
+    doc.provenance = text.provenance,
+    doc.date = text.date
+MERGE (ev:Evidence {id: "ev_tm_" + text.id})
+SET ev.type = "documentary_papyrus",
+    ev.text_content = text.transcription
+CREATE (ev)-[:DOCUMENTS {role: "CONTEMPORARY_DOCUMENT"}]->(event)
+CREATE (ev)-[:SOURCE_DOCUMENT]->(doc)
+SET event.documentary_evidence_count = coalesce(event.documentary_evidence_count, 0) + 1
+```
+
+#### **Tier 3: Multi-Source Claims with HiCO Modeling**
+
+**Purpose**: Model each historical statement as a Claim with full provenance, allowing multiple conflicting assertions per event
+
+**Authorities**: All sources (primary inscriptions/papyri, literary narratives, modern scholarly reconstructions)
+
+**How to use**:
+- For each Event, create multiple Claim nodes representing different source assertions:
+  - **Claimant**: Livy, Polybius, EDH inscription EDH12345, modern historian
+  - **Claim content**: Specific assertion (date, outcome, casualty count, motive)
+  - **Target**: The Event node
+  - **Claim type**: Primary evidence vs. secondary narrative vs. scholarly interpretation
+- Use federation sources to classify claim types:
+  - **Primary evidence**: EDH, Trismegistos papyri, archaeological reports
+  - **Secondary narrative**: Literary sources (Livy, Plutarch, Tacitus)
+  - **Tertiary reconstruction**: Modern scholarly works, Wikipedia
+- Enable **framework-specific claim weighting**:
+  - Source-critical framework: Privilege epigraphy > papyri > literary narrative
+  - Great Man framework: Privilege biographical literary sources
+  - Marxist framework: Privilege economic documentary evidence
+- Store all claims, expose conflicts, allow adjudication
+
+**Confidence rule**: Multi-source claims with explicit conflict modeling = highest rigor (0.95-0.98 for well-adjudicated events)
+
+```cypher
+// Tier 3: Multi-source claim modeling
+MATCH (event:Event {label: "Battle of Pharsalus"})
+WITH event
+// Claim 1: Livy's narrative account
+MERGE (livy:Author {name: "Livy"})
+CREATE (claim1:Claim {id: "claim_livy_pharsalus_date"})
+SET claim1.content = "Battle occurred in 48 BCE during consulship of Caesar",
+    claim1.claim_type = "date_assertion",
+    claim1.date_value = date("-048-08-09"),
+    claim1.source_type = "secondary_narrative",
+    claim1.confidence = 0.85
+CREATE (claim1)-[:MADE_BY]->(livy)
+CREATE (claim1)-[:ABOUT]->(event)
+
+// Claim 2: Epigraphic evidence (EDH inscription)
+MATCH (inscription:Evidence {edh_id: "HD012345"})
+CREATE (claim2:Claim {id: "claim_edh12345_pharsalus"})
+SET claim2.content = "Inscription commemorates Caesar's victory, dated by consulship",
+    claim2.claim_type = "event_confirmation",
+    claim2.date_value = date("-048"),
+    claim2.source_type = "primary_epigraphic",
+    claim2.confidence = 0.95
+CREATE (claim2)-[:DERIVED_FROM]->(inscription)
+CREATE (claim2)-[:ABOUT]->(event)
+
+// Claim 3: Conflicting modern scholarly reconstruction
+MERGE (scholar:Author {name: "Smith, J."})
+CREATE (claim3:Claim {id: "claim_smith_pharsalus_redate"})
+SET claim3.content = "Re-dating to July 48 BCE based on astronomical calculations",
+    claim3.claim_type = "date_assertion",
+    claim3.date_value = date("-048-07-15"),
+    claim3.source_type = "modern_reconstruction",
+    claim3.confidence = 0.75
+CREATE (claim3)-[:MADE_BY]->(scholar)
+CREATE (claim3)-[:ABOUT]->(event)
+
+// Model explicit conflict
+CREATE (claim3)-[:CONFLICTS_WITH {
+  conflict_type: "date_precision",
+  difference: "~1 month",
+  adjudication: "Livy's consulship date preferred, supported by EDH evidence"
+}]->(claim1)
+
+// Set event confidence based on claim constellation
+WITH event, collect(claim1) + collect(claim2) + collect(claim3) AS claims
+SET event.claim_count = size(claims),
+    event.primary_evidence_count = size([c IN claims WHERE c.source_type = "primary_epigraphic"]),
+    event.confidence_tier = 3,
+    event.base_confidence = 0.95  // High confidence due to primary + secondary corroboration
+```
+
+**Outcome**: Events become nodes anchored by multi-source claims, not flat facts. Frameworks can weight claims differently, conflicts are explicit, and provenance is complete.
+
+---
+
+## **R.4 Federation Usage Patterns by Authority**
+
+This section provides concrete guidance for leveraging each major federation authority within Chrystallum's architecture.
+
+### **R.4.1 Wikidata** (Central Hub, Layer 2, 0.90 Confidence Floor)
+
+**Role**: Identity hub and router
+
+**How to leverage**:
+1. **Always resolve candidate entities to QID first**
+   - Use labels, descriptions, aliases for disambiguation
+   - Check P31 (instance of) and P279 (subclass of) for type validation
+   - Use P361 (part of) for hierarchical context
+
+2. **Use external ID properties as federation jump-off points**
+   - P214 → VIAF (persons)
+   - P1584 → Pleiades (ancient places)
+   - P1566 → GeoNames (modern places)
+   - P2192 → EDH (inscriptions)
+   - P1958 → Trismegistos Places
+   - P4230 → Trismegistos Texts
+   - P227 → GND (German authority)
+   - P2950 → Nomisma (numismatics)
+
+3. **Extract event/period seeds from Wikidata structure**
+   - Query events by type, participant, period, or location
+   - Use as discovery layer for entities not yet in your graph
+   - Treat all Wikidata assertions as *provisional*, requiring domain authority confirmation
+
+4. **Store Wikidata provenance but don't treat as final authority**
+   - Keep QID for linking and discovery
+   - Overwrite Wikidata values when domain authorities provide better data
+   - Track when Wikidata and domain authorities conflict
+
+**Cypher pattern**:
+```cypher
+// Wikidata as router to domain authorities
+MATCH (candidate:Entity {label: $label})
+CALL apoc.load.json("https://www.wikidata.org/wiki/Special:EntityData/" + $qid + ".json")
+YIELD value
+WITH candidate, value.entities[$qid] AS wd_entity
+// Store Wikidata link
+MERGE (wd:WikidataEntity {qid: $qid})
+SET wd.label = wd_entity.labels.en.value,
+    wd.description = wd_entity.descriptions.en.value
+CREATE (candidate)-[:ALIGNED_WITH {confidence: 0.90, layer: 2}]->(wd)
+// Extract external IDs for federation
+WITH candidate, wd_entity.claims AS claims
+UNWIND keys(claims) AS property
+WHERE property STARTS WITH "P" AND claims[property][0].mainsnak.datatype = "external-id"
+WITH candidate, property, claims[property][0].mainsnak.datavalue.value AS external_id
+MERGE (ext:ExternalID {property: property, value: external_id})
+CREATE (candidate)-[:HAS_EXTERNAL_ID {property: property}]->(ext)
+```
+
+---
+
+### **R.4.2 Pleiades** (Ancient Places Backbone)
+
+**Role**: Authority for ancient geographic concepts
+
+**How to leverage**:
+1. **Resolve to Pleiades ID via Wikidata P1584**
+   - Treat Pleiades as canonical ancient place identifier
+   - Store Pleiades URI as primary external reference
+
+2. **Pull structured geographic data**
+   - Coordinate ranges (often polygons or representative points)
+   - Ancient name variants (Greek, Latin, indigenous)
+   - Modern name variants
+   - Temporal validity periods (which historical periods place exists in)
+   - Connection types (at, near, within for related places)
+
+3. **Use temporal validity to constrain events**
+   - Events at a place must fall within its active period
+   - Flag anachronistic references for review
+   - Support geo-temporal federation (place-period joint constraints)
+
+4. **Handle coordinate uncertainty appropriately**
+   - Pleiades coordinates often represent approximate area, not precise point
+   - Use coordinate ranges for spatial queries, not exact positioning
+   - Prefer Pleiades conceptual place over GeoNames precise coordinates for historical context
+
+**Cypher pattern**:
+```cypher
+// Pleiades place enrichment
+MATCH (place:Place)-[:HAS_EXTERNAL_ID {property: "P1584"}]->(pleiades_id:ExternalID)
+WITH place, pleiades_id.value AS pid
+CALL apoc.load.json("https://pleiades.stoa.org/places/" + pid + "/json") YIELD value
+MERGE (pleiades:PleiadesPlace {id: pid})
+SET pleiades.title = value.title,
+    pleiades.ancient_names = [n IN value.names WHERE n.language IN ['grc', 'la', 'egy'] | 
+                              {transcription: n.nameTransliterated, 
+                               attestations: n.attestations,
+                               language: n.language}],
+    pleiades.modern_names = [n IN value.names WHERE n.language = 'en' | n.romanized],
+    pleiades.coordinate_point = point({latitude: value.reprPoint[1], longitude: value.reprPoint[0]}),
+    pleiades.periods = [p IN value.features[0].properties.periods | p],
+    pleiades.temporal_range = {
+      start: value.features[0].properties.minDate,
+      end: value.features[0].properties.maxDate
+    },
+    pleiades.place_types = value.placeTypes
+CREATE (place)-[:SAME_AS {confidence: 0.95, authority: "Pleiades"}]->(pleiades)
+// Apply temporal validity constraint
+WITH place, pleiades
+MATCH (place)<-[:OCCURRED_AT]-(event:Event)
+WHERE event.year < pleiades.temporal_range.start 
+   OR event.year > pleiades.temporal_range.end
+SET event.temporal_flags = coalesce(event.temporal_flags, []) + ["anachronistic_place_usage"],
+    event.requires_review = true
+```
+
+---
+
+### **R.4.3 Trismegistos** (Texts, People, Local Geography)
+
+**Role**: Epigraphic/papyrological hub for documentary sources
+
+**How to leverage**:
+
+#### **TMPeople (Trismegistos People)**
+1. **Check documentary source attestation**
+   - Search for person by name or external ID
+   - Get count of papyri/inscriptions mentioning person
+   - Pull date range and geographic distribution of attestations
+
+2. **Combine with PIR/PLRE for elite disambiguation**
+   - Wikidata-only + no TM = textual figure, low confidence
+   - Wikidata + TM + PIR = documentary evidence of elite, high confidence
+
+3. **Use attestations as confidence bump**
+   - TM presence = structurally stronger than Wikidata-only
+   - Add +0.15 confidence for primary documentary evidence
+
+#### **TMGeo (Trismegistos Geography)**
+1. **Village/quarter-level geography**
+   - Especially valuable for Egypt and Eastern Mediterranean
+   - Use for fine-grained provenance of papyri
+   - Map to Pleiades parent regions for global anchoring
+
+2. **Administrative hierarchies**
+   - Nome, toparchy, village structures for Greco-Roman Egypt
+   - Use for population studies and micro-regional analysis
+
+#### **TMTexts (Trismegistos Texts)**
+1. **Create Communication/Evidence nodes for each text**
+   - Full text transcription (when available)
+   - Material type (papyrus, ostracon, parchment)
+   - Provenance (findspot)
+   - Date range
+   - Text type (letter, contract, petition, etc.)
+
+2. **Link texts to Events, Persons, Places**
+   - Use role annotations: `PRIMARY_EPIGRAPHIC_EVIDENCE`, `CONTEMPORARY_DOCUMENT`
+   - Build provenance chains: Evidence → Person → Event → Place → Date
+
+**Cypher pattern**:
+```cypher
+// Trismegistos People enrichment
+MATCH (person:Person)-[:ALIGNED_WITH]->(wd:WikidataEntity)
+WHERE EXISTS((wd)-[:HAS_EXTERNAL_ID {property: "P4343"}]-()) // P4343 = TM Person ID
+WITH person, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P4343"}]->(tm_id:ExternalID)
+WITH person, tm_id.value AS tm_person_id
+CALL apoc.load.json("https://www.trismegistos.org/person/" + tm_person_id) YIELD value
+MERGE (tm:TrismegistosPerson {id: tm_person_id})
+SET tm.name = value.name,
+    tm.document_count = value.attestations_count,
+    tm.date_range = [value.date_min, value.date_max],
+    tm.locations = value.attestation_places
+CREATE (person)-[:SAME_AS {confidence: 0.90, evidence: "documentary"}]->(tm)
+SET person.documentary_attestations = tm.document_count,
+    person.confidence_boost = 0.15
+
+// Trismegistos Texts → Evidence nodes
+MATCH (tm:TrismegistosPerson)
+WITH tm
+CALL apoc.load.json("https://www.trismegistos.org/text/search?person_id=" + tm.id) YIELD value
+UNWIND value.texts AS text
+MERGE (doc:Document {tm_text_id: text.tm_id})
+SET doc.type = text.text_type,
+    doc.material = text.material,
+    doc.date_range = [text.date_min, text.date_max],
+    doc.provenance = text.provenance
+MERGE (ev:Evidence {id: "ev_tm_" + text.tm_id})
+SET ev.type = "documentary_papyrus",
+    ev.text_content = text.transcription,
+    ev.material = text.material
+CREATE (ev)-[:SOURCE_DOCUMENT]->(doc)
+CREATE (ev)-[:DOCUMENTS]->(person:Person)-[:SAME_AS]->(tm)
+// Link to place via TMGeo
+MERGE (place:Place {tm_geo_id: text.place_id})
+CREATE (ev)-[:FOUND_AT]->(place)
+```
+
+---
+
+### **R.4.4 EDH** (Latin Inscriptions)
+
+**Role**: Authority for Latin inscriptions and their findspots/dates
+
+**How to leverage**:
+1. **Search inscriptions mentioning entities**
+   - Query by person name, place, date range
+   - Use EDH API for full-text search
+
+2. **Create Evidence nodes with full material context**
+   - Full text (original and translation when available)
+   - Material (marble, bronze, limestone, etc.)
+   - Dimensions and physical description
+   - Findspot (link to Pleiades/GeoNames)
+   - Date range (link to Year nodes)
+   - Current location (museum/collection)
+
+3. **Link to Events with typed roles**
+   - `PRIMARY_EPIGRAPHIC_EVIDENCE`: Inscription directly commemorating event
+   - `DEDICATORY_INSCRIPTION`: Honors person/god related to event
+   - `BUILDING_INSCRIPTION`: Documents construction or renovation
+   - `FUNERARY_INSCRIPTION`: Provides biographical data
+
+4. **Raise Event confidence when EDH corroborates**
+   - At least one EDH record mentioning event participants/place/date
+   - Add +0.20 to event confidence
+   - Mark event as "epigraphically attested"
+
+**Cypher pattern**:
+```cypher
+// EDH inscription search and Evidence node creation
+MATCH (person:Person {label: "Julius Caesar"})
+WITH person
+CALL apoc.load.json("https://edh.ub.uni-heidelberg.de/data/api/inscriptions/search?person=" + person.label) 
+YIELD value
+UNWIND value.items AS inscription
+MERGE (ev:Evidence {edh_id: inscription.id})
+SET ev.type = "latin_inscription",
+    ev.material = inscription.attributes.material,
+    ev.text_latin = inscription.transcription.latin,
+    ev.text_translation = inscription.transcription.translation,
+    ev.dimensions = {
+      height_cm: inscription.attributes.height,
+      width_cm: inscription.attributes.width,
+      depth_cm: inscription.attributes.depth
+    },
+    ev.date_range = [inscription.dates.notBefore, inscription.dates.notAfter],
+    ev.findspot_description = inscription.findspot.description,
+    ev.current_location = inscription.repository
+CREATE (ev)-[:DOCUMENTS {role: "epigraphic_attestation"}]->(person)
+// Link to Place
+MERGE (findspot:Place {pleiades_id: inscription.findspot.pleiadesId})
+CREATE (ev)-[:FOUND_AT]->(findspot)
+// Link to date
+WITH ev, inscription.dates.notBefore AS start_year, inscription.dates.notAfter AS end_year
+UNWIND range(start_year, end_year) AS year_val
+MERGE (year:Year {iso_year: year_val})
+CREATE (ev)-[:DATED_TO]->(year)
+// Boost person confidence
+MATCH (person)<-[:DOCUMENTS]-(ev)
+SET person.epigraphic_attestations = coalesce(person.epigraphic_attestations, 0) + 1,
+    person.base_confidence = person.base_confidence + 0.20
+```
+
+---
+
+### **R.4.5 VIAF** (People and Works Disambiguation)
+
+**Role**: Name authority for persons and works
+
+**How to leverage**:
+1. **Resolve to VIAF via Wikidata P214**
+   - VIAF provides canonical name forms in multiple languages
+   - Links to national authority files (LoC, BnF, DNB, etc.)
+
+2. **Use for identity confirmation**
+   - Single clean VIAF cluster = strong identity
+   - Multiple clusters = name collision, disambiguation needed
+   - Check co-references for same-person validation
+
+3. **Separate Person vs. Author vs. Subject roles**
+   - VIAF work lists distinguish person as author vs. subject of works
+   - Use for scholarly reception tracking
+   - Connect Person node to WorksAbout and WorksBy lists
+
+4. **Attestation strength matrix**:
+   - Wikidata-only = textual/unconfirmed (0.70)
+   - Wikidata + VIAF = author/creator authority (0.80)
+   - VIAF + Trismegistos + PIR = strongly attested historical person (0.90)
+
+**Cypher pattern**:
+```cypher
+// VIAF person enrichment
+MATCH (person:Person)-[:ALIGNED_WITH]->(wd:WikidataEntity)
+WHERE EXISTS((wd)-[:HAS_EXTERNAL_ID {property: "P214"}]-()) // P214 = VIAF ID
+WITH person, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P214"}]->(viaf_id:ExternalID)
+WITH person, viaf_id.value AS viaf_id_val
+CALL apoc.load.json("https://viaf.org/viaf/" + viaf_id_val + "/viaf.json") YIELD value
+MERGE (viaf:VIAFRecord {id: viaf_id_val})
+SET viaf.canonical_names = [n IN value.mainHeadings.data | n.text],
+    viaf.name_variants = [n IN value.x400s.x400 | n.datafield.subfield[0].text],
+    viaf.national_authorities = [s IN value.sources.source | s],
+    viaf.works_count = size(value.titles.work)
+CREATE (person)-[:SAME_AS {confidence: 0.85, authority: "VIAF"}]->(viaf)
+SET person.canonical_name = viaf.canonical_names[0],
+    person.name_variants = viaf.name_variants
+// Extract works relationships
+WITH person, viaf, value.titles.work AS works
+UNWIND works AS work
+MERGE (w:Work {title: work.title})
+CREATE (person)-[:AUTHOR_OF]->(w)
+// Check attestation strength
+WITH person
+OPTIONAL MATCH (person)-[:SAME_AS]->(tm:TrismegistosPerson)
+OPTIONAL MATCH (person)-[:SAME_AS]->(pir:PIREntry)
+WITH person, tm, pir
+SET person.attestation_level = CASE
+  WHEN tm IS NOT NULL AND pir IS NOT NULL THEN "strongly_attested"
+  WHEN tm IS NOT NULL THEN "documentary_attested"
+  ELSE "textual_only"
+END,
+person.base_confidence = CASE
+  WHEN tm IS NOT NULL AND pir IS NOT NULL THEN 0.95
+  WHEN tm IS NOT NULL THEN 0.85
+  ELSE 0.75
+END
+```
+
+---
+
+### **R.4.6 GeoNames/OSM** (Modern Coordinates)
+
+**Role**: Modern geographic ground truth for visualization
+
+**How to leverage**:
+1. **Pull precise coordinates and bounding boxes**
+   - Use GeoNames API via Wikidata P1566
+   - Get latitude, longitude, elevation
+   - Pull admin hierarchy (country, state, region)
+   - Get bounding box for spatial queries
+
+2. **Use ONLY for UI maps and modern context**
+   - Never as primary historical geography
+   - Historical geography comes from Pleiades/DARE/TM_Geo
+   - GeoNames provides visualization layer only
+
+3. **Map ancient → modern for user experience**
+   - Show "ancient Rome" on modern Italy map
+   - Provide modern place names for context
+   - Calculate modern travel distances for comparison
+
+**Critical constraint**: Roman provinces, ancient boundaries, and historical place concepts are NOT derived from modern geography. Pleiades/DARE provide historical ontology; GeoNames provides visual convenience only.
+
+**Cypher pattern**:
+```cypher
+// GeoNames modern coordinates (visualization-only)
+MATCH (place:Place)-[:SAME_AS]->(pleiades:PleiadesPlace)
+WITH place, pleiades
+MATCH (place)-[:ALIGNED_WITH]->(wd:WikidataEntity)
+WHERE EXISTS((wd)-[:HAS_EXTERNAL_ID {property: "P1566"}]-()) // P1566 = GeoNames ID
+WITH place, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P1566"}]->(gn_id:ExternalID)
+WITH place, gn_id.value AS geonames_id
+CALL apoc.load.json("http://api.geonames.org/getJSON?geonameId=" + geonames_id + "&username=demo") 
+YIELD value
+MERGE (gn:GeoNamesPlace {id: geonames_id})
+SET gn.lat = toFloat(value.lat),
+    gn.lng = toFloat(value.lng),
+    gn.modern_name = value.name,
+    gn.country = value.countryName,
+    gn.admin1 = value.adminName1,
+    gn.admin2 = value.adminName2,
+    gn.bbox = value.bbox
+CREATE (place)-[:HAS_MODERN_LOCATION {
+  usage: "visualization_only",
+  ontology_role: "none"
+}]->(gn)
+SET place.visualization_point = point({latitude: gn.lat, longitude: gn.lng})
+// CRITICAL: Flag as non-ontological
+WITH place, gn
+SET gn:VisualizationOnly,
+    gn.warning = "Modern coordinates only. Use Pleiades for historical geography."
+```
+
+---
+
+### **R.4.7 PeriodO** (Period Semantics)
+
+**Role**: Authority for named historical periods and temporal intervals
+
+**How to leverage**:
+1. **Resolve period labels to PeriodO IDs**
+   - Match free-text period names to PeriodO entries
+   - Get explicit start-end bounds (often BCE/CE year ranges)
+   - Pull spatial scope (where period applies)
+
+2. **Attach Period nodes to temporal envelopes**
+   - Events: Period indicates when event could occur
+   - Persons: Active period for person's life span
+   - Places: Valid period for place existence/usage
+   - Concepts: Period when concept was relevant (e.g., "Roman citizenship" only during Roman period)
+
+3. **Check temporal plausibility**
+   - Event cannot occur outside its named period bounds
+   - Flag violations for review
+   - Allow explicit override when justified (e.g., retroactive term use)
+
+4. **Support period-based lensing**
+   - "Show only Late Republic events"
+   - "Filter to Augustan Age persons"
+   - Enable comparative analysis across periods
+
+**Cypher pattern**:
+```cypher
+// PeriodO period resolution and temporal constraints
+MATCH (event:Event {period_label: "Late Republic"})
+WITH event
+CALL apoc.load.json("http://perio.do/periods.json") YIELD value
+WITH event, value.periodCollections AS collections
+UNWIND collections AS collection
+UNWIND collection.definitions AS period
+WHERE period.label CONTAINS "Late Republic" OR period.spatialCoverageDescription CONTAINS "Rome"
+WITH event, period
+WHERE period.label CONTAINS event.period_label
+MERGE (p:Period {periodo_id: period.id})
+SET p.label = period.label,
+    p.start_year = toInteger(split(period.start.in.value, "-")[0]),
+    p.end_year = toInteger(split(period.stop.in.value, "-")[0]),
+    p.spatial_scope = period.spatialCoverage,
+    p.authority = period.source
+CREATE (event)-[:DURING_PERIOD]->(p)
+// Validate temporal plausibility
+WITH event, p
+WHERE event.year < p.start_year OR event.year > p.end_year
+SET event.temporal_violations = coalesce(event.temporal_violations, []) + [
+  "Event year " + event.year + " outside period bounds [" + p.start_year + ", " + p.end_year + "]"
+],
+event.requires_review = true
+// Enable period-based lensing
+WITH event, p
+MATCH (person:Person)-[:PARTICIPATED_IN]->(event)
+CREATE (person)-[:ACTIVE_IN_PERIOD]->(p)
+```
+
+---
+
+### **R.4.8 Getty AAT + LCSH/FAST** (Concepts and Institutions)
+
+**Role**: Deep concept hierarchies (AAT) + library-grade topic hierarchies (LCSH/FAST)
+
+**How to leverage**:
+
+#### **Getty AAT (Art & Architecture Thesaurus)**
+1. **Assign to abstract concepts and institutions**
+   - For nodes like Concept, Institution, LegalRestriction, Organization
+   - Get ontological type (e.g., "colony (settlements)", "senate (legislative bodies)", "taxation (fiscal function)")
+
+2. **Use hierarchical structure**
+   - Broader/narrower term navigation
+   - Related terms for discovery
+   - Scope notes for definition
+
+3. **Enable faceted navigation**
+   - "Show all events involving colonial institutions"
+   - "Find concepts related to Roman taxation"
+   - Support SFA concept spine building
+
+#### **LCSH/FAST (Library of Congress Subject Headings / FAST)**
+1. **Bibliographic crosswalk**
+   - Already core to your Subject backbone
+   - Assign LCSH/FAST to SubjectConcepts for library catalog linking
+
+2. **Authority precedence (from Appendix P)**
+   - Tier 1: LCSH/FAST (highest precedence for subjects)
+   - Tier 2: LCC/CIP (second tier)
+   - Tier 3: Wikidata + domain authorities (specialists)
+
+3. **Agent routing**
+   - LCC ranges map to specialist agent scopes
+   - LCSH headings trigger facet assignments
+
+**Cypher pattern**:
+```cypher
+// Getty AAT concept enrichment
+MATCH (concept:Concept {label: "Roman Senate"})
+WITH concept
+CALL apoc.load.json("http://vocab.getty.edu/aat/300025306.json") YIELD value
+MERGE (aat:AATConcept {id: "300025306"})
+SET aat.term = value.prefLabel,
+    aat.scope_note = value.scopeNote,
+    aat.broader_terms = [b IN value.broader | b.label],
+    aat.narrower_terms = [n IN value.narrower | n.label],
+    aat.related_terms = [r IN value.related | r.label]
+CREATE (concept)-[:SAME_AS {confidence: 0.90, authority: "Getty AAT"}]->(aat)
+SET concept.ontological_type = aat.term,
+    concept.hierarchy = aat.broader_terms
+
+// LCSH/FAST subject heading assignment
+WITH concept
+MATCH (subject:Subject {lcsh_heading: "Rome--Politics and government--265-30 B.C."})
+CREATE (concept)-[:HAS_SUBJECT]->(subject)
+// Enable faceted query
+SET concept.facets = ["GOVERNANCE", "POLITICAL_INSTITUTIONS"]
+
+// Crosswalk for bibliographic discovery
+WITH concept, subject
+MATCH (work:Work)-[:ABOUT_SUBJECT]->(subject)
+CREATE (concept)-[:DOCUMENTED_IN_WORKS]->(work)
+```
+
+---
+
+## **R.5 Potential Federation Enhancements**
+
+Building on the six operational federations, these five enhancements represent logical next steps for deepening Chrystallum's multi-authority integration.
+
+### **R.5.1 Evidence Federation**
+
+**Goal**: Unify source documents, passages, citations as first-class Evidence nodes linked to Claims and Reviews
+
+**Current state**: Evidence nodes exist for EDH inscriptions and Trismegistos texts, but not unified across all source types
+
+**Enhancement**:
+- Create Evidence node schema for:
+  - Literary sources (Livy, Plutarch, Tacitus) with passage-level references
+  - Numismatic evidence (coin types, legends, iconography)
+  - Archaeological reports (excavation publications, artifact catalogs)
+  - Modern scholarly works (with claim extraction)
+- Typed evidence relationships:
+  - `PRIMARY_EVIDENCE`: Contemporary documents, inscriptions, archaeological material
+  - `SECONDARY_NARRATIVE`: Literary sources postdating events
+  - `TERTIARY_SYNTHESIS`: Modern scholarly reconstructions
+- Enable evidence-based confidence scoring:
+  - Claims with primary evidence get +0.20 confidence
+  - Multiple corroborating pieces of evidence compound boost
+  - Conflicting evidence triggers review workflow
+
+**Example structure**:
+```cypher
+(claim:Claim)-[:SUPPORTED_BY {weight: 0.85}]->(evidence:Evidence {type: "inscription"})
+(claim:Claim)-[:CONTRADICTED_BY {weight: 0.70}]->(evidence2:Evidence {type: "literary_narrative"})
+(evidence)-[:CITED_IN]->(work:ModernWork)
+(evidence)-[:FOUND_AT]->(place:Place)
+(evidence)-[:DATED_TO]->(year:Year)
+```
+
+---
+
+### **R.5.2 Identity Federation**
+
+**Goal**: Crosswalk people/places/events across multiple identity authorities (VIAF, GND, Wikidata, LoC)
+
+**Current state**: VIAF used for persons, but no systematic crosswalk across all national authority files
+
+**Enhancement**:
+- Create IdentityCluster nodes that aggregate same-entity references across:
+  - VIAF (international virtual authority)
+  - GND (German National Library)
+  - BnF (Bibliothèque nationale de France)
+  - LoC (Library of Congress)
+  - ISNI (International Standard Name Identifier)
+- Confidence-based identity resolution:
+  - Same identifier in 3+ authorities = high-confidence match (0.95+)
+  - Conflicting identifiers = disambiguation required
+  - Single-source identifier = provisional (0.75)
+- Enable cross-system queries:
+  - "Find all works about Caesar in any national library catalog"
+  - "Resolve ambiguous 'Marcus Antonius' via authority crosswalk"
+
+**Example structure**:
+```cypher
+(person:Person)-[:IDENTITY_CLUSTER]->(cluster:IdentityCluster)
+(cluster)-[:VIAF_ID {confidence: 0.90}]->(viaf:ExternalID {value: "12345"})
+(cluster)-[:GND_ID {confidence: 0.92}]->(gnd:ExternalID {value: "67890"})
+(cluster)-[:LOC_ID {confidence: 0.88}]->(loc:ExternalID {value: "n12345"})
+SET cluster.match_confidence = avg([0.90, 0.92, 0.88]) // 0.90
+```
+
+---
+
+### **R.5.3 Authority Conflict Federation**
+
+**Goal**: Formal conflict-resolution layer when LCSH/FAST/Wikidata/PeriodO disagree, with stored adjudication rules
+
+**Current state**: Conflicts detected (e.g., via `CONFLICTS_WITH` edges), but resolution is ad-hoc
+
+**Enhancement**:
+- Create ConflictResolution nodes capturing:
+  - Conflicting authorities (Source A vs. Source B)
+  - Conflict type (date_range, place_name, person_identity, etc.)
+  - Source values (what each authority claims)
+  - Resolution rule (precedence policy, expert adjudication, majority vote)
+  - Resolution outcome (chosen value, flagged as unresolvable)
+- Implement precedence policies:
+  - Subjects: LCSH/FAST > LCC > Wikidata (from Appendix P)
+  - Ancient Places: Pleiades > Wikidata > GeoNames
+  - Dates: Primary sources (EDH, TM) > literary sources > modern reconstruction
+- Enable audit trail:
+  - Track all conflicts over time
+  - Report authority agreement rates
+  - Identify systematic divergences requiring policy updates
+
+**Example structure**:
+```cypher
+(source_a:Authority {name: "LCSH"})-[:ASSERTS {value: "Roman Republic"}]->(entity)
+(source_b:Authority {name: "Wikidata"})-[:ASSERTS {value: "Roman Kingdom"}]->(entity)
+CREATE (conflict:ConflictResolution {
+  type: "period_name",
+  source_a: "LCSH",
+  source_a_value: "Roman Republic",
+  source_b: "Wikidata",
+  source_b_value: "Roman Kingdom",
+  resolution_rule: "LCSH_precedence",
+  chosen_value: "Roman Republic",
+  adjudication_date: date(),
+  adjudicator: "system_policy"
+})
+CREATE (source_a)-[:CONFLICTS_WITH]->(conflict)-[:RESOLVED_BY]->(entity)
+```
+
+---
+
+### **R.5.4 Geo-Temporal Federation**
+
+**Goal**: Joint place-time validity layer for historical boundaries and names per period
+
+**Current state**: Pleiades provides temporal validity, PeriodO provides period bounds, but no integrated place-period constraint model
+
+**Enhancement**:
+- Create PlacePeriodValidity nodes capturing:
+  - Place ID (Pleiades)
+  - Period ID (PeriodO)
+  - Valid names for that place during that period
+  - Boundary changes (e.g., "Mesopotamia" boundaries differ across Persian, Hellenistic, Roman periods)
+  - Governance changes (colony → municipium → colonia; client kingdom → province)
+- Enable period-aware queries:
+  - "Show all places in 'Roman Britain' period" (place exists AND period overlaps AND place under Roman control)
+  - "What was 'Constantinople' called in 100 BCE?" → "Byzantium"
+  - "Which provinces existed during the Severan Dynasty?"
+- Support dynamic historical maps:
+  - Render boundaries appropriate to selected period
+  - Show place name forms contemporary to period
+  - Track expansion/contraction of empires over time
+
+**Example structure**:
+```cypher
+(place:Place {label: "Constantinople"})-[:VALID_IN_PERIOD]->(ppv:PlacePeriodValidity {
+  period_id: "late_antiquity",
+  names: ["Constantinople", "Nova Roma"],
+  governance: "imperial_capital",
+  boundaries: "walls_of_constantine.geojson"
+})
+(place)-[:VALID_IN_PERIOD]->(ppv2:PlacePeriodValidity {
+  period_id: "classical_period",
+  names: ["Byzantium"],
+  governance: "Greek_colony",
+  boundaries: "archaic_byzantium.geojson"
+})
+// Query with period constraint
+MATCH (e:Event)-[:OCCURRED_AT]->(p:Place)-[:VALID_IN_PERIOD]->(ppv)
+WHERE e.year >= ppv.period_start AND e.year <= ppv.period_end
+RETURN p.label, ppv.names[0] AS period_name // Use name appropriate to event's period
+```
+
+---
+
+### **R.5.5 Agent Capability Federation**
+
+**Goal**: Explicit machine-readable mapping from agent scope → LCC ranges/facets/periods for deterministic routing and coverage audits
+
+**Current state**: Agent scopes defined conceptually (in `facet_agent_system_prompts.json`), but not fully machine-readable for automated routing
+
+**Enhancement**:
+- Create AgentCapability nodes for each Specialist Facet Agent:
+  - LCC call number ranges (e.g., "D51-D90" for Roman History SFA)
+  - Facet tags (e.g., ["WARFARE", "GOVERNANCE"] for Military History SFA)
+  - Period ranges (e.g., "-500/500" for Classical Period SFA)
+  - Geographic scope (e.g., "Mediterranean" for Ancient Mediterranean SFA)
+- Implement deterministic routing:
+  - Given entity with LCC + facet + period + place → compute best-match SFA
+  - Score overlap between entity properties and agent capabilities
+  - Route to agent with highest overlap score
+- Enable coverage audits:
+  - Identify gaps (LCC ranges with no assigned agent)
+  - Identify overlaps (multiple agents claiming same scope)
+  - Report agent workload (how many entities routed to each agent)
+  - Validate agent specialization (check if routed entities truly match declared scope)
+
+**Example structure**:
+```cypher
+MERGE (sfa:SpecialistFacetAgent {name: "Roman_History_SFA"})
+MERGE (cap:AgentCapability {id: "cap_roman_history"})
+SET cap.lcc_ranges = ["D51-D59", "D60-D69", "D70-D79"],
+    cap.facets = ["GOVERNANCE", "WARFARE", "LEGAL_TOPICS", "ECONOMICS"],
+    cap.period_start = -753,
+    cap.period_end = 476,
+    cap.geographic_scope = ["Italy", "Mediterranean", "Western_Europe"]
+CREATE (sfa)-[:HAS_CAPABILITY]->(cap)
+
+// Routing query
+MATCH (entity:Entity)
+WHERE entity.lcc = "D62" 
+  AND "GOVERNANCE" IN entity.facets
+  AND entity.year >= -509 AND entity.year <= 27
+WITH entity
+MATCH (sfa:SpecialistFacetAgent)-[:HAS_CAPABILITY]->(cap:AgentCapability)
+WHERE entity.lcc STARTS WITH cap.lcc_ranges[0][0..2] // Match LCC prefix
+  AND ANY(facet IN entity.facets WHERE facet IN cap.facets)
+  AND entity.year >= cap.period_start AND entity.year <= cap.period_end
+WITH entity, sfa, cap, 
+     size([f IN entity.facets WHERE f IN cap.facets]) AS facet_overlap
+ORDER BY facet_overlap DESC
+LIMIT 1
+MERGE (entity)-[:ROUTED_TO]->(sfa)
+```
+
+---
+
+## **R.6 API Reference Summary**
+
+| Federation | Wikidata Property | Entity Type | API Endpoint | Confidence Impact |
+|------------|------------------|-------------|--------------|-------------------|
+| **Pleiades** | P1584 | Place | `https://pleiades.stoa.org/places/[ID]/json` | +0.10 temporal validity |
+| **Trismegistos People** | P4343 | Person | `https://www.trismegistos.org/person/[ID]` | +0.15 primary source |
+| **Trismegistos Geo** | P1958 | Place | `https://www.trismegistos.org/place/[ID]` | +0.10 granular geo |
+| **Trismegistos Texts** | P4230 | Text/Document | `https://www.trismegistos.org/text/[ID]` | +0.15 documentary evidence |
+| **EDH** | P2192 | Inscription | `https://edh.ub.uni-heidelberg.de/data/api/inscriptions/[ID]` | +0.20 epigraphic evidence |
+| **VIAF** | P214 | Person, Work | `https://viaf.org/viaf/[ID]/viaf.json` | +0.10 name authority |
+| **GeoNames** | P1566 | Modern Location | `http://api.geonames.org/getJSON?geonameId=[ID]` | N/A (UI-only) |
+| **PeriodO** | (label match) | Period | `http://perio.do/[ID]` | +0.10 temporal bounds |
+| **Getty AAT** | P1014 | Concept | `http://vocab.getty.edu/aat/[ID].json` | +0.05 hierarchical type |
+| **LCSH** | (subject match) | Subject | `https://id.loc.gov/authorities/subjects/[ID]` | Primary (Tier 1) |
+| **FAST** | P2163 | Subject | `http://id.worldcat.org/fast/[ID]` | Primary (Tier 1) |
+| **Wikidata** | (QID) | Universal | `https://www.wikidata.org/wiki/Special:EntityData/[QID].json` | 0.90 baseline (Layer 2) |
+
+**Usage notes**:
+- **Confidence Impact**: Typical boost to base confidence when this authority corroborates entity
+- **Wikidata Property**: External ID property used to jump from Wikidata to domain authority
+- **API Endpoint**: Template for direct authority access (replace `[ID]` with identifier)
+- **"UI-only"**: Authority used for visualization/convenience, not primary ontology
+
+---
+
+## **R.7 Integration with Authority Precedence**
+
+Federation strategy aligns with Chrystallum's tiered authority precedence model (defined in Section 4.4 and Appendix P).
+
+### **R.7.1 Tier 1 (LCSH/FAST): Subject Authority Federation**
+
+**Precedence**: Always check first for SubjectConcepts
+
+**Federation pattern**:
+1. Resolve subject string → LCSH heading or FAST topic
+2. Pull LCSH hierarchy (broader/narrower terms)
+3. Map to LCC call number range for agent routing
+4. Cross-reference Wikidata P-codes for international alignment
+5. Store mapping with `authority: "LCSH"` and `confidence: 0.95`
+
+**Integration points**:
+- **Agent routing**: LCSH/FAST → LCC → Specialist Facet Agent
+- **Bibliographic crosswalk**: LCSH enables library catalog integration
+- **Facet assignment**: LCSH headings trigger canonical facet tags
+- **Conflict resolution**: LCSH overrides Wikidata for subject classification (per Appendix P §P.4)
+
+**Example**:
+```cypher
+MATCH (entity:Entity {label: "Roman Senate"})
+MERGE (lcsh:LCSHHeading {heading: "Rome--Politics and government--510-30 B.C."})
+CREATE (entity)-[:HAS_SUBJECT {authority: "LCSH", confidence: 0.95, tier: 1}]->(lcsh)
+SET entity.lcc_range = "JC85", // Derived from LCSH
+    entity.routed_agent = "Roman_Governance_SFA"
+```
+
+---
+
+### **R.7.2 Tier 2 (LCC/CIP): Fallback for Concepts Without LCSH/FAST Coverage**
+
+**Precedence**: Second tier when LCSH/FAST unavailable
+
+**Federation pattern**:
+1. Check for LCSH/FAST first (Tier 1)
+2. If not found, resolve to LCC call number directly
+3. Use CIP (Cataloging in Publication) data for subjects
+4. Still route to agents via LCC range
+5. Store mapping with `authority: "LCC"` and `confidence: 0.85`
+
+**Integration points**:
+- **Gap coverage**: LCC provides broader classification when specific LCSH heading doesn't exist
+- **Agent routing**: LCC ranges still enable deterministic agent routing
+- **Hierarchy**: LCC provides coarse-grained hierarchy (D = History, D51-D90 = Ancient Rome)
+
+**Example**:
+```cypher
+MATCH (entity:Entity {label: "Patrician-Plebeian Conflict"})
+WHERE NOT EXISTS((entity)-[:HAS_SUBJECT]->(:LCSHHeading))
+MERGE (lcc:LCCClass {call_number: "DG231-234"})
+CREATE (entity)-[:CLASSIFIED_AS {authority: "LCC", confidence: 0.85, tier: 2}]->(lcc)
+SET entity.routed_agent = "Roman_Social_History_SFA"
+```
+
+---
+
+### **R.7.3 Tier 3 (Wikidata + Domain Authorities): Specialist Grounding**
+
+**Precedence**: Use Wikidata as router, then jump to domain-specific authorities
+
+**Federation pattern**:
+1. Resolve entity → Wikidata QID (Layer 2, confidence 0.90)
+2. Follow external ID properties to domain authorities:
+   - **People**: VIAF, Trismegistos, PIR/PLRE
+   - **Places**: Pleiades, Trismegistos Geo, DARE
+   - **Events**: EDH, Trismegistos Texts, PeriodO
+   - **Concepts**: Getty AAT, specialized thesauri
+3. Domain authority confidence typically 0.90-0.95 (Tier 1 for their domain)
+4. Wikidata serves as discovery, domain authority as canonical source
+
+**Integration points**:
+- **Two-hop enrichment**: Wikidata → external ID → domain authority graph
+- **Cross-domain**: Wikidata enables linking across specialist silos
+- **Provenance**: Track both Wikidata and domain authority as sources
+- **Conflict resolution**: Domain authority overrides Wikidata when they disagree
+
+**Example**:
+```cypher
+// Wikidata as router
+MATCH (person:Person {label: "Marcus Tullius Cicero"})
+MERGE (wd:WikidataEntity {qid: "Q1541"})
+CREATE (person)-[:ALIGNED_WITH {confidence: 0.90, layer: 2, tier: 3}]->(wd)
+
+// Jump to VIAF (person authority)
+WITH person, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P214"}]->(viaf_id)
+MERGE (viaf:VIAFRecord {id: viaf_id.value})
+CREATE (person)-[:SAME_AS {authority: "VIAF", confidence: 0.90, tier: 3}]->(viaf)
+
+// Jump to Trismegistos (documentary evidence)
+WITH person, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P4343"}]->(tm_id)
+MERGE (tm:TrismegistosPerson {id: tm_id.value})
+CREATE (person)-[:SAME_AS {authority: "Trismegistos", confidence: 0.95, tier: 1_for_papyrology}]->(tm)
+
+// Domain authority precedence: TM > VIAF > Wikidata for documentary evidence
+SET person.documentary_confidence = 0.95 // TM provides primary source grounding
+```
+
+---
+
+### **R.7.4 Crosswalk Pattern: Use Wikidata P-codes to Route to Domain Authority, Then Enrich Backward**
+
+**Key principle**: Wikidata external ID properties (P-codes) function as federation routing keys, not final data sources.
+
+**Crosswalk workflow**:
+1. **Forward routing**: Entity → Wikidata QID → P-code → domain authority
+2. **Data enrichment**: Pull canonical data from domain authority
+3. **Backward propagation**: Enrich original entity with domain authority data
+4. **Provenance tracking**: Store both Wikidata and domain source metadata
+5. **Conflict handling**: When Wikidata and domain authority disagree, flag for resolution using precedence rules
+
+**Crosswalk example (Place federation)**:
+```cypher
+// Step 1: Forward routing via Wikidata
+MATCH (place:Place {label: "Tarraco"})
+MERGE (wd:WikidataEntity {qid: "Q15695"})
+CREATE (place)-[:ALIGNED_WITH {role: "discovery"}]->(wd)
+
+// Step 2: Extract P1584 (Pleiades ID)
+WITH place, wd
+MATCH (wd)-[:HAS_EXTERNAL_ID {property: "P1584"}]->(pleiades_id)
+
+// Step 3: Enrich from Pleiades (canonical ancient place authority)
+WITH place, pleiades_id.value AS pid
+CALL apoc.load.json("https://pleiades.stoa.org/places/" + pid + "/json") YIELD value
+MERGE (pleiades:PleiadesPlace {id: pid})
+SET pleiades.canonical_names = value.names,
+    pleiades.temporal_validity = value.temporalRange,
+    pleiades.coordinates = value.reprPoint
+CREATE (place)-[:SAME_AS {authority: "Pleiades", confidence: 0.95}]->(pleiades)
+
+// Step 4: Backward propagation to original Place node
+SET place.ancient_names = [n IN value.names WHERE n.language IN ['la', 'grc'] | n.nameTransliterated],
+    place.valid_periods = value.periods,
+    place.primary_authority = "Pleiades",
+    place.enrichment_date = datetime()
+
+// Step 5: Conflict detection (if Wikidata and Pleiades disagree)
+WITH place, wd, pleiades
+WHERE wd.label <> pleiades.canonical_names[0]
+CREATE (conflict:ConflictResolution {
+  type: "place_name",
+  wikidata_value: wd.label,
+  pleiades_value: pleiades.canonical_names[0],
+  resolution: "Pleiades_precedence",
+  chosen_value: pleiades.canonical_names[0]
+})
+SET place.label = pleiades.canonical_names[0] // Pleiades wins per precedence rule
+```
+
+**Crosswalk pattern advantages**:
+- **Leverages Wikidata's breadth** for discovery and initial linkage
+- **Respects domain authorities' depth** for canonical data
+- **Traceable provenance** with explicit routing path
+- **Conflict-aware** with adjudication rules
+- **Bidirectional enrichment**: Wikidata improves coverage, domain authorities improve quality
+
+---
+
+## **R.8 Source Files**
+
+This appendix synthesizes content from the following Federation layer documentation:
+
+1. **[Federation/2-16-26-FederationCandidates.md](Federation/2-16-26-FederationCandidates.md)** (170 lines)
+   - Federation usage patterns for 8 major authorities
+   - Role → How to leverage structure for each federation
+   - Stacked evidence ladder principle
+
+2. **[Federation/FederationUsage.txt](Federation/FederationUsage.txt)** (241 lines)
+   - Detailed stacked evidence ladder for People, Places, Events
+   - Tier-by-tier enrichment patterns
+   - Confidence rules and attestation strength matrix
+   - Operationalization guidance for ingestion, validation, and lensing phases
+
+3. **[Federation/2-12-26-federations.md](Federation/2-12-26-federations.md)**
+   - 6 current operational federations
+   - 5 potential federation enhancements
+   - Wikidata as "federation broker, not final authority" principle
+   - Federation architecture: two-hop enrichment, typed edges, Layer 2 positioning
+
+4. **[Federation/Federation Impact Report_ Chrystallum Data Targets.md](Federation/Federation Impact Report_ Chrystallum Data Targets.md)** (not merged)
+   - Detailed API reference with endpoints, parameters, response formats
+   - Kept as separate technical reference for implementation
+   - Not duplicated here to avoid excessive length
+
+---
+
+## **R.9 Related Sections**
+
+Federation strategy integrates with multiple existing architecture components:
+
+- **Section 4.4: Multi-Authority Model**  
+  Defines Tier 1/2/3 precedence policy that governs federation conflict resolution
+
+- **Appendix K: Wikidata Integration Patterns**  
+  Detailed patterns for Wikidata as discovery layer and external ID routing
+
+- **Appendix L: CIDOC-CRM Integration Guide**  
+  Relationship vocabulary aligned with CIDOC E-classes and P-codes, used in federation edges
+
+- **Appendix O (§O.6): Authority Precedence for Training Resources**  
+  Training pipeline respects same LCSH > LCC > Wikidata hierarchy used in federation
+
+- **Appendix P (§P.4): Authority Precedence Integration with CIDOC-CRM**  
+  Formal precedence rules: LCSH/FAST (Tier 1) > LCC/CIP (Tier 2) > Wikidata + domain authorities (Tier 3)
+
+- **Appendix Q: Operational Modes & Agent Orchestration**  
+  Agent routing depends on LCC/facet/period federation for deterministic specialist assignment
+
+---
+
+**(End of Appendix R)**
 
 ---
 
