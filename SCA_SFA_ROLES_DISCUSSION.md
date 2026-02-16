@@ -230,90 +230,158 @@ SFAs trained at the "field of study" or "academic discipline" level create claim
 
 ## Multi-Facet Claim Analysis (Key Insight)
 
-### SFAs Create Claims Within Their Facet Perspective
+### Two Phases of Claim Creation
 
-**Training Scope:** SFAs are trained at the **field of study** or **academic discipline** level.
+**Phase 1: Training Mode - Independent Discovery**
+- Each SFA starts with its high-level discipline (field of study)
+- SFAs create claims independently during training
+- Claims likely do NOT overlap initially (different domains)
+- Example:
+  * Political SFA training on "Roman Republic" → Creates political structure claims
+  * Military SFA training on "Roman Legions" → Creates military organization claims
+  * These are independent, non-overlapping claims
 
-**Critical Distinction:**
-- Each SFA analyzes events through its **facet lens only**
-- SFAs do NOT create claims in other domains
-- Multiple SFAs analyzing the SAME event create complementary (not duplicate) claims
+**Phase 2: Operational Mode - Recursive Analysis**
+- SFAs discover claims that reference entities from other facets
+- **Recursive Issue:** Each new claim potentially needs multi-facet analysis
+- Creates an **SFA Claim Queue** - claims awaiting facet perspective analysis
 
-**Examples of Facet-Specific Analysis:**
+### The SFA Claim Queue Problem
 
-**Political Science SFA** looking at historical events sees:
-- Authority structures and challenges
-- Governance decisions
-- Legal violations
-- Power dynamics
-- **Does NOT create** military/economic/cultural claims (other SFAs handle those)
-
-**Military History SFA** looking at the SAME events sees:
-- Troop movements and deployments
-- Strategic decisions
-- Tactical maneuvers
-- Command structures
-- **Does NOT create** political/economic/cultural claims (other SFAs handle those)
-
-**Economic History SFA** looking at the SAME events sees:
-- Resource allocation
-- Trade impacts
-- Financial costs
-- Economic motivations
-- **Does NOT create** political/military/cultural claims (other SFAs handle those)
-
-### SCA's Claim Management Role
-
-When SFAs create claims, SCA determines if they describe:
-
-**Different Claims About SAME Event:**
+**Scenario:**
 ```
-Event: "Rubicon Crossing (49 BCE)"
-
-Political SFA creates: "Caesar challenged Senate authority"
-  → Claim type: Political authority violation
-  → Facet: Political
+Political SFA creates: "Caesar was appointed dictator in 49 BCE"
+  → References: Caesar (person), Roman Republic (polity), dictator (office)
   
-Military SFA creates: "Legio XIII entered Italy from Gaul"
-  → Claim type: Military troop movement
-  → Facet: Military
-
-SCA Decision: DIFFERENT CLAIMS about SAME EVENT
-  → Link both claims to Event: "Rubicon Crossing"
-  → Political perspective: Authority/law angle
-  → Military perspective: Strategic movement angle
-  → Both claims TRUE and complementary
-```
-
-**Claims About DIFFERENT Events:**
-```
-Political SFA: "Caesar served as consul in 59 BCE"
-  → Event: Consulship (59 BCE)
-  → Claim: Political office held
+SCA recognizes: This claim has entities relevant to OTHER facets
+  → Caesar = military commander (Military SFA should analyze)
+  → Dictator office = economic impact (Economic SFA should analyze)
+  → Creates entries in SFA Claim Queue
   
-Military SFA: "Caesar commanded Legio XIII in Gaul (58 BCE)"
-  → Event: Gallic command assignment (58 BCE)
-  → Claim: Military command assignment
-
-SCA Decision: DIFFERENT EVENTS, keep distinct
-  → Both about Caesar, but different historical moments
-  → No event linking needed
+Military SFA receives queued claim: "Caesar was appointed dictator in 49 BCE"
+  → Analyzes from military perspective
+  → Creates NEW claim: "Caesar commanded all Roman armies as dictator"
+  
+Economic SFA receives queued claim: "Caesar was appointed dictator in 49 BCE"
+  → Analyzes from economic perspective  
+  → Creates NEW claim: "Caesar gained control of state treasury as dictator"
 ```
 
-### This is Exploratory - Get Them All
+### Two Types of SFA Work
 
-**No prioritization of SubjectConcepts:**
-- All SubjectConcepts explored equally
-- No "early vs late" or "broad vs specific" distinction
-- Each SubjectConcept gets full multi-facet analysis
-- Breadth-first exploration across all domains
+**1. Discovery Claims (Proactive)**
+- SFA discovers new information from training data
+- Creates claims from primary facet perspective
+- Drives initial knowledge base population
 
-### Benefits
+**2. Perspective Claims (Reactive)**
+- SFA receives existing claim from queue
+- Analyzes claim from its facet perspective
+- Creates complementary claims about same entities/events
 
-1. **Rich Multi-Facet Analysis:** Same event understood from multiple angles
-2. **No Artificial Boundaries:** Each SFA sees through its facet lens naturally
-3. **Complementary Claims:** Political + Military + Economic perspectives all valid
-4. **Realistic Domain Modeling:** Historians analyze events from discipline perspectives
+### Workflow Implication
+
+```
+SFA Responsibilities:
+├─ Discovery Mode (Training)
+│  └─ Create claims from training data (Wikipedia, Wikidata)
+│
+└─ Queue Processing Mode (Operational)
+   └─ Analyze claims from other SFAs for facet-specific insights
+
+SCA Responsibilities:
+├─ Route training data to SFAs (Discovery)
+├─ Collect discovery claims from all SFAs
+├─ Analyze claims for multi-facet potential
+├─ Queue claims to relevant SFAs (Perspective analysis)
+└─ Link resulting claims to entities/events
+```
+
+### Recursive Termination
+
+**Question:** When does the queue stop growing?
+
+**Answer:** When SFAs have no new perspectives to add
+
+**Example:**
+```
+Iteration 1:
+  Political SFA: "Caesar crossed Rubicon" → Queue for Military, Geographic
+  
+Iteration 2:
+  Military SFA: "Legio XIII entered Italy" → Already covered, no new queue
+  Geographic SFA: "Rubicon river boundary violated" → Already covered, no new queue
+  
+Termination: No new facet perspectives discovered
+```
+
+### Benefits & Challenges
+
+**Benefits:**
+1. **Complete Multi-Facet Coverage:** Every claim analyzed from all relevant perspectives
+2. **Emergent Connections:** SFAs discover cross-domain relationships organically
+3. **Progressive Enrichment:** Knowledge base grows richer with each iteration
+
+**Challenges:**
+1. **Queue Management:** SCA must track which claims need which facet analyses
+2. **Avoid Infinite Loops:** Prevent claims from ping-ponging between SFAs
+3. **Prioritization:** Which queued claims to process first?
+4. **Convergence:** How to detect when multi-facet analysis is "complete"?
+
+---
+
+## SFA Claim Queue Implementation
+
+### Queue Structure
+
+```python
+sfa_claim_queue = {
+    'military': [
+        {
+            'claim_id': 'CLM_001',
+            'claim_text': "Caesar was appointed dictator in 49 BCE",
+            'source_facet': 'political',
+            'entities': ['Q1048', 'Q7747'],  # Caesar, Roman Republic
+            'status': 'pending'
+        }
+    ],
+    'economic': [...],
+    'cultural': [...]
+}
+```
+
+### Queue Processing Logic
+
+**SCA:**
+1. SFA creates claim → SCA receives
+2. SCA analyzes claim entities
+3. SCA determines: Which OTHER facets should analyze this?
+4. SCA adds claim to relevant SFA queues
+5. SCA monitors queue depth, prioritizes
+
+**SFA:**
+1. Process Discovery queue (training data)
+2. Process Perspective queue (claims from other SFAs)
+3. Return new claims to SCA
+4. SCA repeats analysis for new claims
+
+### Convergence Detection
+
+**Option A: Fixed Iterations**
+- Process N rounds of perspective analysis
+- Stop after N iterations regardless
+
+**Option B: Queue Empty**
+- Continue until all SFA queues empty
+- Risk: May never converge if SFAs keep generating perspectives
+
+**Option C: Diminishing Returns**
+- Track new claims per iteration
+- Stop when new claims < threshold
+
+**Option D: Explicit "No Perspective" Response**
+- SFAs can return "No additional perspective from my facet"
+- Stop when all SFAs return no-perspective for queued claims
 
 ---
 
