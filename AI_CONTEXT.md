@@ -36,68 +36,66 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Relationship Kernel Strategy - Issue #3 Resolved (ADR-002) (2026-02-16 21:00)
+## Latest Update: Function-Driven Relationship Catalog - Issue #3 Resolved (ADR-002) (2026-02-16 21:00)
 
-### Architecture Fix - 300-Relationship Scope Risk Mitigated
+### Architecture Fix - Semantic Precision Over Arbitrary Reduction
 
-**Session Context:** Architecture review identified 300-relationship catalog as "high risk of design completeness without operational correctness." Resolution: Implemented tiered rollout strategy (v1.0 Kernel: 48 essential relationships → v1.1 Expansion: 50-75 specialized → v2.0 Full Catalog: 300 comprehensive). Created Appendix V (ADR-002) with implementation strategy and migration rules.
+**Session Context:** Architecture review identified 300-relationship catalog as "high risk of design completeness without operational correctness." Initial resolution attempted 48-type "v1.0 kernel" reduction. **User rejected**: "edge semantics ARE the knowledge graph's value proposition" - maintain comprehensive catalog (311 types) organized by functional capabilities, not project phases. Created Appendix V (ADR-002) documenting functional dependencies and crosswalk coverage.
 
 **PROBLEM IDENTIFIED (Architecture Review 2026-02-16):**
 > "A 300-relationship canonical set aligned simultaneously to native Chrystallum semantics, Wikidata properties, and CIDOC-CRM is a large knowledge-engineering commitment, and it creates a high risk of 'design completeness' without operational correctness."
 
-**Recommendation:** "Define a minimal 'v1 relationship kernel' (maybe 30–50 edges) that unlocks real traversal, and treat the rest as staged expansions with migration rules."
+**USER INSIGHT (Critical Pivot):**
+> "my sense is if we cleanup full it gives a more nuanced or exact meaning. since the purpose of a kg is the primacy of properties of edges then it seems like this is the way to go"
 
-**Risks of 300-Relationship Monolith:**
-1. ❌ **Development Bottleneck**: Validating 300 edge types delays deployment
-2. ❌ **Testing Complexity**: Comprehensive test coverage becomes impractical
-3. ❌ **Documentation Burden**: Complete usage guidance for 300 types is overwhelming
-4. ❌ **Query Fragmentation**: Too many edge types dilute graph traversal patterns
-5. ❌ **Maintenance Overhead**: Schema evolution impacts 300 relationships simultaneously
+> "avoid thinking of phases and project plans. think in terms of functions delivered and lets not use that doc for project planning, but rather maintain a backlog of function candidates considering dependencies"
+
+**KEY FINDINGS:**
+1. **Actual registry state**: 311 relationships (not 300), 202 implemented, 108 candidate
+2. **Extensive crosswalk infrastructure exists**: 64.2% CIDOC-CRM coverage already strong
+3. **Semantic precision intentional**: Multiple Chrystallum → single Wikidata mapping enables fine-grained queries (e.g., FATHER_OF, MOTHER_OF, PARENT_OF all → P40 but enable patrilineal vs matrilineal queries)
+4. **Quality excellent**: No duplicates, 1 missing description, 1 invalid directionality value
 
 **ACCOMPLISHMENTS:**
 
-**1. Created ADR-002: Tiered Relationship Implementation (Appendix V)**
-- ✅ **Decision:** Three maturity tiers with clear migration rules
-  - **Tier 1 (v1.0 Kernel)**: 48 essential relationships → **SHIP FIRST**
-  - **Tier 2 (v1.1 Expansion)**: 50-75 specialized relationships → staged rollout
-  - **Tier 3 (v2.0 Full Catalog)**: 175-200 remaining relationships → long-term goal
+**1. Revised ADR-002: Function-Driven Relationship Catalog (Appendix V)**
+- ✅ **Decision**: Maintain comprehensive catalog (311 types: 202 implemented, 108 candidate) organized by functional capabilities delivered
+- ✅ **Crosswalk Coverage Verified**:
+  - Wikidata properties: 91 types (29.4%) ← enables federated SPARQL queries
+  - CIDOC-CRM codes: 199 types (64.2%) ← enables museum/archival RDF export (STRONG)
+  - CRMinf applicable: 24 types (7.7%) ← enables argumentation/inference tracking
+- ✅ **Rationale**: "Edge semantics ARE the knowledge graph's value proposition. Multiple Chrystallum relationships → single Wikidata property is precision, not redundancy."
 
-**2. Defined v1.0 Kernel: 48 Essential Relationships (Appendix V.3)**
-- ✅ **Selection Criteria** (ALL must be satisfied):
-  1. `lifecycle_status = "implemented"` (registry confirms readiness)
-  2. Enables core traversal: Person↔Event, Person↔Place, Event↔Place, Work↔Person, Claim↔Work
-  3. Historical research fundamental: Family trees, political networks, military campaigns, geographic movement
-  4. Wikidata alignment preferred: Strong `wikidata_property` enables federation
-  5. Diverse category coverage: Balanced across 7 core domains
+**2. Documented 9 Functional Capabilities with Dependencies (Appendix V.3)**
+- ✅ **Core Graph Traversal** (12 relationships, 100% Wikidata mapped, query examples)
+- ✅ **Familial Network Analysis** (32 relationships, gender-specific precision enables patrilineal/matrilineal queries)
+- ✅ **Political Network Analysis** (39 relationships, Roman proscription domain)
+- ✅ **Military Campaign Tracking** (23 relationships, P607 core)
+- ✅ **Geographic Movement & Settlement** (20 relationships, migration patterns)
+- ✅ **Provenance & Claim Attribution** (11 relationships, CRMinf dependencies, evidence chains)
+- ✅ **Federated Query Functions** (Wikidata crosswalk MANDATORY, backlog files documented: wikidata_p_unmapped_backlog_2026-02-13.csv)
+- ✅ **Museum/Archival Integration** (64.2% CIDOC coverage STRONG, RDF export Python example)
+- ✅ **Argumentation & Inference** (7.7% CRMinf minimal, I1-I7 gap documentation, candidate relationships listed)
 
-- ✅ **v1.0 Kernel Breakdown:**
-  - **Core Traversal (12)**: PARTICIPATED_IN, HAD_PARTICIPANT, BORN_IN, BIRTHPLACE_OF, DIED_IN, DEATH_PLACE_OF, LOCATED_IN, LOCATION_OF, AUTHOR, WORK_OF, WITNESSED_EVENT, WITNESSED_BY
-  - **Familial (10)**: PARENT_OF, CHILD_OF, FATHER_OF, MOTHER_OF, SIBLING_OF, SPOUSE_OF, GRANDPARENT_OF, GRANDCHILD_OF, MEMBER_OF_GENS, HAS_GENS_MEMBER
-  - **Political (10)**: CONTROLLED, CONTROLLED_BY, ALLIED_WITH, CONQUERED, CONQUERED_BY, APPOINTED, APPOINTED_BY, COLLAPSED, CAUSED_COLLAPSE_OF, DECLARED_FOR
-  - **Military (7)**: FOUGHT_IN, BATTLE_PARTICIPANT, DEFEATED, DEFEATED_BY, BESIEGED, BESIEGED_BY, SERVED_UNDER
-  - **Geographic (7)**: LIVED_IN, RESIDENCE_OF, FOUNDED, MIGRATED_FROM, MIGRATED_TO, FLED_TO, EXILED
-  - **Authorship & Attribution (7)**: CREATOR, CREATION_OF, DESCRIBES, MENTIONS, NAMED_AFTER, NAMESAKE_OF, DISCOVERED_BY
-  - **Temporal & Institutional (5)**: LEGITIMATED, LEGITIMATED_BY, REFORMED, ADHERES_TO, IDEOLOGY_OF
+**3. Documented Existing Crosswalk Infrastructure (Appendix V.8 References)**
+- ✅ **Relationship registry**: 26 columns including wikidata_property, cidoc_crm_code, cidoc_crm_kind, crminf_applicable
+- ✅ **CIDOC mapping file**: `CIDOC/cidoc_wikidata_mapping_validated.csv` (105 lines)
+  - Documents critical gaps: E13_Attribute_Assignment, I1_Argumentation, I2_Belief, I5_Inference_Making, I6_Belief_Value, I7_Belief_Adoption have no Wikidata equivalents
+  - Specifies Chrystallum fallbacks: Claim nodes for E13/I2/I6, MultiAgentDebate for I1/I5, Claim status transition for I7
+- ✅ **Role qualifier registry**: `Relationships/role_qualifier_reference.json` (527 lines, maps roles to P-values + CIDOC types)
+- ✅ **Backlog files**: wikidata_p_unmapped_backlog, wikidata_p_catalog_candidates, relationship_type_p_suggestions (exact/relaxed alias)
 
-- ✅ **v1.0 Kernel Statistics:**
-  - **Total**: 48 types (84% reduction from 300, focused scope)
-  - **Wikidata Mapped**: 28 (58% vs. 49% for full catalog - stronger federation)
-  - **Lifecycle Status**: 100% implemented (all production-ready)
-  - **Categories**: 7 of 31 (core historical research fundamentals)
+**4. Created Function Candidate Backlog (Appendix V.4)**
+- ✅ **Registry State**: 202 implemented, 108 candidate (backlog location documented)
+- ✅ **Crosswalk Backlog**: 220 relationships unmapped to Wikidata (70.6%), 112 unmapped to CIDOC (35.8%)
+- ✅ **Priority Candidates**: Organized by function (Federated Queries need Wikidata, Museum Integration needs CIDOC, Argumentation needs CRMinf)
+- ✅ **Dependencies**: Which functions blocked by missing crosswalk coverage
 
-- ✅ **Capabilities Unlocked:**
-  - ✅ Family tree construction & genealogical queries
-  - ✅ Political network analysis (alliances, conquests, appointments)
-  - ✅ Military campaign tracking (battles, participants, outcomes)
-  - ✅ Geographic movement & settlement patterns
-  - ✅ Work attribution & provenance chains
-  - ✅ Institutional legitimacy & reform tracking
-  - ✅ Strong Wikidata federation capability (58% mapped)
-
-**3. Documented Staged Expansion Plan (Appendix V.4)**
-- ✅ **Tier 2 (v1.1 Expansion)**: 50-75 specialized relationships
-  - Target Domains: Legal, Economic, Diplomatic, Cultural, Religious, Honorific
-  - Criteria: Extends v1.0 into specialized research, `lifecycle_status` "implemented" OR strong implementation evidence
+**5. Documented Migration Contracts (Appendix V.5)**
+- ✅ **Adding relationships**: Non-breaking, lifecycle_status field manages promotion
+- ✅ **Deprecating relationships**: Breaking change, 12-month notice + automated migration script
+- ✅ **Changing directionality**: DO NOT (breaking), create new relationship instead
+- ✅ **Renaming relationships**: Avoid, use aliases; if necessary treat as deprecate + add
   - Migration: Additive (no v1.0 changes), existing queries remain valid
 
 - ✅ **Tier 3 (v2.0 Full Catalog)**: 175-200 remaining relationships
