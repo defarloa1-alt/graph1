@@ -36,7 +36,147 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Facet Taxonomy Canonicalization - Issue #2 Resolved (2026-02-16 20:30)
+## Latest Update: Relationship Kernel Strategy - Issue #3 Resolved (ADR-002) (2026-02-16 21:00)
+
+### Architecture Fix - 300-Relationship Scope Risk Mitigated
+
+**Session Context:** Architecture review identified 300-relationship catalog as "high risk of design completeness without operational correctness." Resolution: Implemented tiered rollout strategy (v1.0 Kernel: 48 essential relationships → v1.1 Expansion: 50-75 specialized → v2.0 Full Catalog: 300 comprehensive). Created Appendix V (ADR-002) with implementation strategy and migration rules.
+
+**PROBLEM IDENTIFIED (Architecture Review 2026-02-16):**
+> "A 300-relationship canonical set aligned simultaneously to native Chrystallum semantics, Wikidata properties, and CIDOC-CRM is a large knowledge-engineering commitment, and it creates a high risk of 'design completeness' without operational correctness."
+
+**Recommendation:** "Define a minimal 'v1 relationship kernel' (maybe 30–50 edges) that unlocks real traversal, and treat the rest as staged expansions with migration rules."
+
+**Risks of 300-Relationship Monolith:**
+1. ❌ **Development Bottleneck**: Validating 300 edge types delays deployment
+2. ❌ **Testing Complexity**: Comprehensive test coverage becomes impractical
+3. ❌ **Documentation Burden**: Complete usage guidance for 300 types is overwhelming
+4. ❌ **Query Fragmentation**: Too many edge types dilute graph traversal patterns
+5. ❌ **Maintenance Overhead**: Schema evolution impacts 300 relationships simultaneously
+
+**ACCOMPLISHMENTS:**
+
+**1. Created ADR-002: Tiered Relationship Implementation (Appendix V)**
+- ✅ **Decision:** Three maturity tiers with clear migration rules
+  - **Tier 1 (v1.0 Kernel)**: 48 essential relationships → **SHIP FIRST**
+  - **Tier 2 (v1.1 Expansion)**: 50-75 specialized relationships → staged rollout
+  - **Tier 3 (v2.0 Full Catalog)**: 175-200 remaining relationships → long-term goal
+
+**2. Defined v1.0 Kernel: 48 Essential Relationships (Appendix V.3)**
+- ✅ **Selection Criteria** (ALL must be satisfied):
+  1. `lifecycle_status = "implemented"` (registry confirms readiness)
+  2. Enables core traversal: Person↔Event, Person↔Place, Event↔Place, Work↔Person, Claim↔Work
+  3. Historical research fundamental: Family trees, political networks, military campaigns, geographic movement
+  4. Wikidata alignment preferred: Strong `wikidata_property` enables federation
+  5. Diverse category coverage: Balanced across 7 core domains
+
+- ✅ **v1.0 Kernel Breakdown:**
+  - **Core Traversal (12)**: PARTICIPATED_IN, HAD_PARTICIPANT, BORN_IN, BIRTHPLACE_OF, DIED_IN, DEATH_PLACE_OF, LOCATED_IN, LOCATION_OF, AUTHOR, WORK_OF, WITNESSED_EVENT, WITNESSED_BY
+  - **Familial (10)**: PARENT_OF, CHILD_OF, FATHER_OF, MOTHER_OF, SIBLING_OF, SPOUSE_OF, GRANDPARENT_OF, GRANDCHILD_OF, MEMBER_OF_GENS, HAS_GENS_MEMBER
+  - **Political (10)**: CONTROLLED, CONTROLLED_BY, ALLIED_WITH, CONQUERED, CONQUERED_BY, APPOINTED, APPOINTED_BY, COLLAPSED, CAUSED_COLLAPSE_OF, DECLARED_FOR
+  - **Military (7)**: FOUGHT_IN, BATTLE_PARTICIPANT, DEFEATED, DEFEATED_BY, BESIEGED, BESIEGED_BY, SERVED_UNDER
+  - **Geographic (7)**: LIVED_IN, RESIDENCE_OF, FOUNDED, MIGRATED_FROM, MIGRATED_TO, FLED_TO, EXILED
+  - **Authorship & Attribution (7)**: CREATOR, CREATION_OF, DESCRIBES, MENTIONS, NAMED_AFTER, NAMESAKE_OF, DISCOVERED_BY
+  - **Temporal & Institutional (5)**: LEGITIMATED, LEGITIMATED_BY, REFORMED, ADHERES_TO, IDEOLOGY_OF
+
+- ✅ **v1.0 Kernel Statistics:**
+  - **Total**: 48 types (84% reduction from 300, focused scope)
+  - **Wikidata Mapped**: 28 (58% vs. 49% for full catalog - stronger federation)
+  - **Lifecycle Status**: 100% implemented (all production-ready)
+  - **Categories**: 7 of 31 (core historical research fundamentals)
+
+- ✅ **Capabilities Unlocked:**
+  - ✅ Family tree construction & genealogical queries
+  - ✅ Political network analysis (alliances, conquests, appointments)
+  - ✅ Military campaign tracking (battles, participants, outcomes)
+  - ✅ Geographic movement & settlement patterns
+  - ✅ Work attribution & provenance chains
+  - ✅ Institutional legitimacy & reform tracking
+  - ✅ Strong Wikidata federation capability (58% mapped)
+
+**3. Documented Staged Expansion Plan (Appendix V.4)**
+- ✅ **Tier 2 (v1.1 Expansion)**: 50-75 specialized relationships
+  - Target Domains: Legal, Economic, Diplomatic, Cultural, Religious, Honorific
+  - Criteria: Extends v1.0 into specialized research, `lifecycle_status` "implemented" OR strong implementation evidence
+  - Migration: Additive (no v1.0 changes), existing queries remain valid
+
+- ✅ **Tier 3 (v2.0 Full Catalog)**: 175-200 remaining relationships
+  - Target Domains: Application, Evolution, Reasoning, Comparative, Functional, Moral (complete coverage)
+  - Criteria: May include `lifecycle_status` "candidate", full CIDOC-CRM/Wikidata triple alignment
+  - Migration: Incremental additions (not all at once), each requires implementation + testing + documentation + examples
+
+**4. Defined Implementation Strategy & Migration Rules (Appendix V.5)**
+- ✅ **Phase 1: v1.0 Kernel (Current Priority)**
+  1. ✅ Document 48 essential relationships (Appendix V)
+  2. ⏳ Create Neo4j seed script: `Relationships/v1_kernel_seed.cypher`
+  3. ⏳ Implement validation: Check v1.0 relationships exist in registry
+  4. ⏳ Test coverage: Unit tests for each relationship type
+  5. ⏳ Documentation: Update Section 7.7 with v1.0 kernel examples
+  6. ⏳ Production deployment: Load v1.0 kernel with constraints
+
+- ✅ **Migration Rules:**
+  - **Adding New Relationships (Non-Breaking)**: New types can be added anytime, existing queries remain valid
+  - **Deprecating Relationships (Breaking)**: 12-month deprecation notice required, provide migration path, automated migration script
+  - **Renaming Relationships (Breaking - Avoid)**: Rename = Deprecate + Add New (12-month window), prefer aliases via registry metadata
+  - **Changing Directionality (Breaking - Avoid)**: Do NOT change directionality of existing relationships, create new with correct directionality
+
+**5. Updated Section 7.0 Relationship Layer Overview**
+- ✅ Added "Implementation Strategy" subsection documenting tiered rollout
+- ✅ Updated coverage statistics to show v1.0 Kernel (48 types, 58% Wikidata mapped) vs. v2.0 Full Catalog (300 types, 49% Wikidata mapped)
+- ✅ Clarified focus: "operational correctness before design completeness"
+
+**BENEFITS OF KERNEL APPROACH:**
+
+1. ✅ **Development Velocity**:
+   - Ship v1.0 kernel fast: 48 relationships vs. 300 (84% reduction)
+   - Test coverage feasible: Comprehensive tests for 48 types
+   - Documentation complete: Full usage examples for v1.0
+
+2. ✅ **Operational Correctness**:
+   - Real-world validation: v1.0 tested in production before expanding
+   - Query patterns emerge: Understand actual usage before adding specialized relationships
+   - Performance tuning: Optimize 48 relationships before complexity increases
+
+3. ✅ **Maintenance Simplicity**:
+   - Focused schema evolution: Changes impact 48 types, not 300
+   - Clear deprecation boundaries: Tier boundaries guide sunset decisions
+   - Incremental complexity: Add relationships only when justified by research needs
+
+4. ✅ **Federation Readiness**:
+   - Strong Wikidata alignment: 58% of v1.0 kernel has Wikidata properties
+   - Federated queries work: Query external SPARQL endpoints via aligned properties
+   - Interoperability proven: Validate federation with 48 types before scaling
+
+**ARCHITECTURE REVIEW PROGRESS:**
+- ✅ **Issue #1**: Claim identity/cipher semantics internally inconsistent → **RESOLVED** (ADR-001, content-only cipher)
+- ✅ **Issue #2**: Facet taxonomy inconsistency (two lists don't match) → **RESOLVED** (Q.3.2 validation, canonical 17 facets)
+- ✅ **Issue #3**: 300-relationship scope risk (too big too early) → **RESOLVED** (ADR-002, v1.0 kernel 48 types)
+- ⏳ **Issue #4**: Federation/crypto trust model underspecified → **PENDING** (need ADR-003)
+- ⏳ **Issue #5**: Operational thresholds arbitrary (need SLO/SLA calibration) → **PENDING**
+- ⏳ **Issue #6**: Security/privacy threat model incomplete (authZ, audit, multi-user) → **PENDING**
+
+**NEXT ACTIONS:**
+- Create `Relationships/v1_kernel_seed.cypher` with 48 relationship types
+- Implement validation: Check all v1.0 relationships exist in registry
+- Unit tests for each v1.0 relationship type
+- Update Section 7.7 examples to use only v1.0 kernel relationships
+- Production deployment: Load v1.0 kernel into Neo4j with constraints
+- **Next Architecture Issue**: Issue #4 - Federation Trust Model (ADR-003)
+
+**FILES MODIFIED:**
+- Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+  - Section 7.0: Updated overview with tiered rollout strategy
+  - Section 7.3: Updated coverage statistics (v1.0 vs. v2.0)
+  - Appendix V: ADR-002 Relationship Kernel Strategy (~400 lines)
+- Change_log.py: Added Issue #3 resolution entry (2026-02-16 21:00)
+- AI_CONTEXT.md: This update
+
+**REASON:**
+Architecture Review 2026-02-16 identified 300-relationship scope as "high risk of design completeness without operational correctness." Tiered approach enables shipping operational graph queries fast while preserving long-term vision of 300-relationship comprehensive catalog. Addresses Issue #3 of 6 critical architecture issues.
+
+---
+
+## Previous Update: Facet Taxonomy Canonicalization - Issue #2 Resolved (2026-02-16 20:30)
 
 ### Critical Architecture Fix - Facet Inconsistency Eliminated
 

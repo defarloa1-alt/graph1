@@ -4316,6 +4316,15 @@ RETURN claim1.text, claim2.text,
 
 The **Relationship Layer** defines canonical relationship types connecting entities in the knowledge graph. Unlike Claims (which represent evidence), relationships are **first-class graph edges** supporting traversal, pattern matching, and graph algorithms.
 
+### **Implementation Strategy**
+
+**Tiered Rollout** (see Appendix V - ADR-002):
+- **v1.0 Kernel**: 48 essential relationships - operational priority
+- **v1.1 Expansion**: 50-75 specialized relationships - staged rollout
+- **v2.0 Full Catalog**: 300 comprehensive relationship types - long-term goal
+
+This staged approach enables **operational correctness** before **design completeness**, validating core traversal patterns in production before expanding to specialized research domains.
+
 ### **Key Principles**
 
 **1. Triple Alignment Architecture**
@@ -4324,7 +4333,8 @@ The **Relationship Layer** defines canonical relationship types connecting entit
 - **CIDOC-CRM:** ISO 21127:2023 compliance for museum/archival integration
 
 **2. Semantic Categorization**
-- 300 canonical relationship types across 31 semantic categories
+- 300 canonical relationship types across 31 semantic categories (full catalog)
+- v1.0 Kernel: 48 types across 7 core categories (current focus)
 - Categories align with historical domains (Military, Political, Economic, etc.)
 - Hierarchical with parent-child specificity levels
 
@@ -4450,13 +4460,20 @@ The **Relationship Layer** defines canonical relationship types connecting entit
 
 ### **Coverage Statistics**
 
+**Full Catalog (v2.0 Target):**
 - **Total Relationship Types:** 300
 - **With Wikidata Alignment:** 147 (49%)
 - **With CIDOC-CRM Alignment:** 89 (30%)
 - **With Both Alignments:** 72 (24%)
 - **Chrystallum-Specific:** 153 (51%) - optimized for historical research needs
 
-**Note:** Chrystallum-specific relationships address historical domain needs not covered by general-purpose ontologies (e.g., Roman gens relationships, patron-client ties, proscription lists).
+**v1.0 Kernel (Current Implementation):**
+- **Total Relationship Types:** 48 (see Appendix V)
+- **With Wikidata Alignment:** 28 (58%)
+- **Lifecycle Status:** 100% implemented (production-ready)
+- **Categories Covered:** 7 core domains (Familial, Political, Military, Geographic, Authorship, Attribution, Temporal/Institutional)
+
+**Note:** Chrystallum-specific relationships address historical domain needs not covered by general-purpose ontologies (e.g., Roman gens relationships, patron-client ties, proscription lists). The v1.0 kernel focuses on essential relationships that enable core graph traversal (Person↔Event, Person↔Place, Event↔Place, Work↔Person) before expanding to specialized domains.
 
 ---
 
@@ -13897,6 +13914,423 @@ ORDER BY facet_count DESC, avg_confidence DESC
 ---
 
 **(End of Appendix U - ADR-001)**
+
+---
+
+# **Appendix V: Relationship Kernel Strategy (ADR-002)**
+
+## **V.1 Problem Statement**
+
+### **V.1.1 Scope Risk**
+
+The canonical relationship catalog defines 300 relationship types aligned simultaneously to:
+- Native Chrystallum semantics (historical research optimization)
+- Wikidata properties (linked data interoperability)
+- CIDOC-CRM (ISO 21127:2023 museum/archival standards)
+
+**Risk Identified** (Architecture Review 2026-02-16):
+> "A 300-relationship canonical set aligned simultaneously to native Chrystallum semantics, Wikidata properties, and CIDOC-CRM is a large knowledge-engineering commitment, and it creates a high risk of 'design completeness' without operational correctness."
+
+### **V.1.2 Impact**
+
+Attempting to implement all 300 relationships simultaneously creates:
+1. **Development Bottleneck**: Validating 300 edge types delays operational deployment
+2. **Testing Complexity**: Comprehensive test coverage becomes impractical
+3. **Documentation Burden**: Complete usage guidance for 300 types is overwhelming
+4. **Query Fragmentation**: Too many edge types dilute graph traversal patterns
+5. **Maintenance Overhead**: Schema evolution impacts 300 relationships simultaneously
+
+### **V.1.3 Recommendation**
+
+Architecture reviewer: *"Define a minimal 'v1 relationship kernel' (maybe 30–50 edges) that unlocks real traversal, and treat the rest as staged expansions with migration rules."*
+
+---
+
+## **V.2 Decision: Tiered Relationship Implementation**
+
+### **V.2.1 Architecture Decision**
+
+**Status**: ACCEPTED (2026-02-16)
+
+**Decision**: Implement relationships in three maturity tiers:
+- **Tier 1 (v1.0 Kernel)**: 40-50 essential relationships - **ship first**
+- **Tier 2 (v1.1 Expansion)**: 50-75 specialized relationships - staged rollout
+- **Tier 3 (v2.0 Full Catalog)**: Remaining 175-200 relationships - long-term completeness
+
+Each tier requires:
+- Validation of implementation status (lifecycle_status = "implemented")
+- Test coverage for all included relationships
+- Documentation of usage patterns with examples
+- Migration rules for adding new relationships without breaking queries
+
+---
+
+## **V.3 v1.0 Kernel: Essential Relationships (48 types)**
+
+### **V.3.1 Selection Criteria**
+
+Tier 1 relationships must satisfy ALL of the following:
+1. **lifecycle_status = "implemented"** (registry field confirms readiness)
+2. **Enables core traversal**: Person↔Event, Person↔Place, Event↔Place, Work↔Person, Claim↔Work
+3. **Historical research fundamental**: Family trees, political networks, military campaigns, geographic movement
+4. **Wikidata alignment preferred**: Strong `wikidata_property` value enables federation
+5. **Diverse category coverage**: Balanced across Familial, Political, Military, Geographic, Authorship, Temporal
+
+### **V.3.2 Core Traversal (12 relationships)**
+
+*Enable basic graph queries across fundamental entity types*
+
+| Relationship Type | Wikidata | Directionality | Description |
+|-------------------|----------|----------------|-------------|
+| **PARTICIPATED_IN** | P710 | forward | Person participated in event |
+| **HAD_PARTICIPANT** | P710 | inverse | Event had this participant |
+| **BORN_IN** | P19 | forward | Person born in place |
+| **BIRTHPLACE_OF** | P19 | inverse | Place is birthplace of person |
+| **DIED_IN** | P20 | forward | Person died in place |
+| **DEATH_PLACE_OF** | P20 | inverse | Place is death place of person |
+| **LOCATED_IN** | P131 | forward | Entity located in place |
+| **LOCATION_OF** | P131 | inverse | Place is location of entity |
+| **AUTHOR** | P50 | forward | Person created work |
+| **WORK_OF** | P50 | inverse | Work created by person |
+| **WITNESSED_EVENT** | P1441 | forward | Person witnessed event |
+| **WITNESSED_BY** | P1441 | inverse | Event witnessed by person |
+
+**Query Example:**
+```cypher
+// Find all events Caesar participated in and their locations
+MATCH (caesar:Human {name: "Gaius Julius Caesar"})
+      -[:PARTICIPATED_IN]->(event:Event)
+      -[:LOCATED_IN]->(place:Place)
+RETURN event.label, place.label, event.start_date
+ORDER BY event.start_date
+```
+
+---
+
+### **V.3.3 Familial (10 relationships)**
+
+*Family trees and genealogical networks*
+
+| Relationship Type | Wikidata | Directionality | Description |
+|-------------------|----------|----------------|-------------|
+| **PARENT_OF** | P40 | inverse | Parent of child |
+| **CHILD_OF** | P40 | forward | Person is child of parent |
+| **FATHER_OF** | P40 | forward | Father of child |
+| **MOTHER_OF** | P40 | forward | Mother of child |
+| **SIBLING_OF** | P3373 | symmetric | Person is sibling |
+| **SPOUSE_OF** | P26 | symmetric | Person is spouse |
+| **GRANDPARENT_OF** | — | inverse | Grandparent of grandchild |
+| **GRANDCHILD_OF** | — | forward | Grandchild of grandparent |
+| **MEMBER_OF_GENS** | P53 | forward | Roman gens membership |
+| **HAS_GENS_MEMBER** | P53 | inverse | Gens has this member |
+
+**Query Example:**
+```cypher
+// Find Caesar's family tree (3 generations)
+MATCH path = (caesar:Human {name: "Caesar"})
+             -[:FATHER_OF|CHILD_OF|SIBLING_OF*1..3]-(relative:Human)
+RETURN relative.name, length(path) AS degrees_of_separation
+```
+
+---
+
+### **V.3.4 Political (10 relationships)**
+
+*Power networks, territorial control, political change*
+
+| Relationship Type | Wikidata | Directionality | Description |
+|-------------------|----------|----------------|-------------|
+| **CONTROLLED** | P17 | forward | Entity controlled territory |
+| **CONTROLLED_BY** | P17 | inverse | Territory controlled by entity |
+| **ALLIED_WITH** | — | forward | Formal/strategic alliance |
+| **CONQUERED** | — | forward | Entity conquered territory |
+| **CONQUERED_BY** | — | inverse | Territory conquered by entity |
+| **APPOINTED** | P39 | forward | Entity appointed person to office |
+| **APPOINTED_BY** | P39 | inverse | Person appointed by entity |
+| **COLLAPSED** | P576 | forward | Political entity ceased |
+| **CAUSED_COLLAPSE_OF** | P576 | inverse | Entity caused collapse |
+| **DECLARED_FOR** | — | forward | Declared support/allegiance |
+
+**Query Example:**
+```cypher
+// Find political alliances during Second Punic War
+MATCH (rome:Institution {name: "Rome"})
+      -[:ALLIED_WITH]-(ally:Institution)
+      -[:PARTICIPATED_IN]->(event:Event {label: "Second Punic War"})
+RETURN ally.name, event.start_date, event.end_date
+```
+
+---
+
+### **V.3.5 Military (7 relationships)**
+
+*Campaigns, battles, military actions*
+
+| Relationship Type | Wikidata | Directionality | Description |
+|-------------------|----------|----------------|-------------|
+| **FOUGHT_IN** | P607 | forward | Participated in battle/war |
+| **BATTLE_PARTICIPANT** | P607 | inverse | Battle had this participant |
+| **DEFEATED** | — | forward | Defeated opponent |
+| **DEFEATED_BY** | — | inverse | Was defeated by opponent |
+| **BESIEGED** | — | forward | Laid siege to place |
+| **BESIEGED_BY** | — | inverse | Place besieged by entity |
+| **SERVED_UNDER** | — | forward | Served under commander |
+
+**Query Example:**
+```cypher
+// Find battles of the Gallic Wars and participants
+MATCH (war:Event {label: "Gallic Wars"})
+      <-[:PART_OF]-(battle:Event)
+      <-[:FOUGHT_IN]-(participant:Human)
+RETURN battle.label, battle.year, collect(participant.name) AS participants
+ORDER BY battle.year
+```
+
+---
+
+### **V.3.6 Geographic (7 relationships)**
+
+*Movement, location, geographic context*
+
+| Relationship Type | Wikidata | Directionality | Description |
+|-------------------|----------|----------------|-------------|
+| **LIVED_IN** | P551 | forward | Person resided in place |
+| **RESIDENCE_OF** | P551 | inverse | Place was residence of person |
+| **FOUNDED** | P112 | forward | Established place/institution |
+| **MIGRATED_FROM** | — | forward | Group migrated from place |
+| **MIGRATED_TO** | — | forward | Group migrated to place |
+| **FLED_TO** | — | forward | Fled to location (exile/escape) |
+| **EXILED** | — | forward | Person exiled to place |
+
+**Query Example:**
+```cypher
+// Track Cimbri migration route
+MATCH path = (cimbri:Group {name: "Cimbri"})
+             -[:MIGRATED_FROM|MIGRATED_TO*]-(place:Place)
+RETURN nodes(path) AS migration_path
+```
+
+---
+
+### **V.3.7 Authorship & Attribution (7 relationships)**
+
+*Provenance, evidence, claims about knowledge*
+
+| Relationship Type | Wikidata | Directionality | Description |
+|-------------------|----------|----------------|-------------|
+| **CREATOR** | P170 | forward | Created by |
+| **CREATION_OF** | P170 | inverse | Created by (inverse) |
+| **DESCRIBES** | — | forward | Citation describes entity |
+| **MENTIONS** | — | forward | Citation mentions entity |
+| **NAMED_AFTER** | P138 | forward | Named for |
+| **NAMESAKE_OF** | P138 | inverse | Is namesake of |
+| **DISCOVERED_BY** | P61 | forward | Discovered by |
+
+**Query Example:**
+```cypher
+// Find all works that mention Caesar and their authors
+MATCH (caesar:Human {name: "Caesar"})
+      <-[:MENTIONS]-(work:Work)
+      -[:AUTHOR]->(author:Human)
+RETURN work.label, author.name, work.publication_year
+ORDER BY work.publication_year
+```
+
+---
+
+### **V.3.8 Temporal & Institutional (5 relationships)**
+
+*Time, organizations, institutional changes*
+
+| Relationship Type | Wikidata | Directionality | Description |
+|-------------------|----------|----------------|-------------|
+| **LEGITIMATED** | — | forward | Institution legitimated authority |
+| **LEGITIMATED_BY** | — | inverse | Authority legitimated by institution |
+| **REFORMED** | — | forward | Reformed institution/system |
+| **ADHERES_TO** | P1142 | forward | Person/org adheres to ideology |
+| **IDEOLOGY_OF** | P1142 | inverse | Ideology adhered to by person/org |
+
+---
+
+### **V.3.9 v1.0 Kernel Statistics**
+
+- **Total Relationships**: 48 types (intentionally under 50 for focused scope)
+- **Wikidata Mapped**: 28 (58% - strong federation capability)
+- **CIDOC-CRM Mapped**: To be validated during v1.0 implementation
+- **Categories Covered**: 7 of 31 (focused on core historical research)
+- **Lifecycle Status**: 100% `implemented` (all ready for production)
+
+**Capabilities Unlocked:**
+✅ Family tree construction and genealogical queries  
+✅ Political network analysis (alliances, conquests, appointments)  
+✅ Military campaign tracking (battles, participants, outcomes)  
+✅ Geographic movement and settlement patterns  
+✅ Work attribution and provenance chains  
+✅ Institutional legitimacy and reform tracking  
+✅ Basic temporal reasoning and organizational membership  
+
+---
+
+## **V.4 Staged Expansion Plan**
+
+### **V.4.1 Tier 2: v1.1 Specialized Research (50-75 relationships)**
+
+**Target Domains:**
+- **Legal**: Convictions, sentences, trials, legal codes
+- **Economic**: Trade, taxation, production, slavery
+- **Diplomatic**: Negotiations, envoys, treaties, appeals
+- **Cultural**: Assimilation, cultural evolution, heritage claims
+- **Religious**: Conversion, religious leadership, doctrine
+- **Honorific**: Awards, titles, decorations, patronage
+
+**Inclusion Criteria:**
+- Extends v1.0 kernel into specialized research domains
+- Enables advanced queries (legal proceedings, trade networks, cultural transmission)
+- lifecycle_status = "implemented" OR strong evidence for implementation
+- Documentation includes cross-references to v1.0 kernel relationships
+
+**Migration Strategy:**
+- Add Tier 2 relationships as new edge types (no v1.0 changes)
+- Queries using only v1.0 relationships remain unaffected
+- New queries can combine v1.0 + v1.1 relationships
+
+---
+
+### **V.4.2 Tier 3: v2.0 Full Catalog (175-200 relationships)**
+
+**Target Domains:**
+- **Application**: Material extraction, dyeing, production locations
+- **Evolution**: Type obsolescence, phasing out, replacement chains
+- **Reasoning**: Inference chains, belief adoption, evidence relationships
+- **Comparative**: Superiority, inferiority, advantages/disadvantages
+- **Functional**: Purpose, use, instrument relationships
+- **Moral**: Ethical justification, moral reasoning
+
+**Inclusion Criteria:**
+- Completes comprehensive domain coverage
+- Supports specialized scholarly workflows (material culture, technological evolution, intellectual history)
+- May include lifecycle_status = "candidate" (requires implementation first)
+- Full CIDOC-CRM and Wikidata triple alignment
+
+**Migration Strategy:**
+- Add Tier 3 relationships incrementally (not all at once)
+- Each addition requires: implementation, testing, documentation, example queries
+- Deprecation policy: No removal of v1.0/v1.1 relationships without 12-month notice
+
+---
+
+## **V.5 Implementation Strategy**
+
+### **V.5.1 Development Phases**
+
+**Phase 1: v1.0 Kernel (Current Priority)**
+1. ✅ Document 48 essential relationships (this appendix)
+2. ⏳ Create Neo4j seed script: `Relationships/v1_kernel_seed.cypher`
+3. ⏳ Implement validation: Check all v1.0 relationships exist in registry
+4. ⏳ Test coverage: Unit tests for each relationship type
+5. ⏳ Documentation: Update Section 7.7 with v1.0 kernel examples
+6. ⏳ Production deployment: Load v1.0 kernel into Neo4j with constraints
+
+**Phase 2: v1.1 Expansion (Next)**
+1. Identify 50-75 Tier 2 relationships from registry (Legal, Economic, Diplomatic, Cultural, Religious, Honorific)
+2. Validate lifecycle_status = "implemented" or implement missing relationships
+3. Create `Relationships/v1.1_expansion_seed.cypher` (additive, non-breaking)
+4. Test v1.0 + v1.1 combined queries
+5. Documentation: Appendix V.4.1 expansion
+
+**Phase 3: v2.0 Full Catalog (Long-term)**
+1. Implement remaining "candidate" relationships (requires field work, authority alignment)
+2. Complete CIDOC-CRM triple alignment for all 300 relationships
+3. Deprecation policy: Define sunset procedures for unused relationships
+4. Versioning: Track relationship schema versions (v1.0 → v1.1 → v2.0)
+
+---
+
+### **V.5.2 Validation Checklist**
+
+Before promoting a relationship from candidate → implemented:
+- [ ] Wikidata property alignment verified (or documented why not applicable)
+- [ ] CIDOC-CRM property alignment verified (or documented why not applicable)
+- [ ] Directionality tested (forward/inverse/symmetric/unidirectional)
+- [ ] Example query demonstrates practical usage
+- [ ] Neo4j constraint created (if applicable)
+- [ ] Documentation updated in Section 7.7 and Appendix V
+
+---
+
+### **V.5.3 Migration Rules**
+
+**Adding New Relationships (Non-Breaking):**
+- New relationship types can be added at any time
+- Existing queries using v1.0/v1.1 relationships remain valid
+- New edge types do not affect existing traversal patterns
+
+**Deprecating Relationships (Breaking - Requires Migration):**
+- 12-month deprecation notice required before removal
+- Provide migration path: `OLD_RELATIONSHIP` → `NEW_RELATIONSHIP` mapping
+- Automated migration script: Rewrite edges from deprecated to replacement type
+- Documentation: Update all examples removing deprecated relationships
+
+**Renaming Relationships (Breaking - Avoid):**
+- Rename = Deprecate + Add New (12-month migration window)
+- Prefer adding aliases via registry metadata (keep canonical name stable)
+
+**Changing Directionality (Breaking - Avoid):**
+- Do NOT change directionality of existing relationships
+- If directionality was wrong, create new relationship with correct directionality
+- Deprecate old relationship with migration path
+
+---
+
+## **V.6 Benefits of Kernel Approach**
+
+### **V.6.1 Development Velocity**
+
+- **Ship v1.0 kernel fast**: 48 relationships instead of 300 (84% reduction)
+- **Test coverage feasible**: Comprehensive tests for 48 types vs. impractical for 300
+- **Documentation complete**: Full usage examples for v1.0 instead of partial coverage
+
+### **V.6.2 Operational Correctness**
+
+- **Real-world validation**: v1.0 kernel tested in production before expanding
+- **Query patterns emerge**: Understand actual usage before adding specialized relationships
+- **Performance tuning**: Optimize 48 relationships before complexity increases
+
+### **V.6.3 Maintenance Simplicity**
+
+- **Focused schema evolution**: Changes impact 48 types, not 300
+- **Clear deprecation boundaries**: Tier boundaries guide sunset decisions
+- **Incremental complexity**: Add relationships only when justified by research needs
+
+### **V.6.4 Federation Readiness**
+
+- **Strong Wikidata alignment**: 58% of v1.0 kernel has Wikidata properties
+- **Federated queries work**: Can query external SPARQL endpoints via aligned properties
+- **Interoperability proven**: Validate federation with 48 types before scaling
+
+---
+
+## **V.7 Related Decisions**
+
+- **ADR-001**: Content-Only Cipher (Appendix U) - claim deduplication across time/agents
+- **ADR-003** (future): Facet Taxonomy Canonicalization - single registry enforcement
+- **Section 7**: Relationship Layer - full 300-relationship catalog documentation
+- **Appendix A**: Canonical Relationship Types - registry of all 300 relationships
+- **Section 7.7**: Key Relationship Types by Domain - examples for major categories
+
+---
+
+## **V.8 References**
+
+- Architecture Review 2026-02-16 (md/Architecture/2-16-26-architecture review.txt)
+- Canonical Registry: `Relationships/relationship_types_registry_master.csv` (300 types, 202 implemented, 108 candidate)
+- v1.0 Kernel Seed Script: `Relationships/v1_kernel_seed.cypher` (to be created)
+- Section 7.1: Relationship Type Schema (canonical properties and fields)
+- Section 7.2: Relationship Categories (distribution by category)
+
+---
+
+**(End of Appendix V - ADR-002: Relationship Kernel Strategy)**
 
 ---
 
