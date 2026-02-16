@@ -1808,7 +1808,7 @@ Each SubjectConcept can carry metadata from **multiple authority standards** for
 - Dewey, VIAF, GND - legacy/supplementary authorities
 
 **Implementation Rule:**
-1. When creating SubjectConcept: Prefer LCSH/FAST â†' LCC/CIP â†' Wikidata â†' other
+1. When creating SubjectConcept: Prefer LCSH/FAST → LCC/CIP → Wikidata → other
 2. When updating: Enrich with lower-tier authorities without replacing higher-tier mappings
 3. When querying: Check Tier 1 first; fall through to Tier 3 if needed
 
@@ -1993,14 +1993,14 @@ Academic disciplines are modeled as SubjectConcepts with special properties.
 3. Ontology Building: SFA traverses via BROADER_THAN* to build hierarchical ontology
 ```
 
-**Example:** MilitarySFA with facet MILITARY finds root concepts like "Military Science", then builds: Military Science â†' Naval Warfare â†' Trireme Tactics â†' ...
+**Example:** MilitarySFA with facet MILITARY finds root concepts like "Military Science", then builds: Military Science → Naval Warfare → Trireme Tactics → ...
 
 **Rationale:**
 - `discipline: true` marks canonical entry points for agent specialization
 - Prevents SFAs from adopting arbitrary concepts as roots
 - Gates SFA scope (e.g., Military SFA doesn't treat "Economic History" as root)
 - Enables reproducible SFA initialization across sessions
-- Supports disciplinary curriculum alignment (CIP codes â†' discipline roots)
+- Supports disciplinary curriculum alignment (CIP codes → discipline roots)
 
 **See Also:**
 - Section 5.1: Agent domain assignment (`OWNS_DOMAIN` edges to SubjectConcepts)
@@ -2433,39 +2433,39 @@ SFAs build subject ontologies for their disciplines **independently**, without c
 **Process:**
 ```
 SCA:
-  â†' Spawn all SFAs (Political, Military, Economic, etc.)
-  â†' Route discipline training data to each SFA
-  â†' Collect claims from all SFAs
+  → Spawn all SFAs (Political, Military, Economic, etc.)
+  → Route discipline training data to each SFA
+  → Collect claims from all SFAs
 
 SFAs (Independent Work):
-  â†' Study discipline (Political Science, Military History, etc.)
-  â†' Build domain ontology (abstract concepts)
-  â†' Create Claim nodes + FacetPerspectives
-  â†' Return claim ciphers to SCA
+  → Study discipline (Political Science, Military History, etc.)
+  → Build domain ontology (abstract concepts)
+  → Create Claim nodes + FacetPerspectives
+  → Return claim ciphers to SCA
 
 SCA (Accept All):
-  â†' Receive training claims
-  â†' Evaluate: Are these abstract domain concepts? (YES)
-  â†' Decision: Accept as-is (NO QUEUE to other SFAs)
-  â†' Integrate into graph
+  → Receive training claims
+  → Evaluate: Are these abstract domain concepts? (YES)
+  → Decision: Accept as-is (NO QUEUE to other SFAs)
+  → Integrate into graph
 ```
 
 **Example Training Claims (NO CROSS-FACET REVIEW):**
 ```
 Political SFA:
-  â†' "Senate held legislative authority in Roman Republic"
-  â†' Type: Abstract political concept
-  â†' SCA evaluation: Abstract domain concept â†' Accept as-is (no queue)
+  → "Senate held legislative authority in Roman Republic"
+  → Type: Abstract political concept
+  → SCA evaluation: Abstract domain concept → Accept as-is (no queue)
 
 Military SFA:
-  â†' "Legion composed of cohorts and maniples"
-  â†' Type: Abstract military structure
-  â†' SCA evaluation: Abstract domain concept â†' Accept as-is (no queue)
+  → "Legion composed of cohorts and maniples"
+  → Type: Abstract military structure
+  → SCA evaluation: Abstract domain concept → Accept as-is (no queue)
 
 Economic SFA:
-  â†' "Roman economy based on agricultural production"
-  â†' Type: Abstract economic principle
-  â†' SCA evaluation: Abstract domain concept â†' Accept as-is (no queue)
+  → "Roman economy based on agricultural production"
+  → Type: Abstract economic principle
+  → SCA evaluation: Abstract domain concept → Accept as-is (no queue)
 ```
 
 **Rationale:** These are **disciplinary ontology claims**, not concrete historical events. Political, Military, and Economic SFAs do not need to review each other's abstract domain concepts.
@@ -2479,10 +2479,10 @@ SFAs encounter **concrete entities/events**. SCA evaluates each claim for multi-
 **Process:**
 ```
 SFA creates concrete claim:
-  â†' Claim cipher: "claim_abc123..."
-  â†' Claim text: "Caesar was appointed dictator in 49 BCE"
-  â†' FacetPerspective: political
-  â†' Returns cipher to SCA
+  → Claim cipher: "claim_abc123..."
+  → Claim text: "Caesar was appointed dictator in 49 BCE"
+  → FacetPerspective: political
+  → Returns cipher to SCA
 
 SCA evaluates claim:
   1. Type: Concrete historical event (not abstract concept)
@@ -2490,25 +2490,25 @@ SCA evaluates claim:
   3. Multi-domain potential: YES
 
 SCA relevance scoring:
-  â†' Military SFA: 0.9 (Caesar = commander) â†' QUEUE
-  â†' Economic SFA: 0.8 (dictator = treasury control) â†' QUEUE
-  â†' Cultural SFA: 0.3 (minor impact) â†' SKIP
-  â†' Religious SFA: 0.2 (no dimension) â†' SKIP
-  â†' Scientific SFA: 0.1 (irrelevant) â†' SKIP
+  → Military SFA: 0.9 (Caesar = commander) → QUEUE
+  → Economic SFA: 0.8 (dictator = treasury control) → QUEUE
+  → Cultural SFA: 0.3 (minor impact) → SKIP
+  → Religious SFA: 0.2 (no dimension) → SKIP
+  → Scientific SFA: 0.1 (irrelevant) → SKIP
 
 SCA decision: Queue to Military + Economic ONLY
 
 Military SFA (Perspective Mode):
-  â†' Receives: claim_cipher="claim_abc123..."
-  â†' Analyzes from military perspective
-  â†' Creates FacetPerspective (military angle)
-  â†' Returns: perspective_id="persp_002"
+  → Receives: claim_cipher="claim_abc123..."
+  → Analyzes from military perspective
+  → Creates FacetPerspective (military angle)
+  → Returns: perspective_id="persp_002"
 
 Economic SFA (Perspective Mode):
-  â†' Receives: claim_cipher="claim_abc123..."
-  â†' Analyzes from economic perspective
-  â†' Creates FacetPerspective (economic angle)
-  â†' Returns: perspective_id="persp_003"
+  → Receives: claim_cipher="claim_abc123..."
+  → Analyzes from economic perspective
+  → Creates FacetPerspective (economic angle)
+  → Returns: perspective_id="persp_003"
 
 Result:
   1 Claim (cipher="claim_abc123...")
@@ -2535,7 +2535,7 @@ claim_cipher = Hash(
 # Result: "claim_abc123..." (unique cipher)
 ```
 
-**Benefit:** Two SFAs discovering SAME claim â†' SAME cipher â†' Single Claim node (automatic deduplication)
+**Benefit:** Two SFAs discovering SAME claim → SAME cipher → Single Claim node (automatic deduplication)
 
 **Star Pattern Structure:**
 ```
@@ -2575,19 +2575,19 @@ claim_cipher = Hash(
 **How SCA determines which claims warrant cross-facet review:**
 
 **Criterion 1: Abstract vs Concrete Detection**
-- **Abstract domain concepts** â†' NO QUEUE (accept as-is)
+- **Abstract domain concepts** → NO QUEUE (accept as-is)
   * Theoretical frameworks ("Senate legislative authority")
   * Discipline-specific methods ("Manipular tactics")
   * General principles ("Agricultural economy base")
-- **Concrete events/entities** â†' EVALUATE FOR QUEUE
+- **Concrete events/entities** → EVALUATE FOR QUEUE
   * Specific historical events ("Caesar crossed Rubicon")
   * Named individuals with roles ("Caesar appointed dictator")
   * Dated occurrences ("49 BCE")
 
 **Criterion 2: Multi-Domain Relevance Scoring (0-1.0 scale)**
-- **High Relevance (0.8-1.0)** â†' Queue to SFA
-- **Medium Relevance (0.5-0.7)** â†' Queue to SFA
-- **Low Relevance (0.0-0.4)** â†' Do NOT queue
+- **High Relevance (0.8-1.0)** → Queue to SFA
+- **Medium Relevance (0.5-0.7)** → Queue to SFA
+- **Low Relevance (0.0-0.4)** → Do NOT queue
 
 **Example: "Caesar was appointed dictator in 49 BCE"**
 ```
@@ -2599,21 +2599,21 @@ Religious SFA: 0.2 (no significant religious dimension)
 Scientific SFA: 0.1 (irrelevant to scientific domain)
 
 SCA Decision:
-â†' Queue to: Military (0.9), Economic (0.8)
-â†' Skip: Cultural (0.3), Religious (0.2), Scientific (0.1)
+→ Queue to: Military (0.9), Economic (0.8)
+→ Skip: Cultural (0.3), Religious (0.2), Scientific (0.1)
 ```
 
 **Criterion 3: Entity Type Detection**
 - Query Wikidata P31 (instance of)
 - Map entity types to facet relevance:
-  * Q5 (Human) â†' Political, Military, Cultural potential
-  * Q198 (War) â†' Military, Political, Economic potential
-  * Q216353 (Battle) â†' Military, Geographic potential
+  * Q5 (Human) → Political, Military, Cultural potential
+  * Q198 (War) → Military, Political, Economic potential
+  * Q216353 (Battle) → Military, Geographic potential
 
 **Criterion 4: Conflict Detection**
-- Date discrepancies â†' Queue for synthesis
-- Attribute conflicts â†' Queue for synthesis
-- Relationship disputes â†' Queue for synthesis
+- Date discrepancies → Queue for synthesis
+- Attribute conflicts → Queue for synthesis
+- Relationship disputes → Queue for synthesis
 
 **Criterion 5: Existing Perspectives Check**
 ```cypher
@@ -2887,25 +2887,25 @@ LIMIT 3
 **Example Training Claims (Military SFA, NO CROSS-FACET REVIEW):**
 ```
 Claim 1: "Legion was primary Roman military unit"
-  â†' Type: Discovery Mode (abstract domain concept)
-  â†' Source: Wikidata Q170944 + scholarly sources
-  â†' Confidence: 0.95
-  â†' Facet: Military
-  â†' SCA Action: Accept as-is (NO QUEUE)
+  → Type: Discovery Mode (abstract domain concept)
+  → Source: Wikidata Q170944 + scholarly sources
+  → Confidence: 0.95
+  → Facet: Military
+  → SCA Action: Accept as-is (NO QUEUE)
 
 Claim 2: "Cohort composed of multiple maniples"
-  â†' Type: Discovery Mode (abstract structural relationship)
-  â†' Source: Wikidata Q82955, Q1541817
-  â†' Confidence: 0.90
-  â†' Facet: Military
-  â†' SCA Action: Accept as-is (NO QUEUE)
+  → Type: Discovery Mode (abstract structural relationship)
+  → Source: Wikidata Q82955, Q1541817
+  → Confidence: 0.90
+  → Facet: Military
+  → SCA Action: Accept as-is (NO QUEUE)
 
 Claim 3: "Centurion commanded century of soldiers"
-  â†' Type: Discovery Mode (abstract organizational principle)
-  â†' Source: Wikidata Q2747456
-  â†' Confidence: 0.95
-  â†' Facet: Military
-  â†' SCA Action: Accept as-is (NO QUEUE)
+  → Type: Discovery Mode (abstract organizational principle)
+  → Source: Wikidata Q2747456
+  → Confidence: 0.95
+  → Facet: Military
+  → SCA Action: Accept as-is (NO QUEUE)
 ```
 
 **Rationale:** These are **disciplinary ontology claims**, not concrete historical events. They do not warrant cross-facet review by Political, Economic, or Cultural SFAs during training phase.
@@ -2922,7 +2922,7 @@ Claim 3: "Centurion commanded century of soldiers"
 - Exclude platform properties (P373 Commons category, P910 topic's main category, P1151 main portal)
 
 **Step 3: Wikimedia Blacklist**
-- Exclude all `P31` â†' Wikimedia infrastructure classes (Q4167836, Q11266439, etc.)
+- Exclude all `P31` → Wikimedia infrastructure classes (Q4167836, Q11266439, etc.)
 - Filter out pure media containers (images, galleries, categories)
 
 **Step 4: Polity/Period Refinement**

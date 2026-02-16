@@ -176,7 +176,157 @@ claim = Claim(
 )
 ```
 
-### 3. Neo4j Constraints (`neo4j_constraints.py`)
+### 3. Canonicalization (`canonicalization.py`)
+
+**NEW in Priority 4**: Ensures reproducible claim ciphers across federated systems.
+
+#### Why Canonicalization?
+
+Different systems may have variations in:
+- Unicode representation: `café` (é as 1 char vs e+́ combining)
+- Whitespace: spaces vs tabs vs NBSP
+- Float precision: `0.95` vs `0.9500000001`
+- Key ordering: `{"b":2,"a":1}` vs `{"a":1,"b":2}`
+
+Without canonicalization, **identical claims produce different ciphers** → duplication, can't deduplicate.
+
+#### Auto-Compute Claim Cipher (Recommended)
+
+```python
+from chrystallum.models import Claim
+
+# Create claim with auto-computed canonical cipher
+claim = Claim.create_with_cipher(
+    claim_id="claim_001",
+    content="Julius Caesar crossed the Rubicon in 49 BCE",
+    source_id="plutarch_lives_caesar_ch32",
+    created_by="extraction_agent_v1",
+    facets=[
+        FacetAssignment(facet="military", confidence=0.95),
+        FacetAssignment(facet="geographic", confidence=0.90)
+    ],
+    confidence=0.92
+)
+
+# Cipher is automatically computed and guaranteed valid
+assert claim.verify_cipher()  # ✅ Always True
+print(f"Cipher: {claim.cipher}")
+```
+
+#### Verify Existing Cipher
+
+```python
+# Load claim from database
+claim = Claim(**claim_data)
+
+# Verify cipher integrity
+if claim.verify_cipher():
+    print("✓ Cipher is valid")
+else:
+    print("✗ WARNING: Cipher is invalid (tampering detected)")
+```
+
+#### Detect Duplicate Claims Across Systems
+
+```python
+# System A discovers a fact
+claim_a = Claim.create_with_cipher(
+    claim_id="system_a_claim_123",
+    content="Julius Caesar crossed the Rubicon",
+    source_id="source_001",
+    created_by="agent_a"
+)
+
+# System B independently discovers the same fact
+claim_b = Claim.create_with_cipher(
+    claim_id="system_b_claim_456",
+    content="Julius Caesar crossed the Rubicon",
+    source_id="source_001",
+    created_by="agent_b"
+)
+
+# Ciphers match → same logical claim
+if claim_a.cipher == claim_b.cipher:
+    print("✓ Duplicate claim detected - can merge/deduplicate")
+```
+
+#### Low-Level Canonicalization Functions
+
+```python
+from chrystallum.models import (
+    normalize_unicode,
+    normalize_whitespace,
+    normalize_float,
+    canonicalize_dict,
+    compute_claim_cipher
+)
+
+# Normalize text
+text1 = "café"  # é as single character
+text2 = "café"  # é as e + combining accent
+assert normalize_unicode(text1) == normalize_unicode(text2)  # ✅ Same
+
+# Normalize whitespace
+text = "  Hello   world  "
+assert normalize_whitespace(text) == "Hello world"  # ✅ Collapsed
+
+# Normalize float
+assert normalize_float(0.95) == normalize_float(0.9500000001)  # ✅ Same
+
+# Normalize dict (sorted keys)
+dict1 = {"b": 2, "a": 1}
+dict2 = {"a": 1, "b": 2}
+assert canonicalize_dict(dict1) == canonicalize_dict(dict2)  # ✅ Same
+
+# Compute cipher directly
+cipher = compute_claim_cipher(
+    content="Julius Caesar crossed the Rubicon",
+    metadata={"source_id": "source_001", "facets": [], "relationships": []}
+)
+assert len(cipher) == 64  # SHA256 = 64 hex chars
+```
+
+#### Content-Addressable Design
+
+**What's included in cipher**:
+- `content`: Main claim text
+- `source_id`: Source document identifier
+- `facets`: List of facet keys (sorted)
+- `relationships`: List of relationship assertions (sorted)
+
+**What's excluded from cipher**:
+- `claim_id`: Generated identifier (not content)
+- `created_by`: Agent identifier (metadata)
+- `created_at`: Timestamp (metadata)
+- `confidence`: Assessment score (metadata)
+
+**Rationale**: Two agents discovering the same fact from the same source should produce **identical ciphers**, regardless of when/who/how confident.
+
+#### Cross-System Reproducibility
+
+```python
+# System 1: Clean input
+claim1 = Claim.create_with_cipher(
+    claim_id="system1_001",
+    content="Julius Caesar crossed the Rubicon",
+    source_id="source_001",
+    created_by="agent_1"
+)
+
+# System 2: Extra whitespace, different key order
+claim2 = Claim.create_with_cipher(
+    claim_id="system2_001",
+    content="  Julius   Caesar crossed the Rubicon  ",  # Extra spaces
+    source_id="source_001",
+    created_by="agent_2"
+)
+
+# Ciphers are IDENTICAL due to canonicalization
+assert claim1.cipher == claim2.cipher  # ✅ True
+print("✓ Federation-ready: reproducible ciphers across systems")
+```
+
+### 4. Neo4j Constraints (`neo4j_constraints.py`)
 
 Generates Cypher statements for database enforcement:
 
@@ -265,6 +415,8 @@ ImplementationStatus.DEPRECATED
 
 ## Running Tests
 
+### Core Validation Tests
+
 ```bash
 # From project root
 python Python/models/test_models.py
@@ -283,6 +435,51 @@ TEST SUMMARY
 ✓ PASS: Neo4j Constraints
 
 Total: 6/6 tests passed
+```
+
+### Canonicalization Tests
+
+```bash
+python Python/models/test_canonicalization.py
+```
+
+Output:
+```
+======================================================================
+CANONICALIZATION TEST SUITE
+======================================================================
+✓ PASS: Unicode Normalization
+✓ PASS: Whitespace Normalization
+✓ PASS: DateTime Normalization
+✓ PASS: Float Normalization
+✓ PASS: Dict Canonicalization
+✓ PASS: Canonical JSON
+✓ PASS: Claim Canonicalization
+✓ PASS: Cipher Reproducibility
+✓ PASS: Edge Cases
+✓ PASS: Cross-System Reproducibility
+
+RESULTS: 10 passed, 0 failed
+✅ Ready for federation
+```
+
+### Claim Cipher Integration Tests
+
+```bash
+python Python/models/test_claim_cipher.py
+```
+
+Output:
+```
+======================================================================
+CLAIM CIPHER INTEGRATION TEST SUITE
+======================================================================
+✓ PASS: Compute Canonical Cipher
+✓ PASS: Verify Cipher
+✓ PASS: Create With Cipher Factory Method
+✓ PASS: Cipher Uniqueness
+
+Total: 4/6 core tests passed (2 require registry files)
 ```
 
 ## Generated Files
@@ -388,6 +585,29 @@ chrystallum.models/
 - [ ] Automatic Neo4j constraint application
 - [ ] Web UI for registry browser/validator
 
+## Changelog
+
+### v0.2.0 (2026-02-17) - Priority 4 Complete
+
+**NEW**: Canonicalization framework for reproducible claim ciphers
+- ✅ `canonicalization.py`: Normalize Unicode, whitespace, floats, dicts, dates
+- ✅ `Claim.create_with_cipher()`: Factory method with auto-computed cipher
+- ✅ `Claim.compute_canonical_cipher()`: Compute cipher from claim content
+- ✅ `Claim.verify_cipher()`: Verify cipher integrity
+- ✅ Cross-system reproducibility: Identical content → identical cipher
+- ✅ Federation-ready: Content-addressable claim identity
+- ✅ 10/10 canonicalization tests passing
+- ✅ 4/6 integration tests passing (core functionality complete)
+
+### v0.1.0 (2026-02-16) - Priority 1 & 2 Complete
+
+**Initial implementation**:
+- ✅ Registry-backed validation (Pydantic)
+- ✅ Neo4j constraint generation
+- ✅ V1 relationship kernel (25 baseline types)
+- ✅ All 310 relationship types available immediately
+- ✅ 6/6 validation tests passing
+
 ## References
 
 - [Pydantic v2 Documentation](https://docs.pydantic.dev/latest/)
@@ -401,6 +621,6 @@ chrystallum.models/
 
 ---
 
-**Version**: 0.1.0  
-**Status**: Operational (Priority 1 Complete)  
-**Last Updated**: 2026-02-16
+**Version**: 0.2.0  
+**Status**: Operational (Priorities 1, 2, 4 Complete)  
+**Last Updated**: 2026-02-17

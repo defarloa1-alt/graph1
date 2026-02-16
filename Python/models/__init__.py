@@ -37,15 +37,28 @@ from .validation_models import (
     FacetAssignment,
     FacetAssessment,
     RelationshipAssertion,
+    V1KernelAssertion,
     RelationshipEdge,
     LifecycleStatus,
     DirectionalityType,
     ImplementationStatus,
+    V1_KERNEL_RELATIONSHIPS,
     initialize_registry,
     get_registry_loader,
     is_registry_initialized,
 )
 from .neo4j_constraints import Neo4jConstraintGenerator
+from .canonicalization import (
+    normalize_unicode,
+    normalize_whitespace,
+    normalize_datetime,
+    normalize_float,
+    canonicalize_dict,
+    to_canonical_json,
+    canonicalize_claim_content,
+    compute_cipher,
+    compute_claim_cipher,
+)
 
 __all__ = [
     # Registry
@@ -57,17 +70,30 @@ __all__ = [
     "FacetAssignment",
     "FacetAssessment",
     "RelationshipAssertion",
+    "V1KernelAssertion",
     "RelationshipEdge",
     # Enums
     "LifecycleStatus",
     "DirectionalityType",
     "ImplementationStatus",
+    # V1 Kernel
+    "V1_KERNEL_RELATIONSHIPS",
     # Registry Management
     "initialize_registry",
     "get_registry_loader",
     "is_registry_initialized",
     # Neo4j
     "Neo4jConstraintGenerator",
+    # Canonicalization
+    "normalize_unicode",
+    "normalize_whitespace",
+    "normalize_datetime",
+    "normalize_float",
+    "canonicalize_dict",
+    "to_canonical_json",
+    "canonicalize_claim_content",
+    "compute_cipher",
+    "compute_claim_cipher",
 ]
 
 __version__ = "0.1.0"

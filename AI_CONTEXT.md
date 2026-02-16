@@ -36,7 +36,141 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Function-Driven Relationship Catalog - Issue #3 Resolved (ADR-002) (2026-02-16 21:00)
+## Latest Update: Priority 10 Complete - Enrichment Pipeline + V1 Kernel Expansion (2026-02-16 23:45)
+
+### Production-Ready Wikidata Integration with Expanded Baseline
+
+**Session Summary:** Completed Priority 10 (enrichment pipeline integration) and fixed critical discovery from testing. V1 kernel expanded 25→30 types, registry expanded 310→315 types. Q17167 (Roman Republic) integration pipeline now validates **166/197 claims (84% coverage)**, up from initial 37%.
+
+**CRITICAL DISCOVERY - V1 KERNEL TOO SMALL**
+
+Initial Priority 10 test: Q17167 Roman Republic extraction (197 Wikidata relationship claims)
+- Result: Only 73/197 validated (37% coverage)
+- Root cause: V1 kernel (25 types) missing critical predicates
+  - **P710 (participant)**: 65 instances, NO MAPPING ← CRITICAL GAP
+  - **P921 (main subject)**: 23 instances, NO MAPPING
+  - **P101 (field of work)**: 5 instances, NO MAPPING
+- Decision: Expand V1 kernel rather than reduce scope
+
+**V1 KERNEL EXPANSION: 25 → 30 types**
+
+**Added 5 relationship types:**
+1. **PARTICIPATED_IN / HAD_PARTICIPANT** (P710 mapping) - **COVERS 65 CLAIMS**
+   - Category: Temporal & Event
+   - Enables: Historical event participation tracking
+   - Example: Person participated in Battle of Actium
+
+2. **SUBJECT_OF / ABOUT** (P921 mapping) - **COVERS 23 CLAIMS**
+   - Category: Conceptual & Semantic
+   - Enables: Documentary/scholarly subject tracking
+   - Example: Work is about Roman Republic
+
+3. **FIELD_OF_STUDY / STUDIED_BY** (P101 mapping) - **COVERS 5 CLAIMS**
+   - Category: Provenance & Attribution
+   - Enables: Academic discipline tracking
+   - Example: Entity studied in field of Philosophy
+
+4. **RELATED_TO** (generic semantic)
+   - Category: Semantic
+   - Enables: Fallback for unspecified relationships
+   - Status: Candidate (available but not primary)
+
+**Files Modified:**
+- `Python/models/validation_models.py`: Added 30-type kernel definition with documentation
+- `Python/models/test_v1_kernel.py`: Updated tests for 30-type kernel (6/6 passing ✅)
+- `Python/models/demo_full_catalog.py`: Updated kernel references
+- `Python/integrate_wikidata_claims.py`: Added PREDICATE_MAPPINGS and UTF-8 encoding fixes
+- `Relationships/relationship_types_registry_master.csv`: Added 5 new entries (310→315 types)
+
+**PRIORITY 10 INTEGRATION PIPELINE (PRODUCTION READY)**
+
+**Deliverable:** `Python/integrate_wikidata_claims.py` (457 lines)
+
+**Pipeline Architecture:**
+```
+1. Load Wikidata extraction JSON (Q17167 Roman Republic, 197 claims)
+2. Validate using Pydantic models (validation_models.py)
+3. Map predicates to canonical types (V1 kernel + fallback mappings)
+4. Create RelationshipAssertion objects for each mapping
+5. Compute AssertionCiphers (facet-agnostic for deduplication)
+6. Group claims by cipher (cross-facet consensus tracking)
+7. Export 4 production formats
+```
+
+**Execution Results (Q17167 Test):**
+```
+Input:         197 Wikidata relationship proposals
+Validated:     166 claims (84% coverage) ✅
+Failed:        0 (100% validation success rate)
+Unique ciphers: 166 (no duplicates)
+Unmapped:      31 predicates (down from 124 before expansion)
+```
+
+**Output Format (4 files in JSON/wikidata/integrated/):**
+1. **Q17167_validated_claims.json** (166 Pydantic-validated Claim objects)
+   - Each: claim_id, cipher, content, source_id, confidence, relationships[]
+
+2. **Q17167_cipher_groups.json** (166 deduplication groups)
+   - Groups identical assertions across sources (for multi-source consensus)
+
+3. **Q17167_neo4j_import.cypher** (production-ready graph import)
+   - MERGE statements for entities, claims, relationships
+   - Preserves source provenance and confidence
+
+4. **Q17167_integration_stats.json** (processing metrics)
+   - Claims processed/validated/failed
+   - V1 kernel mappings applied
+   - Unmapped predicate counts
+
+**Graph Pattern (Priority 6 Fix Validated):**
+```
+(Claim {cipher, content, confidence})-[:ASSERTS_RELATIONSHIP]->
+(Subject)-[rel_type:RELATIONSHIP_TYPE]->(Object)
+```
+- Cipher is **facet-agnostic** (Priority 6 fix enables cross-facet consensus)
+- Supports multi-perspective tracking (FacetPerspective model from Priority 7)
+- Ready for Neo4j import
+
+**Documentation:** `PRIORITY_10_INTEGRATION_COMPLETION_REPORT.md` (300+ lines)
+- Complete architectural explanation
+- Execution results with metrics
+- V1 kernel gap analysis
+- Production recommendations
+
+**Architecture Alignment Check:**
+- ✅ Uses validation_models.py (Priority 1 - Pydantic + Neo4j validation)
+- ✅ Respects V1 kernel (Priority 2 - canonical baseline)
+- ✅ Computes AssertionCiphers (Priority 4 - canonicalization framework)
+- ✅ Facet-agnostic cipher (Priority 6 - cipher facet_id fix)
+- ✅ Supports FacetPerspective (Priority 7 - durable consent tracking)
+- ✅ Demo integration (Priority 10 - end-to-end workflow)
+
+**Key Metrics:**
+- **Coverage improvement**: 37% → 84% (+47 percentage points)
+- **Claims validated**: 73 → 166 (+127% more claims)
+- **New predicates mapped**: 3 (P710, P921, P101)
+- **Pipeline reusability**: Domain-agnostic (works for any QID extraction)
+
+**Status:** 8/10 Priorities Complete
+- ✅ 1: Pydantic + Neo4j validation
+- ✅ 2: V1 kernel (now 30 types, was 25)
+- ⏳ 3: Astronomy domain package (not started)
+- ✅ 4: Canonicalization framework
+- ⏳ 5: Calibrate operational thresholds (ready, has baseline metrics)
+- ✅ 6: Fix cipher facet_id inconsistency
+- ✅ 7: Clarify FacetPerspective vs FacetAssessment
+- ✅ 8: Fix registry count mismatches
+- ✅ 9: Fix UTF-8 encoding artifacts
+- ✅ 10: Integrate enrichment pipeline
+
+**Next Steps (for next session):**
+1. Priority 3: Build astronomy domain package (parallel to Roman Republic domain)
+2. Priority 5: Calibrate thresholds (ready to use Q17167 metrics as baseline)
+3. Chrystallum Architecture consolidated document update (requires new context window)
+
+---
+
+## Previous Update: Function-Driven Relationship Catalog - Issue #3 Resolved (ADR-002) (2026-02-16 21:00)
 
 ### Architecture Fix - Semantic Precision Over Arbitrary Reduction
 
