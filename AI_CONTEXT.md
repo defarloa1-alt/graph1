@@ -36,7 +36,184 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: ADR-001 - Claim Identity Fix: Content-Only Cipher (2026-02-16 20:00)
+## Latest Update: Facet Taxonomy Canonicalization - Issue #2 Resolved (2026-02-16 20:30)
+
+### Critical Architecture Fix - Facet Inconsistency Eliminated
+
+**Session Context:** Architecture review identified two conflicting facet lists in CONSOLIDATED.md. Resolution: Collapsed into single canonical registry (17 facets, UPPERCASE). Added Pydantic + Neo4j validation enforcement.
+
+**PROBLEM IDENTIFIED:**
+Two facet lists in CONSOLIDATED.md that don't match:
+- ❌ **Line 2414** (List 1 - 18 facets): Archaeological, Artistic, Cultural, Demographic, Diplomatic, Economic, Environmental, Geographic, Intellectual, Linguistic, Military, Political, Religious, Scientific, Social, Technological, **BIOGRAPHIC**, **COMMUNICATION**
+- ❌ **Line 2415** (List 2 - 17 facets but WRONG): Political, Military, Economic, Cultural, Religious, **LEGAL**, Scientific, Technological, Environmental, Social, Diplomatic, **ADMINISTRATIVE**, **EDUCATIONAL**, Artistic, **LITERARY**, **PHILOSOPHICAL**, **MEDICAL**
+
+**Invalid Facets in List 2:**
+- Legal, Administrative, Educational, Literary, Philosophical, Medical (NOT in canonical registry!)
+
+**Missing from List 2:**
+- Archaeological, Demographic, Geographic, Intellectual, Linguistic, Technological, Communication
+
+**Impact if Unfixed:**
+- ❌ Routing errors: SCA routing claims to non-existent "Legal" SFA
+- ❌ LLM hallucination: No validation → invalid facets in graph
+- ❌ Data corruption: Invalid facet values on nodes
+- ❌ Query failures: WHERE n.facet IN [...] with wrong list
+
+**ACCOMPLISHMENTS:**
+
+**1. Identified Canonical Source: facet_registry_master.json**
+- ✅ File: Facets/facet_registry_master.json
+- ✅ Facet count: 17 (confirmed)
+- ✅ Keys: lowercase in JSON, UPPERCASE in usage
+- ✅ **Canonical 17 Facets:**
+  ```
+  ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, DIPLOMATIC, ECONOMIC,
+  ENVIRONMENTAL, GEOGRAPHIC, INTELLECTUAL, LINGUISTIC, MILITARY, POLITICAL,
+  RELIGIOUS, SCIENTIFIC, SOCIAL, TECHNOLOGICAL, COMMUNICATION
+  ```
+
+**2. Fixed All Facet Count References (10 locations)**
+- ✅ Changed "16 facets" → "17 facets" (9 locations)
+- ✅ Changed "18 facets: 16 core + biographic + communication" → "17 facets"
+- ✅ Locations updated:
+  - Line 1250: "all 16 facets" → "all 17 facets"
+  - Line 2413: "18 facets" → "17 facets"
+  - Line 2727: "16 Facet-Specialists" → "17 Facet-Specialists"
+  - Line 2753: "all 16 facet-specialist agents" → "all 17"
+  - Line 6598: "all 16 analytical dimensions" → "all 17"
+  - Line 6640, 6726, 6905: Similar corrections
+
+**3. Replaced Conflicting Facet Lists**
+- ✅ REMOVED Line 2414: Wrong list with Biographic as 18th facet
+- ✅ REMOVED Line 2415: Wrong list with Legal, Administrative, Educational, etc.
+- ✅ ADDED: Single canonical reference:
+  - "Canonical Facets (UPPERCASE): ARCHAEOLOGICAL, ARTISTIC, ..."
+  - "Registry: Facets/facet_registry_master.json (authoritative source)"
+
+**4. Added Q.3.2 Facet Registry Validation (~140 lines)**
+- ✅ **Architecture requirement:** "NO 'by convention' - enforce programmatically"
+  
+- ✅ **Pydantic Validation Pattern:**
+  ```python
+  class FacetKey(str, Enum):
+      ARCHAEOLOGICAL = "ARCHAEOLOGICAL"
+      ARTISTIC = "ARTISTIC"
+      # ... all 17 facets
+  
+  class SubjectConceptCreate(BaseModel):
+      facet: FacetKey  # Enum enforces valid values
+      
+      @validator('facet', pre=True)
+      def normalize_facet(cls, v):
+          normalized = v.upper()
+          if normalized not in VALID_FACETS:
+              raise ValueError(f"Invalid facet '{v}'. Must be one of: {VALID_FACETS}")
+          return normalized
+  ```
+  
+- ✅ **Neo4j Constraint Pattern:**
+  ```cypher
+  CREATE CONSTRAINT subject_concept_valid_facet IF NOT EXISTS
+  FOR (n:SubjectConcept)
+  REQUIRE n.facet IN [
+    'ARCHAEOLOGICAL', 'ARTISTIC', 'CULTURAL', 'DEMOGRAPHIC',
+    'DIPLOMATIC', 'ECONOMIC', 'ENVIRONMENTAL', 'GEOGRAPHIC',
+    'INTELLECTUAL', 'LINGUISTIC', 'MILITARY', 'POLITICAL',
+    'RELIGIOUS', 'SCIENTIFIC', 'SOCIAL', 'TECHNOLOGICAL', 'COMMUNICATION'
+  ];
+  ```
+  
+- ✅ **LLM Classification Validation:**
+  ```python
+  def classify_and_validate_facets(text: str) -> List[str]:
+      llm_output = llm.invoke({"text": text, "valid_facets": list(VALID_FACETS)})
+      validated = []
+      for facet in llm_output.get("facets", []):
+          normalized = facet.upper()
+          if normalized in VALID_FACETS:
+              validated.append(normalized)
+          else:
+              logger.warning(f"LLM returned invalid facet: {facet}. Skipping.")
+      return validated
+  ```
+  
+- ✅ **Enforcement Points:**
+  1. Node creation: Pydantic validates before write
+  2. Database write: Neo4j constraint validates on commit
+  3. LLM classification: Validate and filter outputs
+  4. Query filters: Use canonical list in WHERE clauses
+  5. Router logic: Validate facet keys before routing to SFAs
+
+**FILES UPDATED:**
+- Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+  * Section 5.5.1 (SFA description): Facet list replaced with canonical 17
+  * Section Q.3.2 added: Facet Registry Validation (~140 lines)
+  * 10 facet count references corrected (16/18 → 17)
+  * Document size: 15,620 → 15,760 lines (+140 lines)
+- Facets/facet_registry_master.json (unchanged - already canonical)
+- Change_log.py (entry 2026-02-16 20:30)
+- AI_CONTEXT.md (this file)
+
+**ARCHITECTURE REVIEW RESPONSE:**
+✅ **Issue #2 RESOLVED:** Facet taxonomy inconsistency eliminated
+- Collapsed two conflicting lists into single canonical registry
+- All 10 count references corrected (16/18 → 17)
+- Programmatic enforcement: Pydantic + Neo4j constraints
+- Clear error messages for invalid facets
+- Single source of truth: facet_registry_master.json
+
+⏳ **Remaining Issues from Review:**
+- Issue #3: 300-relationship scope risk (define v1 kernel, 30-50 edges)
+- Issue #4: Federation/crypto trust model underspecified (need ADR-002)
+- Issue #5: Operational thresholds arbitrary (derive from SLO/SLA)
+- Issue #6: Security/privacy threat model incomplete (authZ, audit, multi-user)
+
+**BENEFITS:**
+- ✅ Single source of truth: facet_registry_master.json (17 facets, UPPERCASE)
+- ✅ Programmatic enforcement: Pydantic validation (Python) + Neo4j constraints (database)
+- ✅ Clear error messages: "Invalid facet 'LEGAL'. Must be one of: [ARCHAEOLOGICAL, ...]"
+- ✅ LLM output validation: Filter invalid facets before graph writes (no silent failures)
+- ✅ Architecture consistency: All references use canonical 17 facets
+- ✅ No data corruption: Invalid facets caught at Python AND database layers
+
+**CANONICAL 17 FACETS (UPPERCASE):**
+```
+ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, DIPLOMATIC, ECONOMIC,
+ENVIRONMENTAL, GEOGRAPHIC, INTELLECTUAL, LINGUISTIC, MILITARY, POLITICAL,
+RELIGIOUS, SCIENTIFIC, SOCIAL, TECHNOLOGICAL, COMMUNICATION
+```
+
+**INVALID FACETS REMOVED:**
+- ❌ Biographic (not a separate facet - prosopography is part of DEMOGRAPHIC)
+- ❌ Legal (confusion with Institution.institution_type="legal")
+- ❌ Administrative (confusion with Organization.organization_type="administrative")
+- ❌ Educational, Literary, Philosophical, Medical (not canonical facets)
+
+**VALIDATION PATTERN SUMMARY:**
+```python
+# Python Layer (Pydantic)
+try:
+    validated = SubjectConceptCreate(label=label, facet=facet)
+except ValueError as e:
+    return {"status": "error", "message": str(e)}
+
+# Database Layer (Neo4j Constraint)
+CREATE CONSTRAINT subject_concept_valid_facet
+FOR (n:SubjectConcept) REQUIRE n.facet IN [VALID_FACETS]
+
+# LLM Layer (Classification Filter)
+validated_facets = [f.upper() for f in llm_facets if f.upper() in VALID_FACETS]
+```
+
+**NEXT ACTIONS:**
+- Fix 300-relationship scope (Issue #3)
+- Write ADR-002 for federation trust model (Issue #4)
+- Calibrate operational thresholds (Issue #5)
+- Define security/privacy threat model (Issue #6)
+
+---
+
+## Previous Update: ADR-001 - Claim Identity Fix: Content-Only Cipher (2026-02-16 20:00)
 
 ### Critical Architecture Fix - Cipher Contradiction Resolved
 

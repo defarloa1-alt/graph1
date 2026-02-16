@@ -1247,7 +1247,7 @@ These extend the Human entity model with Roman naming conventions.
 - [`EVALUATED_BY`](EVALUATED_BY) â†’ `:Agent` (which agent made this assessment)
 
 **Star Pattern Insight:**
-- Single claim can have assessments across all 16 facets simultaneously
+- Single claim can have assessments across all 17 facets simultaneously
 - Each facet evaluation is independent (political_confidence â‰  military_confidence)
 - Each assessment can cite different sources
 - Enables UI tabs: "Political view" | "Military view" | "Economic view" etc.
@@ -1274,7 +1274,7 @@ Battle of Pharsalus (48 BCE) single AnalysisRun with multiple assessments:
 
 **Node Label:** `:FacetCategory`
 
-**Purpose:** Organizes 16 analytical facets into semantic categories. Enables UI grouping and agent specialization assignment.
+**Purpose:** Organizes 17 analytical facets into semantic categories. Enables UI grouping and agent specialization assignment.
 
 **Required Properties:**
 - `key` (string, uppercase enum): Facet category identifier (e.g., `"POLITICAL"`, `"MILITARY"`, `"ECONOMIC"`)
@@ -1686,9 +1686,9 @@ Represents a conceptual category, topic, theme, or subject heading, including:
 
 ---
 
-## **4.2 Facets (16 Analytical Dimensions)**
+## **4.2 Facets (17 Analytical Dimensions)**
 
-Chrystallum uses **16 active facets** for multi-dimensional classification of entities and subjects.
+Chrystallum uses **17 active facets** for multi-dimensional classification of entities and subjects.
 Canonical source of truth: `Facets/facet_registry_master.json` (with tabular export at `Facets/facet_registry_master.csv`).
 Temporal modeling is handled separately in Section 3.4.
 
@@ -2410,9 +2410,9 @@ Chrystallum implements a **two-phase agent coordination model** with **selective
   * Manages claim lifecycle & convergence detection
 
 **SubjectFacetAgent (SFA):**
-- **Role:** Domain-specific experts (18 facets: 16 core + biographic + communication)
-- **Facet List:** Archaeological, Artistic, Cultural, Demographic, Diplomatic, Economic, Environmental, Geographic, Intellectual, Linguistic, Military, Political, Religious, Scientific, Social, Technological, **Biographic** (prosopography/person identity), **Communication** (rhetoric/meta-facet)
-- **Facets:** Political, Military, Economic, Cultural, Religious, Legal, Scientific, Technological, Environmental, Social, Diplomatic, Administrative, Educational, Artistic, Literary, Philosophical, Medical
+- **Role:** Domain-specific experts (17 facets)
+- **Canonical Facets (UPPERCASE):** ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, DIPLOMATIC, ECONOMIC, ENVIRONMENTAL, GEOGRAPHIC, INTELLECTUAL, LINGUISTIC, MILITARY, POLITICAL, RELIGIOUS, SCIENTIFIC, SOCIAL, TECHNOLOGICAL, COMMUNICATION
+- **Registry:** Facets/facet_registry_master.json (authoritative source)
 - **Responsibilities:**
   * **Training Phase:** Build domain ontologies independently (abstract concepts)
   * **Perspective Phase:** Analyze concrete claims when queued by SCA
@@ -2724,7 +2724,7 @@ CREATE (agent:Agent {
 MERGE (agent)-[:OWNS_CATEGORY]->(:FacetCategory {key: "POLITICAL"})
 ```
 
-**Agent Roster (16 Facet-Specialists):**
+**Agent Roster (17 Facet-Specialists):**
 
 | Agent ID | Specialization | Facet Category | Scope |
 |----------|---|---|---|
@@ -2750,7 +2750,7 @@ MERGE (agent)-[:OWNS_CATEGORY]->(:FacetCategory {key: "POLITICAL"})
 When a claim arrives for evaluation:
 
 1. **Action:** Coordinator creates AnalysisRun node (Section 3.2.4)
-2. **Action:** Coordinator queues claim for all 16 facet-specialist agents
+2. **Action:** Coordinator queues claim for all 17 facet-specialist agents
 3. **Each Facet-Specialist:** Creates independent FacetAssessment (Section 3.2.5)
 4. **Result:** Star pattern with 16 dimensional assessments (Section 9.6)
 
@@ -6595,7 +6595,7 @@ class WorkflowMonitor:
 
 ### **9.6.1 Overview: Star Pattern for Claims**
 
-**Core Concept:** A claim is evaluated **independently across all 16 analytical dimensions** simultaneously. Each facet (political, military, economic, etc.) receives its own assessment by a specialist agent.
+**Core Concept:** A claim is evaluated **independently across all 17 analytical dimensions** simultaneously. Each facet (political, military, economic, etc.) receives its own assessment by a specialist agent.
 
 **The Star Pattern:**
 ```
@@ -6637,7 +6637,7 @@ def start_facet_assessment_workflow(claim_id: str) -> Dict:
 **Step 2: Route Claim to Facet-Specialist Agents**
 ```python
 def route_to_facet_agents(claim_id: str, run_id: str) -> List[Dict]:
-    """Route claim to all 16 facet-specialist agents."""
+    """Route claim to all 17 facet-specialist agents."""
     facet_agents = [
         ("AGENT_POLITICAL_V1", "PoliticalFacet"),
         ("AGENT_MILITARY_V1", "MilitaryFacet"),
@@ -6723,7 +6723,7 @@ def evaluate_claim_for_facet(claim_id: str, run_id: str, agent_id: str, facet_ty
 **Step 4: Aggregate Facet Assessments (Star Pattern Complete)**
 ```python
 def aggregate_facet_assessments(run_id: str) -> Dict:
-    """Aggregate all 16 facet assessments into star pattern."""
+    """Aggregate all 17 facet assessments into star pattern."""
     # Query: Get all assessments for this run
     query = """
     MATCH (run:AnalysisRun {run_id: $run_id})
@@ -6902,7 +6902,7 @@ ORDER BY abs(score_difference) DESC;
 
 ### **9.6.4 Benefits of Star Pattern**
 
-1. **Multi-Dimensional Analysis:** Single event analyzed across all 16 analytical axes
+1. **Multi-Dimensional Analysis:** Single event analyzed across all 17 analytical axes
 2. **Agent Specialization:** Political expert evaluates political facet, military expert evaluates military facet
 3. **Independent Confidence:** Each facet has its own confidence score (military_conf â‰  political_conf)
 4. **Separate Sourcing:** Each facet cites relevant sources (military from military historians, political from political historians)
@@ -9161,6 +9161,149 @@ WHERE n.facet IN ["POLITICAL", "MILITARY"]  // UPPERCASE only
 RETURN n
 """
 ```
+
+---
+
+### **Q.3.2 Facet Registry Validation (REQUIRED)**
+
+**Architecture Requirement (from 2026-02-16 review):**
+- Facet taxonomy MUST be validated against canonical registry at write-time
+- No "by convention" - enforce programmatically via Pydantic + DB constraints
+- Reject invalid facet keys before they enter the graph
+
+**Implementation Pattern:**
+
+```python
+import json
+from enum import Enum
+from typing import List
+from pydantic import BaseModel, validator
+
+# Load canonical registry at startup
+with open("Facets/facet_registry_master.json") as f:
+    FACET_REGISTRY = json.load(f)
+    VALID_FACETS = {f["key"].upper() for f in FACET_REGISTRY["facets"]}
+    # {'ARCHAEOLOGICAL', 'ARTISTIC', ..., 'COMMUNICATION'}
+
+# Pydantic model for facet validation
+class FacetKey(str, Enum):
+    """Canonical facet keys - UPPERCASE only."""
+    ARCHAEOLOGICAL = "ARCHAEOLOGICAL"
+    ARTISTIC = "ARTISTIC"
+    CULTURAL = "CULTURAL"
+    DEMOGRAPHIC = "DEMOGRAPHIC"
+    DIPLOMATIC = "DIPLOMATIC"
+    ECONOMIC = "ECONOMIC"
+    ENVIRONMENTAL = "ENVIRONMENTAL"
+    GEOGRAPHIC = "GEOGRAPHIC"
+    INTELLECTUAL = "INTELLECTUAL"
+    LINGUISTIC = "LINGUISTIC"
+    MILITARY = "MILITARY"
+    POLITICAL = "POLITICAL"
+    RELIGIOUS = "RELIGIOUS"
+    SCIENTIFIC = "SCIENTIFIC"
+    SOCIAL = "SOCIAL"
+    TECHNOLOGICAL = "TECHNOLOGICAL"
+    COMMUNICATION = "COMMUNICATION"
+
+class SubjectConceptCreate(BaseModel):
+    """Pydantic model for SubjectConcept creation."""
+    label: str
+    facet: FacetKey  # Enum enforces valid values
+    qid: str
+    
+    @validator('facet', pre=True)
+    def normalize_facet(cls, v):
+        """Normalize to uppercase and validate against registry."""
+        normalized = v.upper() if isinstance(v, str) else v
+        if normalized not in VALID_FACETS:
+            raise ValueError(
+                f"Invalid facet '{v}'. Must be one of: {sorted(VALID_FACETS)}"
+            )
+        return normalized
+
+# Usage in node creation
+def create_subject_concept(label: str, facet: str, qid: str):
+    """Create SubjectConcept with facet validation."""
+    try:
+        # Pydantic validates and normalizes
+        validated = SubjectConceptCreate(label=label, facet=facet, qid=qid)
+        
+        # Write to Neo4j
+        with driver.session() as session:
+            result = session.execute_write(
+                lambda tx: tx.run("""
+                    CREATE (n:SubjectConcept {
+                        label: $label,
+                        facet: $facet,
+                        qid: $qid
+                    })
+                    RETURN n
+                """, label=validated.label, facet=validated.facet, qid=validated.qid)
+            )
+        return {"status": "created", "facet": validated.facet}
+        
+    except ValueError as e:
+        # Invalid facet rejected at Python layer
+        return {"status": "error", "message": str(e)}
+
+# SCA facet classification with validation
+def classify_and_validate_facets(text: str) -> List[str]:
+    """LLM classification + registry validation."""
+    # LLM may return mixed case or invalid facets
+    llm_output = llm.invoke({
+        "text": text,
+        "valid_facets": list(VALID_FACETS)  # Provide valid options
+    })
+    
+    facets = llm_output.get("facets", [])
+    validated = []
+    
+    for facet in facets:
+        normalized = facet.upper()
+        if normalized in VALID_FACETS:
+            validated.append(normalized)
+        else:
+            # Log invalid facet from LLM (but don't crash)
+            logger.warning(f"LLM returned invalid facet: {facet}. Skipping.")
+    
+    return validated
+```
+
+**Neo4j Constraint (Database-Level Enforcement):**
+
+```cypher
+// Create constraint: facet MUST be in valid set
+CREATE CONSTRAINT subject_concept_valid_facet IF NOT EXISTS
+FOR (n:SubjectConcept)
+REQUIRE n.facet IN [
+  'ARCHAEOLOGICAL', 'ARTISTIC', 'CULTURAL', 'DEMOGRAPHIC', 
+  'DIPLOMATIC', 'ECONOMIC', 'ENVIRONMENTAL', 'GEOGRAPHIC', 
+  'INTELLECTUAL', 'LINGUISTIC', 'MILITARY', 'POLITICAL', 
+  'RELIGIOUS', 'SCIENTIFIC', 'SOCIAL', 'TECHNOLOGICAL', 'COMMUNICATION'
+];
+
+// Test: This will SUCCEED
+CREATE (n:SubjectConcept {label: 'Roman Republic', facet: 'POLITICAL'})
+
+// Test: This will FAIL with constraint violation
+CREATE (n:SubjectConcept {label: 'Test', facet: 'LEGAL'})
+// Error: Node violates constraint subject_concept_valid_facet
+```
+
+**Benefits:**
+- ✅ **Programmatic enforcement:** Invalid facets rejected at Python layer (Pydantic) AND database layer (Neo4j constraint)
+- ✅ **No silent errors:** LLM returning "Legal" or "Biographic" → caught and logged
+- ✅ **Single source of truth:** facet_registry_master.json is authoritative
+- ✅ **Migration safety:** Can't accidentally introduce invalid facets during data imports
+- ✅ **Clear error messages:** "Invalid facet 'LEGAL'. Must be one of: [ARCHAEOLOGICAL, ARTISTIC, ...]"
+
+**Enforcement Points:**
+1. **Node creation:** Pydantic validates before write
+2. **Database write:** Neo4j constraint validates on commit
+3. **LLM classification:** Validate and filter LLM outputs
+4. **Query filters:** Use `WHERE n.facet IN [...]` with canonical list (see Q.3.1)
+5. **Router logic:** Validate facet keys before routing to SFAs
 
 ---
 

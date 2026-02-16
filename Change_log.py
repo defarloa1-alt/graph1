@@ -23,6 +23,130 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-16 20:30 | FACET TAXONOMY CANONICALIZATION (ISSUE #2)
+# ==============================================================================
+# Category: Architecture, Schema, Validation
+# Summary: Resolved facet taxonomy inconsistency identified in architecture
+#          review. Collapsed two conflicting facet lists into single canonical
+#          registry (17 facets, UPPERCASE). Added Pydantic + Neo4j validation.
+#
+# PROBLEM IDENTIFIED (Architecture Review 2026-02-16):
+# Two facet lists in CONSOLIDATED.md that don't match:
+#   * Line 2414: "18 facets: 16 core + biographic + communication"
+#     Archaeological, Artistic, Cultural, Demographic, Diplomatic, Economic,
+#     Environmental, Geographic, Intellectual, Linguistic, Military, Political,
+#     Religious, Scientific, Social, Technological, BIOGRAPHIC, COMMUNICATION
+#   * Line 2415: 17 facets but WRONG list:
+#     Political, Military, Economic, Cultural, Religious, LEGAL, Scientific,
+#     Technological, Environmental, Social, Diplomatic, ADMINISTRATIVE,
+#     EDUCATIONAL, Artistic, LITERARY, PHILOSOPHICAL, MEDICAL
+#
+# Invalid facets in List 2: Legal, Administrative, Educational, Literary,
+#                            Philosophical, Medical (NOT in registry!)
+# Missing from List 2: Archaeological, Demographic, Geographic, Intellectual,
+#                       Linguistic, Technological, Communication
+#
+# Impact: Inconsistent facet references across document, no validation enforcement,
+#         LLM could return invalid facets, routing errors, graph data corruption
+#
+# RESOLUTION: CANONICAL 17 FACETS FROM REGISTRY
+#
+# Action 1: Identified Canonical Source
+#   - Facets/facet_registry_master.json is authoritative
+#   - "facet_count": 17 (confirmed)
+#   - All keys are lowercase in JSON, UPPERCASE in usage
+#   - Canonical 17 facets:
+#     ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, DIPLOMATIC, ECONOMIC,
+#     ENVIRONMENTAL, GEOGRAPHIC, INTELLECTUAL, LINGUISTIC, MILITARY, POLITICAL,
+#     RELIGIOUS, SCIENTIFIC, SOCIAL, TECHNOLOGICAL, COMMUNICATION
+#
+# Action 2: Fixed All Facet Count References
+#   - Changed "16 facets" → "17 facets" (9 locations)
+#   - Changed "18 facets" → "17 facets" (1 location)
+#   - Locations:
+#     * Line 1250: "all 16 facets" → "all 17 facets"
+#     * Line 2413: "18 facets: 16 core + biographic + communication" → "17 facets"
+#     * Line 2727: "16 Facet-Specialists" → "17 Facet-Specialists"
+#     * Line 2753: "all 16 facet-specialist agents" → "all 17 facet-specialist agents"
+#     * Line 6598: "all 16 analytical dimensions" → "all 17 analytical dimensions"
+#     * Line 6640: "all 16 facet-specialist agents" → "all 17 facet-specialist agents"
+#     * Line 6726: "all 16 facet assessments" → "all 17 facet assessments"
+#     * Line 6905: "all 16 analytical axes" → "all 17 analytical axes"
+#
+# Action 3: Replaced Conflicting Facet Lists
+#   - REMOVED Line 2414: Wrong list with Biographic, Communication as separate facets
+#   - REMOVED Line 2415: Wrong list with Legal, Administrative, Educational, etc.
+#   - ADDED: Single canonical line pointing to registry:
+#     "Canonical Facets (UPPERCASE): ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC,
+#      DIPLOMATIC, ECONOMIC, ENVIRONMENTAL, GEOGRAPHIC, INTELLECTUAL, LINGUISTIC,
+#      MILITARY, POLITICAL, RELIGIOUS, SCIENTIFIC, SOCIAL, TECHNOLOGICAL, COMMUNICATION"
+#   - ADDED: "Registry: Facets/facet_registry_master.json (authoritative source)"
+#
+# Action 4: Added Q.3.2 Facet Registry Validation (~140 lines)
+#   - Architecture requirement: "NO 'by convention' - enforce programmatically"
+#   - Pydantic Validation Pattern:
+#     * FacetKey Enum with all 17 canonical values
+#     * SubjectConceptCreate model with @validator for normalization
+#     * ValueError raised for invalid facets with clear message
+#   - Neo4j Constraint Pattern:
+#     * CREATE CONSTRAINT subject_concept_valid_facet
+#     * REQUIRE n.facet IN [ARCHAEOLOGICAL, ARTISTIC, ...]
+#     * Database-level enforcement (reject invalid facets on write)
+#   - LLM Classification Validation:
+#     * classify_and_validate_facets() filters LLM outputs
+#     * Invalid facets logged as warnings, not propagated to graph
+#   - Enforcement Points: Node creation, DB write, LLM classification, routing
+#
+# FILES:
+# - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+#   * Section 5.5.1 (SFA description): Facet list replaced with canonical 17
+#   * Section Q.3.2 added: Facet Registry Validation (~140 lines)
+#   * 10 facet count references corrected (16/18 → 17)
+#   * Document size: 15,620 → 15,760 lines (+140 lines)
+# - Facets/facet_registry_master.json (unchanged - already canonical)
+#
+# REASON:
+# - Architecture review identified inconsistent facet lists as critical issue
+# - "Pick one canonical facet registry, eliminate alternate lists, enforce at write-time"
+# - Two conflicting lists would cause:
+#   * Routing errors (SFA expecting "Legal" facet that doesn't exist)
+#   * LLM hallucination of invalid facets (no validation)
+#   * Graph data corruption (invalid facet values in nodes)
+#   * Query failures (WHERE n.facet IN [...] with wrong list)
+#
+# INTEGRATION POINTS:
+# - Section Q.3.1: Facet key normalization (UPPERCASE enforcement)
+# - Section 5.5: SCA ↔ SFA coordination (routing by facet)
+# - Appendix O: Facet Training Resources (17 facets with priorities)
+# - facet_agent_framework.py: SFA routing logic validates against registry
+#
+# BENEFITS:
+# - ✅ Single source of truth: facet_registry_master.json (17 facets)
+# - ✅ Programmatic enforcement: Pydantic validation + Neo4j constraints
+# - ✅ Clear error messages: "Invalid facet 'LEGAL'. Must be one of: [ARCHAEOLOGICAL, ...]"
+# - ✅ LLM output validation: Filter invalid facets before graph writes
+# - ✅ Architecture consistency: All references now use canonical 17 facets
+# - ✅ No silent failures: Invalid facets caught at Python AND database layers
+#
+# CANONICAL 17 FACETS (UPPERCASE):
+# ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, DIPLOMATIC, ECONOMIC,
+# ENVIRONMENTAL, GEOGRAPHIC, INTELLECTUAL, LINGUISTIC, MILITARY, POLITICAL,
+# RELIGIOUS, SCIENTIFIC, SOCIAL, TECHNOLOGICAL, COMMUNICATION
+#
+# INVALID FACETS REMOVED:
+# - Biographic (mentioned as separate 18th facet - actually part of DEMOGRAPHIC)
+# - Legal (confusion with Institution.institution_type="legal")
+# - Administrative (confusion with Organization.organization_type="administrative")
+# - Educational, Literary, Philosophical, Medical (not canonical facets)
+#
+# NEXT STEPS:
+# - Issue #3: 300-relationship scope reduction (define v1 kernel, 30-50 edges)
+# - Issue #4: Federation trust model (ADR-002: signatures, key distribution)
+# - Issue #5: Operational threshold calibration (derive from SLO/SLA)
+# - Issue #6: Security/privacy threat model (authZ, audit, multi-user)
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-16 20:00 | ADR-001: CLAIM IDENTITY FIX - CONTENT-ONLY CIPHER
 # ==============================================================================
 # Category: Architecture, Critical Fix, Schema
