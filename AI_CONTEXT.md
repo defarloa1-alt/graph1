@@ -36,7 +36,71 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: BiographicSFA Responsibilities Clarification (2026-02-16 Afternoon)
+## Latest Update: Ontology Consolidation + Claim/Relationship Registry Refinements (2026-02-16 16:30)
+
+### Expert Review Recommendations Implemented (5-Point Checklist)
+
+**Session Context:** Completed three-phase architectural refinement addressing expert reviewer feedback on Entity Layer consolidation and Claim Architecture refinements.
+
+**PHASE 1: Ontology Consolidation (17 → 18 Canonical Nodes)**
+- ✅ **Deprecated:** Position (migrate to HELD_POSITION edges on Institution pattern), Activity (route to Event or SubjectConcept)
+- ✅ **Added:** ConditionState (time-scoped observation pattern, mirrors PlaceVersion/PeriodVersion)
+- ✅ **Enhanced:** Material (AAT authority alignment, SKOS hierarchy, material_family type flags)
+- ✅ **Enhanced:** Object (multi-edge MADE_OF with role/fraction/source/confidence, ConditionState references)
+- ✅ **Updated:** Human node edges (HAS_POSITION → HELD_POSITION per Institution pattern)
+- **File:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (sections §3.1.11-§3.1.14)
+- **Previous Commit:** f327f21 (1 file, 104 insertions, 52 deletions)
+
+**PHASE 2: CLAIM_ID_ARCHITECTURE Refinements (5-Point Normalization Rules)**
+- ✅ **Refinement 1:** Literal value normalization (XSD datatype prefix convention)
+  * Rule: Non-QID objects use format `lit_{datatype}_{value}` (e.g., `lit_xsd:gYear_-00049` for 49 BCE)
+  * Rationale: Consistent formatting prevents cipher collisions from encoding variations
+  
+- ✅ **Refinement 2:** Temporal scope normalization (ISO 8601, circa flags)
+  * Rule: 5-digit zero-padded years, negative for BCE (e.g., `-00049` for 49 BCE)
+  * Rule: Approximate dates use separate `circa_flag` property (NOT embedded in normalized value)
+  * Rationale: ISO 8601 compliance; prevents "circa 49 BCE" vs "49 BCE" collision
+  
+- ✅ **Refinement 3:** Property path registry validation (canonical + custom flexible)
+  * Rule: property_path_id must either be canonical (MARRIED, PARENT_OF, etc.) OR custom format `{domain}:{predicate}`
+  * Rule: Free-text forbidden (prevents "led_a_battle" non-determinism)
+  * Rationale: Lock property paths to registry; custom predicates enable domain specificity
+  
+- ✅ **Refinement 4:** Facet ID normalization (uppercase requirement)
+  * Rule: All facet_id values uppercase (POLITICAL, MILITARY, etc.)
+  * Rationale: Prevent case collisions (`political` vs `Political` vs `POLITICAL` → one identity)
+  
+- ✅ **Refinement 5:** Claim node type compatibility (Option A: Supertype model)
+  * Rule: FacetClaim and CompositeClaim are Cypher labels (`:Claim:FacetClaim`, `:Claim:CompositeClaim`)
+  * Rule: Cipher formula same for both (sorted facet IDs for composite)
+  * Rationale: Type hierarchy enables querying all claims or specific facet-level/composite claims
+  
+- **File:** `Key Files/CLAIM_ID_ARCHITECTURE.md` (new Section 4: Normalization Rules; old §4 → §5)
+
+**PHASE 3: Authority Mapping Enhancement (CANONICAL_RELATIONSHIP_TYPES)**
+- ✅ **Added:** Wikidata property codes (P25, P26, P40, P1318, P1187, P1435, etc.)
+- ✅ **Added:** CIDOC-CRM equivalents (P108_produced, P14_carried_out_by, P11_had_participant, etc.)
+- ✅ **Added:** MINF relations (m:generatedBy, m:influencedBy, m:associatedWith, m:memberOf)
+- **Relationships Updated (10 core types):**
+  * CHILD_OF, PARENT_OF, SIBLING_OF, MARRIED, ADOPTED_BY
+  * PATRON_OF, POLITICAL_ALLY_OF, MENTOR_OF, FRIEND_OF, MEMBER_OF_GENS
+- **File:** `Facets/CANONICAL_RELATIONSHIP_TYPES.md` (10 relationship definitions enhanced)
+
+**Why These Refinements Matter:**
+- Literal normalization: Prevents "2000-01-01" vs "2000-1-1" creating different claim IDs
+- Temporal normalization: Enables deterministic date handling across federation; ISO 8601 compliance
+- Property registry lock: property_path_id no longer free-form; authority-backed predicates only
+- Facet ID uppercase: Prevents claim ID collision from case variations
+- Claim type hierarchy: Enables selective querying (all claims, facet-level only, composite only)
+- Authority mappings: property_path_id values now resolvable to Wikidata/CIDOC-CRM/MINF
+
+**Status:** All files updated; ready for commit
+- Change documentation: CHANGE_LOG.py entry created
+- No new commits yet (awaiting user confirmation)
+
+---
+
+## Prior Update: BiographicSFA Responsibilities Clarification (2026-02-16 Afternoon)
 
 ### Three Critical Producer Roles Defined
 

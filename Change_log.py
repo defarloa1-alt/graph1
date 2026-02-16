@@ -23,6 +23,78 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-16 16:30 | ONTOLOGY CONSOLIDATION (18 NODES) + CLAIM/RELATIONSHIP REGISTRY REFINEMENTS
+# ==============================================================================
+# Category: Architecture, Refactor, Integration
+# Summary: Three-phase update completing expert architectural review feedback
+#
+# PHASE 1: Ontology consolidation (17 → 18 canonical nodes)
+#   - Added: ConditionState (time-scoped observations pattern)
+#   - Deprecated: Position (migrate to HELD_POSITION edges), Activity (route to Event/SubjectConcept)
+#   - Enhanced: Material (AAT authority, SKOS, material_family flags)
+#   - Enhanced: Object (multi-edge MADE_OF with role/fraction/source/confidence, ConditionState refs)
+#   - Updated: Human edges (HAS_POSITION → HELD_POSITION per Institution pattern)
+#
+# PHASE 2: CLAIM_ID_ARCHITECTURE refinements (expert review 5-point checklist)
+#   - Added: Literal normalization rules (XSD datatype prefix convention)
+#   - Added: Temporal scope normalization (ISO 8601, 5-digit zero-padding, circa flags)
+#   - Added: Property path registry validation (canonical + custom predicate flexibility)
+#   - Added: Facet ID normalization (uppercase requirement)
+#   - Added: Claim node type compatibility (Option A supertype model: :Claim:FacetClaim)
+#   - Rationale: Deterministic claim ID generation; prevent cipher collisions; ISO-8601 compliance
+#
+# PHASE 3: Authority mapping enhancement (CANONICAL_RELATIONSHIP_TYPES)
+#   - Added: Wikidata property codes (P25, P26, P40, P1318, P1187, etc.)
+#   - Added: CIDOC-CRM equivalents (P108_produced, P14_carried_out_by, etc.)
+#   - Added: MINF relations (m:generatedBy, m:influencedBy, m:associatedWith)
+#   - Relationships updated: CHILD_OF, PARENT_OF, SIBLING_OF, MARRIED, ADOPTED_BY,
+#     PATRON_OF, POLITICAL_ALLY_OF, MENTOR_OF, FRIEND_OF, MEMBER_OF_GENS
+#   - Rationale: Lock property_path_id values to authority standards; enable deterministic deduplication
+#
+# Files (UPDATED):
+#   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+#     * Lines 600-635: Canonical node list (18 nodes, deprecation path documented)
+#     * §3.1.11: Position (DEPRECATED) with migration guidance
+#     * §3.1.11a: ConditionState (NEW) - time-scoped observations
+#     * §3.1.12: Material (EXPANDED) - AAT authority, SKOS, material_family
+#     * §3.1.13: Object (EXPANDED) - multi-edge MADE_OF, ConditionState refs
+#     * §3.1.14: Activity (DEPRECATED) with routing rules
+#     * Human edges: HAS_POSITION → HELD_POSITION
+#
+#   - Key Files/CLAIM_ID_ARCHITECTURE.md
+#     * NEW Section 4: Normalization Rules (5 refinements)
+#     * §4.1: Literal value normalization (XSD datatype prefix convention)
+#     * §4.2: Temporal scope normalization (ISO 8601 + circa flags)
+#     * §4.3: Property path registry validation (canonical + custom predicates)
+#     * §4.4: Facet ID normalization (uppercase requirement)
+#     * §4.5: Claim node type compatibility (supertype model)
+#     * Section numbering shifted (old §4 → §5)
+#
+#   - Facets/CANONICAL_RELATIONSHIP_TYPES.md
+#     * Added authority mappings to 10 core relationship types
+#     * Each relationship type now includes:
+#       - Wikidata P-code (property reference)
+#       - CIDOC-CRM property (E57_Material, E22_Human-Made_Object alignment)
+#       - MINF relation (m:associatedWith, m:influencedBy, etc.)
+#       - Semantic notes for authority alignment
+#
+# Reason:
+#   Expert architectural review (from contributor) identified 5 critical areas:
+#     1. Literal vs Node handling in cipher formula (missing rule)
+#     2. Temporal normalization (ISO 8601 variations ignored)
+#     3. Property path registry not locked to CANONICAL_RELATIONSHIP_TYPES
+#     4. Facet ID case sensitivity (potential collision bug)
+#     5. Claim/FacetClaim/CompositeClaim relationship to :Claim label unclear
+#
+#   Authority mapping enhancement enables:
+#     - Deterministic predicate normalization (federation barriers reduced)
+#     - Wikidata/CIDOC-CRM/MINF alignment for semantic clarity
+#     - Proper deduplication at claim ingestion (same fact, different SFA → single cipher)
+#
+# Git status: Changes staged for commit
+#   - Ready for: `git add . && git commit -m "Phase 2.6: Ontology consolidation + claim/relationship registry refinements"`
+
+# ==============================================================================
 # 2026-02-15 22:00 | SCA/SFA ROLES FINALIZED + SELECTIVE QUEUE MODEL + MILITARY METHODOLOGY
 # ==============================================================================
 # Category: Architecture, Agent Design, Methodology

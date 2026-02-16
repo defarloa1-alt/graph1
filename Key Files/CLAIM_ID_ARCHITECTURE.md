@@ -203,9 +203,291 @@ composite_cipher = Hash(
 
 ---
 
-## 4. Neo4j Schema: Facet Claim Nodes
+## 4. Normalization Rules and Data Format Requirements
 
-### 4.1 FacetClaim Node Type
+**CRITICAL:** All cipher components must be normalized to canonical form BEFORE hashing to ensure deterministic, collision-free claim IDs.
+
+### 4.1 Literal Value Normalization (Non-Node Objects)
+
+**Problem:** When object_node_id is a literal value (not a Wikidata QID), inconsistent formatting creates different ciphers for identical facts.
+
+**Solution:** Normalize literals using XSD datatype prefix convention:
+
+```python
+def normalize_literal(value, datatype="xsd:string"):
+    """Ensure literals use canonical format before hashing."""
+    if datatype == "xsd:gYear":
+        # Historical year: zero-padded to 5 digits, negative for BCE
+        year = int(value)
+        return f"lit_xsd:gYear_{year:+06d}"  # "-00049" for 49 BCE
+    
+    elif datatype == "xsd:gYearMonth":
+        # ISO 8601 YYYY-MM: zero-padded, negative for BCE
+        return f"lit_xsd:gYearMonth_{value}"  # "-0049-01"
+    
+    elif datatype == "xsd:date":
+        # ISO 8601 YYYY-MM-DD: zero-padded
+        return f"lit_xsd:date_{value}"  # "-0049-01-10"
+    
+    elif datatype == "xsd:string":
+        # Lowercase, trim whitespace, normalize unicode
+        return f"lit_xsd:string_{value.lower().strip()}"
+    
+    else:
+        return f"lit_{datatype}_{value}"
+
+# Examples
+normalize_literal(100, "xsd:gYear")           # "lit_xsd:gYear_+00100"
+normalize_literal(-49, "xsd:gYear")           # "lit_xsd:gYear_-00049"
+normalize_literal("-0049-01-10", "xsd:date")  # "lit_xsd:date_-0049-01-10"
+normalize_literal("SENATE", "xsd:string")     # "lit_xsd:string_senate"
+```
+
+**Usage in cipher:**
+```python
+facet_claim_cipher = Hash(
+    subject_node_id +          # "Q1048" (QID)
+    property_path_id +         # "CHALLENGED_AUTHORITY_OF"
+    normalize_literal("-0049-01-10", "xsd:date") +  # "lit_xsd:date_-0049-01-10"
+    facet_id +                 # "political"
+    ...
+)
+```
+
+### 4.2 Temporal Scope Normalization (ISO 8601 + Uncertainty Flags)
+
+**Rule 1: ISO 8601 Format with Zero-Padding**
+
+All historical year values must use ISO 8601 format with 5-digit zero-padded years (BCE as negative):
+
+```python
+def normalize_temporal_scope(date_value, circa=False, precision="year"):
+    """
+    Normalize temporal scope to ISO 8601 + uncertainty flag.
+    
+    Args:
+        date_value: int (BCE/CE year) or str (ISO 8601)
+        circa: bool, True if date is approximate ("circa X BCE")
+        precision: "year" | "month" | "day"
+    
+    Returns: Canonical ISO 8601 string + circa flag stored separately
+    """
+    if isinstance(date_value, int):
+        year = date_value
+    else:
+        year = int(date_value[:4])  # Extract year from ISO string
+    
+    # ISO 8601 formatting: 5-digit zero-padded year
+    if precision == "year":
+        canonical = f"{year:+06d}"  # "+00100" or "-00049"
+    elif precision == "month":
+        canonical = f"{year:+06d}-01"  # Defaults to January if only year given
+    elif precision == "day":
+        canonical = f"{year:+06d}-01-01"  # Defaults to Jan 1
+    
+    return canonical
+
+# Examples
+normalize_temporal_scope(-49, circa=False)     # "-00049"
+normalize_temporal_scope(100, circa=False)     # "+00100"
+normalize_temporal_scope(-49, circa=True)      # "-00049" (circa flag separate)
+```
+
+**Rule 2: Uncertainty Handling via Separate `circa_flag`**
+
+Approximate dates are handled via metadata, NOT embedded in the normalized value:
+
+```cypher
+// Cipher uses normalized DATE ONLY
+cipher_component = "-00049"
+
+// Node stores uncertainty separately
+(claim:FacetClaim {
+  temporal_scope: "-00049",
+  temporal_scope_circa: true,  // Flag for "circa 49 BCE"
+  temporal_scope_precision: "year"
+})
+```
+
+**Rule 3: Date Range Formatting (Start-End Temporal Scope)**
+
+For claims spanning time intervals (e.g., marriage duration):
+
+```python
+def normalize_temporal_range(start_date, end_date):
+    """Normalize date ranges to canonical format."""
+    norm_start = normalize_temporal_scope(start_date)
+    norm_end = normalize_temporal_scope(end_date)
+    
+    # Store as separate claims or as range in cipher
+    # Preferred: Two separate edges (start_temporal + end_temporal)
+    # Alternative: Single ranged format "[START TO END]"
+    
+    return {
+        "start_temporal_scope": norm_start,
+        "end_temporal_scope": norm_end
+    }
+
+# Example: Caesar's marriage 84-69 BCE
+normalize_temporal_range(-84, -69)
+# {
+#   "start_temporal_scope": "-00084",
+#   "end_temporal_scope": "-00069"
+# }
+```
+
+### 4.3 Property Path Registry Validation (Flexible with Custom Predicates)
+
+**Rule:** property_path_id values must follow canonical naming conventions and reference registry entries with authority mappings.
+
+**Locked Keys (From CANONICAL_RELATIONSHIP_TYPES.md):**
+```python
+CANONICAL_PREDICATES = {
+    "MARRIED": {"wikidata": "P26", "cidoc_crm": "P14_carried_out_by"},
+    "PARENT_OF": {"wikidata": "P25", "cidoc_crm": "P108_produced"},
+    "POLITICAL_ALLY_OF": {"wikidata": "P1318", "cidoc_crm": "P11_had_participant"},
+    # ... (all relationships from CANONICAL_RELATIONSHIP_TYPES.md)
+}
+```
+
+**Custom Predicates Allowed:**
+For domain-specific relationships not yet in registry, use format: `{domain}:{predicate_name}`
+
+```python
+# Valid custom predicates
+"military:led_battle"           # Military domain
+"economic:controlled_trade"     # Economic domain
+"cultural:patron_of_arts"       # Cultural domain
+
+# INVALID (free-text forbidden)
+"led_a_battle"                  # ❌ No domain prefix
+"MILITARY_LEADERSHIP"           # ❌ No colon separator
+"custom_relationship_xyz"       # ❌ Ambiguous domain
+```
+
+**Registry Link Rule:**
+```cypher
+// Before hashing, validate
+property_path_id_normalized = property_path_id.upper()  // Uppercase
+
+// Verify in registry
+IF property_path_id_normalized IN CANONICAL_PREDICATES:
+    // Proceed with canonical key
+    hash_input = property_path_id_normalized
+ELSE_IF ":" IN property_path_id_normalized:
+    // Custom predicate format validated
+    hash_input = property_path_id_normalized
+ELSE:
+    // ❌ REJECTION: Free-text forbidden
+    RAISE("property_path_id invalid format")
+```
+
+### 4.4 Facet ID Normalization (Uppercase Required)
+
+**Rule:** All facet_id values must be uppercase to prevent case-collision bugs.
+
+```python
+def normalize_facet_id(facet_input):
+    """Ensure facet IDs are uppercase and canonicalized."""
+    facet_canonical = facet_input.upper()
+    
+    # Valid facet IDs (17 facets)
+    VALID_FACETS = {
+        "BIOGRAPHIC", "POLITICAL", "MILITARY", "ECONOMIC",
+        "RELIGIOUS", "SOCIAL", "CULTURAL", "ARTISTIC",
+        "INTELLECTUAL", "LINGUISTIC", "GEOGRAPHIC", "ENVIRONMENTAL",
+        "TECHNOLOGICAL", "DEMOGRAPHIC", "DIPLOMATIC", "SCIENTIFIC",
+        "ARCHAEOLOGICAL", "COMMUNICATION"  # Communication is facet-only
+    }
+    
+    if facet_canonical not in VALID_FACETS:
+        raise ValueError(f"Invalid facet_id: {facet_input}. Must be one of {VALID_FACETS}")
+    
+    return facet_canonical
+
+# Examples
+normalize_facet_id("political")     # "POLITICAL"
+normalize_facet_id("Political")     # "POLITICAL"
+normalize_facet_id("POLITICAL")     # "POLITICAL"
+normalize_facet_id("military")      # "MILITARY"
+normalize_facet_id("invalid_facet") # ❌ RAISES ValueError
+```
+
+**Why uppercase?**
+- Prevents case-collision: `political` vs `Political` vs `POLITICAL` → one cipher ID
+- Explicit canonical format for all facet keys
+- Consistent with Facets/facet_registry_master.csv
+
+### 4.5 Claim Node Type Compatibility: FacetClaim vs CompositeClaim
+
+**Architecture Decision (Option A: Supertype + Subtype Model)**
+
+FacetClaim and CompositeClaim are Cypher node labels representing a type hierarchy:
+
+```cypher
+// FacetClaim: First-class single-facet assertion
+(:Claim:FacetClaim {
+  cipher: "fclaim_pol_abc123...",
+  facet_id: "POLITICAL",
+  subject_node_id: "Q1048",
+  property_path_id: "CHALLENGED_AUTHORITY_OF",
+  object_node_id: "Q1747689"
+})
+
+// CompositeClaim: Aggregation of sibling FacetClaims
+(:Claim:CompositeClaim {
+  cipher: "composite_jkl789...",
+  facet_claim_ids: ["fclaim_pol_...", "fclaim_mil_...", "fclaim_geo_..."],
+  composite_type: "participation_event_bundle"
+})
+
+// Label inheritance
+(fclaim:Claim:FacetClaim) means:
+  - Matches (:Claim) queries
+  - Matches (:FacetClaim) queries
+  - Distinguishable from (:CompositeClaim)
+```
+
+**Query Implications:**
+```cypher
+// Query all claims (both facet-level and composite)
+MATCH (c:Claim)
+RETURN c
+
+// Query only facet-level claims
+MATCH (c:Claim:FacetClaim)
+RETURN c
+
+// Query only composite bundles
+MATCH (c:Claim:CompositeClaim)
+RETURN c
+
+// Query single facet's claims
+MATCH (c:Claim:FacetClaim {facet_id: "POLITICAL"})
+RETURN c
+```
+
+**Cipher Formula Consistency:**
+```python
+# FacetClaim cipher (minimal triple + facet + temporal)
+fclaim_cipher = Hash(
+    subject_node_id + property_path_id + object_node_id +
+    facet_id + temporal_scope + source_document_id + passage_locator
+)
+
+# CompositeClaim cipher (sorted facet claim IDs)
+composite_cipher = Hash(
+    sorted(facet_claim_ids) + composite_type + source_document_id
+)
+
+# Both use normalized components; no confidence/agent metadata in cipher
+```
+
+---
+
+## 5. Neo4j Schema: Facet Claim Nodes
+
+### 5.1 FacetClaim Node Type
 
 ```cypher
 CREATE (claim:FacetClaim {

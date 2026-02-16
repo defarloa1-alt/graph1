@@ -30,12 +30,20 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
   * `biological` (blood relation)
   * `adoptive` (legal adoption)
   * `step` (via parent's remarriage)
+- **Authority Mappings:**
+  * Wikidata: P40 (child)
+  * CIDOC-CRM: P107_has_creation (inverse: parent created subject)
+  * MINF: m:generatedBy
 - **Inverse:** PARENT_OF
 
 **PARENT_OF** (parent → person)
 - **Usage:** Subject is parent of object
 - **Example:** `Aurelia -[PARENT_OF]-> Caesar`
 - **Qualifiers:** Same as CHILD_OF
+- **Authority Mappings:**
+  * Wikidata: P25 (parent)
+  * CIDOC-CRM: P108_produced (parent produced subject entity)
+  * MINF: m:generates
 - **Note:** Create BOTH claims for complete stemma (bidirectional edges)
 
 ### Sibling (Symmetric)
@@ -47,6 +55,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
   * `full_sibling` (same father and mother)
   * `half_sibling` (one shared parent)
   * `adoptive_sibling` (via one parent's adoption)
+- **Authority Mappings:**
+  * Wikidata: P3373 (sibling)
+  * CIDOC-CRM: P107_has_creation (shared parent P108_produced both)
+  * MINF: m:relatedTo
 - **Note:** Symmetric (if A sibling of B, then B sibling of A)
 
 ### Spouse (Symmetric)
@@ -59,6 +71,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
   * `marriage_year` (start)
   * `divorce_year` (if divorced)
   * `ended_by_death` (if spouse died)
+- **Authority Mappings:**
+  * Wikidata: P26 (spouse)
+  * CIDOC-CRM: P14_carried_out_by (marriage event had subjects)
+  * MINF: m:hasAgent (marriage event has participants)
 - **Note:** Symmetric, but create BOTH claims for query efficiency
 
 **BETROTHED_TO** (person ↔ person)
@@ -73,6 +89,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
 - **Usage:** Subject legally adopted by object
 - **Example:** `Octavian -[ADOPTED_BY]-> Caesar`
 - **Temporal:** MUST include adoption date
+- **Authority Mappings:**
+  * Wikidata: P1028 (donated by, in legal transfer sense)
+  * CIDOC-CRM: P15_was_influenced_by (adopter legally influenced adoptee's status)
+  * MINF: m:wasGeneratedBy (adoptee status created by adopter's action)
 - **Note:** In Roman law, adoption creates full legal parent-child bond
 - **Consequences:**
   * Name change (adopter's nomen + original nomen as cognomen)
@@ -106,6 +126,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
 - **Usage:** Membership in Roman clan (gens)
 - **Example:** `Caesar -[MEMBER_OF_GENS]-> gens Julia`
 - **Temporal:** From birth (or adoption)
+- **Authority Mappings:**
+  * Wikidata: P1435 (member of)
+  * CIDOC-CRM: P107_has_creation (gens creation/founding defines membership)
+  * MINF: m:memberOf
 - **Note:** Determines nomen (family name: e.g., Julius, Cornelius, Claudius)
 
 **FOUNDER_OF_GENS** (legendary/historical person → gens)
@@ -128,6 +152,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
 - **Usage:** Patron-client relationship (critical in Roman society)
 - **Example:** `Caesar -[PATRON_OF]-> Clodius Pulcher`
 - **Temporal:** Can change over career
+- **Authority Mappings:**
+  * Wikidata: P1187 (patron)
+  * CIDOC-CRM: P15_was_influenced_by (patron influenced client's trajectory)
+  * MINF: m:influencedBy (relationship of influence)
 - **Note:** Patrons provide protection, clients provide political support
 
 **CLIENT_OF** (client → patron)
@@ -144,6 +172,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
 - **Qualifiers:**
   * `alliance_type` (triumvirate, marriage alliance, factional)
   * `alliance_sealed_by` (marriage, treaty, oath)
+- **Authority Mappings:**
+  * Wikidata: P1318 (follows, in alliance sense; P2048 for military alliance)
+  * CIDOC-CRM: P11_had_participant (alliance event)
+  * MINF: m:associatedWith
 - **Note:** Often sealed by marriage between families
 
 **POLITICAL_RIVAL_OF** (person ↔ person)
@@ -163,6 +195,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
 - **Usage:** Educational or political mentorship
 - **Example:** `Cicero -[MENTOR_OF]-> Octavian` (rhetoric training)
 - **Temporal:** Duration of mentorship
+- **Authority Mappings:**
+  * Wikidata: P1066 (followee, mentor is followee of student's trajectory)
+  * CIDOC-CRM: P01_has_domain_object (mentorship event focuses on knowledge object)
+  * MINF: m:influencedBy
 - **Note:** Important for oratorical training
 
 **MENTORED_BY** (student → mentor)
@@ -173,6 +209,10 @@ BiographicSFA defines **canonical relationship types** that all agents must use 
 **FRIEND_OF** (person ↔ person)
 - **Usage:** Amicitia (friendship with political implications)
 - **Example:** `Caesar -[FRIEND_OF]-> Oppius`
+- **Authority Mappings:**
+  * Wikidata: P1237 (associated with)
+  * CIDOC-CRM: P14_carried_out_by (friendship involves agents)
+  * MINF: m:associatedWith
 - **Note:** In Roman context, friendship often means political alliance
 
 ---
