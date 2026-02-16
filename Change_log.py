@@ -23,6 +23,64 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-16 17:45 | STEPS 4-5 INTEGRATION: FACET UPPERCASE, AUTHORITY PRECEDENCE, DISCIPLINE ROOTS
+# ==============================================================================
+# Category: Architecture, Integration, Normalization
+# Summary: Three Priority 1-2 refinements integrating recent SubjectConcept work
+#          with Step 4 (CIDOC-CRM enrichment) and Step 5 (SCA orchestration)
+#
+# INTEGRATION FIXES:
+#
+# Fix 1: Facet Uppercase Normalization (Priority 1 - HIGH)
+#   - Updated STEP_5_COMPLETE.md: 17 canonical facets now UPPERCASE keys
+#   - Keys: ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, ... TECHNOLOGICAL, COMMUNICATION
+#   - SCA facet classification outputs uppercase (prevents query collisions)
+#   - SubjectConcept.facet property enforced uppercase (§4.1 CONSOLIDATED refinement)
+#   - Rationale: Deterministic routing, union-safe deduplication
+#   - File: STEP_5_COMPLETE.md (facet list + Initialize mode workflow + SCA method)
+#
+# Fix 2: Authority Precedence Integration (Priority 2 - MEDIUM)
+#   - Updated STEP_4_COMPLETE.md with new section: "Authority Precedence Integration"
+#   - Enhancement algorithm: Check Tier 1 (LCSH/FAST) → Tier 2 (LCC/CIP) → Tier 3 (Wikidata)
+#   - Multi-authority node structure (authority_id + fast_id + wikidata_qid + authority_tier)
+#   - CIDOC-CRM alignment stays orthogonal to authority tier system
+#   - Implements §4.4 CONSOLIDATED policy in Step 4 federation pipeline
+#   - File: STEP_4_COMPLETE.md (new "Authority Precedence Integration" section)
+#
+# Fix 3: Discipline Root Detection & SFA Training Prep (Priority 2 - MEDIUM)
+#   - Updated STEP_5_COMPLETE.md: Added discipline root detection post-Initialize
+#   - Algorithm: Identify nodes with high BROADER_THAN reachability (>70% hierarchy)
+#   - Mark discipline roots with `discipline: true` flag for SFA training seeding
+#   - SFA initialization queries roots: WHERE discipline=true AND facet=TARGET_FACET
+#   - Pre-seeding option: Create canonical roots (one per facet) if auto-detection insufficient
+#   - Implements §4.9 CONSOLIDATED pattern in Step 5 workflow
+#   - File: STEP_5_COMPLETE.md (new "Discipline Root Detection" section + log output)
+#
+# Files (UPDATED):
+#   - STEP_5_COMPLETE.md
+#     * Facet list: lowercase → UPPERCASE canonical keys
+#     * Facet Normalization Rule: Explicit uppercase requirement + rationale
+#     * Initialize Mode Workflow: Added steps 4 & 6 (authority enrichment, discipline detection)
+#     * Log output: Added AUTHORITY_ENRICHMENT and DISCIPLINE_ROOT_DETECTION lines
+#     * New subsection: "Discipline Root Detection & SFA Training Preparation"
+#
+#   - STEP_4_COMPLETE.md
+#     * New section: "Authority Precedence Integration (Tier 1/2/3 Policy)"
+#     * Enhanced enrichment algorithm: Multi-authority checking before Wikidata fallback
+#     * Query examples: Before (Wikidata-only) vs After (multi-authority aware)
+#     * Rationale: LCSH/FAST heritage compatibility, reduces federation friction
+#
+# Reason:
+#   Expert review identified 3 gaps in Steps 4-5 integration with SubjectConcept refinements:
+#   1. Facet case sensitivity not enforced (could cause routing collisions)
+#   2. Authority precedence not implemented in federation pipeline (all paths equal weight)
+#   3. Discipline flag seeding not documented (SFA training can't find root nodes)
+#
+# Scope: Documentation + implementation guidance; no Neo4j schema changes
+# Backward Compatibility: All changes enhance existing Steps without breaking them
+# Git status: Changes staged for commit
+
+# ==============================================================================
 # 2026-02-16 16:30 | ONTOLOGY CONSOLIDATION (18 NODES) + CLAIM/RELATIONSHIP REGISTRY REFINEMENTS
 # ==============================================================================
 # Category: Architecture, Refactor, Integration

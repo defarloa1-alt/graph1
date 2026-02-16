@@ -257,6 +257,106 @@ claims.append(claim)
 
 ---
 
+## Authority Precedence Integration (Tier 1/2/3 Policy)
+
+**Integration Point:** Step 4 enrichment should incorporate library authorities BEFORE defaulting to Wikidata (§4.4 policy).
+
+**Authority Tier Policy (from CONSOLIDATED.md §4.4):**
+```
+Tier 1 (Preferred): LCSH, FAST               (domain-optimized for historical subjects)
+Tier 2 (Secondary): LCC, CIP                 (structural backbone + academic alignment)
+Tier 3 (Tertiary):  Wikidata, Dewey, VIAF   (fallback authorities)
+```
+
+**Enhanced Enrichment Algorithm:**
+
+```python
+def enrich_node_with_authorities(entity_qid):
+    """
+    Enrich SubjectConcept node with multi-authority IDs (Tier 1/2/3)
+    """
+    node = {'qid': entity_qid}
+    
+    # STEP 1: Check for Wikidata P/authority mappings
+    wikidata_data = fetch_wikidata_entity(entity_qid)
+    
+    # STEP 2: Extract Tier 1 authorities from Wikidata (if available)
+    # Wikidata external IDs: P244 (Library of Congress ID), P1433 (published in), etc.
+    lcsh_id = wikidata_data.get('P244')      # Library of Congress authority ID
+    fast_id = wikidata_data.get('special:fast_id')  # FAST derived from LCSH
+    
+    if lcsh_id:
+        node['authority_id'] = lcsh_id          # ← Tier 1 primary
+        node['authority_tier'] = 1
+        # Optional: Fetch LCSH label from Library of Congress
+    
+    if fast_id:
+        node['fast_id'] = fast_id                # ← Tier 1 secondary
+    
+    # STEP 3: If no Tier 1, check Tier 2 (LCC)
+    if not lcsh_id:
+        lcc_mapping = lookup_lcc_for_qid(entity_qid)  # e.g., DG83 for Roman Republic
+        if lcc_mapping:
+            node['lcc_class'] = lcc_mapping['class']
+            node['authority_tier'] = 2
+    
+    # STEP 4: Always include Wikidata (Tier 3 fallback)
+    node['wikidata_qid'] = entity_qid
+    node['qid_tier'] = 3
+    
+    # STEP 5: Add CIDOC-CRM alignment (orthogonal to authorities)
+    cidoc_enrichment = enrich_with_ontology_alignment(entity)
+    node['cidoc_crm_class'] = cidoc_enrichment['cidoc_crm_class']
+    node['cidoc_crm_confidence'] = cidoc_enrichment['cidoc_crm_confidence']
+    
+    return node
+
+# Result node structure:
+{
+    'authority_id': 'sh85115055',           # Tier 1: LCSH (preferred)
+    'authority_tier': 1,
+    'fast_id': 'fst01234567',              # Tier 1: FAST (complementary)
+    'wikidata_qid': 'Q12107',              # Tier 3: Wikidata fallback
+    'qid_tier': 3,
+    'cidoc_crm_class': 'E5_Event',         # Orthogonal semantic alignment
+    'cidoc_crm_confidence': 'High',
+    'label': 'Roman politics'
+}
+```
+
+**Query Impact:**
+
+```cypher
+# Before (only Wikidata):
+MATCH (n:SubjectConcept {wikidata_qid: 'Q12107'})
+
+# After (multi-authority aware):
+MATCH (n:SubjectConcept)
+WHERE n.authority_id = 'sh85115055'        # LCSH preferred
+   OR n.fast_id = 'fst01234567'            # FAST complementary
+   OR n.wikidata_qid = 'Q12107'            # Fallback
+ORDER BY COALESCE(n.authority_tier, 3)    # Tier 1 results first
+```
+
+**Data Audit Query:**
+```cypher
+# Check authority coverage in SubjectConcepts
+MATCH (n:SubjectConcept)
+RETURN 
+    count(CASE WHEN n.authority_id IS NOT NULL THEN 1 END) as lcsh_count,
+    count(CASE WHEN n.fast_id IS NOT NULL THEN 1 END) as fast_count,
+    count(CASE WHEN n.wikidata_qid IS NOT NULL THEN 1 END) as wikidata_count,
+    count(n) as total
+```
+
+**Rationale:**
+- LCSH/FAST are domain-optimized for historical scholarship; reduces federation friction
+- Multi-authority storage enables library catalog interoperability
+- Tier hierarchy prevents dependency lock on Wikidata
+- CIDOC-CRM stays orthogonal to authority tier system
+
+---
+
 ## Integration with Previous Steps
 
 ### Step 1: Architecture Understanding

@@ -143,10 +143,19 @@ Master coordinator for cross-domain orchestration.
 - Generates mock results for testing bridge claim generation
 - Production version will spawn actual FacetAgent instances
 
-**Canonical 17 Facets:**
-archaeological, artistic, cultural, demographic, diplomatic, economic, environmental,
-geographic, intellectual, linguistic, military, political, religious, scientific,
-social, technological, communication
+**Canonical 17 Facets (UPPERCASE Keys):**
+```
+ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, DIPLOMATIC, ECONOMIC, ENVIRONMENTAL,
+GEOGRAPHIC, INTELLECTUAL, LINGUISTIC, MILITARY, POLITICAL, RELIGIOUS, SCIENTIFIC,
+SOCIAL, TECHNOLOGICAL, COMMUNICATION
+```
+
+**Facet Key Normalization Rule (§4.1 Integration):**
+- All facet identifiers MUST be UPPERCASE
+- SCA facet classification outputs UPPERCASE keys (e.g., `facets=['POLITICAL', 'MILITARY', 'ECONOMIC']`)
+- SubjectConcept.facet property = UPPERCASE (prevents case-collision bugs)
+- Query filters: `WHERE n.facet IN ["POLITICAL", "MILITARY", ...]` (uppercase only)
+- Rationale: Deterministic routing, union-safe deduplication, consistent with facet_registry_master.json canonical keys
 
 ---
 
@@ -158,12 +167,13 @@ social, technological, communication
 1. Generate unique session ID
 2. Fetch Wikidata anchor entity (Step 3)
 3. Validate completeness (Step 3.5) - reject if <60%
-4. Enrich with CIDOC-CRM (Step 4)
+4. Enrich with CIDOC-CRM (Step 4)  ← NEW: Also enrich with authority precedence (LCSH/FAST before Wikidata)
 5. Bootstrap from QID (Step 3) - creates nodes + discovers hierarchy
-6. Generate foundational claims
-7. Optionally auto-submit high-confidence claims
-8. Log all actions verbosely
-9. Return comprehensive result dict
+6. Detect discipline roots for 17 facets  ← NEW: Mark canonical roots with `discipline: true`
+7. Generate foundational claims
+8. Optionally auto-submit high-confidence claims
+9. Log all actions verbosely
+10. Return comprehensive result dict
 
 **Parameters:**
 - `anchor_qid`: Wikidata QID to bootstrap from (e.g., 'Q17167' for Roman Republic)
@@ -198,10 +208,136 @@ social, technological, communication
 [2026-02-15T14:30:26] [INFO] [REASONING] COMPLETENESS_VALIDATION: Found 47/52 expected properties (confidence=0.87)
 [2026-02-15T14:30:27] [INFO] [INITIALIZE] CIDOC_ENRICHMENT: qid=Q17167
 [2026-02-15T14:30:28] [INFO] [INITIALIZE] CIDOC_COMPLETE: cidoc_class=E5_Event, confidence=High
-[2026-02-15T14:30:29] [INFO] [INITIALIZE] BOOTSTRAP_START: qid=Q17167, depth=2
+[2026-02-15T14:30:29] [INFO] [INITIALIZE] AUTHORITY_ENRICHMENT: qid=Q17167
+[2026-02-15T14:30:29] [INFO] [INITIALIZE] AUTHORITY_TIER_1: authority_id=sh85115055, fast_id=fst01234567
+[2026-02-15T14:30:30] [INFO] [INITIALIZE] BOOTSTRAP_START: qid=Q17167, depth=2
 [2026-02-15T14:31:03] [INFO] [INITIALIZE] BOOTSTRAP_COMPLETE: nodes_created=23, relationships=47, claims_generated=147
-[2026-02-15T14:31:04] [INFO] [INITIALIZE] INITIALIZE_COMPLETE: status=SUCCESS, duration=42.3s
+[2026-02-15T14:31:03] [INFO] [INITIALIZE] DISCIPLINE_ROOT_DETECTION: Analyzing 23 nodes for discipline candidates
+[2026-02-15T14:31:04] [INFO] [INITIALIZE] DISCIPLINE_ROOTS_FOUND: 3 candidates (Roman Republic, Military Power, Civil War)
+[2026-02-15T14:31:04] [INFO] [INITIALIZE] SET_DISCIPLINE_FLAG: Roman Republic marked discipline=true (MILITARY facet root)
+[2026-02-15T14:31:04] [INFO] [INITIALIZE] INITIALIZE_COMPLETE: status=SUCCESS, duration=42.3s, nodes_with_discipline=1
 ```
+
+---
+
+## Discipline Root Detection & SFA Training Preparation
+
+**Integration Point:** After Initialize mode discovers hierarchy, detect canonical roots for SFA training (§4.9 policy).
+
+**Method:** `detect_and_mark_discipline_roots(discovered_nodes, facet_key)`
+
+**Purpose:** Identify which discovered nodes are discipline entry points (should have `discipline: true` flag).
+
+**Algorithm:**
+```python
+def detect_discipline_roots(nodes_dict, facet_key):
+    """
+    Identify top-level concepts that should seed SFA training.
+    Discipline roots are canonical entry points for agent specialization.
+    """
+    roots = []
+    
+    # Strategy 1: BROADER_THAN reachability (highest arity wins)
+    for node in nodes_dict.values():
+        reachability = count_reachable_via_broader_than(node)
+        if reachability > 0.7 * len(nodes_dict):  # 70% of nodes below this root
+            roots.append({
+                'node_id': node['id'],
+                'label': node['label'],
+                'reachability': reachability,
+                'method': 'high_reachability',
+                'discipline_candidate': True
+            })
+    
+    # Strategy 2: Explicit heuristics (facet-specific)
+    if facet_key == 'MILITARY':
+        military_keywords = ['Military', 'Warfare', 'Battle', 'Armed Force']
+        for node in nodes_dict.values():
+            if any(kw in node['label'] for kw in military_keywords):
+                if len(node.get('BROADER_THAN', [])) == 0:  # No parent
+                    roots.append({
+                        'node_id': node['id'],
+                        'label': node['label'],
+                        'method': 'keyword_heuristic',
+                        'discipline_candidate': True
+                    })
+    
+    # Remove duplicates, return top 1-3 roots
+    unique_roots = deduplicate_by_node_id(roots)
+    return sorted(unique_roots, key=lambda x: x['reachability'], reverse=True)[:3]
+
+# Result:
+{
+    'discipline_roots': [
+        {
+            'node_id': 'wiki:Q28048',
+            'label': 'Roman Republic',
+            'reachability': 0.95,
+            'method': 'high_reachability',
+            'facet': 'MILITARY'
+        }
+    ],
+    'nodes_marked': 1,
+    'ready_for_sfa_training': True
+}
+```
+
+**Neo4j Implementation:**
+
+```cypher
+-- After Initialize mode creates nodes, mark discipline roots:
+MATCH (root:SubjectConcept {id: 'wiki:Q17167'})
+SET root.discipline = true,
+    root.facet = 'MILITARY',
+    root.discipline_training_seed = true,
+    root.discipline_marked_at = datetime()
+
+-- Query for available SFA roots:
+MATCH (n:SubjectConcept)
+WHERE n.discipline = true AND n.facet = 'MILITARY'
+RETURN n.label, n.id, count(()-[:BROADER_THAN*]->n) as hierarchy_depth
+```
+
+**Pre-Seeding Option (if automatic detection insufficient):**
+
+For each of 17 facets, create canonical root nodes explicitly:
+```cypher
+CREATE (root:SubjectConcept {
+    subject_id: 'discipline_military_root',
+    label: 'Military Science',
+    facet: 'MILITARY',
+    discipline: true,
+    authority_id: 'sh85052639',  -- Library of Congress for "Military science"
+    created_by: 'initialize_preseed',
+    created_at: datetime()
+})
+
+-- Repeat for all 17 facets:
+-- - POLITICAL → 'Political Science'
+-- - ECONOMIC → 'Economic History'
+-- - CULTURAL → 'Cultural History'
+-- ... (14 more)
+```
+
+**Impact on SFA Training:**
+
+```python
+# MilitarySFA initialization (from §4.9 refinement)
+nodes = gds.query_graph(
+    "MATCH (root:SubjectConcept) "
+    "WHERE root.discipline = true AND root.facet = 'MILITARY' "
+    "RETURN root"
+)
+# Gets: [SubjectConcept(Roman Republic)]
+
+# SFA now builds hierarchy downward:
+# Military Science → Roman Military → Legions → Tactics → ...
+
+military_sfa.initialize_with_roots(nodes)
+military_sfa.train_on_hierarchy()  # Build disciplinary ontology
+```
+
+---
 
 ---
 
