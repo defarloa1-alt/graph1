@@ -512,7 +512,7 @@ Historical research asks six fundamental questions. Chrystallum's ontology answe
 | Question | Chrystallum Answer | Node/Property |
 |----------|-------------------|---------------|
 | **Who?** | Entities (Human, Organization, Dynasty) | `:Human`, `:Organization`, `:Dynasty` |
-| **What?** | Entities (Event, Activity, Object, Work) | `:Event`, `:Activity`, `:Object`, `:Work` |
+| **What?** | Entities (Event, Object, Work) | `:Event`, `:Object`, `:Work` |
 | **When?** | Temporal backbone (Year, Period, date properties) | `:Year`, `:Period`, `start_date`, `end_date`, PeriodO |
 | **Where?** | Geographic entities (Place with TGN/Pleiades) | `:Place`, `pleiades_id`, `tgn_id`, coordinates |
 | **Why?** | Action structure (`goal_type`, `trigger_type`) | Relationship metadata, `:Claim` justification |
@@ -616,11 +616,21 @@ The canonical first-class node set for active implementation is:
 - `Claim`
 - `Organization`
 - `Year`
+- `Work`
+- `Material`
+- `Object`
+- `ConditionState`
 
-Policy lock-ins:
+**Deprecated (replaced or merged):**
+- ~~`Position`~~ → Merged into `Institution` (with typed `HELD_BY` edge) or modeled as typed `Event` (appointment/tenure)
+- ~~`Activity`~~ → Concrete instances route to `Event` (with appropriate `action_type`); abstract patterns route to `SubjectConcept`
+
+**Policy lock-ins:**
 - `Subject` and `Concept` are legacy labels and MUST map to `SubjectConcept`.
 - `Person` is legacy wording and MUST map to `Human`.
 - `Communication` is NOT a first-class node label; it is modeled as a facet/domain axis in Section 3.3.
+- `Position` is deprecated as of 2026-02-16; use Institution-edge patterns (§3.1.11 migration guide).
+- `Activity` is deprecated as of 2026-02-16; use Event or SubjectConcept routing (§3.1.14 migration guide).
 
 ---
 
@@ -990,27 +1000,51 @@ Policy lock-ins:
 
 ---
 
-### **3.1.11 Position**
+### **3.1.11 Position (DEPRECATED)**
 
-**Node Label:** `:Position`
+⚠️ **Status:** Deprecated as of 2026-02-16. Do not use for new implementations.
 
-**Purpose:** Represents offices, titles, and roles (e.g., Consul, Tribune, Governor).
+**Previous Purpose:** Represented offices, titles, and roles (e.g., Consul, Tribune, Governor).
+
+**Removal Rationale:**
+- `Position` redundantly duplicates semantics already expressible via `Institution` + typed edge properties
+- In CIDOC-CRM terms, holding an office is an **E7_Activity** (appointment/tenure event), not a distinct entity
+- Biographic facet (Section 3.3) models office-holding as career sequence on the Human node
+
+**Migration Guide:**
+- **Option A (preferred):** Use rich `HELD_POSITION` edge on Institution with properties: `{position_type, start_date, end_date, source}`
+- **Option B:** Model office-holding as typed `Event` with `event_type: "appointment"`
+
+---
+
+### **3.1.11a ConditionState**
+
+**Node Label:** `:ConditionState`
+
+**Purpose:** Represents time-scoped condition observations of artifacts. Enables tracking condition changes over time without full object versioning (mirrors PlaceVersion and PeriodVersion patterns).
 
 **Required Properties:**
-- `entity_id` (string): Internal unique identifier (e.g., `"pos_000777"`)
-- `label` (string): Position name (e.g., `"Consul"`)
-- `entity_type` (string): Always `"Position"`
+- `entity_id` (string): Internal ID (e.g., `"cond_000123"`)
+- `state_label` (string): Condition description (e.g., `"mint"`, `"worn"`, `"corroded"`, `"overstruck"`)
+- `entity_type` (string): Always `"ConditionState"`
 
 **Optional Properties:**
-- `position_type` (string): `"political"`, `"military"`, `"religious"`, `"administrative"`
+- `description` (string): Detailed condition notes
+- `assessment_date` (ISO 8601 string): When this condition was observed/recorded
+- `source` (string): Museum catalog, publication, or assessment source
+- `method` (string): Assessment method (e.g., `"visual"`, `"XRF"`, `"X-ray"`, `"conservation report"`)
+- `confidence` (float 0-1): Confidence level of assessment
 
-**Required Edges:**
-- `HELD_BY` â†’ `:Human`
-- `DURING` â†’ `:Period` or `:Year`
+**Edges:**
+- `APPLIES_TO` -> `:Object` (which object this condition describes)
+- `ASSESSED_DURING` -> `:Period` or `:Year` (when the observation was made)
+- `SUBJECT_OF` -> `:Claim` (claims about condition)
 
-**Optional Edges:**
-- `IN_ORGANIZATION` â†’ `:Organization`
-- `AT_LOCATION` â†’ `:Place`
+**Usage Pattern:**
+- Object node remains stable identity
+- Each ConditionState is a time-bound observation with provenance
+- Query: (obj:Object)-[:HAS_CONDITION_STATE]->(cond:ConditionState) to track state history
+- Optional: Denormalize current best-known condition on Object as `current_condition` property (derived from latest validated ConditionState)
 
 ---
 
@@ -1018,15 +1052,28 @@ Policy lock-ins:
 
 **Node Label:** `:Material`
 
-**Purpose:** Represents physical materials used in artifacts, buildings, etc.
+**Purpose:** Represents physical materials (E57_Material in CIDOC-CRM). Critical for artifact composition tracking and material culture queries.
 
 **Required Properties:**
-- `entity_id` (string): Internal unique identifier (e.g., `"mat_000888"`)
-- `label` (string): Material name (e.g., `"Marble"`, `"Bronze"`, `"Papyrus"`)
+- `entity_id` (string): Internal ID (e.g., `"mat_000123"`)
+- `label` (string): Canonical name (e.g., `"gold"`, `"marble"`)
 - `entity_type` (string): Always `"Material"`
 
-**Optional Edges:**
-- `USED_IN` â†’ `:Object`
+**Authority / Classification Properties:**
+- `aat_id` (string): Getty AAT ID (primary authority for materials)
+- `aat_pref_label` (string): AAT preferred label
+- `aat_broader` (array): Parent AAT IDs (SKOS hierarchy, one direction)
+- `wikidata_qid` (string, optional): Wikidata material item
+- `bm_material_id` (string, optional): British Museum materials thesaurus ID
+
+**Type Flags (denormalized for query performance):**
+- `material_family` (string): "metal", "stone", "ceramic", "glass", "organic", "composite"
+- `metal_type` (string, optional): "precious", "base" (for gold/silver vs iron/bronze)
+- `period_relevance` (array): e.g., ["Roman Republic", "Hellenistic"]
+
+**Edges:**
+- `BROADER_THAN` -> `:Material` (SKOS hierarchy; store one direction only)
+- `USED_IN` -> `:Object` (inverse of Object-MADE_OF, optional convenience edge)
 
 ---
 
@@ -1034,51 +1081,56 @@ Policy lock-ins:
 
 **Node Label:** `:Object`
 
-**Purpose:** Represents artifacts, tools, weapons, coins, inscriptions, art objects.
+**Purpose:** Represents artifacts, tools, weapons, coins, inscriptions, sculptures (E22_Human-Made_Object in CIDOC-CRM). Critical for archaeological and material-culture reasoning.
 
 **Required Properties:**
-- `entity_id` (string): Internal unique identifier (e.g., `"obj_000999"`)
-- `label` (string): Object description (e.g., `"Denarius of Caesar"`)
+- `entity_id` (string): Internal ID (e.g., `"obj_000999"`)
+- `label` (string): Short description (e.g., `"Denarius of Caesar"`)
 - `entity_type` (string): Always `"Object"`
 
-**Optional Properties:**
-- `object_type` (string): `"coin"`, `"weapon"`, `"tool"`, `"inscription"`, `"sculpture"`, `"pottery"`
-- `qid` (string): Wikidata QID
+**Optional Descriptive Properties:**
+- `object_type` (string): "coin", "weapon", "tool", "inscription", "sculpture", "vessel", etc.
+- `date_from` / `date_to` (ISO 8601 strings): Object production/use range
+- `cidoc_crm_class` (string): Usually `"E22_Human-Made_Object"`
 
-**Authority Alignment:**
-- `cidoc_crm_class`: `"E22_Human-Made_Object"`
+**Authority / Classification Properties:**
+- `aat_id` (string): AAT object-type ID (primary authority)
+- `aat_pref_label` (string): AAT preferred label
+- `aat_broader` (array): AAT hierarchy
+- `wikidata_qid` (string, optional): Wikidata item
+- `bm_object_type_id` (string, optional): British Museum object type
+- `backbone_fast` (array): FAST topics  (e.g., "Coins, Roman")
+- `backbone_lcc` (string, optional): LCC classification
 
-**Optional Edges:**
-- `MADE_OF` â†’ `:Material`
-- `FOUND_AT` â†’ `:Place`
-- `DEPICTS` â†’ `:Human`, `:Event`
-- `CREATED_BY` â†’ `:Human`
-- `DATED_TO` â†’ `:Period`, `:Year`
+**Authority Precedence:** AAT -> BM/FISH -> Wikidata -> local
+
+**Edges:**
+- `MADE_OF` -> `:Material` (multi-edge; edge props: role, fraction, source, confidence)
+- `CREATED_BY` -> `:Human` or `:Organization`
+- `FOUND_AT` -> `:Place` or `:PlaceVersion`
+- `DATED_TO` -> `:Period` and/or `:Year`
+- `DEPICTS` -> `:Human` / `:Event` (iconography)
+- `HAS_SUBJECT_CONCEPT` -> `:SubjectConcept` (classification)
+- `HAS_CONDITION_STATE` -> `:ConditionState` (time-scoped condition observations)
+- `SUBJECT_OF` -> `:Claim` (claims about the object)
 
 ---
 
-### **3.1.14 Activity**
+### **3.1.14 Activity (DEPRECATED)**
 
-**Node Label:** `:Activity`
+[DEPRECATED as of 2026-02-16. Do not use for new implementations.]
 
-**Purpose:** Represents actions, rituals, practices, occupations (abstract patterns of behavior).
+**Previous Purpose:** Represented actions, rituals, practices, occupations (abstract patterns of behavior).
 
-**Required Properties:**
-- `entity_id` (string): Internal unique identifier (e.g., `"act_000123"`)
-- `label` (string): Activity name (e.g., `"Triumph"`, `"Trade"`, `"Agriculture"`)
-- `entity_type` (string): Always `"Activity"`
+**Removal Rationale:**
+- Conflates two distinct concepts: things-in-the-world vs. concepts-about-the-world
+- Concrete activities (specific triumph, specific trade mission) should route to Event nodes with appropriate action_type
+- Abstract activity patterns ("Agriculture as a practice", "the institution of Triumph") should route to SubjectConcept nodes
 
-**Optional Properties:**
-- `activity_type` (string): `"ritual"`, `"economic"`, `"military"`, `"social"`, `"political"`
-
-**Authority Alignment:**
-- `cidoc_crm_class`: `"E7_Activity"`
-
-**Optional Edges:**
-- `PERFORMED_BY` â†’ `:Human`, `:Organization`
-- `OCCURRED_AT` â†’ `:Place`
-- `DURING` â†’ `:Period`
-- `HAS_SUBJECT_CONCEPT` â†’ `:SubjectConcept`
+**Migration Guide:**
+- **Concrete instances** -> Event with event_type and action_type properties
+- **Abstract patterns** -> SubjectConcept with classification properties (e.g., facet_tag: "occupational")
+- Example: A specific triumphus = Event; "Triumph as an institution" = SubjectConcept
 
 ---
 
