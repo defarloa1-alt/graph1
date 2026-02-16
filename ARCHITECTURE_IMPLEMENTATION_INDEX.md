@@ -1,18 +1,54 @@
 # Chrystallum Architecture Implementation Index
 
-**Last Updated:** 2026-02-14  
+**Last Updated:** 2026-02-15  
 **Status:** Consolidated-Only Crosswalk (canonical)
 
 ---
 
 ## Canonical Architecture Source
 
-Use only:
-- `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`
+**PRIMARY SOURCE:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (v3.2)
+- 7,698 lines covering complete system architecture
+- Sections 1-12 (Executive, Ontology, Implementation, Governance)
+- Appendices A-N (Registries, Taxonomies, Alignment Strategies)
+- **DO NOT DUPLICATE** content from this file—reference section numbers instead
 
 Deprecated as architecture sources: legacy split documents.
 
 Appendices remain part of the consolidated file, not separate source documents.
+
+---
+
+## Agent Implementation Progress
+
+**Step-by-Step Agent Build-Out (2026-02-15):**
+
+| Step | Status | Purpose | Methods Added | Documentation |
+|------|--------|---------|---------------|---------------|
+| **Step 1** | ✅ Complete | Architecture understanding via meta-schema | 8 methods | STEP_1_COMPLETE.md |
+| **Step 2** | ✅ Complete | State introspection for stateless LLMs | 8 methods | STEP_2_COMPLETE.md |
+| **Step 3** | ✅ Complete | Federation-driven discovery (Wikidata) | 6 methods | STEP_3_COMPLETE.md |
+| **Step 3.5** | ✅ Complete | Completeness validation (841 entities) | 2 methods | PROPERTY_PATTERN_MINING_INTEGRATION.md |
+| **Step 4** | ✅ Complete | Ontology alignment (CIDOC-CRM/CRMinf) | 4 methods | STEP_4_COMPLETE.md |
+| **Step 5** | ✅ Complete | Operational Modes (Initialize → Proposal → Training) | 3 methods | STEP_5_COMPLETE.md, STEP_5_SUBJECT_ONTOLOGY_PROPOSAL.md |
+| **Step 6** | 🎯 Design | Wikipedia Training (Article discovery → Claim extraction) | 1 method | STEP_6_DESIGN_WIKIPEDIA_TRAINING.md |
+| **Step 5+** | ⏸️ Pending | Query modes (Schema/Data) + SubjectConceptAgent | TBD | STEP_5_COMPLETE.md |
+
+**Total Methods:** 31 across 5 operational modes (Steps 1-4 + Step 5 Initialize/Proposal/Training)  
+**System Prompts Version:** 2026-02-15-step5 (17 facets updated)  
+**Agent Framework:** `scripts/agents/facet_agent_framework.py` (~3,000 lines + Subject Ontology Proposal method)
+
+**NEW (2026-02-15): SCA Two-Phase Workflow**
+- **Phase 1: Un-Faceted Exploration** (Initialize + Ontology Proposal)
+  * Just hunting nodes and edges (NO facet lens)
+  * Creates shell nodes via hierarchy traversal + backlinks
+  * Outputs proposed ontology → **APPROVAL POINT**
+- **Phase 2: Facet-by-Facet Analysis** (Training Mode)
+  * SCA sequentially adopts facet roles (military → political → cultural → etc.)
+  * Reads same claims from different facet perspectives
+  * 5x claim richness from multi-facet analysis
+- **Purple to mollusk** scenarios enabled by un-faceted discovery
+- See: [SCA_TWO_PHASE_WORKFLOW.md](SCA_TWO_PHASE_WORKFLOW.md), [SCA_SEED_AGENT_PATTERN.md](SCA_SEED_AGENT_PATTERN.md)
 
 ---
 
@@ -28,6 +64,7 @@ Appendices remain part of the consolidated file, not separate source documents.
 | **Section 4.4: Geographic Authorities** | `Geographic/` assets, place normalization scripts | TGN/Pleiades/GeoNames integration |
 | **Section 4.4.1: Place/PlaceVersion (Chrystallum)** | `CHRYSTALLUM_PLACE_SEEDING_REQUIREMENTS.md`, `PLACE_VERSION_NEO4J_SCHEMA.cypher`, `CHRYSTALLUM_PHASE2_INTEGRATION.md` | Temporal-geographic modeling with boundary versioning (deferred to post-Phase-2 analysis) |
 | **Section 4.5: Wikidata Integration** | `scripts/tools/wikidata_fetch_all_statements.py`, `scripts/tools/wikidata_statement_datatype_profile.py`, `scripts/tools/wikidata_backlink_harvest.py`, `scripts/tools/wikidata_backlink_profile.py` | Federation + backlink pipeline |
+| **Section 4.5.1: CIDOC-CRM/CRMinf Alignment** | `CIDOC/cidoc_wikidata_mapping_validated.csv`, `scripts/agents/facet_agent_framework.py` (Step 4 methods), `STEP_4_COMPLETE.md` | Ontology alignment for museum/archive interoperability (105 mappings) |
 | **Section 5: Agent Architecture** | `md/Agents/` prompts/specs, orchestration docs in `md/Architecture/` | Domain routing + specialization |
 | **Section 6: Claims Layer** | `Neo4j/schema/01_schema_constraints.cypher` (Claim constraints), claim proposal artifacts in `JSON/wikidata/proposals/` | claim_id + cipher + lifecycle |
 | **Section 7: Relationship Layer** | `Relationships/relationship_types_registry_master.csv`, `CSV/project_p_values_canonical.csv` | canonical relation typing + P-value alignment |
@@ -75,6 +112,21 @@ Appendices remain part of the consolidated file, not separate source documents.
 - `scripts/tools/wikidata_backlink_profile.py`
 - `scripts/tools/wikidata_generate_claim_subgraph_proposal.py`
 
+### CIDOC-CRM/CRMinf Ontology Alignment (Step 4)
+- `CIDOC/cidoc_wikidata_mapping_validated.csv` (105 mappings)
+- `CIDOC/CIDOC-CRM_Wikidata_Alignment_Strategy.md` (alignment strategy)
+- `scripts/agents/facet_agent_framework.py` (Step 4 methods: enrich_with_ontology_alignment, enrich_claim_with_crminf)
+- `STEP_4_COMPLETE.md` (Step 4 documentation)
+
+### Agent Framework Documentation
+- `STEP_1_COMPLETE.md` (Architecture understanding)
+- `STEP_2_COMPLETE.md` (State introspection)
+- `STEP_3_COMPLETE.md` (Federation discovery)
+- `PROPERTY_PATTERN_MINING_INTEGRATION.md` (Step 3.5 completeness validation)
+- `STEP_4_COMPLETE.md` (Ontology alignment)
+- `AGENT_SESSION_QUICK_REFERENCE.md` (Quick reference for all 28 methods)
+- `facet_agent_system_prompts.json` (version 2026-02-15-step4)
+
 ### Canonical registries
 - `Relationships/relationship_types_registry_master.csv`
 - `CSV/project_p_values_canonical.csv`
@@ -98,3 +150,11 @@ When architecture changes, update in this order:
 2. Neo4j schema/scripts
 3. This index file
 4. `AI_CONTEXT.md` and `Change_log.py`
+
+**Recent Updates:**
+- **2026-02-15:** Step 4 complete (CIDOC-CRM/CRMinf ontology alignment integrated)
+- **2026-02-15:** Step 3.5 complete (Property pattern mining from 841 entities)
+- **2026-02-15:** Step 3 complete (Federation-driven discovery with Wikidata)
+- **2026-02-15:** Step 2 complete (State introspection for stateless LLMs)
+- **2026-02-15:** Step 1 complete (Meta-schema graph for architecture understanding)
+- **2026-02-14:** Architecture consolidated to single source document

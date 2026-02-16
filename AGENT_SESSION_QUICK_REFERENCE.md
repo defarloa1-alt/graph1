@@ -1,7 +1,9 @@
 # Agent Session Quick Reference
 **For:** Chrystallum Facet Agents  
 **Date:** February 15, 2026  
-**Steps Implemented:** 1 (Architecture) + 2 (Current State)
+**Steps Implemented:** 1 (Architecture) + 2 (State) + 3 (Federation) + 3.5 (Validation) + 4 (Ontology)
+
+**Architecture Reference:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (authoritative spec)
 
 ## Critical: Session Initialization (REQUIRED)
 
@@ -28,7 +30,7 @@ print(f"   Schema version: {context['schema_version']['node_labels']} labels")
 
 ---
 
-## Complete Agent Workflow (Steps 1 + 2)
+## Complete Agent Workflow (Steps 1-4)
 
 ### Phase 1: Understand Architecture (Step 1)
 
@@ -100,6 +102,98 @@ for claim in claims:
     print(f"    Status: {claim['status']}, Confidence: {claim['confidence']:.2f}")
 ```
 
+### Phase 3: Bootstrap from Wikidata (Step 3)
+
+**Q: How do I initialize on a new topic quickly?**
+```python
+# Bootstrap from Wikidata QID (e.g., Q17167 = Roman Republic)
+result = agent.bootstrap_from_qid(
+    qid='Q17167',
+    depth=1,                # How many hierarchy levels to traverse
+    auto_submit_claims=False  # Review before submitting
+)
+
+print(f"✓ Bootstrapped from Wikidata")
+print(f"  Nodes created: {result['nodes_created']}")
+print(f"  Relationships discovered: {result['relationships_discovered']}")
+print(f"  Claims generated: {result['claims_generated']}")
+print(f"  Completeness score: {result.get('completeness_score', 'N/A')}")  # Step 3.5
+print(f"  CIDOC-CRM class: {result.get('cidoc_crm_class', 'N/A')}")  # Step 4
+```
+
+**Q: What if I just need entity data?**
+```python
+# Fetch Wikidata entity without creating nodes
+entity = agent.fetch_wikidata_entity('Q17167')
+print(f"Label: {entity['label']}")
+print(f"Description: {entity['description']}")
+print(f"Statements: {entity['statement_count']}")
+print(f"Claims: {list(entity['claims'].keys())}")
+```
+
+**Q: How do I enrich an existing node with Wikidata?**
+```python
+# Node exists but missing Wikidata alignment
+result = agent.enrich_node_from_wikidata(
+    node_id='abc123def456',
+    qid='Q17167',
+    create_if_missing=True
+)
+
+print(f"Status: {result['status']}")
+print(f"Properties added: {result['properties_added']}")
+```
+
+**Q: How do I discover related entities?**
+```python
+# Traverse Layer 2.5 hierarchy properties
+hierarchy = agent.discover_hierarchy_from_entity(
+    qid='Q17167',
+    depth=2,            # Depth 1=immediate, 2=moderate, 3=comprehensive
+    limit_per_property=50  # Prevent explosion
+)
+
+print(f"Discovered {hierarchy['total_discovered']} entities")
+for entity in hierarchy['discovered_entities'][:5]:
+    print(f"  {entity['label']} ({entity['qid']}) via {entity['property']}")
+```
+
+**Q: How do I auto-generate claims from Wikidata?**
+```python
+# Generate claims from Wikidata statements
+result = agent.generate_claims_from_wikidata(
+    qid='Q17167',
+    create_nodes=True,   # Create target nodes automatically
+    auto_submit=False    # Review before submitting
+)
+
+print(f"Generated {result['claims_generated']} claims")
+for claim in result['claims']:
+    print(f"  {claim['label']}")
+    print(f"    Confidence: {claim['confidence']:.2f}")
+    print(f"    Authority: {claim['authority_source']}")
+    
+    # Submit if high confidence
+    if claim['confidence'] >= 0.90:
+        agent.pipeline.ingest_claim(claim)
+```
+
+**Q: What hierarchy properties are traversed?**
+```python
+# Layer 2.5 properties for semantic inference
+layer25 = agent.get_layer25_properties()
+for prop in layer25:
+    print(f"{prop['wikidata_property']}: {prop['property_name']}")
+    print(f"  → {prop['cypher_relationship']} relationship")
+
+# Common properties:
+# - P31 (instance of) → INSTANCE_OF
+# - P279 (subclass of) → SUBCLASS_OF
+# - P361 (part of) → PART_OF
+# - P101 (field of work) → FIELD_OF_WORK
+# - P921 (main subject) → MAIN_SUBJECT
+```
+
 **Q: Are there claims about relationships between nodes?**
 ```python
 rel_claims = agent.find_claims_for_relationship(
@@ -131,7 +225,7 @@ print(f"   Pending: {contrib['pending_claims']}")
 print(f"   Rejected: {contrib['rejected_claims']}")
 ```
 
-### Phase 3: Validate Before Proposing
+### Phase 4: Validate Before Proposing (Steps 1-4)
 
 **Before proposing a new claim, ALWAYS:**
 
@@ -154,10 +248,21 @@ existing = [n['label'].lower() for n in subgraph['nodes']]
 proposed_label = "Battle of Pharsalus"
 if proposed_label.lower() in existing:
     print(f"WARNING: {proposed_label} already exists!")
-    
-    # Get the node
-    node = next(n for n in subgraph['nodes'] if n['label'].lower() == proposed_label.lower())
-    
+    return
+
+# 3. Validate entity completeness (Step 3.5)
+entity = agent.fetch_wikidata_entity('Q28048')
+completeness = agent.validate_entity_completeness(entity, 'Q178561')
+if completeness['score'] < 0.60:
+    print(f"ERROR: Entity quality too low ({completeness['score']:.1%})")
+    return
+
+# 4. Check CIDOC-CRM alignment (Step 4)
+entity_enriched = agent.enrich_with_ontology_alignment(entity)
+cidoc_class = entity_enriched['ontology_alignment']['cidoc_crm_class']
+print(f"CIDOC-CRM class: {cidoc_class}")  # E5_Event, E21_Person, etc.
+
+# 5. Check for similar pending claims (Step 2)
     # Check provenance
     prov = agent.get_node_provenance(node['id_hash'])
     print(f"Created by: {prov['created_by_claim']}")
@@ -169,7 +274,29 @@ if proposed_label.lower() in existing:
     # Decision: modify existing or skip?
     return  # Don't duplicate!
 
-# 3. Check for similar pending claims (Step 2)
+# 3. Check if entity already exists (Step 2)
+subgraph = agent.get_subjectconcept_subgraph(limit=1000)
+existing = [n['label'].lower() for n in subgraph['nodes']]
+
+proposed_label = "Battle of Pharsalus"
+if proposed_label.lower() in existing:
+    print(f"WARNING: {proposed_label} already exists!")
+    return
+
+# 4. Validate entity completeness (Step 3.5 - NEW)
+entity = agent.fetch_wikidata_entity('Q28048')
+completeness = agent.validate_entity_completeness(entity, 'Q178561')
+if completeness['score'] < 0.60:
+    print(f"ERROR: Entity quality too low ({completeness['score']:.1%})")
+    return
+
+# 5. Check CIDOC-CRM alignment (Step 4 - NEW)
+entity_enriched = agent.enrich_with_ontology_alignment(entity)
+cidoc_class = entity_enriched['ontology_alignment']['cidoc_crm_class']
+if not cidoc_class:
+    print("WARNING: No CIDOC-CRM mapping available")
+
+# 6. Check for similar pending claims (Step 2)
 pending = agent.list_pending_claims(facet='military')
 similar = [c for c in pending if "pharsalus" in c['label'].lower()]
 if similar:
@@ -178,7 +305,7 @@ if similar:
         print(f"  {claim['source_agent']}: {claim['label']}")
     # Decision: wait or proceed?
 
-# 4. Validate claim structure (Step 1)
+# 7. Validate claim structure (Step 1)
 test_claim = {
     'claim_id': 'test',
     'cipher': 'test',
@@ -191,7 +318,7 @@ if not is_valid:
     print(f"ERROR: Claim validation failed: {errors}")
     return
 
-# 5. Now safe to propose
+# 8. Now safe to propose
 print("✓ All validations passed, proposing claim...")
 agent.propose_claim(...)
 ```
@@ -333,9 +460,9 @@ print(f"Agents involved: {history['agents_involved']}")
 
 ---
 
-## Quick Reference: All Methods
+## Quick Reference: All Methods (Steps 1-4)
 
-### Step 1: Schema Introspection
+### Step 1: Schema Introspection (8 methods)
 - `introspect_node_label(label_name)` - Label definition
 - `discover_relationships_between(source, target)` - Valid relationships
 - `get_required_properties(label_name)` - Required properties
@@ -344,7 +471,23 @@ print(f"Agents involved: {history['agents_involved']}")
 - `validate_claim_structure(claim_dict)` - Validate before proposal
 - `get_layer25_properties()` - Semantic inference properties
 
-### Step 2: Current State Introspection
+### Step 3: Federation Discovery (6 methods)
+- **`bootstrap_from_qid(qid, depth, auto_submit)`** - High-level Wikidata initialization
+- `fetch_wikidata_entity(qid)` - Fetch entity from Wikidata API
+- `enrich_node_from_wikidata(node_id, qid)` - Create/update with Wikidata properties
+- `discover_hierarchy_from_entity(qid, depth)` - Traverse P31/P279/P361 hierarchies
+- `generate_claims_from_wikidata(qid)` - Auto-generate claims from statements
+- `_map_wikidata_property_to_relationship(prop)` - Internal P-code mapping
+
+### Step 3.5: Completeness Validation (2 methods - NEW)
+- **`validate_entity_completeness(entity, entity_type)`** - Score entity quality 0.0-1.0
+- `_load_property_patterns()` - Load empirical patterns from 841-entity sample
+
+### Step 4: Semantic Enrichment & Ontology Alignment (4 methods - NEW)
+- **`enrich_with_ontology_alignment(entity)`** - Add CIDOC-CRM classes and properties
+- **`enrich_claim_with_crminf(claim)`** - Add CRMinf belief tracking
+- `generate_semantic_triples(qid, include_cidoc, include_crminf)` - Full semantic triples
+- `_load_cidoc_crosswalk()` - Load CIDOC/Wikidata/CRMinf mappings (105 mappings) (8 methods)
 - **`get_session_context()`** - **CALL FIRST!** Complete session snapshot
 - `get_subjectconcept_subgraph(limit)` - Current nodes and relationships
 - `find_claims_for_node(node_id)` - Claims about a node
@@ -354,10 +497,30 @@ print(f"Agents involved: {history['agents_involved']}")
 - `list_pending_claims(facet, min_confidence, limit)` - Pending claims
 - `find_agent_contributions(agent_id, limit)` - Agent statistics
 
+### Step 3: Federation Discovery (6 methods)
+- **`bootstrap_from_qid(qid, depth, auto_submit)`** - High-level Wikidata initialization
+- `fetch_wikidata_entity(qid)` - Fetch entity from Wikidata API
+- `enrich_node_from_wikidata(node_id, qid)` - Create/update with Wikidata properties
+- `discover_hierarchy_from_entity(qid, depth)` - Traverse P31/P279/P361 hierarchies  
+- `generate_claims_from_wikidata(qid)` - Auto-generate claims from statements
+- `_map_wikidata_property_to_relationship(prop)` - Internal P-code mapping
+
+### Step 3.5: Completeness Validation (2 methods - NEW)
+- **`validate_entity_completeness(entity, entity_type)`** - Score entity quality 0.0-1.0
+- `_load_property_patterns()` - Load empirical patterns from 841-entity sample
+
+### Step 4: Semantic Enrichment & Ontology Alignment (4 methods - NEW)
+- **`enrich_with_ontology_alignment(entity)`** - Add CIDOC-CRM classes and properties  
+- **`enrich_claim_with_crminf(claim)`** - Add CRMinf belief tracking
+- `generate_semantic_triples(qid, include_cidoc, include_crminf)` - Full semantic triples
+- `_load_cidoc_crosswalk()` - Load CIDOC/Wikidata/CRMinf mappings (105 mappings)
+
+**Total Methods:** 28 across 4 completed steps
+
 ---
 
 ## Next Steps
 
-**Step 3+:** TBD by user (query decomposition? Cypher generation? validation workflow?)
+**Step 5+:** TBD by user (query decomposition? multi-agent debate? RDF export? CIDOC validation?)
 
-**For Now:** Practice combining Step 1 (schema) + Step 2 (state) for informed claim proposals.
+**For Now:** Practice combining Steps 1-4 for informed, high-quality, ontology-aligned claim proposals.

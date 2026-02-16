@@ -24,7 +24,19 @@ Maintained by LLM agents to preserve context across sessions.
 Chrystallum Knowledge Graph
 Goal: Build a federated historical knowledge graph using Neo4j, Python, and LangGraph.
 
-## Latest Update: Step 2 Complete - Current State Introspection & Claim Tracking (2026-02-15)
+## PRIMARY ARCHITECTURE SOURCE
+
+**Canonical Reference:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (v3.2)
+- **Authoritative specification** for all architecture decisions
+- 7,698 lines covering Entity Layer, Subject Layer, Agent Architecture, Claims, Relationships
+- Sections 1-12 + Appendices A-N
+- **DO NOT DUPLICATE** architecture content here—reference sections instead
+
+**Implementation Index:** `ARCHITECTURE_IMPLEMENTATION_INDEX.md` (maps sections → implementation files)
+
+---
+
+## Latest Update: Step 4 Complete - Semantic Enrichment & CIDOC-CRM/CRMinf Ontology Alignment (2026-02-15)
 
 ### Critical Problem: LLMs Don't Persist Between Sessions
 **User Requirement:** "the llm cannot be counted on to persist between sessions, and it needs to know what the subgraph for the SubjectConcept currently looks like and whether an external SubjectConcept agent has made a claim against any of those nodes and edges"
@@ -59,6 +71,174 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
    - Collaborative awareness guidance
    - Version bumped to `2026-02-15-step2`
    - Script: `scripts/update_facet_prompts_step2.py` (automation)
+
+---
+
+### Critical Problem: No Ontology Alignment for Interoperability
+**User Requirement:** "the llm knows the critical schemas and how to implement them - the always tag something as much as possible with qid, property and value, cidoc crm and minf also utilizing a crosswalk i recall we made for cidoc and minf to wiki"
+
+**Solution:** Automatic CIDOC-CRM (cultural heritage standard) and CRMinf (belief/argumentation) ontology alignment on all entities and claims.
+
+**File:** `STEP_4_COMPLETE.md` (comprehensive documentation)
+
+**What Was Built:**
+
+1. **Semantic Enrichment Methods** (4 new methods in `scripts/agents/facet_agent_framework.py`)
+   - `_load_cidoc_crosswalk()` - Load 105 validated Wikidata↔CIDOC-CRM↔CRMinf mappings
+   - `enrich_with_ontology_alignment(entity)` - Add CIDOC-CRM classes to entities (E21_Person, E5_Event, E53_Place)
+   - `enrich_claim_with_crminf(claim)` - Add CRMinf belief tracking (I2_Belief, J4_that, J5_holds_to_be)
+   - `generate_semantic_triples(qid)` - Full QID+Property+Value+CIDOC+CRMinf alignment
+
+2. **CIDOC-CRM Crosswalk** (existing file utilized)
+   - Source: `CIDOC/cidoc_wikidata_mapping_validated.csv` (105 mappings)
+   - Entity mappings: Q5→E21_Person, Q1656682→E5_Event, Q82794→E53_Place, Q43229→E74_Group
+   - Property mappings: P276→P7_took_place_at, P710→P11_had_participant, P31→P2_has_type
+   - CRMinf mappings: Claim→I2_Belief, confidence→J5_holds_to_be, proposition→J4_that
+
+3. **Automatic Integration**
+   - Modified `enrich_node_from_wikidata()`: Adds `cidoc_crm_class` property to all SubjectConcept nodes
+   - Modified `generate_claims_from_wikidata()`: Adds `crminf_alignment` section to all claims
+   - Bootstrap workflow now enriches automatically during federation discovery
+
+4. **Updated System Prompts** (`facet_agent_system_prompts.json`)
+   - All 17 facet prompts now include "SEMANTIC ENRICHMENT & ONTOLOGY ALIGNMENT (STEP 4)" section
+   - CIDOC-CRM class mappings documented
+   - CRMinf belief tracking model explained
+   - Semantic triple generation examples
+   - Version bumped to `2026-02-15-step4`
+   - Script: `scripts/update_facet_prompts_step4.py` (automation)
+
+**Benefits:**
+- Museum/archive interoperability (CIDOC-CRM ISO 21127 standard)
+- Belief/argumentation tracking (CRMinf ontology)
+- RDF/OWL export capability via semantic triples
+- Multi-ontology queries (Wikidata OR CIDOC OR Chrystallum)
+
+**Node Storage Example:**
+```cypher
+(n:SubjectConcept {
+  wikidata_qid: 'Q28048',
+  cidoc_crm_class: 'E5_Event',
+  cidoc_crm_confidence: 'High'
+})
+```
+
+**Claim Enrichment Example:**
+```python
+{
+  "crminf_alignment": {
+    "crminf_class": "I2_Belief",
+    "J4_that": "Battle of Pharsalus occurred in 48 BCE",
+    "J5_holds_to_be": 0.90,
+    "source_agent": "military_facet",
+    "inference_method": "wikidata_federation"
+  }
+}
+```
+
+---
+
+## Step 3.5 Complete - Completeness Validation & Property Pattern Mining (2026-02-15)
+
+### Problem: Blind Bootstrap Without Quality Checks
+**User Requirement:** "option a but you need a bigger sample i think to validate patterns" (property pattern mining experiment)
+
+**Solution:** Mine empirical property patterns from 841 historical entities to validate Wikidata entity completeness.
+
+**File:** `PROPERTY_PATTERN_MINING_INTEGRATION.md` (comprehensive documentation)
+
+**What Was Built:**
+
+1. **Property Pattern Mining** (`Python/wikidata_property_pattern_miner.py`)
+   - Mined 841 entities from 12 historical types (battles, humans, cities, countries, events, etc.)
+   - Statistical validation: Mandatory properties (≥85%), Common (50-85%), Optional (<50%)
+   - Output: `property_patterns_large_sample_20260215_174051.json`
+
+2. **Completeness Validation Methods** (2 new methods in `scripts/agents/facet_agent_framework.py`)
+   - `_load_property_patterns()` - Load empirical patterns from JSON
+   - `validate_entity_completeness(entity, entity_type)` - Score entity quality (0.0-1.0)
+
+3. **Bootstrap Integration**
+   - Modified `bootstrap_from_qid()`: Rejects entities with completeness score <0.60
+   - Prevents low-quality entities from entering the graph
+   - Logs validation results for transparency
+
+4. **Updated System Prompts** (`facet_agent_system_prompts.json`)
+   - All 17 facet prompts include "COMPLETENESS VALIDATION (STEP 3.5)" section
+   - Version: `2026-02-15-step3.5`
+   - Script: `scripts/update_facet_prompts_step3_5.py`
+
+**Sample Results:**
+- **Battle entities:** 91% have P276 (location), 88% have P361 (part of war)
+- **Human entities:** 100% have P19/P21/P27 (birthplace/sex/citizenship)
+- **City entities:** 100% have P17/P625 (country/coordinates)
+
+---
+
+## Step 3 Complete - Federation-Driven Discovery & Automatic Claim Generation (2026-02-15)
+
+### Critical Problem: Manual Entity Creation Bottleneck
+**User Requirement:** "when first instantiated, create the qid+all properties from the wikidata page and concat to id. at this point it could trawl any hierarchies from the properties and start making claims about newly discovered nodes and relationships"
+
+**Solution:** Automatic Wikidata integration enabling agents to bootstrap knowledge, traverse hierarchies, and auto-generate claims.
+
+**File:** `STEP_3_COMPLETE.md` (comprehensive documentation)
+
+**What Was Built:**
+
+1. **Federation Discovery Methods** (6 new methods in `scripts/agents/facet_agent_framework.py`)
+   - **`bootstrap_from_qid(qid, depth, auto_submit)`** - High-level initialization from Wikidata QID
+   - `fetch_wikidata_entity(qid)` - API integration for entity retrieval
+   - `enrich_node_from_wikidata(node_id, qid)` - Create/update nodes with Wikidata properties
+   - `discover_hierarchy_from_entity(qid, depth)` - Traverse P31/P279/P361 hierarchies
+   - `generate_claims_from_wikidata(qid)` - Auto-generate claims from statements
+   - `_map_wikidata_property_to_relationship(property)` - P-code to relationship mapping
+
+2. **Wikidata API Integration**
+   - Endpoint: `https://www.wikidata.org/w/api.php`
+   - Fetches: labels, descriptions, aliases, all claims/statements
+   - Node ID generation: `sha256(f"wikidata:{qid}")[:16]`
+   - Layer 2.5 properties: P31, P279, P361, P101, P2578, P921, P1269
+
+3. **Automatic Hierarchy Traversal**
+   - Breadth-first search with configurable depth (1-3 recommended)
+   - Discovers related entities through semantic relationships
+   - Prevents explosion via per-property limits
+   - Tracks visited entities to avoid cycles
+
+4. **Auto-Claim Generation**
+   - Transforms Wikidata statements → Chrystallum claims
+   - High confidence (0.90) for Layer 2 Federation Authority
+   - Complete provenance: `{source_qid, target_qid, property}`
+   - Optional auto-submission or review-before-submit
+
+5. **Updated System Prompts** (`facet_agent_system_prompts.json`)
+   - All 17 facet prompts now include "FEDERATION-DRIVEN DISCOVERY (STEP 3)" section
+   - Bootstrap workflows documented
+   - Hierarchy traversal strategies
+   - Auto-claim generation guidance
+   - Version bumped to `2026-02-15-step3`
+   - Script: `scripts/update_facet_prompts_step3.py` (automation)
+
+**Example Bootstrap Workflow:**
+```python
+# Initialize agent on Roman Republic
+result = agent.bootstrap_from_qid('Q17167', depth=2, auto_submit=False)
+print(f"Created {result['nodes_created']} nodes")
+print(f"Generated {result['claims_generated']} claims")
+
+# Review and submit claims
+for claim in result['claims']:
+    if claim['confidence'] >= 0.90:
+        agent.pipeline.ingest_claim(claim)
+```
+
+**Integration with Previous Steps:**
+- Uses `get_layer25_properties()` (Step 1) to know which properties to traverse
+- Uses `get_session_context()` (Step 2) to avoid duplicate node creation
+- Validates schema via `introspect_node_label()` (Step 1) before creating claims
+- Validated by `validate_entity_completeness()` (Step 3.5) before node creation
+- Enriched with `enrich_with_ontology_alignment()` (Step 4) for CIDOC-CRM alignment
 
 **Claim Structure Reference:**
 ```cypher
@@ -101,7 +281,14 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 - ✅ System prompts updated (17 facets)
 - ⏸️ Integration tests (awaiting Neo4j deployment)
 
-**Next Steps:** User will guide Step 3-N of agent process review.
+**Status:**
+- ✅ Steps 1-4 complete (28 methods total)
+- ✅ Property patterns validated (841 entities)
+- ✅ CIDOC-CRM/CRMinf ontology alignment integrated
+- ✅ System prompts updated (version 2026-02-15-step4)
+- ⏸️ Integration tests (awaiting Neo4j deployment)
+
+**Next Steps:** User will guide Step 5+ (query decomposition? multi-agent debate? RDF export?).
 
 ---
 
@@ -159,7 +346,9 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Current Architecture State (verified 2026-02-13)
+## Current Architecture State (verified 2026-02-15)
+
+**See:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` for full architecture specification (Sections 1-12 + Appendices A-N)
 
 ### 1. Temporal Backbone (Calendrical Spine)
 Structure:

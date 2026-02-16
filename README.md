@@ -140,12 +140,21 @@ python scripts/phase_2_5_discovery_runner.py
 
 | Document | Purpose | Read Time |
 |----------|---------|-----------|
+| **[2-12-26 Chrystallum Architecture - CONSOLIDATED.md](Key%20Files/2-12-26%20Chrystallum%20Architecture%20-%20CONSOLIDATED.md)** | **PRIMARY ARCHITECTURE SPEC (v3.2)** | **60 min** |
+| [ARCHITECTURE_IMPLEMENTATION_INDEX.md](ARCHITECTURE_IMPLEMENTATION_INDEX.md) | Maps architecture → implementation files | 5 min |
+| [AI_CONTEXT.md](AI_CONTEXT.md) | Project status & agent progress (Steps 1-4) | 15 min |
+| [AGENT_SESSION_QUICK_REFERENCE.md](AGENT_SESSION_QUICK_REFERENCE.md) | 28 agent methods quick reference | 10 min |
 | [SETUP_GUIDE.md](SETUP_GUIDE.md) | Complete setup instructions | 10 min |
 | [UI_SETUP_GUIDE.md](UI_SETUP_GUIDE.md) | Web UI (Gradio/Streamlit) | 10 min |
 | [FACET_AGENT_README.md](scripts/agents/FACET_AGENT_README.md) | Agent architecture & usage | 15 min |
 | [INDEX_MINING_PHASE_2_5_LAUNCH.md](INDEX_MINING_PHASE_2_5_LAUNCH.md) | Phase 2.5 workflow | 10 min |
-| [COMPLETE_INTEGRATED_ARCHITECTURE.md](COMPLETE_INTEGRATED_ARCHITECTURE.md) | Full architecture | 30 min |
 | [QUICK_START.md](QUICK_START.md) | Get running fast | 5 min |
+| **Agent Implementation Steps** | | |
+| ├─ [STEP_1_COMPLETE.md](STEP_1_COMPLETE.md) | Architecture understanding (8 methods) | 10 min |
+| ├─ [STEP_2_COMPLETE.md](STEP_2_COMPLETE.md) | State introspection (8 methods) | 10 min |
+| ├─ [STEP_3_COMPLETE.md](STEP_3_COMPLETE.md) | Federation discovery (6 methods) | 10 min |
+| ├─ [PROPERTY_PATTERN_MINING_INTEGRATION.md](PROPERTY_PATTERN_MINING_INTEGRATION.md) | Completeness validation (2 methods) | 5 min |
+| └─ [STEP_4_COMPLETE.md](STEP_4_COMPLETE.md) | CIDOC-CRM/CRMinf ontology (4 methods) | 15 min |
 
 ---
 
