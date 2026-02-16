@@ -1,12 +1,12 @@
 {
   "registry": "Chrystallum Facet Registry",
-  "version": "2026-02-12-consolidated",
+  "version": "2026-02-16-biographic-added",
   "source_files": [
     "Facets/Latest Facets.json",
     "Facets/Ref facets.json",
     "Facets/Ref_Anchors.json"
   ],
-  "facet_count": 17,
+  "facet_count": 18,
   "facets": [
     {
       "key": "archaeological",
@@ -78,6 +78,43 @@
           "qid": "Q2018526",
           "label": "arts",
           "source": "ref"
+        }
+      ]
+    },
+    {
+      "key": "biographic",
+      "facet_class": "BiographicFacet",
+      "label": "Biographic",
+      "definition": "Personal history, biography, life events, office-holding careers, genealogy",
+      "anchor_count": 5,
+      "quality_flags": [],
+      "source_priority": "latest",
+      "lifecycle_status": "active",
+      "anchors": [
+        {
+          "qid": "Q5",
+          "label": "human",
+          "source": "latest"
+        },
+        {
+          "qid": "Q101352",
+          "label": "biography",
+          "source": "latest"
+        },
+        {
+          "qid": "Q36180",
+          "label": "biography",
+          "source": "ref"
+        },
+        {
+          "qid": "Q11019",
+          "label": "family",
+          "source": "latest"
+        },
+        {
+          "qid": "Q4164871",
+          "label": "position",
+          "source": "latest"
         }
       ]
     },
