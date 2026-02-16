@@ -1,4 +1,4 @@
-﻿# **Chrystallum Architecture Specification**
+# **Chrystallum Architecture Specification**
 **Version:** 3.2 Consolidated  
 **Date:** February 12, 2026  
 **Status:** Draft for Review
@@ -61,7 +61,6 @@ This document is the **authoritative architectural specification** for Chrystall
 - Appendix R: Federation Strategy & Multi-Authority Integration
 - Appendix S: BabelNet Lexical Authority Integration
 - Appendix T: Subject Facet Agent Workflow - "Day in the Life"
-- Appendix U: ADR-001 - Claim Identity and Content-Addressable Ciphers
 
 ---
 
@@ -3348,58 +3347,41 @@ def normalize_iso8601(date_str: str) -> str:
 
 ```python
 # Agent A extracts claim from Plutarch at 10:00 AM
-claim_content_A = {
+claim_data_A = {
     "source": "Q644312",
-    "passage_hash": hash_text("Caesar crossed the Rubicon..."),
+    "passage": "Caesar crossed the Rubicon...",
     "subject": "Q1048",
-    "object": "Q47043",  # Crossing of Rubicon event
     "relationship": "CAUSED",
-    "facet": "POLITICAL",
-    "temporal": "-0049-01-10"
+    "timestamp": "2026-02-12T10:00:00Z"
 }
-cipher_A = compute_cipher(claim_content_A)  # → "claim_abc123..."
-
-# Store provenance SEPARATELY (not in cipher!)
-provenance_A = {
-    "agent_id": "political_sfa_v2.0",
-    "timestamp": "2026-02-12T10:00:00Z",
-    "confidence": 0.92
-}
+cipher_A = Hash(claim_data_A)  # â†’ "claim_abc123..."
 
 # Agent B extracts SAME claim from Plutarch at 2:00 PM
-claim_content_B = {
+claim_data_B = {
     "source": "Q644312",
-    "passage_hash": hash_text("Caesar crossed the Rubicon..."),
-    "subject": "Q1048",
-    "object": "Q47043",
+    "passage": "Caesar crossed the Rubicon...",
+    "subject": "Q1048", 
     "relationship": "CAUSED",
-    "facet": "POLITICAL",
-    "temporal": "-0049-01-10"
+    "timestamp": "2026-02-12T14:00:00Z"  # Different time!
 }
-cipher_B = compute_cipher(claim_content_B)  # → "claim_abc123..." (SAME!)
+cipher_B = Hash(claim_data_B)  # â†’ "claim_abc123..." (SAME!)
 
-# Different provenance (not in cipher!)
-provenance_B = {
-    "agent_id": "military_sfa_v2.0",
-    "timestamp": "2026-02-12T14:00:00Z",
-    "confidence": 0.95
-}
-
-# Graph check prevents duplicate CLAIM node
+# Graph check prevents duplicate
 if exists_in_graph(cipher_B):
-    # ✅ Don't create duplicate Claim - add Agent B's FacetPerspective
-    create_perspective_node(cipher_B, provenance_B)
-    # Consensus logic: two facets agree → confidence boost
-    update_consensus(cipher_B)
+    # Don't create duplicate - add Agent B's review to existing claim
+    add_supporting_review(cipher_B, agent_B, timestamp_B)
+    increment_confidence(cipher_B)
 else:
-    # New claim - create Claim node + first FacetPerspective
-    create_claim_with_perspective(cipher_B, claim_content_B, provenance_A)
+    # New claim - create subgraph
+    create_claim_subgraph(cipher_B, claim_data_B)
 ```
 
 **Benefits:**
-- Multiple agents validating same claim → higher confidence via consensus, not duplicates
-- Provenance tracked separately in FacetPerspective nodes (PERSPECTIVE_ON edges)
-- Cipher remains stable even as confidence/reviews change over time
+- Multiple agents validating same claim â†’ higher confidence, not duplicates
+- Automatic consensus detection
+- No manual deduplication needed
+
+---
 
 #### **2. Cryptographic Verification** âœ…
 
@@ -13455,305 +13437,6 @@ def generate_and_validate_claims(node_id, entity, ontology_rules):
 ---
 
 **(End of Appendix T)**
-
----
-
-## **Appendix U: ADR-001 - Claim Identity and Content-Addressable Ciphers**
-
-### **ADR-001: Content-Only Cipher for Claim Identity**
-
-**Status:** ACCEPTED (2026-02-16)  
-**Deciders:** Architecture Review  
-**Date:** 2026-02-16
-
----
-
-### **Context and Problem Statement**
-
-Claims in the Chrystallum knowledge graph require unique, stable identifiers that enable:
-1. **Automatic deduplication** when multiple agents extract the same assertion
-2. **Cryptographic verification** of claim integrity across federated institutions
-3. **Consensus aggregation** across facets without duplicate claim nodes
-4. **Provenance tracking** for confidence evolution and agent accountability
-
-**The Problem:** Initial architecture specifications contained an internal contradiction about what data should be included in the claim cipher (content-addressable hash).
-
-**Conflicting Specifications:**
-- **Section 6.4.1** (original): Included `confidence_score`, `extractor_agent_id`, and `extraction_timestamp` in cipher generation
-- **Section 6.4.3** (verification pattern): Explicitly excluded confidence, agent, and timestamp with comment "NO confidence, NO agent, NO timestamp!"
-- **Section 6.4.2** (deduplication example): Showed two agents extracting at different times producing identical ciphers (impossible if timestamp is in hash)
-
-**Impact:** This inconsistency would break:
-- Deduplication (same content extracted by different agents → different ciphers → duplicate nodes)
-- Federation (institutions couldn't verify claims with different provenance metadata)
-- Consensus (same assertion by multiple facets would create separate claim nodes)
-
----
-
-### **Decision**
-
-**We adopt Model 1: Content-Only Cipher**
-
-**Claim cipher includes ONLY assertion content:**
-- ✅ `source_work_qid` (where was it stated?)
-- ✅ `passage_text_hash` (what text supports it?)
-- ✅ `subject_entity_qid` (subject of assertion)
-- ✅ `object_entity_qid` (object of assertion)
-- ✅ `relationship_type` (predicate/relationship)
-- ✅ `action_structure` (W5H1/facet-specific semantics)
-- ✅ `temporal_data` (when did it occur?)
-- ✅ `facet_id` (which facet perspective?)
-
-**Claim cipher EXCLUDES provenance metadata:**
-- ❌ `confidence_score` (changes as reviews accumulate)
-- ❌ `extractor_agent_id` (different agents can extract same claim)
-- ❌ `extraction_timestamp` (extraction time ≠ assertion content)
-
-**Provenance is tracked separately:**
-- **FacetPerspective nodes** with `PERSPECTIVE_ON` edges to the Claim node
-- Each perspective stores: `agent_id`, `extraction_timestamp`, `confidence`, `contributing_agent`, `rationale`
-- Multiple perspectives on same cipher = consensus signal
-
----
-
-### **Rationale**
-
-**Why Content-Only?**
-
-1. **Stable Identity Across Time and Agents**
-   - Same assertion extracted in 2026 and 2030 → same cipher
-   - Multiple agents independently discovering same claim → single Claim node
-   - Enables true deduplication and consensus detection
-
-2. **Cryptographic Verification Works**
-   - Institution A publishes claim with cipher X
-   - Institution B downloads and recomputes cipher from content
-   - Verification succeeds because cipher depends only on content, not A's metadata
-   - Provenance differences don't break verification
-
-3. **Consensus Aggregation is Possible**
-   - Political SFA extracts claim at 10:00 AM → cipher ABC
-   - Military SFA extracts same claim at 14:00 PM → cipher ABC (same!)
-   - Graph query: "How many facets agree on cipher ABC?" → consensus score
-   - Without content-only cipher: two separate claim nodes → no consensus detected
-
-4. **Confidence Evolution Doesn't Break Identity**
-   - Initial extraction: confidence = 0.75
-   - After review: confidence = 0.90
-   - Cipher remains unchanged (content hasn't changed, just our belief in it)
-   - Federated institutions can track confidence separately without re-hashing
-
-5. **Alignment with Verification Pattern**
-   - Section 6.4.3 verification query already excludes confidence/agent/timestamp
-   - This ADR makes the generation pattern match the verification pattern
-   - Single source of truth for "what makes a claim unique"
-
----
-
-### **Consequences**
-
-**Positive:**
-- ✅ Automatic deduplication works reliably
-- ✅ Multiple agents → single claim + multiple perspectives → consensus signal
-- ✅ Cryptographic verification across institutions is possible
-- ✅ Cipher remains stable as reviews/confidence evolve
-- ✅ Federation across Chrystallum instances is feasible
-- ✅ Graph queries for consensus are efficient (GROUP BY cipher)
-
-**Negative:**
-- ⚠️ Two claims with identical content but different facet perspectives still get different ciphers (facet_id is in hash)
-  - **Mitigation:** This is intentional - "Caesar crossed Rubicon" from POLITICAL facet vs. MILITARY facet are legitimately different perspectives
-  - FacetPerspective nodes allow cross-facet consensus tracking
-- ⚠️ Requires careful normalization of content fields (Unicode, whitespace, date formats)
-  - **Mitigation:** Appendix U.2 specifies canonical normalization functions
-- ⚠️ Provenance metadata must be stored separately (cannot be embedded in cipher)
-  - **Mitigation:** FacetPerspective + PERSPECTIVE_ON edges provide rich provenance model
-
-**Neutral:**
-- 🔄 Cipher is facet-aware (facet_id included) rather than pure content
-  - **Rationale:** Each facet may interpret same source differently (e.g., "Caesar crossed Rubicon" has distinct POLITICAL, MILITARY, and GEOGRAPHIC dimensions)
-  - Consensus detection still works via FacetPerspective aggregation on same cipher
-
----
-
-### **Implementation Requirements**
-
-**1. Canonical Normalization (REQUIRED)**
-
-All fields in cipher computation MUST be normalized:
-
-```python
-def compute_claim_cipher(claim_content: dict) -> str:
-    """Generate content-only cipher with canonical normalization."""
-    import hashlib, json, unicodedata
-    
-    # Normalize each component
-    components = [
-        normalize_unicode(claim_content['source_work_qid']),
-        claim_content['passage_text_hash'],  # Already a hash
-        normalize_unicode(claim_content['subject_entity_qid']),
-        normalize_unicode(claim_content['object_entity_qid']),
-        normalize_unicode(claim_content['relationship_type']),
-        normalize_json(claim_content['action_structure']),
-        normalize_iso8601(claim_content['temporal_data']),
-        normalize_unicode(claim_content['facet_id'])
-    ]
-    
-    # Concatenate with delimiter
-    canonical_string = '||'.join(components)
-    
-    # SHA-256 hash with prefix
-    cipher = hashlib.sha256(canonical_string.encode('utf-8')).hexdigest()
-    return f"claim_{cipher[:40]}"  # claim_abc123...
-
-def normalize_unicode(text: str) -> str:
-    """Unicode NFC normalization + strip whitespace."""
-    return unicodedata.normalize('NFC', text.strip())
-
-def normalize_json(obj: dict) -> str:
-    """Canonical JSON: sorted keys, no whitespace."""
-    return json.dumps(obj, sort_keys=True, separators=(',', ':'))
-
-def normalize_iso8601(date_str: str) -> str:
-    """ISO 8601 extended format with zero-padding."""
-    # Example: "-49-01-10" → "-0049-01-10"
-    # Ensures consistent format for negative years
-    return format_iso8601_extended(date_str)
-```
-
-**2. Verification Pattern (REQUIRED)**
-
-All cipher verification queries MUST exclude provenance:
-
-```cypher
-// Recompute cipher from content ONLY
-MATCH (c:Claim {cipher: $claimed_cipher})
-WITH c,
-  compute_cipher_hash(
-    c.source_work_qid,
-    c.passage_text_hash,
-    c.subject_entity_qid,
-    c.object_entity_qid,
-    c.relationship_type,
-    c.action_structure,
-    c.temporal_data,
-    c.facet_id
-    // NO confidence, NO agent, NO timestamp!
-  ) AS recomputed_cipher
-RETURN 
-  c.cipher = recomputed_cipher AS integrity_verified,
-  c.cipher AS original_cipher,
-  recomputed_cipher AS computed_cipher
-```
-
-**3. Provenance Storage Pattern (REQUIRED)**
-
-Provenance MUST be stored in separate FacetPerspective nodes:
-
-```cypher
-// Create claim with first perspective
-MERGE (claim:Claim {cipher: $cipher})
-  ON CREATE SET 
-    claim.source_work_qid = $content.source,
-    claim.subject_entity_qid = $content.subject,
-    // ... other content fields
-
-// Create perspective node (provenance)
-CREATE (perspective:FacetPerspective {
-  perspective_id: randomUUID(),
-  facet_key: $provenance.facet,
-  parent_claim_cipher: $cipher,
-  confidence: $provenance.confidence,
-  contributing_agent: $provenance.agent_id,
-  assertion_timestamp: $provenance.timestamp,
-  rationale: $provenance.rationale
-})-[:PERSPECTIVE_ON]->(claim)
-
-RETURN claim.cipher AS cipher, perspective.perspective_id AS perspective_id
-```
-
-**4. Consensus Detection Pattern (ENABLED)**
-
-```cypher
-// Find claims with multi-facet consensus
-MATCH (p:FacetPerspective)-[:PERSPECTIVE_ON]->(c:Claim)
-WITH c, count(DISTINCT p.facet_key) AS facet_count,
-     avg(p.confidence) AS avg_confidence
-WHERE facet_count >= 2  // At least 2 facets agree
-RETURN c.cipher, facet_count, avg_confidence
-ORDER BY facet_count DESC, avg_confidence DESC
-```
-
----
-
-### **Migration Path**
-
-**For Existing Claims (if any):**
-
-1. **Audit Phase:**
-   ```cypher
-   // Find claims with provenance in cipher (old model)
-   MATCH (c:Claim)
-   WHERE c.extractor_agent_id IS NOT NULL 
-      OR c.extraction_timestamp IS NOT NULL
-   RETURN count(c) AS claims_needing_migration
-   ```
-
-2. **Migrate Phase:**
-   ```cypher
-   // Extract provenance to FacetPerspective, recompute cipher
-   MATCH (c:Claim)
-   WHERE c.extractor_agent_id IS NOT NULL
-   WITH c, compute_content_only_cipher(c) AS new_cipher
-   
-   // Create perspective node with old provenance
-   CREATE (p:FacetPerspective {
-     facet_key: c.facet_id,
-     confidence: c.confidence_score,
-     contributing_agent: c.extractor_agent_id,
-     assertion_timestamp: c.extraction_timestamp
-   })
-   
-   // Update claim with new cipher, remove provenance fields
-   SET c.cipher = new_cipher
-   REMOVE c.confidence_score, c.extractor_agent_id, c.extraction_timestamp
-   
-   // Link perspective to claim
-   CREATE (p)-[:PERSPECTIVE_ON]->(c)
-   ```
-
-3. **Verify Phase:**
-   ```cypher
-   // Verify all ciphers can be recomputed
-   MATCH (c:Claim)
-   WITH c, compute_content_only_cipher(c) AS recomputed
-   WHERE c.cipher <> recomputed
-   RETURN c.cipher, recomputed, "MISMATCH" AS status
-   // Should return 0 rows
-   ```
-
----
-
-### **Related Decisions**
-
-- **ADR-002** (future): Trust model for federated claims (signatures, transparency log, key distribution)
-- **ADR-003** (future): Facet taxonomy canonicalization (single registry, uppercase enforcement)
-- **Appendix R**: Federation Strategy (multi-authority integration, confidence bumps)
-- **Section 6.4**: Content-Addressable Claim Identification (implementation of this ADR)
-
----
-
-### **References**
-
-- Architecture Review 2026-02-16 (md/Architecture/2-16-26-architecture review.txt)
-- Section 6.4.1: Claim Cipher Generation (corrected 2026-02-16)
-- Section 6.4.2: Automatic Deduplication (corrected 2026-02-16)
-- Section 6.4.3: Verification Query Pattern (already correct)
-- Section 5.5.3: Claim Architecture - Cipher + Star Pattern
-
----
-
-**(End of Appendix U - ADR-001)**
 
 ---
 

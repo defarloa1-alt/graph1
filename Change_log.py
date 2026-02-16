@@ -23,6 +23,109 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-16 20:00 | ADR-001: CLAIM IDENTITY FIX - CONTENT-ONLY CIPHER
+# ==============================================================================
+# Category: Architecture, Critical Fix, Schema
+# Summary: Resolved internal contradiction in claim cipher definition.
+#          Cipher now excludes provenance (confidence, agent, timestamp),
+#          includes ONLY assertion content. Added Appendix U (ADR-001).
+#
+# PROBLEM IDENTIFIED (Architecture Review 2026-02-16):
+# Internal inconsistency in Section 6.4 Claim Cipher specifications:
+#   * Section 6.4.1 (generation): INCLUDED confidence, agent, timestamp in hash
+#   * Section 6.4.3 (verification): EXCLUDED "NO confidence, NO agent, NO timestamp!"
+#   * Section 6.4.2 (deduplication): Showed same cipher from different timestamps (impossible!)
+#
+# Impact: Would break deduplication, federation, consensus, cryptographic verification
+#
+# RESOLUTION: CONTENT-ONLY CIPHER MODEL
+#
+# Action 1: Section 6.4.1 Corrected - Cipher Generation
+#   - REMOVED from cipher: confidence_score, extractor_agent_id, extraction_timestamp
+#   - KEPT in cipher: source_work_qid, passage_text_hash, subject/object QIDs,
+#                     relationship_type, action_structure, temporal_data, facet_id
+#   - ADDED normalization functions:
+#     * normalize_unicode() - NFC normalization + strip whitespace
+#     * normalize_json() - sorted keys, no whitespace
+#     * normalize_iso8601() - extended format with zero-padding
+#   - ADDED comment: "Critical Rule: Cipher = assertion content, NOT observation metadata"
+#
+# Action 2: Section 6.4.2 Corrected - Deduplication Example
+#   - Renamed claim_data_A/B → claim_content_A/B (clearer semantic)
+#   - ADDED separate provenance_A and provenance_B dicts (agent_id, timestamp, confidence)
+#   - Showed provenance stored OUTSIDE cipher computation
+#   - Updated to show FacetPerspective node creation with PERSPECTIVE_ON edges
+#   - Benefits updated: "Provenance tracked separately... Cipher stable as confidence evolves"
+#
+# Action 3: Appendix U Created - ADR-001 (~304 lines)
+#   - Status: ACCEPTED (2026-02-16)
+#   - Context: Documented the contradiction and its impact on dedup/federation/consensus
+#   - Decision: Content-Only Cipher (8 fields IN, 3 fields OUT)
+#   - Rationale:
+#     * Stable identity across time and agents
+#     * Cryptographic verification works across institutions
+#     * Consensus aggregation is possible (multiple perspectives on same cipher)
+#     * Confidence evolution doesn't break identity
+#     * Alignment with verification pattern (Section 6.4.3)
+#   - Consequences:
+#     * Positive: Deduplication, federation, consensus, stable ciphers
+#     * Negative: Requires normalization, provenance stored separately
+#     * Neutral: Cipher is facet-aware (facet_id included by design)
+#   - Implementation Requirements:
+#     * Canonical normalization (Python code examples)
+#     * Verification pattern (Cypher query examples)
+#     * Provenance storage pattern (FacetPerspective nodes)
+#     * Consensus detection pattern (GROUP BY cipher)
+#   - Migration Path: 3-phase (audit, migrate, verify) for existing claims
+#   - Related Decisions: ADR-002 (trust model), ADR-003 (facet taxonomy)
+#
+# FILES:
+# - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+#   * Section 6.4.1 corrected (cipher generation)
+#   * Section 6.4.2 corrected (deduplication example)
+#   * Appendix U added (ADR-001, ~304 lines)
+#   * Table of Contents updated (Appendix U)
+#   * Document size: 15,316 → 15,620 lines (+304 lines)
+#
+# REASON:
+# - Architecture review identified critical design inconsistency
+# - Contradiction would break core features: deduplication, federation, consensus
+# - Content-only cipher enables:
+#   * Same assertion by multiple agents → single claim node (deduplication)
+#   * Cryptographic verification across institutions (federation)
+#   * Consensus detection across facets (multiple perspectives on same cipher)
+#   * Stable identity as confidence/reviews evolve over time
+#
+# INTEGRATION POINTS:
+# - Section 6.4.3 (verification pattern) already correct - now generation matches
+# - Section 5.5.3 (Claim Architecture) Star Pattern - now clarified
+# - FacetPerspective + PERSPECTIVE_ON edges - provenance tracking pattern
+# - Consensus queries - GROUP BY cipher, count DISTINCT facets
+#
+# BENEFITS:
+# - ✅ Deduplication works: same content → same cipher (regardless of agent/time)
+# - ✅ Federation works: institutions can verify claims cryptographically
+# - ✅ Consensus works: multiple facets on same cipher → confidence boost
+# - ✅ Provenance preserved: FacetPerspective nodes track agent/time/confidence
+# - ✅ Architecture internally consistent: generation = verification
+# - ✅ ADR-001 documents decision for future reference
+#
+# NORMALIZATION REQUIREMENTS:
+# - Unicode NFC normalization for all text fields
+# - Whitespace stripping (leading/trailing)
+# - Canonical JSON (sorted keys, no whitespace)
+# - ISO 8601 extended format with zero-padding for negative years
+# - Component concatenation with "||" delimiter
+# - SHA-256 hash with "claim_" prefix
+#
+# NEXT STEPS:
+# - Issue #2: Facet taxonomy canonicalization (single registry, uppercase enforcement)
+# - Issue #3: 300-relationship scope reduction (define v1 kernel, 30-50 edges)
+# - Issue #4: Federation trust model (ADR-002: signatures, key distribution)
+# - Issue #5: Operational threshold calibration (derive from SLO/SLA, not magic numbers)
+# ==============================================================================
+
+# ==============================================================================
 # 2026-02-16 19:30 | APPENDICES S & T: BABELNET + SFA WORKFLOW CONSOLIDATION
 # ==============================================================================
 # Category: Documentation, Architecture, Agent Workflow, Lexical Authority
