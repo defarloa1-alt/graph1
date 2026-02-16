@@ -17,7 +17,7 @@
 - Generates bridge claims connecting domains
 
 **SubjectFacetAgents (SFAs):**
-- Domain-specific experts (17 facets)
+- Domain-specific experts (18 facets: 16 core + biographic + communication)
 - Each has LLM integration with facet-specific system prompt
 - **Training Phase:** Build domain ontologies independently (abstract concepts)
 - **Perspective Phase:** Analyze concrete claims when queued by SCA
@@ -360,23 +360,29 @@ Termination: No new facet perspectives discovered
 
 #### Claim Cipher (Content-Addressable ID)
 
-Each claim has a **cipher** - a unique hash computed from its content:
+Each claim has a **cipher** - a unique hash computed from its **logical content**, not provenance metadata:
 
 ```python
-claim_cipher = Hash(
-    source_work_qid +           # Where claim came from
-    passage_text_hash +          # Exact text
-    subject_entity_qid +         # Who/what it's about
-    relationship_type +          # What relationship
-    temporal_data +              # When
-    confidence_score +           # Initial confidence
-    extractor_agent_id +         # Which SFA created it
-    extraction_timestamp         # When created
+# Facet-Level Claim Cipher (Stable)
+facet_claim_cipher = Hash(
+    subject_node_id +            # Q1048 (Caesar)
+    property_path_id +           # "CHALLENGED_AUTHORITY_OF"
+    object_node_id +             # Q1747689 (Roman Senate)
+    facet_id +                   # "political" (essential!)
+    temporal_scope +             # "-0049-01-10"
+    source_document_id +         # Q644312 (Plutarch)
+    passage_locator              # "Caesar.32"
+    # NO confidence, NO agent, NO timestamp!
 )
-# Result: "claim_abc123..." (unique cipher)
+# Result: "fclaim_pol_abc123..." (stable cipher)
 ```
 
-**Benefit:** Two SFAs discovering the SAME claim generate the SAME cipher → **automatic deduplication**
+**What's REMOVED:**
+- ❌ `confidence_score` - Evidence updates don't change claim identity
+- ❌ `extractor_agent_id` - Provenance, not content
+- ❌ `extraction_timestamp` - Prevents deduplication across time
+
+**Benefit:** Two SFAs discovering the SAME claim at different times with different confidence → **SAME cipher** → automatic deduplication
 
 #### Claim Structure (Star Pattern)
 
@@ -827,30 +833,26 @@ Consensus Score: AVG(0.95, 0.90, 0.88) = 0.91
 ### Pattern 3: Convergence Detection
 
 ```
-Iteration 1:
-  Political SFA: 15 discovery claims → Queue 30 perspective requests
-  Military SFA: 12 discovery claims → Queue 24 perspective requests
-  Economic SFA: 10 discovery claims → Queue 20 perspective requests
-  Total queue: 74 items
+Iteration 1 (Training Phase - Independent):
+  Political SFA: 15 discovery claims (abstract concepts) → SCA accepts all (NO QUEUE)
+  Military SFA: 12 discovery claims (abstract concepts) → SCA accepts all (NO QUEUE)
+  Economic SFA: 10 discovery claims (abstract concepts) → SCA accepts all (NO QUEUE)
+  Total training claims: 37
+  Queue: 0 items (training phase = independent)
 
-Iteration 2:
-  Process 74 queued claims
-  → 45 perspective claims created
-  → Queue 18 new perspective requests (diminishing)
-  Total queue: 18 items
+Iteration 2 (Operational Phase - Begins):
+  Political SFA: "Caesar dictator 49 BCE" (concrete) → SCA evaluates
+  SCA relevance scoring: Military(0.9), Economic(0.8) → QUEUE
+  Queue: 1 claim × 2 facets = 2 items
 
 Iteration 3:
-  Process 18 queued claims
-  → 5 perspective claims created
-  → Queue 2 new perspective requests
-  Total queue: 2 items
-
-Iteration 4:
-  Process 2 queued claims
-  → 0 perspective claims created (SFAs return "No perspective")
-  → Queue 0 new requests
+  Process 2 queued perspectives
+  → Military FacetPerspective created (cipher shared)
+  → Economic FacetPerspective created (cipher shared)
+  → Result: 1 Claim + 3 FacetPerspectives
+  Queue: 0 items
   
-Convergence: Queue empty, stop processing
+Convergence: Queue empty, training complete, selective operational mode active
 ```
 
 ### Pattern 4: Shell Node Expansion

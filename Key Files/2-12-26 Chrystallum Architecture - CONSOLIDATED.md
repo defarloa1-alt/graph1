@@ -2277,7 +2277,302 @@ Chrystallum uses a **two-level agent routing strategy** to balance expertise pre
 
 ---
 
-## **5.5 Coordinator Agents**
+## **5.5 SubjectConceptAgent â†" SubjectFacetAgent Coordination (SCA â†" SFA)**
+
+**CRITICAL ARCHITECTURAL PATTERN** (Finalized February 15, 2026):
+
+Chrystallum implements a **two-phase agent coordination model** with **selective intelligent routing** for claim creation and multi-facet enrichment.
+
+**Reference:** `SCA_SFA_ROLES_DISCUSSION.md` (complete specification)
+
+### **5.5.1 Agent Types & Roles**
+
+**SubjectConceptAgent (SCA):**
+- **Role:** Seed agent & intelligent orchestrator
+- **Responsibilities:**
+  * Un-faceted exploration (Phase 1: breadth-first)
+  * Spawns SubjectFacetAgents (SFAs) on-demand
+  * Routes training data to SFAs (Discovery Mode)
+  * **Evaluates claims:** Abstract concepts vs Concrete events
+  * **Selective routing:** Queues claims for multi-facet review ONLY when warranted
+  * Generates bridge claims connecting domains
+  * Manages claim lifecycle & convergence detection
+
+**SubjectFacetAgent (SFA):**
+- **Role:** Domain-specific experts (18 facets: 16 core + biographic + communication)
+- **Facet List:** Archaeological, Artistic, Cultural, Demographic, Diplomatic, Economic, Environmental, Geographic, Intellectual, Linguistic, Military, Political, Religious, Scientific, Social, Technological, **Biographic** (prosopography/person identity), **Communication** (rhetoric/meta-facet)
+- **Facets:** Political, Military, Economic, Cultural, Religious, Legal, Scientific, Technological, Environmental, Social, Diplomatic, Administrative, Educational, Artistic, Literary, Philosophical, Medical
+- **Responsibilities:**
+  * **Training Phase:** Build domain ontologies independently (abstract concepts)
+  * **Perspective Phase:** Analyze concrete claims when queued by SCA
+  * Create Claim nodes (cipher-based) + FacetPerspective nodes
+  * Inherit all FacetAgent capabilities (Steps 1-5 methods)
+  * Stay within facet domain (no cross-domain claim creation)
+
+### **5.5.2 Two-Phase Workflow**
+
+**Phase 1: Training Mode (Independent Domain Study)**
+
+SFAs build subject ontologies for their disciplines **independently**, without cross-facet collaboration.
+
+**Process:**
+```
+SCA:
+  â†' Spawn all SFAs (Political, Military, Economic, etc.)
+  â†' Route discipline training data to each SFA
+  â†' Collect claims from all SFAs
+
+SFAs (Independent Work):
+  â†' Study discipline (Political Science, Military History, etc.)
+  â†' Build domain ontology (abstract concepts)
+  â†' Create Claim nodes + FacetPerspectives
+  â†' Return claim ciphers to SCA
+
+SCA (Accept All):
+  â†' Receive training claims
+  â†' Evaluate: Are these abstract domain concepts? (YES)
+  â†' Decision: Accept as-is (NO QUEUE to other SFAs)
+  â†' Integrate into graph
+```
+
+**Example Training Claims (NO CROSS-FACET REVIEW):**
+```
+Political SFA:
+  â†' "Senate held legislative authority in Roman Republic"
+  â†' Type: Abstract political concept
+  â†' SCA evaluation: Abstract domain concept â†' Accept as-is (no queue)
+
+Military SFA:
+  â†' "Legion composed of cohorts and maniples"
+  â†' Type: Abstract military structure
+  â†' SCA evaluation: Abstract domain concept â†' Accept as-is (no queue)
+
+Economic SFA:
+  â†' "Roman economy based on agricultural production"
+  â†' Type: Abstract economic principle
+  â†' SCA evaluation: Abstract domain concept â†' Accept as-is (no queue)
+```
+
+**Rationale:** These are **disciplinary ontology claims**, not concrete historical events. Political, Military, and Economic SFAs do not need to review each other's abstract domain concepts.
+
+---
+
+**Phase 2: Operational Mode (Selective Multi-Facet Collaboration)**
+
+SFAs encounter **concrete entities/events**. SCA evaluates each claim for multi-facet potential and **selectively queues** to relevant SFAs only.
+
+**Process:**
+```
+SFA creates concrete claim:
+  â†' Claim cipher: "claim_abc123..."
+  â†' Claim text: "Caesar was appointed dictator in 49 BCE"
+  â†' FacetPerspective: political
+  â†' Returns cipher to SCA
+
+SCA evaluates claim:
+  1. Type: Concrete historical event (not abstract concept)
+  2. Entities: Caesar (Q1048), Dictator office, 49 BCE
+  3. Multi-domain potential: YES
+
+SCA relevance scoring:
+  â†' Military SFA: 0.9 (Caesar = commander) â†' QUEUE
+  â†' Economic SFA: 0.8 (dictator = treasury control) â†' QUEUE
+  â†' Cultural SFA: 0.3 (minor impact) â†' SKIP
+  â†' Religious SFA: 0.2 (no dimension) â†' SKIP
+  â†' Scientific SFA: 0.1 (irrelevant) â†' SKIP
+
+SCA decision: Queue to Military + Economic ONLY
+
+Military SFA (Perspective Mode):
+  â†' Receives: claim_cipher="claim_abc123..."
+  â†' Analyzes from military perspective
+  â†' Creates FacetPerspective (military angle)
+  â†' Returns: perspective_id="persp_002"
+
+Economic SFA (Perspective Mode):
+  â†' Receives: claim_cipher="claim_abc123..."
+  â†' Analyzes from economic perspective
+  â†' Creates FacetPerspective (economic angle)
+  â†' Returns: perspective_id="persp_003"
+
+Result:
+  1 Claim (cipher="claim_abc123...")
+  + 3 FacetPerspectives (political, military, economic)
+  Consensus: AVG(0.95, 0.90, 0.88) = 0.91
+```
+
+### **5.5.3 Claim Architecture: Cipher + Star Pattern**
+
+**Claims are star pattern subgraphs**, not isolated nodes.
+
+**Claim Cipher (Content-Addressable ID):**
+```python
+claim_cipher = Hash(
+    source_work_qid +           # Where claim came from
+    passage_text_hash +          # Exact text
+    subject_entity_qid +         # Who/what it's about
+    relationship_type +          # What relationship
+    temporal_data +              # When
+    confidence_score +           # Initial confidence
+    extractor_agent_id +         # Which SFA created it
+    extraction_timestamp         # When created
+)
+# Result: "claim_abc123..." (unique cipher)
+```
+
+**Benefit:** Two SFAs discovering SAME claim â†' SAME cipher â†' Single Claim node (automatic deduplication)
+
+**Star Pattern Structure:**
+```
+                    (Claim: cipher="claim_abc123...")
+                              â"‚
+         â"Œâ"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"¼â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"
+         â"‚                        â"‚                        â"‚
+    [PERSP_ON]              [PERSP_ON]              [PERSP_ON]
+         â"‚                        â"‚                        â"‚
+         â–¼                        â–¼                        â–¼
+   (FacetPerspective:    (FacetPerspective:    (FacetPerspective:
+    Political)            Military)             Economic)
+```
+
+**FacetPerspective Node (NEW NODE TYPE):**
+```cypher
+(:FacetPerspective {
+  perspective_id: "persp_001",
+  facet: "political",
+  parent_claim_cipher: "claim_abc123...",
+  facet_claim_text: "Caesar challenged Senate authority",
+  confidence: 0.95,
+  source_agent_id: "political_sfa_001",
+  timestamp: "2026-02-15T10:00:00Z",
+  reasoning: "Dictatorship violated Republican norms"
+})-[:PERSPECTIVE_ON]->(Claim {cipher: "claim_abc123..."})
+```
+
+**Why FacetPerspective instead of separate claims?**
+- âœ… **Single source of truth:** One Claim node (via cipher deduplication)
+- âœ… **Multi-facet enrichment:** Multiple perspectives attached
+- âœ… **Consensus calculation:** AVG(all perspective confidences)
+- âœ… **Clear semantics:** Claim = base assertion, Perspective = facet interpretation
+
+### **5.5.4 SCA Routing Criteria (5-Criteria Framework)**
+
+**How SCA determines which claims warrant cross-facet review:**
+
+**Criterion 1: Abstract vs Concrete Detection**
+- **Abstract domain concepts** â†' NO QUEUE (accept as-is)
+  * Theoretical frameworks ("Senate legislative authority")
+  * Discipline-specific methods ("Manipular tactics")
+  * General principles ("Agricultural economy base")
+- **Concrete events/entities** â†' EVALUATE FOR QUEUE
+  * Specific historical events ("Caesar crossed Rubicon")
+  * Named individuals with roles ("Caesar appointed dictator")
+  * Dated occurrences ("49 BCE")
+
+**Criterion 2: Multi-Domain Relevance Scoring (0-1.0 scale)**
+- **High Relevance (0.8-1.0)** â†' Queue to SFA
+- **Medium Relevance (0.5-0.7)** â†' Queue to SFA
+- **Low Relevance (0.0-0.4)** â†' Do NOT queue
+
+**Example: "Caesar was appointed dictator in 49 BCE"**
+```
+Political SFA (creator): 1.0 (created the claim)
+Military SFA: 0.9 (Caesar = commander, dictator = supreme command)
+Economic SFA: 0.8 (dictator = treasury control, state finances)
+Cultural SFA: 0.3 (minor cultural impact, not primary)
+Religious SFA: 0.2 (no significant religious dimension)
+Scientific SFA: 0.1 (irrelevant to scientific domain)
+
+SCA Decision:
+â†' Queue to: Military (0.9), Economic (0.8)
+â†' Skip: Cultural (0.3), Religious (0.2), Scientific (0.1)
+```
+
+**Criterion 3: Entity Type Detection**
+- Query Wikidata P31 (instance of)
+- Map entity types to facet relevance:
+  * Q5 (Human) â†' Political, Military, Cultural potential
+  * Q198 (War) â†' Military, Political, Economic potential
+  * Q216353 (Battle) â†' Military, Geographic potential
+
+**Criterion 4: Conflict Detection**
+- Date discrepancies â†' Queue for synthesis
+- Attribute conflicts â†' Queue for synthesis
+- Relationship disputes â†' Queue for synthesis
+
+**Criterion 5: Existing Perspectives Check**
+```cypher
+MATCH (p:FacetPerspective)-[:PERSPECTIVE_ON]->(c:Claim {cipher: $cipher})
+RETURN COLLECT(p.facet) AS existing_facets
+// Only queue to facets NOT in existing_facets
+```
+
+**Complete Routing Pseudocode:**
+```python
+def evaluate_claim_for_queue(claim: Claim, source_facet: str) -> Dict[str, float]:
+    # Step 1: Check if abstract concept
+    if is_abstract_concept(claim):
+        return {}  # No queue
+    
+    # Step 2: Extract entities
+    entities = extract_entities(claim.text)
+    
+    # Step 3: Score relevance to each facet
+    relevance_scores = {}
+    for facet in ALL_FACETS:
+        if facet == source_facet:
+            continue  # Skip source facet
+        
+        score = 0.0
+        for entity in entities:
+            entity_type = get_entity_type(entity.qid)
+            score += calculate_relevance(entity_type, facet)
+        
+        relevance_scores[facet] = score / len(entities)
+    
+    # Step 4: Check existing perspectives
+    existing_facets = get_existing_perspectives(claim.cipher)
+    
+    # Step 5: Filter by threshold
+    queue_targets = {
+        facet: score 
+        for facet, score in relevance_scores.items()
+        if score >= 0.5 and facet not in existing_facets
+    }
+    
+    return queue_targets
+```
+
+### **5.5.5 Benefits & Implementation Status**
+
+**Benefits:**
+- âœ… **Efficient Collaboration:** Only concrete/multi-domain claims get cross-facet review
+- âœ… **Independent Learning:** SFAs build domain ontologies without interference
+- âœ… **Selective Enrichment:** Multi-facet analysis applied where it adds value
+- âœ… **SCA Intelligence:** Orchestrator makes informed routing decisions
+- âœ… **Automatic Deduplication:** Cipher ensures single Claim node per unique assertion
+- âœ… **Consensus Calculation:** Multiple perspectives averaged for confidence
+
+**Implementation Status (as of 2026-02-15):**
+- âœ… Architecture documented (SCA_SFA_ROLES_DISCUSSION.md)
+- âœ… Workflow models compared (CLAIM_WORKFLOW_MODELS.md)
+- âœ… Routing criteria specified (5 criteria with examples)
+- âœ… FacetPerspective pattern defined
+- âœ… Cipher-based deduplication documented
+- â³ FacetPerspective node schema (add to NODE_TYPE_SCHEMAS.md)
+- â³ SCA claim evaluation implementation
+- â³ SCA relevance scoring implementation
+- â³ FacetPerspective creation in SFA
+- â³ Selective queue logic in SCA
+
+**References:**
+- Complete specification: `SCA_SFA_ROLES_DISCUSSION.md`
+- Workflow comparison: `CLAIM_WORKFLOW_MODELS.md`
+- Military SFA methodology: `Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md`
+
+---
+
+## **5.6 Coordinator Agents**
 
 **Coordinator Agents** orchestrate multi-agent workflows, consensus building, and claim promotion.
 
@@ -2292,7 +2587,7 @@ claims_coordinator
 
 - Identify claims needing review
 - Route claims to appropriate subject/entity agents
-- Route claims to facet-specialist agents (Section 3.2.6, facet assessment workflow)
+- Route claims to facet-specialist agents (Section 3.2.6, facet assessment workflow; Section 5.5, SCA â†" SFA coordination)
 - Compute `consensus_score` from multiple reviews
 - Update `claim.status` based on validation results
 - Trigger claim promotion to canonical graph (Section 6.9)
@@ -2412,7 +2707,130 @@ LIMIT 3
 
 ---
 
-## **5.7 Agent Memory (AgentMemory Node)**
+## **5.7 SFA Ontology Building Methodology**
+
+**Context:** SubjectFacetAgents (SFAs) build domain-specific ontologies during **Training Phase** (Section 5.5.2). This requires filtering federated authority noise to extract clean disciplinary structures.
+
+**Problem:** Wikidata "what links here" queries return massive platform noise (Wikimedia categories, templates, Commons files) overwhelming domain content.
+
+**Solution:** Disciplinary filtering methodology using scholarly roots, property whitelists, and platform blacklists.
+
+### **5.7.1 Military SFA Methodology (Example)**
+
+**Reference:** `Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md` (complete specification with SPARQL queries, validation checklist, expected ontology structure)
+
+**Anchor:** Start from `Q192386` (military science) as scholarly discipline root, not vague "military" label.
+
+**Property Whitelist (PREFER):**
+| Property | Code | Purpose | Priority |
+|----------|------|---------|----------|
+| subclass of | P279 | Taxonomic backbone | HIGH |
+| instance of | P31 | Type classification | HIGH |
+| part of | P361 | Compositional structure | HIGH |
+| has part | P527 | Compositional structure | HIGH |
+| conflict | P607 | Military conflicts | HIGH |
+| military branch | P241 | Branch of service | HIGH |
+| military rank | P410 | Rank classification | HIGH |
+| military unit | P7779 | Unit types | HIGH |
+
+**Wikimedia Blacklist (EXCLUDE):**
+| QID | Type | Rationale |
+|-----|------|-----------|
+| Q4167836 | Wikimedia category | Platform navigation |
+| Q11266439 | Wikimedia template | Platform scaffolding |
+| Q17633526 | Wikinews article | News content |
+| Q15184295 | Wikimedia module | Technical infrastructure |
+| Q4663903 | Wikimedia portal | Portal organization |
+
+**Inclusion Criteria (items must satisfy MOST of):**
+- Has `P279` or `P31` linking to military domain class
+- Has `P425` (field of occupation) = military science
+- Appears in military science scholarly treatments
+- Has meaningful `P361`/`P527`/`P607`/`P241`/`P410` relations
+- Fits naturally as a class in hierarchy
+- Needed to explain military processes or institutions
+
+**Exclusion Criteria (items must fail ALL of):**
+- `P31` is Wikimedia infrastructure class
+- Only connects via category/Commons/site links
+- Orphaned (no core military properties)
+- Over-generic buzzword without military specificity
+- Pure media container (image, category)
+- Anachronistic (for Roman Republic specialization)
+
+**Roman Republic Refinement:**
+- Intersect generic military ontology with Q17167 (Roman Republic)
+- Use P1001 (applies to jurisdiction), P361 (part of)
+- Temporal overlap: 509 BCE - 27 BCE
+- Exclude anachronisms (air force, cyberwarfare, modern operational concepts)
+
+**Expected Results:**
+- Generic military ontology: ~500-1,000 concepts (~2,000-5,000 edges after filtering)
+- Roman Republican specialization: ~100-200 concepts (~500-1,000 edges after filtering)
+- Noise reduction: 80-90% (typical Wikidata query returns 10,000+ items, filtered to ~500-1,000)
+
+**Example Training Claims (Military SFA, NO CROSS-FACET REVIEW):**
+```
+Claim 1: "Legion was primary Roman military unit"
+  â†' Type: Discovery Mode (abstract domain concept)
+  â†' Source: Wikidata Q170944 + scholarly sources
+  â†' Confidence: 0.95
+  â†' Facet: Military
+  â†' SCA Action: Accept as-is (NO QUEUE)
+
+Claim 2: "Cohort composed of multiple maniples"
+  â†' Type: Discovery Mode (abstract structural relationship)
+  â†' Source: Wikidata Q82955, Q1541817
+  â†' Confidence: 0.90
+  â†' Facet: Military
+  â†' SCA Action: Accept as-is (NO QUEUE)
+
+Claim 3: "Centurion commanded century of soldiers"
+  â†' Type: Discovery Mode (abstract organizational principle)
+  â†' Source: Wikidata Q2747456
+  â†' Confidence: 0.95
+  â†' Facet: Military
+  â†' SCA Action: Accept as-is (NO QUEUE)
+```
+
+**Rationale:** These are **disciplinary ontology claims**, not concrete historical events. They do not warrant cross-facet review by Political, Economic, or Cultural SFAs during training phase.
+
+### **5.7.2 Generalized Methodology (All SFAs)**
+
+**Step 1: Identify Disciplinary Root**
+- Find Wikidata QID for discipline (e.g., Q192386 for military science, Q36442 for political science)
+- Verify `P31` = field of study (Q11862829) or academic discipline (Q11862829)
+- Use as scholarly anchor, not arbitrary category
+
+**Step 2: Property Whitelist**
+- Select semantic properties (P279, P31, P361, P527, domain-specific properties)
+- Exclude platform properties (P373 Commons category, P910 topic's main category, P1151 main portal)
+
+**Step 3: Wikimedia Blacklist**
+- Exclude all `P31` â†' Wikimedia infrastructure classes (Q4167836, Q11266439, etc.)
+- Filter out pure media containers (images, galleries, categories)
+
+**Step 4: Polity/Period Refinement**
+- Intersect generic ontology with historical context (e.g., Q17167 Roman Republic)
+- Use P1001 (jurisdiction), P361 (part of), P580/P582 (temporal bounds)
+- Exclude anachronisms for historical specializations
+
+**Step 5: Training Claim Generation**
+- Create Discovery Mode claims about abstract concepts
+- All claims tagged with facet
+- SCA accepts all training claims as-is (no queue to other SFAs)
+
+**Expected Noise Reduction:** 70-90% depending on domain complexity and Wikidata coverage
+
+**Benefits:**
+- âœ… Clean disciplinary ontologies (not platform artifacts)
+- âœ… Scholarly grounding (from recognized academic disciplines)
+- âœ… Efficient training (SFAs don't review irrelevant abstract concepts from other facets)
+- âœ… Scalable methodology (applicable to all 17 facet domains)
+
+---
+
+## **5.8 Agent Memory (AgentMemory Node)**
 
 Agents maintain **explicit memory** of previous decisions, patterns, and cached knowledge.
 
@@ -2975,41 +3393,59 @@ RETURN path
 
 ---
 
-### **6.4.1 Claim Cipher Schema**
+### **6.4.1 Facet Claim Node Schema**
 
-**Neo4j Implementation:**
+**Neo4j Implementation (Facet-Level Claim):**
 
 ```cypher
-// Create claim with cipher
-CREATE (claim:Claim {
-  // Content-addressable ID (primary)
-  cipher: "claim_kc1-b22020c0e271b7d8e4a5f6c9d1b2a3e4",
+// Create facet claim with stable cipher
+CREATE (claim:FacetClaim {
+  // Content-addressable ID (primary, stable across provenance changes)
+  cipher: "fclaim_pol_b22020c0e271b7d8",
   
   // Internal ID (convenience)
   claim_id: "claim_00123",
   
-  // Components used to generate cipher
-  source_work_qid: "Q644312",
-  passage_hash: "sha256_abc123...",
-  subject_entity_qid: "Q1048",
-  object_entity_qid: "Q644312", 
-  relationship_type: "CAUSED",
-  temporal_data: "-0049-01-10",
-  confidence: 0.95,
-  extractor_agent_id: "genericagent_Q767253_D_v2.0_1760104502",
-  extraction_timestamp: "2026-02-12T10:30:00Z",
+  // CIPHER COMPONENTS (stable, logical content)
+  subject_node_id: "Q1048",           // Caesar
+  property_path_id: "CHALLENGED_AUTHORITY_OF",
+  object_node_id: "Q1747689",         // Roman Senate
+  facet_id: "political",              // Essential!
+  temporal_scope: "-0049-01-10",
+  source_document_id: "Q644312",       // Plutarch
+  passage_locator: "Caesar.32",
   
-  // Cryptographic verification
-  state_root: "merkle_xyz789...",
-  lamport_clock: 1234567,
+  // PROVENANCE METADATA (separate from cipher, can change)
+  confidence: 0.85,                    // Can update without changing cipher
+  extracting_agents: [                 // Multiple agents = evidence accumulation
+    "political_sfa_001",
+    "military_sfa_001"                // Added later via deduplication
+  ],
+  extraction_timestamps: [
+    "2026-02-12T10:00:00Z",
+    "2026-02-12T14:00:00Z"
+  ],
+  created_by_agent: "political_sfa_001",  // Original extractor
+  last_updated: "2026-02-12T14:00:00Z",
   
-  // Status tracking
-  status: "verified",
-  validation_timestamp: "2026-02-12T11:00:00Z"
+  // DERIVED PROPERTIES
+  assertion_text: "Caesar challenged Senate authority by crossing Rubicon",
+  cidoc_crm_property: "P17_was_motivated_by",
+  
+  // STATUS & VALIDATION (lifecycle, not identity)
+  status: "validated",
+  review_count: 2,
+  consensus_score: 0.91,
+  validation_timestamp: "2026-02-12T15:00:00Z",
+  
+  // CRYPTOGRAPHIC VERIFICATION (optional)
+  state_root: "merkle_xyz789...",     // Merkle root of assertion graph
+  lamport_clock: 1234567
 })
 
-// Index for O(1) cipher lookup
-CREATE INDEX claim_cipher_idx FOR (c:Claim) ON (c.cipher);
+// Indexes
+CREATE INDEX facet_claim_cipher_idx FOR (c:FacetClaim) ON (c.cipher);
+CREATE INDEX facet_claim_facet_idx FOR (c:FacetClaim) ON (c.facet_id);
 ```
 
 ---
@@ -3046,24 +3482,42 @@ ON CREATE SET
 ### **6.4.3 Verification Query Pattern**
 
 ```cypher
-// Verify claim integrity by recomputing cipher
-MATCH (c:Claim {cipher: $claimed_cipher})
+// Verify claim integrity by recomputing cipher from stable components ONLY
+MATCH (c:FacetClaim {cipher: $claimed_cipher})
 WITH c, 
   Hash(
-    c.source_work_qid + 
-    c.passage_hash + 
-    c.subject_entity_qid +
-    c.object_entity_qid +
-    c.relationship_type +
-    c.temporal_data +
-    toString(c.confidence) +
-    c.extractor_agent_id +
-    c.extraction_timestamp
+    c.subject_node_id + 
+    c.property_path_id + 
+    c.object_node_id +
+    c.facet_id +
+    c.temporal_scope +
+    c.source_document_id +
+    c.passage_locator
+    // NOTE: NO confidence, NO agent, NO timestamp!
   ) AS recomputed_cipher
 RETURN 
   c.cipher = recomputed_cipher AS integrity_verified,
   c.cipher AS original_cipher,
-  recomputed_cipher AS computed_cipher
+  recomputed_cipher AS computed_cipher,
+  CASE 
+    WHEN c.cipher = recomputed_cipher THEN "✅ Claim identity verified"
+    ELSE "❌ Cipher mismatch - possible tampering"
+  END AS verification_status
+```
+
+**Check for Deduplication Candidates:**
+```cypher
+// Find potential duplicate claims (same content, different provenance)
+MATCH (c1:FacetClaim), (c2:FacetClaim)
+WHERE c1.subject_node_id = c2.subject_node_id
+  AND c1.property_path_id = c2.property_path_id
+  AND c1.object_node_id = c2.object_node_id
+  AND c1.facet_id = c2.facet_id
+  AND c1.cipher <> c2.cipher  // Different ciphers despite same core content
+RETURN c1.cipher, c2.cipher, 
+       "Potential deduplication issue" AS status,
+       c1.extracting_agents AS agents1,
+       c2.extracting_agents AS agents2
 ```
 
 ---

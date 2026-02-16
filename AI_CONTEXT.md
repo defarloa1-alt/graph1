@@ -36,7 +36,307 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Step 4 Complete - Semantic Enrichment & CIDOC-CRM/CRMinf Ontology Alignment (2026-02-15)
+## Latest Update: BiographicSFA Responsibilities Clarification (2026-02-16 Afternoon)
+
+### Three Critical Producer Roles Defined
+
+**Context:** User clarified that BiographicSFA is responsible for constructing family trees, defining canonical relationships, and proposing biographical events that seed other facets.
+
+**BiographicSFA Primary Responsibilities:**
+
+1. **Person Identity & Career Structure**
+   - Creates person nodes (Q5 instances) with canonical IDs
+   - Builds career sequences (cursus honorum)
+   - Defines status markers (senatorial, equestrian, plebeian)
+
+2. **Family Tree & Relationship Network Construction** 🔥 CRITICAL
+   - Constructs family trees (genealogical stemma)
+   - Maps kinship relations with **canonical relationship types**
+   - Models adoption patterns (critical in Roman society)
+   - Maps marriage alliances (political marriages)
+   - See `Facets/CANONICAL_RELATIONSHIP_TYPES.md` for complete taxonomy
+
+3. **Biographical Event Proposal** 🔥 NEW ROLE
+   - **Proposes event claims** that seed multi-facet analysis:
+     * Birth/death events (temporal boundaries)
+     * Office appointments (career milestones)
+     * Marriage events (alliance formation)
+     * Adoption events (legal identity changes)
+   - **Seeder pattern:** BiographicSFA proposes → Other facets analyze
+   - Example: BiographicSFA: "Caesar born 100 BCE" → MilitarySFA: "Caesar commanded..." (constrained by birth date)
+
+**Files Created/Updated:**
+- ✅ `Facets/BIOGRAPHIC_SFA_ONTOLOGY_METHODOLOGY.md` (enhanced with canonical relationships + event proposals)
+- ✅ `Facets/CANONICAL_RELATIONSHIP_TYPES.md` (NEW - complete relationship taxonomy reference)
+- ✅ Implementation checklist updated (family tree construction, event workflow validation)
+
+**Key Insight:** BiographicSFA is a **producer facet** (creates nodes/events) that other facets **consume** (reference for their analyses). No other facet creates person nodes or biographical events—they only reference BiographicSFA's claims.
+
+**Canonical Relationship Types (Quick Reference):**
+- Family: CHILD_OF, PARENT_OF, SIBLING_OF, MARRIED, ADOPTED_BY
+- Clan: MEMBER_OF_GENS, FOUNDER_OF_GENS, COGNOMEN_BRANCH
+- Political: POLITICAL_ALLY_OF, POLITICAL_RIVAL_OF, ENEMY_OF
+- Social: PATRON_OF, CLIENT_OF, MENTOR_OF, FRIEND_OF
+- Affinal: FATHER_IN_LAW_OF, SON_IN_LAW_OF, BROTHER_IN_LAW_OF
+
+**Event Proposal Pattern:**
+```python
+# BiographicSFA creates event
+bio_event = create_facet_claim(
+    facet="biographic",
+    subject="Q1048",  # Caesar
+    property="APPOINTED_TO",  # Canonical event type
+    object="Q20056508",  # Consul
+    temporal_scope="-0059"
+)
+
+# SCA evaluates relevance → queues to Political & Military SFAs
+
+# Other facets create THEIR OWN claims referencing the event
+pol_claim = create_facet_claim(
+    facet="political",
+    subject="Q1048",
+    property="HELD_SUPREME_AUTHORITY",
+    temporal_scope="-0059",
+    context_claims=[bio_event.cipher]  # References bio event
+)
+```
+
+---
+
+## Previous Update: Claim ID Architecture Refinement (2026-02-16 Morning)
+
+### Critical Architectural Revision: Stable Claim Ciphers
+
+**Context:** User challenged existing claim cipher formula that included provenance metadata (confidence, agent, timestamp) in the hash, causing instability and breaking deduplication.
+
+**Problems Identified:**
+1. **Confidence in cipher** → Evidence improvement creates new claim ID (instability)
+2. **Timestamp in cipher** → Two agents discovering same fact at different times = different IDs (breaks deduplication)
+3. **Agent in cipher** → Provenance metadata treated as logical content (conflates concerns)
+4. **Missing facet_id** → Facet dimension not explicit in formula (critical for 17-facet architecture)
+5. **Implementation divergence** → Code used 4-component formula, docs specified 9 components
+
+**User Insight:** "Treat the claim as its own first-class node whose ID is derived from its *content and context*, not by concatenating all underlying node IDs." Cited nanopublication standards (research.vu.nl, pmc.ncbi.nlm.nih.gov, cidoc-crm.org).
+
+**Solution: Nanopublication-Aligned Claim Identity**
+
+#### Revised Facet-Level Claim Cipher (Stable)
+```python
+facet_claim_cipher = Hash(
+    # Core assertion
+    subject_node_id +            # Q1048 (Caesar)
+    property_path_id +           # "CHALLENGED_AUTHORITY_OF"
+    object_node_id +             # Q1747689 (Roman Senate)
+    
+    # Context
+    facet_id +                   # "political" (essential!)
+    temporal_scope +             # "-0049-01-10"
+    
+    # Source
+    source_document_id +         # Q644312 (Plutarch)
+    passage_locator              # "Caesar.32"
+    
+    # REMOVED: confidence, agent, timestamp (now separate metadata)
+)
+```
+
+#### Hierarchical Facet Claims (Sibling/Parent Model)
+- **Facet Claims (Siblings):** Independent assertions per facet (military, political, geographic)
+- **Composite Claims (Parent):** References sorted facet claim ciphers, not raw node IDs
+- Prevents concatenation instability (entity evolution ≠ claim identity)
+
+**Files Updated:**
+- ✅ Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md (Section 6.4, ~200 lines)
+- ✅ SCA_SFA_ROLES_DISCUSSION.md (~100 lines)
+- ✅ SCA_SFA_ARCHITECTURE_PACKAGE.md (~80 lines)
+- ✅ scripts/tools/claim_ingestion_pipeline.py (_calculate_cipher method rewritten)
+- ✅ **NEW:** Key Files/CLAIM_ID_ARCHITECTURE.md (comprehensive 10-section reference, ~800 lines)
+
+**Benefits:**
+- ✅ Automatic deduplication (same content = same cipher regardless of agent/time)
+- ✅ Citation stability (cipher unchanged when confidence updates)
+- ✅ Clean separation: entity identity vs assertion identity
+- ✅ Aligned with nanopublication assertion graph standards
+
+**Reference:** See `Key Files/CLAIM_ID_ARCHITECTURE.md` for complete specification.
+
+**Facet Architecture Update (Feb 16):**
+- Added **BiographicFacet** (#17) - Prosopography, careers, person identity (DPRR integration)
+- Added **CommunicationFacet** (#18) - Rhetoric, media, information transmission (meta-facet)
+- **Total: 18 facets** (16 core + biographic + communication)
+
+---
+
+## Previous Update: SCA ↔ SFA Roles Finalized + Selective Queue Model (2026-02-15 Evening)
+
+### Major Architectural Decision: Agent Coordination Model
+
+**Context:** After real agent spawning deployment, needed to finalize how SubjectConceptAgent (SCA) coordinates SubjectFacetAgents (SFAs) during claim creation.
+
+**Key Insight from User:** "SFA is studying the discipline, dealing with abstract concepts at first, so it is really building a subject ontology and it might be premature to involve the other SFAs at this particular point in the process."
+
+**Solution: Two-Phase Workflow with Selective Queue**
+
+#### Phase 1: Training Mode (Independent)
+- SFAs study discipline independently (Political Science, Military History, etc.)
+- Build domain-specific subject ontologies
+- Create claims about **abstract concepts** ("Senate legislative authority", "Legion structure")
+- Work **independently** - NO cross-facet collaboration yet
+- SCA accepts all training claims as-is (**NO QUEUE**)
+
+**Example:**
+```
+Political SFA (Training):
+  → "Senate held legislative authority" (abstract political concept)
+  → SCA evaluation: Abstract domain concept → Accept as-is (no queue)
+
+Military SFA (Training):
+  → "Legion composed of cohorts" (abstract military structure)
+  → SCA evaluation: Abstract domain concept → Accept as-is (no queue)
+```
+
+#### Phase 2: Operational Mode (Selective Collaboration)
+- SFAs encounter **concrete entities/events**
+- **SCA evaluates** each claim for multi-facet potential
+- SCA uses **relevance scoring** (0-1.0) to determine which SFAs should analyze
+- Only relevant SFAs receive claim for perspective creation
+- FacetPerspective nodes created when queued
+
+**Example:**
+```
+Political SFA creates:
+  → "Caesar appointed dictator in 49 BCE" (concrete historical event)
+
+SCA evaluation:
+  → Type: Concrete event (not abstract concept)
+  → Entities: Caesar (Q1048), Dictator office, 49 BCE
+  → Relevance scoring:
+    * Military SFA: 0.9 (Caesar = commander) → QUEUE
+    * Economic SFA: 0.8 (dictator = treasury) → QUEUE
+    * Cultural SFA: 0.3 (minor impact) → SKIP
+    * Religious SFA: 0.2 (no dimension) → SKIP
+
+SCA decision: Queue to Military + Economic ONLY
+
+Military SFA (Perspective Mode):
+  → Creates FacetPerspective: "Caesar commanded all Roman armies as dictator"
+  → Attaches to same claim via cipher
+
+Economic SFA (Perspective Mode):
+  → Creates FacetPerspective: "Caesar controlled state treasury as dictator"
+  → Attaches to same claim via cipher
+
+Result:
+  1 Claim (cipher-based) + 3 FacetPerspectives (political, military, economic)
+  Consensus: AVG(0.95, 0.90, 0.88) = 0.91
+```
+
+#### Claim Architecture: Cipher + Star Pattern
+
+**Claim = Star Pattern Subgraph** (not single node):
+```
+              (Claim: cipher="claim_abc123...")
+                        │
+   ┌────────────────────┼────────────────────┐
+   │                    │                    │
+[PERSP_ON]         [PERSP_ON]         [PERSP_ON]
+   │                    │                    │
+   ▼                    ▼                    ▼
+(Perspective:      (Perspective:      (Perspective:
+ Political)         Military)          Economic)
+```
+
+**Cipher (Content-Addressable ID):**
+```python
+claim_cipher = Hash(
+    source_work_qid + passage_text_hash + subject_entity_qid +
+    relationship_type + temporal_data + confidence_score +
+    extractor_agent_id + extraction_timestamp
+)
+# Result: "claim_abc123..." (unique cipher)
+```
+
+**Benefit:** Two SFAs discovering SAME claim → SAME cipher → Single Claim node (automatic deduplication)
+
+**FacetPerspective Nodes (NEW):**
+```cypher
+(:FacetPerspective {
+  perspective_id: "persp_001",
+  facet: "political",
+  parent_claim_cipher: "claim_abc123...",
+  facet_claim_text: "Caesar challenged Senate authority",
+  confidence: 0.95,
+  source_agent_id: "political_sfa_001",
+  timestamp: "2026-02-15T10:00:00Z",
+  reasoning: "Dictatorship violated Republican norms"
+})-[:PERSPECTIVE_ON]->(Claim {cipher: "claim_abc123..."})
+```
+
+#### SCA Routing Criteria (5 Criteria Framework)
+
+**How SCA determines which claims warrant cross-facet review:**
+
+1. **Abstract vs Concrete Detection:**
+   - Abstract domain concepts → NO QUEUE (accept as-is)
+   - Concrete events/entities → EVALUATE FOR QUEUE
+
+2. **Multi-Domain Relevance Scoring (0-1.0 scale):**
+   - High (0.8-1.0) → Queue to SFA
+   - Medium (0.5-0.7) → Queue to SFA
+   - Low (0.0-0.4) → Skip
+
+3. **Entity Type Detection:**
+   - Query Wikidata P31 (instance of)
+   - Map entity types to facet relevance
+   - Q5 (Human) → Political, Military, Cultural potential
+
+4. **Conflict Detection:**
+   - Date discrepancies → Queue for synthesis
+   - Attribute conflicts → Queue for synthesis
+
+5. **Existing Perspectives Check:**
+   - Query: `MATCH (p:FacetPerspective)-[:PERSPECTIVE_ON]->(c:Claim {cipher: $cipher})`
+   - Only queue to facets NOT already analyzed
+
+#### Military SFA Ontology Methodology
+
+**Problem:** Wikidata "what links here" overwhelmed by platform noise (Wikimedia categories, templates, Commons files)
+
+**Solution:** Disciplinary filtering methodology
+
+**Anchor:** Start from `Q192386` (military science) as scholarly root, not vague "military" label
+
+**Property Whitelist (PREFER):**
+- P279 (subclass of) - Taxonomic backbone
+- P31 (instance of) - Type classification
+- P361 (part of) / P527 (has part) - Compositional structure
+- P607 (conflict) - Military conflicts
+- P241 (military branch), P410 (military rank), P7779 (military unit)
+
+**Wikimedia Blacklist (EXCLUDE):**
+- Q4167836 (Wikimedia category)
+- Q11266439 (Wikimedia template)
+- Q17633526 (Wikinews article)
+- Q15184295 (Wikimedia module)
+
+**Roman Republic Refinement:**
+- Intersect generic military ontology with Q17167 (Roman Republic)
+- Use P1001 (applies to jurisdiction), P361 (part of)
+- Temporal overlap: 509 BCE - 27 BCE
+
+**Result:** ~80-90% noise reduction, clean disciplinary ontology (~500-1,000 generic military concepts → ~100-200 Roman Republican specializations)
+
+**Files:**
+- [SCA_SFA_ROLES_DISCUSSION.md](SCA_SFA_ROLES_DISCUSSION.md) - Complete roles specification (1,153 lines)
+- [CLAIM_WORKFLOW_MODELS.md](CLAIM_WORKFLOW_MODELS.md) - Workflow comparison (450 lines)
+- [Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md](Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md) - Wikidata filtering methodology (1,100 lines)
+
+**Status:** ✅ Architecture finalized, ready for implementation
+
+---
+
+## Previous Update: Step 4 Complete - Semantic Enrichment & CIDOC-CRM/CRMinf Ontology Alignment (2026-02-15 Afternoon)
 
 ### Critical Problem: LLMs Don't Persist Between Sessions
 **User Requirement:** "the llm cannot be counted on to persist between sessions, and it needs to know what the subgraph for the SubjectConcept currently looks like and whether an external SubjectConcept agent has made a claim against any of those nodes and edges"

@@ -21,7 +21,7 @@ Appendices remain part of the consolidated file, not separate source documents.
 | Consolidated section | Implementation assets | Notes |
 |---|---|---|
 | **Section 3: Entity Layer** | `Neo4j/schema/01_schema_constraints.cypher`, `Neo4j/schema/02_schema_indexes.cypher`, `Neo4j/schema/03_schema_initialization.cypher`, `Neo4j/schema/05_temporal_hierarchy_levels.cypher` | First-class node and temporal backbone model |
-| **Section 3.3: Facets** | `Facets/facet_registry_master.json`, `Facets/facet_registry_master.csv` | 17 facets including Communication (facet-only) |
+| **Section 3.3: Facets** | `Facets/facet_registry_master.json`, `Facets/facet_registry_master.csv` | 18 facets: 16 core + Biographic (prosopography) + Communication (meta-facet) |
 | **Section 3.4: Temporal Modeling** | `scripts/backbone/temporal/genYearsToNeo.py`, `scripts/backbone/temporal/migrate_temporal_hierarchy_levels.py`, `Neo4j/schema/05_temporal_hierarchy_levels.cypher` | Year->Decade->Century->Millennium hierarchy |
 | **Section 4: Subject Layer** | `scripts/backbone/subject/create_subject_nodes.py`, `Python/fast/scripts/import_fast_subjects_to_neo4j.py` | SubjectConcept authority alignment |
 | **Section 4.3: Temporal Authorities** | `Temporal/` assets, temporal scripts, PeriodO integration scripts (as available) | Authority alignment + uncertain date handling |

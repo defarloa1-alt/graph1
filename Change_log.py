@@ -23,6 +23,154 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-15 22:00 | SCA/SFA ROLES FINALIZED + SELECTIVE QUEUE MODEL + MILITARY METHODOLOGY
+# ==============================================================================
+# Category: Architecture, Agent Design, Methodology
+# Summary: Finalized SubjectConceptAgent ↔ SubjectFacetAgent architecture
+#          Selective queue model (intelligent routing, not automatic)
+#          Two-phase SFA workflow (training independent → operational selective)
+#          FacetPerspective nodes for multi-facet claim enrichment
+#          Cipher-based claim deduplication (content-addressable IDs)
+#          SCA routing criteria (5 criteria framework)
+#          Military SFA ontology methodology (Wikidata filtering)
+# Files (NEW):
+#   - SCA_SFA_ROLES_DISCUSSION.md (1,153 lines, roles finalized)
+#   - CLAIM_WORKFLOW_MODELS.md (450 lines, workflow comparison)
+#   - Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md (1,100 lines, filtering methodology)
+#   - REAL_AGENTS_DEPLOYED.md (real agent spawning completion)
+# Files (UPDATED):
+#   - SCA_SFA_ROLES_DISCUSSION.md (11 major edits, ~400 lines changed)
+#   - CLAIM_WORKFLOW_MODELS.md (4 major edits, ~200 lines changed)
+# Reason:
+#   CRITICAL ARCHITECTURAL DECISION: How should SubjectConceptAgent (SCA) coordinate
+#   SubjectFacetAgents (SFAs) during claim creation?
+#
+#   PROBLEM 1: Automatic queuing overwhelms system
+#     Initial model: SCA queues ALL claims to ALL SFAs for perspectives
+#     Result: Massive inefficiency, SFAs reviewing irrelevant claims
+#     Example: "Senate legislative authority" (abstract political concept)
+#       → Doesn't need military/economic/cultural review
+#
+#   PROBLEM 2: Training phase needs independence
+#     User insight: "SFA studying discipline, dealing with abstract concepts,
+#                    building subject ontology, premature to involve other SFAs"
+#     Training phase: SFAs build domain ontologies independently
+#     Operational phase: SFAs collaborate on concrete events selectively
+#
+#   PROBLEM 3: Claim schema confusion
+#     Two competing models: Separate claims vs Single claim with perspectives
+#     Existing architecture had claims as star patterns with cipher IDs
+#     Needed: Integration of existing schema + multi-facet enrichment pattern
+#
+#   SOLUTION: Selective Queue Model with Two-Phase Workflow
+#
+# Architecture Changes:
+#
+#   BEFORE (Automatic Queuing):
+#     SCA → Political SFA creates claim → Queue to ALL other SFAs automatically
+#     Problem: Military SFA reviewing "Senate legislative power" (irrelevant)
+#     Result: Wasted computation, SFA confusion about relevance
+#
+#   AFTER (Selective Queuing):
+#     Phase 1 - Training (Independent):
+#       SCA → Route discipline training data to SFAs
+#       Political SFA → Build political ontology (abstract concepts)
+#       Military SFA → Build military ontology (abstract concepts)
+#       Economic SFA → Build economic ontology (abstract concepts)
+#       SCA evaluates: All abstract domain concepts → Accept as-is (NO QUEUE)
+#
+#     Phase 2 - Operational (Selective):
+#       Political SFA → "Caesar appointed dictator 49 BCE" (concrete event)
+#       SCA evaluates claim characteristics:
+#         → Concrete historical event (not abstract concept)
+#         → Multi-domain potential (military + economic relevance)
+#         → Relevance scoring: Military(0.9), Economic(0.8), Cultural(0.3)
+#       SCA decision: Queue ONLY to Military + Economic (skip Cultural)
+#       Military SFA → Create FacetPerspective ("Caesar commanded armies")
+#       Economic SFA → Create FacetPerspective ("Caesar controlled treasury")
+#
+# Key Components:
+#
+#   1. Two-Phase SFA Workflow:
+#      Phase 1 (Training): Independent domain ontology building
+#        - SFAs study discipline (Political Science, Military History, etc.)
+#        - Create claims about abstract concepts ("Senate authority", "Legion structure")
+#        - NO cross-facet collaboration yet
+#        - SCA accepts all training claims as-is (no queuing)
+#
+#      Phase 2 (Operational): Selective multi-facet collaboration
+#        - SFAs analyze concrete entities/events
+#        - SCA evaluates each claim for cross-facet potential
+#        - Only relevant SFAs receive claim for perspective
+#        - FacetPerspective nodes created when queued
+#
+#   2. Claim Architecture (Cipher + Star Pattern):
+#      Claim = Star Pattern Subgraph:
+#        Center: Claim node (cipher: content-addressable ID)
+#        Rays: FacetPerspective nodes (one per facet that analyzed it)
+#      Cipher = Hash(source + passage + entities + relationship + temporal + confidence + agent + timestamp)
+#      Benefit: Two SFAs discovering same claim → Same cipher → Automatic deduplication
+#
+#   3. FacetPerspective Nodes (NEW):
+#      (:FacetPerspective {
+#        perspective_id, facet, parent_claim_cipher, facet_claim_text,
+#        confidence, reasoning, source_agent_id, timestamp
+#      })-[:PERSPECTIVE_ON]->(Claim)
+#      Purpose: Facet-specific interpretation of claim
+#      Example:
+#        Claim: "Caesar appointed dictator 49 BCE" (cipher: "claim_abc123...")
+#        Political Perspective: "Challenged Senate authority" (conf: 0.95)
+#        Military Perspective: "Commanded all Roman armies" (conf: 0.90)
+#        Economic Perspective: "Controlled state treasury" (conf: 0.88)
+#        Consensus: AVG(0.95, 0.90, 0.88) = 0.91
+#
+#   4. SCA Routing Criteria (5 Criteria Framework):
+#      Criterion 1: Abstract vs Concrete Detection
+#        - Abstract domain concepts → NO QUEUE (accept as-is)
+#        - Concrete events/entities → EVALUATE FOR QUEUE
+#      Criterion 2: Multi-Domain Relevance Scoring (0-1.0 scale)
+#        - High (0.8-1.0) → Queue to SFA
+#        - Medium (0.5-0.7) → Queue to SFA
+#        - Low (0.0-0.4) → Skip
+#      Criterion 3: Entity Type Detection (Wikidata P31 queries)
+#      Criterion 4: Conflict Detection (date/attribute discrepancies)
+#      Criterion 5: Existing Perspectives Check (avoid duplicates)
+#
+#   5. Military SFA Ontology Methodology:
+#      Problem: Wikidata "what links here" overwhelmed by platform noise
+#      Solution: Disciplinary filtering from Q192386 (military science)
+#      Property Whitelist: P279, P31, P361, P527, P607, P241, P410, P7779
+#      Wikimedia Blacklist: Q4167836 (categories), Q11266439 (templates)
+#      Roman Republic Refinement: P1001/P361 → Q17167
+#      Result: ~80-90% noise reduction, clean military ontology
+#
+# Implementation Status:
+#   ✅ Architecture documented (SCA_SFA_ROLES_DISCUSSION.md)
+#   ✅ Workflow models compared (CLAIM_WORKFLOW_MODELS.md)
+#   ✅ Routing criteria specified (5 criteria with examples)
+#   ✅ FacetPerspective pattern defined
+#   ✅ Cipher-based deduplication documented
+#   ✅ Military SFA methodology documented (Wikidata filtering)
+#   ⏸️ FacetPerspective node schema (add to NODE_TYPE_SCHEMAS.md)
+#   ⏸️ SCA claim evaluation implementation
+#   ⏸️ SCA relevance scoring implementation
+#   ⏸️ FacetPerspective creation in SFA
+#   ⏸️ Selective queue logic in SCA
+#
+# Benefits:
+#   ✅ Efficient Collaboration: Only concrete/multi-domain claims get cross-facet review
+#   ✅ Independent Learning: SFAs build domain ontologies without interference
+#   ✅ Selective Enrichment: Multi-facet analysis applied where it adds value
+#   ✅ SCA Intelligence: Orchestrator makes informed routing decisions
+#   ✅ Noise Reduction: Military SFA filters Wikidata platform artifacts
+#   ✅ Disciplinary Grounding: Q192386 (military science) as scholarly root
+#
+# Documentation:
+#   - SCA_SFA_ROLES_DISCUSSION.md (comprehensive roles specification)
+#   - CLAIM_WORKFLOW_MODELS.md (workflow comparison with recommendations)
+#   - Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md (Wikidata filtering strategy)
+#
+# ==============================================================================
 # 2026-02-15 17:00 | HIERARCHY QUERY ENGINE & LAYER 2.5 ARCHITECTURE COMPLETE
 # ==============================================================================
 # Category: Architecture, Integration, Capability

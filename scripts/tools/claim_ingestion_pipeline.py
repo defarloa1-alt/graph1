@@ -811,11 +811,53 @@ class ClaimIngestionPipeline:
         return f"claim_{hashlib.sha256(base.encode()).hexdigest()[:12]}"
 
     def _calculate_cipher(
-        self, claim_id: str, label: str, confidence: float, source_agent: str
+        self,
+        subject_node_id: str,
+        property_path_id: str,
+        object_node_id: str,
+        facet_id: str,
+        temporal_scope: str,
+        source_document_id: str,
+        passage_locator: str
     ) -> str:
-        """Calculate SHA256 cipher for claim integrity"""
-        data = f"{claim_id}|{label}|{confidence}|{source_agent}"
-        return hashlib.sha256(data.encode()).hexdigest()
+        """
+        Calculate SHA256 cipher for facet-level claim (content-addressable ID).
+        
+        REVISED FORMULA (Feb 2026): Stable, content-based cipher that excludes
+        provenance metadata (confidence, agent, timestamp) to enable proper
+        deduplication across agents and time.
+        
+        Aligned with nanopublication assertion graph patterns.
+        
+        Args:
+            subject_node_id: Q-ID of subject entity (e.g., "Q1048" for Caesar)
+            property_path_id: Normalized relationship (e.g., "CHALLENGED_AUTHORITY_OF")
+            object_node_id: Q-ID of object entity (e.g., "Q1747689" for Roman Senate)
+            facet_id: Facet dimension (e.g., "political", "military")
+            temporal_scope: When assertion holds (e.g., "-0049-01-10")
+            source_document_id: Source Q-ID (e.g., "Q644312" for Plutarch)
+            passage_locator: Passage reference (e.g., "Caesar.32")
+        
+        Returns:
+            SHA256 cipher prefixed with facet (e.g., "fclaim_pol_abc123...")
+        
+        Note: Confidence, extractor_agent_id, and extraction_timestamp are
+        stored as separate mutable properties, NOT included in cipher.
+        """
+        # Construct stable content signature
+        data = (
+            f"{subject_node_id}|"
+            f"{property_path_id}|"
+            f"{object_node_id}|"
+            f"{facet_id}|"
+            f"{temporal_scope}|"
+            f"{source_document_id}|"
+            f"{passage_locator}"
+        )
+        hash_value = hashlib.sha256(data.encode()).hexdigest()
+        
+        # Prefix with facet for human readability
+        return f"fclaim_{facet_id[:3]}_{hash_value[:16]}"
 
     def _create_claim_node(
         self,
