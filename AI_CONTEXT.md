@@ -36,7 +36,117 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Ontology Consolidation + Claim/Relationship Registry Refinements (2026-02-16 16:30)
+## Latest Update: Documentation Consolidation - Steps 4-5 Integrated into CONSOLIDATED.md (2026-02-16 18:00)
+
+### Architecture Consolidation Complete
+
+**Session Context:** Consolidated temporary Step 4-5 documentation into canonical CONSOLIDATED.md architecture specification. TrainingResources.yml enhanced with priority/access metadata.
+
+**CONSOLIDATION ACTIONS:**
+
+**1. TrainingResources.yml Enhancement (Version 2.0)**
+- ✅ **Added metadata fields**: `priority` (1=Tier 1 discipline anchor, 2=Tier 2 methodological), `access` (open/subscription), `notes` (contextual guidance)
+- ✅ **All 17 facets updated**: POLITICAL, MILITARY, ECONOMIC, CULTURAL, RELIGIOUS, SOCIAL, DEMOGRAPHIC, INTELLECTUAL, SCIENTIFIC, TECHNOLOGICAL, LINGUISTIC, GEOGRAPHIC, ENVIRONMENTAL, ARCHAEOLOGICAL, DIPLOMATIC, ARTISTIC, COMMUNICATION
+- ✅ **Priority 1 (Tier 1) resources**: Stanford Encyclopedia, Historical Abstracts, Economic History Society, Oxford References, LOC portals
+- ✅ **Priority 2 (Tier 2) resources**: Norwich University guides, Zinn Education Project, Robin Bernstein methodology templates
+- **File:** `Facets/TrainingResources.yml` (v2.0)
+
+**2. Appendix O Created: Facet Training Resources Registry**
+- ✅ **O.1** Purpose: SFA training initialization with discipline roots
+- ✅ **O.2** Authority Schema: name, role, priority, access, url, notes
+- ✅ **O.3** Priority Tier System: Tier 1 (discipline anchors) vs Tier 2 (methodological patterns)
+- ✅ **O.4** Canonical 17 Facet Registry: All resources mapped to facets
+- ✅ **O.5** SFA Initialization Workflow: 4-step bootstrap (load resources → seed roots → query discipline nodes → expand BROADER_THAN)
+- ✅ **O.6** Authority Precedence Integration: Tier 1 (LCSH/FAST) → Tier 2 (LCC/CIP) → Tier 3 (Wikidata) with Cypher examples
+- ✅ **O.7-O.8** Source files and cross-references to Step 5, Appendix D, Section 4.4, Section 4.9
+- **File:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (Appendix O)
+
+**3. Appendix P Created: Semantic Enrichment & Ontology Alignment (CIDOC-CRM/CRMinf)**
+- ✅ **P.1** Purpose: Triple alignment (Chrystallum ↔ Wikidata ↔ CIDOC-CRM)
+- ✅ **P.2** CIDOC-CRM Entity & Property Mappings: 105 validated mappings (Q5→E21_Person, Q1656682→E5_Event, etc.)
+- ✅ **P.3** CRMinf Belief Tracking: Claim→I2_Belief, confidence→J5_holds_to_be
+- ✅ **P.4** Authority Precedence Integration (from commit d56fc0e): Multi-tier checking, enrichment algorithm, query examples (Before/After), data audit queries
+- ✅ **P.5** Implementation Methods: 4 methods (_load_cidoc_crosswalk, enrich_with_ontology_alignment, enrich_claim_with_crminf, generate_semantic_triples)
+- ✅ **P.6** Semantic Triple Generation: Example output structure & use cases
+- ✅ **P.7-P.8** Source files (cidoc_wikidata_mapping_validated.csv, facet_agent_framework.py) and cross-references
+- **File:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (Appendix P)
+- **Source:** `STEP_4_COMPLETE.md` (now deprecated, ready for archival)
+
+**4. Appendix Q Created: Operational Modes & Agent Orchestration**
+- ✅ **Q.1** Purpose: Define agent operation in different contexts
+- ✅ **Q.2** SubjectConceptAgent (SCA) Two-Phase Architecture:
+  - Phase 1: Un-Faceted Exploration (P31/P279/P361 traversal, "purple to mollusk" discovery)
+  - Phase 2: Facet-by-Facet Analysis (sequential role adoption)
+- ✅ **Q.3** Canonical 17 Facets: UPPERCASE keys with normalization rule (from commit d56fc0e)
+- ✅ **Q.4** Operational Modes: Initialize, Subject Ontology Proposal, Training, Schema Query, Data Query, Wikipedia Training
+- ✅ **Q.5** Discipline Root Detection & SFA Initialization (from commit d56fc0e):
+  - Algorithm: Reachability scoring + keyword heuristics
+  - Neo4j implementation: `SET root.discipline = true`
+  - Pre-seeding option for 17 canonical roots
+  - SFA training queries: `WHERE discipline=true AND facet=TARGET_FACET`
+- ✅ **Q.6** Cross-Domain Query Example: "Senator to mollusk" bridge concept discovery (Political + Scientific + Cultural synthesis)
+- ✅ **Q.7** Implementation Components: 4 core components (AgentOperationalMode Enum, FacetSummary dataclass, mock SFA dialogue, simulated cross-domain queries)
+- ✅ **Q.8** Log Output Format: Initialize/Training mode verbose logging examples
+- ✅ **Q.9-Q.10** Source files (facet_agent_framework.py, agent_gradio_app.py, TrainingResources.yml) and cross-references
+- **File:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (Appendix Q, 947 lines added)
+- **Source:** `STEP_5_COMPLETE.md` (now deprecated, ready for archival)
+
+**5. Document Structure Update**
+- ✅ **Table of Contents updated** to include Appendices O, P, Q
+- ✅ **Document growth**: 8,256 lines → 9,912 lines (+1,656 lines of operational documentation)
+- **File:** `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` (v3.3)
+
+**BENEFITS:**
+- **Single source of truth**: All architecture now in CONSOLIDATED.md (no need to check multiple STEP_* files)
+- **Authority precedence explicit**: Tier 1/2/3 system documented in Appendices O, P with Cypher examples
+- **Discipline root bootstrapping**: SFA initialization ceremony explicit (Priority 1 resources → discipline=true flags)
+- **Facet normalization complete**: UPPERCASE keys enforced in Appendices Q, O; TrainingResources.yml v2.0
+- **Cross-domain orchestration documented**: SCA two-phase pattern explicit with "senator to mollusk" example
+- **Ontology alignment complete**: CIDOC-CRM/CRMinf integration surfaces triple alignment for cultural heritage exchange
+
+**FILES READY FOR ARCHIVAL:**
+- `STEP_4_COMPLETE.md` → `Archive/STEP_4_COMPLETE_2026-02-15.md`
+- `STEP_5_COMPLETE.md` → `Archive/STEP_5_COMPLETE_2026-02-15.md`
+
+**COMMITS PENDING:**
+- Commit 1: TrainingResources.yml v2.0 + CONSOLIDATED.md Appendices O, P, Q
+- Commit 2: Archive STEP_4 and STEP_5 files
+- Change log entry created in CHANGE_LOG.py for "Documentation Consolidation" session
+
+---
+
+## Previous Update: Steps 4-5 Integration (2026-02-16 17:45)
+
+**Session Context:** Three Priority 1-2 fixes integrating SubjectConcept refinements with Steps 4-5.
+
+**INTEGRATION FIXES:**
+
+**Fix 1: Facet Uppercase Normalization (Priority 1)**
+- ✅ All 17 canonical facets now UPPERCASE keys (ARCHAEOLOGICAL, ARTISTIC, CULTURAL, etc.)
+- ✅ SCA facet classification outputs uppercase
+- ✅ SubjectConcept.facet property enforced uppercase (§4.1 CONSOLIDATED refinement)
+- **Rationale**: Deterministic routing, union-safe deduplication
+- **File**: `STEP_5_COMPLETE.md` (facet list + Initialize mode workflow + SCA method)
+
+**Fix 2: Authority Precedence Integration (Priority 2)**
+- ✅ Enhanced enrichment algorithm: Check Tier 1 (LCSH/FAST) → Tier 2 (LCC/CIP) → Tier 3 (Wikidata)
+- ✅ Multi-authority node structure (authority_id + fast_id + wikidata_qid + authority_tier)
+- ✅ Implements §4.4 CONSOLIDATED policy in Step 4 federation pipeline
+- **File**: `STEP_4_COMPLETE.md` (new "Authority Precedence Integration" section)
+
+**Fix 3: Discipline Root Detection & SFA Training Prep (Priority 2)**
+- ✅ Algorithm: Identify nodes with high BROADER_THAN reachability (>70% hierarchy)
+- ✅ Mark discipline roots with `discipline: true` flag for SFA training seeding
+- ✅ SFA initialization queries roots: `WHERE discipline=true AND facet=TARGET_FACET`
+- ✅ Pre-seeding option: Create 17 canonical roots (one per facet)
+- ✅ Implements §4.9 CONSOLIDATED pattern in Step 5 workflow
+- **File**: `STEP_5_COMPLETE.md` (new "Discipline Root Detection" section + log output)
+
+**Git Commit:** d56fc0e (master → master), 3 files changed, 305 insertions(+), 11 deletions(-)
+
+---
+
+## Previous Update: Ontology Consolidation + Claim/Relationship Registry Refinements (2026-02-16 16:30)
 
 ### Expert Review Recommendations Implemented (5-Point Checklist)
 

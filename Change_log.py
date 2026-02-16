@@ -23,6 +23,107 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-16 18:00 | DOCUMENTATION CONSOLIDATION: STEPS 4-5 → CONSOLIDATED.MD
+# ==============================================================================
+# Category: Documentation, Architecture, Consolidation
+# Summary: Consolidated temporary Step 4-5 documentation into canonical
+#          CONSOLIDATED.md architecture specification. Enhanced TrainingResources.yml
+#          with priority/access metadata. All Steps content now in single source.
+#
+# CONSOLIDATION ACTIONS:
+#
+# Action 1: TrainingResources.yml Enhancement (Version 2.0)
+#   - Added metadata fields: priority (1/2), access (open/subscription), notes
+#   - All 17 facets updated with Tier 1/2 classification
+#   - Priority 1 (Tier 1): Stanford, Historical Abstracts, EHS, Oxford, LOC
+#   - Priority 2 (Tier 2): Norwich, Zinn, Robin Bernstein methodology templates
+#   - Integration with Step 5 discipline root detection workflow
+#   - File: Facets/TrainingResources.yml (v1.0 → v2.0)
+#
+# Action 2: Appendix O Created - Facet Training Resources Registry
+#   - O.1: Purpose (SFA training initialization with discipline roots)
+#   - O.2: Authority Schema (name, role, priority, access, url, notes)
+#   - O.3: Priority Tier System (Tier 1 discipline anchors vs Tier 2 methodologies)
+#   - O.4: Canonical 17 Facet Registry (all resources mapped to facets)
+#   - O.5: SFA Initialization Workflow (4-step bootstrap with Cypher examples)
+#   - O.6: Authority Precedence Integration (Tier 1/2/3 enrichment with queries)
+#   - O.7-O.8: Source files and cross-references
+#   - File: Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md (NEW Appendix O)
+#
+# Action 3: Appendix P Created - Semantic Enrichment & Ontology Alignment
+#   - P.1: Purpose (Triple alignment: Chrystallum ↔ Wikidata ↔ CIDOC-CRM)
+#   - P.2: CIDOC-CRM Entity & Property Mappings (105 validated mappings)
+#   - P.3: CRMinf Belief Tracking (Claim→I2_Belief, confidence→J5_holds_to_be)
+#   - P.4: Authority Precedence Integration (from commit d56fc0e)
+#     * Multi-tier checking algorithm (Tier 1 LCSH/FAST → Tier 2 LCC/CIP → Tier 3 Wikidata)
+#     * Enrichment pseudo-code with Before/After query examples
+#     * Data audit queries for authority coverage
+#   - P.5: Implementation Methods (4 methods with signatures)
+#   - P.6: Semantic Triple Generation (example output & use cases)
+#   - P.7-P.8: Source files and cross-references
+#   - File: Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md (NEW Appendix P)
+#   - Source migrated from: STEP_4_COMPLETE.md (now archived)
+#
+# Action 4: Appendix Q Created - Operational Modes & Agent Orchestration
+#   - Q.1: Purpose (Define agent operation in different contexts)
+#   - Q.2: SubjectConceptAgent (SCA) Two-Phase Architecture
+#     * Phase 1: Un-Faceted Exploration (P31/P279/P361, "purple to mollusk" discovery)
+#     * Phase 2: Facet-by-Facet Analysis (sequential role adoption)
+#   - Q.3: Canonical 17 Facets (UPPERCASE keys with normalization rule from d56fc0e)
+#   - Q.4: Operational Modes (Initialize, Subject Ontology Proposal, Training, +3 more)
+#   - Q.5: Discipline Root Detection & SFA Initialization (from commit d56fc0e)
+#     * Algorithm: Reachability scoring + keyword heuristics
+#     * Neo4j implementation: SET root.discipline = true
+#     * Pre-seeding option for 17 canonical roots
+#     * SFA training queries: WHERE discipline=true AND facet=TARGET_FACET
+#   - Q.6: Cross-Domain Query Example ("Senator to mollusk" bridge concept discovery)
+#   - Q.7: Implementation Components (4 core components with method signatures)
+#   - Q.8: Log Output Format (Initialize/Training mode verbose logging examples)
+#   - Q.9-Q.10: Source files and cross-references
+#   - File: Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md (NEW Appendix Q, 947 lines)
+#   - Source migrated from: STEP_5_COMPLETE.md (now archived)
+#
+# Action 5: Document Structure Update
+#   - Table of Contents updated to include Appendices O, P, Q
+#   - Document growth: 8,256 lines → 9,912 lines (+1,656 lines operational documentation)
+#   - File: Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md (v3.2 → v3.3)
+#
+# Action 6: Archive Deprecated Files
+#   - STEP_4_COMPLETE.md → Archive/STEP_4_COMPLETE_2026-02-15.md
+#   - STEP_5_COMPLETE.md → Archive/STEP_5_COMPLETE_2026-02-15.md
+#   - Rationale: Content fully migrated to CONSOLIDATED.md; Step files no longer canonical
+#
+# Files (UPDATED):
+#   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md (v3.3; +3 appendices)
+#   - Facets/TrainingResources.yml (v2.0; priority/access metadata added)
+#   - AI_CONTEXT.md (latest update section rewritten with consolidation summary)
+#
+# Files (ARCHIVED):
+#   - Archive/STEP_4_COMPLETE_2026-02-15.md (content migrated to Appendix P)
+#   - Archive/STEP_5_COMPLETE_2026-02-15.md (content migrated to Appendix Q)
+#
+# Reason:
+#   User requested consolidation: "treat those step files as temporary and should
+#   either be in 2-12-26 Chrystallum = consolidated doc or a separate doc".
+#   
+#   Steps 4-5 were implementation-phase documentation tracking commit d56fc0e work.
+#   All content now integrated into canonical architecture specification with
+#   appropriate appendices. TrainingResources.yml enhanced to align with
+#   discipline root detection workflow (Step 5 → Appendix Q).
+#
+# Benefits:
+#   - Single source of truth: All architecture now in CONSOLIDATED.md (no STEP_* checks)
+#   - Authority precedence explicit: Tier 1/2/3 system documented with Cypher examples
+#   - Discipline root bootstrapping: SFA initialization ceremony explicit (Priority 1 → discipline=true)
+#   - Facet normalization complete: UPPERCASE keys enforced in Appendices Q, O; TrainingResources v2.0
+#   - Cross-domain orchestration: SCA two-phase pattern explicit with "senator to mollusk" example
+#   - Ontology alignment complete: CIDOC-CRM/CRMinf surfaces triple alignment for cultural heritage
+#
+# Scope: Documentation consolidation + TrainingResources enhancement; no code changes
+# Backward Compatibility: All Step 4-5 content preserved in Appendices P-Q; archived files available
+# Git status: Changes staged for commit
+
+# ==============================================================================
 # 2026-02-16 17:45 | STEPS 4-5 INTEGRATION: FACET UPPERCASE, AUTHORITY PRECEDENCE, DISCIPLINE ROOTS
 # ==============================================================================
 # Category: Architecture, Integration, Normalization

@@ -55,6 +55,9 @@ This document is the **authoritative architectural specification** for Chrystall
 - Appendix L: CIDOC-CRM Integration Guide
 - Appendix M: Identifier Safety Reference
 - Appendix N: Property Extensions & Advanced Attributes
+- Appendix O: Facet Training Resources Registry
+- Appendix P: Semantic Enrichment & Ontology Alignment (CIDOC-CRM/CRMinf)
+- Appendix Q: Operational Modes & Agent Orchestration
 
 ---
 
@@ -8249,6 +8252,1659 @@ Defines optional-but-supported extension properties that enrich entities without
 ---
 
 **(End of Appendix N)**
+
+---
+
+# **Appendix O: Facet Training Resources Registry**
+
+## **O.1 Purpose**
+
+Defines curated discipline-specific resources for **SubjectFacetAgent (SFA) training initialization**. These resources serve as **discipline roots** for building SubjectConcept hierarchies via BROADER_THAN relationships.
+
+**Integration Point:** Step 5 Discipline Root Detection uses Priority 1 resources to mark `discipline=true` flags in Neo4j.
+
+## **O.2 Authority Schema**
+
+Each resource includes:
+- **name**: Human-readable resource title
+- **role**: Resource function (discipline_reference, bibliographic_index, curated_portal, etc.)
+- **priority**: 1 (Tier 1 discipline anchor) or 2 (Tier 2 methodological pattern)
+- **access**: "open" (freely available) or "subscription" (institutional access)
+- **url**: Direct link or gateway URL
+- **notes**: Contextual guidance for SFA training bootstrap
+
+## **O.3 Priority Tier System**
+
+**Priority 1 (Tier 1 Discipline Anchors):**
+- Standard discipline references (Stanford Encyclopedia, Oxford References)
+- Comprehensive bibliographic indexes (Historical Abstracts, Linguistic Bibliography)
+- Empirical data portals (Economic History Society datasets)
+- **Action**: Create SubjectConcept nodes with `discipline=true` flag
+- **Query Pattern**: `WHERE discipline=true AND facet=TARGET_FACET`
+
+**Priority 2 (Tier 2 Methodological Patterns):**
+- Curated secondary sources (Norwich Military History, Zinn Education Project)
+- Pedagogical syllabi (Stanford OHS)
+- Primary source methodology templates (Robin Bernstein model)
+- **Action**: Use for narrative patterns and case study methodologies
+
+## **O.4 Canonical 17 Facet Registry**
+
+### POLITICAL
+- **Tier 1**: Stanford Encyclopedia of Philosophy – Political Philosophy (open)
+- **Tier 1**: Historical Abstracts (political history) (subscription)
+
+### MILITARY
+- **Tier 2**: Norwich University – Military History Websites (open)
+- **Tier 1**: Historical Abstracts (military history) (subscription)
+
+### ECONOMIC
+- **Tier 1**: Economic History Society – Online Resources (open) — PRIMARY discipline portal
+- **Tier 2**: VoxEU – Economic History & Macrohistory (open)
+
+### CULTURAL
+- **Tier 2**: Primary Sources in U.S. Cultural History – Robin Bernstein (open) — narrative template
+- **Tier 1**: Historical Abstracts (cultural history) (subscription)
+
+### RELIGIOUS
+- **Tier 1**: Theology and Religion Online (Bloomsbury) (subscription)
+- **Tier 1**: Oxford Reference – Religion/Theology (subscription)
+
+### SOCIAL
+- **Tier 1**: Economic History Society – labour/demography resources (open)
+- **Tier 2**: Zinn Education Project – Teaching People's History (open)
+
+### DEMOGRAPHIC
+- **Tier 1**: Economic History Society – demographic datasets (open) — quantitative anchor
+
+### INTELLECTUAL
+- **Tier 1**: Stanford Encyclopedia of Philosophy – HPS & related (open)
+- **Tier 2**: History & Philosophy of Science – Stanford OHS (open)
+
+### SCIENTIFIC
+- **Tier 1**: Stanford Encyclopedia of Philosophy – Science entries (open)
+
+### TECHNOLOGICAL
+- **Tier 1**: Economic History Society – industrialization/technology (open)
+- **Tier 1**: Historical Abstracts (history of technology) (subscription)
+
+### LINGUISTIC
+- **Tier 1**: Library of Congress – Linguistics Electronic Resources (open)
+- **Tier 1**: Linguistic Bibliography Online (subscription)
+
+### GEOGRAPHIC
+- **Tier 2**: LOC – Environmental History (maps & place framing) (open)
+
+### ENVIRONMENTAL
+- **Tier 2**: LOC – Environmental History Classroom Materials (open)
+- **Tier 1**: Economic History Society – climate/resource-related (open)
+
+### ARCHAEOLOGICAL
+- **Tier 2**: Archaeology: Reference Materials – COD Library (open)
+- **Tier 1**: Oxford Encyclopedia/Companion to Archaeology (subscription)
+
+### DIPLOMATIC
+- **Tier 1**: Historical Abstracts – diplomatic history (subscription)
+- **Tier 2**: Norwich Military History guide (treaties/foreign policy) (open)
+
+### ARTISTIC
+- **Tier 1**: Oxford Art Online / Grove Art (subscription)
+- **Tier 2**: Primary Sources in Cultural History – visual culture pattern (open)
+
+### COMMUNICATION
+- **Tier 2**: Zinn Education Project – rhetoric & narrative framing (open)
+- **Tier 2**: Cultural/political primary-source portals (pattern) (open)
+
+## **O.5 SFA Initialization Workflow**
+
+**Step 1: Load Facet Resources**
+```python
+def load_facet_resources(facet: str) -> List[Dict]:
+    """Load Priority 1 & 2 resources for target facet."""
+    resources = parse_yaml("Facets/TrainingResources.yml")
+    return resources[facet.upper()]
+```
+
+**Step 2: Seed Discipline Roots (Priority 1 only)**
+```cypher
+// Create discipline root SubjectConcepts
+MERGE (sc:SubjectConcept {
+  label: "Political Philosophy",  // from Stanford Encyclopedia
+  facet: "POLITICAL",
+  authority_id: "sh85104440",  // LCSH if available
+  discipline: true  // DISCIPLINE FLAG
+})
+```
+
+**Step 3: Query Discipline Roots for Training**
+```cypher
+// SFA initialization query
+MATCH (root:SubjectConcept)
+WHERE root.discipline = true 
+  AND root.facet = "POLITICAL"
+MATCH (root)-[:BROADER_THAN*]->(narrower:SubjectConcept)
+RETURN root, narrower
+```
+
+**Step 4: Expand Hierarchy via BROADER_THAN**
+- Use Wikidata P279 (subclass of) traversal
+- Build BROADER_THAN edges from discipline roots downward
+- Validate against LCSH/FAST authority hierarchies (Tier 1 authorities)
+
+## **O.6 Authority Precedence Integration**
+
+When enriching discipline roots with multi-authority metadata:
+
+**Tier 1 Search (LCSH/FAST):**
+```cypher
+MATCH (root:SubjectConcept {discipline: true})
+WHERE root.authority_id IS NULL
+// Enrich with LCSH first, then FAST
+CALL lcsh.lookup(root.label) YIELD authority_id, fast_id
+SET root.authority_id = authority_id, root.fast_id = fast_id
+```
+
+**Tier 2 Fallback (LCC/CIP):**
+```cypher
+MATCH (root:SubjectConcept {discipline: true})
+WHERE root.authority_id IS NULL AND root.fast_id IS NULL
+// Fallback to LCC classification
+CALL lcc.classify(root.label) YIELD lcc_code
+SET root.backbone_lcc = lcc_code
+```
+
+**Tier 3 Fallback (Wikidata/Other):**
+```cypher
+MATCH (root:SubjectConcept {discipline: true})
+WHERE root.authority_id IS NULL AND root.fast_id IS NULL
+// Last resort: Wikidata QID lookup
+CALL wikidata.search(root.label) YIELD qid
+SET root.wikidata_qid = qid
+```
+
+## **O.7 Authoritative Source File**
+
+- **File**: `Facets/TrainingResources.yml`
+- **Version**: 2.0 (2026-02-16)
+- **Maintenance**: Update when adding new facet training pipelines
+
+## **O.8 Related Sections**
+
+- **Step 5 Discipline Root Detection algorithm**
+- **Appendix D**: Subject Facet Classification (17 canonical facets)
+- **Section 4.4**: Multi-Authority Model (Tier 1/2/3 precedence)
+- **Section 4.9**: Academic Discipline Model (discipline flag usage)
+
+---
+
+**(End of Appendix O)**
+
+---
+
+# **Appendix P: Semantic Enrichment & Ontology Alignment (CIDOC-CRM/CRMinf)**
+
+## **P.1 Purpose**
+
+Implements automatic **CIDOC-CRM and CRMinf ontology alignment** for all entities and claims in the Chrystallum knowledge graph. This provides:
+
+- **Triple alignment**: Chrystallum ↔ Wikidata ↔ CIDOC-CRM
+- **Cultural heritage interoperability** (CIDOC-CRM ISO 21127 standard)
+- **Belief tracking** with CRMinf argumentation ontology
+- **Semantic web compatibility** for RDF/OWL export
+
+Every SubjectConcept node and Claim includes ontology alignment metadata alongside its Wikidata QID, enabling multi-ontology queries and museum/archive data exchange.
+
+**Implementation Status:** ✅ Complete (Step 4, 2026-02-15)
+**Source:** ~250 lines added to `scripts/agents/facet_agent_framework.py`
+
+---
+
+## **P.2 CIDOC-CRM Entity Mappings**
+
+**Source:** `CIDOC/cidoc_wikidata_mapping_validated.csv` (105 validated mappings)
+
+### **P.2.1 Key Entity Class Mappings**
+
+| Wikidata QID | Description | CIDOC-CRM Class | Confidence |
+|-------------|-------------|-----------------|------------|
+| **Q5** | human | **E21_Person** | High |
+| **Q1656682** | event | **E5_Event** | High |
+| **Q178561** | battle | **E5_Event** | High |
+| **Q82794** | geographic region | **E53_Place** | High |
+| **Q515** | city | **E53_Place** | High |
+| **Q43229** | organization | **E74_Group** | High |
+| **Q7252** | cultural heritage | **E22_Man-Made_Object** | Medium |
+| **Q273057** | discourse | **E28_Conceptual_Object** | Medium |
+
+### **P.2.2 Key Property Mappings**
+
+| Wikidata Prop | Description | CIDOC-CRM Prop | Confidence |
+|--------------|-------------|----------------|------------|
+| **P31** | instance of | **P2_has_type** | High |
+| **P279** | subclass of | **P127_has_broader_term** | High |
+| **P276** | location | **P7_took_place_at** | High |
+| **P710** | participant | **P11_had_participant** | High |
+| **P580** | start time | **P82a_begin_of_the_begin** | High |
+| **P582** | end time | **P82b_end_of_the_end** | High |
+| **P131** | located in admin territory | **P89_falls_within** | High |
+| **P361** | part of | **P106_is_composed_of** (inverse) | Medium |
+
+---
+
+## **P.3 CRMinf Belief Tracking**
+
+**CRMinf Ontology:** Argumentation and reasoning extension to CIDOC-CRM
+
+### **P.3.1 Core Mappings**
+
+| CRMinf Class/Property | Chrystallum Mapping | Usage |
+|----------------------|---------------------|-------|
+| **I2_Belief** | Claim node | Core belief held by agent |
+| **J4_that** | Claim.label | The proposition (text) |
+| **J5_holds_to_be** | Claim.confidence | Belief value 0.0-1.0 |
+| **I4_Proposition_Set** | Related claim cluster | Multi-agent debate |
+| **I5_Inference_Making** | Bayesian update | When posterior_probability exists |
+| **I6_Belief_Value** | Confidence tiers | Layer-based authority |
+
+### **P.3.2 Claim Storage Format**
+
+**Example Claim with CRMinf Alignment:**
+
+```python
+{
+  "label": "Battle of Pharsalus occurred on August 9, 48 BCE",
+  "confidence": 0.90,
+  "authority_source": "Wikidata",
+  "authority_ids": {
+    "source_qid": "Q28048",
+    "property": "P585",
+    "target_value": "48 BCE-08-09"
+  },
+  "facet": "military",
+  "crminf_alignment": {
+    "crminf_class": "I2_Belief",
+    "J4_that": "Battle of Pharsalus occurred on August 9, 48 BCE",
+    "J5_holds_to_be": 0.90,
+    "source_agent": "military_facet",
+    "facet": "military",
+    "rationale": "From Wikidata property P585 (point in time)",
+    "inference_method": "wikidata_federation",
+    "timestamp": "2026-02-15T12:00:00Z"
+  }
+}
+```
+
+**Interpretation:**
+- Belief (I2_Belief) held by military_facet agent
+- Proposition (J4_that) is textual claim
+- Agent holds with 0.90 confidence (J5_holds_to_be)
+- Formed via wikidata_federation (trusted external source)
+
+---
+
+## **P.4 Authority Precedence Integration**
+
+**Integration:** Step 4-5 commit (d56fc0e) integrates multi-tier authority checking with ontology enrichment.
+
+### **P.4.1 Multi-Tier Authority Policy**
+
+**Authority Tier Policy (from §4.4):**
+```
+Tier 1 (Preferred): LCSH, FAST               (domain-optimized for historical subjects)
+Tier 2 (Secondary): LCC, CIP                 (structural backbone + academic alignment)
+Tier 3 (Tertiary):  Wikidata, Dewey, VIAF   (fallback authorities)
+```
+
+### **P.4.2 Enhanced Enrichment Algorithm**
+
+**Pseudo-code for Multi-Authority Node Enrichment:**
+
+```python
+def enrich_node_with_authorities(entity_qid):
+    """
+    Enrich SubjectConcept node with multi-authority IDs (Tier 1/2/3)
+    + CIDOC-CRM ontology alignment
+    """
+    node = {'qid': entity_qid}
+    
+    # STEP 1: Fetch Wikidata data
+    wikidata_data = fetch_wikidata_entity(entity_qid)
+    
+    # STEP 2: Extract Tier 1 authorities from Wikidata (if available)
+    lcsh_id = wikidata_data.get('P244')      # Library of Congress authority ID
+    fast_id = wikidata_data.get('special:fast_id')  # FAST derived from LCSH
+    
+    if lcsh_id:
+        node['authority_id'] = lcsh_id          # ← Tier 1 primary
+        node['authority_tier'] = 1
+    
+    if fast_id:
+        node['fast_id'] = fast_id                # ← Tier 1 secondary
+    
+    # STEP 3: If no Tier 1, check Tier 2 (LCC)
+    if not lcsh_id:
+        lcc_mapping = lookup_lcc_for_qid(entity_qid)
+        if lcc_mapping:
+            node['lcc_class'] = lcc_mapping['class']
+            node['authority_tier'] = 2
+    
+    # STEP 4: Always include Wikidata (Tier 3 fallback)
+    node['wikidata_qid'] = entity_qid
+    node['qid_tier'] = 3
+    
+    # STEP 5: Add CIDOC-CRM alignment (orthogonal to authorities)
+    cidoc_enrichment = enrich_with_ontology_alignment(wikidata_data)
+    node['cidoc_crm_class'] = cidoc_enrichment['cidoc_crm_class']
+    node['cidoc_crm_confidence'] = cidoc_enrichment['cidoc_crm_confidence']
+    
+    return node
+```
+
+**Result Node Structure:**
+
+```python
+{
+    'authority_id': 'sh85115055',           # Tier 1: LCSH (preferred)
+    'authority_tier': 1,
+    'fast_id': 'fst01234567',              # Tier 1: FAST (complementary)
+    'wikidata_qid': 'Q12107',              # Tier 3: Wikidata fallback
+    'qid_tier': 3,
+    'cidoc_crm_class': 'E5_Event',         # Orthogonal semantic alignment
+    'cidoc_crm_confidence': 'High',
+    'label': 'Roman politics'
+}
+```
+
+### **P.4.3 Query Examples**
+
+**Before Multi-Authority (Wikidata Only):**
+
+```cypher
+// Single authority source
+MATCH (n:SubjectConcept {wikidata_qid: 'Q12107'})
+RETURN n
+```
+
+**After Multi-Authority Integration:**
+
+```cypher
+// Multi-authority aware query with tier preference
+MATCH (n:SubjectConcept)
+WHERE n.authority_id = 'sh85115055'        // LCSH preferred
+   OR n.fast_id = 'fst01234567'            // FAST complementary
+   OR n.wikidata_qid = 'Q12107'            // Fallback
+ORDER BY COALESCE(n.authority_tier, 3)     // Tier 1 results first
+RETURN n
+```
+
+**Query by CIDOC Class:**
+
+```cypher
+// Find all E21_Person entities (humans)
+MATCH (n:SubjectConcept {cidoc_crm_class: 'E21_Person'})
+RETURN n.label, n.wikidata_qid, n.authority_id
+LIMIT 10
+
+// Find all E5_Event entities (battles, conflicts)
+MATCH (n:SubjectConcept {cidoc_crm_class: 'E5_Event'})
+WHERE n.label CONTAINS 'Battle'
+RETURN n.label, n.wikidata_qid
+LIMIT 10
+```
+
+### **P.4.4 Data Audit Query**
+
+**Check Authority Coverage:**
+
+```cypher
+// Authority coverage statistics
+MATCH (n:SubjectConcept)
+RETURN 
+    count(CASE WHEN n.authority_id IS NOT NULL THEN 1 END) as lcsh_count,
+    count(CASE WHEN n.fast_id IS NOT NULL THEN 1 END) as fast_count,
+    count(CASE WHEN n.wikidata_qid IS NOT NULL THEN 1 END) as wikidata_count,
+    count(CASE WHEN n.cidoc_crm_class IS NOT NULL THEN 1 END) as cidoc_count,
+    count(n) as total
+```
+
+**Rationale:**
+- LCSH/FAST domain-optimized for historical scholarship; reduces federation friction
+- Multi-authority storage enables library catalog interoperability
+- Tier hierarchy prevents dependency lock on Wikidata
+- CIDOC-CRM stays orthogonal to authority tier system
+
+---
+
+## **P.5 Implementation Methods**
+
+**Added to:** `scripts/agents/facet_agent_framework.py` (~250 lines)
+
+### **P.5.1 Method Signatures**
+
+**1. Load CIDOC Crosswalk (~80 lines)**
+
+```python
+def _load_cidoc_crosswalk(self) -> Dict:
+    """
+    Load and parse CIDOC/Wikidata/CRMinf mappings from CSV.
+    
+    Source: CIDOC/cidoc_wikidata_mapping_validated.csv (105 mappings)
+    Caching: Loads once per agent instance → self._cached_cidoc_crosswalk
+    
+    Returns:
+        {
+            'cidoc_by_qid': {
+                'Q5': {'cidoc_class': 'E21_Person', 'confidence': 'High'},
+                'Q1656682': {'cidoc_class': 'E5_Event', 'confidence': 'High'},
+                ...
+            },
+            'cidoc_by_property': {
+                'P710': {'cidoc_property': 'P11_had_participant', 'confidence': 'High'},
+                'P276': {'cidoc_property': 'P7_took_place_at', 'confidence': 'High'},
+                ...
+            },
+            'crminf_mappings': {
+                'I2_Belief': 'Chrystallum Claim node',
+                'J4_that': 'Claim.label (proposition)',
+                'J5_holds_to_be': 'Claim.confidence (belief value)',
+                ...
+            }
+        }
+    """
+```
+
+**2. Enrich with Ontology Alignment (~90 lines)**
+
+```python
+def enrich_with_ontology_alignment(self, entity: Dict) -> Dict:
+    """
+    Add CIDOC-CRM classes and properties to Wikidata entity.
+    
+    Args:
+        entity: Entity dict from fetch_wikidata_entity() or similar
+        
+    Process:
+        1. Look up CIDOC class via P31 (instance of) QID
+        2. Map entity properties to CIDOC properties
+        3. Generate semantic triples (QID+Property+Value+CIDOC)
+        4. Add ontology_alignment section to entity
+        
+    Returns:
+        Enriched entity with ontology_alignment section:
+        {
+            ...existing entity data...,
+            'ontology_alignment': {
+                'cidoc_crm_class': 'E5_Event',
+                'cidoc_crm_confidence': 'High',
+                'cidoc_properties': [...],
+                'semantic_triples': [...]
+            }
+        }
+    """
+```
+
+**3. Enrich Claim with CRMinf (~60 lines)**
+
+```python
+def enrich_claim_with_crminf(self, claim: Dict, belief_value: float = 0.90) -> Dict:
+    """
+    Add CRMinf belief tracking metadata to Chrystallum Claim.
+    
+    Args:
+        claim: Claim dict from generate_claims_from_wikidata() or agent reasoning
+        belief_value: Confidence level (default 0.90)
+        
+    CRMinf Mapping:
+        - Claim → I2_Belief (belief held by agent)
+        - Claim.label → J4_that (proposition)
+        - Claim.confidence → J5_holds_to_be (belief value 0.0-1.0)
+        - Bayesian update → I5_Inference_Making (reasoning process)
+        
+    Returns:
+        Enriched claim with crminf_alignment section:
+        {
+            ...existing claim data...,
+            'crminf_alignment': {
+                'crminf_class': 'I2_Belief',
+                'J4_that': '...',
+                'J5_holds_to_be': 0.90,
+                'source_agent': '...',
+                'inference_method': '...',
+                'timestamp': '...'
+            }
+        }
+    """
+```
+
+**4. Generate Semantic Triples (~70 lines)**
+
+```python
+def generate_semantic_triples(
+    self, 
+    entity_qid: str, 
+    include_cidoc: bool = True, 
+    include_crminf: bool = False
+) -> List[Dict]:
+    """
+    Generate complete semantic triples for RDF/OWL export or validation.
+    
+    Args:
+        entity_qid: Entity QID (must be in graph or fetchable from Wikidata)
+        include_cidoc: Add CIDOC-CRM alignment to each triple
+        include_crminf: Add CRMinf belief tracking (for claims)
+        
+    Returns:
+        List of fully-aligned semantic triples:
+        [
+            {
+                'subject': 'Q28048',
+                'subject_label': 'Battle of Pharsalus',
+                'subject_cidoc': 'E5_Event',
+                'property': 'P276',
+                'property_label': 'location',
+                'property_cidoc': 'P7_took_place_at',
+                'value': 'Q240898',
+                'value_label': 'Pharsalus',
+                'value_cidoc': 'E53_Place',
+                'confidence': 0.90,
+                'crminf_belief': {...}  # if include_crminf=True
+            }
+        ]
+    """
+```
+
+---
+
+## **P.6 Semantic Triple Generation**
+
+### **P.6.1 Example Output Structure**
+
+**Query:** `generate_semantic_triples('Q28048', include_cidoc=True, include_crminf=True)`
+
+**Output:**
+
+```python
+[
+    {
+        # Subject (entity)
+        "subject": "Q28048",
+        "subject_label": "Battle of Pharsalus",
+        "subject_cidoc": "E5_Event",
+        
+        # Predicate (relationship)
+        "property": "P276",
+        "property_label": "location",
+        "property_cidoc": "P7_took_place_at",
+        
+        # Object (target entity or literal)
+        "value": "Q240898",
+        "value_label": "Pharsalus",
+        "value_cidoc": "E53_Place",
+        
+        # Provenance & belief tracking
+        "confidence": 0.90,
+        "crminf_belief": {
+            "class": "I2_Belief",
+            "J4_that": "Battle of Pharsalus took place at Pharsalus",
+            "J5_holds_to_be": 0.90,
+            "source": "Wikidata",
+            "inference_method": "wikidata_federation"
+        }
+    }
+]
+```
+
+### **P.6.2 Use Cases**
+
+1. **RDF/OWL Export**: Convert to Turtle, RDF-XML, JSON-LD for semantic web
+2. **CIDOC-CRM Validation**: Check if triple conforms to CIDOC constraints
+3. **Museum Systems**: Export to collection management systems (CollectionSpace, TMS)
+4. **SPARQL Queries**: Enable federated queries across Wikidata + Chrystallum + CIDOC repositories
+
+---
+
+## **P.7 Source Files**
+
+### **P.7.1 Primary Implementation**
+
+- **File:** `scripts/agents/facet_agent_framework.py`
+- **Lines Added:** ~250 (4 methods)
+- **Version:** 2026-02-15-step4
+
+### **P.7.2 CIDOC Crosswalk Data**
+
+- **File:** `CIDOC/cidoc_wikidata_mapping_validated.csv`
+- **Mappings:** 105 validated entity/property mappings
+- **Confidence Levels:** High, Medium, Low
+
+### **P.7.3 System Prompts Update**
+
+- **File:** `facet_agent_system_prompts.json`
+- **Version:** 2026-02-15-step4
+- **Content:** Added "SEMANTIC ENRICHMENT & ONTOLOGY ALIGNMENT" section to all 17 facets
+
+### **P.7.4 Workflow Integration**
+
+**Modified Methods:**
+- `enrich_node_from_wikidata()` (lines ~751-840): Auto-enrichment in node creation
+- `generate_claims_from_wikidata()` (lines ~928-1080): Auto-enrichment in claim generation
+
+**Node Storage Format:**
+
+```cypher
+CREATE (n:SubjectConcept {
+  id: 'wiki:Q28048',
+  label: 'Battle of Pharsalus',
+  wikidata_qid: 'Q28048',
+  cidoc_crm_class: 'E5_Event',         // ← NEW (Step 4)
+  cidoc_crm_confidence: 'High',        // ← NEW (Step 4)
+  authority_tier: 2,
+  confidence_floor: 0.90,
+  created_at: '2026-02-15T...',
+  created_by: 'military_facet'
+})
+```
+
+---
+
+## **P.8 Related Sections**
+
+### **P.8.1 Internal Cross-References**
+
+- **Appendix L**: CIDOC-CRM Integration Guide (foundational ontology overview)
+- **Section 4.4**: Multi-Authority Model (Tier 1/2/3 precedence policy)
+- **Section 4.9**: Academic Discipline Model (discipline flag usage)
+- **Appendix K**: Wikidata Integration Patterns (federation discovery)
+- **Section 6.4**: Claims Generation (CRMinf belief tracking integration)
+
+### **P.8.2 Integration Points**
+
+**Step 1 (Architecture Understanding):**
+- `enrich_with_ontology_alignment()` uses `introspect_node_label()` for entity type validation
+
+**Step 2 (State Introspection):**
+- `get_session_context()` includes CIDOC alignment status
+- `get_node_provenance()` shows ontology mapping history
+
+**Step 3 (Federation Discovery):**
+- `bootstrap_from_qid()` automatically calls enrichment methods
+- `discover_hierarchy_from_entity()` maintains CIDOC alignment through hierarchy traversal
+
+**Step 3.5 (Completeness Validation):**
+- `validate_entity_completeness()` uses CIDOC class for type inference
+- Property patterns validate against both Wikidata and CIDOC constraints
+
+### **P.8.3 Benefits & Impact**
+
+**Cultural Heritage Interoperability:**
+- CIDOC-CRM ISO 21127 alignment enables data exchange with museum systems
+- Compatible with: CollectionSpace, TMS, Arches, ResearchSpace
+
+**Semantic Web Integration:**
+- RDF/OWL export via semantic triples
+- SPARQL queries across Wikidata, Chrystallum, and CIDOC endpoints
+- Linked Open Data (LOD) publishing capability
+
+**Argumentation & Belief Tracking:**
+- CRMinf ontology models agent reasoning and confidence
+- Multi-agent debate tracking with I4_Proposition_Set
+- Bayesian updates tracked via I5_Inference_Making
+
+**Multi-Ontology Querying:**
+- Query by Wikidata (Q5, P31, etc.)
+- Query by CIDOC-CRM (E21_Person, P7_took_place_at)
+- Query by Chrystallum (SubjectConcept, INSTANCE_OF)
+- Cross-ontology validation ensures consistency
+
+---
+
+**(End of Appendix P)**
+
+---
+
+# **Appendix Q: Operational Modes & Agent Orchestration**
+
+**Version:** 2026-02-16  
+**Status:** Operational (Initialize, Subject Ontology Proposal, Training modes implemented)  
+**Source:** STEP_5_COMPLETE.md
+
+---
+
+## **Q.1 Purpose**
+
+This appendix defines how agents operate in different contexts within the Chrystallum system. Unlike Steps 1-4 (which provide capabilities), Step 5 operational modes define **how agents work** with verbose logging for validation. Operational modes bridge the gap between agent capabilities and user workflows, supporting everything from initial domain bootstrapping to cross-domain query synthesis.
+
+**Key Operational Modes:**
+- **Initialize Mode:** Bootstrap new domain from Wikidata anchor
+- **Subject Ontology Proposal:** Analyze hierarchies and propose domain ontology
+- **Training Mode:** Extended iterative claim generation with validation
+- **Schema Query Mode:** Answer questions about Neo4j model structure (design complete)
+- **Data Query Mode:** Answer questions about actual graph data (design complete)
+- **Wikipedia Training Mode:** LLM-driven article discovery (in design)
+
+**Cross-Domain Orchestration:**
+- **SubjectConceptAgent (SCA):** Master coordinator for multi-facet queries and bridge concept discovery
+
+---
+
+## **Q.2 SubjectConceptAgent (SCA) Two-Phase Architecture**
+
+The **SubjectConceptAgent** is a **SEED AGENT** with **TWO DISTINCT PHASES** that operates differently from domain-specific SubjectFacetAgents (SFAs):
+
+### **Q.2.1 Phase 1: Un-Faceted Exploration**
+
+**Scope:** Initialize Mode + Subject Ontology Proposal  
+**Goal:** Broad discovery without facet constraints
+
+**Characteristics:**
+- **No facet lens** - Just hunting nodes and edges across all domains
+- **Trawls hierarchies broadly** via P31 (instance_of), P279 (subclass_of), P361 (part_of) traversal
+- **Goes beyond initial domain** - military → politics → culture → science
+- **Creates shell nodes** for ALL discovered concepts (lightweight placeholders)
+- **"Purple to mollusk" scenarios** - discovers seemingly unrelated cross-domain connections
+- **Outputs proposed ontology** → APPROVAL POINT before facet analysis begins
+
+**Example Discovery Path:**
+```
+Roman Republic (military anchor)
+  → Roman Senate (political structure)
+    → Senator rank (political hierarchy)
+      → Toga praetexta (cultural artifact)
+        → Tyrian purple dye (material culture)
+          → Murex snail (scientific taxonomy)
+```
+
+**Data Created:**
+- Shell SubjectConcept nodes with basic properties
+- Hierarchical relationships (BROADER_THAN, INSTANCE_OF, PART_OF)
+- Wikidata QID federation links
+- Authority alignments (FAST, LCSH where available)
+
+---
+
+### **Q.2.2 Phase 2: Facet-by-Facet Analysis**
+
+**Scope:** Training Mode  
+**Goal:** Deep analysis through sequential facet lenses
+
+**Characteristics:**
+- **SCA adopts facet roles sequentially** - one facet at a time
+- Reads claims from MILITARY perspective → then POLITICAL → then CULTURAL, etc.
+- **Same nodes/edges analyzed through different facet lenses**
+- Generates facet-specific claims and insights
+- Uses proposed ontology from Phase 1 to prioritize nodes
+
+**Process:**
+```python
+# Pseudo-code for Phase 2
+for facet in ['MILITARY', 'POLITICAL', 'ECONOMIC', ...]:
+    sca.set_facet_context(facet)
+    for node in shell_nodes_from_phase1:
+        if node.relevant_to(facet):
+            claims = sca.generate_claims_with_facet_lens(node, facet)
+            sca.enrich_node_with_facet_properties(node, facet, claims)
+```
+
+**Example Multi-Facet Analysis:**
+
+Node: "Tyrian purple dye"
+
+- **MILITARY facet:** "Used to mark senatorial authority in military contexts"
+- **POLITICAL facet:** "Symbol of senatorial rank and imperium"
+- **ECONOMIC facet:** "Luxury trade good, monopolized by elites"
+- **CULTURAL facet:** "Status symbol in Roman dress codes"
+- **SCIENTIFIC facet:** "Extracted from Murex brandaris mollusks"
+
+**Architecture Diagram:**
+```
+┌─────────────────────────────────────────────┐
+│      SubjectConceptAgent (SCA)              │
+│      Master Coordinator                     │
+│                                             │
+│  • Facet classification (LLM)              │
+│  • Multi-agent orchestration               │
+│  • Bridge concept discovery                │
+│  • Cross-domain synthesis                  │
+└──────────────┬──────────────────────────────┘
+               │
+               │ Spawns & coordinates
+               │
+      ┌────────┴────────┐
+      │                 │
+      ▼                 ▼
+┌──────────┐      ┌──────────┐      ┌──────────┐
+│ Military │      │Political │ ...  │ Biology  │
+│   SFA    │      │   SFA    │      │   SFA    │
+└──────────┘      └──────────┘      └──────────┘
+```
+
+---
+
+## **Q.3 Canonical 17 Facets (UPPERCASE Keys)**
+
+**Definitive List:**
+```
+ARCHAEOLOGICAL, ARTISTIC, CULTURAL, DEMOGRAPHIC, DIPLOMATIC, ECONOMIC, 
+ENVIRONMENTAL, GEOGRAPHIC, INTELLECTUAL, LINGUISTIC, MILITARY, POLITICAL, 
+RELIGIOUS, SCIENTIFIC, SOCIAL, TECHNOLOGICAL, COMMUNICATION
+```
+
+### **Q.3.1 Facet Key Normalization Rule**
+
+**Policy (from commit d56fc0e):**
+- All facet identifiers MUST be UPPERCASE
+- SCA facet classification outputs UPPERCASE keys: `facets=['POLITICAL', 'MILITARY', 'ECONOMIC']`
+- SubjectConcept.facet property = UPPERCASE (prevents case-collision bugs)
+- Query filters: `WHERE n.facet IN ["POLITICAL", "MILITARY", ...]` (uppercase only)
+
+**Rationale:**
+- **Deterministic routing:** Prevents case-sensitive routing errors
+- **Union-safe deduplication:** `['Military', 'MILITARY', 'military']` → `['MILITARY']`
+- **Consistent with registry:** facet_registry_master.json uses UPPERCASE canonical keys
+
+**Enforcement Points:**
+```python
+# Classification normalization
+def classify_facets(query):
+    llm_output = llm.invoke(query)  # may return mixed case
+    return [f.upper() for f in llm_output['facets']]  # normalized
+
+# Node creation
+def create_subject_concept(label, facet):
+    node = SubjectConcept(label=label, facet=facet.upper())
+
+# Query filter
+query = """
+MATCH (n:SubjectConcept)
+WHERE n.facet IN ["POLITICAL", "MILITARY"]  // UPPERCASE only
+RETURN n
+"""
+```
+
+---
+
+## **Q.4 Operational Modes**
+
+### **Q.4.1 Initialize Mode**
+
+**Method:** `execute_initialize_mode(anchor_qid, depth, auto_submit_claims, ui_callback)`
+
+**Purpose:** Bootstrap new domain from a Wikidata anchor entity.
+
+**Workflow:**
+1. Generate unique session ID
+2. Fetch Wikidata anchor entity (Step 3)
+3. Validate completeness (Step 3.5) - reject if <60%
+4. Enrich with CIDOC-CRM (Step 4)
+5. **Enrich with authority precedence** (LCSH/FAST before Wikidata) ← NEW
+6. Bootstrap from QID (Step 3) - creates nodes + discovers hierarchy
+7. **Detect discipline roots** for 17 facets ← NEW (see Q.5)
+8. Generate foundational claims
+9. Optionally auto-submit high-confidence claims (≥0.90)
+10. Log all actions verbosely
+11. Return comprehensive result dict
+
+**Parameters:**
+- `anchor_qid`: Wikidata QID to bootstrap from (e.g., 'Q17167' for Roman Republic)
+- `depth`: Hierarchy traversal depth (1=fast, 2=moderate, 3=comprehensive)
+- `auto_submit_claims`: Whether to submit claims ≥0.90 confidence automatically
+- `ui_callback`: Optional callback function for real-time log streaming to UI
+
+**Returns:**
+```python
+{
+    'status': 'INITIALIZED',  # or 'REJECTED', 'ERROR'
+    'session_id': 'military_20260215_143022_Q17167',
+    'anchor_qid': 'Q17167',
+    'anchor_label': 'Roman Republic',
+    'nodes_created': 23,
+    'relationships_discovered': 47,
+    'claims_generated': 147,
+    'claims_submitted': 0,
+    'completeness_score': 0.87,
+    'cidoc_crm_class': 'E5_Event',
+    'cidoc_crm_confidence': 'High',
+    'discipline_roots_detected': 1,
+    'duration_seconds': 42.3,
+    'log_file': 'logs/military_agent_military_20260215_143022_Q17167_initialize.log'
+}
+```
+
+---
+
+### **Q.4.2 Subject Ontology Proposal Mode**
+
+**Method:** `propose_subject_ontology(ui_callback)`
+
+**Purpose:** Bridge between Initialize (discovery) and Training (systematic generation).
+
+After Initialize mode discovers nodes and their hierarchical type properties, Subject Ontology Proposal analyzes these hierarchies to extract and propose a coherent domain ontology. This ontology then guides Training mode's claim generation.
+
+**Workflow:**
+1. Load initialized nodes (via session context)
+2. Extract hierarchical type properties (P31, P279, P361)
+3. Identify conceptual clusters using LLM
+4. Propose ontology classes and relationships
+5. Generate claim templates for Training mode
+6. Define validation rules
+7. Calculate strength score
+
+**Outputs:**
+```python
+{
+    'status': 'ONTOLOGY_PROPOSED',
+    'session_id': 'military_20260215_143500',
+    'facet': 'military',
+    'ontology_classes': [
+        {
+            'class_name': 'Military Commander',
+            'parent_class': None,
+            'member_count': 15,
+            'characteristics': ['rank', 'victories', 'legions_commanded'],
+            'examples': ['Caesar', 'Pompey']
+        }
+    ],
+    'hierarchy_depth': 3,
+    'clusters': [...],
+    'relationships': [...],
+    'claim_templates': [...],
+    'validation_rules': [...],
+    'strength_score': 0.88,
+    'reasoning': 'LLM explanation...',
+    'duration_seconds': 22.4
+}
+```
+
+---
+
+### **Q.4.3 Training Mode**
+
+**Method:** `execute_training_mode(max_iterations, target_claims, min_confidence, auto_submit_high_confidence, ui_callback)`
+
+**Purpose:** Extended iterative claim generation with validation and quality metrics.
+
+**Workflow:**
+1. Load session context (Step 2) - get existing nodes
+2. **Use proposed subject ontology** to guide claim generation
+3. Iterate through SubjectConcept nodes (prioritize by ontology class)
+4. For each node:
+   - Check for Wikidata QID (skip if absent)
+   - Fetch Wikidata entity (Step 3)
+   - Validate completeness (Step 3.5)
+   - Log reasoning for validation
+   - Generate claims from statements (Step 3)
+   - Enrich claims with CRMinf (Step 4) - automatic
+   - Filter by min_confidence threshold
+   - Optionally auto-submit claims ≥0.90 confidence
+   - Log every decision with reasoning
+5. Track metrics (claims/sec, avg confidence, avg completeness)
+6. Stop when target_claims reached or max_iterations exhausted
+7. Return comprehensive metrics
+
+**Parameters:**
+- `max_iterations`: Maximum nodes to process (5-100, default 100)
+- `target_claims`: Stop after generating this many claims (10-500, default 500)
+- `min_confidence`: Minimum confidence for claim proposals (0.5-1.0, default 0.80)
+- `auto_submit_high_confidence`: Auto-submit claims ≥0.90 confidence (default False)
+- `ui_callback`: Optional callback for real-time log streaming
+
+**Returns:**
+```python
+{
+    'status': 'TRAINING_COMPLETE',  # or 'ERROR'
+    'session_id': 'military_20260215_143500',
+    'iterations': 73,
+    'nodes_processed': 73,
+    'claims_proposed': 503,
+    'claims_submitted': 0,
+    'avg_confidence': 0.87,
+    'avg_completeness': 0.82,
+    'duration_seconds': 342.5,
+    'claims_per_second': 1.47
+}
+```
+
+---
+
+### **Q.4.4 Schema Query Mode**
+
+**Status:** Design complete, implementation pending  
+**Purpose:** Answer questions about Neo4j model structure
+
+**Capabilities (Planned):**
+- Natural language queries about node types, properties, relationships
+- Schema introspection and documentation
+- Validation rule queries
+
+**Example Queries:**
+- "What properties does a SubjectConcept node have?"
+- "What are all the relationship types between Human and Event nodes?"
+- "Show me the validation rules for temporal properties"
+
+---
+
+### **Q.4.5 Data Query Mode**
+
+**Status:** Design complete, implementation pending  
+**Purpose:** Answer questions about actual graph data
+
+**Capabilities (Planned):**
+- Natural language to Cypher translation
+- Facet-scoped data queries
+- Cross-domain data synthesis
+
+**Example Queries:**
+- "How many military events occurred in the Roman Republic?"
+- "Who were the political figures involved in the Battle of Pharsalus?"
+- "What geographic locations are mentioned in connection with Julius Caesar?"
+
+---
+
+### **Q.4.6 Wikipedia Training Mode**
+
+**Status:** In design  
+**Purpose:** LLM-driven article discovery and claim extraction
+
+**Capabilities (Planned):**
+- Identify relevant Wikipedia articles for a subject domain
+- Line-by-line claim extraction
+- Registry validation (facets, relationships, entities)
+- Claim creation/augmentation logic
+
+---
+
+## **Q.5 Discipline Root Detection & SFA Initialization**
+
+**Integration Point:** After Initialize mode discovers hierarchy, detect canonical roots for SFA training (implements §4.9 policy).
+
+**Method:** `detect_and_mark_discipline_roots(discovered_nodes, facet_key)`
+
+**Purpose:** Identify which discovered nodes are discipline entry points (should have `discipline: true` flag).
+
+### **Q.5.1 Detection Algorithm**
+
+**Strategy 1: BROADER_THAN Reachability**
+```python
+def detect_discipline_roots(nodes_dict, facet_key):
+    """
+    Identify top-level concepts that should seed SFA training.
+    Discipline roots are canonical entry points for agent specialization.
+    """
+    roots = []
+    
+    # Strategy 1: BROADER_THAN reachability (highest arity wins)
+    for node in nodes_dict.values():
+        reachability = count_reachable_via_broader_than(node)
+        if reachability > 0.7 * len(nodes_dict):  # 70% of nodes below this root
+            roots.append({
+                'node_id': node['id'],
+                'label': node['label'],
+                'reachability': reachability,
+                'method': 'high_reachability',
+                'discipline_candidate': True
+            })
+    
+    # Strategy 2: Explicit heuristics (facet-specific)
+    if facet_key == 'MILITARY':
+        military_keywords = ['Military', 'Warfare', 'Battle', 'Armed Force']
+        for node in nodes_dict.values():
+            if any(kw in node['label'] for kw in military_keywords):
+                if len(node.get('BROADER_THAN', [])) == 0:  # No parent
+                    roots.append({
+                        'node_id': node['id'],
+                        'label': node['label'],
+                        'method': 'keyword_heuristic',
+                        'discipline_candidate': True
+                    })
+    
+    # Remove duplicates, return top 1-3 roots
+    unique_roots = deduplicate_by_node_id(roots)
+    return sorted(unique_roots, key=lambda x: x['reachability'], reverse=True)[:3]
+```
+
+**Result Format:**
+```python
+{
+    'discipline_roots': [
+        {
+            'node_id': 'wiki:Q28048',
+            'label': 'Roman Republic',
+            'reachability': 0.95,
+            'method': 'high_reachability',
+            'facet': 'MILITARY'
+        }
+    ],
+    'nodes_marked': 1,
+    'ready_for_sfa_training': True
+}
+```
+
+---
+
+### **Q.5.2 Neo4j Implementation**
+
+**Mark Discipline Roots:**
+```cypher
+-- After Initialize mode creates nodes, mark discipline roots:
+MATCH (root:SubjectConcept {id: 'wiki:Q17167'})
+SET root.discipline = true,
+    root.facet = 'MILITARY',
+    root.discipline_training_seed = true,
+    root.discipline_marked_at = datetime()
+```
+
+**Query for SFA Training Initialization:**
+```cypher
+-- SFA queries for available roots:
+MATCH (n:SubjectConcept)
+WHERE n.discipline = true AND n.facet = 'MILITARY'
+RETURN n.label, n.id, count((m)-[:BROADER_THAN*]->(n)) as hierarchy_depth
+ORDER BY hierarchy_depth DESC
+```
+
+---
+
+### **Q.5.3 Pre-Seeding Option**
+
+If automatic detection is insufficient, pre-seed canonical root nodes explicitly:
+
+```cypher
+CREATE (root:SubjectConcept {
+    subject_id: 'discipline_military_root',
+    label: 'Military Science',
+    facet: 'MILITARY',
+    discipline: true,
+    authority_id: 'sh85052639',  -- Library of Congress for "Military science"
+    created_by: 'initialize_preseed',
+    created_at: datetime()
+})
+
+-- Repeat for all 17 facets:
+-- POLITICAL → 'Political Science'
+-- ECONOMIC → 'Economic History'
+-- CULTURAL → 'Cultural History'
+-- (14 more...)
+```
+
+---
+
+### **Q.5.4 Impact on SFA Training**
+
+```python
+# MilitarySFA initialization (from §4.9 refinement)
+nodes = gds.query_graph(
+    "MATCH (root:SubjectConcept) "
+    "WHERE root.discipline = true AND root.facet = 'MILITARY' "
+    "RETURN root"
+)
+# Gets: [SubjectConcept(Roman Republic)]
+
+# SFA now builds hierarchy downward:
+# Military Science → Roman Military → Legions → Tactics → ...
+
+military_sfa.initialize_with_roots(nodes)
+military_sfa.train_on_hierarchy()  # Build disciplinary ontology
+```
+
+---
+
+## **Q.6 Cross-Domain Query Example: "Senator to Mollusk"**
+
+**Query:** *"What is the relationship between a Roman senator and a mollusk?"*
+
+### **Q.6.1 Classification Phase**
+
+```python
+sca = SubjectConceptAgent()
+result = sca.execute_cross_domain_query(
+    "What is the relationship between a Roman senator and a mollusk?"
+)
+
+# Classification output:
+{
+    'facets': ['POLITICAL', 'SCIENTIFIC', 'CULTURAL'],
+    'cross_domain': True,
+    'reasoning': 'Query spans political (senator), scientific (mollusk biology), cultural (textile dyeing)',
+    'bridge_concepts': ['Tyrian purple', 'purple dye']
+}
+```
+
+---
+
+### **Q.6.2 Agent Spawning & Query Execution**
+
+**Note:** Current implementation uses **simulated agents** (hard-coded mock responses) for smoke testing. Real SubjectFacetAgents can be spawned but require domain training.
+
+```python
+# SCA spawns 3 simulated agents
+political_sfa = sca.spawn_agent('POLITICAL')  # Simulated
+scientific_sfa = sca.spawn_agent('SCIENTIFIC')  # Simulated
+cultural_sfa = sca.spawn_agent('CULTURAL')  # Simulated
+
+# Each agent returns domain-specific results:
+political_results = political_sfa.query("senator and purple")
+# Returns: [senator → toga → purple stripe]
+
+scientific_results = scientific_sfa.query("mollusk and dye")
+# Returns: [mollusk → murex → dye production]
+
+cultural_results = cultural_sfa.query("purple and textile")
+# Returns: [purple dye → Tyrian purple → textile]
+```
+
+---
+
+### **Q.6.3 Bridge Claim Generation**
+
+SCA generates **data creation claims** (not just concept labels):
+
+**1. NODE_CREATION Claim:**
+```python
+{
+    'claim_type': 'NODE_CREATION',
+    'label': 'Tyrian purple',
+    'node_type': 'SubjectConcept',
+    'facets': ['POLITICAL', 'SCIENTIFIC', 'CULTURAL'],  # Multi-facet node
+    'properties': {
+        'bridge_type': 'label_intersection',
+        'source_facets': ['POLITICAL', 'SCIENTIFIC', 'CULTURAL']
+    },
+    'confidence': 0.85,
+    'reasoning': 'Concept "Tyrian purple" appears in multiple domains'
+}
+```
+
+**2. EDGE_CREATION Claims:**
+```python
+[
+    {
+        'claim_type': 'EDGE_CREATION',
+        'source_node': 'node_pol_1',  # Roman senator
+        'target_node': 'Tyrian purple',
+        'relationship_type': 'RELATES_TO',
+        'facet': 'POLITICAL',
+        'confidence': 0.85,
+        'reasoning': 'Bridge connection from political domain'
+    },
+    {
+        'claim_type': 'EDGE_CREATION',
+        'source_node': 'node_sci_2',  # murex snail
+        'target_node': 'Tyrian purple',
+        'relationship_type': 'RELATES_TO',
+        'facet': 'SCIENTIFIC',
+        'confidence': 0.85,
+        'reasoning': 'Bridge connection from scientific domain'
+    }
+]
+```
+
+**3. NODE_MODIFICATION Claim:**
+```python
+{
+    'claim_type': 'NODE_MODIFICATION',
+    'label': 'Tyrian purple',
+    'node_id': 'existing_node_123',
+    'modifications': {
+        'add_facets': ['POLITICAL', 'SCIENTIFIC'],
+        'add_property': {'key': 'bridge_concept', 'value': True}
+    },
+    'confidence': 0.80,
+    'reasoning': 'Found in additional domain(s)'
+}
+```
+
+---
+
+### **Q.6.4 Synthesis**
+
+**Natural Language Response:**
+```
+Roman senators wore togas with purple stripes (toga praetexta) or all-purple 
+togas (toga purpurea) as symbols of their rank. The distinctive Tyrian purple 
+dye used for these garments was extracted from murex sea snails, a type of 
+mollusk. This expensive dye—requiring thousands of mollusks to produce just a 
+few grams—was reserved for the Roman elite, making it a luxury marker of 
+senatorial status.
+```
+
+**Key Insight:** Bridge discovery doesn't just find labels—it **generates claims** to create graph structure connecting disparate domains.
+
+---
+
+## **Q.7 Implementation Components**
+
+### **Q.7.1 Core Framework Components**
+
+**1. AgentOperationalMode Enum**
+```python
+class AgentOperationalMode(Enum):
+    INITIALIZE = "initialize"
+    TRAINING = "training"
+    SCHEMA_QUERY = "schema_query"
+    DATA_QUERY = "data_query"
+```
+
+**2. AgentLogger Class** (~200 lines)
+
+**Purpose:** Verbose logging with structured action tracking, reasoning capture, and session metrics.
+
+**Key Methods:**
+- `log_action(action, details, level)` - Log structured actions
+- `log_reasoning(decision, rationale, confidence)` - Log agent reasoning
+- `log_query(query_type, query, result)` - Log queries (Cypher, API)
+- `log_error(error, context)` - Log errors with context
+- `log_claim_proposed(claim_id, label, confidence)` - Track claim proposals
+- `log_node_created(node_id, label, type)` - Track node creation
+- `get_summary()` - Generate session summary statistics
+- `close()` - Close logger and write summary
+
+**3. SubjectConceptAgent (SCA)** (~400 lines)
+
+**Purpose:** Master coordinator for cross-domain orchestration.
+
+**Key Methods:**
+- `classify_facets(query, max_facets)` - LLM-based facet classification (from canonical 17)
+- `spawn_agent(facet_key)` - Simulate SubjectFacetAgent (smoke test mode)
+- `execute_cross_domain_query(query)` - Orchestrate multi-facet query
+- `query_within_facet(query, facet_key)` - Single-facet convenience method
+- `route_claim(claim)` - Tag and route claims to multiple facets
+- `_simulate_facet_query(facet_key, query)` - Mock query execution (for testing)
+- `_find_conceptual_bridges(facet_results, suggested_bridges)` - Generate bridge CLAIMS
+- `_synthesize_response(query, facet_results, bridge_claims)` - LLM synthesis
+
+**4. FacetAgent Class** (~50 lines base + facet-specific methods)
+
+**Purpose:** Domain-specific agent for single-facet operations.
+
+**Key Methods:**
+- `execute_initialize_mode(anchor_qid, depth, ...)` - Bootstrap from Wikidata
+- `propose_subject_ontology(ui_callback)` - Analyze hierarchies
+- `execute_training_mode(max_iterations, ...)` - Iterative claim generation
+- `detect_and_mark_discipline_roots(nodes, facet)` - Root detection
+- `set_mode(mode)` / `get_mode()` - Operational mode management
+
+---
+
+### **Q.7.2 Method Signatures**
+
+**Initialize Mode:**
+```python
+def execute_initialize_mode(
+    anchor_qid: str,
+    depth: int = 1,
+    auto_submit_claims: bool = False,
+    ui_callback: Optional[Callable] = None
+) -> Dict[str, Any]
+```
+
+**Training Mode:**
+```python
+def execute_training_mode(
+    max_iterations: int = 100,
+    target_claims: int = 500,
+    min_confidence: float = 0.80,
+    auto_submit_high_confidence: bool = False,
+    ui_callback: Optional[Callable] = None
+) -> Dict[str, Any]
+```
+
+**Cross-Domain Query:**
+```python
+def execute_cross_domain_query(
+    query: str,
+    auto_classify: bool = True,
+    facets: Optional[List[str]] = None
+) -> Dict[str, Any]
+```
+
+**Claim Routing:**
+```python
+def route_claim(
+    claim: Dict[str, Any]
+) -> Dict[str, Any]
+```
+
+---
+
+## **Q.8 Log Output Format**
+
+### **Q.8.1 Log File Structure**
+
+**File Location:** `logs/{agent_id}_{session_id}_{mode}.log`
+
+**Example:** `logs/military_agent_military_20260215_143022_Q17167_initialize.log`
+
+**Structure:**
+```
+# Agent Log: military_agent
+# Mode: initialize
+# Session: military_20260215_143022_Q17167
+# Started: 2026-02-15T14:30:22.123456
+================================================================================
+
+[timestamp] [level] [category] message
+
+...action logs...
+...reasoning logs...
+...query logs...
+...error logs...
+
+================================================================================
+# SESSION SUMMARY
+# Duration: 42.3s
+# Actions: 127
+# Reasoning steps: 23
+# Queries: 8
+# Errors: 0
+# Claims proposed: 147
+# Nodes created: 23
+================================================================================
+```
+
+---
+
+### **Q.8.2 Log Categories**
+
+- `[INITIALIZE]` - Initialize mode actions
+- `[TRAINING]` - Training mode actions
+- `[REASONING]` - Decision reasoning with confidence
+- `[QUERY]` - Cypher/API query execution
+- `[ERROR]` - Errors with context
+
+---
+
+### **Q.8.3 Initialize Mode Log Example**
+
+```
+[2026-02-15T14:30:22] [INFO] [INITIALIZE] INITIALIZE_START: anchor_qid=Q17167, depth=2, facet=military, auto_submit=False
+[2026-02-15T14:30:23] [INFO] [INITIALIZE] FETCH_ANCHOR: qid=Q17167
+[2026-02-15T14:30:25] [INFO] [INITIALIZE] FETCH_COMPLETE: label=Roman Republic, statements=142
+[2026-02-15T14:30:26] [INFO] [REASONING] COMPLETENESS_VALIDATION: Found 47/52 expected properties (confidence=0.87)
+[2026-02-15T14:30:27] [INFO] [INITIALIZE] CIDOC_ENRICHMENT: qid=Q17167
+[2026-02-15T14:30:28] [INFO] [INITIALIZE] CIDOC_COMPLETE: cidoc_class=E5_Event, confidence=High
+[2026-02-15T14:30:29] [INFO] [INITIALIZE] AUTHORITY_ENRICHMENT: qid=Q17167
+[2026-02-15T14:30:29] [INFO] [INITIALIZE] AUTHORITY_TIER_1: authority_id=sh85115055, fast_id=fst01234567
+[2026-02-15T14:30:30] [INFO] [INITIALIZE] BOOTSTRAP_START: qid=Q17167, depth=2
+[2026-02-15T14:31:03] [INFO] [INITIALIZE] BOOTSTRAP_COMPLETE: nodes_created=23, relationships=47, claims_generated=147
+[2026-02-15T14:31:03] [INFO] [INITIALIZE] DISCIPLINE_ROOT_DETECTION: Analyzing 23 nodes for discipline candidates
+[2026-02-15T14:31:04] [INFO] [INITIALIZE] DISCIPLINE_ROOTS_FOUND: 3 candidates (Roman Republic, Military Power, Civil War)
+[2026-02-15T14:31:04] [INFO] [INITIALIZE] SET_DISCIPLINE_FLAG: Roman Republic marked discipline=true (MILITARY facet root)
+[2026-02-15T14:31:04] [INFO] [INITIALIZE] INITIALIZE_COMPLETE: status=SUCCESS, duration=42.3s, nodes_with_discipline=1
+```
+
+---
+
+### **Q.8.4 Training Mode Log Example**
+
+```
+[2026-02-15T14:35:00] [INFO] [TRAINING] TRAINING_START: max_iterations=20, target_claims=100, min_confidence=0.80, auto_submit=False
+[2026-02-15T14:35:01] [INFO] [TRAINING] LOAD_CONTEXT: session_id=military_20260215_143500
+[2026-02-15T14:35:03] [INFO] [TRAINING] CONTEXT_LOADED: existing_nodes=157, pending_claims=23
+[2026-02-15T14:35:04] [INFO] [TRAINING] ITERATION_START: iteration=1, total=20, node_id=abc123, node_label=Battle of Pharsalus
+[2026-02-15T14:35:05] [INFO] [TRAINING] FETCH_WIKIDATA: qid=Q28048
+[2026-02-15T14:35:07] [INFO] [REASONING] COMPLETENESS_VALIDATED: 47/52 properties (confidence=0.91)
+[2026-02-15T14:35:08] [INFO] [TRAINING] GENERATE_CLAIMS: qid=Q28048
+[2026-02-15T14:35:12] [INFO] [TRAINING] CLAIMS_GENERATED: count=8, qid=Q28048
+[2026-02-15T14:35:13] [INFO] [TRAINING] CLAIM_PROPOSED: claim_id=claim_1, label=Battle of Pharsalus occurred at Pharsalus, confidence=0.90
+[2026-02-15T14:35:14] [INFO] [TRAINING] CLAIM_PROPOSED: claim_id=claim_2, label=Julius Caesar participated in Battle of Pharsalus, confidence=0.90
+[2026-02-15T14:35:20] [INFO] [TRAINING] ITERATION_COMPLETE: iteration=1, claims_this_node=8, total_proposed=8
+[2026-02-15T14:35:21] [INFO] [TRAINING] ITERATION_START: iteration=2, total=20, node_id=def456, node_label=Julius Caesar
+[...continues...]
+[2026-02-15T14:37:45] [INFO] [TRAINING] TRAINING_COMPLETE: status=SUCCESS, nodes_processed=20, claims_proposed=147, duration=165.2s, claims_per_second=0.89
+```
+
+---
+
+## **Q.9 Source Files**
+
+### **Q.9.1 Primary Implementation**
+
+**File:** `scripts/agents/facet_agent_framework.py`  
+**Total Lines:** ~1,100 (Steps 1-5 cumulative)  
+**Version:** 2026-02-15-step5-sca
+
+**Classes Added in Step 5:**
+- `AgentOperationalMode` (Enum) - 4 operational modes
+- `AgentLogger` (~200 lines) - Verbose logging infrastructure
+- `SubjectConceptAgent` (~400 lines) - Cross-domain orchestration
+
+**Methods Added in Step 5:**
+- `set_mode()` / `get_mode()` - Mode management
+- `execute_initialize_mode()` - Bootstrap workflow
+- `propose_subject_ontology()` - Hierarchy analysis
+- `execute_training_mode()` - Iterative claim generation
+- `detect_and_mark_discipline_roots()` - Root detection
+- `classify_facets()` - LLM-based facet classification
+- `spawn_agent()` - Agent spawning (simulated)
+- `execute_cross_domain_query()` - Multi-facet orchestration
+- `query_within_facet()` - Single-facet query
+- `route_claim()` - Multi-facet claim routing
+- `_simulate_facet_query()` - Mock execution for testing
+- `_find_conceptual_bridges()` - Bridge claim generation
+- `_synthesize_response()` - LLM synthesis
+
+---
+
+### **Q.9.2 UI Implementation**
+
+**File:** `scripts/ui/agent_gradio_app.py`  
+**Version:** 2026-02-15
+
+**New Tabs:**
+- "⚙️ Agent Operations" - Initialize & Training modes (single-facet)
+- "🌐 Cross-Domain" - SubjectConceptAgent orchestration
+
+---
+
+### **Q.9.3 Training Resources**
+
+**File:** `Facets/TrainingResources.yml`  
+**Referenced by:** Appendix O (Facet Training Resources Registry)
+
+Contains canonical training patterns and exemplar claims for each of the 17 facets.
+
+---
+
+## **Q.10 Related Sections**
+
+### **Q.10.1 Internal Cross-References**
+
+- **Appendix O:** Facet Training Resources Registry (training patterns for 17 facets)
+- **Section 4.9:** Academic Discipline Model (discipline flag usage policy)
+- **Appendix D:** Subject Facet Classification (17 canonical facets)
+- **Appendix K:** Wikidata Integration Patterns (federation discovery P31/P279/P361)
+- **Appendix P:** Semantic Enrichment & Ontology Alignment (CIDOC-CRM/CRMinf automatic enrichment)
+- **Section 5:** Agent Architecture (agent roles and workflows)
+- **Section 6:** Claims Layer (claim structure and validation)
+
+---
+
+### **Q.10.2 Integration Points**
+
+**Step 1 (Schema Understanding):**
+- Initialize mode validates claim structure before proposal
+- Training mode checks required properties per node type
+- Both use schema introspection for validation
+
+**Step 2 (State Loading):**
+- Training mode REQUIRES `get_session_context()` to load existing nodes
+- Both modes use `find_claims_for_node()` to avoid duplicates
+- State tracking ensures iterative progress
+
+**Step 3 (Federation Discovery):**
+- Initialize mode BUILT ON `bootstrap_from_qid()`
+- Training mode uses `fetch_wikidata_entity()` per node
+- Both use `generate_claims_from_wikidata()` for claim generation
+- Hierarchy traversal via `discover_hierarchy_from_entity()`
+
+**Step 3.5 (Completeness Validation):**
+- Both modes REQUIRE `validate_entity_completeness()` before processing
+- Reject entities with <60% completeness
+- Track completeness metrics in training mode
+
+**Step 4 (Ontology Alignment):**
+- Both modes AUTOMATICALLY call `enrich_with_ontology_alignment()`
+- All nodes get `cidoc_crm_class` property
+- All claims get `crminf_alignment` section via `enrich_claim_with_crminf()`
+- Ontology enrichment happens transparently in workflow
+
+---
+
+### **Q.10.3 Usage Examples**
+
+**Initialize Roman Military History Domain:**
+```python
+from facet_agent_framework import FacetAgentFactory
+
+factory = FacetAgentFactory()
+agent = factory.get_agent('military')
+
+result = agent.execute_initialize_mode(
+    anchor_qid='Q17167',  # Roman Republic
+    depth=2,
+    auto_submit_claims=False
+)
+
+print(f"✅ Initialized {result['nodes_created']} nodes")
+print(f"📊 Generated {result['claims_generated']} claims")
+print(f"📈 Completeness: {result['completeness_score']:.1%}")
+print(f"🏛️ CIDOC class: {result['cidoc_crm_class']}")
+```
+
+**Cross-Domain Query:**
+```python
+from facet_agent_framework import SubjectConceptAgent
+
+sca = SubjectConceptAgent()
+
+result = sca.execute_cross_domain_query(
+    "What is the relationship between a Roman senator and a mollusk?"
+)
+
+print(f"✅ Query complete")
+print(f"🌐 Facets: {', '.join(result['classification']['facets'])}")
+print(f"🔗 Bridge claims: {result['bridge_claim_count']}")
+print(f"\n💡 Answer:\n{result['synthesized_response']}")
+
+sca.close()
+```
+
+**Continue with Training:**
+```python
+result = agent.execute_training_mode(
+    max_iterations=50,
+    target_claims=300,
+    min_confidence=0.80
+)
+
+print(f"✅ Processed {result['nodes_processed']} nodes")
+print(f"📊 Proposed {result['claims_proposed']} claims")
+print(f"⚡ Performance: {result['claims_per_second']:.2f} claims/sec")
+```
+
+---
+
+**(End of Appendix Q)**
 
 ---
 
