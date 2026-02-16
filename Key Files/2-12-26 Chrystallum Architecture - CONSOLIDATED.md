@@ -1638,7 +1638,13 @@ Represents a conceptual category, topic, theme, or subject heading, including:
 |----------|------|---------|
 | `subject_id` | string | `"subj_000123"` |
 | `label` | string | `"Romeâ€”Politics and governmentâ€”510â€“30 B.C."` |
-| `facet` | string | `"Political"` |
+| `facet` | string | `"POLITICAL"` (uppercase canonical key) |
+
+**Facet Normalization Rule:**
+- `facet` property values MUST match canonical keys from `Facets/facet_registry_master.json`
+- All facet keys are UPPERCASE (e.g., `"POLITICAL"`, `"MILITARY"`, `"ECONOMIC"`, etc.; see Section 4.2 for complete list)
+- Lowercase or mixed-case facet values are NOT valid (prevents case-collision bugs in queries)
+- Rationale: Deterministic filtering, consistent routing, union-safe deduplication
 
 ### **Optional Properties**
 
@@ -1775,6 +1781,27 @@ Each SubjectConcept can carry metadata from **multiple authority standards** for
 | **Dewey** | `dewey_decimal` | `"937"` | Library classification (optional) |
 | **VIAF** | `viaf_id` | `"123456789"` | Authority control (optional) |
 | **GND** | `gnd_id` | `"4076899-5"` | German National Library (optional) |
+
+**Authority Precedence for SubjectConcepts (Normalization Rule):**
+
+**Tier 1 (Preferred):**
+- LCSH (Library of Congress Subject Headings) - established scholarly standard; query-optimized
+- FAST (Faceted Application of Subject Terminology) - complementary faceted tagging for cross-domain discovery
+
+**Tier 2 (Secondary):**
+- LCC (Library of Congress Classification) - structural backbone for primary classification only
+- CIP (Classification of Instructional Programs) - academic discipline alignment
+
+**Tier 3 (Tertiary):**
+- Wikidata (QID) - linked open data reference; use when LCSH/FAST coverage gaps exist
+- Dewey, VIAF, GND - legacy/supplementary authorities
+
+**Implementation Rule:**
+1. When creating SubjectConcept: Prefer LCSH/FAST â†' LCC/CIP â†' Wikidata â†' other
+2. When updating: Enrich with lower-tier authorities without replacing higher-tier mappings
+3. When querying: Check Tier 1 first; fall through to Tier 3 if needed
+
+**Rationale:** LCSH/FAST are domain-optimized for historical scholarship; Wikidata as fallback; mirrors Entity Layer authority policy (Material/Object precedence)
 
 ### **Purpose**
 
@@ -1943,6 +1970,31 @@ Academic disciplines are modeled as SubjectConcepts with special properties.
 - Agent specialization by discipline
 - Claim review routing by disciplinary expertise (Section 6.3)
 - Interdisciplinary query support
+
+### **Discipline Flag Usage in SFA Training Initialization**
+
+**Critical Pattern:** When a SubjectFacetAgent (SFA) is instantiated for a discipline + facet pair, the `discipline: true` flag identifies canonical root concepts for ontology building.
+
+**Initialization Algorithm:**
+```
+1. Query: Find all SubjectConcepts where discipline=true AND facet=TARGET_FACET
+2. Root Node Selection: SFA adopts matched concepts as roots
+3. Ontology Building: SFA traverses via BROADER_THAN* to build hierarchical ontology
+```
+
+**Example:** MilitarySFA with facet MILITARY finds root concepts like "Military Science", then builds: Military Science â†' Naval Warfare â†' Trireme Tactics â†' ...
+
+**Rationale:**
+- `discipline: true` marks canonical entry points for agent specialization
+- Prevents SFAs from adopting arbitrary concepts as roots
+- Gates SFA scope (e.g., Military SFA doesn't treat "Economic History" as root)
+- Enables reproducible SFA initialization across sessions
+- Supports disciplinary curriculum alignment (CIP codes â†' discipline roots)
+
+**See Also:**
+- Section 5.1: Agent domain assignment (`OWNS_DOMAIN` edges to SubjectConcepts)
+- Section 5.2: Subject Agents (domain expertise patterns)
+- REAL_AGENTS_DEPLOYED.md: Current SFA instantiation configurations
 
 ---
 

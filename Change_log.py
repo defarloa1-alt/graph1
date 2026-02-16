@@ -95,7 +95,53 @@ Guidelines:
 #   - Ready for: `git add . && git commit -m "Phase 2.6: Ontology consolidation + claim/relationship registry refinements"`
 
 # ==============================================================================
-# 2026-02-15 22:00 | SCA/SFA ROLES FINALIZED + SELECTIVE QUEUE MODEL + MILITARY METHODOLOGY
+# 2026-02-16 17:15 | SUBJECT LAYER NORMALIZATION (3 REFINEMENTS)
+# ==============================================================================
+# Category: Architecture, Documentation, Normalization
+# Summary: SubjectConcept design review feedback implementation
+#          Three minor refinements for consistency and implementer clarity
+#
+# REFINEMENTS (Non-Breaking Documentation Updates):
+#
+# Refinement 1: Facet Key Normalization (§4.1 SubjectConcept Schema)
+#   - Added explicit rule: facet property MUST use uppercase canonical keys
+#   - Keys: POLITICAL, MILITARY, ECONOMIC, etc. (from facet_registry_master.json)
+#   - Rationale: Prevents case-collision bugs ("political" vs "Political" vs "POLITICAL")
+#   - Implementation: Deterministic filtering, consistent routing
+#
+# Refinement 2: Authority Precedence for SubjectConcepts (§4.4 Multi-Authority Model)
+#   - Added Tier 1/2/3 authority precedence rules
+#   - Tier 1 (Preferred): LCSH, FAST (domain-optimized for historical subjects)
+#   - Tier 2 (Secondary): LCC, CIP (structural backbone + academic alignment)
+#   - Tier 3 (Tertiary): Wikidata, Dewey, VIAF, GND (fallback authorities)
+#   - Mirrors Entity Layer policy (Material/Object AAT > BM/FISH > Wikidata > local)
+#   - Rationale: LCSH/FAST are established scholarly standards; Wikidata fallback
+#
+# Refinement 3: Discipline Flag Usage in SFA Initialization (§4.9 Academic Discipline)
+#   - Added explicit SFA initialization pattern using discipline: true flag
+#   - Algorithm: Query SubjectConcepts where discipline=true AND facet=TARGET_FACET
+#   - SFA adopts matched concepts as roots for ontology building
+#   - Example: MilitarySFA finds "Military Science" → builds hierarchy downward
+#   - Rationale: discipline flag marks canonical root nodes for agent specialization
+#
+# Files (UPDATED):
+#   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+#     * §4.1: Added Facet Normalization Rule (uppercase requirement)
+#     * §4.4: Added Authority Precedence policy (Tier 1/2/3)
+#     * §4.9: Added Discipline Flag Usage subsection (SFA initialization pattern)
+#
+# Reason:
+#   Expert reviewer confirmed SubjectConcept design is sound; these refinements
+#   address minor normalization + documentation gaps that will prevent bugs:
+#   - Facet case collisions could cause query failures (now prevented)
+#   - Authority ambiguity resolved (LCSH/FAST > Wikidata policy explicit)
+#   - SFA initialization now has documented canonical pattern (reproducible)
+#
+# Scope Impact: Documentation only; no schema changes; backward compatible
+# Git status: Changes staged for commit
+
+# ==============================================================================
+# 2026-02-16 16:30 | ONTOLOGY CONSOLIDATION (18 NODES) + CLAIM/RELATIONSHIP REGISTRY REFINEMENTS
 # ==============================================================================
 # Category: Architecture, Agent Design, Methodology
 # Summary: Finalized SubjectConceptAgent ↔ SubjectFacetAgent architecture
