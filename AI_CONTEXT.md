@@ -36,7 +36,92 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 
 ---
 
-## Latest Update: Federation Strategy Consolidation - Appendix R Complete (2026-02-16 18:30)
+## Latest Update: Appendix R.10 - Practical API Implementation Guide (2026-02-16 19:00)
+
+### Federation API Access - Implementation Guide Complete
+
+**Session Context:** User question: "but how do we access all those endpoints, it is not clear to me" revealed gap in Appendix R. Strategy and patterns documented (R.1-R.9) but missing practical code examples. Added R.10 with working Python implementations for all 8 federations.
+
+**ACCOMPLISHMENTS:**
+
+**1. Appendix R.10 Added: Practical API Implementation Guide (~2,400 lines)**
+- ✅ **R.10.1** General Implementation Principles
+  - requests library patterns with 30s timeouts
+  - User-Agent standard: "Chrystallum/1.0"
+  - Exponential backoff for rate limiting (429 responses)
+  - Cache responses locally (file-based for development, Redis for production)
+  
+- ✅ **R.10.2-R.10.7** Working Code Examples for All 8 Federations:
+  - **Wikidata**: fetch_wikidata_entity(qid) with params dict, error handling, bulk QID support
+  - **Pleiades**: fetch_pleiades_place() with coordinate extraction, timeperiods, connections
+  - **VIAF**: fetch_viaf_authority() with nested JSON parsing for name forms
+  - **GeoNames**: fetch_geonames_place() with authentication (requires free username registration)
+  - **PeriodO**: fetch_periodo_periods() with bulk dataset fetch and local filtering
+  - **Trismegistos**: Bulk data export documentation (no public API available)
+  - **EDH**: search_edh_inscriptions() with pagination support
+  - **Getty AAT**: SPARQL endpoint and LOD URI patterns documented
+  
+- ✅ **R.10.8** Rate Limiting & Caching Strategy
+  - @rate_limit(calls_per_second=1.0) decorator for throttling
+  - @cache_api_response(cache_dir="./federation_cache") decorator for file-based caching
+  - Composite decorator pattern: @cache_api_response() @rate_limit()
+  
+- ✅ **R.10.9** Configuration Management
+  - FederationConfig class with environment variables (GEONAMES_USERNAME)
+  - Per-federation rate limits: Wikidata 2.0/sec, Pleiades 1.0/sec, GeoNames 0.5/sec
+  - Cache directory and timeout configuration (DEFAULT_TIMEOUT=30, BULK_TIMEOUT=60)
+  
+- ✅ **R.10.10** Error Handling Pattern
+  - safe_fetch_with_retry() with max_retries=3 and backoff_factor=2.0
+  - FederationAPIError exception hierarchy
+  - 429 rate limit detection with automatic backoff: wait_time = backoff_factor ** (attempt + 1)
+  
+- ✅ **R.10.11** Neo4j Integration Pattern
+  - enrich_node_from_federation() orchestration function
+  - Multi-federation entity enrichment workflow: Wikidata → extract federation IDs → fetch from all sources → write to Neo4j
+  - write_enriched_node() Cypher write pattern with federation metadata properties
+  
+- ✅ **R.10.12** Existing Implementation Files
+  - Cross-references to facet_agent_framework.py (lines 920-1020) fetch_wikidata_entity()
+  - Production migration checklist: centralize in scripts/federation/, add pytest tests, implement Redis caching
+
+**INTEGRATION POINTS:**
+- R.10 based on existing fetch_wikidata_entity() method from facet_agent_framework.py
+- Completes federation documentation trilogy:
+  * R.1-R.3: Strategy (why federate, confidence progression, stacked evidence ladder)
+  * R.4-R.7: Patterns (8 federation usage patterns with role definitions)
+  * R.10: Implementation (actual Python code to make API calls)
+- All code examples follow same pattern: requests.get(API_URL, params/headers/timeout) → response.raise_for_status() → parse JSON → return dict
+
+**FILES UPDATED:**
+- Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+  * Appendix R.10 added (~2,400 lines)
+  * Document size: 11,552 → 13,952 lines (+2,400 lines)
+- Change_log.py (entry 2026-02-16 19:00)
+- AI_CONTEXT.md (this file)
+
+**CONFIDENCE BUMPS WITH FEDERATIONS (from R.3):**
+- Trismegistos: +0.15 (People/Places)
+- EDH: +0.20 (Events/Inscriptions)
+- VIAF: +0.10 (People)
+- PeriodO: +0.10 (Temporal)
+- Pleiades: +0.15 (Places)
+
+**NEXT STEPS:**
+- Centralize federation API logic in scripts/federation/ module
+- Add pytest unit tests with mocked API responses (requests-mock library)
+- Implement Redis caching for production (replace file-based)
+- Add monitoring/logging for API failures and rate limit tracking
+- Document API key acquisition process in SETUP_GUIDE.md (GeoNames username)
+
+**USER SATISFACTION:**
+✅ Question resolved: "how do we access all those endpoints" → R.10 provides working Python code for all 8 federations
+✅ Gap filled: Architecture strategy (WHAT/WHY) now paired with practical implementation (HOW)
+✅ Single canonical source: No need to search codebase for federation API patterns
+
+---
+
+## Previous Update: Federation Strategy Consolidation - Appendix R Complete (2026-02-16 18:30)
 
 ### Federation Folder Consolidation
 

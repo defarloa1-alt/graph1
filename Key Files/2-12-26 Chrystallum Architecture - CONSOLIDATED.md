@@ -11543,6 +11543,515 @@ Federation strategy integrates with multiple existing architecture components:
 
 ---
 
+## **R.10 API Implementation Guide**
+
+This section provides **practical code examples** for accessing each federation's API endpoints, based on existing patterns in the codebase.
+
+### **R.10.1 General Implementation Principles**
+
+- Use `requests` library with proper headers (User-Agent identification)
+- Set timeouts (30s for entity fetches, 60s for bulk operations)
+- Implement exponential backoff for rate limiting (429 responses)
+- Cache responses locally (Redis or file-based for batch operations)
+- Log all API errors with traceback for debugging
+
+---
+
+### **R.10.2 Wikidata API Access**
+
+Complete Python example based on `scripts/agents/facet_agent_framework.py` (lines 920-1020):
+
+```python
+import requests
+from typing import Optional, Dict, Any
+
+def fetch_wikidata_entity(qid: str) -> Optional[Dict[str, Any]]:
+    """Fetch Wikidata entity with all claims."""
+    API_URL = "https://www.wikidata.org/w/api.php"
+    
+    params = {
+        "action": "wbgetentities",
+        "format": "json",
+        "ids": qid,
+        "languages": "en",
+        "props": "labels|descriptions|claims|aliases",
+    }
+    
+    headers = {"User-Agent": "Chrystallum/1.0 (research project)"}
+    
+    try:
+        response = requests.get(API_URL, params=params, headers=headers, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        
+        entity = data.get("entities", {}).get(qid)
+        if not entity or "missing" in entity:
+            return None
+            
+        return {
+            "qid": qid,
+            "label": entity.get("labels", {}).get("en", {}).get("value"),
+            "description": entity.get("descriptions", {}).get("en", {}).get("value"),
+            "claims": entity.get("claims", {})
+        }
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching Wikidata entity {qid}: {e}")
+        return None
+```
+
+**Key Points:**
+- Action: `wbgetentities` for entity fetch, `wbsearchentities` for search
+- Rate limit: No official limit, but be respectful (1-2 req/sec recommended)
+- Authentication: Not required for read operations
+- Bulk: Use pipe-separated QIDs: `ids=Q1048|Q1056|Q2277`
+
+---
+
+### **R.10.3 Pleiades API Access**
+
+```python
+def fetch_pleiades_place(pleiades_id: str) -> Optional[Dict[str, Any]]:
+    """Fetch Pleiades place with coordinates and temporal scope."""
+    API_URL = f"https://pleiades.stoa.org/places/{pleiades_id}/json"
+    
+    headers = {"User-Agent": "Chrystallum/1.0"}
+    
+    try:
+        response = requests.get(API_URL, headers=headers, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        
+        return {
+            "pleiades_id": pleiades_id,
+            "title": data.get("title"),
+            "description": data.get("description"),
+            "reprPoint": data.get("reprPoint"),  # [lon, lat]
+            "names": data.get("names", []),
+            "timeperiods": data.get("timeperiods", []),
+            "connections": data.get("connections", [])
+        }
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching Pleiades {pleiades_id}: {e}")
+        return None
+```
+
+**Key Points:**
+- No API key required
+- Rate limit: ~1 req/sec polite crawling
+- Bulk download: https://atlantides.org/downloads/pleiades/dumps/ (CSV/JSON dumps updated monthly)
+- GeoJSON available: append `/json` to place URL
+
+---
+
+### **R.10.4 VIAF API Access**
+
+```python
+def fetch_viaf_authority(viaf_id: str) -> Optional[Dict[str, Any]]:
+    """Fetch VIAF authority record with name forms."""
+    API_URL = f"https://viaf.org/viaf/{viaf_id}/viaf.json"
+    
+    headers = {"User-Agent": "Chrystallum/1.0"}
+    
+    try:
+        response = requests.get(API_URL, headers=headers, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        
+        # VIAF JSON structure is deeply nested
+        main_headings = data.get("mainHeadings", {}).get("data", [])
+        
+        return {
+            "viaf_id": viaf_id,
+            "name_forms": [h.get("text") for h in main_headings],
+            "sources": data.get("sources", {}).get("source", []),
+            "birth_date": data.get("birthDate"),
+            "death_date": data.get("deathDate")
+        }
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching VIAF {viaf_id}: {e}")
+        return None
+```
+
+**Key Points:**
+- No API key required
+- Multiple formats: `/viaf.json`, `/viaf.xml`, `/rdf.xml`
+- Search API: `http://viaf.org/viaf/search?query=...&httpAccept=application/json`
+- Rate limit: Not published; use 1 req/sec
+
+---
+
+### **R.10.5 GeoNames API Access (Requires Free Registration)**
+
+```python
+def fetch_geonames_place(geonames_id: str, username: str) -> Optional[Dict[str, Any]]:
+    """Fetch GeoNames place with modern coordinates."""
+    API_URL = "http://api.geonames.org/getJSON"
+    
+    params = {
+        "geonameId": geonames_id,
+        "username": username  # Required: register at geonames.org
+    }
+    
+    try:
+        response = requests.get(API_URL, params=params, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        
+        return {
+            "geonames_id": geonames_id,
+            "name": data.get("name"),
+            "toponymName": data.get("toponymName"),
+            "lat": data.get("lat"),
+            "lng": data.get("lng"),
+            "countryCode": data.get("countryCode"),
+            "adminName1": data.get("adminName1"),  # State/province
+            "featureClass": data.get("fcl"),
+            "featureCode": data.get("fcode")
+        }
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching GeoNames {geonames_id}: {e}")
+        return None
+```
+
+**Key Points:**
+- **Authentication required**: Free username registration at http://www.geonames.org/login
+- Rate limit: 1000 credits/hour, 30,000/day (free tier)
+- Premium tier: 80,000/day ($200/year)
+- Bulk download: http://download.geonames.org/export/dump/ (tab-delimited files)
+
+---
+
+### **R.10.6 PeriodO API Access**
+
+```python
+def fetch_periodo_periods(search_term: str = None) -> Optional[Dict[str, Any]]:
+    """Fetch PeriodO period definitions."""
+    API_URL = "http://n2t.net/ark:/99152/p0d.json"
+    
+    headers = {"User-Agent": "Chrystallum/1.0"}
+    
+    try:
+        response = requests.get(API_URL, headers=headers, timeout=60)
+        response.raise_for_status()
+        data = response.json()
+        
+        # PeriodO returns entire dataset; filter locally
+        period_collections = data.get("periodCollections", {})
+        
+        if search_term:
+            # Simple label matching (implement proper search as needed)
+            matches = []
+            for coll_id, collection in period_collections.items():
+                for period_id, period in collection.get("definitions", {}).items():
+                    label = period.get("label", "")
+                    if search_term.lower() in label.lower():
+                        matches.append({
+                            "periodo_id": f"{coll_id}#{period_id}",
+                            "label": label,
+                            "spatialCoverage": period.get("spatialCoverage", []),
+                            "start": period.get("start", {}),
+                            "stop": period.get("stop", {})
+                        })
+            return {"periods": matches}
+        
+        return {"periodCollections": period_collections}
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching PeriodO: {e}")
+        return None
+```
+
+**Key Points:**
+- No API key required
+- Entire dataset in single JSON file (~15MB; cache locally)
+- No rate limit (dataset updated infrequently)
+- Period URIs: `http://n2t.net/ark:/99152/p0{collection_id}#{period_id}`
+
+---
+
+### **R.10.7 Trismegistos, EDH, Getty AAT Access**
+
+**Trismegistos** - No public API; bulk data via:
+- https://www.trismegistos.org/downloads.php
+- CSV exports for TMPeople, TMGeo, TMTexts
+- Direct database queries not supported; must use exports
+
+**EDH (Epigraphic Database Heidelberg)**:
+```python
+def search_edh_inscriptions(search_term: str, max_results: int = 20) -> Optional[List[Dict]]:
+    """Search EDH inscriptions."""
+    API_URL = "https://edh.ub.uni-heidelberg.de/data/api/inscriptions/search"
+    
+    params = {
+        "text": search_term,
+        "limit": max_results
+    }
+    
+    headers = {"User-Agent": "Chrystallum/1.0"}
+    
+    try:
+        response = requests.get(API_URL, params=params, headers=headers, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        
+        return data.get("items", [])
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error searching EDH: {e}")
+        return None
+```
+
+**Getty AAT** - SPARQL endpoint (advanced):
+- Endpoint: `http://vocab.getty.edu/sparql`
+- Requires SPARQL query language
+- Easier: Use Linked Open Data URIs: `http://vocab.getty.edu/aat/{concept_id}.json`
+
+---
+
+### **R.10.8 Rate Limiting & Caching Strategy**
+
+```python
+import time
+from functools import wraps
+
+def rate_limit(calls_per_second: float = 1.0):
+    """Decorator to rate-limit API calls."""
+    min_interval = 1.0 / calls_per_second
+    last_called = [0.0]
+    
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            elapsed = time.time() - last_called[0]
+            left_to_wait = min_interval - elapsed
+            if left_to_wait > 0:
+                time.sleep(left_to_wait)
+            
+            result = func(*args, **kwargs)
+            last_called[0] = time.time()
+            return result
+        return wrapper
+    return decorator
+
+@rate_limit(calls_per_second=1.0)
+def fetch_wikidata_entity_throttled(qid: str) -> Optional[Dict]:
+    return fetch_wikidata_entity(qid)
+```
+
+**Caching with file-based storage**:
+```python
+import json
+from pathlib import Path
+
+def cache_api_response(cache_dir: str = "./federation_cache"):
+    """Decorator to cache API responses to disk."""
+    Path(cache_dir).mkdir(exist_ok=True)
+    
+    def decorator(func):
+        @wraps(func)
+        def wrapper(entity_id: str, *args, **kwargs):
+            cache_file = Path(cache_dir) / f"{func.__name__}_{entity_id}.json"
+            
+            if cache_file.exists():
+                with open(cache_file) as f:
+                    return json.load(f)
+            
+            result = func(entity_id, *args, **kwargs)
+            
+            if result:
+                with open(cache_file, 'w') as f:
+                    json.dump(result, f)
+            
+            return result
+        return wrapper
+    return decorator
+
+@cache_api_response()
+@rate_limit(calls_per_second=1.0)
+def fetch_pleiades_place_cached(pleiades_id: str) -> Optional[Dict]:
+    return fetch_pleiades_place(pleiades_id)
+```
+
+---
+
+### **R.10.9 Configuration Management**
+
+Store API credentials in environment variables or config file:
+
+```python
+# config.py
+import os
+from pathlib import Path
+
+class FederationConfig:
+    # GeoNames (requires free registration)
+    GEONAMES_USERNAME = os.getenv("GEONAMES_USERNAME", "")
+    
+    # User-Agent for all requests
+    USER_AGENT = "Chrystallum/1.0 (historical research; contact@example.com)"
+    
+    # Rate limits (requests per second)
+    RATE_LIMITS = {
+        "wikidata": 2.0,
+        "pleiades": 1.0,
+        "viaf": 1.0,
+        "geonames": 0.5,  # Conservative for free tier
+        "edh": 1.0
+    }
+    
+    # Cache directory
+    CACHE_DIR = Path(__file__).parent / "data" / "federation_cache"
+    
+    # Timeouts (seconds)
+    DEFAULT_TIMEOUT = 30
+    BULK_TIMEOUT = 60
+```
+
+---
+
+### **R.10.10 Error Handling Pattern**
+
+```python
+from typing import Optional, Dict, Any
+import logging
+
+logger = logging.getLogger(__name__)
+
+class FederationAPIError(Exception):
+    """Base exception for federation API errors."""
+    pass
+
+def safe_fetch_with_retry(
+    fetch_func,
+    entity_id: str,
+    max_retries: int = 3,
+    backoff_factor: float = 2.0
+) -> Optional[Dict[str, Any]]:
+    """Fetch with automatic retry on failure."""
+    for attempt in range(max_retries):
+        try:
+            result = fetch_func(entity_id)
+            if result:
+                return result
+            
+            logger.warning(f"Empty result for {entity_id} (attempt {attempt + 1})")
+            
+        except requests.exceptions.Timeout:
+            logger.error(f"Timeout fetching {entity_id} (attempt {attempt + 1})")
+            if attempt < max_retries - 1:
+                time.sleep(backoff_factor ** attempt)
+                
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 429:  # Rate limit
+                wait_time = backoff_factor ** (attempt + 1)
+                logger.warning(f"Rate limited; waiting {wait_time}s")
+                time.sleep(wait_time)
+            else:
+                logger.error(f"HTTP error {e.response.status_code}: {e}")
+                break
+                
+        except Exception as e:
+            logger.error(f"Unexpected error: {e}")
+            break
+    
+    return None
+```
+
+---
+
+### **R.10.11 Integration with Neo4j Write Pattern**
+
+```python
+def enrich_node_from_federation(
+    neo4j_driver,
+    node_id: str,
+    qid: str
+) -> Dict[str, Any]:
+    """Fetch Wikidata, enrich with federations, write to Neo4j."""
+    
+    # 1. Fetch Wikidata entity
+    entity = fetch_wikidata_entity(qid)
+    if not entity:
+        return {"status": "error", "message": "Entity not found"}
+    
+    # 2. Extract federation IDs from Wikidata claims
+    claims = entity.get("claims", {})
+    pleiades_id = extract_claim_value(claims, "P1584")  # Pleiades
+    viaf_id = extract_claim_value(claims, "P214")  # VIAF
+    geonames_id = extract_claim_value(claims, "P1566")  # GeoNames
+    
+    # 3. Fetch from federations (with caching & rate limiting)
+    enrichments = {}
+    
+    if pleiades_id:
+        enrichments["pleiades"] = fetch_pleiades_place_cached(pleiades_id)
+    
+    if viaf_id:
+        enrichments["viaf"] = fetch_viaf_authority(viaf_id)
+    
+    if geonames_id:
+        enrichments["geonames"] = fetch_geonames_place(
+            geonames_id, 
+            FederationConfig.GEONAMES_USERNAME
+        )
+    
+    # 4. Write to Neo4j with federation metadata
+    with neo4j_driver.session() as session:
+        result = session.execute_write(
+            lambda tx: write_enriched_node(tx, node_id, entity, enrichments)
+        )
+    
+    return result
+
+def write_enriched_node(tx, node_id, entity, enrichments):
+    """Cypher write with federation properties."""
+    cypher = """
+    MATCH (n {node_id: $node_id})
+    SET n.wikidata_qid = $qid,
+        n.wikidata_label = $label,
+        n.wikidata_description = $description,
+        n.pleiades_id = $pleiades_id,
+        n.viaf_id = $viaf_id,
+        n.geonames_id = $geonames_id,
+        n.federation_enriched = datetime(),
+        n.federation_sources = $sources
+    RETURN n
+    """
+    
+    params = {
+        "node_id": node_id,
+        "qid": entity.get("qid"),
+        "label": entity.get("label"),
+        "description": entity.get("description"),
+        "pleiades_id": enrichments.get("pleiades", {}).get("pleiades_id"),
+        "viaf_id": enrichments.get("viaf", {}).get("viaf_id"),
+        "geonames_id": enrichments.get("geonames", {}).get("geonames_id"),
+        "sources": ["wikidata", "pleiades", "viaf", "geonames"]
+    }
+    
+    result = tx.run(cypher, params)
+    return result.single()
+```
+
+---
+
+### **R.10.12 Existing Implementation Files**
+
+Current implementations in codebase:
+- `scripts/agents/facet_agent_framework.py` (lines 920-1020): Wikidata entity fetching
+- `Subjects/CIP/2-11-26-subjects_broader_narrower.py`: Wikidata API patterns
+- `Subjects/index_scan.py`: Wikidata search and entity retrieval
+- `scripts/reference/agent_training_pipeline.py`: Wikidata federation integration
+
+**Next Steps for Production:**
+1. Centralize federation API logic in `scripts/federation/` module
+2. Add pytest unit tests with mocked API responses
+3. Implement Redis caching for production (file-based for development)
+4. Add monitoring/logging for API failures and rate limit tracking
+5. Document API key acquisition process in SETUP_GUIDE.md
+
+---
+
 **(End of Appendix R)**
 
 ---
