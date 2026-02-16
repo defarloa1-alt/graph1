@@ -2,7 +2,7 @@
 
 **Date:** February 15, 2026  
 **Context:** Post-deployment of real agent spawning  
-**Status:** 🔄 DISCUSSION DRAFT  
+**Status:** ✅ MAJOR DECISIONS FINALIZED  
 
 ---
 
@@ -11,14 +11,24 @@
 **SubjectConceptAgent (SCA):**
 - Seed agent for breadth-first exploration
 - Spawns SubjectFacetAgents (SFAs) on-demand
-- Orchestrates cross-domain queries
+- **Intelligent orchestrator** with selective claim routing
+- Evaluates claims: Abstract concepts vs Concrete events
+- Queues claims for multi-facet review ONLY when warranted
 - Generates bridge claims connecting domains
 
 **SubjectFacetAgents (SFAs):**
 - Domain-specific experts (17 facets)
 - Each has LLM integration with facet-specific system prompt
+- **Training Phase:** Build domain ontologies independently (abstract concepts)
+- **Perspective Phase:** Analyze concrete claims when queued by SCA
+- Create Claim nodes (cipher-based) + FacetPerspective nodes
 - Inherit all FacetAgent capabilities (Steps 1-5 methods)
-- Can query Neo4j, validate claims, generate claims
+
+**Claim Architecture:**
+- **Claim = Star Pattern Subgraph** (cipher at center, perspectives radiating outward)
+- **Cipher:** Content-addressable ID for automatic deduplication
+- **FacetPerspective Nodes:** Facet-specific interpretations attached to claims
+- **Selective Queue:** SCA routes claims based on relevance scoring, not automatically
 
 ---
 
@@ -246,55 +256,84 @@ SFAs trained at the "field of study" or "academic discipline" level create claim
 - **Recursive Issue:** Each new claim potentially needs multi-facet analysis
 - Creates an **SFA Claim Queue** - claims awaiting facet perspective analysis
 
-### The SFA Claim Queue Problem
+### SCA Selective Claim Routing
 
-**Scenario:**
+**The Intelligence:** SCA doesn't queue ALL claims - it uses judgment to determine when cross-facet review adds value.
+
+**Scenario 1: Abstract Domain Concept (No Queue)**
+```
+Political SFA creates: "Senate held legislative authority in Roman Republic"
+  → Abstract political concept
+  → Domain ontology building
+  
+SCA decision: Accept as-is
+  → No cross-facet review needed
+  → Pure political science concept
+  → Don't queue to other SFAs
+```
+
+**Scenario 2: Concrete Historical Event (Selective Queue)**
 ```
 Political SFA creates: "Caesar was appointed dictator in 49 BCE"
-  → References: Caesar (person), Roman Republic (polity), dictator (office)
+  → References: Caesar (concrete person), 49 BCE (concrete event)
+  → Historical event, not abstract concept
   
-SCA recognizes: This claim has entities relevant to OTHER facets
-  → Caesar = military commander (Military SFA should analyze)
-  → Dictator office = economic impact (Economic SFA should analyze)
-  → Creates entries in SFA Claim Queue
+SCA analyzes:
+  → Caesar = military commander (military relevance)
+  → Dictator office = economic control (economic relevance)
+  → Concrete historical moment (multi-facet potential)
   
-Military SFA receives queued claim: "Caesar was appointed dictator in 49 BCE"
-  → Analyzes from military perspective
-  → Creates NEW claim: "Caesar commanded all Roman armies as dictator"
+SCA decision: Queue for perspectives
+  → Queue to Military SFA (Caesar's military role)
+  → Queue to Economic SFA (treasury control)
+  → Don't queue to Cultural/Religious (not relevant)
   
-Economic SFA receives queued claim: "Caesar was appointed dictator in 49 BCE"
-  → Analyzes from economic perspective  
-  → Creates NEW claim: "Caesar gained control of state treasury as dictator"
+Military SFA receives queued claim:
+  → Creates FacetPerspective: "Caesar commanded all Roman armies as dictator"
+  
+Economic SFA receives queued claim:
+  → Creates FacetPerspective: "Caesar gained control of state treasury as dictator"
 ```
 
-### Two Types of SFA Work
+### Two Phases of SFA Work
 
-**1. Discovery Claims (Proactive)**
-- SFA discovers new information from training data
-- Creates claims from primary facet perspective
-- Drives initial knowledge base population
+**Phase 1: Training Mode (Independent)**
+- SFA studies discipline (Political Science, Military History, etc.)
+- Builds **subject ontology** for domain
+- Creates claims about **abstract concepts** (governance structures, tactical theory)
+- Works **independently** - no cross-facet review needed yet
+- Example: Political SFA → "Senate held legislative authority", "Consulship rotated annually"
 
-**2. Perspective Claims (Reactive)**
-- SFA receives existing claim from queue
-- Analyzes claim from its facet perspective
-- Creates complementary claims about same entities/events
+**Phase 2: Operational Mode (Selective Collaboration)**
+- SFA encounters claims referencing **concrete entities/events**
+- **SCA decides** if claim warrants cross-facet review
+- If queued: SFA analyzes from its facet perspective
+- Creates FacetPerspective nodes for selected claims
 
 ### Workflow Implication
 
 ```
-SFA Responsibilities:
-├─ Discovery Mode (Training)
-│  └─ Create claims from training data (Wikipedia, Wikidata)
-│
-└─ Queue Processing Mode (Operational)
-   └─ Analyze claims from other SFAs for facet-specific insights
+Phase 1: Training (Independent)
+  SCA:
+  ├─ Spin up all SFAs
+  ├─ Route discipline training data to each SFA
+  └─ Collect claims from all SFAs
+  
+  SFAs:
+  ├─ Study discipline independently
+  ├─ Build domain ontology (abstract concepts)
+  ├─ Create Claim nodes + FacetPerspectives
+  └─ Return claims to SCA
 
-SCA Responsibilities:
-├─ Route training data to SFAs (Discovery)
-├─ Collect discovery claims from all SFAs
-├─ Analyze claims for multi-facet potential
-├─ Queue claims to relevant SFAs (Perspective analysis)
-└─ Link resulting claims to entities/events
+Phase 2: Selective Review (SCA Intelligence)
+  SCA analyzes each claim:
+  ├─ Abstract domain concept? → Accept as-is (no queue)
+  ├─ Concrete event/entity? → Evaluate multi-facet potential
+  ├─ References multiple domains? → Queue for perspectives
+  └─ Conflicts with existing claims? → Queue for synthesis
+  
+  SFAs (if queued):
+  └─ Create FacetPerspective on selected claims only
 ```
 
 ### Recursive Termination
@@ -315,33 +354,133 @@ Iteration 2:
 Termination: No new facet perspectives discovered
 ```
 
+### Claim Schema: Star Pattern with Cipher
+
+**Key Architectural Point:** Claims are **star pattern subgraphs**, not isolated nodes.
+
+#### Claim Cipher (Content-Addressable ID)
+
+Each claim has a **cipher** - a unique hash computed from its content:
+
+```python
+claim_cipher = Hash(
+    source_work_qid +           # Where claim came from
+    passage_text_hash +          # Exact text
+    subject_entity_qid +         # Who/what it's about
+    relationship_type +          # What relationship
+    temporal_data +              # When
+    confidence_score +           # Initial confidence
+    extractor_agent_id +         # Which SFA created it
+    extraction_timestamp         # When created
+)
+# Result: "claim_abc123..." (unique cipher)
+```
+
+**Benefit:** Two SFAs discovering the SAME claim generate the SAME cipher → **automatic deduplication**
+
+#### Claim Structure (Star Pattern)
+
+```
+                    ┌────────────┐
+                    │    SFA     │
+                    │  (creator) │
+                    └─────┬──────┘
+                          │
+                    [MADE_CLAIM]
+                          │
+                          ▼
+     ┌────────────────────────────────────┐
+     │       :Claim (center node)         │
+     │  cipher: "claim_abc123..."         │
+     │  text: "Caesar appointed dictator" │
+     │  status: "proposed"                │
+     └────────────┬───────────────────────┘
+                  │
+       ┌──────────┼──────────┐
+       │          │          │
+  [PERSP_ON] [PERSP_ON] [PERSP_ON]
+       │          │          │
+       ▼          ▼          ▼
+   (Facet     (Facet     (Facet
+    Persp:    Persp:     Persp:
+    Political) Military)  Economic)
+```
+
+#### FacetPerspective Nodes
+
+**New Node Type:** `:FacetPerspective` - Represents a facet-specific interpretation of a claim
+
+```cypher
+(:FacetPerspective {
+  perspective_id: "persp_001",
+  facet: "political",
+  parent_claim_cipher: "claim_abc123...",
+  facet_claim_text: "Caesar challenged Senate authority",
+  confidence: 0.95,
+  source_agent_id: "political_sfa_001",
+  timestamp: "2026-02-15T10:00:00Z",
+  reasoning: "Dictatorship violated Republican norms"
+})-[:PERSPECTIVE_ON]->(Claim {cipher: "claim_abc123..."})
+```
+
+**Why FacetPerspective instead of separate claims?**
+- ✅ **Single source of truth:** One Claim node (via cipher deduplication)
+- ✅ **Multi-facet enrichment:** Multiple perspectives attached
+- ✅ **Consensus calculation:** AVG(all perspective confidences)
+- ✅ **Clear semantics:** Claim = base assertion, Perspective = facet interpretation
+
+#### Discovery vs Perspective Mode (Updated)
+
+**Discovery Mode:**
+```
+Political SFA reads text → discovers assertion
+→ Creates Claim node (cipher: "claim_abc123...")
+→ Creates FacetPerspective (political angle)
+→ Returns claim cipher to SCA
+```
+
+**Perspective Mode:**
+```
+Military SFA receives queued claim (cipher: "claim_abc123...")
+→ Analyzes from military perspective
+→ Creates FacetPerspective (military angle)
+→ Attaches to same claim via cipher
+→ Returns perspective to SCA
+```
+
+**Result:**
+- 1 Claim node (deduped via cipher)
+- N FacetPerspective nodes (one per facet that analyzed it)
+
 ### Benefits & Challenges
 
 **Benefits:**
-1. **Complete Multi-Facet Coverage:** Every claim analyzed from all relevant perspectives
-2. **Emergent Connections:** SFAs discover cross-domain relationships organically
-3. **Progressive Enrichment:** Knowledge base grows richer with each iteration
+1. **Efficient Collaboration:** Only concrete/multi-domain claims get cross-facet review
+2. **Independent Learning:** SFAs build domain ontologies without interference
+3. **Selective Enrichment:** Multi-facet analysis applied where it adds value
+4. **SCA Intelligence:** Orchestrator makes informed routing decisions
 
 **Challenges:**
-1. **Queue Management:** SCA must track which claims need which facet analyses
-2. **Avoid Infinite Loops:** Prevent claims from ping-ponging between SFAs
-3. **Prioritization:** Which queued claims to process first?
-4. **Convergence:** How to detect when multi-facet analysis is "complete"?
+1. **Routing Criteria:** How does SCA determine which claims warrant review?
+2. **Abstract vs Concrete:** Drawing the line between domain concepts and reviewable events
+3. **Relevance Detection:** Which facets should analyze which claims?
+4. **Convergence:** When has a claim received sufficient perspectives?
 
 ---
 
 ## SFA Claim Queue Implementation
 
-### Queue Structure
+### Queue Structure (Cipher-Based)
 
 ```python
 sfa_claim_queue = {
     'military': [
         {
-            'claim_id': 'CLM_001',
+            'claim_cipher': 'claim_abc123...',  # Content-addressable ID
             'claim_text': "Caesar was appointed dictator in 49 BCE",
             'source_facet': 'political',
             'entities': ['Q1048', 'Q7747'],  # Caesar, Roman Republic
+            'existing_perspectives': ['political'],  # Already analyzed
             'status': 'pending'
         }
     ],
@@ -350,20 +489,112 @@ sfa_claim_queue = {
 }
 ```
 
-### Queue Processing Logic
+### Queue Processing Logic (Selective)
 
-**SCA:**
-1. SFA creates claim → SCA receives
-2. SCA analyzes claim entities
-3. SCA determines: Which OTHER facets should analyze this?
-4. SCA adds claim to relevant SFA queues
-5. SCA monitors queue depth, prioritizes
+**SCA (Evaluation Phase):**
+```
+1. Political SFA creates claim
+   → Claim cipher: "claim_abc123..."
+   → Claim text: "Caesar was appointed dictator in 49 BCE"
+   → FacetPerspective: political
+   
+2. SCA receives claim cipher
 
-**SFA:**
-1. Process Discovery queue (training data)
-2. Process Perspective queue (claims from other SFAs)
-3. Return new claims to SCA
-4. SCA repeats analysis for new claims
+3. SCA evaluates claim characteristics
+   → Type: Concrete historical event (not abstract concept)
+   → Entities: Caesar (Q1048), Dictator office, 49 BCE
+   → Multi-domain potential: YES (military, economic implications)
+   
+4. SCA decision: Queue for selective review
+   → Concrete event referencing specific person/date
+   → Caesar = known military figure (military SFA relevant)
+   → Dictator = state control (economic SFA relevant)
+   → Cultural/Religious SFAs: Not relevant to this claim
+   
+5. SCA checks existing perspectives
+   → Query: MATCH (p:FacetPerspective)-[:PERSPECTIVE_ON]->(c:Claim {cipher: "claim_abc123..."})
+   → Found: political (already exists)
+   → Relevant facets missing: military, economic
+   
+6. SCA queues claim to RELEVANT facets only
+   → Queue to military SFA (high relevance)
+   → Queue to economic SFA (medium relevance)
+   → Skip cultural/religious/scientific SFAs (not relevant)
+```
+
+**Contrast: Abstract Concept (No Queue):**
+```
+1. Political SFA creates claim
+   → Claim cipher: "claim_xyz456..."
+   → Claim text: "Senate held legislative authority in Roman Republic"
+   → FacetPerspective: political
+   
+2. SCA receives claim cipher
+
+3. SCA evaluates claim characteristics
+   → Type: Abstract political concept (not concrete event)
+   → Entities: Senate (institution), legislative authority (concept)
+   → Multi-domain potential: NO (pure political science)
+   
+4. SCA decision: Accept as-is (NO QUEUE)
+   → Abstract domain ontology concept
+   → No concrete event requiring multiple perspectives
+   → Let Political SFA own this claim exclusively
+```
+
+**SFA (Perspective Phase):**
+```
+1. Military SFA receives queued claim
+   → claim_cipher: "claim_abc123..."
+   → claim_text: "Caesar appointed dictator in 49 BCE"
+   
+2. Military SFA analyzes from military perspective
+   → Interpretation: "Gained supreme military command"
+   → Confidence: 0.90
+   
+3. Military SFA creates FacetPerspective
+   → Links to claim via cipher
+   → Returns perspective_id to SCA
+   
+4. SCA checks if more facets needed
+   → Query existing perspectives again
+   → If all relevant facets covered, remove from queue
+```
+
+### Deduplication via Cipher
+
+**Scenario:** Two SFAs discover the same claim independently
+
+```python
+# Political SFA at 10:00 AM
+claim_data_A = {
+    "text": "Caesar appointed dictator 49 BCE",
+    "subject": "Q1048",
+    "source": "Plutarch"
+}
+cipher_A = Hash(claim_data_A)  # → "claim_abc123..."
+
+# Military SFA at 10:05 AM (discovers same fact)
+claim_data_B = {
+    "text": "Caesar became dictator 49 BCE",  # Different wording
+    "subject": "Q1048",
+    "source": "Plutarch"  # Same source
+}
+cipher_B = Hash(claim_data_B)  # → "claim_abc123..." (SAME!)
+
+# Neo4j check
+MATCH (existing:Claim {cipher: $cipher_B})
+RETURN existing
+
+# If found: Attach new perspective instead of duplicate claim
+MATCH (claim:Claim {cipher: "claim_abc123..."})
+CREATE (persp:FacetPerspective {
+  facet: "military",
+  perspective_id: "persp_002"
+})-[:PERSPECTIVE_ON]->(claim)
+
+# Result: 1 Claim + 2 FacetPerspectives (political, military)
+```
 
 ### Convergence Detection
 
@@ -401,25 +632,38 @@ sfa_claim_queue = {
 
 2. **Orchestration**
    - Spawn SFAs on-demand
-   - Route queries to appropriate SFAs
+   - Route training data to SFAs (Discovery Mode)
+   - Route claims to SFAs (Perspective Mode via queue)
    - Aggregate SFA results
    - Generate bridge claims (structural connections)
    - Synthesize multi-facet responses
 
-3. **Claim Management**
+3. **SFA Claim Queue Management (Selective)**
+   - **Claim Evaluation:** When SFA creates claim, analyze characteristics:
+     * Abstract domain concept? → Accept as-is (no queue)
+     * Concrete entity/event? → Evaluate multi-facet potential
+     * References multiple domains? → Queue to relevant SFAs only
+     * Conflicts with existing claims? → Queue for synthesis
+   - **Intelligent Routing:** Don't queue everything - use judgment
+   - **Queue Prioritization:** Concrete events > abstract concepts for review
+   - **Convergence Detection:** Stop when no new perspectives warranted
+   - **Loop Prevention:** Track claim analysis history, prevent ping-pong
+
+4. **Claim Management**
    - **Event Linking:** Determine if claims from different SFAs are:
      * Different claims about SAME event → Link to shared historical moment
      * Claims about DIFFERENT events → Keep as distinct moments
    - **Deduplication:** Prevent duplicate claims across facets
    - **Complementary Analysis:** Recognize facet perspectives are additive, not competitive
+   - **Discovery vs Perspective:** Tag claims by creation mode
 
-4. **Session Management**
+5. **Session Management**
    - Own master session_id
    - Track active SFAs
    - Coordinate approval workflows
    - Log orchestration decisions
 
-5. **Boundary Definition**
+6. **Boundary Definition**
    - Assign initial domains to SFAs
    - Define SubjectConcept → SFA mappings
    - Ensure each facet analyzes from its perspective only
@@ -436,36 +680,40 @@ sfa_claim_queue = {
 **PRIMARY ROLE:** Domain expert
 
 **Responsibilities:**
-1. **Facet-Specific Analysis (Phase 2)**
-   - Receive ontology from SCA
-   - Analyze from facet perspective ONLY
-   - Extract facet-relevant insights
-   - Generate claims within assigned facet
 
-2. **Claim Creation**
-   - Create claims from facet perspective ONLY
-   - **Stay within facet domain** (no cross-domain claims)
-   - Tag all claims with facet origin
-   - Assign facet-specific confidence scores
-   - Return claims to SCA for event linking
+1. **Training Mode (Independent Discipline Study)**
+   - Receive discipline training data from SCA
+   - Study domain **independently** (no cross-facet collaboration yet)
+   - Build subject ontology for discipline (abstract concepts)
+   - Create Claim nodes for domain concepts (with cipher)
+   - Create FacetPerspective for own facet
+   - Return claim ciphers to SCA
+   - Examples: "Senate legislative authority", "Manipular tactics", "Agricultural economy"
 
-3. **Domain Expertise**
+2. **Perspective Mode (Selective Review - Only if Queued)**
+   - Receive **selected** claim ciphers from SCA (not all claims, only those SCA deems worthy)
+   - Analyze concrete claims from facet perspective
+   - Create FacetPerspective nodes (attach to claim via cipher)
+   - Return "No perspective" if claim not relevant to facet
+   - Only triggered when SCA determines multi-facet review warranted
+
+3. **Claim Structure Creation**
+   - **Discovery:** Create Claim node + initial FacetPerspective
+   - **Perspective:** Create FacetPerspective ONLY (claim already exists)
+   - All perspectives link to claim via cipher
+   - Cipher-based deduplication handled automatically
+
+4. **Domain Expertise**
    - Load facet-specific system prompt
    - Trained at "field of study" or "academic discipline" level
    - Use LLM for facet-grounded reasoning
    - Validate claims against domain knowledge
 
-4. **Query Execution**
+5. **Query Execution**
    - Receive queries from SCA
    - Query Neo4j for facet-relevant nodes
    - Return results in standard format
    - Tag all outputs with facet
-
-5. **Training (Future)**
-   - Execute training mode for assigned domain
-   - Learn domain patterns from Wikipedia + Wikidata
-   - Build domain-specific claim templates
-   - Training scope: Field of study level (broad)
 
 **NOT Responsible For:**
 - ❌ Cross-domain orchestration
@@ -473,72 +721,325 @@ sfa_claim_queue = {
 - ❌ Agent spawning
 - ❌ Session-level decisions
 - ❌ Creating claims outside assigned facet
+- ❌ Managing claim queue (SCA manages)
 
 ---
 
 ## Coordination Patterns
 
-### Pattern 1: Query Routing
+### Pattern 1: Discovery Mode (Training)
 
 ```
-User query: "How did environmental disasters affect military campaigns?"
+SCA provides training data: "Roman Republic" (Q7747)
 
 SCA:
-1. Classify facets → [environmental, military]
-2. Spawn EnvironmentalSFA, MilitarySFA
-3. Route query to both SFAs
-4. Aggregate results
-5. Generate bridge claims (disaster → campaign)
-6. Synthesize answer
+1. Spawn Political SFA, Military SFA, Economic SFA
+2. Route training data to all SFAs
+3. Each SFA analyzes independently
 
-Environmental SFA:
-- Analyze disasters from environmental perspective
-- Return: volcanic eruptions, earthquakes, floods
-- Facet: environmental
+Political SFA (Training - Independent):
+- Creates claims: "Senate held legislative power" (abstract concept)
+- Creates claims: "Consuls elected annually" (abstract concept)
+- Returns: 15 political claims
+- SCA evaluation: All abstract political concepts → Accept as-is (no queue)
 
-Military SFA:
-- Analyze campaigns from military perspective
-- Return: campaigns, battles, strategic decisions
-- Facet: military
+Military SFA (Training - Independent):
+- Creates claims: "Legions organized into cohorts" (abstract concept)
+- Creates claims: "Roman army used manipular tactics" (abstract concept)
+- Returns: 12 military claims
+- SCA evaluation: All abstract military concepts → Accept as-is (no queue)
+
+Economic SFA (Training - Independent):
+- Creates claims: "Roman economy based on agriculture" (abstract concept)
+- Creates claims: "State controlled grain supply" (abstract concept)
+- Returns: 10 economic claims
+- SCA evaluation: All abstract economic concepts → Accept as-is (no queue)
+
+Result: 37 independent domain ontology claims, NO cross-facet review needed
+  → These are foundational concepts for each discipline
+  → SFAs built their subject ontologies independently
+  → No queue, no perspectives from other facets
 ```
 
-### Pattern 2: Facet-by-Facet Analysis
+### Pattern 2: Perspective Mode (Cipher-Based Deduplication)
 
 ```
-SCA discovers: Q189108 (Tyrian purple)
+Political SFA creates claim:
+  → Claim node: cipher="claim_abc123...", text="Caesar appointed dictator 49 BCE"
+  → FacetPerspective node: political angle
+  → Returns claim cipher to SCA
 
-SCA:
-1. Phase 1: Discov✅ Breadth (un-faceted) | Depth (facet-specific) |
-| **Spawning** | ✅ Spawns SFAs | ❌ Cannot spawn |
-| **Query Routing** | ✅ Route/event claims | ✅ Facet-specific claims ONLY |
-| **Claim Management** | ✅ Links claims to events | Tags claims with facet |
-| **Domain Boundaries** | Assigns domains | ✅ Stays within facet
-| **Domain Boundaries** | Assigns domains | ⚠️ Can create cross-domain claims |
-| **Ontology** | ✅ Discovers & proposes | Analyzes & enriches |
-| **Neo4j Access** | ✅ Queries | ✅ Queries |
-| **Session** | ✅ Owns master session | Shares session_id |
-| **Orchestration** | ✅ Aggregates SFAs | ❌ No orchestration |
-| **Training Scope** | N/A | Field of study level (broad)
-### Pattern 3: Shell Node Expansion
+SCA receives claim cipher "claim_abc123...":
+1. Query existing perspectives:
+   MATCH (p:FacetPerspective)-[:PERSPECTIVE_ON]->(c:Claim {cipher: "claim_abc123..."})
+   RETURN COLLECT(p.facet) AS existing_facets
+   → Found: ['political']
+
+2. Analyze claim entities:
+   → Caesar (Q1048) = military relevance
+   → Dictator office = economic relevance
+
+3. Determine missing perspectives:
+   → Need: military, economic
+   → Already have: political
+
+4. Queue claim cipher to:
+   → Military SFA queue
+   → Economic SFA queue
+
+Military SFA (Perspective Mode):
+  → Receives: claim_cipher="claim_abc123..."
+  → Queries claim: MATCH (c:Claim {cipher: "claim_abc123..."}) RETURN c.text
+  → Analyzes from military perspective
+  → Creates FacetPerspective:
+      facet="military"
+      facet_claim_text="Caesar commanded all Roman armies as dictator"
+      confidence=0.90
+  → Links: (FacetPerspective)-[:PERSPECTIVE_ON]->(Claim {cipher: "claim_abc123..."})
+  → Returns: perspective_id="persp_002"
+
+Economic SFA (Perspective Mode):
+  → Receives: claim_cipher="claim_abc123..."
+  → Analyzes from economic perspective
+  → Creates FacetPerspective:
+      facet="economic"
+      facet_claim_text="Caesar controlled state treasury as dictator"
+      confidence=0.88
+  → Links: (FacetPerspective)-[:PERSPECTIVE_ON]->(Claim {cipher: "claim_abc123..."})
+  → Returns: perspective_id="persp_003"
+
+Result Star Pattern:
+                    (Claim: cipher="claim_abc123...")
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+   [PERSP_ON]           [PERSP_ON]           [PERSP_ON]
+        │                    │                    │
+        ▼                    ▼                    ▼
+   (Perspective:        (Perspective:        (Perspective:
+    Political)          Military)            Economic)
+    conf: 0.95          conf: 0.90           conf: 0.88
+
+Consensus Score: AVG(0.95, 0.90, 0.88) = 0.91
+```
+
+
+### Pattern 3: Convergence Detection
+
+```
+Iteration 1:
+  Political SFA: 15 discovery claims → Queue 30 perspective requests
+  Military SFA: 12 discovery claims → Queue 24 perspective requests
+  Economic SFA: 10 discovery claims → Queue 20 perspective requests
+  Total queue: 74 items
+
+Iteration 2:
+  Process 74 queued claims
+  → 45 perspective claims created
+  → Queue 18 new perspective requests (diminishing)
+  Total queue: 18 items
+
+Iteration 3:
+  Process 18 queued claims
+  → 5 perspective claims created
+  → Queue 2 new perspective requests
+  Total queue: 2 items
+
+Iteration 4:
+  Process 2 queued claims
+  → 0 perspective claims created (SFAs return "No perspective")
+  → Queue 0 new requests
+  
+Convergence: Queue empty, stop processing
+```
+
+### Pattern 4: Shell Node Expansion
 
 ```
 SCA creates shell node: Q191989 (murex) [status: shell]
-✅ **Decided:** SCA owns ontology, SFAs consume
-2. ✅ **Decided:** SFAs create all claims (including cross-domain)
-3. ✅ **Decided:** SCA manages claim perspectives (same vs different)
-4. 🔄 **Decide:** Remaining open questions (3-8)
-5. **Document** final SCA ↔ SFA contract
-6. **Implement** claim perspective analysis
-7. **Test** with multi-facet queries
 
----
+Option A (SCA initiates):
+1. SCA detects shell node needs expansion
+2. SCA identifies relevant facet: scientific
+3. SCA spawns ScientificSFA
+4. SCA: "Expand Q191989 for me"
+5. ScientificSFA expands shell → full node
 
-**Status:** 🔄 IN PROGRESS - Key decisions made, implementation next
+Option B (SFA discovers):
 1. ScientificSFA queries Neo4j
 2. ScientificSFA encounters shell node Q191989
 3. ScientificSFA: "Found shell node, expanding"
 4. ScientificSFA expands shell → full node
 5. ScientificSFA reports back to SCA
+```
+
+---
+
+## ✅ Finalized Roles & Responsibilities
+
+| Responsibility | SCA | SFA |
+|----------------|-----|-----|
+| **Discovery** | ✅ Breadth (un-faceted) | Depth (facet-specific) |
+| **Spawning** | ✅ Spawns SFAs | ❌ Cannot spawn |
+| **Training Phase** | Routes discipline data | ✅ Independent study (no queue) |
+| **Claim Evaluation** | ✅ Abstract vs Concrete | Creates claims from facet lens |
+| **Claim Creation** | Bridge/event claims | ✅ Claim + FacetPerspective |
+| **Queue Management** | ✅ Selective routing (intelligent) | Processes selected claims only |
+| **Routing Criteria** | ✅ Multi-domain potential | N/A |
+| **Perspective Creation** | N/A | ✅ When queued by SCA |
+| **Domain Boundaries** | Assigns domains | ✅ Stays within facet |
+| **Ontology** | ✅ Discovers & proposes | ✅ Builds domain ontology |
+| **Neo4j Access** | ✅ Queries | ✅ Queries |
+| **Session** | ✅ Owns master session | Shares session_id |
+| **Orchestration** | ✅ Intelligent aggregation | ❌ No orchestration |
+| **Training Scope** | N/A | Field of study level (broad) |
+
+---
+
+## SCA Routing Criteria (Critical Design Decision)
+
+### How SCA Determines Which Claims Warrant Cross-Facet Review
+
+**Key Question:** When should SCA queue a claim for multi-facet analysis?
+
+#### Criterion 1: Abstract vs Concrete
+
+**Abstract Domain Concepts → NO QUEUE**
+- Theoretical frameworks (e.g., "Senate held legislative authority")
+- Discipline-specific methods (e.g., "Manipular tactics")
+- General principles (e.g., "Agricultural economy base")
+- Domain ontology building
+- **Action:** Accept claim as-is, no cross-facet review needed
+
+**Concrete Events/Entities → EVALUATE FOR QUEUE**
+- Specific historical events (e.g., "Caesar crossed Rubicon")
+- Named individuals with roles (e.g., "Caesar appointed dictator")
+- Dated occurrences (e.g., "49 BCE")
+- Geographic locations in context (e.g., "Rubicon River boundary")
+- **Action:** Evaluate multi-domain potential
+
+#### Criterion 2: Multi-Domain Relevance Scoring
+
+When claim is concrete, SCA scores relevance to each facet:
+
+**High Relevance (Score: 0.8-1.0) → Queue to SFA**
+- Entity is central to facet domain (e.g., Caesar = military commander)
+- Event has direct facet implications (e.g., dictatorship = state control)
+- Claim text contains facet-specific terminology
+
+**Medium Relevance (Score: 0.5-0.7) → Queue to SFA**
+- Entity has secondary connection to facet
+- Event has indirect facet implications
+- Potential for facet-specific insight
+
+**Low Relevance (Score: 0.0-0.4) → Do NOT queue**
+- Entity not related to facet domain
+- Event has no facet implications
+- No facet-specific insight likely
+
+**Example: "Caesar was appointed dictator in 49 BCE"**
+```
+Political SFA (creator): 1.0 (created the claim)
+Military SFA: 0.9 (Caesar = commander, dictator = supreme command)
+Economic SFA: 0.8 (dictator = treasury control, state finances)
+Cultural SFA: 0.3 (minor cultural impact, not primary)
+Religious SFA: 0.2 (no significant religious dimension)
+Scientific SFA: 0.1 (irrelevant to scientific domain)
+
+SCA Decision:
+→ Queue to: Military (0.9), Economic (0.8)
+→ Skip: Cultural (0.3), Religious (0.2), Scientific (0.1)
+```
+
+#### Criterion 3: Entity Type Detection
+
+**QID Pattern Analysis:**
+```python
+def get_entity_type(qid):
+    # Query Wikidata for P31 (instance of)
+    entity_type = wikidata.query(f"SELECT ?type WHERE {{ wd:{qid} wdt:P31 ?type }}")
+    
+    # Map to facet relevance
+    if entity_type in [Q5, Q10648343]:  # Human, historical figure
+        return {
+            'military': check_military_roles(qid),
+            'political': check_political_roles(qid),
+            'cultural': check_cultural_impact(qid),
+            ...
+        }
+```
+
+**Example Entity Types:**
+- **Q5 (Human):** Political, Military, Cultural potential
+- **Q198 (War):** Military, Political, Economic potential
+- **Q216353 (Battle):** Military, Geographic potential
+- **Q7275 (State):** Political, Economic potential
+- **Q8142 (Currency):** Economic, Political potential
+
+#### Criterion 4: Conflict Detection
+
+**Claim Conflicts with Existing Knowledge → Queue for Synthesis**
+- Date discrepancy: "Caesar dictator 49 BCE" vs "Caesar dictator 48 BCE"
+- Attribute conflict: Different sources claim different properties
+- Relationship dispute: Competing relationship assertions
+- **Action:** Queue to SynthesisAgent + relevant SFAs
+
+#### Criterion 5: Existing Perspectives Check
+
+Before queuing, SCA checks what perspectives already exist:
+
+```cypher
+MATCH (p:FacetPerspective)-[:PERSPECTIVE_ON]->(c:Claim {cipher: $cipher})
+RETURN COLLECT(p.facet) AS existing_facets
+
+// Only queue to facets NOT in existing_facets
+```
+
+**Prevents:**
+- Duplicate perspective requests
+- Wasted SFA effort
+- Ping-pong between SFAs
+
+### Implementation Pseudocode
+
+```python
+def evaluate_claim_for_queue(claim: Claim, source_facet: str) -> Dict[str, float]:
+    """
+    Evaluate which SFAs should analyze this claim
+    
+    Returns: Dict of facet -> relevance_score
+    """
+    # Step 1: Check if abstract concept
+    if is_abstract_concept(claim):
+        return {}  # No queue
+    
+    # Step 2: Extract entities from claim
+    entities = extract_entities(claim.text)
+    
+    # Step 3: Score relevance to each facet
+    relevance_scores = {}
+    for facet in ALL_FACETS:
+        if facet == source_facet:
+            continue  # Skip source facet (already has perspective)
+        
+        score = 0.0
+        for entity in entities:
+            entity_type = get_entity_type(entity.qid)
+            score += calculate_relevance(entity_type, facet)
+        
+        relevance_scores[facet] = score / len(entities)
+    
+    # Step 4: Check existing perspectives
+    existing_facets = get_existing_perspectives(claim.cipher)
+    
+    # Step 5: Filter by threshold and existing
+    queue_targets = {
+        facet: score 
+        for facet, score in relevance_scores.items()
+        if score >= 0.5 and facet not in existing_facets
+    }
+    
+    return queue_targets
 ```
 
 ---
@@ -621,13 +1122,32 @@ SCA creates shell node: Q191989 (murex) [status: shell]
 ## Next Steps
 
 1. ✅ **Decided:** SCA owns ontology, SFAs consume
-2. ✅ **Decided:** SFAs create facet-specific claims ONLY
-3. ✅ **Decided:** SCA manages event linking (different claims about same event)
-4. ✅ **Decided:** Exploratory scope - get them all
-5. 🔄 **Decide:** Remaining open questions (3-8: lifecycle, boundaries, conflicts, etc.)
-6. **Implement** event linking logic in SCA
-7. **Test** with multi-facet queries (Rubicon crossing example)
+2. ✅ **Decided:** SFAs create facet-specific claims ONLY (no cross-domain)
+3. ✅ **Decided:** Claims use cipher-based deduplication (star pattern)
+4. ✅ **Decided:** FacetPerspective nodes for multi-facet enrichment
+5. ✅ **Decided:** Exploratory scope - get them all
+6. ✅ **Decided:** SFA Training Phase - independent discipline study
+   - Training Mode: SFAs work independently, build domain ontologies (abstract concepts)
+   - SCA accepts training claims as-is (no automatic queuing)
+7. ✅ **Decided:** SCA Selective Claim Queue - intelligent routing
+   - SCA evaluates claim characteristics (abstract vs concrete, multi-domain potential)
+   - Only queues claims that warrant cross-facet review
+   - Perspective Mode: SFAs create FacetPerspective only when SCA requests it
+   - Efficient collaboration, not automatic routing
+8. ✅ **Documented:** SCA routing criteria (5 criteria framework)
+   - Abstract vs Concrete detection
+   - Multi-domain relevance scoring
+   - Entity type detection
+   - Conflict detection
+   - Existing perspectives check
+9. **Document** FacetPerspective node schema (add to NODE_TYPE_SCHEMAS.md)
+10. **Implement** SCA claim evaluation logic (abstract vs concrete, multi-domain detection)
+11. **Implement** FacetPerspective creation in SFA (both training and perspective modes)
+12. **Implement** Cipher-based claim deduplication in SFA/SCA
+13. **Implement** SCA selective queue logic (intelligent routing, not automatic)
+14. **Test** training phase: Independent domain ontology building (no cross-facet review)
+15. **Test** operational phase: Selective multi-facet review (Caesar dictator example: 1 claim + 3 perspectives)
 
 ---
 
-**Status:** 🔄 IN PROGRESS - Key decisions finalized, implementation planning next
+**Status:** ✅ ARCHITECTURE FINALIZED - Major decisions complete, implementation ready
