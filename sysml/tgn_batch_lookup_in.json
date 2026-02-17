@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chrystallum.org/schemas/tgn_batch_lookup_in.json",
+  "title": "TGN Batch Lookup Input",
+  "description": "Request to lookup multiple TGN IDs at once",
+  "type": "object",
+  "required": [
+    "request_id",
+    "tgn_ids"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "tgn_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]+$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "description": "List of TGN IDs to lookup"
+    },
+    "include_coordinates": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

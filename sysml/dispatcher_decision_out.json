@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chrystallum.org/schemas/dispatcher_decision_out.json",
+  "title": "Federation Dispatcher Decision Output",
+  "description": "Routing decision with gate outcomes and audit trail",
+  "type": "object",
+  "required": [
+    "request_id",
+    "status"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "error"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "route",
+        "reason",
+        "frontier_eligible",
+        "gates"
+      ],
+      "properties": {
+        "route": {
+          "type": "string",
+          "enum": [
+            "edge_candidate",
+            "federation_id",
+            "temporal_anchor",
+            "node_property",
+            "quarantine"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "frontier_eligible": {
+          "type": "boolean"
+        },
+        "gates": {
+          "type": "object",
+          "required": [
+            "class_gate",
+            "temporal_precision_gate"
+          ],
+          "properties": {
+            "class_gate": {
+              "type": "object",
+              "required": [
+                "result",
+                "reason"
+              ],
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "reason": {
+                  "type": "string"
+                }
+              }
+            },
+            "temporal_precision_gate": {
+              "type": "object",
+              "required": [
+                "result",
+                "reason"
+              ],
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "reason": {
+                  "type": "string"
+                }
+              }
+            },
+            "geographic_scope_gate": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "reason": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "assertion_disposition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "assertion_id",
+              "action",
+              "reason"
+            ],
+            "properties": {
+              "assertion_id": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "accept",
+                  "reject",
+                  "quarantine"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "error": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "duration_ms": {
+          "type": "integer"
+        },
+        "assertions_evaluated": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

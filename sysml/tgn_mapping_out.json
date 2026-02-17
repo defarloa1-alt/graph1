@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chrystallum.org/schemas/tgn_mapping_out.json",
+  "title": "TGN Mapping Output",
+  "description": "TGN\u2192QID mapping result with coordinates",
+  "type": "object",
+  "required": [
+    "request_id",
+    "status"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "not_found",
+        "error"
+      ]
+    },
+    "data": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "tgn_id",
+        "qid",
+        "label"
+      ],
+      "properties": {
+        "tgn_id": {
+          "type": "string"
+        },
+        "qid": {
+          "type": "string",
+          "pattern": "^Q[0-9]+$",
+          "description": "Wikidata QID"
+        },
+        "label": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "longitude": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "error": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

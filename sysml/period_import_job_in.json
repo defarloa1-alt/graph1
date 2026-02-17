@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chrystallum.org/schemas/period_import_job_in.json",
+  "title": "Period Import Job Input",
+  "description": "Request to import PeriodO data into staging layer",
+  "type": "object",
+  "required": [
+    "job_id",
+    "source",
+    "import_mode"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "periodo",
+        "wikidata",
+        "custom"
+      ]
+    },
+    "file_path": {
+      "type": "string"
+    },
+    "time_range": {
+      "type": "object",
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "integer",
+          "description": "Minimum year (negative for BCE)"
+        },
+        "max": {
+          "type": "integer"
+        }
+      }
+    },
+    "import_mode": {
+      "type": "string",
+      "enum": [
+        "dry_run",
+        "write"
+      ],
+      "description": "dry_run validates only, write commits to Neo4j"
+    }
+  }
+}
