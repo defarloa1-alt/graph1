@@ -23,6 +23,48 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-17 15:20 | ARCHITECTURE RECRAFT PASS 2: V0 BOOTSTRAP CONTRACT NORMALIZATION
+# ==============================================================================
+# Category: Architecture, Documentation, Schema
+# Summary: Applied second-pass recraft to align consolidated architecture with
+#          2026-02-17 v0 bootstrap/scaffold decisions and remove remaining
+#          contract drift in claim and operational mode docs.
+#
+# FILES MODIFIED:
+#   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+#   - md/Architecture/2-17-26-CHRYSTALLUM_v0_AGENT_BOOTSTRAP_SPEC.md
+#   - md/Architecture/2-17-26-SequenceDiagramAgemts.md
+#   - md/Architecture/Scafolds.sql
+#   - md/Architecture/CLAIM_WORKFLOW_MODELS.md
+#   - md/Architecture/CHRYSTALLUM_v0_AGENT_BOOTSTRAP_SPEC.md
+#   - AI_CONTEXT.md
+#   - Change_log.py
+#
+# CHANGES:
+#   - Consolidated doc:
+#     * Added Appendix Y as normative v0 scaffold/bootstrap contract.
+#     * Updated facet contract to canonical path:
+#       Claim -> AnalysisRun -> FacetAssessment -> Facet.
+#     * Reworked ProposedEdge schema/examples to runtime contract:
+#       ASSERTS_EDGE + FROM/TO + relationship_type.
+#     * Updated promotion examples to use promoted_from_claim_id and retain
+#       ProposedEdge for audit instead of deleting by default.
+#     * Added v0 boundary notes in Appendix Q (Initialize is scaffold-only).
+#   - 2-17 bootstrap spec:
+#     * Normalized to ScaffoldEdge (not scaffold ProposedEdge),
+#       relationship_type, FROM/TO endpoints, scaffold-only pre-promotion writes.
+#   - Sequence/DDL support docs:
+#     * Updated sequence flow to scaffold-only SFA write semantics.
+#     * Rewrote Scafolds.sql as scaffold-only Cypher DDL for ScaffoldNode/ScaffoldEdge.
+#   - Added stable pointer file for bootstrap spec location and precedence.
+#
+# REASON:
+#   User confirmed 2-17 spec is design input for recrafting consolidated
+#   canonical architecture; this pass resolves residual naming and boundary
+#   conflicts before implementation proceeds.
+#
+# ==============================================================================
+# ==============================================================================
 # 2026-02-17 14:15 | CLAIM SUBGRAPH REFACTOR: REIFIED PROPOSEDEDGE MODEL
 # ==============================================================================
 # Category: Schema, Capability, Integration, Documentation

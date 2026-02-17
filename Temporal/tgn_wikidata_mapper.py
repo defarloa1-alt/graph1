@@ -37,8 +37,9 @@ class TGNWikidataMapper:
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.cache_file = self.data_dir / "tgn_wikidata_mapping.csv"
         self.stats_file = self.data_dir / "tgn_wikidata_mapping_stats.json"
+        self.wikidata_sparql = self.WIKIDATA_SPARQL
 
-    def build_complete_mapping(self, batch_size: int = 1000) -> pd.DataFrame:
+    def build_complete_mapping(self, batch_size: int = 500) -> pd.DataFrame:
         """
         Query Wikidata for all TGN→QID mappings.
 
@@ -57,14 +58,16 @@ class TGNWikidataMapper:
         all_data = []
         offset = 0
         # Resume from existing cache if present
-        if Path(self.CACHE_FILE).exists():
-            print(f"Resuming from existing cache: {self.CACHE_FILE}")
-            df_existing = pd.read_csv(self.CACHE_FILE)
+        if self.cache_file.exists():
+            print(f"Resuming from existing cache: {self.cache_file}")
+            df_existing = pd.read_csv(self.cache_file)
             all_data = df_existing.to_dict('records')
             offset = len(df_existing)
 
+        max_retries = 3
         while True:
             print(f"\nFetching batch starting at offset {offset}...")
+            retries = 0
 
             query = f"""
             SELECT ?tgn ?item ?itemLabel ?lat ?long WHERE {{
@@ -86,58 +89,69 @@ class TGNWikidataMapper:
             OFFSET {offset}
             """
 
-            try:
-                response = requests.get(
-                    self.WIKIDATA_SPARQL,
-                    params={'query': query, 'format': 'json'},
-                    headers={'User-Agent': self.USER_AGENT},
-                    timeout=60
-                )
+            while retries < max_retries:
+                try:
+                    response = requests.get(
+                        self.wikidata_sparql,
+                        params={'query': query, 'format': 'json'},
+                        headers={'User-Agent': self.USER_AGENT},
+                        timeout=90
+                    )
 
-                if response.status_code != 200:
-                    print(f"  ✗ Error: HTTP {response.status_code}")
-                    print(f"  Response: {response.text[:500]}")
-                    break
+                    if response.status_code != 200:
+                        print(f"  ✗ Error: HTTP {response.status_code}")
+                        print(f"  Response: {response.text[:500]}")
+                        retries += 1
+                        self.wikidata_sparql = "https://query.wikidata.org/sparql"
+                        self.cache_file = self.data_dir / "tgn_wikidata_mapping.csv"
+                        self.stats_file = self.data_dir / "tgn_wikidata_mapping_stats.json"
+                        continue
 
-                results = response.json()
-                bindings = results.get('results', {}).get('bindings', [])
+                    results = response.json()
+                    bindings = results.get('results', {}).get('bindings', [])
 
-                if not bindings:
-                    print(f"  ✓ No more results. Completed.")
-                    break
+                    if not bindings:
+                        print(f"  ✓ No more results. Completed.")
+                        break
 
-                # Parse batch
-                for binding in bindings:
-                    all_data.append({
-                        'tgn_id': binding['tgn']['value'],
-                        'qid': binding['item']['value'].split('/')[-1],
-                        'label': binding.get('itemLabel', {}).get('value', 'Unknown'),
-                        'latitude': float(binding['lat']['value']) if 'lat' in binding else None,
-                        'longitude': float(binding['long']['value']) if 'long' in binding else None
-                    })
+                    # Parse batch
+                    for binding in bindings:
+                        all_data.append({
+                            'tgn_id': binding['tgn']['value'],
+                            'qid': binding['item']['value'].split('/')[-1],
+                            'label': binding.get('itemLabel', {}).get('value', 'Unknown'),
+                            'latitude': float(binding['lat']['value']) if 'lat' in binding else None,
+                            'longitude': float(binding['long']['value']) if 'long' in binding else None
+                        })
 
-                print(f"  ✓ Retrieved {len(bindings)} mappings (total: {len(all_data)})")
+                    print(f"  ✓ Retrieved {len(bindings)} mappings (total: {len(all_data)})")
 
-                # If we got fewer results than batch_size, we're done
-                if len(bindings) < batch_size:
-                    print(f"  ✓ Completed (final batch with {len(bindings)} results)")
-                    break
+                    # If we got fewer results than batch_size, we're done
+                    if len(bindings) < batch_size:
+                        print(f"  ✓ Completed (final batch with {len(bindings)} results)")
+                        break
 
-                offset += batch_size
+                    offset += batch_size
 
-                # Rate limiting - be nice to Wikidata
-                time.sleep(8)
+                    # Rate limiting - be nice to Wikidata
+                    time.sleep(20)
+                    break  # Success, exit retry loop
 
-            except requests.Timeout:
-                print(f"  ✗ Timeout at offset {offset}, retrying after 30s...")
-                time.sleep(30)
-                continue
-            except Exception as e:
-                print(f"  ✗ Error: {e}")
-                print("  Saving progress so far...")
-                # Save partial progress
+                except requests.Timeout:
+                    retries += 1
+                    print(f"  ✗ Timeout at offset {offset}, retrying after 60s... (attempt {retries}/{max_retries})")
+                    time.sleep(60)
+                    continue
+                except Exception as e:
+                    retries += 1
+                    print(f"  ✗ Error: {e}")
+                    print(f"  Retrying batch after 60s... (attempt {retries}/{max_retries})")
+                    time.sleep(60)
+                    continue
+            else:
+                print(f"  ✗ Failed batch at offset {offset} after {max_retries} attempts. Saving progress and aborting.")
                 df = pd.DataFrame(all_data)
-                df.to_csv(self.CACHE_FILE, index=False)
+                df.to_csv(self.cache_file, index=False)
                 break
 
         # Create DataFrame
@@ -151,12 +165,12 @@ class TGNWikidataMapper:
 
         # Save statistics
         stats = {
-            'total_mappings': len(df),
-            'with_coordinates': df['latitude'].notna().sum(),
-            'without_coordinates': df['latitude'].isna().sum(),
+            'total_mappings': int(len(df)),
+            'with_coordinates': int(df['latitude'].notna().sum()),
+            'without_coordinates': int(df['latitude'].isna().sum()),
             'last_updated': pd.Timestamp.now().isoformat(),
-            'unique_qids': df['qid'].nunique(),
-            'unique_tgns': df['tgn_id'].nunique()
+            'unique_qids': int(df['qid'].nunique()),
+            'unique_tgns': int(df['tgn_id'].nunique())
         }
 
         with open(self.stats_file, 'w') as f:

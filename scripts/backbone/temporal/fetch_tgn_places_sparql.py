@@ -46,13 +46,15 @@ def fetch_places() -> List[Dict]:
     results = []
     for row in data["results"]["bindings"]:
         tgn_id = row["place"]["value"].split("/")[-1]
-        name = row["name"]["value"]
+        original_label = row["name"]["value"].strip() if "name" in row and row["name"].get("value") else "Unknown"
+        clean_label = " ".join(original_label.split()) if original_label else "Unknown"
         lat = float(row["lat"]["value"]) if "lat" in row else None
         long = float(row["long"]["value"]) if "long" in row else None
         parent = row["parent"]["value"].split("/")[-1] if "parent" in row else None
         results.append({
             "tgn_id": tgn_id,
-            "label": name,
+            "label": clean_label if clean_label else "Unknown",
+            "period0_label": original_label if original_label else "Unknown",
             "latitude": lat,
             "longitude": long,
             "parent_tgn": parent
@@ -68,6 +70,7 @@ def import_to_neo4j(places: List[Dict]):
                 MERGE (p:Place {getty_tgn: $tgn_id})
                 SET p.qid = $qid,
                     p.label = $label,
+                    p.period0_label = $period0_label,
                     p.latitude = $latitude,
                     p.longitude = $longitude,
                     p.source = 'Getty TGN',
@@ -76,16 +79,17 @@ def import_to_neo4j(places: List[Dict]):
             tgn_id=place["tgn_id"],
             qid=f"tgn:{place['tgn_id']}",
             label=place["label"],
+            period0_label=place["period0_label"],
             latitude=place["latitude"],
             longitude=place["longitude"])
             if place["parent_tgn"]:
                 session.run("""
                     MATCH (child:Place {getty_tgn: $child_id})
                     MERGE (parent:Place {getty_tgn: $parent_id})
-                    ON CREATE SET
-                        parent.qid = $parent_qid,
+                    SET parent.qid = $parent_qid,
                         parent.entity_type = 'place',
-                        parent.source = 'Getty TGN'
+                        parent.source = 'Getty TGN',
+                        parent.label = coalesce(parent.label, 'Unknown')
                     MERGE (child)-[:PART_OF]->(parent)
                 """,
                 child_id=place["tgn_id"],

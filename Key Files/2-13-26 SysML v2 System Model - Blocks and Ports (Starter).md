@@ -126,6 +126,17 @@ Use consolidated section numbering for all implementation crosswalks.
 }
 ```
 
+### `claimIngestResult` (runtime API operation result)
+```json
+{
+  "status": "created|promoted|error",
+  "claim_id": "string|null",
+  "cipher": "string|null",
+  "promoted": true,
+  "error": "string|null"
+}
+```
+
 ### `crossDomainQueryIn` (in -> `SubjectConceptCoordinator`)
 ```json
 {
@@ -193,6 +204,7 @@ Control requirements:
 
 Lifecycle controls:
 - Creation requires `claim_id`, `cipher`, `text`, `source_agent`, `confidence`, `status`.
+- Here `status` is the `Claim` lifecycle state, not the API operation result field (`created|promoted|error`).
 - Reviews update `review_count` and `consensus_score`.
 - Promotion eligibility is policy-controlled, not agent-authoritative.
 - `cipher` is the content-addressable cluster key.
@@ -243,10 +255,11 @@ Routing outputs:
 2. Every graph write must pass constraints and policy checks.
 3. Agents can propose; only lifecycle + governance gates can promote.
 4. `Communication` is a facet/domain axis, not a first-class node label.
+5. Port contracts under `sysml/*.json` must pass `python scripts/tools/validate_sysml_contracts.py`.
 
 ## Next iteration tasks
 
-1. Generate strict JSON schemas per port contract.
+1. Wire `sysml/*.json` contracts into runtime port boundaries (request/response validation hooks).
 2. Generate executable SysML v2 package from these blocks/ports/connectors.
 3. Add error/retry SLA contracts on gateway and dispatcher ports.
 4. Add conformance tests: one test per route category and claim transition.

@@ -20,7 +20,39 @@ Maintained by LLM agents to preserve context across sessions.
 
 ---
 
-## Latest Update: Claim Subgraph Refactor to Reified ProposedEdge (2026-02-17 14:15 EST)
+## Latest Update: Architecture Recraft Pass 2 (2026-02-17 15:20 EST)
+
+### Session Summary
+
+- Confirmed governance path:
+  - `md/Architecture/2-17-26-CHRYSTALLUM_v0_AGENT_BOOTSTRAP_SPEC.md` is design input.
+  - `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` is canonical target.
+- Applied second-pass recraft to align canonical + support docs on v0 contract:
+  - scaffold edge label: `ScaffoldEdge`
+  - run anchor: `AnalysisRun` (reused canonical)
+  - edge property: `relationship_type`
+  - scaffold endpoints: `FROM` / `TO`
+  - pre-promotion SFA writes: scaffold-only
+  - facet topology: `Claim -> AnalysisRun -> FacetAssessment`
+- Consolidated doc updates:
+  - Added Appendix Y as normative v0 bootstrap/scaffold contract.
+  - Corrected structural facet contract in Appendix D.
+  - Updated ProposedEdge schema/examples and promotion examples to runtime vocabulary.
+  - Added Appendix Q boundary note so Initialize Mode is scaffold-only.
+- Support doc updates:
+  - Reworked `md/Architecture/2-17-26-SequenceDiagramAgemts.md` to scaffold-only semantics.
+  - Rewrote `md/Architecture/Scafolds.sql` as scaffold-only Cypher DDL for `ScaffoldNode`/`ScaffoldEdge`.
+  - Added pointer file: `md/Architecture/CHRYSTALLUM_v0_AGENT_BOOTSTRAP_SPEC.md`.
+  - Added alignment note in `md/Architecture/CLAIM_WORKFLOW_MODELS.md`.
+
+### Operational Impact
+
+- Canonical and bootstrap contracts now share one naming/boundary model.
+- Remaining implementation can proceed without scaffold/canonical label collisions.
+
+---
+
+## Previous Update: Claim Subgraph Refactor to Reified ProposedEdge (2026-02-17 14:15 EST)
 
 ### Session Summary
 

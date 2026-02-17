@@ -3864,48 +3864,62 @@ claim = generate_claim_cipher({
 
 **Node Label:** `:ProposedEdge`
 
-**Purpose:** Represents a relationship proposed by a claim that has not yet been materialized. Once validated, the ProposedEdge is converted to an actual relationship in the canonical graph.
+**Purpose:** Represents a canonical claim edge assertion (edge-as-node) attached to a Claim.
+
+**Normative 2026-02-17 update:**
+- Canonical claim edge pattern is:
+  - `(:Claim)-[:ASSERTS_EDGE]->(:ProposedEdge)-[:FROM]->(source)`
+  - `(:ProposedEdge)-[:TO]->(target)`
+- `:ProposedEdge` is canonical claim-layer structure, not scaffold bootstrap structure.
+- Bootstrap/scaffold uses `:ScaffoldEdge` (Appendix Y), not `:ProposedEdge`.
 
 ### **Required Properties**
 
 | Property | Type | Example | Notes |
 |----------|------|---------|-------|
-| `edge_id` | string | `"pedge_001"` | Unique ID |
-| `edge_type` | string | `"PARTICIPATED_IN"` | The relationship type to create (Section 7) |
-| `from_qid` | string | `"Q1048"` | Source node identifier |
-| `to_qid` | string | `"Q193304"` | Target node identifier |
-| `timestamp` | string | `"2026-02-12T15:30:00Z"` | When proposed |
+| `edge_id` | string | `"pedge_a1b2c3d4e5f6"` | Deterministic unique ID |
+| `claim_id` | string | `"claim_abc123def456"` | Parent claim identifier |
+| `relationship_type` | string | `"OCCURRED_DURING"` | Canonical relationship type to materialize |
+| `source_entity_id` | string | `"evt_battle_of_actium_q193304"` | Source entity ID |
+| `target_entity_id` | string | `"prd_roman_republic_q17167"` | Target entity ID |
+| `status` | string | `"proposed"` | Lifecycle status (`proposed|validated|rejected`) |
+| `created_at` | string | `"2026-02-17T14:15:00Z"` | Creation timestamp |
 
 ### **Optional Properties**
 
 | Property | Type | Example | Notes |
 |----------|------|---------|-------|
-| `confidence` | float | `0.82` | Confidence in this specific edge |
-| `edge_properties` | JSON | `{"role": "commander", "date": "-49-01-10"}` | Properties to add to relationship when materialized |
+| `updated_at` | string | `"2026-02-17T14:20:00Z"` | Last update time |
+| `confidence` | float | `0.94` | Edge-level confidence snapshot |
+| `source_agent` | string | `"agent_claim_ingestion_pipeline"` | Producing agent |
+| `facet` | string | `"military"` | Facet context |
+| `promotion_date` | string | `"2026-02-17T14:30:00Z"` | Set when promoted |
+| `promotion_status` | string | `"canonical"` | Promotion state marker |
 
 ### **Required Edges**
 
 | Relationship | Target | Notes |
 |--------------|--------|-------|
-| `PROPOSES` | Claim | `(claim)-[:PROPOSES]->(proposedEdge)` |
+| `ASSERTS_EDGE` | ProposedEdge | `(claim)-[:ASSERTS_EDGE]->(proposedEdge)` |
+| `FROM` | Entity | `(proposedEdge)-[:FROM]->(source)` |
+| `TO` | Entity | `(proposedEdge)-[:TO]->(target)` |
 
 ### **Example Cypher**
 
 ```cypher
-// Create proposed edge
-CREATE (pedge:ProposedEdge {
-  edge_id: "pedge_001",
-  edge_type: "FOUGHT_IN",
-  from_qid: "Q1048",
-  to_qid: "Q193304",
-  timestamp: "2026-02-12T15:30:00Z",
-  confidence: 0.85,
-  edge_properties: {role: "commander", date: "-49-01-10"}
-})
-
-// Link to claim
-MATCH (claim:Claim {claim_id: "claim_000123"})
-CREATE (claim)-[:PROPOSES]->(pedge)
+MATCH (claim:Claim {claim_id: "claim_abc123def456"})
+MATCH (source {entity_id: "evt_battle_of_actium_q193304"})
+MATCH (target {entity_id: "prd_roman_republic_q17167"})
+MERGE (pedge:ProposedEdge {edge_id: "pedge_a1b2c3d4e5f6"})
+SET pedge.claim_id = claim.claim_id,
+    pedge.relationship_type = "OCCURRED_DURING",
+    pedge.source_entity_id = source.entity_id,
+    pedge.target_entity_id = target.entity_id,
+    pedge.status = "proposed",
+    pedge.created_at = "2026-02-17T14:15:00Z"
+MERGE (claim)-[:ASSERTS_EDGE]->(pedge)
+MERGE (pedge)-[:FROM]->(source)
+MERGE (pedge)-[:TO]->(target)
 ```
 
 ---
@@ -4090,44 +4104,47 @@ When a claim reaches `status = "validated"`, its proposed structure is **promote
 
 ### **Promotion Steps**
 
-1. **Remove proposed status** from proposed nodes
+1. **Mark Claim validated/promoted**
    ```cypher
-   MATCH (claim:Claim {status: "validated"})-[:PROPOSES]->(entity)
-   REMOVE entity.claim_status
-   SET entity.promoted = true,
-       entity.promotion_date = datetime()
-   ```
-
-2. **Convert ProposedEdge to actual relationships**
-   ```cypher
-   MATCH (claim:Claim {status: "validated"})-[:PROPOSES]->(pedge:ProposedEdge)
-   MATCH (from {qid: pedge.from_qid}), (to {qid: pedge.to_qid})
-   CALL apoc.create.relationship(
-     from, 
-     pedge.edge_type, 
-     pedge.edge_properties, 
-     to
-   ) YIELD rel
-   SET rel.promoted_from_claim = claim.claim_id,
-       rel.promotion_date = datetime()
-   DELETE pedge
-   ```
-
-3. **Update consensus metadata**
-   ```cypher
-   MATCH (claim:Claim {status: "validated"})
-   SET claim.promoted = true,
+   MATCH (claim:Claim {claim_id: $claim_id})
+   SET claim.status = "validated",
+       claim.promoted = true,
        claim.promotion_date = datetime()
    ```
 
-4. **Link claim to materialized structure via provenance edges**
+2. **Mark ProposedEdge validated/canonical**
    ```cypher
-   MATCH (claim:Claim {status: "validated"})
-   MATCH (entity {qid: claim.subject_entity_qid})
-   CREATE (entity)-[:SUPPORTED_BY {
-     confidence: claim.consensus_score,
-     promotion_date: datetime()
-   }]->(claim)
+   MATCH (claim:Claim {claim_id: $claim_id})-[:ASSERTS_EDGE]->(pedge:ProposedEdge)-[:FROM]->(source)
+   MATCH (pedge)-[:TO]->(target)
+   SET pedge.status = "validated",
+       pedge.promoted = true,
+       pedge.promotion_status = "canonical",
+       pedge.promotion_date = datetime()
+   ```
+
+3. **Materialize canonical relationship**
+   ```cypher
+   MATCH (claim:Claim {claim_id: $claim_id})-[:ASSERTS_EDGE]->(pedge:ProposedEdge)-[:FROM]->(source)
+   MATCH (pedge)-[:TO]->(target)
+   CALL apoc.create.relationship(
+     source,
+     pedge.relationship_type,
+     {
+       promoted_from_claim_id: claim.claim_id,
+       promotion_date: datetime(),
+       promotion_status: "canonical"
+     },
+     target
+   ) YIELD rel
+   RETURN rel
+   ```
+
+4. **Attach provenance**
+   ```cypher
+   MATCH (claim:Claim {claim_id: $claim_id})-[:ASSERTS_EDGE]->(pedge:ProposedEdge)-[:FROM]->(source)
+   MATCH (pedge)-[:TO]->(target)
+   MERGE (source)-[:SUPPORTED_BY {claim_id: claim.claim_id}]->(claim)
+   MERGE (target)-[:SUPPORTED_BY {claim_id: claim.claim_id}]->(claim)
    ```
 
 ### **Key Properties**
@@ -4229,7 +4246,8 @@ RETURN claim.claim_id, review.verdict, review.confidence
 Claims propose relationships via ProposedEdge nodes:
 
 ```cypher
-(claim)-[:PROPOSES]->(proposed_edge:ProposedEdge)
+(claim)-[:ASSERTS_EDGE]->(proposed_edge:ProposedEdge)-[:FROM]->(source)
+(proposed_edge)-[:TO]->(target)
 ```
 
 **Upon validation:**
@@ -4239,13 +4257,14 @@ Claims propose relationships via ProposedEdge nodes:
 
 **Example: Claim proposing relationships**
 ```cypher
-MATCH (claim:Claim {claim_id: "claim_000123"})-[:PROPOSES]->(pedge:ProposedEdge)
-RETURN pedge.edge_type, pedge.from_qid, pedge.to_qid, pedge.confidence
+MATCH (claim:Claim {claim_id: "claim_000123"})-[:ASSERTS_EDGE]->(pedge:ProposedEdge)-[:FROM]->(from)
+MATCH (pedge)-[:TO]->(to)
+RETURN pedge.relationship_type, from.entity_id, to.entity_id, pedge.confidence
 
 // After promotion: Find promoted relationship
 MATCH (claim:Claim {claim_id: "claim_000123", status: "validated"})
 MATCH (from)-[rel]->(to)
-WHERE rel.promoted_from_claim = claim.claim_id
+WHERE rel.promoted_from_claim_id = claim.claim_id
 RETURN type(rel), from.name, to.name, rel.promotion_date
 ```
 
@@ -6194,10 +6213,10 @@ def claim_generation_workflow(source_text: str, source_work_qid: str, agent_id: 
         
         # Create ProposedEdge for relationship
         neo4j_writer.create_proposed_edge(
-            edge_type=claim["relationship_type"],
-            from_qid=claim["subject_entity_qid"],
-            to_qid=claim["object_entity_qid"],
-            claim_id=claim["cipher"]
+            relationship_type=claim["relationship_type"],
+            source_entity_id=claim["subject_entity_qid"],
+            target_entity_id=claim["object_entity_qid"],
+            claim_id=claim["claim_id"]
         )
         
         # Create ReasoningTrace for explainability
@@ -6461,7 +6480,7 @@ Claim (validated) â†’ Promotion Process â†’ Canonical Entity/Relations
 **4-Step Promotion Process:**
 
 1. **Remove Proposed Status**: Update entities/relationships to canonical
-2. **Convert ProposedEdge**: Create actual relationship edge from ProposedEdge template
+2. **Materialize from ASSERTS_EDGE**: Create actual relationship edge from validated ProposedEdge
 3. **Update Metadata**: Set promotion date, promoted flag
 4. **Link Provenance**: Create `SUPPORTED_BY` edge from canonical element to claim
 
@@ -6500,19 +6519,24 @@ def claim_promotion_workflow(claim_id: str) -> Dict:
     for pedge in proposed_edges:
         # Create actual relationship edge
         neo4j_writer.create_relationship(
-            from_qid=pedge["from_qid"],
-            to_qid=pedge["to_qid"],
-            relationship_type=pedge["edge_type"],
+            from_qid=pedge["source_entity_id"],
+            to_qid=pedge["target_entity_id"],
+            relationship_type=pedge["relationship_type"],
             properties={
                 **pedge.get("edge_properties", {}),
-                "promoted_from_claim": claim_id,
+                "promoted_from_claim_id": claim_id,
                 "promotion_date": datetime.now().isoformat(),
                 "confidence": claim["consensus_score"]
             }
         )
         
-        # Delete ProposedEdge (or mark as promoted)
-        neo4j_writer.delete_node(pedge["edge_id"])
+        # Keep ProposedEdge for audit; mark as promoted
+        neo4j_writer.update_node(pedge["edge_id"], {
+            "status": "validated",
+            "promoted": True,
+            "promotion_status": "canonical",
+            "promotion_date": datetime.now().isoformat()
+        })
     
     # Step 2c: Update claim metadata
     neo4j_writer.update_claim(claim_id, {
@@ -7790,7 +7814,7 @@ Facet classes:
 ## **D.4 Structural Contract**
 
 ```cypher
-(:Claim)-[:HAS_FACET_ASSESSMENT]->(:FacetAssessment)-[:ASSESSES_FACET]->(:Facet)
+(:Claim)-[:HAS_ANALYSIS_RUN]->(:AnalysisRun)-[:HAS_FACET_ASSESSMENT]->(:FacetAssessment)-[:ASSESSES_FACET]->(:Facet)
 (:Facet)-[:IN_FACET_CATEGORY]->(:FacetCategory)
 ```
 
@@ -9053,6 +9077,18 @@ This appendix defines how agents operate in different contexts within the Chryst
 
 The **SubjectConceptAgent** is a **SEED AGENT** with **TWO DISTINCT PHASES** that operates differently from domain-specific SubjectFacetAgents (SFAs):
 
+### **Q.2.0 Normative v0 Bootstrap Recraft (2026-02-17)**
+
+For v0 bootstrap runs, apply the following contract (aligned with Appendix Y):
+
+- Structural discovery writes are scaffold-only (`:ScaffoldNode`, `:ScaffoldEdge`).
+- `:AnalysisRun` is the run anchor and must be created once per bootstrap run.
+- Lateral traversal uses mapped properties only.
+- SFA pre-promotion outputs are candidate/scaffold artifacts; canonical labels are promotion-gated.
+- Canonical claim edge structure remains:
+  - `(:Claim)-[:ASSERTS_EDGE]->(:ProposedEdge)-[:FROM]->(source)`
+  - `(:ProposedEdge)-[:TO]->(target)`
+
 ### **Q.2.1 Phase 1: Un-Faceted Exploration**
 
 **Scope:** Initialize Mode + Subject Ontology Proposal  
@@ -9331,6 +9367,10 @@ CREATE (n:SubjectConcept {label: 'Test', facet: 'LEGAL'})
 
 ## **Q.4 Operational Modes**
 
+**Normative v0 boundary:**
+- Initialize mode is structural bootstrap and scaffold persistence only.
+- Canonical node/relationship writes occur via explicit Promotion workflow, not during bootstrap.
+
 ### **Q.4.1 Initialize Mode**
 
 **Method:** `execute_initialize_mode(anchor_qid, depth, auto_submit_claims, ui_callback)`
@@ -9339,16 +9379,15 @@ CREATE (n:SubjectConcept {label: 'Test', facet: 'LEGAL'})
 
 **Workflow:**
 1. Generate unique session ID
-2. Fetch Wikidata anchor entity (Step 3)
-3. Validate completeness (Step 3.5) - reject if <60%
-4. Enrich with CIDOC-CRM (Step 4)
-5. **Enrich with authority precedence** (LCSH/FAST before Wikidata) ← NEW
-6. Bootstrap from QID (Step 3) - creates nodes + discovers hierarchy
-7. **Detect discipline roots** for 17 facets ← NEW (see Q.5)
-8. Generate foundational claims
-9. Optionally auto-submit high-confidence claims (≥0.90)
-10. Log all actions verbosely
-11. Return comprehensive result dict
+2. Create one `:AnalysisRun` anchor for the run
+3. Fetch Wikidata anchor entity and validate basic completeness
+4. Persist seed scaffold node (`:ScaffoldNode`) + optional seed dossier
+5. Run bounded upward pass (P31/P279, depth caps)
+6. Run mapped-property-only lateral pass (hop caps)
+7. Run downward pass (inverse P279 depth caps + optional inverse P31 sampling)
+8. Persist only scaffold artifacts (`:ScaffoldNode`, `:ScaffoldEdge`) and traces
+9. Record caps/filters/truncation in run metadata
+10. Return bootstrap summary (no canonical promotion in this mode)
 
 **Parameters:**
 - `anchor_qid`: Wikidata QID to bootstrap from (e.g., 'Q17167' for Roman Republic)
@@ -9360,17 +9399,18 @@ CREATE (n:SubjectConcept {label: 'Test', facet: 'LEGAL'})
 ```python
 {
     'status': 'INITIALIZED',  # or 'REJECTED', 'ERROR'
-    'session_id': 'military_20260215_143022_Q17167',
+    'session_id': 'sca_20260217_143022_Q17167',
+    'analysis_run_id': 'run_bootstrap_q17167_20260217_143022',
     'anchor_qid': 'Q17167',
     'anchor_label': 'Roman Republic',
-    'nodes_created': 23,
-    'relationships_discovered': 47,
-    'claims_generated': 147,
-    'claims_submitted': 0,
+    'scaffold_nodes_created': 523,
+    'scaffold_edges_created': 1487,
+    'upward_levels_traversed': 4,
+    'lateral_hops_traversed': 2,
+    'downward_depth_traversed': 2,
     'completeness_score': 0.87,
-    'cidoc_crm_class': 'E5_Event',
-    'cidoc_crm_confidence': 'High',
-    'discipline_roots_detected': 1,
+    'caps_applied': {'per_property_cap': 25, 'per_node_neighbor_cap': 200, 'per_parent_child_cap': 50},
+    'truncation_events': 12,
     'duration_seconds': 42.3,
     'log_file': 'logs/military_agent_military_20260215_143022_Q17167_initialize.log'
 }
@@ -15793,6 +15833,76 @@ def test_transparency_log_consistency():
 ---
 
 **(End of Appendix X - ADR-005: Federated Claims Signing & Cryptographic Trust Model)**
+
+---
+
+## **Appendix Y: v0 Bootstrap Scaffolding Contract (2026-02-17 Decisions)**
+
+**Status:** Normative for v0 bootstrap and scaffold/promotion boundaries.  
+**Source Input:** `md/Architecture/2-17-26-CHRYSTALLUM_v0_AGENT_BOOTSTRAP_SPEC.md`
+
+### **Y.1 Scope and precedence**
+
+For v0 bootstrap workflows, this appendix supersedes conflicting legacy examples in this consolidated file.
+
+### **Y.2 Canonical vs scaffold boundary**
+
+- Canonical writes are promotion-gated.
+- Bootstrap and SFA pre-promotion writes are scaffold-only.
+- Scaffold labels are distinct from canonical labels.
+
+### **Y.3 Required scaffold labels**
+
+- `:ScaffoldNode`
+- `:ScaffoldEdge`
+- `:AnalysisRun` (canonical run anchor reused)
+
+### **Y.4 Required scaffold edge contract**
+
+Scaffold edge-as-node pattern:
+
+```cypher
+(e:ScaffoldEdge)-[:FROM]->(s:ScaffoldNode)
+(e:ScaffoldEdge)-[:TO]->(o:ScaffoldNode)
+```
+
+Required ScaffoldEdge properties:
+- `edge_id`
+- `analysis_run_id`
+- `relationship_type`
+- `wd_property`
+- `direction`
+- `confidence`
+- `created_at`
+
+### **Y.5 Bootstrap traversal controls (v0 defaults)**
+
+- Upward P31/P279 depth: `4`
+- Lateral mapped-property hops: `2` (mapped properties only)
+- Downward inverse P279 depth: `2`
+- Inverse P31: sampling only (bounded)
+- Hard caps and NOT-filters must be logged with truncation metadata
+
+### **Y.6 Canonical facet topology**
+
+```cypher
+(:Claim)-[:HAS_ANALYSIS_RUN]->(:AnalysisRun)-[:HAS_FACET_ASSESSMENT]->(:FacetAssessment)-[:ASSESSES_FACET]->(:Facet)
+```
+
+### **Y.7 Promotion contract**
+
+Promotion service:
+1. Validates candidates against filter/meta-ceiling policy.
+2. Merges canonical nodes.
+3. Creates canonical relationships (registry-approved types only).
+4. Creates/attaches canonical claims and evidence where needed.
+5. Records a promotion event linking promoted artifacts to `analysis_run_id` and source scaffold artifacts.
+
+### **Y.8 Occupation/profession policy**
+
+- No first-class `:Occupation` node label in canonical model.
+- Profession/occupation concepts canonize as `:SubjectConcept` when approved.
+- Human-profession assertions require temporal bounding.
 
 ---
 

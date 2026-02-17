@@ -1,21 +1,22 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://chrystallum.org/schemas/tgn_lookup_in.json",
-  "title": "TGN Lookup Input",
-  "description": "Request to lookup Wikidata QID for a Getty TGN ID",
-  "type": "object",
-  "required": [
-    "request_id",
-    "tgn_id"
-  ],
-  "properties": {
-    "request_id": {
-      "type": "string"
-    },
-    "tgn_id": {
-      "type": "string",
-      "pattern": "^[0-9]+$",
-      "description": "Getty TGN ID (numeric string)"
-    }
-  }
+    "$schema":  "http://json-schema.org/draft-07/schema#",
+    "$id":  "https://chrystallum.org/schemas/tgn_lookup_in.json",
+    "title":  "TGN Lookup Input",
+    "description":  "Request to lookup Wikidata QID for a Getty TGN ID",
+    "type":  "object",
+    "required":  [
+                     "request_id",
+                     "tgn_id"
+                 ],
+    "properties":  {
+                       "request_id":  {
+                                          "type":  "string"
+                                      },
+                       "tgn_id":  {
+                                      "type":  "string",
+                                      "pattern":  "^[0-9]+$",
+                                      "description":  "Getty TGN ID (numeric string)"
+                                  }
+                   },
+    "additionalProperties":  false
 }

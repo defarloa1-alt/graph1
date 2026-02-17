@@ -3,6 +3,21 @@
 **Date:** February 15, 2026  
 **Context:** Comparing two approaches to SFA claim creation  
 
+## 2026-02-17 Alignment Note (Canonical Direction)
+
+This file remains useful for historical model comparison, but canonical direction is now:
+
+- Claim edge reification in canonical runtime:
+  - `(:Claim)-[:ASSERTS_EDGE]->(:ProposedEdge)-[:FROM]->(source)`
+  - `(:ProposedEdge)-[:TO]->(target)`
+- Facet evaluation topology:
+  - `(:Claim)-[:HAS_ANALYSIS_RUN]->(:AnalysisRun)-[:HAS_FACET_ASSESSMENT]->(:FacetAssessment)`
+- Scaffold/bootstrap edge persistence uses scaffold-only labels:
+  - `:ScaffoldNode` and `:ScaffoldEdge` (not canonical `:ProposedEdge`)
+
+Primary source of truth remains:
+- `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`
+
 ---
 
 ## Current Claim Schema (Existing Architecture)
