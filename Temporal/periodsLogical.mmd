@@ -1,0 +1,41 @@
+graph TD
+  %% Staging Layer
+  subgraph Staging Layer [Staging Layer (Yellow)]
+    PC[PeriodCandidate\n(PENDING, FAST_LANE, SLOW_LANE, CANONICALIZED)]
+    PC -- "REGION_CANDIDATE" --> Place
+    PC -- "CANONICALIZED_AS" --> P
+  end
+
+  %% Canonical Layer
+  subgraph Canonical Layer [Canonical Layer (Green)]
+    P[Period\n:Period:E4_Period\n(Authority Tier, Completeness)]
+    P -- "VALID_IN_REGION" --> Place
+    P -- "BROADER_THAN" --> P2[Period]
+    P2 -- "CONTAINS_PERIOD" --> P
+  end
+
+  %% Geographic Integration
+  subgraph Geographic Integration [Geographic Integration (Blue)]
+    Place[Place\n(Getty TGN)]
+    Place -- "PART_OF" --> Place
+  end
+
+  %% Claim Integration
+  subgraph Claim Integration [Claim Integration (Purple)]
+    Claim[Claim]
+    Claim -- "OCCURRED_DURING" --> P
+  end
+
+  %% Relationships
+  P -- "CANONICALIZED_AS (audit trail)" --> PC
+  Claim -- "OCCURRED_DURING (confidence)" --> P
+
+  %% Notes
+  classDef yellow fill:#fff8dc,stroke:#e6b800,stroke-width:2px;
+  classDef green fill:#e6ffe6,stroke:#00b300,stroke-width:2px;
+  classDef blue fill:#e6f0ff,stroke:#3399ff,stroke-width:2px;
+  classDef purple fill:#f3e6ff,stroke:#9900cc,stroke-width:2px;
+  class PC yellow;
+  class P,P2 green;
+  class Place blue;
+  class Claim purple;
