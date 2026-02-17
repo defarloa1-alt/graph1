@@ -25,7 +25,7 @@ import json
 import sys
 from typing import Optional, Dict, Any, List
 from neo4j import GraphDatabase, Driver, Session
-import openai
+from openai import OpenAI
 
 # Import claim pipeline
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'tools'))
@@ -54,7 +54,7 @@ class ChromatogramQueryExecutor:
             auth=(NEO4J_USERNAME, NEO4J_PASSWORD)
         )
         
-        openai.api_key = OPENAI_API_KEY
+        self.openai_client = OpenAI(api_key=OPENAI_API_KEY)
         
         # Initialize claim pipeline
         self.pipeline = ClaimIngestionPipeline(self.driver, database=NEO4J_DATABASE)
@@ -118,7 +118,7 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
 
         user_message = f"Generate a Cypher query for: {natural_language_query}"
         
-        response = openai.ChatCompletion.create(
+        response = self.openai_client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": system_prompt},
@@ -128,7 +128,7 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
             max_tokens=500
         )
         
-        cypher = response.choices[0].message.content.strip()
+        cypher = (response.choices[0].message.content or "").strip()
         
         # Clean up if ChatGPT wrapped in markdown code blocks
         if cypher.startswith("```"):

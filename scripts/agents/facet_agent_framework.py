@@ -22,7 +22,7 @@ from datetime import datetime
 from pathlib import Path
 import hashlib
 from neo4j import GraphDatabase, Driver
-import openai
+from openai import OpenAI
 
 # Import configuration loader
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -283,7 +283,7 @@ class FacetAgent(ABC):
             auth=(NEO4J_USERNAME, NEO4J_PASSWORD)
         )
 
-        openai.api_key = OPENAI_API_KEY
+        self.openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
         # Initialize claim pipeline
         self.pipeline = ClaimIngestionPipeline(self.driver, database=NEO4J_DATABASE)
@@ -1941,7 +1941,7 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
 
         user_message = f"Generate a Cypher query for: {natural_language_query}"
 
-        response = openai.ChatCompletion.create(
+        response = self.openai_client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": system_prompt_with_schema},
@@ -1951,7 +1951,7 @@ Generate a single Cypher query for this request. Return ONLY the Cypher code, no
             max_tokens=500
         )
 
-        cypher = response.choices[0].message.content.strip()
+        cypher = (response.choices[0].message.content or "").strip()
 
         # Clean up if ChatGPT wrapped in markdown code blocks
         if cypher.startswith("```"):
@@ -2952,7 +2952,7 @@ Return JSON:
 }}"""
             
             try:
-                response = openai.ChatCompletion.create(
+                response = self.openai_client.chat.completions.create(
                     model="gpt-4",
                     messages=[
                         {"role": "system", "content": f"You are analyzing {self.facet_label} domain structure."},
@@ -2962,7 +2962,7 @@ Return JSON:
                     max_tokens=1000
                 )
                 
-                cluster_analysis = json.loads(response.choices[0].message.content)
+                cluster_analysis = json.loads(response.choices[0].message.content or "{}")
                 clusters = cluster_analysis.get('clusters', [])
                 hierarchy_depth = cluster_analysis.get('hierarchy_depth', max(h['depth'] for h in type_hierarchies.values()))
                 ontology_reasoning = cluster_analysis.get('reasoning', 'Analysis complete')
@@ -3192,6 +3192,7 @@ class MultiAgentRouter:
         """
         self.agents = agents
         self.openai_api_key = OPENAI_API_KEY
+        self.openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
     def route_query(self, user_query: str) -> Tuple[List[str], str]:
         """
@@ -3215,7 +3216,7 @@ Return JSON with:
   "reasoning": "Why these facets"
 }"""
 
-        response = openai.ChatCompletion.create(
+        response = self.openai_client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": router_prompt},
@@ -3226,7 +3227,7 @@ Return JSON with:
         )
 
         try:
-            result = json.loads(response.choices[0].message.content)
+            result = json.loads(response.choices[0].message.content or "{}")
             return result["facets"], result["reasoning"]
         except:
             # Default to broader facets if parsing fails
@@ -3297,6 +3298,7 @@ class SubjectConceptAgent:
         self.driver = driver or GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
         self.active_agents = {}  # Cache of spawned agents: facet_key → agent
         self.openai_api_key = OPENAI_API_KEY
+        self.openai_client = OpenAI(api_key=OPENAI_API_KEY)
         
         print("✓ SubjectConceptAgent (SCA) initialized - Master Coordinator ready")
     
@@ -3347,7 +3349,7 @@ Rules:
 """
         
         try:
-            response = openai.ChatCompletion.create(
+            response = self.openai_client.chat.completions.create(
                 model="gpt-4",
                 messages=[
                     {"role": "system", "content": classification_prompt},
@@ -3357,7 +3359,7 @@ Rules:
                 max_tokens=300
             )
             
-            result = json.loads(response.choices[0].message.content)
+            result = json.loads(response.choices[0].message.content or "{}")
             
             # Limit to max_facets
             if len(result['facets']) > max_facets:
@@ -3924,7 +3926,7 @@ Bridge Concepts: {bridge_text}
 Cross-domain: {cross_domain}"""
         
         try:
-            response = openai.ChatCompletion.create(
+            response = self.openai_client.chat.completions.create(
                 model="gpt-4",
                 messages=[
                     {"role": "system", "content": synthesis_prompt},
@@ -3934,7 +3936,7 @@ Cross-domain: {cross_domain}"""
                 max_tokens=500
             )
             
-            return response.choices[0].message.content
+            return response.choices[0].message.content or ""
         
         except Exception as e:
             # Fallback to simple summary

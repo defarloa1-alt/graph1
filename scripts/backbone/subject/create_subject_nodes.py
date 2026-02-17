@@ -94,7 +94,7 @@ def create_subject_nodes(uri="bolt://localhost:7687", user="neo4j", password="Ch
             unique_id = f"SUBJECT_LCSH_{lcsh_id}"
             
             query = """
-            MERGE (s:Subject {unique_id: $unique_id})
+            MERGE (s:SubjectConcept:Subject {unique_id: $unique_id})
             ON CREATE SET
                 s.lcsh_id = $lcsh_id,
                 s.label = $label,

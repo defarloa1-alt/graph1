@@ -87,7 +87,7 @@ def link_entities_to_subjects(uri="bolt://localhost:7687", user="neo4j", passwor
                 if class_data and class_data.get('lcsh_id'):
                     # Find or create Subject node with LCSH ID
                     session.run("""
-                        MERGE (s:Subject {lcsh_id: $lcsh_id})
+                        MERGE (s:SubjectConcept:Subject {lcsh_id: $lcsh_id})
                         ON CREATE SET
                             s.lcsh_heading = $lcsh_heading,
                             s.label = $label,
@@ -122,8 +122,9 @@ def link_entities_to_subjects(uri="bolt://localhost:7687", user="neo4j", passwor
         print("📊 Step 2: Linking Person nodes to topical subjects...")
         
         result = session.run("""
-            MATCH (p:Person)
-            WHERE p.qid IS NOT NULL
+            MATCH (p)
+            WHERE (p:Human OR p:Person)
+              AND p.qid IS NOT NULL
             RETURN p.qid as qid, p.label as label
         """)
         
@@ -137,7 +138,7 @@ def link_entities_to_subjects(uri="bolt://localhost:7687", user="neo4j", passwor
                 
                 if class_data and class_data.get('lcsh_id'):
                     session.run("""
-                        MERGE (s:Subject {lcsh_id: $lcsh_id})
+                        MERGE (s:SubjectConcept:Subject {lcsh_id: $lcsh_id})
                         ON CREATE SET
                             s.lcsh_heading = $lcsh_heading,
                             s.label = $label,
@@ -146,7 +147,8 @@ def link_entities_to_subjects(uri="bolt://localhost:7687", user="neo4j", passwor
                             s.lcc_code = $lcc,
                             s.fast_id = $fast
                         WITH s
-                        MATCH (p:Person {qid: $qid})
+                        MATCH (p {qid: $qid})
+                        WHERE (p:Human OR p:Person)
                         MERGE (p)-[r:SUBJECT_OF]->(s)
                         RETURN count(r) as linked
                     """, {
@@ -182,6 +184,7 @@ def link_entities_to_subjects(uri="bolt://localhost:7687", user="neo4j", passwor
             RETURN 
                 CASE 
                     WHEN entity:Event THEN 'Event'
+                    WHEN entity:Human THEN 'Human'
                     WHEN entity:Person THEN 'Person'
                     WHEN entity:Place THEN 'Place'
                     WHEN entity:Period THEN 'Period'

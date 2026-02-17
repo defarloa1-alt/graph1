@@ -55,7 +55,8 @@ def check_status(password="Chrystallum"):
         # Sample periods with LCSH
         print("\n[SAMPLE PERIODS WITH LCSH]")
         result = session.run("""
-            MATCH (p:Period)-[:SUBJECT_OF]->(s:Subject)
+            MATCH (p:Period)-[:SUBJECT_OF]->(s)
+            WHERE s:SubjectConcept OR s:Subject
             RETURN p.label as period, p.start_date as start, p.end_date as end, 
                    s.lcsh_id as lcsh, s.dewey_decimal as dewey
             ORDER BY p.start_date

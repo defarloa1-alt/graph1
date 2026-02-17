@@ -23,6 +23,37 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-17 12:05 | SCRIPT CLEANUP PHASE 2: OPENAI SDK 2.x + SUBJECT LABEL COMPAT
+# ==============================================================================
+# Category: Refactor, Integration
+# Summary: Completed Phase 2 compatibility cleanup for agent/runtime scripts.
+#          Standardized OpenAI client usage and aligned subject scripts with
+#          canonical SubjectConcept+Subject label behavior.
+#
+# FILES MODIFIED:
+#   - scripts/agents/query_executor_agent_test.py
+#   - scripts/agents/facet_agent_framework.py
+#   - scripts/backbone/subject/create_subject_nodes.py
+#   - scripts/backbone/subject/link_entities_to_subjects.py
+#   - scripts/setup/check_database.py
+#   - AI_CONTEXT.md
+#   - Change_log.py
+#
+# CHANGES:
+#   - Replaced legacy `openai.ChatCompletion.create` / `openai.api_key` usage
+#     with SDK 2.x style `OpenAI(...).chat.completions.create(...)`.
+#   - Added per-class OpenAI clients in router/coordinator paths to avoid
+#     reliance on global mutable state.
+#   - Updated subject creation/linking flows to support canonical
+#     `:SubjectConcept:Subject` labeling while preserving compatibility.
+#   - Updated sample verification query to accept either `:SubjectConcept` or
+#     legacy `:Subject` labels.
+#
+# REASON:
+#   Eliminate runtime/version friction and reduce label drift between backbone
+#   scripts and canonical schema semantics.
+#
+# ==============================================================================
 # 2026-02-17 10:30 | SCRIPT CLEANUP PHASE 1: CANONICAL PATHS + WRAPPER DEDUPE
 # ==============================================================================
 # Category: Refactor, Documentation

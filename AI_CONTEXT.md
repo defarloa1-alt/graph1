@@ -20,7 +20,40 @@ Maintained by LLM agents to preserve context across sessions.
 
 ---
 
-## Latest Update: Geographic Federation Decision - Pleiades First, Getty Later (2026-02-16 19:15 EST)
+## Latest Update: Script Cleanup Phase 2 Applied (2026-02-17 12:05 EST)
+
+### Session Summary
+
+- Completed Phase 2 script cleanup focused on runtime compatibility and schema alignment.
+- Migrated active agent scripts from legacy OpenAI calls to SDK 2.x client usage.
+- Added explicit OpenAI client instances in base agent, router, and SubjectConcept coordinator paths.
+- Updated subject backbone scripts to create/use `:SubjectConcept:Subject` for compatibility with canonical labels.
+- Updated DB health check sample query to work with either `:SubjectConcept` or legacy `:Subject`.
+- Verified syntax by compiling updated Python files:
+  - `scripts/agents/query_executor_agent_test.py`
+  - `scripts/agents/facet_agent_framework.py`
+  - `scripts/backbone/subject/create_subject_nodes.py`
+  - `scripts/backbone/subject/link_entities_to_subjects.py`
+  - `scripts/setup/check_database.py`
+
+### Files Updated This Session
+
+- `scripts/agents/query_executor_agent_test.py`
+- `scripts/agents/facet_agent_framework.py`
+- `scripts/backbone/subject/create_subject_nodes.py`
+- `scripts/backbone/subject/link_entities_to_subjects.py`
+- `scripts/setup/check_database.py`
+- `Change_log.py`
+- `AI_CONTEXT.md`
+
+### Operational Note
+
+- This session intentionally avoided broad markdown path rewrites to reduce encoding churn risk.
+- Remaining cleanup should continue with targeted `apply_patch` edits only.
+
+---
+
+## Previous Update: Geographic Federation Decision - Pleiades First, Getty Later (2026-02-16 19:15 EST)
 
 ### Context: Dev LLM Question on Geographic Implementation Priority
 
