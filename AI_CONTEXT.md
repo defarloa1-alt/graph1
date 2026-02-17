@@ -20,7 +20,59 @@ Maintained by LLM agents to preserve context across sessions.
 
 ---
 
-## Latest Update: SysML Model Realigned To Current Runtime (2026-02-17 13:10 EST)
+## Latest Update: Claim Subgraph Refactor to Reified ProposedEdge (2026-02-17 14:15 EST)
+
+### Session Summary
+
+- Refactored claim ingestion to produce explicit reified edge nodes:
+  - `(:Claim)-[:ASSERTS_EDGE]->(:ProposedEdge)-[:FROM]->(source)`
+  - `(:ProposedEdge)-[:TO]->(target)`
+- Added deterministic `ProposedEdge.edge_id` generation to ingestion pipeline.
+- Added `proposed_edge_id` to `ingest_claim()` return payload for downstream traceability.
+- Promotion now updates matched `:ProposedEdge` status to validated/canonical.
+- Preserved backward compatibility by still emitting legacy:
+  - `(:Claim)-[:ASSERTS]->(source)`
+  - `(:Claim)-[:ASSERTS]->(target)`
+- Added ProposedEdge constraints/indexes in schema files:
+  - `Neo4j/schema/01_schema_constraints.cypher`
+  - `Neo4j/schema/02_schema_indexes.cypher`
+  - `Neo4j/schema/07_core_pipeline_schema.cypher`
+- Updated agent docs to describe the new reified claim-edge pattern.
+
+### Operational Impact
+
+- Claim subgraphs now match expected one-to-many edge object semantics.
+- Edge-level lifecycle/status metadata is now first-class (`:ProposedEdge`).
+- Existing readers continue to work during migration due to compatibility links.
+
+---
+
+## Previous Update: SysML Contract Cleanup + Validation Baseline (2026-02-17 13:45 EST)
+
+### Session Summary
+
+- Cleaned `sysml/` contract artifacts from the LLM review pass.
+- Removed duplicate artifact file: `sysml/observability_event_in (1).json`.
+- Hardened all `sysml/*.json` schemas with strict object handling (`additionalProperties: false`).
+- Added contract crosswalk + lifecycle semantics note:
+  - `sysml/README.md`
+- Added executable contract validator:
+  - `scripts/tools/validate_sysml_contracts.py`
+- Validated the full contract set:
+  - `python scripts/tools/validate_sysml_contracts.py` -> PASS (no errors)
+- Updated SysML starter model to explicitly separate:
+  - claim lifecycle state (`proposed|validated|disputed|rejected`)
+  - ingest operation result (`created|promoted|error`)
+
+### Operational Impact
+
+- Contracts are now strict and machine-checkable.
+- Duplicate/renamed schema drift is detectable.
+- Lifecycle semantics are clarified to prevent status-field confusion.
+
+---
+
+## Previous Update: SysML Model Realigned To Current Runtime (2026-02-17 13:10 EST)
 
 ### Session Summary
 
@@ -2872,4 +2924,3 @@ Week 4: Implement enrichment → Validate with test cases
   3. Run: `python scripts/agents/query_executor_agent_test.py claims`
   4. Verify claim nodes in graph: `MATCH (c:Claim) RETURN c`
 
->>>>>>> 1b3afe2 (Complete Pleiades geographic backbone import (41,993 places))

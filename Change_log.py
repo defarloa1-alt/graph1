@@ -23,6 +23,87 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-17 14:15 | CLAIM SUBGRAPH REFACTOR: REIFIED PROPOSEDEDGE MODEL
+# ==============================================================================
+# Category: Schema, Capability, Integration, Documentation
+# Summary: Refactored claim ingestion to emit a reified edge subgraph so each
+#          claim links one-to-many to explicit asserted edge objects.
+#
+# FILES MODIFIED:
+#   - scripts/tools/claim_ingestion_pipeline.py
+#   - Neo4j/schema/01_schema_constraints.cypher
+#   - Neo4j/schema/02_schema_indexes.cypher
+#   - Neo4j/schema/07_core_pipeline_schema.cypher
+#   - scripts/agents/README.md
+#   - scripts/agents/QUERY_EXECUTOR_QUICKSTART.md
+#   - AI_CONTEXT.md
+#   - Change_log.py
+#
+# CHANGES:
+#   - Added reified claim-edge pattern:
+#     `(:Claim)-[:ASSERTS_EDGE]->(:ProposedEdge)-[:FROM]->(source)`
+#     `(:ProposedEdge)-[:TO]->(target)`
+#   - Added deterministic `ProposedEdge.edge_id` generation in ingestion.
+#   - Added `proposed_edge_id` to `ingest_claim()` response payload.
+#   - Promotion path now marks matched `:ProposedEdge` as validated/canonical.
+#   - Preserved legacy compatibility edges:
+#     `(:Claim)-[:ASSERTS]->(source|target)` remain emitted to avoid reader breakage.
+#   - Added ProposedEdge constraints/indexes in schema files for operational support.
+#
+# REASON:
+#   Match expected claim-subgraph semantics (claim -> all asserted edges) while
+#   preserving backward compatibility for existing claim readers and tooling.
+#
+# ==============================================================================
+# ==============================================================================
+# 2026-02-17 13:45 | SYSML CONTRACT CLEANUP: STRICT SCHEMAS + VALIDATOR BASELINE
+# ==============================================================================
+# Category: Architecture, Schema, Documentation
+# Summary: Cleaned SysML contract artifacts, enforced strict object schemas, and
+#          added executable validation to prevent schema drift.
+#
+# FILES MODIFIED:
+#   - sysml/claim_scope_validation_in.json
+#   - sysml/dispatcher_decision_out.json
+#   - sysml/error_envelope.json
+#   - sysml/observability_event_in.json
+#   - sysml/period_import_job_in.json
+#   - sysml/period_triage_decision_out.json
+#   - sysml/spatiotemporal_validation_out.json
+#   - sysml/tgn_batch_lookup_in.json
+#   - sysml/tgn_lookup_in.json
+#   - sysml/tgn_mapping_out.json
+#   - sysml/README.md
+#   - scripts/tools/validate_sysml_contracts.py
+#   - Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md
+#   - AI_CONTEXT.md
+#   - Change_log.py
+#
+# FILES REMOVED:
+#   - sysml/observability_event_in (1).json
+#
+# CHANGES:
+#   - Removed duplicate schema copy from `sysml/`.
+#   - Added `additionalProperties: false` across object schemas for strict
+#     contract enforcement.
+#   - Added SysML contract crosswalk/readme with lifecycle-status semantics.
+#   - Added validator script with checks for:
+#     * JSON parse validity
+#     * duplicate copy-style filenames
+#     * duplicate content hashes
+#     * duplicate or missing `$id`
+#     * strict object enforcement
+#     * Draft-07 schema meta-validation (when available)
+#   - Updated SysML starter doc to distinguish:
+#     * claim lifecycle state: `proposed|validated|disputed|rejected`
+#     * ingest operation status: `created|promoted|error`
+#
+# REASON:
+#   Convert LLM-generated SysML review artifacts into controlled, testable
+#   contracts and remove ambiguity between lifecycle state and API status fields.
+#
+# ==============================================================================
+# ==============================================================================
 # 2026-02-17 13:10 | SYSML MODEL UPDATE: SCA + TEMPORAL ENRICHMENT ALIGNMENT
 # ==============================================================================
 # Category: Architecture, Documentation

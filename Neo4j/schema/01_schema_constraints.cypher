@@ -204,6 +204,10 @@ FOR (ar:AnalysisRun) REQUIRE ar.run_id IS UNIQUE;
 CREATE CONSTRAINT facet_assessment_id_unique IF NOT EXISTS
 FOR (fa:FacetAssessment) REQUIRE fa.assessment_id IS UNIQUE;
 
+// ProposedEdge uniqueness
+CREATE CONSTRAINT proposed_edge_id_unique IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.edge_id IS UNIQUE;
+
 // FacetCategory uniqueness
 CREATE CONSTRAINT facet_category_key_unique IF NOT EXISTS
 FOR (fc:FacetCategory) REQUIRE fc.key IS UNIQUE;
@@ -222,6 +226,16 @@ FOR (c:Claim) REQUIRE c.claim_id IS UNIQUE;
 
 CREATE CONSTRAINT claim_cipher_unique IF NOT EXISTS
 FOR (c:Claim) REQUIRE c.cipher IS UNIQUE;
+
+// ProposedEdge required properties
+CREATE CONSTRAINT proposed_edge_has_edge_id IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.edge_id IS NOT NULL;
+
+CREATE CONSTRAINT proposed_edge_has_claim_id IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.claim_id IS NOT NULL;
+
+CREATE CONSTRAINT proposed_edge_has_relationship_type IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.relationship_type IS NOT NULL;
 
 // Retrieval context uniqueness (Claims Layer evidence retrieval record)
 CREATE CONSTRAINT retrieval_context_id_unique IF NOT EXISTS

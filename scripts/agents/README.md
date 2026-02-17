@@ -138,7 +138,8 @@ Reusable pipeline runner for period/event/place QIDs:
 - Deterministic claim ID generation
 - SHA256 cipher for integrity
 - Intermediary node creation (Context, Analysis, Facet)
-- Entity linking (ASSERTS relationships)
+- Reified edge linking (`ASSERTS_EDGE` -> `ProposedEdge` -> `FROM`/`TO`)
+- Legacy compatibility links (`ASSERTS` to source/target)
 - Automatic promotion (if confidence >= 0.90)
 - Traceability (SUPPORTED_BY edges)
 
@@ -348,7 +349,7 @@ See [QUERY_EXECUTOR_QUICKSTART.md](./QUERY_EXECUTOR_QUICKSTART.md#troubleshootin
 | `_create_retrieval_context()` | Create RetrievalContext + USED_CONTEXT link |
 | `_create_analysis_run()` | Create AnalysisRun + HAS_ANALYSIS_RUN link |
 | `_create_facet_assessment()` | Create FacetAssessment + HAS_FACET_ASSESSMENT link |
-| `_link_claim_to_entities()` | Create ASSERTS relationships to source/target |
+| `_link_claim_to_entities()` | Create `ProposedEdge` subgraph + compatibility ASSERTS links |
 | `_promote_claim()` | Create canonical relationship (confidence >= 0.90) |
 
 ## Performance

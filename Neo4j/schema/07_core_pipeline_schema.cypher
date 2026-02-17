@@ -140,6 +140,16 @@ FOR (fa:FacetAssessment) REQUIRE fa.score IS NOT NULL;
 CREATE CONSTRAINT facet_assessment_has_status IF NOT EXISTS
 FOR (fa:FacetAssessment) REQUIRE fa.status IS NOT NULL;
 
+// ProposedEdge
+CREATE CONSTRAINT proposed_edge_id_unique IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.edge_id IS UNIQUE;
+CREATE CONSTRAINT proposed_edge_has_edge_id IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.edge_id IS NOT NULL;
+CREATE CONSTRAINT proposed_edge_has_claim_id IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.claim_id IS NOT NULL;
+CREATE CONSTRAINT proposed_edge_has_relationship_type IF NOT EXISTS
+FOR (pe:ProposedEdge) REQUIRE pe.relationship_type IS NOT NULL;
+
 // ============================================================================
 // INDEXES
 // ============================================================================
@@ -219,6 +229,12 @@ CREATE INDEX analysis_run_status_index IF NOT EXISTS FOR (ar:AnalysisRun) ON (ar
 CREATE INDEX facet_assessment_id_index IF NOT EXISTS FOR (fa:FacetAssessment) ON (fa.assessment_id);
 CREATE INDEX facet_assessment_score_index IF NOT EXISTS FOR (fa:FacetAssessment) ON (fa.score);
 CREATE INDEX facet_assessment_status_index IF NOT EXISTS FOR (fa:FacetAssessment) ON (fa.status);
+
+// ProposedEdge
+CREATE INDEX proposed_edge_id_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.edge_id);
+CREATE INDEX proposed_edge_claim_id_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.claim_id);
+CREATE INDEX proposed_edge_relationship_type_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.relationship_type);
+CREATE INDEX proposed_edge_status_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.status);
 
 // ============================================================================
 // END

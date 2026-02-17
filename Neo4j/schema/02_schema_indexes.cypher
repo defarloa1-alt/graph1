@@ -66,6 +66,10 @@ CREATE INDEX year_iso_index IF NOT EXISTS FOR (y:Year) ON (y.iso);
 CREATE INDEX claim_id_index IF NOT EXISTS FOR (c:Claim) ON (c.claim_id);
 CREATE INDEX claim_cipher_index IF NOT EXISTS FOR (c:Claim) ON (c.cipher);
 CREATE INDEX retrieval_context_id_index IF NOT EXISTS FOR (rc:RetrievalContext) ON (rc.retrieval_id);
+CREATE INDEX proposed_edge_id_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.edge_id);
+CREATE INDEX proposed_edge_claim_id_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.claim_id);
+CREATE INDEX proposed_edge_relationship_type_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.relationship_type);
+CREATE INDEX proposed_edge_status_index IF NOT EXISTS FOR (pe:ProposedEdge) ON (pe.status);
 
 // Subject & Agent lookup
 CREATE INDEX subject_id_index IF NOT EXISTS FOR (sc:SubjectConcept) ON (sc.subject_id);

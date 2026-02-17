@@ -435,7 +435,10 @@ Create Claim node with properties
     ├── Create RetrievalContext + USED_CONTEXT link
     ├── Create AnalysisRun + HAS_ANALYSIS_RUN link
     ├── Create FacetAssessment + HAS_FACET_ASSESSMENT link
-    └── Link claim to source + target entities (ASSERTS)
+    └── Create reified claim edge:
+        Claim -[:ASSERTS_EDGE]-> ProposedEdge -[:FROM]-> source
+                                      └[:TO]-> target
+        (plus compatibility ASSERTS links)
     ↓
 if confidence >= 0.90 and prerequisites met:
     ├── Update claim status to 'validated'

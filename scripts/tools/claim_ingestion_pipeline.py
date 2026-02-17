@@ -562,6 +562,7 @@ class ClaimIngestionPipeline:
                 "status": "created" | "promoted" | "error",
                 "claim_id": str,
                 "cipher": str,
+                "proposed_edge_id": str,
                 "promoted": bool,
                 "posterior_probability": float,
                 "fallacies_detected": list[str],
@@ -620,7 +621,7 @@ class ClaimIngestionPipeline:
             )
             
             # 5. Link claim to entities
-            self._link_claim_to_entities(
+            proposed_edge_id = self._link_claim_to_entities(
                 claim_id, entity_id, relationship_type, target_id
             )
             
@@ -633,7 +634,7 @@ class ClaimIngestionPipeline:
                 and reasoning_eval["posterior_probability"] >= 0.90
             ):
                 promoted = self._promote_claim(
-                    claim_id, entity_id, relationship_type, target_id
+                    claim_id, entity_id, relationship_type, target_id, proposed_edge_id
                 )
             
             # Determine fallacy flag intensity for downstream consumption
@@ -645,6 +646,7 @@ class ClaimIngestionPipeline:
                 "status": "promoted" if promoted else "created",
                 "claim_id": claim_id,
                 "cipher": cipher,
+                "proposed_edge_id": proposed_edge_id,
                 "promoted": promoted,
                 "fallacy_flag_intensity": fallacy_flag_intensity,
                 "posterior_probability": reasoning_eval["posterior_probability"],
@@ -658,6 +660,7 @@ class ClaimIngestionPipeline:
                 "status": "error",
                 "claim_id": None,
                 "cipher": None,
+                "proposed_edge_id": None,
                 "promoted": False,
                 "posterior_probability": None,
                 "fallacies_detected": [],
@@ -809,6 +812,17 @@ class ClaimIngestionPipeline:
         """Generate deterministic claim ID from QID + full statement signature"""
         base = f"{subject_qid}|{signature_text}"
         return f"claim_{hashlib.sha256(base.encode()).hexdigest()[:12]}"
+
+    def _generate_proposed_edge_id(
+        self,
+        claim_id: str,
+        source_entity_id: str,
+        relationship_type: str,
+        target_entity_id: str
+    ) -> str:
+        """Generate deterministic ProposedEdge ID"""
+        base = f"{claim_id}|{source_entity_id}|{relationship_type}|{target_entity_id}"
+        return f"pedge_{hashlib.sha256(base.encode()).hexdigest()[:12]}"
 
     def _calculate_cipher(
         self,
@@ -1024,35 +1038,69 @@ class ClaimIngestionPipeline:
         entity_id: str,
         relationship_type: str,
         target_id: str
-    ) -> None:
-        """Link claim to source and target entities"""
+    ) -> str:
+        """
+        Link claim to a reified ProposedEdge and endpoint entities.
+
+        Primary pattern:
+        (Claim)-[:ASSERTS_EDGE]->(ProposedEdge)-[:FROM]->(source)
+        (ProposedEdge)-[:TO]->(target)
+
+        Compatibility pattern (legacy readers):
+        (Claim)-[:ASSERTS]->(source)
+        (Claim)-[:ASSERTS]->(target)
+        """
+        proposed_edge_id = self._generate_proposed_edge_id(
+            claim_id, entity_id, relationship_type, target_id
+        )
+        timestamp = datetime.utcnow().isoformat()
+
         with self.driver.session(database=self.database) as session:
-            # Link to source entity
-            session.run(
+            result = session.run(
                 """
                 MATCH (c:Claim {claim_id: $claim_id})
                 MATCH (source {entity_id: $source_id})
-                MERGE (c)-[:ASSERTS]->(source)
-                """,
-                {"claim_id": claim_id, "source_id": entity_id}
-            )
-            
-            # Link to target entity
-            session.run(
-                """
-                MATCH (c:Claim {claim_id: $claim_id})
                 MATCH (target {entity_id: $target_id})
+                MERGE (pe:ProposedEdge {edge_id: $edge_id})
+                ON CREATE SET
+                    pe.claim_id = $claim_id,
+                    pe.relationship_type = $relationship_type,
+                    pe.source_entity_id = $source_id,
+                    pe.target_entity_id = $target_id,
+                    pe.status = 'proposed',
+                    pe.created_at = $timestamp
+                SET
+                    pe.updated_at = $timestamp,
+                    pe.claim_label = c.label,
+                    pe.confidence = c.confidence,
+                    pe.source_agent = c.source_agent,
+                    pe.facet = c.facet
+                MERGE (c)-[:ASSERTS_EDGE]->(pe)
+                MERGE (pe)-[:`FROM`]->(source)
+                MERGE (pe)-[:`TO`]->(target)
+                MERGE (c)-[:ASSERTS]->(source)
                 MERGE (c)-[:ASSERTS]->(target)
+                RETURN pe.edge_id AS edge_id
                 """,
-                {"claim_id": claim_id, "target_id": target_id}
+                {
+                    "claim_id": claim_id,
+                    "source_id": entity_id,
+                    "target_id": target_id,
+                    "relationship_type": relationship_type,
+                    "edge_id": proposed_edge_id,
+                    "timestamp": timestamp
+                }
             )
+            record = result.single()
+        return record["edge_id"] if record else proposed_edge_id
 
     def _promote_claim(
         self,
         claim_id: str,
         entity_id: str,
         relationship_type: str,
-        target_id: str
+        target_id: str,
+        proposed_edge_id: Optional[str] = None
     ) -> bool:
         """
         Promote validated claim to canonical state
@@ -1071,6 +1119,28 @@ class ClaimIngestionPipeline:
                     """,
                     {
                         "claim_id": claim_id,
+                        "promotion_date": datetime.utcnow().isoformat()
+                    }
+                )
+
+                # 1b. Mark reified proposed edge as validated/canonical
+                session.run(
+                    """
+                    MATCH (c:Claim {claim_id: $claim_id})-[:ASSERTS_EDGE]->(pe:ProposedEdge)-[:`FROM`]->(source {entity_id: $source_id})
+                    MATCH (pe)-[:`TO`]->(target {entity_id: $target_id})
+                    WHERE pe.relationship_type = $relationship_type
+                      AND ($proposed_edge_id IS NULL OR pe.edge_id = $proposed_edge_id)
+                    SET pe.status = 'validated',
+                        pe.promoted = true,
+                        pe.promotion_date = $promotion_date,
+                        pe.promotion_status = 'canonical'
+                    """,
+                    {
+                        "claim_id": claim_id,
+                        "source_id": entity_id,
+                        "target_id": target_id,
+                        "relationship_type": relationship_type,
+                        "proposed_edge_id": proposed_edge_id,
                         "promotion_date": datetime.utcnow().isoformat()
                     }
                 )
