@@ -20,7 +20,23 @@ Maintained by LLM agents to preserve context across sessions.
 
 ---
 
-## Latest Update: Root File Reorganization Applied (2026-02-17 12:45 EST)
+## Latest Update: SysML Model Realigned To Current Runtime (2026-02-17 13:10 EST)
+
+### Session Summary
+
+- Updated `Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md` to reflect the current runtime architecture and repository structure.
+- Added explicit SysML block coverage for:
+  - `SubjectConceptCoordinator` (SCA cross-domain orchestration and bridge synthesis)
+  - `TemporalEnrichmentPipeline` (period recommendation/enrichment/import flow)
+- Added port payload contracts for:
+  - `crossDomainQueryIn` / `crossDomainSynthesisOut`
+  - `temporalEnrichmentJob` / `temporalEnrichmentResult`
+- Added implementation-anchor crosswalk mapping SysML blocks to active scripts in `scripts/` and schema assets in `Neo4j/schema/`.
+- Updated SysML source alignment to reference `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md` and prompt contract source `Prompts/facet_agent_system_prompts.json`.
+
+---
+
+## Previous Update: Root File Reorganization Applied (2026-02-17 12:45 EST)
 
 ### Session Summary
 

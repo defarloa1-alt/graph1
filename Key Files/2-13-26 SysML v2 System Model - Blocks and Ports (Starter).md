@@ -3,6 +3,7 @@
 ## Source Of Truth
 This SysML v2 model is normatively aligned to:
 - `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`
+- `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md` (canonical implementation crosswalk)
 
 Use consolidated section numbering for all implementation crosswalks.
 - Entity layer: Section 3
@@ -17,6 +18,7 @@ Use consolidated section numbering for all implementation crosswalks.
 - SysML defines runtime boundaries, contracts, states, and connectors.
 - Neo4j remains semantic truth storage.
 - Backlink/federation processing must pass the dispatcher control plane (Section 8.6).
+- Prompt contracts for facet agents are sourced from `Prompts/facet_agent_system_prompts.json`.
 
 ## Block catalog (aligned)
 
@@ -24,8 +26,10 @@ Use consolidated section numbering for all implementation crosswalks.
 |---|---|---|
 | `Orchestrator` | End-to-end workflow orchestration and phase transitions | Sections 8, 9 |
 | `AgentRouter` | Deterministic routing by `SubjectConcept` + facet + temporal/geographic scope | Sections 4, 5 |
+| `SubjectConceptCoordinator` | Cross-domain coordination (SCA), bridge-claim synthesis, multi-facet answer composition | Sections 5, 6, 9 |
 | `SubjectFederationService` | Subject authority resolution and normalization (LCSH/FAST/LCC/CIP/Wikidata) | Section 4 |
 | `TemporalFederationService` | Temporal normalization (bbox fields + Year anchors + period alignment) | Sections 3.4, 4.3 |
+| `TemporalEnrichmentPipeline` | Period recommendation/enrichment, facet tagging, and import of enriched period records | Sections 3.4, 4.3, 9 |
 | `GeographicFederationService` | Place normalization (TGN/Pleiades/GeoNames/Wikidata) | Sections 3.1.2, 4.4 |
 | `RelationshipSemanticsService` | Canonical relationship mapping (registry + P-value alignment) | Section 7 |
 | `FederationDispatcher` | Route-by-`datatype+value_type`, class gates, frontier controls, quarantine | Section 8.6 |
@@ -122,6 +126,51 @@ Use consolidated section numbering for all implementation crosswalks.
 }
 ```
 
+### `crossDomainQueryIn` (in -> `SubjectConceptCoordinator`)
+```json
+{
+  "request_id": "string",
+  "query_text": "string",
+  "auto_classify": true,
+  "max_facets": 3,
+  "mode": "single_facet|cross_domain"
+}
+```
+
+### `crossDomainSynthesisOut` (out <- `SubjectConceptCoordinator`)
+```json
+{
+  "request_id": "string",
+  "facets_used": ["string"],
+  "bridge_claim_count": 0,
+  "synthesized_response": "string",
+  "status": "success|partial|error"
+}
+```
+
+### `temporalEnrichmentJob` (in -> `TemporalEnrichmentPipeline`)
+```json
+{
+  "job_id": "string",
+  "source": "periodo|wikidata|custom",
+  "period_records": 0,
+  "apply_facet_tagging": true,
+  "import_mode": "dry_run|write"
+}
+```
+
+### `temporalEnrichmentResult` (out <- `TemporalEnrichmentPipeline`)
+```json
+{
+  "job_id": "string",
+  "periods_processed": 0,
+  "periods_enriched": 0,
+  "facets_tagged": 0,
+  "imported_to_graph": 0,
+  "status": "success|partial|error"
+}
+```
+
 ## Federation flows (aligned to consolidated)
 
 1. `AgentRuntime -> FederationDispatcher`: send candidate assertions and backlink candidates.
@@ -130,6 +179,8 @@ Use consolidated section numbering for all implementation crosswalks.
 4. `FederationDispatcher -> {Subject|Temporal|Geographic|Relationship}FederationService`: typed dispatch by route category.
 5. `{FederationServices} -> GraphPersistenceService`: only normalized, policy-cleared writes.
 6. `GraphPersistenceService -> ClaimLifecycleService`: materialized claim/evidence links for lifecycle transitions.
+7. `SubjectConceptCoordinator -> AgentRouter/AgentRuntime`: cross-domain execution and bridge synthesis.
+8. `TemporalEnrichmentPipeline -> TemporalFederationService/GraphPersistenceService`: enriched period updates through governed write path.
 
 Control requirements:
 - No bypass path around `FederationDispatcher`.
@@ -159,6 +210,22 @@ Routing outputs:
 - Primary owner agent
 - Secondary reviewer set (for cross-facet validation)
 - Escalation flag when confidence or coverage thresholds fail
+
+## Implementation anchors (repository crosswalk, 2026-02-17)
+
+| SysML block | Current implementation anchors |
+|---|---|
+| `Orchestrator` | `scripts/agents/facet_agent_framework.py` |
+| `AgentRouter` | `scripts/agents/facet_agent_framework.py` (`MultiAgentRouter`) |
+| `SubjectConceptCoordinator` | `scripts/agents/facet_agent_framework.py` (`SubjectConceptAgent`) |
+| `SubjectFederationService` | `scripts/backbone/subject/create_subject_nodes.py`, `scripts/backbone/subject/link_entities_to_subjects.py` |
+| `TemporalFederationService` | `scripts/backbone/temporal/temporal_bounds.py`, `scripts/backbone/temporal/create_canonical_spine.py` |
+| `TemporalEnrichmentPipeline` | `scripts/backbone/temporal/PeriodRecommedations2.py`, `scripts/backbone/temporal/enrich_periods_multi_facet.py`, `scripts/backbone/temporal/import_enriched_periods.py`, `scripts/backbone/temporal/period_facet_tagger.py` |
+| `GeographicFederationService` | `scripts/backbone/geographic/download_pleiades_bulk.py`, `scripts/backbone/geographic/import_pleiades_to_neo4j.py` |
+| `FederationDispatcher` | `scripts/tools/wikidata_backlink_harvest.py`, `scripts/tools/wikidata_fetch_all_statements.py` |
+| `ClaimLifecycleService` | `scripts/tools/claim_ingestion_pipeline.py` |
+| `GraphPersistenceService` | `Neo4j/schema/*.cypher`, `Neo4j/schema/run_cypher_file.py` |
+| `GovernancePolicyService` | `scripts/setup/check_database.py`, policy gates in `scripts/tools/claim_ingestion_pipeline.py` |
 
 ## Neo4j mapping guidance
 
