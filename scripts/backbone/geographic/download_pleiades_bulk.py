@@ -23,6 +23,7 @@ Usage:
 import csv
 import gzip
 import os
+import re
 import sys
 from pathlib import Path
 from urllib.request import urlretrieve
@@ -47,6 +48,19 @@ FILES = {
     "locations": "pleiades-locations-latest.csv.gz",
     "names": "pleiades-names-latest.csv.gz"
 }
+
+def clean_label(label: str) -> str:
+    """Normalize Pleiades label for display/search while preserving raw label."""
+    if not label:
+        return label
+
+    cleaned = label.strip()
+    cleaned = re.sub(r"^\s*[\*\?]+", "", cleaned)
+    cleaned = re.sub(r"^\s*\([^)]*\)\s*", "", cleaned)
+    cleaned = re.sub(r"^\s*\[[^\]]*\]\s*", "", cleaned)
+    cleaned = cleaned.lstrip(" .,:;-/")
+    cleaned = cleaned.rstrip(" ?")
+    return cleaned or label.strip()
 
 def download_file(url: str, output_path: Path) -> bool:
     """Download a file with progress reporting."""
@@ -83,7 +97,7 @@ def process_places(input_csv: Path, output_csv: Path) -> dict:
     """
     Process pleiades-places-latest.csv into Neo4j-ready format.
     
-    Expected columns: id, title, description, placeTypes, bbox, reprLat, reprLong, ...
+    Expected columns: id, title, description, featureTypes, bbox, reprLat, reprLong, ...
     
     Output format:
     pleiades_id, label, description, place_type, bbox, lat, long, min_date, max_date, uri
@@ -100,8 +114,8 @@ def process_places(input_csv: Path, output_csv: Path) -> dict:
                 
                 # Write header
                 writer.writerow([
-                    'pleiades_id', 'label', 'description', 'place_type', 
-                    'bbox', 'lat', 'long', 'min_date', 'max_date', 
+                    'pleiades_id', 'label', 'label_clean', 'description', 'place_type',
+                    'bbox', 'lat', 'long', 'min_date', 'max_date',
                     'uri', 'created', 'modified'
                 ])
                 
@@ -110,9 +124,15 @@ def process_places(input_csv: Path, output_csv: Path) -> dict:
                     
                     try:
                         pleiades_id = row.get('id', '').strip()
+                        if not pleiades_id:
+                            stats["errors"] += 1
+                            logger.warning(f"Skipping place row {stats['total']}: missing pleiades_id")
+                            continue
+
                         title = row.get('title', '').strip()
+                        label_clean = clean_label(title)
                         description = row.get('description', '').strip()
-                        place_types = row.get('placeTypes', '').strip()
+                        place_types = row.get('featureTypes', '').strip()
                         bbox = row.get('bbox', '').strip()
                         lat = row.get('reprLat', '').strip()
                         long = row.get('reprLong', '').strip()
@@ -131,7 +151,7 @@ def process_places(input_csv: Path, output_csv: Path) -> dict:
                             stats["with_coords"] += 1
                         
                         writer.writerow([
-                            pleiades_id, title, description, place_types,
+                            pleiades_id, title, label_clean, description, place_types,
                             bbox, lat, long, min_date, max_date,
                             uri, created, modified
                         ])

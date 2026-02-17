@@ -96,6 +96,7 @@ class PleiadesImporter:
         UNWIND $batch AS row
         MERGE (p:Place {pleiades_id: row.pleiades_id})
         SET p.label = row.label,
+            p.label_clean = row.label_clean,
             p.description = row.description,
             p.place_type = row.place_type,
             p.bbox = row.bbox,
@@ -115,10 +116,13 @@ class PleiadesImporter:
             
             with self.driver.session() as session:
                 for row in reader:
+                    if not row.get('pleiades_id'):
+                        continue
                     # Convert numeric fields
                     place_data = {
                         'pleiades_id': row['pleiades_id'],
                         'label': row['label'],
+                        'label_clean': row.get('label_clean') or None,
                         'description': row['description'],
                         'place_type': row['place_type'],
                         'bbox': row['bbox'],
