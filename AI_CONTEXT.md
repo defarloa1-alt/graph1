@@ -101,7 +101,7 @@ CREATE (p:Place {
 - No conflicts: Geographic implementation isolated from other work
 
 **Files to be Created:**
-- `Python/federation/pleiades_bulk_ingest.py` (400-500 lines)
+- `scripts/backbone/geographic/pleiades_bulk_ingest_roman_republic.py` (400-500 lines; compatibility wrapper kept at `Python/federation/pleiades_bulk_ingest.py`)
 - `Geographic/pleiades_roman_republic_places.json` (200-500 place records)
 - `Geographic/PLEIADES_INTEGRATION_GUIDE.md` (documentation)
 
@@ -265,7 +265,7 @@ CREATE (p:Place {
 - No conflicts: Geographic implementation isolated from other work
 
 **Files to be Created:**
-- `Python/federation/pleiades_bulk_ingest.py` (400-500 lines)
+- `scripts/backbone/geographic/pleiades_bulk_ingest_roman_republic.py` (400-500 lines; compatibility wrapper kept at `Python/federation/pleiades_bulk_ingest.py`)
 - `Geographic/pleiades_roman_republic_places.json` (200-500 place records)
 - `Geographic/PLEIADES_INTEGRATION_GUIDE.md` (documentation)
 

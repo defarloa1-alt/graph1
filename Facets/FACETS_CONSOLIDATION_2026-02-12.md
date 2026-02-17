@@ -5,7 +5,7 @@
 - `Facets/facet_registry_master.csv`
 - `Facets/facet_node_schema_proposal.md`
 - `Facets/star-pattern-claims.md`
-- `Facets/Scripts/period_facet_tagger.py`
+- `scripts/backbone/temporal/period_facet_tagger.py` (compatibility wrapper kept at `Facets/Scripts/period_facet_tagger.py`)
 
 ## Archived Files
 - `Archive/Facets/Latest Facets.raw.json`

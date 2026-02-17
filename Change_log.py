@@ -23,6 +23,49 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-17 10:30 | SCRIPT CLEANUP PHASE 1: CANONICAL PATHS + WRAPPER DEDUPE
+# ==============================================================================
+# Category: Refactor, Documentation
+# Summary: Applied non-breaking script cleanup by canonicalizing misaligned script
+#          locations and replacing duplicate maintenance targets with thin wrappers.
+#
+# FILE SYSTEM CLEANUP:
+#
+# Canonicalized geographic ingest path:
+#   - Moved implementation to:
+#     scripts/backbone/geographic/pleiades_bulk_ingest_roman_republic.py
+#   - Kept backward-compatible wrapper:
+#     Python/federation/pleiades_bulk_ingest.py
+#
+# Canonicalized period facet tagger path:
+#   - Moved implementation to:
+#     scripts/backbone/temporal/period_facet_tagger.py
+#   - Kept backward-compatible wrapper:
+#     Facets/Scripts/period_facet_tagger.py
+#
+# DEDUPLICATION (SINGLE SOURCE OF TRUTH):
+#
+#   - Python/migrate_temporal_hierarchy_levels.py now wraps canonical:
+#     scripts/backbone/temporal/migrate_temporal_hierarchy_levels.py
+#
+#   - subjectsAgentsProposal/files3/ingest_claims.py now wraps:
+#     subjectsAgentsProposal/files4/ingest_claims.py
+#
+#   - subjectsAgentsProposal/files3/validate_claims.py now wraps:
+#     subjectsAgentsProposal/files4/validate_claims.py
+#
+# DOCUMENTATION:
+#
+#   - Added: SCRIPTS_CANONICAL_MAP_2026-02-17.md (authoritative cleanup map)
+#   - Updated path references:
+#     * AI_CONTEXT.md
+#     * Facets/FACETS_CONSOLIDATION_2026-02-12.md
+#
+# REASON:
+#   Reduce path drift and duplicate maintenance while preserving existing commands.
+#   This is intentionally non-breaking: old entrypoints remain valid via wrappers.
+#
+# ==============================================================================
 # 2026-02-16 23:50 | HOUSEKEEPING SESSION: SMOKE TEST FIX + DISK RECOVERY
 # ==============================================================================
 # Category: Refactor, Integration, Infrastructure
