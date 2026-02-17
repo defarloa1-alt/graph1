@@ -80,7 +80,7 @@ Phase 2 - Operational (Selective):
 ### Core Architecture Documents (NEW)
 
 #### 1. SCA_SFA_ROLES_DISCUSSION.md
-- **Location:** `c:\Projects\Graph1\SCA_SFA_ROLES_DISCUSSION.md`
+- **Location:** `md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md`
 - **Size:** 1,153 lines
 - **Status:** ✅ MAJOR DECISIONS FINALIZED
 - **Purpose:** Comprehensive specification of SCA ↔ SFA roles and responsibilities
@@ -707,8 +707,8 @@ Claim 2: "Cohort composed of multiple maniples"
 
 ### Related Documentation
 - REAL_AGENTS_DEPLOYED.md (agent spawning completion)
-- PHASE_1_CHECKLIST.md (project roadmap)
-- ARCHITECTURE_IMPLEMENTATION_INDEX.md (section → file mapping)
+- md/Guides/PHASE_1_CHECKLIST.md (project roadmap)
+- md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md (section → file mapping)
 
 ---
 

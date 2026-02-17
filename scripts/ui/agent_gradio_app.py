@@ -63,7 +63,7 @@ def initialize_agents() -> Tuple[bool, str]:
    - OPENAI_API_KEY
    - NEO4J_PASSWORD
 3. Or set environment variables
-4. For help: see SETUP_GUIDE.md
+4. For help: see md/Guides/SETUP_GUIDE.md
 
 Quick setup: run setup_config.bat (Windows) or ./setup_config.sh (Linux)
 """
@@ -136,6 +136,7 @@ def get_available_facets() -> List[str]:
         os.path.dirname(__file__), 
         '..', 
         '..', 
+        'Prompts',
         'facet_agent_system_prompts.json'
     )
     
@@ -547,7 +548,7 @@ with gr.Blocks(
         2. Add your API keys (OPENAI_API_KEY, NEO4J_PASSWORD)
         3. Restart this UI
         
-        📖 See [SETUP_GUIDE.md](../../SETUP_GUIDE.md) for details
+        📖 See [SETUP_GUIDE.md](../../md/Guides/SETUP_GUIDE.md) for details
         """)
     
     # Main interface tabs
@@ -1136,7 +1137,7 @@ with gr.Blocks(
             **"Agents not initialized" error:**
             - Check Configuration Status tab
             - Ensure API keys are set (OPENAI_API_KEY, NEO4J_PASSWORD)
-            - Run `setup_config.bat` or see SETUP_GUIDE.md
+            - Run `setup_config.bat` or see md/Guides/SETUP_GUIDE.md
             
             **"Cypher query failed" error:**
             - Try rephrasing your question
@@ -1151,8 +1152,8 @@ with gr.Blocks(
             ## Documentation
             
             - 📖 [README.md](../../README.md) - Project overview
-            - 📖 [SETUP_GUIDE.md](../../SETUP_GUIDE.md) - Configuration help
-            - 📖 [FACET_AGENT_README.md](../../FACET_AGENT_README.md) - Agent architecture
+            - 📖 [SETUP_GUIDE.md](../../md/Guides/SETUP_GUIDE.md) - Configuration help
+            - 📖 [FACET_AGENT_README.md](../../scripts/agents/FACET_AGENT_README.md) - Agent architecture
             
             ## Support
             

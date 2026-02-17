@@ -258,18 +258,18 @@ Initialize → Propose Ontology → Train on Wikidata → Train on Wikipedia →
 
 ## Files
 
-**Design Document:** [STEP_6_DESIGN_WIKIPEDIA_TRAINING.md](STEP_6_DESIGN_WIKIPEDIA_TRAINING.md)
+**Design Document:** [STEP_6_DESIGN_WIKIPEDIA_TRAINING.md](../Reports/STEP_6_DESIGN_WIKIPEDIA_TRAINING.md)
 
 **Related:**
-- [STEP_5_COMPLETE.md](STEP_5_COMPLETE.md) - Operational modes framework
-- [ARCHITECTURE_IMPLEMENTATION_INDEX.md](ARCHITECTURE_IMPLEMENTATION_INDEX.md) - Progress tracking
-- [QUICK_START.md](QUICK_START.md) - Claim structure and authority tracking
+- [STEP_5_DESIGN_OPERATIONAL_MODES.md](../Reports/STEP_5_DESIGN_OPERATIONAL_MODES.md) - Operational modes framework
+- [ARCHITECTURE_IMPLEMENTATION_INDEX.md](../Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md) - Progress tracking
+- [QUICK_START.md](../Guides/QUICK_START.md) - Claim structure and authority tracking
 
 ---
 
 ## Next Actions
 
-1. **Review Design:** Read [STEP_6_DESIGN_WIKIPEDIA_TRAINING.md](STEP_6_DESIGN_WIKIPEDIA_TRAINING.md)
+1. **Review Design:** Read [STEP_6_DESIGN_WIKIPEDIA_TRAINING.md](../Reports/STEP_6_DESIGN_WIKIPEDIA_TRAINING.md)
 2. **Discuss:** Review the 5 discussion points (article count, sentence vs. paragraph, etc.)
 3. **Implement:** Add `execute_wikipedia_training()` method to FacetAgent
 4. **Test:** Run with 5 military articles, validate output quality

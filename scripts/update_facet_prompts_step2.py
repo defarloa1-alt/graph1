@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 
 # Load existing prompts
-prompts_file = Path("facet_agent_system_prompts.json")
+prompts_file = Path("Prompts") / "facet_agent_system_prompts.json"
 with open(prompts_file, 'r', encoding='utf-8') as f:
     prompts_data = json.load(f)
 

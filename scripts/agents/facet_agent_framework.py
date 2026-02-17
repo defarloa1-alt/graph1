@@ -3166,7 +3166,7 @@ class FacetAgentFactory:
         agents = {}
         
         # Load prompts (to be populated from JSON)
-        with open(os.path.join(os.path.dirname(__file__), '..', '..', 'facet_agent_system_prompts.json')) as f:
+        with open(os.path.join(os.path.dirname(__file__), '..', '..', 'Prompts', 'facet_agent_system_prompts.json')) as f:
             prompts_registry = json.load(f)
 
         for facet_config in prompts_registry['facets']:
@@ -3441,8 +3441,13 @@ Rules:
             FacetAgent instance
         """
         # Load system prompts from JSON
-        prompts_file = os.path.join(os.path.dirname(__file__), '..', '..', 
-                                   'facet_agent_system_prompts.json')
+        prompts_file = os.path.join(
+            os.path.dirname(__file__),
+            '..',
+            '..',
+            'Prompts',
+            'facet_agent_system_prompts.json'
+        )
         
         with open(prompts_file, 'r', encoding='utf-8') as f:
             prompts_registry = json.load(f)

@@ -79,7 +79,7 @@ scripts/agents/
 ├── query_executor_agent_test.py       ← Original (still functional)
 └── README.md                          ← This file
 
-facet_agent_system_prompts.json        ← 17 system prompts (root)
+Prompts/facet_agent_system_prompts.json ← 17 system prompts
 
 tmp/
 ├── book_rankings_*.json               ← Output from discovery
@@ -301,7 +301,7 @@ NEO4J_DATABASE=neo4j
 
 ### System Prompts
 
-Loaded from: `facet_agent_system_prompts.json`
+Loaded from: `Prompts/facet_agent_system_prompts.json`
 
 Each facet has:
 - Expertise description
@@ -374,7 +374,7 @@ All agents implement:
 ## Support & Troubleshooting
 
 **Issue:** Agents not found  
-**Solution:** `FacetAgentFactory.create_all_agents()` requires `facet_agent_system_prompts.json` in root
+**Solution:** `FacetAgentFactory.create_all_agents()` requires `Prompts/facet_agent_system_prompts.json`
 
 **Issue:** Perplexity API rate limit  
 **Solution:** Run discovery with `max_workers=1` (sequential instead of parallel)

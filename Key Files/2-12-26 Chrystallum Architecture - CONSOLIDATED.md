@@ -2398,7 +2398,7 @@ Chrystallum uses a **two-level agent routing strategy** to balance expertise pre
 
 Chrystallum implements a **two-phase agent coordination model** with **selective intelligent routing** for claim creation and multi-facet enrichment.
 
-**Reference:** `SCA_SFA_ROLES_DISCUSSION.md` (complete specification)
+**Reference:** `md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md` (complete specification)
 
 ### **5.5.1 Agent Types & Roles**
 
@@ -2669,7 +2669,7 @@ def evaluate_claim_for_queue(claim: Claim, source_facet: str) -> Dict[str, float
 - âœ… **Consensus Calculation:** Multiple perspectives averaged for confidence
 
 **Implementation Status (as of 2026-02-15):**
-- âœ… Architecture documented (SCA_SFA_ROLES_DISCUSSION.md)
+- âœ… Architecture documented (md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md)
 - âœ… Workflow models compared (CLAIM_WORKFLOW_MODELS.md)
 - âœ… Routing criteria specified (5 criteria with examples)
 - âœ… FacetPerspective pattern defined
@@ -2681,7 +2681,7 @@ def evaluate_claim_for_queue(claim: Claim, source_facet: str) -> Dict[str, float
 - â³ Selective queue logic in SCA
 
 **References:**
-- Complete specification: `SCA_SFA_ROLES_DISCUSSION.md`
+- Complete specification: `md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md`
 - Workflow comparison: `CLAIM_WORKFLOW_MODELS.md`
 - Military SFA methodology: `Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md`
 
@@ -10331,7 +10331,7 @@ These edge types enable:
 **Key artifacts**:
 - `2-12-26 Chrystallum Architecture - DRAFT.md` (agent model)
 - `facet_agent_system_prompts.json` (agent definitions)
-- `SCA_SFA_ARCHITECTURE_PACKAGE.md` (workflow specification)
+- `md/Agents/SCA/SCA_SFA_ARCHITECTURE_PACKAGE.md` (workflow specification)
 
 **Usage pattern**:
 1. Route claim → appropriate Specialist Facet Agent based on LCC/facet/period
@@ -12253,7 +12253,7 @@ Current implementations in codebase:
 2. Add pytest unit tests with mocked API responses
 3. Implement Redis caching for production (file-based for development)
 4. Add monitoring/logging for API failures and rate limit tracking
-5. Document API key acquisition process in SETUP_GUIDE.md
+5. Document API key acquisition process in `md/Guides/SETUP_GUIDE.md`
 
 ---
 

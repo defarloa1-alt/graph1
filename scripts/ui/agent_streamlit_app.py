@@ -71,6 +71,7 @@ def get_available_facets() -> List[str]:
         os.path.dirname(__file__), 
         '..', 
         '..', 
+        'Prompts',
         'facet_agent_system_prompts.json'
     )
     
@@ -142,7 +143,7 @@ with st.sidebar:
             ./setup_config.sh
             ```
             
-            📖 See [SETUP_GUIDE.md](../../SETUP_GUIDE.md)
+            📖 See [SETUP_GUIDE.md](../../md/Guides/SETUP_GUIDE.md)
             """)
     else:
         st.info("👆 Click 'Initialize Agents' to start")
@@ -177,8 +178,8 @@ with st.sidebar:
     with st.expander("Documentation"):
         st.markdown("""
         - [README.md](../../README.md)
-        - [SETUP_GUIDE.md](../../SETUP_GUIDE.md)
-        - [FACET_AGENT_README.md](../../FACET_AGENT_README.md)
+        - [SETUP_GUIDE.md](../../md/Guides/SETUP_GUIDE.md)
+        - [FACET_AGENT_README.md](../../scripts/agents/FACET_AGENT_README.md)
         """)
 
 

@@ -20,7 +20,31 @@ Maintained by LLM agents to preserve context across sessions.
 
 ---
 
-## Latest Update: Script Cleanup Phase 2 Applied (2026-02-17 12:05 EST)
+## Latest Update: Root File Reorganization Applied (2026-02-17 12:45 EST)
+
+### Session Summary
+
+- Reorganized root-level documentation and utilities into topical folders under `md/`, `Prompts/`, `scripts/tools/maintenance/`, `CSV/experiments/`, and `JSON/experiments/`.
+- Moved SCA design package files from root to `md/Agents/SCA/`.
+- Moved root architecture/guides/reference/report documents into `md/Architecture/`, `md/Guides/`, `md/Reference/`, and `md/Reports/`.
+- Updated high-impact references and runtime paths:
+  - `README.md` doc links updated to new locations.
+  - `scripts/ui/agent_gradio_app.py` and `scripts/ui/agent_streamlit_app.py` now load prompts from `Prompts/facet_agent_system_prompts.json`.
+  - UI setup/help links updated to `md/Guides/SETUP_GUIDE.md`.
+
+### Key Move Targets
+
+- SCA docs: `md/Agents/SCA/`
+- Implementation index (root copy): `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+- Quick start/setup docs: `md/Guides/`
+- Quick reference docs: `md/Reference/`
+- Completion/priority/step reports: `md/Reports/`
+- Prompt catalog JSON: `Prompts/facet_agent_system_prompts.json`
+- Maintenance scripts: `scripts/tools/maintenance/`
+
+---
+
+## Previous Update: Script Cleanup Phase 2 Applied (2026-02-17 12:05 EST)
 
 ### Session Summary
 
@@ -158,7 +182,7 @@ Goal: Build a federated historical knowledge graph using Neo4j, Python, and Lang
 - Sections 1-12 + Appendices A-N
 - **DO NOT DUPLICATE** architecture content here—reference sections instead
 
-**Implementation Index:** `ARCHITECTURE_IMPLEMENTATION_INDEX.md` (maps sections → implementation files)
+**Implementation Index:** `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md` (maps sections → implementation files)
 
 ---
 
@@ -2130,7 +2154,7 @@ Applied updates:
   - deterministic agent routing policy
 - Both implementation indexes were rewritten as consolidated-only crosswalks:
   - `Key Files/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
-  - `ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
 - BODY/APPENDICES are no longer used as architecture source documents in the index mapping.
 
 ## Bootstrap Validation Runner (verified 2026-02-14)

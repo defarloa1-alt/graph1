@@ -3,7 +3,7 @@
 **Document Status:** Implementation Guide  
 **Date:** February 16, 2026  
 **Context:** Training Phase - Independent Domain Ontology Building  
-**Related:** [SCA_SFA_ROLES_DISCUSSION.md](../SCA_SFA_ROLES_DISCUSSION.md) - Training Phase  
+**Related:** [SCA_SFA_ROLES_DISCUSSION.md](../md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md) - Training Phase  
 **Cross-Reference:** [BIOGRAPHIC_SFA_ONTOLOGY_METHODOLOGY.md](BIOGRAPHIC_SFA_ONTOLOGY_METHODOLOGY.md), [MILITARY_SFA_ONTOLOGY_METHODOLOGY.md](MILITARY_SFA_ONTOLOGY_METHODOLOGY.md)
 
 ---
@@ -852,7 +852,7 @@ RETURN count(c) AS unsourced_rhetorical_claims  // Should be 0
 
 ### Technical References
 - [CLAIM_ID_ARCHITECTURE.md](../Key%20Files/CLAIM_ID_ARCHITECTURE.md) - Nanopublication-aligned claim ciphers
-- [SCA_SFA_ROLES_DISCUSSION.md](../SCA_SFA_ROLES_DISCUSSION.md) - Meta-facet coordination patterns
+- [SCA_SFA_ROLES_DISCUSSION.md](../md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md) - Meta-facet coordination patterns
 - [BIOGRAPHIC_SFA_ONTOLOGY_METHODOLOGY.md](BIOGRAPHIC_SFA_ONTOLOGY_METHODOLOGY.md) - Person-centric methodology
 - [MILITARY_SFA_ONTOLOGY_METHODOLOGY.md](MILITARY_SFA_ONTOLOGY_METHODOLOGY.md) - Parallel methodology
 

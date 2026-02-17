@@ -122,8 +122,8 @@ setup_config.bat
 - `launch_streamlit_ui.bat` / `.sh` (Windows/Linux)
 
 ### Documentation
-- `UI_SETUP_GUIDE.md` (comprehensive, 800 lines)
-- `UI_IMPLEMENTATION_SUMMARY.md` (architecture review)
+- `md/Guides/UI_SETUP_GUIDE.md` (comprehensive, 800 lines)
+- `md/Reports/UI_IMPLEMENTATION_SUMMARY.md` (architecture review)
 - `QUICK_REFERENCE_UI.md` (this file)
 
 ### Updated
@@ -155,7 +155,7 @@ pip install streamlit
 **Fix:**
 1. Click Configuration Status (Gradio) or sidebar (Streamlit)
 2. Follow setup instructions shown
-3. Run `setup_config.bat` or see SETUP_GUIDE.md
+3. Run `setup_config.bat` or see `md/Guides/SETUP_GUIDE.md`
 4. Restart UI
 
 ### "Port already in use"
@@ -195,10 +195,10 @@ Change port: `streamlit run app.py --server.port 8080`
 ## Documentation
 
 **Full guides:**
-- [UI_SETUP_GUIDE.md](UI_SETUP_GUIDE.md) - Complete setup (10 min read)
-- [UI_IMPLEMENTATION_SUMMARY.md](UI_IMPLEMENTATION_SUMMARY.md) - Architecture deep-dive (15 min)
-- [README.md](README.md) - Project overview with UI quick start
-- [SETUP_GUIDE.md](SETUP_GUIDE.md) - Configuration prerequisite
+- [UI_SETUP_GUIDE.md](../Guides/UI_SETUP_GUIDE.md) - Complete setup (10 min read)
+- [UI_IMPLEMENTATION_SUMMARY.md](../Reports/UI_IMPLEMENTATION_SUMMARY.md) - Architecture deep-dive (15 min)
+- [README.md](../../README.md) - Project overview with UI quick start
+- [SETUP_GUIDE.md](../Guides/SETUP_GUIDE.md) - Configuration prerequisite
 
 **In 3 words:**
 1. UI_SETUP_GUIDE.md = How to use
@@ -309,7 +309,7 @@ User Browser
 - Show to team
 
 ### This Week
-- Read UI_SETUP_GUIDE.md for advanced features
+- Read `md/Guides/UI_SETUP_GUIDE.md` for advanced features
 - Customize examples
 - Deploy to team network (optional)
 
@@ -318,13 +318,13 @@ User Browser
 ## Support
 
 **Configuration issues:**
-See [SETUP_GUIDE.md](SETUP_GUIDE.md)
+See [SETUP_GUIDE.md](../Guides/SETUP_GUIDE.md)
 
 **UI usage questions:**
-See [UI_SETUP_GUIDE.md](UI_SETUP_GUIDE.md)
+See [UI_SETUP_GUIDE.md](../Guides/UI_SETUP_GUIDE.md)
 
 **Agent architecture:**
-See [FACET_AGENT_README.md](scripts/agents/FACET_AGENT_README.md)
+See [FACET_AGENT_README.md](../../scripts/agents/FACET_AGENT_README.md)
 
 **Quick config check:**
 ```bash

@@ -604,8 +604,8 @@ Edit example lists in UI files
 ## Documentation
 
 - 📖 [README.md](../../README.md) - Project overview
-- 📖 [SETUP_GUIDE.md](../../SETUP_GUIDE.md) - Configuration
-- 📖 [FACET_AGENT_README.md](../../FACET_AGENT_README.md) - Agent architecture
+- 📖 [SETUP_GUIDE.md](SETUP_GUIDE.md) - Configuration
+- 📖 [FACET_AGENT_README.md](../../scripts/agents/FACET_AGENT_README.md) - Agent architecture
 - 📖 [Gradio Docs](https://www.gradio.app/docs)
 - 📖 [Streamlit Docs](https://docs.streamlit.io)
 

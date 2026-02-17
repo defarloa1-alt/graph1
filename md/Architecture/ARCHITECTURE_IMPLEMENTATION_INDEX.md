@@ -25,14 +25,14 @@ Appendices remain part of the consolidated file, not separate source documents.
 
 | Step | Status | Purpose | Methods Added | Documentation |
 |------|--------|---------|---------------|---------------|
-| **Step 1** | ✅ Complete | Architecture understanding via meta-schema | 8 methods | STEP_1_COMPLETE.md |
-| **Step 2** | ✅ Complete | State introspection for stateless LLMs | 8 methods | STEP_2_COMPLETE.md |
-| **Step 3** | ✅ Complete | Federation-driven discovery (Wikidata) | 6 methods | STEP_3_COMPLETE.md |
-| **Step 3.5** | ✅ Complete | Completeness validation (841 entities) | 2 methods | PROPERTY_PATTERN_MINING_INTEGRATION.md |
-| **Step 4** | ✅ Complete | Ontology alignment (CIDOC-CRM/CRMinf) | 4 methods | STEP_4_COMPLETE.md |
-| **Step 5** | ✅ Complete | Operational Modes (Initialize → Proposal → Training) | 3 methods | STEP_5_COMPLETE.md, STEP_5_SUBJECT_ONTOLOGY_PROPOSAL.md |
-| **Step 6** | 🎯 Design | Wikipedia Training (Article discovery → Claim extraction) | 1 method | STEP_6_DESIGN_WIKIPEDIA_TRAINING.md |
-| **Step 5+** | ⏸️ Pending | Query modes (Schema/Data) + SubjectConceptAgent | TBD | STEP_5_COMPLETE.md |
+| **Step 1** | ✅ Complete | Architecture understanding via meta-schema | 8 methods | `md/Reports/STEP_1_COMPLETE.md` |
+| **Step 2** | ✅ Complete | State introspection for stateless LLMs | 8 methods | `md/Reports/STEP_2_COMPLETE.md` |
+| **Step 3** | ✅ Complete | Federation-driven discovery (Wikidata) | 6 methods | `md/Reports/STEP_3_COMPLETE.md` |
+| **Step 3.5** | ✅ Complete | Completeness validation (841 entities) | 2 methods | `md/Architecture/PROPERTY_PATTERN_MINING_INTEGRATION.md` |
+| **Step 4** | ✅ Complete | Ontology alignment (CIDOC-CRM/CRMinf) | 4 methods | `Archive/STEP_4_COMPLETE_2026-02-15.md` |
+| **Step 5** | ✅ Complete | Operational Modes (Initialize → Proposal → Training) | 3 methods | `md/Reports/STEP_5_DESIGN_OPERATIONAL_MODES.md`, `md/Reports/STEP_5_SUBJECT_ONTOLOGY_PROPOSAL.md` |
+| **Step 6** | 🎯 Design | Wikipedia Training (Article discovery → Claim extraction) | 1 method | `md/Reports/STEP_6_DESIGN_WIKIPEDIA_TRAINING.md` |
+| **Step 5+** | ⏸️ Pending | Query modes (Schema/Data) + SubjectConceptAgent | TBD | `md/Reports/STEP_5_DESIGN_OPERATIONAL_MODES.md` |
 
 **Total Methods:** 31 across 5 operational modes (Steps 1-4 + Step 5 Initialize/Proposal/Training)  
 **System Prompts Version:** 2026-02-15-step5 (17 facets updated)  
@@ -48,7 +48,7 @@ Appendices remain part of the consolidated file, not separate source documents.
   * Reads same claims from different facet perspectives
   * 5x claim richness from multi-facet analysis
 - **Purple to mollusk** scenarios enabled by un-faceted discovery
-- See: [SCA_TWO_PHASE_WORKFLOW.md](SCA_TWO_PHASE_WORKFLOW.md), [SCA_SEED_AGENT_PATTERN.md](SCA_SEED_AGENT_PATTERN.md)
+- See: [SCA_TWO_PHASE_WORKFLOW.md](../Agents/SCA/SCA_TWO_PHASE_WORKFLOW.md), [SCA_SEED_AGENT_PATTERN.md](../Agents/SCA/SCA_SEED_AGENT_PATTERN.md)
 
 ---
 
@@ -71,7 +71,7 @@ Appendices remain part of the consolidated file, not separate source documents.
 | **Section 8: Technology/Orchestration** | `Neo4j/IMPLEMENTATION_ROADMAP.md`, orchestration docs in `md/Architecture/` | runtime architecture |
 | **Section 8.6: Federation Dispatcher** | `scripts/tools/wikidata_backlink_harvest.py`, `Neo4j/FEDERATION_BACKLINK_STRATEGY.md` | route-by-datatype/value_type + gates |
 | **Section 9: Workflows** | Workflow docs in `md/Architecture/`, scripts in `scripts/tools/` | extraction -> validation -> write |
-| **Section 10: Quality Assurance** | `Neo4j/PHASE_1_CHECKLIST.md`, validation queries in `Neo4j/schema/04_temporal_bbox_queries.cypher` | quality gates + verification |
+| **Section 10: Quality Assurance** | `md/Guides/PHASE_1_CHECKLIST.md`, validation queries in `Neo4j/schema/04_temporal_bbox_queries.cypher` | quality gates + verification |
 
 ---
 
@@ -116,16 +116,16 @@ Appendices remain part of the consolidated file, not separate source documents.
 - `CIDOC/cidoc_wikidata_mapping_validated.csv` (105 mappings)
 - `CIDOC/CIDOC-CRM_Wikidata_Alignment_Strategy.md` (alignment strategy)
 - `scripts/agents/facet_agent_framework.py` (Step 4 methods: enrich_with_ontology_alignment, enrich_claim_with_crminf)
-- `STEP_4_COMPLETE.md` (Step 4 documentation)
+- `Archive/STEP_4_COMPLETE_2026-02-15.md` (Step 4 documentation)
 
 ### Agent Framework Documentation
-- `STEP_1_COMPLETE.md` (Architecture understanding)
-- `STEP_2_COMPLETE.md` (State introspection)
-- `STEP_3_COMPLETE.md` (Federation discovery)
-- `PROPERTY_PATTERN_MINING_INTEGRATION.md` (Step 3.5 completeness validation)
-- `STEP_4_COMPLETE.md` (Ontology alignment)
-- `AGENT_SESSION_QUICK_REFERENCE.md` (Quick reference for all 28 methods)
-- `facet_agent_system_prompts.json` (version 2026-02-15-step4)
+- `md/Reports/STEP_1_COMPLETE.md` (Architecture understanding)
+- `md/Reports/STEP_2_COMPLETE.md` (State introspection)
+- `md/Reports/STEP_3_COMPLETE.md` (Federation discovery)
+- `md/Architecture/PROPERTY_PATTERN_MINING_INTEGRATION.md` (Step 3.5 completeness validation)
+- `Archive/STEP_4_COMPLETE_2026-02-15.md` (Ontology alignment)
+- `md/Reference/AGENT_SESSION_QUICK_REFERENCE.md` (Quick reference for all 28 methods)
+- `Prompts/facet_agent_system_prompts.json` (version 2026-02-15-step4)
 
 ### Canonical registries
 - `Relationships/relationship_types_registry_master.csv`

@@ -3,7 +3,7 @@
 **Document Status:** Implementation Guide  
 **Date:** February 15, 2026  
 **Context:** Training Phase - Independent Domain Ontology Building  
-**Related:** [SCA_SFA_ROLES_DISCUSSION.md](../SCA_SFA_ROLES_DISCUSSION.md) - Training Phase (lines 230-280)
+**Related:** [SCA_SFA_ROLES_DISCUSSION.md](../md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md) - Training Phase (lines 230-280)
 
 ---
 
@@ -622,7 +622,7 @@ When Military SFA encounters **concrete events** (e.g., "Caesar commanded legion
 - Roman Republic: https://en.wikipedia.org/wiki/Roman_Republic
 
 ### Project Documentation
-- [SCA_SFA_ROLES_DISCUSSION.md](../SCA_SFA_ROLES_DISCUSSION.md) - Two-phase SFA workflow
+- [SCA_SFA_ROLES_DISCUSSION.md](../md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md) - Two-phase SFA workflow
 - [CLAIM_WORKFLOW_MODELS.md](../CLAIM_WORKFLOW_MODELS.md) - Training vs Operational modes
 - [facet_registry_master.json](facet_registry_master.json) - Military facet configuration
 

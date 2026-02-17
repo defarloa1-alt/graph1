@@ -23,6 +23,45 @@ Guidelines:
 """
 
 # ==============================================================================
+# 2026-02-17 12:45 | ROOT FILE REORG: TOPOLOGICAL DOC + ARTIFACT CONSOLIDATION
+# ==============================================================================
+# Category: Refactor, Documentation
+# Summary: Reduced root clutter by moving topical docs and artifacts into
+#          structured folders; updated key runtime/doc references after moves.
+#
+# MAJOR MOVES:
+#   - SCA package docs:
+#     * md/Agents/SCA/SCA_SEED_AGENT_PATTERN.md
+#     * md/Agents/SCA/SCA_SFA_ARCHITECTURE_PACKAGE.md
+#     * md/Agents/SCA/SCA_SFA_ROLES_DISCUSSION.md
+#     * md/Agents/SCA/SCA_TWO_PHASE_WORKFLOW.md
+#   - Architecture docs:
+#     * md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md (root copy moved)
+#     * md/Architecture/IMPLEMENTATION_ROADMAP.md
+#     * md/Architecture/COMPLETE_INTEGRATED_ARCHITECTURE.md
+#     * md/Architecture/CLAIM_WORKFLOW_MODELS.md
+#     * md/Architecture/PROPERTY_PATTERN_MINING_INTEGRATION.md
+#   - Guides / reference / reports:
+#     * md/Guides/*
+#     * md/Reference/*
+#     * md/Reports/*
+#   - Maintenance and artifacts:
+#     * scripts/tools/maintenance/fix_* (encoding/cipher helpers)
+#     * CSV/experiments/property_patterns_*.csv
+#     * JSON/experiments/property_patterns_*.json
+#     * Prompts/facet_agent_system_prompts.json
+#
+# FOLLOW-UP FIXES APPLIED:
+#   - README links updated to new doc locations.
+#   - UI apps now resolve prompt catalog at:
+#     Prompts/facet_agent_system_prompts.json
+#   - UI setup links updated to md/Guides/SETUP_GUIDE.md.
+#
+# REASON:
+#   Create a stable topical layout, reduce root entropy, and keep operational
+#   entry points/documentation discoverable.
+#
+# ==============================================================================
 # 2026-02-17 12:05 | SCRIPT CLEANUP PHASE 2: OPENAI SDK 2.x + SUBJECT LABEL COMPAT
 # ==============================================================================
 # Category: Refactor, Integration
