@@ -119,6 +119,12 @@ class PleiadesImporter:
                     if not row.get('pleiades_id'):
                         continue
                     # Convert numeric fields
+                    import re
+                    qid = row.get('qid')
+                    if qid and re.match(r'^Q\\d+$', qid):
+                        qid_value = qid
+                    else:
+                        qid_value = None
                     place_data = {
                         'pleiades_id': row['pleiades_id'],
                         'label': row['label'],
@@ -131,7 +137,7 @@ class PleiadesImporter:
                         'min_date': int(row['min_date']) if row['min_date'] else None,
                         'max_date': int(row['max_date']) if row['max_date'] else None,
                         'uri': row['uri'],
-                        'qid': f"pleiades:{row['pleiades_id']}"  # Pseudo-QID for schema compliance
+                        'qid': qid_value
                     }
                     
                     batch.append(place_data)
@@ -170,6 +176,7 @@ class PleiadesImporter:
         MATCH (p:Place {pleiades_id: row.pleiades_id})
         MERGE (n:PlaceName {name_id: row.name_id})
         SET n.name_attested = row.name_attested,
+            n.label = row.name_attested,
             n.language = row.language,
             n.name_type = row.name_type,
             n.romanized = row.romanized

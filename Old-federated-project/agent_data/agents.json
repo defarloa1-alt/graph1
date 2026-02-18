@@ -1,0 +1,271 @@
+{
+  "agent_HF5001_3ef62474": {
+    "agent_id": "agent_HF5001_3ef62474",
+    "lcc_domain": "HF5001",
+    "marc_knowledge": {
+      "subject_headings": [
+        "Business logistics",
+        "Supply chain management"
+      ],
+      "authority_records": [
+        "LC:sh85018285",
+        "LC:sh2006002083"
+      ],
+      "expert_vocabulary": [
+        "procurement",
+        "inventory optimization"
+      ]
+    },
+    "conversation_history": [
+      {
+        "timestamp": "2025-10-01T13:32:42.994712",
+        "sender": "agent_QA76.9_3c9da3f5",
+        "type": "system_event",
+        "content": {
+          "event": "agent_spawned",
+          "lcc_domain": "QA76.9",
+          "marc_knowledge": {
+            "subject_headings": [
+              "Distributed databases",
+              "Cryptography"
+            ],
+            "authority_records": [
+              "LC:sh85040352",
+              "LC:sh85034740"
+            ],
+            "expert_vocabulary": [
+              "consensus algorithms",
+              "smart contracts"
+            ]
+          }
+        }
+      },
+      {
+        "timestamp": "2025-10-01T13:32:43.237620",
+        "sender": "agent_HD28_c404083d",
+        "type": "system_event",
+        "content": {
+          "event": "agent_spawned",
+          "lcc_domain": "HD28",
+          "marc_knowledge": {
+            "subject_headings": [
+              "Business analysis",
+              "Risk management"
+            ],
+            "authority_records": [
+              "LC:sh85017987",
+              "LC:sh85113862"
+            ],
+            "expert_vocabulary": [
+              "cost analysis",
+              "business intelligence"
+            ]
+          }
+        }
+      },
+      {
+        "timestamp": "2025-10-01T13:32:43.238088",
+        "sender": "system",
+        "type": "debate_proposal",
+        "content": {
+          "debate_id": "debate_a88acd35",
+          "topic": "How can blockchain technology improve supply chain transparency while maintaining data privacy?",
+          "participants": [
+            "agent_HF5001_3ef62474",
+            "agent_QA76.9_3c9da3f5",
+            "agent_HD28_c404083d"
+          ]
+        }
+      }
+    ],
+    "relationships": {},
+    "expertise_evolution": [],
+    "active_debates": [],
+    "performance_metrics": {},
+    "last_activity": "2025-10-01T13:32:43.243257",
+    "creation_time": "2025-10-01T13:32:42.434346"
+  },
+  "agent_QA76.9_3c9da3f5": {
+    "agent_id": "agent_QA76.9_3c9da3f5",
+    "lcc_domain": "QA76.9",
+    "marc_knowledge": {
+      "subject_headings": [
+        "Distributed databases",
+        "Cryptography"
+      ],
+      "authority_records": [
+        "LC:sh85040352",
+        "LC:sh85034740"
+      ],
+      "expert_vocabulary": [
+        "consensus algorithms",
+        "smart contracts"
+      ]
+    },
+    "conversation_history": [
+      {
+        "timestamp": "2025-10-01T13:32:42.745785",
+        "sender": "agent_HF5001_3ef62474",
+        "type": "system_event",
+        "content": {
+          "event": "agent_spawned",
+          "lcc_domain": "HF5001",
+          "marc_knowledge": {
+            "subject_headings": [
+              "Business logistics",
+              "Supply chain management"
+            ],
+            "authority_records": [
+              "LC:sh85018285",
+              "LC:sh2006002083"
+            ],
+            "expert_vocabulary": [
+              "procurement",
+              "inventory optimization"
+            ]
+          }
+        }
+      },
+      {
+        "timestamp": "2025-10-01T13:32:43.237620",
+        "sender": "agent_HD28_c404083d",
+        "type": "system_event",
+        "content": {
+          "event": "agent_spawned",
+          "lcc_domain": "HD28",
+          "marc_knowledge": {
+            "subject_headings": [
+              "Business analysis",
+              "Risk management"
+            ],
+            "authority_records": [
+              "LC:sh85017987",
+              "LC:sh85113862"
+            ],
+            "expert_vocabulary": [
+              "cost analysis",
+              "business intelligence"
+            ]
+          }
+        }
+      },
+      {
+        "timestamp": "2025-10-01T13:32:43.238100",
+        "sender": "system",
+        "type": "debate_proposal",
+        "content": {
+          "debate_id": "debate_a88acd35",
+          "topic": "How can blockchain technology improve supply chain transparency while maintaining data privacy?",
+          "participants": [
+            "agent_HF5001_3ef62474",
+            "agent_QA76.9_3c9da3f5",
+            "agent_HD28_c404083d"
+          ]
+        }
+      }
+    ],
+    "relationships": {},
+    "expertise_evolution": [],
+    "active_debates": [],
+    "performance_metrics": {},
+    "last_activity": "2025-10-01T13:32:43.908501",
+    "creation_time": "2025-10-01T13:32:42.745825"
+  },
+  "agent_HD28_c404083d": {
+    "agent_id": "agent_HD28_c404083d",
+    "lcc_domain": "HD28",
+    "marc_knowledge": {
+      "subject_headings": [
+        "Business analysis",
+        "Risk management"
+      ],
+      "authority_records": [
+        "LC:sh85017987",
+        "LC:sh85113862"
+      ],
+      "expert_vocabulary": [
+        "cost analysis",
+        "business intelligence"
+      ]
+    },
+    "conversation_history": [
+      {
+        "timestamp": "2025-10-01T13:32:42.745785",
+        "sender": "agent_HF5001_3ef62474",
+        "type": "system_event",
+        "content": {
+          "event": "agent_spawned",
+          "lcc_domain": "HF5001",
+          "marc_knowledge": {
+            "subject_headings": [
+              "Business logistics",
+              "Supply chain management"
+            ],
+            "authority_records": [
+              "LC:sh85018285",
+              "LC:sh2006002083"
+            ],
+            "expert_vocabulary": [
+              "procurement",
+              "inventory optimization"
+            ]
+          }
+        }
+      },
+      {
+        "timestamp": "2025-10-01T13:32:42.994712",
+        "sender": "agent_QA76.9_3c9da3f5",
+        "type": "system_event",
+        "content": {
+          "event": "agent_spawned",
+          "lcc_domain": "QA76.9",
+          "marc_knowledge": {
+            "subject_headings": [
+              "Distributed databases",
+              "Cryptography"
+            ],
+            "authority_records": [
+              "LC:sh85040352",
+              "LC:sh85034740"
+            ],
+            "expert_vocabulary": [
+              "consensus algorithms",
+              "smart contracts"
+            ]
+          }
+        }
+      },
+      {
+        "timestamp": "2025-10-01T13:32:43.238105",
+        "sender": "system",
+        "type": "debate_proposal",
+        "content": {
+          "debate_id": "debate_a88acd35",
+          "topic": "How can blockchain technology improve supply chain transparency while maintaining data privacy?",
+          "participants": [
+            "agent_HF5001_3ef62474",
+            "agent_QA76.9_3c9da3f5",
+            "agent_HD28_c404083d"
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-10-01T13:32:44.350686",
+        "sender": "agent_QA76.9_3c9da3f5",
+        "type": "courtship_signal",
+        "content": {
+          "signal_type": "resonance_probe",
+          "domain": "QA76.9"
+        }
+      }
+    ],
+    "relationships": {
+      "agent_QA76.9_3c9da3f5": 0.018
+    },
+    "expertise_evolution": [],
+    "active_debates": [],
+    "performance_metrics": {},
+    "last_activity": "2025-10-01T13:32:44.350745",
+    "creation_time": "2025-10-01T13:32:42.994754"
+  }
+}

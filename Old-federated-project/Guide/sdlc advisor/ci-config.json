@@ -1,0 +1,57 @@
+{
+  "validation": {
+    "level": "comprehensive",
+    "timeout_minutes": 45,
+    "retry_attempts": 2
+  },
+  "testing": {
+    "parallel_execution": true,
+    "test_suites": [
+      "core_tests",
+      "integration_tests",
+      "governance_tests",
+      "mathematical_tests",
+      "performance_tests"
+    ],
+    "coverage_threshold": 95.0
+  },
+  "compliance": {
+    "standards": [
+      "SOC2",
+      "GDPR",
+      "ISO27001",
+      "NIST_CSF"
+    ],
+    "auto_remediation": true,
+    "violation_threshold": 0
+  },
+  "deployment": {
+    "environments": [
+      "development",
+      "staging",
+      "production"
+    ],
+    "auto_deploy": {
+      "staging": true,
+      "production": false
+    },
+    "health_check_timeout": 300
+  },
+  "notifications": {
+    "slack": {
+      "enabled": true,
+      "webhook_url": "${SLACK_WEBHOOK_URL}",
+      "channels": [
+        "#ci-cd",
+        "#framework-alerts"
+      ]
+    },
+    "email": {
+      "enabled": true,
+      "recipients": [
+        "devops@company.com",
+        "framework-team@company.com"
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  compliance_mode: full
+  enable_monitoring: 'true'
+  environment: production
+  log_level: INFO
+  policy_enforcement: strict
+kind: ConfigMap
+metadata:
+  name: framework-config
+  namespace: federated-graph-framework

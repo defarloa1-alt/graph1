@@ -1,0 +1,213 @@
+{
+  "registry": "chrystallum_facet_federation_matrix",
+  "version": "2026-02-17-v1-draft",
+  "status": "draft_non_normative",
+  "facet_key_source": "Facets/facet_registry_master.json",
+  "notes": [
+    "Primary federations are required for facet-ready coverage.",
+    "Secondary federations are optional enrichments used when available.",
+    "Facet keys are lowercase and must match facet_registry_master.json."
+  ],
+  "adapters": {
+    "wikidata": {
+      "status": "implemented",
+      "role": "core entity graph, statements, backlinks, and type hierarchy"
+    },
+    "lcsh": {
+      "status": "planned",
+      "role": "library subject authority headings"
+    },
+    "fast": {
+      "status": "planned",
+      "role": "faceted library subject authority headings"
+    },
+    "lcc": {
+      "status": "planned",
+      "role": "library classification support"
+    },
+    "anzsrc": {
+      "status": "planned",
+      "role": "field-of-research mapping"
+    },
+    "mesh": {
+      "status": "planned",
+      "role": "medical and scientific terminology"
+    },
+    "periodo": {
+      "status": "planned",
+      "role": "historical period definitions"
+    },
+    "pleiades": {
+      "status": "planned",
+      "role": "ancient places"
+    },
+    "getty_tgn": {
+      "status": "planned",
+      "role": "geographic names"
+    },
+    "getty_aat": {
+      "status": "planned",
+      "role": "art and material culture terminology"
+    },
+    "ulan": {
+      "status": "planned",
+      "role": "artist authority records"
+    },
+    "viaf": {
+      "status": "planned",
+      "role": "authority control aggregation for persons"
+    },
+    "gnd": {
+      "status": "planned",
+      "role": "authority control records"
+    },
+    "babelnet": {
+      "status": "planned",
+      "role": "lexical senses and multilingual concept links"
+    },
+    "wordnet": {
+      "status": "planned",
+      "role": "lexical concept senses"
+    },
+    "dbpedia": {
+      "status": "planned",
+      "role": "supplemental linked open data"
+    },
+    "agrovoc": {
+      "status": "planned",
+      "role": "agriculture and environment terminology"
+    },
+    "geonames": {
+      "status": "planned",
+      "role": "modern geospatial entity identifiers"
+    },
+    "iso_639": {
+      "status": "planned",
+      "role": "language code normalization"
+    },
+    "glottolog": {
+      "status": "planned",
+      "role": "language and dialect classification"
+    },
+    "iupac": {
+      "status": "planned",
+      "role": "chemistry naming and identifier standards"
+    },
+    "taxonomy_authorities": {
+      "status": "planned",
+      "role": "biological taxonomy authorities"
+    },
+    "statistical_datasets": {
+      "status": "planned",
+      "role": "demographic and population datasets"
+    },
+    "environmental_vocabularies": {
+      "status": "planned",
+      "role": "climate and ecology vocabularies"
+    },
+    "domain_religious_thesauri": {
+      "status": "planned",
+      "role": "religious-domain authority thesauri"
+    },
+    "patent_technology_ontologies": {
+      "status": "planned",
+      "role": "technology and innovation ontologies"
+    },
+    "bibliographic_schemas": {
+      "status": "planned",
+      "role": "MARC and FRBR style bibliographic semantics"
+    }
+  },
+  "facets": {
+    "archaeological": {
+      "primary": ["wikidata"],
+      "secondary": ["getty_aat", "periodo", "pleiades", "getty_tgn"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "artistic": {
+      "primary": ["wikidata"],
+      "secondary": ["getty_aat", "lcsh", "fast", "ulan"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "biographic": {
+      "primary": ["wikidata"],
+      "secondary": ["viaf", "gnd", "lcsh", "fast"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "cultural": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "getty_aat", "babelnet"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "demographic": {
+      "primary": ["wikidata"],
+      "secondary": ["mesh", "statistical_datasets"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "diplomatic": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "dbpedia"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "economic": {
+      "primary": ["wikidata"],
+      "secondary": ["anzsrc", "lcsh", "fast", "mesh", "getty_aat"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "environmental": {
+      "primary": ["wikidata"],
+      "secondary": ["pleiades", "getty_tgn", "environmental_vocabularies", "agrovoc"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "geographic": {
+      "primary": ["wikidata"],
+      "secondary": ["pleiades", "getty_tgn", "geonames", "periodo"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "intellectual": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "anzsrc", "babelnet", "wordnet"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "linguistic": {
+      "primary": ["wikidata"],
+      "secondary": ["iso_639", "glottolog", "babelnet"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "military": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "getty_aat", "dbpedia", "periodo"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "political": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "anzsrc", "periodo"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "religious": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "getty_aat", "domain_religious_thesauri"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "scientific": {
+      "primary": ["wikidata"],
+      "secondary": ["iupac", "mesh", "taxonomy_authorities", "dbpedia"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "social": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "anzsrc"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "technological": {
+      "primary": ["wikidata"],
+      "secondary": ["getty_aat", "patent_technology_ontologies", "mesh"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    },
+    "communication": {
+      "primary": ["wikidata"],
+      "secondary": ["lcsh", "fast", "mesh", "bibliographic_schemas"],
+      "requirements": { "min_primary_hits": 1, "target_secondary_hits": 1 }
+    }
+  }
+}

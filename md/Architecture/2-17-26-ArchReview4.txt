@@ -1,0 +1,69 @@
+2-17-26 Architecture Review 4 (Remediated)
+
+Status: aligned to v0 bootstrap contract with explicit v1+ deferrals.
+
+Purpose
+- Capture how backlink density can be used without violating v0 scope.
+- Define what is allowed now (v0) vs later (v1+).
+- Resolve role and promotion ambiguities from the draft discussion.
+
+Decisions Applied
+1) Promotion gates are mandatory:
+- Confirmed: density never bypasses v0 promotion gates.
+- Promotion still requires NOT filters, meta-ceiling checks, and explicit logged promotion.
+
+2) Metric source is bounded and reproducible:
+- Confirmed: backlink metrics are computed from mapped/capped scaffold outputs in the AnalysisRun.
+- Unrestricted global Wikidata backlink counts are not authoritative for v0 automation.
+
+3) Ownership model (temporary v0 rule):
+- Confirmed for now: once a subject is active, the subject SCA acts as concierge for that subject.
+- Future architecture may re-introduce a separate long-lived concierge layer.
+
+4) Subagents in v0:
+- Confirmed: no autonomous subagent spawning in v0.
+- SFAs may only emit proposal signals (for SCA/concierge approval workflows).
+
+5) Threshold policy:
+- Selected direction: v1 uses categorized and normalized density, with cooldown/hysteresis controls.
+- Numeric calibration remains pending by domain after telemetry.
+
+6) Text normalization:
+- Encoding and formatting normalized to plain ASCII for reliable diffs/tooling.
+
+v0 Allowed Uses of Backlink Density
+- Ranking signal for review queues.
+- Ranking signal for SFA training target priority.
+- Advisory signal for "needs_subagent" proposals only (non-executing in v0).
+- Advisory signal for potential cross-domain bridge review queues.
+
+v0 Non-Allowed Uses
+- Direct canonization trigger without full promotion governance.
+- Autonomous agent creation/splitting based only on density.
+- Reliance on uncapped/unmapped external counts for automated decisions.
+
+Operational Metric Definitions (v0)
+- backlink_count_domain(sc):
+  Count of scaffold-linked entities/events/works tied to SubjectConcept `sc`
+  within one AnalysisRun, using only mapped properties and enforced caps.
+
+- claim_count(sc):
+  Count of claims attached to `sc` (candidate or canonical views as configured),
+  used as an auxiliary workload signal.
+
+- centrality_score(sc):
+  Weighted ranking score used for queue ordering only in v0.
+  Example dimensions: `backlink_count_domain`, authority alignment, completeness.
+
+Implementation Notes
+- Keep this review doc as a policy interpretation layer, not the canonical contract.
+- Normative v0 implementation requirements remain in:
+  `md/Architecture/2-17-26-CHRYSTALLUM_v0_AGENT_BOOTSTRAP_SPEC.md`
+
+Follow-up for v1 Discussion
+- Calibrate percentile and absolute floor defaults per facet category.
+- Define anti-churn controls and max subagent fanout per domain.
+- Implement federation matrix execution from:
+  `Facets/facet_federation_matrix.json`
+  and
+  `md/Architecture/2-17-26-Facet-Federation-Action-Plan.md`

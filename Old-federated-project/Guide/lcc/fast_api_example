@@ -1,0 +1,6 @@
+from services.gateway.app.graph_operator_endpoints import router as graph_router
+from services.gateway.app.fractal_endpoints import router as fractal_router
+from services.gateway.app.legacy_endpoints import router as legacy_router
+app.include_router(graph_router)
+app.include_router(fractal_router)
+app.include_router(legacy_router)

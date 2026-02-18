@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: framework-ingress
+  namespace: federated-graph-framework
+spec:
+  rules:
+  - host: framework.company.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: framework-api-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - framework.company.com
+    secretName: framework-tls

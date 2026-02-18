@@ -19,7 +19,7 @@ A lightweight routing function (may be implemented as an agent) that:
 - Interprets user input into one of the supported flows (bootstrap / schema query / data query / system-doc question).
 - For subject instantiation, resolves or accepts a **Wikidata QID** and triggers SCA bootstrap.
 
-Important: once a subject is active, the **SCA acts as the concierge for that subject** (i.e., there is no long-lived “separate concierge agent” requirement in v0).
+Important: once a subject is active, the **SCA acts as the concierge for that subject** (i.e., there is no long-lived “separate concierge agent” requirement in v0). Future versions may re-introduce a separate long-lived concierge layer.
 
 ### 1.2 SCA (Subject Concierge Agent)
 One SCA exists per subject area. v0 assumes “broad discipline” subjects (e.g., Roman Republic), so **all facet agents may be instantiated**, but the first phase is *structural*, not interpretive.
@@ -56,6 +56,7 @@ Supported, in priority order:
 
 Deferred / enhancement:
 - Fully general “free-text concierge” that decides SCAs and granularity from arbitrary user text. v0 may still do minimal QID resolution + best-match-to-existing.
+- Autonomous density-driven orchestration (dynamic SFA allocation, subagent auto-spawn, and bridge-triggered routing) is deferred to v1+.
 
 ---
 
@@ -103,6 +104,14 @@ NOT filters (applied at least in downward pass; recommended everywhere):
 - Wikimedia categories
 - Pure encyclopedia/dictionary “article about X” nodes (unless explicitly needed as evidence)
 - Other non-entity wrappers that are not intended for canonization
+
+### 4.1.1 Backlink density metric source (v0 guardrail)
+For v0 decisions and automation, backlink-density metrics MUST be computed from the bounded scaffold outputs of the current AnalysisRun:
+- use mapped properties only (same rule as lateral traversal)
+- respect all runtime caps (per_property_cap, per_node_neighbor_cap, per_parent_child_cap)
+- prefer run-local / domain-local counts over uncapped global counts
+
+Unrestricted global Wikidata backlink totals may be stored for diagnostics, but are non-authoritative in v0 decisioning.
 
 ### 4.2 A — Seed dossier (Q0)
 Input: seed QID Q0 (explicitly provided or resolved)
@@ -256,11 +265,12 @@ Input:
 
 Steps:
 1) Validate nodes against NOT filters and meta-ceiling policy
-2) MERGE canonical nodes (by canonical unique keys, typically QID where applicable)
-3) CREATE canonical relationships (only relationship types that exist in the canonical relationship set)
-4) Create Claim nodes for interpretive assertions (SFA outputs) and attach evidence
-5) Record PromotionEvent (recommended) linking promoted artifacts back to the run and to source ScaffoldEdges
-6) For structural scaffold assertions, map selected `:ScaffoldEdge` records into canonical `:ProposedEdge` and/or canonical relationships per promotion policy
+2) Treat density/centrality as ranking signals only; density alone must never bypass promotion governance
+3) MERGE canonical nodes (by canonical unique keys, typically QID where applicable)
+4) CREATE canonical relationships (only relationship types that exist in the canonical relationship set)
+5) Create Claim nodes for interpretive assertions (SFA outputs) and attach evidence
+6) Record PromotionEvent (recommended) linking promoted artifacts back to the run and to source ScaffoldEdges
+7) For structural scaffold assertions, map selected `:ScaffoldEdge` records into canonical `:ProposedEdge` and/or canonical relationships per promotion policy
 
 Scaffold artifacts remain for audit and debugging.
 
@@ -275,6 +285,7 @@ A bootstrap run is considered successful if:
 - It respects all caps/filters and records truncation metadata.
 - It runs repeatedly without altering canonical nodes/relationships (unless promotion explicitly invoked).
 - Promotion can be invoked for a small selected subset and creates canonical nodes/relationships without constraint violations.
+- Any density metric used in v0 is traceable to mapped/capped scaffold outputs for the run.
 
 ---
 
@@ -283,6 +294,9 @@ A bootstrap run is considered successful if:
 - Downward anchor scope: **Option B** (seed + type parents + hop-1 neighbors)
 - Scaffold persistence: **in Neo4j as real nodes**
 - Scaffold identity: **single per run**
+- Subject routing ownership: active subject SCA acts as concierge for that subject (v0 policy)
+- Subagent behavior: proposal-only in v0 (no autonomous spawning)
+- v1 threshold policy direction: categorized + normalized density with cooldown/hysteresis; numeric defaults to be calibrated
 
 ---
 
@@ -292,3 +306,31 @@ All lateral expansion requires an explicit mapping from Wikidata property → ca
 In v0: **no mapped property → no lateral traversal**.
 
 ---
+
+## Appendix B - v1 draft (non-normative): categorized density and facet federation
+
+This appendix is implementation guidance for v1+ and does not change v0 acceptance criteria.
+
+### B.1 Categorized density trigger model
+For each SubjectConcept `sc` in a facet domain, maintain:
+- `backlinks_by_type[type]` (PERSON, EVENT, WORK, OBJECT, MATERIAL, etc.)
+- `backlinks_by_facet[facet_key]`
+- optional `by_type_and_facet[type][facet_key]`
+
+Subagent proposals should be category-scoped and must satisfy all three checks:
+1) Absolute floor for the category bucket
+2) Relative density threshold (facet-local percentile)
+3) Stability controls (cooldown + hysteresis)
+
+Density remains a routing/prioritization signal and never bypasses promotion governance.
+
+### B.2 Facet federation execution binding
+Use the matrix in `Facets/facet_federation_matrix.json` with facet keys from `Facets/facet_registry_master.json`.
+
+Execution order:
+1) Run all primary adapters for a facet (required coverage path)
+2) Run secondary adapters for enrichment (optional coverage path)
+3) Persist adapter provenance and per-facet coverage metrics
+
+Implementation checklist is tracked in:
+- `md/Architecture/2-17-26-Facet-Federation-Action-Plan.md`
