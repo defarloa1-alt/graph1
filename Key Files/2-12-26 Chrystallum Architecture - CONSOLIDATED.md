@@ -11740,18 +11740,18 @@ SET place.label = pleiades.canonical_names[0] // Pleiades wins per precedence ru
 
 This appendix synthesizes content from the following Federation layer documentation:
 
-1. **[Federation/2-16-26-FederationCandidates.md](Federation/2-16-26-FederationCandidates.md)** (170 lines)
+1. **[Archive/Federation/2-16-26-FederationCandidates.md](Archive/Federation/2-16-26-FederationCandidates.md)** (170 lines, archived)
    - Federation usage patterns for 8 major authorities
    - Role → How to leverage structure for each federation
    - Stacked evidence ladder principle
 
-2. **[Federation/FederationUsage.txt](Federation/FederationUsage.txt)** (241 lines)
+2. **[Archive/Federation/FederationUsage.txt](Archive/Federation/FederationUsage.txt)** (241 lines, archived)
    - Detailed stacked evidence ladder for People, Places, Events
    - Tier-by-tier enrichment patterns
    - Confidence rules and attestation strength matrix
    - Operationalization guidance for ingestion, validation, and lensing phases
 
-3. **[Federation/2-12-26-federations.md](Federation/2-12-26-federations.md)**
+3. **[Archive/Federation/2-12-26-federations.md](Archive/Federation/2-12-26-federations.md)** (archived)
    - 6 current operational federations
    - 5 potential federation enhancements
    - Wikidata as "federation broker, not final authority" principle

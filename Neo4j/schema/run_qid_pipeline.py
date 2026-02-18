@@ -14,9 +14,23 @@ import argparse
 import hashlib
 import os
 import re
+import sys
+from pathlib import Path
 from typing import Any
 
 from neo4j import GraphDatabase
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+from scripts.tools.claim_confidence_policy_engine import (  # noqa: E402
+    policy_hash,
+    clamp_confidence,
+    evaluate_claim_confidence_policy,
+    load_policy,
+    map_claim_type_to_epistemic,
+)
 
 
 def slugify(text: str) -> str:
@@ -112,9 +126,75 @@ def main() -> int:
     parser.add_argument("--source", default="wikidata")
     parser.add_argument("--pipeline-version", default="v1.0")
     parser.add_argument("--agent-version", default="v1.0")
+    parser.add_argument("--policy-path", default="JSON/policy/claim_confidence_policy_v1.json")
+
+    parser.add_argument("--factual-claim-type", default="factual")
+    parser.add_argument("--factual-proposed-confidence", type=float, default=0.92)
+    parser.add_argument("--factual-primary-count", type=int, default=1)
+    parser.add_argument("--factual-secondary-count", type=int, default=1)
+    parser.add_argument("--factual-tertiary-count", type=int, default=0)
+    parser.add_argument("--factual-has-conflicts", action="store_true")
+    parser.add_argument("--factual-federation-depth", type=int, choices=[1, 2, 3], default=2)
+
+    parser.add_argument("--temporal-claim-type", default="temporal")
+    parser.add_argument("--temporal-proposed-confidence", type=float, default=0.94)
+    parser.add_argument("--temporal-primary-count", type=int, default=1)
+    parser.add_argument("--temporal-secondary-count", type=int, default=1)
+    parser.add_argument("--temporal-tertiary-count", type=int, default=0)
+    parser.add_argument("--temporal-has-conflicts", action="store_true")
+    parser.add_argument("--temporal-federation-depth", type=int, choices=[1, 2, 3], default=2)
+
     parser.add_argument("--reset-entities", action="store_true")
     parser.add_argument("--legacy-roman-clean", action="store_true")
     args = parser.parse_args()
+
+    policy_path = (REPO_ROOT / args.policy_path).resolve()
+    policy = load_policy(policy_path)
+    policy_sha256 = policy_hash(policy)
+
+    factual_epistemic_type = map_claim_type_to_epistemic(args.factual_claim_type)
+    temporal_epistemic_type = map_claim_type_to_epistemic(args.temporal_claim_type)
+
+    factual_policy = evaluate_claim_confidence_policy(
+        policy,
+        primary_count=args.factual_primary_count,
+        secondary_count=args.factual_secondary_count,
+        tertiary_count=args.factual_tertiary_count,
+        has_conflicts=args.factual_has_conflicts,
+        epistemic_type=factual_epistemic_type,
+        federation_depth=args.factual_federation_depth,
+    )
+    temporal_policy = evaluate_claim_confidence_policy(
+        policy,
+        primary_count=args.temporal_primary_count,
+        secondary_count=args.temporal_secondary_count,
+        tertiary_count=args.temporal_tertiary_count,
+        has_conflicts=args.temporal_has_conflicts,
+        epistemic_type=temporal_epistemic_type,
+        federation_depth=args.temporal_federation_depth,
+    )
+
+    factual_confidence = clamp_confidence(
+        args.factual_proposed_confidence,
+        factual_policy["min_confidence"],
+        factual_policy["max_confidence"],
+    )
+    temporal_confidence = clamp_confidence(
+        args.temporal_proposed_confidence,
+        temporal_policy["min_confidence"],
+        temporal_policy["max_confidence"],
+    )
+
+    factual_gate_status = (
+        "review_required"
+        if factual_policy["require_debate_bridge"] or factual_policy["require_expert_review"]
+        else "auto_promote_eligible"
+    )
+    temporal_gate_status = (
+        "review_required"
+        if temporal_policy["require_debate_bridge"] or temporal_policy["require_expert_review"]
+        else "auto_promote_eligible"
+    )
 
     period_start_year = parse_year(args.period_start)
     period_end_year = parse_year(args.period_end)
@@ -199,10 +279,40 @@ def main() -> int:
         "factual_claim_label": factual_label,
         "factual_claim_text": factual_text,
         "factual_claim_cipher": factual_claim_cipher,
+        "factual_claim_type": args.factual_claim_type,
+        "factual_epistemic_type": factual_epistemic_type,
+        "factual_confidence": factual_confidence,
+        "factual_source_strength": factual_policy["source_strength"],
+        "factual_conflict_code": factual_policy["conflict_code"],
+        "factual_federation_depth": args.factual_federation_depth,
+        "factual_source_row_id": factual_policy["row_ids"]["source_strength"],
+        "factual_conflict_row_id": factual_policy["row_ids"]["conflict_code"],
+        "factual_profile_row_id": factual_policy["row_ids"]["claim_confidence_profile"],
+        "factual_min_confidence": factual_policy["min_confidence"],
+        "factual_max_confidence": factual_policy["max_confidence"],
+        "factual_require_debate_bridge": factual_policy["require_debate_bridge"],
+        "factual_require_expert_review": factual_policy["require_expert_review"],
+        "factual_gate_status": factual_gate_status,
         "temporal_claim_id": temporal_claim_id,
         "temporal_claim_label": temporal_label,
         "temporal_claim_text": temporal_text,
         "temporal_claim_cipher": temporal_claim_cipher,
+        "temporal_claim_type": args.temporal_claim_type,
+        "temporal_epistemic_type": temporal_epistemic_type,
+        "temporal_confidence": temporal_confidence,
+        "temporal_source_strength": temporal_policy["source_strength"],
+        "temporal_conflict_code": temporal_policy["conflict_code"],
+        "temporal_federation_depth": args.temporal_federation_depth,
+        "temporal_source_row_id": temporal_policy["row_ids"]["source_strength"],
+        "temporal_conflict_row_id": temporal_policy["row_ids"]["conflict_code"],
+        "temporal_profile_row_id": temporal_policy["row_ids"]["claim_confidence_profile"],
+        "temporal_min_confidence": temporal_policy["min_confidence"],
+        "temporal_max_confidence": temporal_policy["max_confidence"],
+        "temporal_require_debate_bridge": temporal_policy["require_debate_bridge"],
+        "temporal_require_expert_review": temporal_policy["require_expert_review"],
+        "temporal_gate_status": temporal_gate_status,
+        "policy_id": policy.get("policy_id", "unknown_policy"),
+        "policy_hash": policy_sha256,
         "factual_retrieval_id": factual_retrieval_id,
         "temporal_retrieval_id": temporal_retrieval_id,
         "factual_run_id": factual_run_id,
@@ -216,6 +326,26 @@ def main() -> int:
         "event_year": event_year,
         "years": [period_start_year, period_end_year, event_year],
     }
+
+    print(
+        "Policy decisions:",
+        {
+            "policy_id": base_params["policy_id"],
+            "policy_hash": base_params["policy_hash"],
+            "factual": {
+                "row": base_params["factual_profile_row_id"],
+                "confidence": base_params["factual_confidence"],
+                "range": [base_params["factual_min_confidence"], base_params["factual_max_confidence"]],
+                "gate_status": base_params["factual_gate_status"],
+            },
+            "temporal": {
+                "row": base_params["temporal_profile_row_id"],
+                "confidence": base_params["temporal_confidence"],
+                "range": [base_params["temporal_min_confidence"], base_params["temporal_max_confidence"]],
+                "gate_status": base_params["temporal_gate_status"],
+            },
+        },
+    )
 
     claim_ids = [factual_claim_id, temporal_claim_id]
     retrieval_ids = [factual_retrieval_id, temporal_retrieval_id]
@@ -316,14 +446,28 @@ def main() -> int:
     SET c.cipher = $factual_claim_cipher,
         c.label = $factual_claim_label,
         c.text = $factual_claim_text,
-        c.claim_type = 'factual',
+        c.claim_type = $factual_claim_type,
+        c.epistemic_type = $factual_epistemic_type,
         c.source_agent = $agent_id,
         c.timestamp = toString(datetime()),
         c.status = 'proposed',
-        c.confidence = 0.92,
+        c.confidence = $factual_confidence,
         c.subject_entity_qid = $period_qid,
         c.property_name = 'end_date',
-        c.property_value = $period_end
+        c.property_value = $period_end,
+        c.source_strength = $factual_source_strength,
+        c.conflict_code = $factual_conflict_code,
+        c.federation_depth = $factual_federation_depth,
+        c.policy_id = $policy_id,
+        c.policy_hash = $policy_hash,
+        c.policy_source_row = $factual_source_row_id,
+        c.policy_conflict_row = $factual_conflict_row_id,
+        c.policy_profile_row = $factual_profile_row_id,
+        c.policy_min_confidence = $factual_min_confidence,
+        c.policy_max_confidence = $factual_max_confidence,
+        c.require_debate_bridge = $factual_require_debate_bridge,
+        c.require_expert_review = $factual_require_expert_review,
+        c.policy_gate_status = $factual_gate_status
     MERGE (a)-[:MADE_CLAIM]->(c)
     MERGE (sc)-[:SUBJECT_OF]->(c)
     MERGE (rc:RetrievalContext {retrieval_id: $factual_retrieval_id})
@@ -416,15 +560,29 @@ def main() -> int:
     SET c2.cipher = $temporal_claim_cipher,
         c2.label = $temporal_claim_label,
         c2.text = $temporal_claim_text,
-        c2.claim_type = 'temporal',
+        c2.claim_type = $temporal_claim_type,
+        c2.epistemic_type = $temporal_epistemic_type,
         c2.source_agent = $agent_id,
         c2.timestamp = toString(datetime()),
         c2.status = 'proposed',
-        c2.confidence = 0.94,
+        c2.confidence = $temporal_confidence,
         c2.subject_entity_qid = $event_qid,
         c2.object_entity_qid = $period_qid,
         c2.relationship_type = 'OCCURRED_DURING',
-        c2.temporal_data = $event_date
+        c2.temporal_data = $event_date,
+        c2.source_strength = $temporal_source_strength,
+        c2.conflict_code = $temporal_conflict_code,
+        c2.federation_depth = $temporal_federation_depth,
+        c2.policy_id = $policy_id,
+        c2.policy_hash = $policy_hash,
+        c2.policy_source_row = $temporal_source_row_id,
+        c2.policy_conflict_row = $temporal_conflict_row_id,
+        c2.policy_profile_row = $temporal_profile_row_id,
+        c2.policy_min_confidence = $temporal_min_confidence,
+        c2.policy_max_confidence = $temporal_max_confidence,
+        c2.require_debate_bridge = $temporal_require_debate_bridge,
+        c2.require_expert_review = $temporal_require_expert_review,
+        c2.policy_gate_status = $temporal_gate_status
     MERGE (a)-[:MADE_CLAIM]->(c2)
     MERGE (sc)-[:SUBJECT_OF]->(c2)
     MERGE (e)-[:SUBJECT_OF]->(c2)
@@ -459,7 +617,11 @@ def main() -> int:
     WITH c, count(rc) AS rc_count
     OPTIONAL MATCH (c)-[:HAS_ANALYSIS_RUN]->(ar:AnalysisRun)
     WITH c, rc_count, count(ar) AS ar_count
-    WHERE c.confidence >= 0.90
+    WHERE c.confidence >= c.policy_min_confidence
+      AND c.confidence <= c.policy_max_confidence
+      AND coalesce(c.require_debate_bridge, false) = false
+      AND coalesce(c.require_expert_review, false) = false
+      AND c.policy_gate_status = 'auto_promote_eligible'
       AND rc_count > 0
       AND ar_count > 0
     SET c.status = 'validated',
@@ -507,6 +669,9 @@ def main() -> int:
       c.claim_id AS claim_id,
       c.label AS claim_label,
       c.status AS claim_status,
+      c.policy_hash AS claim_policy_hash,
+      c.policy_profile_row AS claim_policy_row,
+      c.policy_gate_status AS claim_gate_status,
       rc.retrieval_id AS retrieval_id,
       run.run_id AS run_id,
       fa.assessment_id AS assessment_id,
@@ -538,6 +703,9 @@ def main() -> int:
       c2.claim_id AS claim_id,
       c2.label AS claim_label,
       c2.status AS claim_status,
+      c2.policy_hash AS claim_policy_hash,
+      c2.policy_profile_row AS claim_policy_row,
+      c2.policy_gate_status AS claim_gate_status,
       rc2.retrieval_id AS retrieval_id,
       run2.run_id AS run_id,
       fa2.assessment_id AS assessment_id,
@@ -562,6 +730,9 @@ def main() -> int:
       c.claim_id AS claim_id,
       c.label AS claim_label,
       c.status AS claim_status,
+      c.policy_hash AS claim_policy_hash,
+      c.policy_profile_row AS claim_policy_row,
+      c.policy_gate_status AS claim_gate_status,
       c.promoted AS claim_promoted,
       c.promotion_date AS claim_promotion_date,
       type(r) AS canonical_rel_type,

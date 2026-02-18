@@ -104,10 +104,14 @@
 - `md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md`
 - Implemented baseline (2026-02-18):
 - generator script: `scripts/tools/build_project_artifact_registry.py`
-- first snapshot generated (270 indexed artifacts across scripts/schema/sysml/docs/registries/policies/diagrams)
-- review queue generated: `CSV/registry/project_artifact_registry_review_queue.csv` (44 rows)
+- first snapshot generated (271 indexed artifacts across scripts/schema/sysml/docs/registries/policies/diagrams)
+- review queue generated and closed:
+- `CSV/registry/project_artifact_registry_review_queue.csv` (0 open rows after override pass)
+- deterministic overrides and decisions:
+- `JSON/registry/project_artifact_registry_overrides.json`
+- `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md`
 - follow-on needed:
-- tighten role/scope/gate overrides for a curated set of high-impact runtime entries.
+- maintain prefix/path overrides as new artifacts are introduced.
 - Suggested execution order:
 - inventory -> classify -> annotate routing semantics -> validate entry points -> publish registry snapshots.
 - Governance:

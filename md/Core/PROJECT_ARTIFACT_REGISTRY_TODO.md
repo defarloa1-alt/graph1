@@ -5,15 +5,19 @@ Status: pinned TODO for next execution window.
 ## Progress (2026-02-18)
 - Initial generator implemented: `scripts/tools/build_project_artifact_registry.py`
 - Initial outputs generated:
-- `CSV/registry/project_artifact_registry.csv` (270 artifacts)
-- `CSV/registry/project_artifact_registry_review_queue.csv` (44 review items)
+- `CSV/registry/project_artifact_registry.csv` (271 artifacts)
+- `CSV/registry/project_artifact_registry_review_queue.csv` (0 open review items after overrides)
 - `JSON/registry/project_artifact_registry.json`
+- `JSON/registry/project_artifact_registry_overrides.json`
 - `md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md`
+- `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md`
 - Coverage now includes:
 - scripts/tooling, Neo4j schema/pipeline files, SysML contracts, architecture/ADR docs, key registries, policy artifacts, and diagram assets.
 - Current state is first-pass and intentionally conservative:
 - many artifacts are tagged `read_only` unless deterministic write intent is clear from filename/type.
-- Next pass requires role-level review to tighten `owner_role`, `mutation_scope`, and `gates` for edge cases.
+- Queue hardening complete:
+- override mechanism now applies deterministic path/prefix decisions before review-queue generation.
+- Next pass can focus on adding prefix-level policies as registry grows (instead of per-path overrides).
 
 ## Objective
 Build a machine-readable project registry that routes SCA/SFA/Pi to the correct artifacts with minimal ambiguity.

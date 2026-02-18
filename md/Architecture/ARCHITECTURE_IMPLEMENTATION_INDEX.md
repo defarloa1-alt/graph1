@@ -157,8 +157,10 @@ Federation adapter status:
 - `CSV/registry/project_artifact_registry.csv`
 - `CSV/registry/project_artifact_registry_review_queue.csv`
 - `JSON/registry/project_artifact_registry.json`
+- `JSON/registry/project_artifact_registry_overrides.json`
 - `md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md`
 - `md/Core/PROJECT_ARTIFACT_REGISTRY_TODO.md`
+- `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md`
 
 ### Canonical registries
 - `Relationships/relationship_types_registry_master.csv`
@@ -185,6 +187,7 @@ When architecture changes, update in this order:
 4. `AI_CONTEXT.md` and `Change_log.py`
 
 **Recent Updates:**
+- **2026-02-18:** Artifact registry override engine + decisions log added; review queue reduced to 0 open items
 - **2026-02-18:** Project artifact registry bootstrap added (generator + CSV/JSON snapshots + routing guide) for SCA/SFA/Pi entry-point routing
 - **2026-02-18:** Policy-subgraph projection path added (loader + Neo4j schema) for hash-pinned decision tables
 - **2026-02-18:** Claim confidence decision-model ADR added (`ADR-006`) for ordered single-hit policy-gate evaluation

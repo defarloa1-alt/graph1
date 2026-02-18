@@ -9,7 +9,9 @@
 //   claim_q193304_occurred_during_q17167_neg0031_09_02
 // Notes:
 // - Idempotent (safe to rerun)
-// - Applies a simple guard: confidence >= 0.90 and required context edges present
+// - Applies policy-driven guard fields persisted by Pi:
+//   policy_min_confidence/policy_max_confidence, require_* flags, policy_gate_status
+// - Transitional fallback: if policy fields are missing, use legacy confidence >= 0.90
 // - Canonical entity IDs follow qid-concatenated pattern:
 //   evt_battle_of_actium_q193304, prd_roman_republic_q17167, plc_actium_q41747
 // ============================================================================
@@ -20,7 +22,20 @@ OPTIONAL MATCH (c)-[:USED_CONTEXT]->(rc:RetrievalContext)
 WITH c, count(rc) AS rc_count
 OPTIONAL MATCH (c)-[:HAS_ANALYSIS_RUN]->(ar:AnalysisRun)
 WITH c, rc_count, count(ar) AS ar_count
-WHERE c.confidence >= 0.90
+WHERE (
+    (
+      c.policy_gate_status = 'auto_promote_eligible'
+      AND c.confidence >= c.policy_min_confidence
+      AND c.confidence <= c.policy_max_confidence
+      AND coalesce(c.require_debate_bridge, false) = false
+      AND coalesce(c.require_expert_review, false) = false
+    )
+    OR
+    (
+      c.policy_gate_status IS NULL
+      AND c.confidence >= 0.90
+    )
+  )
   AND rc_count > 0
   AND ar_count > 0
 SET c.status = 'validated',

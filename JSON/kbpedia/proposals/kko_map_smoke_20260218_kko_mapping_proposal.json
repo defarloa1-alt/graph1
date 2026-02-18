@@ -1,0 +1,129 @@
+{
+  "generated_at": "2026-02-18T05:00:10.721228+00:00",
+  "tool": "kko_mapping_proposal_loader",
+  "mode": "proposal_only_non_mutating",
+  "analysis_run_id": "kko_map_smoke_20260218",
+  "source_crosswalk": "CSV/kko_chrystallum_crosswalk.csv",
+  "summary": {
+    "rows_total": 4,
+    "rows_with_warnings": 4,
+    "invalid_rows": 0,
+    "match_type_counts": {
+      "exact": 0,
+      "narrow": 0,
+      "broad": 0,
+      "related": 4
+    },
+    "gate_recommendation_counts": {
+      "fast_track_review": 0,
+      "standard_review": 0,
+      "review_with_constraints": 0,
+      "proposal_only": 2,
+      "needs_schema_decision": 2,
+      "reject": 0
+    }
+  },
+  "invalid_rows": [],
+  "mapping_proposals": [
+    {
+      "proposal_id": "kko_map_12510bea7156a8f1",
+      "analysis_run_id": "kko_map_smoke_20260218",
+      "source_system": "kbpedia",
+      "source_uri": "TODO:kko_event",
+      "kko_label": "KKO Event",
+      "target_label": "Event",
+      "cidoc_class": "E5_Event",
+      "crminf_pattern": "belief_about_event",
+      "match_type": "related",
+      "mapping_confidence": 0.6,
+      "evidence": "md/Architecture/kbpedia.md",
+      "review_status": "draft_seed",
+      "gate_recommendation": "proposal_only",
+      "reason_codes": [
+        "MATCH_TYPE_UNJUSTIFIED"
+      ],
+      "warnings": [
+        "source_uri_not_stable"
+      ],
+      "notes": "Seed mapping from ADR-003 conceptual alignment",
+      "created_at": "2026-02-18T05:00:10.721057+00:00",
+      "mutation_policy": "proposal_only_non_mutating"
+    },
+    {
+      "proposal_id": "kko_map_b00d5a9046b6b97c",
+      "analysis_run_id": "kko_map_smoke_20260218",
+      "source_system": "kbpedia",
+      "source_uri": "TODO:kko_activity",
+      "kko_label": "KKO Activity/Action",
+      "target_label": "",
+      "cidoc_class": "E7_Activity",
+      "crminf_pattern": "inference_about_action",
+      "match_type": "related",
+      "mapping_confidence": 0.5,
+      "evidence": "md/Architecture/kbpedia.md",
+      "review_status": "needs_schema_decision",
+      "gate_recommendation": "needs_schema_decision",
+      "reason_codes": [
+        "TARGET_SCHEMA_MISMATCH"
+      ],
+      "warnings": [
+        "source_uri_not_stable"
+      ],
+      "notes": "No canonical Activity label decision yet",
+      "created_at": "2026-02-18T05:00:10.721127+00:00",
+      "mutation_policy": "proposal_only_non_mutating"
+    },
+    {
+      "proposal_id": "kko_map_7798b396a9567043",
+      "analysis_run_id": "kko_map_smoke_20260218",
+      "source_system": "kbpedia",
+      "source_uri": "TODO:kko_situation",
+      "kko_label": "KKO Situation/Context",
+      "target_label": "",
+      "cidoc_class": "",
+      "crminf_pattern": "belief_about_situation",
+      "match_type": "related",
+      "mapping_confidence": 0.5,
+      "evidence": "md/Architecture/kbpedia.md",
+      "review_status": "needs_schema_decision",
+      "gate_recommendation": "needs_schema_decision",
+      "reason_codes": [
+        "TARGET_SCHEMA_MISMATCH"
+      ],
+      "warnings": [
+        "source_uri_not_stable"
+      ],
+      "notes": "Await Situation modeling decision",
+      "created_at": "2026-02-18T05:00:10.721149+00:00",
+      "mutation_policy": "proposal_only_non_mutating"
+    },
+    {
+      "proposal_id": "kko_map_a2972f6ddd671423",
+      "analysis_run_id": "kko_map_smoke_20260218",
+      "source_system": "kbpedia",
+      "source_uri": "TODO:kko_time",
+      "kko_label": "KKO Time",
+      "target_label": "Period",
+      "cidoc_class": "",
+      "crminf_pattern": "temporal_constraint",
+      "match_type": "related",
+      "mapping_confidence": 0.6,
+      "evidence": "md/Architecture/kbpedia.md",
+      "review_status": "draft_seed",
+      "gate_recommendation": "proposal_only",
+      "reason_codes": [
+        "MATCH_TYPE_UNJUSTIFIED"
+      ],
+      "warnings": [
+        "source_uri_not_stable"
+      ],
+      "notes": "Use Year label for point-in-time cases",
+      "created_at": "2026-02-18T05:00:10.721166+00:00",
+      "mutation_policy": "proposal_only_non_mutating"
+    }
+  ],
+  "notes": [
+    "This artifact is proposal-only and non-mutating.",
+    "Canonical updates require explicit policy-gate approval."
+  ]
+}

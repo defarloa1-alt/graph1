@@ -2959,3 +2959,27 @@ Guidelines:
 #   - First pass is heuristic and conservative; curated overrides still needed for
 #     high-impact runtime entries (owner_role/scope/gates).
 # ============================================================================== 
+
+# ==============================================================================
+# 2026-02-18 08:40 | Artifact Registry Override Engine + Queue Closure
+# ==============================================================================
+# Category: Capability, Governance, Docs
+# Summary: Added deterministic override path for artifact registry and closed review queue
+# Files:
+#   - scripts/tools/build_project_artifact_registry.py
+#   - JSON/registry/project_artifact_registry_overrides.json
+#   - CSV/registry/project_artifact_registry.csv
+#   - JSON/registry/project_artifact_registry.json
+#   - CSV/registry/project_artifact_registry_review_queue.csv
+#   - md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md
+#   - md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md
+#   - md/Core/PROJECT_ARTIFACT_REGISTRY_TODO.md
+#   - md/Reference/REFERENCE_BACKLOG.md
+#   - md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md
+#   - AI_CONTEXT.md
+# Reason: Move registry review from ad hoc/manual decisions to reproducible policy overrides.
+# Notes:
+#   - Added path/prefix overrides with per-path review suppression/resolution metadata.
+#   - Review queue reduced from 8 to 0 open items after explicit override decisions.
+#   - Registry totals now show 271 indexed artifacts with persisted decision provenance.
+# ============================================================================== 

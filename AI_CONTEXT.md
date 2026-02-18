@@ -2997,3 +2997,26 @@ Each artifact row includes:
 
 ### Rebuild
 - `python scripts/tools/build_project_artifact_registry.py`
+
+## Session Update (2026-02-18) - Artifact Registry Queue Resolution
+
+### Context
+Follow-on pass requested to resolve `CSV/registry/project_artifact_registry_review_queue.csv` and make registry classification decisions deterministic rather than heuristic.
+
+### Implemented
+- Extended generator with override support:
+  - `JSON/registry/project_artifact_registry_overrides.json`
+  - path/prefix field overrides + reason suppression + resolved flags
+- Added generated decisions log:
+  - `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md`
+- Tightened review logic:
+  - reduced noisy `executable_owned_by_platform` flags for known platform utility prefixes
+  - only flags `draft_in_canonical_path` when mutation scope is `canonical_write`
+  - set `Neo4j/schema/*.py` owner role to `Pi`
+- Updated guide/index/backlog/todo references to include overrides + decisions artifacts.
+
+### Outcome
+- Registry artifacts indexed: **271**
+- Review queue status: **0 open items**
+- Regeneration command remains:
+  - `python scripts/tools/build_project_artifact_registry.py`

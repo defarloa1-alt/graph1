@@ -7,7 +7,7 @@ Status: Production ready
 
 Architecture:
 - FacetAgent: Base class extending ChromatogramQueryExecutor
-- 17 specialized agents (one per facet)
+- Facet agents sourced from registry/prompt config
 - Router: Directs queries to appropriate agents
 - Coordinator: Aggregates results, deduplicates claims
 """
@@ -3126,7 +3126,7 @@ Return JSON:
 class FacetAgentFactory:
     """Factory for creating facet agents with appropriate system prompts"""
 
-    # 17 facet-specific system prompts (loaded from registry)
+    # Facet-specific system prompts (loaded from registry)
     FACET_PROMPTS = {}
 
     @staticmethod
@@ -3158,7 +3158,7 @@ class FacetAgentFactory:
     @staticmethod
     def create_all_agents() -> Dict[str, FacetAgent]:
         """
-        Create all 17 facet agents
+        Create all configured facet agents
         
         Returns:
             Dict mapping facet_key → agent instance
@@ -3302,6 +3302,55 @@ class SubjectConceptAgent:
         
         print("✓ SubjectConceptAgent (SCA) initialized - Master Coordinator ready")
     
+    def _load_facet_registry(self) -> List[Dict[str, str]]:
+        """
+        Load canonical facet registry entries (key/label/definition).
+        Falls back to a built-in list if the registry is unavailable.
+        """
+        registry_path = os.path.join(
+            os.path.dirname(__file__),
+            '..',
+            '..',
+            'Facets',
+            'facet_registry_master.json'
+        )
+
+        try:
+            with open(registry_path, 'r', encoding='utf-8') as f:
+                registry = json.load(f)
+
+            facets = []
+            for item in registry.get('facets', []):
+                key = (item.get('key') or '').strip()
+                if not key:
+                    continue
+                facets.append({
+                    'key': key,
+                    'label': item.get('label', key.replace('_', ' ').title()),
+                    'definition': item.get('definition', '')
+                })
+
+            if facets:
+                return facets
+
+        except Exception as e:
+            print(f"WARNING: failed to load facet registry: {e}")
+
+        fallback_keys = [
+            'archaeological', 'artistic', 'biographic', 'cultural', 'demographic',
+            'diplomatic', 'economic', 'environmental', 'geographic', 'intellectual',
+            'linguistic', 'military', 'political', 'religious', 'scientific',
+            'social', 'technological', 'communication'
+        ]
+        return [{'key': k, 'label': k.capitalize(), 'definition': ''} for k in fallback_keys]
+
+    def _get_facet_metadata(self, facet_key: str) -> Optional[Dict[str, str]]:
+        """Return registry metadata for a facet key, if present."""
+        for facet in self._load_facet_registry():
+            if facet.get('key') == facet_key:
+                return facet
+        return None
+
     def classify_facets(self, query: str, max_facets: int = 3) -> Dict[str, Any]:
         """
         Use LLM to determine which facets are relevant for a query
@@ -3313,37 +3362,29 @@ class SubjectConceptAgent:
         Returns:
             Dict with 'facets' (list of keys), 'reasoning' (str), 'cross_domain' (bool)
         """
-        classification_prompt = """You are a facet classifier for the Chrystallum historical knowledge graph.
+        facet_rows = self._load_facet_registry()
+        facet_lines = []
+        for idx, facet in enumerate(facet_rows, start=1):
+            definition = (facet.get('definition') or '').strip() or "No definition provided"
+            facet_lines.append(f"{idx}. {facet['key']} - {definition}")
+        facets_catalog = "\n".join(facet_lines)
 
-Available facets (17 total):
-1. archaeological - Material cultures, site phases, stratigraphic horizons, excavations
-2. artistic - Visual arts, sculpture, architecture, aesthetics, artistic movements  
-3. cultural - Social customs, traditions, practices, cultural identity, festivals
-4. demographic - Population, census, migration, settlement patterns, urbanization
-5. diplomatic - Treaties, alliances, embassies, negotiations, international relations
-6. economic - Trade, commerce, markets, taxation, currency, fiscal policy
-7. environmental - Climate, natural disasters, ecology, agriculture, resources
-8. geographic - Places, regions, territories, boundaries, physical features
-9. intellectual - Philosophy, ideas, education, scholarship, intellectual movements
-10. linguistic - Languages, writing systems, etymology, translation, scripts
-11. military - Warfare, battles, campaigns, fortifications, armies, tactics
-12. political - Governance, offices, succession, law, political structures, administration
-13. religious - Religion, deities, temples, clergy, rituals, theology, beliefs
-14. scientific - Science, discoveries, natural philosophy, mathematics, astronomy
-15. social - Social structures, class, family, gender, daily life, social movements
-16. technological - Technology, inventions, engineering, infrastructure, construction
-17. communication - Writing, printing, roads, messengers, postal systems, media
+        classification_prompt = f"""You are a facet classifier for the Chrystallum historical knowledge graph.
+
+Available facets ({len(facet_rows)} total):
+{facets_catalog}
 
 Analyze the query and return JSON:
-{
+{{
   "facets": ["facet_key1", "facet_key2"],
   "reasoning": "Brief explanation of why these facets",
   "cross_domain": true/false,
   "bridge_concepts": ["concept that links domains"]
-}
+}}
 
 Rules:
 - Return 1-3 most relevant facets
+- Return facet keys exactly as listed above
 - Set cross_domain=true if query spans multiple domains
 - Identify bridge concepts for cross-domain queries
 """
@@ -3393,11 +3434,12 @@ Rules:
         if facet_key in self.active_agents:
             return self.active_agents[facet_key]
         
-        # Validate facet exists
-        valid_facets = ['archaeological', 'artistic', 'cultural', 'demographic', 'diplomatic',
-                       'economic', 'environmental', 'geographic', 'intellectual', 'linguistic',
-                       'military', 'political', 'religious', 'scientific', 'social',
-                       'technological', 'communication']
+        # Validate requested mode first.
+        if mode not in {'real', 'simulated'}:
+            raise ValueError(f"Unknown spawn mode: {mode}. Must be 'real' or 'simulated'")
+
+        # Validate facet exists in canonical registry.
+        valid_facets = [f['key'] for f in self._load_facet_registry()]
         
         if facet_key not in valid_facets:
             raise ValueError(f"Unknown facet: {facet_key}. Must be one of {valid_facets}")
@@ -3459,7 +3501,22 @@ Rules:
         )
         
         if not facet_config:
-            raise ValueError(f"No system prompt found for facet: {facet_key}")
+            # Allow real agent creation for registry facets not yet in prompt file (e.g., biographic).
+            facet_meta = self._get_facet_metadata(facet_key) or {}
+            facet_label = facet_meta.get('label', facet_key.replace('_', ' ').title())
+            facet_definition = facet_meta.get('definition', '').strip() or "Domain-specific subject expertise"
+            facet_config = {
+                'key': facet_key,
+                'label': facet_label,
+                'system_prompt': (
+                    f"You are a {facet_label} Expert Agent for the Chrystallum knowledge graph.\n\n"
+                    f"Facet definition: {facet_definition}\n\n"
+                    "Focus on extracting high-quality, evidence-backed claims in your facet.\n"
+                    "Use schema introspection and state introspection methods before proposing claims.\n"
+                    "Avoid cross-facet overreach; stay within your domain perspective.\n"
+                )
+            }
+            print(f"WARNING: no dedicated prompt found for {facet_key}; using fallback prompt template.")
         
         # Create real agent using FacetAgentFactory
         agent = FacetAgentFactory.create_agent(
@@ -3540,8 +3597,8 @@ Rules:
             'reasoning': f'Analyzed from {agent.facet_key} domain perspective'
         }
     
-    def execute_cross_domain_query(self, query: str, auto_classify: bool = True, 
-                                   facets: List[str] = None) -> Dict[str, Any]:
+    def execute_cross_domain_query(self, query: str, auto_classify: bool = True,
+                                   facets: List[str] = None, agent_mode: str = 'real') -> Dict[str, Any]:
         """
         Execute a query across multiple facets and synthesize results
         
@@ -3549,6 +3606,7 @@ Rules:
             query: Natural language query
             auto_classify: Whether to auto-classify facets (default True)
             facets: Optional explicit list of facet keys (overrides auto_classify)
+            agent_mode: SFA spawn mode: 'real' or 'simulated'
             
         Returns:
             Dict with orchestrated results from all facets
@@ -3581,7 +3639,7 @@ Rules:
         agents = {}
         for facet_key in facets:
             try:
-                agents[facet_key] = self.spawn_agent(facet_key, mode='real')
+                agents[facet_key] = self.spawn_agent(facet_key, mode=agent_mode)
             except Exception as e:
                 print(f"⚠ Failed to spawn {facet_key} agent: {e}")
         
@@ -4041,13 +4099,14 @@ Important: Distinguish between military operations and political outcomes."""
         print("   Query: 'What is the relationship between a Roman senator and a mollusk?'")
         
         result = sca.execute_cross_domain_query(
-            query="What is the relationship between a Roman senator and a mollusk?"
+            query="What is the relationship between a Roman senator and a mollusk?",
+            agent_mode='simulated'
         )
         
         print(f"\n✓ Cross-domain query complete:")
         print(f"  Facets queried: {', '.join(result['classification']['facets'])}")
         print(f"  Cross-domain: {result['classification']['cross_domain']}")
-        print(f"  Bridge concepts: {len(result['bridges'])}")
+        print(f"  Bridge claims: {result['bridge_claim_count']}")
         print(f"  Total nodes: {result['total_nodes']}")
         
         if result['synthesized_response']:

@@ -1,0 +1,5 @@
+source_system,source_uri,kko_label,target_label,cidoc_class,crminf_pattern,match_type,mapping_confidence,evidence,analysis_run_id,review_status,notes
+kbpedia,TODO:kko_event,KKO Event,Event,E5_Event,belief_about_event,related,0.60,md/Architecture/kbpedia.md,,draft_seed,Seed mapping from ADR-003 conceptual alignment
+kbpedia,TODO:kko_activity,KKO Activity/Action,,E7_Activity,inference_about_action,related,0.50,md/Architecture/kbpedia.md,,needs_schema_decision,No canonical Activity label decision yet
+kbpedia,TODO:kko_situation,KKO Situation/Context,,,belief_about_situation,related,0.50,md/Architecture/kbpedia.md,,needs_schema_decision,Await Situation modeling decision
+kbpedia,TODO:kko_time,KKO Time,Period,,temporal_constraint,related,0.60,md/Architecture/kbpedia.md,,draft_seed,Use Year label for point-in-time cases

@@ -13,11 +13,12 @@ import json
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
-from typing import Dict, Iterable, List, Tuple
+from typing import Any, Dict, Iterable, List, Tuple
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TODAY = date.today().isoformat()
+OVERRIDES_PATH = REPO_ROOT / "JSON/registry/project_artifact_registry_overrides.json"
 
 SCAN_ROOTS = [
     "scripts",
@@ -67,9 +68,116 @@ KNOWN_WRAPPERS = {
     "subjectsAgentsProposal/files3/validate_claims.py",
 }
 
+RECORD_FIELDS = {
+    "artifact_id",
+    "artifact_type",
+    "path",
+    "status",
+    "canonicality",
+    "owner_role",
+    "used_by_agent_roles",
+    "task_tags",
+    "when_to_use",
+    "inputs",
+    "outputs",
+    "mutation_scope",
+    "gates",
+    "dependencies",
+    "example_invocation_or_query",
+    "validation_command",
+    "source_of_truth_ref",
+    "last_validated_at",
+}
+
+DEFAULT_OVERRIDES: Dict[str, Any] = {
+    "registry_id": "chrystallum_project_artifact_registry_overrides",
+    "version": f"{TODAY}-v1",
+    "status": "active",
+    "notes": [
+        "Prefix overrides apply first, then path overrides.",
+        "Use review_suppress_reasons and review_resolved to close known queue noise deterministically.",
+    ],
+    "prefix_overrides": [],
+    "path_overrides": {},
+}
+
 
 def to_posix(path: Path) -> str:
     return path.as_posix()
+
+
+def load_overrides(path: Path) -> Dict[str, Any]:
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(DEFAULT_OVERRIDES, indent=2), encoding="utf-8")
+        return dict(DEFAULT_OVERRIDES)
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload.setdefault("prefix_overrides", [])
+    payload.setdefault("path_overrides", {})
+    return payload
+
+
+def _merge_override(base: Dict[str, Any], patch: Dict[str, Any]) -> Dict[str, Any]:
+    merged = dict(base)
+    for key, value in patch.items():
+        if key in {"review_suppress_reasons", "review_note"}:
+            prior = merged.get(key)
+            if isinstance(prior, list) and isinstance(value, list):
+                merged[key] = sorted(set(prior + value))
+            elif value is not None:
+                merged[key] = value
+            continue
+        if key == "review_resolved":
+            merged[key] = bool(value)
+            continue
+        if key == "fields":
+            prior_fields = dict(merged.get("fields", {}))
+            incoming_fields = value if isinstance(value, dict) else {}
+            prior_fields.update(incoming_fields)
+            merged["fields"] = prior_fields
+            continue
+        merged[key] = value
+    return merged
+
+
+def effective_override(rel_path: str, overrides: Dict[str, Any]) -> Dict[str, Any]:
+    merged: Dict[str, Any] = {"fields": {}, "review_suppress_reasons": [], "review_resolved": False}
+    for entry in overrides.get("prefix_overrides", []):
+        prefix = str(entry.get("prefix", ""))
+        if prefix and rel_path.startswith(prefix):
+            merged = _merge_override(merged, entry)
+    by_path = overrides.get("path_overrides", {})
+    if rel_path in by_path and isinstance(by_path[rel_path], dict):
+        merged = _merge_override(merged, by_path[rel_path])
+    return merged
+
+
+def apply_override_fields(record: Dict[str, str], ov: Dict[str, Any]) -> Dict[str, str]:
+    fields = ov.get("fields", {})
+    if not isinstance(fields, dict):
+        return record
+    out = dict(record)
+    owner_changed = False
+    scope_changed = False
+    used_by_overridden = False
+    gates_overridden = False
+    for key, value in fields.items():
+        if key not in RECORD_FIELDS:
+            continue
+        out[key] = str(value)
+        if key == "owner_role":
+            owner_changed = True
+        elif key == "mutation_scope":
+            scope_changed = True
+        elif key == "used_by_agent_roles":
+            used_by_overridden = True
+        elif key == "gates":
+            gates_overridden = True
+    if owner_changed and not used_by_overridden:
+        out["used_by_agent_roles"] = used_by_roles(out["owner_role"], out["artifact_type"])
+    if scope_changed and not gates_overridden:
+        out["gates"] = infer_gates(out["mutation_scope"])
+    return out
 
 
 def should_skip(rel_path: str, path: Path) -> bool:
@@ -180,6 +288,8 @@ def classify_canonicality(rel_path: str, artifact_type: str) -> str:
 
 def classify_owner_role(rel_path: str, artifact_type: str) -> str:
     if artifact_type in {"pipeline_runner", "schema_cypher", "policy"}:
+        return "Pi"
+    if rel_path.startswith("Neo4j/schema/"):
         return "Pi"
     if rel_path.startswith("scripts/agents/") or rel_path.startswith("md/Agents/"):
         return "SCA"
@@ -388,8 +498,9 @@ def collect_files() -> Iterable[Tuple[str, Path]]:
             yield rel_path, path
 
 
-def build_records() -> List[Dict[str, str]]:
+def build_records(overrides: Dict[str, Any]) -> Tuple[List[Dict[str, str]], Dict[str, Dict[str, Any]]]:
     records: List[Dict[str, str]] = []
+    review_meta: Dict[str, Dict[str, Any]] = {}
     for rel_path, path in collect_files():
         artifact_type = classify_artifact_type(rel_path, path)
         status = classify_status(rel_path, path)
@@ -417,8 +528,15 @@ def build_records() -> List[Dict[str, str]]:
             "source_of_truth_ref": infer_source_of_truth(rel_path),
             "last_validated_at": TODAY,
         }
+        ov = effective_override(rel_path, overrides)
+        review_meta[rel_path] = {
+            "review_suppress_reasons": ov.get("review_suppress_reasons", []),
+            "review_resolved": bool(ov.get("review_resolved", False)),
+            "review_note": str(ov.get("review_note", "")),
+        }
+        record = apply_override_fields(record, ov)
         records.append(record)
-    return sorted(records, key=lambda row: row["path"])
+    return sorted(records, key=lambda row: row["path"]), review_meta
 
 
 def write_csv(records: List[Dict[str, str]], out_path: Path) -> None:
@@ -483,7 +601,9 @@ def write_guide(records: List[Dict[str, str]], out_path: Path) -> None:
     lines.append(f"- Generated: `{TODAY}`")
     lines.append(f"- Total artifacts indexed: `{len(records)}`")
     lines.append("- Source registry: `CSV/registry/project_artifact_registry.csv`")
+    lines.append("- Overrides: `JSON/registry/project_artifact_registry_overrides.json`")
     lines.append("- Review queue: `CSV/registry/project_artifact_registry_review_queue.csv`")
+    lines.append("- Decisions log: `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md`")
     lines.append("- Rebuild command: `python scripts/tools/build_project_artifact_registry.py`")
     lines.append("")
     lines.append("## Priority Entry Points")
@@ -527,12 +647,16 @@ def write_guide(records: List[Dict[str, str]], out_path: Path) -> None:
     out_path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
-def review_reasons(row: Dict[str, str]) -> List[str]:
+def review_reasons(row: Dict[str, str], meta: Dict[str, Any]) -> List[str]:
     reasons: List[str] = []
     low = row["path"].lower()
-    if row["status"] == "draft" and row["canonicality"] == "canonical":
+    if row["status"] == "draft" and row["canonicality"] == "canonical" and row["mutation_scope"] == "canonical_write":
         reasons.append("draft_in_canonical_path")
-    if row["artifact_type"] in {"script", "pipeline_runner", "schema_cypher"} and row["owner_role"] == "Platform":
+    if (
+        row["artifact_type"] in {"script", "pipeline_runner", "schema_cypher"}
+        and row["owner_role"] == "Platform"
+        and not row["path"].startswith(("scripts/reference/", "scripts/setup/", "scripts/ui/", "scripts/update_"))
+    ):
         reasons.append("executable_owned_by_platform")
     if row["artifact_type"] == "script" and row["mutation_scope"] == "read_only":
         write_tokens = ("ingest", "import", "load", "migrate", "seed", "create_", "update", "link_", "sync_")
@@ -540,13 +664,18 @@ def review_reasons(row: Dict[str, str]) -> List[str]:
             reasons.append("scope_may_be_underclassified")
     if row["path"].startswith("Facets/Scripts/"):
         reasons.append("legacy_script_path_needs_canonical_confirmation")
+    if meta.get("review_resolved"):
+        reasons = []
+    suppressed = set(meta.get("review_suppress_reasons", []) or [])
+    if suppressed:
+        reasons = [r for r in reasons if r not in suppressed]
     return reasons
 
 
-def write_review_queue(records: List[Dict[str, str]], out_path: Path) -> int:
+def write_review_queue(records: List[Dict[str, str]], review_meta: Dict[str, Dict[str, Any]], out_path: Path) -> List[Dict[str, str]]:
     queue_rows: List[Dict[str, str]] = []
     for row in records:
-        reasons = review_reasons(row)
+        reasons = review_reasons(row, review_meta.get(row["path"], {}))
         if not reasons:
             continue
         queue_rows.append(
@@ -576,27 +705,84 @@ def write_review_queue(records: List[Dict[str, str]], out_path: Path) -> int:
         )
         writer.writeheader()
         writer.writerows(sorted(queue_rows, key=lambda r: r["path"]))
-    return len(queue_rows)
+    return queue_rows
+
+
+def write_override_decisions(
+    overrides: Dict[str, Any],
+    queue_rows: List[Dict[str, str]],
+    out_path: Path,
+) -> None:
+    lines: List[str] = []
+    lines.append("# Project Artifact Registry Decisions")
+    lines.append("")
+    lines.append(f"- Date: `{TODAY}`")
+    lines.append("- Source overrides: `JSON/registry/project_artifact_registry_overrides.json`")
+    lines.append("- Generated queue: `CSV/registry/project_artifact_registry_review_queue.csv`")
+    lines.append(f"- Remaining review items: `{len(queue_rows)}`")
+    lines.append("")
+    lines.append("## Resolved Override Rules")
+    lines.append("")
+    prefix_rows = overrides.get("prefix_overrides", []) or []
+    if prefix_rows:
+        for item in prefix_rows:
+            prefix = item.get("prefix", "")
+            note = item.get("review_note", "")
+            fields = item.get("fields", {})
+            lines.append(f"- Prefix `{prefix}` -> fields={json.dumps(fields, ensure_ascii=True)}")
+            if note:
+                lines.append(f"  Note: {note}")
+    else:
+        lines.append("- None")
+    lines.append("")
+    lines.append("## Resolved Path Overrides")
+    lines.append("")
+    path_overrides = overrides.get("path_overrides", {}) or {}
+    if path_overrides:
+        for path, item in sorted(path_overrides.items()):
+            fields = item.get("fields", {})
+            note = item.get("review_note", "")
+            lines.append(f"- `{path}` -> fields={json.dumps(fields, ensure_ascii=True)}")
+            if note:
+                lines.append(f"  Note: {note}")
+    else:
+        lines.append("- None")
+    lines.append("")
+    lines.append("## Remaining Review Items")
+    lines.append("")
+    if queue_rows:
+        lines.append("| path | reasons |")
+        lines.append("|---|---|")
+        for row in sorted(queue_rows, key=lambda r: r["path"]):
+            lines.append(f"| `{row['path']}` | `{row['reasons']}` |")
+    else:
+        lines.append("- Queue is clear.")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
 def main() -> None:
-    records = build_records()
+    overrides = load_overrides(OVERRIDES_PATH)
+    records, review_meta = build_records(overrides)
     if not records:
         raise RuntimeError("No artifacts were indexed. Check scan roots and filters.")
     csv_path = REPO_ROOT / "CSV/registry/project_artifact_registry.csv"
     json_path = REPO_ROOT / "JSON/registry/project_artifact_registry.json"
     guide_path = REPO_ROOT / "md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md"
     review_path = REPO_ROOT / "CSV/registry/project_artifact_registry_review_queue.csv"
+    decisions_path = REPO_ROOT / "md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md"
     write_csv(records, csv_path)
     payload = write_json(records, json_path)
     write_guide(records, guide_path)
-    review_count = write_review_queue(records, review_path)
+    queue_rows = write_review_queue(records, review_meta, review_path)
+    write_override_decisions(overrides, queue_rows, decisions_path)
     print(f"indexed={len(records)}")
     print(f"csv={csv_path.as_posix()}")
     print(f"json={json_path.as_posix()}")
     print(f"guide={guide_path.as_posix()}")
     print(f"review_queue={review_path.as_posix()}")
-    print(f"review_items={review_count}")
+    print(f"decisions={decisions_path.as_posix()}")
+    print(f"review_items={len(queue_rows)}")
     print(f"by_type={payload['totals']['by_type']}")
 
 

@@ -1,6 +1,10 @@
 # Federation Impact Report: Chrystallum Data Targets
 
-## 1. 1. Wikidata (The Central Hub)
+Status: technical reference (federation catalog)
+Canonical architecture anchor: `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md`
+Governance anchor: `md/Architecture/ADR-002-Policy-Gate-and-Update-Operator-Separation.md`
+
+## 1. Wikidata (The Central Hub)
 
 ### 1.1. Role: Primary "Backbone"
 
@@ -124,7 +128,7 @@
 
 ###### 1.4.7.2.2. Pelagios Network
 
-## 2. 2. Pleiades (Gazetteer of Ancient World)
+## 2. Pleiades (Gazetteer of Ancient World)
 
 ### 2.1. Role: "Authority" for Ancient Places
 
@@ -202,7 +206,7 @@
 
 ###### 2.4.5.1.2. Peripleo (discovery engine)
 
-## 3. 3. Trismegistos (Epigraphic/Papyrological Hub)
+## 3. Trismegistos (Epigraphic/Papyrological Hub)
 
 ### 3.1. Role: "Authority" for Texts, Collections, People
 
@@ -302,7 +306,7 @@
 
 ###### 3.4.6.2.2. DDbDP
 
-## 4. 4. Epigraphic Database Heidelberg (EDH)
+## 4. Epigraphic Database Heidelberg (EDH)
 
 ### 4.1. Role: Source for Latin Inscriptions
 
@@ -388,7 +392,7 @@
 
 ###### 4.4.5.2.2. National Archaeology Services
 
-## 5. 5. VIAF (Virtual International Authority File)
+## 5. VIAF (Virtual International Authority File)
 
 ### 5.1. Role: "Authority" for People and Works
 
@@ -444,7 +448,7 @@
 
 ###### 5.4.3.2.2. ZDB (Zeitschriftendatenbank)
 
-##### 5.4.3.3. BnF (Bibliothèque nationale de France)
+##### 5.4.3.3. BnF (Bibliotheque nationale de France)
 
 ###### 5.4.3.3.1. Gallica
 
@@ -464,7 +468,7 @@
 
 ###### 5.4.4.2.2. Union Catalogues
 
-#### 5.4.5. BnF (Bibliothèque nationale de France)
+#### 5.4.5. BnF (Bibliotheque nationale de France)
 
 ##### 5.4.5.1. Gallica
 
@@ -535,3 +539,65 @@
 #### 6.5.2. Primary Entity Type: Modern Location
 
 #### 6.5.3. API Style: REST
+
+## 7. Governance Overlay (Mandatory Before Canonical Write)
+
+### 7.1. Canonical write policy
+
+#### 7.1.1. Federation harvest does not write canonical graph directly.
+
+#### 7.1.2. All mutation paths follow U -> Pi -> Commit.
+
+#### 7.1.3. Rejections are persisted with machine-readable reason codes.
+
+### 7.2. Required proposal artifact fields
+
+#### 7.2.1. source_system
+
+#### 7.2.2. source_uri
+
+#### 7.2.3. target_label
+
+#### 7.2.4. match_type
+
+#### 7.2.5. mapping_confidence
+
+#### 7.2.6. evidence
+
+#### 7.2.7. analysis_run_id
+
+#### 7.2.8. review_status
+
+### 7.3. Gate checks
+
+#### 7.3.1. Schema and policy conformance
+
+#### 7.3.2. Provenance completeness and run scope
+
+#### 7.3.3. Threshold and reviewer gate evaluation
+
+#### 7.3.4. Commit only approved candidates
+
+## 8. Implementation Status Snapshot (2026-02-18)
+
+### 8.1. Active adapters/scripts in repository
+
+#### 8.1.1. Wikidata discovery/profile pipeline in scripts/tools/wikidata_*
+
+#### 8.1.2. Pleiades ingest pipeline in scripts/backbone/geographic/
+
+### 8.2. Planned adapters (architecture-defined, not yet first-class scripts)
+
+#### 8.2.1. Trismegistos
+
+#### 8.2.2. EDH
+
+#### 8.2.3. VIAF
+
+#### 8.2.4. GeoNames
+
+### 8.3. Implementation guidance
+
+#### 8.3.1. Treat this document as a federation target catalog.
+
+#### 8.3.2. Use md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md for executable entry points.

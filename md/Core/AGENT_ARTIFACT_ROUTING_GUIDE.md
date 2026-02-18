@@ -3,9 +3,11 @@
 Status: generated first-pass routing index from active canonical folders.
 
 - Generated: `2026-02-18`
-- Total artifacts indexed: `270`
+- Total artifacts indexed: `271`
 - Source registry: `CSV/registry/project_artifact_registry.csv`
+- Overrides: `JSON/registry/project_artifact_registry_overrides.json`
 - Review queue: `CSV/registry/project_artifact_registry_review_queue.csv`
+- Decisions log: `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md`
 - Rebuild command: `python scripts/tools/build_project_artifact_registry.py`
 
 ## Priority Entry Points
@@ -26,7 +28,7 @@ Status: generated first-pass routing index from active canonical folders.
 - `Facets/COMMUNICATION_SFA_ONTOLOGY_METHODOLOGY.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
 - `Facets/FACETS_CONSOLIDATION_2026-02-12.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
 - `Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
-- `Facets/Scripts/period_facet_tagger.py` | type=`script` | scope=`read_only` | gates=`none`
+- `Facets/facet assessment - future.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
 
 ### `claims`
 - `JSON/policy/claim_confidence_policy_v1.json` | type=`policy` | scope=`read_only` | gates=`none`
@@ -50,7 +52,7 @@ Status: generated first-pass routing index from active canonical folders.
 - `CSV/registry/project_artifact_registry_review_queue.csv` | type=`registry` | scope=`read_only` | gates=`none`
 - `Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
 - `md/Core/Discipline.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
-- `md/Core/PROJECT_ARTIFACT_REGISTRY_TODO.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
+- `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md` | type=`architecture_doc` | scope=`read_only` | gates=`none`
 
 ### `geographic`
 - `md/Agents/geographic_extraction.md` | type=`prompt_or_agent_spec` | scope=`read_only` | gates=`none`
@@ -104,8 +106,8 @@ Status: generated first-pass routing index from active canonical folders.
 - `Neo4j/schema/05_temporal_hierarchy_levels.cypher` | type=`schema_cypher` | scope=`canonical_write` | gates=`dispatcher_gate|policy_gate|U->Pi->Commit`
 - `Neo4j/schema/11_event_period_claim_seed.cypher` | type=`schema_cypher` | scope=`canonical_write` | gates=`dispatcher_gate|policy_gate|U->Pi->Commit`
 - `Neo4j/schema/12_event_period_claim_verify.cypher` | type=`schema_cypher` | scope=`canonical_write` | gates=`dispatcher_gate|policy_gate|U->Pi->Commit`
-- `Facets/Scripts/period_facet_tagger.py` | type=`script` | scope=`read_only` | gates=`none`
 - `Facets/periods_with_facets.json` | type=`registry` | scope=`read_only` | gates=`none`
+- `md/Agents/temporal_extraction.md` | type=`prompt_or_agent_spec` | scope=`read_only` | gates=`none`
 
 ## Routing by Owner Role
 
