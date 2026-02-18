@@ -2956,3 +2956,44 @@ Week 4: Implement enrichment → Validate with test cases
   3. Run: `python scripts/agents/query_executor_agent_test.py claims`
   4. Verify claim nodes in graph: `MATCH (c:Claim) RETURN c`
 
+
+---
+
+## Session Update (2026-02-18) - Project Artifact Registry Bootstrap
+
+### Context
+User requested groundwork for agent-oriented project routing artifacts (scripts, SysML, schema, docs, and related file types) so SCA/SFA can deterministically find the right entry points.
+
+### Implemented
+- Added generator:
+  - `scripts/tools/build_project_artifact_registry.py`
+- Generated first-pass registry artifacts:
+  - `CSV/registry/project_artifact_registry.csv`
+  - `JSON/registry/project_artifact_registry.json`
+  - `md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md`
+- Indexed artifact count in first pass: **270**
+- Generated review queue:
+  - `CSV/registry/project_artifact_registry_review_queue.csv` (**44** items)
+- Added and updated tracking docs:
+  - `md/Core/PROJECT_ARTIFACT_REGISTRY_TODO.md` (progress + rebuild command)
+  - `md/Reference/REFERENCE_BACKLOG.md` (artifact-registry baseline status)
+
+### Registry Shape
+Each artifact row includes:
+- identity/type/path/status/canonicality
+- owner and consuming agent roles
+- task tags and usage triggers
+- input/output summaries
+- mutation scope + required gates
+- example invocation + validation command
+- source-of-truth reference and validation date
+
+### Current Limitations
+- First pass uses deterministic heuristics; some runtime entries still need curated overrides for:
+  - `owner_role`
+  - `mutation_scope`
+  - `gates`
+- Classifier is intentionally conservative (defaults to `read_only` where write intent is not explicit).
+
+### Rebuild
+- `python scripts/tools/build_project_artifact_registry.py`

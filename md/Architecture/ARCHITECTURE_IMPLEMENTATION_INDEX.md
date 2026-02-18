@@ -1,6 +1,6 @@
 # Chrystallum Architecture Implementation Index
 
-**Last Updated:** 2026-02-15  
+**Last Updated:** 2026-02-18  
 **Status:** Consolidated-Only Crosswalk (canonical)
 
 ---
@@ -57,7 +57,7 @@ Appendices remain part of the consolidated file, not separate source documents.
 | Consolidated section | Implementation assets | Notes |
 |---|---|---|
 | **Section 3: Entity Layer** | `Neo4j/schema/01_schema_constraints.cypher`, `Neo4j/schema/02_schema_indexes.cypher`, `Neo4j/schema/03_schema_initialization.cypher`, `Neo4j/schema/05_temporal_hierarchy_levels.cypher` | First-class node and temporal backbone model |
-| **Section 3.3: Facets** | `Facets/facet_registry_master.json`, `Facets/facet_registry_master.csv` | 17 facets including Communication (facet-only) |
+| **Section 3.3: Facets** | `Facets/facet_registry_master.json`, `Facets/facet_registry_master.csv` | 18 facets (biographic added), registry is canonical source |
 | **Section 3.4: Temporal Modeling** | `scripts/backbone/temporal/genYearsToNeo.py`, `scripts/backbone/temporal/migrate_temporal_hierarchy_levels.py`, `Neo4j/schema/05_temporal_hierarchy_levels.cypher` | Year->Decade->Century->Millennium hierarchy |
 | **Section 4: Subject Layer** | `scripts/backbone/subject/create_subject_nodes.py`, `Python/fast/scripts/import_fast_subjects_to_neo4j.py` | SubjectConcept authority alignment |
 | **Section 4.3: Temporal Authorities** | `Temporal/` assets, temporal scripts, PeriodO integration scripts (as available) | Authority alignment + uncertain date handling |
@@ -65,8 +65,9 @@ Appendices remain part of the consolidated file, not separate source documents.
 | **Section 4.4.1: Place/PlaceVersion (Chrystallum)** | `CHRYSTALLUM_PLACE_SEEDING_REQUIREMENTS.md`, `PLACE_VERSION_NEO4J_SCHEMA.cypher`, `CHRYSTALLUM_PHASE2_INTEGRATION.md` | Temporal-geographic modeling with boundary versioning (deferred to post-Phase-2 analysis) |
 | **Section 4.5: Wikidata Integration** | `scripts/tools/wikidata_fetch_all_statements.py`, `scripts/tools/wikidata_statement_datatype_profile.py`, `scripts/tools/wikidata_backlink_harvest.py`, `scripts/tools/wikidata_backlink_profile.py` | Federation + backlink pipeline |
 | **Section 4.5.1: CIDOC-CRM/CRMinf Alignment** | `CIDOC/cidoc_wikidata_mapping_validated.csv`, `scripts/agents/facet_agent_framework.py` (Step 4 methods), `STEP_4_COMPLETE.md` | Ontology alignment for museum/archive interoperability (105 mappings) |
+| **Section 4.5.2: KBpedia/KKO Overlay (proposal-only)** | `md/Architecture/ADR-003-KBpedia-Role-and-Boundaries.md`, `md/Architecture/KBPEDIA_MAPPING_CONFIDENCE_RUBRIC.md`, `CSV/kko_chrystallum_crosswalk.csv`, `scripts/tools/kko_mapping_proposal_loader.py` | Semantic typing overlay; scaffold/proposal only, no direct canonical mutation |
 | **Section 5: Agent Architecture** | `md/Agents/` prompts/specs, orchestration docs in `md/Architecture/` | Domain routing + specialization |
-| **Section 6: Claims Layer** | `Neo4j/schema/01_schema_constraints.cypher` (Claim constraints), claim proposal artifacts in `JSON/wikidata/proposals/` | claim_id + cipher + lifecycle |
+| **Section 6: Claims Layer** | `Neo4j/schema/01_schema_constraints.cypher` (Claim constraints), claim proposal artifacts in `JSON/wikidata/proposals/`, `md/Architecture/ADR-006-Claim-Confidence-Decision-Model.md`, `Neo4j/schema/17_policy_decision_subgraph_schema.cypher` | claim_id + cipher + lifecycle + deterministic confidence policy track + policy subgraph projection |
 | **Section 7: Relationship Layer** | `Relationships/relationship_types_registry_master.csv`, `CSV/project_p_values_canonical.csv` | canonical relation typing + P-value alignment |
 | **Section 8: Technology/Orchestration** | `Neo4j/IMPLEMENTATION_ROADMAP.md`, orchestration docs in `md/Architecture/` | runtime architecture |
 | **Section 8.6: Federation Dispatcher** | `scripts/tools/wikidata_backlink_harvest.py`, `Neo4j/FEDERATION_BACKLINK_STRATEGY.md` | route-by-datatype/value_type + gates |
@@ -104,6 +105,7 @@ Appendices remain part of the consolidated file, not separate source documents.
 - `Neo4j/schema/02_schema_indexes.cypher`
 - `Neo4j/schema/03_schema_initialization.cypher`
 - `Neo4j/schema/05_temporal_hierarchy_levels.cypher`
+- `Neo4j/schema/17_policy_decision_subgraph_schema.cypher`
 
 ### Federation tools
 - `scripts/tools/wikidata_fetch_all_statements.py`
@@ -111,6 +113,29 @@ Appendices remain part of the consolidated file, not separate source documents.
 - `scripts/tools/wikidata_backlink_harvest.py`
 - `scripts/tools/wikidata_backlink_profile.py`
 - `scripts/tools/wikidata_generate_claim_subgraph_proposal.py`
+- `scripts/backbone/geographic/download_pleiades_bulk.py`
+- `scripts/backbone/geographic/import_pleiades_to_neo4j.py`
+- `scripts/backbone/geographic/verify_pleiades_import.py`
+
+Federation adapter status:
+- Active: Wikidata, Pleiades
+- Planned/TODO (architecture-defined): Trismegistos, EDH, VIAF, GeoNames
+
+### KBpedia/KKO proposal-only mapping
+- `md/Architecture/ADR-003-KBpedia-Role-and-Boundaries.md`
+- `md/Architecture/KBPEDIA_MAPPING_CONFIDENCE_RUBRIC.md`
+- `CSV/kko_chrystallum_crosswalk.csv`
+- `scripts/tools/kko_mapping_proposal_loader.py`
+
+### Claim confidence decision model (policy-gate track)
+- `md/Architecture/ADR-006-Claim-Confidence-Decision-Model.md`
+- `JSON/policy/claim_confidence_policy_v1.json`
+- `scripts/tools/claim_confidence_policy_engine.py`
+- `scripts/tools/policy_subgraph_loader.py`
+- `Neo4j/schema/17_policy_decision_subgraph_schema.cypher`
+- existing claim pipeline paths to migrate from fixed thresholds:
+- `Neo4j/schema/14_claim_promotion_seed.cypher`
+- `Neo4j/schema/run_qid_pipeline.py`
 
 ### CIDOC-CRM/CRMinf Ontology Alignment (Step 4)
 - `CIDOC/cidoc_wikidata_mapping_validated.csv` (105 mappings)
@@ -126,6 +151,14 @@ Appendices remain part of the consolidated file, not separate source documents.
 - `Archive/STEP_4_COMPLETE_2026-02-15.md` (Ontology alignment)
 - `md/Reference/AGENT_SESSION_QUICK_REFERENCE.md` (Quick reference for all 28 methods)
 - `Prompts/facet_agent_system_prompts.json` (version 2026-02-15-step4)
+
+### Project Artifact Registry (SCA/SFA routing)
+- `scripts/tools/build_project_artifact_registry.py`
+- `CSV/registry/project_artifact_registry.csv`
+- `CSV/registry/project_artifact_registry_review_queue.csv`
+- `JSON/registry/project_artifact_registry.json`
+- `md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md`
+- `md/Core/PROJECT_ARTIFACT_REGISTRY_TODO.md`
 
 ### Canonical registries
 - `Relationships/relationship_types_registry_master.csv`
@@ -152,6 +185,10 @@ When architecture changes, update in this order:
 4. `AI_CONTEXT.md` and `Change_log.py`
 
 **Recent Updates:**
+- **2026-02-18:** Project artifact registry bootstrap added (generator + CSV/JSON snapshots + routing guide) for SCA/SFA/Pi entry-point routing
+- **2026-02-18:** Policy-subgraph projection path added (loader + Neo4j schema) for hash-pinned decision tables
+- **2026-02-18:** Claim confidence decision-model ADR added (`ADR-006`) for ordered single-hit policy-gate evaluation
+- **2026-02-18:** KBpedia/KKO overlay boundaries formalized (ADR-003), confidence rubric added, crosswalk seed + proposal-only loader added
 - **2026-02-15:** Step 4 complete (CIDOC-CRM/CRMinf ontology alignment integrated)
 - **2026-02-15:** Step 3.5 complete (Property pattern mining from 841 entities)
 - **2026-02-15:** Step 3 complete (Federation-driven discovery with Wikidata)

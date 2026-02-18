@@ -2933,3 +2933,29 @@ Guidelines:
 # Reason: Enable GitHub collaboration and document Git workflow for team members
 # Notes: Removed oversized files from history; Birthday.txt purged for secrets
 # ============================================================================== 
+
+# ==============================================================================
+# 2026-02-18 00:55 | Project Artifact Registry Bootstrap (SCA/SFA Routing)
+# ==============================================================================
+# Category: Capability, Docs, Governance
+# Summary: Implemented first-pass agent-facing artifact registry and routing guide
+# Files:
+#   - scripts/tools/build_project_artifact_registry.py
+#   - CSV/registry/project_artifact_registry.csv
+#   - CSV/registry/project_artifact_registry_review_queue.csv
+#   - JSON/registry/project_artifact_registry.json
+#   - md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md
+#   - md/Core/PROJECT_ARTIFACT_REGISTRY_TODO.md
+#   - md/Reference/REFERENCE_BACKLOG.md
+#   - md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md
+#   - AI_CONTEXT.md
+# Reason: Provide deterministic SCA/SFA/Pi artifact routing without relying on prompt memory.
+# Notes:
+#   - Indexed 270 artifacts across scripts, Neo4j schema runners/cypher, SysML contracts,
+#     architecture docs/ADRs, policy assets, registries, and diagrams.
+#   - Generated registry review queue: CSV/registry/project_artifact_registry_review_queue.csv (44 items).
+#   - Added registry fields for owner_role, mutation_scope, gates, usage triggers,
+#     invocation/validation hints, and source-of-truth references.
+#   - First pass is heuristic and conservative; curated overrides still needed for
+#     high-impact runtime entries (owner_role/scope/gates).
+# ============================================================================== 
