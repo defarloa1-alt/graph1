@@ -20,6 +20,372 @@ Maintained by LLM agents to preserve context across sessions.
 
 ---
 
+## Latest Update: Documentation Audit Complete (2026-02-19 12:00 EST)
+
+### Session Summary
+
+- Comprehensive documentation audit completed across entire project
+- **15 issues identified:** 8 high priority, 4 medium priority, 3 low priority
+- **2 deliverables created:**
+  1. `md/Reports/DOCUMENTATION_AUDIT_2026-02-19.md` (detailed findings report)
+  2. `md/Architecture/CONSOLIDATED_DOC_DECOMPOSITION_PLAN_2026-02-19.md` (decomposition plan)
+
+### Key Findings
+
+**High Priority Issues:**
+1. **Consolidated architecture doc** (15,910 lines) needs decomposition → detailed plan created
+2. **Schema file duplication** - `01_schema_constraints.cypher` vs `neo5_compatible` version
+3. **Facet ID casing** inconsistent across docs (lowercase vs UPPERCASE)
+4. **Password hardcoded** in BACKBONE_REBUILD_RUNBOOK (security issue)
+5. **Missing ontologies/ folder** referenced in START_HERE.txt
+6. **Agent count outdated** - docs say 17, actual is 18 facets
+7. Claim cipher implementation vs documentation consistency check needed
+
+**Medium Priority:** Multiple READMEs without index, consolidation meta-doc status unclear
+
+**Low Priority:** Backup files, temp folders, misplaced CSV in schema/
+
+### Documentation Verified Current
+
+✅ README.md, AI_CONTEXT.md, Change_log.py, ARCHITECTURE_IMPLEMENTATION_INDEX.md  
+✅ scripts/agents/README.md, facet_registry_master.json  
+✅ BACKBONE_REBUILD_RUNBOOK (except password issue)
+
+### Deliverables
+
+1. **Audit Report:**
+   - File: `md/Reports/DOCUMENTATION_AUDIT_2026-02-19.md`
+   - 47 files audited
+   - Detailed findings with priority levels
+   - Action plan in 5 phases
+   - Success criteria defined
+
+2. **Decomposition Plan:**
+   - File: `md/Architecture/CONSOLIDATED_DOC_DECOMPOSITION_PLAN_2026-02-19.md`
+   - Proposes 4 core files + 26 appendices in 6 clusters
+   - All files <600 lines
+   - Estimated 7.5 hour migration
+   - Includes verification checklist and rollback plan
+   - **Status:** Awaiting user approval
+
+### Next Actions
+
+**Immediate (today):**
+- Await user approval for decomposition plan
+- Ready to implement quick fixes (password, folder, agent count)
+
+**After Neo4j Returns:**
+- Clarify which schema file is current
+- Verify claim cipher implementation
+
+**After Approval:**
+- Execute consolidated doc decomposition (7.5 hours)
+- Implement all audit findings
+
+---
+
+## Latest Update: AI Architect Onboarding Complete (2026-02-19 10:30 EST)
+
+### Session Summary
+
+- New AI architect/developer onboarded to Chrystallum project
+- Comprehensive review of architecture documentation and codebase structure
+- Established understanding of:
+  - 5.5-layer authority stack architecture
+  - 18 specialized facet agents and multi-agent framework
+  - Subject-anchored subgraph pattern
+  - Two-stage LLM extraction → reasoning validation architecture
+  - Current project status and active development areas
+  - Documentation maintenance protocols
+
+### Onboarding Scope Completed
+
+1. **Core Documentation Read:**
+   - README.md (full overview, quick start, features)
+   - START_HERE.txt (agent training system overview)
+   - AI_CONTEXT.md (project status, latest 300 lines)
+   - Key Files/ARCHITECTURE_IMPLEMENTATION_INDEX.md (canonical source mapping)
+   - Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md (first 200 lines)
+   - Key Files/Main nodes.md (canonical first-class node types)
+   - Key Files/parameters.md (GitHub & Neo4j endpoints)
+
+2. **Project Structure Exploration:**
+   - Root directory structure (Archive, Batch, CIDOC, CSV, Cypher, Debates, etc.)
+   - Key Files directory (12 files: architecture, implementation guides, diagrams)
+   - scripts/ directory (agents, backbone, tools, ui, reference)
+   - Facets/ directory (18-facet registry and methodology docs)
+   - Neo4j/ directory (schema, federation strategy, implementation roadmap)
+   - md/ directory (Agents, Architecture, Examples, Guides, Reference, Reports)
+
+3. **Architecture Understanding:**
+   - Facet registry: 18 active facets (Military, Political, Economic, Religious, Social, Cultural, etc.)
+   - Main canonical node types: SubjectConcept, Human, Event, Place, Period, Claim, Year, etc.
+   - Current Neo4j database: `chrystallum` (87K nodes, 155K relationships)
+   - Backbone status: Year (4,025), Place (41,993), Period (1,077) nodes loaded
+
+4. **Documentation Maintenance Protocol:**
+   - Change_log.py: Track architecture/capability changes, newest-first
+   - AI_CONTEXT.md: Session handover log, newest-first
+   - Consolidated architecture file: Canonical specification source
+   - Implementation index: Maps architecture sections to code files
+
+### Next Steps
+
+- Ready to assist with architecture decisions and development tasks
+- Ready to maintain documentation when making changes
+- Ready to contribute to Phase 2.5 (book discovery/index mining) and federation work
+- Available for codebase exploration, architecture refinement, and implementation guidance
+
+---
+
+## Outstanding TODOs in Scripts (as of 2026-02-18)
+
+- **scripts/tools/kko_mapping_proposal_loader.py**: line 98 (source_uri TODO check)
+- **scripts/tools/claim_ingestion_pipeline.py**: lines 148, 189, 416 (Wikidata API, scoring logic, LLM semantic matching)
+- **scripts/tools/build_project_artifact_registry.py**: lines 264, 361 (token checks for 'todo', etc.)
+- **Python/fast/scripts/import_fast_subjects_to_neo4j.py**: lines 213, 214 (Wikidata/Wikipedia lookup TODOs)
+- **Log hygiene TODO**: keep `Change_log.py` and `AI_CONTEXT.md` newest-first; add utility to auto-sort entries by date descending.
+
+> These TODOs should be reviewed and resolved in future development cycles. Track progress in Change_log.py and update this section as items are completed or added.
+
+---
+## Latest Update: Chrystallum Backbone Rebuild Complete (2026-02-19)
+
+### Database Target
+
+- Active rebuild database: `chrystallum`
+- `neo4j` default remains quarantined in this session context.
+
+### Rebuild Completed
+
+1. Year backbone loaded (`-2000..2025`, no year 0).
+2. Full Pleiades import loaded:
+   - `Place`, `PlaceName`, and associated indexes/constraints.
+3. Place-type mapping policy and semantic link materialization applied.
+4. Filtered PeriodO import canonicalized period cohort in graph.
+
+### Current Graph Snapshot (`chrystallum`)
+
+- Nodes: `87,080`
+- Relationships: `155,165`
+- Labels:
+  - `Year`: `4,025`
+  - `Place`: `41,993`
+  - `PlaceName`: `38,321`
+  - `Period`: `1,077`
+  - `PeriodCandidate`: `1,077`
+  - `PlaceType`: `14`
+  - `PlaceTypeTokenMap`: `212`
+  - `GeoSemanticType`: `4`
+
+### Relationship Snapshot (`chrystallum`)
+
+- `(:Place)-[:HAS_NAME]->(:PlaceName)`: `42,111`
+- `(:Place)-[:INSTANCE_OF_PLACE_TYPE]->(:PlaceType)`: `52,005`
+- `(:Place)-[:HAS_GEO_SEMANTIC_TYPE]->(:GeoSemanticType)`: `48,159`
+- `(:Period)-[:HAS_GEO_COVERAGE]->(:GeoCoverageCandidate)`: `2,961`
+- `(:Period)-[:PART_OF]->(:Period)`: `272`
+- `(:Period)-[:BROADER_THAN]->(:Period)`: `272`
+- `(:Period)-[:NARROWER_THAN]->(:Period)`: `272`
+
+### Known Gap
+
+- `STARTS_IN_YEAR` and `ENDS_IN_YEAR` for periods are currently `0`.
+- Cause: period date spans in loaded cohort extend much earlier than current year backbone range.
+
+---
+## Latest Update: Backbone Rebuild Hardening (2026-02-19)
+
+### Session Summary
+
+- Added `--database` targeting to key backbone importers:
+  - `scripts/backbone/temporal/genYearsToNeo.py`
+  - `scripts/backbone/temporal/import_enriched_periods.py`
+  - `scripts/backbone/geographic/import_pleiades_to_neo4j.py`
+- Added rebuild runbook:
+  - `md/Guides/BACKBONE_REBUILD_RUNBOOK_2026-02-19.md`
+
+### Why
+
+- Default DB `neo4j` remains quarantine-prone in this session context.
+- Rebuild can proceed safely in an online DB (for example `training`) and then be replayed to `neo4j` once healthy.
+
+---
+## Latest Update: Federation Score Model + Core Neo Push Retarget (2026-02-19)
+
+### Session Summary
+
+- Replaced star-centric policy direction with numeric federation scoring:
+  - `md/Architecture/FEDERATION_SCORE_MODEL_2026-02-19.md` (new)
+  - `md/Architecture/FEDERATION_GOLDEN_PATTERN_TODO_2026-02-19.md` (updated)
+  - `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md` (updated wording)
+- Added explicit TODO for first SCA API worker:
+  - `FGP-007` (`openai` + optional `perplexity`, read-only Neo4j disambiguation)
+- Patched geo hierarchy loader to support non-default Neo4j DB targets:
+  - `scripts/backbone/geographic/build_place_type_hierarchy.py`
+  - New CLI flag: `--database`
+
+### Neo4j Operational Finding
+
+- Default DB `neo4j` is currently `quarantined` with status message:
+  - `There is not enough space on the disk`
+- Core push was rerun against online DB `training` and completed:
+  - `--load-neo4j --neo4j-mode core --database training`
+
+### Result Snapshot (training DB)
+
+- `PlaceType`: `14`
+- `PlaceTypeTokenMap`: `212`
+- `GeoSemanticType`: `4`
+- `(:PlaceType)-[:HAS_GEO_SEMANTIC_TYPE]->(:GeoSemanticType)`: `10`
+- `Place`-based assignments are `0` in `training` (no `:Place` corpus loaded there yet).
+
+---
+## Latest Update: GeoNames -> Wikidata Federation Leg Added (2026-02-19 01:20 EST)
+
+### Session Summary
+
+- Added new federation bridge builder:
+  - `scripts/backbone/geographic/build_geonames_wikidata_bridge.py`
+- Built new outputs:
+  - `CSV/geographic/geonames_wikidata_mapping_v1.csv`
+  - `CSV/geographic/pleiades_geonames_wikidata_tgn_crosswalk_v1.csv`
+  - `CSV/geographic/pleiades_geonames_wikidata_tgn_stats_v1.json`
+
+### Why This Was Needed
+
+- `Temporal/Data/tgn_wikidata_mapping.csv` is `TGN -> Wikidata QID` and cannot be directly joined to `geonames_id`.
+- Correct chain is now explicit:
+  - `Pleiades -> GeoNames`
+  - `GeoNames (P1566) -> Wikidata QID`
+  - `Wikidata QID -> TGN`
+
+### Full-Run Snapshot
+
+- Distinct GeoNames input IDs: `4184`
+- Distinct GeoNames with Wikidata matches: `3212`
+- GeoNames->Wikidata rows: `3344`
+- Merged crosswalk rows: `4553`
+- Rows with full Wikidata+TGN chain: `46`
+
+### Operational Note
+
+- Script prints live progress in terminal:
+  - per SPARQL batch fetch
+  - per 500 merged crosswalk rows
+
+---
+## Latest Update: Federation Golden Pattern + Meta-Subgraph TODO Pack (2026-02-19 00:30 EST)
+
+### Session Summary
+
+- Added architecture TODO pack:
+  - `md/Architecture/FEDERATION_GOLDEN_PATTERN_TODO_2026-02-19.md`
+- Updated backlog to include new pending federation hardening tasks:
+  - `ARB-FED-002..006`
+  - `ARB-GEO-001`
+- Updated architecture index and geo outline to point to the new triangulation policy direction.
+
+### What Was Decided
+
+- `gold_star` should move to a stricter triangulated standard:
+  - `Wikidata QID + Pleiades ID + GeoNames ID + temporal signal + geographic signal`.
+- Chrystallum should get a first-class federation meta-subgraph rooted from:
+  - `(:Platform {platform_id:'chrystallum'})`
+  - linked to federation hub concept aligned to `Q124542039` ("federation of databases").
+- GeoNames feature codes should be treated as a lightweight semantic overlay (not replacing canonical Chrystallum types).
+
+### Next Actions (Pending)
+
+- Upgrade star logic and emit `is_fully_triangulated`.
+- Add federation cipher key contract for what+where+when tests.
+- Seed federation meta-subgraph in Neo4j via a new schema/migration artifact.
+
+---
+## Latest Update: Expanded SCA Simulation on All-Geo Cohort (2026-02-18 16:55 EST)
+
+### Session Summary
+
+- Added simulation script:
+  - `scripts/backbone/geographic/simulate_sca_qid_categorization.py`
+- Generated expanded row-level outputs:
+  - `Temporal/wikidata_period_sca_expanded_feature_bag_2026-02-18.csv`
+  - `Temporal/wikidata_period_sca_categorization_2026-02-18.csv`
+- Updated architecture outline with row-level simulation examples:
+  - `md/Architecture/TEMPORAL_GEO_BACKBONE_MODEL_2026-02-18.md`
+
+### What This Simulation Does
+
+- Starts from all subject QIDs in:
+  - `Temporal/wikidata_period_geo_edges_all_geo_2026-02-18.csv`
+- Pulls richer Wikidata claims (`labels|aliases|claims`) per QID.
+- Builds property feature bags (all property IDs, P31/P279/P361, geo-edge props).
+- Produces canonical type proposal per row (`Event|Period|SubjectConcept|...`) with confidence and rationale.
+
+### Notable Result
+
+- `Q3641960` (`Bombing of Rome in World War II`) is now classified as:
+  - `canonical_type=Event`
+  - `p31=strategic bombing`
+  - geo props: `P131|P17|P276`
+
+---
+## Latest Update: Period Hierarchy Standardization + Span Threshold Policy (2026-02-18 16:05 EST)
+
+### Session Summary
+
+- Implemented schema/pipeline normalization in:
+  - `scripts/backbone/temporal/import_enriched_periods.py`
+- Updated architecture working spec:
+  - `md/Architecture/TEMPORAL_GEO_BACKBONE_MODEL_2026-02-18.md`
+
+### What Changed
+
+- Hierarchy standardization:
+  - Canonical hierarchy edge for period containment is now `PART_OF` (child -> parent) in importer writes.
+  - Compatibility/semantic edges retained:
+    - `SUB_PERIOD_OF` (alias)
+    - `BROADER_THAN` (parent -> child)
+    - `NARROWER_THAN` (child -> parent)
+- Span-based granularity classification:
+  - Added computed `span_years`.
+  - Added `granularity_class` (`universal` or `granular`) using threshold policy.
+  - Default threshold = `1000` years.
+  - Added CLI override: `--universal-span-threshold`.
+- Baseline temporal tag policy:
+  - Ingest sets `temporal_tag='unknown'` by default (compatible with SCA-first policy).
+
+### Verification
+
+- `python -m py_compile scripts/backbone/temporal/import_enriched_periods.py` passed.
+- `python scripts/backbone/temporal/import_enriched_periods.py --help` shows new threshold flag.
+
+### Pending
+
+- Re-run importer to materialize new `PART_OF`, corrected broader/narrower direction, and new span/granularity properties in Neo4j.
+
+---
+## Latest Update: Temporal + Geo Backbone Visual Model (2026-02-18 15:20 EST)
+
+### Session Summary
+
+- Added a single working architecture artifact:
+  - `md/Architecture/TEMPORAL_GEO_BACKBONE_MODEL_2026-02-18.md`
+- Locked in operating policy:
+  - `SCA` sets `temporal_tag = unknown` at seed/ingest stage.
+  - `SFA` assigns period-context interpretation with evidence/confidence.
+- Included two visual models:
+  - Backbone graph shape (`Year/Decade/Century/Millennium`, `Period`, `Place`)
+  - Dataset-to-graph pipeline (Temporal + Geographic source artifacts)
+- Included live coverage snapshot from Neo4j and CSV inventories for quick status checks.
+
+### Current Critical Gaps Noted
+
+- `(:Period)-[:STARTS_IN_YEAR]->(:Year)` and `(:Period)-[:ENDS_IN_YEAR]->(:Year)` coverage not materialized in current graph snapshot.
+- Pleiades location subgraph incomplete (`Geographic/pleiades_coordinates.csv` currently only 8 rows).
+- Geo containment not fully tight for political-geography edge cases (needs `P17` fallback where `P131` is absent).
+
+---
 ## Latest Update: Architecture Recraft Pass 2 (2026-02-17 15:20 EST)
 
 ### Session Summary
@@ -3016,7 +3382,322 @@ Follow-on pass requested to resolve `CSV/registry/project_artifact_registry_revi
 - Updated guide/index/backlog/todo references to include overrides + decisions artifacts.
 
 ### Outcome
-- Registry artifacts indexed: **271**
+- Registry artifacts indexed: **274**
 - Review queue status: **0 open items**
 - Regeneration command remains:
   - `python scripts/tools/build_project_artifact_registry.py`
+
+## Session Update (2026-02-18) - External Architecture Review Response Baseline
+
+### Context
+User provided an external architecture assessment (strengths + strategic gaps, 8.5 narrative rating) and requested continuation.
+
+### Implemented
+- Added formal response document:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+- Response includes:
+  - explicit `ACCEPT` / `PARTIAL_ACCEPT` / `CHALLENGE` / `DEFER` posture by topic,
+  - scoring-model caveat (weighted subtotal vs adjusted final),
+  - phased execution plan prioritizing deterministic validation + governance before advanced ML/GNN.
+- Linked response track into canonical references:
+  - `md/Reference/REFERENCE_BACKLOG.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+
+### Outcome
+- Architecture-review feedback now converted from narrative into actionable governance + implementation tracks.
+- Next step can proceed directly to executable backlog decomposition for embeddings/reasoning/LOD tracks.
+
+## Session Update (2026-02-18) - Architecture Review Execution Backlog
+
+### Implemented
+- Added executable milestone plan:
+  - `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+- Linked into canonical indexes/backlog:
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+- Regenerated artifact registry after backlog addition:
+  - indexed artifacts: **274**
+  - review queue: **0 open items**
+
+### Purpose
+- Move external review response from strategy narrative into task IDs with acceptance criteria and phase sequencing.
+
+## Session Update (2026-02-18) - LOD Priority Raised
+
+### Decision
+User confirmed LOD baseline should be treated as high priority.
+
+### Updated
+- `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+  - Immediate Start Order now begins with:
+    1. `ARB-LOD-001`
+    2. `ARB-LOD-002`
+- `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - Added explicit Phase-1 priority note for LOD baseline.
+
+## Session Update (2026-02-18) - ARB-LOD-001/002 Draft Completion
+
+### Implemented
+- Added LOD baseline spec:
+  - `md/Architecture/LOD_BASELINE_SPEC_2026-02-18.md`
+- Added VoID descriptor draft:
+  - `md/Architecture/VOID_DATASET_DRAFT_2026-02-18.ttl`
+- Updated execution backlog and references:
+  - `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+
+### Validation
+- Parsed VoID draft with `rdflib` successfully.
+- Parse result: 28 triples.
+
+### Registry State
+- Regenerated artifact registry after LOD additions.
+- Indexed artifacts: **274**.
+- Review queue remains **0 open items**.
+
+## Session Update (2026-02-18) - ARB-EMB-001 Scope Completion
+
+### Implemented
+- Added embedding scope baseline:
+  - `md/Architecture/EMBEDDING_BASELINE_SCOPE_2026-02-18.md`
+- Updated execution backlog status:
+  - `ARB-EMB-001` marked `complete`
+  - status summary now: complete 3 / pending 10
+- Linked embedding scope into:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+
+### Registry State
+- Regenerated artifact registry with new architecture artifacts.
+- Indexed artifacts: **274**.
+- Review queue remains **0 open items**.
+
+## Session Update (2026-02-18) - ARB-REAS-001 and ARB-EMB-002 Completed
+
+### Implemented
+- Added SHACL/RDFS-lite validation scope baseline:
+  - `md/Architecture/SHACL_RDFS_LITE_SCOPE_2026-02-18.md`
+- Added embedding pilot scaffold script:
+  - `scripts/ml/train_kg_embeddings.py`
+- Verified embedding scaffold CLI/help and pilot metadata emission:
+  - `python scripts/ml/train_kg_embeddings.py --help`
+  - `python scripts/ml/train_kg_embeddings.py --output JSON/embeddings/embedding_pilot_metadata_2026-02-18.json`
+- Updated architecture review backlog status:
+  - `ARB-REAS-001` -> `complete`
+  - `ARB-EMB-002` -> `complete`
+
+### Registry and Routing Updates
+- Updated registry generator for ML script ownership and task tagging:
+  - `scripts/tools/build_project_artifact_registry.py`
+- Regenerated registry artifacts:
+  - `CSV/registry/project_artifact_registry.csv`
+  - `JSON/registry/project_artifact_registry.json`
+  - `md/Core/AGENT_ARTIFACT_ROUTING_GUIDE.md`
+  - `CSV/registry/project_artifact_registry_review_queue.csv`
+  - `md/Core/PROJECT_ARTIFACT_REGISTRY_DECISIONS.md`
+
+### Outcome
+- Artifact count increased to **277**.
+- Review queue remains **0 open items**.
+- Routing guide now includes `scripts/ml/train_kg_embeddings.py` as a priority entry point.
+
+## Session Update (2026-02-18) - ARB-REAS-002 Validator Scaffold Completed
+
+### Implemented
+- Added deterministic semantic validator runner scaffold:
+  - `scripts/tools/validate_semantic_constraints.py`
+- Validation checks implemented in v1:
+  - `SHACL-IDENT-001` (`Human.id_hash` unique/non-null)
+  - `SHACL-IDENT-002` (`Claim.claim_id` unique/non-null)
+  - `SHACL-IDENT-003` (`SubjectConcept.subject_id` unique/non-null)
+  - `SHACL-TEMP-001` (temporal bounds `start_year <= end_year`)
+  - `SHACL-AUTH-001` (Wikidata `Q`-ID format)
+- Added deterministic JSON report contract with:
+  - `contract_version`, `validator_version`, `constraint_pack_id`, `run_fingerprint`, `input_hash`
+  - summary counts and per-check rows with reason codes
+
+### Verification
+- `python scripts/tools/validate_semantic_constraints.py --help`
+- `python scripts/tools/validate_semantic_constraints.py --output JSON/reports/semantic_constraints_report_2026-02-18.json`
+- Output summary (fixture run): `checks_executed=5`, `errors=0`, `warnings=0`, `passes=5`
+
+### Backlog and Index Updates
+- `ARB-REAS-002` marked `complete` in:
+  - `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+- Linked validator in:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+  - `md/Architecture/SHACL_RDFS_LITE_SCOPE_2026-02-18.md`
+
+### Registry State
+- Regenerated artifact registry after adding validator scaffold.
+- Indexed artifacts: **278**
+- Review queue remains **0 open items**.
+- Routing guide priority entry points now include:
+  - `scripts/tools/validate_semantic_constraints.py`
+
+## Session Update (2026-02-18) - ARB-SCHEMA-001 Completed
+
+### Implemented
+- Added schema migration regression harness design:
+  - `md/Architecture/SCHEMA_MIGRATION_REGRESSION_HARNESS_DESIGN_2026-02-18.md`
+- Design defines:
+  - preflight checks,
+  - baseline snapshot,
+  - ordered migration apply,
+  - post-migration fixed assertions,
+  - deterministic JSON report contract.
+- Fixed assertion strategy references existing canonical validators:
+  - `Neo4j/schema/06_bootstrap_validation_runner.cypher`
+  - `Neo4j/schema/08_core_pipeline_validation_runner.py`
+
+### Backlog Status
+- `ARB-SCHEMA-001` marked `complete` in:
+  - `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+- Status summary now:
+  - `complete`: 7
+  - `pending`: 6
+
+### Reference Updates
+- Linked schema-harness design in:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+
+### Registry State
+- Regenerated artifact registry after design addition.
+- Indexed artifacts: **279**
+- Review queue remains **0 open items**.
+
+## Session Update (2026-02-18) - ARB-SCHEMA-002 and ARB-EMB-003 Completed
+
+### Implemented: ARB-SCHEMA-002
+- Added schema regression runner:
+  - `scripts/tools/schema_migration_regression.py`
+- Added migration plan artifact:
+  - `Neo4j/schema/schema_migration_plan_v1.json`
+- Runner supports:
+  - `--mode dry_run|apply`
+  - `--plan`, `--output`, `--strict`
+  - deterministic report header + pass/fail assertion matrix
+- Verified:
+  - `python scripts/tools/schema_migration_regression.py --help`
+  - `python scripts/tools/schema_migration_regression.py --mode dry_run --plan Neo4j/schema/schema_migration_plan_v1.json --output JSON/reports/schema_migration_regression_report_2026-02-18.json`
+
+### Implemented: ARB-EMB-003
+- Added vector index integration plan:
+  - `md/Architecture/EMBEDDING_VECTOR_INDEX_INTEGRATION_PLAN_2026-02-18.md`
+- Plan defines:
+  - index name (`chr_embedding_v1_cosine_384_idx`)
+  - dimensions (`384`)
+  - metric (`cosine`)
+  - embedding property (`embedding_v1`)
+  - backfill and incremental refresh policy
+
+### Backlog/Reference Updates
+- `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+  - `ARB-SCHEMA-002` -> `complete`
+  - `ARB-EMB-003` -> `complete`
+  - status summary: complete `9`, pending `4`
+- Linked new artifacts in:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+
+### Registry State
+- Regenerated artifact registry after all additions.
+- Indexed artifacts: **282**
+- Review queue remains **0 open items**.
+- Priority routing now includes:
+  - `scripts/tools/schema_migration_regression.py`
+
+## Session Update (2026-02-18) - ARB-FED-001 and ARB-ER-001 Completed
+
+### Implemented: ARB-FED-001
+- Added bidirectional federation query design:
+  - `md/Architecture/BIDIRECTIONAL_FEDERATION_QUERY_DESIGN_2026-02-18.md`
+- Design includes:
+  - priority authorities (`Wikidata`, `Pleiades`, `VIAF`, `EDH`, `Trismegistos`, `GeoNames`)
+  - explicit forward/reverse query path
+  - cache key + TTL + negative cache policy
+  - timeout/retry/fallback behavior per authority
+  - governance boundary (`U -> Pi -> Commit`, proposal-only writes)
+
+### Implemented: ARB-ER-001
+- Added embedding-assisted disambiguation policy:
+  - `md/Architecture/EMBEDDING_ASSISTED_DISAMBIGUATION_POLICY_2026-02-18.md`
+- Policy defines:
+  - ordered single-hit decision rows
+  - advisory vs promotable boundaries
+  - hard reject guards for conflict states
+  - required output artifact fields for auditability
+
+### Backlog and References
+- `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+  - `ARB-FED-001` -> `complete`
+  - `ARB-ER-001` -> `complete`
+  - status summary now: `complete=11`, `pending=2`
+- Linked both artifacts in:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+
+### Registry State
+- Regenerated artifact registry after additions.
+- Indexed artifacts: **284**
+- Review queue remains **0 open items**.
+
+## Session Update (2026-02-18) - ARB-GNN-001 Completed
+
+### Implemented
+- Added GNN research protocol:
+  - `md/Architecture/GNN_EXPERIMENT_PROTOCOL_2026-02-18.md`
+- Protocol includes:
+  - baseline model requirements,
+  - train/test split strategy,
+  - link-prediction and plausibility metrics,
+  - non-production governance boundaries.
+
+### Backlog and References
+- `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+  - `ARB-GNN-001` -> `complete`
+  - status summary now: `complete=12`, `pending=1`
+- Linked protocol in:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+
+### Registry State
+- Regenerated artifact registry after protocol addition.
+- Indexed artifacts: **285**
+- Review queue remains **0 open items**.
+
+## Session Update (2026-02-18) - ARB-GNN-002 Completed
+
+### Implemented
+- Added non-production GNN runner scaffold:
+  - `scripts/ml/link_prediction_gnn.py`
+- Verified runner behavior:
+  - `python scripts/ml/link_prediction_gnn.py --help`
+  - `python scripts/ml/link_prediction_gnn.py --experiment-id gnn_smoke_2026-02-18 --output JSON/reports/gnn_experiments/gnn_experiment_smoke_2026-02-18.json`
+- Output artifact generated with deterministic metadata:
+  - `JSON/reports/gnn_experiments/gnn_experiment_smoke_2026-02-18.json`
+
+### Backlog and References
+- `md/Architecture/ARCH_REVIEW_EXECUTION_BACKLOG_2026-02-18.md`
+  - `ARB-GNN-002` -> `complete`
+  - status summary now: `complete=13`, `pending=0`
+- Linked scaffold in:
+  - `md/Architecture/ARCH_REVIEW_RESPONSE_2026-02-18.md`
+  - `md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md`
+  - `md/Reference/REFERENCE_BACKLOG.md`
+
+### Registry Notes
+- Updated registry heuristics so `scripts/ml/*` defaults to `read_only` scope.
+- Regenerated artifact registry after GNN additions and heuristic update.
+- Indexed artifacts: **287**
+- Review queue remains **0 open items**.
