@@ -81,6 +81,15 @@
 
 ## Done
 
+- [x] **Property→Facet Mapping System** ✅ COMPLETE (2026-02-22)
+  - **500 properties mapped to 18 facets**
+  - **100% coverage** (hybrid: deterministic + Claude)
+  - **86.6% high confidence**
+  - Validation framework with backlink verification
+  - Main file: CSV/property_mappings/property_facet_mapping_HYBRID.csv
+  - Delivered by: Code Review Agent
+  - **Impact:** Enables intelligent property routing, facet determination, agent coordination
+
 - [x] **🎉 MAJOR MILESTONE: Graph Connectivity Transformation** ✅ (2026-02-22)
   - **784 → 20,091 edges** (25.6x improvement!)
   - **81.7% → 99.9% connectivity**
@@ -124,6 +133,7 @@
 - **Connectivity:** 99.9% ✅
 - **Edge Types:** 672 (Wikidata PIDs)
 - **Avg edges/entity:** 16.02 (was 0.30)
+- **Property Mappings:** 500/500 to facets (100%) ✅
 
 **Progress:**
 - Graph connectivity: 99.9% ✅ EXCELLENT
