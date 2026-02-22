@@ -1,0 +1,130 @@
+# Q300887 | Aalenian
+
+## Item labels
+- `af`: Aalenium
+- `ar`: الأليني
+- `ast`: Aalenianu
+- `az`: Aalen mərtəbəsi
+- `ca`: Aalenià
+- `de`: Aalenium
+- `en`: Aalenian
+- `es`: Aaleniense
+- `et`: Aaleni lade
+- `eu`: Aaleniar
+- `fa`: آلنین
+- `fr`: Aalénien
+- `gl`: Aaleniano
+- `hu`: aaleni
+- `id`: Aalenium
+- `it`: Aaleniano
+- `ja`: アーレニアン
+- `kk`: Аален ярусы
+- `ko`: 알렌절
+- `la`: Aalenium
+- `nl`: Aalenien
+- `nn`: aalen
+- `oc`: Aalenian
+- `pl`: aalen
+- `pt`: Aaleniano
+- `ro`: Aalenian
+- `ru`: ааленский ярус
+- `scn`: Aalinianu
+- `sh`: Alen
+- `sk`: Aalen (geológia)
+- `sl`: alenij
+- `tk`: Aalen ýarusy
+- `tr`: Alenian
+- `ug-latn`: Alen jarēsē
+- `uk`: Ааленський ярус
+- `vi`: Tầng Aalen
+- `zh`: 阿連期
+
+## Item aliases
+- `de`: Aalénien
+- `en`: Aalenian Age, Aalenian Stage
+- `es`: Aaleniano, piso Aaleniense, edad Aaleniense
+- `et`: Aaleni ladejärk
+- `eu`: Aleniar
+- `fr`: Aalenien
+- `ja`: アーレニウム
+- `nl`: Aalenian, Aaleniaan
+- `nn`: aalenium
+- `pt`: Aaleniana
+- `ru`: ааленский век, аален
+- `scn`: Alinianu
+- `sh`: Aalenij, Ален
+- `sl`: alen
+- `uk`: Ааленський вік і ярус, Ааленський вік, Аленський ярус
+
+## Properties
+- `P17` | country | count=1
+  - Q29 | Spain
+- `P18` | image | count=1
+  - Aalenian GSSP - Golden spike ceremony - Fuentelsaz, Guadalajara, Spain 14.jpg
+- `P31` | instance of | count=2
+  - Q1123245 | stage
+  - Q568683 | age
+- `P138` | named after | count=1
+  - Q3951 | Aalen
+- `P155` | follows | count=1
+  - Q914363 | Toarcian
+- `P156` | followed by | count=1
+  - Q375180 | Bajocian
+- `P361` | part of | count=2
+  - Q500054 | Middle Jurassic
+  - Q63463770 | ICS Standard Global Chronostratigraphic (Geochronologic) Scale
+- `P465` | sRGB color hex triplet | count=1
+  - 6FDAED
+- `P580` | start time | count=1
+  - -174100000-00-00T00:00:00Z
+- `P582` | end time | count=1
+  - -170300000-00-00T00:00:00Z
+- `P625` | coordinate location | count=1
+  - {'latitude': 41.07913888888889, 'longitude': -1.8303333333333334, 'altitude': None, 'precision': 2.777777777777778e-05, 'globe': 'http://www.wikidata.org/entity/Q2'}
+- `P646` | Freebase ID | count=1
+  - /m/06clxn
+- `P910` | topic's main category | count=1
+  - Q21144002 | Category:Aalenian
+- `P1296` | Gran Enciclopèdia Catalana ID (former scheme) | count=1
+  - 0000014
+- `P1417` | Encyclopædia Britannica Online ID | count=1
+  - science/Aalenian-Stage
+- `P2004` | NALT ID | count=1
+  - 290898
+- `P2695` | type locality (geology) | count=1
+  - Q105753535 | GSSP for the base of the Aalenian
+- `P3222` | NE.se ID | count=1
+  - aalenium
+- `P3938` | named by | count=1
+  - Q116704 | Karl Mayer-Eymar
+- `P4212` | PACTOLS thesaurus ID | count=1
+  - crtHu4wS8Axvw
+- `P6706` | De Agostini ID | count=1
+  - Aaleniano
+- `P7153` | significant place | count=1
+  - Q986555 | Fuentelsaz
+- `P8313` | Lex ID | count=1
+  - Aalenien
+- `P8669` | Encyclopaedia Beliana ID | count=3
+  - alen-0
+  - aalen-0
+  - aalenien
+- `P9350` | PeriodO period ID | count=1
+  - 9qtgw2x4f
+- `P9765` | Great Ukrainian Encyclopedia Online ID | count=2
+  - Ааленський_вік
+  - Ааленський_ярус
+- `P9867` | e-Maapõu stratigraphy ID | count=1
+  - 231
+- `P12385` | Gran Enciclopèdia Catalana ID | count=1
+  - aalenia
+- `P12582` | Oxford Reference overview ID | count=1
+  - 20110803095342703
+- `P13266` | A Dictionary of Geology and Earth Sciences entry ID | count=1
+  - 4
+- `P13372` | TERMDAT concept ID | count=1
+  - 66524
+- `P13426` | GCMD keyword ID | count=1
+  - 8d25cd2c-cb4e-4133-af8b-dcde0775c558
+
+Total properties: 32

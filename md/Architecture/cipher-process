@@ -1,0 +1,143 @@
+Now I have the complete picture of the SCA/SFA extraction pipeline. Let me lay out exactly where each cipher tier gets minted.
+
+## Cipher Creation Points in the Extraction Pipeline
+
+Each tier gets created at a **different stage** by a **different agent**, because the information needed to compute the cipher only becomes available at that point.
+
+### The Pipeline with Cipher Creation Points
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  CONCIERGE                                                    │
+│  Receives seed QID (e.g., Q17167)                            │
+│  Routes to appropriate SCA                                    │
+│  ❌ No ciphers here — doesn't know entity type yet           │
+└──────────────┬───────────────────────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────────────────────────┐
+│  SCA (Subject Concept Agent)                                  │
+│                                                               │
+│  Step 1: Fetch Wikidata properties, labels, backlinks        │
+│  Step 2: Classify (Person? Event? Place? SubjectConcept?)    │
+│  Step 3: Resolve ID via authority cascade (QID→BN→Crys)      │
+│                                                               │
+│  ★ TIER 1 CIPHER CREATED HERE ★                              │
+│  → entity_cipher = "ent_per_Q1048"                           │
+│  → Why here: SCA is the first agent that knows both the      │
+│    QID AND the entity_type classification                     │
+│                                                               │
+│  Step 4: Determine applicable SubjectConcept anchors         │
+│                                                               │
+│  ★ TIER 2 CIPHERS CREATED HERE ★                             │
+│  → faceted_ciphers = {                                       │
+│      "POLITICAL": "fent_pol_Q1048_Q17167",                   │
+│      "MILITARY": "fent_mil_Q1048_Q17167",                    │
+│      ...all 18...                                            │
+│    }                                                          │
+│  → Why here: SCA knows the entity + its SubjectConcept       │
+│    anchor(s) — both components needed for Tier 2              │
+│                                                               │
+│  Step 5: Output enriched JSON with Tier 1 + Tier 2 ciphers  │
+│  Step 6: Route to SFAs per applicable facet                  │
+└──────────────┬───────────────────────────────────────────────┘
+               │ (dispatches to 1..18 SFAs)
+               ▼
+┌──────────────────────────────────────────────────────────────┐
+│  SFA (Subject Facet Agent) — e.g., POLITICAL_SFA             │
+│                                                               │
+│  Receives: entity data WITH Tier 1 + Tier 2 ciphers         │
+│  already computed by SCA                                      │
+│                                                               │
+│  Step 1: Evaluate entity from facet perspective              │
+│  Step 2: Extract claims (subject + property + object)        │
+│  Step 3: Resolve qualifier values (P580, P582, P276, etc.)   │
+│                                                               │
+│  ★ TIER 3 CLAIM CIPHERS CREATED HERE ★                       │
+│  → claim_cipher = "fclaim_pol_b22020c0..."                   │
+│  → Why here: SFA is the first agent that knows the full      │
+│    assertion triple + qualifiers + source + passage           │
+│    The SCA doesn't know these — only the SFA does            │
+│                                                               │
+│  Step 4: Deduplication check (MERGE on cipher)               │
+│  Step 5: Write to Neo4j with all three cipher tiers          │
+└──────────────┬───────────────────────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────────────────────────┐
+│  NEO4J WRITE                                                  │
+│                                                               │
+│  MERGE (:Entity {entity_cipher: "ent_per_Q1048"})            │
+│  MERGE (:FacetedEntity {faceted_cipher: "fent_pol_Q1048_..."})│
+│  MERGE (:FacetClaim {cipher: "fclaim_pol_b22020c0..."})      │
+│                                                               │
+│  All three tiers use MERGE (not CREATE) so ciphers           │
+│  automatically deduplicate across agents and time             │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### Why This Order
+
+| Tier | Created By | Reason |
+|------|-----------|--------|
+| **Tier 1** (Entity) | **SCA** | SCA is the first agent that has *both* the resolved ID (QID/BN/Crys) and the entity type classification  [perplexity](https://www.perplexity.ai/search/a5b2de05-f8f3-4e9c-bd3d-51297381a25d). The Concierge only has a raw QID — it doesn't classify. |
+| **Tier 2** (Faceted) | **SCA** | SCA determines which SubjectConcept(s) the entity belongs to and generates all 18 faceted ciphers before dispatching to SFAs  [perplexity](https://www.perplexity.ai/search/4dc031d1-e9cb-431f-b87b-ef60407099ba). The SFA receives these pre-computed — it doesn't mint them. |
+| **Tier 3** (Claim) | **SFA** | Only the SFA knows the specific assertion — the subject-property-object triple, the qualifiers, the source passage . The SCA operates at the entity level, not the claim level. |
+
+### The Critical Handoff: SCA → SFA
+
+The SCA's output JSON (with Tier 1 + Tier 2 ciphers) becomes the SFA's **input context**. This is the handoff contract:
+
+```json
+// SCA output → SFA input
+{
+  "entity_cipher": "ent_per_Q1048",           // Tier 1 (SCA created)
+  "faceted_cipher": "fent_pol_Q1048_Q17167",  // Tier 2 (SCA created, facet-specific)
+  "qid": "Q1048",
+  "entity_type": "PERSON",
+  "facet_assignment": "POLITICAL",
+  "subjectconcept_id": "Q17167",
+  "properties": { "..." },
+  "backlinks_summary": { "..." }
+}
+```
+
+The SFA then uses `entity_cipher` as the `subject_entity_cipher` in every claim it produces :
+
+```python
+# Inside the SFA
+claim_cipher = build_claim_cipher_with_qualifiers(
+    subject_qid=input_data["qid"],               # From SCA
+    property_pid="P39",                           # SFA discovered this
+    object_qid="Q39686",                          # SFA discovered this
+    facet_id=input_data["facet_assignment"],       # From SCA
+    qualifiers={"P580": -59, "P1545": 1},         # SFA discovered these
+    source_qid="Q47461",                          # SFA found the source
+    passage_locator="Hist.2.14"                   # SFA found the passage
+)
+# Tier 3 cipher: "fclaim_pol_a1b2c3d4e5f6g7h8"
+```
+
+### Edge Case: Cross-Entity Discovery
+
+When an SFA discovers a **new entity** while extracting claims (e.g., the POLITICAL_SFA finds a reference to Pompey while analyzing Caesar), it doesn't create a full Tier 1 cipher itself. Instead:
+
+1. SFA creates a **provisional reference** with just the QID: `{"qid": "Q41824", "label": "Pompey"}`
+2. SFA flags it for the Concierge: `"discovered_entities": ["Q41824"]`
+3. Concierge routes Q41824 to a new SCA run
+4. That SCA creates Pompey's Tier 1 + Tier 2 ciphers
+5. Only then do Pompey's faceted ciphers exist for vertex jumping
+
+This preserves the rule: **only the SCA mints entity ciphers**. The SFA is a consumer of ciphers (Tier 1 and 2) and a producer of ciphers (Tier 3 only). [perplexity](https://www.perplexity.ai/search/4dc031d1-e9cb-431f-b87b-ef60407099ba)
+
+### Implementation in Your Files
+
+| File | What to Add |
+|------|------------|
+| `sca_clean_labels.py` | Call `generate_entity_cipher()` after classification step; call `generate_all_faceted_ciphers()` after SubjectConcept anchor resolution |
+| `sca_enhanced_with_details.py` | Same — enrichment happens at end of SCA pipeline before JSON output |
+| `federation_mapper.py` | Call `resolve_entity_id()` for BabelNet cascade — this feeds the resolved_id into Tier 1 cipher generation |
+| *(new)* `entity_cipher.py` | The module from the spec — imported by both SCA scripts |
+| *(SFA prompt/script)* | Receives Tier 1+2 ciphers as input; calls `build_claim_cipher_with_qualifiers()` for Tier 3 |
+
+Does this match your mental model of the pipeline? The key architectural principle is: **cipher creation responsibility follows information availability** — each tier is minted by the first agent that has all the components needed to compute it.

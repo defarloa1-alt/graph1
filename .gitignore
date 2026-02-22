@@ -1,0 +1,104 @@
+﻿# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Configuration & Secrets
+config.py
+.env
+.env.local
+*.key
+*.pem
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+data/
+
+# Large data dumps
+FAST/*.marcxml
+LCSH/skos_subjects/
+Geographic/*.out
+Geographic/pleiades_*.csv
+Geographic/temp/
+Geographic/*.zip
+Subjects/*.gz
+Python/fast/key/FASTTopical_parsed.csv
+
+# Generated outputs
+Python/fast/output/
+Archive/Python/FAST/
+
+# Output directory - Large data files
+output/checkpoints/
+output/enriched/
+output/wikidata/
+output/wikidata_enhanced/
+output/traversal/
+output/lateral/
+output/sca_complete/
+output/sca_comprehensive/
+output/taxonomy/
+output/taxonomy_recursive/
+output/*.json
+
+# Keep small output files
+!output/README.md
+!output/**/*.md
+!output/**/*.mmd
+!output/**/*.txt
+
+# Logs
+*.log
+logs/
+
+# OS
+._*
+Thumbs.db
+
+# Temp files
+~$*
+*.tmp
+*.temp
+*.bak
+*.backup
+temp/
+
+# Ontologies output
+ontologies/*.json
+
+# Obsidian
+.obsidian/cache/
+.obsidian/plugins/

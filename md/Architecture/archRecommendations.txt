@@ -1,0 +1,126 @@
+﻿Chrystallum Architecture Recommendations - Refinement 02-1
+Date: 2026-02-17
+Status: Implementation recommendations aligned to current v0 bootstrap spec
+
+1) Purpose
+This document turns the latest architecture review into concrete engineering actions.
+It assumes the canonical architecture source remains:
+- Key Files/2-12-26 Chrystallum Architecture - CONSOLIDATED.md
+and the v0 bootstrap contract:
+- md/Architecture/2-17-26-CHRYSTALLUM_v0_AGENT_BOOTSTRAP_SPEC.md
+
+2) Non-negotiable architecture decisions
+- Keep a hard boundary between scaffold and canonical graph.
+- Keep claim identity content-based and deterministic.
+- Keep provenance mutable, append-only, and separate from claim identity.
+- Keep SCA bootstrap structural first, interpretive second.
+- Keep relationship/facet registries as code-validated sources of truth.
+
+3) P0 refinements (do first)
+3.1 Claim identity semantics must be fully consistent
+Problem:
+- Prior docs mixed content-only and extraction-instance identity semantics.
+
+Refinement:
+- Define two IDs explicitly and use both:
+  - AssertionCipher: content-only identity for dedup/federation.
+  - PerspectiveID: assertion + facet/agent/run identity for provenance.
+
+Required AssertionCipher inputs:
+- subject_key
+- relationship_type
+- object_key
+- normalized_temporal_payload
+- source_work_key
+- passage_anchor_hash
+
+Must NOT be in AssertionCipher:
+- confidence
+- facet_id
+- agent_id
+- extraction timestamp
+- run_id
+
+3.2 Separate FacetAssessment from FacetPerspective in schema and docs
+Refinement:
+- FacetPerspective: durable claim-attached provenance and stance over time.
+- FacetAssessment: per-analysis-run evaluative output for UI/comparison.
+
+Rule:
+- Do not use FacetAssessment as the long-term claim provenance record.
+
+3.3 Enforce registry truth at write boundaries
+Refinement:
+- Validate facet keys against Facets/facet_registry_master.json.
+- Validate relationship types against Relationships/relationship_types_registry_master.csv.
+- Reject writes when keys are missing or deprecated.
+
+3.4 Fix document and text encoding
+Refinement:
+- Standardize docs to UTF-8 without mojibake.
+- Remove corrupted arrow/bullet characters from architecture docs.
+
+4) P1 refinements (next)
+4.1 Scaffold persistence constraints must be explicit in Neo4j
+Add/confirm constraints:
+- ScaffoldNode unique on (analysis_run_id, qid)
+- ScaffoldEdge unique on edge_id
+- AnalysisRun unique on run_id
+
+4.2 Bootstrap must remain non-canonical by default
+Refinement:
+- Bootstrap writes only AnalysisRun, ScaffoldNode, ScaffoldEdge, and evidence/trace.
+- Canonical nodes/edges only created by explicit promotion command.
+
+4.3 Promotion operation must be replay-safe
+Refinement:
+- PromotionEvent logs selected scaffold artifacts and resulting canonical writes.
+- Re-running promotion with same selection should not duplicate canonical facts.
+
+4.4 Relationship rollout should use a kernel-first strategy
+Refinement:
+- Define v1 relationship kernel (30-50 types) required for core traversal/use cases.
+- Gate all non-kernel relationship additions behind tests + migration notes.
+
+5) P2 refinements (strategic)
+5.1 Federation trust model
+Refinement:
+- Specify who signs exported claims.
+- Define key distribution, rotation, and revocation process.
+- Add transparency-log style verification for institutional claim bundles.
+
+5.2 Operational SLO-backed thresholds
+Refinement:
+- Replace fixed alert numbers with SLO-derived thresholds:
+  - claim ingestion rate
+  - review latency target
+  - invalid ID error budget
+
+6) Concrete acceptance tests
+- Same assertion extracted by multiple facets creates one Claim (same AssertionCipher) and multiple FacetPerspective records.
+- Changing confidence or timestamp does not change AssertionCipher.
+- Bootstrap reruns create no canonical graph mutations unless promotion is invoked.
+- Promotion rerun on same selection is idempotent.
+- Invalid facet key is rejected before graph write.
+- Invalid relationship type is rejected before graph write.
+- Scaffold caps/filters create truncation metadata when limits are hit.
+
+7) Suggested implementation sequence
+1. Ship ADR: AssertionCipher + PerspectiveID definitions with canonical examples.
+2. Add/verify DB constraints for AnalysisRun/ScaffoldNode/ScaffoldEdge.
+3. Add registry validators in all write paths (agents + scripts).
+4. Add promotion idempotency checks and PromotionEvent logging.
+5. Introduce relationship kernel manifest and test gates.
+6. Finish federation trust model ADR.
+
+8) Immediate cleanup targets in repo
+- md/Architecture/archRecommendations.txt (replace legacy mixed-content narrative)
+- md/Architecture/2-16-26-architecture review.txt (normalize identity language)
+- md/Architecture/2-16-26-ArchReview2.md (align facet model wording)
+- Any docs with mojibake sequences should be re-encoded to clean UTF-8
+
+9) Done criteria for this refinement cycle
+- Identity semantics are unambiguous and test-verified.
+- Scaffold/canonical boundary is enforced by code, not convention.
+- Facet and relationship registries are hard-gated.
+- Bootstrap and promotion behavior is reproducible and idempotent.

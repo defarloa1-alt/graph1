@@ -1,0 +1,1201 @@
+#!/usr/bin/env python3
+"""
+Chrystallum Claim Ingestion Pipeline
+
+Handles complete claim lifecycle:
+1. Validation
+2. Cipher calculation
+3. Intermediary node creation
+4. Entity linking
+5. Promotion workflow
+6. Traceability logging
+
+Date: February 14, 2026
+"""
+
+import hashlib
+import json
+import re
+from datetime import datetime
+from typing import Dict, Any, Optional, List
+from neo4j import Driver, Session
+try:
+    from historian_logic_engine import HistorianLogicEngine
+except ModuleNotFoundError:  # pragma: no cover
+    from .historian_logic_engine import HistorianLogicEngine
+
+
+class QIDResolver:
+    """
+    LLM-assisted Wikidata QID resolution for entities
+    
+    Resolves entity labels to Wikidata QIDs using fuzzy search + context scoring.
+    Falls back to provisional local QIDs if no match found.
+    
+    Decision: PHASE_1_DECISIONS_LOCKED.md#decision-1-qid-resolution-via-llm
+    """
+    
+    def __init__(self, wikidata_search_endpoint: str = "https://www.wikidata.org/w/api.php"):
+        """
+        Initialize QID resolver
+        
+        Args:
+            wikidata_search_endpoint: Wikidata API endpoint for searches
+        """
+        self.search_endpoint = wikidata_search_endpoint
+        self.cache = {}  # Simple in-memory cache for repeated lookups
+    
+    def resolve_qid(
+        self,
+        entity_label: str,
+        context: Optional[Dict[str, Any]] = None,
+        confidence_threshold: float = 0.75
+    ) -> Dict[str, Any]:
+        """
+        Attempt to resolve entity to Wikidata QID
+        
+        Args:
+            entity_label: "Marcus Brutus", "Battle of Pharsalus", etc.
+            context: {
+                "period": "Roman Republic",
+                "role": "conspirator",
+                "birth_year": -85,
+                "death_year": -42,
+                "gens": "Junia"
+            }
+            confidence_threshold: Minimum confidence to accept match (default 0.75)
+        
+        Returns:
+            Success:
+                {
+                    "qid": "Q83416",
+                    "confidence": 0.98,
+                    "method": "wikidata_resolved",
+                    "label": "Marcus Junius Brutus",
+                    "candidates": [...],
+                    "match_factors": {
+                        "label_similarity": 0.95,
+                        "context_alignment": 0.92,
+                        "temporal_match": 1.0
+                    }
+                }
+            Fallback (provisional):
+                {
+                    "qid": "local_entity_a8f9e2c4",
+                    "confidence": None,
+                    "method": "provisional_local",
+                    "note": "No Wikidata match; enable post-hoc linking",
+                    "entity_label": "Marcus Brutus"
+                }
+        """
+        # Check cache first
+        cache_key = f"{entity_label}:{json.dumps(context, sort_keys=True) if context else ''}"
+        if cache_key in self.cache:
+            return self.cache[cache_key]
+        
+        # 1. Wikidata fuzzy search
+        try:
+            candidates = self._wikidata_search(entity_label, limit=10)
+        except Exception as e:
+            # Network error or API failure → fallback immediately
+            return self._create_provisional_qid(entity_label, error=str(e))
+        
+        if not candidates:
+            # No results from Wikidata
+            return self._create_provisional_qid(entity_label, note="No search results")
+        
+        # 2. Score candidates using context
+        scored_candidates = self._score_candidates(candidates, context)
+        
+        # 3. Select best match
+        best = max(scored_candidates, key=lambda x: x['confidence'])
+        
+        if best['confidence'] >= confidence_threshold:
+            result = {
+                "qid": best['qid'],
+                "confidence": best['confidence'],
+                "method": "wikidata_resolved",
+                "label": best['label'],
+                "description": best.get('description', ''),
+                "candidates": scored_candidates,  # Track alternatives
+                "match_factors": best.get('match_factors', {})
+            }
+        else:
+            # Best match below threshold → fallback to provisional
+            result = self._create_provisional_qid(
+                entity_label,
+                note=f"Best match confidence {best['confidence']:.2f} below threshold {confidence_threshold}"
+            )
+        
+        # Cache result
+        self.cache[cache_key] = result
+        return result
+    
+    def _wikidata_search(self, entity_label: str, limit: int = 10) -> List[Dict]:
+        """
+        Query Wikidata API for entity matches
+        
+        Returns:
+            [
+                {
+                    "qid": "Q83416",
+                    "label": "Marcus Junius Brutus",
+                    "description": "Roman politician (85 BC - 42 BC)"
+                },
+                ...
+            ]
+        """
+        # TODO: Implement actual Wikidata API call
+        # For Phase 1, return empty list (will trigger provisional fallback)
+        # In Phase 2, implement full SPARQL/API integration
+        return []
+    
+    def _score_candidates(
+        self,
+        candidates: List[Dict],
+        context: Optional[Dict[str, Any]]
+    ) -> List[Dict]:
+        """
+        Score candidates based on context alignment
+        
+        Factors:
+        - Label similarity (fuzzy string match)
+        - Temporal alignment (birth/death years)
+        - Role/occupation match
+        - Geographic alignment
+        - Gens/family alignment (for Romans)
+        
+        Returns:
+            [
+                {
+                    "qid": "Q83416",
+                    "label": "Marcus Junius Brutus",
+                    "confidence": 0.98,
+                    "match_factors": {
+                        "label_similarity": 0.95,
+                        "temporal_match": 1.0,
+                        "role_match": 0.92
+                    }
+                },
+                ...
+            ]
+        """
+        scored = []
+        
+        for candidate in candidates:
+            score = 0.0
+            factors = {}
+            
+            # TODO: Implement actual scoring logic
+            # For Phase 1, return low confidence to trigger provisional fallback
+            # In Phase 2, implement full semantic + temporal + role scoring
+            
+            scored.append({
+                **candidate,
+                "confidence": score,
+                "match_factors": factors
+            })
+        
+        return sorted(scored, key=lambda x: x['confidence'], reverse=True)
+    
+    def _create_provisional_qid(
+        self,
+        entity_label: str,
+        note: str = "No Wikidata match",
+        error: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Create provisional local QID for entities without Wikidata match
+        
+        Format: local_entity_{hash}
+        
+        Returns:
+            {
+                "qid": "local_entity_a8f9e2c4",
+                "confidence": None,
+                "method": "provisional_local",
+                "note": "...",
+                "entity_label": "Marcus Brutus"
+            }
+        """
+        # Hash entity label for deterministic provisional QID
+        label_hash = hashlib.sha256(entity_label.encode('utf-8')).hexdigest()[:8]
+        
+        return {
+            "qid": f"local_entity_{label_hash}",
+            "confidence": None,
+            "method": "provisional_local",
+            "note": note,
+            "entity_label": entity_label,
+            "error": error
+        }
+
+
+class RoleValidator:
+    """
+    Dynamic role reference with LLM constraint checking
+    
+    Validates role labels against canonical registry with LLM fuzzy matching.
+    Prevents role invention while supporting natural language inputs.
+    
+    Decision: PHASE_1_DECISIONS_LOCKED.md#decision-3-edge-properties-with-dynamic-role-reference
+    """
+    
+    def __init__(self, role_registry_path: str = "Relationships/role_qualifier_reference.json"):
+        """
+        Initialize role validator
+        
+        Args:
+            role_registry_path: Path to canonical role registry JSON
+        """
+        with open(role_registry_path, 'r', encoding='utf-8') as f:
+            self.registry = json.load(f)
+        
+        self.all_valid_roles = self._flatten_registry()
+        self.alias_map = self._build_alias_map()
+    
+    def _flatten_registry(self) -> List[str]:
+        """Extract all valid role keys from registry"""
+        roles = []
+        for category, role_dict in self.registry.items():
+            if category == "meta":
+                continue
+            roles.extend(role_dict.keys())
+        return roles
+    
+    def _build_alias_map(self) -> Dict[str, str]:
+        """Build map of alias → canonical_role"""
+        alias_map = {}
+        for category, role_dict in self.registry.items():
+            if category == "meta":
+                continue
+            for role_key, role_data in role_dict.items():
+                # Add self-mapping
+                alias_map[role_key.lower()] = role_key
+                # Add alias mappings
+                if "aliases" in role_data:
+                    for alias in role_data["aliases"]:
+                        alias_map[alias.lower()] = role_key
+        return alias_map
+    
+    def validate_role(
+        self,
+        role_label: str,
+        facet: Optional[str] = None,
+        fuzzy_threshold: float = 0.80
+    ) -> Dict[str, Any]:
+        """
+        Validate role against canonical list
+        
+        Args:
+            role_label: "commander", "leading the cavalry charge", "senator", etc.
+            facet: "military", "political", etc. (optional context for ambiguity resolution)
+            fuzzy_threshold: Minimum similarity for fuzzy match acceptance (default 0.80)
+        
+        Returns:
+            Valid:
+                {
+                    "canonical_role": "commander",
+                    "confidence": 1.0,
+                    "valid": True,
+                    "method": "exact_match",
+                    "p_value": "P598",
+                    "description": "Military commander with strategic authority",
+                    "context_facets": ["military"]
+                }
+            Fuzzy match:
+                {
+                    "canonical_role": "commander",
+                    "confidence": 0.92,
+                    "valid": True,
+                    "method": "alias_match",
+                    "input_label": "leading forces",
+                    "alternatives": [...other high-scoring candidates]
+                }
+            Invalid:
+                {
+                    "canonical_role": None,
+                    "confidence": None,
+                    "valid": False,
+                    "method": "no_match",
+                    "input_label": "foo_bar_role",
+                    "valid_roles": [list of canonical roles],
+                    "suggestion": "Role not recognized; use canonical list"
+                }
+        """
+        role_label_normalized = role_label.strip().lower()
+        
+        # 1. Exact match (canonical role)
+        if role_label_normalized in [r.lower() for r in self.all_valid_roles]:
+            canonical = [r for r in self.all_valid_roles if r.lower() == role_label_normalized][0]
+            role_data = self._lookup_role_data(canonical)
+            return {
+                "canonical_role": canonical,
+                "confidence": 1.0,
+                "valid": True,
+                "method": "exact_match",
+                "p_value": role_data.get("p_value"),
+                "description": role_data.get("description"),
+                "context_facets": role_data.get("context_facets", [])
+            }
+        
+        # 2. Alias match (from registry)
+        if role_label_normalized in self.alias_map:
+            canonical = self.alias_map[role_label_normalized]
+            role_data = self._lookup_role_data(canonical)
+            return {
+                "canonical_role": canonical,
+                "confidence": 0.95,
+                "valid": True,
+                "method": "alias_match",
+                "input_label": role_label,
+                "p_value": role_data.get("p_value"),
+                "description": role_data.get("description"),
+                "context_facets": role_data.get("context_facets", [])
+            }
+        
+        # 3. LLM fuzzy match (semantic similarity)
+        candidates = self._llm_fuzzy_match(role_label, facet)
+        if candidates:
+            best = max(candidates, key=lambda x: x['confidence'])
+            if best['confidence'] >= fuzzy_threshold:
+                return {
+                    "canonical_role": best['role'],
+                    "confidence": best['confidence'],
+                    "valid": True,
+                    "method": "llm_fuzzy_match",
+                    "input_label": role_label,
+                    "alternatives": candidates[:5],  # Top 5 alternatives
+                    "p_value": best.get("p_value"),
+                    "description": best.get("description"),
+                    "context_facets": best.get("context_facets", [])
+                }
+        
+        # 4. No valid match
+        return {
+            "canonical_role": None,
+            "confidence": None,
+            "valid": False,
+            "method": "no_match",
+            "input_label": role_label,
+            "valid_roles": self.all_valid_roles[:50],  # Sample of valid roles
+            "suggestion": "Role not recognized; use canonical role registry or submit for addition"
+        }
+    
+    def _lookup_role_data(self, canonical_role: str) -> Dict[str, Any]:
+        """Lookup full role data from registry"""
+        for category, role_dict in self.registry.items():
+            if category == "meta":
+                continue
+            if canonical_role in role_dict:
+                return role_dict[canonical_role]
+        return {}
+    
+    def _llm_fuzzy_match(
+        self,
+        role_label: str,
+        facet: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        LLM-powered fuzzy matching
+        
+        Example: "leading the cavalry" → "commander" (0.92 confidence)
+        
+        Returns:
+            [
+                {
+                    "role": "commander",
+                    "confidence": 0.92,
+                    "p_value": "P598",
+                    "description": "...",
+                    "context_facets": ["military"]
+                },
+                ...
+            ]
+        """
+        # TODO: Implement actual LLM semantic matching
+        # For Phase 1, use simple substring/keyword matching
+        # In Phase 2, integrate LLM API for semantic similarity
+        
+        similarity_scores = []
+        role_label_lower = role_label.lower()
+        
+        # Simple keyword matching as Phase 1 implementation
+        for valid_role in self.all_valid_roles:
+            role_data = self._lookup_role_data(valid_role)
+            
+            # Check if any alias contains keywords from input
+            role_keywords = valid_role.lower().split('_')
+            input_keywords = re.findall(r'\w+', role_label_lower)
+            
+            matches = sum(1 for word in input_keywords if any(word in keyword for keyword in role_keywords))
+            
+            # Also check aliases
+            if "aliases" in role_data:
+                for alias in role_data["aliases"]:
+                    alias_keywords = alias.lower().split()
+                    matches += sum(1 for word in input_keywords if any(word in ak for ak in alias_keywords))
+            
+            if matches > 0:
+                # Simple scoring: matches / total_input_words
+                score = min(matches / len(input_keywords), 1.0) * 0.85  # Cap at 0.85 for fuzzy
+                
+                # Facet boost: if facet matches role's context facets, boost score
+                if facet and "context_facets" in role_data:
+                    if facet in role_data["context_facets"]:
+                        score = min(score * 1.15, 0.95)  # 15% boost, cap at 0.95
+                
+                if score >= 0.50:  # Minimum threshold to consider
+                    similarity_scores.append({
+                        'role': valid_role,
+                        'confidence': round(score, 2),
+                        'p_value': role_data.get("p_value"),
+                        'description': role_data.get("description"),
+                        'context_facets': role_data.get("context_facets", [])
+                    })
+        
+        return sorted(similarity_scores, key=lambda x: x['confidence'], reverse=True)
+
+
+class ClaimIngestionPipeline:
+    """Ingestion pipeline for claims into Chrystallum"""
+
+    # =========================================================================
+    # FALLACY FLAGGING: Categorize fallacies for downstream consumption
+    # =========================================================================
+    # All fallacies are detected and flagged. Promotion is based purely on
+    # confidence + posterior probability metrics. Fallacy categorization helps
+    # downstream systems (human reviewers, other agents) prioritize review.
+    # =========================================================================
+    
+    # Interpretive claim types: fallacies warrant closer review upstream
+    INTERPRETIVE_CLAIM_TYPES = {
+        "causal",           # Claims about causation/causality
+        "interpretive",     # Claims about meaning/interpretation
+        "motivational",     # Claims about motivations/intents
+        "narrative"         # Claims about narratives/framing
+    }
+    
+    # Interpretive facets: fallacies warrant closer review upstream
+    INTERPRETIVE_FACETS = {
+        "political",       # Political analysis/commentary
+        "diplomatic",      # Diplomatic interpretation
+        "religious",       # Religious interpretation
+        "social",          # Social interpretation
+        "communication",   # Communication/messaging
+        "intellectual",    # Intellectual movements
+        "military",        # Military strategy/motivation
+        "cultural",        # Cultural interpretation
+        "economic"         # Economic analysis
+    }
+    
+    # Descriptive claim types: fallacies are lower risk
+    DESCRIPTIVE_CLAIM_TYPES = {
+        "temporal",        # When something happened
+        "locational",      # Where something happened
+        "taxonomic",       # Classification
+        "identity"         # Identity/naming
+    }
+    
+    # Descriptive facets: fallacies are lower risk
+    DESCRIPTIVE_FACETS = {
+        "geographic",      # Geographic/location facts
+        "environmental",   # Environmental facts
+        "archaeological",  # Archaeological data
+        "scientific",      # Scientific facts
+        "technological",   # Technological facts
+        "demographic",     # Demographic data
+        "linguistic",      # Linguistic facts
+        "artistic"         # Artistic facts
+    }
+
+    def __init__(self, driver: Driver, database: str = "neo4j"):
+        """
+        Initialize pipeline with Neo4j driver
+        
+        Args:
+            driver: Neo4j driver instance
+            database: Target database name
+        """
+        self.driver = driver
+        self.database = database
+        self.reasoning_engine = HistorianLogicEngine()
+
+    def ingest_claim(
+        self,
+        entity_id: str,
+        relationship_type: str,
+        target_id: str,
+        confidence: float,
+        label: str,
+        subject_qid: Optional[str] = None,
+        retrieval_source: str = "agent_extraction",
+        reasoning_notes: str = "",
+        facet: Optional[str] = None,
+        claim_signature: Optional[Any] = None,
+        authority_source: Optional[str] = None,
+        authority_ids: Optional[Any] = None,
+        claim_type: str = "relational",
+        source_agent: str = "agent_claim_ingestion_pipeline"
+    ) -> Dict[str, Any]:
+        """
+        Complete claim ingestion workflow
+        
+        Args:
+            entity_id: Source entity (e.g., 'evt_battle_of_actium_q193304')
+            relationship_type: Edge type (e.g., 'OCCURRED_DURING')
+            target_id: Target entity (e.g., 'prd_roman_republic_q17167')
+            confidence: Confidence score 0.0-1.0
+            label: Human-readable claim label
+            subject_qid: Optional subject Wikidata QID
+            retrieval_source: Where claim came from
+            reasoning_notes: Agent reasoning text
+            facet: Domain facet (lowercase registry key)
+            claim_signature: Deterministic signature (QID + full statement signature)
+            authority_source: Authority system name (e.g., wikidata, lcsh)
+            authority_ids: Authority identifiers map or list
+            claim_type: Claim type label (e.g., relational, factual, temporal)
+            source_agent: Agent identifier used for claim provenance
+            
+        Returns:
+            {
+                "status": "created" | "promoted" | "error",
+                "claim_id": str,
+                "cipher": str,
+                "proposed_edge_id": str,
+                "promoted": bool,
+                "posterior_probability": float,
+                "fallacies_detected": list[str],
+                "critical_fallacy": bool,
+                "error": str (if error)
+            }
+        """
+        try:
+            facet = facet.strip().lower() if facet else ""
+            claim_type = claim_type.strip().lower() if claim_type else "relational"
+            source_agent = source_agent.strip() if source_agent else "agent_claim_ingestion_pipeline"
+            if not facet:
+                raise ValueError("facet is required (lowercase registry key)")
+            if not subject_qid:
+                raise ValueError("subject_qid is required for claim_id signature")
+            if claim_signature is None:
+                raise ValueError("claim_signature is required for deterministic claim_id")
+            signature_text = self._normalize_claim_signature(claim_signature, subject_qid)
+            authority_source = authority_source.strip() if authority_source else ""
+            authority_ids = self._normalize_authority_ids(authority_ids)
+            # 1. Validate inputs
+            self._validate_claim_data(
+                entity_id, relationship_type, target_id, confidence, label
+            )
+            
+            # 2. Generate identifiers
+            claim_id = self._generate_claim_id(subject_qid, signature_text)
+            cipher = self._calculate_cipher(claim_id, label, confidence, source_agent)
+            reasoning_eval = self.reasoning_engine.evaluate(label, reasoning_notes, confidence)
+            
+            # 3. Create claim and intermediaries
+            self._create_claim_node(
+                claim_id=claim_id,
+                cipher=cipher,
+                label=label,
+                text=label,
+                claim_type=claim_type,
+                source_agent=source_agent,
+                confidence=confidence,
+                subject_qid=subject_qid,
+                facet=facet,
+                reasoning_eval=reasoning_eval,
+                authority_source=authority_source,
+                authority_ids=authority_ids
+            )
+            
+            # 4. Create context and analysis nodes
+            retrieval_context_id = self._create_retrieval_context(
+                claim_id, retrieval_source, source_agent, authority_source, authority_ids
+            )
+            analysis_run_id = self._create_analysis_run(
+                claim_id, reasoning_notes
+            )
+            facet_assessment_id = self._create_facet_assessment(
+                claim_id, facet, reasoning_eval["posterior_probability"]
+            )
+            
+            # 5. Link claim to entities
+            proposed_edge_id = self._link_claim_to_entities(
+                claim_id, entity_id, relationship_type, target_id
+            )
+            
+            # 6. Check promotion eligibility
+            # Promotion is based purely on scientific metrics: confidence + posterior
+            # Fallacies are always detected and flagged but never block promotion
+            promoted = False
+            if (
+                confidence >= 0.90
+                and reasoning_eval["posterior_probability"] >= 0.90
+            ):
+                promoted = self._promote_claim(
+                    claim_id, entity_id, relationship_type, target_id, proposed_edge_id
+                )
+            
+            # Determine fallacy flag intensity for downstream consumption
+            fallacy_flag_intensity = self._determine_fallacy_flag_intensity(
+                reasoning_eval["critical_fallacy"], claim_type, facet
+            )
+            
+            return {
+                "status": "promoted" if promoted else "created",
+                "claim_id": claim_id,
+                "cipher": cipher,
+                "proposed_edge_id": proposed_edge_id,
+                "promoted": promoted,
+                "fallacy_flag_intensity": fallacy_flag_intensity,
+                "posterior_probability": reasoning_eval["posterior_probability"],
+                "fallacies_detected": reasoning_eval["fallacies_detected"],
+                "critical_fallacy": reasoning_eval["critical_fallacy"],
+                "error": None
+            }
+            
+        except Exception as e:
+            return {
+                "status": "error",
+                "claim_id": None,
+                "cipher": None,
+                "proposed_edge_id": None,
+                "promoted": False,
+                "posterior_probability": None,
+                "fallacies_detected": [],
+                "critical_fallacy": None,
+                "error": str(e)
+            }
+
+    def _validate_claim_data(
+        self,
+        entity_id: str,
+        relationship_type: str,
+        target_id: str,
+        confidence: float,
+        label: str
+    ) -> None:
+        """Validate claim data before processing"""
+        # Required fields
+        if not entity_id or not isinstance(entity_id, str):
+            raise ValueError("entity_id must be non-empty string")
+        if not relationship_type or not isinstance(relationship_type, str):
+            raise ValueError("relationship_type must be non-empty string")
+        if not re.match(r"^[A-Z][A-Z0-9_]*$", relationship_type):
+            raise ValueError("relationship_type must use uppercase Cypher relationship token format")
+        if not target_id or not isinstance(target_id, str):
+            raise ValueError("target_id must be non-empty string")
+        if not label or not isinstance(label, str):
+            raise ValueError("label must be non-empty string")
+        
+        # Confidence range
+        if not isinstance(confidence, (int, float)):
+            raise ValueError("confidence must be numeric")
+        if not 0.0 <= confidence <= 1.0:
+            raise ValueError("confidence must be between 0.0 and 1.0")
+        
+        # Entities must exist
+        with self.driver.session(database=self.database) as session:
+            source_result = session.run(
+                "MATCH (n {entity_id: $id}) RETURN n LIMIT 1",
+                {"id": entity_id}
+            )
+            if not source_result.peek():
+                raise ValueError(f"Source entity not found: {entity_id}")
+            
+            target_result = session.run(
+                "MATCH (n {entity_id: $id}) RETURN n LIMIT 1",
+                {"id": target_id}
+            )
+            if not target_result.peek():
+                raise ValueError(f"Target entity not found: {target_id}")
+
+    def _determine_fallacy_flag_intensity(self, critical_fallacy: bool, claim_type: str, facet: str) -> str:
+        """
+        Determine fallacy flag intensity for downstream consumption.
+        
+        Args:
+            critical_fallacy: Whether a critical fallacy was detected
+            claim_type: Claim type (e.g., 'causal', 'temporal', 'narrative')
+            facet: Domain facet (e.g., 'political', 'geographic')
+            
+        Returns:
+            'none': No fallacies detected
+            'low': Fallacies detected in descriptive claims (lower concern)
+            'high': Fallacies detected in interpretive claims (warrant review)
+        
+        RATIONALE:
+        - All fallacies are always flagged and returned in response
+        - Flag intensity helps downstream systems prioritize human review
+        - Promotion decisions are based purely on confidence + posterior metrics
+        """
+        if not critical_fallacy:
+            return "none"
+        
+        is_interpretive_type = claim_type.lower() in self.INTERPRETIVE_CLAIM_TYPES
+        is_interpretive_facet = facet.lower() in self.INTERPRETIVE_FACETS
+        
+        # High intensity if interpretive claim type or facet
+        if is_interpretive_type or is_interpretive_facet:
+            return "high"
+        
+        # Low intensity for descriptive profiles
+        return "low"
+
+    def _normalize_claim_signature(self, claim_signature: Any, subject_qid: str) -> str:
+        """Normalize claim signature to a stable string"""
+        if isinstance(claim_signature, str):
+            normalized = claim_signature.strip()
+            if not normalized:
+                raise ValueError("claim_signature cannot be empty")
+            raise ValueError("claim_signature must be a structured object, not a string")
+        if not isinstance(claim_signature, dict):
+            raise ValueError("claim_signature must be a dict with qid, pvalues, and values")
+
+        qid = claim_signature.get("qid")
+        pvalues = claim_signature.get("pvalues")
+        values = claim_signature.get("values")
+
+        if not qid or not isinstance(qid, str):
+            raise ValueError("claim_signature.qid must be a non-empty string")
+        if qid != subject_qid:
+            raise ValueError("claim_signature.qid must match subject_qid")
+        if not isinstance(pvalues, list) or not pvalues:
+            raise ValueError("claim_signature.pvalues must be a non-empty list")
+        if not all(isinstance(p, str) and p.startswith("P") for p in pvalues):
+            raise ValueError("claim_signature.pvalues must contain P-IDs")
+        if not isinstance(values, dict) or not values:
+            raise ValueError("claim_signature.values must be a non-empty dict")
+        if not all(isinstance(k, str) and k.startswith("P") for k in values.keys()):
+            raise ValueError("claim_signature.values keys must be P-IDs")
+
+        normalized_pvalues = sorted(set(pvalues))
+        missing_keys = [k for k in normalized_pvalues if k not in values]
+        if missing_keys:
+            raise ValueError(f"claim_signature.values missing keys: {missing_keys}")
+
+        normalized_values = {key: self._normalize_signature_value(values[key]) for key in normalized_pvalues}
+        normalized = {
+            "qid": qid,
+            "pvalues": normalized_pvalues,
+            "values": normalized_values
+        }
+        return json.dumps(normalized, sort_keys=True, separators=(",", ":"))
+
+    def _normalize_signature_value(self, value: Any) -> Any:
+        """Normalize signature values for deterministic hashing"""
+        if isinstance(value, dict):
+            return {key: self._normalize_signature_value(value[key]) for key in sorted(value.keys())}
+        if isinstance(value, list):
+            normalized_list = [self._normalize_signature_value(item) for item in value]
+            try:
+                return sorted(normalized_list)
+            except TypeError:
+                return sorted(normalized_list, key=lambda item: json.dumps(item, sort_keys=True, separators=(",", ":")))
+        return value
+
+    def _normalize_authority_ids(self, authority_ids: Optional[Any]) -> Optional[Any]:
+        """Normalize authority identifiers for storage"""
+        if authority_ids is None:
+            return None
+        if isinstance(authority_ids, str):
+            value = authority_ids.strip()
+            if not value:
+                return None
+            return {"value": value}
+        if isinstance(authority_ids, (dict, list)):
+            return authority_ids
+        raise ValueError("authority_ids must be a string, dict, list, or None")
+
+    def _generate_claim_id(self, subject_qid: str, signature_text: str) -> str:
+        """Generate deterministic claim ID from QID + full statement signature"""
+        base = f"{subject_qid}|{signature_text}"
+        return f"claim_{hashlib.sha256(base.encode()).hexdigest()[:12]}"
+
+    def _generate_proposed_edge_id(
+        self,
+        claim_id: str,
+        source_entity_id: str,
+        relationship_type: str,
+        target_entity_id: str
+    ) -> str:
+        """Generate deterministic ProposedEdge ID"""
+        base = f"{claim_id}|{source_entity_id}|{relationship_type}|{target_entity_id}"
+        return f"pedge_{hashlib.sha256(base.encode()).hexdigest()[:12]}"
+
+    def _calculate_cipher(
+        self,
+        subject_node_id: str,
+        property_path_id: str,
+        object_node_id: str,
+        facet_id: str,
+        temporal_scope: str,
+        source_document_id: str,
+        passage_locator: str
+    ) -> str:
+        """
+        Calculate SHA256 cipher for facet-level claim (content-addressable ID).
+        
+        REVISED FORMULA (Feb 2026): Stable, content-based cipher that excludes
+        provenance metadata (confidence, agent, timestamp) to enable proper
+        deduplication across agents and time.
+        
+        Aligned with nanopublication assertion graph patterns.
+        
+        Args:
+            subject_node_id: Q-ID of subject entity (e.g., "Q1048" for Caesar)
+            property_path_id: Normalized relationship (e.g., "CHALLENGED_AUTHORITY_OF")
+            object_node_id: Q-ID of object entity (e.g., "Q1747689" for Roman Senate)
+            facet_id: Facet dimension (e.g., "political", "military")
+            temporal_scope: When assertion holds (e.g., "-0049-01-10")
+            source_document_id: Source Q-ID (e.g., "Q644312" for Plutarch)
+            passage_locator: Passage reference (e.g., "Caesar.32")
+        
+        Returns:
+            SHA256 cipher prefixed with facet (e.g., "fclaim_pol_abc123...")
+        
+        Note: Confidence, extractor_agent_id, and extraction_timestamp are
+        stored as separate mutable properties, NOT included in cipher.
+        """
+        # Construct stable content signature
+        data = (
+            f"{subject_node_id}|"
+            f"{property_path_id}|"
+            f"{object_node_id}|"
+            f"{facet_id}|"
+            f"{temporal_scope}|"
+            f"{source_document_id}|"
+            f"{passage_locator}"
+        )
+        hash_value = hashlib.sha256(data.encode()).hexdigest()
+        
+        # Prefix with facet for human readability
+        return f"fclaim_{facet_id[:3]}_{hash_value[:16]}"
+
+    def _create_claim_node(
+        self,
+        claim_id: str,
+        cipher: str,
+        label: str,
+        text: str,
+        claim_type: str,
+        source_agent: str,
+        confidence: float,
+        subject_qid: Optional[str],
+        facet: str,
+        reasoning_eval: Dict[str, Any],
+        authority_source: str,
+        authority_ids: Optional[Any]
+    ) -> None:
+        """Create Claim node with required properties"""
+        with self.driver.session(database=self.database) as session:
+            session.run(
+                """
+                CREATE (c:Claim {
+                    claim_id: $claim_id,
+                    cipher: $cipher,
+                    label: $label,
+                    text: $text,
+                    claim_type: $claim_type,
+                    source_agent: $source_agent,
+                    timestamp: $timestamp,
+                    confidence: $confidence,
+                    status: 'proposed',
+                    promoted: false,
+                    subject_qid: $subject_qid,
+                    facet: $facet,
+                    authority_source: $authority_source,
+                    authority_ids: $authority_ids,
+                    prior_probability: $prior_probability,
+                    likelihood: $likelihood,
+                    posterior_probability: $posterior_probability,
+                    bayesian_score: $posterior_probability,
+                    evidence_score: $evidence_score,
+                    fallacies_detected: $fallacies_detected,
+                    fallacy_penalty: $fallacy_penalty,
+                    critical_fallacy: $critical_fallacy
+                })
+                RETURN c
+                """,
+                {
+                    "claim_id": claim_id,
+                    "cipher": cipher,
+                    "label": label,
+                    "text": text,
+                    "claim_type": claim_type,
+                    "source_agent": source_agent,
+                    "timestamp": datetime.utcnow().isoformat(),
+                    "confidence": confidence,
+                    "subject_qid": subject_qid,
+                    "facet": facet,
+                    "authority_source": authority_source or None,
+                    "authority_ids": authority_ids,
+                    "prior_probability": reasoning_eval["prior_probability"],
+                    "likelihood": reasoning_eval["likelihood"],
+                    "posterior_probability": reasoning_eval["posterior_probability"],
+                    "evidence_score": reasoning_eval["evidence_score"],
+                    "fallacies_detected": reasoning_eval["fallacies_detected"],
+                    "fallacy_penalty": reasoning_eval["fallacy_penalty"],
+                    "critical_fallacy": reasoning_eval["critical_fallacy"],
+                }
+            )
+
+    def _create_retrieval_context(
+        self, claim_id: str, source: str, agent_id: str, authority_source: str, authority_ids: Optional[Any]
+    ) -> str:
+        """Create RetrievalContext node and link to claim"""
+        retrieval_id = f"retr_{claim_id[:8]}"
+        
+        with self.driver.session(database=self.database) as session:
+            session.run(
+                """
+                MATCH (c:Claim {claim_id: $claim_id})
+                CREATE (rc:RetrievalContext {
+                    retrieval_id: $retrieval_id,
+                    agent_id: $agent_id,
+                    source: $source,
+                    authority_source: $authority_source,
+                    authority_ids: $authority_ids,
+                    timestamp: $timestamp
+                })
+                CREATE (c)-[:USED_CONTEXT]->(rc)
+                RETURN rc
+                """,
+                {
+                    "claim_id": claim_id,
+                    "retrieval_id": retrieval_id,
+                    "agent_id": agent_id,
+                    "source": source,
+                    "authority_source": authority_source or None,
+                    "authority_ids": authority_ids,
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            )
+        
+        return retrieval_id
+
+    def _create_analysis_run(self, claim_id: str, reasoning: str) -> str:
+        """Create AnalysisRun node and link to claim"""
+        run_id = f"run_{claim_id[:8]}"
+        
+        with self.driver.session(database=self.database) as session:
+            session.run(
+                """
+                MATCH (c:Claim {claim_id: $claim_id})
+                CREATE (ar:AnalysisRun {
+                    run_id: $run_id,
+                    pipeline_version: 'claim_ingestion_pipeline_v1',
+                    reasoning: $reasoning,
+                    run_date: $run_date,
+                    status: 'complete'
+                })
+                CREATE (c)-[:HAS_ANALYSIS_RUN]->(ar)
+                RETURN ar
+                """,
+                {
+                    "claim_id": claim_id,
+                    "run_id": run_id,
+                    "reasoning": reasoning,
+                    "run_date": datetime.utcnow().isoformat()
+                }
+            )
+        
+        return run_id
+
+    def _create_facet_assessment(self, claim_id: str, facet: str, score: float) -> str:
+        """Create FacetAssessment node and link to claim"""
+        assessment_id = f"fa_{claim_id[:8]}"
+        
+        with self.driver.session(database=self.database) as session:
+            session.run(
+                """
+                MATCH (c:Claim {claim_id: $claim_id})
+                CREATE (fa:FacetAssessment {
+                    assessment_id: $assessment_id,
+                    facet: $facet,
+                    score: $score,
+                    assessment_date: $assessment_date,
+                    status: 'evaluated'
+                })
+                CREATE (c)-[:HAS_FACET_ASSESSMENT]->(fa)
+                RETURN fa
+                """,
+                {
+                    "claim_id": claim_id,
+                    "assessment_id": assessment_id,
+                    "facet": facet,
+                    "score": score,
+                    "assessment_date": datetime.utcnow().isoformat()
+                }
+            )
+        
+        return assessment_id
+
+    def _link_claim_to_entities(
+        self,
+        claim_id: str,
+        entity_id: str,
+        relationship_type: str,
+        target_id: str
+    ) -> str:
+        """
+        Link claim to a reified ProposedEdge and endpoint entities.
+
+        Primary pattern:
+        (Claim)-[:ASSERTS_EDGE]->(ProposedEdge)-[:FROM]->(source)
+        (ProposedEdge)-[:TO]->(target)
+
+        Compatibility pattern (legacy readers):
+        (Claim)-[:ASSERTS]->(source)
+        (Claim)-[:ASSERTS]->(target)
+        """
+        proposed_edge_id = self._generate_proposed_edge_id(
+            claim_id, entity_id, relationship_type, target_id
+        )
+        timestamp = datetime.utcnow().isoformat()
+
+        with self.driver.session(database=self.database) as session:
+            result = session.run(
+                """
+                MATCH (c:Claim {claim_id: $claim_id})
+                MATCH (source {entity_id: $source_id})
+                MATCH (target {entity_id: $target_id})
+                MERGE (pe:ProposedEdge {edge_id: $edge_id})
+                ON CREATE SET
+                    pe.claim_id = $claim_id,
+                    pe.relationship_type = $relationship_type,
+                    pe.source_entity_id = $source_id,
+                    pe.target_entity_id = $target_id,
+                    pe.status = 'proposed',
+                    pe.created_at = $timestamp
+                SET
+                    pe.updated_at = $timestamp,
+                    pe.claim_label = c.label,
+                    pe.confidence = c.confidence,
+                    pe.source_agent = c.source_agent,
+                    pe.facet = c.facet
+                MERGE (c)-[:ASSERTS_EDGE]->(pe)
+                MERGE (pe)-[:`FROM`]->(source)
+                MERGE (pe)-[:`TO`]->(target)
+                MERGE (c)-[:ASSERTS]->(source)
+                MERGE (c)-[:ASSERTS]->(target)
+                RETURN pe.edge_id AS edge_id
+                """,
+                {
+                    "claim_id": claim_id,
+                    "source_id": entity_id,
+                    "target_id": target_id,
+                    "relationship_type": relationship_type,
+                    "edge_id": proposed_edge_id,
+                    "timestamp": timestamp
+                }
+            )
+            record = result.single()
+        return record["edge_id"] if record else proposed_edge_id
+
+    def _promote_claim(
+        self,
+        claim_id: str,
+        entity_id: str,
+        relationship_type: str,
+        target_id: str,
+        proposed_edge_id: Optional[str] = None
+    ) -> bool:
+        """
+        Promote validated claim to canonical state
+        
+        Returns: True if promoted, False otherwise
+        """
+        try:
+            with self.driver.session(database=self.database) as session:
+                # 1. Update claim status
+                session.run(
+                    """
+                    MATCH (c:Claim {claim_id: $claim_id})
+                    SET c.status = 'validated',
+                        c.promotion_date = $promotion_date,
+                        c.promoted = true
+                    """,
+                    {
+                        "claim_id": claim_id,
+                        "promotion_date": datetime.utcnow().isoformat()
+                    }
+                )
+
+                # 1b. Mark reified proposed edge as validated/canonical
+                session.run(
+                    """
+                    MATCH (c:Claim {claim_id: $claim_id})-[:ASSERTS_EDGE]->(pe:ProposedEdge)-[:`FROM`]->(source {entity_id: $source_id})
+                    MATCH (pe)-[:`TO`]->(target {entity_id: $target_id})
+                    WHERE pe.relationship_type = $relationship_type
+                      AND ($proposed_edge_id IS NULL OR pe.edge_id = $proposed_edge_id)
+                    SET pe.status = 'validated',
+                        pe.promoted = true,
+                        pe.promotion_date = $promotion_date,
+                        pe.promotion_status = 'canonical'
+                    """,
+                    {
+                        "claim_id": claim_id,
+                        "source_id": entity_id,
+                        "target_id": target_id,
+                        "relationship_type": relationship_type,
+                        "proposed_edge_id": proposed_edge_id,
+                        "promotion_date": datetime.utcnow().isoformat()
+                    }
+                )
+                
+                # 2. Create or merge canonical relationship
+                session.run(
+                    f"""
+                    MATCH (source {{entity_id: $source_id}})
+                    MATCH (target {{entity_id: $target_id}})
+                    MERGE (source)-[r:{relationship_type}]->(target)
+                    SET r.promoted_from_claim_id = $claim_id,
+                        r.promotion_date = $promotion_date,
+                        r.promotion_status = 'canonical'
+                    """,
+                    {
+                        "source_id": entity_id,
+                        "target_id": target_id,
+                        "claim_id": claim_id,
+                        "promotion_date": datetime.utcnow().isoformat()
+                    }
+                )
+                
+                # 3. Create SUPPORTED_BY traceability
+                session.run(
+                    """
+                    MATCH (source {entity_id: $source_id})
+                    MATCH (c:Claim {claim_id: $claim_id})
+                    MERGE (source)-[sb:SUPPORTED_BY]->(c)
+                    SET sb.claim_id = $claim_id,
+                        sb.promotion_date = $promotion_date
+                    """,
+                    {
+                        "source_id": entity_id,
+                        "claim_id": claim_id,
+                        "promotion_date": datetime.utcnow().isoformat()
+                    }
+                )
+                
+                session.run(
+                    """
+                    MATCH (target {entity_id: $target_id})
+                    MATCH (c:Claim {claim_id: $claim_id})
+                    MERGE (target)-[sb:SUPPORTED_BY]->(c)
+                    SET sb.claim_id = $claim_id,
+                        sb.promotion_date = $promotion_date
+                    """,
+                    {
+                        "target_id": target_id,
+                        "claim_id": claim_id,
+                        "promotion_date": datetime.utcnow().isoformat()
+                    }
+                )
+            
+            return True
+            
+        except Exception as e:
+            print(f"Promotion failed for {claim_id}: {str(e)}")
+            return False

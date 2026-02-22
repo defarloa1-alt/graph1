@@ -1,0 +1,40 @@
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.chrystallum.org/dataset/core-v1>
+  a void:Dataset ;
+  dct:title "Chrystallum Core Dataset v1 (Draft)" ;
+  dct:description "Draft VoID descriptor for Chrystallum LOD baseline export." ;
+  dct:creator <https://data.chrystallum.org/org/chrystallum> ;
+  dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dct:issued "2026-02-18"^^xsd:date ;
+  dct:modified "2026-02-18"^^xsd:date ;
+  void:uriSpace "https://data.chrystallum.org/id/" ;
+  void:dataDump <https://data.chrystallum.org/dumps/core_graph_v1.ttl> ,
+                <https://data.chrystallum.org/dumps/claims_provenance_v1.ttl> ,
+                <https://data.chrystallum.org/dumps/alignments_v1.ttl> ;
+  void:vocabulary <https://data.chrystallum.org/ontology/> ,
+                  <http://www.w3.org/2000/01/rdf-schema#> ,
+                  <http://www.w3.org/2002/07/owl#> ,
+                  <http://www.w3.org/ns/prov#> ;
+  void:subset <https://data.chrystallum.org/dataset/core-v1/claims> ,
+              <https://data.chrystallum.org/dataset/core-v1/alignments> .
+
+<https://data.chrystallum.org/dataset/core-v1/claims>
+  a void:Dataset ;
+  dct:title "Chrystallum Claims Subset (Draft)" ;
+  dct:description "Claim and provenance subset for baseline LOD publication." .
+
+<https://data.chrystallum.org/dataset/core-v1/alignments>
+  a void:Dataset ;
+  dct:title "Chrystallum Alignment Subset (Draft)" ;
+  dct:description "Authority alignment links (for example Wikidata, LCSH, FAST)." ;
+  void:target <https://www.wikidata.org/> ;
+  void:target <https://id.loc.gov/> ;
+  void:target <http://id.worldcat.org/fast/> .
+
+<https://data.chrystallum.org/org/chrystallum>
+  a foaf:Organization ;
+  foaf:name "Chrystallum Project" .
