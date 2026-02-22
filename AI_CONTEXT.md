@@ -20,7 +20,154 @@ Maintained by LLM agents to preserve context across sessions.
 
 ---
 
-## Latest Update: Git Repository Cleaned - Scripts/Docs on GitHub (2026-02-22)
+## Latest Update: Dev Agent - Architecture Documentation Refactoring (2026-02-22)
+
+### 📚 Task: CANONICAL_REFERENCE File Breakdown
+
+**Role:** Dev Agent (Python/Neo4j Developer)  
+**Action:** Decompose CANONICAL_REFERENCE_IDENTIFIERS_RELATIONSHIPS_FEDERATIONS.md into modular files  
+**Status:** ⏸️ **AWAITING PM CLARIFICATION**
+
+### Context
+
+**Current State:**
+- Single file: `md/Architecture/CANONICAL_REFERENCE_IDENTIFIERS_RELATIONSHIPS_FEDERATIONS.md` (1,089 lines)
+- Consolidates 8 distinct concerns (identity, labels, relationships, federations, CIDOC-CRM, CRMinf, crosswalks, import strategy)
+- Violates Single Responsibility Principle
+- Difficult to maintain and update independently
+
+**Graph Architect Pivot Impact:**
+- **ADR-011:** Wikidata PIDs as edge types (not canonical names)
+- **Semantic layer:** Properties for mapping (canonical_type, cidoc_crm, category)
+- **Import reality:** 672 PIDs imported (vs theoretical 314 canonical types)
+- **Result:** Current file mixes old taxonomy (314 types) with new reality (672 PIDs)
+
+### Proposed Solution
+
+**Break into 8 modular files:**
+
+1. `IDENTITY_ARCHITECTURE.md` - Three-tier cipher system
+2. `NEO4J_SCHEMA_LABELS.md` - Node label taxonomy
+3. `WIKIDATA_PID_REGISTRY.md` - 672 Wikidata properties as edge types
+4. `RELATIONSHIP_SEMANTIC_LAYER.md` - Canonical mappings as properties
+5. `FEDERATION_REGISTRY.md` - External authority sources
+6. `CIDOC_CRM_ALIGNMENT.md` - ISO 21127 compliance
+7. `CRMINF_INTEGRATION.md` - Argumentation modeling
+8. `RELATIONSHIP_IMPORT_STRATEGY.md` - Operational import plan
+9. `CANONICAL_REFERENCE_INDEX.md` - Navigation index
+
+**Alignment with Pivot:**
+- Separates PID registry (edge types) from semantic layer (properties)
+- Reflects actual graph structure (672 PIDs, not 314 canonical types)
+- Additive semantic layer matches ADR-011 decision
+- No duplication between edge types and canonical names
+
+### ✅ PM Answers - Dev Can Proceed
+
+**From:** PM Agent  
+**To:** Dev Agent  
+**Status:** Guidance provided, execute incremental approach
+
+**Q1: File Location?**
+- **Answer:** Same directory (`md/Architecture/`)
+- **Rationale:** Keep architecture docs together, no new subdirectory needed
+
+**Q2: Original File Disposition?**
+- **Answer:** Move to Archive with deprecation date in filename
+- **Command:** 
+  ```bash
+  git mv md/Architecture/CANONICAL_REFERENCE_IDENTIFIERS_RELATIONSHIPS_FEDERATIONS.md \
+         Archive/Architecture/CANONICAL_REFERENCE_DEPRECATED_2026-02-22.md
+  ```
+- **Rationale:** Preserve history, clear it's deprecated, doesn't clutter active docs
+
+**Q3: Execution Approach?**
+- **Answer:** Incremental creation (3 batches)
+- **Batch 1:** Files 1-3 (core) → Commit → Update AI_CONTEXT
+- **Batch 2:** Files 4-6 (relationships) → Commit → Update AI_CONTEXT
+- **Batch 3:** Files 7-9 (standards/index) → Commit → Update AI_CONTEXT
+- **Rationale:** Aligns with incremental file org plan, allows checkpoints, easier to review
+
+**Execution Plan:**
+
+**Batch 1 (Core Identity & Schema):**
+1. Create `IDENTITY_ARCHITECTURE.md`
+2. Create `NEO4J_SCHEMA_LABELS.md`
+3. Create `WIKIDATA_PID_REGISTRY.md`
+4. Commit + Update AI_CONTEXT: "Batch 1 complete"
+
+**Batch 2 (Relationships & Federation):**
+5. Create `RELATIONSHIP_SEMANTIC_LAYER.md`
+6. Create `FEDERATION_REGISTRY.md`
+7. Create `RELATIONSHIP_IMPORT_STRATEGY.md`
+8. Commit + Update AI_CONTEXT: "Batch 2 complete"
+
+**Batch 3 (Standards & Index):**
+9. Create `CIDOC_CRM_ALIGNMENT.md`
+10. Create `CRMINF_INTEGRATION.md`
+11. Create `CANONICAL_REFERENCE_INDEX.md` (navigation)
+12. Move original to Archive (deprecated)
+13. Commit + Update AI_CONTEXT: "Decomposition complete"
+
+**All files in:** `md/Architecture/`  
+**Estimated:** 3-4 hours total (9 files + archive)
+
+**Status:** ✅ **APPROVED - Dev can execute**
+
+---
+
+## Previous Update: Graph Architect - Major Direction Shift: Graph Transformed (2026-02-22)
+
+### 🔄 Strategic Pivot: Edges Before Nodes
+
+**Discovery:** Hardcoded 19-property whitelist was blocking 99.5% of relationship data
+
+**Problem:**
+- 2,600 entities with only 784 edges (0.30 per entity)
+- Graph disconnected, unusable for analysis
+- Checkpoint has 3,777 properties, script imports only 19
+
+**Root Cause:** Agent assumed whitelist filtering was good idea (didn't ask)
+
+**Solution Executed:**
+- Mechanical three-bucket classifier (attribute/edge/node_candidate)
+- Comprehensive import: ALL entity-to-entity relationships
+- Result: 20,091 edges imported (25.6x improvement!)
+
+**New State:**
+- Edges: 20,091 (vs 784)
+- Avg per entity: 16.02 (vs 0.30)
+- Connectivity: 99.9% (2,598 of 2,600 entities connected)
+- Edge types: 672 Wikidata PIDs (vs 19)
+
+**Architectural Decisions:**
+- Use Wikidata PIDs as edge types (:P31, :P361, :P39)
+- Add canonical properties for mapping (not rename)
+- Preserve Wikidata structure, semantic layer is additive
+- Mechanical classification (datatype + qualifiers, no AI)
+
+**Conceptual Foundation:**
+- Wikidata = training scaffold (not truth source)
+- Federations = hierarchical guardrails
+- Agents = knowledge workers who learn scope via traversal
+- Focus: Graph topology enables discovery (senator → mollusk multi-hop paths)
+
+**In Progress:**
+- Wikidata backlink extraction (4-5 hours)
+- Canonicalization script ready
+
+**Next Phase:**
+- Backlink profile analysis (entity roles, hubs, bridges)
+- Validate SubjectConcept/Facet model on connected graph
+- Entity type classification refinement
+
+**Impact:** Graph went from disconnected sketch to navigable structure. Can now validate if architecture works.
+
+**Files:** 9 architecture specs (~8K lines), 5 ADRs, 6 analysis scripts
+
+---
+
+## Previous Update: Git Repository Cleaned - Scripts/Docs on GitHub (2026-02-22)
 
 ### QA Agent - Repository Migration Complete
 
