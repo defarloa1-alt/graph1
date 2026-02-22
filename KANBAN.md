@@ -40,6 +40,12 @@
 
 ## Ready
 
+- [ ] **Agent Implementation** #high @dev
+  - **Status:** Waiting for stakeholder Neo4j testing complete
+  - **Dependencies:** Property mapping validation
+  - **Scope:** Will be defined after testing results
+  - **Note:** Stakeholder testing property_mapping_test_queries.cypher
+  
 - [ ] **Validate SubjectConcept Model** #high @architect
   - Test on 99.9% connected graph
   - Verify facet-based queries work
