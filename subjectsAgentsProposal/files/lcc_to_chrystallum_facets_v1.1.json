@@ -1,0 +1,750 @@
+{
+  "metadata": {
+    "version": "1.1.0",
+    "created": "2026-02-15",
+    "description": "Library of Congress Classification to Chrystallum 16-Facet mapping",
+    "facets": [
+      "Military",
+      "Political",
+      "Social",
+      "Diplomatic",
+      "Economic",
+      "Legal",
+      "Religious",
+      "Cultural",
+      "Demographic",
+      "Technological",
+      "Architectural",
+      "Literary",
+      "Philosophical",
+      "Scientific",
+      "Geographic",
+      "Temporal",
+      "Communication"
+    ],
+    "priority": "LCC ranges are hierarchical - specific ranges override general classes",
+    "changelog": {
+      "1.1.0": "Added Communication facet (17th facet) - rhetoric, propaganda, messaging"
+    }
+  },
+  "mappings": {
+    "DG": {
+      "label": "Italy - Ancient Rome",
+      "default_facets": [
+        "Political",
+        "Military",
+        "Social"
+      ],
+      "ranges": {
+        "DG11-DG190": {
+          "label": "Ancient Italy (pre-Rome)",
+          "facets": [
+            "Geographic",
+            "Social",
+            "Cultural"
+          ]
+        },
+        "DG206-DG365": {
+          "label": "Rome (general history)",
+          "facets": [
+            "Political",
+            "Military",
+            "Social"
+          ]
+        },
+        "DG207-DG209": {
+          "label": "Rome city - Topography",
+          "facets": [
+            "Geographic",
+            "Architectural"
+          ]
+        },
+        "DG210-DG216": {
+          "label": "Chronology, periods",
+          "facets": [
+            "Temporal",
+            "Political"
+          ]
+        },
+        "DG217-DG230": {
+          "label": "General history",
+          "facets": [
+            "Political",
+            "Social",
+            "Cultural"
+          ]
+        },
+        "DG231": {
+          "label": "Regal period (753-510 BC)",
+          "facets": [
+            "Political",
+            "Temporal"
+          ]
+        },
+        "DG231.3-DG231.8": {
+          "label": "Individual kings",
+          "facets": [
+            "Political",
+            "Social"
+          ]
+        },
+        "DG232-DG248": {
+          "label": "Republic (510-27 BC)",
+          "facets": [
+            "Political",
+            "Military",
+            "Diplomatic"
+          ]
+        },
+        "DG233": {
+          "label": "Constitution, magistrates",
+          "facets": [
+            "Political",
+            "Legal"
+          ]
+        },
+        "DG234": {
+          "label": "Foreign relations",
+          "facets": [
+            "Military",
+            "Diplomatic"
+          ]
+        },
+        "DG235-DG241": {
+          "label": "Wars of the Republic",
+          "facets": [
+            "Military",
+            "Political"
+          ]
+        },
+        "DG235": {
+          "label": "Wars with Latin neighbors",
+          "facets": [
+            "Military",
+            "Geographic"
+          ]
+        },
+        "DG237": {
+          "label": "Samnite Wars, etc.",
+          "facets": [
+            "Military",
+            "Diplomatic"
+          ]
+        },
+        "DG241": {
+          "label": "Wars with Gauls",
+          "facets": [
+            "Military",
+            "Geographic"
+          ]
+        },
+        "DG242-DG243": {
+          "label": "Internal conflicts, Gracchi",
+          "facets": [
+            "Political",
+            "Social"
+          ]
+        },
+        "DG244": {
+          "label": "Social War (91-88 BC)",
+          "facets": [
+            "Political",
+            "Military"
+          ]
+        },
+        "DG245": {
+          "label": "Mithridatic Wars",
+          "facets": [
+            "Military",
+            "Political"
+          ]
+        },
+        "DG246": {
+          "label": "Sulla, civil wars",
+          "facets": [
+            "Political",
+            "Military"
+          ]
+        },
+        "DG247": {
+          "label": "Punic Wars",
+          "facets": [
+            "Military",
+            "Diplomatic"
+          ],
+          "confidence": 0.95
+        },
+        "DG247.2": {
+          "label": "First Punic War (264-241 BC)",
+          "facets": [
+            "Military",
+            "Geographic"
+          ]
+        },
+        "DG247.3": {
+          "label": "Second Punic War (218-201 BC)",
+          "facets": [
+            "Military",
+            "Political"
+          ]
+        },
+        "DG247.4": {
+          "label": "Third Punic War (149-146 BC)",
+          "facets": [
+            "Military",
+            "Geographic"
+          ]
+        },
+        "DG247.5": {
+          "label": "Wars with Carthage (general)",
+          "facets": [
+            "Military",
+            "Diplomatic"
+          ]
+        },
+        "DG248": {
+          "label": "Fall of Republic, triumvirates",
+          "facets": [
+            "Political",
+            "Military"
+          ]
+        },
+        "DG249-DG365": {
+          "label": "Empire (27 BC - 476 AD)",
+          "facets": [
+            "Political",
+            "Military",
+            "Social"
+          ]
+        },
+        "DG251-DG253": {
+          "label": "Imperial government",
+          "facets": [
+            "Political",
+            "Legal"
+          ]
+        },
+        "DG254-DG270": {
+          "label": "Foreign relations, wars of Empire",
+          "facets": [
+            "Military",
+            "Diplomatic"
+          ]
+        },
+        "DG271-DG285": {
+          "label": "Individual emperors",
+          "facets": [
+            "Political",
+            "Social"
+          ]
+        },
+        "DG286-DG309": {
+          "label": "Later empire, decline",
+          "facets": [
+            "Military",
+            "Political"
+          ]
+        },
+        "DG311-DG365": {
+          "label": "Civilization, culture",
+          "facets": [
+            "Social",
+            "Cultural",
+            "Economic"
+          ]
+        },
+        "DG311-DG315": {
+          "label": "Population, ethnography",
+          "facets": [
+            "Social",
+            "Demographic"
+          ]
+        },
+        "DG316-DG319": {
+          "label": "Economic conditions",
+          "facets": [
+            "Economic",
+            "Social"
+          ]
+        },
+        "DG320-DG325": {
+          "label": "Social life, customs",
+          "facets": [
+            "Social",
+            "Cultural"
+          ]
+        },
+        "DG326-DG330": {
+          "label": "Political institutions",
+          "facets": [
+            "Political",
+            "Legal"
+          ]
+        },
+        "DG331-DG335": {
+          "label": "Law, administration",
+          "facets": [
+            "Legal",
+            "Political"
+          ]
+        },
+        "DG336-DG340": {
+          "label": "Military institutions",
+          "facets": [
+            "Military",
+            "Technological"
+          ]
+        },
+        "DG341-DG345": {
+          "label": "Intellectual life",
+          "facets": [
+            "Cultural",
+            "Literary",
+            "Communication"
+          ]
+        },
+        "DG346-DG350": {
+          "label": "Religion, mythology",
+          "facets": [
+            "Religious",
+            "Cultural"
+          ],
+          "communication_dimension": true
+        },
+        "DG351-DG355": {
+          "label": "Art, architecture",
+          "facets": [
+            "Architectural",
+            "Cultural"
+          ]
+        },
+        "DG356-DG360": {
+          "label": "Recreation, sports",
+          "facets": [
+            "Cultural",
+            "Social"
+          ]
+        },
+        "DG361-DG365": {
+          "label": "Private life, women",
+          "facets": [
+            "Social",
+            "Cultural"
+          ]
+        }
+      }
+    },
+    "DE": {
+      "label": "Greco-Roman world (general)",
+      "default_facets": [
+        "Political",
+        "Cultural",
+        "Philosophical"
+      ]
+    },
+    "DF": {
+      "label": "Greece",
+      "default_facets": [
+        "Political",
+        "Cultural",
+        "Military"
+      ]
+    },
+    "BL": {
+      "label": "Religions, Mythology",
+      "default_facets": [
+        "Religious",
+        "Cultural"
+      ],
+      "ranges": {
+        "BL700-BL820": {
+          "label": "Classical religion",
+          "facets": [
+            "Religious",
+            "Cultural",
+            "Social"
+          ]
+        },
+        "BL785-BL815": {
+          "label": "Greek religion",
+          "facets": [
+            "Religious",
+            "Cultural"
+          ]
+        },
+        "BL800-BL820": {
+          "label": "Roman religion",
+          "facets": [
+            "Religious",
+            "Cultural",
+            "Philosophical"
+          ]
+        },
+        "BL820": {
+          "label": "Roman religion (specific)",
+          "facets": [
+            "Religious",
+            "Cultural"
+          ]
+        }
+      }
+    },
+    "KJA": {
+      "label": "Roman Law",
+      "default_facets": [
+        "Legal",
+        "Political"
+      ],
+      "ranges": {
+        "KJA1-KJA9": {
+          "label": "Roman law history, periods",
+          "facets": [
+            "Legal",
+            "Temporal"
+          ]
+        },
+        "KJA10-KJA499": {
+          "label": "General principles",
+          "facets": [
+            "Legal",
+            "Philosophical"
+          ]
+        },
+        "KJA500-KJA2985": {
+          "label": "Persons, family law",
+          "facets": [
+            "Legal",
+            "Social"
+          ]
+        },
+        "KJA2986-KJA3989": {
+          "label": "Property, obligations",
+          "facets": [
+            "Legal",
+            "Economic"
+          ]
+        },
+        "KJA3990-KJA4499": {
+          "label": "Public law",
+          "facets": [
+            "Legal",
+            "Political"
+          ]
+        },
+        "KJA4500-KJA4999": {
+          "label": "Civil procedure",
+          "facets": [
+            "Legal",
+            "Social"
+          ]
+        },
+        "KJA5000-KJA5499": {
+          "label": "Criminal law, procedure",
+          "facets": [
+            "Legal",
+            "Military"
+          ]
+        }
+      }
+    },
+    "PA": {
+      "label": "Classical Languages and Literature",
+      "default_facets": [
+        "Literary",
+        "Cultural"
+      ],
+      "ranges": {
+        "PA1-PA199": {
+          "label": "Classical philology",
+          "facets": [
+            "Literary",
+            "Cultural"
+          ]
+        },
+        "PA200-PA899": {
+          "label": "Greek language",
+          "facets": [
+            "Literary",
+            "Cultural"
+          ]
+        },
+        "PA2000-PA2915": {
+          "label": "Greek literature",
+          "facets": [
+            "Literary",
+            "Cultural",
+            "Philosophical"
+          ]
+        },
+        "PA3000-PA3049": {
+          "label": "Roman philology",
+          "facets": [
+            "Literary",
+            "Cultural"
+          ]
+        },
+        "PA6001-PA6971": {
+          "label": "Latin language",
+          "facets": [
+            "Literary",
+            "Cultural"
+          ]
+        },
+        "PA8001-PA8595": {
+          "label": "Latin literature",
+          "facets": [
+            "Literary",
+            "Cultural",
+            "Philosophical"
+          ]
+        },
+        "PA8500-PA8595": {
+          "label": "Medieval/Modern Latin",
+          "facets": [
+            "Literary",
+            "Cultural"
+          ]
+        },
+        "PA6087-PA6099": {
+          "label": "Latin rhetoric",
+          "facets": [
+            "Communication",
+            "Literary"
+          ],
+          "confidence": 0.95
+        }
+      }
+    },
+    "NA": {
+      "label": "Architecture",
+      "default_facets": [
+        "Architectural",
+        "Cultural"
+      ],
+      "ranges": {
+        "NA200-NA1613": {
+          "label": "History of architecture",
+          "facets": [
+            "Architectural",
+            "Temporal"
+          ]
+        },
+        "NA300-NA320": {
+          "label": "Ancient architecture",
+          "facets": [
+            "Architectural",
+            "Cultural"
+          ]
+        },
+        "NA310": {
+          "label": "Roman architecture",
+          "facets": [
+            "Architectural",
+            "Geographic"
+          ]
+        }
+      }
+    },
+    "U": {
+      "label": "Military Science",
+      "default_facets": [
+        "Military",
+        "Political"
+      ],
+      "ranges": {
+        "U1-U900": {
+          "label": "Military science (general)",
+          "facets": [
+            "Military",
+            "Political"
+          ]
+        },
+        "UA": {
+          "label": "Armies: Organization",
+          "facets": [
+            "Military",
+            "Political"
+          ]
+        },
+        "UB": {
+          "label": "Military administration",
+          "facets": [
+            "Military",
+            "Social"
+          ]
+        },
+        "UC": {
+          "label": "Maintenance and transportation",
+          "facets": [
+            "Military",
+            "Social"
+          ]
+        },
+        "UD": {
+          "label": "Infantry",
+          "facets": [
+            "Military",
+            "Technological"
+          ]
+        },
+        "UE": {
+          "label": "Cavalry",
+          "facets": [
+            "Military",
+            "Technological"
+          ]
+        },
+        "UF": {
+          "label": "Artillery",
+          "facets": [
+            "Military",
+            "Technological"
+          ]
+        },
+        "UG": {
+          "label": "Military engineering",
+          "facets": [
+            "Military",
+            "Technological"
+          ]
+        },
+        "UH": {
+          "label": "Other military services",
+          "facets": [
+            "Military",
+            "Technological"
+          ]
+        }
+      }
+    },
+    "CB": {
+      "label": "History of civilization",
+      "default_facets": [
+        "Cultural",
+        "Social"
+      ]
+    },
+    "CC": {
+      "label": "Archaeology",
+      "default_facets": [
+        "Scientific",
+        "Cultural"
+      ]
+    },
+    "CE": {
+      "label": "Chronology, Calendar",
+      "default_facets": [
+        "Temporal",
+        "Scientific"
+      ]
+    },
+    "CJ": {
+      "label": "Numismatics",
+      "default_facets": [
+        "Economic",
+        "Cultural"
+      ]
+    },
+    "CN": {
+      "label": "Inscriptions, Epigraphy",
+      "default_facets": [
+        "Cultural",
+        "Literary"
+      ]
+    },
+    "G": {
+      "label": "Geography",
+      "default_facets": [
+        "Geographic"
+      ]
+    },
+    "HC": {
+      "label": "Economic history, conditions",
+      "default_facets": [
+        "Economic",
+        "Political"
+      ]
+    },
+    "HQ": {
+      "label": "Family, Marriage, Women",
+      "default_facets": [
+        "Social",
+        "Demographic"
+      ]
+    },
+    "J": {
+      "label": "Political Science",
+      "default_facets": [
+        "Political"
+      ]
+    },
+    "JZ": {
+      "label": "International relations",
+      "default_facets": [
+        "Political",
+        "Diplomatic"
+      ]
+    },
+    "PN4001-PN4355": {
+      "label": "Oratory, Elocution",
+      "default_facets": [
+        "Communication",
+        "Literary"
+      ],
+      "ranges": {
+        "PN4001-PN4191": {
+          "label": "History and theory of oratory",
+          "facets": [
+            "Communication"
+          ],
+          "confidence": 0.95
+        },
+        "PN4080-PN4191": {
+          "label": "Classical oratory",
+          "facets": [
+            "Communication",
+            "Literary"
+          ],
+          "confidence": 0.95
+        }
+      }
+    },
+    "PN4400-PN4500": {
+      "label": "Journalism, The periodical press",
+      "default_facets": [
+        "Communication"
+      ]
+    },
+    "HM1001-HM1281": {
+      "label": "Social psychology - Persuasion, Propaganda",
+      "default_facets": [
+        "Communication",
+        "Social"
+      ],
+      "ranges": {
+        "HM1206-HM1211": {
+          "label": "Social influence, Social pressure",
+          "facets": [
+            "Communication",
+            "Social"
+          ],
+          "confidence": 0.9
+        }
+      }
+    },
+    "JF1525.P8": {
+      "label": "Public opinion",
+      "default_facets": [
+        "Communication",
+        "Political"
+      ]
+    },
+    "JF2112": {
+      "label": "Political campaigns",
+      "default_facets": [
+        "Communication",
+        "Political"
+      ]
+    }
+  }
+}

@@ -1,0 +1,3704 @@
+{
+  "@context": "http://id.loc.gov/authorities/subjects/context.json",
+  "@graph": [
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000014",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85129334"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n482956330e1c4a49af4cf8e7f5f7b5b3b1"
+            },
+            {
+              "@id": "_:n482956330e1c4a49af4cf8e7f5f7b5b3b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Tacos"
+          }
+        },
+        {
+          "@id": "_:n482956330e1c4a49af4cf8e7f5f7b5b3b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-03-21T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000014"
+          }
+        },
+        {
+          "@id": "_:n482956330e1c4a49af4cf8e7f5f7b5b3b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2010-11-22T06:57:32"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000014"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000014"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000015",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh93001765"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:nc0befff3ffcb4c68a0725ddfa84228e1b1"
+            },
+            {
+              "@id": "_:nc0befff3ffcb4c68a0725ddfa84228e1b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-or"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Trail Creek Watershed (Jackson County, Or.)"
+          }
+        },
+        {
+          "@id": "_:nc0befff3ffcb4c68a0725ddfa84228e1b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2011-05-27T10:50:03"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000015"
+          }
+        },
+        {
+          "@id": "_:nc0befff3ffcb4c68a0725ddfa84228e1b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-23T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000015"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000015"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000015-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:n8bb1eaace584404484cda7045a4c310eb1"
+            },
+            {
+              "@id": "_:n8bb1eaace584404484cda7045a4c310eb2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000015]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Oregon--Trail Creek Watershed (Jackson County)"
+          }
+        },
+        {
+          "@id": "_:n8bb1eaace584404484cda7045a4c310eb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-23T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000015-781"
+          }
+        },
+        {
+          "@id": "_:n8bb1eaace584404484cda7045a4c310eb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000015-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000015-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000016",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85114375"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:nfb27f5e3f18842108eedc7e54d75319bb1"
+            },
+            {
+              "@id": "_:nfb27f5e3f18842108eedc7e54d75319bb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-or"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Trail Creek (Jackson County, Or.)"
+          }
+        },
+        {
+          "@id": "_:nfb27f5e3f18842108eedc7e54d75319bb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000016"
+          }
+        },
+        {
+          "@id": "_:nfb27f5e3f18842108eedc7e54d75319bb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2011-06-07T08:00:21"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000016"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000016"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000016-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:n66e6b065d96840d0a7b185bb66310d53b1"
+            },
+            {
+              "@id": "_:n66e6b065d96840d0a7b185bb66310d53b2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000016]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Oregon--Trail Creek (Jackson County)"
+          }
+        },
+        {
+          "@id": "_:n66e6b065d96840d0a7b185bb66310d53b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000016-781"
+          }
+        },
+        {
+          "@id": "_:n66e6b065d96840d0a7b185bb66310d53b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000016-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000016-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000019",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh93001765"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n89a4f91ac01949279e01e7040b37ec84b1"
+            },
+            {
+              "@id": "_:n89a4f91ac01949279e01e7040b37ec84b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-or"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Grave Creek Watershed (Josephine County, Or.)"
+          }
+        },
+        {
+          "@id": "_:n89a4f91ac01949279e01e7040b37ec84b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000019"
+          }
+        },
+        {
+          "@id": "_:n89a4f91ac01949279e01e7040b37ec84b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2011-06-07T08:00:27"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000019"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000019"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000019-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:ndae0863b0c0842deba1eac2aa1c83a11b1"
+            },
+            {
+              "@id": "_:ndae0863b0c0842deba1eac2aa1c83a11b2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000019]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Oregon--Grave Creek Watershed (Josephine County)"
+          }
+        },
+        {
+          "@id": "_:ndae0863b0c0842deba1eac2aa1c83a11b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000019-781"
+          }
+        },
+        {
+          "@id": "_:ndae0863b0c0842deba1eac2aa1c83a11b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000019-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000019-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000021",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85114375"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n6b99f77c31b046b9ac2e5a0d196fa3f9b1"
+            },
+            {
+              "@id": "_:n6b99f77c31b046b9ac2e5a0d196fa3f9b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-or"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Grave Creek (Josephine County, Or.)"
+          }
+        },
+        {
+          "@id": "_:n6b99f77c31b046b9ac2e5a0d196fa3f9b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000021"
+          }
+        },
+        {
+          "@id": "_:n6b99f77c31b046b9ac2e5a0d196fa3f9b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2011-06-07T08:00:28"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000021"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000021"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000021-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:ndc4fe51102cc45f795d858411af43d56b1"
+            },
+            {
+              "@id": "_:ndc4fe51102cc45f795d858411af43d56b2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000021]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Oregon--Grave Creek (Josephine County)"
+          }
+        },
+        {
+          "@id": "_:ndc4fe51102cc45f795d858411af43d56b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000021-781"
+          }
+        },
+        {
+          "@id": "_:ndc4fe51102cc45f795d858411af43d56b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000021-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000021-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000023",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "La Chancera, Laguna (Argentina)"
+            },
+            {
+              "@language": "en",
+              "@value": "Laguna La Chanchera (Argentina)"
+            }
+          ],
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85074044"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b1"
+            },
+            {
+              "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "s-ag---"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Chanchera Lake (Argentina)"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b3"
+            },
+            {
+              "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b4"
+            }
+          ]
+        },
+        {
+          "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-03-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000023"
+          }
+        },
+        {
+          "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-09-25T14:01:14"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000023"
+          }
+        },
+        {
+          "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "La Chancera, Laguna (Argentina)"
+          }
+        },
+        {
+          "@id": "_:n71afd38a95f44cd7afc97fdc407308c6b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Laguna La Chanchera (Argentina)"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000023"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000023-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:n51d4baaa184a4e9ea984be3a2f19e757b1"
+            },
+            {
+              "@id": "_:n51d4baaa184a4e9ea984be3a2f19e757b2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000023]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Argentina--Chanchera Lake"
+          }
+        },
+        {
+          "@id": "_:n51d4baaa184a4e9ea984be3a2f19e757b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-03-22T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000023-781"
+          }
+        },
+        {
+          "@id": "_:n51d4baaa184a4e9ea984be3a2f19e757b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-04-15T14:36:06"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000023-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000023-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000024",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Escuro, Rito (N.M.)"
+            },
+            {
+              "@language": "en",
+              "@value": "Oscuro, Rio (N.M.)"
+            },
+            {
+              "@language": "en",
+              "@value": "Rito Escuro (N.M.)"
+            },
+            {
+              "@language": "en",
+              "@value": "Rito Oscuro (N.M.)"
+            }
+          ],
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85114360"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b1"
+            },
+            {
+              "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-nm"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Rio Oscuro (N.M.)"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b3"
+            },
+            {
+              "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b4"
+            },
+            {
+              "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b5"
+            },
+            {
+              "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b6"
+            }
+          ]
+        },
+        {
+          "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-09T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000024"
+          }
+        },
+        {
+          "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2011-06-07T08:00:28"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000024"
+          }
+        },
+        {
+          "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Rito Oscuro (N.M.)"
+          }
+        },
+        {
+          "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Oscuro, Rio (N.M.)"
+          }
+        },
+        {
+          "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Escuro, Rito (N.M.)"
+          }
+        },
+        {
+          "@id": "_:n7730cad2913147c2a0f0f99f5f7d89f6b6",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Rito Escuro (N.M.)"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000024"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000024-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:ne056e1e39ad64e4494cab55d211c023cb1"
+            },
+            {
+              "@id": "_:ne056e1e39ad64e4494cab55d211c023cb2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000024]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "New Mexico--Rio Oscuro"
+          }
+        },
+        {
+          "@id": "_:ne056e1e39ad64e4494cab55d211c023cb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-09T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000024-781"
+          }
+        },
+        {
+          "@id": "_:ne056e1e39ad64e4494cab55d211c023cb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000024-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000024-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000025",
+          "@type": "skos:Concept",
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh00003146"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh96004255"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh98000807"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:n6cf4273fb48644a4ababe85f1f084accb1"
+            },
+            {
+              "@id": "_:n6cf4273fb48644a4ababe85f1f084accb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Women marine mammalogists"
+          }
+        },
+        {
+          "@id": "_:n6cf4273fb48644a4ababe85f1f084accb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-19T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000025"
+          }
+        },
+        {
+          "@id": "_:n6cf4273fb48644a4ababe85f1f084accb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-06T14:28:18"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000025"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000025"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000026",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85066494"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n2468d70c2cfd498ba7ea243bbab04612b1"
+            },
+            {
+              "@id": "_:n2468d70c2cfd498ba7ea243bbab04612b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "u-at-we"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Wilson Inlet (W.A.)"
+          }
+        },
+        {
+          "@id": "_:n2468d70c2cfd498ba7ea243bbab04612b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2014-10-17T09:18:14"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000026"
+          }
+        },
+        {
+          "@id": "_:n2468d70c2cfd498ba7ea243bbab04612b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-19T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000026"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000026"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000026-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:n34121735932b4c10a3a63dfdc731b235b1"
+            },
+            {
+              "@id": "_:n34121735932b4c10a3a63dfdc731b235b2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000026]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Australia--Wilson Inlet (W.A.)"
+          }
+        },
+        {
+          "@id": "_:n34121735932b4c10a3a63dfdc731b235b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-19T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000026-781"
+          }
+        },
+        {
+          "@id": "_:n34121735932b4c10a3a63dfdc731b235b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000026-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000026-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000027",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "Wet Beaver Creek (Yavapai County, Ariz.)"
+          },
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85114268"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n55c3f8790a8947afa9fcd3797a906575b1"
+            },
+            {
+              "@id": "_:n55c3f8790a8947afa9fcd3797a906575b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-az"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Beaver Creek (Yavapai County, Ariz.)"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n55c3f8790a8947afa9fcd3797a906575b3"
+          }
+        },
+        {
+          "@id": "_:n55c3f8790a8947afa9fcd3797a906575b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-03-14T09:42:55"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000027"
+          }
+        },
+        {
+          "@id": "_:n55c3f8790a8947afa9fcd3797a906575b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-11T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000027"
+          }
+        },
+        {
+          "@id": "_:n55c3f8790a8947afa9fcd3797a906575b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Wet Beaver Creek (Yavapai County, Ariz.)"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000027"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000027-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:n3170f588aab84b2c888889fc3b428e42b1"
+            },
+            {
+              "@id": "_:n3170f588aab84b2c888889fc3b428e42b2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000027]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Arizona--Beaver Creek (Yavapai County)"
+          }
+        },
+        {
+          "@id": "_:n3170f588aab84b2c888889fc3b428e42b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-04-15T14:36:32"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000027-781"
+          }
+        },
+        {
+          "@id": "_:n3170f588aab84b2c888889fc3b428e42b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-11T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000027-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000027-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000028",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh93001126"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:na60eee60ca444b5e99de37b8de547fa4b1"
+            },
+            {
+              "@id": "_:na60eee60ca444b5e99de37b8de547fa4b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-az"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Beaver Creek Watershed (Yavapai County, Ariz.)"
+          }
+        },
+        {
+          "@id": "_:na60eee60ca444b5e99de37b8de547fa4b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-11T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000028"
+          }
+        },
+        {
+          "@id": "_:na60eee60ca444b5e99de37b8de547fa4b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2011-06-07T08:00:32"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000028"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000028"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000028-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:nfdd006dcf8664d218ede98afe3a5defbb1"
+            },
+            {
+              "@id": "_:nfdd006dcf8664d218ede98afe3a5defbb2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000028]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Arizona--Beaver Creek Watershed (Yavapai County)"
+          }
+        },
+        {
+          "@id": "_:nfdd006dcf8664d218ede98afe3a5defbb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-11T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000028-781"
+          }
+        },
+        {
+          "@id": "_:nfdd006dcf8664d218ede98afe3a5defbb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000028-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000028-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000029",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Pale-headed saki"
+            },
+            {
+              "@language": "en",
+              "@value": "Pithecia pithecia"
+            }
+          ],
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000032"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b1"
+            },
+            {
+              "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "White-faced saki"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b3"
+            },
+            {
+              "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b4"
+            }
+          ]
+        },
+        {
+          "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2006-04-25T13:57:37"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000029"
+          }
+        },
+        {
+          "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2006-03-01T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000029"
+          }
+        },
+        {
+          "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Pithecia pithecia"
+          }
+        },
+        {
+          "@id": "_:nf3c6906c39db4a2386cc376f8b4db194b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Pale-headed saki"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000029"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000030",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85058856"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n0ef1ff96277d40029d729659ad26711bb1"
+            },
+            {
+              "@id": "_:n0ef1ff96277d40029d729659ad26711bb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:notation": {
+            "@type": "http://id.loc.gov/datatypes/codes/gac",
+            "@value": "n-us-hi"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Honolulu Harbor (Hawaii)"
+          }
+        },
+        {
+          "@id": "_:n0ef1ff96277d40029d729659ad26711bb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2011-06-07T08:00:32"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000030"
+          }
+        },
+        {
+          "@id": "_:n0ef1ff96277d40029d729659ad26711bb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-10T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000030"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000030"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000030-781",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:nfc35747eec49456ca3514bf667af6cdbb1"
+            },
+            {
+              "@id": "_:nfc35747eec49456ca3514bf667af6cdbb2"
+            }
+          ],
+          "skos:editorialNote": "[Resource automatically generated from LCCN sh00000030]",
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Hawaii--Honolulu Harbor"
+          }
+        },
+        {
+          "@id": "_:nfc35747eec49456ca3514bf667af6cdbb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-10T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000030-781"
+          }
+        },
+        {
+          "@id": "_:nfc35747eec49456ca3514bf667af6cdbb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2025-03-24T14:17:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000030-781"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000030-781"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000031",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85136180"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:nc1b1d0f7900b45919730ea42475740cdb1"
+            },
+            {
+              "@id": "_:nc1b1d0f7900b45919730ea42475740cdb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Anopina"
+          }
+        },
+        {
+          "@id": "_:nc1b1d0f7900b45919730ea42475740cdb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-04T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000031"
+          }
+        },
+        {
+          "@id": "_:nc1b1d0f7900b45919730ea42475740cdb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-02-11T14:58:07"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000031"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000031"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000032",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh2006001563"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n9df337955ad842c4a8266060a8984be3b1"
+            },
+            {
+              "@id": "_:n9df337955ad842c4a8266060a8984be3b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:narrower": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000029"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Pithecia"
+          }
+        },
+        {
+          "@id": "_:n9df337955ad842c4a8266060a8984be3b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2006-03-01T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000032"
+          }
+        },
+        {
+          "@id": "_:n9df337955ad842c4a8266060a8984be3b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2006-04-25T13:58:06"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000032"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000032"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000034",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "Pogosticks"
+          },
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85136372"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n3bd76e78561247509588890ed2e8f5e1b1"
+            },
+            {
+              "@id": "_:n3bd76e78561247509588890ed2e8f5e1b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Pogo sticks"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n3bd76e78561247509588890ed2e8f5e1b3"
+          }
+        },
+        {
+          "@id": "_:n3bd76e78561247509588890ed2e8f5e1b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-12-20T14:12:13"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000034"
+          }
+        },
+        {
+          "@id": "_:n3bd76e78561247509588890ed2e8f5e1b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-11-07T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000034"
+          }
+        },
+        {
+          "@id": "_:n3bd76e78561247509588890ed2e8f5e1b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Pogosticks"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000034"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000057",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "Clerkship, Clinical"
+          },
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85083104"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n9f7838060f4a4f858a1fb5e180e06bbeb1"
+            },
+            {
+              "@id": "_:n9f7838060f4a4f858a1fb5e180e06bbeb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Clinical clerkship"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n9f7838060f4a4f858a1fb5e180e06bbeb3"
+          }
+        },
+        {
+          "@id": "_:n9f7838060f4a4f858a1fb5e180e06bbeb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-03-22T10:50:55"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000057"
+          }
+        },
+        {
+          "@id": "_:n9f7838060f4a4f858a1fb5e180e06bbeb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-01-12T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000057"
+          }
+        },
+        {
+          "@id": "_:n9f7838060f4a4f858a1fb5e180e06bbeb3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Clerkship, Clinical"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000057"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000059",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "ADP-ribosyltransferase (Polymerizing)"
+            },
+            {
+              "@language": "en",
+              "@value": "Poly(ADP-ribose) polymerase"
+            },
+            {
+              "@language": "en",
+              "@value": "Poly(ADP-ribose) synthase"
+            },
+            {
+              "@language": "en",
+              "@value": "Poly(ADP-ribose) synthetase"
+            }
+          ],
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85136913"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:ne44faaf703f946ddb434537404337a99b1"
+            },
+            {
+              "@id": "_:ne44faaf703f946ddb434537404337a99b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:narrower": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh2007004423"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "NAD-ADP-ribosyltransferase"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:ne44faaf703f946ddb434537404337a99b3"
+            },
+            {
+              "@id": "_:ne44faaf703f946ddb434537404337a99b4"
+            },
+            {
+              "@id": "_:ne44faaf703f946ddb434537404337a99b5"
+            },
+            {
+              "@id": "_:ne44faaf703f946ddb434537404337a99b6"
+            }
+          ]
+        },
+        {
+          "@id": "_:ne44faaf703f946ddb434537404337a99b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-03-20T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000059"
+          }
+        },
+        {
+          "@id": "_:ne44faaf703f946ddb434537404337a99b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-02T16:18:46"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000059"
+          }
+        },
+        {
+          "@id": "_:ne44faaf703f946ddb434537404337a99b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Poly(ADP-ribose) polymerase"
+          }
+        },
+        {
+          "@id": "_:ne44faaf703f946ddb434537404337a99b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "ADP-ribosyltransferase (Polymerizing)"
+          }
+        },
+        {
+          "@id": "_:ne44faaf703f946ddb434537404337a99b5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Poly(ADP-ribose) synthetase"
+          }
+        },
+        {
+          "@id": "_:ne44faaf703f946ddb434537404337a99b6",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Poly(ADP-ribose) synthase"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000059"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000060",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Dimethylallyltransferase"
+            },
+            {
+              "@language": "en",
+              "@value": "Farnesylpyrophosphate synthetase"
+            },
+            {
+              "@language": "en",
+              "@value": "Geranyldiphosphate synthase"
+            },
+            {
+              "@language": "en",
+              "@value": "Geranylpyrophosphate synthetase"
+            },
+            {
+              "@language": "en",
+              "@value": "Prenyltransferase"
+            }
+          ],
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85136913"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n207594ef9dcb434ca6f74818e302bacdb1"
+            },
+            {
+              "@id": "_:n207594ef9dcb434ca6f74818e302bacdb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Dimethylallyltranstransferase"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:n207594ef9dcb434ca6f74818e302bacdb3"
+            },
+            {
+              "@id": "_:n207594ef9dcb434ca6f74818e302bacdb4"
+            },
+            {
+              "@id": "_:n207594ef9dcb434ca6f74818e302bacdb5"
+            },
+            {
+              "@id": "_:n207594ef9dcb434ca6f74818e302bacdb6"
+            },
+            {
+              "@id": "_:n207594ef9dcb434ca6f74818e302bacdb7"
+            }
+          ]
+        },
+        {
+          "@id": "_:n207594ef9dcb434ca6f74818e302bacdb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-03-24T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000060"
+          }
+        },
+        {
+          "@id": "_:n207594ef9dcb434ca6f74818e302bacdb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-08T12:46:38"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000060"
+          }
+        },
+        {
+          "@id": "_:n207594ef9dcb434ca6f74818e302bacdb3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Geranylpyrophosphate synthetase"
+          }
+        },
+        {
+          "@id": "_:n207594ef9dcb434ca6f74818e302bacdb4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Prenyltransferase"
+          }
+        },
+        {
+          "@id": "_:n207594ef9dcb434ca6f74818e302bacdb5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Dimethylallyltransferase"
+          }
+        },
+        {
+          "@id": "_:n207594ef9dcb434ca6f74818e302bacdb6",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Geranyldiphosphate synthase"
+          }
+        },
+        {
+          "@id": "_:n207594ef9dcb434ca6f74818e302bacdb7",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Farnesylpyrophosphate synthetase"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000060"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000061",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Post-polio syndrome"
+            },
+            {
+              "@language": "en",
+              "@value": "Postpolio syndrome"
+            },
+            {
+              "@language": "en",
+              "@value": "Postpoliomyelitis muscular atrophy"
+            }
+          ],
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh00008503"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85009364"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85131629"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:nf05a70604fdf4b8fa55789552e957a93b1"
+            },
+            {
+              "@id": "_:nf05a70604fdf4b8fa55789552e957a93b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Postpoliomyelitis syndrome"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:nf05a70604fdf4b8fa55789552e957a93b3"
+            },
+            {
+              "@id": "_:nf05a70604fdf4b8fa55789552e957a93b4"
+            },
+            {
+              "@id": "_:nf05a70604fdf4b8fa55789552e957a93b5"
+            }
+          ]
+        },
+        {
+          "@id": "_:nf05a70604fdf4b8fa55789552e957a93b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-08-07T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000061"
+          }
+        },
+        {
+          "@id": "_:nf05a70604fdf4b8fa55789552e957a93b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-09-15T07:50:22"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000061"
+          }
+        },
+        {
+          "@id": "_:nf05a70604fdf4b8fa55789552e957a93b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Postpolio syndrome"
+          }
+        },
+        {
+          "@id": "_:nf05a70604fdf4b8fa55789552e957a93b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Postpoliomyelitis muscular atrophy"
+          }
+        },
+        {
+          "@id": "_:nf05a70604fdf4b8fa55789552e957a93b5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Post-polio syndrome"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000061"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000062",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "Helicases, DNA"
+          },
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85068646"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:nec25f5665a24427ca60658319f1694a2b1"
+            },
+            {
+              "@id": "_:nec25f5665a24427ca60658319f1694a2b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "DNA helicases"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:nec25f5665a24427ca60658319f1694a2b3"
+          }
+        },
+        {
+          "@id": "_:nec25f5665a24427ca60658319f1694a2b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-25T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000062"
+          }
+        },
+        {
+          "@id": "_:nec25f5665a24427ca60658319f1694a2b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-08-30T14:17:41"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000062"
+          }
+        },
+        {
+          "@id": "_:nec25f5665a24427ca60658319f1694a2b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Helicases, DNA"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000062"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000063",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "DMT (Drug)"
+          },
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85058490"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85120302"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85138304"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh96010269"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:n73527116e8c54e5a8ef471d3867b0128b1"
+            },
+            {
+              "@id": "_:n73527116e8c54e5a8ef471d3867b0128b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Dimethyltryptamine"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n73527116e8c54e5a8ef471d3867b0128b3"
+          }
+        },
+        {
+          "@id": "_:n73527116e8c54e5a8ef471d3867b0128b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-10-12T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000063"
+          }
+        },
+        {
+          "@id": "_:n73527116e8c54e5a8ef471d3867b0128b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-11-27T11:16:54"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000063"
+          }
+        },
+        {
+          "@id": "_:n73527116e8c54e5a8ef471d3867b0128b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "DMT (Drug)"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000063"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000064",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "Blastokinin"
+          },
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85055403"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n1127e03f4cfa455492b2fd0f56273b56b1"
+            },
+            {
+              "@id": "_:n1127e03f4cfa455492b2fd0f56273b56b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Uteroglobin"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n1127e03f4cfa455492b2fd0f56273b56b3"
+          }
+        },
+        {
+          "@id": "_:n1127e03f4cfa455492b2fd0f56273b56b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-10-11T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000064"
+          }
+        },
+        {
+          "@id": "_:n1127e03f4cfa455492b2fd0f56273b56b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-11-29T15:38:57"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000064"
+          }
+        },
+        {
+          "@id": "_:n1127e03f4cfa455492b2fd0f56273b56b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Blastokinin"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000064"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000065",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "COX-2 (Enzyme)"
+          },
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh96008414"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n8211f69d984a404592c46f83db119734b1"
+            },
+            {
+              "@id": "_:n8211f69d984a404592c46f83db119734b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Cyclooxygenase 2"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n8211f69d984a404592c46f83db119734b3"
+          }
+        },
+        {
+          "@id": "_:n8211f69d984a404592c46f83db119734b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-10-20T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000065"
+          }
+        },
+        {
+          "@id": "_:n8211f69d984a404592c46f83db119734b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-11-29T10:56:22"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000065"
+          }
+        },
+        {
+          "@id": "_:n8211f69d984a404592c46f83db119734b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "COX-2 (Enzyme)"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000065"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000066",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "Dopamine neurons"
+          },
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85091153"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh88004890"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:n1115dba2dae94678a52a88ab2f23c0e6b1"
+            },
+            {
+              "@id": "_:n1115dba2dae94678a52a88ab2f23c0e6b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Dopaminergic neurons"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n1115dba2dae94678a52a88ab2f23c0e6b3"
+          }
+        },
+        {
+          "@id": "_:n1115dba2dae94678a52a88ab2f23c0e6b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-10-11T11:09:36"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000066"
+          }
+        },
+        {
+          "@id": "_:n1115dba2dae94678a52a88ab2f23c0e6b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-08-31T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000066"
+          }
+        },
+        {
+          "@id": "_:n1115dba2dae94678a52a88ab2f23c0e6b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Dopamine neurons"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000066"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000067",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Diethanollauramide"
+            },
+            {
+              "@language": "en",
+              "@value": "Lauramide DEA"
+            },
+            {
+              "@language": "en",
+              "@value": "Lauric acid diethanolamine"
+            },
+            {
+              "@language": "en",
+              "@value": "Lauric diethanolamide"
+            }
+          ],
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85045075"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85075089"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb1"
+            },
+            {
+              "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Lauric acid diethanolamide"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb3"
+            },
+            {
+              "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb4"
+            },
+            {
+              "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb5"
+            },
+            {
+              "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb6"
+            }
+          ]
+        },
+        {
+          "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-06-15T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000067"
+          }
+        },
+        {
+          "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-11-15T15:48:34"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000067"
+          }
+        },
+        {
+          "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Lauric acid diethanolamine"
+          }
+        },
+        {
+          "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Diethanollauramide"
+          }
+        },
+        {
+          "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Lauric diethanolamide"
+          }
+        },
+        {
+          "@id": "_:n4e7d5ef4886c49ffb3c6756d3847e20cb6",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Lauramide DEA"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000067"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000068",
+          "@type": "skos:Concept",
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85077309"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85090896"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:naaa0fb6f6b32450b881766abe795cf55b1"
+            },
+            {
+              "@id": "_:naaa0fb6f6b32450b881766abe795cf55b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Chromogranins"
+          }
+        },
+        {
+          "@id": "_:naaa0fb6f6b32450b881766abe795cf55b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-19T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000068"
+          }
+        },
+        {
+          "@id": "_:naaa0fb6f6b32450b881766abe795cf55b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-08-30T14:14:02"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000068"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000068"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000069",
+          "@type": "skos:Concept",
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85123168"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh94005134"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:nd837cef10e6c4de8b7fdf278d6b80457b1"
+            },
+            {
+              "@id": "_:nd837cef10e6c4de8b7fdf278d6b80457b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Merkel cell carcinoma"
+          }
+        },
+        {
+          "@id": "_:nd837cef10e6c4de8b7fdf278d6b80457b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-21T10:33:25"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000069"
+          }
+        },
+        {
+          "@id": "_:nd837cef10e6c4de8b7fdf278d6b80457b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-06-08T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000069"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000069"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000070",
+          "@type": "skos:Concept",
+          "skos:altLabel": {
+            "@language": "en",
+            "@value": "Luteovirus (Genus)"
+          },
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh2007002895"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n1e93120f4a744e14bf11ac0afa18b53ab1"
+            },
+            {
+              "@id": "_:n1e93120f4a744e14bf11ac0afa18b53ab2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:narrower": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85011886"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85105631"
+            }
+          ],
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Luteoviruses"
+          },
+          "skosxl:altLabel": {
+            "@id": "_:n1e93120f4a744e14bf11ac0afa18b53ab3"
+          }
+        },
+        {
+          "@id": "_:n1e93120f4a744e14bf11ac0afa18b53ab1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2001-09-04T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000070"
+          }
+        },
+        {
+          "@id": "_:n1e93120f4a744e14bf11ac0afa18b53ab2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2007-06-01T07:54:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000070"
+          }
+        },
+        {
+          "@id": "_:n1e93120f4a744e14bf11ac0afa18b53ab3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Luteovirus (Genus)"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000070"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000071",
+          "@type": "skos:Concept",
+          "skos:changeNote": [
+            {
+              "@id": "_:n81993151541f4e168f6f297e2ca8921cb1"
+            },
+            {
+              "@id": "_:n81993151541f4e168f6f297e2ca8921cb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:narrower": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85117478"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Angiotensin II--Antagonists"
+          }
+        },
+        {
+          "@id": "_:n81993151541f4e168f6f297e2ca8921cb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-30T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000071"
+          }
+        },
+        {
+          "@id": "_:n81993151541f4e168f6f297e2ca8921cb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-21T09:27:19"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000071"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000071"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000072",
+          "@type": "skos:Concept",
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85044464"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85082782"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:n0f96a9b4e54c4715bc90653d2141fdb5b1"
+            },
+            {
+              "@id": "_:n0f96a9b4e54c4715bc90653d2141fdb5b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Merkel cells"
+          }
+        },
+        {
+          "@id": "_:n0f96a9b4e54c4715bc90653d2141fdb5b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-06-08T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000072"
+          }
+        },
+        {
+          "@id": "_:n0f96a9b4e54c4715bc90653d2141fdb5b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-21T10:33:52"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000072"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000072"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000073",
+          "@type": "skos:Concept",
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85009135"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85037473"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:n559c99064651405792772c948bbfa33cb1"
+            },
+            {
+              "@id": "_:n559c99064651405792772c948bbfa33cb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Diabetic athletes"
+          }
+        },
+        {
+          "@id": "_:n559c99064651405792772c948bbfa33cb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-04T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000073"
+          }
+        },
+        {
+          "@id": "_:n559c99064651405792772c948bbfa33cb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2001-12-12T08:46:34"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000073"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000073"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000074",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85005038"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n0c1aa57b77b6463da509b1746ee74b00b1"
+            },
+            {
+              "@id": "_:n0c1aa57b77b6463da509b1746ee74b00b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Angiotensin II"
+          }
+        },
+        {
+          "@id": "_:n0c1aa57b77b6463da509b1746ee74b00b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-30T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000074"
+          }
+        },
+        {
+          "@id": "_:n0c1aa57b77b6463da509b1746ee74b00b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-21T09:26:47"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000074"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000074"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000075",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Acetoacetic ester"
+            },
+            {
+              "@language": "en",
+              "@value": "Ethyl acetylacetate"
+            },
+            {
+              "@language": "en",
+              "@value": "Ethyl beta-ketobutyrate"
+            },
+            {
+              "@language": "en",
+              "@value": "Ethyl oxobutanoate"
+            }
+          ],
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85000457"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n5efc3fe5888c48298990cbd9312659d9b1"
+            },
+            {
+              "@id": "_:n5efc3fe5888c48298990cbd9312659d9b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Ethyl acetoacetate"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:n5efc3fe5888c48298990cbd9312659d9b3"
+            },
+            {
+              "@id": "_:n5efc3fe5888c48298990cbd9312659d9b4"
+            },
+            {
+              "@id": "_:n5efc3fe5888c48298990cbd9312659d9b5"
+            },
+            {
+              "@id": "_:n5efc3fe5888c48298990cbd9312659d9b6"
+            }
+          ]
+        },
+        {
+          "@id": "_:n5efc3fe5888c48298990cbd9312659d9b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-06-13T14:23:31"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000075"
+          }
+        },
+        {
+          "@id": "_:n5efc3fe5888c48298990cbd9312659d9b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-02T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000075"
+          }
+        },
+        {
+          "@id": "_:n5efc3fe5888c48298990cbd9312659d9b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Ethyl beta-ketobutyrate"
+          }
+        },
+        {
+          "@id": "_:n5efc3fe5888c48298990cbd9312659d9b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Acetoacetic ester"
+          }
+        },
+        {
+          "@id": "_:n5efc3fe5888c48298990cbd9312659d9b5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Ethyl acetylacetate"
+          }
+        },
+        {
+          "@id": "_:n5efc3fe5888c48298990cbd9312659d9b6",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Ethyl oxobutanoate"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000075"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000076",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Diisocyanatohexane"
+            },
+            {
+              "@language": "en",
+              "@value": "Hexamethylenediisocyanate"
+            },
+            {
+              "@language": "en",
+              "@value": "Hexane diisocyanate"
+            },
+            {
+              "@language": "en",
+              "@value": "Hexylenediisocyanate"
+            }
+          ],
+          "skos:broader": [
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85060586"
+            },
+            {
+              "@id": "http://id.loc.gov/authorities/subjects/sh85092054"
+            }
+          ],
+          "skos:changeNote": [
+            {
+              "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b1"
+            },
+            {
+              "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Hexamethylene diisocyanate"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b3"
+            },
+            {
+              "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b4"
+            },
+            {
+              "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b5"
+            },
+            {
+              "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b6"
+            }
+          ]
+        },
+        {
+          "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-02T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000076"
+          }
+        },
+        {
+          "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-06-13T14:28:47"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000076"
+          }
+        },
+        {
+          "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Hexane diisocyanate"
+          }
+        },
+        {
+          "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Hexylenediisocyanate"
+          }
+        },
+        {
+          "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Hexamethylenediisocyanate"
+          }
+        },
+        {
+          "@id": "_:n680d66b85d9e48f5b9faf2239a6f60c3b6",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Diisocyanatohexane"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000076"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000119",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh87007398"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n2c9d955bae1c4f8ba9db3ddf1d499f02b1"
+            },
+            {
+              "@id": "_:n2c9d955bae1c4f8ba9db3ddf1d499f02b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Antipatterns (Software engineering)"
+          }
+        },
+        {
+          "@id": "_:n2c9d955bae1c4f8ba9db3ddf1d499f02b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-06-13T14:07:30"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000119"
+          }
+        },
+        {
+          "@id": "_:n2c9d955bae1c4f8ba9db3ddf1d499f02b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-04-20T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000119"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000119"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000121",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85114637"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:nf2de3097c9b94e44833bb90761f30563b1"
+            },
+            {
+              "@id": "_:nf2de3097c9b94e44833bb90761f30563b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Parallel robots"
+          }
+        },
+        {
+          "@id": "_:nf2de3097c9b94e44833bb90761f30563b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-04-05T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000121"
+          }
+        },
+        {
+          "@id": "_:nf2de3097c9b94e44833bb90761f30563b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-22T11:59:52"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000121"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000121"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000122",
+          "@type": "skos:Concept",
+          "skos:altLabel": [
+            {
+              "@language": "en",
+              "@value": "Blocking, Loop (Computer science)"
+            },
+            {
+              "@language": "en",
+              "@value": "Loop blocking (Computer science)"
+            },
+            {
+              "@language": "en",
+              "@value": "Tiling, Loop (Computer science)"
+            }
+          ],
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh88007957"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b1"
+            },
+            {
+              "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Loop tiling (Computer science)"
+          },
+          "skos:related": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh90003066"
+          },
+          "skosxl:altLabel": [
+            {
+              "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b3"
+            },
+            {
+              "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b4"
+            },
+            {
+              "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b5"
+            }
+          ]
+        },
+        {
+          "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-08-08T14:11:53"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000122"
+          }
+        },
+        {
+          "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-06-27T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000122"
+          }
+        },
+        {
+          "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b3",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Blocking, Loop (Computer science)"
+          }
+        },
+        {
+          "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b4",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Tiling, Loop (Computer science)"
+          }
+        },
+        {
+          "@id": "_:n9aeea6badb5748749c5246fcf780dbb6b5",
+          "@type": "skosxl:Label",
+          "skosxl:literalForm": {
+            "@language": "en",
+            "@value": "Loop blocking (Computer science)"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000122"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000124",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00009202"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n11380c44abf8416486655da4559bb1cfb1"
+            },
+            {
+              "@id": "_:n11380c44abf8416486655da4559bb1cfb2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Metapattern (Information modeling)"
+          }
+        },
+        {
+          "@id": "_:n11380c44abf8416486655da4559bb1cfb1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-07-18T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000124"
+          }
+        },
+        {
+          "@id": "_:n11380c44abf8416486655da4559bb1cfb2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-11-03T10:44:23"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000124"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000124"
+    },
+    {
+      "@context": "http://id.loc.gov/authorities/subjects/context.json",
+      "@graph": [
+        {
+          "@id": "http://id.loc.gov/authorities/subjects/sh00000125",
+          "@type": "skos:Concept",
+          "skos:broader": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh85029479"
+          },
+          "skos:changeNote": [
+            {
+              "@id": "_:n465186ac3acd4952aadbd346c90bcc97b1"
+            },
+            {
+              "@id": "_:n465186ac3acd4952aadbd346c90bcc97b2"
+            }
+          ],
+          "skos:inScheme": {
+            "@id": "http://id.loc.gov/authorities/subjects"
+          },
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "IA-64 (Computer architecture)"
+          }
+        },
+        {
+          "@id": "_:n465186ac3acd4952aadbd346c90bcc97b1",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "new",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-03-21T00:00:00"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000125"
+          }
+        },
+        {
+          "@id": "_:n465186ac3acd4952aadbd346c90bcc97b2",
+          "@type": "cs:ChangeSet",
+          "cs:changeReason": "revised",
+          "cs:createdDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2000-05-08T14:28:12"
+          },
+          "cs:creatorName": {
+            "@id": "http://id.loc.gov/vocabulary/organizations/dlc"
+          },
+          "cs:subjectOfChange": {
+            "@id": "http://id.loc.gov/authorities/subjects/sh00000125"
+          }
+        }
+      ],
+      "@id": "/authorities/subjects/sh00000125"
+    }
+  ]
+}

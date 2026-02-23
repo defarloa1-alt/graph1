@@ -1,0 +1,439 @@
+[
+  {
+    "id": "PJ1-9500",
+    "code": "PJ1-9500",
+    "prefix": "PJ",
+    "start": 1.0,
+    "end": 9500.0,
+    "label": "Oriental philology and literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "PJ1-489",
+      "PJ601-989",
+      "PJ991-995",
+      "PJ1001-1989",
+      "PJ2001-2199",
+      "PJ2340-2399",
+      "PJ2401-2594",
+      "PJ3001-3097",
+      "PJ3101-3971",
+      "PJ4001-4091",
+      "PJ4101-4197",
+      "PJ4501-5192",
+      "PJ5201-5329.5",
+      "PJ5401-5809",
+      "PJ5901-5909",
+      "PJ6001-8517",
+      "PJ8991-9348"
+    ]
+  },
+  {
+    "id": "PJ1-489",
+    "code": "PJ1-489",
+    "prefix": "PJ",
+    "start": 1.0,
+    "end": 489.0,
+    "label": "General",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ601-989",
+    "code": "PJ601-989",
+    "prefix": "PJ",
+    "start": 601.0,
+    "end": 989.0,
+    "label": "Special groups",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ991-995",
+    "code": "PJ991-995",
+    "prefix": "PJ",
+    "start": 991.0,
+    "end": 995.0,
+    "label": "Afroasiatic languages",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ1001-1989",
+    "code": "PJ1001-1989",
+    "prefix": "PJ",
+    "start": 1001.0,
+    "end": 1989.0,
+    "label": "Egyptology",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ2001-2199",
+    "code": "PJ2001-2199",
+    "prefix": "PJ",
+    "start": 2001.0,
+    "end": 2199.0,
+    "label": "Coptic",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ2340-2399",
+    "code": "PJ2340-2399",
+    "prefix": "PJ",
+    "start": 2340.0,
+    "end": 2399.0,
+    "label": "Libyco-Berber languages. Berber languages",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ2401-2594",
+    "code": "PJ2401-2594",
+    "prefix": "PJ",
+    "start": 2401.0,
+    "end": 2594.0,
+    "label": "Cushitic languages",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ3001-3097",
+    "code": "PJ3001-3097",
+    "prefix": "PJ",
+    "start": 3001.0,
+    "end": 3097.0,
+    "label": "Semitic philology and literature",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ3101-3971",
+    "code": "PJ3101-3971",
+    "prefix": "PJ",
+    "start": 3101.0,
+    "end": 3971.0,
+    "label": "Assyriology. Akkadian",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ4001-4091",
+    "code": "PJ4001-4091",
+    "prefix": "PJ",
+    "start": 4001.0,
+    "end": 4091.0,
+    "label": "Sumerian",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ4101-4197",
+    "code": "PJ4101-4197",
+    "prefix": "PJ",
+    "start": 4101.0,
+    "end": 4197.0,
+    "label": "West and North Semitic languages",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": [
+      "PJ4171-4197"
+    ]
+  },
+  {
+    "id": "PJ4171-4197",
+    "code": "PJ4171-4197",
+    "prefix": "PJ",
+    "start": 4171.0,
+    "end": 4197.0,
+    "label": "Phoenician-Punic",
+    "note": null,
+    "primary_parent": "PJ4101-4197",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ4501-5192",
+    "code": "PJ4501-5192",
+    "prefix": "PJ",
+    "start": 4501.0,
+    "end": 5192.0,
+    "label": "Hebrew",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": [
+      "PJ5061-5192"
+    ]
+  },
+  {
+    "id": "PJ5061-5192",
+    "code": "PJ5061-5192",
+    "prefix": "PJ",
+    "start": 5061.0,
+    "end": 5192.0,
+    "label": "Other languages used by Jews",
+    "note": null,
+    "primary_parent": "PJ4501-5192",
+    "secondary_parents": [],
+    "children": [
+      "PJ5111-5192"
+    ]
+  },
+  {
+    "id": "PJ5111-5192",
+    "code": "PJ5111-5192",
+    "prefix": "PJ",
+    "start": 5111.0,
+    "end": 5192.0,
+    "label": "Yiddish",
+    "note": null,
+    "primary_parent": "PJ5061-5192",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ5201-5329.5",
+    "code": "PJ5201-5329.5",
+    "prefix": "PJ",
+    "start": 5201.0,
+    "end": 5329.5,
+    "label": "Aramaic",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ5401-5809",
+    "code": "PJ5401-5809",
+    "prefix": "PJ",
+    "start": 5401.0,
+    "end": 5809.0,
+    "label": "Syriac",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ5901-5909",
+    "code": "PJ5901-5909",
+    "prefix": "PJ",
+    "start": 5901.0,
+    "end": 5909.0,
+    "label": "South Semitic languages",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ6001-8517",
+    "code": "PJ6001-8517",
+    "prefix": "PJ",
+    "start": 6001.0,
+    "end": 8517.0,
+    "label": "Arabic",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": [
+      "PJ7501-8517"
+    ]
+  },
+  {
+    "id": "PJ7501-8517",
+    "code": "PJ7501-8517",
+    "prefix": "PJ",
+    "start": 7501.0,
+    "end": 8517.0,
+    "label": "Arabic literature",
+    "note": null,
+    "primary_parent": "PJ6001-8517",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PJ8991-9348",
+    "code": "PJ8991-9348",
+    "prefix": "PJ",
+    "start": 8991.0,
+    "end": 9348.0,
+    "label": "Ethiopian languages",
+    "note": null,
+    "primary_parent": "PJ1-9500",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PK1-9601",
+    "code": "PK1-9601",
+    "prefix": "PK",
+    "start": 1.0,
+    "end": 9601.0,
+    "label": "Indo-Iranian philology and literature",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "PK1-85",
+      "PK101-2899",
+      "PK6001-6996",
+      "PK8001-8832",
+      "PK9001-9201"
+    ]
+  },
+  {
+    "id": "PK1-85",
+    "code": "PK1-85",
+    "prefix": "PK",
+    "start": 1.0,
+    "end": 85.0,
+    "label": "General",
+    "note": null,
+    "primary_parent": "PK1-9601",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PK101-2899",
+    "code": "PK101-2899",
+    "prefix": "PK",
+    "start": 101.0,
+    "end": 2899.0,
+    "label": "Indo-Aryan languages",
+    "note": null,
+    "primary_parent": "PK1-9601",
+    "secondary_parents": [],
+    "children": [
+      "PK1501-2899"
+    ]
+  },
+  {
+    "id": "PK1501-2899",
+    "code": "PK1501-2899",
+    "prefix": "PK",
+    "start": 1501.0,
+    "end": 2899.0,
+    "label": "Modern Indo-Aryan languages",
+    "note": null,
+    "primary_parent": "PK101-2899",
+    "secondary_parents": [],
+    "children": [
+      "PK1550-2899"
+    ]
+  },
+  {
+    "id": "PK1550-2899",
+    "code": "PK1550-2899",
+    "prefix": "PK",
+    "start": 1550.0,
+    "end": 2899.0,
+    "label": "Particular languages and dialects",
+    "note": null,
+    "primary_parent": "PK1501-2899",
+    "secondary_parents": [],
+    "children": [
+      "PK1931-2212"
+    ]
+  },
+  {
+    "id": "PK1931-2212",
+    "code": "PK1931-2212",
+    "prefix": "PK",
+    "start": 1931.0,
+    "end": 2212.0,
+    "label": "Hindi, Urdu, Hindustani languages and literatures",
+    "note": null,
+    "primary_parent": "PK1550-2899",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PK6001-6996",
+    "code": "PK6001-6996",
+    "prefix": "PK",
+    "start": 6001.0,
+    "end": 6996.0,
+    "label": "Iranian philology and literature",
+    "note": null,
+    "primary_parent": "PK1-9601",
+    "secondary_parents": [],
+    "children": [
+      "PK6201-6599.7",
+      "PK6701-6821"
+    ]
+  },
+  {
+    "id": "PK6201-6599.7",
+    "code": "PK6201-6599.7",
+    "prefix": "PK",
+    "start": 6201.0,
+    "end": 6599.7,
+    "label": "New Persian",
+    "note": null,
+    "primary_parent": "PK6001-6996",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PK6701-6821",
+    "code": "PK6701-6821",
+    "prefix": "PK",
+    "start": 6701.0,
+    "end": 6821.0,
+    "label": "Afghan (Pashto, Pushto, Pushtu, etc.)",
+    "note": null,
+    "primary_parent": "PK6001-6996",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PK8001-8832",
+    "code": "PK8001-8832",
+    "prefix": "PK",
+    "start": 8001.0,
+    "end": 8832.0,
+    "label": "Armenian",
+    "note": null,
+    "primary_parent": "PK1-9601",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "PK9001-9201",
+    "code": "PK9001-9201",
+    "prefix": "PK",
+    "start": 9001.0,
+    "end": 9201.0,
+    "label": "Caucasian languages",
+    "note": null,
+    "primary_parent": "PK1-9601",
+    "secondary_parents": [],
+    "children": []
+  }
+]

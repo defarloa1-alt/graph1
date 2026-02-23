@@ -1,0 +1,201 @@
+property,propertyLabel,propertyDescription,type
+http://www.wikidata.org/entity/P179,part of the series,series which contains the subject,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P180,depicts,"entity visually depicted in an image, literarily described in a work, or otherwise incorporated into an audiovisual or other medium; see also P921, 'main subject'",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P181,taxon range map image,range map of a taxon,http://wikiba.se/ontology#CommonsMedia
+http://www.wikidata.org/entity/P183,endemic to,sole location or habitat type where the taxon lives,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P184,doctoral advisor,person who supervised the doctorate or PhD thesis of the subject,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P185,doctoral student,doctoral student(s) of a professor,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P186,made from material,material the subject or the object is made of or derived from (do not confuse with P10672 which is used for processes),http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P189,location of discovery,where the item was located when discovered,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P190,twinned administrative body,"twin towns, sister cities, twinned municipalities and other localities that have a partnership or cooperative agreement, either legally or informally acknowledged by their governments",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P193,main building contractor,the main organization (or person) responsible for construction of this structure or building,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P194,legislative body,"legislative body governing this entity; political institution with elected representatives, such as a parliament/legislature or council",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P195,collection,"art, museum, archival, or bibliographic collection of which the subject is part (item is in the collection of X)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P196,minor planet group,is in grouping of minor planets according to similar orbital characteristics,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P197,adjacent station,"the stations next to this station, sharing the same line(s)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P199,has organizational division,organizational divisions of this organization (which are not independent legal entities),http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P200,inflows,"major inflow sources — rivers, aquifers, glacial runoff, etc. Some terms may not be place names, e.g. none",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P201,outflows,"rivers and other outflows waterway names. If evaporation or seepage are notable outflows, they may be included. Some terms may not be place names, e.g. evaporation",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P205,basin country,country that have drainage to/from or border the body of water,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P206,located in or next to body of water,body of water on or next to which a place is located,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P207,bathymetry image,"image showing bathymetric chart, bathymetric map",http://wikiba.se/ontology#CommonsMedia
+http://www.wikidata.org/entity/P208,executive body,branch of government for the daily administration of the territorial entity,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P209,highest judicial authority,"supreme judicial body within a country, administrative division, or other organization",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P210,party chief representative,chief representative of a party in an institution or an administrative unit (use qualifier to identify the party),http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P212,ISBN-13,"identifier for a book (edition), thirteen digit",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P213,ISNI,International Standard Name Identifier for an identity. Starting with 0000.,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P214,VIAF cluster ID,"identifier for the Virtual International Authority File database [format: up to 22 digits]; please note: VIAF is a cluster, the ID can include multiple items",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P215,spectral class,spectral class of an astronomical object,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P217,inventory number,identifier for a physical object or a set of physical objects in a collection,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P218,ISO 639-1 code,2-letter identifier for language or family of languages defined in ISO 639-1 standard,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P219,ISO 639-2 code,"3-letter identifier for language, macro-language or language family, defined in ISO 639-2 standard",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P220,ISO 639-3 code,"3-letter identifier for language defined in ISO 639-3, extension of ISO 639-2",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P221,ISO 639-6 code,"4-letter identifier for language variants per ISO 639-6, standard between 2009-2014",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P223,galaxy morphological type,galaxy morphological classification code,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P225,taxon name,correct scientific name of a taxon (according to the reference given),http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P227,GND ID,"identifier from the Gemeinsame Normdatei authority file of names, subjects, and organizations",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P229,IATA airline designator,two-character identifier for an airline,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P230,ICAO airline designator,"three letter identifier for an airline (two letters only until 1982) (for airports, see P239)",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P231,CAS Registry Number,identifier for a chemical substance or compound per Chemical Abstract Service's Registry database,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P232,EC number,identifier for a chemical compound per EINECS or ELINCS,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P233,canonical SMILES,Simplified Molecular Input Line Entry Specification (canonical format),http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P234,InChI,International Chemical Identifier,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P235,InChIKey,a hashed version of the full standard InChI,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P236,ISSN,International Standard Serial Number (print or electronic),http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P237,coat of arms,subject's coat of arms,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P238,IATA airport code,"three-letter identifier for designating airports, railway stations or cities (for airlines, see P229)",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P239,ICAO airport code,"four-character alphanumeric identifier for designating airports (for airlines, see P230)",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P240,FAA airport code,three-letter or four-letter alphanumeric code identifying United States airports,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P241,military branch,"branch to which this military unit, award, office, or person belongs, e.g. Royal Navy",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P242,locator map image,geographic map image which highlights the location of the subject within some larger entity,http://wikiba.se/ontology#CommonsMedia
+http://www.wikidata.org/entity/P243,OCLC number,identifier for a bibliographic record in OCLC WorldCat,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P244,Library of Congress authority ID,"Library of Congress name authority (persons, families, corporate bodies, events, places, works and expressions) and subject authority identifier [Format: 1-2 specific letters followed by 8-10 digits (see regex). For manifestations, use P1144]",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P245,Union List of Artist Names ID,identifier from the Getty Union List of Artist Names,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P246,element symbol,identifier for a chemical element,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P247,COSPAR ID,"international satellite designation, administered by the UN Committee on Space Research (COSPAR), similar but not synonymous with the NSSDCA ID (P8913)",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P248,stated in,to be used in the references field to refer to the information document or database in which a claim is made; for qualifiers use P805; for the type of document in which a claim is made use P3865,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P249,ticker symbol,identifier for a publicly traded share of a particular stock on a particular stock market or that of a cryptocurrency (qualifier for P414),http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P263,official residence,the residence at which heads of government and other senior figures officially reside,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P264,record label,brand and trademark associated with the marketing of subject music recordings and music videos,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P267,ATC code,therapeutic chemical identification code per ATC,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P268,Bibliothèque nationale de France ID,"identifier for the subject issued by BNF (Bibliothèque nationale de France). Format: 8 digits followed by a check-digit or letter, do not include the initial 'cb'.",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P269,IdRef ID,"identifier for authority control in the French collaborative library catalog (see also P1025). Format: 8 digits followed by a digit or ""X""",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P270,CALIS ID,identifier for authority control per CALIS (China Academic Library & Information System),http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P271,NACSIS-CAT author ID,"identifier for book authors in NACSIS-CAT, the union catalog for university libraries and research institutions in Japan",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P272,production company,"company that produced this film, audio or performing arts work",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P274,chemical formula,description of chemical compound giving element symbols and counts,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P275,copyright license,license under which this copyrighted work is released,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P276,location,"location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P277,programmed in,the programming language(s) in which the software is developed,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P278,GOST 7.75–97 code,identifier for a language according to GOST 7.75–97,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P279,subclass of,"this item is a subclass (subset) of that item; ALL instances of this item are instances of that item; different from P31 (instance of), e.g.: volcano is a subclass of mountain; Everest is an instance of mountain",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P281,postal code,code assigned by postal authorities for the subject area or building for the purpose of sorting and routing mail,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P282,writing system,"alphabet, character set or other system of writing used by a language, word, or text, supported by a typeface",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P286,head coach,"on-field manager or head coach of a sports club (not to be confused with a general manager P505, which is not a coaching position) or person",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P287,designed by,"person or organization which designed the object. For buildings use ""architect"" (Property:P84)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P289,vessel class,series of vessels or other watercraft built to the same design of which this vessel is a member,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P291,place of publication,geographical place of publication of the edition (use 1st edition when referring to works),http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P296,station code,"generic identifier for a railway station, when possible, use specific property on certain coding system (e.g. P1378 for China Railway TMIS codes)",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P297,ISO 3166-1 alpha-2 code,identifier for a country in two-letter format per ISO 3166-1,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P298,ISO 3166-1 alpha-3 code,identifier for a country in three-letter format per ISO 3166-1,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P299,ISO 3166-1 numeric code,identifier for a country in numeric format per ISO 3166-1,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P300,ISO 3166-2 code,identifier for a country subdivision per ISO 3166-2 (include country code),http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P301,category's main topic,primary topic of the subject Wikimedia category,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P303,EE breed number,breed identification number per the EE list of the breeds of fancy pigeons (ELFP),http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P304,page(s),"page number of source referenced for statement. Note ""column(s)"" (P3903) and ""folio(s)"" (P7416) for other numbering systems",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P305,IETF language tag,"identifier for language or languoid per the Internet Engineering Task Force; can include a primary language subtag, subtags for script, region, variant, extension, or private-use. Format: 2 or 3 letters, followed by ""-"" if subtags present",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P306,operating system,operating system (OS) on which a software works or the OS installed on hardware,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P344,director of photography,"person responsible for the framing, lighting, and filtration of the subject work",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P345,IMDb ID,"identifier for the IMDb (with prefix 'tt', 'nm', 'co', 'ev', 'ch' or 'ni')",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P347,Joconde work ID,identifier in the Joconde database of the French Ministry of Culture,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P348,software version identifier,"numeric or nominal identifier of a version of a software program or file format, current or past",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P349,NDL Authority ID,identifier for authority control per the National Diet Library of Japan,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P350,RKDimages ID,identifier per RKDimages of the Netherlands Institute for Art History,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P351,Entrez Gene ID,identifier for a gene per the NCBI Entrez database,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P352,UniProt protein ID,identifier for a protein per the UniProt database,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P353,HGNC gene symbol,"the official gene symbol approved by the HGNC, which is typically a short form of the gene name",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P354,HGNC ID,a unique ID provided by the HGNC for each gene with an approved symbol. HGNC IDs remain stable even if a name or symbol changes,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P355,child organization or unit,"child organization/unit of a organization/unit; for companies, generally a fully owned separate corp., see business division (P199); opposite of parent org./unit (P749); use instance of (P31) to distinguish org. (Q43229) and org. unit (Q10387680)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P356,DOI,serial code used to uniquely identify digital objects like academic papers (use upper case letters only),http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P358,discography,item for list pages with discography of artist or band,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P359,Rijksmonument ID,identifier for a monument assigned by the Rijksdienst voor het Cultureel Erfgoed,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P360,is a list of,common element between all listed items,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P361,part of,"object of which the subject is a part (if this subject is already part of object A which is a part of object B, then please only make the subject part of object A), inverse property of ""has part"" (P527, see also ""has parts of the class"" (P2670))",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P364,original language of film or TV show,"language in which a film or a performance work was originally created. Deprecated for written works and songs; use P407 (""language of work or name"") instead.",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P366,has use,main use of the subject (includes current and former usage),http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P367,astronomic symbol image,"image of the symbol that identifies a planet, asteroid, or other object in the Solar System",http://wikiba.se/ontology#CommonsMedia
+http://www.wikidata.org/entity/P368,Sandbox-CommonsMediaFile,"Sandbox property for value of type ""Commons Media File""",http://wikiba.se/ontology#CommonsMedia
+http://www.wikidata.org/entity/P369,Sandbox-Item,"Sandbox property for value of type ""Item""",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P370,Sandbox-String,"Sandbox property for the data value type ""String""",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P371,presenter,main role in presenting a radio or television program or a performing arts show,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P373,Commons category,"name of the Wikimedia Commons category containing files related to this item (without the prefix ""Category:"")",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P374,Insee municipality code,"identifier/code with five digits or letters for a municipality or a municipal arrondissement in France, per the National Institute of Statistics and Economic Studies",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P375,space launch vehicle,type of rocket or other vehicle for launching subject payload into outer space,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P376,located on astronomical body,single astronomical body on which features or places are situated,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P377,SCN,"Satellite Catalog Number, 5-digit-number including leading zeros (e.g. '00266')",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P380,Mérimée ID,identifier for a monument in the Mérimée database of French cultural heritage,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P381,PCP reference number,identifier for cultural properties in Switzerland,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P382,CBS municipality code,identifier for a Dutch municipality as defined by Statistics Netherlands (CBS),http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P393,edition number,"number of an edition (first, second, ... as 1, 2, ...) or event",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P395,licence plate code,distinguishing signs or parts of license plate associated with the subject. For countries: international licence plate country code or distinguishing sign of vehicles,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P396,SBN author ID,identifier issued by National Library Service (SBN) of Italy,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P397,parent astronomical body,major astronomical body the item belongs to,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P398,child astronomical body,minor body that belongs to the item,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P399,companion of,two or more astronomic bodies of the same type relating to each other,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P400,platform,"platform for which a work was developed or released, or the specific platform version of a software product",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P402,OpenStreetMap relation ID,identifier for a relation in OpenStreetMap,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P403,mouth of the watercourse,the body of water to which the watercourse drains,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P404,game mode,video game's available playing mode(s),http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P405,taxon author,the author(s) that (optionally) may be cited with the scientific name,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P406,soundtrack release,music release that incorporates music directly recorded from the soundtrack of an audiovisual work,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P407,language of work or name,"language associated with this creative work (such as books, shows, songs, broadcasts or websites) or a name (for persons use ""native language"" (P103) and ""languages spoken, written or signed"" (P1412))",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P408,software engine,software engine employed by the subject item,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P409,Libraries Australia ID,"identifier issued by the National Library of Australia (see also P1315 for the newer People Australia identifier). VIAF component. Format: 1-12 digits, removing leading zero-padding.",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P410,"military, police or special rank","military or police rank achieved by a person (should usually have a ""start time"" qualifier), or military or police rank associated with a position",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P411,canonization status,formal stage in the process of attaining sainthood per the subject's religious organization,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P412,voice type,"person's voice type. expected values: soprano, mezzo-soprano, contralto, countertenor, tenor, baritone, bass (and derivatives)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P413,position played on team / speciality,position or specialism of a player on a team,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P414,stock exchange,exchange on which this company is traded,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P415,radio format,describes the overall content broadcast on a radio station,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P416,quantity symbol (string),symbol for a mathematical or physical quantity,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P417,patron saint,patron saint adopted by the subject,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P418,"has seal, badge, or sigil",links to the item for the subject's seal,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P421,located in time zone,time zone for this item,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P423,shooting handedness,whether the hockey player passes or shoots left- or right-handed,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P424,Wikimedia language code,identifier for a language or variant as used by Wikimedia projects,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P425,field of this occupation,"field corresponding to this occupation or profession (use only for occupations/professions - for people use Property:P101, for companies use P452)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P426,aircraft registration,identifier assigned to an individual aircraft by civil aircraft registry,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P427,taxonomic type,type genus or species: [in zoology:] nominal genus or species that is the name-bearing type of this nominal family or genus (or family-group ranked taxon or subgenus); type specimen that is the name-bearing type of this nominal species or subspecies,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P428,botanist author abbreviation,"standard form (official abbreviation) of a personal name for use in an author citation (only for names of algae, fungi and plants)",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P429,dantai code,"6-digit identifier for an administrative division of Japan, assigned by Ministry of Internal Affairs and Communications",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P432,callsign of airline,identifier used in radio transmissions to refer to the subject airline,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P433,issue,"issue of a newspaper, a scientific journal or magazine for reference purpose",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P434,MusicBrainz artist ID,identifier for an artist in the MusicBrainz open music encyclopedia,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P435,MusicBrainz work ID,identifier for a work per the MusicBrainz open music encyclopedia,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P436,MusicBrainz release group ID,"identifier for a release group per the MusicBrainz open music encyclopedia (album, single, etc.)",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P437,distribution format,method (or type) of distribution for the subject,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P439,German municipality key,numerical code for municipalities and independent towns in Germany,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P440,German district key,numerical code for districts (Landkreise) and independent towns in Germany,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P442,China division code for Statistics,identifier for divisions of People's Republic of China for Statistics (with spaces),http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P443,pronunciation audio,audio file with pronunciation,http://wikiba.se/ontology#CommonsMedia
+http://www.wikidata.org/entity/P444,review score,review score received by a creative work or other entity,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P447,review score by,issuer of a review score,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P449,original broadcaster,network(s) or service(s) that originally broadcast a radio or television program,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P450,astronaut mission,space mission that the subject is or has been a member of (do not include future missions),http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P451,unmarried partner,"someone with whom the person is in a relationship without being married. Use ""spouse"" (P26) for married couples",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P452,industry,specific industry of company or organization,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P453,character role,"specific role played or filled by subject -- use only as qualifier of ""cast member"" (P161), ""voice actor"" (P725)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P454,Structurae structure ID,identifier for a building in the Structurae database,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P455,Emporis building ID,"former identifier for a building in the defunct Emporis database (for building complexes, see P2270)",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P457,foundational text,text through which an institution or object has been created or established,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P458,IMO ship number,"identifier for a ship, ship owner or ship manager per the International Maritime Organization",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P459,determination method or standard,"how a value is determined, or the standard by which it is declared",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P460,said to be the same as,"this item is said to be the same as that item, though this may be uncertain or disputed",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P461,opposite of,item that is in some way the opposite of this item,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P462,color,color of subject,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P463,member of,"organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a political position, such as a member of parliament (use P39 for that)",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P464,NOR numbering ID,identifier for French official texts,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P465,sRGB color hex triplet,"sRGB hex triplet format for subject color (e.g. 7FFFD4) specifying the 8-bit red, green and blue components",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P466,occupant,person or organization occupying property,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P467,legislated by,indicates that an act or bill was passed by a legislature. The value can be a particular session of the legislature,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P468,dan/kyu rank,"rank system used in several board games (e.g. go, shogi, renju), martial arts (e.g. judo, kendo, wushu) and some other games",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P469,lake on watercourse,lake or reservoir through which the river or stream flows,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P470,Eight Banner register,Manchu household register for people of the Qing Dynasty,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P473,local dialing code,identifier dedicated to subject city by the area communication network,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P474,telephone country code,identifier for a country - dialed on phone after the international dialing prefix (precede value by +),http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P476,CELEX number,identifier for European legal texts in EUR-Lex database,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P477,Canadian Register of Historic Places ID,identifier in the Canadian Register of Historic Places,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P478,volume,volume of a book or music release in a collection/series or a published collection of journal issues in a serial publication,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P479,input device,input device used to interact with a software or a device,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P480,FilmAffinity film ID,FilmAffinity identification number of a creative work,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P481,Palissy ID,identifier in the Palissy database of moveable objects of French cultural heritage,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P483,recorded at studio or venue,studio or location where a musical composition/release was recorded,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P484,"IMA Number, broad sense","identifier for a mineral per the International Mineralogical Association - Commission on New Minerals, Nomenclature and Classification (IMA-CNMNC)",http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P485,archives at,the institution holding the subject's archives,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P486,MeSH descriptor ID,identifier for Descriptor or Supplementary concept in the Medical Subject Headings controlled vocabulary,http://wikiba.se/ontology#ExternalId
+http://www.wikidata.org/entity/P487,Unicode character,"Unicode character representing the item (only if this is not a control character or a compatiblity character: in that case, use only P4213)",http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P488,chairperson,"presiding member of an organization, group or body",http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P489,currency symbol description,item with description of currency symbol,http://wikiba.se/ontology#WikibaseItem
+http://www.wikidata.org/entity/P490,provisional designation,designation of an astronomical body after its discovery and before its official name,http://wikiba.se/ontology#String
+http://www.wikidata.org/entity/P491,orbit diagram,image with the diagram of the orbit of an astronomical body,http://wikiba.se/ontology#CommonsMedia
+http://www.wikidata.org/entity/P492,OMIM ID,"Online ""Mendelian Inheritance in Man"" catalogue codes for diseases, genes, or phenotypes",http://wikiba.se/ontology#ExternalId

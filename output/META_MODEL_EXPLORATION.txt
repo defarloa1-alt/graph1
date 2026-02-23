@@ -1,0 +1,245 @@
+================================================================================
+CHRYSTALLUM META-MODEL EXPLORATION
+================================================================================
+
+1. CHRYSTALLUM ROOT NODE
+--------------------------------------------------------------------------------
+Found Chrystallum node:
+  Properties: ['created', 'name', 'version']
+    created: 2026-02-20T14:50:35.302000000+00:00
+    name: Chrystallum Knowledge Graph
+    version: 1.0
+
+2. FEDERATION STRUCTURE
+--------------------------------------------------------------------------------
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['coverage', 'mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['coverage', 'mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+Federation: None
+  Label: None
+  Desc: None
+  Properties: ['mode', 'name', 'source', 'type']
+
+3. FEDERATION RELATIONSHIPS
+--------------------------------------------------------------------------------
+
+4. ENTITY ROOT STRUCTURE
+--------------------------------------------------------------------------------
+EntityRoot node:
+  name: Entity Types
+
+5. FACET ROOT STRUCTURE
+--------------------------------------------------------------------------------
+FacetRoot node:
+  count: 18
+  name: Canonical Facets
+
+6. SUBJECTCONCEPT ROOT STRUCTURE
+--------------------------------------------------------------------------------
+SubjectConceptRoot node:
+  name: Subject Concepts & Agents
+
+7. ENTITYTYPE REGISTRY
+--------------------------------------------------------------------------------
+  EntityType: None
+    Prefix: None
+    Desc: Atomic temporal nodes
+  EntityType: None
+    Prefix: None
+    Desc: Decade rollup
+  EntityType: None
+    Prefix: None
+    Desc: Century rollup
+  EntityType: None
+    Prefix: None
+    Desc: Millennium rollup
+  EntityType: None
+    Prefix: None
+    Desc: Geographic locations
+  EntityType: None
+    Prefix: None
+    Desc: Place type taxonomy
+  EntityType: None
+    Prefix: None
+    Desc: Historical periods
+  EntityType: None
+    Prefix: None
+    Desc: Period validation candidates
+  EntityType: None
+    Prefix: None
+    Desc: People, historical figures
+  EntityType: None
+    Prefix: None
+    Desc: Historical events, occurrences
+  EntityType: None
+    Prefix: None
+    Desc: Political bodies, groups
+  EntityType: None
+    Prefix: None
+    Desc: Thematic concepts, topics
+  EntityType: None
+    Prefix: None
+    Desc: Texts, inscriptions, scholarship
+  EntityType: None
+    Prefix: None
+    Desc: Evidence-based assertions
+
+8. FACET REGISTRY
+--------------------------------------------------------------------------------
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+  Facet: None
+    Name: None
+    Prefix: None
+
+9. SCHEMA NODE
+--------------------------------------------------------------------------------
+Schema node:
+  required_props: ['year', 'label', 'entity_id']
+  uses_federations: []
+Schema node:
+  optional_props: ['qid', 'lat', 'long', 'bbox']
+  required_props: ['place_id', 'pleiades_id']
+  uses_federations: ['Pleiades', 'Wikidata', 'GeoNames']
+Schema node:
+  optional_props: ['qid', 'periodo_id']
+  required_props: ['period_id', 'start_year', 'end_year']
+  uses_federations: ['PeriodO', 'Wikidata']
+Schema node:
+  uses_federations: ['Wikidata', 'VIAF']
+Schema node:
+  uses_federations: ['Wikidata']
+Schema node:
+  uses_federations: ['Wikidata']
+Schema node:
+  uses_federations: ['LCSH', 'FAST', 'LCC', 'Wikidata']
+Schema node:
+  uses_federations: ['WorldCat', 'Wikidata']
+Schema node:
+  uses_federations: []
+
+10. COMPLETE META-MODEL GRAPH
+--------------------------------------------------------------------------------
+Meta-model paths from Chrystallum:
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FederationRoot'] -> ['Federation']
+    Relationships: HAS_FEDERATION_ROOT -> HAS_FEDERATION
+  None -> ['Chrystallum'] -> ['FacetRoot']
+    Relationships: HAS_FACET_ROOT
+  None -> ['Chrystallum'] -> ['EntityRoot']
+    Relationships: HAS_ENTITY_ROOT
+  None -> ['Chrystallum'] -> ['SubjectConceptRoot']
+    Relationships: HAS_SUBJECT_CONCEPT_ROOT
+
+11. META-NODE COUNTS
+--------------------------------------------------------------------------------
+  Chrystallum: 1 nodes
+  Federation: 10 nodes
+  FederationRoot: 1 nodes
+  EntityRoot: 1 nodes
+  FacetRoot: 1 nodes
+  SubjectConceptRoot: 1 nodes
+  EntityType: 14 nodes
+  Facet: 18 nodes
+  Schema: 9 nodes
+  AgentRegistry: 1 nodes
+  SubjectConceptRegistry: 1 nodes

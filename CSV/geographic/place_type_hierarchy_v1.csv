@@ -1,0 +1,15 @@
+type_id,type_label,parent_type_id,reference_qid,reference_label,notes
+PLACE_TYPE_ROOT,Place Type Root,,,,"Root of Chrystallum geographic type taxonomy"
+MAN_MADE_STRUCTURE,Man-Made Structure,PLACE_TYPE_ROOT,Q811979,architectural structure,"Human-built structures and infrastructure"
+PHYSICAL_FEATURE,Physical Feature,PLACE_TYPE_ROOT,Q618123,geographical object,"Natural land, water, and terrain features"
+SETTLEMENT_TYPE,Settlement Type,PLACE_TYPE_ROOT,Q486972,human settlement,"Human population-place types and administrative settlement units"
+SETTLEMENT,Settlement,SETTLEMENT_TYPE,Q486972,human settlement,"Cities, towns, villages, colonies, and settlement variants"
+REGION,Region,SETTLEMENT_TYPE,Q82794,geographic region,"Regions, provinces, districts, and related administrative units"
+WATER_FEATURE,Water Feature,PHYSICAL_FEATURE,,,Rivers seas lakes gulfs straits and related hydro features
+LAND_FEATURE,Land Feature,PHYSICAL_FEATURE,,,Mountains islands capes deserts valleys caves and related land features
+BUILT_FEATURE,Built Feature,MAN_MADE_STRUCTURE,,,Human-built non-transport structures
+DEFENSIVE_BUILT_FEATURE,Defensive Built Feature,MAN_MADE_STRUCTURE,,,Forts walls castles and military structures
+SACRED_BUILT_FEATURE,Sacred Built Feature,MAN_MADE_STRUCTURE,,,Temples sanctuaries churches monasteries and sacred structures
+ARCHAEOLOGICAL_SITE,Archaeological Site,MAN_MADE_STRUCTURE,Q839954,archaeological site,"Site-level archaeological context and findspots"
+TRANSPORT_FEATURE,Transport Feature,MAN_MADE_STRUCTURE,,,Roads bridges stations ports canals and movement infrastructure
+UNKNOWN_OR_NEEDS_REVIEW,Unknown or Needs Review,PLACE_TYPE_ROOT,,,Fallback bucket for unresolved tokens

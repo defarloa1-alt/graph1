@@ -1,0 +1,83 @@
+{
+  "registry": "Chrystallum Entity Types",
+  "version": "2026-02-19-final",
+  "count": 9,
+  "entity_types": [
+    {
+      "name": "Year",
+      "description": "Atomic temporal nodes",
+      "required_properties": ["year", "label", "entity_id"],
+      "uses_federations": [],
+      "child_types": ["Decade", "Century", "Millennium"],
+      "backbone": true
+    },
+    {
+      "name": "Place",
+      "description": "Geographic locations",
+      "required_properties": ["place_id", "pleiades_id"],
+      "optional_properties": ["qid", "lat", "long", "bbox", "min_date", "max_date"],
+      "uses_federations": ["Pleiades", "Wikidata", "GeoNames"],
+      "child_types": ["PlaceType"],
+      "backbone": true
+    },
+    {
+      "name": "Period",
+      "description": "Historical periods",
+      "required_properties": ["period_id", "start_year", "end_year"],
+      "optional_properties": ["qid", "periodo_id", "earliest_start", "latest_end"],
+      "uses_federations": ["PeriodO", "Wikidata"],
+      "child_types": ["PeriodCandidate"],
+      "backbone": true,
+      "tethers_to": "Year"
+    },
+    {
+      "name": "Human",
+      "description": "People, historical figures",
+      "required_properties": ["entity_id", "name", "qid"],
+      "optional_properties": ["birth_date", "death_date", "viaf_id"],
+      "uses_federations": ["Wikidata", "VIAF"],
+      "child_types": []
+    },
+    {
+      "name": "Event",
+      "description": "Historical events, occurrences",
+      "required_properties": ["entity_id", "label", "qid"],
+      "optional_properties": ["start_date", "end_date", "event_type"],
+      "uses_federations": ["Wikidata"],
+      "child_types": [],
+      "tethers_to": "Year"
+    },
+    {
+      "name": "Organization",
+      "description": "Political bodies, groups, institutions",
+      "required_properties": ["entity_id", "label", "qid"],
+      "uses_federations": ["Wikidata"],
+      "child_types": []
+    },
+    {
+      "name": "SubjectConcept",
+      "description": "Thematic concepts, topics, subjects",
+      "required_properties": ["subject_id", "label", "primary_facet"],
+      "optional_properties": ["qid", "lcsh_id", "fast_id", "lcc_class", "related_facets"],
+      "uses_federations": ["LCSH", "FAST", "LCC", "WorldCat", "Wikidata"],
+      "child_types": [],
+      "can_have_agents": true,
+      "facet_based": true
+    },
+    {
+      "name": "Work",
+      "description": "Texts, inscriptions, scholarship",
+      "required_properties": ["entity_id", "title", "qid"],
+      "uses_federations": ["WorldCat", "Wikidata"],
+      "child_types": []
+    },
+    {
+      "name": "Claim",
+      "description": "Evidence-based assertions",
+      "required_properties": ["claim_id", "cipher"],
+      "uses_federations": [],
+      "child_types": []
+    }
+  ]
+}
+

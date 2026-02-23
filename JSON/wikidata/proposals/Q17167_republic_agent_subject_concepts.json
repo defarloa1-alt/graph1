@@ -1,0 +1,383 @@
+{
+  "seed_qid": "Q17167",
+  "seed_label": "Roman Republic",
+  "agent_domain": "republic_agent",
+  "status": "proposed",
+  "generated_date": "2026-02-14",
+  "subject_concepts": [
+    {
+      "subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC",
+      "label": "Roman Republic",
+      "qid": "Q17167",
+      "discipline": true,
+      "primary_facet": "Political",
+      "primary_confidence": 0.98,
+      "facet_confidence": {
+        "Political": 0.98,
+        "Military": 0.95,
+        "Economic": 0.9,
+        "Social": 0.85,
+        "Legal": 0.9,
+        "Temporal": 0.95,
+        "Cultural": 0.82
+      },
+      "description": "Anchor concept for Republic agent domain and cross-facet routing",
+      "priority": "core",
+      "parent_subject_concept_id": null
+    },
+    {
+      "subject_concept_id": "SC_REPUBLICAN_GOVERNANCE",
+      "label": "Republican governance",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Political",
+      "primary_confidence": 0.97,
+      "facet_confidence": {
+        "Political": 0.97,
+        "Legal": 0.92,
+        "Intellectual": 0.86
+      },
+      "description": "Institutional form and constitutional structure of republican rule",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "subject_concept_id": "SC_SENATE_MAGISTRACIES",
+      "label": "Senate and magistracies",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Political",
+      "primary_confidence": 0.95,
+      "facet_confidence": {
+        "Political": 0.95,
+        "Legal": 0.89,
+        "Social": 0.82
+      },
+      "description": "Executive and deliberative offices including consuls praetors and senate authority",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_REPUBLICAN_GOVERNANCE"
+    },
+    {
+      "subject_concept_id": "SC_POPULAR_ASSEMBLIES",
+      "label": "Popular assemblies",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Political",
+      "primary_confidence": 0.93,
+      "facet_confidence": {
+        "Political": 0.93,
+        "Legal": 0.86,
+        "Social": 0.84
+      },
+      "description": "Comitia and plebeian institutions in legislation elections and legitimacy",
+      "priority": "high",
+      "parent_subject_concept_id": "SC_REPUBLICAN_GOVERNANCE"
+    },
+    {
+      "subject_concept_id": "SC_ROMAN_LAW_CONSTITUTIONAL_CHANGE",
+      "label": "Roman law and constitutional change",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Legal",
+      "primary_confidence": 0.94,
+      "facet_confidence": {
+        "Legal": 0.94,
+        "Political": 0.91,
+        "Intellectual": 0.82,
+        "Temporal": 0.81
+      },
+      "description": "Legal development and constitutional conflict across republican phases",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "subject_concept_id": "SC_MILITARY_EXPANSION",
+      "label": "Roman military expansion",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Military",
+      "primary_confidence": 0.95,
+      "facet_confidence": {
+        "Military": 0.95,
+        "Political": 0.9,
+        "Geographic": 0.87,
+        "Temporal": 0.84
+      },
+      "description": "Expansion through conquest campaigns and strategic control",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "subject_concept_id": "SC_LEGION_ORGANIZATION_COMMAND",
+      "label": "Legion organization and command",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Military",
+      "primary_confidence": 0.92,
+      "facet_confidence": {
+        "Military": 0.92,
+        "Political": 0.8,
+        "Social": 0.74
+      },
+      "description": "Force structure command hierarchy and operational doctrine",
+      "priority": "high",
+      "parent_subject_concept_id": "SC_MILITARY_EXPANSION"
+    },
+    {
+      "subject_concept_id": "SC_PUNIC_HELLENISTIC_WARS",
+      "label": "Punic and Hellenistic wars",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Military",
+      "primary_confidence": 0.93,
+      "facet_confidence": {
+        "Military": 0.93,
+        "Political": 0.88,
+        "Temporal": 0.82,
+        "Geographic": 0.8
+      },
+      "description": "Major interstate conflicts driving territorial transformation",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_MILITARY_EXPANSION"
+    },
+    {
+      "subject_concept_id": "SC_LATE_REPUBLIC_CIVIL_WARS",
+      "label": "Late republican civil wars",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Military",
+      "primary_confidence": 0.94,
+      "facet_confidence": {
+        "Military": 0.94,
+        "Political": 0.93,
+        "Social": 0.82,
+        "Temporal": 0.9
+      },
+      "description": "Internal wars that destabilized republican constitutional order",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_MILITARY_EXPANSION"
+    },
+    {
+      "subject_concept_id": "SC_MEDITERRANEAN_TRADE_NETWORKS",
+      "label": "Mediterranean trade networks",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Economic",
+      "primary_confidence": 0.9,
+      "facet_confidence": {
+        "Economic": 0.9,
+        "Geographic": 0.84,
+        "Political": 0.77,
+        "Social": 0.75
+      },
+      "description": "Commercial connectivity and maritime exchange under republican hegemony",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "subject_concept_id": "SC_ROMAN_COINAGE_MONETARY_ECONOMY",
+      "label": "Roman coinage and monetary economy",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Economic",
+      "primary_confidence": 0.89,
+      "facet_confidence": {
+        "Economic": 0.89,
+        "Political": 0.74,
+        "Social": 0.72
+      },
+      "description": "Monetary circulation fiscal signaling and payment infrastructure",
+      "priority": "high",
+      "parent_subject_concept_id": "SC_MEDITERRANEAN_TRADE_NETWORKS"
+    },
+    {
+      "subject_concept_id": "SC_LAND_TENURE_AGRARIAN_REFORM",
+      "label": "Land tenure and agrarian reform",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Economic",
+      "primary_confidence": 0.9,
+      "facet_confidence": {
+        "Economic": 0.9,
+        "Political": 0.87,
+        "Social": 0.83,
+        "Legal": 0.78
+      },
+      "description": "Land distribution ownership conflict and reform politics",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "subject_concept_id": "SC_TAXATION_PROVINCIAL_EXTRACTION",
+      "label": "Taxation and provincial extraction",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Economic",
+      "primary_confidence": 0.91,
+      "facet_confidence": {
+        "Economic": 0.91,
+        "Political": 0.86,
+        "Legal": 0.78,
+        "Geographic": 0.8
+      },
+      "description": "Revenue systems tribute and extraction mechanisms in provinces",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_MEDITERRANEAN_TRADE_NETWORKS"
+    },
+    {
+      "subject_concept_id": "SC_PATRON_CLIENT_NETWORKS",
+      "label": "Patron client networks",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Social",
+      "primary_confidence": 0.85,
+      "facet_confidence": {
+        "Social": 0.85,
+        "Political": 0.82,
+        "Economic": 0.73,
+        "Cultural": 0.69
+      },
+      "description": "Relational power networks linking elites dependents and institutions",
+      "priority": "high",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "subject_concept_id": "SC_CITIZENSHIP_LEGAL_STATUS",
+      "label": "Citizenship and legal status",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Legal",
+      "primary_confidence": 0.9,
+      "facet_confidence": {
+        "Legal": 0.9,
+        "Political": 0.86,
+        "Social": 0.81
+      },
+      "description": "Inclusion exclusion and status regimes across persons and communities",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_ROMAN_LAW_CONSTITUTIONAL_CHANGE"
+    },
+    {
+      "subject_concept_id": "SC_PATRICIAN_PLEBEIAN_STRATIFICATION",
+      "label": "Patrician plebeian stratification",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Social",
+      "primary_confidence": 0.87,
+      "facet_confidence": {
+        "Social": 0.87,
+        "Political": 0.83,
+        "Legal": 0.72,
+        "Temporal": 0.7
+      },
+      "description": "Class structure and long-run social conflict in republican society",
+      "priority": "high",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "subject_concept_id": "SC_SLAVERY_FREEDPERSONS",
+      "label": "Slavery and freedpersons",
+      "qid": "",
+      "discipline": true,
+      "primary_facet": "Social",
+      "primary_confidence": 0.88,
+      "facet_confidence": {
+        "Social": 0.88,
+        "Economic": 0.82,
+        "Legal": 0.78,
+        "Cultural": 0.71
+      },
+      "description": "Labor status regimes and manumission dynamics in republican economy",
+      "priority": "core",
+      "parent_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    }
+  ],
+  "relationship_proposals": [
+    {
+      "from_subject_concept_id": "SC_REPUBLICAN_GOVERNANCE",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "from_subject_concept_id": "SC_SENATE_MAGISTRACIES",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_REPUBLICAN_GOVERNANCE"
+    },
+    {
+      "from_subject_concept_id": "SC_POPULAR_ASSEMBLIES",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_REPUBLICAN_GOVERNANCE"
+    },
+    {
+      "from_subject_concept_id": "SC_ROMAN_LAW_CONSTITUTIONAL_CHANGE",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "from_subject_concept_id": "SC_MILITARY_EXPANSION",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "from_subject_concept_id": "SC_LEGION_ORGANIZATION_COMMAND",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_MILITARY_EXPANSION"
+    },
+    {
+      "from_subject_concept_id": "SC_PUNIC_HELLENISTIC_WARS",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_MILITARY_EXPANSION"
+    },
+    {
+      "from_subject_concept_id": "SC_LATE_REPUBLIC_CIVIL_WARS",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_MILITARY_EXPANSION"
+    },
+    {
+      "from_subject_concept_id": "SC_MEDITERRANEAN_TRADE_NETWORKS",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "from_subject_concept_id": "SC_ROMAN_COINAGE_MONETARY_ECONOMY",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_MEDITERRANEAN_TRADE_NETWORKS"
+    },
+    {
+      "from_subject_concept_id": "SC_LAND_TENURE_AGRARIAN_REFORM",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "from_subject_concept_id": "SC_TAXATION_PROVINCIAL_EXTRACTION",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_MEDITERRANEAN_TRADE_NETWORKS"
+    },
+    {
+      "from_subject_concept_id": "SC_PATRON_CLIENT_NETWORKS",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "from_subject_concept_id": "SC_CITIZENSHIP_LEGAL_STATUS",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_ROMAN_LAW_CONSTITUTIONAL_CHANGE"
+    },
+    {
+      "from_subject_concept_id": "SC_PATRICIAN_PLEBEIAN_STRATIFICATION",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    },
+    {
+      "from_subject_concept_id": "SC_SLAVERY_FREEDPERSONS",
+      "relationship_type": "BROADER_THAN",
+      "to_subject_concept_id": "SC_Q17167_ROMAN_REPUBLIC"
+    }
+  ],
+  "import_notes": {
+    "node_label": "SubjectConcept",
+    "discipline_policy": "Disciplines are modeled as SubjectConcept with discipline=true",
+    "facet_policy": "Facet confidence values are heuristic proposal scores and should be review-calibrated",
+    "seed_context": "Republic agent initialization pack centered on Q17167"
+  }
+}

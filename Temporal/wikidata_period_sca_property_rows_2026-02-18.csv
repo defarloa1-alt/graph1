@@ -1,0 +1,924 @@
+qid,qid_label,group,property_pid,property_label,statement_index,rank,value_qid,value_label,value_literal,periodo_ids
+Q1054850,Bactria–Margiana Archaeological Complex,hierarchy,P31,instance of,0,normal,Q8432,civilization,,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,hierarchy,P361,part of,0,normal,Q11761,Bronze Age,,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,temporal,P580,start time,0,normal,,time=-2200-01-01T00:00:00Z;precision=9,time=-2200-01-01T00:00:00Z;precision=9,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,temporal,P582,end time,0,normal,,time=-1700-01-01T00:00:00Z;precision=9,time=-1700-01-01T00:00:00Z;precision=9,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,geographical,P17,country,0,normal,Q265,Uzbekistan,,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,geographical,P625,coordinate location,0,normal,,"{'latitude': 37.30111111111111, 'longitude': 64.15530555555556, 'altitude': None, 'precision': 2.777777777777778e-05, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 37.30111111111111, 'longitude': 64.15530555555556, 'altitude': None, 'precision': 2.777777777777778e-05, 'globe': 'http://www.wikidata.org/entity/Q2'}",8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,geographical,P276,location,0,normal,Q172702,Karakum Desert,,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,geographical,P276,location,1,normal,Q874,Turkmenistan,,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,geographical,P276,location,2,normal,Q889,Afghanistan,,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,geographical,P131,located in the administrative territorial entity,0,normal,Q399899,Ahal Region,,8m57hq9gh
+Q1054850,Bactria–Margiana Archaeological Complex,temporal,P9350,PeriodO period ID,0,normal,,8m57hq9gh,8m57hq9gh,8m57hq9gh
+Q1076902,Chremonidean War,hierarchy,P31,instance of,0,normal,Q198,war,,6c6g382rh
+Q1076902,Chremonidean War,temporal,P582,end time,0,normal,,time=-0261-00-00T00:00:00Z;precision=9,time=-0261-00-00T00:00:00Z;precision=9,6c6g382rh
+Q1076902,Chremonidean War,temporal,P580,start time,0,normal,,time=-0267-00-00T00:00:00Z;precision=9,time=-0267-00-00T00:00:00Z;precision=9,6c6g382rh
+Q1076902,Chremonidean War,geographical,P276,location,0,normal,Q41,Greece,,6c6g382rh
+Q1076902,Chremonidean War,temporal,P9350,PeriodO period ID,0,normal,,6c6g382rh,6c6g382rh,6c6g382rh
+Q1080207,Norian,hierarchy,P155,follows,0,normal,Q911899,Carnian,,9qtgwnfdx
+Q1080207,Norian,hierarchy,P156,followed by,0,normal,Q530828,Rhaetian,,9qtgwnfdx
+Q1080207,Norian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgwnfdx
+Q1080207,Norian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgwnfdx
+Q1080207,Norian,hierarchy,P361,part of,0,normal,Q917293,Late Triassic,,9qtgwnfdx
+Q1080207,Norian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwnfdx
+Q1080207,Norian,temporal,P580,start time,0,normal,,time=-227000000-00-00T00:00:00Z;precision=3,time=-227000000-00-00T00:00:00Z;precision=3,9qtgwnfdx
+Q1080207,Norian,temporal,P582,end time,0,normal,,time=-208500000-00-00T00:00:00Z;precision=4,time=-208500000-00-00T00:00:00Z;precision=4,9qtgwnfdx
+Q1080207,Norian,temporal,P9350,PeriodO period ID,0,normal,,9qtgwnfdx,9qtgwnfdx,9qtgwnfdx
+Q109384761,Ur III period,hierarchy,P31,instance of,0,normal,Q465299,archaeological culture,,7ffbfhfkn
+Q109384761,Ur III period,hierarchy,P31,instance of,1,normal,Q11514315,historical period,,7ffbfhfkn
+Q109384761,Ur III period,hierarchy,P155,follows,0,normal,Q114868851,Lagash II Period,,7ffbfhfkn
+Q109384761,Ur III period,geographical,P276,location,0,normal,Q11767,Mesopotamia,,7ffbfhfkn
+Q109384761,Ur III period,hierarchy,P156,followed by,0,normal,Q114867465,Early Old Babylonian Period,,7ffbfhfkn
+Q109384761,Ur III period,hierarchy,P156,followed by,1,normal,Q15782728,Old-Assyrian period,,7ffbfhfkn
+Q109384761,Ur III period,hierarchy,P156,followed by,2,normal,Q13577667,Isin-Larsa period,,7ffbfhfkn
+Q109384761,Ur III period,temporal,P580,start time,0,normal,,time=-2100-00-00T00:00:00Z;precision=9,time=-2100-00-00T00:00:00Z;precision=9,7ffbfhfkn
+Q109384761,Ur III period,temporal,P582,end time,0,normal,,time=-2000-00-00T00:00:00Z;precision=9,time=-2000-00-00T00:00:00Z;precision=9,7ffbfhfkn
+Q109384761,Ur III period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfhfkn,7ffbfhfkn,7ffbfhfkn
+Q110209550,Early Dynastic IIIa,hierarchy,P31,instance of,0,normal,Q465299,archaeological culture,,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,hierarchy,P31,instance of,1,normal,Q15401633,archaeological period,,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,hierarchy,P31,instance of,2,normal,Q11514315,historical period,,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,hierarchy,P361,part of,0,normal,Q109386511,Early Dynastic III,,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,geographical,P276,location,0,normal,Q11767,Mesopotamia,,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,hierarchy,P156,followed by,0,normal,Q110209565,Early Dynastic IIIb,,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,temporal,P580,start time,0,normal,,time=-2600-00-00T00:00:00Z;precision=9,time=-2600-00-00T00:00:00Z;precision=9,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,temporal,P582,end time,0,normal,,time=-2500-00-00T00:00:00Z;precision=9,time=-2500-00-00T00:00:00Z;precision=9,7ffbfx3sh
+Q110209550,Early Dynastic IIIa,temporal,P9350,PeriodO period ID,0,normal,,7ffbfx3sh,7ffbfx3sh,7ffbfx3sh
+Q110209565,Early Dynastic IIIb,hierarchy,P31,instance of,0,normal,Q465299,archaeological culture,,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,hierarchy,P31,instance of,1,normal,Q15401633,archaeological period,,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,hierarchy,P31,instance of,2,normal,Q11514315,historical period,,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,geographical,P276,location,0,normal,Q11767,Mesopotamia,,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,hierarchy,P361,part of,0,normal,Q109386511,Early Dynastic III,,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,hierarchy,P155,follows,0,normal,Q110209550,Early Dynastic IIIa,,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,temporal,P580,start time,0,normal,,time=-2500-00-00T00:00:00Z;precision=9,time=-2500-00-00T00:00:00Z;precision=9,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,temporal,P582,end time,0,normal,,time=-2340-00-00T00:00:00Z;precision=9,time=-2340-00-00T00:00:00Z;precision=9,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,temporal,P9350,PeriodO period ID,0,normal,,7ffbfjtm2,7ffbfjtm2,7ffbfjtm2
+Q110209565,Early Dynastic IIIb,hierarchy,P156,followed by,0,normal,Q419594,Akkad period,,7ffbfjtm2
+Q111656626,Bronsålder Period I,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,vn2frbvn2
+Q111656626,Bronsålder Period I,hierarchy,P361,part of,0,normal,Q1471923,Early Bronze Age,,vn2frbvn2
+Q111656626,Bronsålder Period I,temporal,P580,start time,0,normal,,time=-1700-00-00T00:00:00Z;precision=8,time=-1700-00-00T00:00:00Z;precision=8,vn2frbvn2
+Q111656626,Bronsålder Period I,temporal,P582,end time,0,normal,,time=-1500-00-00T00:00:00Z;precision=8,time=-1500-00-00T00:00:00Z;precision=8,vn2frbvn2
+Q111656626,Bronsålder Period I,hierarchy,P155,follows,0,normal,Q1340637,Final Neolithic in Central Europe,,vn2frbvn2
+Q111656626,Bronsålder Period I,hierarchy,P156,followed by,0,normal,Q111656882,Bronsålder Period II,,vn2frbvn2
+Q111656626,Bronsålder Period I,temporal,P9350,PeriodO period ID,0,normal,,vn2frbvn2,vn2frbvn2,vn2frbvn2
+Q111656882,Bronsålder Period II,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,vn2frzrfs
+Q111656882,Bronsålder Period II,hierarchy,P361,part of,0,normal,Q1471923,Early Bronze Age,,vn2frzrfs
+Q111656882,Bronsålder Period II,hierarchy,P155,follows,0,normal,Q111656626,Bronsålder Period I,,vn2frzrfs
+Q111656882,Bronsålder Period II,temporal,P580,start time,0,normal,,time=-1500-00-00T00:00:00Z;precision=8,time=-1500-00-00T00:00:00Z;precision=8,vn2frzrfs
+Q111656882,Bronsålder Period II,temporal,P582,end time,0,normal,,time=-1300-00-00T00:00:00Z;precision=8,time=-1300-00-00T00:00:00Z;precision=8,vn2frzrfs
+Q111656882,Bronsålder Period II,hierarchy,P156,followed by,0,normal,Q111657246,Bronsålder Period III,,vn2frzrfs
+Q111656882,Bronsålder Period II,temporal,P9350,PeriodO period ID,0,normal,,vn2frzrfs,vn2frzrfs,vn2frzrfs
+Q111657246,Bronsålder Period III,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,vn2fr68nx
+Q111657246,Bronsålder Period III,hierarchy,P361,part of,0,normal,Q1471923,Early Bronze Age,,vn2fr68nx
+Q111657246,Bronsålder Period III,hierarchy,P155,follows,0,normal,Q111656882,Bronsålder Period II,,vn2fr68nx
+Q111657246,Bronsålder Period III,temporal,P580,start time,0,normal,,time=-1300-00-00T00:00:00Z;precision=8,time=-1300-00-00T00:00:00Z;precision=8,vn2fr68nx
+Q111657246,Bronsålder Period III,temporal,P582,end time,0,normal,,time=-1100-00-00T00:00:00Z;precision=8,time=-1100-00-00T00:00:00Z;precision=8,vn2fr68nx
+Q111657246,Bronsålder Period III,hierarchy,P156,followed by,0,normal,Q111657361,Bronsålder Period IV,,vn2fr68nx
+Q111657246,Bronsålder Period III,temporal,P9350,PeriodO period ID,0,normal,,vn2fr68nx,vn2fr68nx,vn2fr68nx
+Q111657361,Bronsålder Period IV,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,vn2frrx4q
+Q111657361,Bronsålder Period IV,hierarchy,P361,part of,0,normal,Q1758757,Late Bronze Age (Europe),,vn2frrx4q
+Q111657361,Bronsålder Period IV,hierarchy,P155,follows,0,normal,Q111657246,Bronsålder Period III,,vn2frrx4q
+Q111657361,Bronsålder Period IV,temporal,P580,start time,0,normal,,time=-1100-00-00T00:00:00Z;precision=8,time=-1100-00-00T00:00:00Z;precision=8,vn2frrx4q
+Q111657361,Bronsålder Period IV,temporal,P582,end time,0,normal,,time=-0900-00-00T00:00:00Z;precision=8,time=-0900-00-00T00:00:00Z;precision=8,vn2frrx4q
+Q111657361,Bronsålder Period IV,hierarchy,P156,followed by,0,normal,Q111657374,Bronsålder Period V,,vn2frrx4q
+Q111657361,Bronsålder Period IV,temporal,P9350,PeriodO period ID,0,normal,,vn2frrx4q,vn2frrx4q,vn2frrx4q
+Q111657374,Bronsålder Period V,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,vn2frrq4x
+Q111657374,Bronsålder Period V,hierarchy,P155,follows,0,normal,Q111657361,Bronsålder Period IV,,vn2frrq4x
+Q111657374,Bronsålder Period V,hierarchy,P361,part of,0,normal,Q1758757,Late Bronze Age (Europe),,vn2frrq4x
+Q111657374,Bronsålder Period V,temporal,P580,start time,0,normal,,time=-0900-00-00T00:00:00Z;precision=8,time=-0900-00-00T00:00:00Z;precision=8,vn2frrq4x
+Q111657374,Bronsålder Period V,temporal,P582,end time,0,normal,,time=-0600-00-00T00:00:00Z;precision=8,time=-0600-00-00T00:00:00Z;precision=8,vn2frrq4x
+Q111657374,Bronsålder Period V,hierarchy,P156,followed by,0,normal,Q111657385,Bronsålder Period VI,,vn2frrq4x
+Q111657374,Bronsålder Period V,temporal,P9350,PeriodO period ID,0,normal,,vn2frrq4x,vn2frrq4x,vn2frrq4x
+Q111657385,Bronsålder Period VI,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,vn2frdpb3
+Q111657385,Bronsålder Period VI,hierarchy,P361,part of,0,normal,Q1758757,Late Bronze Age (Europe),,vn2frdpb3
+Q111657385,Bronsålder Period VI,hierarchy,P155,follows,0,normal,Q111657374,Bronsålder Period V,,vn2frdpb3
+Q111657385,Bronsålder Period VI,temporal,P580,start time,0,normal,,time=-0600-00-00T00:00:00Z;precision=8,time=-0600-00-00T00:00:00Z;precision=8,vn2frdpb3
+Q111657385,Bronsålder Period VI,temporal,P582,end time,0,normal,,time=-0500-00-00T00:00:00Z;precision=8,time=-0500-00-00T00:00:00Z;precision=8,vn2frdpb3
+Q111657385,Bronsålder Period VI,hierarchy,P156,followed by,0,normal,Q2566630,Roman Iron Age,,vn2frdpb3
+Q111657385,Bronsålder Period VI,temporal,P9350,PeriodO period ID,0,normal,,vn2frdpb3,vn2frdpb3,vn2frdpb3
+Q1135852,Guangxu Era,hierarchy,P31,instance of,0,normal,Q845538,Chinese era name,,8m57hg5gw
+Q1135852,Guangxu Era,geographical,P17,country,0,normal,Q8733,Qing dynasty,,8m57hg5gw
+Q1135852,Guangxu Era,hierarchy,P156,followed by,0,normal,Q1135888,Xuantong,,8m57hg5gw
+Q1135852,Guangxu Era,temporal,P580,start time,0,normal,,time=+1875-00-00T00:00:00Z;precision=9,time=+1875-00-00T00:00:00Z;precision=9,8m57hg5gw
+Q1135852,Guangxu Era,temporal,P582,end time,0,normal,,time=+1908-00-00T00:00:00Z;precision=9,time=+1908-00-00T00:00:00Z;precision=9,8m57hg5gw
+Q1135852,Guangxu Era,hierarchy,P155,follows,0,normal,Q1135837,Tongzhi Era,,8m57hg5gw
+Q1135852,Guangxu Era,temporal,P9350,PeriodO period ID,0,normal,,8m57hg5gw,8m57hg5gw,8m57hg5gw
+Q114867307,Achaemenid Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,83p5r9rs7
+Q114867307,Achaemenid Period,temporal,P580,start time,0,normal,,time=-0547-00-00T00:00:00Z;precision=9,time=-0547-00-00T00:00:00Z;precision=9,83p5r9rs7
+Q114867307,Achaemenid Period,temporal,P582,end time,0,normal,,time=-0331-00-00T00:00:00Z;precision=9,time=-0331-00-00T00:00:00Z;precision=9,83p5r9rs7
+Q114867307,Achaemenid Period,hierarchy,P155,follows,0,normal,Q114869307,Neo Babylonian Period,,83p5r9rs7
+Q114867307,Achaemenid Period,hierarchy,P155,follows,1,normal,Q29297050,Neo-Elamite period,,83p5r9rs7
+Q114867307,Achaemenid Period,hierarchy,P156,followed by,0,normal,Q428995,Hellenistic period,,83p5r9rs7
+Q114867307,Achaemenid Period,hierarchy,P156,followed by,1,normal,Q115664693,Selucid Period,,83p5r9rs7
+Q114867307,Achaemenid Period,hierarchy,P156,followed by,2,normal,Q114877775,Parthian Period,,83p5r9rs7
+Q114867307,Achaemenid Period,temporal,P9350,PeriodO period ID,0,normal,,83p5r9rs7,83p5r9rs7,83p5r9rs7
+Q114867465,Early Old Babylonian Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbftf7p
+Q114867465,Early Old Babylonian Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbftf7p,7ffbftf7p,7ffbftf7p
+Q114867465,Early Old Babylonian Period,temporal,P580,start time,0,normal,,time=-2000-00-00T00:00:00Z;precision=9,time=-2000-00-00T00:00:00Z;precision=9,7ffbftf7p
+Q114867465,Early Old Babylonian Period,temporal,P582,end time,0,normal,,time=-1900-00-00T00:00:00Z;precision=9,time=-1900-00-00T00:00:00Z;precision=9,7ffbftf7p
+Q114867465,Early Old Babylonian Period,hierarchy,P155,follows,0,normal,Q109384761,Ur III period,,7ffbftf7p
+Q114867465,Early Old Babylonian Period,hierarchy,P156,followed by,0,normal,Q1471568,Old Babylonian Period,,7ffbftf7p
+Q114867907,Ebla Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfh6rb
+Q114867907,Ebla Period,hierarchy,P31,instance of,1,normal,Q3448837,middle chronology,,7ffbfh6rb
+Q114867907,Ebla Period,temporal,P580,start time,0,normal,,time=-2300-00-00T00:00:00Z;precision=9,time=-2300-00-00T00:00:00Z;precision=9,7ffbfh6rb
+Q114867907,Ebla Period,temporal,P582,end time,0,normal,,time=-2250-00-00T00:00:00Z;precision=9,time=-2250-00-00T00:00:00Z;precision=9,7ffbfh6rb
+Q114867907,Ebla Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfh6rb,7ffbfh6rb,7ffbfh6rb
+Q114868851,Lagash II Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbf9qf7
+Q114868851,Lagash II Period,temporal,P580,start time,0,normal,,time=-2200-00-00T00:00:00Z;precision=9,time=-2200-00-00T00:00:00Z;precision=9,7ffbf9qf7
+Q114868851,Lagash II Period,temporal,P582,end time,0,normal,,time=-2100-00-00T00:00:00Z;precision=9,time=-2100-00-00T00:00:00Z;precision=9,7ffbf9qf7
+Q114868851,Lagash II Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbf9qf7,7ffbf9qf7,7ffbf9qf7
+Q114868851,Lagash II Period,hierarchy,P155,follows,0,normal,Q419594,Akkad period,,7ffbf9qf7
+Q114868851,Lagash II Period,hierarchy,P156,followed by,0,normal,Q109384761,Ur III period,,7ffbf9qf7
+Q114868885,Linear Elamite Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbf44sn
+Q114868885,Linear Elamite Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbf44sn,7ffbf44sn,7ffbf44sn
+Q114868885,Linear Elamite Period,temporal,P580,start time,0,normal,,time=-2200-00-00T00:00:00Z;precision=9,time=-2200-00-00T00:00:00Z;precision=9,7ffbf44sn
+Q114868885,Linear Elamite Period,temporal,P582,end time,0,normal,,time=-2000-00-00T00:00:00Z;precision=9,time=-2000-00-00T00:00:00Z;precision=9,7ffbf44sn
+Q114868885,Linear Elamite Period,hierarchy,P155,follows,0,normal,Q29297301,Old Elamite period,,7ffbf44sn
+Q114868885,Linear Elamite Period,hierarchy,P155,follows,1,normal,Q419594,Akkad period,,7ffbf44sn
+Q114868885,Linear Elamite Period,hierarchy,P156,followed by,0,normal,Q29297151,Middle Elamite period,,7ffbf44sn
+Q114868919,Middle Assyrian Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfnbsj
+Q114868919,Middle Assyrian Period,temporal,P580,start time,0,normal,,time=-1400-00-00T00:00:00Z;precision=9,time=-1400-00-00T00:00:00Z;precision=9,7ffbfnbsj
+Q114868919,Middle Assyrian Period,temporal,P582,end time,0,normal,,time=-1000-00-00T00:00:00Z;precision=9,time=-1000-00-00T00:00:00Z;precision=9,7ffbfnbsj
+Q114868919,Middle Assyrian Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfnbsj,7ffbfnbsj,7ffbfnbsj
+Q114868919,Middle Assyrian Period,hierarchy,P155,follows,0,normal,Q15782728,Old-Assyrian period,,7ffbfnbsj
+Q114868919,Middle Assyrian Period,hierarchy,P156,followed by,0,normal,Q114869081,Neo Assyrian Period,,7ffbfnbsj
+Q114869008,Middle Hittite Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbf8qk6
+Q114869008,Middle Hittite Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbf8qk6,7ffbf8qk6,7ffbf8qk6
+Q114869008,Middle Hittite Period,temporal,P580,start time,0,normal,,time=-1500-00-00T00:00:00Z;precision=9,time=-1500-00-00T00:00:00Z;precision=9,7ffbf8qk6
+Q114869008,Middle Hittite Period,temporal,P582,end time,0,normal,,time=-1100-00-00T00:00:00Z;precision=9,time=-1100-00-00T00:00:00Z;precision=9,7ffbf8qk6
+Q114869008,Middle Hittite Period,hierarchy,P155,follows,0,normal,Q1471568,Old Babylonian Period,,7ffbf8qk6
+Q114869081,Neo Assyrian Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfzf7k
+Q114869081,Neo Assyrian Period,temporal,P580,start time,0,normal,,time=-0911-00-00T00:00:00Z;precision=9,time=-0911-00-00T00:00:00Z;precision=9,7ffbfzf7k
+Q114869081,Neo Assyrian Period,temporal,P582,end time,0,normal,,time=-0612-00-00T00:00:00Z;precision=9,time=-0612-00-00T00:00:00Z;precision=9,7ffbfzf7k
+Q114869081,Neo Assyrian Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfzf7k,7ffbfzf7k,7ffbfzf7k
+Q114869081,Neo Assyrian Period,hierarchy,P155,follows,0,normal,Q114868919,Middle Assyrian Period,,7ffbfzf7k
+Q114869307,Neo Babylonian Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfqvg7
+Q114869307,Neo Babylonian Period,temporal,P580,start time,0,normal,,time=-0626-00-00T00:00:00Z;precision=9,time=-0626-00-00T00:00:00Z;precision=9,7ffbfqvg7
+Q114869307,Neo Babylonian Period,temporal,P582,end time,0,normal,,time=-0539-00-00T00:00:00Z;precision=9,time=-0539-00-00T00:00:00Z;precision=9,7ffbfqvg7
+Q114869307,Neo Babylonian Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfqvg7,7ffbfqvg7,7ffbfqvg7
+Q114869307,Neo Babylonian Period,hierarchy,P155,follows,0,normal,Q22809362,Late Babylonian Period,,7ffbfqvg7
+Q114869307,Neo Babylonian Period,hierarchy,P156,followed by,0,normal,Q114867307,Achaemenid Period,,7ffbfqvg7
+Q114869307,Neo Babylonian Period,hierarchy,P156,followed by,1,normal,Q115667399,Persian period,,7ffbfqvg7
+Q114877803,Uruk III Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbf3bb5
+Q114877803,Uruk III Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbf3bb5,7ffbf3bb5,7ffbf3bb5
+Q114877803,Uruk III Period,temporal,P580,start time,0,normal,,time=-3200-00-00T00:00:00Z;precision=9,time=-3200-00-00T00:00:00Z;precision=9,7ffbf3bb5
+Q114877803,Uruk III Period,temporal,P582,end time,0,normal,,time=-3000-00-00T00:00:00Z;precision=9,time=-3000-00-00T00:00:00Z;precision=9,7ffbf3bb5
+Q114877803,Uruk III Period,hierarchy,P155,follows,0,normal,Q114877809,Uruk IV Period,,7ffbf3bb5
+Q114877803,Uruk III Period,hierarchy,P156,followed by,0,normal,Q99299898,Early Dynastic I,,7ffbf3bb5
+Q114877809,Uruk IV Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfz8rq
+Q114877809,Uruk IV Period,hierarchy,P31,instance of,1,normal,Q3448837,middle chronology,,7ffbfz8rq
+Q114877809,Uruk IV Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfz8rq,7ffbfz8rq,7ffbfz8rq
+Q114877809,Uruk IV Period,temporal,P580,start time,0,normal,,time=-3350-00-00T00:00:00Z;precision=9,time=-3350-00-00T00:00:00Z;precision=9,7ffbfz8rq
+Q114877809,Uruk IV Period,temporal,P582,end time,0,normal,,time=-3200-00-00T00:00:00Z;precision=9,time=-3200-00-00T00:00:00Z;precision=9,7ffbfz8rq
+Q114877809,Uruk IV Period,hierarchy,P155,follows,0,normal,Q114877817,Uruk V Period,,7ffbfz8rq
+Q114877809,Uruk IV Period,hierarchy,P156,followed by,0,normal,Q114877803,Uruk III Period,,7ffbfz8rq
+Q114877817,Uruk V Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbf4k4d
+Q114877817,Uruk V Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbf4k4d,7ffbf4k4d,7ffbf4k4d
+Q114877817,Uruk V Period,temporal,P580,start time,0,normal,,time=-3500-00-00T00:00:00Z;precision=9,time=-3500-00-00T00:00:00Z;precision=9,7ffbf4k4d
+Q114877817,Uruk V Period,temporal,P582,end time,0,normal,,time=-3350-00-00T00:00:00Z;precision=9,time=-3350-00-00T00:00:00Z;precision=9,7ffbf4k4d
+Q114877817,Uruk V Period,hierarchy,P156,followed by,0,normal,Q114877809,Uruk IV Period,,7ffbf4k4d
+Q114877817,Uruk V Period,hierarchy,P155,follows,0,normal,Q114877825,Pre-Writing Period,,7ffbf4k4d
+Q117326694,"Ṣafavid dynasty, 1501-1736",hierarchy,P31,instance of,0,normal,Q11514315,historical period,,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",hierarchy,P361,part of,0,normal,Q28926,history of Iran,,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",hierarchy,P361,part of,1,normal,Q83311,Persian Empire,,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",geographical,P17,country,0,normal,Q794,Iran,,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",geographical,P17,country,1,normal,Q83311,Persian Empire,,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",geographical,P17,country,2,normal,Q18234383,Safavid Iran,,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",temporal,P9350,PeriodO period ID,0,normal,,6c6g35q9w,6c6g35q9w,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",temporal,P580,start time,0,normal,,time=+1501-00-00T00:00:00Z;precision=9,time=+1501-00-00T00:00:00Z;precision=9,6c6g35q9w
+Q117326694,"Ṣafavid dynasty, 1501-1736",temporal,P582,end time,0,normal,,time=+1736-00-00T00:00:00Z;precision=9,time=+1736-00-00T00:00:00Z;precision=9,6c6g35q9w
+Q1196237,Proto-Elamite period,temporal,P571,inception,0,normal,,time=-3100-00-00T00:00:00Z;precision=9,time=-3100-00-00T00:00:00Z;precision=9,7ffbfn97j
+Q1196237,Proto-Elamite period,temporal,P582,end time,0,normal,,time=-2700-00-00T00:00:00Z;precision=9,time=-2700-00-00T00:00:00Z;precision=9,7ffbfn97j
+Q1196237,Proto-Elamite period,geographical,P276,location,0,normal,Q128904,Elam,,7ffbfn97j
+Q1196237,Proto-Elamite period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfn97j
+Q1196237,Proto-Elamite period,hierarchy,P31,instance of,1,normal,Q15401633,archaeological period,,7ffbfn97j
+Q1196237,Proto-Elamite period,temporal,P580,start time,0,normal,,time=-3100-00-00T00:00:00Z;precision=9,time=-3100-00-00T00:00:00Z;precision=9,7ffbfn97j
+Q1196237,Proto-Elamite period,geographical,P17,country,0,normal,Q794,Iran,,7ffbfn97j
+Q1196237,Proto-Elamite period,hierarchy,P361,part of,0,normal,Q35355,Sumer,,7ffbfn97j
+Q1196237,Proto-Elamite period,hierarchy,P156,followed by,0,normal,Q29297301,Old Elamite period,,7ffbfn97j
+Q1196237,Proto-Elamite period,hierarchy,P155,follows,0,normal,Q731494,Uruk period,,7ffbfn97j
+Q1196237,Proto-Elamite period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfn97j,7ffbfn97j,7ffbfn97j
+Q123437228,Early Mithraeum,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,pkpgkvf9d
+Q123437228,Early Mithraeum,hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,pkpgkvf9d
+Q123437228,Early Mithraeum,temporal,P9350,PeriodO period ID,0,normal,,pkpgkvf9d,pkpgkvf9d,pkpgkvf9d
+Q123437228,Early Mithraeum,temporal,P580,start time,0,normal,,time=+0168-00-00T00:00:00Z;precision=9,time=+0168-00-00T00:00:00Z;precision=9,pkpgkvf9d
+Q123437228,Early Mithraeum,temporal,P582,end time,0,normal,,time=+0210-00-00T00:00:00Z;precision=9,time=+0210-00-00T00:00:00Z;precision=9,pkpgkvf9d
+Q123437228,Early Mithraeum,hierarchy,P361,part of,0,deprecated,Q1939641,"Mithraeum, Dura-Europos",,pkpgkvf9d
+Q123437228,Early Mithraeum,hierarchy,P156,followed by,0,normal,Q123909218,Middle Mithraeum,,pkpgkvf9d
+Q123437424,Mithraeum I,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,mx5nbjmkh
+Q123437424,Mithraeum I,hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,mx5nbjmkh
+Q123437424,Mithraeum I,hierarchy,P31,instance of,2,normal,Q1151014,mithraeum,,mx5nbjmkh
+Q123437424,Mithraeum I,temporal,P9350,PeriodO period ID,0,normal,,mx5nbjmkh,mx5nbjmkh,mx5nbjmkh
+Q123437424,Mithraeum I,temporal,P580,start time,0,normal,,time=+0169-00-00T00:00:00Z;precision=9,time=+0169-00-00T00:00:00Z;precision=9,mx5nbjmkh
+Q123437424,Mithraeum I,temporal,P582,end time,0,normal,,time=+0211-00-00T00:00:00Z;precision=9,time=+0211-00-00T00:00:00Z;precision=9,mx5nbjmkh
+Q123437424,Mithraeum I,hierarchy,P361,part of,0,normal,Q1939641,"Mithraeum, Dura-Europos",,mx5nbjmkh
+Q123437424,Mithraeum I,hierarchy,P156,followed by,0,normal,Q123910977,Mithraeum II,,mx5nbjmkh
+Q123437424,Mithraeum I,hierarchy,P527,has part(s),0,normal,Q123917199,"Phase A, Mithraeum",,mx5nbjmkh
+Q123437424,Mithraeum I,hierarchy,P527,has part(s),1,normal,Q123918334,"Phase B, Mithraeum",,mx5nbjmkh
+Q123437424,Mithraeum I,hierarchy,P155,follows,0,normal,Q124413129,Pre-mithraeum building(s),,mx5nbjmkh
+Q123437424,Mithraeum I,geographical,P17,country,0,normal,Q858,Syria,,mx5nbjmkh
+Q123437424,Mithraeum I,geographical,P625,coordinate location,0,normal,,"{'latitude': 34.7490288049, 'longitude': 40.7278076774, 'altitude': None, 'precision': 1e-08, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 34.7490288049, 'longitude': 40.7278076774, 'altitude': None, 'precision': 1e-08, 'globe': 'http://www.wikidata.org/entity/Q2'}",mx5nbjmkh
+Q123437479,"Roman Period, Dura-Europos (Syria)",hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,ns3tkfskp
+Q123437479,"Roman Period, Dura-Europos (Syria)",temporal,P9350,PeriodO period ID,0,normal,,ns3tkfskp,ns3tkfskp,ns3tkfskp
+Q123437479,"Roman Period, Dura-Europos (Syria)",temporal,P580,start time,0,normal,,,,ns3tkfskp
+Q123437479,"Roman Period, Dura-Europos (Syria)",temporal,P582,end time,0,normal,,time=+0256-00-00T00:00:00Z;precision=9,time=+0256-00-00T00:00:00Z;precision=9,ns3tkfskp
+Q123437479,"Roman Period, Dura-Europos (Syria)",hierarchy,P361,part of,0,normal,Q2277,Roman Empire,,ns3tkfskp
+Q123437479,"Roman Period, Dura-Europos (Syria)",hierarchy,P155,follows,0,normal,Q123438122,"Arsacid Period, Dura-Europos (Syria)",,ns3tkfskp
+Q123438122,"Arsacid Period, Dura-Europos (Syria)",hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,ns3tk6npz
+Q123438122,"Arsacid Period, Dura-Europos (Syria)",temporal,P9350,PeriodO period ID,0,normal,,ns3tk6npz,ns3tk6npz,ns3tk6npz
+Q123438122,"Arsacid Period, Dura-Europos (Syria)",temporal,P580,start time,0,normal,,time=-0131-00-00T00:00:00Z;precision=9,time=-0131-00-00T00:00:00Z;precision=9,ns3tk6npz
+Q123438122,"Arsacid Period, Dura-Europos (Syria)",temporal,P582,end time,0,normal,,time=+0194-00-00T00:00:00Z;precision=9,time=+0194-00-00T00:00:00Z;precision=9,ns3tk6npz
+Q123438122,"Arsacid Period, Dura-Europos (Syria)",hierarchy,P155,follows,0,normal,Q124355469,"Hellenistic Period, Dura-Europos (Syria)",,ns3tk6npz
+Q123438122,"Arsacid Period, Dura-Europos (Syria)",hierarchy,P156,followed by,0,normal,Q123437479,"Roman Period, Dura-Europos (Syria)",,ns3tk6npz
+Q123909218,Middle Mithraeum,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,pkpgk57tt
+Q123909218,Middle Mithraeum,hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,pkpgk57tt
+Q123909218,Middle Mithraeum,hierarchy,P31,instance of,2,normal,Q1151014,mithraeum,,pkpgk57tt
+Q123909218,Middle Mithraeum,hierarchy,P31,instance of,3,normal,Q839954,archaeological site,,pkpgk57tt
+Q123909218,Middle Mithraeum,hierarchy,P361,part of,0,deprecated,Q1939641,"Mithraeum, Dura-Europos",,pkpgk57tt
+Q123909218,Middle Mithraeum,temporal,P580,start time,0,normal,,time=+0210-00-00T00:00:00Z;precision=9,time=+0210-00-00T00:00:00Z;precision=9,pkpgk57tt
+Q123909218,Middle Mithraeum,temporal,P582,end time,0,normal,,time=+0240-00-00T00:00:00Z;precision=9,time=+0240-00-00T00:00:00Z;precision=9,pkpgk57tt
+Q123909218,Middle Mithraeum,temporal,P9350,PeriodO period ID,0,normal,,pkpgk57tt,pkpgk57tt,pkpgk57tt
+Q123909218,Middle Mithraeum,hierarchy,P155,follows,0,normal,Q123437228,Early Mithraeum,,pkpgk57tt
+Q123909218,Middle Mithraeum,hierarchy,P156,followed by,0,normal,Q123911600,Late Mithraeum,,pkpgk57tt
+Q123909218,Middle Mithraeum,geographical,P17,country,0,normal,Q858,Syria,,pkpgk57tt
+Q123910977,Mithraeum II,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,mx5nb56sq
+Q123910977,Mithraeum II,hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,mx5nb56sq
+Q123910977,Mithraeum II,temporal,P580,start time,0,normal,,time=+0209-00-00T00:00:00Z;precision=9,time=+0209-00-00T00:00:00Z;precision=9,mx5nb56sq
+Q123910977,Mithraeum II,temporal,P582,end time,0,normal,,time=+0256-00-00T00:00:00Z;precision=9,time=+0256-00-00T00:00:00Z;precision=9,mx5nb56sq
+Q123910977,Mithraeum II,hierarchy,P361,part of,0,normal,Q1939641,"Mithraeum, Dura-Europos",,mx5nb56sq
+Q123910977,Mithraeum II,temporal,P9350,PeriodO period ID,0,normal,,mx5nb56sq,mx5nb56sq,mx5nb56sq
+Q123910977,Mithraeum II,hierarchy,P155,follows,0,normal,Q123437424,Mithraeum I,,mx5nb56sq
+Q123911600,Late Mithraeum,hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,pkpgkwxn7
+Q123911600,Late Mithraeum,hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,pkpgkwxn7
+Q123911600,Late Mithraeum,hierarchy,P361,part of,0,deprecated,Q1939641,"Mithraeum, Dura-Europos",,pkpgkwxn7
+Q123911600,Late Mithraeum,hierarchy,P155,follows,0,normal,Q123909218,Middle Mithraeum,,pkpgkwxn7
+Q123911600,Late Mithraeum,temporal,P580,start time,0,normal,,time=+0240-00-00T00:00:00Z;precision=9,time=+0240-00-00T00:00:00Z;precision=9,pkpgkwxn7
+Q123911600,Late Mithraeum,temporal,P582,end time,0,normal,,time=+0256-00-00T00:00:00Z;precision=9,time=+0256-00-00T00:00:00Z;precision=9,pkpgkwxn7
+Q123911600,Late Mithraeum,temporal,P9350,PeriodO period ID,0,normal,,pkpgkwxn7,pkpgkwxn7,pkpgkwxn7
+Q123911600,Late Mithraeum,geographical,P17,country,0,normal,Q858,Syria,,pkpgkwxn7
+Q123911600,Late Mithraeum,geographical,P625,coordinate location,0,normal,,"{'latitude': 34.7500339667, 'longitude': 40.7256578859, 'altitude': None, 'precision': 1e-08, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 34.7500339667, 'longitude': 40.7256578859, 'altitude': None, 'precision': 1e-08, 'globe': 'http://www.wikidata.org/entity/Q2'}",pkpgkwxn7
+Q123915981,"Final Phase, Mithraeum",hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,mx5nb7krq
+Q123915981,"Final Phase, Mithraeum",hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,mx5nb7krq
+Q123915981,"Final Phase, Mithraeum",hierarchy,P361,part of,0,normal,Q1939641,"Mithraeum, Dura-Europos",,mx5nb7krq
+Q123915981,"Final Phase, Mithraeum",hierarchy,P361,part of,1,normal,Q123910977,Mithraeum II,,mx5nb7krq
+Q123915981,"Final Phase, Mithraeum",temporal,P580,start time,0,normal,,time=+0209-00-00T00:00:00Z;precision=9,time=+0209-00-00T00:00:00Z;precision=9,mx5nb7krq
+Q123915981,"Final Phase, Mithraeum",temporal,P582,end time,0,normal,,time=+0256-00-00T00:00:00Z;precision=9,time=+0256-00-00T00:00:00Z;precision=9,mx5nb7krq
+Q123915981,"Final Phase, Mithraeum",temporal,P9350,PeriodO period ID,0,normal,,mx5nb7krq,mx5nb7krq,mx5nb7krq
+Q123915981,"Final Phase, Mithraeum",hierarchy,P155,follows,0,normal,Q123918334,"Phase B, Mithraeum",,mx5nb7krq
+Q123917199,"Phase A, Mithraeum",hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,mx5nbc4kr
+Q123917199,"Phase A, Mithraeum",hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,mx5nbc4kr
+Q123917199,"Phase A, Mithraeum",hierarchy,P361,part of,0,normal,Q1939641,"Mithraeum, Dura-Europos",,mx5nbc4kr
+Q123917199,"Phase A, Mithraeum",hierarchy,P361,part of,1,normal,Q123437424,Mithraeum I,,mx5nbc4kr
+Q123917199,"Phase A, Mithraeum",temporal,P580,start time,0,normal,,time=+0180-00-00T00:00:00Z;precision=9,time=+0180-00-00T00:00:00Z;precision=9,mx5nbc4kr
+Q123917199,"Phase A, Mithraeum",temporal,P582,end time,0,normal,,time=+0200-00-00T00:00:00Z;precision=9,time=+0200-00-00T00:00:00Z;precision=9,mx5nbc4kr
+Q123917199,"Phase A, Mithraeum",temporal,P9350,PeriodO period ID,0,normal,,mx5nbc4kr,mx5nbc4kr,mx5nbc4kr
+Q123917199,"Phase A, Mithraeum",hierarchy,P156,followed by,0,normal,Q123918334,"Phase B, Mithraeum",,mx5nbc4kr
+Q123918334,"Phase B, Mithraeum",hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",hierarchy,P31,instance of,1,normal,Q4785465,archaeological phase,,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",hierarchy,P361,part of,0,normal,Q1939641,"Mithraeum, Dura-Europos",,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",hierarchy,P361,part of,1,normal,Q123437424,Mithraeum I,,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",temporal,P580,start time,0,normal,,time=+0200-00-00T00:00:00Z;precision=9,time=+0200-00-00T00:00:00Z;precision=9,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",temporal,P582,end time,0,normal,,time=+0210-00-00T00:00:00Z;precision=9,time=+0210-00-00T00:00:00Z;precision=9,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",temporal,P9350,PeriodO period ID,0,normal,,mx5nbxk28,mx5nbxk28,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",hierarchy,P155,follows,0,normal,Q123917199,"Phase A, Mithraeum",,mx5nbxk28
+Q123918334,"Phase B, Mithraeum",hierarchy,P156,followed by,0,normal,Q123915981,"Final Phase, Mithraeum",,mx5nbxk28
+Q124355469,"Hellenistic Period, Dura-Europos (Syria)",hierarchy,P31,instance of,0,normal,Q15401633,archaeological period,,ns3tk5mn7
+Q124355469,"Hellenistic Period, Dura-Europos (Syria)",temporal,P580,start time,0,normal,,time=-0300-00-00T00:00:00Z;precision=9,time=-0300-00-00T00:00:00Z;precision=9,ns3tk5mn7
+Q124355469,"Hellenistic Period, Dura-Europos (Syria)",temporal,P582,end time,0,normal,,,,ns3tk5mn7
+Q124355469,"Hellenistic Period, Dura-Europos (Syria)",temporal,P9350,PeriodO period ID,0,normal,,ns3tk5mn7,ns3tk5mn7,ns3tk5mn7
+Q124355469,"Hellenistic Period, Dura-Europos (Syria)",hierarchy,P156,followed by,0,normal,Q123438122,"Arsacid Period, Dura-Europos (Syria)",,ns3tk5mn7
+Q12554,Middle Ages,temporal,P582,end time,0,normal,,time=+1520-00-00T00:00:00Z;precision=9,time=+1520-00-00T00:00:00Z;precision=9,8m57h8zmq
+Q12554,Middle Ages,temporal,P582,end time,1,preferred,,time=+1500-00-00T00:00:00Z;precision=8,time=+1500-00-00T00:00:00Z;precision=8,8m57h8zmq
+Q12554,Middle Ages,temporal,P582,end time,2,normal,,time=+1492-00-00T00:00:00Z;precision=9,time=+1492-00-00T00:00:00Z;precision=9,8m57h8zmq
+Q12554,Middle Ages,temporal,P582,end time,3,normal,,time=+1453-00-00T00:00:00Z;precision=9,time=+1453-00-00T00:00:00Z;precision=9,8m57h8zmq
+Q12554,Middle Ages,temporal,P582,end time,4,normal,,time=+1517-00-00T00:00:00Z;precision=9,time=+1517-00-00T00:00:00Z;precision=9,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P156,followed by,0,normal,Q4692,Renaissance,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P156,followed by,1,normal,Q5308718,early modern period,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P156,followed by,2,normal,Q133641,Age of Discovery,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P155,follows,0,normal,Q41493,ancient history,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P155,follows,1,normal,Q217050,late antiquity,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P527,has part(s),0,normal,Q202763,Early Middle Ages,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P527,has part(s),1,normal,Q212976,Late Middle Ages,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P527,has part(s),2,normal,Q212685,High Middle Ages,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P31,instance of,0,normal,Q17522177,age,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P31,instance of,1,normal,Q11514315,historical period,,8m57h8zmq
+Q12554,Middle Ages,temporal,P580,start time,0,normal,,time=+0476-00-00T00:00:00Z;precision=9,time=+0476-00-00T00:00:00Z;precision=9,8m57h8zmq
+Q12554,Middle Ages,temporal,P9350,PeriodO period ID,0,normal,,vn2frpf43,vn2frpf43,8m57h8zmq
+Q12554,Middle Ages,temporal,P9350,PeriodO period ID,1,normal,,8m57h8zmq,8m57h8zmq,8m57h8zmq
+Q12554,Middle Ages,geographical,P276,location,0,normal,Q46,Europe,,8m57h8zmq
+Q12554,Middle Ages,hierarchy,P279,subclass of,0,normal,Q2198855,cultural movement,,8m57h8zmq
+Q127751,Wars of the Roses,hierarchy,P31,instance of,0,normal,Q198,war,,6c6g3crgz
+Q127751,Wars of the Roses,hierarchy,P31,instance of,1,normal,Q8465,civil war,,6c6g3crgz
+Q127751,Wars of the Roses,temporal,P580,start time,0,normal,,time=+1455-05-22T00:00:00Z;precision=11,time=+1455-05-22T00:00:00Z;precision=11,6c6g3crgz
+Q127751,Wars of the Roses,temporal,P582,end time,0,normal,,time=+1487-06-16T00:00:00Z;precision=11,time=+1487-06-16T00:00:00Z;precision=11,6c6g3crgz
+Q127751,Wars of the Roses,geographical,P276,location,0,normal,Q179876,Kingdom of England,,6c6g3crgz
+Q127751,Wars of the Roses,temporal,P585,point in time,0,normal,,time=+1500-00-00T00:00:00Z;precision=7,time=+1500-00-00T00:00:00Z;precision=7,6c6g3crgz
+Q127751,Wars of the Roses,geographical,P17,country,0,normal,Q179876,Kingdom of England,,6c6g3crgz
+Q127751,Wars of the Roses,temporal,P9350,PeriodO period ID,0,normal,,6c6g3crgz,6c6g3crgz,6c6g3crgz
+Q131987978,Romano-British period,hierarchy,P31,instance of,0,normal,Q816829,periodization,,kh9ds9nsj
+Q131987978,Romano-British period,hierarchy,P279,subclass of,0,normal,Q125510349,Roman period,,kh9ds9nsj
+Q131987978,Romano-British period,temporal,P580,start time,0,normal,,time=+0043-00-00T00:00:00Z;precision=9,time=+0043-00-00T00:00:00Z;precision=9,kh9ds9nsj
+Q131987978,Romano-British period,temporal,P582,end time,0,normal,,time=+0410-00-00T00:00:00Z;precision=9,time=+0410-00-00T00:00:00Z;precision=9,kh9ds9nsj
+Q131987978,Romano-British period,geographical,P276,location,0,normal,Q23666,Great Britain,,kh9ds9nsj
+Q131987978,Romano-British period,geographical,P17,country,0,normal,Q145,United Kingdom,,kh9ds9nsj
+Q131987978,Romano-British period,temporal,P9350,PeriodO period ID,0,normal,,kh9ds9nsj,kh9ds9nsj,kh9ds9nsj
+Q131987978,Romano-British period,hierarchy,P155,follows,0,normal,Q277399,British Iron Age,,kh9ds9nsj
+Q1325419,Genji,hierarchy,P31,instance of,0,normal,Q24706,Japanese era name,,8m57h7cc2
+Q1325419,Genji,hierarchy,P156,followed by,0,normal,Q776775,Keiō,,8m57h7cc2
+Q1325419,Genji,hierarchy,P155,follows,0,normal,Q730266,Bunkyū,,8m57h7cc2
+Q1325419,Genji,temporal,P2348,time period,0,normal,Q184963,Edo period,,8m57h7cc2
+Q1325419,Genji,temporal,P580,start time,0,normal,,time=+1864-03-27T00:00:00Z;precision=11,time=+1864-03-27T00:00:00Z;precision=11,8m57h7cc2
+Q1325419,Genji,temporal,P582,end time,0,normal,,time=+1865-04-30T00:00:00Z;precision=11,time=+1865-04-30T00:00:00Z;precision=11,8m57h7cc2
+Q1325419,Genji,geographical,P17,country,0,normal,Q17,Japan,,8m57h7cc2
+Q1325419,Genji,temporal,P9350,PeriodO period ID,0,normal,,8m57h7cc2,8m57h7cc2,8m57h7cc2
+Q133610270,British Neolithic,hierarchy,P31,instance of,0,normal,Q816829,periodization,,kh9dshs59
+Q133610270,British Neolithic,hierarchy,P279,subclass of,0,normal,Q6993183,Neolithic British Isles,,kh9dshs59
+Q133610270,British Neolithic,temporal,P580,start time,0,normal,,time=-4000-00-00T00:00:00Z;precision=9,time=-4000-00-00T00:00:00Z;precision=9,kh9dshs59
+Q133610270,British Neolithic,temporal,P582,end time,0,normal,,time=-2200-00-00T00:00:00Z;precision=9,time=-2200-00-00T00:00:00Z;precision=9,kh9dshs59
+Q133610270,British Neolithic,geographical,P17,country,0,normal,Q145,United Kingdom,,kh9dshs59
+Q133610270,British Neolithic,temporal,P9350,PeriodO period ID,0,normal,,kh9dshs59,kh9dshs59,kh9dshs59
+Q133610270,British Neolithic,hierarchy,P156,followed by,0,normal,Q4096987,British Bronze Age,,kh9dshs59
+Q1471568,Old Babylonian Period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfw885
+Q1471568,Old Babylonian Period,temporal,P580,start time,0,normal,,time=-2004-00-00T00:00:00Z;precision=9,time=-2004-00-00T00:00:00Z;precision=9,7ffbfw885
+Q1471568,Old Babylonian Period,temporal,P580,start time,1,preferred,,time=-1900-00-00T00:00:00Z;precision=9,time=-1900-00-00T00:00:00Z;precision=9,7ffbfw885
+Q1471568,Old Babylonian Period,temporal,P582,end time,0,normal,,time=-1595-00-00T00:00:00Z;precision=9,time=-1595-00-00T00:00:00Z;precision=9,7ffbfw885
+Q1471568,Old Babylonian Period,temporal,P582,end time,1,normal,,time=-1600-00-00T00:00:00Z;precision=9,time=-1600-00-00T00:00:00Z;precision=9,7ffbfw885
+Q1471568,Old Babylonian Period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfw885,7ffbfw885,7ffbfw885
+Q1471568,Old Babylonian Period,hierarchy,P155,follows,0,normal,Q114867465,Early Old Babylonian Period,,7ffbfw885
+Q1471568,Old Babylonian Period,hierarchy,P156,followed by,0,normal,Q16530848,Middle Babylonian period,,7ffbfw885
+Q1471568,Old Babylonian Period,hierarchy,P156,followed by,1,normal,Q114869008,Middle Hittite Period,,7ffbfw885
+Q15224558,Euromaidan,temporal,P580,start time,0,normal,,time=+2013-11-21T00:00:00Z;precision=11,time=+2013-11-21T00:00:00Z;precision=11,6c6g3bc6j
+Q15224558,Euromaidan,hierarchy,P31,instance of,0,normal,Q686984,civil disorder,,6c6g3bc6j
+Q15224558,Euromaidan,hierarchy,P31,instance of,1,normal,Q175331,demonstration,,6c6g3bc6j
+Q15224558,Euromaidan,hierarchy,P31,instance of,2,normal,Q273120,protest,,6c6g3bc6j
+Q15224558,Euromaidan,hierarchy,P31,instance of,3,normal,Q45382,coup d'état,,6c6g3bc6j
+Q15224558,Euromaidan,geographical,P17,country,0,normal,Q212,Ukraine,,6c6g3bc6j
+Q15224558,Euromaidan,geographical,P276,location,0,normal,Q863759,Maidan Nezalezhnosti,,6c6g3bc6j
+Q15224558,Euromaidan,geographical,P276,location,1,normal,Q212,Ukraine,,6c6g3bc6j
+Q15224558,Euromaidan,hierarchy,P361,part of,0,normal,Q16918333,2013–2014 Ukrainian political crisis,,6c6g3bc6j
+Q15224558,Euromaidan,temporal,P582,end time,0,normal,,time=+2014-02-23T00:00:00Z;precision=11,time=+2014-02-23T00:00:00Z;precision=11,6c6g3bc6j
+Q15224558,Euromaidan,hierarchy,P527,has part(s),0,normal,Q15733401,Revolution of Dignity,,6c6g3bc6j
+Q15224558,Euromaidan,temporal,P9350,PeriodO period ID,0,normal,,6c6g3bc6j,6c6g3bc6j,6c6g3bc6j
+Q15224558,Euromaidan,hierarchy,P156,followed by,0,normal,Q15860072,Russo-Ukrainian War,,6c6g3bc6j
+Q15224558,Euromaidan,geographical,P131,located in the administrative territorial entity,0,normal,Q212,Ukraine,,6c6g3bc6j
+Q15224558,Euromaidan,geographical,P131,located in the administrative territorial entity,1,normal,Q1899,Kyiv,,6c6g3bc6j
+Q15224558,Euromaidan,temporal,P585,point in time,0,normal,,time=+2010-00-00T00:00:00Z;precision=8,time=+2010-00-00T00:00:00Z;precision=8,6c6g3bc6j
+Q15224558,Euromaidan,geographical,P625,coordinate location,0,normal,,"{'latitude': 50.45025, 'longitude': 30.52389, 'altitude': None, 'precision': 0.014107862263351832, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 50.45025, 'longitude': 30.52389, 'altitude': None, 'precision': 0.014107862263351832, 'globe': 'http://www.wikidata.org/entity/Q2'}",6c6g3bc6j
+Q15782728,Old-Assyrian period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfm56z
+Q15782728,Old-Assyrian period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfm56z,7ffbfm56z,7ffbfm56z
+Q15782728,Old-Assyrian period,temporal,P580,start time,0,normal,,time=-1950-00-00T00:00:00Z;precision=9,time=-1950-00-00T00:00:00Z;precision=9,7ffbfm56z
+Q15782728,Old-Assyrian period,temporal,P582,end time,0,normal,,time=-1750-00-00T00:00:00Z;precision=9,time=-1750-00-00T00:00:00Z;precision=9,7ffbfm56z
+Q15782728,Old-Assyrian period,hierarchy,P155,follows,0,normal,Q109384761,Ur III period,,7ffbfm56z
+Q15782728,Old-Assyrian period,hierarchy,P156,followed by,0,normal,Q114868919,Middle Assyrian Period,,7ffbfm56z
+Q16530848,Middle Babylonian period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfch4f
+Q16530848,Middle Babylonian period,temporal,P580,start time,0,normal,,time=-1400-00-00T00:00:00Z;precision=9,time=-1400-00-00T00:00:00Z;precision=9,7ffbfch4f
+Q16530848,Middle Babylonian period,temporal,P582,end time,0,normal,,time=-1100-00-00T00:00:00Z;precision=9,time=-1100-00-00T00:00:00Z;precision=9,7ffbfch4f
+Q16530848,Middle Babylonian period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfch4f,7ffbfch4f,7ffbfch4f
+Q16530848,Middle Babylonian period,hierarchy,P155,follows,0,normal,Q1471568,Old Babylonian Period,,7ffbfch4f
+Q16530848,Middle Babylonian period,hierarchy,P156,followed by,0,normal,Q114867342,Early Neo-Babylonian Period,,7ffbfch4f
+Q182688,Victorian era,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,kh9dsxp46
+Q182688,Victorian era,hierarchy,P31,instance of,1,normal,Q186408,point in time,,kh9dsxp46
+Q182688,Victorian era,geographical,P17,country,0,normal,Q8680,British Empire,,kh9dsxp46
+Q182688,Victorian era,temporal,P580,start time,0,normal,,time=+1837-00-00T00:00:00Z;precision=9,time=+1837-00-00T00:00:00Z;precision=9,kh9dsxp46
+Q182688,Victorian era,temporal,P582,end time,0,normal,,time=+1901-00-00T00:00:00Z;precision=9,time=+1901-00-00T00:00:00Z;precision=9,kh9dsxp46
+Q182688,Victorian era,temporal,P9350,PeriodO period ID,0,normal,,kh9dsxp46,kh9dsxp46,kh9dsxp46
+Q182688,Victorian era,hierarchy,P156,followed by,0,normal,Q185852,Edwardian era,,kh9dsxp46
+Q182688,Victorian era,hierarchy,P155,follows,0,normal,Q2006877,Georgian era,,kh9dsxp46
+Q204023,Sengoku period,geographical,P17,country,0,normal,Q17,Japan,,6c6g3cq26
+Q204023,Sengoku period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,6c6g3cq26
+Q204023,Sengoku period,temporal,P580,start time,0,preferred,,time=+1467-00-00T00:00:00Z;precision=9,time=+1467-00-00T00:00:00Z;precision=9,6c6g3cq26
+Q204023,Sengoku period,temporal,P580,start time,1,normal,,time=+1493-00-00T00:00:00Z;precision=9,time=+1493-00-00T00:00:00Z;precision=9,6c6g3cq26
+Q204023,Sengoku period,temporal,P582,end time,0,preferred,,time=+1590-00-00T00:00:00Z;precision=9,time=+1590-00-00T00:00:00Z;precision=9,6c6g3cq26
+Q204023,Sengoku period,temporal,P582,end time,1,normal,,time=+1573-00-00T00:00:00Z;precision=9,time=+1573-00-00T00:00:00Z;precision=9,6c6g3cq26
+Q204023,Sengoku period,temporal,P582,end time,2,normal,,time=+1600-00-00T00:00:00Z;precision=9,time=+1600-00-00T00:00:00Z;precision=9,6c6g3cq26
+Q204023,Sengoku period,temporal,P582,end time,3,normal,,time=+1615-00-00T00:00:00Z;precision=9,time=+1615-00-00T00:00:00Z;precision=9,6c6g3cq26
+Q204023,Sengoku period,hierarchy,P361,part of,0,normal,Q334845,Muromachi period,,6c6g3cq26
+Q204023,Sengoku period,hierarchy,P361,part of,1,normal,Q130436,history of Japan,,6c6g3cq26
+Q204023,Sengoku period,temporal,P9350,PeriodO period ID,0,normal,,6c6g3cq26,6c6g3cq26,6c6g3cq26
+Q208297,Irish War of Independence,hierarchy,P31,instance of,0,normal,Q1006311,war of national liberation,,6c6g3xtnj
+Q208297,Irish War of Independence,hierarchy,P31,instance of,1,normal,Q21994376,war of independence,,6c6g3xtnj
+Q208297,Irish War of Independence,temporal,P580,start time,0,normal,,time=+1919-01-21T00:00:00Z;precision=11,time=+1919-01-21T00:00:00Z;precision=11,6c6g3xtnj
+Q208297,Irish War of Independence,temporal,P582,end time,0,normal,,time=+1921-07-11T00:00:00Z;precision=11,time=+1921-07-11T00:00:00Z;precision=11,6c6g3xtnj
+Q208297,Irish War of Independence,geographical,P276,location,0,normal,Q22890,Ireland,,6c6g3xtnj
+Q208297,Irish War of Independence,temporal,P9350,PeriodO period ID,0,normal,,6c6g3xtnj,6c6g3xtnj,6c6g3xtnj
+Q208297,Irish War of Independence,hierarchy,P527,has part(s),0,normal,Q3042670,Irish Declaration of Independence,,6c6g3xtnj
+Q209297,Farroupilha Revolution,temporal,P580,start time,0,normal,,time=+1835-09-20T00:00:00Z;precision=11,time=+1835-09-20T00:00:00Z;precision=11,6c6g3bpt7
+Q209297,Farroupilha Revolution,temporal,P582,end time,0,normal,,time=+1845-03-01T00:00:00Z;precision=11,time=+1845-03-01T00:00:00Z;precision=11,6c6g3bpt7
+Q209297,Farroupilha Revolution,hierarchy,P361,part of,0,normal,Q15112333,Rebellions during the Regency Period in Brazil,,6c6g3bpt7
+Q209297,Farroupilha Revolution,hierarchy,P31,instance of,0,normal,Q8465,civil war,,6c6g3bpt7
+Q209297,Farroupilha Revolution,geographical,P276,location,0,normal,Q1060042,South Region,,6c6g3bpt7
+Q209297,Farroupilha Revolution,temporal,P9350,PeriodO period ID,0,normal,,6c6g3bpt7,6c6g3bpt7,6c6g3bpt7
+Q239060,Arab Revolt,hierarchy,P361,part of,0,normal,Q1765465,Middle Eastern Theater of World War I,,6c6g32wkw
+Q239060,Arab Revolt,hierarchy,P31,instance of,0,normal,Q124734,rebellion,,6c6g32wkw
+Q239060,Arab Revolt,hierarchy,P31,instance of,1,normal,Q6107280,revolt,,6c6g32wkw
+Q239060,Arab Revolt,temporal,P580,start time,0,normal,,time=+1916-06-00T00:00:00Z;precision=10,time=+1916-06-00T00:00:00Z;precision=10,6c6g32wkw
+Q239060,Arab Revolt,temporal,P582,end time,0,normal,,time=+1918-10-00T00:00:00Z;precision=10,time=+1918-10-00T00:00:00Z;precision=10,6c6g32wkw
+Q239060,Arab Revolt,geographical,P276,location,0,normal,Q3558385,Hejaz Vilayet,,6c6g32wkw
+Q239060,Arab Revolt,geographical,P276,location,1,normal,Q1372503,Syria Vilayet,,6c6g32wkw
+Q239060,Arab Revolt,temporal,P585,point in time,0,normal,,time=+1918-10-00T00:00:00Z;precision=10,time=+1918-10-00T00:00:00Z;precision=10,6c6g32wkw
+Q239060,Arab Revolt,temporal,P9350,PeriodO period ID,0,normal,,6c6g32wkw,6c6g32wkw,6c6g32wkw
+Q239060,Arab Revolt,geographical,P17,country,0,normal,Q12560,Ottoman Empire,,6c6g32wkw
+Q25546,Pleistocene,hierarchy,P31,instance of,0,normal,Q754897,epoch,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P31,instance of,1,normal,Q312468,series,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P361,part of,0,normal,Q26185,Quaternary,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,p086kj94tsm
+Q25546,Pleistocene,temporal,P580,start time,0,normal,,time=-2580000-00-00T00:00:00Z;precision=5,time=-2580000-00-00T00:00:00Z;precision=5,p086kj94tsm
+Q25546,Pleistocene,temporal,P582,end time,0,normal,,time=-9701-00-00T00:00:00Z;precision=9,time=-9701-00-00T00:00:00Z;precision=9,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P155,follows,0,normal,Q76259,Pliocene,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P156,followed by,0,normal,Q25445,Holocene,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P527,has part(s),0,normal,Q428579,Gelasian,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P527,has part(s),1,normal,Q567911,Calabrian,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P527,has part(s),2,normal,Q492596,Chibanian,,p086kj94tsm
+Q25546,Pleistocene,hierarchy,P527,has part(s),3,normal,Q498831,Late Pleistocene,,p086kj94tsm
+Q25546,Pleistocene,temporal,P9350,PeriodO period ID,0,normal,,p086kj94tsm,p086kj94tsm,p086kj94tsm
+Q277399,British Iron Age,hierarchy,P31,instance of,0,normal,Q816829,periodization,,kh9dsj33x
+Q277399,British Iron Age,temporal,P580,start time,0,normal,,time=-0800-00-00T00:00:00Z;precision=9,time=-0800-00-00T00:00:00Z;precision=9,kh9dsj33x
+Q277399,British Iron Age,temporal,P582,end time,0,normal,,time=+0043-00-00T00:00:00Z;precision=9,time=+0043-00-00T00:00:00Z;precision=9,kh9dsj33x
+Q277399,British Iron Age,hierarchy,P156,followed by,0,normal,Q131987978,Romano-British period,,kh9dsj33x
+Q277399,British Iron Age,temporal,P9350,PeriodO period ID,0,normal,,kh9dsj33x,kh9dsj33x,kh9dsj33x
+Q277399,British Iron Age,hierarchy,P155,follows,0,normal,Q4096987,British Bronze Age,,kh9dsj33x
+Q277399,British Iron Age,geographical,P17,country,0,normal,Q145,United Kingdom,,kh9dsj33x
+Q277399,British Iron Age,hierarchy,P279,subclass of,0,normal,Q11764,Iron Age,,kh9dsj33x
+Q284787,Early Jurassic,hierarchy,P155,follows,0,normal,Q917293,Late Triassic,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P156,followed by,0,normal,Q500054,Middle Jurassic,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P527,has part(s),0,normal,Q914363,Toarcian,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P527,has part(s),1,normal,Q540479,Pliensbachian,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P527,has part(s),2,normal,Q911869,Sinemurian,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P527,has part(s),3,normal,Q633834,Hettangian,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P31,instance of,0,normal,Q312468,series,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P31,instance of,1,normal,Q754897,epoch,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P361,part of,0,normal,Q45805,Jurassic,,9qtgw32q7
+Q284787,Early Jurassic,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgw32q7
+Q284787,Early Jurassic,temporal,P580,start time,0,normal,,time=-201300000-00-00T00:00:00Z;precision=4,time=-201300000-00-00T00:00:00Z;precision=4,9qtgw32q7
+Q284787,Early Jurassic,temporal,P582,end time,0,normal,,time=-174100000-00-00T00:00:00Z;precision=4,time=-174100000-00-00T00:00:00Z;precision=4,9qtgw32q7
+Q284787,Early Jurassic,temporal,P9350,PeriodO period ID,0,normal,,9qtgw32q7,9qtgw32q7,9qtgw32q7
+Q29297050,Neo-Elamite period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfx45f
+Q29297050,Neo-Elamite period,hierarchy,P31,instance of,1,normal,Q15401633,archaeological period,,7ffbfx45f
+Q29297050,Neo-Elamite period,hierarchy,P361,part of,0,normal,Q35355,Sumer,,7ffbfx45f
+Q29297050,Neo-Elamite period,hierarchy,P361,part of,1,normal,Q128904,Elam,,7ffbfx45f
+Q29297050,Neo-Elamite period,geographical,P17,country,0,normal,Q794,Iran,,7ffbfx45f
+Q29297050,Neo-Elamite period,temporal,P571,inception,0,normal,,time=-1100-00-00T00:00:00Z;precision=9,time=-1100-00-00T00:00:00Z;precision=9,7ffbfx45f
+Q29297050,Neo-Elamite period,temporal,P582,end time,0,normal,,time=-0539-00-00T00:00:00Z;precision=9,time=-0539-00-00T00:00:00Z;precision=9,7ffbfx45f
+Q29297050,Neo-Elamite period,temporal,P580,start time,0,normal,,time=-1100-00-00T00:00:00Z;precision=9,time=-1100-00-00T00:00:00Z;precision=9,7ffbfx45f
+Q29297050,Neo-Elamite period,hierarchy,P155,follows,0,normal,Q29297151,Middle Elamite period,,7ffbfx45f
+Q29297050,Neo-Elamite period,hierarchy,P156,followed by,0,normal,Q389688,Achaemenid Empire,,7ffbfx45f
+Q29297050,Neo-Elamite period,hierarchy,P156,followed by,1,normal,Q114867307,Achaemenid Period,,7ffbfx45f
+Q29297050,Neo-Elamite period,hierarchy,P156,followed by,2,normal,Q115667399,Persian period,,7ffbfx45f
+Q29297050,Neo-Elamite period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfx45f,7ffbfx45f,7ffbfx45f
+Q29297151,Middle Elamite period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfknpj
+Q29297151,Middle Elamite period,geographical,P17,country,0,normal,Q794,Iran,,7ffbfknpj
+Q29297151,Middle Elamite period,hierarchy,P361,part of,0,normal,Q128904,Elam,,7ffbfknpj
+Q29297151,Middle Elamite period,hierarchy,P155,follows,0,normal,Q29297301,Old Elamite period,,7ffbfknpj
+Q29297151,Middle Elamite period,hierarchy,P155,follows,1,normal,Q114868885,Linear Elamite Period,,7ffbfknpj
+Q29297151,Middle Elamite period,hierarchy,P156,followed by,0,normal,Q29297050,Neo-Elamite period,,7ffbfknpj
+Q29297151,Middle Elamite period,hierarchy,P156,followed by,1,normal,Q115667399,Persian period,,7ffbfknpj
+Q29297151,Middle Elamite period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfknpj,7ffbfknpj,7ffbfknpj
+Q29297151,Middle Elamite period,temporal,P580,start time,0,normal,,time=-1300-00-00T00:00:00Z;precision=9,time=-1300-00-00T00:00:00Z;precision=9,7ffbfknpj
+Q29297151,Middle Elamite period,temporal,P582,end time,0,normal,,time=-1100-00-00T00:00:00Z;precision=9,time=-1100-00-00T00:00:00Z;precision=9,7ffbfknpj
+Q300887,Aalenian,hierarchy,P156,followed by,0,normal,Q375180,Bajocian,,9qtgw2x4f
+Q300887,Aalenian,hierarchy,P155,follows,0,normal,Q914363,Toarcian,,9qtgw2x4f
+Q300887,Aalenian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgw2x4f
+Q300887,Aalenian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgw2x4f
+Q300887,Aalenian,geographical,P625,coordinate location,0,normal,,"{'latitude': 41.07913888888889, 'longitude': -1.8303333333333334, 'altitude': None, 'precision': 2.777777777777778e-05, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 41.07913888888889, 'longitude': -1.8303333333333334, 'altitude': None, 'precision': 2.777777777777778e-05, 'globe': 'http://www.wikidata.org/entity/Q2'}",9qtgw2x4f
+Q300887,Aalenian,hierarchy,P361,part of,0,normal,Q500054,Middle Jurassic,,9qtgw2x4f
+Q300887,Aalenian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgw2x4f
+Q300887,Aalenian,temporal,P580,start time,0,normal,,time=-174100000-00-00T00:00:00Z;precision=4,time=-174100000-00-00T00:00:00Z;precision=4,9qtgw2x4f
+Q300887,Aalenian,temporal,P582,end time,0,normal,,time=-170300000-00-00T00:00:00Z;precision=4,time=-170300000-00-00T00:00:00Z;precision=4,9qtgw2x4f
+Q300887,Aalenian,geographical,P7153,significant place,0,normal,Q986555,Fuentelsaz,,9qtgw2x4f
+Q300887,Aalenian,temporal,P9350,PeriodO period ID,0,normal,,9qtgw2x4f,9qtgw2x4f,9qtgw2x4f
+Q300887,Aalenian,geographical,P17,country,0,normal,Q29,Spain,,9qtgw2x4f
+Q301728,Albian,hierarchy,P155,follows,0,normal,Q622265,Aptian,,9qtgw7bg4
+Q301728,Albian,hierarchy,P156,followed by,0,normal,Q185567,Cenomanian,,9qtgw7bg4
+Q301728,Albian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgw7bg4
+Q301728,Albian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgw7bg4
+Q301728,Albian,hierarchy,P361,part of,0,normal,Q752187,Early Cretaceous,,9qtgw7bg4
+Q301728,Albian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgw7bg4
+Q301728,Albian,temporal,P580,start time,0,normal,,time=-113000000-00-00T00:00:00Z;precision=3,time=-113000000-00-00T00:00:00Z;precision=3,9qtgw7bg4
+Q301728,Albian,temporal,P582,end time,0,normal,,time=-100500000-00-00T00:00:00Z;precision=4,time=-100500000-00-00T00:00:00Z;precision=4,9qtgw7bg4
+Q301728,Albian,geographical,P625,coordinate location,0,normal,,"{'latitude': 44.496605555555554, 'longitude': 5.311766666666666, 'altitude': None, 'precision': 2.777777777777778e-06, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 44.496605555555554, 'longitude': 5.311766666666666, 'altitude': None, 'precision': 2.777777777777778e-06, 'globe': 'http://www.wikidata.org/entity/Q2'}",9qtgw7bg4
+Q301728,Albian,temporal,P9350,PeriodO period ID,0,normal,,9qtgw7bg4,9qtgw7bg4,9qtgw7bg4
+Q301728,Albian,geographical,P17,country,0,normal,Q142,France,,9qtgw7bg4
+Q3125096,Meiji period,hierarchy,P155,follows,0,normal,Q776775,Keiō,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P155,follows,1,normal,Q184963,Edo period,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P31,instance of,0,normal,Q24706,Japanese era name,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P31,instance of,1,normal,Q7310094,reign,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P31,instance of,2,normal,Q11514315,historical period,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P361,part of,0,normal,Q130436,history of Japan,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P156,followed by,0,normal,Q329174,Taishō period,,8m57hsw5p
+Q3125096,Meiji period,temporal,P580,start time,0,normal,,time=+1868-10-23T00:00:00Z;precision=11,time=+1868-10-23T00:00:00Z;precision=11,8m57hsw5p
+Q3125096,Meiji period,temporal,P582,end time,0,normal,,time=+1912-07-30T00:00:00Z;precision=11,time=+1912-07-30T00:00:00Z;precision=11,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),0,normal,Q11512305,Meiji – year 1,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),1,normal,Q11512277,Meiji – year 2,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),2,normal,Q11512279,Meiji – year 3,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),3,normal,Q11512280,Meiji – year 4,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),4,normal,Q11512282,Meiji – year 5,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),5,normal,Q309184,Boshin War,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),6,normal,Q8707,Meiji restoration,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),7,normal,Q703942,Japanese invasion of Taiwan,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),8,normal,Q717373,Japanese invasion of Taiwan,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),9,normal,Q700324,bunmei-kaika,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),10,normal,Q178687,First Sino-Japanese War,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),11,normal,Q701607,Nagasaki incident,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),12,normal,Q159950,Russo-Japanese War,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),13,normal,Q705043,Incident of 1873,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),14,normal,Q370290,Seikanron,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),15,normal,Q1788393,Battle of Shiroyama,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),16,normal,Q16184309,assassination of Itō Hirobumi,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),17,normal,Q386352,Ōtsu incident,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),18,normal,Q496905,Ganghwa Island incident,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),19,normal,Q110298856,rebellions of Meiji period,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),20,normal,Q1666683,High Treason Incident,,8m57hsw5p
+Q3125096,Meiji period,hierarchy,P527,has part(s),21,normal,Q11605028,Kioichō Incident,,8m57hsw5p
+Q3125096,Meiji period,geographical,P17,country,0,normal,Q17,Japan,,8m57hsw5p
+Q3125096,Meiji period,temporal,P9350,PeriodO period ID,0,normal,,8m57hsw5p,8m57hsw5p,8m57hsw5p
+Q338199,Late Cretaceous,hierarchy,P155,follows,0,normal,Q752187,Early Cretaceous,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P156,followed by,0,normal,Q76252,Paleocene,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P31,instance of,0,normal,Q312468,series,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P31,instance of,1,normal,Q754897,epoch,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P361,part of,0,normal,Q44626,Cretaceous,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwdffp
+Q338199,Late Cretaceous,temporal,P580,start time,0,normal,,time=-100500000-00-00T00:00:00Z;precision=4,time=-100500000-00-00T00:00:00Z;precision=4,9qtgwdffp
+Q338199,Late Cretaceous,temporal,P582,end time,0,normal,,time=-66000000-00-00T00:00:00Z;precision=3,time=-66000000-00-00T00:00:00Z;precision=3,9qtgwdffp
+Q338199,Late Cretaceous,temporal,P9350,PeriodO period ID,0,normal,,9qtgwdffp,9qtgwdffp,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P527,has part(s),0,normal,Q185567,Cenomanian,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P527,has part(s),1,normal,Q691429,Turonian,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P527,has part(s),2,normal,Q645398,Coniacian,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P527,has part(s),3,normal,Q257290,Santonian,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P527,has part(s),4,normal,Q492941,Campanian,,9qtgwdffp
+Q338199,Late Cretaceous,hierarchy,P527,has part(s),5,normal,Q278141,Maastrichtian,,9qtgwdffp
+Q3641960,Bombing of Rome in World War II,hierarchy,P31,instance of,0,normal,Q841418,strategic bombing,,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,geographical,P17,country,0,normal,Q38,Italy,,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,geographical,P276,location,0,normal,Q220,Rome,,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,hierarchy,P361,part of,0,normal,Q718462,Winter Line,,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,temporal,P585,point in time,0,normal,,time=+1944-06-05T00:00:00Z;precision=11,time=+1944-06-05T00:00:00Z;precision=11,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,temporal,P9350,PeriodO period ID,0,normal,,6c6g3pmfn,6c6g3pmfn,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,geographical,P625,coordinate location,0,normal,,"{'latitude': 41.89305556, 'longitude': 12.48277778, 'altitude': None, 'precision': 1e-05, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 41.89305556, 'longitude': 12.48277778, 'altitude': None, 'precision': 1e-05, 'globe': 'http://www.wikidata.org/entity/Q2'}",6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,geographical,P131,located in the administrative territorial entity,0,normal,Q220,Rome,,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,temporal,P580,start time,0,normal,,time=+1943-07-19T00:00:00Z;precision=11,time=+1943-07-19T00:00:00Z;precision=11,6c6g3pmfn
+Q3641960,Bombing of Rome in World War II,temporal,P582,end time,0,normal,,time=+1944-06-05T00:00:00Z;precision=11,time=+1944-06-05T00:00:00Z;precision=11,6c6g3pmfn
+Q4096987,British Bronze Age,hierarchy,P279,subclass of,0,normal,Q2394404,Bronze Age Europe,,kh9ds7q8m
+Q4096987,British Bronze Age,temporal,P580,start time,0,normal,,time=-2600-00-00T00:00:00Z;precision=9,time=-2600-00-00T00:00:00Z;precision=9,kh9ds7q8m
+Q4096987,British Bronze Age,temporal,P582,end time,0,normal,,time=-0700-00-00T00:00:00Z;precision=9,time=-0700-00-00T00:00:00Z;precision=9,kh9ds7q8m
+Q4096987,British Bronze Age,hierarchy,P361,part of,0,normal,Q1379246,history of the British Isles,,kh9ds7q8m
+Q4096987,British Bronze Age,hierarchy,P155,follows,0,normal,Q6993183,Neolithic British Isles,,kh9ds7q8m
+Q4096987,British Bronze Age,hierarchy,P155,follows,1,normal,Q133610270,British Neolithic,,kh9ds7q8m
+Q4096987,British Bronze Age,hierarchy,P31,instance of,0,normal,Q816829,periodization,,kh9ds7q8m
+Q4096987,British Bronze Age,hierarchy,P156,followed by,0,normal,Q277399,British Iron Age,,kh9ds7q8m
+Q4096987,British Bronze Age,geographical,P17,country,0,normal,Q145,United Kingdom,,kh9ds7q8m
+Q4096987,British Bronze Age,temporal,P9350,PeriodO period ID,0,normal,,kh9ds7q8m,kh9ds7q8m,kh9ds7q8m
+Q419594,Akkad period,hierarchy,P156,followed by,0,normal,Q114868851,Lagash II Period,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P156,followed by,1,normal,Q114866998,Harappan,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P156,followed by,2,normal,Q114868885,Linear Elamite Period,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P155,follows,0,normal,Q716742,Early Dynastic period,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P155,follows,1,normal,Q109386511,Early Dynastic III,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P155,follows,2,normal,Q110209565,Early Dynastic IIIb,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P31,instance of,1,normal,Q465299,archaeological culture,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P31,instance of,2,normal,Q11042,culture,,7ffbf6hdp
+Q419594,Akkad period,hierarchy,P31,instance of,3,normal,Q1292119,style,,7ffbf6hdp
+Q419594,Akkad period,geographical,P276,location,0,normal,Q11767,Mesopotamia,,7ffbf6hdp
+Q419594,Akkad period,temporal,P580,start time,0,normal,,time=-2350-00-00T00:00:00Z;precision=9,time=-2350-00-00T00:00:00Z;precision=9,7ffbf6hdp
+Q419594,Akkad period,temporal,P582,end time,0,normal,,time=-2200-00-00T00:00:00Z;precision=9,time=-2200-00-00T00:00:00Z;precision=9,7ffbf6hdp
+Q419594,Akkad period,temporal,P9350,PeriodO period ID,0,normal,,7ffbf6hdp,7ffbf6hdp,7ffbf6hdp
+Q42005,Black Death,hierarchy,P31,instance of,0,normal,Q3241045,disease outbreak,,pgmrbmd5t
+Q42005,Black Death,hierarchy,P31,instance of,1,normal,Q12184,pandemic,,pgmrbmd5t
+Q42005,Black Death,hierarchy,P279,subclass of,0,deprecated,Q1516910,plague epidemic,,pgmrbmd5t
+Q42005,Black Death,temporal,P580,start time,0,normal,,time=+1346-00-00T00:00:00Z;precision=9,time=+1346-00-00T00:00:00Z;precision=9,pgmrbmd5t
+Q42005,Black Death,geographical,P276,location,0,normal,Q48,Asia,,pgmrbmd5t
+Q42005,Black Death,geographical,P276,location,1,normal,Q46,Europe,,pgmrbmd5t
+Q42005,Black Death,geographical,P276,location,2,normal,Q27381,North Africa,,pgmrbmd5t
+Q42005,Black Death,geographical,P276,location,3,normal,Q18869,Caucasus,,pgmrbmd5t
+Q42005,Black Death,hierarchy,P527,has part(s),0,normal,Q217519,bubonic plague,,pgmrbmd5t
+Q42005,Black Death,hierarchy,P527,has part(s),1,normal,Q133780,plague,,pgmrbmd5t
+Q42005,Black Death,temporal,P582,end time,0,normal,,time=+1352-00-00T00:00:00Z;precision=9,time=+1352-00-00T00:00:00Z;precision=9,pgmrbmd5t
+Q42005,Black Death,temporal,P9350,PeriodO period ID,0,normal,,pgmrbmd5t,pgmrbmd5t,pgmrbmd5t
+Q42005,Black Death,geographical,P17,country,0,normal,Q230,Georgia,,pgmrbmd5t
+Q42005,Black Death,geographical,P17,country,1,normal,Q227,Azerbaijan,,pgmrbmd5t
+Q42005,Black Death,geographical,P17,country,2,normal,Q159,Russia,,pgmrbmd5t
+Q42005,Black Death,geographical,P17,country,3,normal,Q399,Armenia,,pgmrbmd5t
+Q428995,Hellenistic period,temporal,P580,start time,0,normal,,time=-0323-00-00T00:00:00Z;precision=9,time=-0323-00-00T00:00:00Z;precision=9,7ffbfhnns
+Q428995,Hellenistic period,temporal,P582,end time,0,normal,,time=-0030-00-00T00:00:00Z;precision=9,time=-0030-00-00T00:00:00Z;precision=9,7ffbfhnns
+Q428995,Hellenistic period,temporal,P582,end time,1,normal,,time=-0100-00-00T00:00:00Z;precision=9,time=-0100-00-00T00:00:00Z;precision=9,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P31,instance of,1,normal,Q11042,culture,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P31,instance of,2,normal,Q1792644,art style,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P31,instance of,3,normal,Q3448837,middle chronology,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P361,part of,0,normal,Q446185,history of the Mediterranean region,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P361,part of,1,preferred,Q11772,Ancient Greece,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P361,part of,2,normal,Q105747718,Greco-Roman Egypt,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P361,part of,3,normal,Q1247086,Greek art,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P527,has part(s),0,normal,Q1546344,history of Ptolemaic Egypt,,7ffbfhnns
+Q428995,Hellenistic period,temporal,P9350,PeriodO period ID,0,normal,,7ffbfhnns,7ffbfhnns,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P155,follows,0,normal,Q114867307,Achaemenid Period,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P155,follows,1,normal,Q115667399,Persian period,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P155,follows,2,normal,Q486761,classical antiquity,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P156,followed by,0,normal,Q2277,Roman Empire,,7ffbfhnns
+Q428995,Hellenistic period,hierarchy,P279,subclass of,0,normal,Q486761,classical antiquity,,7ffbfhnns
+Q44626,Cretaceous,hierarchy,P31,instance of,0,normal,Q392928,period,,9qtgwjxcm
+Q44626,Cretaceous,hierarchy,P31,instance of,1,normal,Q403523,system,,9qtgwjxcm
+Q44626,Cretaceous,hierarchy,P361,part of,0,normal,Q83222,Mesozoic,,9qtgwjxcm
+Q44626,Cretaceous,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwjxcm
+Q44626,Cretaceous,hierarchy,P155,follows,0,normal,Q45805,Jurassic,,9qtgwjxcm
+Q44626,Cretaceous,temporal,P580,start time,0,normal,,time=-145000000-00-00T00:00:00Z;precision=3,time=-145000000-00-00T00:00:00Z;precision=3,9qtgwjxcm
+Q44626,Cretaceous,temporal,P582,end time,0,normal,,time=-66000000-00-00T00:00:00Z;precision=3,time=-66000000-00-00T00:00:00Z;precision=3,9qtgwjxcm
+Q44626,Cretaceous,temporal,P9350,PeriodO period ID,0,normal,,9qtgwjxcm,9qtgwjxcm,9qtgwjxcm
+Q44626,Cretaceous,hierarchy,P156,followed by,0,normal,Q55810,Paleogene,,9qtgwjxcm
+Q44626,Cretaceous,hierarchy,P527,has part(s),0,normal,Q752187,Early Cretaceous,,9qtgwjxcm
+Q44626,Cretaceous,hierarchy,P527,has part(s),1,normal,Q338199,Late Cretaceous,,9qtgwjxcm
+Q45805,Jurassic,hierarchy,P31,instance of,0,normal,Q392928,period,,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P31,instance of,1,normal,Q403523,system,,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P361,part of,0,normal,Q83222,Mesozoic,,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P155,follows,0,normal,Q47158,Triassic,,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P156,followed by,0,normal,Q44626,Cretaceous,,9qtgwqzkr
+Q45805,Jurassic,temporal,P580,start time,0,normal,,time=-201400000-00-00T00:00:00Z;precision=4,time=-201400000-00-00T00:00:00Z;precision=4,9qtgwqzkr
+Q45805,Jurassic,temporal,P582,end time,0,normal,,time=-145000000-00-00T00:00:00Z;precision=3,time=-145000000-00-00T00:00:00Z;precision=3,9qtgwqzkr
+Q45805,Jurassic,temporal,P9350,PeriodO period ID,0,normal,,9qtgwqzkr,9qtgwqzkr,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P527,has part(s),0,normal,Q284787,Early Jurassic,,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P527,has part(s),1,normal,Q500054,Middle Jurassic,,9qtgwqzkr
+Q45805,Jurassic,hierarchy,P527,has part(s),2,normal,Q499312,Late Jurassic,,9qtgwqzkr
+Q476855,Mau Mau Uprising,hierarchy,P31,instance of,0,normal,Q1323212,insurgency,,06c6g3nkk
+Q476855,Mau Mau Uprising,geographical,P17,country,0,normal,Q114,Kenya,,06c6g3nkk
+Q476855,Mau Mau Uprising,temporal,P580,start time,0,normal,,time=+1952-00-00T00:00:00Z;precision=9,time=+1952-00-00T00:00:00Z;precision=9,06c6g3nkk
+Q476855,Mau Mau Uprising,temporal,P582,end time,0,normal,,time=+1960-00-00T00:00:00Z;precision=9,time=+1960-00-00T00:00:00Z;precision=9,06c6g3nkk
+Q476855,Mau Mau Uprising,geographical,P276,location,0,normal,Q2538511,Kenya Colony,,06c6g3nkk
+Q476855,Mau Mau Uprising,hierarchy,P361,part of,0,normal,Q1146918,decolonisation of Africa,,06c6g3nkk
+Q476855,Mau Mau Uprising,temporal,P585,point in time,0,normal,,time=+1952-00-00T00:00:00Z;precision=9,time=+1952-00-00T00:00:00Z;precision=9,06c6g3nkk
+Q476855,Mau Mau Uprising,temporal,P9350,PeriodO period ID,0,normal,,06c6g3nkk,06c6g3nkk,06c6g3nkk
+Q478301,Hussite Wars,hierarchy,P31,instance of,0,normal,Q1827102,religious war,,6c6g3vnns
+Q478301,Hussite Wars,temporal,P580,start time,0,normal,,time=+1419-07-30T00:00:00Z;precision=11,time=+1419-07-30T00:00:00Z;precision=11,6c6g3vnns
+Q478301,Hussite Wars,temporal,P582,end time,0,normal,,time=+1434-05-30T00:00:00Z;precision=11,time=+1434-05-30T00:00:00Z;precision=11,6c6g3vnns
+Q478301,Hussite Wars,geographical,P276,location,0,normal,Q27509,Central Europe,,6c6g3vnns
+Q478301,Hussite Wars,hierarchy,P361,part of,0,normal,Q12546,Crusades,,6c6g3vnns
+Q478301,Hussite Wars,temporal,P9350,PeriodO period ID,0,normal,,6c6g3vnns,6c6g3vnns,6c6g3vnns
+Q486761,classical antiquity,temporal,P580,start time,0,preferred,,time=-1199-01-01T00:00:00Z;precision=9,time=-1199-01-01T00:00:00Z;precision=9,8m57hmxmp
+Q486761,classical antiquity,temporal,P580,start time,1,normal,,time=-0799-00-00T00:00:00Z;precision=7,time=-0799-00-00T00:00:00Z;precision=7,8m57hmxmp
+Q486761,classical antiquity,temporal,P582,end time,0,normal,,time=+0500-00-00T00:00:00Z;precision=7,time=+0500-00-00T00:00:00Z;precision=7,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),0,normal,Q14618893,Classical Roman Empire,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),1,normal,Q17167,Roman Republic,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),2,normal,Q428995,Hellenistic period,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),3,normal,Q11772,Ancient Greece,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),4,normal,Q181264,Mycenaean Greece,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),5,normal,Q134178,Minoan civilization,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),6,normal,Q17161,Etruscans,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),7,normal,Q245813,Bronze age Cyprus,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),8,normal,Q12544,Byzantine Empire,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),9,normal,Q3617880,Italic peoples,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),10,normal,Q1778719,Lydians,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),11,normal,Q83958,Macedonia,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),12,normal,Q131802,Scythians,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P527,has part(s),13,normal,Q6111354,Classical Rome,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P156,followed by,0,normal,Q217050,late antiquity,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P31,instance of,1,normal,Q1292119,style,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P279,subclass of,0,normal,Q41493,ancient history,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P155,follows,0,normal,Q98270938,Early antiquity,,8m57hmxmp
+Q486761,classical antiquity,hierarchy,P361,part of,0,normal,Q41493,ancient history,,8m57hmxmp
+Q486761,classical antiquity,temporal,P9350,PeriodO period ID,0,normal,,8m57hmxmp,8m57hmxmp,8m57hmxmp
+Q486761,classical antiquity,geographical,P276,location,0,normal,Q11772,Ancient Greece,,8m57hmxmp
+Q486761,classical antiquity,geographical,P276,location,1,normal,Q1747689,Ancient Rome,,8m57hmxmp
+Q499312,Late Jurassic,hierarchy,P155,follows,0,normal,Q500054,Middle Jurassic,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P156,followed by,0,normal,Q752187,Early Cretaceous,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P361,part of,0,normal,Q45805,Jurassic,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P31,instance of,0,normal,Q754897,epoch,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P31,instance of,1,normal,Q312468,series,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P527,has part(s),0,normal,Q855125,Tithonian,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P527,has part(s),1,normal,Q733565,Kimmeridgian,,9qtgwc56b
+Q499312,Late Jurassic,hierarchy,P527,has part(s),2,normal,Q375784,Oxfordian,,9qtgwc56b
+Q499312,Late Jurassic,temporal,P580,start time,0,normal,,time=-163500000-00-00T00:00:00Z;precision=4,time=-163500000-00-00T00:00:00Z;precision=4,9qtgwc56b
+Q499312,Late Jurassic,temporal,P582,end time,0,normal,,time=-145000000-00-00T00:00:00Z;precision=3,time=-145000000-00-00T00:00:00Z;precision=3,9qtgwc56b
+Q499312,Late Jurassic,temporal,P9350,PeriodO period ID,0,normal,,9qtgwc56b,9qtgwc56b,9qtgwc56b
+Q500054,Middle Jurassic,hierarchy,P155,follows,0,normal,Q284787,Early Jurassic,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P156,followed by,0,normal,Q499312,Late Jurassic,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P361,part of,0,normal,Q45805,Jurassic,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P31,instance of,0,normal,Q754897,epoch,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P31,instance of,1,normal,Q312468,series,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P527,has part(s),0,normal,Q764255,Callovian,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P527,has part(s),1,normal,Q791313,Bathonian,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P527,has part(s),2,normal,Q375180,Bajocian,,9qtgwhqph
+Q500054,Middle Jurassic,hierarchy,P527,has part(s),3,normal,Q300887,Aalenian,,9qtgwhqph
+Q500054,Middle Jurassic,temporal,P580,start time,0,normal,,time=-174100000-00-00T00:00:00Z;precision=4,time=-174100000-00-00T00:00:00Z;precision=4,9qtgwhqph
+Q500054,Middle Jurassic,temporal,P582,end time,0,normal,,time=-163500000-00-00T00:00:00Z;precision=4,time=-163500000-00-00T00:00:00Z;precision=4,9qtgwhqph
+Q500054,Middle Jurassic,temporal,P9350,PeriodO period ID,0,normal,,9qtgwhqph,9qtgwhqph,9qtgwhqph
+Q530828,Rhaetian,hierarchy,P155,follows,0,normal,Q1080207,Norian,,9qtgwkwhr
+Q530828,Rhaetian,hierarchy,P156,followed by,0,normal,Q633834,Hettangian,,9qtgwkwhr
+Q530828,Rhaetian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgwkwhr
+Q530828,Rhaetian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgwkwhr
+Q530828,Rhaetian,hierarchy,P361,part of,0,normal,Q917293,Late Triassic,,9qtgwkwhr
+Q530828,Rhaetian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwkwhr
+Q530828,Rhaetian,temporal,P580,start time,0,normal,,time=-208500000-00-00T00:00:00Z;precision=4,time=-208500000-00-00T00:00:00Z;precision=4,9qtgwkwhr
+Q530828,Rhaetian,temporal,P582,end time,0,normal,,time=-201300000-00-00T00:00:00Z;precision=4,time=-201300000-00-00T00:00:00Z;precision=4,9qtgwkwhr
+Q530828,Rhaetian,temporal,P9350,PeriodO period ID,0,normal,,9qtgwkwhr,9qtgwkwhr,9qtgwkwhr
+Q540479,Pliensbachian,hierarchy,P155,follows,0,normal,Q911869,Sinemurian,,9qtgw3hf7
+Q540479,Pliensbachian,hierarchy,P156,followed by,0,normal,Q914363,Toarcian,,9qtgw3hf7
+Q540479,Pliensbachian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgw3hf7
+Q540479,Pliensbachian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgw3hf7
+Q540479,Pliensbachian,hierarchy,P361,part of,0,normal,Q284787,Early Jurassic,,9qtgw3hf7
+Q540479,Pliensbachian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgw3hf7
+Q540479,Pliensbachian,temporal,P580,start time,0,normal,,time=-190800000-00-00T00:00:00Z;precision=4,time=-190800000-00-00T00:00:00Z;precision=4,9qtgw3hf7
+Q540479,Pliensbachian,temporal,P582,end time,0,normal,,time=-182700000-00-00T00:00:00Z;precision=4,time=-182700000-00-00T00:00:00Z;precision=4,9qtgw3hf7
+Q540479,Pliensbachian,geographical,P625,coordinate location,0,normal,,"{'latitude': 54.4069, 'longitude': -0.4975, 'altitude': None, 'precision': 0.0001, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 54.4069, 'longitude': -0.4975, 'altitude': None, 'precision': 0.0001, 'globe': 'http://www.wikidata.org/entity/Q2'}",9qtgw3hf7
+Q540479,Pliensbachian,geographical,P7153,significant place,0,normal,Q24658757,Robin Hood's Bay,,9qtgw3hf7
+Q540479,Pliensbachian,temporal,P9350,PeriodO period ID,0,normal,,9qtgw3hf7,9qtgw3hf7,9qtgw3hf7
+Q540479,Pliensbachian,hierarchy,P1365,replaces,0,normal,Q19607173,Charmouthien,,9qtgw3hf7
+Q622265,Aptian,hierarchy,P155,follows,0,normal,Q732702,Barremian,,9qtgw8qq8
+Q622265,Aptian,hierarchy,P156,followed by,0,normal,Q301728,Albian,,9qtgw8qq8
+Q622265,Aptian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgw8qq8
+Q622265,Aptian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgw8qq8
+Q622265,Aptian,hierarchy,P361,part of,0,normal,Q752187,Early Cretaceous,,9qtgw8qq8
+Q622265,Aptian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgw8qq8
+Q622265,Aptian,temporal,P580,start time,0,normal,,time=-125000000-00-00T00:00:00Z;precision=3,time=-125000000-00-00T00:00:00Z;precision=3,9qtgw8qq8
+Q622265,Aptian,temporal,P582,end time,0,normal,,time=-113000000-00-00T00:00:00Z;precision=3,time=-113000000-00-00T00:00:00Z;precision=3,9qtgw8qq8
+Q622265,Aptian,temporal,P9350,PeriodO period ID,0,normal,,9qtgw8qq8,9qtgw8qq8,9qtgw8qq8
+Q623429,Reconstruction Era,hierarchy,P31,instance of,0,normal,Q186081,time interval,,6c6g3m8jh
+Q623429,Reconstruction Era,hierarchy,P31,instance of,1,normal,Q188686,military occupation,,6c6g3m8jh
+Q623429,Reconstruction Era,hierarchy,P361,part of,0,normal,Q11285118,history of the Southern United States,,6c6g3m8jh
+Q623429,Reconstruction Era,temporal,P580,start time,0,normal,,time=+1863-12-08T00:00:00Z;precision=11,time=+1863-12-08T00:00:00Z;precision=11,6c6g3m8jh
+Q623429,Reconstruction Era,temporal,P582,end time,0,normal,,time=+1877-03-31T00:00:00Z;precision=11,time=+1877-03-31T00:00:00Z;precision=11,6c6g3m8jh
+Q623429,Reconstruction Era,geographical,P17,country,0,normal,Q30,United States,,6c6g3m8jh
+Q623429,Reconstruction Era,geographical,P276,location,0,normal,Q49042,Southern United States,,6c6g3m8jh
+Q623429,Reconstruction Era,hierarchy,P155,follows,0,normal,Q8676,American Civil War,,6c6g3m8jh
+Q623429,Reconstruction Era,temporal,P9350,PeriodO period ID,0,normal,,6c6g3m8jh,6c6g3m8jh,6c6g3m8jh
+Q623429,Reconstruction Era,hierarchy,P156,followed by,0,normal,Q1753636,Gilded Age,,6c6g3m8jh
+Q633834,Hettangian,hierarchy,P156,followed by,0,normal,Q911869,Sinemurian,,9qtgwrf75
+Q633834,Hettangian,hierarchy,P155,follows,0,normal,Q530828,Rhaetian,,9qtgwrf75
+Q633834,Hettangian,geographical,P625,coordinate location,0,normal,,"{'latitude': 47.48388888888889, 'longitude': 11.530555555555555, 'altitude': None, 'precision': 0.0002777777777777778, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 47.48388888888889, 'longitude': 11.530555555555555, 'altitude': None, 'precision': 0.0002777777777777778, 'globe': 'http://www.wikidata.org/entity/Q2'}",9qtgwrf75
+Q633834,Hettangian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgwrf75
+Q633834,Hettangian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgwrf75
+Q633834,Hettangian,hierarchy,P361,part of,0,normal,Q284787,Early Jurassic,,9qtgwrf75
+Q633834,Hettangian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwrf75
+Q633834,Hettangian,temporal,P580,start time,0,normal,,time=-201300000-00-00T00:00:00Z;precision=4,time=-201300000-00-00T00:00:00Z;precision=4,9qtgwrf75
+Q633834,Hettangian,temporal,P582,end time,0,normal,,time=-199300000-00-00T00:00:00Z;precision=4,time=-199300000-00-00T00:00:00Z;precision=4,9qtgwrf75
+Q633834,Hettangian,geographical,P7153,significant place,0,normal,Q21881790,Kuhjoch,,9qtgwrf75
+Q633834,Hettangian,temporal,P9350,PeriodO period ID,0,normal,,9qtgwrf75,9qtgwrf75,9qtgwrf75
+Q638530,Texas Revolution,hierarchy,P31,instance of,0,normal,Q3119121,revolutionary war,,6c6g3fdwd
+Q638530,Texas Revolution,temporal,P580,start time,0,preferred,,time=+1835-10-02T00:00:00Z;precision=11,time=+1835-10-02T00:00:00Z;precision=11,6c6g3fdwd
+Q638530,Texas Revolution,temporal,P580,start time,1,normal,,time=+1835-10-00T00:00:00Z;precision=10,time=+1835-10-00T00:00:00Z;precision=10,6c6g3fdwd
+Q638530,Texas Revolution,temporal,P582,end time,0,preferred,,time=+1864-04-21T00:00:00Z;precision=11,time=+1864-04-21T00:00:00Z;precision=11,6c6g3fdwd
+Q638530,Texas Revolution,temporal,P582,end time,1,normal,,time=+1836-04-00T00:00:00Z;precision=10,time=+1836-04-00T00:00:00Z;precision=10,6c6g3fdwd
+Q638530,Texas Revolution,geographical,P276,location,0,normal,Q408,Australia,,6c6g3fdwd
+Q638530,Texas Revolution,geographical,P276,location,1,normal,Q170588,Republic of Texas,,6c6g3fdwd
+Q638530,Texas Revolution,temporal,P9350,PeriodO period ID,0,normal,,6c6g3fdwd,6c6g3fdwd,6c6g3fdwd
+Q638530,Texas Revolution,geographical,P625,coordinate location,0,normal,,"{'latitude': 31, 'longitude': -100, 'altitude': None, 'precision': 10.48004611682812, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 31, 'longitude': -100, 'altitude': None, 'precision': 10.48004611682812, 'globe': 'http://www.wikidata.org/entity/Q2'}",6c6g3fdwd
+Q663355,Berriasian,hierarchy,P156,followed by,0,normal,Q843329,Valanginian,,9qtgwk2jt
+Q663355,Berriasian,hierarchy,P155,follows,0,normal,Q855125,Tithonian,,9qtgwk2jt
+Q663355,Berriasian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgwk2jt
+Q663355,Berriasian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgwk2jt
+Q663355,Berriasian,hierarchy,P361,part of,0,normal,Q752187,Early Cretaceous,,9qtgwk2jt
+Q663355,Berriasian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwk2jt
+Q663355,Berriasian,temporal,P580,start time,0,normal,,time=-145000000-00-00T00:00:00Z;precision=3,time=-145000000-00-00T00:00:00Z;precision=3,9qtgwk2jt
+Q663355,Berriasian,temporal,P582,end time,0,normal,,time=-139800000-00-00T00:00:00Z;precision=4,time=-139800000-00-00T00:00:00Z;precision=4,9qtgwk2jt
+Q663355,Berriasian,temporal,P9350,PeriodO period ID,0,normal,,9qtgwk2jt,9qtgwk2jt,9qtgwk2jt
+Q677316,Social War of 91-87 BCE,hierarchy,P31,instance of,0,normal,Q198,war,,6c6g3rjxq
+Q677316,Social War of 91-87 BCE,temporal,P580,start time,0,normal,,time=-0091-00-00T00:00:00Z;precision=9,time=-0091-00-00T00:00:00Z;precision=9,6c6g3rjxq
+Q677316,Social War of 91-87 BCE,temporal,P582,end time,0,normal,,time=-0088-00-00T00:00:00Z;precision=9,time=-0088-00-00T00:00:00Z;precision=9,6c6g3rjxq
+Q677316,Social War of 91-87 BCE,geographical,P276,location,0,normal,Q38,Italy,,6c6g3rjxq
+Q677316,Social War of 91-87 BCE,geographical,P17,country,0,normal,Q38,Italy,,6c6g3rjxq
+Q677316,Social War of 91-87 BCE,hierarchy,P527,has part(s),0,normal,Q85745805,Battle of Acerrae,,6c6g3rjxq
+Q677316,Social War of 91-87 BCE,hierarchy,P527,has part(s),1,normal,Q85745822,Battle of Canusium,,6c6g3rjxq
+Q677316,Social War of 91-87 BCE,temporal,P9350,PeriodO period ID,0,normal,,6c6g3rjxq,6c6g3rjxq,6c6g3rjxq
+Q689128,Haitian Revolution,hierarchy,P31,instance of,0,normal,Q10931,revolution,,6c6g3xsmz
+Q689128,Haitian Revolution,hierarchy,P31,instance of,1,normal,Q1155622,slave rebellion,,6c6g3xsmz
+Q689128,Haitian Revolution,hierarchy,P361,part of,0,normal,Q3108868,Atlantic Revolutions,,6c6g3xsmz
+Q689128,Haitian Revolution,hierarchy,P361,part of,1,normal,Q207318,French Revolutionary Wars,,6c6g3xsmz
+Q689128,Haitian Revolution,hierarchy,P361,part of,2,normal,Q3202164,Latin American wars of independence,,6c6g3xsmz
+Q689128,Haitian Revolution,temporal,P580,start time,0,normal,,time=+1791-08-21T00:00:00Z;precision=11,time=+1791-08-21T00:00:00Z;precision=11,6c6g3xsmz
+Q689128,Haitian Revolution,temporal,P580,start time,1,preferred,,time=+1791-08-14T00:00:00Z;precision=11,time=+1791-08-14T00:00:00Z;precision=11,6c6g3xsmz
+Q689128,Haitian Revolution,temporal,P582,end time,0,normal,,time=+1804-01-01T00:00:00Z;precision=11,time=+1804-01-01T00:00:00Z;precision=11,6c6g3xsmz
+Q689128,Haitian Revolution,geographical,P17,country,0,normal,Q861551,Saint-Domingue,,6c6g3xsmz
+Q689128,Haitian Revolution,geographical,P276,location,0,normal,Q861551,Saint-Domingue,,6c6g3xsmz
+Q689128,Haitian Revolution,hierarchy,P156,followed by,0,normal,Q3297506,1804 Haitian massacre,,6c6g3xsmz
+Q689128,Haitian Revolution,temporal,P585,point in time,0,normal,,time=+1804-01-01T00:00:00Z;precision=11,time=+1804-01-01T00:00:00Z;precision=11,6c6g3xsmz
+Q689128,Haitian Revolution,temporal,P9350,PeriodO period ID,0,normal,,6c6g3xsmz,6c6g3xsmz,6c6g3xsmz
+Q689128,Haitian Revolution,hierarchy,P527,has part(s),0,normal,Q2484240,Battle of Vertières,,6c6g3xsmz
+Q707364,Count's Feud,hierarchy,P31,instance of,0,normal,Q1348385,war of succession,,6c6g339fj
+Q707364,Count's Feud,hierarchy,P361,part of,0,normal,Q12562,Protestant Reformation,,6c6g339fj
+Q707364,Count's Feud,temporal,P580,start time,0,normal,,time=+1534-00-00T00:00:00Z;precision=9,time=+1534-00-00T00:00:00Z;precision=9,6c6g339fj
+Q707364,Count's Feud,temporal,P582,end time,0,normal,,time=+1536-00-00T00:00:00Z;precision=9,time=+1536-00-00T00:00:00Z;precision=9,6c6g339fj
+Q707364,Count's Feud,geographical,P276,location,0,normal,Q35,Denmark,,6c6g339fj
+Q707364,Count's Feud,temporal,P585,point in time,0,normal,,time=+1536-07-29T00:00:00Z;precision=11,time=+1536-07-29T00:00:00Z;precision=11,6c6g339fj
+Q707364,Count's Feud,temporal,P9350,PeriodO period ID,0,normal,,6c6g339fj,6c6g339fj,6c6g339fj
+Q707364,Count's Feud,geographical,P17,country,0,normal,Q35,Denmark,,6c6g339fj
+Q731470,Eoarchean,hierarchy,P156,followed by,0,normal,Q738167,Paleoarchean,,9qtgwckcw
+Q731470,Eoarchean,hierarchy,P31,instance of,0,normal,Q630830,era,,9qtgwckcw
+Q731470,Eoarchean,hierarchy,P31,instance of,1,normal,Q2464485,erathem,,9qtgwckcw
+Q731470,Eoarchean,temporal,P580,start time,0,normal,,time=-4031000000-00-00T00:00:00Z;precision=3,time=-4031000000-00-00T00:00:00Z;precision=3,9qtgwckcw
+Q731470,Eoarchean,temporal,P582,end time,0,normal,,time=-3600000000-00-00T00:00:00Z;precision=1,time=-3600000000-00-00T00:00:00Z;precision=1,9qtgwckcw
+Q731470,Eoarchean,hierarchy,P361,part of,0,normal,Q104168,Archean,,9qtgwckcw
+Q731470,Eoarchean,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwckcw
+Q731470,Eoarchean,temporal,P9350,PeriodO period ID,0,normal,,9qtgwckcw,9qtgwckcw,9qtgwckcw
+Q7403398,Saladin in Egypt,geographical,P17,country,0,normal,Q79,Egypt,,6c6g37thw
+Q7403398,Saladin in Egypt,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,6c6g37thw
+Q7403398,Saladin in Egypt,temporal,P9350,PeriodO period ID,0,normal,,6c6g37thw,6c6g37thw,6c6g37thw
+Q7403398,Saladin in Egypt,temporal,P580,start time,0,normal,,time=+1171-00-00T00:00:00Z;precision=9,time=+1171-00-00T00:00:00Z;precision=9,6c6g37thw
+Q7403398,Saladin in Egypt,temporal,P582,end time,0,normal,,time=+1193-00-00T00:00:00Z;precision=9,time=+1193-00-00T00:00:00Z;precision=9,6c6g37thw
+Q752187,Early Cretaceous,hierarchy,P155,follows,0,normal,Q499312,Late Jurassic,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P156,followed by,0,normal,Q338199,Late Cretaceous,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P527,has part(s),0,normal,Q301728,Albian,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P527,has part(s),1,normal,Q622265,Aptian,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P527,has part(s),2,normal,Q732702,Barremian,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P527,has part(s),3,normal,Q734179,Hauterivian,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P527,has part(s),4,normal,Q843329,Valanginian,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P527,has part(s),5,normal,Q663355,Berriasian,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P361,part of,0,normal,Q44626,Cretaceous,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P31,instance of,0,normal,Q312468,series,,9qtgwjphz
+Q752187,Early Cretaceous,hierarchy,P31,instance of,1,normal,Q754897,epoch,,9qtgwjphz
+Q752187,Early Cretaceous,temporal,P580,start time,0,normal,,time=-145000000-00-00T00:00:00Z;precision=3,time=-145000000-00-00T00:00:00Z;precision=3,9qtgwjphz
+Q752187,Early Cretaceous,temporal,P582,end time,0,normal,,time=-100500000-00-00T00:00:00Z;precision=4,time=-100500000-00-00T00:00:00Z;precision=4,9qtgwjphz
+Q752187,Early Cretaceous,temporal,P9350,PeriodO period ID,0,normal,,9qtgwjphz,9qtgwjphz,9qtgwjphz
+Q776775,Keiō,hierarchy,P31,instance of,0,normal,Q24706,Japanese era name,,8m57hk9w6
+Q776775,Keiō,hierarchy,P31,instance of,1,normal,Q11514315,historical period,,8m57hk9w6
+Q776775,Keiō,hierarchy,P156,followed by,0,normal,Q3125096,Meiji period,,8m57hk9w6
+Q776775,Keiō,hierarchy,P155,follows,0,normal,Q1325419,Genji,,8m57hk9w6
+Q776775,Keiō,temporal,P2348,time period,0,normal,Q184963,Edo period,,8m57hk9w6
+Q776775,Keiō,temporal,P580,start time,0,normal,,time=+1865-05-01T00:00:00Z;precision=11,time=+1865-05-01T00:00:00Z;precision=11,8m57hk9w6
+Q776775,Keiō,temporal,P582,end time,0,normal,,time=+1868-10-22T00:00:00Z;precision=11,time=+1868-10-22T00:00:00Z;precision=11,8m57hk9w6
+Q776775,Keiō,geographical,P17,country,0,normal,Q17,Japan,,8m57hk9w6
+Q776775,Keiō,temporal,P9350,PeriodO period ID,0,normal,,8m57hk9w6,8m57hk9w6,8m57hk9w6
+Q791313,Bathonian,hierarchy,P155,follows,0,normal,Q375180,Bajocian,,9qtgwcdrv
+Q791313,Bathonian,hierarchy,P156,followed by,0,normal,Q764255,Callovian,,9qtgwcdrv
+Q791313,Bathonian,geographical,P625,coordinate location,0,normal,,"{'latitude': 43.9606, 'longitude': 6.3153, 'altitude': None, 'precision': 0.0001, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 43.9606, 'longitude': 6.3153, 'altitude': None, 'precision': 0.0001, 'globe': 'http://www.wikidata.org/entity/Q2'}",9qtgwcdrv
+Q791313,Bathonian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgwcdrv
+Q791313,Bathonian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgwcdrv
+Q791313,Bathonian,hierarchy,P361,part of,0,normal,Q500054,Middle Jurassic,,9qtgwcdrv
+Q791313,Bathonian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwcdrv
+Q791313,Bathonian,temporal,P580,start time,0,normal,,time=-168300000-00-00T00:00:00Z;precision=4,time=-168300000-00-00T00:00:00Z;precision=4,9qtgwcdrv
+Q791313,Bathonian,temporal,P582,end time,0,normal,,time=-166100000-00-00T00:00:00Z;precision=4,time=-166100000-00-00T00:00:00Z;precision=4,9qtgwcdrv
+Q791313,Bathonian,temporal,P9350,PeriodO period ID,0,normal,,9qtgwcdrv,9qtgwcdrv,9qtgwcdrv
+Q791313,Bathonian,geographical,P17,country,0,normal,Q142,France,,9qtgwcdrv
+Q843329,Valanginian,hierarchy,P155,follows,0,normal,Q663355,Berriasian,,9qtgwdxkh
+Q843329,Valanginian,hierarchy,P156,followed by,0,normal,Q734179,Hauterivian,,9qtgwdxkh
+Q843329,Valanginian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgwdxkh
+Q843329,Valanginian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgwdxkh
+Q843329,Valanginian,hierarchy,P361,part of,0,normal,Q752187,Early Cretaceous,,9qtgwdxkh
+Q843329,Valanginian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwdxkh
+Q843329,Valanginian,temporal,P580,start time,0,normal,,time=-139800000-00-00T00:00:00Z;precision=4,time=-139800000-00-00T00:00:00Z;precision=4,9qtgwdxkh
+Q843329,Valanginian,temporal,P582,end time,0,normal,,time=-132900000-00-00T00:00:00Z;precision=4,time=-132900000-00-00T00:00:00Z;precision=4,9qtgwdxkh
+Q843329,Valanginian,temporal,P9350,PeriodO period ID,0,normal,,9qtgwdxkh,9qtgwdxkh,9qtgwdxkh
+Q8663,Korean War,hierarchy,P31,instance of,0,normal,Q198,war,,6c6g3gspp
+Q8663,Korean War,temporal,P580,start time,0,normal,,time=+1950-06-25T00:00:00Z;precision=11,time=+1950-06-25T00:00:00Z;precision=11,6c6g3gspp
+Q8663,Korean War,temporal,P582,end time,0,normal,,time=+1953-07-27T00:00:00Z;precision=11,time=+1953-07-27T00:00:00Z;precision=11,6c6g3gspp
+Q8663,Korean War,geographical,P276,location,0,normal,Q52052,Korea Strait,,6c6g3gspp
+Q8663,Korean War,geographical,P276,location,1,normal,Q27092,Sea of Japan,,6c6g3gspp
+Q8663,Korean War,geographical,P276,location,2,normal,Q483134,Korean Peninsula,,6c6g3gspp
+Q8663,Korean War,hierarchy,P361,part of,0,normal,Q8683,Cold War,,6c6g3gspp
+Q8663,Korean War,temporal,P9350,PeriodO period ID,0,normal,,6c6g3gspp,6c6g3gspp,6c6g3gspp
+Q8663,Korean War,geographical,P706,located in/on physical feature,0,normal,Q483134,Korean Peninsula,,6c6g3gspp
+Q8663,Korean War,geographical,P706,located in/on physical feature,1,normal,Q37960,Yellow Sea,,6c6g3gspp
+Q8663,Korean War,geographical,P706,located in/on physical feature,2,normal,Q27092,Sea of Japan,,6c6g3gspp
+Q8663,Korean War,geographical,P706,located in/on physical feature,3,normal,Q52052,Korea Strait,,6c6g3gspp
+Q8663,Korean War,geographical,P706,located in/on physical feature,4,normal,Q1060616,China–North Korea border,,6c6g3gspp
+Q8663,Korean War,geographical,P17,country,0,normal,Q423,North Korea,,6c6g3gspp
+Q8663,Korean War,geographical,P17,country,1,normal,Q884,South Korea,,6c6g3gspp
+Q8690,Cultural Revolution,hierarchy,P31,instance of,0,normal,Q10931,revolution,,6c6g3bsbt
+Q8690,Cultural Revolution,hierarchy,P31,instance of,1,normal,Q119328980,cultural revolution,,6c6g3bsbt
+Q8690,Cultural Revolution,hierarchy,P31,instance of,2,normal,Q5193493,culture change,,6c6g3bsbt
+Q8690,Cultural Revolution,temporal,P580,start time,0,normal,,time=+1966-05-16T00:00:00Z;precision=11,time=+1966-05-16T00:00:00Z;precision=11,6c6g3bsbt
+Q8690,Cultural Revolution,temporal,P582,end time,0,normal,,time=+1976-10-06T00:00:00Z;precision=11,time=+1976-10-06T00:00:00Z;precision=11,6c6g3bsbt
+Q8690,Cultural Revolution,geographical,P17,country,0,normal,Q148,People's Republic of China,,6c6g3bsbt
+Q8690,Cultural Revolution,temporal,P9350,PeriodO period ID,0,normal,,6c6g3bsbt,6c6g3bsbt,6c6g3bsbt
+Q911869,Sinemurian,hierarchy,P155,follows,0,normal,Q633834,Hettangian,,9qtgwgbxh
+Q911869,Sinemurian,hierarchy,P156,followed by,0,normal,Q540479,Pliensbachian,,9qtgwgbxh
+Q911869,Sinemurian,geographical,P625,coordinate location,0,normal,,"{'latitude': 51.19083333333333, 'longitude': -3.236388888888889, 'altitude': None, 'precision': 0.0002777777777777778, 'globe': 'http://www.wikidata.org/entity/Q2'}","{'latitude': 51.19083333333333, 'longitude': -3.236388888888889, 'altitude': None, 'precision': 0.0002777777777777778, 'globe': 'http://www.wikidata.org/entity/Q2'}",9qtgwgbxh
+Q911869,Sinemurian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgwgbxh
+Q911869,Sinemurian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgwgbxh
+Q911869,Sinemurian,hierarchy,P361,part of,0,normal,Q284787,Early Jurassic,,9qtgwgbxh
+Q911869,Sinemurian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgwgbxh
+Q911869,Sinemurian,temporal,P580,start time,0,normal,,time=-199300000-00-00T00:00:00Z;precision=4,time=-199300000-00-00T00:00:00Z;precision=4,9qtgwgbxh
+Q911869,Sinemurian,temporal,P582,end time,0,normal,,time=-190800000-00-00T00:00:00Z;precision=4,time=-190800000-00-00T00:00:00Z;precision=4,9qtgwgbxh
+Q911869,Sinemurian,geographical,P7153,significant place,0,normal,Q2411043,East Quantoxhead,,9qtgwgbxh
+Q911869,Sinemurian,temporal,P9350,PeriodO period ID,0,normal,,9qtgwgbxh,9qtgwgbxh,9qtgwgbxh
+Q914363,Toarcian,hierarchy,P155,follows,0,normal,Q540479,Pliensbachian,,9qtgww5hb
+Q914363,Toarcian,hierarchy,P156,followed by,0,normal,Q300887,Aalenian,,9qtgww5hb
+Q914363,Toarcian,hierarchy,P31,instance of,0,normal,Q1123245,stage,,9qtgww5hb
+Q914363,Toarcian,hierarchy,P31,instance of,1,normal,Q568683,age,,9qtgww5hb
+Q914363,Toarcian,hierarchy,P361,part of,0,normal,Q284787,Early Jurassic,,9qtgww5hb
+Q914363,Toarcian,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgww5hb
+Q914363,Toarcian,temporal,P580,start time,0,normal,,time=-182700000-00-00T00:00:00Z;precision=4,time=-182700000-00-00T00:00:00Z;precision=4,9qtgww5hb
+Q914363,Toarcian,temporal,P582,end time,0,normal,,time=-174100000-00-00T00:00:00Z;precision=4,time=-174100000-00-00T00:00:00Z;precision=4,9qtgww5hb
+Q914363,Toarcian,geographical,P7153,significant place,0,normal,Q941967,Peniche,,9qtgww5hb
+Q914363,Toarcian,temporal,P9350,PeriodO period ID,0,normal,,9qtgww5hb,9qtgww5hb,9qtgww5hb
+Q917293,Late Triassic,hierarchy,P155,follows,0,normal,Q929395,Middle Triassic,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P156,followed by,0,normal,Q284787,Early Jurassic,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P527,has part(s),0,normal,Q530828,Rhaetian,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P527,has part(s),1,normal,Q1080207,Norian,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P527,has part(s),2,normal,Q911899,Carnian,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P31,instance of,0,normal,Q312468,series,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P31,instance of,1,normal,Q754897,epoch,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P361,part of,0,normal,Q47158,Triassic,,9qtgw6h9p
+Q917293,Late Triassic,hierarchy,P361,part of,1,normal,Q63463770,ICS Standard Global Chronostratigraphic (Geochronologic) Scale,,9qtgw6h9p
+Q917293,Late Triassic,temporal,P580,start time,0,normal,,time=-237000000-00-00T00:00:00Z;precision=3,time=-237000000-00-00T00:00:00Z;precision=3,9qtgw6h9p
+Q917293,Late Triassic,temporal,P582,end time,0,normal,,time=-201300000-00-00T00:00:00Z;precision=4,time=-201300000-00-00T00:00:00Z;precision=4,9qtgw6h9p
+Q917293,Late Triassic,temporal,P9350,PeriodO period ID,0,normal,,9qtgw6h9p,9qtgw6h9p,9qtgw6h9p
+Q94080,Time of Troubles,temporal,P580,start time,0,normal,,time=+1598-00-00T00:00:00Z;precision=9,time=+1598-00-00T00:00:00Z;precision=9,6c6g383b7
+Q94080,Time of Troubles,temporal,P582,end time,0,normal,,time=+1613-00-00T00:00:00Z;precision=9,time=+1613-00-00T00:00:00Z;precision=9,6c6g383b7
+Q94080,Time of Troubles,hierarchy,P31,instance of,0,normal,Q11514315,historical period,,6c6g383b7
+Q94080,Time of Troubles,temporal,P9350,PeriodO period ID,0,normal,,6c6g383b7,6c6g383b7,6c6g383b7
+Q952881,Second French intervention in Mexico,hierarchy,P31,instance of,0,normal,Q1168287,intervention,,6c6g34nfc
+Q952881,Second French intervention in Mexico,temporal,P580,start time,0,normal,,time=+1861-12-08T00:00:00Z;precision=11,time=+1861-12-08T00:00:00Z;precision=11,6c6g34nfc
+Q952881,Second French intervention in Mexico,temporal,P582,end time,0,normal,,time=+1867-06-21T00:00:00Z;precision=11,time=+1867-06-21T00:00:00Z;precision=11,6c6g34nfc
+Q952881,Second French intervention in Mexico,geographical,P276,location,0,normal,Q96,Mexico,,6c6g34nfc
+Q952881,Second French intervention in Mexico,temporal,P9350,PeriodO period ID,0,normal,,6c6g34nfc,6c6g34nfc,6c6g34nfc
+Q952881,Second French intervention in Mexico,geographical,P17,country,0,normal,Q96,Mexico,,6c6g34nfc

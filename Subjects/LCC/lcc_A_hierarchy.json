@@ -1,0 +1,341 @@
+[
+  {
+    "id": "AC1-1100",
+    "code": "AC1-1100",
+    "prefix": "AC",
+    "start": 1.0,
+    "end": 1100.0,
+    "label": "Collections. Series. Collected works",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "AC1-195",
+      "AC200",
+      "AC801-895",
+      "AC901-995",
+      "AC999"
+    ]
+  },
+  {
+    "id": "AC1-195",
+    "code": "AC1-195",
+    "prefix": "AC",
+    "start": 1.0,
+    "end": 195.0,
+    "label": "Collections of monographs, essays, etc.",
+    "note": null,
+    "primary_parent": "AC1-1100",
+    "secondary_parents": [],
+    "children": [
+      "AC1-8",
+      "AC9-195"
+    ]
+  },
+  {
+    "id": "AC1-8",
+    "code": "AC1-8",
+    "prefix": "AC",
+    "start": 1.0,
+    "end": 8.0,
+    "label": "American and English",
+    "note": null,
+    "primary_parent": "AC1-195",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AC9-195",
+    "code": "AC9-195",
+    "prefix": "AC",
+    "start": 9.0,
+    "end": 195.0,
+    "label": "Other languages",
+    "note": null,
+    "primary_parent": "AC1-195",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AC200",
+    "code": "AC200",
+    "prefix": "AC",
+    "start": 200.0,
+    "end": 200.0,
+    "label": "Collections for Jewish readers",
+    "note": null,
+    "primary_parent": "AC1-1100",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AC801-895",
+    "code": "AC801-895",
+    "prefix": "AC",
+    "start": 801.0,
+    "end": 895.0,
+    "label": "Inaugural and program dissertations",
+    "note": null,
+    "primary_parent": "AC1-1100",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AC901-995",
+    "code": "AC901-995",
+    "prefix": "AC",
+    "start": 901.0,
+    "end": 995.0,
+    "label": "Pamphlet collections",
+    "note": null,
+    "primary_parent": "AC1-1100",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AC999",
+    "code": "AC999",
+    "prefix": "AC",
+    "start": 999.0,
+    "end": 999.0,
+    "label": "Scrapbooks",
+    "note": null,
+    "primary_parent": "AC1-1100",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AM1-501",
+    "code": "AM1-501",
+    "prefix": "AM",
+    "start": 1.0,
+    "end": 501.0,
+    "label": "Museums. Collectors and collecting",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "AM10-100",
+      "AM111-160"
+    ]
+  },
+  {
+    "id": "AM10-100",
+    "code": "AM10-100",
+    "prefix": "AM",
+    "start": 10.0,
+    "end": 100.0,
+    "label": "By region or country",
+    "note": null,
+    "primary_parent": "AM1-501",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AM111-160",
+    "code": "AM111-160",
+    "prefix": "AM",
+    "start": 111.0,
+    "end": 160.0,
+    "label": "Museum studies. Museum methods, technique, etc.",
+    "note": null,
+    "primary_parent": "AM1-501",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AP1-(271)",
+    "code": "AP1-(271)",
+    "prefix": "AP",
+    "start": 1.0,
+    "end": 271.0,
+    "label": "Periodicals",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "AP101-115",
+      "AP200-230"
+    ]
+  },
+  {
+    "id": "AP101-115",
+    "code": "AP101-115",
+    "prefix": "AP",
+    "start": 101.0,
+    "end": 115.0,
+    "label": "Humorous periodicals",
+    "note": null,
+    "primary_parent": "AP1-(271)",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AP200-230",
+    "code": "AP200-230",
+    "prefix": "AP",
+    "start": 200.0,
+    "end": 230.0,
+    "label": "Juvenile periodicals",
+    "note": null,
+    "primary_parent": "AP1-(271)",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AS1-945",
+    "code": "AS1-945",
+    "prefix": "AS",
+    "start": 1.0,
+    "end": 945.0,
+    "label": "Academies and learned societies",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "AS2.5-4",
+      "AS11-785"
+    ]
+  },
+  {
+    "id": "AS2.5-4",
+    "code": "AS2.5-4",
+    "prefix": "AS",
+    "start": 2.5,
+    "end": 4.0,
+    "label": "International associations, congresses, conferences, etc.",
+    "note": null,
+    "primary_parent": "AS1-945",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AS11-785",
+    "code": "AS11-785",
+    "prefix": "AS",
+    "start": 11.0,
+    "end": 785.0,
+    "label": "By region or country",
+    "note": null,
+    "primary_parent": "AS1-945",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AY10-2001",
+    "code": "AY10-2001",
+    "prefix": "AY",
+    "start": 10.0,
+    "end": 2001.0,
+    "label": "Yearbooks. Almanacs.  Directories",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "AY10-19",
+      "AY30-1730",
+      "AY2001"
+    ]
+  },
+  {
+    "id": "AY10-19",
+    "code": "AY10-19",
+    "prefix": "AY",
+    "start": 10.0,
+    "end": 19.0,
+    "label": "Annuals: Keepsakes, etc.",
+    "note": null,
+    "primary_parent": "AY10-2001",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AY30-1730",
+    "code": "AY30-1730",
+    "prefix": "AY",
+    "start": 30.0,
+    "end": 1730.0,
+    "label": "Almanacs",
+    "note": null,
+    "primary_parent": "AY10-2001",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AY2001",
+    "code": "AY2001",
+    "prefix": "AY",
+    "start": 2001.0,
+    "end": 2001.0,
+    "label": "Directories. General works on the compilation of directories, etc.",
+    "note": null,
+    "primary_parent": "AY10-2001",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AZ19.2-999",
+    "code": "AZ19.2-999",
+    "prefix": "AZ",
+    "start": 19.2,
+    "end": 999.0,
+    "label": "History of scholarship and learning. The humanities",
+    "note": null,
+    "primary_parent": null,
+    "secondary_parents": [],
+    "children": [
+      "AZ101-181",
+      "AZ191-193",
+      "AZ200-362",
+      "AZ501-908"
+    ]
+  },
+  {
+    "id": "AZ101-181",
+    "code": "AZ101-181",
+    "prefix": "AZ",
+    "start": 101.0,
+    "end": 181.0,
+    "label": "Philosophy.  Theory",
+    "note": null,
+    "primary_parent": "AZ19.2-999",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AZ191-193",
+    "code": "AZ191-193",
+    "prefix": "AZ",
+    "start": 191.0,
+    "end": 193.0,
+    "label": "Evaluation",
+    "note": null,
+    "primary_parent": "AZ19.2-999",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AZ200-362",
+    "code": "AZ200-362",
+    "prefix": "AZ",
+    "start": 200.0,
+    "end": 362.0,
+    "label": "History",
+    "note": null,
+    "primary_parent": "AZ19.2-999",
+    "secondary_parents": [],
+    "children": []
+  },
+  {
+    "id": "AZ501-908",
+    "code": "AZ501-908",
+    "prefix": "AZ",
+    "start": 501.0,
+    "end": 908.0,
+    "label": "By region or country",
+    "note": null,
+    "primary_parent": "AZ19.2-999",
+    "secondary_parents": [],
+    "children": []
+  }
+]

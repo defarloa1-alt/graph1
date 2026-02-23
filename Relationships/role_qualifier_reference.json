@@ -1,0 +1,526 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "date": "2026-02-14",
+    "description": "Canonical role registry for relationship qualifiers with Wikidata P-value mappings",
+    "usage": "LLM RoleValidator uses this registry to validate and normalize role labels on relationships",
+    "growth_strategy": "Static curation (Phase 1); expand to dynamic Wikidata import (Phase 2)"
+  },
+  "military_roles": {
+    "commander": {
+      "p_value": "P598",
+      "description": "Military commander with strategic authority over forces",
+      "context_facets": ["military"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.90,
+      "examples": [
+        "Julius Caesar at Battle of Pharsalus (Q1048 P710→ Q193492)",
+        "Hannibal at Battle of Cannae (Q8458 P710→ Q13377)"
+      ],
+      "aliases": ["general", "commanding officer", "led forces", "commanded troops"]
+    },
+    "soldier": {
+      "p_value": "P607",
+      "description": "Combat participant without command authority",
+      "context_facets": ["military"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Legionary at Battle of Alesia",
+        "Infantry combatant"
+      ],
+      "aliases": ["combatant", "fighter", "warrior", "legionary", "infantry"]
+    },
+    "general": {
+      "p_value": "P410",
+      "description": "General rank (higher than commander; may command multiple armies)",
+      "context_facets": ["military", "political"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Caesar as general of Gaul"
+      ],
+      "aliases": ["imperator", "generalissimo", "supreme commander"]
+    },
+    "scout": {
+      "p_value": "P607",
+      "description": "Reconnaissance and intelligence gathering role",
+      "context_facets": ["military"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.80,
+      "examples": [
+        "Auxiliary scout tracking enemy movements"
+      ],
+      "aliases": ["reconnaissance", "spy", "intelligence gatherer"]
+    },
+    "cavalry": {
+      "p_value": "P607",
+      "description": "Mounted combat participant",
+      "context_facets": ["military"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Equites at Battle of Pharsalus"
+      ],
+      "aliases": ["equestrian", "mounted soldier", "horseman", "equites"]
+    },
+    "casualty": {
+      "p_value": "P1120",
+      "description": "Killed, wounded, or captured in combat",
+      "context_facets": ["military", "demographic"],
+      "cidoc_crm_type": "E69_Death",
+      "confidence_baseline": 0.95,
+      "examples": [
+        "Lucius Aemilius Paullus killed at Cannae (Q297162)"
+      ],
+      "aliases": ["killed", "wounded", "captured", "died in battle", "fell at"]
+    },
+    "officer": {
+      "p_value": "P410",
+      "description": "Mid-level military leadership (between soldier and commander)",
+      "context_facets": ["military"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.88,
+      "examples": [
+        "Centurion leading cohort",
+        "Tribunus commanding legion"
+      ],
+      "aliases": ["centurion", "tribune", "legate", "prefect"]
+    },
+    "deserter": {
+      "p_value": "P607",
+      "description": "Participant who abandoned forces during conflict",
+      "context_facets": ["military", "social"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.75,
+      "examples": [
+        "Legionary defection during civil war"
+      ],
+      "aliases": ["defector", "fled", "abandoned"]
+    }
+  },
+  "diplomatic_roles": {
+    "ambassador": {
+      "p_value": "P50",
+      "description": "Official diplomatic envoy representing state or leader",
+      "context_facets": ["diplomatic", "political"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.90,
+      "examples": [
+        "Roman ambassador to Egypt",
+        "Envoy to Parthia"
+      ],
+      "aliases": ["envoy", "emissary", "legate", "diplomatic representative"]
+    },
+    "negotiator": {
+      "p_value": "P3342",
+      "description": "Treaty or agreement negotiator",
+      "context_facets": ["diplomatic", "political"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.88,
+      "examples": [
+        "Pompey negotiated peace with Mithridates"
+      ],
+      "aliases": ["treaty negotiator", "peace broker", "mediator"]
+    },
+    "hostage": {
+      "p_value": "P1344",
+      "description": "Person held as diplomatic guarantee",
+      "context_facets": ["diplomatic", "political"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Hostage exchange guaranteeing treaty"
+      ],
+      "aliases": ["captive", "guarantee", "prisoner of state"]
+    },
+    "witness": {
+      "p_value": "P1441",
+      "description": "Observer or attestor to diplomatic event",
+      "context_facets": ["diplomatic", "political", "communication"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Senator witnessing treaty signing"
+      ],
+      "aliases": ["observer", "attestor", "signatory witness"]
+    }
+  },
+  "political_roles": {
+    "senator": {
+      "p_value": "P39",
+      "description": "Member of Roman Senate",
+      "context_facets": ["political"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.95,
+      "examples": [
+        "Cicero as senator (Q1541)"
+      ],
+      "aliases": ["member of Senate", "senatorial"]
+    },
+    "consul": {
+      "p_value": "P39",
+      "description": "Highest elected magistrate in Roman Republic",
+      "context_facets": ["political"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.98,
+      "examples": [
+        "Caesar as consul in 59 BCE"
+      ],
+      "aliases": ["consular", "chief magistrate"]
+    },
+    "tribune": {
+      "p_value": "P39",
+      "description": "Tribune of the plebs with veto power",
+      "context_facets": ["political", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.95,
+      "examples": [
+        "Gaius Gracchus as tribune"
+      ],
+      "aliases": ["tribunus plebis", "plebeian tribune"]
+    },
+    "dictator": {
+      "p_value": "P39",
+      "description": "Emergency executive with absolute authority",
+      "context_facets": ["political", "military"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.98,
+      "examples": [
+        "Julius Caesar appointed dictator perpetuo"
+      ],
+      "aliases": ["dictator perpetuo", "emergency magistrate"]
+    },
+    "praetor": {
+      "p_value": "P39",
+      "description": "Roman magistrate with judicial and military authority",
+      "context_facets": ["political"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.95,
+      "examples": [
+        "Praetor urbanus presiding over legal cases"
+      ],
+      "aliases": ["judicial magistrate", "praetorship"]
+    },
+    "censor": {
+      "p_value": "P39",
+      "description": "Magistrate conducting census and public morals oversight",
+      "context_facets": ["political", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.95,
+      "examples": [
+        "Cato the Elder as censor"
+      ],
+      "aliases": ["censorial", "census magistrate"]
+    },
+    "aedile": {
+      "p_value": "P39",
+      "description": "Magistrate overseeing public buildings and festivals",
+      "context_facets": ["political", "cultural"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Julius Caesar as aedile sponsoring games"
+      ],
+      "aliases": ["aedileship", "public works magistrate"]
+    },
+    "quaestor": {
+      "p_value": "P39",
+      "description": "Financial magistrate managing state treasury",
+      "context_facets": ["political", "economic"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Quaestor managing provincial finances"
+      ],
+      "aliases": ["quaestorship", "treasury officer"]
+    },
+    "proconsul": {
+      "p_value": "P39",
+      "description": "Governor with consular authority over province",
+      "context_facets": ["political", "military"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.95,
+      "examples": [
+        "Caesar as proconsul of Gaul"
+      ],
+      "aliases": ["provincial governor", "proconsular authority"]
+    }
+  },
+  "religious_roles": {
+    "pontifex_maximus": {
+      "p_value": "P39",
+      "description": "Chief priest of Roman state religion",
+      "context_facets": ["religious", "political"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.98,
+      "examples": [
+        "Julius Caesar as Pontifex Maximus"
+      ],
+      "aliases": ["high priest", "chief pontiff"]
+    },
+    "augur": {
+      "p_value": "P39",
+      "description": "Priest interpreting omens from bird flight",
+      "context_facets": ["religious"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Cicero appointed as augur"
+      ],
+      "aliases": ["diviner", "omen interpreter"]
+    },
+    "vestal_virgin": {
+      "p_value": "P39",
+      "description": "Priestess of Vesta maintaining sacred fire",
+      "context_facets": ["religious", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.95,
+      "examples": [
+        "Vestal Virgin tending temple of Vesta"
+      ],
+      "aliases": ["priestess of Vesta", "vestal"]
+    },
+    "priest": {
+      "p_value": "P39",
+      "description": "Religious officiant conducting rituals",
+      "context_facets": ["religious"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.90,
+      "examples": [
+        "Priest at Temple of Jupiter"
+      ],
+      "aliases": ["sacerdos", "religious officiant"]
+    }
+  },
+  "intellectual_roles": {
+    "orator": {
+      "p_value": "P106",
+      "description": "Public speaker or advocate",
+      "context_facets": ["intellectual", "political", "communication"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.88,
+      "examples": [
+        "Cicero as orator (Q1541)"
+      ],
+      "aliases": ["speaker", "advocate", "rhetorician"]
+    },
+    "philosopher": {
+      "p_value": "P106",
+      "description": "Thinker engaged in philosophical inquiry",
+      "context_facets": ["intellectual"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.90,
+      "examples": [
+        "Seneca as Stoic philosopher"
+      ],
+      "aliases": ["thinker", "sage", "philosophical writer"]
+    },
+    "historian": {
+      "p_value": "P106",
+      "description": "Writer documenting historical events",
+      "context_facets": ["intellectual", "communication"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.90,
+      "examples": [
+        "Livy as historian of Rome"
+      ],
+      "aliases": ["chronicler", "annalist", "historical writer"]
+    },
+    "poet": {
+      "p_value": "P106",
+      "description": "Literary artist composing verse",
+      "context_facets": ["intellectual", "artistic", "communication"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.90,
+      "examples": [
+        "Virgil composing Aeneid"
+      ],
+      "aliases": ["verse writer", "epic poet", "lyric poet"]
+    }
+  },
+  "social_roles": {
+    "patron": {
+      "p_value": "P1830",
+      "description": "Benefactor providing resources or protection",
+      "context_facets": ["social", "economic"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Maecenas as patron of poets"
+      ],
+      "aliases": ["benefactor", "sponsor", "protector"]
+    },
+    "client": {
+      "p_value": "P1327",
+      "description": "Dependent receiving patronage",
+      "context_facets": ["social", "economic"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Client receiving morning salutation from patron"
+      ],
+      "aliases": ["dependent", "protégé"]
+    },
+    "freedman": {
+      "p_value": "P106",
+      "description": "Formerly enslaved person manumitted",
+      "context_facets": ["social", "demographic"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Tiro as Cicero's freedman"
+      ],
+      "aliases": ["libertus", "manumitted slave", "former slave"]
+    },
+    "slave": {
+      "p_value": "P106",
+      "description": "Enslaved person without legal personhood",
+      "context_facets": ["social", "economic", "demographic"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.90,
+      "examples": [
+        "Domestic slave in Roman household"
+      ],
+      "aliases": ["servus", "enslaved person", "chattel"]
+    }
+  },
+  "economic_roles": {
+    "merchant": {
+      "p_value": "P106",
+      "description": "Trader engaged in commerce",
+      "context_facets": ["economic", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Merchant trading grain from Egypt"
+      ],
+      "aliases": ["trader", "businessman", "negotiator"]
+    },
+    "craftsman": {
+      "p_value": "P106",
+      "description": "Artisan producing goods",
+      "context_facets": ["economic", "technological"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Potter producing amphorae"
+      ],
+      "aliases": ["artisan", "maker", "producer"]
+    },
+    "landowner": {
+      "p_value": "P1830",
+      "description": "Person owning agricultural estates",
+      "context_facets": ["economic", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.88,
+      "examples": [
+        "Senator owning latifundia"
+      ],
+      "aliases": ["estate owner", "proprietor"]
+    }
+  },
+  "communication_roles": {
+    "messenger": {
+      "p_value": "P1344",
+      "description": "Carrier of messages or dispatches",
+      "context_facets": ["communication", "diplomatic"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.80,
+      "examples": [
+        "Courier delivering Caesar's dispatches from Gaul"
+      ],
+      "aliases": ["courier", "dispatch carrier", "runner"]
+    },
+    "propagandist": {
+      "p_value": "P106",
+      "description": "Person disseminating political messaging",
+      "context_facets": ["communication", "political"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.80,
+      "examples": [
+        "Octavian's agents spreading narrative of Actium victory"
+      ],
+      "aliases": ["message disseminator", "narrative shaper"]
+    },
+    "herald": {
+      "p_value": "P106",
+      "description": "Official announcer of proclamations",
+      "context_facets": ["communication", "political"],
+      "cidoc_crm_type": "E7_Activity",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Herald announcing triumphal procession"
+      ],
+      "aliases": ["announcer", "proclaimer", "town crier"]
+    }
+  },
+  "genealogical_roles": {
+    "father": {
+      "p_value": "P22",
+      "description": "Male parent",
+      "context_facets": ["demographic", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Gaius Julius Caesar (father) of Julius Caesar"
+      ],
+      "aliases": ["parent (male)", "pater"]
+    },
+    "mother": {
+      "p_value": "P25",
+      "description": "Female parent",
+      "context_facets": ["demographic", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Aurelia Cotta (mother) of Julius Caesar"
+      ],
+      "aliases": ["parent (female)", "mater"]
+    },
+    "child": {
+      "p_value": "P40",
+      "description": "Offspring of parent",
+      "context_facets": ["demographic", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.92,
+      "examples": [
+        "Julia (child) of Julius Caesar"
+      ],
+      "aliases": ["offspring", "son", "daughter"]
+    },
+    "spouse": {
+      "p_value": "P26",
+      "description": "Married partner",
+      "context_facets": ["social", "political", "demographic"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.88,
+      "examples": [
+        "Cornelia (spouse) of Julius Caesar"
+      ],
+      "aliases": ["husband", "wife", "married to"]
+    },
+    "sibling": {
+      "p_value": "P3373",
+      "description": "Brother or sister",
+      "context_facets": ["demographic", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.85,
+      "examples": [
+        "Julia Caesaris (sibling) of Julius Caesar"
+      ],
+      "aliases": ["brother", "sister"]
+    },
+    "ancestor": {
+      "p_value": "P1038",
+      "description": "Forebearer in family line",
+      "context_facets": ["demographic", "social"],
+      "cidoc_crm_type": "E21_Person",
+      "confidence_baseline": 0.75,
+      "examples": [
+        "Aeneas claimed as ancestor of Julii"
+      ],
+      "aliases": ["forebearer", "progenitor", "lineage"]
+    }
+  }
+}

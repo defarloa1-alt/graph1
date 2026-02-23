@@ -1,0 +1,60 @@
+{
+    "$schema":  "http://json-schema.org/draft-07/schema#",
+    "$id":  "https://chrystallum.org/schemas/observability_event_in.json",
+    "title":  "Observability Event Input",
+    "description":  "Structured event for logging and metrics",
+    "type":  "object",
+    "required":  [
+                     "event_id",
+                     "component",
+                     "event_type",
+                     "severity",
+                     "timestamp"
+                 ],
+    "properties":  {
+                       "event_id":  {
+                                        "type":  "string"
+                                    },
+                       "component":  {
+                                         "type":  "string",
+                                         "description":  "Name of component emitting event"
+                                     },
+                       "event_type":  {
+                                          "type":  "string",
+                                          "enum":  [
+                                                       "dispatcher_gate_fail",
+                                                       "federation_timeout",
+                                                       "claim_state_transition",
+                                                       "claim_validation_fail",
+                                                       "period_triage_decision",
+                                                       "period_canonicalization_success",
+                                                       "tgn_mapping_cache_sync",
+                                                       "tgn_lookup_miss"
+                                                   ]
+                                      },
+                       "severity":  {
+                                        "type":  "string",
+                                        "enum":  [
+                                                     "debug",
+                                                     "info",
+                                                     "warning",
+                                                     "error",
+                                                     "critical"
+                                                 ]
+                                    },
+                       "payload":  {
+                                       "type":  "object",
+                                       "description":  "Event-specific data",
+                                       "additionalProperties":  false
+                                   },
+                       "timestamp":  {
+                                         "type":  "string",
+                                         "format":  "date-time"
+                                     },
+                       "trace_id":  {
+                                        "type":  "string",
+                                        "description":  "Distributed tracing ID"
+                                    }
+                   },
+    "additionalProperties":  false
+}

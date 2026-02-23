@@ -1,0 +1,1268 @@
+UNKNOWN PROPERTIES FOR FACET ASSIGNMENT
+================================================================================
+
+Total: 252 properties
+Format: Property ID | Label | Description
+
+================================================================================
+
+1. P180 - depicts
+   Description: entity visually depicted in an image, literarily described in a work, or otherwise incorporated into an audiovisual or other medium; see also P921, 'main subject'
+   Type QIDs: Q28464773,Q15720608
+   Suggested Facet: _______________
+
+2. P181 - taxon range map image
+   Description: range map of a taxon
+   Type QIDs: Q18609040,Q18610173,Q26940804
+   Suggested Facet: _______________
+
+3. P183 - endemic to
+   Description: sole location or habitat type where the taxon lives
+   Type QIDs: Q18609040
+   Suggested Facet: _______________
+
+4. P186 - made from material
+   Description: material the subject or the object is made of or derived from (do not confuse with P10672 which is used for processes)
+   Type QIDs: Q51122921,Q70564278
+   Suggested Facet: _______________
+
+5. P193 - main building contractor
+   Description: the main organization (or person) responsible for construction of this structure or building
+   Type QIDs: Q22964966
+   Suggested Facet: _______________
+
+6. P197 - adjacent station
+   Description: the stations next to this station, sharing the same line(s)
+   Type QIDs: Q22984363
+   Suggested Facet: _______________
+
+7. P199 - has organizational division
+   Description: organizational divisions of this organization (which are not independent legal entities)
+   Type QIDs: Q22964476,Q30025373
+   Suggested Facet: _______________
+
+8. P200 - inflows
+   Description: major inflow sources — rivers, aquifers, glacial runoff, etc. Some terms may not be place names, e.g. none
+   Type QIDs: Q51920440
+   Suggested Facet: _______________
+
+9. P201 - outflows
+   Description: rivers and other outflows waterway names. If evaporation or seepage are notable outflows, they may be included. Some terms may not be place names, e.g. evaporation
+   Type QIDs: Q24041622,Q111603853
+   Suggested Facet: _______________
+
+10. P205 - basin country
+   Description: country that have drainage to/from or border the body of water
+   Type QIDs: Q24041622
+   Suggested Facet: _______________
+
+11. P207 - bathymetry image
+   Description: image showing bathymetric chart, bathymetric map
+   Type QIDs: Q18610173,Q26940804,Q24041622
+   Suggested Facet: _______________
+
+12. P212 - ISBN-13
+   Description: identifier for a book (edition), thirteen digit
+   Type QIDs: Q136747173,Q27038669,Q21264328,Q48710051,Q62589320
+   Suggested Facet: _______________
+
+13. P225 - taxon name
+   Description: correct scientific name of a taxon (according to the reference given)
+   Type QIDs: Q18609040,Q21099935
+   Suggested Facet: _______________
+
+14. P229 - IATA airline designator
+   Description: two-character identifier for an airline
+   Type QIDs: Q21745557,Q22964357
+   Suggested Facet: _______________
+
+15. P231 - CAS Registry Number
+   Description: identifier for a chemical substance or compound per Chemical Abstract Service's Registry database
+   Type QIDs: Q19833835,Q48710051
+   Suggested Facet: _______________
+
+16. P232 - EC number
+   Description: identifier for a chemical compound per EINECS or ELINCS
+   Type QIDs: Q19833835,Q48710051,Q135984095
+   Suggested Facet: _______________
+
+17. P233 - canonical SMILES
+   Description: Simplified Molecular Input Line Entry Specification (canonical format)
+   Type QIDs: Q19833835,Q21099935
+   Suggested Facet: _______________
+
+18. P234 - InChI
+   Description: International Chemical Identifier
+   Type QIDs: Q19833835,Q62589320
+   Suggested Facet: _______________
+
+19. P235 - InChIKey
+   Description: a hashed version of the full standard InChI
+   Type QIDs: Q19833835,Q62589320
+   Suggested Facet: _______________
+
+20. P238 - IATA airport code
+   Description: three-letter identifier for designating airports, railway stations or cities (for airlines, see P229)
+   Type QIDs: Q28916621,Q61052867,Q99543626,Q23310071
+   Suggested Facet: _______________
+
+21. P240 - FAA airport code
+   Description: three-letter or four-letter alphanumeric code identifying United States airports
+   Type QIDs: Q28916621,Q61052867
+   Suggested Facet: _______________
+
+22. P247 - COSPAR ID
+   Description: international satellite designation, administered by the UN Committee on Space Research (COSPAR), similar but not synonymous with the NSSDCA ID (P8913)
+   Type QIDs: Q42428590,Q28104992,Q19847637
+   Suggested Facet: _______________
+
+23. P248 - stated in
+   Description: to be used in the references field to refer to the information document or database in which a claim is made; for qualifiers use P805; for the type of document in which a claim is made use P3865
+   Type QIDs: Q18608359
+   Suggested Facet: _______________
+
+24. P249 - ticker symbol
+   Description: identifier for a publicly traded share of a particular stock on a particular stock market or that of a cryptocurrency (qualifier for P414)
+   Type QIDs: Q21264328,Q22964476,Q15720608
+   Suggested Facet: _______________
+
+25. P267 - ATC code
+   Description: therapeutic chemical identification code per ATC
+   Type QIDs: Q19833835
+   Suggested Facet: _______________
+
+26. P279 - subclass of
+   Description: this item is a subclass (subset) of that item; ALL instances of this item are instances of that item; different from P31 (instance of), e.g.: volcano is a subclass of mountain; Everest is an instance of mountain
+   Type QIDs: Q18647515,Q18647519,Q28326461,Q18616576,Q115490628
+   Suggested Facet: _______________
+
+27. P286 - head coach
+   Description: on-field manager or head coach of a sports club (not to be confused with a general manager P505, which is not a coaching position) or person
+   Type QIDs: Q22964372,Q28106456,Q115396176
+   Suggested Facet: _______________
+
+28. P289 - vessel class
+   Description: series of vessels or other watercraft built to the same design of which this vessel is a member
+   Type QIDs: Q23779665
+   Suggested Facet: _______________
+
+29. P296 - station code
+   Description: generic identifier for a railway station, when possible, use specific property on certain coding system (e.g. P1378 for China Railway TMIS codes)
+   Type QIDs: Q21264328,Q56249389
+   Suggested Facet: _______________
+
+30. P297 - ISO 3166-1 alpha-2 code
+   Description: identifier for a country in two-letter format per ISO 3166-1
+   Type QIDs: Q55978503,Q99543626,Q27038669
+   Suggested Facet: _______________
+
+31. P298 - ISO 3166-1 alpha-3 code
+   Description: identifier for a country in three-letter format per ISO 3166-1
+   Type QIDs: Q55978503,Q99566281,Q27038669
+   Suggested Facet: _______________
+
+32. P299 - ISO 3166-1 numeric code
+   Description: identifier for a country in numeric format per ISO 3166-1
+   Type QIDs: Q55978503,Q27038669
+   Suggested Facet: _______________
+
+33. P300 - ISO 3166-2 code
+   Description: identifier for a country subdivision per ISO 3166-2 (include country code)
+   Type QIDs: Q55977691,Q27038669
+   Suggested Facet: _______________
+
+34. P301 - category's main topic
+   Description: primary topic of the subject Wikimedia category
+   Type QIDs: Q18667213
+   Suggested Facet: _______________
+
+35. P303 - EE breed number
+   Description: breed identification number per the EE list of the breeds of fancy pigeons (ELFP)
+   Type QIDs: Q62589316
+   Suggested Facet: _______________
+
+36. P304 - page(s)
+   Description: page number of source referenced for statement. Note "column(s)" (P3903) and "folio(s)" (P7416) for other numbering systems
+   Type QIDs: Q21099935,Q18608359,Q19847637
+   Suggested Facet: _______________
+
+37. P344 - director of photography
+   Description: person responsible for the framing, lighting, and filtration of the subject work
+   Type QIDs: Q22965162,Q27151329
+   Suggested Facet: _______________
+
+38. P349 - NDL Authority ID
+   Description: identifier for authority control per the National Diet Library of Japan
+   Type QIDs: Q55586529
+   Suggested Facet: _______________
+
+39. P351 - Entrez Gene ID
+   Description: identifier for a gene per the NCBI Entrez database
+   Type QIDs: Q22988603,Q42415497
+   Suggested Facet: _______________
+
+40. P352 - UniProt protein ID
+   Description: identifier for a protein per the UniProt database
+   Type QIDs: Q42415644
+   Suggested Facet: _______________
+
+41. P353 - HGNC gene symbol
+   Description: the official gene symbol approved by the HGNC, which is typically a short form of the gene name
+   Type QIDs: Q42415497
+   Suggested Facet: _______________
+
+42. P354 - HGNC ID
+   Description: a unique ID provided by the HGNC for each gene with an approved symbol. HGNC IDs remain stable even if a name or symbol changes
+   Type QIDs: Q42415497
+   Suggested Facet: _______________
+
+43. P355 - child organization or unit
+   Description: child organization/unit of a organization/unit; for companies, generally a fully owned separate corp., see business division (P199); opposite of parent org./unit (P749); use instance of (P31) to distinguish org. (Q43229) and org. unit (Q10387680)
+   Type QIDs: Q22964476,Q18608993,Q30025373
+   Suggested Facet: _______________
+
+44. P360 - is a list of
+   Description: common element between all listed items
+   Type QIDs: Q22969221,Q64846109
+   Suggested Facet: _______________
+
+45. P366 - has use
+   Description: main use of the subject (includes current and former usage)
+   Type QIDs: Q30025373,Q70564278,Q115203080
+   Suggested Facet: _______________
+
+46. P368 - Sandbox-CommonsMediaFile
+   Description: Sandbox property for value of type "Commons Media File"
+   Type QIDs: Q18720640,Q28464773
+   Suggested Facet: _______________
+
+47. P369 - Sandbox-Item
+   Description: Sandbox property for value of type "Item"
+   Type QIDs: Q18720640
+   Suggested Facet: _______________
+
+48. P370 - Sandbox-String
+   Description: Sandbox property for the data value type "String"
+   Type QIDs: Q18720640,Q21099935
+   Suggested Facet: _______________
+
+49. P371 - presenter
+   Description: main role in presenting a radio or television program or a performing arts show
+   Type QIDs: Q134479145,Q134476104,Q120173825,Q107395292
+   Suggested Facet: _______________
+
+50. P373 - Commons category
+   Description: name of the Wikimedia Commons category containing files related to this item (without the prefix "Category:")
+   Type QIDs: Q18610173,Q18667213,Q19847637
+   Suggested Facet: _______________
+
+51. P374 - Insee municipality code
+   Description: identifier/code with five digits or letters for a municipality or a municipal arrondissement in France, per the National Institute of Statistics and Economic Studies
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+52. P375 - space launch vehicle
+   Description: type of rocket or other vehicle for launching subject payload into outer space
+   Type QIDs: Q22984363,Q28104992
+   Suggested Facet: _______________
+
+53. P377 - SCN
+   Description: Satellite Catalog Number, 5-digit-number including leading zeros (e.g. '00266')
+   Type QIDs: Q18614948,Q28104992
+   Suggested Facet: _______________
+
+54. P382 - CBS municipality code
+   Description: identifier for a Dutch municipality as defined by Statistics Netherlands (CBS)
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+55. P395 - licence plate code
+   Description: distinguishing signs or parts of license plate associated with the subject. For countries: international licence plate country code or distinguishing sign of vehicles
+   Type QIDs: Q21264328
+   Suggested Facet: _______________
+
+56. P404 - game mode
+   Description: video game's available playing mode(s)
+   Type QIDs: Q28147643
+   Suggested Facet: _______________
+
+57. P405 - taxon author
+   Description: the author(s) that (optionally) may be cited with the scientific name
+   Type QIDs: Q15720608,Q18609040,Q64830420
+   Suggested Facet: _______________
+
+58. P406 - soundtrack release
+   Description: music release that incorporates music directly recorded from the soundtrack of an audiovisual work
+   Type QIDs: Q22965078
+   Suggested Facet: _______________
+
+59. P414 - stock exchange
+   Description: exchange on which this company is traded
+   Type QIDs: Q62589316,Q111669072
+   Suggested Facet: _______________
+
+60. P416 - quantity symbol (string)
+   Description: symbol for a mathematical or physical quantity
+   Type QIDs: Q21099935
+   Suggested Facet: _______________
+
+61. P423 - shooting handedness
+   Description: whether the hockey player passes or shoots left- or right-handed
+   Type QIDs: Q28106456,Q28649019
+   Suggested Facet: _______________
+
+62. P425 - field of this occupation
+   Description: field corresponding to this occupation or profession (use only for occupations/professions - for people use Property:P101, for companies use P452)
+   Type QIDs: Q24043375
+   Suggested Facet: _______________
+
+63. P426 - aircraft registration
+   Description: identifier assigned to an individual aircraft by civil aircraft registry
+   Type QIDs: Q62589320,Q24041613,Q70564278
+   Suggested Facet: _______________
+
+64. P427 - taxonomic type
+   Description: type genus or species: [in zoology:] nominal genus or species that is the name-bearing type of this nominal family or genus (or family-group ranked taxon or subgenus); type specimen that is the name-bearing type of this nominal species or subspecies
+   Type QIDs: Q18609040
+   Suggested Facet: _______________
+
+65. P429 - dantai code
+   Description: 6-digit identifier for an administrative division of Japan, assigned by Ministry of Internal Affairs and Communications
+   Type QIDs: Q55977691,Q48710051
+   Suggested Facet: _______________
+
+66. P432 - callsign of airline
+   Description: identifier used in radio transmissions to refer to the subject airline
+   Type QIDs: Q22964357,Q21745557
+   Suggested Facet: _______________
+
+67. P434 - MusicBrainz artist ID
+   Description: identifier for an artist in the MusicBrainz open music encyclopedia
+   Type QIDs: Q66712599,Q24075706,Q62589320
+   Suggested Facet: _______________
+
+68. P435 - MusicBrainz work ID
+   Description: identifier for a work per the MusicBrainz open music encyclopedia
+   Type QIDs: Q107095360,Q24075706,Q783521
+   Suggested Facet: _______________
+
+69. P436 - MusicBrainz release group ID
+   Description: identifier for a release group per the MusicBrainz open music encyclopedia (album, single, etc.)
+   Type QIDs: Q24075706,Q27525351
+   Suggested Facet: _______________
+
+70. P439 - German municipality key
+   Description: numerical code for municipalities and independent towns in Germany
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+71. P440 - German district key
+   Description: numerical code for districts (Landkreise) and independent towns in Germany
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+72. P442 - China division code for Statistics
+   Description: identifier for divisions of People's Republic of China for Statistics (with spaces)
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+73. P443 - pronunciation audio
+   Description: audio file with pronunciation
+   Type QIDs: Q18610173,Q54275221
+   Suggested Facet: _______________
+
+74. P451 - unmarried partner
+   Description: someone with whom the person is in a relationship without being married. Use "spouse" (P26) for married couples
+   Type QIDs: Q22964231
+   Suggested Facet: _______________
+
+75. P453 - character role
+   Description: specific role played or filled by subject -- use only as qualifier of "cast member" (P161), "voice actor" (P725)
+   Type QIDs: Q15720608,Q22984512
+   Suggested Facet: _______________
+
+76. P455 - Emporis building ID
+   Description: former identifier for a building in the defunct Emporis database (for building complexes, see P2270)
+   Type QIDs: Q28916621,Q60457486
+   Suggested Facet: _______________
+
+77. P458 - IMO ship number
+   Description: identifier for a ship, ship owner or ship manager per the International Maritime Organization
+   Type QIDs: Q19847637,Q23779665,Q48710051
+   Suggested Facet: _______________
+
+78. P459 - determination method or standard
+   Description: how a value is determined, or the standard by which it is declared
+   Type QIDs: Q15720608,Q61719274,Q70564278,Q119301849
+   Suggested Facet: _______________
+
+79. P460 - said to be the same as
+   Description: this item is said to be the same as that item, though this may be uncertain or disputed
+   Type QIDs: Q18647518,Q28100549
+   Suggested Facet: _______________
+
+80. P461 - opposite of
+   Description: item that is in some way the opposite of this item
+   Type QIDs: Q28100549
+   Suggested Facet: _______________
+
+81. P462 - color
+   Description: color of subject
+   Type QIDs: Q22964093,Q60464703,Q70564278
+   Suggested Facet: _______________
+
+82. P463 - member of
+   Description: organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a political position, such as a member of parliament (use P39 for that)
+   Type QIDs: Q57955292,Q26935994
+   Suggested Facet: _______________
+
+83. P465 - sRGB color hex triplet
+   Description: sRGB hex triplet format for subject color (e.g. 7FFFD4) specifying the 8-bit red, green and blue components
+   Type QIDs: Q21099935,Q60464703
+   Suggested Facet: _______________
+
+84. P466 - occupant
+   Description: person or organization occupying property
+   Type QIDs: Q22964966,Q30025373
+   Suggested Facet: _______________
+
+85. P469 - lake on watercourse
+   Description: lake or reservoir through which the river or stream flows
+   Type QIDs: Q24041622
+   Suggested Facet: _______________
+
+86. P473 - local dialing code
+   Description: identifier dedicated to subject city by the area communication network
+   Type QIDs: Q21264328
+   Suggested Facet: _______________
+
+87. P474 - telephone country code
+   Description: identifier for a country - dialed on phone after the international dialing prefix (precede value by +)
+   Type QIDs: Q62589316
+   Suggested Facet: _______________
+
+88. P478 - volume
+   Description: volume of a book or music release in a collection/series or a published collection of journal issues in a serial publication
+   Type QIDs: Q18608359,Q21099935,Q61719275
+   Suggested Facet: _______________
+
+89. P480 - FilmAffinity film ID
+   Description: FilmAffinity identification number of a creative work
+   Type QIDs: Q29542094
+   Suggested Facet: _______________
+
+90. P484 - IMA Number, broad sense
+   Description: identifier for a mineral per the International Mineralogical Association - Commission on New Minerals, Nomenclature and Classification (IMA-CNMNC)
+   Type QIDs: Q18614948,Q24041781
+   Suggested Facet: _______________
+
+91. P485 - archives at
+   Description: the institution holding the subject's archives
+   Type QIDs: Q22964126,Q18608359,Q74568206
+   Suggested Facet: _______________
+
+92. P486 - MeSH descriptor ID
+   Description: identifier for Descriptor or Supplementary concept in the Medical Subject Headings controlled vocabulary
+   Type QIDs: Q19887775,Q18614948,Q22988603,Q110682839
+   Suggested Facet: _______________
+
+93. P487 - Unicode character
+   Description: Unicode character representing the item (only if this is not a control character or a compatiblity character: in that case, use only P4213)
+   Type QIDs: Q21099935
+   Suggested Facet: _______________
+
+94. P488 - chairperson
+   Description: presiding member of an organization, group or body
+   Type QIDs: Q18608993
+   Suggested Facet: _______________
+
+95. P492 - OMIM ID
+   Description: Online "Mendelian Inheritance in Man" catalogue codes for diseases, genes, or phenotypes
+   Type QIDs: Q19887775,Q42415497
+   Suggested Facet: _______________
+
+96. P10 - video
+   Description: relevant video; use property P18 for images; for film trailers, qualify with "object has role" (P3831)="trailer" (Q622550); for films, qualify with "object has role" (P3831)="full video available on Wikimedia Commons" (Q89347362)
+   Type QIDs: Q18610173,Q19847637,Q121928698,Q26940804,Q113336763
+   Suggested Facet: _______________
+
+97. P14 - traffic sign
+   Description: graphic symbol describing the item, used at the side of or above roads to give instructions or provide information to road users
+   Type QIDs: Q18610173,Q23069616,Q26940804,Q121928698
+   Suggested Facet: _______________
+
+98. P15 - route map
+   Description: image of route map at Wikimedia Commons
+   Type QIDs: Q18610173,Q22984363,Q26940804,Q121928698
+   Suggested Facet: _______________
+
+99. P16 - transport network
+   Description: network the infrastructure is a part of
+   Type QIDs: Q22984363
+   Suggested Facet: _______________
+
+100. P18 - image
+   Description: image of relevant illustration of the subject; if available, also use more specific properties (sample: coat of arms image, locator map, flag image, signature image, logo image, collage image)
+   Type QIDs: Q18610173,Q26935994,Q26940804,Q18608359,Q54275340,Q121928698
+   Suggested Facet: _______________
+
+101. P22 - father
+   Description: male parent of the subject. For stepfather, use "stepparent" (P3448)
+   Type QIDs: Q22964231,Q26935994,Q99567026,Q18647519
+   Suggested Facet: _______________
+
+102. P25 - mother
+   Description: female parent of the subject. For stepmother, use "stepparent" (P3448)
+   Type QIDs: Q22964231,Q28649030,Q99567026,Q18647519
+   Suggested Facet: _______________
+
+103. P26 - spouse
+   Description: the subject has the object as their spouse (husband, wife, partner, etc.). Use "unmarried partner" (P451) for non-married companions
+   Type QIDs: Q26935994,Q22964231
+   Suggested Facet: _______________
+
+104. P31 - instance of
+   Description: type to which this subject corresponds/belongs. Different from P279 (subclass of); for example: K2 is an instance of mountain; volcano is a subclass of mountain
+   Type QIDs: Q18616576,Q115490628,Q28326730
+   Suggested Facet: _______________
+
+105. P40 - child
+   Description: subject has object as child. Do not use for stepchildren—use "relative" (P1038), qualified with "kinship to subject" (P1039)
+   Type QIDs: Q22964231,Q26935994,Q18647519
+   Suggested Facet: _______________
+
+106. P50 - author
+   Description: main creator(s) of a written work (use on works, not humans); use P2093 (author name string) when Wikidata item is unknown or does not exist
+   Type QIDs: Q134476104,Q18608359,Q70564278
+   Suggested Facet: _______________
+
+107. P51 - audio
+   Description: relevant sound. If available, use a more specific property. Samples: "spoken text audio" (P989), "pronunciation audio" (P443)
+   Type QIDs: Q18610173,Q121928698
+   Suggested Facet: _______________
+
+108. P57 - director
+   Description: director(s) of film, TV-series, stageplay, video game or similar
+   Type QIDs: Q134479145
+   Suggested Facet: _______________
+
+109. P58 - screenwriter
+   Description: person(s) who wrote the script for subject item
+   Type QIDs: Q134479145,Q22965162
+   Suggested Facet: _______________
+
+110. P81 - connecting line
+   Description: railway line(s) subject is directly connected to
+   Type QIDs: Q15720608,Q23069616,Q23310071
+   Suggested Facet: _______________
+
+111. P85 - anthem
+   Description: subject's official anthem
+   Type QIDs: Q18608993,Q22965078
+   Suggested Facet: _______________
+
+112. P86 - composer
+   Description: person(s) who wrote the music [for lyricist, use "lyrics by" (P676)]
+   Type QIDs: Q22965078
+   Suggested Facet: _______________
+
+113. P87 - librettist
+   Description: author of the libretto (words) of an opera, operetta, oratorio or cantata, or of the book of a musical
+   Type QIDs: Q22965078
+   Suggested Facet: _______________
+
+114. P88 - commissioned by
+   Description: person or organization that commissioned this work
+   Type QIDs: Q134479137
+   Suggested Facet: _______________
+
+115. P98 - editor
+   Description: person who checks and corrects a work (such as a book, newspaper, academic journal, etc.) to comply with a rules of certain genre. Also applies to person who establishes the text of an ancient written work or manuscript.
+   Type QIDs: Q134476104
+   Suggested Facet: _______________
+
+116. P105 - taxon rank
+   Description: level in a taxonomic hierarchy
+   Type QIDs: Q18609040
+   Suggested Facet: _______________
+
+117. P111 - measured physical quantity
+   Description: value of a physical property expressed as number multiplied by a unit
+   Type QIDs: Q21077852
+   Suggested Facet: _______________
+
+118. P112 - founded by
+   Description: founder or co-founder of this organization, religion, place or entity
+   Type QIDs: Q18608993
+   Suggested Facet: _______________
+
+119. P114 - airline alliance
+   Description: alliance the airline belongs to
+   Type QIDs: Q22964357
+   Suggested Facet: _______________
+
+120. P118 - league or competition
+   Description: league or competition in which team or player has played, or in which an event occurs
+   Type QIDs: Q22964372,Q63871189,Q28106456
+   Suggested Facet: _______________
+
+121. P121 - item operated
+   Description: equipment, installation or service operated by the subject
+   Type QIDs: Q30025373,Q70564278
+   Suggested Facet: _______________
+
+122. P126 - maintained by
+   Description: person or organization in charge of keeping the subject (for instance an infrastructure) in functioning order
+   Type QIDs: Q30025373
+   Suggested Facet: _______________
+
+123. P127 - owned by
+   Description: owner of the subject
+   Type QIDs: Q30025373,Q18608993,Q64830420,Q98929163
+   Suggested Facet: _______________
+
+124. P128 - regulates (molecular biology)
+   Description: process regulated by a protein or RNA in molecular biology
+   Type QIDs: Q22988603,Q119301849
+   Suggested Facet: _______________
+
+125. P137 - operator
+   Description: person, profession, organization or entity that operates the equipment, facility, or service
+   Type QIDs: Q30025373,Q70564278,Q115203080
+   Suggested Facet: _______________
+
+126. P138 - named after
+   Description: entity or event that inspired the subject's name, or namesake (in at least one language). Qualifier "applies to name" (P5168) can be used to indicate which one
+   Type QIDs: Q19643892
+   Suggested Facet: _______________
+
+127. P141 - IUCN conservation status
+   Description: conservation status assigned by the International Union for Conservation of Nature
+   Type QIDs: Q18609040,Q108566342
+   Suggested Facet: _______________
+
+128. P143 - imported from Wikimedia project
+   Description: source of this claim's value; used in references section by bots or humans importing data from Wikimedia projects
+   Type QIDs: Q18608359,Q113558322
+   Suggested Facet: _______________
+
+129. P154 - logo image
+   Description: graphic mark or emblem commonly used by commercial enterprises, organizations and products
+   Type QIDs: Q26935994,Q26940804,Q18610173,Q18608993,Q99567847,Q115383943,Q121928698
+   Suggested Facet: _______________
+
+130. P155 - follows
+   Description: immediately prior item in a series of which the subject is a part, preferably use as qualifier of P179 [if the subject has replaced the preceding item, e.g. political offices, use "replaces" (P1365)]
+   Type QIDs: Q18616576,Q61719274
+   Suggested Facet: _______________
+
+131. P156 - followed by
+   Description: immediately following item in a series of which the subject is a part, preferably use as qualifier of P179 [if the subject has been replaced, e.g. political offices, use "replaced by" (P1366)]
+   Type QIDs: Q18616576,Q61719274
+   Suggested Facet: _______________
+
+132. P161 - cast member
+   Description: actor in the subject production [use "character role" (P453) and/or "name of the character role" (P4633) as qualifiers] [use "voice actor" (P725) for voice-only role] - [use "recorded participant" (P11108) for non-fiction productions]
+   Type QIDs: Q134479145,Q22965162
+   Suggested Facet: _______________
+
+133. P162 - producer
+   Description: person(s) who produced the film, musical work, theatrical production, etc. (for film, this does not include executive producers, associate producers, etc.) [for production company, use P272, video games - use P178]
+   Type QIDs: Q22965078,Q22965162
+   Suggested Facet: _______________
+
+134. P167 - structure replaced by
+   Description: the item which replaced this building or structure, at the same geographic location
+   Type QIDs: Q22964966
+   Suggested Facet: _______________
+
+135. P169 - chief executive officer
+   Description: highest-ranking corporate officer appointed as the CEO within an organization
+   Type QIDs: Q22964476
+   Suggested Facet: _______________
+
+136. P170 - creator
+   Description: maker of this creative work or other object (where no more specific property exists)
+   Type QIDs: Q134479137,Q132818475,Q70564278
+   Suggested Facet: _______________
+
+137. P171 - parent taxon
+   Description: closest parent taxon of the taxon in question
+   Type QIDs: Q18609040,Q22988603,Q108566342
+   Suggested Facet: _______________
+
+138. P176 - manufacturer
+   Description: (main or final) manufacturer or producer of this product
+   Type QIDs: Q51122921,Q70564278
+   Suggested Facet: _______________
+
+139. P177 - crosses
+   Description: obstacle (body of water, road, railway...) which this bridge (ferry, ford) crosses over or this tunnel goes under
+   Type QIDs: Q22984363,Q29446361
+   Suggested Facet: _______________
+
+140. P717 - Minor Planet Center observatory code
+   Description: identifier for an astronomical observatory assigned by the Minor Planet Center
+   Type QIDs: Q62589316,Q41799791
+   Suggested Facet: _______________
+
+141. P721 - OKATO ID
+   Description: identifier for every administrative unit in Russia
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+142. P722 - UIC station code
+   Description: identifier for a railway station in Europe, CIS countries, the Far East (China, Mongolia, Japan, Korea, Vietnam), North Africa and the Middle East
+   Type QIDs: Q56249389,Q48710051,Q135983631,Q135983629,Q135983614
+   Suggested Facet: _______________
+
+143. P723 - Digitale Bibliotheek voor de Nederlandse Letteren author ID
+   Description: identifier for an author on the DBNL-website for Dutch language authors
+   Type QIDs: Q55650689
+   Suggested Facet: _______________
+
+144. P725 - voice actor
+   Description: performer of a spoken role in a creative work such as animation, video game, radio drama, or dubbing over [use "character role" (P453) as qualifier] [use "cast member" (P161) for live acting]
+   Type QIDs: Q134479145
+   Suggested Facet: _______________
+
+145. P726 - candidate
+   Description: person or party that is an option for an office in this election
+   Type QIDs: Q22964818
+   Suggested Facet: _______________
+
+146. P729 - service entry
+   Description: date or point in time on which a piece or class of equipment entered operational service
+   Type QIDs: Q18636219
+   Suggested Facet: _______________
+
+147. P730 - service retirement
+   Description: date or point in time on which a piece or class of equipment was retired from operational service ; use P2669 for end of a public service
+   Type QIDs: Q18636219
+   Suggested Facet: _______________
+
+148. P731 - Litholex ID
+   Description: identifier in the Lithostratigraphic database of Germany maintained by the BGR
+   Type QIDs: Q18614948,Q22988651
+   Suggested Facet: _______________
+
+149. P732 - BGS Lexicon of Named Rock Units ID
+   Description: identifier for a stratigraphic unit given by the British Geological Survey
+   Type QIDs: Q22988651,Q19847637
+   Suggested Facet: _______________
+
+150. P733 - DINOloket ID
+   Description: identifier from database of geologic units in the Netherlands (Data Informatie Nederlandse Ondergrond)
+   Type QIDs: Q22988651,Q19847637
+   Suggested Facet: _______________
+
+151. P741 - playing hand
+   Description: hand used to play a racket sport, cricket, fencing, or curling
+   Type QIDs: Q28106456,Q27886949
+   Suggested Facet: _______________
+
+152. P748 - appointed by
+   Description: who appointed the person to the position, can be used as a qualifier
+   Type QIDs: Q15720608,Q64830420
+   Suggested Facet: _______________
+
+153. P760 - DPLA ID
+   Description: identifier for books, paintings, films, museum objects and archival records that have been digitised throughout United States
+   Type QIDs: Q19847637
+   Suggested Facet: _______________
+
+154. P764 - OKTMO ID
+   Description: identifier in Classification on Objects territory of municipal formations (Russia)
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+155. P765 - surface played on
+   Description: the surface on which a sporting event is played
+   Type QIDs: Q28106586,Q28106485
+   Suggested Facet: _______________
+
+156. P769 - significant drug interaction
+   Description: clinically significant interaction between two pharmacologically active substances (i.e., drugs and/or active metabolites) where concomitant intake can lead to altered effectiveness or adverse drug events.
+   Type QIDs: Q19887775,Q119301849
+   Suggested Facet: _______________
+
+157. P771 - Swiss municipality code
+   Description: identifier for a municipality in Switzerland
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+158. P772 - INE code
+   Description: identifier for Spanish populated entities, by the Spanish Statistical Office (INE)
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+159. P773 - ISO 3166-3
+   Description: identifier for a country name that has been deleted from ISO 3166-1 since its first publication in 1974
+   Type QIDs: Q55977691,Q27038669
+   Suggested Facet: _______________
+
+160. P774 - FIPS 55-3 (locations in the US)
+   Description: identifier for places in the United States per former Federal Information Processing Standard FIPS 55-3
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+161. P775 - Swedish urban area code
+   Description: alphanumeric code for an urban area in Sweden
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+162. P776 - Swedish minor urban area code
+   Description: alphanumeric code for a minor urban area in Sweden
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+163. P777 - Swedish civil parish code/ATA code
+   Description: identifier for a civil parish in Sweden
+   Type QIDs: Q55977691,Q93868746
+   Suggested Facet: _______________
+
+164. P780 - symptoms and signs
+   Description: possible symptoms or signs of a medical condition
+   Type QIDs: Q19887775
+   Suggested Facet: _______________
+
+165. P782 - LAU
+   Description: alphanumeric code for a local administrative unit, comprising the municipalities and communes of the European Statistical System (ESS); renamed from NUTS 4 and NUTS 5
+   Type QIDs: Q55977691,Q135984095
+   Suggested Facet: _______________
+
+166. P783 - hymenium type
+   Description: type of spore-bearing surface of a mushroom
+   Type QIDs: Q19858569
+   Suggested Facet: _______________
+
+167. P784 - mushroom cap shape
+   Description: property classifying the shape of the cap of a mushroom
+   Type QIDs: Q19858569
+   Suggested Facet: _______________
+
+168. P785 - hymenium attachment
+   Description: how the hymenium of the mushroom attaches to the stem
+   Type QIDs: Q19858569
+   Suggested Facet: _______________
+
+169. P786 - stipe character
+   Description: indicates whether a mushroom has a universal or partial veil
+   Type QIDs: Q19858569
+   Suggested Facet: _______________
+
+170. P787 - spore print color
+   Description: color of a mushroom spore print (see documentation for allowed values)
+   Type QIDs: Q19858569
+   Suggested Facet: _______________
+
+171. P788 - mushroom ecological type
+   Description: property classifying the ecological type of a mushroom
+   Type QIDs: Q19858569
+   Suggested Facet: _______________
+
+172. P790 - approved by
+   Description: item is approved by other item(s) [qualifier: statement is approved by other item(s)]
+   Type QIDs: Q15720608,Q61719274
+   Suggested Facet: _______________
+
+173. P791 - ISIL
+   Description: identifier for a library or related organization
+   Type QIDs: Q100698536,Q21264328,Q27038669
+   Suggested Facet: _______________
+
+174. P792 - chapter
+   Description: title or number of the chapter where a claim is made
+   Type QIDs: Q21099935,Q18608359,Q61719275
+   Suggested Facet: _______________
+
+175. P793 - significant event
+   Description: significant or notable events associated with the subject
+   Type QIDs: Q22964785,Q70564278
+   Suggested Facet: _______________
+
+176. P799 - Air Ministry specification ID
+   Description: identifier for an aircraft specification issued by the United Kingdom Air Ministry
+   Type QIDs: Q23069609,Q62589316
+   Suggested Facet: _______________
+
+177. P805 - statement is subject of
+   Description: (qualifying) item that describes the relation identified in this statement
+   Type QIDs: Q15720608,Q61719274
+   Suggested Facet: _______________
+
+178. P806 - Italian cadastre code (municipality)
+   Description: alphanumeric code for an Italian comune in the Codice catastale
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+179. P807 - separated from
+   Description: subject was founded or started by separating from identified object
+   Type QIDs: Q18608993,Q30025373
+   Suggested Facet: _______________
+
+180. P809 - WDPA ID
+   Description: identifier in World Database on Protected Areas
+   Type QIDs: Q55978235
+   Suggested Facet: _______________
+
+181. P813 - retrieved
+   Description: date or point in time that information was retrieved from a database or website (for use in online sources)
+   Type QIDs: Q18636219,Q18608359
+   Suggested Facet: _______________
+
+182. P815 - ITIS TSN
+   Description: identifier for a taxon in the Integrated Taxonomic Information System
+   Type QIDs: Q42396390
+   Suggested Facet: _______________
+
+183. P817 - decay mode
+   Description: type of decay that a radioactive isotope undergoes (should be used as a qualifier for "decays to")
+   Type QIDs: Q15720608,Q119301849
+   Suggested Facet: _______________
+
+184. P822 - mascot
+   Description: mascot of an organization, e.g. a sports team or university
+   Type QIDs: Q18608993,Q22964372,Q115383802
+   Suggested Facet: _______________
+
+185. P824 - Meteoritical Bulletin Database ID
+   Description: identifier for a meteorite in the database of the Meteoritical Society
+   Type QIDs: Q19847637,Q24041781,Q41799791
+   Suggested Facet: _______________
+
+186. P826 - tonality
+   Description: key of a musical composition
+   Type QIDs: Q22965078
+   Suggested Facet: _______________
+
+187. P828 - has cause
+   Description: underlying cause, entity that ultimately resulted in this effect
+   Type QIDs: Q28746712,Q18647519
+   Suggested Facet: _______________
+
+188. P829 - OEIS ID
+   Description: identifier on the On-Line Encyclopedia of Integer Sequences
+   Type QIDs: Q19847637,Q22988631,Q55452870
+   Suggested Facet: _______________
+
+189. P830 - Encyclopedia of Life ID
+   Description: eol.org item reference number
+   Type QIDs: Q42396390,Q55452870
+   Suggested Facet: _______________
+
+190. P493 - ICD-9 ID
+   Description: identifier in the ICD catalogue codes for diseases – Version 9
+   Type QIDs: Q19887775,Q18614948
+   Suggested Facet: _______________
+
+191. P494 - ICD-10 ID
+   Description: identifier in the ICD Terminology of Diseases - Version 10
+   Type QIDs: Q110682839,Q18614948
+   Suggested Facet: _______________
+
+192. P498 - ISO 4217 code
+   Description: identifier for a currency per ISO 4217
+   Type QIDs: Q18614948,Q27038669
+   Suggested Facet: _______________
+
+193. P503 - ISO standard
+   Description: numeric identifier of this ISO standard
+   Type QIDs: Q18614948
+   Suggested Facet: _______________
+
+194. P505 - general manager
+   Description: general manager of a sports team. If they are also an on-field manager use P286 instead
+   Type QIDs: Q22964372,Q28106456
+   Suggested Facet: _______________
+
+195. P506 - ISO 15924 alpha-4 code
+   Description: 4-letter identifier for a script, writing system, or typeface/style used in one or more languages
+   Type QIDs: Q18614948,Q27038669
+   Suggested Facet: _______________
+
+196. P507 - Swedish county code
+   Description: two-digit numeric identifier for a county in Sweden "länskod"
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+197. P508 - BNCF Thesaurus ID
+   Description: identifier in the subject indexing tool of the National Central Library of Florence
+   Type QIDs: Q89560413,Q62589316,Q24075706
+   Suggested Facet: _______________
+
+198. P509 - cause of death
+   Description: underlying or immediate cause of death. Underlying cause (e.g. car accident, stomach cancer) preferred. Use 'manner of death' (P1196) for broadest category, e.g. natural causes, accident, homicide, suicide
+   Type QIDs: Q115456034,Q119301849
+   Suggested Facet: _______________
+
+199. P514 - interleaves with
+   Description: stratigraphic relation in which two units overlap each other marginally
+   Type QIDs: Q22988651
+   Suggested Facet: _______________
+
+200. P516 - powered by
+   Description: equipment or engine used by the subject to convert a source or energy into mechanical energy
+   Type QIDs: Q22963600
+   Suggested Facet: _______________
+
+201. P518 - applies to part
+   Description: part, aspect, or form of the item to which the claim applies
+   Type QIDs: Q61719275,Q70564278
+   Suggested Facet: _______________
+
+202. P521 - scheduled service destination
+   Description: airport or station connected by regular direct service to the subject; for the destination of a trip see P1444
+   Type QIDs: Q22984363
+   Suggested Facet: _______________
+
+203. P523 - temporal range start
+   Description: the start of a process or appearance of a life form or geological unit relative to the geologic time scale
+   Type QIDs: Q51077473,Q22988651,Q18609040
+   Suggested Facet: _______________
+
+204. P524 - temporal range end
+   Description: the end of a process such as a geological unit or extinction of a life form relative to the geologic time scale
+   Type QIDs: Q51077473,Q18609040,Q22988651
+   Suggested Facet: _______________
+
+205. P525 - Swedish municipality code
+   Description: four-digit numeric identifier for a municipality in Sweden "kommunkod"
+   Type QIDs: Q55977691
+   Suggested Facet: _______________
+
+206. P527 - has part(s)
+   Description: part of this subject; inverse property of "part of" (P361). See also "has parts of the class" (P2670).
+   Type QIDs: Q18616576,Q70564278,Q18647515
+   Suggested Facet: _______________
+
+207. P529 - runway
+   Description: name (direction) of runway at airport/airfield/airstrip
+   Type QIDs: Q23069609,Q21099935
+   Suggested Facet: _______________
+
+208. P532 - port of registry
+   Description: ship's port of registry. This is generally painted on the ship's stern (for the "home port", see Property:P504)
+   Type QIDs: Q23779665
+   Suggested Facet: _______________
+
+209. P533 - target
+   Description: target of an attack or military operation
+   Type QIDs: Q22964785
+   Suggested Facet: _______________
+
+210. P534 - streak color
+   Description: color of a mineral or material when abraded
+   Type QIDs: Q24041781
+   Suggested Facet: _______________
+
+211. P536 - Association of Tennis Professionals player ID
+   Description: identifier for a male tennis player at the website of the Association of Tennis Professionals (ATP)
+   Type QIDs: Q107743640,Q62589316
+   Suggested Facet: _______________
+
+212. P537 - twinning
+   Description: type of twins a crystal forms
+   Type QIDs: Q24041781
+   Suggested Facet: _______________
+
+213. P538 - mineral fracture
+   Description: fracture types in a mineral
+   Type QIDs: Q24041781
+   Suggested Facet: _______________
+
+214. P539 - Museofile ID
+   Description: identifier for a museum in the Museofile database of the French ministry of culture
+   Type QIDs: Q56245078
+   Suggested Facet: _______________
+
+215. P542 - officially opened by
+   Description: person that officially opened the event or place
+   Type QIDs: Q22964785
+   Suggested Facet: _______________
+
+216. P543 - oath made by
+   Description: person(s) that made the oath at an event, like the Olympic Games
+   Type QIDs: Q28106586,Q30225619
+   Suggested Facet: _______________
+
+217. P545 - torch lit by
+   Description: person that lit the torch at an event, like the Olympic Games
+   Type QIDs: Q28106586,Q30225619
+   Suggested Facet: _______________
+
+218. P546 - docking port
+   Description: intended docking port for a spacecraft
+   Type QIDs: Q22984363
+   Suggested Facet: _______________
+
+219. P554 - website username or ID
+   Description: username or identifier on a website that the person or movement has an account on, for use as qualifier of "website account on" (P553)
+   Type QIDs: Q15720608,Q21264328,Q84764641,Q105388954
+   Suggested Facet: _______________
+
+220. P555 - doubles record
+   Description: win/lose balance for a player in doubles tournaments
+   Type QIDs: Q21099935,Q27886949,Q28106456
+   Suggested Facet: _______________
+
+221. P557 - DiseasesDB
+   Description: identifier sourced on the Diseases Database
+   Type QIDs: Q19887775,Q18614948,Q110682839
+   Suggested Facet: _______________
+
+222. P559 - terminus
+   Description: the feature (intersecting road, train station, etc.) at the end of a linear feature
+   Type QIDs: Q22984363
+   Suggested Facet: _______________
+
+223. P560 - direction
+   Description: relative direction of an entity
+   Type QIDs: Q15720608
+   Suggested Facet: _______________
+
+224. P563 - ICD-O
+   Description: International Classification of Diseases for Oncology
+   Type QIDs: Q19887775,Q18614948,Q108566342
+   Suggested Facet: _______________
+
+225. P564 - singles record
+   Description: win/lose balance for a player in singles tournaments
+   Type QIDs: Q21099935,Q27886949,Q28106456
+   Suggested Facet: _______________
+
+226. P565 - crystal habit
+   Description: the form and proportions of a crystal or mineral
+   Type QIDs: Q24041781
+   Suggested Facet: _______________
+
+227. P566 - has basionym
+   Description: the legitimate, previously published name on which a new combination or name at new rank is based
+   Type QIDs: Q18609040
+   Suggested Facet: _______________
+
+228. P567 - underlies
+   Description: stratigraphic unit that this unit lies under (i.e. the overlying unit)
+   Type QIDs: Q22988651
+   Suggested Facet: _______________
+
+229. P568 - overlies
+   Description: stratigraphic unit that this unit lies over (i.e. the underlying unit)
+   Type QIDs: Q22988651
+   Suggested Facet: _______________
+
+230. P571 - inception
+   Description: time when an entity begins to exist; for date of official opening use P1619
+   Type QIDs: Q18608993,Q18636219,Q70564278
+   Suggested Facet: _______________
+
+231. P574 - year of publication of scientific name for taxon
+   Description: year when this taxon was formally described (for animals); year when this taxon name was formally established (for plants)
+   Type QIDs: Q18636219,Q15720608,Q18609040
+   Suggested Facet: _______________
+
+232. P575 - time of discovery or invention
+   Description: date or point in time when the item was discovered or invented
+   Type QIDs: Q18636219
+   Suggested Facet: _______________
+
+233. P576 - dissolved, abolished or demolished date
+   Description: point in time at which the subject (organisation, building) ceased to exist; see "date of official closure" (P3999) for closing a facility, "service retirement" (P730) for retiring equipment, "discontinued date" (P2669) for stopping a product
+   Type QIDs: Q18636219,Q18608993,Q24239898
+   Suggested Facet: _______________
+
+234. P578 - Sandbox-TimeValue
+   Description: Sandbox property for value of type "TimeValue"
+   Type QIDs: Q18720640
+   Suggested Facet: _______________
+
+235. P579 - IMA status and/or rank
+   Description: status given to each mineral by the IMA (International Mineralogical Association)
+   Type QIDs: Q24041781
+   Suggested Facet: _______________
+
+236. P580 - start time
+   Description: time an entity begins to exist or a statement starts being valid
+   Type QIDs: Q18636219,Q115429021,Q18608993
+   Suggested Facet: _______________
+
+237. P582 - end time
+   Description: moment when an entity ceases to exist and a statement stops being entirely valid or no longer be true
+   Type QIDs: Q18636219,Q115429021
+   Suggested Facet: _______________
+
+238. P585 - point in time
+   Description: date something took place, existed or a statement was true; for providing time use the "refine date" property (P4241)
+   Type QIDs: Q18636219,Q70564278,Q122233685,Q115429021
+   Suggested Facet: _______________
+
+239. P587 - MMSI
+   Description: identifier for a maritime VHF radio user, typically a ship or an inland radio station. Format 8 or 9 digits
+   Type QIDs: Q18614948,Q23779665,Q62589320
+   Suggested Facet: _______________
+
+240. P588 - coolant
+   Description: substance used by the subject to dissipate excess thermal energy
+   Type QIDs: Q22963600
+   Suggested Facet: _______________
+
+241. P589 - point group
+   Description: crystal subdivision
+   Type QIDs: Q22988631,Q24041781
+   Suggested Facet: _______________
+
+242. P591 - EC enzyme number
+   Description: classification scheme for enzymes
+   Type QIDs: Q42415644,Q19847637,Q108566342
+   Suggested Facet: _______________
+
+243. P592 - ChEMBL ID
+   Description: identifier from a chemical database of bioactive molecules with drug-like properties
+   Type QIDs: Q19887775,Q19833835
+   Suggested Facet: _______________
+
+244. P593 - HomoloGene ID
+   Description: identifier in the HomoloGene database
+   Type QIDs: Q19887775,Q42415497
+   Suggested Facet: _______________
+
+245. P594 - Ensembl gene ID
+   Description: identifier for a gene as per the Ensembl (European Bioinformatics Institute and the Wellcome Trust Sanger Institute) database
+   Type QIDs: Q42415497
+   Suggested Facet: _______________
+
+246. P595 - Guide to Pharmacology Ligand ID
+   Description: ligand identifier of the Guide to Pharmacology database
+   Type QIDs: Q19833835,Q19887775
+   Suggested Facet: _______________
+
+247. P597 - Women's Tennis Association player ID
+   Description: identifier for a female tennis player at the website of the Women's Tennis Association (WTA)
+   Type QIDs: Q107743640,Q28649023,Q62589316
+   Suggested Facet: _______________
+
+248. P599 - International Tennis Federation player ID before 2020 (archived)
+   Description: identifier for a tennis player at the International Tennis Federation (ITF) website before 2020 (current identifier is P8618)
+   Type QIDs: Q107743640,Q62589316,Q108951239
+   Suggested Facet: _______________
+
+249. P600 - Wine AppDB ID
+   Description: identifier for an application in the AppDB of WineHQ
+   Type QIDs: Q107786704,Q115268805,Q108108779
+   Suggested Facet: _______________
+
+250. P604 - MedlinePlus ID
+   Description: health information from U.S. government agencies, and health-related organizations
+   Type QIDs: Q19847637,Q19887775
+   Suggested Facet: _______________
+
+251. P605 - NUTS code
+   Description: code for a region per NUTS (Nomenclature des unités territoriales statistiques), a geocode standard for referencing the administrative divisions of countries for statistical purposes
+   Type QIDs: Q55977691,Q135984095
+   Suggested Facet: _______________
+
+252. P606 - first flight
+   Description: date or point in time on which aircraft, rocket, or airline first flew
+   Type QIDs: Q18636219,Q24041613
+   Suggested Facet: _______________
+

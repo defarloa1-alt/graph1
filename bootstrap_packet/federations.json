@@ -1,0 +1,93 @@
+{
+  "registry": "Chrystallum Federations",
+  "version": "2026-02-19-final",
+  "count": 10,
+  "federations": [
+    {
+      "name": "Pleiades",
+      "mode": "local",
+      "type": "geographic",
+      "source": "Geographic/pleiades_places.csv",
+      "coverage": 41993,
+      "description": "Ancient place gazetteer"
+    },
+    {
+      "name": "PeriodO",
+      "mode": "local",
+      "type": "temporal",
+      "source": "Temporal/periodo-dataset.csv",
+      "coverage": 8959,
+      "description": "Temporal period authority"
+    },
+    {
+      "name": "Wikidata",
+      "mode": "hub_api",
+      "type": "universal",
+      "source": "https://query.wikidata.org/sparql",
+      "coverage": null,
+      "description": "Global knowledge graph hub - discovery and enrichment only"
+    },
+    {
+      "name": "GeoNames",
+      "mode": "hybrid",
+      "type": "geographic",
+      "source": "Via crosswalk + API",
+      "coverage": null,
+      "description": "Modern geographic names"
+    },
+    {
+      "name": "BabelNet",
+      "mode": "api",
+      "type": "linguistic",
+      "source": "External API",
+      "coverage": null,
+      "description": "Multilingual semantic network"
+    },
+    {
+      "name": "WorldCat",
+      "mode": "api",
+      "type": "bibliographic",
+      "source": "External API",
+      "coverage": null,
+      "description": "Library catalog"
+    },
+    {
+      "name": "LCSH",
+      "mode": "local",
+      "type": "conceptual",
+      "source": "LCSH/skos_subjects/",
+      "coverage": null,
+      "description": "Library of Congress Subject Headings"
+    },
+    {
+      "name": "FAST",
+      "mode": "local",
+      "type": "topical",
+      "source": "Python/fast/key/FASTTopical_parsed.csv",
+      "coverage": null,
+      "description": "Faceted Application of Subject Terminology"
+    },
+    {
+      "name": "LCC",
+      "mode": "local",
+      "type": "classification",
+      "source": "Subjects/lcc_flat.csv",
+      "coverage": null,
+      "description": "Library of Congress Classification"
+    },
+    {
+      "name": "MARC",
+      "mode": "local",
+      "type": "bibliographic",
+      "source": "MARC records",
+      "coverage": null,
+      "description": "Machine-Readable Cataloging"
+    }
+  ],
+  "rules": {
+    "local_first": true,
+    "hub_for_disambiguation_only": true,
+    "wikidata_is_hub_not_source": true
+  }
+}
+

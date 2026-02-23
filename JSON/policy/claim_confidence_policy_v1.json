@@ -1,0 +1,326 @@
+{
+  "policy_id": "claim_confidence_policy_v1",
+  "status": "proposed",
+  "date": "2026-02-18",
+  "evaluation_mode": "ordered_single_hit",
+  "tables": {
+    "source_strength": [
+      {
+        "row_id": "A1",
+        "conditions": {
+          "primary_count": ">=1",
+          "secondary_count": ">=1",
+          "tertiary_count": "any"
+        },
+        "output": {
+          "source_strength": "STRONG"
+        }
+      },
+      {
+        "row_id": "A2",
+        "conditions": {
+          "primary_count": ">=1",
+          "secondary_count": "=0",
+          "tertiary_count": "any"
+        },
+        "output": {
+          "source_strength": "MEDIUM"
+        }
+      },
+      {
+        "row_id": "A3",
+        "conditions": {
+          "primary_count": "=0",
+          "secondary_count": ">=2",
+          "tertiary_count": "any"
+        },
+        "output": {
+          "source_strength": "MEDIUM"
+        }
+      },
+      {
+        "row_id": "A4",
+        "conditions": {
+          "primary_count": "=0",
+          "secondary_count": "=1",
+          "tertiary_count": "any"
+        },
+        "output": {
+          "source_strength": "WEAK"
+        }
+      },
+      {
+        "row_id": "A5",
+        "conditions": {
+          "primary_count": "=0",
+          "secondary_count": "=0",
+          "tertiary_count": ">=1"
+        },
+        "output": {
+          "source_strength": "WEAK"
+        }
+      },
+      {
+        "row_id": "A6",
+        "conditions": {
+          "primary_count": "any",
+          "secondary_count": "any",
+          "tertiary_count": "any"
+        },
+        "output": {
+          "source_strength": "NONE"
+        },
+        "default": true
+      }
+    ],
+    "conflict_code": [
+      {
+        "row_id": "B1",
+        "conditions": {
+          "has_conflicts": true
+        },
+        "output": {
+          "conflict_code": "CONFLICT"
+        }
+      },
+      {
+        "row_id": "B2",
+        "conditions": {
+          "has_conflicts": "any"
+        },
+        "output": {
+          "conflict_code": "NO_CONFLICT"
+        },
+        "default": true
+      }
+    ],
+    "claim_confidence_profile": [
+      {
+        "row_id": "C1",
+        "conditions": {
+          "epistemic_type": "EVENT",
+          "source_strength": "STRONG",
+          "conflict_code": "NO_CONFLICT",
+          "federation_depth": ">=2"
+        },
+        "output": {
+          "min_confidence": 0.9,
+          "max_confidence": 0.98,
+          "require_debate_bridge": false,
+          "require_expert_review": false
+        }
+      },
+      {
+        "row_id": "C2",
+        "conditions": {
+          "epistemic_type": "EVENT",
+          "source_strength": "MEDIUM",
+          "conflict_code": "NO_CONFLICT",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.8,
+          "max_confidence": 0.95,
+          "require_debate_bridge": false,
+          "require_expert_review": false
+        }
+      },
+      {
+        "row_id": "C3",
+        "conditions": {
+          "epistemic_type": "EVENT",
+          "source_strength": "any",
+          "conflict_code": "CONFLICT",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.6,
+          "max_confidence": 0.85,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C4",
+        "conditions": {
+          "epistemic_type": "EVENT",
+          "source_strength": "WEAK",
+          "conflict_code": "NO_CONFLICT",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.7,
+          "max_confidence": 0.9,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C5",
+        "conditions": {
+          "epistemic_type": "EVENT",
+          "source_strength": "NONE",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.5,
+          "max_confidence": 0.75,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C6",
+        "conditions": {
+          "epistemic_type": "ACTOR_CAUSAL",
+          "source_strength": "STRONG",
+          "conflict_code": "NO_CONFLICT",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.75,
+          "max_confidence": 0.95,
+          "require_debate_bridge": true,
+          "require_expert_review": false
+        }
+      },
+      {
+        "row_id": "C7",
+        "conditions": {
+          "epistemic_type": "ACTOR_CAUSAL",
+          "source_strength": "MEDIUM",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.7,
+          "max_confidence": 0.9,
+          "require_debate_bridge": true,
+          "require_expert_review": false
+        }
+      },
+      {
+        "row_id": "C8",
+        "conditions": {
+          "epistemic_type": "ACTOR_CAUSAL",
+          "source_strength": "WEAK",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.6,
+          "max_confidence": 0.8,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C9",
+        "conditions": {
+          "epistemic_type": "ACTOR_CAUSAL",
+          "source_strength": "NONE",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.55,
+          "max_confidence": 0.75,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C10",
+        "conditions": {
+          "epistemic_type": "PATTERN_THEORY",
+          "source_strength": "STRONG",
+          "conflict_code": "NO_CONFLICT",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.7,
+          "max_confidence": 0.9,
+          "require_debate_bridge": true,
+          "require_expert_review": false
+        }
+      },
+      {
+        "row_id": "C11",
+        "conditions": {
+          "epistemic_type": "PATTERN_THEORY",
+          "source_strength": "MEDIUM",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.6,
+          "max_confidence": 0.8,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C12",
+        "conditions": {
+          "epistemic_type": "PATTERN_THEORY",
+          "source_strength": "WEAK",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.55,
+          "max_confidence": 0.75,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C13",
+        "conditions": {
+          "epistemic_type": "PATTERN_THEORY",
+          "source_strength": "NONE",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.55,
+          "max_confidence": 0.7,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C14",
+        "conditions": {
+          "epistemic_type": "COUNTERFACTUAL",
+          "source_strength": "any",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.5,
+          "max_confidence": 0.7,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        }
+      },
+      {
+        "row_id": "C15",
+        "conditions": {
+          "epistemic_type": "any",
+          "source_strength": "any",
+          "conflict_code": "any",
+          "federation_depth": "any"
+        },
+        "output": {
+          "min_confidence": 0.5,
+          "max_confidence": 0.75,
+          "require_debate_bridge": true,
+          "require_expert_review": true
+        },
+        "default": true
+      }
+    ]
+  }
+}

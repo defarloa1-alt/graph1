@@ -1,0 +1,227 @@
+#TrainingResources
+```yaml
+# Facet Training Resources Registry
+# Purpose: Bootstrap SFA training with curated discipline-specific resources
+# Authority: Maps to Step 5 Discipline Root Detection (discipline=true flags)
+# Version: 2.0 - Enhanced with priority & access metadata (2026-02-16)
+
+facet_seed_resources:
+  POLITICAL:
+    - name: "Stanford Encyclopedia of Philosophy – Political Philosophy"
+      role: "discipline_reference"
+      priority: 1  # Tier 1: Standard discipline reference
+      access: "open"
+      url: "https://plato.stanford.edu/entries/political/"
+      notes: "Philosophical foundations; treat as discipline root for POLITICAL facet"
+    - name: "Historical Abstracts (political history segment)"
+      role: "bibliographic_index"
+      priority: 1  # Tier 1: Comprehensive literature filtering
+      access: "subscription"
+      url: "https://libguides.lincoln.edu/oer/hpsp"  # access via library
+      notes: "Broad coverage; use for BROADER_THAN hierarchy seeding"
+  MILITARY:
+    - name: "Norwich University – Military History Websites"
+      role: "curated_portal"
+      priority: 2  # Tier 2: Curated secondary sources
+      access: "open"
+      url: "https://guides.norwich.edu/militaryhistory/websites"
+      notes: "Military-focused portal; discipline root candidate"
+    - name: "Historical Abstracts (military history)"
+      role: "bibliographic_index"
+      priority: 1  # Tier 1: Comprehensive index
+      access: "subscription"
+      url: "https://libguides.lincoln.edu/oer/hpsp"
+      notes: "Standard reference for military history bibliography"
+  ECONOMIC:
+    - name: "Economic History Society – Online Resources"
+      role: "discipline_portal"
+      priority: 1  # Tier 1: Discipline-defining organization
+      access: "open"
+      url: "https://ehs.org.uk/society/resources/online-resources/"
+      notes: "Primary discipline anchor; datasets + bibliography; discipline root"
+    - name: "VoxEU – Economic History & Macrohistory (via EHS links)"
+      role: "research_commentary"
+      priority: 2  # Tier 2: Scholarly commentary
+      access: "open"
+      url: "https://ehs.org.uk/society/resources/online-resources/"
+      notes: "Contextual analysis; use for narrative patterns"
+  CULTURAL:
+    - name: "Primary Sources in U.S. Cultural History – Robin Bernstein"
+      role: "primary_source_gateway_pattern"
+      priority: 2  # Tier 2: Exemplary methodology
+      access: "open"
+      url: "https://robinbernstein2.scholars.harvard.edu/pages/primary-sources-us-cultural-history"
+      notes: "Narrative structure template for cultural analysis"
+    - name: "Historical Abstracts (cultural history)"
+      role: "bibliographic_index"
+      priority: 1  # Tier 1: Standard bibliography
+      access: "subscription"
+      url: "https://libguides.lincoln.edu/oer/hpsp"
+      notes: "Comprehensive cultural history literature"
+  RELIGIOUS:
+    - name: "Theology and Religion Online (Bloomsbury)"
+      role: "reference_collection"
+      priority: 1  # Tier 1: Comprehensive reference
+      access: "subscription"
+      url: "https://www.bloomsbury.com/us/discover/bloomsbury-digital-resources/products/theology-and-religion-online/"
+      notes: "Standard theological reference; discipline root"
+    - name: "Oxford Reference – Religion/Theology (via library)"
+      role: "reference_collection"
+      priority: 1  # Tier 1: Authoritative reference
+      access: "subscription"
+      url: "https://library.cod.edu/archaeology/reference"
+      notes: "Oxford standard reference suite"
+  SOCIAL:
+    - name: "Economic History Society – labour/demography resources"
+      role: "data_and_bibliography"
+      priority: 1  # Tier 1: Data + bibliography
+      access: "open"
+      url: "https://ehs.org.uk/society/resources/online-resources/"
+      notes: "Labour history data; quantitative grounding"
+    - name: "Zinn Education Project – Teaching People's History"
+      role: "narrative_case_corpus"
+      priority: 2  # Tier 2: Pedagogical narratives
+      access: "open"
+      url: "https://www.zinnedproject.org"
+      notes: "Case studies for social history methodology"
+  DEMOGRAPHIC:
+    - name: "Economic History Society – demographic datasets"
+      role: "quantitative_data_portal"
+      priority: 1  # Tier 1: Empirical data source
+      access: "open"
+      url: "https://ehs.org.uk/society/resources/online-resources/"
+      notes: "Quantitative demographic data; discipline root for demographic analysis"
+  INTELLECTUAL:
+    - name: "Stanford Encyclopedia of Philosophy – HPS & related"
+      role: "discipline_reference"
+      priority: 1  # Tier 1: Standard philosophical reference
+      access: "open"
+      url: "https://plato.stanford.edu"
+      notes: "Philosophical foundations for intellectual history; discipline root"
+    - name: "History & Philosophy of Science – Stanford OHS"
+      role: "syllabus_reading_spine"
+      priority: 2  # Tier 2: Curated syllabi
+      access: "open"
+      url: "https://onlinehighschool.stanford.edu/courses/2026/school-year/ohsc0"
+      notes: "Pedagogical structure for HPS training"
+  SCIENTIFIC:
+    - name: "Stanford Encyclopedia of Philosophy – Science entries"
+      role: "conceptual_reference"
+      priority: 1  # Tier 1: Conceptual foundations
+      access: "open"
+      url: "https://plato.stanford.edu"
+      notes: "Philosophy of science grounding for scientific history"
+  TECHNOLOGICAL:
+    - name: "Economic History Society – industrialization/technology"
+      role: "discipline_portal"
+      priority: 1  # Tier 1: Standard discipline resource
+      access: "open"
+      url: "https://ehs.org.uk/society/resources/online-resources/"
+      notes: "Industrial/technological history; discipline root"
+    - name: "Historical Abstracts (history of technology)"
+      role: "bibliographic_index"
+      priority: 1  # Tier 1: Comprehensive bibliography
+      access: "subscription"
+      url: "https://libguides.lincoln.edu/oer/hpsp"
+      notes: "Technology history literature index"
+  LINGUISTIC:
+    - name: "Library of Congress – Linguistics Electronic Resources"
+      role: "gateway_guide"
+      priority: 1  # Tier 1: Library standard
+      access: "open"
+      url: "https://guides.loc.gov/linguistics/electronic-resources"
+      notes: "LOC-curated linguistics portal; discipline root"
+    - name: "Linguistic Bibliography Online"
+      role: "discipline_index"
+      priority: 1  # Tier 1: Comprehensive index
+      access: "subscription"
+      url: "https://guides.loc.gov/linguistics/electronic-resources"
+      notes: "Standard linguistics bibliography"
+  GEOGRAPHIC:
+    - name: "LOC – Environmental History (maps & place framing)"
+      role: "teaching_unit_pattern"
+      priority: 2  # Tier 2: Pedagogical pattern
+      access: "open"
+      url: "https://www.loc.gov/classroom-materials/explorations-in-american-environmental-history-local-and-historical-perspectives/"
+      notes: "Place-based teaching methodology for geographic analysis"
+  ENVIRONMENTAL:
+    - name: "LOC – Environmental History Classroom Materials"
+      role: "curated_primary_secondary"
+      priority: 2  # Tier 2: Curated teaching resources
+      access: "open"
+      url: "https://www.loc.gov/classroom-materials/explorations-in-american-environmental-history-local-and-historical-perspectives/"
+      notes: "Primary/secondary narrative patterns for environmental history"
+    - name: "Economic History Society – climate/resource-related"
+      role: "data_portal"
+      priority: 1  # Tier 1: Empirical data
+      access: "open"
+      url: "https://ehs.org.uk/society/resources/online-resources/"
+      notes: "Quantitative environmental/climate data; discipline root"
+  ARCHAEOLOGICAL:
+    - name: "Archaeology: Reference Materials – COD Library"
+      role: "reference_guide"
+      priority: 2  # Tier 2: Reference guide
+      access: "open"
+      url: "https://library.cod.edu/archaeology/reference"
+      notes: "Curated archaeology reference portal"
+    - name: "Oxford Encyclopedia/Companion to Archaeology (via guide)"
+      role: "encyclopedia_collection"
+      priority: 1  # Tier 1: Standard reference
+      access: "subscription"
+      url: "https://library.cod.edu/archaeology/reference"
+      notes: "Comprehensive archaeology reference; discipline root"
+  DIPLOMATIC:
+    - name: "Historical Abstracts – diplomatic history"
+      role: "bibliographic_index"
+      priority: 1  # Tier 1: Standard bibliography
+      access: "subscription"
+      url: "https://libguides.lincoln.edu/oer/hpsp"
+      notes: "Diplomatic history literature index; discipline root"
+    - name: "Norwich Military History guide (treaties/foreign policy links)"
+      role: "curated_portal"
+      priority: 2  # Tier 2: Curated secondary
+      access: "open"
+      url: "https://guides.norwich.edu/militaryhistory/websites"
+      notes: "Military-diplomatic overlap resources"
+  ARTISTIC:
+    - name: "Oxford Art Online / Grove Art (via institution)"
+      role: "art_architecture_reference"
+      priority: 1  # Tier 1: Standard art reference
+      access: "subscription"
+      url: "https://www.oxfordartonline.com"  # typically proxied
+      notes: "Comprehensive art/architecture reference; discipline root"
+    - name: "Primary Sources in Cultural History – pattern for visual culture"
+      role: "primary_source_pattern"
+      priority: 2  # Tier 2: Methodological pattern
+      access: "open"
+      url: "https://robinbernstein2.scholars.harvard.edu/pages/primary-sources-us-cultural-history"
+      notes: "Visual culture primary source methodology"
+  COMMUNICATION:
+    - name: "Zinn Education Project – rhetoric & narrative framing"
+      role: "case_corpus"
+      priority: 2  # Tier 2: Pedagogical case studies
+      access: "open"
+      url: "https://www.zinnedproject.org"
+      notes: "Narrative rhetoric case studies for communication analysis"
+    - name: "Cultural/political primary-source portals (pattern)"
+      role: "primary_source_pattern"
+      priority: 2  # Tier 2: Methodological pattern
+      access: "open"
+      url: "https://robinbernstein2.scholars.harvard.edu/pages/primary-sources-us-cultural-history"
+      notes: "Communication/rhetoric primary source methodology"
+
+# Usage Notes:
+# - Priority 1 (Tier 1): Standard discipline references; mark as discipline=true in Neo4j
+# - Priority 2 (Tier 2): Curated secondary sources; use for methodology/narrative patterns
+# - Access: "open" (freely available) vs "subscription" (institutional access required)
+# - Role: Maps to Step 5 SFA training initialization strategy
+# - Notes: Contextual guidance for SFA training bootstrap
+
+# Integration with Step 5 Discipline Root Detection:
+# 1. Priority 1 resources → Create SubjectConcept nodes with discipline=true flag
+# 2. SFA initialization queries: WHERE discipline=true AND facet=TARGET_FACET
+# 3. BROADER_THAN hierarchy seeded from these discipline roots
+# 4. Priority 2 resources used for narrative/methodological patterns (not hierarchy roots)
+```
+
+You can add fields like `priority`, `access` (`open` vs `subscription`), or `notes` if you want SFAs to treat, say, EHS and Historical Abstracts as Tier‑1 discipline anchors and the more didactic portals as narrative examples. [libguides.lincoln](https://libguides.lincoln.edu/oer/hpsp)

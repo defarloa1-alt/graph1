@@ -1,0 +1,6500 @@
+{
+  "generated_at": "2026-02-14T15:05:14.337405+00:00",
+  "seed_qid": "Q17167",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 1000,
+    "max_sources_per_seed": 300,
+    "max_new_nodes_per_seed": 150,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 25,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 278,
+    "candidate_sources_before_budget": 227,
+    "candidate_sources_considered": 227,
+    "accepted_before_node_budget": 225,
+    "accepted": 150,
+    "rejected": 77,
+    "entities_profiled": 150,
+    "frontier_eligible": 150,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.00881057268722467,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "no_p31": 2,
+    "node_budget_exceeded": 75
+  },
+  "datatype_profile_summary": {
+    "statement_count": 2565,
+    "missing_datavalue_statement_count": 2,
+    "with_qualifiers": 359,
+    "with_references": 795,
+    "qualifier_rate": 0.13996101364522417,
+    "reference_rate": 0.30994152046783624,
+    "datatype_counts": {
+      "wikibase-item": 1676,
+      "globe-coordinate": 31,
+      "monolingualtext": 38,
+      "string": 35,
+      "url": 10,
+      "time": 158,
+      "external-id": 538,
+      "quantity": 22,
+      "commonsMedia": 57
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 1675,
+      "globecoordinate": 31,
+      "monolingualtext": 38,
+      "string": 640,
+      "time": 157,
+      "quantity": 22,
+      "": 2
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 1675,
+      "globe-coordinate|globecoordinate": 31,
+      "monolingualtext|monolingualtext": 38,
+      "string|string": 35,
+      "url|string": 10,
+      "time|time": 157,
+      "external-id|string": 538,
+      "quantity|quantity": 22,
+      "commonsMedia|string": 57,
+      "wikibase-item|": 1,
+      "time|": 1
+    },
+    "route_counts": {
+      "edge_candidate": 1675,
+      "geo_attribute": 31,
+      "node_property": 83,
+      "temporal_anchor": 144,
+      "federation_id": 538,
+      "measured_attribute": 22,
+      "media_reference": 57,
+      "temporal_uncertain": 13,
+      "quarantine_missing_datavalue": 2
+    },
+    "rank_counts": {
+      "normal": 2548,
+      "preferred": 9,
+      "deprecated": 8
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 2
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 150,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q106113087",
+      "label": "Master of Arts in Ancient Greek and Roman Studies (Brandeis University)",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q180958",
+        "Q43229",
+        "Q84771819",
+        "Q98323635"
+      ],
+      "matched_classes": [
+        "Q180958",
+        "Q43229",
+        "Q84771819",
+        "Q98323635"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 1,
+        "with_references": 7,
+        "qualifier_rate": 0.041666666666666664,
+        "reference_rate": 0.2916666666666667,
+        "route_counts": {
+          "edge_candidate": 20,
+          "geo_attribute": 1,
+          "node_property": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122746922",
+      "label": "Monarchische Herrschaft im Altertum",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1238720",
+        "Q1711593",
+        "Q3331189",
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q1238720",
+        "Q1711593",
+        "Q3331189",
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "statement_profile": {
+        "statement_count": 42,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.023809523809523808,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 36,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "federation_id": 3,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.047619047619047616,
+        "edge_candidate_count": 36,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q15078648",
+      "label": "ancient drachma",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q13400856",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q113813711",
+        "Q13400856",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "statement_profile": {
+        "statement_count": 29,
+        "with_qualifiers": 3,
+        "with_references": 4,
+        "qualifier_rate": 0.10344827586206896,
+        "reference_rate": 0.13793103448275862,
+        "route_counts": {
+          "edge_candidate": 16,
+          "federation_id": 9,
+          "media_reference": 1,
+          "measured_attribute": 1,
+          "temporal_uncertain": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13793103448275862,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q106841885",
+      "label": "half-stater",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q113813711",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 8,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122861593",
+      "label": "Carsten Hjort Lange: From Hannibal to Sulla: The Birth of Civil War in Republican Rome. Berlin: De Gruyter 2024",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q193495",
+        "Q3331189",
+        "Q571"
+      ],
+      "matched_classes": [
+        "Q193495",
+        "Q3331189",
+        "Q571"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "edge_candidate": 13,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1249076",
+      "label": "quadrans",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q113813711",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.041666666666666664,
+        "route_counts": {
+          "node_property": 2,
+          "federation_id": 9,
+          "edge_candidate": 10,
+          "measured_attribute": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.20833333333333334,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q476078",
+      "label": "aureus",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q7048891",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q7048891",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 3,
+        "with_references": 4,
+        "qualifier_rate": 0.0967741935483871,
+        "reference_rate": 0.12903225806451613,
+        "route_counts": {
+          "node_property": 2,
+          "federation_id": 17,
+          "edge_candidate": 9,
+          "media_reference": 1,
+          "temporal_uncertain": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16129032258064516,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q829397",
+      "label": "bes",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q3647172",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q3647172",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "federation_id": 4,
+          "edge_candidate": 8,
+          "measured_attribute": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137921341",
+      "label": "Siege of Nola",
+      "properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q20102510",
+      "label": "Battle of Cartagena",
+      "properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.08695652173913043,
+        "reference_rate": 0.043478260869565216,
+        "route_counts": {
+          "edge_candidate": 20,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.043478260869565216,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q233402",
+      "label": "Battle of Nola",
+      "properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 2,
+        "with_references": 3,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2815472",
+      "label": "Late Roman Republic",
+      "properties": [
+        "P17",
+        "P361"
+      ],
+      "p31": [
+        "Q11514315"
+      ],
+      "matched_classes": [
+        "Q11514315"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2839628",
+      "label": "Early Roman Republic",
+      "properties": [
+        "P17",
+        "P361"
+      ],
+      "p31": [
+        "Q11514315"
+      ],
+      "matched_classes": [
+        "Q11514315"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6106068",
+      "label": "Middle Roman Republic",
+      "properties": [
+        "P17",
+        "P361"
+      ],
+      "p31": [
+        "Q11514315"
+      ],
+      "matched_classes": [
+        "Q11514315"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6503456",
+      "label": "Law of majestas",
+      "properties": [
+        "P1001",
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "matched_classes": [
+        "Q820655"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 9
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q9172749",
+      "label": "Battle of Apamea",
+      "properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.375,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11948139",
+      "label": "Seleuceia in Cilicia",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q15661340",
+        "Q839954"
+      ],
+      "matched_classes": [
+        "Q15661340",
+        "Q839954"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 10,
+          "federation_id": 6,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05555555555555555,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122732170",
+      "label": "stasis.hypotheses.org",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q30849",
+        "Q472328"
+      ],
+      "matched_classes": [
+        "Q30849",
+        "Q472328"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 40,
+        "with_qualifiers": 5,
+        "with_references": 4,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "edge_candidate": 32,
+          "node_property": 4,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 32,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122746681",
+      "label": "Civil War in Ancient Greece and Rome: Contexts of Disintegration and Reintegration, ed. Henning Börm, Marco Mattheis, Johannes Wienand. Stuttgart: Steiner 2016",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1711593",
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q1711593",
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.10526315789473684,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 31,
+          "node_property": 3,
+          "temporal_anchor": 1,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07894736842105263,
+        "edge_candidate_count": 31,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1228632",
+      "label": "victoriatus",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "federation_id": 7,
+          "edge_candidate": 3,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123039428",
+      "label": "Les històries romanes",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q125309905",
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q125309905",
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q123039445",
+      "label": "Livre de Tytus Livius de hystoire roumaine",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q125309905",
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q125309905",
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1249093",
+      "label": "semis",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "federation_id": 9,
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571642",
+      "label": "20-As",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571668",
+      "label": "40-As",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571682",
+      "label": "60-As",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130343589",
+      "label": "Res Publica",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q11688446",
+        "Q207174"
+      ],
+      "matched_classes": [
+        "Q11688446",
+        "Q207174"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137219487",
+      "label": "Falling Sky: The Gallic Revolt Against Caesar",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q131436",
+        "Q1501543"
+      ],
+      "matched_classes": [
+        "Q131436",
+        "Q1501543"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 2,
+        "with_references": 9,
+        "qualifier_rate": 0.15384615384615385,
+        "reference_rate": 0.6923076923076923,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1422780",
+      "label": "nexum",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q2135465",
+        "Q93288"
+      ],
+      "matched_classes": [
+        "Q2135465",
+        "Q93288"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 4,
+        "with_references": 2,
+        "qualifier_rate": 0.4,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "federation_id": 3,
+          "edge_candidate": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q181733",
+      "label": "Praetorian Guard",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q176799",
+        "Q851436"
+      ],
+      "matched_classes": [
+        "Q176799",
+        "Q851436"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 44,
+        "with_qualifiers": 13,
+        "with_references": 5,
+        "qualifier_rate": 0.29545454545454547,
+        "reference_rate": 0.11363636363636363,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 15,
+          "edge_candidate": 27,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.045454545454545456,
+        "edge_candidate_count": 27,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q188322",
+      "label": "Ebro Treaty",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q131569",
+        "Q4157074"
+      ],
+      "matched_classes": [
+        "Q131569",
+        "Q4157074"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 3,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q201038",
+      "label": "Roman Kingdom",
+      "properties": [
+        "P1366"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q3024240"
+      ],
+      "matched_classes": [
+        "Q11514315",
+        "Q3024240"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 44,
+        "with_qualifiers": 6,
+        "with_references": 8,
+        "qualifier_rate": 0.13636363636363635,
+        "reference_rate": 0.18181818181818182,
+        "route_counts": {
+          "node_property": 2,
+          "edge_candidate": 27,
+          "federation_id": 9,
+          "media_reference": 1,
+          "temporal_anchor": 4,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 27,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2123159",
+      "label": "half aureus",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.4166666666666667,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 5,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2334699",
+      "label": "Antony's Parthian War",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198",
+        "Q831663"
+      ],
+      "matched_classes": [
+        "Q198",
+        "Q831663"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.38461538461538464,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 10,
+          "media_reference": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3256634",
+      "label": "litra",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "federation_id": 7,
+          "node_property": 1,
+          "edge_candidate": 8
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q486761",
+      "label": "classical antiquity",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q1292119"
+      ],
+      "matched_classes": [
+        "Q11514315",
+        "Q1292119"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 86,
+        "with_qualifiers": 25,
+        "with_references": 17,
+        "qualifier_rate": 0.29069767441860467,
+        "reference_rate": 0.19767441860465115,
+        "route_counts": {
+          "federation_id": 51,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "temporal_uncertain": 2,
+          "edge_candidate": 29,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05813953488372093,
+        "edge_candidate_count": 29,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q548953",
+      "label": "sextans",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 4,
+        "with_references": 3,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.13636363636363635,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 8,
+          "edge_candidate": 9,
+          "measured_attribute": 3,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.22727272727272727,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q663270",
+      "label": "Semuncia",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "node_property": 2,
+          "federation_id": 5,
+          "edge_candidate": 9,
+          "media_reference": 1,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q671292",
+      "label": "quartuncia",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q3647172",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q3647172",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q815183",
+      "label": "Siege of Numantia",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055",
+        "Q3817498"
+      ],
+      "matched_classes": [
+        "Q188055",
+        "Q3817498"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.23076923076923078,
+        "reference_rate": 0.38461538461538464,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 7,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23076923076923078,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q104834716",
+      "label": "Battle near Osca",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.375,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1055755",
+      "label": "Battle of Ilipa",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 6,
+        "with_references": 2,
+        "qualifier_rate": 0.42857142857142855,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "federation_id": 3,
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21428571428571427,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107013169",
+      "label": "religion in ancient Rome",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q66374263"
+      ],
+      "matched_classes": [
+        "Q66374263"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.18181818181818182,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107342906",
+      "label": "Roman conquest of Gallaecia",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "matched_classes": [
+        "Q1361229"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107468361",
+      "label": "Alyson Maureen Roy",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 11,
+        "with_references": 9,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.4090909090909091,
+        "route_counts": {
+          "edge_candidate": 21,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.045454545454545456,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q109377210",
+      "label": "Siege of Antioch",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q110572348",
+      "label": "Cicero And The Fall Of The Roman Republic",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.15,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 1,
+          "node_property": 3,
+          "measured_attribute": 1,
+          "media_reference": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q111666120",
+      "label": "Extra: Dr. Emma Southon on murder in ancient Rome",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q61855877"
+      ],
+      "matched_classes": [
+        "Q61855877"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.05555555555555555,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "edge_candidate": 14,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q111666121",
+      "label": "Der Senat, der über Leichen ging",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q61855877"
+      ],
+      "matched_classes": [
+        "Q61855877"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.10526315789473684,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "node_property": 3,
+          "edge_candidate": 14,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21052631578947367,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112998934",
+      "label": "Template:Country data Roman Republic",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q108783631"
+      ],
+      "matched_classes": [
+        "Q108783631"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 2,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11320126",
+      "label": "didrachm",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.35714285714285715,
+        "route_counts": {
+          "federation_id": 7,
+          "edge_candidate": 6,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113842043",
+      "label": "Thibaud Lanfranchi",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 48,
+        "with_qualifiers": 7,
+        "with_references": 24,
+        "qualifier_rate": 0.14583333333333334,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 21,
+          "federation_id": 25,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11688220",
+      "label": "Battle of Petelia",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.4444444444444444,
+        "route_counts": {
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "federation_id": 2,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1184835",
+      "label": "Battle of Numistro",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11905280",
+      "label": "Q11905280",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q213283"
+      ],
+      "matched_classes": [
+        "Q213283"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11908712",
+      "label": "Batlle of Emporion",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11908765",
+      "label": "Battle of Rhode",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11945466",
+      "label": "Iberian revolt",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q6107280"
+      ],
+      "matched_classes": [
+        "Q6107280"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.3,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "media_reference": 2,
+          "federation_id": 1,
+          "edge_candidate": 5,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q120241324",
+      "label": "Changes that accompany the political transition in the ancient Greek polis: from non-citizens to citizens",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.17391304347826086,
+        "route_counts": {
+          "edge_candidate": 23
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 23,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1202928",
+      "label": "Lusitanian War",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q104212151"
+      ],
+      "matched_classes": [
+        "Q104212151"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 3,
+        "with_references": 3,
+        "qualifier_rate": 0.2727272727272727,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1223584",
+      "label": "Gaius Marcius Censorinus",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 36,
+        "with_qualifiers": 8,
+        "with_references": 12,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 26,
+          "temporal_anchor": 1,
+          "federation_id": 7,
+          "temporal_uncertain": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05555555555555555,
+        "edge_candidate_count": 26,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12253460",
+      "label": "Battle of Andagoste",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.09090909090909091,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1227220",
+      "label": "Titus Quinctius Crispinus Sulpicianus",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 1,
+        "with_references": 10,
+        "qualifier_rate": 0.04,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "edge_candidate": 15,
+          "federation_id": 6,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.12,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q122751016",
+      "label": "Stefan Rebenich, Johannes Wienand: Monarchische Herrschaft im Altertum. Zugänge und Perspektiven, in: Monarchische Herrschaft im Altertum, ed. S. Rebenich in cooperation with J. Wienand, Berlin: De Gruyter 2017, 1-41",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q21481766"
+      ],
+      "matched_classes": [
+        "Q21481766"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 18,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13043478260869565,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122764589",
+      "label": "Internal War. Society: Social Order and Political Conflict in Antiquity",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1298668"
+      ],
+      "matched_classes": [
+        "Q1298668"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 34,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 29,
+          "temporal_anchor": 2,
+          "node_property": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.058823529411764705,
+        "edge_candidate_count": 29,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122865066",
+      "label": "Johannes Wienand: Stasis. An Academic Blog on Ancient Civil War, in: Stasis – Avenues to Ancient Civil War, October 9, 2023, doi: 10.59350/377m7-vkt78",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q17928402"
+      ],
+      "matched_classes": [
+        "Q17928402"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 15,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10526315789473684,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122918768",
+      "label": "Pompey's eastern settlement",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q2520735"
+      ],
+      "matched_classes": [
+        "Q2520735"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123002123",
+      "label": "Carsten Hjort Lange: Civil War Seen Through the Lens of Ancient History, in: Stasis – Avenues to Ancient Civil War, October 10, 2023, doi: 10.59350/5b9hv-1xz57",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q17928402"
+      ],
+      "matched_classes": [
+        "Q17928402"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 14,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123116313",
+      "label": "History program for Italian primary school",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 136,
+        "with_qualifiers": 0,
+        "with_references": 135,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.9926470588235294,
+        "route_counts": {
+          "edge_candidate": 135,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.007352941176470588,
+        "edge_candidate_count": 135,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123157468",
+      "label": "History program for Italian junior high school",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 207,
+        "with_qualifiers": 0,
+        "with_references": 206,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.9951690821256038,
+        "route_counts": {
+          "edge_candidate": 206,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.004830917874396135,
+        "edge_candidate_count": 206,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123245395",
+      "label": "Imperatores victi",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 13
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123310379",
+      "label": "Siege of Bassania",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1234467",
+      "label": "dodrans",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.7,
+        "route_counts": {
+          "federation_id": 3,
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12356285",
+      "label": "Latin War",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "matched_classes": [
+        "Q198"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 3,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q124714225",
+      "label": "Battle of Placentia",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q124798662",
+      "label": "Q124798662",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q56061"
+      ],
+      "matched_classes": [
+        "Q56061"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 2,
+          "temporal_anchor": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1249059",
+      "label": "triens",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.13043478260869565,
+        "reference_rate": 0.21739130434782608,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 10,
+          "edge_candidate": 7,
+          "measured_attribute": 4,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2608695652173913,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q104212151"
+      ],
+      "matched_classes": [
+        "Q104212151"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 61,
+        "with_qualifiers": 22,
+        "with_references": 19,
+        "qualifier_rate": 0.36065573770491804,
+        "reference_rate": 0.3114754098360656,
+        "route_counts": {
+          "edge_candidate": 22,
+          "node_property": 1,
+          "federation_id": 35,
+          "temporal_anchor": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03278688524590164,
+        "edge_candidate_count": 22,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125727661",
+      "label": "March on Rome",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q45382"
+      ],
+      "matched_classes": [
+        "Q45382"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12594116",
+      "label": "political violence in the late Roman Republic",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q115857096"
+      ],
+      "matched_classes": [
+        "Q115857096"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1260622",
+      "label": "Battle of the Axona",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 6,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 1,
+          "edge_candidate": 8,
+          "media_reference": 2,
+          "temporal_anchor": 1,
+          "geo_attribute": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q127525629",
+      "label": "Romerrikets historie - republikkens vekst og fall",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1238720"
+      ],
+      "matched_classes": [
+        "Q1238720"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q127606735",
+      "label": "Conquest of Conistorgis",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "matched_classes": [
+        "Q1361229"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129059100",
+      "label": "The scene of the Apennine Peninsula in the Pyrrhic War",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "matched_classes": [
+        "Q831663"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 12
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571751",
+      "label": "denarius serratus",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571920",
+      "label": "double-litra",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571942",
+      "label": "double victoriatus",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.75,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571969",
+      "label": "half victoriatus",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8571428571428571,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q129571980",
+      "label": "half-litra",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130318424",
+      "label": "Conquest of Oxthracae",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "matched_classes": [
+        "Q1361229"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130329121",
+      "label": "Siege of Ocile",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130329781",
+      "label": "Siege of Pallantia",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130329807",
+      "label": "Siege of the Blastophoenicians",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130348963",
+      "label": "Raid of Carpetania",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q476807"
+      ],
+      "matched_classes": [
+        "Q476807"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130534948",
+      "label": "Siege of Acerra",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130857859",
+      "label": "Battle of Delos",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131686739",
+      "label": "Battle of the Tagus",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q132452152",
+      "label": "Siege of Aiginion",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q132795814",
+      "label": "Marianne Coudry",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 5,
+        "with_references": 31,
+        "qualifier_rate": 0.13157894736842105,
+        "reference_rate": 0.8157894736842105,
+        "route_counts": {
+          "edge_candidate": 15,
+          "temporal_anchor": 2,
+          "federation_id": 20,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.02631578947368421,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q133480177",
+      "label": "Battle of Uskana",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1337302",
+      "label": "Hannibal's crossing of the Alps",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q645883"
+      ],
+      "matched_classes": [
+        "Q645883"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 3,
+        "with_references": 4,
+        "qualifier_rate": 0.21428571428571427,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 3,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21428571428571427,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q133737719",
+      "label": "Michel Humm",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 33,
+        "with_qualifiers": 3,
+        "with_references": 27,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.8181818181818182,
+        "route_counts": {
+          "edge_candidate": 17,
+          "federation_id": 15,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134836736",
+      "label": "Roman invasion of Africa",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q467011"
+      ],
+      "matched_classes": [
+        "Q467011"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.4,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134878258",
+      "label": "Q134878258",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.75,
+        "route_counts": {
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136716728",
+      "label": "Demetrius's Winter offensive in Southern Illyria",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q2001676"
+      ],
+      "matched_classes": [
+        "Q2001676"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137217360",
+      "label": "Bellum Dardanicum",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "matched_classes": [
+        "Q198"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137719648",
+      "label": "Roman–Dardanian wars",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q104212151"
+      ],
+      "matched_classes": [
+        "Q104212151"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137972719",
+      "label": "Siege of Carthago Nova",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 1,
+        "with_references": 6,
+        "qualifier_rate": 0.058823529411764705,
+        "reference_rate": 0.35294117647058826,
+        "route_counts": {
+          "edge_candidate": 16,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1500211",
+      "label": "Battle of Cissa",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 6,
+        "with_references": 3,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1503611",
+      "label": "Numantine War",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "matched_classes": [
+        "Q198"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 6,
+        "with_references": 3,
+        "qualifier_rate": 0.3,
+        "reference_rate": 0.15,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 12,
+          "media_reference": 3,
+          "temporal_anchor": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q15282014",
+      "label": "Lex Iulia de civitate",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "matched_classes": [
+        "Q820655"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q15651483",
+      "label": "First secessio plebis in 494 BC",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q845114"
+      ],
+      "matched_classes": [
+        "Q845114"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1591145",
+      "label": "Battle of New Carthage",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 3,
+        "with_references": 3,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "media_reference": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1660324",
+      "label": "Imperium",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 1,
+        "with_references": 7,
+        "qualifier_rate": 0.037037037037037035,
+        "reference_rate": 0.25925925925925924,
+        "route_counts": {
+          "edge_candidate": 14,
+          "federation_id": 11,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.037037037037037035,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16683525",
+      "label": "Siege of Mytistraton",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17277303",
+      "label": "Battle of Halys",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q3024240"
+      ],
+      "matched_classes": [
+        "Q3024240"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 148,
+        "with_qualifiers": 40,
+        "with_references": 34,
+        "qualifier_rate": 0.2702702702702703,
+        "reference_rate": 0.22972972972972974,
+        "route_counts": {
+          "node_property": 15,
+          "edge_candidate": 46,
+          "federation_id": 78,
+          "media_reference": 4,
+          "measured_attribute": 1,
+          "temporal_anchor": 3,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14189189189189189,
+        "edge_candidate_count": 46,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1812526",
+      "label": "Constitutional reforms of Lucius Cornelius Sulla",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "matched_classes": [
+        "Q820655"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q18408280",
+      "label": "Pontic War",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "matched_classes": [
+        "Q198"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.2727272727272727,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q18649467",
+      "label": "Battle of Orongis",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q18649505",
+      "label": "Battle of Munda",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q18667552",
+      "label": "Battle of Campi Veteres",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1888820",
+      "label": "culture of the Roman Republic",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q19958368"
+      ],
+      "matched_classes": [
+        "Q19958368"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1974201",
+      "label": "Battle of Geronium",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1975400",
+      "label": "Battle of the Nile",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 7,
+        "with_references": 3,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.21428571428571427,
+        "route_counts": {
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "media_reference": 1,
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21428571428571427,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q20008151",
+      "label": "Siege of Arpi",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q20008414",
+      "label": "Parthian campaigns of Publius Ventidius",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "matched_classes": [
+        "Q831663"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.4,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q20108410",
+      "label": "Lex Mamilia de senatoribus",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "matched_classes": [
+        "Q820655"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2022780",
+      "label": "Suci",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q133311"
+      ],
+      "matched_classes": [
+        "Q133311"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "matched_classes": [
+        "Q182547"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 45,
+        "with_qualifiers": 12,
+        "with_references": 16,
+        "qualifier_rate": 0.26666666666666666,
+        "reference_rate": 0.35555555555555557,
+        "route_counts": {
+          "edge_candidate": 17,
+          "node_property": 3,
+          "geo_attribute": 1,
+          "federation_id": 19,
+          "media_reference": 3,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15555555555555556,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q21162234",
+      "label": "Dictator",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.045454545454545456,
+        "reference_rate": 0.22727272727272727,
+        "route_counts": {
+          "edge_candidate": 13,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.045454545454545456,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2123190",
+      "label": "quincussis",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "federation_id": 4,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q21234831",
+      "label": "Battle of Sapriportis",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "matched_classes": [
+        "Q1261499"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q21328960",
+      "label": "122 BC eruption of Mount Etna",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q7692360"
+      ],
+      "matched_classes": [
+        "Q7692360"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2331925",
+      "label": "Battle of Chalcedon",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.45454545454545453,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q24045885",
+      "label": "Battle of Petilia",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2505574",
+      "label": "Ambiorix's revolt",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 3,
+        "with_references": 7,
+        "qualifier_rate": 0.23076923076923078,
+        "reference_rate": 0.5384615384615384,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "media_reference": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.38461538461538464,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q25414978",
+      "label": "Battle of Chaeronea",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q25421066",
+      "label": "Battle of the Douro",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2617894",
+      "label": "Battle of Pydna",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 3,
+        "with_references": 2,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.2222222222222222,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2705449",
+      "label": "Battle of Mount Algidus",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 3,
+        "with_references": 3,
+        "qualifier_rate": 0.3,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2707112",
+      "label": "Battle of the Lycus",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.4444444444444444,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q277376",
+      "label": "tressis",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28665781",
+      "label": "Battle of the Granicus",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28668107",
+      "label": "Hannibal's crossing of the Apennines",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q645883"
+      ],
+      "matched_classes": [
+        "Q645883"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28670084",
+      "label": "Roman conquest of Hispania during the Second Punic War",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "matched_classes": [
+        "Q1361229"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 4,
+        "with_references": 1,
+        "qualifier_rate": 0.36363636363636365,
+        "reference_rate": 0.09090909090909091,
+        "route_counts": {
+          "edge_candidate": 8,
+          "federation_id": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2890429",
+      "label": "Battle of Zama",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2890613",
+      "label": "Battle of the Point of Italy",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "matched_classes": [
+        "Q1261499"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2935356",
+      "label": "Octavian's military campaigns in Illyricum",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "matched_classes": [
+        "Q831663"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.07692307692307693,
+        "route_counts": {
+          "edge_candidate": 8,
+          "media_reference": 1,
+          "federation_id": 2,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q30557111",
+      "label": "Geschichte Roms in seinem Übergange vor der republikanischen zur monarchischen Verfassung oder Pompeius, Caesar, Cicero und ihre Zeitgenossen",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "measured_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q4984206",
+      "label": "Buddhism and the Roman world",
+      "reason": "no_p31",
+      "properties": [
+        "P17"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q845114",
+      "label": "secessio plebis",
+      "reason": "no_p31",
+      "properties": [
+        "P17"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q30671673",
+      "label": "Second Celtiberian War",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q30927913",
+      "label": "Battle of Tribola",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q309637",
+      "label": "Cincinnatus",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P20"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q32361260",
+      "label": "Battle of Lemnos",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q333788",
+      "label": "Cassius Chaerea",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3491975",
+      "label": "Battle of Cremona",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3624157",
+      "label": "Roman Republican art",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q1792644"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3625506",
+      "label": "Siege of Nisibis",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3636407",
+      "label": "Battle of Corycus",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3650934",
+      "label": "Caucasian campaign of Pompey",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q374658",
+      "label": "Dextans",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3774767",
+      "label": "Battle of Gythium",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3778702",
+      "label": "Pompey's Jewish War",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3778726",
+      "label": "Sertorian War",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q378975",
+      "label": "Lustrum",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3822486",
+      "label": "Battle of Carteia",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3822875",
+      "label": "Siege of Thala",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3950848",
+      "label": "Saturnalia",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q40230083",
+      "label": "Jean-Marie Pailler",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4349928",
+      "label": "Aristonicus uprising",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q6107280"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q435936",
+      "label": "Terentia",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q450708",
+      "label": "Gaius Asinius Gallus",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q47163",
+      "label": "Vitruvius",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4870287",
+      "label": "Battle of Amanus Pass",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4871661",
+      "label": "Battle of Manlian Pass",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4871806",
+      "label": "Battle of Mount Olympus",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4872636",
+      "label": "Siege of Utica",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4872838",
+      "label": "Battle of the Baetis River",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4872891",
+      "label": "Battle of the Cilician Gates",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4872895",
+      "label": "Battle of the Cranita hills",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q50423959",
+      "label": "Battle against the Aquitanians",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q54864605",
+      "label": "Siege of Salona",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q55605047",
+      "label": "Battle of the Abas",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q55832297",
+      "label": "Siege of Milan",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q571269",
+      "label": "Battle of Vesuvius",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q58207489",
+      "label": "WikiProject Roman Republic",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q16695773"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q587983",
+      "label": "Battle of Corinth",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q60524410",
+      "label": "Battle of Italica",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q60524412",
+      "label": "Battle of Lauron",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q60524449",
+      "label": "Battle of Sucro",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q60524464",
+      "label": "Battle of Valentia",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q60792542",
+      "label": "Fimbrian legions",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q176799"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6271",
+      "label": "Second Punic War",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6286",
+      "label": "First Punic War",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q66742120",
+      "label": "Imperium sine fine: T. Robert S. Broughton and the Roman Republic",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6852241",
+      "label": "military campaigns of Julius Caesar",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6908053",
+      "label": "Roman–Jewish Treaty",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q131569"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q705425",
+      "label": "Gaius Aurelius Cotta",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q7362271",
+      "label": "Roman army mutiny in 342 BC",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q511866"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q7362291",
+      "label": "Roman conquest of the Hernici",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q73717019",
+      "label": "Roman conquest of Mallorca",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q737907",
+      "label": "Latin War",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q747480",
+      "label": "Conflict of the Orders",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q2672648"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q756413",
+      "label": "Battle of Asculum",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q780548",
+      "label": "fabula praetexta",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q7777573"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q79769250",
+      "label": "Cicero trilogy",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q277759"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q815118",
+      "label": "Siege of Aspis",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q82455496",
+      "label": "Battle of Pedum",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q85745849",
+      "label": "Battle of Imbrinium",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q85745898",
+      "label": "Battle of Pedum",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q85745937",
+      "label": "Battle of Taenum",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q85745962",
+      "label": "Battle of the Anio River",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q85750594",
+      "label": "Capture of Malta",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q467011"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q86009943",
+      "label": "Trial of the Vestal Virgins",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8016240"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q87283190",
+      "label": "The Roman Republic",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q57608327"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q9172560",
+      "label": "Battle of the Tagus",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q9172971",
+      "label": "Battle of Praaspa",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q9173074",
+      "label": "Battle of Carteia",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q9173528",
+      "label": "Battle of Saguntum",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q9389447",
+      "label": "Capture of Antipatreia",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q96405659",
+      "label": "Siege of Zama",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q96657294",
+      "label": "Feminism in Israel",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q97172543",
+      "label": "Q97172543",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q11514315"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q97358910",
+      "label": "Siege of the fortress at Muluccha",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q98510963",
+      "label": "Q98510963",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P20"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    }
+  ]
+}

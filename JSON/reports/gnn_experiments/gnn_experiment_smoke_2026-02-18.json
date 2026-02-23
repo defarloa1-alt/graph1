@@ -1,0 +1,43 @@
+{
+  "metadata_header": {
+    "contract_version": "gnn_experiment_contract_v1",
+    "artifact_type": "gnn_experiment_run_metadata",
+    "script_version": "0.1.0-scaffold",
+    "experiment_id": "gnn_smoke_2026-02-18",
+    "run_fingerprint": "10dded19ad50ef41f878377f542b02a009425001b564a545cc66ea067db2ddd8",
+    "determinism_mode": "strict_input_hash",
+    "production_scope": "non_production_only"
+  },
+  "experiment_config": {
+    "task": "link_prediction",
+    "model_name": "GraphSAGE",
+    "model_version": "v0_protocol_smoke",
+    "dataset_snapshot_id": "dataset_snapshot_pending",
+    "split_strategy": "temporal_aware",
+    "seed": 42,
+    "epochs": 50,
+    "hidden_dim": 128,
+    "learning_rate": 0.001
+  },
+  "baseline_requirements": [
+    "embedding_similarity",
+    "heuristic_rule_score",
+    "logistic_regression"
+  ],
+  "metric_contract": [
+    "MRR",
+    "Hits@1",
+    "Hits@3",
+    "Hits@10"
+  ],
+  "governance": {
+    "advisory_only": true,
+    "canonical_write_allowed": false,
+    "promotion_path": "U->Pi->Commit"
+  },
+  "training_state": {
+    "status": "scaffold_no_training_executed",
+    "model_checkpoint_written": false,
+    "predictions_written": false
+  }
+}

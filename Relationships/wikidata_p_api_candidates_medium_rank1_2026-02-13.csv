@@ -1,0 +1,10 @@
+relationship_type,category,description,rank,suggested_wikidata_property,suggested_wikidata_label,suggested_wikidata_description,score,confidence,query_used,match_type,review_status
+COMMISSIONED_BY,Authorship,Work commissioned by,1,P88,commissioned by,person or organization that commissioned this work,0.787,medium,commissioned by,label,pending_review
+WORN_BY,Social,Garment is worn by person,1,P7376,worn by,person who wears or wore a garment or object,0.773,medium,worn by,label,pending_review
+WEARS,Social,Person wears clothing or garment,1,P3828,wears,clothing or accessory worn on subject's body,0.732,medium,wears,label,pending_review
+COMMANDED_BY,Military,Was commanded by,1,P4791,commanded by,"commander of a military unit/army/security service, operation, etc.",0.722,medium,commanded by,label,pending_review
+EXTRACTED_FROM,Attribution,Citation extracted from work,1,P7009,extracted from,source this image was cropped from. Use on Wikimedia Commons only.,0.720,medium,extracted from,label,pending_review
+INFLUENCED_BY,Relations,Was influenced by,1,P737,influenced by,"the subject (person, idea, etc.) was influenced or inspired by this object entity, e.g. ""Heidegger was influenced by Aristotle""",0.715,medium,influenced by,label,pending_review
+ENEMY_OF,Relations,Was enemy of,1,P7047,enemy,opponent character or group of this fictive character or group,0.676,medium,enemy,label,pending_review
+COMMISSIONED,Authorship,Commissioned creation of work,1,P88,commissioned by,person or organization that commissioned this work,0.660,medium,commissioned,label,pending_review
+STEPPARENT_OF,Familial,Stepparent of stepchild,1,P3448,stepparent,subject has the object as their stepparent,0.658,medium,stepparent,label,pending_review

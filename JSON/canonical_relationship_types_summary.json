@@ -1,0 +1,43 @@
+{
+  "generated_at": "2025-12-12T09:42:35.701053",
+  "total_relationships": 236,
+  "categories": {
+    "Application": 4,
+    "Attribution": 11,
+    "Authorship": 12,
+    "Category": 1,
+    "Causality": 8,
+    "Cultural": 8,
+    "Diplomatic": 12,
+    "Economic": 12,
+    "Familial": 13,
+    "Geographic": 18,
+    "Honorific": 8,
+    "Ideological": 2,
+    "Institutional": 9,
+    "Legal": 13,
+    "Linguistic": 2,
+    "Measurement": 2,
+    "Membership": 2,
+    "Military": 23,
+    "Moral": 3,
+    "Political": 39,
+    "Position": 8,
+    "Relations": 7,
+    "Religious": 6,
+    "Social": 4,
+    "Temporal": 6,
+    "Trade": 3
+  },
+  "sources": {
+    "bidirectional_csv": 187,
+    "temporal_corrections": 6,
+    "extraction_appendix": 29,
+    "roman_republic_csv": 14
+  },
+  "corrections_applied": [
+    "PART_OF",
+    "HAS_PART"
+  ],
+  "file_path": "C:\\Projects\\federated-graph-framework\\graph 3\\relations\\canonical_relationship_types.csv"
+}

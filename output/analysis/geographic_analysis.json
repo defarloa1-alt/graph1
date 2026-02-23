@@ -1,0 +1,745 @@
+{
+  "with_geo": [
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "geo_properties": {
+        "P30": {
+          "label": "continent",
+          "values": [
+            "Q46 (Europe)",
+            "Q48 (Asia)",
+            "Q15 (Africa)"
+          ],
+          "count": 3
+        },
+        "P36": {
+          "label": "capital",
+          "values": [
+            "Q220 (Rome)"
+          ],
+          "count": 1
+        },
+        "P625": {
+          "label": "coordinate location",
+          "values": [
+            "{'latitude': 41.9, 'longitude': 12.5, 'precision': 12.069076298334622}"
+          ],
+          "count": 1
+        }
+      },
+      "geo_count": 3
+    },
+    {
+      "qid": "Q2267705",
+      "label": "field of study",
+      "geo_properties": {
+        "P276": {
+          "label": "location",
+          "values": [
+            "Q38723 (higher education institution)",
+            "Q3918 (university)"
+          ],
+          "count": 2
+        }
+      },
+      "geo_count": 1
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "geo_properties": {
+        "P30": {
+          "label": "continent",
+          "values": [
+            "Q46 (Europe)",
+            "Q15 (Africa)",
+            "Q48 (Asia)"
+          ],
+          "count": 4
+        },
+        "P36": {
+          "label": "capital",
+          "values": [
+            "Q18287233 (Roma)"
+          ],
+          "count": 1
+        },
+        "P625": {
+          "label": "coordinate location",
+          "values": [
+            "{'latitude': 41.89, 'longitude': 12.48, 'precision': 0.00027777777777778}"
+          ],
+          "count": 1
+        },
+        "P706": {
+          "label": "located in/on physical feature",
+          "values": [
+            "Q72499 (Mediterranean Basin)"
+          ],
+          "count": 1
+        },
+        "P47": {
+          "label": "shares border with",
+          "values": [
+            "Q83311 (Persian Empire)",
+            "Q807748 (Barbaricum)",
+            "Q2528503 (Sarmatia)"
+          ],
+          "count": 3
+        }
+      },
+      "geo_count": 5
+    },
+    {
+      "qid": "Q2839628",
+      "label": "Early Roman Republic",
+      "geo_properties": {
+        "P17": {
+          "label": "country",
+          "values": [
+            "Q17167 (Roman Republic)"
+          ],
+          "count": 1
+        }
+      },
+      "geo_count": 1
+    },
+    {
+      "qid": "Q6106068",
+      "label": "Middle Roman Republic",
+      "geo_properties": {
+        "P17": {
+          "label": "country",
+          "values": [
+            "Q17167 (Roman Republic)"
+          ],
+          "count": 1
+        }
+      },
+      "geo_count": 1
+    },
+    {
+      "qid": "Q2815472",
+      "label": "Late Roman Republic",
+      "geo_properties": {
+        "P17": {
+          "label": "country",
+          "values": [
+            "Q17167 (Roman Republic)"
+          ],
+          "count": 1
+        }
+      },
+      "geo_count": 1
+    },
+    {
+      "qid": "Q201038",
+      "label": "Roman Kingdom",
+      "geo_properties": {
+        "P30": {
+          "label": "continent",
+          "values": [
+            "Q5401 (Eurasia)",
+            "Q46 (Europe)"
+          ],
+          "count": 2
+        },
+        "P36": {
+          "label": "capital",
+          "values": [
+            "Q220 (Rome)",
+            "Q18287233 (Roma)"
+          ],
+          "count": 2
+        },
+        "P625": {
+          "label": "coordinate location",
+          "values": [
+            "{'latitude': 41.88333333, 'longitude': 12.48333333, 'precision': 12.065927612439715}"
+          ],
+          "count": 1
+        },
+        "P276": {
+          "label": "location",
+          "values": [
+            "Q1048669 (Latium)"
+          ],
+          "count": 1
+        }
+      },
+      "geo_count": 4
+    }
+  ],
+  "without_geo": [
+    {
+      "qid": "Q11514315",
+      "label": "historical period",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q6428674",
+      "label": "era",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q186081",
+      "label": "time interval",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q11471",
+      "label": "time",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q11235244",
+      "label": "domain",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q185148",
+      "label": "interval",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1307214",
+      "label": "form of government",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q19478619",
+      "label": "metaclass",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q151885",
+      "label": "concept",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q23958852",
+      "label": "variable-order class",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q7048977",
+      "label": "abstract entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q15916540",
+      "label": "semantic unit",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q2145290",
+      "label": "mental representation",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1347367",
+      "label": "aptitude",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q19868531",
+      "label": "formal ontology concept",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q324254",
+      "label": "ontology",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q16889133",
+      "label": "class",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q593744",
+      "label": "knowledge base",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1172480",
+      "label": "data model",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1397073",
+      "label": "data schema",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q2101564",
+      "label": "specification",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q6423319",
+      "label": "knowledge organization system",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q5127848",
+      "label": "class",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q183039",
+      "label": "form of state",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q28108",
+      "label": "political system",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q96116695",
+      "label": "type of system",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1639378",
+      "label": "social system",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q2752458",
+      "label": "administrative type",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q2712963",
+      "label": "abstract noun",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1084",
+      "label": "noun",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q5962346",
+      "label": "classification scheme",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q12775893",
+      "label": "scheme",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q96247293",
+      "label": "type of management",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q21146257",
+      "label": "type",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q58778",
+      "label": "system",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q48349",
+      "label": "empire",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q7269",
+      "label": "monarchy",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q22676587",
+      "label": "monarchic system",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1250464",
+      "label": "realm",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q7275",
+      "label": "state",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q15617994",
+      "label": "administrative territorial entity type",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q179671",
+      "label": "nation state",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q155076",
+      "label": "juridical person",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1048835",
+      "label": "political territorial entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1896989",
+      "label": "subject of international law",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q96196009",
+      "label": "former or current state",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q183366",
+      "label": "territory",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q56061",
+      "label": "administrative territorial entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q82794",
+      "label": "region",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q3624078",
+      "label": "sovereign state",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q6256",
+      "label": "country",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q24229398",
+      "label": "being",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q4835091",
+      "label": "territory",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q3024240",
+      "label": "historical country",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q19953632",
+      "label": "former administrative territorial entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q96088545",
+      "label": "former geographical object",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q15893266",
+      "label": "former entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q618123",
+      "label": "geographical feature",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q4057633",
+      "label": "hierarchy of administrative territorial entities",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q15642541",
+      "label": "human-geographic territorial entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q43229",
+      "label": "organization",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q16562419",
+      "label": "political entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q2221906",
+      "label": "geographic location",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q19832712",
+      "label": "historical administrative division",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1620908",
+      "label": "historical region",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q52551684",
+      "label": "historical geographic location",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q24017414",
+      "label": "second-order class",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q104098715",
+      "label": "territorial entity type",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q10541491",
+      "label": "legal form",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q117023459",
+      "label": "type of institution",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q1063239",
+      "label": "polity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q7210356",
+      "label": "political organization",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q137022846",
+      "label": "type of region",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q134602505",
+      "label": "group of beings",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q53617489",
+      "label": "independent continuant",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q830077",
+      "label": "subject",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q2627400",
+      "label": "geographic envelope",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q28171280",
+      "label": "ancient civilization",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q8432",
+      "label": "civilization",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q8425",
+      "label": "society",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q26907166",
+      "label": "temporal entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q58415929",
+      "label": "spatio-temporal entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q124711104",
+      "label": "BFO class",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q133327",
+      "label": "spacetime",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q488383",
+      "label": "object",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q35120",
+      "label": "entity",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q120754777",
+      "label": "Roman civilization",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q11042",
+      "label": "culture",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q2515887",
+      "label": "pattern of behavior",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q937284",
+      "label": "Greco-Roman world",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q478958",
+      "label": "Western culture",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q465299",
+      "label": "archaeological culture",
+      "geo_properties": {},
+      "geo_count": 0
+    },
+    {
+      "qid": "Q4808636",
+      "label": "assemblage",
+      "geo_properties": {},
+      "geo_count": 0
+    }
+  ],
+  "geo_property_stats": {
+    "P30": 3,
+    "P36": 3,
+    "P625": 3,
+    "P276": 2,
+    "P17": 3,
+    "P706": 1,
+    "P47": 1,
+    "P1376": 0,
+    "P131": 0
+  }
+}

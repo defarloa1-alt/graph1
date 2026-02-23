@@ -1,0 +1,99 @@
+facet_key,facet_class,facet_label,anchor_qid,anchor_label,anchor_source,source_priority,quality_flags
+archaeological,ArchaeologicalFacet,Archaeological,Q1190554,archaeological culture,latest,latest,qid_label_conflict
+archaeological,ArchaeologicalFacet,Archaeological,Q839954,archaeological site,latest,latest,qid_label_conflict
+archaeological,ArchaeologicalFacet,Archaeological,Q220341,stratigraphy,latest,latest,qid_label_conflict
+archaeological,ArchaeologicalFacet,Archaeological,Q23498,archaeological culture,ref,latest,qid_label_conflict
+archaeological,ArchaeologicalFacet,Archaeological,Q11759,Stone Age,ref,latest,qid_label_conflict
+artistic,ArtisticFacet,Artistic,Q968159,art movement,latest,latest,qid_label_conflict
+artistic,ArtisticFacet,Artistic,Q32880,architectural style,latest,latest,qid_label_conflict
+artistic,ArtisticFacet,Artistic,Q735,art,latest,latest,qid_label_conflict
+artistic,ArtisticFacet,Artistic,Q2018526,arts,ref,latest,qid_label_conflict
+cultural,CulturalFacet,Cultural,Q11042,culture,latest,latest,qid_label_conflict
+cultural,CulturalFacet,Cultural,Q1792644,cultural identity,latest,latest,qid_label_conflict
+cultural,CulturalFacet,Cultural,Q178885,cultural history,latest,latest,qid_label_conflict
+cultural,CulturalFacet,Cultural,Q7860,culture,ref,latest,qid_label_conflict
+cultural,CulturalFacet,Cultural,Q2198779,cultural movement,ref,latest,qid_label_conflict
+demographic,DemographicFacet,Demographic,Q8436,demography,latest,latest,qid_label_conflict
+demographic,DemographicFacet,Demographic,Q61509,migration,latest,latest,qid_label_conflict
+demographic,DemographicFacet,Demographic,Q161078,urbanization,latest,latest,qid_label_conflict
+demographic,DemographicFacet,Demographic,Q134737,demography,ref,latest,qid_label_conflict
+demographic,DemographicFacet,Demographic,Q131288,migration,ref,latest,qid_label_conflict
+demographic,DemographicFacet,Demographic,Q33829,population,ref,latest,qid_label_conflict
+demographic,DemographicFacet,Demographic,Q174814,urbanization,ref,latest,qid_label_conflict
+diplomatic,DiplomaticFacet,Diplomatic,Q187947,diplomacy,latest,latest,qid_label_conflict
+diplomatic,DiplomaticFacet,Diplomatic,Q131569,treaty,latest,latest,qid_label_conflict
+diplomatic,DiplomaticFacet,Diplomatic,Q601401,alliance,latest,latest,qid_label_conflict
+diplomatic,DiplomaticFacet,Diplomatic,Q1065,United Nations,ref,latest,qid_label_conflict
+diplomatic,DiplomaticFacet,Diplomatic,Q41298,treaty,ref,latest,qid_label_conflict
+diplomatic,DiplomaticFacet,Diplomatic,Q178049,alliance,ref,latest,qid_label_conflict
+economic,EconomicFacet,Economic,Q8134,economy,latest,latest,qid_label_conflict
+economic,EconomicFacet,Economic,Q7406919,economic system,latest,latest,qid_label_conflict
+economic,EconomicFacet,Economic,Q193563,trade route,latest,latest,qid_label_conflict
+economic,EconomicFacet,Economic,Q47574,financial system,latest,latest,qid_label_conflict
+economic,EconomicFacet,Economic,Q8148,economic sector,ref,latest,qid_label_conflict
+economic,EconomicFacet,Economic,Q179289,economic system,ref,latest,qid_label_conflict
+economic,EconomicFacet,Economic,Q161652,trade,ref,latest,qid_label_conflict
+environmental,EnvironmentalFacet,Environmental,Q7937,climate,latest,latest,qid_label_conflict
+environmental,EnvironmentalFacet,Environmental,Q8072,ecosystem,latest,latest,qid_label_conflict
+environmental,EnvironmentalFacet,Environmental,Q7868,environment,latest,latest,qid_label_conflict
+environmental,EnvironmentalFacet,Environmental,Q2169031,climate change,ref,latest,qid_label_conflict
+environmental,EnvironmentalFacet,Environmental,Q2249676,natural environment,ref,latest,qid_label_conflict
+environmental,EnvironmentalFacet,Environmental,Q864,natural disaster,ref,latest,qid_label_conflict
+geographic,GeographicFacet,Geographic,Q1620908,historical region,latest,latest,qid_label_conflict
+geographic,GeographicFacet,Geographic,Q6256,country,latest,latest,qid_label_conflict
+geographic,GeographicFacet,Geographic,Q82794,region,latest,latest,qid_label_conflict
+geographic,GeographicFacet,Geographic,Q193622,cultural area,ref,latest,qid_label_conflict
+intellectual,IntellectualFacet,Intellectual,Q192110,intellectual history,latest,latest,qid_label_conflict
+intellectual,IntellectualFacet,Intellectual,Q4663903,philosophical movement,latest,latest,qid_label_conflict
+intellectual,IntellectualFacet,Intellectual,Q5891,philosophy,latest,latest,qid_label_conflict
+intellectual,IntellectualFacet,Intellectual,Q179805,philosophical movement,ref,latest,qid_label_conflict
+intellectual,IntellectualFacet,Intellectual,Q2738074,intellectual movement,ref,latest,qid_label_conflict
+intellectual,IntellectualFacet,Intellectual,Q5418,Enlightenment,ref,latest,qid_label_conflict
+linguistic,LinguisticFacet,Linguistic,Q315,language,latest,latest,qid_label_conflict
+linguistic,LinguisticFacet,Linguistic,Q34770,language family,latest,latest,qid_label_conflict
+linguistic,LinguisticFacet,Linguistic,Q8192,writing system,latest,latest,qid_label_conflict
+linguistic,LinguisticFacet,Linguistic,Q25295,language family,ref,latest,qid_label_conflict
+military,MilitaryFacet,Military,Q8473,military,latest,latest,qid_label_conflict
+military,MilitaryFacet,Military,Q198,war,latest,latest,qid_label_conflict
+military,MilitaryFacet,Military,Q192781,military history,latest,latest,qid_label_conflict
+military,MilitaryFacet,Military,Q180684,conflict,ref,latest,qid_label_conflict
+military,MilitaryFacet,Military,Q8418,military unit,ref,latest,qid_label_conflict
+political,PoliticalFacet,Political,Q3624078,political system,latest,latest,qid_label_conflict
+political,PoliticalFacet,Political,Q3024240,form of government,latest,latest,qid_label_conflict
+political,PoliticalFacet,Political,Q11514315,political history,latest,latest,qid_label_conflict
+political,PoliticalFacet,Political,Q7275,state,ref,latest,qid_label_conflict
+political,PoliticalFacet,Political,Q17156793,form of government,ref,latest,qid_label_conflict
+religious,ReligiousFacet,Religious,Q9174,religion,latest,latest,qid_label_conflict
+religious,ReligiousFacet,Religious,Q16970,religious denomination,latest,latest,qid_label_conflict
+religious,ReligiousFacet,Religious,Q1826286,religious movement,latest,latest,qid_label_conflict
+religious,ReligiousFacet,Religious,Q879146,religious order,ref,latest,qid_label_conflict
+religious,ReligiousFacet,Religious,Q11633259,religious organization,ref,latest,qid_label_conflict
+scientific,ScientificFacet,Scientific,Q336,science,ref,ref,
+scientific,ScientificFacet,Scientific,Q11862829,academic discipline,ref,ref,
+scientific,ScientificFacet,Scientific,Q193344,scientific theory,ref,ref,
+scientific,ScientificFacet,Scientific,Q6683,scientific revolution,ref,ref,
+social,SocialFacet,Social,Q8436,demography,latest,latest,qid_label_conflict
+social,SocialFacet,Social,Q5891,philosophy,latest,latest,qid_label_conflict
+social,SocialFacet,Social,Q178885,cultural history,latest,latest,qid_label_conflict
+social,SocialFacet,Social,Q49773,social movement,ref,latest,qid_label_conflict
+social,SocialFacet,Social,Q189290,social class,ref,latest,qid_label_conflict
+social,SocialFacet,Social,Q3359485,social structure,ref,latest,qid_label_conflict
+technological,TechnologicalFacet,Technological,Q11016,technology,latest,latest,qid_label_conflict
+technological,TechnologicalFacet,Technological,Q8148,tool,latest,latest,qid_label_conflict
+technological,TechnologicalFacet,Technological,Q11053,innovation,latest,latest,qid_label_conflict
+technological,TechnologicalFacet,Technological,Q11759,industrial revolution,latest,latest,qid_label_conflict
+technological,TechnologicalFacet,Technological,Q2695280,tool,ref,latest,qid_label_conflict
+technological,TechnologicalFacet,Technological,Q39546,machine,ref,latest,qid_label_conflict
+technological,TechnologicalFacet,Technological,Q178651,innovation,ref,latest,qid_label_conflict
+biographic,BiographicFacet,Biographic,Q783287,prosopography,latest,latest,
+biographic,BiographicFacet,Biographic,Q2990593,career,latest,latest,
+biographic,BiographicFacet,Biographic,Q4164871,life history,latest,latest,
+biographic,BiographicFacet,Biographic,Q36180,writer biography,ref,latest,
+biographic,BiographicFacet,Biographic,Q5,human,ref,latest,
+biographic,BiographicFacet,Biographic,Q294414,social class,ref,latest,
+communication,CommunicationFacet,Communication,Q11024,communication,latest,latest,
+communication,CommunicationFacet,Communication,Q81009,rhetoric,latest,latest,
+communication,CommunicationFacet,Communication,Q8134,oratory,latest,latest,
+communication,CommunicationFacet,Communication,Q11633,writing,ref,latest,
+communication,CommunicationFacet,Communication,Q1156402,propaganda,ref,latest,
+communication,CommunicationFacet,Communication,Q11028,information,ref,latest,

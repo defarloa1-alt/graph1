@@ -1,0 +1,86 @@
+{
+    "$schema":  "http://json-schema.org/draft-07/schema#",
+    "$id":  "https://chrystallum.org/schemas/period_triage_decision_out.json",
+    "title":  "Period Triage Decision Output",
+    "description":  "Triage decisions for PeriodCandidates (FAST_LANE/SLOW_LANE/REJECTED)",
+    "type":  "object",
+    "required":  [
+                     "job_id",
+                     "status"
+                 ],
+    "properties":  {
+                       "job_id":  {
+                                      "type":  "string"
+                                  },
+                       "status":  {
+                                      "type":  "string",
+                                      "enum":  [
+                                                   "success",
+                                                   "error"
+                                               ]
+                                  },
+                       "data":  {
+                                    "type":  "object",
+                                    "required":  [
+                                                     "processed",
+                                                     "fast_lane",
+                                                     "slow_lane",
+                                                     "rejected",
+                                                     "decisions"
+                                                 ],
+                                    "properties":  {
+                                                       "processed":  {
+                                                                         "type":  "integer",
+                                                                         "minimum":  0
+                                                                     },
+                                                       "fast_lane":  {
+                                                                         "type":  "integer",
+                                                                         "minimum":  0
+                                                                     },
+                                                       "slow_lane":  {
+                                                                         "type":  "integer",
+                                                                         "minimum":  0
+                                                                     },
+                                                       "rejected":  {
+                                                                        "type":  "integer",
+                                                                        "minimum":  0
+                                                                    },
+                                                       "decisions":  {
+                                                                         "type":  "array",
+                                                                         "items":  {
+                                                                                       "type":  "object",
+                                                                                       "required":  [
+                                                                                                        "periodo_ark",
+                                                                                                        "triage_status",
+                                                                                                        "reason"
+                                                                                                    ],
+                                                                                       "properties":  {
+                                                                                                          "periodo_ark":  {
+                                                                                                                              "type":  "string"
+                                                                                                                          },
+                                                                                                          "triage_status":  {
+                                                                                                                                "type":  "string",
+                                                                                                                                "enum":  [
+                                                                                                                                             "FAST_LANE",
+                                                                                                                                             "SLOW_LANE",
+                                                                                                                                             "REJECTED"
+                                                                                                                                         ]
+                                                                                                                            },
+                                                                                                          "reason":  {
+                                                                                                                         "type":  "string"
+                                                                                                                     },
+                                                                                                          "ml_confidence":  {
+                                                                                                                                "type":  "number",
+                                                                                                                                "minimum":  0.0,
+                                                                                                                                "maximum":  1.0
+                                                                                                                            }
+                                                                                                      },
+                                                                                       "additionalProperties":  false
+                                                                                   }
+                                                                     }
+                                                   },
+                                    "additionalProperties":  false
+                                }
+                   },
+    "additionalProperties":  false
+}

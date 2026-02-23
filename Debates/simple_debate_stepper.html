@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Simple Debate Stepper</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .header h1 {
+            color: #2d3748;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            color: #718096;
+            margin: 10px 0 0 0;
+            font-size: 1.1em;
+        }
+        .config-section {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .config-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .config-row:last-child {
+            margin-bottom: 0;
+        }
+        .config-label {
+            min-width: 120px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .config-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .test-button {
+            background: #48bb78;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .test-button:hover {
+            background: #38a169;
+        }
+        .debate-section {
+            margin: 20px 0;
+        }
+        .debate-state {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+        .loading {
+            text-align: center;
+            color: #718096;
+            font-style: italic;
+        }
+        .error {
+            color: #e53e3e;
+            background: #fed7d7;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #feb2b2;
+        }
+        .success {
+            color: #25543e;
+            background: #c6f6d5;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #9ae6b4;
+        }
+        .debate-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .debate-card.active {
+            border-color: #48bb78;
+            background: #f0fff4;
+        }
+        .debate-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .debate-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .meta-item {
+            text-align: center;
+        }
+        .meta-label {
+            font-size: 0.8em;
+            color: #718096;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .meta-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-top: 4px;
+        }
+        .last-step {
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-style: italic;
+            color: #4a5568;
+        }
+        .participants {
+            margin-bottom: 15px;
+        }
+        .participant {
+            display: inline-block;
+            background: #4299e1;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 2px 4px 2px 0;
+        }
+        .pause-indicator {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            background: #2d3748;
+            color: #48bb78;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .advance-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .advance-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .advance-button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .status-healthy {
+            background: #48bb78;
+            color: white;
+        }
+        .status-error {
+            background: #e53e3e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="status-indicator" class="status-indicator status-error">🔍 Checking...</div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Simple Debate Stepper</h1>
+            <p>Direct API Control - No Server Required</p>
+        </div>
+
+        <div class="config-section">
+            <div class="config-row">
+                <label class="config-label">API URL:</label>
+                <input type="text" id="apiUrl" class="config-input" value="http://localhost:5002">
+                <button class="test-button" onclick="testConnection()">Test</button>
+            </div>
+            <div class="config-row">
+                <label class="config-label">Project ID:</label>
+                <input type="text" id="projectId" class="config-input" value="p-001">
+            </div>
+            <div class="config-row">
+                <label class="config-label">Series ID:</label>
+                <select id="seriesId" class="config-input">
+                    <option value="d-001">d-001 (Salesforce Integration)</option>
+                    <option value="d-002">d-002 (Graph Architecture)</option>
+                </select>
+                <button class="test-button" onclick="loadDebateState()">Refresh</button>
+            </div>
+        </div>
+
+        <div class="debate-section">
+            <div id="debate-state" class="debate-state">
+                <div class="loading">Click "Refresh" to load debate state...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentDebateData = null;
+
+        function updateStatus(message, isHealthy) {
+            const indicator = document.getElementById('status-indicator');
+            indicator.textContent = message;
+            indicator.className = `status-indicator ${isHealthy ? 'status-healthy' : 'status-error'}`;
+        }
+
+        function showMessage(message, type) {
+            const container = document.getElementById('debate-state');
+            container.innerHTML = `<div class="${type}">${message}</div>`;
+        }
+
+        async function testConnection() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            updateStatus('🔍 Testing...', false);
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/health`);
+                if (response.ok) {
+                    updateStatus('✅ API Connected', true);
+                    showMessage('API connection successful!', 'success');
+                } else {
+                    updateStatus('❌ API Error', false);
+                    showMessage(`API returned ${response.status}`, 'error');
+                }
+            } catch (error) {
+                updateStatus('❌ Connection Failed', false);
+                showMessage(`Connection failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function loadDebateState() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            const projectId = document.getElementById('projectId').value;
+            const container = document.getElementById('debate-state');
+            
+            container.innerHTML = '<div class="loading">Loading debate state...</div>';
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/project_container?id=${projectId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const debateSeries = data.project_container?.debate_series || [];
+                
+                if (debateSeries.length === 0) {
+                    container.innerHTML = '<div class="error">No debate series found</div>';
+                    return;
+                }
+                
+                // Display debate cards
+                let html = '';
+                debateSeries.forEach(debate => {
+                    const isActive = debate.status === 'active';
+                    html += `
+                        <div class="debate-card ${isActive ? 'active' : ''}">
+                            <div class="debate-title">${debate.topic}</div>
+                            
+                            <div class="debate-meta">
+                                <div class="meta-item">
+                                    <div class="meta-label">Series ID</div>
+                                    <div class="meta-value">${debate.series_id}</div>
+                                </div>
+                                <div class="meta-item">
+                                    <div class="meta-label">Mode</div>
+                                    <div class="meta-value">${debate.mode}</div>
+                                </div>
+                                <div class="meta-item">
+                                    <div class="meta-label">Step</div>
+                                    <div class="meta-value">${debate.step_number}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="last-step">
+                                <strong>Last Step:</strong> ${debate.last_step}
+                            </div>
+                            
+                            <div class="participants">
+                                <strong>Participants:</strong><br>
+                                ${debate.participants.map(p => `<span class="participant">${p}</span>`).join('')}
+                            </div>
+                            
+                            <div class="pause-indicator">--PAUSE (type Y to advance)</div>
+                            
+                            <button class="advance-button" 
+                                    onclick="advanceDebate('${debate.series_id}', ${debate.step_number})"
+                                    ${!isActive ? 'disabled' : ''}>
+                                🚀 Advance Debate (Y)
+                            </button>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+                currentDebateData = debateSeries;
+                updateStatus('✅ Data Loaded', true);
+                
+            } catch (error) {
+                container.innerHTML = `<div class="error">Failed to load: ${error.message}</div>`;
+                updateStatus('❌ Load Failed', false);
+            }
+        }
+
+        async function advanceDebate(seriesId, currentStep) {
+            const apiUrl = document.getElementById('apiUrl').value;
+            const button = event.target;
+            
+            button.disabled = true;
+            button.textContent = '⏳ Advancing...';
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/debates/${seriesId}/advance`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ step_number: currentStep })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const result = await response.json();
+                showMessage(`✅ Successfully advanced to step ${result.step_number}!`, 'success');
+                
+                // Reload state after 1 second
+                setTimeout(() => {
+                    loadDebateState();
+                }, 1000);
+                
+            } catch (error) {
+                showMessage(`❌ Advance failed: ${error.message}`, 'error');
+                button.disabled = false;
+                button.textContent = '🚀 Advance Debate (Y)';
+            }
+        }
+
+        // Auto-test connection on load
+        window.onload = function() {
+            testConnection();
+        };
+    </script>
+</body>
+</html>

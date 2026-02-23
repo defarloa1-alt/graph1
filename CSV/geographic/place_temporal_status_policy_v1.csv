@@ -1,0 +1,5 @@
+status,definition,minimum_signals,preferred_signals,suggested_write_policy
+Historical,Place used in claims primarily bounded to past contexts with no strong modern continuity,pleiades_id OR wikidata_historical_place_type,periodo_id OR historical_admin_code OR end_date_lt_current_year,write_status=historical with confidence
+Modern,Place used in present-oriented contexts with current administrative/geonames grounding,geonames_id OR modern_admin_relation,wikidata_current_country_or_admin_relation,write_status=modern with confidence
+Continuous,Place has evidence across historical and modern contexts,pleiades_id AND geonames_id,wikidata_qid AND temporal_span_crosses_historical_to_modern,write_status=continuous with confidence
+Unknown,Insufficient evidence to resolve historical/modern state,at_least_one_place_identifier,none,write_status=unknown and send_to_review

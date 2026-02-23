@@ -1,0 +1,51 @@
+property_id,primary_facet,secondary_facets,reasoning,confidence
+P16,GEOGRAPHIC,TECHNOLOGICAL,"Transport networks - infrastructure geography",0.80
+P18,CULTURAL,ARTISTIC,"Images - visual documentation across domains",0.70
+P22,BIOGRAPHIC,DEMOGRAPHIC,"Father - genealogical relationship",0.90
+P25,BIOGRAPHIC,DEMOGRAPHIC,"Mother - genealogical relationship",0.90
+P26,BIOGRAPHIC,SOCIAL,"Spouse - marital relationship",0.90
+P31,INTELLECTUAL,,"Instance classification - ontological knowledge organization",0.75
+P40,BIOGRAPHIC,DEMOGRAPHIC,"Children - genealogical relationship",0.90
+P50,INTELLECTUAL,BIOGRAPHIC,"Author - literary and scholarly creation",0.90
+P51,CULTURAL,LINGUISTIC,"Audio - cultural and linguistic documentation",0.75
+P57,ARTISTIC,,"Film/TV director - cinematic arts",0.90
+P58,ARTISTIC,INTELLECTUAL,"Screenwriter - creative writing for film",0.85
+P81,GEOGRAPHIC,TECHNOLOGICAL,"Railway connections - transport infrastructure",0.80
+P85,CULTURAL,POLITICAL,"National anthem - political and cultural symbol",0.85
+P86,ARTISTIC,,"Composer - musical composition",0.95
+P87,ARTISTIC,INTELLECTUAL,"Librettist - musical theatre writing",0.85
+P88,ARTISTIC,ECONOMIC,"Commission patron - art patronage",0.80
+P98,INTELLECTUAL,,"Editor - editorial work on publications",0.85
+P105,SCIENTIFIC,,"Taxonomic rank - biological classification",0.90
+P111,SCIENTIFIC,,"Measured quantities - physical measurement",0.85
+P112,BIOGRAPHIC,"POLITICAL,ECONOMIC","Founder - organizational and institutional creation",0.80
+P114,ECONOMIC,TECHNOLOGICAL,"Airline alliance - commercial aviation",0.80
+P118,SOCIAL,,"Sports leagues - competitive organization",0.80
+P121,TECHNOLOGICAL,,"Operated equipment - infrastructure operation",0.75
+P126,TECHNOLOGICAL,,"Infrastructure maintenance - facility management",0.75
+P127,ECONOMIC,POLITICAL,"Ownership - property rights",0.75
+P128,SCIENTIFIC,,"Molecular regulation - biological processes",0.90
+P137,ECONOMIC,TECHNOLOGICAL,"Operator - service and facility management",0.75
+P138,CULTURAL,BIOGRAPHIC,"Namesake - naming etymology and biography",0.75
+P141,ENVIRONMENTAL,SCIENTIFIC,"IUCN conservation status - environmental science",0.90
+P143,INTELLECTUAL,,"Wikimedia import source - data provenance",0.70
+P154,ECONOMIC,CULTURAL,"Logo - corporate and organizational identity",0.75
+P155,INTELLECTUAL,,"Series sequence - sequential organization",0.75
+P156,INTELLECTUAL,,"Series sequence - sequential organization",0.75
+P161,ARTISTIC,BIOGRAPHIC,"Cast member - performing arts and biography",0.85
+P162,ARTISTIC,ECONOMIC,"Producer - film and media production",0.85
+P167,TECHNOLOGICAL,GEOGRAPHIC,"Replacement structure - architectural succession",0.75
+P169,ECONOMIC,POLITICAL,"CEO - corporate leadership",0.85
+P170,ARTISTIC,INTELLECTUAL,"Creator - creative works attribution",0.80
+P171,SCIENTIFIC,,"Parent taxon - biological taxonomy",0.90
+P176,ECONOMIC,TECHNOLOGICAL,"Manufacturer - industrial production",0.80
+P177,GEOGRAPHIC,TECHNOLOGICAL,"Bridge/tunnel crossings - infrastructure geography",0.85
+P717,SCIENTIFIC,,"Observatory code - astronomical identification",0.85
+P721,GEOGRAPHIC,POLITICAL,"Russian OKATO codes - administrative geography",0.85
+P722,GEOGRAPHIC,TECHNOLOGICAL,"UIC station codes - railway infrastructure",0.85
+P723,INTELLECTUAL,BIOGRAPHIC,"Dutch literature author ID - literary bibliography",0.85
+P725,ARTISTIC,,"Voice actor - performing arts",0.85
+P726,POLITICAL,,"Election candidate - electoral politics",0.90
+P729,TECHNOLOGICAL,,"Service entry date - equipment lifecycle",0.75
+P730,TECHNOLOGICAL,,"Service retirement - equipment lifecycle",0.75
+P731,SCIENTIFIC,GEOGRAPHIC,"Lithostratigraphy - geological identification",0.85

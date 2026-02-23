@@ -1,0 +1,117 @@
+================================================================================
+SCHEMA AUDIT: DATABASE vs SPECIFICATION
+================================================================================
+Date: 2026-02-21 15:00:09.601091
+Database: neo4j+s://f7b612a3.databases.neo4j.io
+
+AUDIT 1: NODE LABELS
+--------------------------------------------------------------------------------
+Total labels: 47
+Labels: Activity, Agent, AgentRegistry, AnalysisRun, Chrystallum, Claim, Cognomen, Dynasty, Entity, EntityRoot, EntityType, Event, Facet, FacetAssessment, FacetCategory, FacetRoot, FacetedEntity, Federation, FederationRoot, Gens, GeoCoverageCandidate, GeoSemanticType, Geometry, Human, Institution, LegalRestriction, Location, Material, Object, Organization, Period, PeriodCandidate, Place, PlaceName, PlaceType, PlaceTypeTokenMap, Policy, Position, Praenomen, RetrievalContext, Schema, SubjectConcept, SubjectConceptRegistry, SubjectConceptRoot, Threshold, Work, Year
+
+Expected labels present: {'Entity', 'FacetedEntity'}
+Missing labels: {'FacetClaim', 'TemporalAnchor'}
+
+AUDIT 2: ENTITY TYPES
+--------------------------------------------------------------------------------
+  CONCEPT: 258 entities
+  PLACE: 16 entities
+  SUBJECTCONCEPT: 12 entities
+  EVENT: 7 entities
+  PERSON: 6 entities
+  ORGANIZATION: 1 entities
+
+AUDIT 3: CIPHER FORMATS
+--------------------------------------------------------------------------------
+Sample ciphers:
+  [OK]  ent_sub_Q17167 - SUBJECTCONCEPT - Q17167 - Roman Republic
+  [OLD] ent_con_Q11514315 - CONCEPT - Q11514315 - historical period
+  [OLD] ent_con_Q1307214 - CONCEPT - Q1307214 - form of government
+  [OLD] ent_con_Q48349 - CONCEPT - Q48349 - empire
+  [OLD] ent_con_Q3024240 - CONCEPT - Q3024240 - historical country
+  [OLD] ent_con_Q6944405 - CONCEPT - Q6944405 - Category:Roman Republic
+  [OLD] ent_con_Q337547 - CONCEPT - Q337547 - ancient Roman religion
+  [OLD] ent_con_Q130614 - CONCEPT - Q130614 - Roman Senate
+  [OK]  ent_org_Q1114821 - ORGANIZATION - Q1114821 - citizens' assemblies of the Roman Republ
+  [OLD] ent_con_Q952064 - CONCEPT - Q952064 - Roman currency
+  [OK]  ent_sub_Q486761 - SUBJECTCONCEPT - Q486761 - classical antiquity
+  [OLD] ent_con_Q13285410 - CONCEPT - Q13285410 - Category:People from the Roman Republic
+  [OK]  ent_sub_Q2839628 - SUBJECTCONCEPT - Q2839628 - Early Roman Republic
+  [OK]  ent_sub_Q6106068 - SUBJECTCONCEPT - Q6106068 - Middle Roman Republic
+  [OK]  ent_sub_Q2815472 - SUBJECTCONCEPT - Q2815472 - Late Roman Republic
+  [OK]  ent_sub_Q2277 - SUBJECTCONCEPT - Q2277 - Roman Empire
+  [OK]  ent_sub_Q206414 - SUBJECTCONCEPT - Q206414 - Principate
+  [OK]  ent_sub_Q201038 - SUBJECTCONCEPT - Q201038 - Roman Kingdom
+  [OK]  ent_plc_Q220 - PLACE - Q220 - Rome
+  [OLD] ent_con_Q397 - CONCEPT - Q397 - Latin
+
+Format summary (sample of 20):
+  Correct format: 10
+  Old 'ent_con_*' format: 10
+
+AUDIT 4: TEMPORALANCHOR PATTERN
+--------------------------------------------------------------------------------
+  Nodes with :TemporalAnchor label: 0
+  Nodes with temporal_start_year property: 0
+  Nodes with is_temporal_anchor=true: 0
+  Status: NOT IMPLEMENTED
+
+AUDIT 5: FACETEDENTITY (TIER 2)
+--------------------------------------------------------------------------------
+  FacetedEntity nodes: 360
+
+AUDIT 6: CLAIMS (TIER 3)
+--------------------------------------------------------------------------------
+  Claim nodes: 0
+  FacetClaim nodes: 0
+
+AUDIT 7: RELATIONSHIP TYPES
+--------------------------------------------------------------------------------
+Total relationship types: 45
+Types: ASSIGNED_TO_FACET, ASSIGNED_TO_SUBJECT, BROADER_THAN, CANDIDATE_BROADER_THAN, CANDIDATE_NARROWER_THAN, CANONICALIZED_AS, CONTAINS, FOLLOWED_BY, FOLLOWS, HAS_AGENT, HAS_AGENT_REGISTRY, HAS_CAPITAL, HAS_CHILD_TYPE, HAS_CURRENCY, HAS_ENTITY_ROOT, HAS_ENTITY_TYPE, HAS_FACET, HAS_FACET_ROOT, HAS_FEDERATION, HAS_FEDERATION_ROOT, HAS_GEO_COVERAGE, HAS_GEO_COVERAGE_CANDIDATE, HAS_GEO_SEMANTIC_TYPE, HAS_LEGISLATIVE_BODY, HAS_OFFICIAL_LANGUAGE, HAS_OFFICIAL_RELIGION, HAS_PARTS, HAS_SCHEMA, HAS_SIGNIFICANT_EVENT, HAS_SUBJECT_CONCEPT_ROOT, HAS_SUBJECT_REGISTRY, INSTANCE_OF, LOCATED_IN, LOCATED_IN_COUNTRY, MAPS_TO, NARROWER_THAN, ON_CONTINENT, PART_OF, RELATED_TO, REPLACED_BY, REPLACES, SHARES_BORDER_WITH, SUBCLASS_OF, SUB_PERIOD_OF, USES
+
+AUDIT 8: CONSTRAINTS
+--------------------------------------------------------------------------------
+Total constraints: 72
+  NODE_PROPERTY_EXISTENCE: 17
+  UNIQUENESS: 55
+
+AUDIT 9: INDEXES
+--------------------------------------------------------------------------------
+Total indexes: 65
+  LOOKUP: 2
+  RANGE: 63
+
+================================================================================
+SUMMARY
+================================================================================
+
+TIER 1 (Entity Cipher):
+  [OK] Entity nodes: 300
+  [OK] Constraints exist: entity_cipher_unique, entity_qid_unique
+  [!]  Cipher format: ~10/20 using old 'ent_con_*' format
+  [!]  Migration needed for old format entities
+
+TIER 2 (Faceted Entity Cipher):
+  [OK] FacetedEntity label exists
+  [OK]  FacetedEntity nodes: 360
+  [OK] Indexes exist: faceted_cipher_idx, faceted_entity_facet_idx
+
+TIER 3 (Claim Cipher):
+  [OK] Claim label exists
+  [X]  Claim nodes: 0
+  [X]  FacetClaim label: NOT IN DATABASE
+  [X]  Qualifier properties: NOT IMPLEMENTED
+
+TemporalAnchor Pattern (ADR-002):
+  [X]  :TemporalAnchor label: 0 nodes
+  [X]  temporal_start_year property: 0 nodes
+  [X]  is_temporal_anchor flag: 0 nodes
+  [X]  Status: NOT IMPLEMENTED
+
+RECOMMENDATIONS:
+  1. Execute DDL addendum (add TemporalAnchor + Qualifier support)
+  2. Migrate cipher format (ent_con_* -> canonical prefixes)
+  3. Add TemporalAnchor properties to eligible entities
+  4. Create FacetedEntity nodes (if entity scaling proceeds)
+================================================================================

@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "neo4j": {
+      "command": "node",
+      "args": [
+        "C:\\Projects\\Graph1\\mcp\\neo4j-server\\dist\\index.js"
+      ],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "Chrystallum",
+        "NEO4J_DATABASE": "neo4j"
+      }
+    }
+  }
+}
+
+
+
+

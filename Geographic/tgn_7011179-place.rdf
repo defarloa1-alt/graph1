@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Place xmlns="http://schema.org/" rdf:about="http://vocab.getty.edu/tgn/7011179-place">
+	<rdf:type rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+	<lat xmlns="http://www.w3.org/2003/01/geo/wgs84_pos#" rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">43.318</lat>
+	<long xmlns="http://www.w3.org/2003/01/geo/wgs84_pos#" rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">11.33</long>
+	<inDataset xmlns="http://rdfs.org/ns/void#" rdf:resource="http://vocab.getty.edu/dataset/tgn"/>
+	<license xmlns="http://purl.org/dc/terms/" rdf:resource="http://opendatacommons.org/licenses/by/1.0/"/>
+	<license xmlns="http://creativecommons.org/ns#" rdf:resource="http://opendatacommons.org/licenses/by/1.0/"/>
+	<geo xmlns="http://schema.org/" rdf:resource="http://vocab.getty.edu/tgn/7011179-geometry"/>
+	<alt xmlns="http://www.w3.org/2003/01/geo/wgs84_pos#" rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">322</alt>
+</Place>
+
+</rdf:RDF>

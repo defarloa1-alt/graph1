@@ -1,0 +1,241 @@
+#FederationUsage
+Chrystallum should treat each federation as part of a **stacked evidence ladder**: from broad identity hints at the top to hard, low-level evidence at the bottom. The system’s job is to move a candidate node as far down that ladder as possible before it’s considered “solid.”
+
+Below, I’ll walk through how the system should leverage each federation layer for your main node types, in narrative form.
+
+***
+
+## 1. People and Names (Person, Gens, Praenomen, Cognomen)
+
+### Step 1: Broad identity via Wikidata and VIAF
+When the system encounters a person string like “Gaius Julius Caesar,” it first:
+- Resolves to a Wikidata QID (e.g., Q1048) to anchor the identity in a widely-used hub.
+- Follows the external identifier to VIAF (the authority file federation for authors/creators).
+
+**How to use it:**
+- Use VIAF to confirm:
+  - Canonical name forms in multiple languages.
+  - Whether this is a real, curated authority or a marginal/uncertain record.
+- If VIAF has multiple clusters, that’s a signal to the system: “Name collision—treat with caution.”
+
+Result: you now have a **high-level identity assertion** for an elite person, suitable for “Prosopography of elites, author of texts, subject of modern works.”
+
+### Step 2: Deepening identity via Trismegistos People and PIR
+
+For historical *non-elites* or to check that elites appear in primary evidence, the system:
+- Uses the Trismegistos person ID (TM_People) to see where and how often the name occurs in papyri/inscriptions.
+- For Roman elites, uses PIR / PLRE (reached via Trismegistos links or your own mapping) as the **gold-standard curated prosopography**.
+
+**How to use it:**
+- If a candidate Person only exists in Wikidata, treat them as “textual-level, unconfirmed.”
+- If they appear in Trismegistos people records and PIR:
+  - Increase confidence that this is a historically grounded individual.
+  - Pull in:
+    - Offices held.
+    - Attested locations.
+    - Date ranges of activity.
+- Use those as **constraints** in your graph:
+  - “Do not allow events with this person outside their active date window or geography envelope.”
+
+### Step 3: Onomastics and micro-evidence (LGPN, DDbDP, etc.)
+
+For deeper name analysis:
+- For Greek names: consult LGPN (Lexicon of Greek Personal Names).
+- For documentary papyri: use DDbDP entries that actually show the person in a contract or receipt.
+
+**How to use it:**
+- When constructing a Claim like “Person X is a Greek freedman in Alexandria,” you can:
+  - Use LGPN frequency and distribution to support the cultural/ethnic inference.
+  - Use DDbDP documents as explicit **Evidence nodes** linking Person → Document → Place → Date.
+
+Outcome: the **Person node** ceases to be just an identity label and becomes a historically constrained agent with time, place, and social context derived from multi-level federated evidence.
+
+***
+
+## 2. Places (Place)
+
+### Step 1: Conceptual place via Pleiades
+
+When the system encounters a place (e.g., “Emerita Augusta”):
+- It resolves to a Pleiades place ID.
+- Pleiades provides:
+  - Conceptual place (not just a point).
+  - Ancient and modern names.
+  - Temporal associations (which periods the place is valid in).
+
+**How to use it:**
+- Use the Pleiades ID as your **canonical place key**.
+- Store:
+  - All name variants.
+  - Temporal validity to constrain events: “Events using this place must occur inside its valid period unless explicitly flagged as anachronistic.”
+
+### Step 2: Local and granular geography via Trismegistos Geo and DARE
+
+For finer-grained location:
+- Use Trismegistos Geo to get village-level or quarter-level IDs (especially in Egypt/Eastern Mediterranean).
+- Use DARE for road networks, military installations, and Roman administrative geography.
+
+**How to use it:**
+- When building an Event (e.g., “Movement of Legio X”), use DARE to:
+  - Validate plausible routes and distances between Pleiades places.
+- When a papyrus or inscription has a local toponym:
+  - Map that to TM_Geo, then to Pleiades, to anchor tiny local places in your global ancient map.
+
+### Step 3: Modern ground truth via GeoNames/OSM
+
+For mapping and visualization:
+- Use GeoNames and OpenStreetMap as modern references for coordinates and country-level context.
+
+**How to use it:**
+- Provide modern coordinates and bounding boxes for visualization and spatial queries.
+- Use modern admin boundaries only as **UI/context**, never as the primary historical ontology (Roman province, not “Spain”).
+
+***
+
+## 3. Events, Claims, Communications
+
+### Step 1: Event candidates via Wikidata
+
+Wikidata gives you:
+- Named events (battles, reforms, assassinations).
+- Simple triples: `Caesar –> participant in –> Battle of Pharsalus`.
+
+**How to use it:**
+- Treat these as **event seeds**, not fully trusted events.
+- For each such triple, the system proposes an Event node:
+  - Event type (Battle, Law, Foundation).
+  - Participant roles (ordered_by, commanded_by, affected_party).
+
+### Step 2: Evidence alignment via Trismegistos Texts and EDH
+
+To turn event seeds into **historical events**, the system:
+- Searches Trismegistos texts for documents referring to the event, participants, or place.
+- Searches EDH for inscriptions commemorating or mentioning the same event or actors.
+
+**How to use it:**
+- Create **Communication nodes** for each text/inscription:
+  - Author/speaker (Livy, inscription sponsor).
+  - Audience (Senate, public).
+  - Medium (scroll, stone).
+- Link Event → Communication as evidence, with role annotations like:
+  - “Primary inscriptional evidence.”
+  - “Later literary narrative.”
+- Raise the Event’s confidence when at least one epigraphic or documentary source is attached.
+
+### Step 3: Claim modeling and provenance
+
+Using HiCO-like structures:
+- Model each historical statement as a Claim:
+  - Claimant (Livy).
+  - Claim content (date, outcome, motive).
+  - Target Event.
+
+**How to use it:**
+- Store multiple Claims per Event:
+  - Livy’s date vs. Polybius’ date vs. modern scholarly reconstruction.
+- Use federation sources to classify:
+  - Primary evidence (EDH, papyrus).
+  - Secondary narrative (Livy, Plutarch).
+- Enable your “frameworks” to weight claims differently:
+  - A “source-critical” framework might privilege epigraphy over narrative.
+
+Outcome: Events become **nodes anchored by multi-source claims**, not flat facts.
+
+***
+
+## 4. Time (Year, Period)
+
+### Step 1: Period semantics via PeriodO
+
+When the system sees “Late Republic” or “Augustan Age”:
+- It resolves these terms to PeriodO IDs with explicit start/end years.
+
+**How to use it:**
+- Attach Period nodes to Events and Persons as “temporal envelopes.”
+- Use them to:
+  - Check plausibility (no event outside its labeled period).
+  - Enable lensing: “Show me just events in ‘Late Republic’ per PeriodO.”
+
+### Step 2: Year as a first-class node
+
+For precise dates:
+- Use ISO-like normalized years and dates, but connect them to:
+  - PeriodO periods.
+  - Calendar systems (Julian vs. proleptic Gregorian, etc.).
+
+**How to use it:**
+- Every Event gets:
+  - A Year node (or date range).
+  - One or more Period nodes.
+- Temporal reasoning:
+  - Overlaps, precedence, simultaneity can be calculated using these standardized intervals.
+
+***
+
+## 5. Concepts, Institutions, LegalRestriction, Organization, Subject
+
+### Step 1: Concept and institution semantics via Getty AAT + LCSH/FAST
+
+For abstract categories (e.g., “colony,” “senate,” “tax,” “imperium”):
+- Use Getty AAT as the deep hierarchy of concepts.
+- Use LCSH/FAST as the subject-topic hierarchy used in library science.
+
+**How to use it:**
+- For each Concept, Institution, or LegalRestriction:
+  - Assign an AAT concept (e.g., “colony (settlements)”).
+  - Assign LCSH/FAST subject headings for crosswalk into bibliographic systems.
+- Enable:
+  - Faceted navigation (“show me all events involving colonial institutions”).
+  - Topic-based discovery (“works about Roman taxation crises”).
+
+### Step 2: Law and restriction specifics
+
+For LegalRestriction:
+- Use whatever structured Roman law resources you can (e.g., curated corpora of Twelve Tables, Digest, etc.).
+- Often these won’t have clean public APIs; you may need to treat this as a **local federation you build**.
+
+**How to use it:**
+- Each Law or Restriction node:
+  - Links to its text in a digital law corpus.
+  - Gets typed via AAT (law, legal decision, right, duty).
+- Use this to:
+  - Link Events (e.g., reforms, trials) to concrete legal changes.
+  - Allow queries like “show me all events that weaken senatorial legal prerogatives.”
+
+***
+
+## 6. How the System Should Operationalize This
+
+### Ingestion phase
+1. Start from Wikidata (QID) as the **router**.
+2. Follow external IDs to:
+   - Pleiades (Places)
+   - VIAF/Trismegistos (Persons)
+   - PeriodO (Periods)
+   - Others as appropriate.
+3. For each federation hit:
+   - Normalize and store the canonical ID.
+   - Pull selected key fields (names, dates, roles, coordinates) into your node, but keep external IDs for deeper drill-down.
+
+### Validation phase
+1. Apply your schema constraints:
+   - “A Person must have at least one temporal envelope supported by some external authority.”
+   - “An Event with a Pleiades place and EDH inscription is higher confidence than one with Wikipedia only.”
+2. Use depth:
+   - Count how many “levels” down the federation tree you’ve reached (e.g., VIAF + Trismegistos + PIR + DDbDP).
+   - Translate that into a confidence score.
+
+### Analysis and lensing phase
+1. For any claim or event:
+   - The UI can show a **federation badge**:
+     - “Backed by: Pleiades, EDH, Trismegistos.”
+2. Frameworks (Marxist, Great Man, etc.) can:
+   - Prefer events with deeper evidence chains.
+   - Downweight events only supported by shallow, single-source data.
+
+In short, each federation is not just a data source; it is a **different kind of epistemic support**. Your system should:
+- Use the hub (Wikidata) to route.
+- Use domain authorities (Pleiades, VIAF, Trismegistos, EDH, PeriodO, Getty AAT) to **shape** entities.
+- Use specialist archives to **anchor** them with hard evidence.
+
+That is how Chrystallum turns “a web of APIs” into a coherent, graded ladder of historical certainty.

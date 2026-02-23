@@ -1,0 +1,43 @@
+{
+  "metadata_header": {
+    "contract_version": "embedding_pilot_contract_v1",
+    "artifact_type": "embedding_pilot_run_metadata",
+    "script_version": "0.1.0-scaffold",
+    "run_label": "embedding_pilot_baseline",
+    "run_fingerprint": "5e915fd9b654dfb92ad23e410abceec7e9b9987b103a96f3e156a40ea7877842",
+    "determinism_mode": "strict_input_hash"
+  },
+  "pilot_config": {
+    "cohorts": [
+      "Event",
+      "Human",
+      "Place",
+      "SubjectConcept"
+    ],
+    "vector_dim": 384,
+    "distance_metric": "cosine",
+    "model_family": "placeholder_text_graph_hybrid",
+    "model_version": "v0_pilot",
+    "seed": 42,
+    "refresh_cadence": "weekly_batch"
+  },
+  "output_contract": {
+    "vector_key": "node_id",
+    "vector_field": "embedding",
+    "required_fields": [
+      "node_id",
+      "node_label",
+      "node_type",
+      "embedding"
+    ],
+    "quality_metrics_required": [
+      "coverage_ratio",
+      "sample_topk_sanity"
+    ]
+  },
+  "training_state": {
+    "status": "scaffold_no_training_executed",
+    "checkpoint_written": false,
+    "vectors_written": false
+  }
+}

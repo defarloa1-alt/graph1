@@ -1,0 +1,19 @@
+facet_key,seed_authority,required_federations,preferred_federations,golden_profile,place_status_requirement,temporal_gate,notes
+archaeological,pleiades,wikidata|pleiades,geonames|getty_tgn|periodo,ARCH_GOLD,Historical|Continuous,requires_end_date_for_period_claims,Pleiades-first evidence for ancient context
+artistic,wikidata,wikidata,getty_tgn|getty_aat|ulan,ART_GOLD,Any,optional_for_place_claims,Use TGN/AAT as cultural enrichment not structural geo authority
+biographic,wikidata,wikidata,viaf|gnd,PERSON_GOLD,Any,optional_for_place_claims,Place federation only if claim has place semantics
+cultural,pleiades,wikidata|pleiades,getty_tgn|getty_aat|babelnet,CULTURAL_GOLD,Historical|Continuous,requires_end_date_for_period_claims,TGN favored for cultural-place context
+demographic,wikidata,wikidata|geonames,periodo|statistical_datasets,DEMOGRAPHIC_GOLD,Modern|Continuous,requires_start_and_end_for_period_claims,GeoNames favored for current population context
+diplomatic,wikidata,wikidata|geonames,periodo|dbpedia,DIPLOMATIC_GOLD,Modern|Continuous,requires_start_and_end_for_period_claims,Political borders rely on modern containment unless historical evidence present
+economic,pleiades,wikidata|pleiades,geonames|periodo|getty_tgn,ECONOMIC_GOLD,Historical|Continuous,requires_end_date_for_period_claims,Trade-route and port claims often need both historical and modern place normalization
+environmental,pleiades,wikidata|pleiades|geonames,periodo|agrovoc,ENV_GOLD,Continuous|Modern,requires_start_and_end_for_period_claims,Physical features can persist across historical/modern states
+geographic,pleiades,wikidata|pleiades|geonames,getty_tgn|periodo,GEO_GOLD,Historical|Modern|Continuous,requires_start_and_end_for_period_claims,Core where-facet profile
+intellectual,wikidata,wikidata,babelnet|wordnet|periodo,INTELLECTUAL_GOLD,Any,optional_for_place_claims,Place federation optional unless concept is region-bound
+linguistic,wikidata,wikidata,iso_639|glottolog|babelnet,LINGUISTIC_GOLD,Any,optional_for_place_claims,Geo enrichment only for language-area claims
+military,pleiades,wikidata|pleiades,geonames|periodo|getty_tgn,MILITARY_GOLD,Historical|Continuous,requires_end_date_for_period_claims,Battle/campaign claims need historical place anchors
+political,wikidata,wikidata|geonames,periodo|pleiades,POLITICAL_GOLD,Modern|Continuous,requires_start_and_end_for_period_claims,Use Pleiades only when explicitly historical polity context exists
+religious,pleiades,wikidata|pleiades,getty_tgn|getty_aat|periodo,RELIGIOUS_GOLD,Historical|Continuous,requires_end_date_for_period_claims,Sacred sites often historical-first with modern carryover
+scientific,wikidata,wikidata,mesh|dbpedia,SCIENTIFIC_GOLD,Any,optional_for_place_claims,Place federation secondary except geo/earth sciences
+social,wikidata,wikidata|geonames,periodo,SOCIAL_GOLD,Modern|Continuous,requires_start_and_end_for_period_claims,Modern settlement/admin layers are primary for social metrics
+technological,wikidata,wikidata|geonames,getty_aat|periodo,TECHNOLOGY_GOLD,Modern|Continuous,requires_start_and_end_for_period_claims,Infrastructure claims may use modern place hierarchy
+communication,wikidata,wikidata|geonames,bibliographic_schemas|periodo,COMMUNICATION_GOLD,Modern|Continuous,requires_start_and_end_for_period_claims,Network/media claims often align to modern admin geography

@@ -1,0 +1,33 @@
+{
+  "registry": "Chrystallum Canonical Facets",
+  "version": "2026-02-19-final",
+  "count": 18,
+  "facets": [
+    {"key": "ARCHAEOLOGICAL", "label": "Archaeological"},
+    {"key": "ARTISTIC", "label": "Artistic"},
+    {"key": "BIOGRAPHIC", "label": "Biographic"},
+    {"key": "COMMUNICATION", "label": "Communication"},
+    {"key": "CULTURAL", "label": "Cultural"},
+    {"key": "DEMOGRAPHIC", "label": "Demographic"},
+    {"key": "DIPLOMATIC", "label": "Diplomatic"},
+    {"key": "ECONOMIC", "label": "Economic"},
+    {"key": "ENVIRONMENTAL", "label": "Environmental"},
+    {"key": "GEOGRAPHIC", "label": "Geographic"},
+    {"key": "INTELLECTUAL", "label": "Intellectual"},
+    {"key": "LINGUISTIC", "label": "Linguistic"},
+    {"key": "MILITARY", "label": "Military"},
+    {"key": "POLITICAL", "label": "Political"},
+    {"key": "RELIGIOUS", "label": "Religious"},
+    {"key": "SCIENTIFIC", "label": "Scientific"},
+    {"key": "SOCIAL", "label": "Social"},
+    {"key": "TECHNOLOGICAL", "label": "Technological"}
+  ],
+  "forbidden": ["TEMPORAL", "CLASSIFICATION", "PATRONAGE", "GENEALOGICAL"],
+  "rules": {
+    "keys_must_be_uppercase": true,
+    "biographic_not_genealogical": true,
+    "no_temporal_facet": true,
+    "no_classification_facet": true
+  }
+}
+

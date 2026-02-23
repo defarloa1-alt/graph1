@@ -1,0 +1,58 @@
+{
+  "metadata_header": {
+    "contract_version": "semantic_constraint_report_v1",
+    "validator_version": "0.1.0-scaffold",
+    "constraint_pack_id": "shacl_rdfs_lite_v1",
+    "run_fingerprint": "5f6f110b0a5710da0c995668fff5b65093fdb429345fa4e8283da6f91f0c2c5d",
+    "input_hash": "c4061e8b7eea65a90f0bb3c9029a483f7af4c835fdacc8839fefbee29291396b",
+    "determinism_mode": "strict_input_hash"
+  },
+  "summary": {
+    "checks_executed": 5,
+    "errors": 0,
+    "warnings": 0,
+    "passes": 5
+  },
+  "checks": [
+    {
+      "check_id": "SHACL-AUTH-001",
+      "family": "Authority",
+      "severity": "ERROR",
+      "status": "PASS",
+      "failure_count": 0,
+      "reason_codes": []
+    },
+    {
+      "check_id": "SHACL-IDENT-001",
+      "family": "Identity",
+      "severity": "ERROR",
+      "status": "PASS",
+      "failure_count": 0,
+      "reason_codes": []
+    },
+    {
+      "check_id": "SHACL-IDENT-002",
+      "family": "Identity",
+      "severity": "ERROR",
+      "status": "PASS",
+      "failure_count": 0,
+      "reason_codes": []
+    },
+    {
+      "check_id": "SHACL-IDENT-003",
+      "family": "Identity",
+      "severity": "ERROR",
+      "status": "PASS",
+      "failure_count": 0,
+      "reason_codes": []
+    },
+    {
+      "check_id": "SHACL-TEMP-001",
+      "family": "Temporal",
+      "severity": "ERROR",
+      "status": "PASS",
+      "failure_count": 0,
+      "reason_codes": []
+    }
+  ]
+}

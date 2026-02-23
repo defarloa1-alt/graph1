@@ -1,0 +1,25 @@
+{
+  "backbone_qid_count": 3439,
+  "files_scanned": [
+    "CSV/geographic/pleiades_geonames_wikidata_tgn_crosswalk_v1.csv",
+    "Temporal/wikidata_period_geo_edges_all_geo_2026-02-18.csv",
+    "Temporal/wikidata_period_geo_place_candidates_all_geo_2026-02-18.csv",
+    "Temporal/wikidata_periodo_time_geo_p31_distinct_all_geo_2026-02-18.csv",
+    "Temporal/wikidata_periodo_end_before_minus2000_2026-02-18.csv"
+  ],
+  "counts": {
+    "lcc": 11,
+    "lcsh": 1368,
+    "fast": 597,
+    "dewey": 216,
+    "worldcat_entities": 766,
+    "oclc_number": 0,
+    "trismegistos_geo": 329,
+    "trismegistos_text": 0,
+    "trismegistos_author": 0,
+    "trismegistos_god": 0
+  },
+  "worldcat_any": 766,
+  "trismegistos_any": 329,
+  "generated_at_epoch": 1771469563
+}

@@ -1,0 +1,219 @@
+{
+  "generated_at": "2026-02-16T19:29:17.915315Z",
+  "seed": {
+    "qid": "Q17167",
+    "label": "Roman Republic",
+    "description": "period of ancient Roman civilization (509 BC–27 BC)"
+  },
+  "extraction_summary": {
+    "node_count": 178,
+    "relationship_claim_count": 197,
+    "direct_relationship_claim_count": 39,
+    "backlink_relationship_claim_count": 158,
+    "attribute_claim_count": 41,
+    "top_direct_predicates": [
+      {
+        "key": "P793",
+        "count": 7
+      },
+      {
+        "key": "P31",
+        "count": 4
+      },
+      {
+        "key": "P527",
+        "count": 3
+      },
+      {
+        "key": "P30",
+        "count": 3
+      },
+      {
+        "key": "P194",
+        "count": 2
+      },
+      {
+        "key": "P1366",
+        "count": 2
+      },
+      {
+        "key": "P2936",
+        "count": 2
+      },
+      {
+        "key": "P156",
+        "count": 2
+      },
+      {
+        "key": "P910",
+        "count": 1
+      },
+      {
+        "key": "P140",
+        "count": 1
+      },
+      {
+        "key": "P38",
+        "count": 1
+      },
+      {
+        "key": "P2348",
+        "count": 1
+      },
+      {
+        "key": "P1792",
+        "count": 1
+      },
+      {
+        "key": "P155",
+        "count": 1
+      },
+      {
+        "key": "P36",
+        "count": 1
+      },
+      {
+        "key": "P3075",
+        "count": 1
+      },
+      {
+        "key": "P122",
+        "count": 1
+      },
+      {
+        "key": "P1365",
+        "count": 1
+      },
+      {
+        "key": "P361",
+        "count": 1
+      },
+      {
+        "key": "P1889",
+        "count": 1
+      }
+    ],
+    "top_backlink_predicates": [
+      {
+        "key": "P710",
+        "count": 65
+      },
+      {
+        "key": "P17",
+        "count": 54
+      },
+      {
+        "key": "P921",
+        "count": 23
+      },
+      {
+        "key": "P101",
+        "count": 5
+      },
+      {
+        "key": "P361",
+        "count": 3
+      },
+      {
+        "key": "P19",
+        "count": 3
+      },
+      {
+        "key": "P527",
+        "count": 2
+      },
+      {
+        "key": "P1001",
+        "count": 1
+      },
+      {
+        "key": "P138",
+        "count": 1
+      },
+      {
+        "key": "P1366",
+        "count": 1
+      }
+    ],
+    "top_canonical_relationship_types": [
+      {
+        "key": "CONTROLLED",
+        "count": 54
+      },
+      {
+        "key": "CONTROLLED_BY",
+        "count": 54
+      },
+      {
+        "key": "CONTAINS_PERIOD",
+        "count": 5
+      },
+      {
+        "key": "HAS_PART",
+        "count": 5
+      },
+      {
+        "key": "PART_OF",
+        "count": 4
+      },
+      {
+        "key": "SUB_PERIOD_OF",
+        "count": 4
+      },
+      {
+        "key": "REPLACED_BY",
+        "count": 3
+      },
+      {
+        "key": "SUCCEEDED_BY",
+        "count": 3
+      },
+      {
+        "key": "SUPERSEDED_BY",
+        "count": 3
+      },
+      {
+        "key": "BIRTHPLACE_OF",
+        "count": 3
+      },
+      {
+        "key": "BORN_IN",
+        "count": 3
+      },
+      {
+        "key": "CONVERTED_BY",
+        "count": 1
+      },
+      {
+        "key": "CONVERTED_TO",
+        "count": 1
+      },
+      {
+        "key": "SUCCESSOR_OF",
+        "count": 1
+      },
+      {
+        "key": "APPLIES_TO_JURISDICTION",
+        "count": 1
+      },
+      {
+        "key": "NAMED_AFTER",
+        "count": 1
+      },
+      {
+        "key": "NAMESAKE_OF",
+        "count": 1
+      }
+    ]
+  },
+  "integration_stats": {
+    "relationship_claims_processed": 197,
+    "relationship_claims_validated": 166,
+    "relationship_claims_failed": 0,
+    "attribute_claims_processed": 0,
+    "unique_assertion_ciphers": 166,
+    "claims_with_multiple_perspectives": 0,
+    "v1_kernel_mappings": 166,
+    "unmapped_predicates": 31
+  }
+}

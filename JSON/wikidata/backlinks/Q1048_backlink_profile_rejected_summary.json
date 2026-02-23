@@ -1,0 +1,178 @@
+{
+  "generated_at": "2026-02-13T20:49:00.136102+00:00",
+  "entity_count": 51,
+  "statement_count": 1497,
+  "missing_datavalue_statement_count": 5,
+  "datatype_counts": {
+    "external-id": 608,
+    "globe-coordinate": 22,
+    "wikibase-item": 658,
+    "time": 33,
+    "quantity": 44,
+    "monolingualtext": 28,
+    "string": 45,
+    "commonsMedia": 50,
+    "url": 9
+  },
+  "value_type_counts": {
+    "string": 712,
+    "globecoordinate": 22,
+    "wikibase-entityid": 656,
+    "time": 33,
+    "": 5,
+    "monolingualtext": 28,
+    "quantity": 41
+  },
+  "pair_counts": {
+    "external-id|string": 608,
+    "globe-coordinate|globecoordinate": 22,
+    "wikibase-item|wikibase-entityid": 656,
+    "time|time": 33,
+    "quantity|": 3,
+    "monolingualtext|monolingualtext": 28,
+    "string|string": 45,
+    "commonsMedia|string": 50,
+    "quantity|quantity": 41,
+    "url|string": 9,
+    "wikibase-item|": 2
+  },
+  "unsupported_pairs": {},
+  "unsupported_statement_count": 0,
+  "unsupported_pair_rate": 0.0,
+  "unsupported_pair_threshold": 0.1,
+  "overall_status": "pass",
+  "rank_counts": {
+    "normal": 1484,
+    "deprecated": 9,
+    "preferred": 4
+  },
+  "top_properties": [
+    {
+      "property": "P737",
+      "count": 71
+    },
+    {
+      "property": "P31",
+      "count": 62
+    },
+    {
+      "property": "P138",
+      "count": 47
+    },
+    {
+      "property": "P527",
+      "count": 39
+    },
+    {
+      "property": "P18",
+      "count": 36
+    },
+    {
+      "property": "P17",
+      "count": 34
+    },
+    {
+      "property": "P1343",
+      "count": 30
+    },
+    {
+      "property": "P373",
+      "count": 29
+    },
+    {
+      "property": "P131",
+      "count": 24
+    },
+    {
+      "property": "P646",
+      "count": 24
+    },
+    {
+      "property": "P625",
+      "count": 22
+    },
+    {
+      "property": "P276",
+      "count": 17
+    },
+    {
+      "property": "P2671",
+      "count": 14
+    },
+    {
+      "property": "P710",
+      "count": 14
+    },
+    {
+      "property": "P101",
+      "count": 13
+    },
+    {
+      "property": "P571",
+      "count": 12
+    },
+    {
+      "property": "P793",
+      "count": 11
+    },
+    {
+      "property": "P2789",
+      "count": 11
+    },
+    {
+      "property": "P279",
+      "count": 11
+    },
+    {
+      "property": "P607",
+      "count": 11
+    },
+    {
+      "property": "P186",
+      "count": 11
+    },
+    {
+      "property": "P361",
+      "count": 10
+    },
+    {
+      "property": "P1889",
+      "count": 10
+    },
+    {
+      "property": "P12800",
+      "count": 10
+    },
+    {
+      "property": "P214",
+      "count": 10
+    },
+    {
+      "property": "P910",
+      "count": 9
+    },
+    {
+      "property": "P2561",
+      "count": 9
+    },
+    {
+      "property": "P106",
+      "count": 9
+    },
+    {
+      "property": "P227",
+      "count": 8
+    },
+    {
+      "property": "P6262",
+      "count": 7
+    }
+  ],
+  "source": {
+    "input_report": "JSON/wikidata/backlinks/Q1048_backlink_harvest_report.json",
+    "source_section": "rejected",
+    "seed_qid": "Q1048",
+    "requested_qid_count": 51,
+    "resolved_entity_count": 51
+  }
+}

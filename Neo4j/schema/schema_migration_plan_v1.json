@@ -1,0 +1,23 @@
+{
+  "migration_plan_id": "chrystallum_schema_migration_plan_v1",
+  "description": "Baseline schema migration sequence for regression harness apply/dry_run modes.",
+  "migration_files": [
+    "Neo4j/schema/01_schema_constraints.cypher",
+    "Neo4j/schema/02_schema_indexes.cypher",
+    "Neo4j/schema/03_schema_initialization.cypher",
+    "Neo4j/schema/05_temporal_hierarchy_levels.cypher",
+    "Neo4j/schema/17_policy_decision_subgraph_schema.cypher"
+  ],
+  "assertion_sources": [
+    "Neo4j/schema/06_bootstrap_validation_runner.cypher",
+    "Neo4j/schema/08_core_pipeline_validation_runner.py"
+  ],
+  "critical_labels": [
+    "Human",
+    "Event",
+    "Place",
+    "Period",
+    "SubjectConcept",
+    "Claim"
+  ]
+}

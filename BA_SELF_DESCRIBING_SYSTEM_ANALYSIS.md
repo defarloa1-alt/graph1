@@ -12,11 +12,11 @@
 Chrystallum has implemented a **self-describing system architecture** where the knowledge graph models its own structure as queryable graph nodes. This is not just a technical pattern—it's a **strategic business capability** that provides measurable ROI through reduced operational costs, faster adaptation, and lower risk.
 
 **Business Impact:**
-- **30-50% reduction** in documentation maintenance costs
-- **10x faster** onboarding for new team members
-- **Near-zero cost** for schema changes and feature additions
-- **100% accuracy** in system documentation (cannot drift from reality)
-- **Audit-ready** compliance with centralized governance
+- **Documentation cannot drift** from reality (graph IS the source of truth)
+- **Faster onboarding** (query graph instead of reading 2,000+ pages)
+- **Simplified schema changes** (graph operations instead of code changes)
+- **Centralized governance** (all registries in one queryable location)
+- **Audit-ready** architecture (system can explain itself)
 
 **Strategic Value:** Transforms knowledge graph from "data storage" to "self-aware system"
 
@@ -84,10 +84,12 @@ Cost: 2-4 hours (write queries once, reuse forever)
 Accuracy: 100% (graph can't lie about itself)
 ```
 
-**ROI:**
-- **Time savings:** 90% reduction (40h → 4h)
-- **Accuracy improvement:** +15-30% (70-85% → 100%)
-- **Audit frequency:** Can audit weekly instead of quarterly (near-zero marginal cost)
+**Potential Benefits:**
+- **Time savings:** Significantly faster (query vs manual inspection)
+- **Accuracy improvement:** 100% accurate (graph cannot lie about itself)
+- **Audit frequency:** Can audit more often (queries are inexpensive)
+
+**Note:** Specific time/cost savings would require baseline measurement of current audit process.
 
 ---
 
@@ -123,10 +125,12 @@ Annual Cost: 20-40 hours (query maintenance only)
 Risk: 0% (graph is always correct about itself)
 ```
 
-**ROI:**
-- **Cost savings:** 80-90% reduction (200-400h → 20-40h per year)
+**Potential Benefits:**
+- **Reduced maintenance burden:** Documentation updates automatically with graph changes
 - **Risk reduction:** Eliminate documentation drift
 - **Business continuity:** Knowledge preserved in system, not in people's heads
+
+**Note:** Actual cost savings depend on current documentation maintenance workload (not quantified).
 
 ---
 
@@ -167,10 +171,12 @@ Time to Productivity: 1-2 weeks (50% faster)
 Cost Reduction: $7,500-10,000 per developer
 ```
 
-**ROI:**
-- **Time savings:** 50% faster onboarding (4 weeks → 2 weeks)
-- **Cost savings:** $7,500-10,000 per new developer
-- **Scaling:** Can onboard 2x more developers in same time period
+**Potential Benefits:**
+- **Faster learning curve:** Query-based exploration vs document reading
+- **Self-service discovery:** Developers can explore independently
+- **Always current:** Onboarding materials reflect actual system state
+
+**Note:** Actual time savings would require measuring baseline onboarding time (not currently tracked).
 
 ---
 
@@ -212,10 +218,12 @@ Total: 8 hours (68% reduction)
 Risk: Zero (single source of truth)
 ```
 
-**ROI:**
-- **Speed:** 3x faster feature delivery (25h → 8h)
-- **Cost:** 68% reduction per feature
-- **Consistency:** Impossible to have mismatched registries
+**Potential Benefits:**
+- **Faster delivery:** Graph operations vs code+doc updates (fewer steps)
+- **Lower complexity:** Single change point (graph) vs multiple files
+- **Consistency:** Impossible to have mismatched registries (one source of truth)
+
+**Note:** Actual time comparison requires implementing a feature both ways (not yet measured).
 
 ---
 
@@ -251,10 +259,12 @@ Risk: Impossible to have config mismatch (one source)
 Incidents: Near-zero config-related bugs
 ```
 
-**ROI:**
-- **Incident reduction:** 15-25% of bugs eliminated
-- **Deployment safety:** Can verify production config in 1 query
-- **Disaster recovery:** System configuration is in the graph backup
+**Potential Benefits:**
+- **Configuration consistency:** Single source of truth prevents mismatches
+- **Deployment verification:** Can verify production config via query
+- **Disaster recovery:** System configuration included in graph backup
+
+**Note:** Incident rate improvement would require tracking current config-related bugs (not quantified).
 
 ---
 
@@ -777,27 +787,32 @@ Benefit: Audit trail for all assertions
 
 ---
 
-## ROI Summary (Quantified Business Value)
+## Business Value Assessment
 
-### Annual Operational Savings
+### **Qualitative Benefits** (Observed)
 
-| Benefit | Traditional Cost | Self-Describing Cost | Savings | ROI |
-|---------|------------------|---------------------|---------|-----|
-| **Documentation maintenance** | 200-400h | 20-40h | 160-360h | 80-90% |
-| **Quarterly audits** | 40h × 4 = 160h | 4h × 4 = 16h | 144h | 90% |
-| **Onboarding per developer** | $15K-20K | $7.5K-10K | $7.5K-10K | 50% |
-| **Feature additions (per)** | 25h | 8h | 17h | 68% |
-| **Config incidents (annual)** | 40h debugging | 4h (95% fewer) | 36h | 90% |
+**What We Know For Certain:**
+- ✅ System can query its own structure (demonstrated)
+- ✅ Centralized registries exist (10 Federations, 18 Facets, 79 SubjectConcepts)
+- ✅ Agent deployment tracked in graph (3 active SFAs)
+- ✅ Federation scores implemented (Roman Republic: 100)
+- ✅ Schema defined in graph (Schema nodes with required/optional properties)
 
-**Total Annual Savings (conservative):**
-- **Time:** 357-557 hours
-- **Cost:** $40,000-60,000 (assuming $100/hour blended rate)
+**Likely Benefits** (Not Yet Quantified):
+- Reduced documentation maintenance (graph updates automatically)
+- Faster system audits (query vs manual inspection)
+- Simplified feature additions (graph operations vs code changes)
+- Improved configuration consistency (single source of truth)
+- Better onboarding experience (queryable system structure)
 
-**One-Time Investment:**
-- Already implemented (sunk cost: $0)
-- Alignment work (REQ-DATA-005): 30 minutes ($50)
+**To Quantify These Benefits, We Would Need:**
+- Baseline: Current time spent on documentation maintenance
+- Baseline: Current onboarding time per developer
+- Baseline: Current audit duration and frequency
+- Baseline: Current feature delivery time
+- Measurement: Track before/after for meaningful comparison
 
-**ROI:** Immediate and ongoing (no investment needed, architecture exists)
+**Recommendation:** Establish baseline measurements if ROI quantification is required for business case or funding justification.
 
 ---
 
@@ -874,13 +889,15 @@ New: Query "Which geographic federation to use?"
 
 **Question:** "Is self-describing architecture worth it?"
 
-**Answer:** **Absolutely YES**, because:
+**Answer:** **YES**, because:
 
-1. ✅ **Already implemented** (no investment needed)
-2. ✅ **Measurable ROI** ($40K-60K annual savings)
+1. ✅ **Already implemented** (no additional investment needed)
+2. ✅ **Clear benefits** (faster audits, better governance, simplified changes)
 3. ✅ **Strategic value** (competitive moat, scalability)
 4. ✅ **Industry standard** (matches Google, Diffbot patterns)
 5. ✅ **Low risk** (proven pattern, working in production)
+
+**Note:** Specific ROI figures would require baseline measurements of current processes.
 
 **Recommendation:** 
 - Leverage this architecture (don't change it)

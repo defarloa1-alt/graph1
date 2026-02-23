@@ -1,0 +1,99 @@
+{
+  "metadata_header": {
+    "contract_version": "schema_migration_regression_report_v1",
+    "runner_version": "0.1.0",
+    "migration_plan_id": "chrystallum_schema_migration_plan_v1",
+    "run_fingerprint": "7e8abb614a14bb86397cce38014593913c7d30f4e74d517442737ea15d22e491",
+    "determinism_mode": "strict_plan_hash"
+  },
+  "execution": {
+    "mode": "dry_run",
+    "started_at": 1771429521,
+    "completed_at": 1771429521,
+    "duration_seconds": 0,
+    "files_executed": [
+      {
+        "path": "C:/Projects/Graph1/Neo4j/schema/01_schema_constraints.cypher",
+        "status": "PASS",
+        "statements_executed": 0,
+        "detail": "dry_run_planned"
+      },
+      {
+        "path": "C:/Projects/Graph1/Neo4j/schema/02_schema_indexes.cypher",
+        "status": "PASS",
+        "statements_executed": 0,
+        "detail": "dry_run_planned"
+      },
+      {
+        "path": "C:/Projects/Graph1/Neo4j/schema/03_schema_initialization.cypher",
+        "status": "PASS",
+        "statements_executed": 0,
+        "detail": "dry_run_planned"
+      },
+      {
+        "path": "C:/Projects/Graph1/Neo4j/schema/05_temporal_hierarchy_levels.cypher",
+        "status": "PASS",
+        "statements_executed": 0,
+        "detail": "dry_run_planned"
+      },
+      {
+        "path": "C:/Projects/Graph1/Neo4j/schema/17_policy_decision_subgraph_schema.cypher",
+        "status": "PASS",
+        "statements_executed": 0,
+        "detail": "dry_run_planned"
+      }
+    ]
+  },
+  "summary": {
+    "assertions_executed": 3,
+    "errors": 0,
+    "warnings": 0,
+    "passes": 3,
+    "status": "PASS"
+  },
+  "assertions": [
+    {
+      "assertion_id": "PLAN-001-migration-files-exist",
+      "severity": "ERROR",
+      "status": "PASS",
+      "reason_codes": [],
+      "details": {
+        "missing_files": []
+      }
+    },
+    {
+      "assertion_id": "PLAN-002-assertion-sources-exist",
+      "severity": "ERROR",
+      "status": "PASS",
+      "reason_codes": [],
+      "details": {
+        "missing_sources": []
+      }
+    },
+    {
+      "assertion_id": "PLAN-003-ordered-unique-sequence",
+      "severity": "ERROR",
+      "status": "PASS",
+      "reason_codes": [],
+      "details": {
+        "duplicates": [],
+        "plan": "C:/Projects/Graph1/Neo4j/schema/schema_migration_plan_v1.json"
+      }
+    }
+  ],
+  "diff": {
+    "missing_constraints_post": [],
+    "missing_indexes_post": [],
+    "non_online_indexes_post": [],
+    "unexpected_drops": {
+      "constraints": [],
+      "indexes": []
+    },
+    "missing_policy_constraints": [],
+    "missing_policy_indexes": []
+  },
+  "snapshots": {
+    "pre": {},
+    "post": {}
+  }
+}

@@ -1,0 +1,1811 @@
+{
+  "total": 100,
+  "periods": [
+    {
+      "qid": "Q41493",
+      "label": "ancient history",
+      "description": "human history from the earliest records to the end of the classical periods",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 3,
+        "P279_count": 2
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q128938",
+      "label": "Shang dynasty",
+      "description": "the first ancient Chinese dynasty to leave historical records (1600-1046 BC); the empire ruled by this dynasty",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q43287",
+      "label": "German Empire",
+      "description": "German nation-state in Central Europe from 1871 to 1918",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "description": "period of ancient Roman civilization (509 BC–27 BC)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q131808",
+      "label": "Mannerism",
+      "description": "style of European art",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 6,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q40203",
+      "label": "Paleolithic",
+      "description": "prehistoric period, first part of the Stone Age",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q51122",
+      "label": "Unification of Italy",
+      "description": "creation of the politically and administratively integrated nation of Italy (1815–1871)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": true,
+        "has_P527": false,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q8683",
+      "label": "Cold War",
+      "description": "1947–1991 tension between the Soviet Union and the United States and their respective allies",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": true,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 2
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q184963",
+      "label": "Edo period",
+      "description": "period of Japanese history from 1600 to 1868, during the rule of the Tokugawa shogunate",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q189178",
+      "label": "Nara period",
+      "description": "historical medieval period of Japan from CE 710 to 794",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q182688",
+      "label": "Victorian era",
+      "description": "period of British history encompassing Queen Victoria's reign (1837–1901)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q126416",
+      "label": "Phagmodrupa dynasty",
+      "description": "dynastic regime that held sway over Tibet or parts thereof from 1354 to the early 17th century",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q69461",
+      "label": "France in the early modern period",
+      "description": "history of France during the early modern era",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q69829",
+      "label": "French Fourth Republic",
+      "description": "government of France between 1946 and 1958",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q5743",
+      "label": "Ebla",
+      "description": "ancient city",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q201038",
+      "label": "Roman Kingdom",
+      "description": "period of Roman history when the city and its territory were ruled by kings (c.753–c.509 BC)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q154611",
+      "label": "interwar period",
+      "description": "1918–1939 period between the World Wars",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q201705",
+      "label": "Khmer Empire",
+      "description": "802–1431 empire in Southeast Asia",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q202763",
+      "label": "Early Middle Ages",
+      "description": "period of European history lasting from the 5th century to the 10th century",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q204023",
+      "label": "Sengoku period",
+      "description": "period of Japanese history from 1467 to 1615",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q129167",
+      "label": "barracks emperor",
+      "description": "Roman emperors who seized power through command of an army",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q116123",
+      "label": "end of the Han dynasty",
+      "description": "historical era of China (189-220)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q206414",
+      "label": "Principate",
+      "description": "first period of the Roman Empire (ca. 27 BC to 284 AD)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q207272",
+      "label": "Second Polish Republic",
+      "description": "country in Central and Eastern Europe (1918–1939)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q210542",
+      "label": "Fourth Brazilian Republic",
+      "description": "period of Brazilian history from 1946 to 1964",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q210688",
+      "label": "Asuka period",
+      "description": "historical period of Japan",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q74049",
+      "label": "Spanish Formosa",
+      "description": "Spanish colony from 1626 to 1642",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q55525",
+      "label": "Sanzan period",
+      "description": "period of history of the Ryūkyū Kingdom",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q159879",
+      "label": "Kulturkampf",
+      "description": "culture struggle on the part of the German chancellor Otto von Bismarck to subject the Roman Catholic church to state controls",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q41304",
+      "label": "Weimar Republic",
+      "description": "Germany in the years 1918/1919–1933",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q9683",
+      "label": "Tang dynasty",
+      "description": "empire in the China proper between 618 and 907 AD",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q8950",
+      "label": "Second Republic of Venezuela",
+      "description": "reestablished Venezuelan Republic declared by Simón Bolívar",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q8698",
+      "label": "Great Depression",
+      "description": "worldwide economic depression (1929–1939)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q212685",
+      "label": "High Middle Ages",
+      "description": "period in European history from 1000-1250 CE",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q212976",
+      "label": "Late Middle Ages",
+      "description": "period of European history generally comprising the 14th and 15th centuries",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q213649",
+      "label": "Viking Age",
+      "description": "the period of European history characterised by Viking raids and trading",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q165292",
+      "label": "Three Kingdoms of Korea",
+      "description": "period of Korean history (1st century BCE – 7th century CE), where three kingdoms (Goguryeo, Baekje, and Silla) coexisted on the Korean peninsula",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q215262",
+      "label": "Vedic period",
+      "description": "ancient South Asian historical period",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q8733",
+      "label": "Qing dynasty",
+      "description": "Manchu-led dynasty of China (1644–1912)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 7,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q12544",
+      "label": "Byzantine Empire",
+      "description": "Roman Empire during Late Antiquity and the Middle Ages",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q217050",
+      "label": "late antiquity",
+      "description": "period of transition from classical antiquity to the Middle Ages",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q217200",
+      "label": "Second Industrial Revolution",
+      "description": "phase of rapid industrialization in the final third of the 19th century and the beginning of the 20th",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q12554",
+      "label": "Middle Ages",
+      "description": "period of European history from the 5th to the late 15th-century",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q134178",
+      "label": "Minoan civilization",
+      "description": "Bronze Age civilization flourishing on Crete and other Aegean islands from c. 2600 to 1100 BC",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q131192",
+      "label": "Migration Period",
+      "description": "period in European history with large migration of peoples, from the 4th to the 6th centuries",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q157109",
+      "label": "Burgundian Netherlands",
+      "description": "portion of the Low Countries ruled by the Dukes of Burgundy in the period from 1384 to 1482",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q9903",
+      "label": "Ming dynasty",
+      "description": "imperial dynasty of China from 1368 to 1644",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q58202",
+      "label": "July Monarchy",
+      "description": "kingdom governing France, 1830–1848",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q2277",
+      "label": "Roman Empire",
+      "description": "period of ancient Rome following the Republic",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q35216",
+      "label": "Zhou dynasty",
+      "description": "dynasty of Ancient Chinese kings (王) lasting from c. 1046 to 256 BC",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q174450",
+      "label": "Roman Tetrarchy",
+      "description": "division of power in the Roman Empire under Diocletian until Constantine the Great (ca. 293 to 324 AD)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 2
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q193292",
+      "label": "Heian period",
+      "description": "last major division of classical Japanese history (794 to 1185), named after the capital city of Heian-kyō, or modern Kyōto",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q35560",
+      "label": "Attitude Era",
+      "description": "period of WWE's Monday Night Raw marked by adult-oriented programming",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q175447",
+      "label": "Babylonian captivity",
+      "description": "period in Jewish history during which a number of people from the ancient Kingdom of Judah were captives in Babylon",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q2269",
+      "label": "Industrial Revolution",
+      "description": "transition to new manufacturing processes in Europe and the United States, in the 18th-19th centuries",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 1,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q7183",
+      "label": "Qin dynasty",
+      "description": "dynasty that ruled in China from 221 to 206 BC",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 6,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q362",
+      "label": "World War II",
+      "description": "1939–1945 global conflict",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q7209",
+      "label": "Han dynasty",
+      "description": "imperial dynasty in China from 202 BC to 220 AD",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q177819",
+      "label": "Old Kingdom of Egypt",
+      "description": "period of Ancient Egypt in the 3rd millennium BC",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q137816",
+      "label": "Taiwan under Japanese rule",
+      "description": "period of Taiwanese history (1895–1945)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q178038",
+      "label": "Second Spanish Republic",
+      "description": "political regime established in Spain between April 14, 1931 and April 1, 1939",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q232211",
+      "label": "First Intermediate Period of Egypt",
+      "description": "period in ancient Egyptian history after end of the Old Kingdom",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q233263",
+      "label": "Second Republic of South Korea",
+      "description": "government of South Korea from 1960 to 1961",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q180568",
+      "label": "New Kingdom of Egypt",
+      "description": "period from 1550 to 1077 BC in ancient Egypt",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q133641",
+      "label": "Age of Discovery",
+      "description": "period of European global exploration from early 15th century to 17th century",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q5324",
+      "label": "Gurjara-Pratihara",
+      "description": "dynasty that ruled northern India from 6th to 11th century",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q51644",
+      "label": "Early Christianity",
+      "description": "period of church history beginning with the ministry of Jesus (c. 27-30) and ending with the First Council of Nicaea (325)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q185043",
+      "label": "Three Kingdoms",
+      "description": "period of Chinese history (220–280 AD) dominated by the Wei, Shu-Han, and Wu kingdoms",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q186075",
+      "label": "contemporary history",
+      "description": "subset of modern history that describes the historical period from approximately 1945 to the present, common in English-language historiography",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 1
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q193547",
+      "label": "Reign of Terror",
+      "description": "1793–94 period of political violence during the French Revolution",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": true,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q94080",
+      "label": "Time of Troubles",
+      "description": "period of Russian history from 1598 to 1613",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q11772",
+      "label": "Ancient Greece",
+      "description": "Greek civilization from 1200 BC to 600 AD",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 6,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q7313",
+      "label": "Yuan dynasty",
+      "description": "Mongol-led imperial dynasty of China (1271–1368)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 9,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q185047",
+      "label": "Spring and Autumn period",
+      "description": "period in Chinese history from approximately 770 to 476 BCE",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q185063",
+      "label": "Warring States period",
+      "description": "period in Chinese history from approximately 475 to 221 BCE",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q27837",
+      "label": "Twenty Years' Anarchy",
+      "description": "phase of the history of the Byzantine Empire (695-717)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q185852",
+      "label": "Edwardian era",
+      "description": "period of British history spanning the reign of the king Edward VII, from 1901 to 1910",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q16410",
+      "label": "Hungarian People's Republic",
+      "description": "1949–1989 socialist republic in Central Europe",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q187979",
+      "label": "Early Dynastic Period of Egypt",
+      "description": "period of ancient Egyptian history",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q37853",
+      "label": "Baroque",
+      "description": "cultural movement, starting around 1600",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q49696",
+      "label": "Northern and Southern dynasties",
+      "description": "period in Chinese history from 420 to 589",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q361",
+      "label": "World War I",
+      "description": "global war originating in Europe, 1914–1918",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q189297",
+      "label": "Zemene Mesafint",
+      "description": "1769–1855 period of Ethiopian history",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q75207",
+      "label": "Pax Romana",
+      "description": "roughly 200-year-long period in Roman history",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q152855",
+      "label": "Kingdom of Tungning",
+      "description": "former country",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q190882",
+      "label": "Phoney War",
+      "description": "eight-month period at the start of World War II, during which there was only one limited military land operation on the Western Front",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q148499",
+      "label": "Margraviate of Brandenburg",
+      "description": "Holy Roman Empire principality (1157–1806)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q191324",
+      "label": "Middle Kingdom of Egypt",
+      "description": "period in the history of ancient Egypt between about 2000 BC and 1700 BC",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": true,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 3,
+        "P279_count": 0
+      },
+      "classification": "period"
+    },
+    {
+      "qid": "Q8951",
+      "label": "Third Republic of Venezuela",
+      "description": "name for Venezuela from the year 1817 to the year 1819",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": true,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "period"
+    }
+  ],
+  "events": [],
+  "concepts": [
+    {
+      "qid": "Q193748",
+      "label": "history of ancient Israel and Judah",
+      "description": "ancient civilization of the Levant",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 4,
+        "P279_count": 2
+      },
+      "classification": "concept"
+    },
+    {
+      "qid": "Q173843",
+      "label": "regency",
+      "description": "moment in a monarchy where someone else rules in name on the king or queen",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 1
+      },
+      "classification": "concept"
+    },
+    {
+      "qid": "Q47855",
+      "label": "Pre-Islamic Arabia",
+      "description": "Arabic civilization which existed in the Arabian Peninsula before the rise of Islam in the 630s",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 2
+      },
+      "classification": "concept"
+    },
+    {
+      "qid": "Q184716",
+      "label": "European colonization of the Americas",
+      "description": "European colonization of the Americas between 1492 and c.1800",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 3,
+        "P279_count": 3
+      },
+      "classification": "concept"
+    },
+    {
+      "qid": "Q11756",
+      "label": "prehistory",
+      "description": "span of time before recorded history",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": true,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 4,
+        "P279_count": 1
+      },
+      "classification": "concept"
+    }
+  ],
+  "other": [
+    {
+      "qid": "Q186513",
+      "label": "Hispania",
+      "description": "Roman province (218 BC - 472 AD)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": true,
+        "P31_count": 5,
+        "P279_count": 0
+      },
+      "classification": "other"
+    },
+    {
+      "qid": "Q31389",
+      "label": "España Boba",
+      "description": "time period in the history of the Dominican Republic",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": true,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "other"
+    },
+    {
+      "qid": "Q169072",
+      "label": "Colombian conflict",
+      "description": "low-intensity asymmetric war, beginning in 1964, between Colombian governments, paramilitary groups, crime syndicates and far-left guerrillas (FARC, ELN, etc.)",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "other"
+    },
+    {
+      "qid": "Q74740",
+      "label": "expansion of the Ottoman Empire",
+      "description": "Ottoman Empire from 1453 to 1566",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 2,
+        "P279_count": 0
+      },
+      "classification": "other"
+    },
+    {
+      "qid": "Q7319",
+      "label": "Nazi Era",
+      "description": "Germany in the time of National Socialism",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": false,
+        "has_P582": true,
+        "has_P571": true,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 1,
+        "P279_count": 0
+      },
+      "classification": "other"
+    },
+    {
+      "qid": "Q12567",
+      "label": "Vikings",
+      "description": "Norse people, farmers, merchants, explorers, raiders and pirates",
+      "key_properties": {
+        "has_P31": true,
+        "has_P279": false,
+        "has_P580": true,
+        "has_P582": false,
+        "has_P571": false,
+        "has_P576": false,
+        "has_P585": false,
+        "has_P527": false,
+        "P31_count": 4,
+        "P279_count": 0
+      },
+      "classification": "other"
+    }
+  ],
+  "failed": []
+}

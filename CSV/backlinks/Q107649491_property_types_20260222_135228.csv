@@ -1,0 +1,1501 @@
+qid,label,description
+Q18608359,Wikidata property to indicate a source(Q18608359),property to indicate sources
+Q18608756,Wikidata property for birth or death(Q18608756),Wikidata property about birth or death
+Q18608871,Wikidata property for items about people(Q18608871),Wikidata property for items about specific persons
+Q18608993,Wikidata property for items about organizations(Q18608993),Wikidata property used on an item about an organization
+Q18609040,Wikidata property related to taxa(Q18609040),type of Wikidata property
+Q18610173,Wikidata property to link to Commons(Q18610173),"property to link to Commons media files or other pages. To describe media items, use Q28464773"
+Q18614948,Wikidata property for authority control(Q18614948),Wikidata property for disambiguating subjects
+Q18615777,Wikidata property to indicate a location(Q18615777),Wikidata property
+Q18616084,Wikidata property to indicate a language(Q18616084),property expecting a language item as a value
+Q18616576,Wikidata property(Q18616576),"part of statements according to the Wikidata data model, appearing as the 2nd item in the statement triple"
+Q18618628,Wikidata property for authority control for cultural heritage(Q18618628),type of Wikidata property
+Q18618644,Wikidata property related to creative works(Q18618644),Wikidata property for items about (creative) works and objects (including buildings)
+Q18635217,Wikidata property for specifying the location of an event(Q18635217),"St. José Maria Diaz still has family living in WHITTIER Ca,"
+Q18636219,Wikidata property with datatype 'time'(Q18636219),Wikidata property type
+Q18636233,Wikidata property for a person-related event(Q18636233),type of Wikidata property
+Q18644427,obsolete Wikidata property(Q18644427),Wikidata property decided by the community to be deleted
+Q18647515,transitive Wikidata property(Q18647515),to be used to declare properties to be transitive; OWL language construct
+Q18647519,asymmetric Wikidata property(Q18647519),To be used to declare properties to be asymmetric. OWL language construct.
+Q18667213,Wikidata property about Wikimedia categories(Q18667213),type of Wikidata property
+Q18668171,orderable Wikidata property(Q18668171),properties of this type should be used as a statement ordering key
+Q19595382,Wikidata property for authority control for people(Q19595382),Wikidata property
+Q19643892,Wikidata property to indicate a name(Q19643892),type of Wikidata property
+Q19820110,Wikidata property for documentation of properties(Q19820110),property used to document other Wikidata properties
+Q19829908,Wikidata property for authority control for places(Q19829908),Wikidata property for disambiguating places
+Q19829914,Wikidata property related to places(Q19829914),Wikidata property for describing places
+Q19833377,Wikidata property for authority control for works(Q19833377),type of Wikidata property for authority control
+Q19833835,Wikidata property to identify substances(Q19833835),type of Wikidata property
+Q19847637,Wikidata property for an identifier(Q19847637),Wikidata property to identify something in an external source
+Q19858569,Wikidata property related to mushrooms and mycology(Q19858569),type of Wikidata property
+Q19887775,Wikidata property related to medicine(Q19887775),Wikidata property
+Q20085670,Wikidata property for romanization system(Q20085670),property of Wikidata
+Q20824104,Wikidata property for items about languages(Q20824104),type of Wikidata property
+Q21077852,Wikidata property for physical quantities(Q21077852),"Wikidata property to indicate a physical quantity, usually in a well-defined unit of measurement"
+Q21099935,Wikidata property with datatype string that is not an external identifier(Q21099935),properties with string-datatype that shouldn't be converted to the external identifier datatype
+Q21126229,Wikidata property related to software(Q21126229),attributes of particular pieces of software
+Q21264328,Wikidata property for a multi-source identifier(Q21264328),property for external ID (a) with single/several issuers; (b) within/without single scheme; (c) available at single/separate places. Unique or not. May combine several. Not IDs with single issuer within single scheme available at single place.
+Q21294996,Wikidata property related to chemistry(Q21294996),Wikidata property
+Q21451142,Wikidata property for items about astronomical objects(Q21451142),Wikidata property
+Q21451178,Wikidata property related to economics(Q21451178),Wikidata property
+Q21504947,Wikidata property to indicate a constraint(Q21504947),property to indicate constraints
+Q21745557,Wikidata property to identify organizations(Q21745557),Wikidata property for disambiguating organizations
+Q21818626,Wikidata property related to sport(Q21818626),Wikidata property
+Q22582645,Wikidata property for properties(Q22582645),"property that characterizes its subject, another property"
+Q22661913,Wikidata property for items about people with datatype 'time'(Q22661913),Wikidata property type
+Q22963600,Wikidata property related to engineering(Q22963600),type of Wikidata property
+Q22964093,Wikidata property for perceptual properties(Q22964093),type of Wikidata property
+Q22964126,Wikidata property for participating organizations(Q22964126),type of Wikidata property
+Q22964274,Wikidata property for identification in the film industry(Q22964274),Wikidata property
+Q22964288,Wikidata property for items about military(Q22964288),type of Wikidata property
+Q22964357,Wikidata property for items about airlines(Q22964357),type of Wikidata property
+Q22964372,Wikidata property related to sport organizations(Q22964372),Wikidata property
+Q22964476,Wikidata property for items about corporations(Q22964476),type of Wikidata property
+Q22964785,Wikidata property related to events(Q22964785),Wikidata property
+Q22964818,Wikidata property related to elections(Q22964818),type of Wikidata property
+Q22964966,Wikidata property related to structures(Q22964966),type of Wikidata property
+Q22965078,Wikidata property for items about musical works(Q22965078),type of Wikidata property
+Q22965162,Wikidata property for items about films(Q22965162),Wikidata property
+Q22969167,Wikidata property related to climate(Q22969167),type of Wikidata property
+Q22969221,Wikidata property giving Wikimedia list(Q22969221),Wikidata item about Wikimedia entities
+Q22969262,Wikidata property for items about computer hardware(Q22969262),type of Wikidata property
+Q22981316,Wikidata property related to physics(Q22981316),Wikidata property
+Q22983697,Wikidata property related to religions and beliefs(Q22983697),Wikidata property
+Q22984026,Wikidata property related to law and justice(Q22984026),Wikidata property
+Q22984363,Wikidata property related to transport(Q22984363),Wikidata property
+Q22984450,Wikidata property related to education(Q22984450),Wikidata property
+Q22984475,Wikidata property related to politics(Q22984475),Wikidata property
+Q22984494,Wikidata property related to demography(Q22984494),a property is is related to the task of the study of statistics (demography) (please use on properties only)
+Q22984512,Wikidata property related to works of fiction(Q22984512),Wikidata property
+Q22984545,Wikidata property related to games and leisure activities(Q22984545),Wikidata property
+Q22988603,Wikidata property related to biology(Q22988603),Wikidata property
+Q22988631,Wikidata property related to mathematics(Q22988631),Wikidata property
+Q22988651,Wikidata property related to geology(Q22988651),Wikidata property
+Q22997934,Wikidata property related to government and state(Q22997934),Wikidata property
+Q23038310,Wikidata property related to food and eating(Q23038310),Wikidata property
+Q23069609,Wikidata property related to air transport(Q23069609),Wikidata property
+Q23069616,Wikidata property related to road transport(Q23069616),type of Wikidata property
+Q23310071,Wikidata property related to rail transport(Q23310071),Wikidata property
+Q23660994,Wikidata property related to cycling(Q23660994),Wikidata property
+Q23661205,Wikidata property related to association football(Q23661205),Wikidata property
+Q23673786,Wikidata property for New York Times semantic concepts(Q23673786),type of Wikidata property
+Q23779665,Wikidata property related to maritime and inland waterway transport(Q23779665),Wikidata property
+Q24041613,Wikidata property related to aircraft(Q24041613),type of Wikidata property
+Q24041622,Wikidata property for items about bodies of water(Q24041622),type of Wikidata property
+Q24041781,Wikidata property related to mineralogy(Q24041781),Wikidata property
+Q24043375,Wikidata property for items about occupations(Q24043375),type of Wikidata property
+Q24052406,Wikidata property related to professional wrestling(Q24052406),type of Wikidata property
+Q24075706,"Wikidata property for authority control, with reciprocal use of Wikidata(Q24075706)","Wikidata property representing a unique authority control identifier, for a service which uses Wikidata as an authority Control source"
+Q24239898,Wikidata property for Wikivoyage listings(Q24239898),type of Wikidata property
+Q24262056,Wikidata property for Wikivoyage(Q24262056),type of Wikidata property
+Q24575337,Wikidata property to identify events(Q24575337),Wikidata property for disambiguating events
+Q24710760,Wikidata property of quantity type indicating a percentage(Q24710760),quantity datatype property with Q11229 (percent) or Q2080811 (volume percent) as unit
+Q24716199,Wikidata property representing media content ratings(Q24716199),Wikidata property
+Q24755874,Wikidata property for items about plays(Q24755874),type of Wikidata property
+Q26235166,Wikidata property to identify organizations in company registers(Q26235166),Wikidata property for authority control using government company registers
+Q26696664,Wikidata property for identifiers in registers of goods and services(Q26696664),type of Wikidata property
+Q26883022,Wikidata property to identify horses(Q26883022),Wikidata property
+Q26935994,Wikidata property encoding a vCard value(Q26935994),type of Wikidata property
+Q26940804,Wikidata property for linking to a representative image(Q26940804),individual properties link to images of different aspects of items (or are only relevant to some items)
+Q27048688,Wikidata property for authority control for industries and economic activities(Q27048688),Wikidata property
+Q27151329,Wikidata property related to photography(Q27151329),Wikidata metaclass for properties
+Q27525351,Wikidata property related to music(Q27525351),Wikidata property
+Q27642681,Wikidata property related to protected areas(Q27642681),type of Wikidata property
+Q27659414,Wikidata property related to fashion(Q27659414),Wikidata property
+Q27698571,Wikidata property related to chess(Q27698571),Wikidata property
+Q27870307,Wikidata property related to student registries(Q27870307),type of Wikidata property
+Q27886949,Wikidata property related to racket sports(Q27886949),Wikidata property
+Q27918607,Wikidata property related to art(Q27918607),Wikidata property
+Q27968522,Wikidata property for items about cell lines(Q27968522),Wikidata metadata
+Q28100241,Wikidata property related to disasters(Q28100241),type of Wikidata property
+Q28100549,Wikidata property to describe the elements of identity(Q28100549),type of Wikidata properties describing the ways two items overlap (or don't)
+Q28104992,Wikidata property related to spacecraft(Q28104992),type of Wikidata property
+Q28106456,Wikidata property related to sports people(Q28106456),Wikidata property
+Q28106485,Wikidata property related to sport facilities(Q28106485),Wikidata property
+Q28106586,Wikidata property related to sports events(Q28106586),Wikidata property
+Q28146956,Wikidata property to identify musical works(Q28146956),Wikidata property what identify musical works
+Q28147643,Wikidata property related to video games(Q28147643),Wikidata property
+Q28326730,Wikidata property for the relationship of the element to its class(Q28326730),type of Wikidata property
+Q28464773,Wikidata property to describe media items(Q28464773),"property to describe media such as Commons files (i.e., the media file is the subject of this property). To link to media items, use Q18610173."
+Q28549561,Wikidata property related to basketball(Q28549561),Wikidata property
+Q28600002,Wikidata property related to winter sports(Q28600002),Wikidata property
+Q28606291,Wikidata property related to combat sports(Q28606291),type of Wikidata property
+Q28648960,Wikidata property related to American football(Q28648960),type of Wikidata property
+Q28648966,Wikidata property related to golf(Q28648966),type of Wikidata property
+Q28649017,Wikidata property related to baseball(Q28649017),type of Wikidata property
+Q28649019,Wikidata property related to ice hockey(Q28649019),type of Wikidata property
+Q28649023,Wikidata property related to women's sport(Q28649023),Wikidata property
+Q28649030,Wikidata property related to women and feminism(Q28649030),type of Wikidata property
+Q28739677,Wikidata property related to lighthouses(Q28739677),Wikidata property
+Q28746712,Wikidata property for causes and effects(Q28746712),type of Wikidata property
+Q28762481,Wikidata property related to tennis(Q28762481),type of Wikidata property
+Q28772038,Wikidata property related to athletics(Q28772038),Wikidata property
+Q28772046,Wikidata property related to water sports(Q28772046),Wikidata property
+Q28878279,Wikidata property related to rugby union(Q28878279),Wikidata property
+Q28902389,Wikidata property related to comics(Q28902389),Wikidata property
+Q28919033,Wikidata property for items about algorithms(Q28919033),type of Wikidata property
+Q29110152,Wikidata property related to tourism(Q29110152),Wikidata property
+Q29446361,Wikidata property related to bridges(Q29446361),type of Wikidata property
+Q29542094,Wikidata property to identify films(Q29542094),Wikidata property
+Q29546443,Wikidata property for items about books(Q29546443),type of Wikidata property
+Q29546563,Wikidata property for items about manuscripts(Q29546563),type of Wikidata property
+Q29547399,Wikidata property to identify books(Q29547399),type of Wikidata property
+Q29548341,Wikidata property for items about scholarly articles(Q29548341),type of Wikidata property
+Q29561722,Wikidata property related to literature(Q29561722),Wikidata property
+Q29642812,Wikidata property related to the United Nations(Q29642812),properties for codes issued by or about the United Nations
+Q29868164,Wikidata property related to motorsports(Q29868164),type of Wikidata property
+Q29887391,Wikidata property related to linguistics(Q29887391),Wikidata property
+Q29963999,Wikidata property related to in-narrative data(Q29963999),"data that is true within the fictional world described in a work, as opposed to objective facts about the work itself"
+Q30025373,Wikidata property related to utilization and ownership(Q30025373),type of Wikidata property
+Q30041186,Wikidata property related to online communities(Q30041186),Wikidata property
+Q30225604,Wikidata property related to a National Olympic or Paralympic Committee(Q30225604),type of Wikidata property
+Q30225619,Wikidata property related to Olympism(Q30225619),type of Wikidata property
+Q30249126,Wikidata property for ontology mapping(Q30249126),used to map Wikidata items and properties to external ontologies
+Q37911748,partially deprecated Wikidata property(Q37911748),property that is deprecated for certain uses but not obsolete
+Q41583306,Wikidata property related to volleyball(Q41583306),type of Wikidata property
+Q41600015,Wikidata property related to a sports hall of fame(Q41600015),Wikidata property
+Q41657848,Wikidata property related to handball(Q41657848),Wikidata property
+Q41693989,Wikidata property related to cricket(Q41693989),type of Wikidata property
+Q41791933,Wikidata property related to television(Q41791933),type of Wikidata property
+Q41799791,Wikidata property related to astronomy(Q41799791),type of Wikidata property
+Q41804262,Wikidata property related to gastronomy(Q41804262),type of Wikidata property
+Q42255152,Wikidata property related to disability(Q42255152),type of Wikidata property
+Q42396390,Wikidata property to identify taxa(Q42396390),external identifier of taxa (groups of biological organisms)
+Q42415497,Wikidata property to identify genes(Q42415497),type of Wikidata property
+Q42415644,Wikidata property to identify proteins(Q42415644),type of Wikidata property
+Q42428050,Wikidata property related to precision sports(Q42428050),type of Wikidata property
+Q42428442,Wikidata property related to college sports(Q42428442),type of Wikidata property
+Q42428590,Wikidata property to identify astronomical objects(Q42428590),type of Wikidata property
+Q42752243,Wikidata property related to anatomy(Q42752243),type of Wikidata property
+Q42752262,Wikidata property related to human anatomy(Q42752262),type of Wikidata property
+Q43544041,Wikidata property related to Australian rules football(Q43544041),type of Wikidata property
+Q43546017,Wikidata property related to gymnastics(Q43546017),type of Wikidata property
+Q43831109,Wikidata property related to architecture(Q43831109),type of Wikidata property
+Q44597997,property likely to be challenged(Q44597997),when this property is used with items of living people it's likely to be challenged; as a result those statements should be supported by a reliable public source as suggested in Wikidata:Living people
+Q44606430,Wikidata property in special need of sourcing(Q44606430),type of Wikidata property
+Q44606558,"Wikidata property in special need of sourcing, for items about people(Q44606558)",type of Wikidata property
+Q44847669,Wikidata property to identify artworks(Q44847669),type of Wikidata property for authority control
+Q45312863,Wikidata property related to sculpture(Q45312863),Wikidata property
+Q45484922,Wikidata property for authority control for cemeteries(Q45484922),type of Wikidata property
+Q45818495,Wikidata property for items about skills(Q45818495),type of Wikidata property
+Q46246642,Wikidata property related to archaeology(Q46246642),Wikidata property
+Q46275839,Wikidata property related to theater(Q46275839),type of Wikidata property
+Q46641179,Wikidata property related to dams(Q46641179),type of Wikidata property
+Q46895781,Wikidata property related to birds and ornithology(Q46895781),type of Wikidata property
+Q47512165,Wikidata property related to computing(Q47512165),Wikidata property
+Q48710051,Wikidata property for an identifier having a checksum(Q48710051),type of Wikidata property
+Q50361974,Wikidata property related to snooker(Q50361974),Wikidata property
+Q50362259,Wikidata property related to rugby sevens(Q50362259),Wikidata property
+Q51077473,Wikidata property related to time and duration(Q51077473),type of Wikidata property
+Q51077484,Wikidata property related to age(Q51077484),type of Wikidata property
+Q51089849,Wikidata property related to weapons and military equipment(Q51089849),type of Wikidata property
+Q51092447,Wikidata property related to ratios and proportions(Q51092447),type of Wikidata property
+Q51092639,Wikidata property related to phonetics(Q51092639),type of Wikidata property
+Q51118703,Wikidata property about Wikimedia templates(Q51118703),type of Wikidata property
+Q51118821,Wikidata property about Wikimedia entities(Q51118821),type of Wikidata property
+Q51121942,Wikidata property related to typefaces and typography(Q51121942),type of Wikidata property
+Q51122237,"Wikidata property related to burials, graves, and memorials(Q51122237)",type of Wikidata property
+Q51122921,Wikidata property related to processes and manufacturing(Q51122921),type of Wikidata property
+Q51124294,Wikidata property related to paleontology(Q51124294),Wikidata property
+Q51326087,Wikidata property related to banking(Q51326087),type of Wikidata property
+Q51920440,Wikidata property for items about lakes(Q51920440),type of Wikidata property
+Q52063969,Wikidata property to identify topics(Q52063969),type of Wikidata property
+Q52425722,Wikidata property related to natural science(Q52425722),Wikidata property
+Q52431918,Wikidata property related to seismology(Q52431918),Wikidata property
+Q52511956,Wikidata property related to geography(Q52511956),type of Wikidata property
+Q52513243,Wikidata property for quantities(Q52513243),Wikidata property
+Q52514469,Wikidata property related to personal life(Q52514469),Wikidata property
+Q53671196,Wikidata property related to erotica or pornography(Q53671196),type of Wikidata property
+Q54076056,Wikidata property for lexicographical data(Q54076056),Wikidata property used for any kind of lexicographical data
+Q54254515,Wikidata property for lexemes(Q54254515),primarily used on Wikidata lexemes
+Q54275221,Wikidata property for lexicographic forms(Q54275221),primarily used on Wikidata forms
+Q54275340,Wikidata property for lexicographic senses(Q54275340),primarily used on Wikidata senses
+Q54290695,Wikidata property related to insects and entomology(Q54290695),Wikidata property
+Q54835335,Wikidata property related to philosophy(Q54835335),type of Wikidata property
+Q55082570,Wikidata property to identify databases(Q55082570),property storing identifiers about databases
+Q55116891,Wikidata property related to poetry(Q55116891),Wikidata property
+Q55192982,Wikidata property related to historiography(Q55192982),type of Wikidata property
+Q55452870,Wikidata property related to encyclopedias(Q55452870),Wikidata property
+Q55586529,Wikidata property for authority control by VIAF member(Q55586529),Wikidata property for authority control related to a VIAF member or source
+Q55650689,Wikidata property for authority control for writers(Q55650689),Wikidata property
+Q55653847,Wikidata property for authority control for artists(Q55653847),type of Wikidata property for authority control for people
+Q55663163,Wikidata property related to television programs(Q55663163),Wikidata property
+Q55663533,Wikidata property to identify television shows(Q55663533),type of Wikidata property
+Q55977691,Wikidata property for authority control for administrative subdivisions(Q55977691),Wikidata property for authority control of places
+Q55977774,Wikidata property for authority control for public roads(Q55977774),type of Wikidata property
+Q55978235,Wikidata property for authority control for protected areas(Q55978235),type of Wikidata property
+Q55978503,Wikidata property for authority control for countries(Q55978503),type of Wikidata property
+Q55978551,Wikidata property for authority control for places of worship(Q55978551),type of Wikidata property
+Q55999460,Wikidata property for authority control for the media(Q55999460),Wikidata property
+Q56150830,"Wikidata property related to awards, prizes and honours(Q56150830)",Wikidata property
+Q56216056,Wikidata property to identify lexicographical entities(Q56216056),external identifier for a lexeme or form
+Q56216473,Wikidata property for authority control for architects(Q56216473),type of Wikidata property
+Q56245078,Wikidata property for authority control for museums(Q56245078),type of Wikidata property
+Q56248867,Wikidata property related to the Middle Ages(Q56248867),type of Wikidata property
+Q56248884,Wikidata property related to the Ancient World(Q56248884),Wikidata property
+Q56248906,Wikidata property related to the Early Modern period(Q56248906),type of Wikidata property
+Q56249073,Wikidata property related to genealogy(Q56249073),Wikidata property
+Q56249389,Wikidata property to identify railway stations(Q56249389),type of Wikidata property
+Q56457408,Wikidata property for items about positions(Q56457408),type of Wikidata property
+Q56505345,Wikidata property for authority control for hotels(Q56505345),type of Wikidata property
+Q56682212,Wikidata property related to plants and botany(Q56682212),Wikidata property
+Q57589544,Wikidata property for authority control for academic journals(Q57589544),type of Wikidata property for authority control for works
+Q57633168,Wikidata property related to animals and zoology(Q57633168),Wikidata property
+Q57955292,Wikidata property for items about people or organisations(Q57955292),
+Q57980177,"Wikidata property related to amphibians, reptiles and herpetology(Q57980177)",type of Wikidata property
+Q58788038,Wikidata property related to invasive species(Q58788038),type of Wikidata property
+Q59284180,Wikidata property related to marine biology(Q59284180),type of Wikidata property
+Q59910380,"Wikidata property related to data communication, storage, and retrieval(Q59910380)",Wikidata property
+Q60457486,Wikidata property for a discontinued website(Q60457486),"the target website of this property is no longer available. It now links to an archived version. If there is no archived version then mark for deletion with ""obsolete Wikidata property"""
+Q60464703,Wikidata property related to color(Q60464703),type of Wikidata property
+Q61052867,Wikidata property related to airports(Q61052867),Wikidata property
+Q61058429,Wikidata property related to science(Q61058429),Wikidata property
+Q61996910,Wikidata property related to biathlon(Q61996910),type of Wikidata property
+Q62036945,Wikidata property related to auctions(Q62036945),type of Wikidata property
+Q62589316,Wikidata property for an identifier that suggests notability(Q62589316),Wikidata property where a legitimate value indicates that the subject is probably notable
+Q62589320,Wikidata property for an identifier that does not imply notability(Q62589320),a Wikidata property where a legitimate value does not itself indicate that the subject is notable
+Q62606615,Wikidata property related to e-commerce(Q62606615),Wikidata property
+Q62619638,Wikidata property linking to external MediaWiki wiki(Q62619638),Wikidata property (identifier or URL) linking to MediaWiki wikis outside of Wikimedia
+Q63870987,Wikidata property related to LGBT(Q63870987),Wikidata property
+Q63871189,Wikidata property related to sports teams/clubs(Q63871189),Wikidata property
+Q63871233,Wikidata property related to aerobatics(Q63871233),Wikidata property
+Q63871246,Wikidata property related to equestrianism(Q63871246),type of Wikidata property
+Q63871467,Wikidata property related to anime and manga(Q63871467),Wikidata property
+Q63873112,Wikidata property related to streaming media services(Q63873112),Wikidata property
+Q64025170,Wikidata property related to fictional characters(Q64025170),Wikidata property
+Q64169925,Wikidata property related to rugby league(Q64169925),Wikidata property
+Q64221137,Wikidata property related to a national football federation(Q64221137),Wikidata property
+Q64263681,Wikidata property related to Catholicism and the Catholic Church(Q64263681),Wikidata property
+Q64264420,Wikidata property related to Christianity(Q64264420),Wikidata property
+Q64289010,Wikidata property related to Buddhism(Q64289010),Wikidata property
+Q64291027,Wikidata property related to The Church of Jesus Christ of Latter-day Saints(Q64291027),Wikidata property
+Q64292415,Wikidata property related to Lutheranism(Q64292415),Wikidata property
+Q64293728,Wikidata property related to Anglicanism(Q64293728),Wikidata property
+Q64295974,Wikidata property related to Greek mythology(Q64295974),Wikidata property
+Q64348848,Wikidata property related to Judaism and the Jewish people(Q64348848),Wikidata property
+Q64349017,Wikidata property related to the Eastern Orthodox Church(Q64349017),Wikidata property
+Q64354299,Wikidata property related to Evangelical Christianity(Q64354299),Wikidata property
+Q64620662,Wikidata property related to modern pentathlon(Q64620662),Wikidata property
+Q64620663,Wikidata property related to lacrosse(Q64620663),Wikidata property
+Q64742143,Wikidata property to identify voice actors(Q64742143),Wikidata property
+Q64746292,Wikidata property related to animation(Q64746292),Wikidata property
+Q64764172,Wikidata property related to rugby(Q64764172),Wikidata property
+Q64830420,Wikidata property associated with people(Q64830420),Wikidata property
+Q64846109,Wikidata property using many other properties as qualifiers(Q64846109),class of properties with atypical use of other properties
+Q65016292,Wikidata property related to boxing(Q65016292),Wikidata property
+Q65096064,Wikidata property for an identifier with restricted access(Q65096064),Wikidata property where the formatted URL required an account
+Q65947561,Wikidata property related to fencing(Q65947561),Wikidata property
+Q65947656,Wikidata property related to triathlon(Q65947656),Wikidata property
+Q66116613,Wikidata property to identify audio tracks(Q66116613),Wikidata property
+Q66116658,Wikidata property to identify lyrics(Q66116658),Wikidata property
+Q66116790,Wikidata property to identify music videos(Q66116790),Wikidata property
+Q66117735,Wikidata property to identify musical releases(Q66117735),Wikidata property
+Q66117915,Wikidata property to identify bands(Q66117915),Wikidata property
+Q66118123,Wikidata property related to music streaming services(Q66118123),Wikidata property
+Q66118361,Wikidata property to identify record labels(Q66118361),Wikidata property
+Q66118387,Wikidata property to identify composers(Q66118387),Wikidata property
+Q66118402,Wikidata property related to record charts(Q66118402),Wikidata property
+Q66125160,Wikidata property related to rock and metal(Q66125160),Wikidata property
+Q66125161,Wikidata property related to music genres(Q66125161),Wikidata property
+Q66125187,Wikidata property for authority control of churches(Q66125187),Wikidata property
+Q66266927,Wikidata property for authority control for magazines(Q66266927),Wikidata property
+Q66309381,Wikidata property for items about fictional characters(Q66309381),Wikidata property for items describing fictional characters
+Q66386615,Wikidata property related to rap and hip hop(Q66386615),Wikidata property
+Q66480643,Wikidata property related to box office(Q66480643),Wikidata property
+Q66626337,Wikidata property for authority control for thoroughfares(Q66626337),type of Wikidata property
+Q66712599,Wikidata property for authority control of musicians and musical ensembles(Q66712599),Wikidata property
+Q66728614,Wikidata property related to internet radio(Q66728614),Wikidata property
+Q67042573,Wikidata property for authority control for compositions(Q67042573),Wikidata property
+Q67155279,Wikidata property of an identifier with a date(Q67155279),Wikidata property
+Q67198839,Wikidata property related to podcasts(Q67198839),Wikidata property
+Q67205850,Wikidata property for authority control for trails(Q67205850),type of Wikidata property
+Q67527144,Wikidata property related to media reviews and content ratings(Q67527144),Wikidata property
+Q68573177,Wikidata property related to video game streaming(Q68573177),Wikidata property
+Q70564278,"Wikidata property used as ""depicts"" (P180) qualifier on Commons(Q70564278)","qualifier for ""depicts"" (P180) on Wikimedia Commons"
+Q71866636,Wikidata property to identify video game companies and/or professionals(Q71866636),Wikidata property
+Q73688627,Wikidata property related to Islam(Q73688627),type of Wikidata property
+Q74568206,Wikidata property related to archives(Q74568206),Wikidata property
+Q77585243,Wikidata property related to The Walt Disney Company(Q77585243),Wikidata property
+Q78685053,Wikidata property to identify video game franchises(Q78685053),Wikidata property
+Q79967257,Wikidata property related to copyright(Q79967257),Wikidata property
+Q80447536,Wikidata property to identify anime and manga characters(Q80447536),Wikidata property
+Q80491580,Wikidata property for authority control of mangaka(Q80491580),Wikidata property
+Q80840868,Wikidata property related to research(Q80840868),Wikidata property
+Q84574746,Wikidata property to identify podcast episodes(Q84574746),type of Wikidata proprerty
+Q84612171,Wikidata property to identify podcasts(Q84612171),type of Wikidata property
+Q84612312,Wikidata property related to video game news websites(Q84612312),Wikidata property
+Q84764641,Wikidata property related to websites(Q84764641),type of Wikidata property
+Q87668706,Wikidata property to identify association football referees(Q87668706),Wikidata property
+Q88206155,Wikidata property for authority control for saints(Q88206155),type of Wikidata property
+Q89209418,Wikidata property to identify fictional characters(Q89209418),Wikidata property
+Q89560413,Wikidata property related to a thesaurus(Q89560413),Wikidata property
+Q89566422,Wikidata property related to agriculture(Q89566422),type of Wikidata property
+Q89604788,Wikidata property related to a medical facility(Q89604788),type of Wikidata property
+Q93433126,Wikidata property for authority control for politicians(Q93433126),Wikidata property used to identify politicians and politically-involved persons
+Q93436926,Wikidata property for authority control for sports people(Q93436926),"Wikidata property used to identify athletes, referees, coaches, and other participants in sport"
+Q95388829,Wikidata property related to a library classification (topics)(Q95388829),Wikidata property used to associate a topic to the code corresponding to it in a library classification
+Q95388859,Wikidata property related to a library classification (single works)(Q95388859),"Wikidata property used to associate a single work (book, article, etc.) to the code corresponding to it in a library classification"
+Q96192295,Wikidata property widely reused by third-party entities(Q96192295),Wikidata property
+Q96533552,Wikidata property related to social science(Q96533552),Wikidata property
+Q96776953,Wikidata property for authority control (libraries)(Q96776953),"Wikidata property for a system of authority control developed by a library or a library network (for VIAF sources, use Q55586529)"
+Q97584729,Wikidata property related to biographical dictionaries(Q97584729),Wikidata property
+Q97892178,Wikidata property related to heraldry(Q97892178),type of Wikidata property
+Q98929163,Wikidata property related to slavery(Q98929163),type of Wikidata property
+Q99192940,Wikidata property related to hiking(Q99192940),type of Wikidata property
+Q99543626,Wikidata property for an identifier value that can be re-assigned(Q99543626),"the scheme of this property occasionally reuses the same value for a different entity, e.g. ""zza"" is first used by entity ""A"" then by entity ""B"""
+Q99566281,Wikidata property for an identifier value that can be replaced(Q99566281),"the scheme of this property occasionally replaces identifiers with new values, e.g. identifier ""zza"" for entity ""A"" is replaced by ""zzb"", without ""zza"" later being used by another entity"
+Q99566538,"Wikidata property for an identifier that generally has just one value, but rarely can have two or more values for the same entity(Q99566538)","the scheme of this identifier has generally a 1-1 relation to Wikidata, but occasionally assigns several identifiers for what Wikidata considers the same concept, e.g. concept ""A"" has identifiers ""zza"" and ""zzb"" at the same time"
+Q99567026,"Wikidata property with a single value, but different precisions and references can lead to multiple values(Q99567026)","the values of this property generally have just one ground truth, but different references or different precisions in references can lead to multiple values, e.g. A is born country A (ref #1), place B in country A (ref #2), or place C (ref #3)"
+Q99567847,Wikidata property with a single value that generally evolves over time(Q99567847),"the values for this property can evolve over time, but generally there is just one at a given point in time. Also, different reference can provide a different views or different precisions"
+Q100391350,Wikidata property to identify playlists(Q100391350),Wikidata property
+Q100698536,Wikidata property to identify libraries(Q100698536),Wikidata property
+Q101081817,"Wikidata property to identify anime television shows, episodes and films(Q101081817)",Wikidata property
+Q101083593,Wikidata property to identify manga(Q101083593),Wikidata property
+Q102046040,Wikidata property related to victims(Q102046040),type of Wikidata property
+Q102348160,Wikidata property to identify television series episodes(Q102348160),Wikidata property
+Q102357699,Wikidata property for authority control for restaurants(Q102357699),type of Wikidata property
+Q103824108,Wikidata property about Wikidata entities themselves(Q103824108),"Wikidata property that describe the item or lexeme itself, instead of the subject it described"
+Q103979805,Wikidata property to identify bridges(Q103979805),type of Wikidata property
+Q104245263,Wikidata property related to graphs(Q104245263),type of Wikidata property
+Q104775940,Wikidata property representing video game content ratings(Q104775940),Wikidata property
+Q105208489,Wikidata property representing home video content ratings(Q105208489),Wikidata property
+Q105208518,Wikidata property representing cinema content ratings(Q105208518),Wikidata property
+Q105208538,Wikidata property representing television content ratings(Q105208538),Wikidata property
+Q105269280,Wikidata property representing literary content ratings(Q105269280),Wikidata property
+Q105271279,"Wikidata property representing trailer, commercial and advertisement content ratings(Q105271279)",Wikidata property
+Q105271307,Wikidata property representing music content ratings(Q105271307),Wikidata property
+Q105388954,Wikidata property to identify online accounts(Q105388954),class of Wikidata properties
+Q105406680,Wikidata property representing mobile app and software content ratings(Q105406680),Wikidata property
+Q105407800,Wikidata property related to crowdfunding platforms(Q105407800),Wikidata property
+Q105672006,Wikidata property to identify music genres(Q105672006),Wikidata property
+Q105946994,Wikidata property to identify news website topics(Q105946994),Wikidata property
+Q105999567,Wikidata property related to the Sami people(Q105999567),type of Wikidata property
+Q105999586,Wikidata property related to ethnic groups or indigenous people(Q105999586),type of Wikidata property
+Q105999661,Wikidata property related to African Americans(Q105999661),type of Wikidata property
+Q106035765,Wikidata property to identify businesses(Q106035765),Wikidata property used to identify businesses
+Q106360873,Wikidata property related to New York City(Q106360873),Wikidata properties related to New York City or its institutions
+Q106623077,Wikidata property for authority control for families(Q106623077),Wikidata property
+Q106646822,Wikidata property related to subject dictionaries(Q106646822),Wikidata property
+Q106653189,Wikidata property for authority control for victims of National Socialism(Q106653189),type of Wikidata property
+Q106666993,Wikidata property for websites not accessible in the European Union(Q106666993),Wikidata property
+Q106702532,Wikidata property to identify gardens(Q106702532),Wikidata property
+Q106827312,Wikidata property related to the Renaissance(Q106827312),Wikidata property
+Q106839109,Wikidata property related to mountains and alpine areas(Q106839109),Wikidata property
+Q107095360,Wikidata property to identify songs(Q107095360),Wikidata property
+Q107156662,Wikidata property related to numismatics(Q107156662),type of Wikidata property
+Q107211056,Wikidata property for authority control for academicians(Q107211056),type of Wikidata property
+Q107211254,Wikidata property for authority control (publishers)(Q107211254),Wikidata property for a system of authority control developed by a publisher
+Q107212108,Wikidata property for authority control (academies)(Q107212108),Wikidata property for a system of authority control developed by an academy or a learned society
+Q107235145,Wikidata property to identify radio programs(Q107235145),Wikidata property
+Q107296498,Wikidata property representing television series episode content ratings(Q107296498),type of Wikidata property
+Q107316787,Wikidata property to identify personality traits(Q107316787),Wikidata property
+Q107337221,Wikidata property of quantity type able to indicate an absolute amount as well as a percentage(Q107337221),type of Wikidata property
+Q107338616,Wikidata property related to camping(Q107338616),Wikidata property
+Q107363328,Wikidata property for journal rankings(Q107363328),Wikidata property
+Q107395292,Wikidata property related to movies and television shows(Q107395292),Wikidata property
+Q107417492,Wikidata property related to gender(Q107417492),type of Wikidata property
+Q107417519,Wikidata property about subject’s gender(Q107417519),Wikidata property related to the gender of the person that is the subject of a statement
+Q107417524,Wikidata property related to third-parties’ gender(Q107417524),Wikidata property related to the gender of person(s) other than the one described by the item that is the subject of a statement
+Q107417545,Wikidata property stating third-parties’ gender(Q107417545),"Wikidata property that states the gender of person(s) other than the subject of a statement; e.g., states the gender of a group somehow related to the subject of a statement"
+Q107417554,Wikidata property implying third-parties’ gender(Q107417554),"Wikidata property whose value depends on, but does not state (as the object), the gender of person(s) other than the subject of a statement"
+Q107543330,Wikidata property related to cemeteries and graves(Q107543330),Wikidata property
+Q107642906,Wikidata property related to London(Q107642906),properties related to London or its institutions
+Q107642927,Wikidata property related to Los Angeles(Q107642927),properties related to Los Angeles or its institutions
+Q107642929,Wikidata property related to Chicago(Q107642929),properties related to Chicago or its institutions
+Q107644726,Wikidata property related to Paris(Q107644726),properties related to Paris or its institutions
+Q107644775,Wikidata property related to Berlin(Q107644775),type of Wikidata property
+Q107708380,Wikidata property for authority control for photographers(Q107708380),type of Wikidata property
+Q107737561,Wikidata property to identify sport events(Q107737561),Wikidata property for disambiguating sport events
+Q107737592,Wikidata property to identify cycling races(Q107737592),type of Wikidata property
+Q107737623,Wikidata property to identify motorsport races(Q107737623),type of Wikidata property
+Q107737660,Wikidata property to identify tennis tournaments(Q107737660),type of Wikidata property
+Q107737723,Wikidata property for authority control for referees(Q107737723),type of Wikidata property
+Q107737736,Wikidata property for authority control for association football coaches(Q107737736),type of Wikidata property
+Q107737764,Wikidata property for authority control for basketball coaches(Q107737764),type of Wikidata property
+Q107737889,Wikidata property for authority control for sports coaches(Q107737889),type of Wikidata property
+Q107738007,Wikidata property for authority control for association football players(Q107738007),type of Wikidata property
+Q107738470,Wikidata property for authority control for beach soccer players(Q107738470),type of Wikidata property
+Q107738475,Wikidata property for authority control for futsal players(Q107738475),type of Wikidata property
+Q107738583,Wikidata property for authority control for sports athletes(Q107738583),type of Wikidata property
+Q107738607,Wikidata property for authority control for basketball players(Q107738607),type of Wikidata property
+Q107741786,Wikidata property for authority control for cyclists(Q107741786),type of Wikidata property
+Q107741870,Wikidata property for authority control for players of American football(Q107741870),type of Wikidata property
+Q107741883,Wikidata property for authority control for baseball players(Q107741883),type of Wikidata property
+Q107741921,Wikidata property for authority control for chess players(Q107741921),type of Wikidata property
+Q107742145,Wikidata property for authority control for ice hockey players(Q107742145),type of Wikidata property
+Q107742398,Wikidata property for authority control for athletics competitors(Q107742398),type of Wikidata property
+Q107743640,Wikidata property for authority control for tennis players(Q107743640),type of Wikidata property
+Q107743712,Wikidata property for authority control for rugby union players(Q107743712),type of Wikidata property
+Q107744144,Wikidata property for authority control for rugby sevens players(Q107744144),type of Wikidata property
+Q107745776,Wikidata property for authority control for handball players(Q107745776),type of Wikidata property
+Q107745801,Wikidata property for authority control for golfers(Q107745801),type of Wikidata property
+Q107745820,Wikidata property for authority control for professional wrestlers(Q107745820),type of Wikidata property
+Q107745858,Wikidata property for authority control for snooker players(Q107745858),type of Wikidata property
+Q107745868,Wikidata property for authority control for cricketers(Q107745868),type of Wikidata property
+Q107745973,Wikidata property for authority control for lacrosse players(Q107745973),type of Wikidata property
+Q107746008,Wikidata property for authority control for boxers(Q107746008),type of Wikidata property
+Q107746027,Wikidata property for authority control for gymnasts(Q107746027),type of Wikidata property
+Q107746047,Wikidata property for authority control for Australian rules football players(Q107746047),type of Wikidata property
+Q107746165,Wikidata property for authority control for biathletes(Q107746165),type of Wikidata property
+Q107746173,Wikidata property for authority control for volleyball players(Q107746173),type of Wikidata property
+Q107746239,Wikidata property for authority control for rugby league players(Q107746239),type of Wikidata property
+Q107746240,Wikidata property for authority control for modern pentathletes(Q107746240),type of Wikidata property
+Q107746241,Wikidata property for authority control for fencers(Q107746241),type of Wikidata property
+Q107746242,Wikidata property for authority control for triathletes(Q107746242),type of Wikidata property
+Q107746735,Wikidata property related to canoeing and kayaking(Q107746735),type of Wikidata property
+Q107746736,Wikidata property related to diving(Q107746736),type of Wikidata property
+Q107746737,Wikidata property related to rowing(Q107746737),type of Wikidata property
+Q107746738,Wikidata property related to sailing(Q107746738),type of Wikidata property
+Q107746739,Wikidata property related to surfing(Q107746739),type of Wikidata property
+Q107746740,Wikidata property related to swimming(Q107746740),type of Wikidata property
+Q107746741,Wikidata property related to water polo(Q107746741),type of Wikidata property
+Q107746742,Wikidata property for authority control for canoeists(Q107746742),type of Wikidata property
+Q107746743,Wikidata property for authority control for divers(Q107746743),type of Wikidata property
+Q107746745,Wikidata property for authority control for rowers(Q107746745),type of Wikidata property
+Q107746746,Wikidata property for authority control for sport sailors(Q107746746),type of Wikidata property
+Q107746747,Wikidata property for authority control for swimmers(Q107746747),type of Wikidata property
+Q107746748,Wikidata property for authority control for water polo players(Q107746748),type of Wikidata property
+Q107746777,Wikidata property for authority control for surfers(Q107746777),type of Wikidata property
+Q107773598,Wikidata property for authority control for alpine skiers(Q107773598),type of Wikidata property
+Q107773599,Wikidata property for authority control for bandy players(Q107773599),type of Wikidata property
+Q107773600,Wikidata property for authority control for bobsledders(Q107773600),type of Wikidata property
+Q107773601,Wikidata property for authority control for curlers(Q107773601),type of Wikidata property
+Q107773602,Wikidata property for authority control for figure skaters(Q107773602),type of Wikidata property
+Q107773603,Wikidata property for authority control for lugers(Q107773603),type of Wikidata property
+Q107773604,Wikidata property for authority control for skeleton racers(Q107773604),type of Wikidata property
+Q107773605,Wikidata property for authority control for ski jumpers(Q107773605),type of Wikidata property
+Q107773608,Wikidata property for authority control for skiers(Q107773608),type of Wikidata property
+Q107773609,Wikidata property for authority control for snowboarders(Q107773609),type of Wikidata property
+Q107773610,Wikidata property for authority control for speed skaters(Q107773610),type of Wikidata property
+Q107773611,Wikidata property related to alpine skiing(Q107773611),type of Wikidata property
+Q107773612,Wikidata property related to bandy(Q107773612),type of Wikidata property
+Q107773613,Wikidata property related to bobsleigh(Q107773613),type of Wikidata property
+Q107773614,Wikidata property related to curling(Q107773614),type of Wikidata property
+Q107773615,Wikidata property related to figure skating(Q107773615),type of Wikidata property
+Q107773616,Wikidata property related to luge(Q107773616),type of Wikidata property
+Q107773617,Wikidata property related to skeleton(Q107773617),type of Wikidata property
+Q107773618,Wikidata property related to ski jumping(Q107773618),type of Wikidata property
+Q107773619,Wikidata property related to skiing(Q107773619),type of Wikidata property
+Q107773620,Wikidata property related to snowboarding(Q107773620),type of Wikidata property
+Q107773621,Wikidata property related to speed skating(Q107773621),type of Wikidata property
+Q107782652,Wikidata property related to judo(Q107782652),type of Wikidata property
+Q107782653,Wikidata property related to karate(Q107782653),type of Wikidata property
+Q107782654,Wikidata property related to mixed martial arts(Q107782654),type of Wikidata property
+Q107782655,Wikidata property related to sumo(Q107782655),type of Wikidata property
+Q107782656,Wikidata property related to taekwondo(Q107782656),type of Wikidata property
+Q107782657,Wikidata property related to wrestling(Q107782657),type of Wikidata property
+Q107782660,Wikidata property for authority control for judoka(Q107782660),type of Wikidata property
+Q107782661,Wikidata property for authority control for karateka(Q107782661),type of Wikidata property
+Q107782662,Wikidata property for authority control for mixed martial artists(Q107782662),type of Wikidata property
+Q107782663,Wikidata property for authority control for sumo wrestlers(Q107782663),type of Wikidata property
+Q107782665,Wikidata property for authority control for taekwondo practitioners(Q107782665),type of Wikidata property
+Q107782667,Wikidata property for authority control for wrestlers(Q107782667),type of Wikidata property
+Q107784814,Wikidata property for authority control for Canadian football players(Q107784814),type of Wikidata property
+Q107784819,Wikidata property for authority control for weightlifters(Q107784819),type of Wikidata property
+Q107784822,Wikidata property for authority control for poker players(Q107784822),type of Wikidata property
+Q107785090,Wikidata property related to poker(Q107785090),type of Wikidata property
+Q107785163,Wikidata property related to weightlifting(Q107785163),type of Wikidata property
+Q107785166,Wikidata property related to Canadian football(Q107785166),type of Wikidata property
+Q107785208,Wikidata property related to contract bridge(Q107785208),type of Wikidata property
+Q107785224,Wikidata property for authority control for bridge players(Q107785224),type of Wikidata property
+Q107785691,Wikidata property related to Lego(Q107785691),type of Wikidata property
+Q18608359,Wikidata property to indicate a source(Q18608359),property to indicate sources
+Q18608756,Wikidata property for birth or death(Q18608756),Wikidata property about birth or death
+Q18608871,Wikidata property for items about people(Q18608871),Wikidata property for items about specific persons
+Q18608993,Wikidata property for items about organizations(Q18608993),Wikidata property used on an item about an organization
+Q18609040,Wikidata property related to taxa(Q18609040),type of Wikidata property
+Q18610173,Wikidata property to link to Commons(Q18610173),"property to link to Commons media files or other pages. To describe media items, use Q28464773"
+Q18614948,Wikidata property for authority control(Q18614948),Wikidata property for disambiguating subjects
+Q18615777,Wikidata property to indicate a location(Q18615777),Wikidata property
+Q18616084,Wikidata property to indicate a language(Q18616084),property expecting a language item as a value
+Q18616576,Wikidata property(Q18616576),"part of statements according to the Wikidata data model, appearing as the 2nd item in the statement triple"
+Q18618628,Wikidata property for authority control for cultural heritage(Q18618628),type of Wikidata property
+Q18618644,Wikidata property related to creative works(Q18618644),Wikidata property for items about (creative) works and objects (including buildings)
+Q18635217,Wikidata property for specifying the location of an event(Q18635217),"St. José Maria Diaz still has family living in WHITTIER Ca,"
+Q18636219,Wikidata property with datatype 'time'(Q18636219),Wikidata property type
+Q18636233,Wikidata property for a person-related event(Q18636233),type of Wikidata property
+Q18644427,obsolete Wikidata property(Q18644427),Wikidata property decided by the community to be deleted
+Q18647515,transitive Wikidata property(Q18647515),to be used to declare properties to be transitive; OWL language construct
+Q18647519,asymmetric Wikidata property(Q18647519),To be used to declare properties to be asymmetric. OWL language construct.
+Q18667213,Wikidata property about Wikimedia categories(Q18667213),type of Wikidata property
+Q18668171,orderable Wikidata property(Q18668171),properties of this type should be used as a statement ordering key
+Q19595382,Wikidata property for authority control for people(Q19595382),Wikidata property
+Q19643892,Wikidata property to indicate a name(Q19643892),type of Wikidata property
+Q19820110,Wikidata property for documentation of properties(Q19820110),property used to document other Wikidata properties
+Q19829908,Wikidata property for authority control for places(Q19829908),Wikidata property for disambiguating places
+Q19829914,Wikidata property related to places(Q19829914),Wikidata property for describing places
+Q19833377,Wikidata property for authority control for works(Q19833377),type of Wikidata property for authority control
+Q19833835,Wikidata property to identify substances(Q19833835),type of Wikidata property
+Q19847637,Wikidata property for an identifier(Q19847637),Wikidata property to identify something in an external source
+Q19858569,Wikidata property related to mushrooms and mycology(Q19858569),type of Wikidata property
+Q19887775,Wikidata property related to medicine(Q19887775),Wikidata property
+Q20085670,Wikidata property for romanization system(Q20085670),property of Wikidata
+Q20824104,Wikidata property for items about languages(Q20824104),type of Wikidata property
+Q21077852,Wikidata property for physical quantities(Q21077852),"Wikidata property to indicate a physical quantity, usually in a well-defined unit of measurement"
+Q21099935,Wikidata property with datatype string that is not an external identifier(Q21099935),properties with string-datatype that shouldn't be converted to the external identifier datatype
+Q21126229,Wikidata property related to software(Q21126229),attributes of particular pieces of software
+Q21264328,Wikidata property for a multi-source identifier(Q21264328),property for external ID (a) with single/several issuers; (b) within/without single scheme; (c) available at single/separate places. Unique or not. May combine several. Not IDs with single issuer within single scheme available at single place.
+Q21294996,Wikidata property related to chemistry(Q21294996),Wikidata property
+Q21451142,Wikidata property for items about astronomical objects(Q21451142),Wikidata property
+Q21451178,Wikidata property related to economics(Q21451178),Wikidata property
+Q21504947,Wikidata property to indicate a constraint(Q21504947),property to indicate constraints
+Q21745557,Wikidata property to identify organizations(Q21745557),Wikidata property for disambiguating organizations
+Q21818626,Wikidata property related to sport(Q21818626),Wikidata property
+Q22582645,Wikidata property for properties(Q22582645),"property that characterizes its subject, another property"
+Q22661913,Wikidata property for items about people with datatype 'time'(Q22661913),Wikidata property type
+Q22963600,Wikidata property related to engineering(Q22963600),type of Wikidata property
+Q22964093,Wikidata property for perceptual properties(Q22964093),type of Wikidata property
+Q22964126,Wikidata property for participating organizations(Q22964126),type of Wikidata property
+Q22964274,Wikidata property for identification in the film industry(Q22964274),Wikidata property
+Q22964288,Wikidata property for items about military(Q22964288),type of Wikidata property
+Q22964357,Wikidata property for items about airlines(Q22964357),type of Wikidata property
+Q22964372,Wikidata property related to sport organizations(Q22964372),Wikidata property
+Q22964476,Wikidata property for items about corporations(Q22964476),type of Wikidata property
+Q22964785,Wikidata property related to events(Q22964785),Wikidata property
+Q22964818,Wikidata property related to elections(Q22964818),type of Wikidata property
+Q22964966,Wikidata property related to structures(Q22964966),type of Wikidata property
+Q22965078,Wikidata property for items about musical works(Q22965078),type of Wikidata property
+Q22965162,Wikidata property for items about films(Q22965162),Wikidata property
+Q22969167,Wikidata property related to climate(Q22969167),type of Wikidata property
+Q22969221,Wikidata property giving Wikimedia list(Q22969221),Wikidata item about Wikimedia entities
+Q22969262,Wikidata property for items about computer hardware(Q22969262),type of Wikidata property
+Q22981316,Wikidata property related to physics(Q22981316),Wikidata property
+Q22983697,Wikidata property related to religions and beliefs(Q22983697),Wikidata property
+Q22984026,Wikidata property related to law and justice(Q22984026),Wikidata property
+Q22984363,Wikidata property related to transport(Q22984363),Wikidata property
+Q22984450,Wikidata property related to education(Q22984450),Wikidata property
+Q22984475,Wikidata property related to politics(Q22984475),Wikidata property
+Q22984494,Wikidata property related to demography(Q22984494),a property is is related to the task of the study of statistics (demography) (please use on properties only)
+Q22984512,Wikidata property related to works of fiction(Q22984512),Wikidata property
+Q22984545,Wikidata property related to games and leisure activities(Q22984545),Wikidata property
+Q22988603,Wikidata property related to biology(Q22988603),Wikidata property
+Q22988631,Wikidata property related to mathematics(Q22988631),Wikidata property
+Q22988651,Wikidata property related to geology(Q22988651),Wikidata property
+Q22997934,Wikidata property related to government and state(Q22997934),Wikidata property
+Q23038310,Wikidata property related to food and eating(Q23038310),Wikidata property
+Q23069609,Wikidata property related to air transport(Q23069609),Wikidata property
+Q23069616,Wikidata property related to road transport(Q23069616),type of Wikidata property
+Q23310071,Wikidata property related to rail transport(Q23310071),Wikidata property
+Q23660994,Wikidata property related to cycling(Q23660994),Wikidata property
+Q23661205,Wikidata property related to association football(Q23661205),Wikidata property
+Q23673786,Wikidata property for New York Times semantic concepts(Q23673786),type of Wikidata property
+Q23779665,Wikidata property related to maritime and inland waterway transport(Q23779665),Wikidata property
+Q24041613,Wikidata property related to aircraft(Q24041613),type of Wikidata property
+Q24041622,Wikidata property for items about bodies of water(Q24041622),type of Wikidata property
+Q24041781,Wikidata property related to mineralogy(Q24041781),Wikidata property
+Q24043375,Wikidata property for items about occupations(Q24043375),type of Wikidata property
+Q24052406,Wikidata property related to professional wrestling(Q24052406),type of Wikidata property
+Q24075706,"Wikidata property for authority control, with reciprocal use of Wikidata(Q24075706)","Wikidata property representing a unique authority control identifier, for a service which uses Wikidata as an authority Control source"
+Q24239898,Wikidata property for Wikivoyage listings(Q24239898),type of Wikidata property
+Q24262056,Wikidata property for Wikivoyage(Q24262056),type of Wikidata property
+Q24575337,Wikidata property to identify events(Q24575337),Wikidata property for disambiguating events
+Q24710760,Wikidata property of quantity type indicating a percentage(Q24710760),quantity datatype property with Q11229 (percent) or Q2080811 (volume percent) as unit
+Q24716199,Wikidata property representing media content ratings(Q24716199),Wikidata property
+Q24755874,Wikidata property for items about plays(Q24755874),type of Wikidata property
+Q26235166,Wikidata property to identify organizations in company registers(Q26235166),Wikidata property for authority control using government company registers
+Q26696664,Wikidata property for identifiers in registers of goods and services(Q26696664),type of Wikidata property
+Q26883022,Wikidata property to identify horses(Q26883022),Wikidata property
+Q26935994,Wikidata property encoding a vCard value(Q26935994),type of Wikidata property
+Q26940804,Wikidata property for linking to a representative image(Q26940804),individual properties link to images of different aspects of items (or are only relevant to some items)
+Q27048688,Wikidata property for authority control for industries and economic activities(Q27048688),Wikidata property
+Q27151329,Wikidata property related to photography(Q27151329),Wikidata metaclass for properties
+Q27525351,Wikidata property related to music(Q27525351),Wikidata property
+Q27642681,Wikidata property related to protected areas(Q27642681),type of Wikidata property
+Q27659414,Wikidata property related to fashion(Q27659414),Wikidata property
+Q27698571,Wikidata property related to chess(Q27698571),Wikidata property
+Q27870307,Wikidata property related to student registries(Q27870307),type of Wikidata property
+Q27886949,Wikidata property related to racket sports(Q27886949),Wikidata property
+Q27918607,Wikidata property related to art(Q27918607),Wikidata property
+Q27968522,Wikidata property for items about cell lines(Q27968522),Wikidata metadata
+Q28100241,Wikidata property related to disasters(Q28100241),type of Wikidata property
+Q28100549,Wikidata property to describe the elements of identity(Q28100549),type of Wikidata properties describing the ways two items overlap (or don't)
+Q28104992,Wikidata property related to spacecraft(Q28104992),type of Wikidata property
+Q28106456,Wikidata property related to sports people(Q28106456),Wikidata property
+Q28106485,Wikidata property related to sport facilities(Q28106485),Wikidata property
+Q28106586,Wikidata property related to sports events(Q28106586),Wikidata property
+Q28146956,Wikidata property to identify musical works(Q28146956),Wikidata property what identify musical works
+Q28147643,Wikidata property related to video games(Q28147643),Wikidata property
+Q28326730,Wikidata property for the relationship of the element to its class(Q28326730),type of Wikidata property
+Q28464773,Wikidata property to describe media items(Q28464773),"property to describe media such as Commons files (i.e., the media file is the subject of this property). To link to media items, use Q18610173."
+Q28549561,Wikidata property related to basketball(Q28549561),Wikidata property
+Q28600002,Wikidata property related to winter sports(Q28600002),Wikidata property
+Q28606291,Wikidata property related to combat sports(Q28606291),type of Wikidata property
+Q28648960,Wikidata property related to American football(Q28648960),type of Wikidata property
+Q28648966,Wikidata property related to golf(Q28648966),type of Wikidata property
+Q28649017,Wikidata property related to baseball(Q28649017),type of Wikidata property
+Q28649019,Wikidata property related to ice hockey(Q28649019),type of Wikidata property
+Q28649023,Wikidata property related to women's sport(Q28649023),Wikidata property
+Q28649030,Wikidata property related to women and feminism(Q28649030),type of Wikidata property
+Q28739677,Wikidata property related to lighthouses(Q28739677),Wikidata property
+Q28746712,Wikidata property for causes and effects(Q28746712),type of Wikidata property
+Q28762481,Wikidata property related to tennis(Q28762481),type of Wikidata property
+Q28772038,Wikidata property related to athletics(Q28772038),Wikidata property
+Q28772046,Wikidata property related to water sports(Q28772046),Wikidata property
+Q28878279,Wikidata property related to rugby union(Q28878279),Wikidata property
+Q28902389,Wikidata property related to comics(Q28902389),Wikidata property
+Q28919033,Wikidata property for items about algorithms(Q28919033),type of Wikidata property
+Q29110152,Wikidata property related to tourism(Q29110152),Wikidata property
+Q29446361,Wikidata property related to bridges(Q29446361),type of Wikidata property
+Q29542094,Wikidata property to identify films(Q29542094),Wikidata property
+Q29546443,Wikidata property for items about books(Q29546443),type of Wikidata property
+Q29546563,Wikidata property for items about manuscripts(Q29546563),type of Wikidata property
+Q29547399,Wikidata property to identify books(Q29547399),type of Wikidata property
+Q29548341,Wikidata property for items about scholarly articles(Q29548341),type of Wikidata property
+Q29561722,Wikidata property related to literature(Q29561722),Wikidata property
+Q29642812,Wikidata property related to the United Nations(Q29642812),properties for codes issued by or about the United Nations
+Q29868164,Wikidata property related to motorsports(Q29868164),type of Wikidata property
+Q29887391,Wikidata property related to linguistics(Q29887391),Wikidata property
+Q29963999,Wikidata property related to in-narrative data(Q29963999),"data that is true within the fictional world described in a work, as opposed to objective facts about the work itself"
+Q30025373,Wikidata property related to utilization and ownership(Q30025373),type of Wikidata property
+Q30041186,Wikidata property related to online communities(Q30041186),Wikidata property
+Q30225604,Wikidata property related to a National Olympic or Paralympic Committee(Q30225604),type of Wikidata property
+Q30225619,Wikidata property related to Olympism(Q30225619),type of Wikidata property
+Q30249126,Wikidata property for ontology mapping(Q30249126),used to map Wikidata items and properties to external ontologies
+Q37911748,partially deprecated Wikidata property(Q37911748),property that is deprecated for certain uses but not obsolete
+Q41583306,Wikidata property related to volleyball(Q41583306),type of Wikidata property
+Q41600015,Wikidata property related to a sports hall of fame(Q41600015),Wikidata property
+Q41657848,Wikidata property related to handball(Q41657848),Wikidata property
+Q41693989,Wikidata property related to cricket(Q41693989),type of Wikidata property
+Q41791933,Wikidata property related to television(Q41791933),type of Wikidata property
+Q41799791,Wikidata property related to astronomy(Q41799791),type of Wikidata property
+Q41804262,Wikidata property related to gastronomy(Q41804262),type of Wikidata property
+Q42255152,Wikidata property related to disability(Q42255152),type of Wikidata property
+Q42396390,Wikidata property to identify taxa(Q42396390),external identifier of taxa (groups of biological organisms)
+Q42415497,Wikidata property to identify genes(Q42415497),type of Wikidata property
+Q42415644,Wikidata property to identify proteins(Q42415644),type of Wikidata property
+Q42428050,Wikidata property related to precision sports(Q42428050),type of Wikidata property
+Q42428442,Wikidata property related to college sports(Q42428442),type of Wikidata property
+Q42428590,Wikidata property to identify astronomical objects(Q42428590),type of Wikidata property
+Q42752243,Wikidata property related to anatomy(Q42752243),type of Wikidata property
+Q42752262,Wikidata property related to human anatomy(Q42752262),type of Wikidata property
+Q43544041,Wikidata property related to Australian rules football(Q43544041),type of Wikidata property
+Q43546017,Wikidata property related to gymnastics(Q43546017),type of Wikidata property
+Q43831109,Wikidata property related to architecture(Q43831109),type of Wikidata property
+Q44597997,property likely to be challenged(Q44597997),when this property is used with items of living people it's likely to be challenged; as a result those statements should be supported by a reliable public source as suggested in Wikidata:Living people
+Q44606430,Wikidata property in special need of sourcing(Q44606430),type of Wikidata property
+Q44606558,"Wikidata property in special need of sourcing, for items about people(Q44606558)",type of Wikidata property
+Q44847669,Wikidata property to identify artworks(Q44847669),type of Wikidata property for authority control
+Q45312863,Wikidata property related to sculpture(Q45312863),Wikidata property
+Q45484922,Wikidata property for authority control for cemeteries(Q45484922),type of Wikidata property
+Q45818495,Wikidata property for items about skills(Q45818495),type of Wikidata property
+Q46246642,Wikidata property related to archaeology(Q46246642),Wikidata property
+Q46275839,Wikidata property related to theater(Q46275839),type of Wikidata property
+Q46641179,Wikidata property related to dams(Q46641179),type of Wikidata property
+Q46895781,Wikidata property related to birds and ornithology(Q46895781),type of Wikidata property
+Q47512165,Wikidata property related to computing(Q47512165),Wikidata property
+Q48710051,Wikidata property for an identifier having a checksum(Q48710051),type of Wikidata property
+Q50361974,Wikidata property related to snooker(Q50361974),Wikidata property
+Q50362259,Wikidata property related to rugby sevens(Q50362259),Wikidata property
+Q51077473,Wikidata property related to time and duration(Q51077473),type of Wikidata property
+Q51077484,Wikidata property related to age(Q51077484),type of Wikidata property
+Q51089849,Wikidata property related to weapons and military equipment(Q51089849),type of Wikidata property
+Q51092447,Wikidata property related to ratios and proportions(Q51092447),type of Wikidata property
+Q51092639,Wikidata property related to phonetics(Q51092639),type of Wikidata property
+Q51118703,Wikidata property about Wikimedia templates(Q51118703),type of Wikidata property
+Q51118821,Wikidata property about Wikimedia entities(Q51118821),type of Wikidata property
+Q51121942,Wikidata property related to typefaces and typography(Q51121942),type of Wikidata property
+Q51122237,"Wikidata property related to burials, graves, and memorials(Q51122237)",type of Wikidata property
+Q51122921,Wikidata property related to processes and manufacturing(Q51122921),type of Wikidata property
+Q51124294,Wikidata property related to paleontology(Q51124294),Wikidata property
+Q51326087,Wikidata property related to banking(Q51326087),type of Wikidata property
+Q51920440,Wikidata property for items about lakes(Q51920440),type of Wikidata property
+Q52063969,Wikidata property to identify topics(Q52063969),type of Wikidata property
+Q52425722,Wikidata property related to natural science(Q52425722),Wikidata property
+Q52431918,Wikidata property related to seismology(Q52431918),Wikidata property
+Q52511956,Wikidata property related to geography(Q52511956),type of Wikidata property
+Q52513243,Wikidata property for quantities(Q52513243),Wikidata property
+Q52514469,Wikidata property related to personal life(Q52514469),Wikidata property
+Q53671196,Wikidata property related to erotica or pornography(Q53671196),type of Wikidata property
+Q54076056,Wikidata property for lexicographical data(Q54076056),Wikidata property used for any kind of lexicographical data
+Q54254515,Wikidata property for lexemes(Q54254515),primarily used on Wikidata lexemes
+Q54275221,Wikidata property for lexicographic forms(Q54275221),primarily used on Wikidata forms
+Q54275340,Wikidata property for lexicographic senses(Q54275340),primarily used on Wikidata senses
+Q54290695,Wikidata property related to insects and entomology(Q54290695),Wikidata property
+Q54835335,Wikidata property related to philosophy(Q54835335),type of Wikidata property
+Q55082570,Wikidata property to identify databases(Q55082570),property storing identifiers about databases
+Q55116891,Wikidata property related to poetry(Q55116891),Wikidata property
+Q55192982,Wikidata property related to historiography(Q55192982),type of Wikidata property
+Q55452870,Wikidata property related to encyclopedias(Q55452870),Wikidata property
+Q55586529,Wikidata property for authority control by VIAF member(Q55586529),Wikidata property for authority control related to a VIAF member or source
+Q55650689,Wikidata property for authority control for writers(Q55650689),Wikidata property
+Q55653847,Wikidata property for authority control for artists(Q55653847),type of Wikidata property for authority control for people
+Q55663163,Wikidata property related to television programs(Q55663163),Wikidata property
+Q55663533,Wikidata property to identify television shows(Q55663533),type of Wikidata property
+Q55977691,Wikidata property for authority control for administrative subdivisions(Q55977691),Wikidata property for authority control of places
+Q55977774,Wikidata property for authority control for public roads(Q55977774),type of Wikidata property
+Q55978235,Wikidata property for authority control for protected areas(Q55978235),type of Wikidata property
+Q55978503,Wikidata property for authority control for countries(Q55978503),type of Wikidata property
+Q55978551,Wikidata property for authority control for places of worship(Q55978551),type of Wikidata property
+Q55999460,Wikidata property for authority control for the media(Q55999460),Wikidata property
+Q56150830,"Wikidata property related to awards, prizes and honours(Q56150830)",Wikidata property
+Q56216056,Wikidata property to identify lexicographical entities(Q56216056),external identifier for a lexeme or form
+Q56216473,Wikidata property for authority control for architects(Q56216473),type of Wikidata property
+Q56245078,Wikidata property for authority control for museums(Q56245078),type of Wikidata property
+Q56248867,Wikidata property related to the Middle Ages(Q56248867),type of Wikidata property
+Q56248884,Wikidata property related to the Ancient World(Q56248884),Wikidata property
+Q56248906,Wikidata property related to the Early Modern period(Q56248906),type of Wikidata property
+Q56249073,Wikidata property related to genealogy(Q56249073),Wikidata property
+Q56249389,Wikidata property to identify railway stations(Q56249389),type of Wikidata property
+Q56457408,Wikidata property for items about positions(Q56457408),type of Wikidata property
+Q56505345,Wikidata property for authority control for hotels(Q56505345),type of Wikidata property
+Q56682212,Wikidata property related to plants and botany(Q56682212),Wikidata property
+Q57589544,Wikidata property for authority control for academic journals(Q57589544),type of Wikidata property for authority control for works
+Q57633168,Wikidata property related to animals and zoology(Q57633168),Wikidata property
+Q57955292,Wikidata property for items about people or organisations(Q57955292),
+Q57980177,"Wikidata property related to amphibians, reptiles and herpetology(Q57980177)",type of Wikidata property
+Q58788038,Wikidata property related to invasive species(Q58788038),type of Wikidata property
+Q59284180,Wikidata property related to marine biology(Q59284180),type of Wikidata property
+Q59910380,"Wikidata property related to data communication, storage, and retrieval(Q59910380)",Wikidata property
+Q60457486,Wikidata property for a discontinued website(Q60457486),"the target website of this property is no longer available. It now links to an archived version. If there is no archived version then mark for deletion with ""obsolete Wikidata property"""
+Q60464703,Wikidata property related to color(Q60464703),type of Wikidata property
+Q61052867,Wikidata property related to airports(Q61052867),Wikidata property
+Q61058429,Wikidata property related to science(Q61058429),Wikidata property
+Q61996910,Wikidata property related to biathlon(Q61996910),type of Wikidata property
+Q62036945,Wikidata property related to auctions(Q62036945),type of Wikidata property
+Q62589316,Wikidata property for an identifier that suggests notability(Q62589316),Wikidata property where a legitimate value indicates that the subject is probably notable
+Q62589320,Wikidata property for an identifier that does not imply notability(Q62589320),a Wikidata property where a legitimate value does not itself indicate that the subject is notable
+Q62606615,Wikidata property related to e-commerce(Q62606615),Wikidata property
+Q62619638,Wikidata property linking to external MediaWiki wiki(Q62619638),Wikidata property (identifier or URL) linking to MediaWiki wikis outside of Wikimedia
+Q63870987,Wikidata property related to LGBT(Q63870987),Wikidata property
+Q63871189,Wikidata property related to sports teams/clubs(Q63871189),Wikidata property
+Q63871233,Wikidata property related to aerobatics(Q63871233),Wikidata property
+Q63871246,Wikidata property related to equestrianism(Q63871246),type of Wikidata property
+Q63871467,Wikidata property related to anime and manga(Q63871467),Wikidata property
+Q63873112,Wikidata property related to streaming media services(Q63873112),Wikidata property
+Q64025170,Wikidata property related to fictional characters(Q64025170),Wikidata property
+Q64169925,Wikidata property related to rugby league(Q64169925),Wikidata property
+Q64221137,Wikidata property related to a national football federation(Q64221137),Wikidata property
+Q64263681,Wikidata property related to Catholicism and the Catholic Church(Q64263681),Wikidata property
+Q64264420,Wikidata property related to Christianity(Q64264420),Wikidata property
+Q64289010,Wikidata property related to Buddhism(Q64289010),Wikidata property
+Q64291027,Wikidata property related to The Church of Jesus Christ of Latter-day Saints(Q64291027),Wikidata property
+Q64292415,Wikidata property related to Lutheranism(Q64292415),Wikidata property
+Q64293728,Wikidata property related to Anglicanism(Q64293728),Wikidata property
+Q64295974,Wikidata property related to Greek mythology(Q64295974),Wikidata property
+Q64348848,Wikidata property related to Judaism and the Jewish people(Q64348848),Wikidata property
+Q64349017,Wikidata property related to the Eastern Orthodox Church(Q64349017),Wikidata property
+Q64354299,Wikidata property related to Evangelical Christianity(Q64354299),Wikidata property
+Q64620662,Wikidata property related to modern pentathlon(Q64620662),Wikidata property
+Q64620663,Wikidata property related to lacrosse(Q64620663),Wikidata property
+Q64742143,Wikidata property to identify voice actors(Q64742143),Wikidata property
+Q64746292,Wikidata property related to animation(Q64746292),Wikidata property
+Q64764172,Wikidata property related to rugby(Q64764172),Wikidata property
+Q64830420,Wikidata property associated with people(Q64830420),Wikidata property
+Q64846109,Wikidata property using many other properties as qualifiers(Q64846109),class of properties with atypical use of other properties
+Q65016292,Wikidata property related to boxing(Q65016292),Wikidata property
+Q65096064,Wikidata property for an identifier with restricted access(Q65096064),Wikidata property where the formatted URL required an account
+Q65947561,Wikidata property related to fencing(Q65947561),Wikidata property
+Q65947656,Wikidata property related to triathlon(Q65947656),Wikidata property
+Q66116613,Wikidata property to identify audio tracks(Q66116613),Wikidata property
+Q66116658,Wikidata property to identify lyrics(Q66116658),Wikidata property
+Q66116790,Wikidata property to identify music videos(Q66116790),Wikidata property
+Q66117735,Wikidata property to identify musical releases(Q66117735),Wikidata property
+Q66117915,Wikidata property to identify bands(Q66117915),Wikidata property
+Q66118123,Wikidata property related to music streaming services(Q66118123),Wikidata property
+Q66118361,Wikidata property to identify record labels(Q66118361),Wikidata property
+Q66118387,Wikidata property to identify composers(Q66118387),Wikidata property
+Q66118402,Wikidata property related to record charts(Q66118402),Wikidata property
+Q66125160,Wikidata property related to rock and metal(Q66125160),Wikidata property
+Q66125161,Wikidata property related to music genres(Q66125161),Wikidata property
+Q66125187,Wikidata property for authority control of churches(Q66125187),Wikidata property
+Q66266927,Wikidata property for authority control for magazines(Q66266927),Wikidata property
+Q66309381,Wikidata property for items about fictional characters(Q66309381),Wikidata property for items describing fictional characters
+Q66386615,Wikidata property related to rap and hip hop(Q66386615),Wikidata property
+Q66480643,Wikidata property related to box office(Q66480643),Wikidata property
+Q66626337,Wikidata property for authority control for thoroughfares(Q66626337),type of Wikidata property
+Q66712599,Wikidata property for authority control of musicians and musical ensembles(Q66712599),Wikidata property
+Q66728614,Wikidata property related to internet radio(Q66728614),Wikidata property
+Q67042573,Wikidata property for authority control for compositions(Q67042573),Wikidata property
+Q67155279,Wikidata property of an identifier with a date(Q67155279),Wikidata property
+Q67198839,Wikidata property related to podcasts(Q67198839),Wikidata property
+Q67205850,Wikidata property for authority control for trails(Q67205850),type of Wikidata property
+Q67527144,Wikidata property related to media reviews and content ratings(Q67527144),Wikidata property
+Q68573177,Wikidata property related to video game streaming(Q68573177),Wikidata property
+Q70564278,"Wikidata property used as ""depicts"" (P180) qualifier on Commons(Q70564278)","qualifier for ""depicts"" (P180) on Wikimedia Commons"
+Q71866636,Wikidata property to identify video game companies and/or professionals(Q71866636),Wikidata property
+Q73688627,Wikidata property related to Islam(Q73688627),type of Wikidata property
+Q74568206,Wikidata property related to archives(Q74568206),Wikidata property
+Q77585243,Wikidata property related to The Walt Disney Company(Q77585243),Wikidata property
+Q78685053,Wikidata property to identify video game franchises(Q78685053),Wikidata property
+Q79967257,Wikidata property related to copyright(Q79967257),Wikidata property
+Q80447536,Wikidata property to identify anime and manga characters(Q80447536),Wikidata property
+Q80491580,Wikidata property for authority control of mangaka(Q80491580),Wikidata property
+Q80840868,Wikidata property related to research(Q80840868),Wikidata property
+Q84574746,Wikidata property to identify podcast episodes(Q84574746),type of Wikidata proprerty
+Q84612171,Wikidata property to identify podcasts(Q84612171),type of Wikidata property
+Q84612312,Wikidata property related to video game news websites(Q84612312),Wikidata property
+Q84764641,Wikidata property related to websites(Q84764641),type of Wikidata property
+Q87668706,Wikidata property to identify association football referees(Q87668706),Wikidata property
+Q88206155,Wikidata property for authority control for saints(Q88206155),type of Wikidata property
+Q89209418,Wikidata property to identify fictional characters(Q89209418),Wikidata property
+Q89560413,Wikidata property related to a thesaurus(Q89560413),Wikidata property
+Q89566422,Wikidata property related to agriculture(Q89566422),type of Wikidata property
+Q89604788,Wikidata property related to a medical facility(Q89604788),type of Wikidata property
+Q93433126,Wikidata property for authority control for politicians(Q93433126),Wikidata property used to identify politicians and politically-involved persons
+Q93436926,Wikidata property for authority control for sports people(Q93436926),"Wikidata property used to identify athletes, referees, coaches, and other participants in sport"
+Q95388829,Wikidata property related to a library classification (topics)(Q95388829),Wikidata property used to associate a topic to the code corresponding to it in a library classification
+Q95388859,Wikidata property related to a library classification (single works)(Q95388859),"Wikidata property used to associate a single work (book, article, etc.) to the code corresponding to it in a library classification"
+Q96192295,Wikidata property widely reused by third-party entities(Q96192295),Wikidata property
+Q96533552,Wikidata property related to social science(Q96533552),Wikidata property
+Q96776953,Wikidata property for authority control (libraries)(Q96776953),"Wikidata property for a system of authority control developed by a library or a library network (for VIAF sources, use Q55586529)"
+Q97584729,Wikidata property related to biographical dictionaries(Q97584729),Wikidata property
+Q97892178,Wikidata property related to heraldry(Q97892178),type of Wikidata property
+Q98929163,Wikidata property related to slavery(Q98929163),type of Wikidata property
+Q99192940,Wikidata property related to hiking(Q99192940),type of Wikidata property
+Q99543626,Wikidata property for an identifier value that can be re-assigned(Q99543626),"the scheme of this property occasionally reuses the same value for a different entity, e.g. ""zza"" is first used by entity ""A"" then by entity ""B"""
+Q99566281,Wikidata property for an identifier value that can be replaced(Q99566281),"the scheme of this property occasionally replaces identifiers with new values, e.g. identifier ""zza"" for entity ""A"" is replaced by ""zzb"", without ""zza"" later being used by another entity"
+Q99566538,"Wikidata property for an identifier that generally has just one value, but rarely can have two or more values for the same entity(Q99566538)","the scheme of this identifier has generally a 1-1 relation to Wikidata, but occasionally assigns several identifiers for what Wikidata considers the same concept, e.g. concept ""A"" has identifiers ""zza"" and ""zzb"" at the same time"
+Q99567026,"Wikidata property with a single value, but different precisions and references can lead to multiple values(Q99567026)","the values of this property generally have just one ground truth, but different references or different precisions in references can lead to multiple values, e.g. A is born country A (ref #1), place B in country A (ref #2), or place C (ref #3)"
+Q99567847,Wikidata property with a single value that generally evolves over time(Q99567847),"the values for this property can evolve over time, but generally there is just one at a given point in time. Also, different reference can provide a different views or different precisions"
+Q100391350,Wikidata property to identify playlists(Q100391350),Wikidata property
+Q100698536,Wikidata property to identify libraries(Q100698536),Wikidata property
+Q101081817,"Wikidata property to identify anime television shows, episodes and films(Q101081817)",Wikidata property
+Q101083593,Wikidata property to identify manga(Q101083593),Wikidata property
+Q102046040,Wikidata property related to victims(Q102046040),type of Wikidata property
+Q102348160,Wikidata property to identify television series episodes(Q102348160),Wikidata property
+Q102357699,Wikidata property for authority control for restaurants(Q102357699),type of Wikidata property
+Q103824108,Wikidata property about Wikidata entities themselves(Q103824108),"Wikidata property that describe the item or lexeme itself, instead of the subject it described"
+Q103979805,Wikidata property to identify bridges(Q103979805),type of Wikidata property
+Q104245263,Wikidata property related to graphs(Q104245263),type of Wikidata property
+Q104775940,Wikidata property representing video game content ratings(Q104775940),Wikidata property
+Q105208489,Wikidata property representing home video content ratings(Q105208489),Wikidata property
+Q105208518,Wikidata property representing cinema content ratings(Q105208518),Wikidata property
+Q105208538,Wikidata property representing television content ratings(Q105208538),Wikidata property
+Q105269280,Wikidata property representing literary content ratings(Q105269280),Wikidata property
+Q105271279,"Wikidata property representing trailer, commercial and advertisement content ratings(Q105271279)",Wikidata property
+Q105271307,Wikidata property representing music content ratings(Q105271307),Wikidata property
+Q105388954,Wikidata property to identify online accounts(Q105388954),class of Wikidata properties
+Q105406680,Wikidata property representing mobile app and software content ratings(Q105406680),Wikidata property
+Q105407800,Wikidata property related to crowdfunding platforms(Q105407800),Wikidata property
+Q105672006,Wikidata property to identify music genres(Q105672006),Wikidata property
+Q105946994,Wikidata property to identify news website topics(Q105946994),Wikidata property
+Q105999567,Wikidata property related to the Sami people(Q105999567),type of Wikidata property
+Q105999586,Wikidata property related to ethnic groups or indigenous people(Q105999586),type of Wikidata property
+Q105999661,Wikidata property related to African Americans(Q105999661),type of Wikidata property
+Q106035765,Wikidata property to identify businesses(Q106035765),Wikidata property used to identify businesses
+Q106360873,Wikidata property related to New York City(Q106360873),Wikidata properties related to New York City or its institutions
+Q106623077,Wikidata property for authority control for families(Q106623077),Wikidata property
+Q106646822,Wikidata property related to subject dictionaries(Q106646822),Wikidata property
+Q106653189,Wikidata property for authority control for victims of National Socialism(Q106653189),type of Wikidata property
+Q106666993,Wikidata property for websites not accessible in the European Union(Q106666993),Wikidata property
+Q106702532,Wikidata property to identify gardens(Q106702532),Wikidata property
+Q106827312,Wikidata property related to the Renaissance(Q106827312),Wikidata property
+Q106839109,Wikidata property related to mountains and alpine areas(Q106839109),Wikidata property
+Q107095360,Wikidata property to identify songs(Q107095360),Wikidata property
+Q107156662,Wikidata property related to numismatics(Q107156662),type of Wikidata property
+Q107211056,Wikidata property for authority control for academicians(Q107211056),type of Wikidata property
+Q107211254,Wikidata property for authority control (publishers)(Q107211254),Wikidata property for a system of authority control developed by a publisher
+Q107212108,Wikidata property for authority control (academies)(Q107212108),Wikidata property for a system of authority control developed by an academy or a learned society
+Q107235145,Wikidata property to identify radio programs(Q107235145),Wikidata property
+Q107296498,Wikidata property representing television series episode content ratings(Q107296498),type of Wikidata property
+Q107316787,Wikidata property to identify personality traits(Q107316787),Wikidata property
+Q107337221,Wikidata property of quantity type able to indicate an absolute amount as well as a percentage(Q107337221),type of Wikidata property
+Q107338616,Wikidata property related to camping(Q107338616),Wikidata property
+Q107363328,Wikidata property for journal rankings(Q107363328),Wikidata property
+Q107395292,Wikidata property related to movies and television shows(Q107395292),Wikidata property
+Q107417492,Wikidata property related to gender(Q107417492),type of Wikidata property
+Q107417519,Wikidata property about subject’s gender(Q107417519),Wikidata property related to the gender of the person that is the subject of a statement
+Q107417524,Wikidata property related to third-parties’ gender(Q107417524),Wikidata property related to the gender of person(s) other than the one described by the item that is the subject of a statement
+Q107417545,Wikidata property stating third-parties’ gender(Q107417545),"Wikidata property that states the gender of person(s) other than the subject of a statement; e.g., states the gender of a group somehow related to the subject of a statement"
+Q107417554,Wikidata property implying third-parties’ gender(Q107417554),"Wikidata property whose value depends on, but does not state (as the object), the gender of person(s) other than the subject of a statement"
+Q107543330,Wikidata property related to cemeteries and graves(Q107543330),Wikidata property
+Q107642906,Wikidata property related to London(Q107642906),properties related to London or its institutions
+Q107642927,Wikidata property related to Los Angeles(Q107642927),properties related to Los Angeles or its institutions
+Q107642929,Wikidata property related to Chicago(Q107642929),properties related to Chicago or its institutions
+Q107644726,Wikidata property related to Paris(Q107644726),properties related to Paris or its institutions
+Q107644775,Wikidata property related to Berlin(Q107644775),type of Wikidata property
+Q107708380,Wikidata property for authority control for photographers(Q107708380),type of Wikidata property
+Q107737561,Wikidata property to identify sport events(Q107737561),Wikidata property for disambiguating sport events
+Q107737592,Wikidata property to identify cycling races(Q107737592),type of Wikidata property
+Q107737623,Wikidata property to identify motorsport races(Q107737623),type of Wikidata property
+Q107737660,Wikidata property to identify tennis tournaments(Q107737660),type of Wikidata property
+Q107737723,Wikidata property for authority control for referees(Q107737723),type of Wikidata property
+Q107737736,Wikidata property for authority control for association football coaches(Q107737736),type of Wikidata property
+Q107737764,Wikidata property for authority control for basketball coaches(Q107737764),type of Wikidata property
+Q107737889,Wikidata property for authority control for sports coaches(Q107737889),type of Wikidata property
+Q107738007,Wikidata property for authority control for association football players(Q107738007),type of Wikidata property
+Q107738470,Wikidata property for authority control for beach soccer players(Q107738470),type of Wikidata property
+Q107738475,Wikidata property for authority control for futsal players(Q107738475),type of Wikidata property
+Q107738583,Wikidata property for authority control for sports athletes(Q107738583),type of Wikidata property
+Q107738607,Wikidata property for authority control for basketball players(Q107738607),type of Wikidata property
+Q107741786,Wikidata property for authority control for cyclists(Q107741786),type of Wikidata property
+Q107741870,Wikidata property for authority control for players of American football(Q107741870),type of Wikidata property
+Q107741883,Wikidata property for authority control for baseball players(Q107741883),type of Wikidata property
+Q107741921,Wikidata property for authority control for chess players(Q107741921),type of Wikidata property
+Q107742145,Wikidata property for authority control for ice hockey players(Q107742145),type of Wikidata property
+Q107742398,Wikidata property for authority control for athletics competitors(Q107742398),type of Wikidata property
+Q107743640,Wikidata property for authority control for tennis players(Q107743640),type of Wikidata property
+Q107743712,Wikidata property for authority control for rugby union players(Q107743712),type of Wikidata property
+Q107744144,Wikidata property for authority control for rugby sevens players(Q107744144),type of Wikidata property
+Q107745776,Wikidata property for authority control for handball players(Q107745776),type of Wikidata property
+Q107745801,Wikidata property for authority control for golfers(Q107745801),type of Wikidata property
+Q107745820,Wikidata property for authority control for professional wrestlers(Q107745820),type of Wikidata property
+Q107745858,Wikidata property for authority control for snooker players(Q107745858),type of Wikidata property
+Q107745868,Wikidata property for authority control for cricketers(Q107745868),type of Wikidata property
+Q107745973,Wikidata property for authority control for lacrosse players(Q107745973),type of Wikidata property
+Q107746008,Wikidata property for authority control for boxers(Q107746008),type of Wikidata property
+Q107746027,Wikidata property for authority control for gymnasts(Q107746027),type of Wikidata property
+Q107746047,Wikidata property for authority control for Australian rules football players(Q107746047),type of Wikidata property
+Q107746165,Wikidata property for authority control for biathletes(Q107746165),type of Wikidata property
+Q107746173,Wikidata property for authority control for volleyball players(Q107746173),type of Wikidata property
+Q107746239,Wikidata property for authority control for rugby league players(Q107746239),type of Wikidata property
+Q107746240,Wikidata property for authority control for modern pentathletes(Q107746240),type of Wikidata property
+Q107746241,Wikidata property for authority control for fencers(Q107746241),type of Wikidata property
+Q107746242,Wikidata property for authority control for triathletes(Q107746242),type of Wikidata property
+Q107746735,Wikidata property related to canoeing and kayaking(Q107746735),type of Wikidata property
+Q107746736,Wikidata property related to diving(Q107746736),type of Wikidata property
+Q107746737,Wikidata property related to rowing(Q107746737),type of Wikidata property
+Q107746738,Wikidata property related to sailing(Q107746738),type of Wikidata property
+Q107746739,Wikidata property related to surfing(Q107746739),type of Wikidata property
+Q107746740,Wikidata property related to swimming(Q107746740),type of Wikidata property
+Q107746741,Wikidata property related to water polo(Q107746741),type of Wikidata property
+Q107746742,Wikidata property for authority control for canoeists(Q107746742),type of Wikidata property
+Q107746743,Wikidata property for authority control for divers(Q107746743),type of Wikidata property
+Q107746745,Wikidata property for authority control for rowers(Q107746745),type of Wikidata property
+Q107746746,Wikidata property for authority control for sport sailors(Q107746746),type of Wikidata property
+Q107746747,Wikidata property for authority control for swimmers(Q107746747),type of Wikidata property
+Q107746748,Wikidata property for authority control for water polo players(Q107746748),type of Wikidata property
+Q107746777,Wikidata property for authority control for surfers(Q107746777),type of Wikidata property
+Q107773598,Wikidata property for authority control for alpine skiers(Q107773598),type of Wikidata property
+Q107773599,Wikidata property for authority control for bandy players(Q107773599),type of Wikidata property
+Q107773600,Wikidata property for authority control for bobsledders(Q107773600),type of Wikidata property
+Q107773601,Wikidata property for authority control for curlers(Q107773601),type of Wikidata property
+Q107773602,Wikidata property for authority control for figure skaters(Q107773602),type of Wikidata property
+Q107773603,Wikidata property for authority control for lugers(Q107773603),type of Wikidata property
+Q107773604,Wikidata property for authority control for skeleton racers(Q107773604),type of Wikidata property
+Q107773605,Wikidata property for authority control for ski jumpers(Q107773605),type of Wikidata property
+Q107773608,Wikidata property for authority control for skiers(Q107773608),type of Wikidata property
+Q107773609,Wikidata property for authority control for snowboarders(Q107773609),type of Wikidata property
+Q107773610,Wikidata property for authority control for speed skaters(Q107773610),type of Wikidata property
+Q107773611,Wikidata property related to alpine skiing(Q107773611),type of Wikidata property
+Q107773612,Wikidata property related to bandy(Q107773612),type of Wikidata property
+Q107773613,Wikidata property related to bobsleigh(Q107773613),type of Wikidata property
+Q107773614,Wikidata property related to curling(Q107773614),type of Wikidata property
+Q107773615,Wikidata property related to figure skating(Q107773615),type of Wikidata property
+Q107773616,Wikidata property related to luge(Q107773616),type of Wikidata property
+Q107773617,Wikidata property related to skeleton(Q107773617),type of Wikidata property
+Q107773618,Wikidata property related to ski jumping(Q107773618),type of Wikidata property
+Q107773619,Wikidata property related to skiing(Q107773619),type of Wikidata property
+Q107773620,Wikidata property related to snowboarding(Q107773620),type of Wikidata property
+Q107773621,Wikidata property related to speed skating(Q107773621),type of Wikidata property
+Q107782652,Wikidata property related to judo(Q107782652),type of Wikidata property
+Q107782653,Wikidata property related to karate(Q107782653),type of Wikidata property
+Q107782654,Wikidata property related to mixed martial arts(Q107782654),type of Wikidata property
+Q107782655,Wikidata property related to sumo(Q107782655),type of Wikidata property
+Q107782656,Wikidata property related to taekwondo(Q107782656),type of Wikidata property
+Q107782657,Wikidata property related to wrestling(Q107782657),type of Wikidata property
+Q107782660,Wikidata property for authority control for judoka(Q107782660),type of Wikidata property
+Q107782661,Wikidata property for authority control for karateka(Q107782661),type of Wikidata property
+Q107782662,Wikidata property for authority control for mixed martial artists(Q107782662),type of Wikidata property
+Q107782663,Wikidata property for authority control for sumo wrestlers(Q107782663),type of Wikidata property
+Q107782665,Wikidata property for authority control for taekwondo practitioners(Q107782665),type of Wikidata property
+Q107782667,Wikidata property for authority control for wrestlers(Q107782667),type of Wikidata property
+Q107784814,Wikidata property for authority control for Canadian football players(Q107784814),type of Wikidata property
+Q107784819,Wikidata property for authority control for weightlifters(Q107784819),type of Wikidata property
+Q107784822,Wikidata property for authority control for poker players(Q107784822),type of Wikidata property
+Q107785090,Wikidata property related to poker(Q107785090),type of Wikidata property
+Q107785163,Wikidata property related to weightlifting(Q107785163),type of Wikidata property
+Q107785166,Wikidata property related to Canadian football(Q107785166),type of Wikidata property
+Q107785208,Wikidata property related to contract bridge(Q107785208),type of Wikidata property
+Q107785224,Wikidata property for authority control for bridge players(Q107785224),type of Wikidata property
+Q107785691,Wikidata property related to Lego(Q107785691),type of Wikidata property
+Q18608359,Wikidata property to indicate a source(Q18608359),property to indicate sources
+Q18608756,Wikidata property for birth or death(Q18608756),Wikidata property about birth or death
+Q18608871,Wikidata property for items about people(Q18608871),Wikidata property for items about specific persons
+Q18608993,Wikidata property for items about organizations(Q18608993),Wikidata property used on an item about an organization
+Q18609040,Wikidata property related to taxa(Q18609040),type of Wikidata property
+Q18610173,Wikidata property to link to Commons(Q18610173),"property to link to Commons media files or other pages. To describe media items, use Q28464773"
+Q18614948,Wikidata property for authority control(Q18614948),Wikidata property for disambiguating subjects
+Q18615777,Wikidata property to indicate a location(Q18615777),Wikidata property
+Q18616084,Wikidata property to indicate a language(Q18616084),property expecting a language item as a value
+Q18616576,Wikidata property(Q18616576),"part of statements according to the Wikidata data model, appearing as the 2nd item in the statement triple"
+Q18618628,Wikidata property for authority control for cultural heritage(Q18618628),type of Wikidata property
+Q18618644,Wikidata property related to creative works(Q18618644),Wikidata property for items about (creative) works and objects (including buildings)
+Q18635217,Wikidata property for specifying the location of an event(Q18635217),"St. José Maria Diaz still has family living in WHITTIER Ca,"
+Q18636219,Wikidata property with datatype 'time'(Q18636219),Wikidata property type
+Q18636233,Wikidata property for a person-related event(Q18636233),type of Wikidata property
+Q18644427,obsolete Wikidata property(Q18644427),Wikidata property decided by the community to be deleted
+Q18647515,transitive Wikidata property(Q18647515),to be used to declare properties to be transitive; OWL language construct
+Q18647519,asymmetric Wikidata property(Q18647519),To be used to declare properties to be asymmetric. OWL language construct.
+Q18667213,Wikidata property about Wikimedia categories(Q18667213),type of Wikidata property
+Q18668171,orderable Wikidata property(Q18668171),properties of this type should be used as a statement ordering key
+Q19595382,Wikidata property for authority control for people(Q19595382),Wikidata property
+Q19643892,Wikidata property to indicate a name(Q19643892),type of Wikidata property
+Q19820110,Wikidata property for documentation of properties(Q19820110),property used to document other Wikidata properties
+Q19829908,Wikidata property for authority control for places(Q19829908),Wikidata property for disambiguating places
+Q19829914,Wikidata property related to places(Q19829914),Wikidata property for describing places
+Q19833377,Wikidata property for authority control for works(Q19833377),type of Wikidata property for authority control
+Q19833835,Wikidata property to identify substances(Q19833835),type of Wikidata property
+Q19847637,Wikidata property for an identifier(Q19847637),Wikidata property to identify something in an external source
+Q19858569,Wikidata property related to mushrooms and mycology(Q19858569),type of Wikidata property
+Q19887775,Wikidata property related to medicine(Q19887775),Wikidata property
+Q20085670,Wikidata property for romanization system(Q20085670),property of Wikidata
+Q20824104,Wikidata property for items about languages(Q20824104),type of Wikidata property
+Q21077852,Wikidata property for physical quantities(Q21077852),"Wikidata property to indicate a physical quantity, usually in a well-defined unit of measurement"
+Q21099935,Wikidata property with datatype string that is not an external identifier(Q21099935),properties with string-datatype that shouldn't be converted to the external identifier datatype
+Q21126229,Wikidata property related to software(Q21126229),attributes of particular pieces of software
+Q21264328,Wikidata property for a multi-source identifier(Q21264328),property for external ID (a) with single/several issuers; (b) within/without single scheme; (c) available at single/separate places. Unique or not. May combine several. Not IDs with single issuer within single scheme available at single place.
+Q21294996,Wikidata property related to chemistry(Q21294996),Wikidata property
+Q21451142,Wikidata property for items about astronomical objects(Q21451142),Wikidata property
+Q21451178,Wikidata property related to economics(Q21451178),Wikidata property
+Q21504947,Wikidata property to indicate a constraint(Q21504947),property to indicate constraints
+Q21745557,Wikidata property to identify organizations(Q21745557),Wikidata property for disambiguating organizations
+Q21818626,Wikidata property related to sport(Q21818626),Wikidata property
+Q22582645,Wikidata property for properties(Q22582645),"property that characterizes its subject, another property"
+Q22661913,Wikidata property for items about people with datatype 'time'(Q22661913),Wikidata property type
+Q22963600,Wikidata property related to engineering(Q22963600),type of Wikidata property
+Q22964093,Wikidata property for perceptual properties(Q22964093),type of Wikidata property
+Q22964126,Wikidata property for participating organizations(Q22964126),type of Wikidata property
+Q22964274,Wikidata property for identification in the film industry(Q22964274),Wikidata property
+Q22964288,Wikidata property for items about military(Q22964288),type of Wikidata property
+Q22964357,Wikidata property for items about airlines(Q22964357),type of Wikidata property
+Q22964372,Wikidata property related to sport organizations(Q22964372),Wikidata property
+Q22964476,Wikidata property for items about corporations(Q22964476),type of Wikidata property
+Q22964785,Wikidata property related to events(Q22964785),Wikidata property
+Q22964818,Wikidata property related to elections(Q22964818),type of Wikidata property
+Q22964966,Wikidata property related to structures(Q22964966),type of Wikidata property
+Q22965078,Wikidata property for items about musical works(Q22965078),type of Wikidata property
+Q22965162,Wikidata property for items about films(Q22965162),Wikidata property
+Q22969167,Wikidata property related to climate(Q22969167),type of Wikidata property
+Q22969221,Wikidata property giving Wikimedia list(Q22969221),Wikidata item about Wikimedia entities
+Q22969262,Wikidata property for items about computer hardware(Q22969262),type of Wikidata property
+Q22981316,Wikidata property related to physics(Q22981316),Wikidata property
+Q22983697,Wikidata property related to religions and beliefs(Q22983697),Wikidata property
+Q22984026,Wikidata property related to law and justice(Q22984026),Wikidata property
+Q22984363,Wikidata property related to transport(Q22984363),Wikidata property
+Q22984450,Wikidata property related to education(Q22984450),Wikidata property
+Q22984475,Wikidata property related to politics(Q22984475),Wikidata property
+Q22984494,Wikidata property related to demography(Q22984494),a property is is related to the task of the study of statistics (demography) (please use on properties only)
+Q22984512,Wikidata property related to works of fiction(Q22984512),Wikidata property
+Q22984545,Wikidata property related to games and leisure activities(Q22984545),Wikidata property
+Q22988603,Wikidata property related to biology(Q22988603),Wikidata property
+Q22988631,Wikidata property related to mathematics(Q22988631),Wikidata property
+Q22988651,Wikidata property related to geology(Q22988651),Wikidata property
+Q22997934,Wikidata property related to government and state(Q22997934),Wikidata property
+Q23038310,Wikidata property related to food and eating(Q23038310),Wikidata property
+Q23069609,Wikidata property related to air transport(Q23069609),Wikidata property
+Q23069616,Wikidata property related to road transport(Q23069616),type of Wikidata property
+Q23310071,Wikidata property related to rail transport(Q23310071),Wikidata property
+Q23660994,Wikidata property related to cycling(Q23660994),Wikidata property
+Q23661205,Wikidata property related to association football(Q23661205),Wikidata property
+Q23673786,Wikidata property for New York Times semantic concepts(Q23673786),type of Wikidata property
+Q23779665,Wikidata property related to maritime and inland waterway transport(Q23779665),Wikidata property
+Q24041613,Wikidata property related to aircraft(Q24041613),type of Wikidata property
+Q24041622,Wikidata property for items about bodies of water(Q24041622),type of Wikidata property
+Q24041781,Wikidata property related to mineralogy(Q24041781),Wikidata property
+Q24043375,Wikidata property for items about occupations(Q24043375),type of Wikidata property
+Q24052406,Wikidata property related to professional wrestling(Q24052406),type of Wikidata property
+Q24075706,"Wikidata property for authority control, with reciprocal use of Wikidata(Q24075706)","Wikidata property representing a unique authority control identifier, for a service which uses Wikidata as an authority Control source"
+Q24239898,Wikidata property for Wikivoyage listings(Q24239898),type of Wikidata property
+Q24262056,Wikidata property for Wikivoyage(Q24262056),type of Wikidata property
+Q24575337,Wikidata property to identify events(Q24575337),Wikidata property for disambiguating events
+Q24710760,Wikidata property of quantity type indicating a percentage(Q24710760),quantity datatype property with Q11229 (percent) or Q2080811 (volume percent) as unit
+Q24716199,Wikidata property representing media content ratings(Q24716199),Wikidata property
+Q24755874,Wikidata property for items about plays(Q24755874),type of Wikidata property
+Q26235166,Wikidata property to identify organizations in company registers(Q26235166),Wikidata property for authority control using government company registers
+Q26696664,Wikidata property for identifiers in registers of goods and services(Q26696664),type of Wikidata property
+Q26883022,Wikidata property to identify horses(Q26883022),Wikidata property
+Q26935994,Wikidata property encoding a vCard value(Q26935994),type of Wikidata property
+Q26940804,Wikidata property for linking to a representative image(Q26940804),individual properties link to images of different aspects of items (or are only relevant to some items)
+Q27048688,Wikidata property for authority control for industries and economic activities(Q27048688),Wikidata property
+Q27151329,Wikidata property related to photography(Q27151329),Wikidata metaclass for properties
+Q27525351,Wikidata property related to music(Q27525351),Wikidata property
+Q27642681,Wikidata property related to protected areas(Q27642681),type of Wikidata property
+Q27659414,Wikidata property related to fashion(Q27659414),Wikidata property
+Q27698571,Wikidata property related to chess(Q27698571),Wikidata property
+Q27870307,Wikidata property related to student registries(Q27870307),type of Wikidata property
+Q27886949,Wikidata property related to racket sports(Q27886949),Wikidata property
+Q27918607,Wikidata property related to art(Q27918607),Wikidata property
+Q27968522,Wikidata property for items about cell lines(Q27968522),Wikidata metadata
+Q28100241,Wikidata property related to disasters(Q28100241),type of Wikidata property
+Q28100549,Wikidata property to describe the elements of identity(Q28100549),type of Wikidata properties describing the ways two items overlap (or don't)
+Q28104992,Wikidata property related to spacecraft(Q28104992),type of Wikidata property
+Q28106456,Wikidata property related to sports people(Q28106456),Wikidata property
+Q28106485,Wikidata property related to sport facilities(Q28106485),Wikidata property
+Q28106586,Wikidata property related to sports events(Q28106586),Wikidata property
+Q28146956,Wikidata property to identify musical works(Q28146956),Wikidata property what identify musical works
+Q28147643,Wikidata property related to video games(Q28147643),Wikidata property
+Q28326730,Wikidata property for the relationship of the element to its class(Q28326730),type of Wikidata property
+Q28464773,Wikidata property to describe media items(Q28464773),"property to describe media such as Commons files (i.e., the media file is the subject of this property). To link to media items, use Q18610173."
+Q28549561,Wikidata property related to basketball(Q28549561),Wikidata property
+Q28600002,Wikidata property related to winter sports(Q28600002),Wikidata property
+Q28606291,Wikidata property related to combat sports(Q28606291),type of Wikidata property
+Q28648960,Wikidata property related to American football(Q28648960),type of Wikidata property
+Q28648966,Wikidata property related to golf(Q28648966),type of Wikidata property
+Q28649017,Wikidata property related to baseball(Q28649017),type of Wikidata property
+Q28649019,Wikidata property related to ice hockey(Q28649019),type of Wikidata property
+Q28649023,Wikidata property related to women's sport(Q28649023),Wikidata property
+Q28649030,Wikidata property related to women and feminism(Q28649030),type of Wikidata property
+Q28739677,Wikidata property related to lighthouses(Q28739677),Wikidata property
+Q28746712,Wikidata property for causes and effects(Q28746712),type of Wikidata property
+Q28762481,Wikidata property related to tennis(Q28762481),type of Wikidata property
+Q28772038,Wikidata property related to athletics(Q28772038),Wikidata property
+Q28772046,Wikidata property related to water sports(Q28772046),Wikidata property
+Q28878279,Wikidata property related to rugby union(Q28878279),Wikidata property
+Q28902389,Wikidata property related to comics(Q28902389),Wikidata property
+Q28919033,Wikidata property for items about algorithms(Q28919033),type of Wikidata property
+Q29110152,Wikidata property related to tourism(Q29110152),Wikidata property
+Q29446361,Wikidata property related to bridges(Q29446361),type of Wikidata property
+Q29542094,Wikidata property to identify films(Q29542094),Wikidata property
+Q29546443,Wikidata property for items about books(Q29546443),type of Wikidata property
+Q29546563,Wikidata property for items about manuscripts(Q29546563),type of Wikidata property
+Q29547399,Wikidata property to identify books(Q29547399),type of Wikidata property
+Q29548341,Wikidata property for items about scholarly articles(Q29548341),type of Wikidata property
+Q29561722,Wikidata property related to literature(Q29561722),Wikidata property
+Q29642812,Wikidata property related to the United Nations(Q29642812),properties for codes issued by or about the United Nations
+Q29868164,Wikidata property related to motorsports(Q29868164),type of Wikidata property
+Q29887391,Wikidata property related to linguistics(Q29887391),Wikidata property
+Q29963999,Wikidata property related to in-narrative data(Q29963999),"data that is true within the fictional world described in a work, as opposed to objective facts about the work itself"
+Q30025373,Wikidata property related to utilization and ownership(Q30025373),type of Wikidata property
+Q30041186,Wikidata property related to online communities(Q30041186),Wikidata property
+Q30225604,Wikidata property related to a National Olympic or Paralympic Committee(Q30225604),type of Wikidata property
+Q30225619,Wikidata property related to Olympism(Q30225619),type of Wikidata property
+Q30249126,Wikidata property for ontology mapping(Q30249126),used to map Wikidata items and properties to external ontologies
+Q37911748,partially deprecated Wikidata property(Q37911748),property that is deprecated for certain uses but not obsolete
+Q41583306,Wikidata property related to volleyball(Q41583306),type of Wikidata property
+Q41600015,Wikidata property related to a sports hall of fame(Q41600015),Wikidata property
+Q41657848,Wikidata property related to handball(Q41657848),Wikidata property
+Q41693989,Wikidata property related to cricket(Q41693989),type of Wikidata property
+Q41791933,Wikidata property related to television(Q41791933),type of Wikidata property
+Q41799791,Wikidata property related to astronomy(Q41799791),type of Wikidata property
+Q41804262,Wikidata property related to gastronomy(Q41804262),type of Wikidata property
+Q42255152,Wikidata property related to disability(Q42255152),type of Wikidata property
+Q42396390,Wikidata property to identify taxa(Q42396390),external identifier of taxa (groups of biological organisms)
+Q42415497,Wikidata property to identify genes(Q42415497),type of Wikidata property
+Q42415644,Wikidata property to identify proteins(Q42415644),type of Wikidata property
+Q42428050,Wikidata property related to precision sports(Q42428050),type of Wikidata property
+Q42428442,Wikidata property related to college sports(Q42428442),type of Wikidata property
+Q42428590,Wikidata property to identify astronomical objects(Q42428590),type of Wikidata property
+Q42752243,Wikidata property related to anatomy(Q42752243),type of Wikidata property
+Q42752262,Wikidata property related to human anatomy(Q42752262),type of Wikidata property
+Q43544041,Wikidata property related to Australian rules football(Q43544041),type of Wikidata property
+Q43546017,Wikidata property related to gymnastics(Q43546017),type of Wikidata property
+Q43831109,Wikidata property related to architecture(Q43831109),type of Wikidata property
+Q44597997,property likely to be challenged(Q44597997),when this property is used with items of living people it's likely to be challenged; as a result those statements should be supported by a reliable public source as suggested in Wikidata:Living people
+Q44606430,Wikidata property in special need of sourcing(Q44606430),type of Wikidata property
+Q44606558,"Wikidata property in special need of sourcing, for items about people(Q44606558)",type of Wikidata property
+Q44847669,Wikidata property to identify artworks(Q44847669),type of Wikidata property for authority control
+Q45312863,Wikidata property related to sculpture(Q45312863),Wikidata property
+Q45484922,Wikidata property for authority control for cemeteries(Q45484922),type of Wikidata property
+Q45818495,Wikidata property for items about skills(Q45818495),type of Wikidata property
+Q46246642,Wikidata property related to archaeology(Q46246642),Wikidata property
+Q46275839,Wikidata property related to theater(Q46275839),type of Wikidata property
+Q46641179,Wikidata property related to dams(Q46641179),type of Wikidata property
+Q46895781,Wikidata property related to birds and ornithology(Q46895781),type of Wikidata property
+Q47512165,Wikidata property related to computing(Q47512165),Wikidata property
+Q48710051,Wikidata property for an identifier having a checksum(Q48710051),type of Wikidata property
+Q50361974,Wikidata property related to snooker(Q50361974),Wikidata property
+Q50362259,Wikidata property related to rugby sevens(Q50362259),Wikidata property
+Q51077473,Wikidata property related to time and duration(Q51077473),type of Wikidata property
+Q51077484,Wikidata property related to age(Q51077484),type of Wikidata property
+Q51089849,Wikidata property related to weapons and military equipment(Q51089849),type of Wikidata property
+Q51092447,Wikidata property related to ratios and proportions(Q51092447),type of Wikidata property
+Q51092639,Wikidata property related to phonetics(Q51092639),type of Wikidata property
+Q51118703,Wikidata property about Wikimedia templates(Q51118703),type of Wikidata property
+Q51118821,Wikidata property about Wikimedia entities(Q51118821),type of Wikidata property
+Q51121942,Wikidata property related to typefaces and typography(Q51121942),type of Wikidata property
+Q51122237,"Wikidata property related to burials, graves, and memorials(Q51122237)",type of Wikidata property
+Q51122921,Wikidata property related to processes and manufacturing(Q51122921),type of Wikidata property
+Q51124294,Wikidata property related to paleontology(Q51124294),Wikidata property
+Q51326087,Wikidata property related to banking(Q51326087),type of Wikidata property
+Q51920440,Wikidata property for items about lakes(Q51920440),type of Wikidata property
+Q52063969,Wikidata property to identify topics(Q52063969),type of Wikidata property
+Q52425722,Wikidata property related to natural science(Q52425722),Wikidata property
+Q52431918,Wikidata property related to seismology(Q52431918),Wikidata property
+Q52511956,Wikidata property related to geography(Q52511956),type of Wikidata property
+Q52513243,Wikidata property for quantities(Q52513243),Wikidata property
+Q52514469,Wikidata property related to personal life(Q52514469),Wikidata property
+Q53671196,Wikidata property related to erotica or pornography(Q53671196),type of Wikidata property
+Q54076056,Wikidata property for lexicographical data(Q54076056),Wikidata property used for any kind of lexicographical data
+Q54254515,Wikidata property for lexemes(Q54254515),primarily used on Wikidata lexemes
+Q54275221,Wikidata property for lexicographic forms(Q54275221),primarily used on Wikidata forms
+Q54275340,Wikidata property for lexicographic senses(Q54275340),primarily used on Wikidata senses
+Q54290695,Wikidata property related to insects and entomology(Q54290695),Wikidata property
+Q54835335,Wikidata property related to philosophy(Q54835335),type of Wikidata property
+Q55082570,Wikidata property to identify databases(Q55082570),property storing identifiers about databases
+Q55116891,Wikidata property related to poetry(Q55116891),Wikidata property
+Q55192982,Wikidata property related to historiography(Q55192982),type of Wikidata property
+Q55452870,Wikidata property related to encyclopedias(Q55452870),Wikidata property
+Q55586529,Wikidata property for authority control by VIAF member(Q55586529),Wikidata property for authority control related to a VIAF member or source
+Q55650689,Wikidata property for authority control for writers(Q55650689),Wikidata property
+Q55653847,Wikidata property for authority control for artists(Q55653847),type of Wikidata property for authority control for people
+Q55663163,Wikidata property related to television programs(Q55663163),Wikidata property
+Q55663533,Wikidata property to identify television shows(Q55663533),type of Wikidata property
+Q55977691,Wikidata property for authority control for administrative subdivisions(Q55977691),Wikidata property for authority control of places
+Q55977774,Wikidata property for authority control for public roads(Q55977774),type of Wikidata property
+Q55978235,Wikidata property for authority control for protected areas(Q55978235),type of Wikidata property
+Q55978503,Wikidata property for authority control for countries(Q55978503),type of Wikidata property
+Q55978551,Wikidata property for authority control for places of worship(Q55978551),type of Wikidata property
+Q55999460,Wikidata property for authority control for the media(Q55999460),Wikidata property
+Q56150830,"Wikidata property related to awards, prizes and honours(Q56150830)",Wikidata property
+Q56216056,Wikidata property to identify lexicographical entities(Q56216056),external identifier for a lexeme or form
+Q56216473,Wikidata property for authority control for architects(Q56216473),type of Wikidata property
+Q56245078,Wikidata property for authority control for museums(Q56245078),type of Wikidata property
+Q56248867,Wikidata property related to the Middle Ages(Q56248867),type of Wikidata property
+Q56248884,Wikidata property related to the Ancient World(Q56248884),Wikidata property
+Q56248906,Wikidata property related to the Early Modern period(Q56248906),type of Wikidata property
+Q56249073,Wikidata property related to genealogy(Q56249073),Wikidata property
+Q56249389,Wikidata property to identify railway stations(Q56249389),type of Wikidata property
+Q56457408,Wikidata property for items about positions(Q56457408),type of Wikidata property
+Q56505345,Wikidata property for authority control for hotels(Q56505345),type of Wikidata property
+Q56682212,Wikidata property related to plants and botany(Q56682212),Wikidata property
+Q57589544,Wikidata property for authority control for academic journals(Q57589544),type of Wikidata property for authority control for works
+Q57633168,Wikidata property related to animals and zoology(Q57633168),Wikidata property
+Q57955292,Wikidata property for items about people or organisations(Q57955292),
+Q57980177,"Wikidata property related to amphibians, reptiles and herpetology(Q57980177)",type of Wikidata property
+Q58788038,Wikidata property related to invasive species(Q58788038),type of Wikidata property
+Q59284180,Wikidata property related to marine biology(Q59284180),type of Wikidata property
+Q59910380,"Wikidata property related to data communication, storage, and retrieval(Q59910380)",Wikidata property
+Q60457486,Wikidata property for a discontinued website(Q60457486),"the target website of this property is no longer available. It now links to an archived version. If there is no archived version then mark for deletion with ""obsolete Wikidata property"""
+Q60464703,Wikidata property related to color(Q60464703),type of Wikidata property
+Q61052867,Wikidata property related to airports(Q61052867),Wikidata property
+Q61058429,Wikidata property related to science(Q61058429),Wikidata property
+Q61996910,Wikidata property related to biathlon(Q61996910),type of Wikidata property
+Q62036945,Wikidata property related to auctions(Q62036945),type of Wikidata property
+Q62589316,Wikidata property for an identifier that suggests notability(Q62589316),Wikidata property where a legitimate value indicates that the subject is probably notable
+Q62589320,Wikidata property for an identifier that does not imply notability(Q62589320),a Wikidata property where a legitimate value does not itself indicate that the subject is notable
+Q62606615,Wikidata property related to e-commerce(Q62606615),Wikidata property
+Q62619638,Wikidata property linking to external MediaWiki wiki(Q62619638),Wikidata property (identifier or URL) linking to MediaWiki wikis outside of Wikimedia
+Q63870987,Wikidata property related to LGBT(Q63870987),Wikidata property
+Q63871189,Wikidata property related to sports teams/clubs(Q63871189),Wikidata property
+Q63871233,Wikidata property related to aerobatics(Q63871233),Wikidata property
+Q63871246,Wikidata property related to equestrianism(Q63871246),type of Wikidata property
+Q63871467,Wikidata property related to anime and manga(Q63871467),Wikidata property
+Q63873112,Wikidata property related to streaming media services(Q63873112),Wikidata property
+Q64025170,Wikidata property related to fictional characters(Q64025170),Wikidata property
+Q64169925,Wikidata property related to rugby league(Q64169925),Wikidata property
+Q64221137,Wikidata property related to a national football federation(Q64221137),Wikidata property
+Q64263681,Wikidata property related to Catholicism and the Catholic Church(Q64263681),Wikidata property
+Q64264420,Wikidata property related to Christianity(Q64264420),Wikidata property
+Q64289010,Wikidata property related to Buddhism(Q64289010),Wikidata property
+Q64291027,Wikidata property related to The Church of Jesus Christ of Latter-day Saints(Q64291027),Wikidata property
+Q64292415,Wikidata property related to Lutheranism(Q64292415),Wikidata property
+Q64293728,Wikidata property related to Anglicanism(Q64293728),Wikidata property
+Q64295974,Wikidata property related to Greek mythology(Q64295974),Wikidata property
+Q64348848,Wikidata property related to Judaism and the Jewish people(Q64348848),Wikidata property
+Q64349017,Wikidata property related to the Eastern Orthodox Church(Q64349017),Wikidata property
+Q64354299,Wikidata property related to Evangelical Christianity(Q64354299),Wikidata property
+Q64620662,Wikidata property related to modern pentathlon(Q64620662),Wikidata property
+Q64620663,Wikidata property related to lacrosse(Q64620663),Wikidata property
+Q64742143,Wikidata property to identify voice actors(Q64742143),Wikidata property
+Q64746292,Wikidata property related to animation(Q64746292),Wikidata property
+Q64764172,Wikidata property related to rugby(Q64764172),Wikidata property
+Q64830420,Wikidata property associated with people(Q64830420),Wikidata property
+Q64846109,Wikidata property using many other properties as qualifiers(Q64846109),class of properties with atypical use of other properties
+Q65016292,Wikidata property related to boxing(Q65016292),Wikidata property
+Q65096064,Wikidata property for an identifier with restricted access(Q65096064),Wikidata property where the formatted URL required an account
+Q65947561,Wikidata property related to fencing(Q65947561),Wikidata property
+Q65947656,Wikidata property related to triathlon(Q65947656),Wikidata property
+Q66116613,Wikidata property to identify audio tracks(Q66116613),Wikidata property
+Q66116658,Wikidata property to identify lyrics(Q66116658),Wikidata property
+Q66116790,Wikidata property to identify music videos(Q66116790),Wikidata property
+Q66117735,Wikidata property to identify musical releases(Q66117735),Wikidata property
+Q66117915,Wikidata property to identify bands(Q66117915),Wikidata property
+Q66118123,Wikidata property related to music streaming services(Q66118123),Wikidata property
+Q66118361,Wikidata property to identify record labels(Q66118361),Wikidata property
+Q66118387,Wikidata property to identify composers(Q66118387),Wikidata property
+Q66118402,Wikidata property related to record charts(Q66118402),Wikidata property
+Q66125160,Wikidata property related to rock and metal(Q66125160),Wikidata property
+Q66125161,Wikidata property related to music genres(Q66125161),Wikidata property
+Q66125187,Wikidata property for authority control of churches(Q66125187),Wikidata property
+Q66266927,Wikidata property for authority control for magazines(Q66266927),Wikidata property
+Q66309381,Wikidata property for items about fictional characters(Q66309381),Wikidata property for items describing fictional characters
+Q66386615,Wikidata property related to rap and hip hop(Q66386615),Wikidata property
+Q66480643,Wikidata property related to box office(Q66480643),Wikidata property
+Q66626337,Wikidata property for authority control for thoroughfares(Q66626337),type of Wikidata property
+Q66712599,Wikidata property for authority control of musicians and musical ensembles(Q66712599),Wikidata property
+Q66728614,Wikidata property related to internet radio(Q66728614),Wikidata property
+Q67042573,Wikidata property for authority control for compositions(Q67042573),Wikidata property
+Q67155279,Wikidata property of an identifier with a date(Q67155279),Wikidata property
+Q67198839,Wikidata property related to podcasts(Q67198839),Wikidata property
+Q67205850,Wikidata property for authority control for trails(Q67205850),type of Wikidata property
+Q67527144,Wikidata property related to media reviews and content ratings(Q67527144),Wikidata property
+Q68573177,Wikidata property related to video game streaming(Q68573177),Wikidata property
+Q70564278,"Wikidata property used as ""depicts"" (P180) qualifier on Commons(Q70564278)","qualifier for ""depicts"" (P180) on Wikimedia Commons"
+Q71866636,Wikidata property to identify video game companies and/or professionals(Q71866636),Wikidata property
+Q73688627,Wikidata property related to Islam(Q73688627),type of Wikidata property
+Q74568206,Wikidata property related to archives(Q74568206),Wikidata property
+Q77585243,Wikidata property related to The Walt Disney Company(Q77585243),Wikidata property
+Q78685053,Wikidata property to identify video game franchises(Q78685053),Wikidata property
+Q79967257,Wikidata property related to copyright(Q79967257),Wikidata property
+Q80447536,Wikidata property to identify anime and manga characters(Q80447536),Wikidata property
+Q80491580,Wikidata property for authority control of mangaka(Q80491580),Wikidata property
+Q80840868,Wikidata property related to research(Q80840868),Wikidata property
+Q84574746,Wikidata property to identify podcast episodes(Q84574746),type of Wikidata proprerty
+Q84612171,Wikidata property to identify podcasts(Q84612171),type of Wikidata property
+Q84612312,Wikidata property related to video game news websites(Q84612312),Wikidata property
+Q84764641,Wikidata property related to websites(Q84764641),type of Wikidata property
+Q87668706,Wikidata property to identify association football referees(Q87668706),Wikidata property
+Q88206155,Wikidata property for authority control for saints(Q88206155),type of Wikidata property
+Q89209418,Wikidata property to identify fictional characters(Q89209418),Wikidata property
+Q89560413,Wikidata property related to a thesaurus(Q89560413),Wikidata property
+Q89566422,Wikidata property related to agriculture(Q89566422),type of Wikidata property
+Q89604788,Wikidata property related to a medical facility(Q89604788),type of Wikidata property
+Q93433126,Wikidata property for authority control for politicians(Q93433126),Wikidata property used to identify politicians and politically-involved persons
+Q93436926,Wikidata property for authority control for sports people(Q93436926),"Wikidata property used to identify athletes, referees, coaches, and other participants in sport"
+Q95388829,Wikidata property related to a library classification (topics)(Q95388829),Wikidata property used to associate a topic to the code corresponding to it in a library classification
+Q95388859,Wikidata property related to a library classification (single works)(Q95388859),"Wikidata property used to associate a single work (book, article, etc.) to the code corresponding to it in a library classification"
+Q96192295,Wikidata property widely reused by third-party entities(Q96192295),Wikidata property
+Q96533552,Wikidata property related to social science(Q96533552),Wikidata property
+Q96776953,Wikidata property for authority control (libraries)(Q96776953),"Wikidata property for a system of authority control developed by a library or a library network (for VIAF sources, use Q55586529)"
+Q97584729,Wikidata property related to biographical dictionaries(Q97584729),Wikidata property
+Q97892178,Wikidata property related to heraldry(Q97892178),type of Wikidata property
+Q98929163,Wikidata property related to slavery(Q98929163),type of Wikidata property
+Q99192940,Wikidata property related to hiking(Q99192940),type of Wikidata property
+Q99543626,Wikidata property for an identifier value that can be re-assigned(Q99543626),"the scheme of this property occasionally reuses the same value for a different entity, e.g. ""zza"" is first used by entity ""A"" then by entity ""B"""
+Q99566281,Wikidata property for an identifier value that can be replaced(Q99566281),"the scheme of this property occasionally replaces identifiers with new values, e.g. identifier ""zza"" for entity ""A"" is replaced by ""zzb"", without ""zza"" later being used by another entity"
+Q99566538,"Wikidata property for an identifier that generally has just one value, but rarely can have two or more values for the same entity(Q99566538)","the scheme of this identifier has generally a 1-1 relation to Wikidata, but occasionally assigns several identifiers for what Wikidata considers the same concept, e.g. concept ""A"" has identifiers ""zza"" and ""zzb"" at the same time"
+Q99567026,"Wikidata property with a single value, but different precisions and references can lead to multiple values(Q99567026)","the values of this property generally have just one ground truth, but different references or different precisions in references can lead to multiple values, e.g. A is born country A (ref #1), place B in country A (ref #2), or place C (ref #3)"
+Q99567847,Wikidata property with a single value that generally evolves over time(Q99567847),"the values for this property can evolve over time, but generally there is just one at a given point in time. Also, different reference can provide a different views or different precisions"
+Q100391350,Wikidata property to identify playlists(Q100391350),Wikidata property
+Q100698536,Wikidata property to identify libraries(Q100698536),Wikidata property
+Q101081817,"Wikidata property to identify anime television shows, episodes and films(Q101081817)",Wikidata property
+Q101083593,Wikidata property to identify manga(Q101083593),Wikidata property
+Q102046040,Wikidata property related to victims(Q102046040),type of Wikidata property
+Q102348160,Wikidata property to identify television series episodes(Q102348160),Wikidata property
+Q102357699,Wikidata property for authority control for restaurants(Q102357699),type of Wikidata property
+Q103824108,Wikidata property about Wikidata entities themselves(Q103824108),"Wikidata property that describe the item or lexeme itself, instead of the subject it described"
+Q103979805,Wikidata property to identify bridges(Q103979805),type of Wikidata property
+Q104245263,Wikidata property related to graphs(Q104245263),type of Wikidata property
+Q104775940,Wikidata property representing video game content ratings(Q104775940),Wikidata property
+Q105208489,Wikidata property representing home video content ratings(Q105208489),Wikidata property
+Q105208518,Wikidata property representing cinema content ratings(Q105208518),Wikidata property
+Q105208538,Wikidata property representing television content ratings(Q105208538),Wikidata property
+Q105269280,Wikidata property representing literary content ratings(Q105269280),Wikidata property
+Q105271279,"Wikidata property representing trailer, commercial and advertisement content ratings(Q105271279)",Wikidata property
+Q105271307,Wikidata property representing music content ratings(Q105271307),Wikidata property
+Q105388954,Wikidata property to identify online accounts(Q105388954),class of Wikidata properties
+Q105406680,Wikidata property representing mobile app and software content ratings(Q105406680),Wikidata property
+Q105407800,Wikidata property related to crowdfunding platforms(Q105407800),Wikidata property
+Q105672006,Wikidata property to identify music genres(Q105672006),Wikidata property
+Q105946994,Wikidata property to identify news website topics(Q105946994),Wikidata property
+Q105999567,Wikidata property related to the Sami people(Q105999567),type of Wikidata property
+Q105999586,Wikidata property related to ethnic groups or indigenous people(Q105999586),type of Wikidata property
+Q105999661,Wikidata property related to African Americans(Q105999661),type of Wikidata property
+Q106035765,Wikidata property to identify businesses(Q106035765),Wikidata property used to identify businesses
+Q106360873,Wikidata property related to New York City(Q106360873),Wikidata properties related to New York City or its institutions
+Q106623077,Wikidata property for authority control for families(Q106623077),Wikidata property
+Q106646822,Wikidata property related to subject dictionaries(Q106646822),Wikidata property
+Q106653189,Wikidata property for authority control for victims of National Socialism(Q106653189),type of Wikidata property
+Q106666993,Wikidata property for websites not accessible in the European Union(Q106666993),Wikidata property
+Q106702532,Wikidata property to identify gardens(Q106702532),Wikidata property
+Q106827312,Wikidata property related to the Renaissance(Q106827312),Wikidata property
+Q106839109,Wikidata property related to mountains and alpine areas(Q106839109),Wikidata property
+Q107095360,Wikidata property to identify songs(Q107095360),Wikidata property
+Q107156662,Wikidata property related to numismatics(Q107156662),type of Wikidata property
+Q107211056,Wikidata property for authority control for academicians(Q107211056),type of Wikidata property
+Q107211254,Wikidata property for authority control (publishers)(Q107211254),Wikidata property for a system of authority control developed by a publisher
+Q107212108,Wikidata property for authority control (academies)(Q107212108),Wikidata property for a system of authority control developed by an academy or a learned society
+Q107235145,Wikidata property to identify radio programs(Q107235145),Wikidata property
+Q107296498,Wikidata property representing television series episode content ratings(Q107296498),type of Wikidata property
+Q107316787,Wikidata property to identify personality traits(Q107316787),Wikidata property
+Q107337221,Wikidata property of quantity type able to indicate an absolute amount as well as a percentage(Q107337221),type of Wikidata property
+Q107338616,Wikidata property related to camping(Q107338616),Wikidata property
+Q107363328,Wikidata property for journal rankings(Q107363328),Wikidata property
+Q107395292,Wikidata property related to movies and television shows(Q107395292),Wikidata property
+Q107417492,Wikidata property related to gender(Q107417492),type of Wikidata property
+Q107417519,Wikidata property about subject’s gender(Q107417519),Wikidata property related to the gender of the person that is the subject of a statement
+Q107417524,Wikidata property related to third-parties’ gender(Q107417524),Wikidata property related to the gender of person(s) other than the one described by the item that is the subject of a statement
+Q107417545,Wikidata property stating third-parties’ gender(Q107417545),"Wikidata property that states the gender of person(s) other than the subject of a statement; e.g., states the gender of a group somehow related to the subject of a statement"
+Q107417554,Wikidata property implying third-parties’ gender(Q107417554),"Wikidata property whose value depends on, but does not state (as the object), the gender of person(s) other than the subject of a statement"
+Q107543330,Wikidata property related to cemeteries and graves(Q107543330),Wikidata property
+Q107642906,Wikidata property related to London(Q107642906),properties related to London or its institutions
+Q107642927,Wikidata property related to Los Angeles(Q107642927),properties related to Los Angeles or its institutions
+Q107642929,Wikidata property related to Chicago(Q107642929),properties related to Chicago or its institutions
+Q107644726,Wikidata property related to Paris(Q107644726),properties related to Paris or its institutions
+Q107644775,Wikidata property related to Berlin(Q107644775),type of Wikidata property
+Q107708380,Wikidata property for authority control for photographers(Q107708380),type of Wikidata property
+Q107737561,Wikidata property to identify sport events(Q107737561),Wikidata property for disambiguating sport events
+Q107737592,Wikidata property to identify cycling races(Q107737592),type of Wikidata property
+Q107737623,Wikidata property to identify motorsport races(Q107737623),type of Wikidata property
+Q107737660,Wikidata property to identify tennis tournaments(Q107737660),type of Wikidata property
+Q107737723,Wikidata property for authority control for referees(Q107737723),type of Wikidata property
+Q107737736,Wikidata property for authority control for association football coaches(Q107737736),type of Wikidata property
+Q107737764,Wikidata property for authority control for basketball coaches(Q107737764),type of Wikidata property
+Q107737889,Wikidata property for authority control for sports coaches(Q107737889),type of Wikidata property
+Q107738007,Wikidata property for authority control for association football players(Q107738007),type of Wikidata property
+Q107738470,Wikidata property for authority control for beach soccer players(Q107738470),type of Wikidata property
+Q107738475,Wikidata property for authority control for futsal players(Q107738475),type of Wikidata property
+Q107738583,Wikidata property for authority control for sports athletes(Q107738583),type of Wikidata property
+Q107738607,Wikidata property for authority control for basketball players(Q107738607),type of Wikidata property
+Q107741786,Wikidata property for authority control for cyclists(Q107741786),type of Wikidata property
+Q107741870,Wikidata property for authority control for players of American football(Q107741870),type of Wikidata property
+Q107741883,Wikidata property for authority control for baseball players(Q107741883),type of Wikidata property
+Q107741921,Wikidata property for authority control for chess players(Q107741921),type of Wikidata property
+Q107742145,Wikidata property for authority control for ice hockey players(Q107742145),type of Wikidata property
+Q107742398,Wikidata property for authority control for athletics competitors(Q107742398),type of Wikidata property
+Q107743640,Wikidata property for authority control for tennis players(Q107743640),type of Wikidata property
+Q107743712,Wikidata property for authority control for rugby union players(Q107743712),type of Wikidata property
+Q107744144,Wikidata property for authority control for rugby sevens players(Q107744144),type of Wikidata property
+Q107745776,Wikidata property for authority control for handball players(Q107745776),type of Wikidata property
+Q107745801,Wikidata property for authority control for golfers(Q107745801),type of Wikidata property
+Q107745820,Wikidata property for authority control for professional wrestlers(Q107745820),type of Wikidata property
+Q107745858,Wikidata property for authority control for snooker players(Q107745858),type of Wikidata property
+Q107745868,Wikidata property for authority control for cricketers(Q107745868),type of Wikidata property
+Q107745973,Wikidata property for authority control for lacrosse players(Q107745973),type of Wikidata property
+Q107746008,Wikidata property for authority control for boxers(Q107746008),type of Wikidata property
+Q107746027,Wikidata property for authority control for gymnasts(Q107746027),type of Wikidata property
+Q107746047,Wikidata property for authority control for Australian rules football players(Q107746047),type of Wikidata property
+Q107746165,Wikidata property for authority control for biathletes(Q107746165),type of Wikidata property
+Q107746173,Wikidata property for authority control for volleyball players(Q107746173),type of Wikidata property
+Q107746239,Wikidata property for authority control for rugby league players(Q107746239),type of Wikidata property
+Q107746240,Wikidata property for authority control for modern pentathletes(Q107746240),type of Wikidata property
+Q107746241,Wikidata property for authority control for fencers(Q107746241),type of Wikidata property
+Q107746242,Wikidata property for authority control for triathletes(Q107746242),type of Wikidata property
+Q107746735,Wikidata property related to canoeing and kayaking(Q107746735),type of Wikidata property
+Q107746736,Wikidata property related to diving(Q107746736),type of Wikidata property
+Q107746737,Wikidata property related to rowing(Q107746737),type of Wikidata property
+Q107746738,Wikidata property related to sailing(Q107746738),type of Wikidata property
+Q107746739,Wikidata property related to surfing(Q107746739),type of Wikidata property
+Q107746740,Wikidata property related to swimming(Q107746740),type of Wikidata property
+Q107746741,Wikidata property related to water polo(Q107746741),type of Wikidata property
+Q107746742,Wikidata property for authority control for canoeists(Q107746742),type of Wikidata property
+Q107746743,Wikidata property for authority control for divers(Q107746743),type of Wikidata property
+Q107746745,Wikidata property for authority control for rowers(Q107746745),type of Wikidata property
+Q107746746,Wikidata property for authority control for sport sailors(Q107746746),type of Wikidata property
+Q107746747,Wikidata property for authority control for swimmers(Q107746747),type of Wikidata property
+Q107746748,Wikidata property for authority control for water polo players(Q107746748),type of Wikidata property
+Q107746777,Wikidata property for authority control for surfers(Q107746777),type of Wikidata property
+Q107773598,Wikidata property for authority control for alpine skiers(Q107773598),type of Wikidata property
+Q107773599,Wikidata property for authority control for bandy players(Q107773599),type of Wikidata property
+Q107773600,Wikidata property for authority control for bobsledders(Q107773600),type of Wikidata property
+Q107773601,Wikidata property for authority control for curlers(Q107773601),type of Wikidata property
+Q107773602,Wikidata property for authority control for figure skaters(Q107773602),type of Wikidata property
+Q107773603,Wikidata property for authority control for lugers(Q107773603),type of Wikidata property
+Q107773604,Wikidata property for authority control for skeleton racers(Q107773604),type of Wikidata property
+Q107773605,Wikidata property for authority control for ski jumpers(Q107773605),type of Wikidata property
+Q107773608,Wikidata property for authority control for skiers(Q107773608),type of Wikidata property
+Q107773609,Wikidata property for authority control for snowboarders(Q107773609),type of Wikidata property
+Q107773610,Wikidata property for authority control for speed skaters(Q107773610),type of Wikidata property
+Q107773611,Wikidata property related to alpine skiing(Q107773611),type of Wikidata property
+Q107773612,Wikidata property related to bandy(Q107773612),type of Wikidata property
+Q107773613,Wikidata property related to bobsleigh(Q107773613),type of Wikidata property
+Q107773614,Wikidata property related to curling(Q107773614),type of Wikidata property
+Q107773615,Wikidata property related to figure skating(Q107773615),type of Wikidata property
+Q107773616,Wikidata property related to luge(Q107773616),type of Wikidata property
+Q107773617,Wikidata property related to skeleton(Q107773617),type of Wikidata property
+Q107773618,Wikidata property related to ski jumping(Q107773618),type of Wikidata property
+Q107773619,Wikidata property related to skiing(Q107773619),type of Wikidata property
+Q107773620,Wikidata property related to snowboarding(Q107773620),type of Wikidata property
+Q107773621,Wikidata property related to speed skating(Q107773621),type of Wikidata property
+Q107782652,Wikidata property related to judo(Q107782652),type of Wikidata property
+Q107782653,Wikidata property related to karate(Q107782653),type of Wikidata property
+Q107782654,Wikidata property related to mixed martial arts(Q107782654),type of Wikidata property
+Q107782655,Wikidata property related to sumo(Q107782655),type of Wikidata property
+Q107782656,Wikidata property related to taekwondo(Q107782656),type of Wikidata property
+Q107782657,Wikidata property related to wrestling(Q107782657),type of Wikidata property
+Q107782660,Wikidata property for authority control for judoka(Q107782660),type of Wikidata property
+Q107782661,Wikidata property for authority control for karateka(Q107782661),type of Wikidata property
+Q107782662,Wikidata property for authority control for mixed martial artists(Q107782662),type of Wikidata property
+Q107782663,Wikidata property for authority control for sumo wrestlers(Q107782663),type of Wikidata property
+Q107782665,Wikidata property for authority control for taekwondo practitioners(Q107782665),type of Wikidata property
+Q107782667,Wikidata property for authority control for wrestlers(Q107782667),type of Wikidata property
+Q107784814,Wikidata property for authority control for Canadian football players(Q107784814),type of Wikidata property
+Q107784819,Wikidata property for authority control for weightlifters(Q107784819),type of Wikidata property
+Q107784822,Wikidata property for authority control for poker players(Q107784822),type of Wikidata property
+Q107785090,Wikidata property related to poker(Q107785090),type of Wikidata property
+Q107785163,Wikidata property related to weightlifting(Q107785163),type of Wikidata property
+Q107785166,Wikidata property related to Canadian football(Q107785166),type of Wikidata property
+Q107785208,Wikidata property related to contract bridge(Q107785208),type of Wikidata property
+Q107785224,Wikidata property for authority control for bridge players(Q107785224),type of Wikidata property
+Q107785691,Wikidata property related to Lego(Q107785691),type of Wikidata property

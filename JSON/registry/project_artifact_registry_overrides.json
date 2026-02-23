@@ -1,0 +1,110 @@
+{
+  "registry_id": "chrystallum_project_artifact_registry_overrides",
+  "version": "2026-02-18-v1",
+  "status": "active",
+  "notes": [
+    "Prefix overrides apply first, then path overrides.",
+    "Use review_suppress_reasons and review_resolved to close known queue noise deterministically."
+  ],
+  "prefix_overrides": [],
+  "path_overrides": {
+    "Facets/Scripts/period_facet_tagger.py": {
+      "fields": {
+        "status": "deprecated",
+        "canonicality": "compatible_wrapper",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform",
+        "legacy_script_path_needs_canonical_confirmation"
+      ],
+      "review_note": "Deprecated wrapper retained for compatibility; canonical implementation is scripts/backbone/temporal/period_facet_tagger.py."
+    },
+    "scripts/analyze_label_overlap.py": {
+      "fields": {
+        "owner_role": "Platform",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform"
+      ],
+      "review_note": "Local analysis helper; no canonical graph mutation path."
+    },
+    "scripts/config_loader.py": {
+      "fields": {
+        "owner_role": "Platform",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform"
+      ],
+      "review_note": "Configuration utility module for scripts/agents; not a mutation pipeline."
+    },
+    "scripts/enrich_tsv_with_lcsh.py": {
+      "fields": {
+        "owner_role": "Platform",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform"
+      ],
+      "review_note": "Tabular enrichment utility for local preprocessing."
+    },
+    "scripts/generate_periods_cypher.py": {
+      "fields": {
+        "owner_role": "Platform",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform"
+      ],
+      "review_note": "Cypher generation utility; executes outside canonical runtime pipeline."
+    },
+    "scripts/phase_2_5_discovery_runner.py": {
+      "fields": {
+        "owner_role": "SCA",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform"
+      ],
+      "review_note": "Agent orchestration runner for discovery stage."
+    },
+    "scripts/processing/temporal_bridge_discovery.py": {
+      "fields": {
+        "owner_role": "SFA",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform"
+      ],
+      "review_note": "Temporal bridge analysis logic used for reasoning support, not direct canonical writes."
+    },
+    "scripts/report_lcsh_coverage.py": {
+      "fields": {
+        "owner_role": "Platform",
+        "mutation_scope": "read_only",
+        "gates": "none"
+      },
+      "review_resolved": true,
+      "review_suppress_reasons": [
+        "executable_owned_by_platform"
+      ],
+      "review_note": "Coverage report utility over TSV artifacts."
+    }
+  }
+}

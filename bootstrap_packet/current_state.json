@@ -1,0 +1,53 @@
+{
+  "snapshot": "Chrystallum Current State",
+  "date": "2026-02-19",
+  "database": "Neo4j Aura f7b612a3",
+  
+  "counts": {
+    "total_nodes": 48920,
+    "years": 4025,
+    "periods": 1077,
+    "places": 41993,
+    "subject_concepts": 79,
+    "agents": 3
+  },
+  
+  "subject_concepts": {
+    "count": 79,
+    "root": "subj_roman_republic_q17167",
+    "ontology": "Roman Republic",
+    "levels": {
+      "0": 1,
+      "1": 8,
+      "2": 23,
+      "3": 47
+    },
+    "authority_federated": 6,
+    "pending_enrichment": 73
+  },
+  
+  "agents": {
+    "count": 3,
+    "active": [
+      "SFA_POLITICAL_RR",
+      "SFA_MILITARY_RR",
+      "SFA_SOCIAL_RR"
+    ],
+    "potential_max": 1422,
+    "creation_model": "on-demand"
+  },
+  
+  "forbidden_facets_removed": [
+    "TEMPORAL (8 nodes deleted)",
+    "CLASSIFICATION (never existed)",
+    "PATRONAGE (never existed)",
+    "GENEALOGICAL (use BIOGRAPHIC)"
+  ],
+  
+  "federation_scoring": {
+    "places_scored": 41993,
+    "places_well_federated": 2456,
+    "subject_concepts_well_federated": 6
+  }
+}
+

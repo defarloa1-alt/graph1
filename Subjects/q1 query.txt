@@ -1,0 +1,34 @@
+q1 query
+# Items with a named time period (P2348) AND explicit start/end dates
+SELECT ?item ?itemLabel ?itemDescription ?enwiki ?period ?periodLabel ?start ?end ?instance ?instanceLabel WHERE {
+  # require named time period
+  ?item wdt:P2348 ?period .
+
+  # require either start+end OR inception+dissolved
+  {
+    ?item wdt:P580 ?start .
+    ?item wdt:P582 ?end .
+  }
+  UNION
+  {
+    ?item wdt:P571 ?start .
+    ?item wdt:P576 ?end .
+  }
+
+  # optional English Wikipedia sitelink
+  OPTIONAL {
+    ?sitelink schema:about ?item ;
+              schema:isPartOf <https://en.wikipedia.org/> ;
+              schema:name ?enwiki .
+  }
+
+  # optional instance-of for context
+  OPTIONAL { ?item wdt:P31 ?instance. }
+
+  # exclude taxa (avoid species/genus results)
+  FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q16521. }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY ?start ?itemLabel
+LIMIT 1000
