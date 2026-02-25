@@ -39,6 +39,8 @@
 **Rationale:** Architect queries graph directly → interprets → specs Phase 3 from live state. Serves every future workstream, not just Library Authority.  
 **Consequences:** docs/D034_MCP_PHASE2_SPEC.md; chrystallum_mcp_server.py extended; HTTP layer added; block catalog updated.
 
+**Gaps (2026-02-25):** SYS_FederationSource pid/scoping_weight/property_name null — stub nodes only. Populate before federation subsystem goes live.
+
 ---
 
 ### D-033 — D10 Claim Promotion + D8 SFA Confidence (Round 3)

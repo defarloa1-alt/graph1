@@ -4,6 +4,7 @@ Chrystallum MCP Server — v1 (stdio transport)
 Exposes read-only tools for Neo4j SYS_Policy, SYS_Threshold, SYS_FederationSource, SubjectConcept.
 D-031: Local-first, Cursor only. No HTTP in v1.
 D-034 Step 1: get_federation_sources, get_subject_concepts added.
+D-034 Step 2: run_cypher_readonly with allowlist and param injection safety.
 
 Tools exposed:
   get_policy(name)         → SYS_Policy node properties
@@ -12,12 +13,14 @@ Tools exposed:
   list_thresholds()        → all SYS_Threshold names, value, unit, decision_table
   get_federation_sources() → SYS_FederationSource nodes (D-034)
   get_subject_concepts()   → SubjectConcept nodes (D-034)
+  run_cypher_readonly()   → read-only MATCH queries (D-034)
 
 Usage (Cursor starts this as subprocess via .cursor/mcp.json):
   python scripts/mcp/chrystallum_mcp_server.py
 """
 
 import json
+import re
 import sys
 import os
 from pathlib import Path
@@ -140,6 +143,49 @@ def get_subject_concepts() -> list:
         driver.close()
 
 
+def run_cypher_readonly(query: str, params: dict = None) -> list:
+    """
+    Execute a read-only Cypher query against Chrystallum Neo4j (D-034).
+    Safety constraints:
+    - Query must start with MATCH (case-insensitive, stripped)
+    - Query must not contain forbidden keywords
+    - Query length capped at 500 characters
+    - Result rows capped at 500
+    """
+    if params is None:
+        params = {}
+
+    # Safety check 1: length
+    if len(query) > 500:
+        return [{"error": "Query exceeds 500 character limit"}]
+
+    # Safety check 2: must start with MATCH
+    query_stripped = query.strip().upper()
+    if not query_stripped.startswith("MATCH"):
+        return [{"error": "Only MATCH queries permitted"}]
+
+    # Safety check 3: forbidden keywords
+    forbidden = ["CREATE", "SET", "DELETE", "MERGE", "CALL", "LOAD",
+                 "DROP", "REMOVE", "DETACH"]
+    for keyword in forbidden:
+        if re.search(rf"\b{keyword}\b", query_stripped):
+            return [{"error": f"Forbidden keyword in query: {keyword}"}]
+
+    # Execute with params — no string interpolation
+    driver = get_driver()
+    try:
+        with driver.session() as session:
+            result = session.run(query, params)
+            rows = [dict(r) for r in result]
+            # Row cap
+            if len(rows) > 500:
+                rows = rows[:500]
+                rows.append({"warning": "Result capped at 500 rows"})
+            return rows
+    finally:
+        driver.close()
+
+
 # ── MCP stdio protocol ────────────────────────────────────────────────────────
 # Minimal implementation: read JSON-RPC from stdin, write to stdout.
 # Cursor MCP client sends {"method": "tools/call", "params": {"name": ..., "arguments": ...}}
@@ -180,6 +226,23 @@ TOOLS = {
     "get_subject_concepts": {
         "description": "List SubjectConcept nodes with label, entity_count, and facet assignments",
         "inputSchema": {"type": "object", "properties": {}}
+    },
+    "run_cypher_readonly": {
+        "description": "Execute a read-only MATCH query against Chrystallum Neo4j. MATCH only — no writes permitted. 500 char limit, 500 row cap.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Cypher MATCH query. Must start with MATCH. Max 500 chars."
+                },
+                "params": {
+                    "type": "object",
+                    "description": "Optional query parameters passed to Neo4j driver. No string interpolation."
+                }
+            },
+            "required": ["query"]
+        }
     }
 }
 
@@ -223,6 +286,10 @@ def handle_request(req: dict) -> dict:
                 result = get_federation_sources()
             elif tool_name == "get_subject_concepts":
                 result = get_subject_concepts()
+            elif tool_name == "run_cypher_readonly":
+                query = arguments.get("query", "")
+                params = arguments.get("params", {})
+                result = run_cypher_readonly(query, params)
             else:
                 result = {"error": f"Unknown tool: {tool_name}"}
 
