@@ -48,6 +48,11 @@
   - ClusterAssignment: DPRR scoping_confidence from SYS_Threshold
   - Process doc: output/PROCESS_MODEL_FIRST_CHANGE_COMMUNICATION.md
 
+- [ ] **D-034 MCP Phase 2** #high @dev
+  - get_federation_sources, get_subject_concepts, run_cypher_readonly
+  - HTTP transport for Claude.ai; Railway deploy
+  - Spec: docs/D034_MCP_PHASE2_SPEC.md
+
 - [x] **P1696 count check** ✅ (2026-02-25)
   - SPARQL: 0 of 6,989 entity QIDs have P1696 in Wikidata
   - Script: scripts/analysis/count_p1696_overlap.py
@@ -106,11 +111,26 @@
   - Moved to Phase D; runs after foundation federations
 
 - [ ] **Entity Scaling Phase 2** (Paused)
+
+---
+
+## Backlog
+
+- [ ] **D7 harvest allowlist refactor** #medium
+- [ ] **D12/D13 wire read paths** #low (light lift)
+- [ ] **D14 entity resolution thresholds** #medium
+- [ ] **validate_architecture.py** CI script
+- [ ] **Full repo triage** (scripts/, docs/, Python/)
+- [ ] **Cloud Agent first run** (after validate_architecture.py)
   - Quality over quantity; resume after foundation federations
 
 ---
 
 ## Done
+
+- [x] **D-033 Round 3 (D10/D8 refactor)** ✅ (2026-02-25)
+  - claim_ingestion_pipeline: SYS_Threshold + ApprovalRequired from SYS_Policy
+  - subject_concept_facet_agents, sca_agent: sfa_proposal_confidence_default from SYS_Threshold
 
 - [x] **external_ids persistence fix (D-022)** ✅ (2026-02-25)
   - Option B: separate properties per federation PID on Entity nodes

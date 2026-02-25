@@ -19,7 +19,7 @@
 | Graph cleanup | D-001, D-002, D-015, D-027 |
 | Process / governance | D-019, D-020 |
 | Mercury / sequencing | D-021 |
-| Modeling (SysML/DMN/BPMN) | D-024 |
+| Modeling (SysML/DMN/BPMN) | D-024, D-030 |
 | Library authority / bibliography | D-025, D-026, D-028 |
 | MCP / tooling | D-031, D-034 |
 | D6/D7 threshold refactor | D-032 |
@@ -58,6 +58,16 @@
 **Decision:** Harvester reads 11 thresholds from SYS_Threshold at startup via direct Neo4j; CLI args become overrides. ClusterAssignment reads scoping_confidence_temporal_med for DPRR entities. ExternalFederationGateway scoping confidence (0.95, 0.85, 0.40) from SYS_Threshold in harvester's _compute_federation_scoping.  
 **Rationale:** Single source of truth. Model-first: catalog updated before script refactor.  
 **Consequences:** wikidata_backlink_harvest.py, cluster_assignment.py refactored. MODE_DEFAULTS remains as fallback for credential-less runs. Process doc committed with Round 2.
+
+---
+
+### D-030 — DMN Tables D1–D14 Complete
+**Date:** 2026-02-25  
+**Status:** Decided — tables documented  
+**Context:** D-024 established SysML + DMN modeling approach. Five priority DMN decisions were identified; block catalog and extraction audit surfaced the full set of decision tables.  
+**Decision:** Commit the complete D1–D14 decision table set as the canonical DMN layer. Tables: D1 (FederationRouting), D2 (ScopingAdvisor), D3 (ClusterAssignment), D4 (AgentRouter), D5 (HarvestAllowlist), D6 (HarvesterThresholds), D7 (HarvestAllowlistRefactor), D8 (SFAProposalConfidence), D9 (ClaimLifecycle), D10 (ClaimPromotion), D11 (SplitTrigger), D12 (ReadPathEntity), D13 (ReadPathSubjectConcept), D14 (EntityResolutionThresholds). Logic in tables; values in SYS_Threshold/SYS_Policy/SYS_PropertyMapping nodes.  
+**Rationale:** Single source of truth for decision logic. Code reads from graph; domain expert updates nodes, not code. Completes the DMN layer started in D-024.  
+**Consequences:** sysml/DMN_DECISION_TABLES.md; extraction audit; D6/D10/D8 refactors (D-032, D-033) implement table reads.
 
 ---
 
