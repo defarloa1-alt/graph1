@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """
 Chrystallum MCP Server — v1 (stdio transport)
-Exposes read-only tools for Neo4j SYS_Policy and SYS_Threshold nodes.
+Exposes read-only tools for Neo4j SYS_Policy, SYS_Threshold, SYS_FederationSource, SubjectConcept.
 D-031: Local-first, Cursor only. No HTTP in v1.
+D-034 Step 1: get_federation_sources, get_subject_concepts added.
 
 Tools exposed:
-  get_policy(name)     → SYS_Policy node properties
-  get_threshold(name)  → SYS_Threshold node properties
-  list_policies()     → all SYS_Policy names, active, decision_table
-  list_thresholds()   → all SYS_Threshold names, value, unit, decision_table
+  get_policy(name)         → SYS_Policy node properties
+  get_threshold(name)      → SYS_Threshold node properties
+  list_policies()          → all SYS_Policy names, active, decision_table
+  list_thresholds()        → all SYS_Threshold names, value, unit, decision_table
+  get_federation_sources() → SYS_FederationSource nodes (D-034)
+  get_subject_concepts()   → SubjectConcept nodes (D-034)
 
 Usage (Cursor starts this as subprocess via .cursor/mcp.json):
   python scripts/mcp/chrystallum_mcp_server.py
@@ -96,6 +99,47 @@ def list_thresholds() -> list:
         driver.close()
 
 
+def get_federation_sources() -> list:
+    """List all SYS_FederationSource nodes (D-034)."""
+    driver = get_driver()
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (fs:SYS_FederationSource)
+                RETURN fs.name AS name,
+                       fs.pid AS pid,
+                       fs.status AS status,
+                       fs.scoping_weight AS scoping_weight,
+                       fs.property_name AS property_name
+                ORDER BY fs.name
+                """
+            )
+            return [dict(r) for r in result]
+    finally:
+        driver.close()
+
+
+def get_subject_concepts() -> list:
+    """List SubjectConcept nodes with label, entity_count, facets (D-034)."""
+    driver = get_driver()
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (sc:SubjectConcept)
+                RETURN sc.qid AS qid,
+                       sc.label AS label,
+                       sc.entity_count AS entity_count,
+                       sc.facets AS facets
+                ORDER BY sc.entity_count DESC
+                """
+            )
+            return [dict(r) for r in result]
+    finally:
+        driver.close()
+
+
 # ── MCP stdio protocol ────────────────────────────────────────────────────────
 # Minimal implementation: read JSON-RPC from stdin, write to stdout.
 # Cursor MCP client sends {"method": "tools/call", "params": {"name": ..., "arguments": ...}}
@@ -127,6 +171,14 @@ TOOLS = {
     },
     "list_thresholds": {
         "description": "List all SYS_Threshold nodes with name, value, unit, and decision table",
+        "inputSchema": {"type": "object", "properties": {}}
+    },
+    "get_federation_sources": {
+        "description": "List all SYS_FederationSource nodes from Chrystallum graph with name, PID, status, scoping weight",
+        "inputSchema": {"type": "object", "properties": {}}
+    },
+    "get_subject_concepts": {
+        "description": "List SubjectConcept nodes with label, entity_count, and facet assignments",
         "inputSchema": {"type": "object", "properties": {}}
     }
 }
@@ -167,6 +219,10 @@ def handle_request(req: dict) -> dict:
                 result = list_policies()
             elif tool_name == "list_thresholds":
                 result = list_thresholds()
+            elif tool_name == "get_federation_sources":
+                result = get_federation_sources()
+            elif tool_name == "get_subject_concepts":
+                result = get_subject_concepts()
             else:
                 result = {"error": f"Unknown tool: {tool_name}"}
 
