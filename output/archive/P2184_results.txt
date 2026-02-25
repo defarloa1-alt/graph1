@@ -1,0 +1,119 @@
+﻿
+================================================================================
+FINDING ENTITIES THAT USE: P2184
+Limit: 100
+================================================================================
+
+Executing SPARQL query...
+  Found 100 results
+
+================================================================================
+ENTITIES USING P2184 (100)
+================================================================================
+
+Q39760 - Gaza Strip
+  P2184 -> Q73569 (history of Gaza)
+
+Q45 - Portugal
+  P2184 -> Q7790 (history of Portugal)
+
+Q166543 - general anaesthesia
+  P2184 -> Q40029 (history of general anesthesia)
+
+Q794 - Iran
+  P2184 -> Q28926 (history of Iran)
+
+Q115955631 - Russian annexation of Yakutia
+  P2184 -> Q6605 (Sakha)
+
+Q30 - United States
+  P2184 -> Q131110 (history of the United States)
+
+Q3477099 - Q3477099
+  P2184 -> Q362 (World War II)
+
+Q3477096 - Q3477096
+  P2184 -> Q362 (World War II)
+
+Q3477102 - Q3477102
+  P2184 -> Q362 (World War II)
+
+Q3477100 - Q3477100
+  P2184 -> Q362 (World War II)
+
+Q3477101 - Q3477101
+  P2184 -> Q362 (World War II)
+
+Q49 - North America
+  P2184 -> Q149527 (history of North America)
+
+Q1065 - United Nations
+  P2184 -> Q172416 (history of the United Nations)
+
+Q47492 - Gaza City
+  P2184 -> Q73569 (history of Gaza)
+
+Q219 - Bulgaria
+  P2184 -> Q7800 (history of Bulgaria)
+
+Q131747043 - Quentin Morillo y Verdejo von Reber Staudenmann Scheidegger Le Sueur
+  P2184 -> Q123559 (al-Andalus)
+
+Q860372 - digital art
+  P2184 -> Q50637 (art history)
+
+Q15 - Africa
+  P2184 -> Q149813 (history of Africa)
+
+Q2018526 - arts
+  P2184 -> Q50641 (history of art)
+
+Q48493 - iOS
+  P2184 -> Q27148 (iOS version history)
+
+Q142 - France
+  P2184 -> Q7778 (history of France)
+
+Q159 - Russia
+  P2184 -> Q161414 (history of Russia)
+
+Q188201 - Boer
+  P2184 -> Q159766 (Dutch East India Company)
+
+Q361 - World War I
+  P2184 -> Q74978 (timeline of World War I)
+
+Q46 - Europe
+  P2184 -> Q7787 (history of Europe)
+
+Q145 - United Kingdom
+  P2184 -> Q113162 (history of the United Kingdom)
+
+Q41 - Greece
+  P2184 -> Q7794 (history of Greece)
+
+Q25558247 - Chinese civilization
+  P2184 -> Q82972 (history of China)
+
+python : Traceback (most recent call last):
+At C:\Users\defar\AppData\Local\Temp\ps-script-37bbe846-2207-46ed-9bd2-a4e2fbe2be2b.ps1:88 char:1
++ python scripts/agents/wikidata_property_users.py P2184 100 2>&1 | Out ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Projects\Graph1\scripts\agents\wikidata_property_users.py", line 140, in <module>
+    main()
+    ~~~~^^
+  File "C:\Projects\Graph1\scripts\agents\wikidata_property_users.py", line 134, in main
+    results = explorer.run_exploration(property_id, limit)
+  File "C:\Projects\Graph1\scripts\agents\wikidata_property_users.py", line 117, in run_exploration
+    self.print_results(results, property_id)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Graph1\scripts\agents\wikidata_property_users.py", line 93, in print_results
+    print(f"{r['qid']} - {r['label']}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\defar\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u0141' in position 23: character maps to <undefined>

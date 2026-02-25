@@ -1,0 +1,66 @@
+
+============================================================
+1. Chrystallum-connected labels
+============================================================
+  {'label': ['Federation'], 'count': 69}
+  {'label': ['Facet'], 'count': 18}
+  {'label': ['FederationRoot'], 'count': 1}
+  {'label': ['FacetRoot'], 'count': 1}
+
+============================================================
+2. PropertyMapping connection to system
+============================================================
+  {'total_pm': 706, 'connected_to_system': 0}
+
+============================================================
+3. GeoCoverageCandidate — any direction
+============================================================
+  {'rel': 'HAS_GEO_COVERAGE_CANDIDATE', 'target': ['PeriodCandidate'], 'cnt': 2961}
+  {'rel': 'HAS_GEO_COVERAGE', 'target': ['Period'], 'cnt': 2961}
+
+============================================================
+4. KnowledgeDomain connections
+============================================================
+  {'rel': 'DOMAIN_OF', 'other': ['SubjectConcept'], 'cnt': 61}
+
+============================================================
+5. FacetedEntity edges (confirm orphaned)
+============================================================
+  {'total': 360, 'with_edges': 0}
+
+============================================================
+6. PropertyMapping sample
+============================================================
+  {'property': 'P186', 'primary_facet': 'ARCHAEOLOGICAL'}
+  {'property': 'P547', 'primary_facet': 'ARCHAEOLOGICAL'}
+  {'property': 'P344', 'primary_facet': 'ARTISTIC'}
+  {'property': 'P347', 'primary_facet': 'ARTISTIC'}
+  {'property': 'P350', 'primary_facet': 'ARTISTIC'}
+  {'property': 'P480', 'primary_facet': 'ARTISTIC'}
+  {'property': 'P481', 'primary_facet': 'ARTISTIC'}
+  {'property': 'P826', 'primary_facet': 'ARTISTIC'}
+  {'property': 'P344', 'primary_facet': 'ARTISTIC'}
+  {'property': 'P347', 'primary_facet': 'ARTISTIC'}
+
+============================================================
+7a. Policy contents
+============================================================
+  {'props': {'name': 'LocalFirstCanonicalAuthorities', 'description': 'Always check local authorities before hub API', 'priority': 1, 'status': 'active'}}
+  {'props': {'name': 'HubForDisambiguationOnly', 'description': 'Use Wikidata for discovery/disambiguation, not as primary source', 'priority': 2, 'status': 'active'}}
+  {'props': {'name': 'NoTemporalFacet', 'description': 'TEMPORAL is NOT a facet - use Year backbone, Period, Event', 'priority': 3, 'status': 'active'}}
+  {'props': {'name': 'NoClassificationFacet', 'description': 'CLASSIFICATION via LCC properties, not facet', 'priority': 4, 'status': 'active'}}
+  {'props': {'name': 'ApprovalRequired', 'description': 'All discoveries require human approval before promotion', 'priority': 5, 'status': 'active'}}
+
+============================================================
+7b. Threshold contents
+============================================================
+  {'props': {'name': 'crosslink_ratio_split', 'description': 'Split SFA when cross-link ratio exceeds 30%', 'value': 0.3}}
+  {'props': {'name': 'level2_child_overload', 'description': 'Split when L2 node has >12 children', 'value': 12}}
+  {'props': {'name': 'facet_drift_alert', 'description': 'Alert when 20%+ concepts have LCSH mismatched to facet', 'value': 0.2}}
+
+============================================================
+8. Place nodes edge count
+============================================================
+  {'total_place': 41884, 'total_edges': 0}
+
+Done.

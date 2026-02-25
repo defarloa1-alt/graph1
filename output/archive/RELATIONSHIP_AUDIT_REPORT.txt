@@ -1,0 +1,127 @@
+================================================================================
+RELATIONSHIP AUDIT: Registry vs Database
+================================================================================
+Date: 2026-02-22
+Registry: 314 relationship types defined
+
+Database: 45 relationship types in use
+
+RELATIONSHIP COUNTS:
+--------------------------------------------------------------------------------
+  [-] FOLLOWED_BY: 4,043
+  [-] HAS_GEO_COVERAGE_CANDIDATE: 2,961
+  [-] HAS_GEO_COVERAGE: 2,961
+  [-] CANONICALIZED_AS: 1,077
+  [+] PART_OF: 385
+  [-] MAPS_TO: 303
+  [-] CANDIDATE_NARROWER_THAN: 272
+  [-] CANDIDATE_BROADER_THAN: 272
+  [-] BROADER_THAN: 272
+  [+] SUB_PERIOD_OF: 272
+  [-] NARROWER_THAN: 272
+  [-] LOCATED_IN_COUNTRY: 166
+  [-] CONTAINS: 160
+  [-] SHARES_BORDER_WITH: 117
+  [-] INSTANCE_OF: 104
+  [-] ON_CONTINENT: 49
+  [-] SUBCLASS_OF: 46
+  [-] HAS_PARTS: 39
+  [-] HAS_CAPITAL: 24
+  [-] HAS_OFFICIAL_LANGUAGE: 22
+  [-] REPLACES: 21
+  [-] FOLLOWS: 20
+  [+] REPLACED_BY: 19
+  [-] HAS_FACET: 18
+  [+] LOCATED_IN: 16
+  [-] HAS_FEDERATION: 10
+  [-] HAS_GEO_SEMANTIC_TYPE: 10
+  [-] HAS_ENTITY_TYPE: 9
+  [-] HAS_SCHEMA: 9
+  [-] HAS_OFFICIAL_RELIGION: 8
+  [-] HAS_CURRENCY: 7
+  [-] HAS_SIGNIFICANT_EVENT: 7
+  [+] RELATED_TO: 5
+  [-] HAS_CHILD_TYPE: 5
+  [-] HAS_AGENT: 3
+  [-] ASSIGNED_TO_FACET: 3
+  [-] ASSIGNED_TO_SUBJECT: 3
+  [-] USES: 3
+  [-] HAS_LEGISLATIVE_BODY: 2
+  [-] HAS_FEDERATION_ROOT: 1
+  [-] HAS_FACET_ROOT: 1
+  [-] HAS_ENTITY_ROOT: 1
+  [-] HAS_SUBJECT_CONCEPT_ROOT: 1
+  [-] HAS_AGENT_REGISTRY: 1
+  [-] HAS_SUBJECT_REGISTRY: 1
+
+Total relationships in database: 14,001
+
+COVERAGE ANALYSIS:
+--------------------------------------------------------------------------------
+  Relationship types in database: 45
+  In registry: 5 (11.1%)
+  NOT in registry: 40 (88.9%)
+
+  Registry contains: 314 types
+  Used in database: 5 (1.6%)
+  Defined but unused: 309 (98.4%)
+
+WIKIDATA CROSSWALK:
+--------------------------------------------------------------------------------
+  DB relationship types with Wikidata PID: 4/45 (8.9%)
+
+ENTITY-TO-ENTITY RELATIONSHIPS:
+--------------------------------------------------------------------------------
+  LOCATED_IN_COUNTRY: 165
+  SHARES_BORDER_WITH: 117
+  INSTANCE_OF: 103
+  CONTAINS: 81
+  ON_CONTINENT: 48
+  HAS_PARTS: 38
+  PART_OF: 35
+  SUBCLASS_OF: 33
+  HAS_CAPITAL: 24
+  HAS_OFFICIAL_LANGUAGE: 22
+  REPLACES: 20
+  FOLLOWS: 20
+  FOLLOWED_BY: 19
+  REPLACED_BY: 19
+  LOCATED_IN: 16
+  HAS_OFFICIAL_RELIGION: 8
+  HAS_CURRENCY: 7
+  HAS_SIGNIFICANT_EVENT: 7
+  HAS_LEGISLATIVE_BODY: 2
+
+Total Entity-to-Entity relationships: 784
+Entities: 2,600
+Avg relationships per entity: 0.30
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+
+PRIORITY 1: Import Core Hierarchical Relationships
+  Target relationships:
+    - INSTANCE_OF (P31) - Type classification
+    - SUBCLASS_OF (P279) - Class hierarchy
+    - PART_OF (P361) - Mereological structure
+    - HAS_PART (P527) - Inverse of PART_OF
+  Current: 535
+  Target: 5,000-8,000 edges
+
+PRIORITY 2: Import Temporal Relationships
+  Target relationships:
+    - BROADER_THAN - Period nesting
+    - SUB_PERIOD_OF - Period hierarchy
+  Current: 544
+  Target: 500-1,000 edges
+
+PRIORITY 3: Import Participatory Relationships
+  Target relationships:
+    - PARTICIPATED_IN (P1344) - Event participation
+    - POSITION_HELD (P39) - Political offices
+  Current: Unknown (need to query)
+  Target: 2,000-4,000 edges
+
+TOTAL TARGET: 7,500-13,000 edges (vs current 784)
+Ratio target: 3-5 relationships per entity
