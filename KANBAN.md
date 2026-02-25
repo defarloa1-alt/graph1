@@ -1,189 +1,143 @@
 # Chrystallum Project Kanban Board
 
-**Last Updated:** 2026-02-22  
+**Last Updated:** 2026-02-25  
 **PM:** AI PM Agent  
-**Current Focus:** 🔄 **STRATEGIC PIVOT - Edges Before Nodes**
+**Current Focus:** Phase A — Close current gaps before foundation federations
 
 **Discipline:** Update KANBAN.md + REQUIREMENTS.md in same commit
 
 ---
 
-## 🔄 Strategic Direction
+## Operational Sequence (Revised 2026-02-25)
 
-**OLD Focus:** Scale entities (2,600 → 10,000)  
-**NEW Focus:** Graph topology & connectivity (quality over quantity)
+**Principle:** Each phase makes the next more valuable. Build foundation before specialized evidence.
 
-**Rationale:**
-- 99.9% connected graph >> More disconnected nodes
-- 20,091 edges enable real analysis
-- Can validate architecture on working graph
-- Better to build on solid foundation
+### Phase A — Close current gaps (no new federations)
+1. Trismegistos crosswalk — run existing script, close enrichment gap
+2. VIAF — name authority on DPRR persons via P214
+3. Noise audit — remaining unscoped clusters beyond Q1764124/Q271108
 
-**Architect Decision:** Edges before nodes ✅
+### Phase B — Foundation federations (activate what's dormant)
+4. Pleiades Phase 2 — coordinates, period names, LOCATED_IN on 41,884 Place nodes
+5. LGPN forward SPARQL — prosopographic coverage for non-Roman persons
+6. Getty AAT — SubjectConcept taxonomy enrichment, prerequisite for SFA quality
+
+### Phase C — Enrichment federations (deepen what's connected)
+7. Trismegistos Phase 2 — attestations, primary source claims, non-elite persons
+8. EDH — Latin inscriptions as primary source evidence
+9. OCD — taxonomy enrichment, SFA grounding corpus
+
+### Phase D — Specialized evidence (SFA-specific)
+10. Mercury (CHRR + CRRO) — numismatic evidence chain (geographic foundation exists)
+11. Syme index extraction — prosopographic salience weights
+12. Further epigraphic sources as needed
+
+**Parallel track (no graph touches):** File restructure + DEV_GUIDE.md, SFA constitution documents, SysML model
 
 ---
 
 ## In Progress
 
-- [ ] **Backlink Extraction & Analysis** #critical @architect
-  - Analyzing entity roles, hubs, bridges
-  - 4-5 hours (in progress)
-  - Validates graph topology
-  - Identifies key connection patterns
-  
-- [ ] **Relationship Canonicalization** #high @architect
-  - Map 672 Wikidata PIDs to canonical relationship types
-  - Semantic layer (additive, preserves Wikidata structure)
-  - Script ready, needs execution
+- [x] **P1696 count check** ✅ (2026-02-25)
+  - SPARQL: 0 of 6,989 entity QIDs have P1696 in Wikidata
+  - Script: scripts/analysis/count_p1696_overlap.py
+  - Crosswalk deferred — no overlap in current entity set
+
+- [ ] **Node label audit** #medium @dev
+  - Run scripts/analysis/audit_node_labels.cypher in Neo4j
+  - Document findings; identify redundant/questionable labels
 
 ---
 
-## Ready
+## Ready (Phase A)
 
-- [ ] **Agent Implementation** #high @dev
-  - **Status:** Waiting for stakeholder Neo4j testing complete
-  - **Dependencies:** Property mapping validation
-  - **Scope:** Will be defined after testing results
-  - **Note:** Stakeholder testing property_mapping_test_queries.cypher
-  
-- [ ] **Validate SubjectConcept Model** #high @architect
-  - Test on 99.9% connected graph
-  - Verify facet-based queries work
-  - Validate vertex jumps
-  - Depends on: Backlink analysis complete
+- [ ] **Trismegistos crosswalk** #low @dev (deferred)
+  - 0 overlap in current 6,989 entities — run when entities with P1696 enter graph
+  - Script: scripts/integration/prosopographic_crosswalk.py
 
-- [ ] **Entity Type Classification Refinement** #high @dev
-  - Reclassify CONCEPT → proper types (2,034 entities)
-  - Use relationship patterns for better classification
-  - Leverage connected graph structure
-  - Effort: 3-4 hours
+- [ ] **Library Authority Integration** #high @dev (5-step workstream, replaces standalone VIAF task)
+  - **Step 1:** Full FAST import — FASTTopical_parsed.csv (325MB), pipeline exists, run at full scale
+  - **Step 2:** LCSH→FAST wiring — SKOS crosswalks, extract_lcsh_relationships.py, builds BROADER_THAN hierarchy
+  - **Step 3:** VIAF→LC SRU — 947 entities with P214, free MARC authority records, no API key
+  - **Step 4:** subjectOf bibliography — VIAF subjectOf → MARC bibliographic records → BibliographySource nodes auto-constructed
+  - **Step 5:** FAST headings on bibliography nodes → facet routing for SFA constitution discovery
+  - WorldCat: backlogged, no OCLC procurement
+  - See DECISIONS.md D-025
+  - **Pre-work:** Dev to confirm current Subject node count in Neo4j and LCSH parse state before Step 1
 
-- [ ] **Period Discovery (Phase 1)** #medium @dev
-  - Tag temporal anchors
-  - Harvest pure periods
-  - Can proceed in parallel
+- [ ] **Noise audit** #medium @dev
+  - Beyond Q1764124, Q271108 (confirmed legitimate-unscoped)
+  - Script: scripts/analysis/noise_hotspot_diagnostic.py
+  - Assess remaining high-unscoped clusters
 
-- [ ] **SFA Prompt Library** #medium @dev
-  - 3/18 → 18/18 prompts
-  - Template-based
-  - Effort: 4 hours
+---
+
+
+## Ready (Phase B+)
+
+- [ ] **Pleiades Phase 2** #high @dev
+  - Coordinates, period names, LOCATED_IN on 41,884 Place nodes
+  - Prerequisite for Mercury geographic chain
+  - **Pre-Phase B check:** Confirm Pleiades Phase 2 import writes `pleiades_id` onto Place nodes. Place nodes are primary Pleiades entities; same persistence requirement as Entity.external_ids (D-022). `import_pleiades_to_neo4j.py` uses pleiades_id as MERGE key — verify any Phase 2 enrichment script also sets it.
+
+- [ ] **LGPN forward SPARQL** #medium @dev
+  - Greek personal names; fills gap DPRR leaves for non-Roman persons
+  - LGPN = P1047 (D-023); P1838 = PSS-archi
+
+- [ ] **Getty AAT** #medium @dev
+  - SubjectConcept taxonomy enrichment before SFA build
 
 ---
 
 ## On Hold
 
-- [ ] **Entity Scaling Phase 2** (Paused)
-  - Was: 2,600 → 5,000 → 10,000
-  - Now: Deferred until graph topology validated
-  - Reason: Quality over quantity
-  - Will resume: After architecture validation complete
+- [ ] **Mercury (CHRR + CRRO)** — Deprioritized per D-021
+  - Numismatic evidence chain requires Pleiades Phase 2 for geographic closure
+  - Moved to Phase D; runs after foundation federations
 
-- [ ] **Schema Naming Alignment** (Deprioritized)
-  - Was: HIGH priority
-  - Now: Can defer (not blocking topology work)
-  - Will address: During cleanup phase
+- [ ] **Entity Scaling Phase 2** (Paused)
+  - Quality over quantity; resume after foundation federations
 
 ---
 
 ## Done
 
-- [x] **Property→Facet Mapping System** ✅ COMPLETE (2026-02-22)
-  - **500 properties mapped to 18 facets**
-  - **100% coverage** (hybrid: deterministic + Claude)
-  - **86.6% high confidence**
-  - Validation framework with backlink verification
-  - Main file: CSV/property_mappings/property_facet_mapping_HYBRID.csv
-  - Delivered by: Code Review Agent
-  - **Impact:** Enables intelligent property routing, facet determination, agent coordination
+- [x] **external_ids persistence fix (D-022)** ✅ (2026-02-25)
+  - Option B: separate properties per federation PID on Entity nodes
+  - Backfill: 164 pleiades_id; lgpn_id was PSS-archi (D-023), now 0
+  - Sample: scripts/analysis/sample_federation_ids.py
 
-- [x] **🎉 MAJOR MILESTONE: Graph Connectivity Transformation** ✅ (2026-02-22)
-  - **784 → 20,091 edges** (25.6x improvement!)
-  - **81.7% → 99.9% connectivity**
-  - **19 → 672 edge types** (Wikidata PIDs)
-  - **16.02 edges per entity** (was 0.30)
-  - Strategic pivot: Edges before nodes
-  - Delivered by: Graph Architect
+- [x] **lgpn_id mapping fix (D-023)** ✅ (2026-02-25)
+  - LGPN = P1047; P1838 = PSS-archi (buildings)
+  - All references updated; P1047 overlap: 1 of 6,989 entities
 
-- [x] **Git Repository Cleaned** ✅ (2026-02-22)
-  - Created clean-master branch
-  - Pushed to GitHub successfully
-  - 78-commit blocker cleared
-  - Scripts and docs mirrored
-  - Delivered by: QA Agent
+- [x] **FederationRegistry Rebuild** ✅ (2026-02-25)
+- [x] **DPRR Complete** ✅ (2026-02-25) — Group A, status, Group C posts
+- [x] **Cluster assignment + baseline** ✅ (2026-02-25) — 9,144 MEMBER_OF, 91.2% scoped
+- [x] **Self-describing subgraph cleanup** ✅ (2026-02-25) — 3,083 nodes removed
+- [x] **Legitimate-unscoped event clusters** ✅ (2026-02-25) — Q1764124, Q271108
+- [x] **Period/PeriodO Option B** ✅ (2026-02-25)
+- [x] **DPRR Federation** ✅ (2026-02-25) — 86.4% → 8.9% unscoped
 
-- [x] **Entity Scaling Phase 1** 300 → 2,600 ✅
-  - 2,600 entities imported
-  - 8.67x growth
-  - QA verified
-
-- [x] **REQ-DATA-004 Phase 1** CONCEPT to registry ✅
-  - Validates current database
-  - Dev + QA complete
-
-- [x] **DDL Addendum** TemporalAnchor + Qualifiers ✅
-  - 13 constraints/indexes added
-  - Schema: 79 constraints, 81 indexes
-
-- [x] **REQ-FUNC-001** Idempotent Import ✅ VERIFIED
-- [x] **REQ-FUNC-010** Relationship Import ✅ VERIFIED
-- [x] **Graph Architecture Specifications** ✅
-- [x] **ADR-004** CONCEPT Migration ✅ APPROVED
+- [x] **Federation Phase 1** ✅ | **Property→Facet Mapping** ✅ | **Graph Connectivity** ✅
+- [x] **Category cleanup** ✅ | **WIKIDATA_ prefix** ✅ | **Entity type casing** ✅
+- [x] **Production scoped re-harvest** ✅ | **category_to_property_allowlist** ✅
+- [x] **Relationship Canonicalization** ✅ | **Backlink Extraction** ✅
 
 ---
 
 ## Metrics
 
-**🔥 Graph Transformation:**
-- **Entities:** 2,600 (paused for quality focus)
-- **Edges:** 20,091 (25.6x improvement!) 🚀
-- **Connectivity:** 99.9% ✅
-- **Edge Types:** 672 (Wikidata PIDs)
-- **Avg edges/entity:** 16.02 (was 0.30)
-- **Property Mappings:** 500/500 to facets (100%) ✅
-
-**Progress:**
-- Graph connectivity: 99.9% ✅ EXCELLENT
-- Entity types classified: 42% (2,034 CONCEPT need reclassification)
-- Requirements VERIFIED: 2 / 15 (13%)
-- Architecture validated: In progress
-
-**Velocity:** 
-- 25.6x edge improvement in 1 session! ⚡
-- Git push blocker cleared
-- Strategic pivot successful
-
----
-
-## Critical Issues
-
-**✅ All Previous Issues Resolved:**
-- ✅ #1: CONCEPT drift - Phase 1 complete
-- ✅ #2: Migration not greenfield - Handled
-- ✅ #3: MERGE + label - Documented
-- ✅ Git push failure - Resolved (clean-master)
-
-**NEW Focus:**
-- 🎯 Graph topology analysis (quality validation)
-- 🎯 Architecture validation on connected graph
-- 🎯 Relationship canonicalization (672 PIDs)
-
-**No Blockers** ✅
+**Post-DPRR Baseline (2026-02-25):**
+- **MEMBER_OF:** 9,144 edges | **Unique entities:** 6,990
+- **Scoped:** 91.2% | **Unscoped:** 8.8%
+- **Q899409:** 5,363 entities, 0.0% unscoped
+- **DPRR:** 2,960 Group A | 1,916 Group C | 9,807 posts | 1,992 status
 
 ---
 
 ## Notes
 
-**Strategic Pivot:** Edges before nodes (Architect decision)  
-**Rationale:** Connected graph > more disconnected entities  
-**Current Phase:** Topology analysis & architecture validation  
-**Next Phase:** Entity scaling resumes after validation  
-**Success Rate:** 100% (major improvements, no failures)
+**Mercury deprioritization:** See DECISIONS.md D-021. Mercury's evidence chain (person → coin → findspot → place) requires Pleiades Phase 2. Running Mercury before Pleiades Phase 2 builds the middle of a bridge. Coins are important for numismatic/economic SFAs later — not foundational infrastructure.
 
-**Git:** 
-- Branch: clean-master (on GitHub)
-- Push: Working (blocker cleared)
-- Data files: Git-ignored (Neo4j Aura holds data)
-
-**Update Discipline:**
-- KANBAN.md + REQUIREMENTS.md in same commit ✅
-- AI_CONTEXT coordination active ✅
+**Update Discipline:** KANBAN.md + REQUIREMENTS.md in same commit ✅

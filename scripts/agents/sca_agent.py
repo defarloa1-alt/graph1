@@ -76,9 +76,9 @@ class SCAAgent:
             result = session.run("""
                 MATCH (sys:Chrystallum)
                 
-                // Get Federations
-                OPTIONAL MATCH (sys)-[:HAS_FEDERATION_ROOT]->(fed_root)
-                OPTIONAL MATCH (fed_root)-[:HAS_FEDERATION]->(fed:Federation)
+                // Get Federations (SYS_FederationRegistry -> SYS_FederationSource)
+                OPTIONAL MATCH (sys)-[:HAS_FEDERATION]->(fed_root:SYS_FederationRegistry)
+                OPTIONAL MATCH (fed_root)-[:CONTAINS]->(fed:SYS_FederationSource)
                 
                 // Get Facets
                 OPTIONAL MATCH (sys)-[:HAS_FACET_ROOT]->(facet_root)
@@ -108,7 +108,7 @@ class SCAAgent:
             data = result.single()
             
             # Store in memory
-            self.federations = [dict(f) for f in data['federations']]
+            self.federations = [dict(f) for f in data['federations'] if f is not None]
             self.facets = [dict(f) for f in data['facets']]
             self.entity_types = [dict(et) for et in data['entity_types']]
             self.active_agents = [dict(a) for a in data['agents']]

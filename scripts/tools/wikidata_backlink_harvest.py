@@ -39,6 +39,17 @@ QID_RE = re.compile(r"Q\d+$", re.IGNORECASE)
 PID_RE = re.compile(r"P\d+$", re.IGNORECASE)
 
 DEFAULT_PROPERTY_ALLOWLIST = ["P710", "P1441", "P138", "P112", "P737", "P828"]
+
+# Wikidata administrative metadata — strip during harvest; not domain data.
+PROPERTY_DENYLIST = frozenset(
+    ["P6104", "P5008", "P6216"]  # maintained by WikiProject, focus list, copyright status
+)
+
+# P31 (instance of) values to reject — not domain entities.
+DEFAULT_P31_DENYLIST = frozenset(
+    ["Q4167836"]  # Wikimedia category — Wikipedia's filing system, not domain entities
+)
+
 DISCOVERY_PROPERTY_BOOTSTRAP = [
     # Core semantic links used in current production profile.
     "P710",
@@ -71,7 +82,7 @@ MODE_DEFAULTS: Dict[str, Dict[str, int]] = {
     "discovery": {
         "sparql_limit": 2000,
         "max_sources_per_seed": 1000,
-        "max_new_nodes_per_seed": 500,
+        "max_new_nodes_per_seed": 1500,
     },
 }
 
@@ -208,6 +219,38 @@ def _load_schema_allowlists(schema_path: Path) -> Tuple[Set[str], Set[str]]:
     return classes, properties
 
 
+def _load_entity_category_map(schema_path: Path) -> Dict[str, str]:
+    """Load wikidata_qid -> category from schema entity types."""
+    data = json.loads(schema_path.read_text(encoding="utf-8"))
+    out: Dict[str, str] = {}
+    for row in (data.get("entities", {}) or {}).get("types", []) or []:
+        qid = (row.get("wikidata_qid") or "").strip().upper()
+        category = (row.get("category") or "").strip()
+        if QID_RE.fullmatch(qid) and category:
+            out[qid] = category
+    return out
+
+
+def _load_category_to_scoping_class(schema_path: Path) -> Dict[str, str]:
+    """Load category -> scoping_class from entity_scoping (temporal vs conceptual)."""
+    data = json.loads(schema_path.read_text(encoding="utf-8"))
+    esc = (data.get("entity_scoping") or {}).get("category_to_scoping_class") or {}
+    return dict(esc)
+
+
+def _load_anchor_to_property_allowlist(schema_path: Path) -> Dict[str, List[str]]:
+    """Load anchor QID -> property allowlist from entity_scoping. Skips non-QID keys (e.g. description)."""
+    data = json.loads(schema_path.read_text(encoding="utf-8"))
+    raw = (data.get("entity_scoping") or {}).get("anchor_to_property_allowlist") or {}
+    out = {}
+    for k, v in raw.items():
+        if k == "description" or not QID_RE.fullmatch(k):
+            continue
+        if isinstance(v, list):
+            out[k] = [_normalize_pid(p) for p in v if PID_RE.fullmatch(str(p))]
+    return out
+
+
 def _resolve_runtime_settings(
     *,
     mode: str,
@@ -256,6 +299,9 @@ def _resolve_runtime_settings(
 
     class_allowlist_enabled = effective_class_allowlist_mode == "schema"
     effective_class_allowlist = class_allowlist if class_allowlist_enabled else set()
+
+    # Strip Wikidata administrative metadata (P6104, P5008, P6216 — not domain data)
+    property_allowlist = [p for p in property_allowlist if p not in PROPERTY_DENYLIST]
 
     return {
         "sparql_limit": resolved_sparql_limit,
@@ -509,6 +555,79 @@ def _fetch_entities_claims(
                 out[qid] = entity
         if sleep_ms > 0:
             time.sleep(sleep_ms / 1000.0)
+    return out
+
+
+# Rank precedence for external ID extraction: prefer "preferred" over "normal" over "deprecated".
+_RANK_ORDER: Dict[str, int] = {"preferred": 0, "normal": 1, "deprecated": 2}
+
+# Federation-aware scoping (HARVESTER_SCOPING_DESIGN.md)
+FEDERATION_ANCIENT_WORLD_IDS: Set[str] = {"P1696", "P1047", "P1584"}  # Trismegistos, LGPN, Pleiades (D-023: P1047 not P1838)
+VIAF_PID = "P214"
+
+
+# DPRR (P6863): domain-specific authority for Republican persons; membership implies temporal scoping
+DPRR_PID = "P6863"
+
+
+def _compute_federation_scoping(
+    external_ids: Dict[str, str],
+    has_domain_proximity: bool = True,
+    scoping_class: Optional[str] = None,
+    has_dprr: bool = False,
+) -> Tuple[str, float]:
+    """Compute scoping status and confidence from federation external IDs.
+
+    Returns (scoping_status, confidence). All accepted entities have domain proximity
+    (backlink to seed) by definition.
+
+    HARVESTER_SCOPING_DESIGN: Conceptual entities (Organization, Place, etc.) get
+    domain_scoped when has_domain_proximity, even without federation IDs.
+
+    DPRR (P6863 or has_dprr): Digital Prosopography of the Roman Republic — persons
+    attested in DPRR are by definition temporally scoped to the Roman Republic.
+    """
+    ext = external_ids or {}
+    if any(ext.get(pid) for pid in FEDERATION_ANCIENT_WORLD_IDS):
+        return "temporal_scoped", 0.95
+    if has_dprr or ext.get(DPRR_PID):
+        return "temporal_scoped", 0.85
+    if ext.get(VIAF_PID) and has_domain_proximity:
+        return "domain_scoped", 0.85
+    # Conceptual entities: domain proximity alone suffices (HARVESTER_SCOPING_DESIGN)
+    if scoping_class == "conceptual" and has_domain_proximity:
+        return "domain_scoped", 0.85
+    return "unscoped", 0.40
+
+
+def _extract_external_ids(entity: Dict[str, Any]) -> Dict[str, str]:
+    """Extract all external-id typed property values from a raw wbgetentities entity.
+
+    Returns a dict mapping PID -> best-rank value string.  One value per property;
+    when multiple statements exist for the same property the highest-rank statement
+    wins (preferred > normal > deprecated).  Deprecated-only values are included
+    rather than silently dropped so downstream consumers can decide.
+
+    This captures every federation identifier Wikidata holds for the entity
+    (VIAF P214, BnF P268, Pleiades P1584, Trismegistos P1696, LGPN P1047,
+    BAV P1017, etc.) without callers needing to know which PIDs exist.
+    """
+    out: Dict[str, str] = {}
+    for pid, statements in (entity.get("claims") or {}).items():
+        best_value: Optional[str] = None
+        best_rank: int = 99
+        for stmt in statements or []:
+            mainsnak = stmt.get("mainsnak") or {}
+            if mainsnak.get("datatype") != "external-id":
+                continue
+            rank = _RANK_ORDER.get(stmt.get("rank", "normal"), 1)
+            datavalue = mainsnak.get("datavalue") or {}
+            value = datavalue.get("value") if isinstance(datavalue, dict) else None
+            if isinstance(value, str) and value.strip() and rank < best_rank:
+                best_value = value.strip()
+                best_rank = rank
+        if best_value is not None:
+            out[pid] = best_value
     return out
 
 
@@ -790,7 +909,7 @@ def main() -> None:
         "--max-new-nodes-per-seed",
         type=int,
         default=None,
-        help="Budget cap for accepted source nodes. Mode defaults: production=100, discovery=500.",
+        help="Budget cap for accepted source nodes. Mode defaults: production=100, discovery=1500.",
     )
     parser.add_argument(
         "--unresolved-class-threshold",
@@ -840,6 +959,9 @@ def main() -> None:
         raise FileNotFoundError(schema_path)
 
     class_allowlist, schema_property_allowlist = _load_schema_allowlists(schema_path)
+    entity_category_map = _load_entity_category_map(schema_path)
+    category_to_scoping_class = _load_category_to_scoping_class(schema_path)
+    anchor_to_property_allowlist = _load_anchor_to_property_allowlist(schema_path)
     resolved = _resolve_runtime_settings(
         mode=args.mode,
         property_args=args.property,
@@ -852,6 +974,10 @@ def main() -> None:
         max_new_nodes_per_seed=args.max_new_nodes_per_seed,
     )
     property_allowlist = resolved["property_allowlist"]
+    # Override with anchor-specific allowlist when harvesting a known anchor (reduces noise)
+    if seed_qid in anchor_to_property_allowlist and anchor_to_property_allowlist[seed_qid]:
+        property_allowlist = anchor_to_property_allowlist[seed_qid]
+        print(f"allowlist_override: {seed_qid} -> {property_allowlist}")
     class_allowlist_mode = resolved["class_allowlist_mode"]
     class_allowlist_enabled = resolved["class_allowlist_enabled"]
     effective_class_allowlist = resolved["class_allowlist"]
@@ -863,7 +989,7 @@ def main() -> None:
         raise RuntimeError("Property allowlist is empty.")
     if class_allowlist_enabled and not effective_class_allowlist:
         raise RuntimeError("Class allowlist is empty.")
-    p31_denylist = set()
+    p31_denylist = set(DEFAULT_P31_DENYLIST)
     for raw_qid in args.p31_denylist_qid or []:
         p31_denylist.add(_normalize_qid(raw_qid))
 
@@ -949,12 +1075,44 @@ def main() -> None:
     datatype_gate_passed = unsupported_rate <= args.unsupported_pair_threshold
     overall_status = "pass" if unresolved_gate_passed and datatype_gate_passed else "blocked_by_policy"
 
-    # Attach per-entity profile to accepted list for review.
+    # Attach per-entity profile, external IDs, and federation scoping to accepted list.
     accepted_with_profile: List[Dict[str, Any]] = []
+    scoping_counts: Counter[str] = Counter()
+    ambiguous_category_count = 0
     for row in accepted_limited:
         qid = row["qid"]
         prof = per_entity_profile.get(qid, {})
+        entity_raw = entity_map.get(qid, {})
         merged = dict(row)
+        ext_ids = _extract_external_ids(entity_raw)
+        merged["external_ids"] = ext_ids
+        # Resolve category and scoping_class for domain proximity gate (HARVESTER_SCOPING_DESIGN)
+        p31_and_ancestors: Set[str] = set()
+        for p31 in row.get("p31", []):
+            p31_and_ancestors.add(p31)
+            p31_and_ancestors.update(ancestors_map.get(p31, set()))
+        has_known_category = any(q in entity_category_map for q in p31_and_ancestors)
+        entity_category: Optional[str] = None
+        scoping_class: Optional[str] = None
+        if has_known_category:
+            for q in p31_and_ancestors:
+                if q in entity_category_map:
+                    entity_category = entity_category_map[q]
+                    scoping_class = category_to_scoping_class.get(entity_category)
+                    break
+        if not has_known_category:
+            merged["ambiguous_category"] = True
+            scoping_status = "unscoped"
+            scoping_confidence = 0.40
+            ambiguous_category_count += 1
+        else:
+            merged["ambiguous_category"] = False
+            scoping_status, scoping_confidence = _compute_federation_scoping(
+                ext_ids, has_domain_proximity=True, scoping_class=scoping_class
+            )
+        merged["scoping_status"] = scoping_status
+        merged["scoping_confidence"] = scoping_confidence
+        scoping_counts[scoping_status] += 1
         merged["statement_profile"] = {
             "statement_count": prof.get("statement_count", 0),
             "with_qualifiers": prof.get("with_qualifiers", 0),
@@ -1019,6 +1177,12 @@ def main() -> None:
             "overall_status": overall_status,
         },
         "rejection_reasons": dict(rejection_counts),
+        "scoping": {
+            "temporal_scoped": scoping_counts.get("temporal_scoped", 0),
+            "domain_scoped": scoping_counts.get("domain_scoped", 0),
+            "unscoped": scoping_counts.get("unscoped", 0),
+            "ambiguous_category_count": ambiguous_category_count,
+        },
         "datatype_profile_summary": datatype_summary,
         "accepted": accepted_with_profile,
         "rejected": rejected,
@@ -1037,6 +1201,12 @@ def main() -> None:
     print(f"backlink_rows={len(raw_rows)}")
     print(f"candidates_considered={len(kept_candidates)}")
     print(f"accepted={len(accepted_limited)}")
+    print(
+        f"scoping: temporal_scoped={scoping_counts.get('temporal_scoped', 0)} "
+        f"domain_scoped={scoping_counts.get('domain_scoped', 0)} "
+        f"unscoped={scoping_counts.get('unscoped', 0)} "
+        f"ambiguous_category={ambiguous_category_count}"
+    )
     print(
         "frontier_eligible="
         f"{datatype_summary.get('frontier_eligible_count', 0)} "
