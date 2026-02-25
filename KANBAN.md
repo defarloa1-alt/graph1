@@ -38,6 +38,11 @@
 
 ## In Progress
 
+- [x] **D-031 MCP server v1** ✅ (2026-02-25)
+  - scripts/mcp/chrystallum_mcp_server.py, .cursor/mcp.json
+  - FORBIDDEN_FACETS refactor: sca_agent, subject_concept_facet_agents read from SYS_Policy
+  - Acceptance: MCP get_policy works; no hardcoded FORBIDDEN_FACETS in agents
+
 - [x] **P1696 count check** ✅ (2026-02-25)
   - SPARQL: 0 of 6,989 entity QIDs have P1696 in Wikidata
   - Script: scripts/analysis/count_p1696_overlap.py

@@ -131,11 +131,23 @@ class SCAAgent:
         # Check facet count
         assert len(self.facets) == 18, f"Should have 18 facets, got {len(self.facets)}"
         
-        # Check no forbidden facets
+        # Check no forbidden facets (D-031: read from SYS_Policy, not hardcoded)
         facet_keys = [f['key'] for f in self.facets]
-        forbidden = ['TEMPORAL', 'CLASSIFICATION', 'PATRONAGE', 'GENEALOGICAL']
+        forbidden_policies = ['NoTemporalFacet', 'NoClassificationFacet',
+                             'NoPatronageFacet', 'NoGenealogicalFacet']
+        forbidden = []
+        with self.driver.session() as session:
+            for policy_name in forbidden_policies:
+                result = session.run(
+                    "MATCH (p:SYS_Policy {name: $name, active: true}) "
+                    "RETURN p.facet_key AS facet_key",
+                    name=policy_name
+                )
+                record = result.single()
+                if record and record["facet_key"]:
+                    forbidden.append(record["facet_key"])
         for f in forbidden:
-            assert f not in facet_keys, f"Forbidden facet {f} found!"
+            assert f not in facet_keys, f"Forbidden facet {f} found (SYS_Policy)!"
         
         # Check facets are uppercase
         for key in facet_keys:
@@ -404,11 +416,17 @@ class SCAAgent:
 
 # Example usage
 if __name__ == "__main__":
-    # Initialize
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
+    if not NEO4J_PASSWORD:
+        print("Error: NEO4J_PASSWORD not set in .env")
+        sys.exit(1)
     agent = SCAAgent(
-        neo4j_uri="neo4j+s://f7b612a3.databases.neo4j.io",
-        neo4j_user="neo4j",
-        neo4j_password="K2sHUx9dFYhEOurYzNjlBuNb8AV9-Xlw-KJcQ85QBHM"
+        neo4j_uri=NEO4J_URI,
+        neo4j_user=NEO4J_USERNAME,
+        neo4j_password=NEO4J_PASSWORD
     )
     
     print("SCA Agent initialized and bootstrapped from Chrystallum!")

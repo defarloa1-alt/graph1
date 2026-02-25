@@ -24,6 +24,7 @@
 | `LibraryAuthoritySubsystem` added | D-025 | FAST + LCSH + VIAF + LC SRU as coherent subsystem |
 | PID corrected: P1838 → P1047 for LGPN | D-023 | P1838 is PSS-archi (French buildings) |
 | Named federation ID properties on Entity nodes | D-022 | Replaces external_ids map |
+| ToolingSubsystem + ChrystallumMCPServer added | D-031 | MCP read-only server for policy/threshold; FORBIDDEN_FACETS refactor |
 
 ---
 
@@ -79,6 +80,8 @@ Blocks in this catalog are **structural** — they describe what the system is c
     «block» SYS_FederationRegistry
     «block» SYS_BibliographyRegistry
     «block» SYS_ProcessRegistry
+  «block» ToolingSubsystem         ← new (D-031)
+    «block» ChrystallumMCPServer
 
 «decisionService» FederationDispatcher      ← DMN, not SysML block
 «decisionService» AgentRoutingService       ← DMN, not SysML block
@@ -427,6 +430,46 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 
 ---
 
+### «block» ToolingSubsystem
+**Responsibility:** Read-only tooling for architect and dev. No write operations. Model-first discipline: catalog before spec.
+
+#### «block» ChrystallumMCPServer
+**Decision:** D-031  
+**Status:** Operational — v1 stdio only  
+**Implementation:** `scripts/mcp/chrystallum_mcp_server.py`
+
+**Value properties:**
+- `transport: String = "stdio"` — v2 will add "http"
+- `version: String = "1.0"`
+- `write_permitted: Boolean = false`
+
+**Flow ports:**
+- `policy_query_in (in, type: PolicyQueryRequest)`
+- `threshold_query_in (in, type: ThresholdQueryRequest)`
+- `list_request_in (in, type: ListRequest)`
+- `response_out (out, type: MCPToolResponse)`
+
+**Operations (exposed as MCP tools):**
+- `get_policy(name: String): SYS_Policy`
+- `get_threshold(name: String): SYS_Threshold`
+- `list_policies(): SYS_Policy[]`
+- `list_thresholds(): SYS_Threshold[]`
+
+**Constraints:**
+- Read-only. No write operations permitted in any version.
+- Neo4j credentials never passed to MCP clients — server holds credentials, clients call tools.
+- v1: stdio transport only. Cursor starts as subprocess. No network exposure.
+- v2: HTTP transport added for Claude web architect validation. API key required.
+
+**Connections:**
+- Reads from: SYS_Policy (MetanodeSubsystem)
+- Reads from: SYS_Threshold (MetanodeSubsystem)
+- Called by: Cursor agent context (external, v1)
+- Called by: Claude web architect session (external, v2 — pending)
+- NOT called by: SCAEngine, SFAEngine — agents read Neo4j directly via driver
+
+---
+
 ## Port Flow Types
 
 | Type | Description |
@@ -443,6 +486,10 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 | MARCRecordSet | Parsed MARC authority and bibliographic records |
 | BibliographyNodeSet | Auto-constructed BibliographySource nodes with facet tags |
 | LCControlNumberSet | LC control numbers from VIAF cluster resolution |
+| PolicyQueryRequest | name: String — MCP tool request for SYS_Policy |
+| ThresholdQueryRequest | name: String — MCP tool request for SYS_Threshold |
+| ListRequest | type: String (enum: policies \| thresholds) — MCP list request |
+| MCPToolResponse | content: JSON, isError: Boolean — MCP tool response |
 
 ---
 
@@ -465,6 +512,7 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 | ClaimLifecycleService | scripts/tools/claim_ingestion_pipeline.py |
 | GraphPersistenceService | Neo4j/schema/*.cypher |
 | SYS_FederationRegistry | scripts/neo4j/rebuild_federation_registry.py |
+| ChrystallumMCPServer | scripts/mcp/chrystallum_mcp_server.py |
 
 ---
 

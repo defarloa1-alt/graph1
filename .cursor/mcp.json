@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "chrystallum": {
+      "command": "python",
+      "args": ["scripts/mcp/chrystallum_mcp_server.py"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}

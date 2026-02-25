@@ -38,7 +38,22 @@ CANONICAL_FACETS = [
     "SOCIAL", "TECHNOLOGICAL"
 ]
 
-FORBIDDEN_FACETS = ["TEMPORAL", "CLASSIFICATION", "PATRONAGE", "GENEALOGICAL"]
+def _load_forbidden_facets(driver) -> list:
+    """Load forbidden facets from SYS_Policy nodes (D-031)."""
+    forbidden_policies = [
+        "NoTemporalFacet", "NoClassificationFacet",
+        "NoPatronageFacet", "NoGenealogicalFacet"
+    ]
+    with driver.session() as session:
+        result = session.run(
+            """
+            MATCH (p:SYS_Policy)
+            WHERE p.name IN $names AND p.facet_key IS NOT NULL
+            RETURN p.facet_key AS facet_key
+            """,
+            names=forbidden_policies
+        )
+        return [r["facet_key"] for r in result if r["facet_key"]]
 
 
 # ============================================================================
@@ -62,10 +77,11 @@ class SubjectConceptFacetAgent:
             neo4j_driver: Neo4j driver instance
             perplexity_api_key: Perplexity API key
         """
-        # Validate facet
+        # Validate facet (D-031: forbidden facets from SYS_Policy)
+        forbidden = _load_forbidden_facets(neo4j_driver)
         if facet_key not in CANONICAL_FACETS:
             raise ValueError(f"Invalid facet: {facet_key}. Must be one of {CANONICAL_FACETS}")
-        if facet_key in FORBIDDEN_FACETS:
+        if facet_key in forbidden:
             raise ValueError(f"Forbidden facet: {facet_key}")
         
         self.facet_key = facet_key
@@ -575,12 +591,16 @@ class MultiFacetSubjectAnalyzer:
 # ============================================================================
 
 if __name__ == "__main__":
-    from config import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, PERPLEXITY_API_KEY
-    
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
+    PERPLEXITY_API_KEY = None  # Optional for demo
+
     # Initialize Neo4j driver
     driver = GraphDatabase.driver(
         NEO4J_URI,
-        auth=(NEO4J_USERNAME, NEO4J_PASSWORD)
+        auth=(NEO4J_USERNAME, NEO4J_PASSWORD or "")
     )
     
     print("=" * 80)
