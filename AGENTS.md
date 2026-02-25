@@ -1,6 +1,24 @@
-# Chrystallum — Agent Context (Guardrail)
+# AGENTS.md — Chrystallum Project Context for AI Coding Agents
 
 **Purpose:** Context file for autonomous agents (Cloud Agent, Cursor agents). Read this and `DECISIONS.md` before any build task. The task description only needs to say *what* to do; constraints live here.
+
+---
+
+## DO NOT — Read This First
+
+**Do not make autonomous infrastructure decisions.** The following are prohibited unless explicitly listed in the task:
+
+- **Do not** add Docker, Dockerfile, docker-compose, or container config.
+- **Do not** add Node.js, npm, package.json, or JavaScript tooling.
+- **Do not** add start commands, dev servers, or HTTP servers unless the task explicitly requires them.
+- **Do not** infer dependencies from the codebase — use `requirements.txt` only. If a dependency is missing, report it; do not add it without a task.
+- **Do not** create files, directories, or config not listed in the task. If the task says "modify only these files," do not create anything else.
+- **Do not** refactor, reorganize, or "improve" code outside the task scope.
+- **Do not** add new scripts, tests, or CI config unless the task specifies them.
+
+**Environment:** Use `.cursor/environment.json` — `pip install -r requirements.txt`. No other setup.
+
+**Task discipline:** Every Cloud Agent run must reference a specific task file (e.g. `tasks/ROUND3_D10_D8_REFACTOR.md`) and DECISIONS.md entry (e.g. D-032). Do exactly what the task says. No open-ended inference.
 
 ---
 
