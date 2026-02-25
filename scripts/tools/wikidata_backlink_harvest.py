@@ -73,6 +73,9 @@ DISCOVERY_PROPERTY_BOOTSTRAP = [
     "P2579",
 ]
 
+# MODE_DEFAULTS: fallback values only (D-032).
+# Canonical values live in SYS_Threshold nodes.
+# Used only when Neo4j credentials are unavailable (dry run, no graph connection).
 MODE_DEFAULTS: Dict[str, Dict[str, int]] = {
     "production": {
         "sparql_limit": 500,
@@ -132,6 +135,40 @@ LITERAL_HEAVY_ROUTES: Set[str] = {
     "media_reference",
     "temporal_uncertain",
 }
+
+
+def load_thresholds(uri: str, user: str, password: str) -> Dict[str, Any]:
+    """Load harvest thresholds from SYS_Threshold nodes (D-032)."""
+    from neo4j import GraphDatabase
+
+    driver = GraphDatabase.driver(uri, auth=(user, password))
+    threshold_names = [
+        "unresolved_class_threshold",
+        "unsupported_datatype_threshold",
+        "min_temporal_precision",
+        "literal_heavy_threshold",
+        "max_hops_p279",
+        "sparql_limit_discovery",
+        "sparql_limit_production",
+        "max_sources_discovery",
+        "max_sources_production",
+        "max_new_nodes_discovery",
+        "max_new_nodes_production",
+        "scoping_confidence_temporal_high",
+        "scoping_confidence_temporal_med",
+        "scoping_confidence_domain",
+        "scoping_confidence_unscoped",
+    ]
+    try:
+        with driver.session() as session:
+            result = session.run(
+                "MATCH (t:SYS_Threshold) WHERE t.name IN $names "
+                "RETURN t.name AS name, t.value AS value",
+                names=threshold_names,
+            )
+            return {r["name"]: r["value"] for r in result}
+    finally:
+        driver.close()
 
 
 def _as_int(value: Any) -> Optional[int]:
@@ -262,11 +299,12 @@ def _resolve_runtime_settings(
     sparql_limit: Optional[int],
     max_sources_per_seed: Optional[int],
     max_new_nodes_per_seed: Optional[int],
+    mode_defaults_override: Optional[Dict[str, Dict[str, int]]] = None,
 ) -> Dict[str, Any]:
     if mode not in MODE_DEFAULTS:
         raise ValueError(f"Unsupported mode: {mode}")
 
-    defaults = MODE_DEFAULTS[mode]
+    defaults = (mode_defaults_override or {}).get(mode) or MODE_DEFAULTS[mode]
     resolved_sparql_limit = max(1, sparql_limit or defaults["sparql_limit"])
     resolved_max_sources = max(1, max_sources_per_seed or defaults["max_sources_per_seed"])
     resolved_max_new_nodes = max(1, max_new_nodes_per_seed or defaults["max_new_nodes_per_seed"])
@@ -575,6 +613,7 @@ def _compute_federation_scoping(
     has_domain_proximity: bool = True,
     scoping_class: Optional[str] = None,
     has_dprr: bool = False,
+    thresholds: Optional[Dict[str, Any]] = None,
 ) -> Tuple[str, float]:
     """Compute scoping status and confidence from federation external IDs.
 
@@ -586,18 +625,26 @@ def _compute_federation_scoping(
 
     DPRR (P6863 or has_dprr): Digital Prosopography of the Roman Republic — persons
     attested in DPRR are by definition temporally scoped to the Roman Republic.
+
+    D-032: Confidence values from SYS_Threshold when thresholds dict provided.
     """
+    th = thresholds or {}
+    temporal_high = th.get("scoping_confidence_temporal_high", 0.95)
+    temporal_med = th.get("scoping_confidence_temporal_med", 0.85)
+    domain = th.get("scoping_confidence_domain", 0.85)
+    unscoped = th.get("scoping_confidence_unscoped", 0.40)
+
     ext = external_ids or {}
     if any(ext.get(pid) for pid in FEDERATION_ANCIENT_WORLD_IDS):
-        return "temporal_scoped", 0.95
+        return "temporal_scoped", float(temporal_high)
     if has_dprr or ext.get(DPRR_PID):
-        return "temporal_scoped", 0.85
+        return "temporal_scoped", float(temporal_med)
     if ext.get(VIAF_PID) and has_domain_proximity:
-        return "domain_scoped", 0.85
+        return "domain_scoped", float(domain)
     # Conceptual entities: domain proximity alone suffices (HARVESTER_SCOPING_DESIGN)
     if scoping_class == "conceptual" and has_domain_proximity:
-        return "domain_scoped", 0.85
-    return "unscoped", 0.40
+        return "domain_scoped", float(domain)
+    return "unscoped", float(unscoped)
 
 
 def _extract_external_ids(entity: Dict[str, Any]) -> Dict[str, str]:
@@ -853,6 +900,20 @@ def _profile_dispatch_routes(
 
 
 def main() -> None:
+    # D-032: Load thresholds from SYS_Threshold when Neo4j credentials available
+    thresholds: Dict[str, Any] = {}
+    try:
+        import sys
+        from pathlib import Path
+        _root = Path(__file__).resolve().parents[2]
+        sys.path.insert(0, str(_root / "scripts"))
+        from config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
+        if NEO4J_URI and NEO4J_PASSWORD:
+            thresholds = load_thresholds(NEO4J_URI, NEO4J_USERNAME or "neo4j", NEO4J_PASSWORD)
+            print(f"thresholds_loaded: {len(thresholds)} from SYS_Threshold")
+    except Exception as e:
+        pass  # Fallback to MODE_DEFAULTS and argparse defaults
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed-qid", required=True, help="Seed item QID (example: Q1048).")
     parser.add_argument(
@@ -914,32 +975,32 @@ def main() -> None:
     parser.add_argument(
         "--unresolved-class-threshold",
         type=float,
-        default=0.20,
-        help="Abort gate if unresolved class mapping rate exceeds this value.",
+        default=None,
+        help="Abort gate if unresolved class mapping rate exceeds this value. Default from SYS_Threshold or 0.20.",
     )
     parser.add_argument(
         "--unsupported-pair-threshold",
         type=float,
-        default=0.10,
-        help="Abort gate if unsupported datatype/value_type rate exceeds this value.",
+        default=None,
+        help="Abort gate if unsupported datatype/value_type rate exceeds this value. Default from SYS_Threshold or 0.10.",
     )
     parser.add_argument(
         "--min-temporal-precision",
         type=int,
-        default=9,
-        help="Minimum Wikidata time precision treated as precise temporal anchor (year=9, month=10, day=11).",
+        default=None,
+        help="Minimum Wikidata time precision (year=9). Default from SYS_Threshold or 9.",
     )
     parser.add_argument(
         "--literal-heavy-threshold",
         type=float,
-        default=0.80,
-        help="Exclude from traversal frontier when literal-heavy ratio exceeds this threshold.",
+        default=None,
+        help="Exclude from frontier when literal-heavy ratio exceeds this. Default from SYS_Threshold or 0.80.",
     )
     parser.add_argument(
         "--max-p279-hops",
         type=int,
-        default=4,
-        help="Max P279 hops for class ancestor matching.",
+        default=None,
+        help="Max P279 hops for class ancestor matching. Default from SYS_Threshold or 4.",
     )
     parser.add_argument("--timeout-s", type=int, default=45, help="HTTP timeout (seconds).")
     parser.add_argument("--sleep-ms", type=int, default=100, help="Delay between batches (milliseconds).")
@@ -949,6 +1010,33 @@ def main() -> None:
         help="Optional explicit output file path. Default: <output-dir>/<seed>_backlink_harvest_report.json",
     )
     args = parser.parse_args()
+
+    # D-032: Resolve thresholds — CLI overrides graph, graph overrides fallback
+    def _resolve(name: str, arg_val: Any, fallback: Any) -> Any:
+        if arg_val is not None:
+            return arg_val
+        return thresholds.get(name, fallback)
+
+    unresolved_threshold = _resolve("unresolved_class_threshold", args.unresolved_class_threshold, 0.20)
+    unsupported_threshold = _resolve("unsupported_datatype_threshold", args.unsupported_pair_threshold, 0.10)
+    min_temporal_precision = _resolve("min_temporal_precision", args.min_temporal_precision, 9)
+    literal_heavy_threshold = _resolve("literal_heavy_threshold", args.literal_heavy_threshold, 0.80)
+    max_p279_hops = _resolve("max_hops_p279", args.max_p279_hops, 4)
+
+    mode_defaults_override = None
+    if thresholds:
+        mode_defaults_override = {
+            "production": {
+                "sparql_limit": int(thresholds.get("sparql_limit_production", MODE_DEFAULTS["production"]["sparql_limit"])),
+                "max_sources_per_seed": int(thresholds.get("max_sources_production", MODE_DEFAULTS["production"]["max_sources_per_seed"])),
+                "max_new_nodes_per_seed": int(thresholds.get("max_new_nodes_production", MODE_DEFAULTS["production"]["max_new_nodes_per_seed"])),
+            },
+            "discovery": {
+                "sparql_limit": int(thresholds.get("sparql_limit_discovery", MODE_DEFAULTS["discovery"]["sparql_limit"])),
+                "max_sources_per_seed": int(thresholds.get("max_sources_discovery", MODE_DEFAULTS["discovery"]["max_sources_per_seed"])),
+                "max_new_nodes_per_seed": int(thresholds.get("max_new_nodes_discovery", MODE_DEFAULTS["discovery"]["max_new_nodes_per_seed"])),
+            },
+        }
 
     seed_qid = _normalize_qid(args.seed_qid)
     if args.max_depth != 1:
@@ -972,6 +1060,7 @@ def main() -> None:
         sparql_limit=args.sparql_limit,
         max_sources_per_seed=args.max_sources_per_seed,
         max_new_nodes_per_seed=args.max_new_nodes_per_seed,
+        mode_defaults_override=mode_defaults_override,
     )
     property_allowlist = resolved["property_allowlist"]
     # Override with anchor-specific allowlist when harvesting a known anchor (reduces noise)
@@ -1010,7 +1099,7 @@ def main() -> None:
         p31_classes.update(row["p31"])
     ancestors_map = _fetch_p279_ancestors(
         class_qids=sorted(p31_classes),
-        max_hops=max(0, args.max_p279_hops),
+        max_hops=max(0, max_p279_hops),
         timeout_s=args.timeout_s,
         sleep_ms=max(0, args.sleep_ms),
     )
@@ -1066,13 +1155,13 @@ def main() -> None:
 
     datatype_summary, per_entity_profile = _profile_dispatch_routes(
         entities=entity_map,
-        min_temporal_precision=max(0, args.min_temporal_precision),
-        literal_heavy_threshold=max(0.0, args.literal_heavy_threshold),
+        min_temporal_precision=max(0, min_temporal_precision),
+        literal_heavy_threshold=max(0.0, literal_heavy_threshold),
     )
     unsupported_rate = datatype_summary.get("unsupported_pair_rate", 0.0)
 
-    unresolved_gate_passed = unresolved_rate <= args.unresolved_class_threshold
-    datatype_gate_passed = unsupported_rate <= args.unsupported_pair_threshold
+    unresolved_gate_passed = unresolved_rate <= unresolved_threshold
+    datatype_gate_passed = unsupported_rate <= unsupported_threshold
     overall_status = "pass" if unresolved_gate_passed and datatype_gate_passed else "blocked_by_policy"
 
     # Attach per-entity profile, external IDs, and federation scoping to accepted list.
@@ -1103,12 +1192,12 @@ def main() -> None:
         if not has_known_category:
             merged["ambiguous_category"] = True
             scoping_status = "unscoped"
-            scoping_confidence = 0.40
+            scoping_confidence = float(thresholds.get("scoping_confidence_unscoped", 0.40))
             ambiguous_category_count += 1
         else:
             merged["ambiguous_category"] = False
             scoping_status, scoping_confidence = _compute_federation_scoping(
-                ext_ids, has_domain_proximity=True, scoping_class=scoping_class
+                ext_ids, has_domain_proximity=True, scoping_class=scoping_class, thresholds=thresholds
             )
         merged["scoping_status"] = scoping_status
         merged["scoping_confidence"] = scoping_confidence
@@ -1142,11 +1231,11 @@ def main() -> None:
             "sparql_limit": sparql_limit,
             "max_sources_per_seed": max_sources_per_seed,
             "max_new_nodes_per_seed": max_new_nodes_per_seed,
-            "unresolved_class_threshold": args.unresolved_class_threshold,
-            "unsupported_pair_threshold": args.unsupported_pair_threshold,
-            "min_temporal_precision": args.min_temporal_precision,
-            "literal_heavy_threshold": args.literal_heavy_threshold,
-            "max_p279_hops": args.max_p279_hops,
+            "unresolved_class_threshold": unresolved_threshold,
+            "unsupported_pair_threshold": unsupported_threshold,
+            "min_temporal_precision": min_temporal_precision,
+            "literal_heavy_threshold": literal_heavy_threshold,
+            "max_p279_hops": max_p279_hops,
             "timeout_s": args.timeout_s,
             "sleep_ms": args.sleep_ms,
             "batch_size": args.batch_size,

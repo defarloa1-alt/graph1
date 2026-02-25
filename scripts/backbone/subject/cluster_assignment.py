@@ -239,6 +239,15 @@ def load_dprr_from_neo4j(
 
     driver = GraphDatabase.driver(uri, auth=(user, password))
     try:
+        # D-032: DPRR scoping confidence from SYS_Threshold (same as scoping_confidence_temporal_med)
+        with driver.session() as session:
+            result = session.run(
+                "MATCH (t:SYS_Threshold {name: 'scoping_confidence_temporal_med'}) "
+                "RETURN t.value AS value"
+            )
+            record = result.single()
+        dprr_confidence = float(record["value"]) if record and record.get("value") is not None else 0.85
+
         # Include both dprr_imported=true and dprr_id IS NOT NULL (legacy nodes may lack the flag)
         if only_without_member_of:
             q = """
@@ -273,7 +282,7 @@ def load_dprr_from_neo4j(
                 "entity_label": label,
                 "source_report": "dprr_neo4j",
                 "scoping_status": "temporal_scoped",
-                "scoping_confidence": 0.85,
+                "scoping_confidence": dprr_confidence,
             })
         elif entity_id:
             records.append({
@@ -282,7 +291,7 @@ def load_dprr_from_neo4j(
                 "entity_label": label,
                 "source_report": "dprr_neo4j",
                 "scoping_status": "temporal_scoped",
-                "scoping_confidence": 0.85,
+                "scoping_confidence": dprr_confidence,
             })
     return records
 

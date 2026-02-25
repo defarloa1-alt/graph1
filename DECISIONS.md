@@ -22,10 +22,21 @@
 | Modeling (SysML/DMN/BPMN) | D-024 |
 | Library authority / bibliography | D-025, D-026, D-028 |
 | MCP / tooling | D-031 |
+| D6/D7 threshold refactor | D-032 |
 
 ---
 
 ## Entries
+
+---
+
+### D-032 — D6 Threshold Refactor (Harvester + ClusterAssignment)
+**Date:** 2026-02-25  
+**Status:** Decided — build complete  
+**Context:** Harvester (wikidata_backlink_harvest.py) and ClusterAssignment (cluster_assignment.py) hardcode D6/D5/D7 threshold values. Block catalog updated first (model before build).  
+**Decision:** Harvester reads 11 thresholds from SYS_Threshold at startup via direct Neo4j; CLI args become overrides. ClusterAssignment reads scoping_confidence_temporal_med for DPRR entities. ExternalFederationGateway scoping confidence (0.95, 0.85, 0.40) from SYS_Threshold in harvester's _compute_federation_scoping.  
+**Rationale:** Single source of truth. Model-first: catalog updated before script refactor.  
+**Consequences:** wikidata_backlink_harvest.py, cluster_assignment.py refactored. MODE_DEFAULTS remains as fallback for credential-less runs. Process doc committed with Round 2.
 
 ---
 

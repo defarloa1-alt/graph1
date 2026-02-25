@@ -25,6 +25,7 @@
 | PID corrected: P1838 → P1047 for LGPN | D-023 | P1838 is PSS-archi (French buildings) |
 | Named federation ID properties on Entity nodes | D-022 | Replaces external_ids map |
 | ToolingSubsystem + ChrystallumMCPServer added | D-031 | MCP read-only server for policy/threshold; FORBIDDEN_FACETS refactor |
+| Harvester value properties → SYS_Threshold refs | D-032 | D6/D7 thresholds; ExternalFederationGateway scoping; ClusterAssignment DPRR |
 
 ---
 
@@ -115,11 +116,21 @@ Blocks in this catalog are **structural** — they describe what the system is c
 #### «block» Harvester
 **Responsibility:** Entity discovery only. Narrow allowlist. Wikidata backlink traversal.  
 **Implementation:** `scripts/tools/wikidata_backlink_harvest.py`  
-**Value properties:**
-- `max_hops: Integer = 4`
-- `unresolved_class_threshold: Real = 0.20`
-- `unsupported_datatype_threshold: Real = 0.10`
-- `mode: String` — production | discovery
+**Decision tables:** D6 (entity class validity), D7 (harvest allowlist eligibility)
+
+**Value properties (read from SYS_Threshold — do not hardcode):**
+- `max_hops: Integer [SYS_Threshold: max_hops_p279]`
+- `unresolved_class_threshold: Real [SYS_Threshold: unresolved_class_threshold]`
+- `unsupported_datatype_threshold: Real [SYS_Threshold: unsupported_datatype_threshold]`
+- `literal_heavy_threshold: Real [SYS_Threshold: literal_heavy_threshold]`
+- `min_temporal_precision: Integer [SYS_Threshold: min_temporal_precision]`
+- `sparql_limit: Integer [SYS_Threshold: sparql_limit_discovery | sparql_limit_production]` — depends on mode
+- `max_sources_per_seed: Integer [SYS_Threshold: max_sources_discovery | max_sources_production]`
+- `max_new_nodes_per_seed: Integer [SYS_Threshold: max_new_nodes_discovery | max_new_nodes_production]`
+- `mode: String` — production | discovery (selects which budget thresholds apply via D7)
+
+**Constraints:**
+- Reads all threshold values from SYS_Threshold at startup (direct Neo4j or MCP). No hardcoded numeric values permitted. Fallback dict allowed only for credential-less runs (dry run).
 
 **Flow ports:**
 - `seedQIDsIn: ~SeedQIDSet`
@@ -149,7 +160,10 @@ Blocks in this catalog are **structural** — they describe what the system is c
 #### «block» ClusterAssignment
 **Responsibility:** Assign entities to SubjectConcepts via MEMBER_OF. Write named federation ID properties. Must be re-run after any significant import — not automatic.  
 **Implementation:** `scripts/backbone/subject/cluster_assignment.py`  
+**Decision tables:** D5 (federation scope match — DPRR scoping)
+
 **Value properties:**
+- `dprr_scoping_confidence: Real [SYS_Threshold: scoping_confidence_temporal_med]` — same node as temporal_med (0.85)
 - `federation_id_map: String` — P1584→pleiades_id, P1696→trismegistos_id, P1047→lgpn_id, P214→viaf_id, P1014→getty_aat_id, P2192→edh_id, P9106→ocd_id
 - `member_of_edges_written: Integer = 9144`
 - `entities_in_clusters: Integer = 6990`
@@ -167,8 +181,14 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Constraint:** Every external assertion must carry `source` and `retrieved_at`. No silent drops — every dropped statement emits reason metrics via DMN decision output.
 
 #### «block» ExternalFederationGateway
-**Responsibility:** Bounded external API access. Normalisation envelope. Rate limiting and budget enforcement.  
-**Value properties:**
+**Responsibility:** Bounded external API access. Normalisation envelope. Rate limiting and budget enforcement. Scoping confidence (D5) computed here when harvester calls _compute_federation_scoping.  
+**Decision tables:** D5 (federation scope match)
+
+**Value properties (read from SYS_Threshold — do not hardcode):**
+- `scoping_confidence_temporal_high: Real [SYS_Threshold: scoping_confidence_temporal_high]`
+- `scoping_confidence_temporal_med: Real [SYS_Threshold: scoping_confidence_temporal_med]`
+- `scoping_confidence_domain: Real [SYS_Threshold: scoping_confidence_domain]`
+- `scoping_confidence_unscoped: Real [SYS_Threshold: scoping_confidence_unscoped]`
 - `budget_sparql_limit: Integer`
 - `budget_max_sources: Integer`
 - `budget_max_new_nodes: Integer`

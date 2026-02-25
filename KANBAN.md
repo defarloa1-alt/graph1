@@ -43,6 +43,11 @@
   - FORBIDDEN_FACETS refactor: sca_agent, subject_concept_facet_agents read from SYS_Policy
   - Acceptance: MCP get_policy works; no hardcoded FORBIDDEN_FACETS in agents
 
+- [x] **D-032 D6 threshold refactor** ✅ (2026-02-25)
+  - Harvester: 11 thresholds from SYS_Threshold, CLI as override
+  - ClusterAssignment: DPRR scoping_confidence from SYS_Threshold
+  - Process doc: output/PROCESS_MODEL_FIRST_CHANGE_COMMUNICATION.md
+
 - [x] **P1696 count check** ✅ (2026-02-25)
   - SPARQL: 0 of 6,989 entity QIDs have P1696 in Wikidata
   - Script: scripts/analysis/count_p1696_overlap.py
