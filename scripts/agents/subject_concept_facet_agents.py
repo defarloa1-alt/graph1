@@ -56,6 +56,25 @@ def _load_forbidden_facets(driver) -> list:
         return [r["facet_key"] for r in result if r["facet_key"]]
 
 
+def _load_sfa_proposal_confidence_default(driver) -> float:
+    """Load sfa_proposal_confidence_default from SYS_Threshold (D8). Fallback 0.75."""
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (t:SYS_Threshold {name: 'sfa_proposal_confidence_default'})
+                RETURN t.value AS value
+                LIMIT 1
+                """,
+            )
+            rec = result.single()
+            if rec and rec["value"] is not None:
+                return float(rec["value"])
+    except Exception:
+        pass
+    return 0.75
+
+
 # ============================================================================
 # BASE SUBJECT CONCEPT FACET AGENT
 # ============================================================================
@@ -274,7 +293,7 @@ class SubjectConceptFacetAgent:
                               qid: str,
                               label: str,
                               properties: Dict,
-                              confidence: float = 0.8) -> Dict:
+                              confidence: Optional[float] = None) -> Dict:
         """
         Create entity proposal for this subject concept
         
@@ -283,11 +302,13 @@ class SubjectConceptFacetAgent:
             qid: Wikidata QID
             label: Entity label
             properties: Additional properties
-            confidence: Confidence score
+            confidence: Confidence score; if None, from SYS_Threshold sfa_proposal_confidence_default (D8)
         
         Returns:
             Proposal dict
         """
+        if confidence is None:
+            confidence = _load_sfa_proposal_confidence_default(self.driver)
         entity_id = f"{entity_type.lower()}_{qid.lower()}"
         
         proposal = {

@@ -520,6 +520,57 @@ class ClaimIngestionPipeline:
         self.driver = driver
         self.database = database
         self.reasoning_engine = HistorianLogicEngine()
+        self._promotion_config: Optional[Dict[str, Any]] = None
+
+    def _load_promotion_config(self) -> Dict[str, Any]:
+        """
+        Load D10 claim promotion thresholds and policy from graph (D-032).
+        Returns claim_promotion_confidence, claim_promotion_posterior, approval_required.
+        Fallback when graph unavailable: 0.90, 0.90, False.
+        """
+        if self._promotion_config is not None:
+            return self._promotion_config
+        config = {
+            "claim_promotion_confidence": 0.90,
+            "claim_promotion_posterior": 0.90,
+            "approval_required": False,
+        }
+        try:
+            with self.driver.session(database=self.database) as session:
+                # SYS_Threshold: claim_promotion_confidence, claim_promotion_posterior
+                result = session.run(
+                    """
+                    MATCH (t:SYS_Threshold)
+                    WHERE t.name IN ['claim_promotion_confidence', 'claim_promotion_posterior']
+                    RETURN t.name AS name, t.value AS value
+                    """,
+                )
+                for r in result:
+                    if r["name"] == "claim_promotion_confidence" and r["value"] is not None:
+                        config["claim_promotion_confidence"] = float(r["value"])
+                    elif r["name"] == "claim_promotion_posterior" and r["value"] is not None:
+                        config["claim_promotion_posterior"] = float(r["value"])
+
+                # SYS_Policy (or Policy): ApprovalRequired — if active, never auto-promote
+                policy_result = session.run(
+                    """
+                    MATCH (p)
+                    WHERE (p:SYS_Policy OR p:Policy) AND p.name = 'ApprovalRequired'
+                    RETURN p.active AS active, p.status AS status
+                    LIMIT 1
+                    """,
+                )
+                rec = policy_result.single()
+                if rec:
+                    active = rec.get("active")
+                    status = rec.get("status")
+                    config["approval_required"] = (
+                        active is True or (isinstance(status, str) and status.lower() == "active")
+                    )
+        except Exception:
+            pass  # Keep fallback
+        self._promotion_config = config
+        return config
 
     def ingest_claim(
         self,
@@ -625,17 +676,21 @@ class ClaimIngestionPipeline:
                 claim_id, entity_id, relationship_type, target_id
             )
             
-            # 6. Check promotion eligibility
+            # 6. Check promotion eligibility (D10 — thresholds from SYS_Threshold, gate from SYS_Policy)
             # Promotion is based purely on scientific metrics: confidence + posterior
             # Fallacies are always detected and flagged but never block promotion
             promoted = False
-            if (
-                confidence >= 0.90
-                and reasoning_eval["posterior_probability"] >= 0.90
-            ):
-                promoted = self._promote_claim(
-                    claim_id, entity_id, relationship_type, target_id, proposed_edge_id
-                )
+            cfg = self._load_promotion_config()
+            if not cfg["approval_required"]:
+                conf_thresh = cfg["claim_promotion_confidence"]
+                post_thresh = cfg["claim_promotion_posterior"]
+                if (
+                    confidence >= conf_thresh
+                    and reasoning_eval["posterior_probability"] >= post_thresh
+                ):
+                    promoted = self._promote_claim(
+                        claim_id, entity_id, relationship_type, target_id, proposed_edge_id
+                    )
             
             # Determine fallacy flag intensity for downstream consumption
             fallacy_flag_intensity = self._determine_fallacy_flag_intensity(

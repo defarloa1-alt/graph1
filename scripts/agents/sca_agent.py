@@ -19,6 +19,25 @@ from typing import Dict, List, Optional
 from neo4j import GraphDatabase
 
 
+def _load_sfa_proposal_confidence_default(driver) -> float:
+    """Load sfa_proposal_confidence_default from SYS_Threshold (D8). Fallback 0.75."""
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (t:SYS_Threshold {name: 'sfa_proposal_confidence_default'})
+                RETURN t.value AS value
+                LIMIT 1
+                """,
+            )
+            rec = result.single()
+            if rec and rec["value"] is not None:
+                return float(rec["value"])
+    except Exception:
+        pass
+    return 0.75
+
+
 class SCAAgent:
     """Subject Concept Agent - Stateless orchestrator"""
     
@@ -307,7 +326,7 @@ class SCAAgent:
                                start_year: int,
                                end_year: int,
                                periodo_id: Optional[str] = None,
-                               confidence: float = 0.8) -> Dict:
+                               confidence: Optional[float] = None) -> Dict:
         """
         Create a Period node proposal
         
@@ -317,11 +336,13 @@ class SCAAgent:
             period_type: Type (political, cultural, etc.)
             start_year, end_year: Temporal bounds
             periodo_id: PeriodO ID if matched
-            confidence: Confidence score
+            confidence: Confidence score; if None, from SYS_Threshold sfa_proposal_confidence_default (D8)
         
         Returns:
             Proposal dict
         """
+        if confidence is None:
+            confidence = _load_sfa_proposal_confidence_default(self.driver)
         period_id = f"period_{qid.lower()}"
         
         proposal = {

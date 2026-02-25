@@ -23,10 +23,21 @@
 | Library authority / bibliography | D-025, D-026, D-028 |
 | MCP / tooling | D-031 |
 | D6/D7 threshold refactor | D-032 |
+| D10/D8 claim promotion + SFA confidence | D-033 |
 
 ---
 
 ## Entries
+
+---
+
+### D-033 — D10 Claim Promotion + D8 SFA Confidence (Round 3)
+**Date:** 2026-02-25  
+**Status:** Decided — build complete  
+**Context:** claim_ingestion_pipeline.py hardcoded 0.90/0.90 for promotion; subject_concept_facet_agents.py and sca_agent.py hardcoded 0.8 for proposal confidence. D10 and D8 tables specify SYS_Threshold/SYS_Policy.  
+**Decision:** claim_ingestion_pipeline reads claim_promotion_confidence, claim_promotion_posterior from SYS_Threshold; checks ApprovalRequired from SYS_Policy (or Policy). If ApprovalRequired active, never auto-promote. subject_concept_facet_agents and sca_agent read sfa_proposal_confidence_default from SYS_Threshold for proposal confidence defaults.  
+**Rationale:** Governance layer thresholds live in graph. ApprovalRequired policy is now live configuration.  
+**Consequences:** claim_ingestion_pipeline.py, subject_concept_facet_agents.py, sca_agent.py refactored. Fallback 0.90/0.90/False and 0.75 when graph unavailable.
 
 ---
 
