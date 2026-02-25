@@ -5,6 +5,7 @@ Exposes read-only tools for Neo4j SYS_Policy, SYS_Threshold, SYS_FederationSourc
 D-031: Local-first, Cursor only. No HTTP in v1.
 D-034 Step 1: get_federation_sources, get_subject_concepts added.
 D-034 Step 2: run_cypher_readonly with allowlist and param injection safety.
+D-034 Step 3: HTTP transport (FastAPI), Bearer auth, Railway deploy.
 
 Tools exposed:
   get_policy(name)         → SYS_Policy node properties
@@ -15,14 +16,17 @@ Tools exposed:
   get_subject_concepts()   → SubjectConcept nodes (D-034)
   run_cypher_readonly()   → read-only MATCH queries (D-034)
 
-Usage (Cursor starts this as subprocess via .cursor/mcp.json):
-  python scripts/mcp/chrystallum_mcp_server.py
+Usage:
+  stdio (Cursor): python scripts/mcp/chrystallum_mcp_server.py
+  HTTP:          python scripts/mcp/chrystallum_mcp_server.py --transport http --port 8000
+  Railway:       Procfile runs --transport http --port $PORT
 """
 
+import argparse
 import json
+import os
 import re
 import sys
-import os
 from pathlib import Path
 
 # Neo4j config — reads from .env via config_loader (same pattern as other scripts)
@@ -312,20 +316,67 @@ def handle_request(req: dict) -> dict:
     return {"jsonrpc": "2.0", "id": req_id, "result": {}}
 
 
+def create_http_app():
+    """Create FastAPI app for HTTP MCP transport (D-034 Phase 2)."""
+    try:
+        from fastapi import Depends, FastAPI, HTTPException, Request
+        from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+        from fastapi.responses import JSONResponse
+        import uvicorn
+    except ImportError:
+        raise RuntimeError("FastAPI/uvicorn not installed. Run: pip install fastapi uvicorn")
+
+    app = FastAPI(title="Chrystallum MCP Server", version="2.0.0")
+    security = HTTPBearer()
+
+    API_KEY = os.getenv("MCP_API_KEY")
+    if not API_KEY:
+        raise RuntimeError("MCP_API_KEY environment variable not set")
+
+    def verify_api_key(credentials: HTTPAuthorizationCredentials = Depends(security)):
+        if credentials.credentials != API_KEY:
+            raise HTTPException(status_code=401, detail="Invalid API key")
+        return credentials
+
+    @app.post("/mcp")
+    async def mcp_endpoint(request: Request, _=Depends(verify_api_key)):
+        body = await request.json()
+        response = handle_request(body)
+        return JSONResponse(content=response)
+
+    @app.get("/health")
+    async def health():
+        return {"status": "ok", "version": "2.0.0", "tools": len(TOOLS)}
+
+    return app, uvicorn
+
+
 def main():
-    """stdio MCP server — read newline-delimited JSON-RPC from stdin."""
-    for line in sys.stdin:
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            req = json.loads(line)
-            response = handle_request(req)
-            print(json.dumps(response), flush=True)
-        except json.JSONDecodeError as e:
-            error = {"jsonrpc": "2.0", "id": None,
-                     "error": {"code": -32700, "message": f"Parse error: {e}"}}
-            print(json.dumps(error), flush=True)
+    """Entry point — stdio (default) or HTTP transport."""
+    parser = argparse.ArgumentParser(description="Chrystallum MCP Server")
+    parser.add_argument("--transport", choices=["stdio", "http"],
+                        default="stdio", help="Transport mode")
+    parser.add_argument("--host", default="0.0.0.0")
+    parser.add_argument("--port", type=int, default=8000)
+    args = parser.parse_args()
+
+    if args.transport == "http":
+        app, uvicorn_mod = create_http_app()
+        uvicorn_mod.run(app, host=args.host, port=args.port)
+    else:
+        # Original stdio loop — unchanged
+        for line in sys.stdin:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                req = json.loads(line)
+                response = handle_request(req)
+                print(json.dumps(response), flush=True)
+            except json.JSONDecodeError as e:
+                error = {"jsonrpc": "2.0", "id": None,
+                         "error": {"code": -32700, "message": f"Parse error: {e}"}}
+                print(json.dumps(error), flush=True)
 
 
 if __name__ == "__main__":

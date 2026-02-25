@@ -72,6 +72,8 @@ Once the server has an HTTPS endpoint (e.g. `https://chrystallum-mcp.railway.app
 
 **What architect needs from dev when D-034 is deployed:** Endpoint URL and confirmation that acceptance tests passed. Architect handles Claude.ai connector setup.
 
+**Endpoint URL (Railway):** _Record here when deployed — e.g. `https://chrystallum-mcp-production.up.railway.app`_
+
 ---
 
 ## 4. Build Order

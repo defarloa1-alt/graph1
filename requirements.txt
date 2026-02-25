@@ -18,6 +18,13 @@ python-dotenv==1.0.0
 # Utilities
 pydantic>=2.7.4
 
+# MCP HTTP transport (D-034)
+fastapi>=0.100.0
+uvicorn>=0.23.0
+
+# Testing
+pytest>=7.0.0
+
 # Web UI Frameworks (optional)
 gradio>=4.0.0
 streamlit>=1.30.0
