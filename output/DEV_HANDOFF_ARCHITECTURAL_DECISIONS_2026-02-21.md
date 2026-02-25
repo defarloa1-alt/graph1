@@ -206,3 +206,16 @@ RETURN pm.property_id, pm.property_label, f.key LIMIT 20
 **Schema nodes are NOT part of D-029 relabeling.** They migrate to SYS_PropertyDefinition in SchemaRegistry build. Add `system: true` only; leave Schema label in place.
 
 **Report** Schema 5/6 investigation (done: duplicates, delete one) and confirm deletes/updates before running D-029 relabeling.
+
+---
+
+## Known Fragmentation Points (DMN Extraction Audit — 2026-02-25)
+
+**FORBIDDEN_FACETS duplication — HIGH risk.** The same list appears independently in two scripts with no shared source:
+
+- `sca_agent.py` — in `_validate_bootstrap`
+- `subject_concept_facet_agents.py` — module level (~line 41)
+
+**Current value:** `[TEMPORAL, CLASSIFICATION, PATRONAGE, GENEALOGICAL]`
+
+**Intended fix:** Both scripts should read from the graph (SYS_Policy nodes NoTemporalFacet, NoClassificationFacet, etc.) rather than maintaining separate lists. **Do not fix yet** — populate SYS_Threshold and SYS_Policy nodes first, then refactor scripts to read from graph.
