@@ -25,6 +25,7 @@
 | PID corrected: P1838 → P1047 for LGPN | D-023 | P1838 is PSS-archi (French buildings) |
 | Named federation ID properties on Entity nodes | D-022 | Replaces external_ids map |
 | ToolingSubsystem + ChrystallumMCPServer added | D-031 | MCP read-only server for policy/threshold; FORBIDDEN_FACETS refactor |
+| ChrystallumMCPServer Phase 2: run_cypher_readonly, HTTP | D-034 | get_federation_sources, get_subject_concepts, read-only Cypher; Claude.ai connector |
 | Harvester value properties → SYS_Threshold refs | D-032 | D6/D7 thresholds; ExternalFederationGateway scoping; ClusterAssignment DPRR |
 
 ---
@@ -454,12 +455,12 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 **Responsibility:** Read-only tooling for architect and dev. No write operations. Model-first discipline: catalog before spec.
 
 #### «block» ChrystallumMCPServer
-**Decision:** D-031  
-**Status:** Operational — v1 stdio only  
+**Decision:** D-031, D-034
+**Status:** Operational — v1 stdio; v2 (Phase 2) adds HTTP + run_cypher_readonly
 **Implementation:** `scripts/mcp/chrystallum_mcp_server.py`
 
 **Value properties:**
-- `transport: String = "stdio"` — v2 will add "http"
+- `transport: String = "stdio" | "http"` — D-034 adds HTTP for Claude.ai
 - `version: String = "1.0"`
 - `write_permitted: Boolean = false`
 
@@ -467,7 +468,12 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 - `policy_query_in (in, type: PolicyQueryRequest)`
 - `threshold_query_in (in, type: ThresholdQueryRequest)`
 - `list_request_in (in, type: ListRequest)`
+- `cypher_query_in (in, type: CypherReadOnlyQuery)` — D-034: MATCH only, 500 char, 500 row cap
+- `federation_sources_out (out, type: FederationSourceList)` — D-034
+- `subject_concepts_out (out, type: SubjectConceptList)` — D-034
 - `response_out (out, type: MCPToolResponse)`
+
+**Constraint:** Read-only. No write operations. Neo4j credentials never exposed to clients.
 
 **Operations (exposed as MCP tools):**
 - `get_policy(name: String): SYS_Policy`

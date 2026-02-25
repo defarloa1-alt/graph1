@@ -21,13 +21,23 @@
 | Mercury / sequencing | D-021 |
 | Modeling (SysML/DMN/BPMN) | D-024 |
 | Library authority / bibliography | D-025, D-026, D-028 |
-| MCP / tooling | D-031 |
+| MCP / tooling | D-031, D-034 |
 | D6/D7 threshold refactor | D-032 |
 | D10/D8 claim promotion + SFA confidence | D-033 |
 
 ---
 
 ## Entries
+
+---
+
+### D-034 — MCP Phase 2: Read-Only Graph Query + HTTP Transport
+**Date:** 2026-02-25  
+**Status:** Decided — spec ready for build  
+**Context:** Architect pre-work cycle (write queries → dev runs → dev reports) is slow and loses fidelity. Claude.ai needs direct graph access for Library Authority pre-work and future workstreams.  
+**Decision:** Extend MCP server with (1) `get_federation_sources()` and `get_subject_concepts()`, (2) `run_cypher_readonly` with strict allowlist (MATCH only; block CREATE/SET/DELETE/MERGE/CALL/LOAD; 500 char limit; 500 row cap), (3) HTTP transport for Claude.ai connector. Deploy to Railway (or similar) with Neo4j credentials as env secrets.  
+**Rationale:** Architect queries graph directly → interprets → specs Phase 3 from live state. Serves every future workstream, not just Library Authority.  
+**Consequences:** docs/D034_MCP_PHASE2_SPEC.md; chrystallum_mcp_server.py extended; HTTP layer added; block catalog updated.
 
 ---
 
