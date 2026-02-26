@@ -327,15 +327,16 @@ def create_http_app():
         raise RuntimeError("FastAPI/uvicorn not installed. Run: pip install fastapi uvicorn")
 
     app = FastAPI(title="Chrystallum MCP Server", version="2.0.0")
-    security = HTTPBearer()
-
     API_KEY = os.getenv("MCP_API_KEY")
-    if not API_KEY:
-        raise RuntimeError("MCP_API_KEY environment variable not set")
+    # Auth optional when MCP_API_KEY not set (Claude web can't send custom headers)
+    security = HTTPBearer(auto_error=False)
 
     def verify_api_key(credentials: HTTPAuthorizationCredentials = Depends(security)):
-        if credentials.credentials != API_KEY:
-            raise HTTPException(status_code=401, detail="Invalid API key")
+        if API_KEY:
+            if not credentials:
+                raise HTTPException(status_code=401, detail="Authorization required")
+            if credentials.credentials != API_KEY:
+                raise HTTPException(status_code=401, detail="Invalid API key")
         return credentials
 
     @app.post("/mcp")
