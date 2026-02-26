@@ -7,6 +7,16 @@
 // ============================================================================
 
 // ============================================================================
+// FEDERATION ID PROPERTIES (D-022 — Optional on Entity nodes)
+// ============================================================================
+// Separate named properties per federation PID. Use federation names for legibility.
+// Properties: pleiades_id (P1584), trismegistos_id (P1696), lgpn_id (P1838),
+// viaf_id (P214), getty_aat_id (P1014), edh_id (P2192), ocd_id (P9106).
+// dprr_uri exists separately for DPRR-anchored entities.
+// No constraints — all optional. Populated by cluster_assignment and enrichment scripts.
+// ============================================================================
+
+// ============================================================================
 // CORE ENTITY UNIQUENESS CONSTRAINTS
 // ============================================================================
 

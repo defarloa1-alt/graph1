@@ -13,14 +13,7 @@ USERNAME = "neo4j"
 PASSWORD = "K2sHUx9dFYhEOurYzNjlBuNb8AV9-Xlw-KJcQ85QBHM"
 DATABASE = "neo4j"
 
-print("=" * 80)
-print("LOADING ROMAN REPUBLIC ONTOLOGY TO NEO4J")
-print("=" * 80)
-print()
-
-driver = GraphDatabase.driver(URI, auth=(USERNAME, PASSWORD))
-
-# Roman Republic Ontology Structure
+# Roman Republic Ontology Structure (importable without side effects)
 ONTOLOGY = {
     # Root
     'subj_roman_republic_q17167': {
@@ -587,8 +580,15 @@ ONTOLOGY = {
     },
 }
 
+
+def _get_driver():
+    return GraphDatabase.driver(URI, auth=(USERNAME, PASSWORD))
+
+
 def create_nodes_batch(tx, batch):
-    """Create SubjectConcept nodes in batch"""
+    """Create SubjectConcept nodes in batch.
+    QID-less concepts get authority_federation_state: FS0_SYNTHETIC (honest provenance).
+    """
     query = """
     UNWIND $batch AS row
     MERGE (s:SubjectConcept {subject_id: row.subject_id})
@@ -597,7 +597,11 @@ def create_nodes_batch(tx, batch):
         s.primary_facet = row.primary_facet,
         s.level = row.level,
         s.status = 'approved',
-        s.created_date = datetime()
+        s.created_date = datetime(),
+        s.authority_federation_state = CASE WHEN row.qid IS NULL OR row.qid = '' 
+            THEN 'FS0_SYNTHETIC' ELSE null END,
+        s.source = CASE WHEN row.qid IS NULL OR row.qid = '' 
+            THEN 'synthetic' ELSE 'wikidata' END
     """
     tx.run(query, batch=batch)
 
@@ -611,153 +615,164 @@ def create_hierarchy_batch(tx, batch):
     """
     tx.run(query, batch=batch)
 
-# Step 1: Create all nodes
-print("[1/3] Creating SubjectConcept nodes...")
-batch = []
 
-for subject_id, data in ONTOLOGY.items():
-    batch.append({
-        'subject_id': subject_id,
-        'label': data['label'],
-        'qid': data.get('qid'),
-        'primary_facet': data['primary_facet'],
-        'level': data['level']
-    })
+def main():
+    driver = _get_driver()
+    print("=" * 80)
+    print("LOADING ROMAN REPUBLIC ONTOLOGY TO NEO4J")
+    print("=" * 80)
+    print()
+    # Step 1: Create all nodes
+    print("[1/3] Creating SubjectConcept nodes...")
+    batch = []
 
-with driver.session(database=DATABASE) as session:
-    session.execute_write(create_nodes_batch, batch)
-
-print(f"  Created {len(batch)} SubjectConcept nodes")
-print()
-
-# Step 2: Create hierarchy
-print("[2/3] Creating PART_OF hierarchy...")
-hierarchy_batch = []
-
-for subject_id, data in ONTOLOGY.items():
-    if data['parent']:
-        hierarchy_batch.append({
-            'child': subject_id,
-            'parent': data['parent']
+    for subject_id, data in ONTOLOGY.items():
+        batch.append({
+            'subject_id': subject_id,
+            'label': data['label'],
+            'qid': data.get('qid'),
+            'primary_facet': data['primary_facet'],
+            'level': data['level']
         })
 
-with driver.session(database=DATABASE) as session:
-    session.execute_write(create_hierarchy_batch, hierarchy_batch)
+    with driver.session(database=DATABASE) as session:
+        session.execute_write(create_nodes_batch, batch)
 
-print(f"  Created {len(hierarchy_batch)} PART_OF relationships")
-print()
+    print(f"  Created {len(batch)} SubjectConcept nodes")
+    print()
 
-# Step 3: Create cross-links
-print("[3/3] Creating RELATED_TO cross-links...")
+    # Step 2: Create hierarchy
+    print("[2/3] Creating PART_OF hierarchy...")
+    hierarchy_batch = []
 
-cross_links = [
-    ('subj_rr_factions_civil_wars', 'subj_rr_mil_wars_campaigns', 'Civil conflict spans political and military'),
-    ('subj_rr_soc_patronage', 'subj_rr_gov_institutions', 'Patronage networks interact with institutions'),
-    ('subj_rr_econ_tax_revenue', 'subj_rr_geo_provinces_admin', 'Revenue depends on provincial administration'),
-    ('subj_rr_ideas_oratory', 'subj_rr_gov_factions', 'Rhetoric serves factional politics'),
-    ('subj_rr_rel_offices', 'subj_rr_gov_offices', 'Religious authority overlaps with political office'),
-]
+    for subject_id, data in ONTOLOGY.items():
+        if data['parent']:
+            hierarchy_batch.append({
+                'child': subject_id,
+                'parent': data['parent']
+            })
 
-with driver.session(database=DATABASE) as session:
-    for from_id, to_id, rationale in cross_links:
-        session.run("""
-            MATCH (a:SubjectConcept {subject_id: $from_id})
-            MATCH (b:SubjectConcept {subject_id: $to_id})
-            MERGE (a)-[r:RELATED_TO]->(b)
-            SET r.rationale = $rationale
-        """, from_id=from_id, to_id=to_id, rationale=rationale)
+    with driver.session(database=DATABASE) as session:
+        session.execute_write(create_hierarchy_batch, hierarchy_batch)
 
-print(f"  Created {len(cross_links)} RELATED_TO relationships")
-print()
+    print(f"  Created {len(hierarchy_batch)} PART_OF relationships")
+    print()
 
-# Verification
-print("=" * 80)
-print("VERIFICATION")
-print("=" * 80)
+    # Step 3: Create cross-links
+    print("[3/3] Creating RELATED_TO cross-links...")
 
-with driver.session(database=DATABASE) as session:
-    # Count nodes
-    result = session.run("""
-        MATCH (s:SubjectConcept)
-        WHERE s.subject_id STARTS WITH 'subj_rr_' OR s.subject_id = 'subj_roman_republic_q17167'
-        RETURN count(s) AS total
-    """)
-    total_nodes = result.single()['total']
-    
-    # Count by level
-    result = session.run("""
-        MATCH (s:SubjectConcept)
-        WHERE s.subject_id STARTS WITH 'subj_rr_' OR s.subject_id = 'subj_roman_republic_q17167'
-        RETURN s.level AS level, count(s) AS count
-        ORDER BY level
-    """)
-    
-    print(f"\nSubjectConcept nodes created: {total_nodes}")
-    print("\nBy level:")
-    for record in result:
-        print(f"  Level {record['level']}: {record['count']} nodes")
-    
-    # Count relationships
-    result = session.run("""
-        MATCH ()-[r:PART_OF]->(:SubjectConcept {subject_id: 'subj_roman_republic_q17167'})
-        RETURN count(r) AS direct_children
-    """)
-    direct_children = result.single()['direct_children']
-    
-    result = session.run("""
-        MATCH (s:SubjectConcept)-[r:PART_OF]->()
-        WHERE s.subject_id STARTS WITH 'subj_rr_'
-        RETURN count(r) AS total_part_of
-    """)
-    total_part_of = result.single()['total_part_of']
-    
-    result = session.run("""
-        MATCH ()-[r:RELATED_TO]->()
-        RETURN count(r) AS cross_links
-    """)
-    cross_links_count = result.single()['cross_links']
-    
-    print(f"\nRelationships:")
-    print(f"  Direct children of root: {direct_children}")
-    print(f"  Total PART_OF: {total_part_of}")
-    print(f"  Cross-links (RELATED_TO): {cross_links_count}")
-    
-    # Sample nodes
-    print("\nSample L1 branches:")
-    result = session.run("""
-        MATCH (s:SubjectConcept)-[:PART_OF]->(root:SubjectConcept {subject_id: 'subj_roman_republic_q17167'})
-        RETURN s.label AS label, s.primary_facet AS facet
-        ORDER BY s.label
-    """)
-    for record in result:
-        print(f"  - {record['label']} ({record['facet']})")
-    
-    # Show vertex jump hubs
-    print("\nCross-link hubs (vertex jump nodes):")
-    result = session.run("""
-        MATCH (s:SubjectConcept)-[r:RELATED_TO]-()
-        WITH s, count(r) AS link_count
-        WHERE link_count > 0
-        RETURN s.label AS label, link_count
-        ORDER BY link_count DESC
-    """)
-    for record in result:
-        print(f"  - {record['label']} ({record['link_count']} cross-links)")
+    cross_links = [
+        ('subj_rr_factions_civil_wars', 'subj_rr_mil_wars_campaigns', 'Civil conflict spans political and military'),
+        ('subj_rr_soc_patronage', 'subj_rr_gov_institutions', 'Patronage networks interact with institutions'),
+        ('subj_rr_econ_tax_revenue', 'subj_rr_geo_provinces_admin', 'Revenue depends on provincial administration'),
+        ('subj_rr_ideas_oratory', 'subj_rr_gov_factions', 'Rhetoric serves factional politics'),
+        ('subj_rr_rel_offices', 'subj_rr_gov_offices', 'Religious authority overlaps with political office'),
+    ]
 
-driver.close()
+    with driver.session(database=DATABASE) as session:
+        for from_id, to_id, rationale in cross_links:
+            session.run("""
+                MATCH (a:SubjectConcept {subject_id: $from_id})
+                MATCH (b:SubjectConcept {subject_id: $to_id})
+                MERGE (a)-[r:RELATED_TO]->(b)
+                SET r.rationale = $rationale
+            """, from_id=from_id, to_id=to_id, rationale=rationale)
 
-print()
-print("=" * 80)
-print("ROMAN REPUBLIC ONTOLOGY LOADED SUCCESSFULLY!")
-print("=" * 80)
-print()
-print(f"Total nodes: {total_nodes}")
-print(f"Total hierarchy links: {total_part_of}")
-print(f"Total cross-links: {cross_links_count}")
-print()
-print("Next steps:")
-print("  1. Verify in Neo4j Browser")
-print("  2. Spawn SFA agents (Political, Military, Social first)")
-print("  3. Begin entity/claim loading")
-print()
+    print(f"  Created {len(cross_links)} RELATED_TO relationships")
+    print()
+
+    # Verification
+    print("=" * 80)
+    print("VERIFICATION")
+    print("=" * 80)
+
+    with driver.session(database=DATABASE) as session:
+        # Count nodes
+        result = session.run("""
+            MATCH (s:SubjectConcept)
+            WHERE s.subject_id STARTS WITH 'subj_rr_' OR s.subject_id = 'subj_roman_republic_q17167'
+            RETURN count(s) AS total
+        """)
+        total_nodes = result.single()['total']
+
+        # Count by level
+        result = session.run("""
+            MATCH (s:SubjectConcept)
+            WHERE s.subject_id STARTS WITH 'subj_rr_' OR s.subject_id = 'subj_roman_republic_q17167'
+            RETURN s.level AS level, count(s) AS count
+            ORDER BY level
+        """)
+
+        print(f"\nSubjectConcept nodes created: {total_nodes}")
+        print("\nBy level:")
+        for record in result:
+            print(f"  Level {record['level']}: {record['count']} nodes")
+
+        # Count relationships
+        result = session.run("""
+            MATCH ()-[r:PART_OF]->(:SubjectConcept {subject_id: 'subj_roman_republic_q17167'})
+            RETURN count(r) AS direct_children
+        """)
+        direct_children = result.single()['direct_children']
+
+        result = session.run("""
+            MATCH (s:SubjectConcept)-[r:PART_OF]->()
+            WHERE s.subject_id STARTS WITH 'subj_rr_'
+            RETURN count(r) AS total_part_of
+        """)
+        total_part_of = result.single()['total_part_of']
+
+        result = session.run("""
+            MATCH ()-[r:RELATED_TO]->()
+            RETURN count(r) AS cross_links
+        """)
+        cross_links_count = result.single()['cross_links']
+
+        print(f"\nRelationships:")
+        print(f"  Direct children of root: {direct_children}")
+        print(f"  Total PART_OF: {total_part_of}")
+        print(f"  Cross-links (RELATED_TO): {cross_links_count}")
+
+        # Sample nodes
+        print("\nSample L1 branches:")
+        result = session.run("""
+            MATCH (s:SubjectConcept)-[:PART_OF]->(root:SubjectConcept {subject_id: 'subj_roman_republic_q17167'})
+            RETURN s.label AS label, s.primary_facet AS facet
+            ORDER BY s.label
+        """)
+        for record in result:
+            print(f"  - {record['label']} ({record['facet']})")
+
+        # Show vertex jump hubs
+        print("\nCross-link hubs (vertex jump nodes):")
+        result = session.run("""
+            MATCH (s:SubjectConcept)-[r:RELATED_TO]-()
+            WITH s, count(r) AS link_count
+            WHERE link_count > 0
+            RETURN s.label AS label, link_count
+            ORDER BY link_count DESC
+        """)
+        for record in result:
+            print(f"  - {record['label']} ({record['link_count']} cross-links)")
+
+    driver.close()
+
+    print()
+    print("=" * 80)
+    print("ROMAN REPUBLIC ONTOLOGY LOADED SUCCESSFULLY!")
+    print("=" * 80)
+    print()
+    print(f"Total nodes: {total_nodes}")
+    print(f"Total hierarchy links: {total_part_of}")
+    print(f"Total cross-links: {cross_links_count}")
+    print()
+    print("Next steps:")
+    print("  1. Verify in Neo4j Browser")
+    print("  2. Spawn SFA agents (Political, Military, Social first)")
+    print("  3. Begin entity/claim loading")
+    print()
+
+
+if __name__ == "__main__":
+    main()
 

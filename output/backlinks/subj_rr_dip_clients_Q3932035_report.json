@@ -1,0 +1,550 @@
+{
+  "generated_at": "2026-02-24T00:30:11.269786+00:00",
+  "seed_qid": "Q3932035",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 17,
+    "candidate_sources_before_budget": 10,
+    "candidate_sources_considered": 10,
+    "accepted_before_node_budget": 9,
+    "accepted": 9,
+    "rejected": 1,
+    "entities_profiled": 9,
+    "frontier_eligible": 9,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.1,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "no_p31": 1
+  },
+  "datatype_profile_summary": {
+    "statement_count": 141,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 22,
+    "with_references": 28,
+    "qualifier_rate": 0.15602836879432624,
+    "reference_rate": 0.19858156028368795,
+    "datatype_counts": {
+      "string": 2,
+      "external-id": 40,
+      "wikibase-item": 77,
+      "time": 12,
+      "commonsMedia": 6,
+      "globe-coordinate": 4
+    },
+    "value_type_counts": {
+      "string": 48,
+      "wikibase-entityid": 77,
+      "time": 12,
+      "globecoordinate": 4
+    },
+    "pair_counts": {
+      "string|string": 2,
+      "external-id|string": 40,
+      "wikibase-item|wikibase-entityid": 77,
+      "time|time": 12,
+      "commonsMedia|string": 6,
+      "globe-coordinate|globecoordinate": 4
+    },
+    "route_counts": {
+      "node_property": 2,
+      "federation_id": 40,
+      "edge_candidate": 77,
+      "temporal_anchor": 11,
+      "media_reference": 6,
+      "geo_attribute": 4,
+      "temporal_uncertain": 1
+    },
+    "rank_counts": {
+      "normal": 140,
+      "deprecated": 1
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 9,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q7380487",
+      "label": "Kingdom of Pontus",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3932025",
+        "Q3932035",
+        "Q48349"
+      ],
+      "matched_classes": [
+        "Q3932025",
+        "Q3932035",
+        "Q48349"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/06wc9t7",
+        "P2924": "3158245",
+        "P691": "ge131504",
+        "P8217": "2044051",
+        "P2950": "pontic_kingdom",
+        "P13030": "class_status/316"
+      },
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 9,
+        "with_references": 6,
+        "qualifier_rate": 0.3,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 6,
+          "edge_candidate": 18,
+          "temporal_anchor": 2,
+          "media_reference": 2,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13333333333333333,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q104834466",
+      "label": "Thracian kingdom (Roman vassal state)",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3024240",
+        "Q3932035"
+      ],
+      "matched_classes": [
+        "Q3024240",
+        "Q3932035"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2671": "/g/11n0glywf2"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11877034",
+      "label": "Kingdom of Vannius",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1250464",
+        "Q3932035"
+      ],
+      "matched_classes": [
+        "Q1250464",
+        "Q3932035"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2671": "/g/1234ywwg"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16000109",
+      "label": "Herodian Kingdom of Judea",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3024240",
+        "Q3932035"
+      ],
+      "matched_classes": [
+        "Q3024240",
+        "Q3932035"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/0h63hb3",
+        "P214": "1015154381051030292615"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.11764705882352941,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 2,
+          "federation_id": 2,
+          "media_reference": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11764705882352941,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1613773",
+      "label": "Herodian tetrarchy",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3932035",
+        "Q6555883"
+      ],
+      "matched_classes": [
+        "Q3932035",
+        "Q6555883"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/02qd55h"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.13333333333333333,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 10,
+          "temporal_anchor": 2,
+          "geo_attribute": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13333333333333333,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q321371",
+      "label": "Bosporan Kingdom",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3932025",
+        "Q3932035"
+      ],
+      "matched_classes": [
+        "Q3932025",
+        "Q3932035"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P349": "00560900",
+        "P646": "/m/032hyh",
+        "P227": "4069610-8",
+        "P2924": "1879797",
+        "P4212": "pcrtMgNYA8L3sR",
+        "P214": "137262714",
+        "P244": "n84238501",
+        "P1417": "place/Kingdom-of-the-Bosporus",
+        "P1296": "0011656",
+        "P691": "ge315187",
+        "P8408": "BosporanKingdom",
+        "P9070": "B\\O\\BosporanKingdom",
+        "P8189": "987007562365505171",
+        "P7305": "3879884",
+        "P4342": "Bosporanske_rike",
+        "P12086": "Bosporuskoninkrijk",
+        "P12385": "regne-del-bosfor",
+        "P3222": "bosporanska-riket",
+        "P1667": "6000896",
+        "P4839": "Entity[\"HistoricalCountry\", \"BosporanKingdom\"]",
+        "P5019": "bosporanisches-reich",
+        "P9162": "133053",
+        "P13030": "class_status/317",
+        "P12582": "20110803095519653",
+        "P2163": "1230430",
+        "P7699": "LNB:OGB;=r5",
+        "P13591": "place/5598bcdf-935b-4f42-95ff-4010aa6a386a",
+        "P13691": "23761"
+      },
+      "statement_profile": {
+        "statement_count": 56,
+        "with_qualifiers": 8,
+        "with_references": 17,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.30357142857142855,
+        "route_counts": {
+          "temporal_anchor": 2,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 28,
+          "edge_candidate": 23,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05357142857142857,
+        "edge_candidate_count": 23,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136702054",
+      "label": "Kingdom of Emesa",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3932035"
+      ],
+      "matched_classes": [
+        "Q3932035"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136702067",
+      "label": "Kingdom of Palmyra",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3932035"
+      ],
+      "matched_classes": [
+        "Q3932035"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5404148",
+      "label": "Ethnarchy of Comana",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q3932035"
+      ],
+      "matched_classes": [
+        "Q3932035"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02pkk1w"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q3446134",
+      "label": "Roman client kingdoms in Britain",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

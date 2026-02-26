@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chrystallum — Claim Bayesian Update Formalism
+  SysML v1.6 / UML 2.5.1 XMI for Visual Paradigm 17.3
+  Generated: 2026-02-25
+  Decision: D-036
+  Status: APPROVED — model-first expression of governed Bayesian update
+
+  What this models:
+    The formal semantics of claim credence update in Chrystallum.
+    Based on the governed Bayesian claim-update framework:
+
+      If E is admissible (H̃_c ⊨ Γ):
+        P_t+1(c) = P_t(E|c) · P_t(c) / P_t(E)
+      Else:
+        P_t+1(c) = P_t(c)  [no change]
+
+    Every value property and constraint in this file maps to a
+    named element in the formal notation (see D-036 Part 2).
+
+  Companion file: proposed_multiagent_broadcast_optin.xmi
+    (coordination structure — SCA/SFA broadcast pattern)
+  This file: claim update semantics — Bayesian formalism
+
+  Import instructions (VP 17.3):
+    File → Import → XMI/XML → select this file
+    After import: open Claim_Bayesian_Formal package
+    Recommended diagrams:
+      BDD: Claim, Source, EvidenceDelta, ClaimLifecycleService, SCAEngine
+      Constraints panel: inspect credence_update constraints on Claim
+      StateMachine: CipherStateMachine on EvidenceDelta
+
+  Formal notation → SysML mapping:
+    G = (V,E)         → Neo4j graph (not modeled here — external)
+    c ∈ V             → Claim block
+    H_c = G[U_c]      → subcluster part on SCAEngine
+    Γ                 → governanceCheck() operation on CLS
+    E = H̃_c \ H_c   → EvidenceDelta block
+    P_t(c)            → Claim.credence
+    P_t(E|c)          → Claim.likelihood
+    P_t(E)            → Claim.marginal
+    H ⊨ Γ            → EvidenceDelta.admissible = true
+    U_Γ(H_c, H̃_c)  → CipherStateMachine on EvidenceDelta
+-->
+<xmi:XMI
+  xmi:version="2.1"
+  xmlns:xmi="http://schema.omg.org/spec/XMI/2.1"
+  xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
+  xmlns:sysml="http://www.eclipse.org/papyrus/sysml/1.6/SysML"
+  xmlns:blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks"
+  xmlns:constraints="http://www.eclipse.org/papyrus/sysml/1.6/SysML/ConstraintBlocks">
+
+  <uml:Model xmi:id="model_claim_bayesian"
+    name="Chrystallum_Claim_Bayesian_Formal">
+
+    <profileApplication xmi:id="pa_sysml">
+      <appliedProfile href="pathmap://SysML16/SysML.profile.uml#_SysML"/>
+    </profileApplication>
+
+    <packagedElement
+      xmi:type="uml:Package"
+      xmi:id="pkg_bayesian"
+      name="Claim_Bayesian_Formal">
+
+      <!-- ============================================================
+           ENUMERATION: BoundaryStatus
+           Derived from fractal theory — boundary/interior distinction
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Enumeration"
+        xmi:id="enum_boundary_status"
+        name="BoundaryStatus">
+        <ownedLiteral xmi:id="bs_interior" name="interior">
+          <ownedComment><body>confidence > promotion_threshold
+AND corroboration_count >= 2
+AND dispute_count = 0
+AND no pending enrichment
+Stable. Well-corroborated. Does not change under normal operation.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="bs_boundary" name="boundary">
+          <ownedComment><body>Assembling, pending enrichment, single source,
+or confidence approaching threshold.
+Active formation zone. Where disputes and enrichments accumulate.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="bs_frontier" name="frontier">
+          <ownedComment><body>Proposed, no corroboration, no facet concurrence yet.
+Survival uncertain. May become isolated if no corroboration arrives.</body></ownedComment>
+        </ownedLiteral>
+      </packagedElement>
+
+      <!-- ============================================================
+           ENUMERATION: LifePattern
+           Game of Life pattern classification — derived from claim history
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Enumeration"
+        xmi:id="enum_life_pattern"
+        name="LifePattern">
+        <ownedLiteral xmi:id="lp_still_life" name="still_life">
+          <ownedComment><body>Stable, multiply corroborated, no disputes.
+Does not change under normal operation.
+Example: C3 — Fugitive Slave Act was part of Compromise of 1850.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="lp_glider" name="glider">
+          <ownedComment><body>Relevant to multiple SubjectConcepts.
+Propagates across the graph connecting anchors.
+Example: P2 — vocabulary symmetry claim connects multiple SubjectConcepts.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="lp_oscillator" name="oscillator">
+          <ownedComment><body>Disputed repeatedly. Flips between proposed and disputed.
+After dispute_count exceeds oscillation_limit:
+  status → contested_permanent
+  no further auto-promotion attempts
+  flagged for human scholarly review</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="lp_frontier" name="frontier">
+          <ownedComment><body>Newly born. No corroboration. Survival uncertain.
+Transitions to still_life, glider, or oscillator as history accumulates.
+May become isolated → archived if corroboration never arrives.</body></ownedComment>
+        </ownedLiteral>
+      </packagedElement>
+
+      <!-- ============================================================
+           ENUMERATION: SubclaimType
+           Determines likelihood weight P_t(E|c) for confidence propagation
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Enumeration"
+        xmi:id="enum_subclaim_type"
+        name="SubclaimType">
+        <ownedLiteral xmi:id="sct_causal" name="causal">
+          <ownedComment><body>Load-bearing subclaim.
+P_t(E|c) HIGH — this evidence would only tend to appear
+if the parent claim is actually true. Discriminating.
+Likelihood weight: 0.6–0.9 (SYS_Threshold: likelihood_causal_weight)
+Example: C4 — northern refusal caused "conservative" to acquire meaning.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="sct_factual" name="factual">
+          <ownedComment><body>Support structure subclaim.
+P_t(E|c) LOW — this evidence would exist in many claim contexts
+regardless of whether the parent claim is true. Not discriminating.
+Likelihood weight: 0.2–0.4 (SYS_Threshold: likelihood_factual_weight)
+Example: C3 — Fugitive Slave Act was part of Compromise of 1850.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="sct_contextual" name="contextual">
+          <ownedComment><body>Context-constraining subclaim.
+P_t(E|c) MEDIUM — constrains the claim without confirming it.
+Likelihood weight: 0.3–0.6 (SYS_Threshold: likelihood_contextual_weight)
+Example: C1 — "conservative" had no specific US political meaning before 1850.</body></ownedComment>
+        </ownedLiteral>
+      </packagedElement>
+
+      <!-- ============================================================
+           ENUMERATION: ConvergenceStatus
+           Output of SCAEngine.monitorConvergence()
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Enumeration"
+        xmi:id="enum_convergence_status"
+        name="ConvergenceStatus">
+        <ownedLiteral xmi:id="cs_forming" name="forming">
+          <ownedComment><body>Mostly State 3 (new claims). Argument still building.
+State2_rate / (State2_rate + State3_rate) below convergence_ratio threshold.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="cs_stabilising" name="stabilising">
+          <ownedComment><body>State 2 rate increasing. Argument consolidating.
+Approaching convergence_ratio threshold.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="cs_converged" name="converged">
+          <ownedComment><body>Mostly State 2 (corroboration). Argument stable.
+State2_rate exceeds convergence_ratio threshold.
+Action: flag SubjectConcept for architect review.
+Question: is this SubjectConcept complete, or just
+exhausted by current source set?</body></ownedComment>
+        </ownedLiteral>
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: Claim
+           Formal: c ∈ V with credence P_t(c)
+           Contains Bayesian update constraints
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_claim"
+        name="Claim">
+
+        <appliedStereotype xmi:idref="st_block_claim"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>A claim node in the knowledge graph.
+Formal: c ∈ V
+
+Credence P_t(c) is updated via governed Bayesian rule:
+  If E admissible: P_t+1(c) = P_t(E|c) · P_t(c) / P_t(E)
+  Else:            P_t+1(c) = P_t(c)
+
+Fractal property: Claim is both a node (addressable, citable,
+disputable) and a subgraph (argument with internal structure).
+The same properties repeat at every scale from atomic subclaim
+to MultiDimensionalClaim.</body>
+        </ownedComment>
+
+        <!-- Value Properties — Bayesian -->
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_credence"
+          name="credence" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          <ownedComment><body>P_t(c) — current belief that claim is true.
+Range: [0.0, 1.0]
+Updated via Bayesian rule when admissible evidence arrives.
+NOTE: renamed from "confidence" for formal precision.
+confidence is colloquial; credence is the probability-theoretic term.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_likelihood"
+          name="likelihood" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          <ownedComment><body>P_t(E|c) — probability of seeing evidence E
+if this claim is true.
+Range: [0.0, 1.0]
+Determined by subclaim_type of the evidence:
+  causal:     0.6–0.9  (load-bearing, discriminating)
+  factual:    0.2–0.4  (support structure, not discriminating)
+  contextual: 0.3–0.6  (constraining but not confirming)
+Stored per claim-evidence pair, not per claim alone.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_marginal"
+          name="marginal" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          <ownedComment><body>P_t(E) — probability of seeing evidence E
+regardless of whether this claim is true.
+Range: [0.0, 1.0]
+Function of source independence:
+  independent source  → lower marginal  → larger credence update
+  dependent source    → higher marginal → smaller credence update
+P_t(E) = f(Source.independence_score, independence_weight_factor)</body></ownedComment>
+        </ownedAttribute>
+
+        <!-- Value Properties — Fractal -->
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_fd"
+          name="fractal_dimension" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          <ownedComment><body>Derived. Measures claim structural complexity.
+fractal_dimension = subclaim_depth * subclaim_branching_factor
+High dimension → more load-bearing structure → higher promotion threshold.
+Used by D10 to compute required credence threshold for promotion.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_boundary"
+          name="boundary_status" aggregation="none">
+          <type xmi:idref="enum_boundary_status"/>
+          <ownedComment><body>Derived from claim state.
+interior:  stable, multiply corroborated, no disputes
+boundary:  forming, pending enrichment, single source
+frontier:  proposed, no corroboration
+Used by Cytoscape UI for visual differentiation.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_lp"
+          name="life_pattern" aggregation="none">
+          <type xmi:idref="enum_life_pattern"/>
+          <ownedComment><body>Derived from claim history. Not stored — computed.
+still_life:  stable interior
+glider:      multi-SubjectConcept relevance
+oscillator:  dispute_count > oscillation_limit → contested_permanent
+frontier:    corroboration_count = 0</body></ownedComment>
+        </ownedAttribute>
+
+        <!-- Value Properties — History -->
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_corr"
+          name="corroboration_count" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <ownedComment><body>Number of independent State 2 events on this claim.
+Incremented by SCA on each admissible source addition.
+Input to boundary_status and life_pattern derivation.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_disp"
+          name="dispute_count" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <ownedComment><body>Number of times this claim has been disputed.
+When dispute_count > oscillation_limit:
+  life_pattern → oscillator
+  status → contested_permanent
+  no further auto-promotion</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_c_sc_count"
+          name="subject_concept_count" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <ownedComment><body>Number of SubjectConcepts this claim is relevant to.
+subject_concept_count > 1 → life_pattern = glider
+Glider claims propagate across SubjectConcept boundaries
+and are particularly valuable for cross-domain connections.</body></ownedComment>
+        </ownedAttribute>
+
+        <!-- Constraints — Bayesian Update Rules -->
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_credence_accepted"
+          name="credence_update_accepted">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- When evidence delta E is admissible (H̃_c ⊨ Γ)
+-- Formal: P_t+1(c) = P_t(E|c) · P_t(c) / P_t(E)
+context Claim
+  let E: EvidenceDelta in
+  E.admissible = true implies
+    self.credence_new = (self.likelihood * self.credence_old) / self.marginal</body>
+          </specification>
+        </ownedRule>
+
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_credence_rejected"
+          name="credence_update_rejected">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- When evidence delta E is NOT admissible (H̃_c ⊭ Γ)
+-- Formal: P_t+1(c) = P_t(c)
+context Claim
+  let E: EvidenceDelta in
+  E.admissible = false implies
+    self.credence_new = self.credence_old</body>
+          </specification>
+        </ownedRule>
+
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_life_pattern"
+          name="life_pattern_derivation">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- Derived Game of Life pattern classification
+context Claim
+  self.life_pattern =
+    if self.dispute_count > SYS_Threshold.oscillation_limit
+    then LifePattern::oscillator
+    else if self.subject_concept_count > 1
+    then LifePattern::glider
+    else if self.credence > SYS_Threshold.promotion_threshold
+         and self.corroboration_count >= 2
+         and self.dispute_count = 0
+    then LifePattern::still_life
+    else LifePattern::frontier
+    endif endif endif</body>
+          </specification>
+        </ownedRule>
+
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_boundary"
+          name="boundary_status_derivation">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- Derived boundary status from fractal theory
+context Claim
+  self.boundary_status =
+    if self.credence > SYS_Threshold.promotion_threshold
+       and self.corroboration_count >= 2
+       and self.dispute_count = 0
+    then BoundaryStatus::interior
+    else if self.corroboration_count = 0
+    then BoundaryStatus::frontier
+    else BoundaryStatus::boundary
+    endif endif</body>
+          </specification>
+        </ownedRule>
+
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_fractal_dim"
+          name="fractal_dimension_computation">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- Fractal dimension as structural complexity measure
+context Claim
+  self.fractal_dimension =
+    self.subclaim_depth * self.subclaim_branching_factor
+-- High fractal_dimension → higher promotion threshold required
+-- D10 gate: credence >= f(base_threshold, fractal_dimension)</body>
+          </specification>
+        </ownedRule>
+
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_game_of_life"
+          name="game_of_life_death_conditions">
+          <specification xmi:type="uml:OpaqueExpression">
+            <body>UNDERPOPULATION (death by isolation):
+  If corroboration_count = 0 after N iterations:
+    status → isolated
+    flagged for architect review
+    retained for audit (never deleted)
+  N defined by SYS_Threshold: isolation_check_interval
+
+OVERPOPULATION (death of SubjectConcept by crowding):
+  If SubjectConcept.fractal_dimension exceeds threshold:
+    D12 split trigger fires
+    SubjectConcept divides into two more coherent anchors
+  Threshold: SYS_Threshold: subject_concept_split_threshold
+
+OSCILLATION (permanent controversy):
+  If dispute_count > oscillation_limit:
+    life_pattern → oscillator
+    status → contested_permanent
+    no further auto-promotion
+    Threshold: SYS_Threshold: claim_oscillation_limit</body>
+          </specification>
+        </ownedRule>
+
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: Source
+           Formal: source provenance with independence score
+           Independence score determines P_t(E) — the marginal
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_source"
+        name="Source">
+
+        <appliedStereotype xmi:idref="st_block_source"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>Source provenance node. Attached to Claim via [:SOURCED_FROM].
+independence_score determines P_t(E) — the marginal probability
+of seeing this evidence regardless of whether the claim is true.
+
+Independent source: P_t(E) is lower → larger credence update
+Dependent source:   P_t(E) is higher → smaller credence update
+
+independence_score is resolved via Phase 3 Library Authority Integration:
+  VIAF: author identity resolution
+  LCNAF: name authority confirmation
+  Institution: organisational independence check</body>
+        </ownedComment>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_s_ind"
+          name="independence_score" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          <ownedComment><body>Range: [0.0, 1.0]
+1.0 = fully independent (different institution, era, methodology)
+0.0 = fully dependent (same author, same dataset)
+Computed from: author_overlap (VIAF), institution_overlap,
+dataset_overlap, temporal_distance, methodology_distance.
+Used to compute P_t(E) = f(independence_score, independence_weight_factor)</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_s_viaf"
+          name="viaf_id" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>VIAF cluster ID for author identity resolution.
+Required for independence_score computation.
+Populated by Phase 3 Step 1 (VIAFResolver).
+Null until Phase 3 runs.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_s_lcnaf"
+          name="lcnaf_id" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>LC Name Authority File ID.
+Extracted from VIAF cluster in Phase 3 Step 1.
+Confirms author identity for independence computation.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_s_inst"
+          name="institution_id" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Wikidata QID or internal ID for author's institution.
+Used in independence_score computation — same institution
+reduces independence_score.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_s_date"
+          name="publication_date" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Publication date for temporal independence factor.
+Sources further apart in time score higher on temporal independence —
+less likely to share data or methodology.</body></ownedComment>
+        </ownedAttribute>
+
+        <!-- Constraint: independence affects marginal -->
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_independence_marginal"
+          name="independence_affects_marginal">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- Source independence determines P_t(E) — the marginal
+-- Formal: P_t(E) = f(independence_score, independence_weight_factor)
+context Source
+  let w: Real = SYS_Threshold.independence_weight_factor in
+  self.marginal_contribution =
+    1.0 - (self.independence_score * w)
+-- High independence_score → lower marginal → larger credence update
+-- Low independence_score  → higher marginal → smaller credence update
+-- WHY: a dependent source adds less evidence of the claim being true
+--      because you would expect to see similar evidence from them
+--      even if the claim were false</body>
+          </specification>
+        </ownedRule>
+
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: EvidenceDelta
+           Formal: E = H̃_c \ H_c
+           The four cipher states as a StateMachine
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_evidence_delta"
+        name="EvidenceDelta">
+
+        <appliedStereotype xmi:idref="st_block_ed"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>Formal: E = H̃_c \ H_c
+The set difference between proposed subcluster and current subcluster.
+Whatever is present in the proposed version but not in the current version.
+
+Admissible iff H̃_c ⊨ Γ — the proposed full subcluster
+satisfies all governance rules.
+
+The four cipher states are the operationalisation of U_Γ(H_c, H̃_c):
+the governed update function.</body>
+        </ownedComment>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ed_cm"
+          name="cipher_match" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <ownedComment><body>True if the claim content cipher of H̃_c
+matches an existing claim in the graph.
+False if the proposed claim is new.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ed_sn"
+          name="source_new" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <ownedComment><body>True if the source provenance in H̃_c
+is different from all existing sources on this claim.
+Only meaningful when cipher_match = true.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ed_ne"
+          name="nodes_exist" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <ownedComment><body>True if all entity nodes referenced in H̃_c
+already exist in the graph.
+False if SCA must create nodes before claim can be proposed.
+Only meaningful when cipher_match = false.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ed_adm"
+          name="admissible" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <ownedComment><body>True iff H̃_c ⊨ Γ — the proposed subcluster
+satisfies all governance rules.
+Formally: all :GovernanceRule Cypher checks return zero rows.
+This is the gate for credence update:
+  admissible = true  → Bayesian update applies
+  admissible = false → credence unchanged, graph unchanged</body></ownedComment>
+        </ownedAttribute>
+
+        <!-- State Machine: CipherStateMachine -->
+        <ownedBehavior xmi:type="uml:StateMachine" xmi:id="sm_cipher"
+          name="CipherStateMachine">
+
+          <ownedComment><body>Operationalises U_Γ(H_c, H̃_c) — the governed update function.
+Maps the four cipher states to update actions.</body></ownedComment>
+
+          <region xmi:type="uml:Region" xmi:id="sm_cipher_region">
+
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="sm_initial"
+              kind="initial"/>
+
+            <!-- State 1 -->
+            <subvertex xmi:type="uml:State" xmi:id="state_1"
+              name="State1_NoOp">
+              <ownedComment><body>cipher_match=true, source_new=false
+Formal: E is empty — same evidence already present.
+Action: no-op. P_t+1(c) = P_t(c). No graph change.
+This is State 1: exact cipher match, same source.</body></ownedComment>
+            </subvertex>
+
+            <!-- State 2 -->
+            <subvertex xmi:type="uml:State" xmi:id="state_2"
+              name="State2_SourceCorroboration">
+              <ownedComment><body>cipher_match=true, source_new=true
+Formal: E = {new Source node + SOURCED_FROM edge}
+E is admissible iff new Source satisfies governance (has independence_score etc.)
+Action if admissible:
+  Add source to claim provenance
+  Compute credence update:
+    P_t+1(c) = P_t(E|c) · P_t(c) / P_t(E)
+    where P_t(E) = f(new_source.independence_score)
+  No new Claim node created
+  GPS writes source relationship only
+NOTE: credence bump magnitude depends on source independence.
+      Independent source → larger bump.
+      Dependent source → smaller bump.
+This implements independent corroboration — most valuable signal
+in historical scholarship.</body></ownedComment>
+            </subvertex>
+
+            <!-- State 3 -->
+            <subvertex xmi:type="uml:State" xmi:id="state_3"
+              name="State3_NewClaim">
+              <ownedComment><body>cipher_match=false, nodes_exist=true
+Formal: E = new Claim node + relationships
+E is admissible iff H̃_c ⊨ Γ
+Action if admissible:
+  New Claim node created
+  credence initialised (frontier status, low initial value)
+  Claim enters lifecycle pipeline
+  Subcluster boundary extended
+Action if not admissible:
+  No graph change, no credence change</body></ownedComment>
+            </subvertex>
+
+            <!-- State 4 -->
+            <subvertex xmi:type="uml:State" xmi:id="state_4"
+              name="State4_NodeCreation">
+              <ownedComment><body>cipher_match=false, nodes_exist=false
+Entity nodes referenced in the claim do not exist in the graph.
+Action:
+  SCA creates missing nodes at appropriate hierarchy level:
+    SubjectConcept level → ARCHITECT ONLY. SCA cannot create autonomously.
+    Entity level (mid)   → SCA creates
+    Property level (leaf)→ SCA creates directly
+  After node creation → transitions to State 3 path
+NOTE: node creation is a graph extension proposal, not just a claim.
+      Requires higher confidence threshold than State 3.</body></ownedComment>
+            </subvertex>
+
+            <!-- Transitions -->
+            <transition xmi:id="t_init_eval" source="sm_initial"
+              target="state_1">
+              <guard xmi:type="uml:Constraint">
+                <specification xmi:type="uml:OpaqueExpression">
+                  <body>cipher_match=true AND source_new=false</body>
+                </specification>
+              </guard>
+            </transition>
+
+            <transition xmi:id="t_init_s2" source="sm_initial"
+              target="state_2">
+              <guard xmi:type="uml:Constraint">
+                <specification xmi:type="uml:OpaqueExpression">
+                  <body>cipher_match=true AND source_new=true</body>
+                </specification>
+              </guard>
+            </transition>
+
+            <transition xmi:id="t_init_s3" source="sm_initial"
+              target="state_3">
+              <guard xmi:type="uml:Constraint">
+                <specification xmi:type="uml:OpaqueExpression">
+                  <body>cipher_match=false AND nodes_exist=true</body>
+                </specification>
+              </guard>
+            </transition>
+
+            <transition xmi:id="t_init_s4" source="sm_initial"
+              target="state_4">
+              <guard xmi:type="uml:Constraint">
+                <specification xmi:type="uml:OpaqueExpression">
+                  <body>cipher_match=false AND nodes_exist=false</body>
+                </specification>
+              </guard>
+            </transition>
+
+            <transition xmi:id="t_s4_s3" source="state_4"
+              target="state_3">
+              <guard xmi:type="uml:Constraint">
+                <specification xmi:type="uml:OpaqueExpression">
+                  <body>nodes created successfully by SCA</body>
+                </specification>
+              </guard>
+            </transition>
+
+          </region>
+        </ownedBehavior>
+
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: ClaimLifecycleService
+           Governance check: H ⊨ Γ as executable operation
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_cls"
+        name="ClaimLifecycleService">
+
+        <appliedStereotype xmi:idref="st_block_cls"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>Formal: implements U_Γ(H_c, H̃_c) — the governed update function.
+H ⊨ Γ is not a human review step.
+It is governanceCheck() — an operation that executes all
+:GovernanceRule Cypher queries and returns true iff all
+return zero rows.
+SFA calls governanceCheck() pre-commit. GPS writes only if true.</body>
+        </ownedComment>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_cls_gov"
+          name="governanceCheck">
+          <ownedComment><body>Formal: evaluates H̃_c ⊨ Γ
+Precondition:  H_proposed is a well-formed claim subgraph
+Postcondition: returns true iff H_proposed satisfies all governance rules
+Body:
+  FOR each rule IN :GovernanceRule nodes
+    result = execute(rule.cypher_check, params={subgraph: H_proposed})
+    IF result.count > 0 THEN return false, log violation
+  RETURN true
+H ⊨ Γ = all governance Cypher queries return zero rows
+H ⊭ Γ = at least one governance Cypher query returns rows</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="H_proposed" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="result" direction="return">
+            <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_cls_credence"
+          name="computeCredenceUpdate">
+          <ownedComment><body>Formal: P_t+1(c) = P_t(E|c) · P_t(c) / P_t(E)
+Precondition: delta.admissible = true (governanceCheck passed)
+Body:
+  IF delta.admissible THEN
+    marginal = computeMarginal(source.independence_score)
+    return (claim.likelihood * claim.credence) / marginal
+  ELSE
+    return claim.credence  [no change]
+Note: marginal is a function of source independence.
+      See Source.independence_affects_marginal constraint.</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="claim" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="delta" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="source" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="new_credence" direction="return">
+            <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          </ownedParameter>
+        </ownedOperation>
+
+        <!-- Constraint: GPS is the only writer -->
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_cls_single_writer"
+          name="SingleWriter">
+          <specification xmi:type="uml:OpaqueExpression">
+            <body>Only GraphPersistenceService writes to Neo4j.
+ClaimLifecycleService evaluates governance and computes credence.
+It does not write directly.
+Write path: CLS evaluates → GPS writes (if CLS returns true)
+This constraint is inherited from GovernanceSubsystem BDD.</body>
+          </specification>
+        </ownedRule>
+
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: SCAEngine
+           H_c as formal composite — traversal-defined subcluster
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_sca_engine"
+        name="SCAEngine">
+
+        <appliedStereotype xmi:idref="st_block_sca"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>Formal: holds H_c = G[U_c] — the claim subcluster.
+H_c is defined by a traversal pattern, not stored as a literal
+induced subgraph. SCAEngine holds a reference to the TraversalPattern
+that defines U_c for its SubjectConcept anchor.
+
+Also holds the convergence and oscillation monitoring operations
+derived from Game of Life dynamics.</body>
+        </ownedComment>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_sca_tp"
+          name="traversal_pattern" aggregation="none">
+          <ownedComment><body>Reference to :TraversalPattern node in SYS_ metanode schema.
+Defines U_c — the node set for H_c = G[U_c].
+Operationally: a Cypher pattern traversing ABOUT, ASSERTS,
+SOURCED_FROM, FLAGGED_BY, SUBCLAIM_OF relationships
+from the SubjectConcept anchor.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_sca_delta"
+          name="computeDelta">
+          <ownedComment><body>Formal: E = H̃_c \ H_c
+Computes the set difference between proposed subcluster
+and current subcluster.
+Returns EvidenceDelta with cipher_match, source_new,
+nodes_exist properties set.</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="H_proposed" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="delta" direction="return"/>
+        </ownedOperation>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_sca_gov"
+          name="evaluateGovernance">
+          <ownedComment><body>Delegates to ClaimLifecycleService.governanceCheck().
+SCA calls this before spawning SFAs or proposing writes.
+Returns true iff H̃_c ⊨ Γ.</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="delta" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="admissible" direction="return">
+            <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_sca_conv"
+          name="monitorConvergence">
+          <ownedComment><body>Game of Life convergence monitoring.
+Measures: State2_rate / (State2_rate + State3_rate)
+          over rolling window of N iterations.
+Returns ConvergenceStatus:
+  forming:     mostly new claims — argument still building
+  stabilising: State 2 rate increasing — argument consolidating
+  converged:   mostly corroboration — argument stable
+Action on converged: flag SubjectConcept for architect review.
+Threshold: SYS_Threshold.subcluster_convergence_ratio</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="status" direction="return">
+            <type xmi:idref="enum_convergence_status"/>
+          </ownedParameter>
+        </ownedOperation>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_sca_osc"
+          name="detectOscillation">
+          <ownedComment><body>Game of Life oscillator detection.
+Returns true if any claim in this SCA's subcluster
+has dispute_count > SYS_Threshold.claim_oscillation_limit.
+Action: set claim.life_pattern = oscillator,
+        set claim.status = contested_permanent,
+        flag for human scholarly review.</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="oscillating" direction="return">
+            <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: Subclaim (relationship formalisation)
+           Formal: subclaim_type determines P_t(E|c) likelihood weight
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_subclaim"
+        name="SubclaimRelationship">
+
+        <appliedStereotype xmi:idref="st_block_scr"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>Formalises the [:SUBCLAIM_OF] relationship.
+Not a node in the graph — a typed relationship.
+Modeled here as a block to capture the subclaim_type property
+which determines the likelihood weight P_t(E|c) used in
+credence propagation up the subclaim tree.
+
+Every level of the fractal claim hierarchy uses this relationship:
+  C4 -[:SUBCLAIM_OF {type: causal}]-> P1
+  P1 -[:SUBCLAIM_OF {type: causal}]-> MDC1
+  E1 -[:SUBCLAIM_OF {type: contextual}]-> MDC1</body>
+        </ownedComment>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_scr_type"
+          name="subclaim_type" aggregation="none">
+          <type xmi:idref="enum_subclaim_type"/>
+          <ownedComment><body>Determines likelihood weight P_t(E|c) for this subclaim:
+  causal:     likelihood weight 0.6–0.9 (load-bearing)
+  factual:    likelihood weight 0.2–0.4 (support structure)
+  contextual: likelihood weight 0.3–0.6 (constraining)</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_scr_weight"
+          name="likelihood_weight" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          <ownedComment><body>Derived from subclaim_type via SYS_Threshold:
+  causal:     SYS_Threshold.likelihood_causal_weight
+  factual:    SYS_Threshold.likelihood_factual_weight
+  contextual: SYS_Threshold.likelihood_contextual_weight
+Used in D-019 subclaim confidence propagation DMN table.</body></ownedComment>
+        </ownedAttribute>
+
+      </packagedElement>
+
+
+      <!-- ============================================================
+           ENUMERATION: FischerFlagStatus
+           Fischer flags have lifecycle — not terminal at creation
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Enumeration"
+        xmi:id="enum_fischer_status"
+        name="FischerFlagStatus">
+        <ownedLiteral xmi:id="ffs_active" name="active">
+          <ownedComment><body>Flag is live. The evidential gap it identifies
+has not been filled by subsequent evidence.
+Reduces likelihood_weight on affected subclaims.
+Will be recomputed on next State 2 or State 3 event.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="ffs_resolved" name="resolved">
+          <ownedComment><body>The evidential gap has been filled.
+Subsequent evidence provided the missing mechanism,
+corroboration, or qualification.
+resolved_by: cipher of the EvidenceDelta that resolved it.
+Likelihood_weight on affected subclaims restored.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="ffs_weakened" name="weakened">
+          <ownedComment><body>Subsequent evidence partially addressed the gap.
+Flag remains active but at reduced severity.
+Example: False Cause partially addressed by contextual evidence
+that supports but does not establish the causal mechanism.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="ffs_strengthened" name="strengthened">
+          <ownedComment><body>Subsequent evidence has made the gap more severe.
+Example: Composition flag strengthened when additional evidence
+reveals further internal divisions in the group the source treats
+as unified.
+Reduces likelihood_weight further on affected subclaims.</body></ownedComment>
+        </ownedLiteral>
+      </packagedElement>
+
+      <!-- ============================================================
+           ENUMERATION: ClaimType
+           Determines Fischer applicability
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Enumeration"
+        xmi:id="enum_claim_type"
+        name="ClaimType">
+        <ownedLiteral xmi:id="ct_historical_causal" name="historical_causal">
+          <ownedComment><body>Claim asserts a causal relationship in historical context.
+Fischer check: APPLICABLE — all fallacy types relevant.
+Bayes: applicable when prior exists.
+Example: C4 — northern refusal caused conservative to acquire meaning.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="ct_historical_interpretive" name="historical_interpretive">
+          <ownedComment><body>Claim interprets significance or meaning of historical event.
+Fischer check: APPLICABLE — especially Presentism, Historians Fallacy.
+Bayes: applicable when prior exists.
+Example: P1 — refusal constituted a political identity formation event.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="ct_documentary" name="documentary">
+          <ownedComment><body>Claim asserts a documented fact — date, event, existence.
+Fischer check: NOT APPLICABLE — no interpretive content to check.
+Bayes: applicable for corroboration tracking.
+Example: C3 — Fugitive Slave Act was part of Compromise of 1850.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="ct_definitional" name="definitional">
+          <ownedComment><body>Claim defines a term or concept in its historical context.
+Fischer check: Semantic Fallacy only — other checks NOT APPLICABLE.
+Bayes: limited applicability — definitions are not probabilistic claims.
+Example: C1 — conservative had no specific US political meaning before 1850.</body></ownedComment>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="ct_quantitative" name="quantitative">
+          <ownedComment><body>Claim asserts a numerical or statistical relationship.
+Fischer check: NOT APPLICABLE — quantitative claims require
+different methodological frameworks.
+Bayes: APPLICABLE — probabilistic update on quantitative priors.
+Example: 73% of northern newspapers used the term by 1852.</body></ownedComment>
+        </ownedLiteral>
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: Layer3MFramework
+           Analytical framework in SYS_BibliographyRegistry
+           Fischer and Bayes as plugins, not hard architecture
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_layer3m_framework"
+        name="Layer3MFramework">
+
+        <appliedStereotype xmi:idref="st_block_l3m"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>An analytical framework registered in SYS_BibliographyRegistry
+as a Layer 3M (methodological) entry.
+
+Fischer and Bayes are instances of this block.
+They are perspectives — plugins the SFA constitution loads
+and applies where their applicability conditions are met.
+
+They are not mandatory passes. Not all claims require Fischer.
+Not all claims have a meaningful Bayesian prior.
+
+The framework is selected per claim per source per context.
+If applicability conditions are not met: skip, log reason.</body>
+        </ownedComment>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_l3m_name"
+          name="framework_name" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Canonical name and citation.
+Example: "Fischer, D.H. (1970). Historians Fallacies."
+Example: "Bayesian credence update — standard formulation."</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_l3m_applicable"
+          name="applicable_to" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Claim types where this framework applies.
+Fischer: historical_causal, historical_interpretive
+Bayes:   any claim with credence history and meaningful prior
+Stored as list of ClaimType enum values.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_l3m_not_applicable"
+          name="not_applicable_to" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Claim types where this framework does NOT apply.
+Fischer: documentary, definitional, quantitative
+Bayes:   first_occurrence with no established prior
+When not applicable: skip, log framework_not_applicable with reason.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_l3m_trigger"
+          name="trigger_condition" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Condition that activates this framework for a claim.
+Fischer: claim contains causal or interpretive assertion
+Bayes:   State 2 or State 3 event on existing claim with prior
+Evaluated by SFA before running framework check.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_l3m_recompute"
+          name="recompute_on" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Events that trigger recomputation of this framework's output.
+Fischer: State 2 or State 3 event on parent claim
+         Fischer flags are recomputed as subcluster grows
+         A flag raised at paragraph 1 may resolve at paragraph 2
+Bayes:   Same — credence recomputed on each admissible delta</body></ownedComment>
+        </ownedAttribute>
+
+        <!-- Constraint: applicability check -->
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_l3m_apply"
+          name="applicability_precondition">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- Framework is only applied when applicable
+context Layer3MFramework
+  self.applyTo(claim: Claim) : Boolean =
+    claim.claim_type.oclIsKindOf(self.applicable_to)
+    and not claim.claim_type.oclIsKindOf(self.not_applicable_to)
+    and self.evaluateTrigger(claim) = true
+-- If applyTo returns false:
+--   skip framework
+--   log: framework_not_applicable, framework_name, claim.cipher, reason</body>
+          </specification>
+        </ownedRule>
+
+      </packagedElement>
+
+      <!-- ============================================================
+           BLOCK: FischerFlag
+           Fischer fallacy flag with lifecycle
+           ============================================================ -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_fischer_flag"
+        name="FischerFlag">
+
+        <appliedStereotype xmi:idref="st_block_ff"/>
+
+        <ownedComment xmi:type="uml:Comment">
+          <body>A fallacy flag raised by the Fischer framework check.
+Not a terminal judgment on the source or the claim.
+A hypothesis about what is missing from the evidence
+at the time of evaluation.
+
+As the subcluster grows — more paragraphs, more sources,
+more facet contributions — Fischer flags are recomputed.
+
+A False Cause flag that resolves as evidence accumulates
+is not a failure. The claim was appropriately tentative.
+The system is working correctly.
+
+Fischer flags are resolved when missing evidence arrives.
+They are not overruled.</body>
+        </ownedComment>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ff_type"
+          name="fallacy_type" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Fischer fallacy type name.
+Examples: False_Cause, Composition, Presentism,
+Historians_Fallacy, Anachronism, Semantic_Fallacy</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ff_severity"
+          name="severity" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Current severity: HIGH | MEDIUM | LOW | NONE
+May change as subcluster grows:
+  strengthened → severity increases
+  weakened     → severity decreases
+  resolved     → severity → NONE, status → resolved</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ff_status"
+          name="status" aggregation="none">
+          <type xmi:idref="enum_fischer_status"/>
+          <ownedComment><body>Lifecycle status of this flag.
+active | resolved | weakened | strengthened
+Recomputed on each State 2 or State 3 event on parent claim.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ff_resolved_by"
+          name="resolved_by" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Cipher of the EvidenceDelta that resolved this flag.
+Null until resolved.
+Provides traceable provenance: which source/paragraph
+provided the evidence that closed the evidential gap.</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ff_gap"
+          name="evidential_gap" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <ownedComment><body>Description of what evidence is missing.
+This is the hypothesis the flag encodes.
+Example: "Causal mechanism between refusal and meaning
+         formation not established in source text."
+When evidence providing this mechanism arrives:
+  recompute → status: resolved or weakened</body></ownedComment>
+        </ownedAttribute>
+
+        <ownedAttribute xmi:type="uml:Property" xmi:id="prop_ff_likelihood_impact"
+          name="likelihood_impact" aggregation="none">
+          <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+          <ownedComment><body>How much this flag reduces the likelihood weight
+P_t(E|c) on affected subclaims.
+active HIGH flag:   reduces likelihood_weight significantly
+active MEDIUM flag: reduces likelihood_weight moderately
+resolved flag:      no reduction (likelihood_weight restored)
+This couples Fischer assessment to Bayesian update.</body></ownedComment>
+        </ownedAttribute>
+
+        <!-- Constraint: flag lifecycle recomputation -->
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_ff_recompute"
+          name="flag_recompute_on_subcluster_growth">
+          <specification xmi:type="uml:OpaqueExpression">
+            <language>OCL</language>
+            <body>-- Fischer flags are recomputed when subcluster grows
+-- Triggered by State 2 or State 3 event on parent claim
+context FischerFlag
+  self.recompute(delta: EvidenceDelta) =
+    let new_evidence = delta.content in
+    if new_evidence.provides_causal_mechanism(self.evidential_gap)
+    then self.status := FischerFlagStatus::resolved
+         self.resolved_by := delta.cipher
+         self.severity := 'NONE'
+    else if new_evidence.partially_addresses(self.evidential_gap)
+    then self.status := FischerFlagStatus::weakened
+         self.severity := reduce(self.severity)
+    else if new_evidence.introduces_new_gap(self.fallacy_type)
+    then self.status := FischerFlagStatus::strengthened
+         self.severity := increase(self.severity)
+    else
+      -- evidence does not affect this flag
+      self.status := self.status  -- unchanged
+    endif endif endif</body>
+          </specification>
+        </ownedRule>
+
+        <ownedRule xmi:type="uml:Constraint" xmi:id="c_ff_likelihood_coupling"
+          name="fischer_bayes_coupling">
+          <specification xmi:type="uml:OpaqueExpression">
+            <body>Fischer assessment and Bayesian update are coupled.
+
+When a FischerFlag.status changes:
+  recompute likelihood_weight on affected subclaims
+  recompute parent Claim.likelihood (P_t(E|c))
+  recompute Claim.credence via Bayes with updated likelihood
+
+Sequence on State 2 event:
+  1. recompute FischerFlags (may resolve, weaken, strengthen)
+  2. update SubclaimRelationship.likelihood_weight per flag changes
+  3. recompute Claim.likelihood from subclaim weights
+  4. compute Source.independence_score effect on marginal P_t(E)
+  5. apply Bayesian update:
+       credence_new = (likelihood_new * credence_old) / marginal
+
+The credence update incorporates both:
+  - the new evidence (Bayesian)
+  - the updated methodological assessment (Fischer)
+These are not sequential — they are a single coupled update.</body>
+          </specification>
+        </ownedRule>
+
+      </packagedElement>
+
+      <!-- Update SCAEngine with recomputeFischerFlags operation -->
+      <!-- NOTE: Added as extension to blk_sca_engine defined above -->
+      <packagedElement
+        xmi:type="uml:Class"
+        xmi:id="blk_sca_engine_ext"
+        name="SCAEngine_FischerExtension">
+
+        <appliedStereotype xmi:idref="st_block_sca_ext"/>
+
+        <ownedComment><body>Extension to SCAEngine capturing Fischer flag
+recomputation operations. Modeled separately to keep
+the Bayesian formalism blocks clean.
+In VP: merge into SCAEngine block.</body></ownedComment>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_sca_fischer"
+          name="recomputeFischerFlags">
+          <ownedComment><body>Triggered by each State 2 or State 3 event.
+For each active FischerFlag on affected claims:
+  evaluate whether new evidence addresses the flagged gap
+  update flag status: active | resolved | weakened | strengthened
+  update likelihood_weight on affected subclaims
+  trigger credence recomputation
+Sequence:
+  1. identify affected claims in subcluster
+  2. for each claim: evaluate applicable Fischer flags
+  3. for each flag: call flag.recompute(delta)
+  4. propagate likelihood changes up subclaim tree
+  5. trigger credence update (Bayesian)</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="delta" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="flags_updated" direction="return">
+            <type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+
+        <ownedOperation xmi:type="uml:Operation" xmi:id="op_sca_framework_check"
+          name="selectApplicableFrameworks">
+          <ownedComment><body>Before processing a claim, determine which
+Layer 3M frameworks apply.
+For each framework in SYS_BibliographyRegistry Layer 3M:
+  evaluate framework.applyTo(claim) → Boolean
+  if true: add to active_frameworks for this claim
+  if false: log framework_not_applicable, reason, continue
+Returns set of applicable framework instances.
+Fischer may not apply. Bayes may not apply.
+Neither is assumed. Both are evaluated.</body></ownedComment>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="claim" direction="in"/>
+          <ownedParameter xmi:type="uml:Parameter"
+            name="applicable_frameworks" direction="return"/>
+        </ownedOperation>
+
+      </packagedElement>
+
+      <!-- Stereotype applications for new blocks -->
+      <blocks:Block xmi:id="st_block_l3m" base_Class="blk_layer3m_framework"/>
+      <blocks:Block xmi:id="st_block_ff" base_Class="blk_fischer_flag"/>
+      <blocks:Block xmi:id="st_block_sca_ext" base_Class="blk_sca_engine_ext"/>
+
+      <!-- Stereotype applications (original blocks) -->
+      <blocks:Block xmi:id="st_block_claim" base_Class="blk_claim"/>
+      <blocks:Block xmi:id="st_block_source" base_Class="blk_source"/>
+      <blocks:Block xmi:id="st_block_ed" base_Class="blk_evidence_delta"/>
+      <blocks:Block xmi:id="st_block_cls" base_Class="blk_cls"/>
+      <blocks:Block xmi:id="st_block_sca" base_Class="blk_sca_engine"/>
+      <blocks:Block xmi:id="st_block_scr" base_Class="blk_subclaim"/>
+
+    </packagedElement>
+
+  </uml:Model>
+
+</xmi:XMI>

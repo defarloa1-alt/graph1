@@ -1,0 +1,5648 @@
+{
+  "generated_at": "2026-02-24T00:26:58.089014+00:00",
+  "seed_qid": "Q726929",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 241,
+    "candidate_sources_before_budget": 118,
+    "candidate_sources_considered": 118,
+    "accepted_before_node_budget": 118,
+    "accepted": 118,
+    "rejected": 0,
+    "entities_profiled": 118,
+    "frontier_eligible": 118,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 2410,
+    "missing_datavalue_statement_count": 2,
+    "with_qualifiers": 521,
+    "with_references": 1058,
+    "qualifier_rate": 0.2161825726141079,
+    "reference_rate": 0.43900414937759336,
+    "datatype_counts": {
+      "wikibase-item": 934,
+      "globe-coordinate": 51,
+      "monolingualtext": 75,
+      "url": 138,
+      "string": 73,
+      "external-id": 780,
+      "commonsMedia": 43,
+      "quantity": 224,
+      "time": 85,
+      "wikibase-property": 7
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 939,
+      "globecoordinate": 51,
+      "monolingualtext": 75,
+      "string": 1034,
+      "quantity": 224,
+      "time": 85,
+      "": 2
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 932,
+      "globe-coordinate|globecoordinate": 51,
+      "monolingualtext|monolingualtext": 75,
+      "url|string": 138,
+      "string|string": 73,
+      "external-id|string": 780,
+      "commonsMedia|string": 43,
+      "quantity|quantity": 224,
+      "time|time": 85,
+      "wikibase-property|wikibase-entityid": 7,
+      "wikibase-item|": 2
+    },
+    "route_counts": {
+      "edge_candidate": 939,
+      "geo_attribute": 51,
+      "node_property": 286,
+      "federation_id": 780,
+      "media_reference": 43,
+      "measured_attribute": 224,
+      "temporal_anchor": 85,
+      "quarantine_missing_datavalue": 2
+    },
+    "rank_counts": {
+      "normal": 2365,
+      "preferred": 37,
+      "deprecated": 8
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 2
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 118,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q75837464",
+      "label": "University of Toronto Media Commons",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1414390",
+        "Q166118",
+        "Q2061246",
+        "Q27032435",
+        "Q385994",
+        "Q53759838",
+        "Q671735",
+        "Q726929",
+        "Q856234"
+      ],
+      "matched_classes": [
+        "Q1414390",
+        "Q166118",
+        "Q2061246",
+        "Q27032435",
+        "Q385994",
+        "Q53759838",
+        "Q671735",
+        "Q726929",
+        "Q856234"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 9,
+      "external_ids": {
+        "P2002": "MediaCommons_TO",
+        "P2013": "uoftmediacommonsarchives",
+        "P791": "CA-OTUAV"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 3,
+        "with_references": 9,
+        "qualifier_rate": 0.13043478260869565,
+        "reference_rate": 0.391304347826087,
+        "route_counts": {
+          "edge_candidate": 14,
+          "geo_attribute": 1,
+          "node_property": 5,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2608695652173913,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1092492",
+      "label": "Cineteca Nacional",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1235234",
+        "Q1352795",
+        "Q2085381",
+        "Q31855",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1235234",
+        "Q1352795",
+        "Q2085381",
+        "Q31855",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 6,
+      "external_ids": {
+        "P3417": "Cineteca-Nacional",
+        "P3979": "144557",
+        "P646": "/m/010bs4pm",
+        "P2013": "CinetecaMexico",
+        "P2002": "cinetecamexico",
+        "P2397": "UCm-iYCu0KCtKdUGx851_VSw",
+        "P10689": "406875629"
+      },
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 8,
+        "with_references": 5,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.17857142857142858,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 9,
+          "node_property": 2,
+          "federation_id": 8,
+          "media_reference": 2,
+          "measured_attribute": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.39285714285714285,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1507284",
+      "label": "George Eastman Museum",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1415133",
+        "Q1574516",
+        "Q163740",
+        "Q26944969",
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1415133",
+        "Q1574516",
+        "Q163740",
+        "Q26944969",
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 6,
+      "external_ids": {
+        "P649": "66000529",
+        "P646": "/m/09rdzl",
+        "P1566": "7289836",
+        "P2002": "EastmanMuseum",
+        "P213": "0000000404591733",
+        "P3500": "6916",
+        "P214": "132694857",
+        "P409": "36554246",
+        "P950": "XX146073",
+        "P244": "n79086438",
+        "P1273": "a11392903",
+        "P1017": "ADV10182944",
+        "P268": "11876947q",
+        "P245": "500276536",
+        "P1207": "n99074764",
+        "P1015": "97036497",
+        "P227": "16309393-3",
+        "P1417": "topic/George-Eastman-House",
+        "P1870": "36253",
+        "P1297": "16-0743991",
+        "P4861": "5035",
+        "P2427": "grid.446863.b",
+        "P5383": "64975",
+        "P6155": "george-eastman-museum",
+        "P6366": "2802209663",
+        "P5432": "6bd2368a",
+        "P6782": "00x481437",
+        "P3749": "10994621356347920815",
+        "P590": "2615164",
+        "P2163": "1974961",
+        "P3065": "A028138109",
+        "P949": "004253162",
+        "P3280": "0000053376",
+        "P271": "DA10293776",
+        "P3134": "103379",
+        "P2013": "georgeeastmanmuseum",
+        "P2397": "UCTj-A2VNbcBmso-vYKsKcyg",
+        "P4702": "george-eastman-house",
+        "P2003": "eastmanmuseum",
+        "P4173": "224160948",
+        "P3108": "george-eastman-museum-rochester",
+        "P4264": "george-eastman-house",
+        "P3899": "socialmedia_65229",
+        "P4399": "instituicao536027/george-eastman-house-rochester-estados-unidos",
+        "P3040": "george-eastman-museum",
+        "P8034": "494/40292",
+        "P8406": "T2094259",
+        "P7772": "george-eastman-house",
+        "P6645": "47633-george-eastman-house",
+        "P9984": "981058513254206706",
+        "P8189": "987007352269805171",
+        "P10283": "I2802209663",
+        "P10565": "140395",
+        "P11496": "1140845216599681536",
+        "P11686": "981058513254206706",
+        "P11693": "522280132",
+        "P13591": "group/76df21ab-9e2e-4344-9304-75ef44748015",
+        "P12353": "05540.000685"
+      },
+      "statement_profile": {
+        "statement_count": 138,
+        "with_qualifiers": 60,
+        "with_references": 79,
+        "qualifier_rate": 0.43478260869565216,
+        "reference_rate": 0.572463768115942,
+        "route_counts": {
+          "federation_id": 59,
+          "edge_candidate": 23,
+          "media_reference": 1,
+          "node_property": 6,
+          "temporal_anchor": 3,
+          "measured_attribute": 45,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.38405797101449274,
+        "edge_candidate_count": 23,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q27811431",
+      "label": "L. Tom Perry Special Collections",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q2496264",
+        "Q27032435",
+        "Q44234152",
+        "Q4431094",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q2496264",
+        "Q27032435",
+        "Q44234152",
+        "Q4431094",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 6,
+      "external_ids": {
+        "P2013": "BYUSpecialCollections",
+        "P2003": "byuspeccoll",
+        "P2002": "BYUSpecColl",
+        "P2671": "/g/11c55vzj3f",
+        "P2397": "UCawhPcrchACGWnNDAxzlwYA",
+        "P11245": "ltomperrysc"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 4,
+        "with_references": 5,
+        "qualifier_rate": 0.17391304347826086,
+        "reference_rate": 0.21739130434782608,
+        "route_counts": {
+          "edge_candidate": 11,
+          "media_reference": 1,
+          "federation_id": 6,
+          "node_property": 4,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2608695652173913,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2916137",
+      "label": "Israeli Film Archive Jerusalem Cinematheque",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q135941771",
+        "Q163740",
+        "Q166118",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q135941771",
+        "Q163740",
+        "Q166118",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 6,
+      "external_ids": {
+        "P4129": "36102",
+        "P213": "0000000092396989",
+        "P244": "n85228359",
+        "P3500": "61247",
+        "P214": "135414285",
+        "P646": "/m/0h97j4j",
+        "P8189": "987007268266405171",
+        "P3914": "580059277",
+        "P10689": "161067728"
+      },
+      "statement_profile": {
+        "statement_count": 48,
+        "with_qualifiers": 20,
+        "with_references": 22,
+        "qualifier_rate": 0.4166666666666667,
+        "reference_rate": 0.4583333333333333,
+        "route_counts": {
+          "geo_attribute": 2,
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "node_property": 8,
+          "federation_id": 9,
+          "measured_attribute": 16
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.5625,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4398058",
+      "label": "Russian State Film and Photo Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1574516",
+        "Q163740",
+        "Q166118",
+        "Q2319498",
+        "Q52341833",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1574516",
+        "Q163740",
+        "Q166118",
+        "Q2319498",
+        "Q52341833",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 6,
+      "external_ids": {
+        "P1015": "9037570",
+        "P244": "no2003092729",
+        "P213": "0000000109405766",
+        "P691": "kn20070130019",
+        "P227": "1086881478",
+        "P269": "110514386",
+        "P1207": "n2011056112",
+        "P271": "DA18115647",
+        "P1368": "000115587",
+        "P2924": "3515600",
+        "P214": "123911488",
+        "P2671": "/g/1217th1w",
+        "P1483": "5000001011",
+        "P11496": "1140845216638230656",
+        "P2186": "RU-5000001011",
+        "P11245": "rgakfd1926",
+        "P8189": "987007399470705171",
+        "P2397": "UC3irGzuE6Dn4T19ptpm15Sw",
+        "P13591": "group/2c58d76a-bb21-4101-9fda-681fcb36b1ea"
+      },
+      "statement_profile": {
+        "statement_count": 44,
+        "with_qualifiers": 9,
+        "with_references": 12,
+        "qualifier_rate": 0.20454545454545456,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 14,
+          "federation_id": 19,
+          "node_property": 6,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "measured_attribute": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.22727272727272727,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1538389",
+      "label": "Eye Filmmuseum",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q1415133",
+        "Q33506",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q1415133",
+        "Q33506",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 5,
+      "external_ids": {
+        "P646": "/m/04glklr",
+        "P1566": "6951702",
+        "P214": "165257007",
+        "P213": "0000000113206882",
+        "P3500": "1218",
+        "P4129": "38265",
+        "P6155": "eye-film-institute-netherlands",
+        "P2003": "eye_film",
+        "P244": "no2010190671",
+        "P4679": "11190",
+        "P7831": "66821",
+        "P3977": "3324864",
+        "P8296": "B001689",
+        "P9152": "6f419424-fb86-a5d0-eac6-f22608f40fc5",
+        "P1015": "13042119",
+        "P268": "17719526s",
+        "P8179": "ncf11147077",
+        "P227": "16328493-3",
+        "P8189": "987007342739205171",
+        "P271": "DA19200854",
+        "P3065": "A023435331",
+        "P269": "188142495",
+        "P8272": "174",
+        "P11496": "1140000791811833472",
+        "P11245": "eyefilmNL",
+        "P2002": "eye_film",
+        "P10689": "127505497",
+        "P10419": "2041497",
+        "P2397": "UCy6sWF4taso5GtrfDGhwpBA",
+        "P13591": "group/5e5dba02-b4df-4715-8c24-38a55ee75d30",
+        "P13731": "04762d888064411f82914f6b1aef1396"
+      },
+      "statement_profile": {
+        "statement_count": 82,
+        "with_qualifiers": 17,
+        "with_references": 42,
+        "qualifier_rate": 0.2073170731707317,
+        "reference_rate": 0.5121951219512195,
+        "route_counts": {
+          "node_property": 9,
+          "edge_candidate": 32,
+          "geo_attribute": 1,
+          "federation_id": 35,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "measured_attribute": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.17073170731707318,
+        "edge_candidate_count": 32,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2916280",
+      "label": "Berkeley Art Museum and Pacific Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q207694",
+        "Q41253",
+        "Q726929",
+        "Q866133"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q207694",
+        "Q41253",
+        "Q726929",
+        "Q866133"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 5,
+      "external_ids": {
+        "P3417": "Berkeley-Art-Museum-and-Pacific-Film-Archive",
+        "P214": "130604919",
+        "P1015": "1470399606894",
+        "P1207": "n2010036371",
+        "P268": "15570191k",
+        "P244": "no97014328",
+        "P213": "0000000403879858",
+        "P227": "5313345-6",
+        "P4129": "11718",
+        "P2427": "grid.493138.4",
+        "P6155": "berkeley-art-museum-pacific-film-archive",
+        "P6366": "2802915996",
+        "P5432": "2bd6682e",
+        "P6782": "05kbg7k66",
+        "P5050": "berkeley/berkeley-art-museum-pacific-film-archive",
+        "P3500": "177481",
+        "P6644": "AAXQM",
+        "P2013": "bampfa",
+        "P2003": "bampfa",
+        "P2002": "bampfa",
+        "P2397": "UCJMJz36FHYNWUAHSTjQkRog",
+        "P3977": "1456553",
+        "P646": "/m/026stfv",
+        "P10283": "I2802915996",
+        "P5164": "379478",
+        "P11686": "981058615292606706",
+        "P9984": "981058615292606706",
+        "P10689": "396383943",
+        "P8189": "987007290804605171",
+        "P6698": "バークレー美術館",
+        "P10832": "E39QH7JmqPJTMDmFhQWQhtvVRg",
+        "P245": "500308075",
+        "P12674": "Q159587",
+        "P13591": "group/de39e107-f683-47d9-8b4a-1cd203825dd6",
+        "P11245": "bampfa",
+        "P5383": "9269",
+        "P6486": "4976",
+        "P9591": "15891945"
+      },
+      "statement_profile": {
+        "statement_count": 73,
+        "with_qualifiers": 12,
+        "with_references": 34,
+        "qualifier_rate": 0.1643835616438356,
+        "reference_rate": 0.4657534246575342,
+        "route_counts": {
+          "node_property": 9,
+          "edge_candidate": 16,
+          "media_reference": 2,
+          "federation_id": 40,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "measured_attribute": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2191780821917808,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q119823605",
+      "label": "Moving Image and Recorded Sound Division",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q2230431",
+        "Q334453",
+        "Q53759838",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q2230431",
+        "Q334453",
+        "Q53759838",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P3430": "w69d7m9w"
+      },
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 3,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 6,
+          "federation_id": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3888888888888889,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12041622",
+      "label": "Czech Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q101470010",
+        "Q108935461",
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q101470010",
+        "Q108935461",
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P214": "135160185",
+        "P691": "kn20010724565",
+        "P213": "0000000119565229",
+        "P345": "co0089148",
+        "P244": "no94022796",
+        "P3500": "48356",
+        "P2427": "grid.436844.9",
+        "P268": "145119653",
+        "P269": "086317474",
+        "P966": "7db4b6ad-c3df-4300-96fc-e243ef60c548",
+        "P4156": "00057266",
+        "P6782": "051316d77",
+        "P8987": "tg8i2zq",
+        "P7037": "1359",
+        "P2671": "/g/12301ymw",
+        "P6698": "チェコ国立映画アーカイブ",
+        "P6848": "8609",
+        "P8189": "987007583477405171",
+        "P3608": "CZ00057266",
+        "P2013": "NarodniFilmovyArchiv",
+        "P227": "5160368-8",
+        "P13591": "group/4cf08dd7-8046-4c61-9487-06be7316d3e9"
+      },
+      "statement_profile": {
+        "statement_count": 40,
+        "with_qualifiers": 4,
+        "with_references": 17,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.425,
+        "route_counts": {
+          "federation_id": 22,
+          "node_property": 4,
+          "media_reference": 1,
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q21153392",
+      "label": "American Genre Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1762059",
+        "Q18325436",
+        "Q368290",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1762059",
+        "Q18325436",
+        "Q368290",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P2002": "filmarchive",
+        "P2013": "americangenrefilmarchive",
+        "P2397": "UCr2Dm_wInUo-_wT6p6GPHZg",
+        "P2003": "agfa",
+        "P1297": "20-5000240",
+        "P345": "co0396277",
+        "P11245": "agfa8360",
+        "P4175": "AmericanGenreFilmArchive"
+      },
+      "statement_profile": {
+        "statement_count": 52,
+        "with_qualifiers": 40,
+        "with_references": 40,
+        "qualifier_rate": 0.7692307692307693,
+        "reference_rate": 0.7692307692307693,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 4,
+          "federation_id": 8,
+          "measured_attribute": 34
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.7307692307692307,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2910589",
+      "label": "Steven Spielberg Jewish Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q135941682",
+        "Q166118",
+        "Q2085381",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q135941682",
+        "Q166118",
+        "Q2085381",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P646": "/m/0c01kkl",
+        "P8189": "987007298703305171"
+      },
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 3,
+        "with_references": 13,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.43333333333333335,
+        "route_counts": {
+          "node_property": 6,
+          "edge_candidate": 20,
+          "federation_id": 2,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23333333333333334,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7864025",
+      "label": "UCLA Film and Television Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q104649845",
+        "Q1352795",
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q104649845",
+        "Q1352795",
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P214": "132238026",
+        "P227": "3028604-9",
+        "P213": "0000000121602551",
+        "P244": "n90634767",
+        "P409": "35575467",
+        "P1015": "90871870",
+        "P6366": "507926335",
+        "P646": "/m/0d05t1",
+        "P8189": "987007461879705171",
+        "P2397": "UCKwx-Ugwnha7SvfyiHBV9iQ",
+        "P13591": "group/4fab3d6e-5674-4995-9312-a81f7e286b1e"
+      },
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 9,
+        "with_references": 11,
+        "qualifier_rate": 0.2903225806451613,
+        "reference_rate": 0.3548387096774194,
+        "route_counts": {
+          "federation_id": 11,
+          "edge_candidate": 12,
+          "node_property": 3,
+          "measured_attribute": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25806451612903225,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q97219013",
+      "label": "Israel Film Archive - Jerusalem Cinematheque",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q27031009",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q27031009",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.05263157894736842,
+        "reference_rate": 0.10526315789473684,
+        "route_counts": {
+          "node_property": 4,
+          "edge_candidate": 12,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3157894736842105,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112663024",
+      "label": "Pad.ma",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.4166666666666667,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113461253",
+      "label": "Cinemata",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 1,
+        "with_references": 3,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11484543",
+      "label": "Hiroshima City Cinematographic and Audio-Visual Library",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q48085397",
+        "Q604177",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q48085397",
+        "Q604177",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P791": "JP-1005750",
+        "P3134": "6816939",
+        "P349": "001230772",
+        "P2671": "/g/122_gqf5"
+      },
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 4,
+        "with_references": 4,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.2222222222222222,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "edge_candidate": 8,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "federation_id": 5,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1201043",
+      "label": "Danish Film Institute",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q11396960",
+        "Q327333",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q11396960",
+        "Q327333",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/04g29mh",
+        "P1059": "56858318",
+        "P213": "0000000406075441",
+        "P3500": "87042",
+        "P3417": "Danish-Film-Institute",
+        "P2427": "grid.433682.8",
+        "P1320": "dk/56858318",
+        "P6366": "2801826830",
+        "P244": "n81072028",
+        "P2013": "detdanskefilminstitut",
+        "P2002": "filminstituttet",
+        "P4015": "detdanskefilminstitut",
+        "P2003": "detdanskefilminstitut",
+        "P6782": "01pqwyc94",
+        "P6849": "det-danske-filminstitut",
+        "P214": "133606067",
+        "P6698": "デンマーク映画協会",
+        "P8313": "Det_Danske_Filminstitut",
+        "P9477": "Det_Danske_Filminstitut",
+        "P8189": "987007441229705171",
+        "P10565": "150417",
+        "P8501": "19D61361-5922-416B-89A9-BFD8B71E877C",
+        "P345": "co0048411",
+        "P7003": "creators/22996",
+        "P7891": "3196",
+        "P13591": "group/ba4286cf-b2e9-4d9b-a182-f1a607df0844",
+        "P7520": "105220"
+      },
+      "statement_profile": {
+        "statement_count": 59,
+        "with_qualifiers": 9,
+        "with_references": 31,
+        "qualifier_rate": 0.15254237288135594,
+        "reference_rate": 0.5254237288135594,
+        "route_counts": {
+          "geo_attribute": 1,
+          "federation_id": 27,
+          "edge_candidate": 19,
+          "temporal_anchor": 1,
+          "node_property": 8,
+          "media_reference": 1,
+          "measured_attribute": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2033898305084746,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12168437",
+      "label": "Central State Audiovisual and Electronic Archive of Ukraine",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1574516",
+        "Q2230431",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1574516",
+        "Q2230431",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/120k1bp2",
+        "P4613": "44806"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "node_property": 3,
+          "media_reference": 1,
+          "edge_candidate": 5,
+          "geo_attribute": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4166666666666667,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12755795",
+      "label": "Jugoslavian Film Museum",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q2065736",
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q2065736",
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.35714285714285715,
+        "route_counts": {
+          "media_reference": 1,
+          "edge_candidate": 6,
+          "node_property": 5,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.5,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q127692385",
+      "label": "Q127692385",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q135874816",
+      "label": "Celeste Bartos Film Preservation Center",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1414390",
+        "Q163740",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1414390",
+        "Q163740",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5555555555555556,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16432894",
+      "label": "Central State Archives of Films, Photographs and Sound Recordings of the Republic of Kazakhstan",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q2230431",
+        "Q27032363",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q2230431",
+        "Q27032363",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P214": "133875318",
+        "P244": "n98098985"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 2,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16929443",
+      "label": "Kaohsiung Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P244": "n2015015482",
+        "P214": "315172363",
+        "P2013": "kcgkfa",
+        "P5909": "9811115452303406",
+        "P646": "/m/011q0x__"
+      },
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 2,
+          "media_reference": 2,
+          "node_property": 2,
+          "federation_id": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2777777777777778,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q51371009",
+      "label": "National Film Archive of Japan",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q17431399",
+        "Q207694",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q17431399",
+        "Q207694",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P214": "3323152684013423430001",
+        "P2671": "/g/11gh354m6c",
+        "P6698": "国立映画アーカイブ",
+        "P2003": "nationalfilmarchiveofjapan",
+        "P2002": "NFAJ_PR",
+        "P2013": "NFAJPR",
+        "P2397": "UCG6fcFInAR5Y3ZL4jl1DyJA",
+        "P349": "001290321",
+        "P791": "JP-2001235",
+        "P11693": "1420789601",
+        "P271": "DA19172533",
+        "P11496": "1140563741795106176",
+        "P12145": "12243",
+        "P12494": "FA027838",
+        "P244": "no2019139663",
+        "P12907": "H30-00466",
+        "P13591": "group/d4188f88-6a5f-4ce1-b435-0c21bf46556f",
+        "P7772": "national-film-archive-permanent-exhibition"
+      },
+      "statement_profile": {
+        "statement_count": 46,
+        "with_qualifiers": 16,
+        "with_references": 12,
+        "qualifier_rate": 0.34782608695652173,
+        "reference_rate": 0.2608695652173913,
+        "route_counts": {
+          "edge_candidate": 7,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "geo_attribute": 1,
+          "node_property": 7,
+          "federation_id": 18,
+          "measured_attribute": 10
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.41304347826086957,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5702904",
+      "label": "DiFilm",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q12161242",
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q12161242",
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/122blxd1"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 8,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 1,
+          "node_property": 4,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q572548",
+      "label": "Anthology Film Archives",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q41253",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/07j9_l",
+        "P214": "263950882",
+        "P2427": "grid.446353.3",
+        "P213": "0000000122166720",
+        "P3417": "Anthology-Film-Archives",
+        "P4129": "12436",
+        "P269": "086028553",
+        "P691": "zmp2017974380",
+        "P244": "n80144907",
+        "P6782": "00dgmek64",
+        "P6155": "anthology-film-archives",
+        "P2013": "AnthologyFilmArchives",
+        "P2002": "AnthologyFilm",
+        "P2003": "anthologyfilmarchives",
+        "P6644": "AANWY",
+        "P2014": "136741",
+        "P1004": "4200f250-1263-4c0d-92da-384bd45bea59",
+        "P8189": "987007331420505171",
+        "P9984": "981058515429506706",
+        "P11686": "981058515429506706",
+        "P11693": "1927319778",
+        "P7446": "155803",
+        "P13591": "group/3953f246-d7be-4d8e-a99b-8dfbe9caa9ac"
+      },
+      "statement_profile": {
+        "statement_count": 46,
+        "with_qualifiers": 8,
+        "with_references": 19,
+        "qualifier_rate": 0.17391304347826086,
+        "reference_rate": 0.41304347826086957,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 11,
+          "federation_id": 23,
+          "node_property": 5,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "measured_attribute": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2391304347826087,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q57313411",
+      "label": "indiancine.ma",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1414426",
+        "Q35127",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 3,
+        "with_references": 3,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 7,
+          "node_property": 3,
+          "measured_attribute": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4166666666666667,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6431840",
+      "label": "Korean Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q125852944",
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q125852944",
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P213": "0000000406476595",
+        "P3500": "65598",
+        "P214": "167536559",
+        "P244": "nr96012334",
+        "P4702": "korean-film-archive",
+        "P5909": "9811111742203406",
+        "P646": "/m/0b6g20b",
+        "P8885": "한국영상자료원",
+        "P2002": "film_archive",
+        "P2397": "UCrBI3umiAJ6GcwD7jmD3AmQ",
+        "P2003": "koreanfilmarchive",
+        "P12361": "koreafilm.or.kr",
+        "P4003": "koreanfilmarchive/192563480859525",
+        "P2013": "192563480859525",
+        "P8189": "987007451623205171",
+        "P13092": "K000131649",
+        "P13591": "group/46cd79f4-57e9-4db8-9821-cbe9fdfee894"
+      },
+      "statement_profile": {
+        "statement_count": 45,
+        "with_qualifiers": 10,
+        "with_references": 21,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.4666666666666667,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 10,
+          "federation_id": 17,
+          "temporal_anchor": 1,
+          "geo_attribute": 2,
+          "media_reference": 3,
+          "measured_attribute": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.37777777777777777,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7015365",
+      "label": "Ngā Taonga Sound & Vision",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q5074440",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q5074440",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P213": "0000000404743362",
+        "P3544": "5440",
+        "P244": "n84159391",
+        "P3500": "250020",
+        "P214": "141947417",
+        "P5687": "9429042686422",
+        "P2013": "NgaTaongaSV",
+        "P2002": "ngataonga",
+        "P2003": "ngataongasv",
+        "P646": "/m/027mm0t",
+        "P9074": "3292",
+        "P6683": "313136",
+        "P8189": "987009541148005171",
+        "P269": "201527375",
+        "P13591": "group/9d0540e6-7048-489a-8d06-7245898de298",
+        "P13916": "CC22250"
+      },
+      "statement_profile": {
+        "statement_count": 89,
+        "with_qualifiers": 63,
+        "with_references": 72,
+        "qualifier_rate": 0.7078651685393258,
+        "reference_rate": 0.8089887640449438,
+        "route_counts": {
+          "node_property": 4,
+          "edge_candidate": 9,
+          "federation_id": 16,
+          "measured_attribute": 59,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.7191011235955056,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q109253044",
+      "label": "Departamento de Cine Arte del SODRE",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2013": "cinedelsodre"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q110812610",
+      "label": "Lookout Mountain Nuclear Film Studio",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929",
+        "Q843958"
+      ],
+      "matched_classes": [
+        "Q726929",
+        "Q843958"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1651": "p3PcaXrTRLM"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q111831626",
+      "label": "Audio-Visual Center Augarten",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q117538123",
+      "label": "Instituto Nacional de Cinema",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q104649845",
+        "Q2659904"
+      ],
+      "matched_classes": [
+        "Q104649845",
+        "Q2659904"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P214": "129240464",
+        "P1005": "1630714"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 2,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q119830750",
+      "label": "Joseph F. Rock Ethnographic and Exploration Films",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929",
+        "Q9388534"
+      ],
+      "matched_classes": [
+        "Q726929",
+        "Q9388534"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P9335": "xv60098"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 6,
+        "with_references": 0,
+        "qualifier_rate": 0.2608695652173913,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 16,
+          "node_property": 3,
+          "temporal_anchor": 2,
+          "federation_id": 1,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.17391304347826086,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q124629197",
+      "label": "Yorkshire and North East Film Archives",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q163740",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q163740",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2002": "YorkshireFilm",
+        "P2013": "pg/YFAandNEFA",
+        "P11245": "YorkshireFilmArchive",
+        "P3057": "1093468",
+        "P2622": "04480153",
+        "P2397": "UCxlwb9k8TgESIUqglgOk6FA",
+        "P1320": "gb/04480153"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 8,
+        "with_references": 7,
+        "qualifier_rate": 0.47058823529411764,
+        "reference_rate": 0.4117647058823529,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 7,
+          "node_property": 1,
+          "measured_attribute": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4117647058823529,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q124692019",
+      "label": "Q124692019",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q43229",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q43229",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2657": "323858022550-81",
+        "P1320": "de/V1109_VR4333"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130340319",
+      "label": "Periscope Film",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P11245": "PeriscopeFilm",
+        "P2013": "PeriscopeFilm",
+        "P2088": "periscope-film",
+        "P2397": "UCddem5RlB3bQe99wyY49g0g",
+        "P724": "PeriscopeFilm"
+      },
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 9,
+        "with_references": 6,
+        "qualifier_rate": 0.4090909090909091,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 7,
+          "node_property": 3,
+          "measured_attribute": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2727272727272727,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q133265217",
+      "label": "Dance Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P244": "no2025030317"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q14715515",
+      "label": "Harvard Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P3417": "Harvard-Film-Archive",
+        "P214": "146769876",
+        "P244": "n2001024796",
+        "P949": "004121604",
+        "P213": "0000000098936560",
+        "P4129": "9597",
+        "P6644": "AADSL",
+        "P646": "/m/026rfkr",
+        "P8189": "987007438996505171",
+        "P11693": "5360778410",
+        "P13591": "group/d0e50cc0-e0b8-494a-a0ab-013672f90693"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.08,
+        "reference_rate": 0.16,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 8,
+          "media_reference": 1,
+          "node_property": 3,
+          "federation_id": 12
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1590879",
+      "label": "Haus des Dokumentarfilms",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q163740",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q163740",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P213": "0000000119395645",
+        "P244": "n96034796",
+        "P214": "127077301",
+        "P2671": "/g/122nblcf",
+        "P2003": "hausdesdokumentarfilms",
+        "P2002": "Dokfilminfo",
+        "P2013": "hausdesdokumentarfilms",
+        "P268": "15104029q",
+        "P227": "5087333-7",
+        "P3065": "A005653239",
+        "P269": "076307905",
+        "P13384": "12901",
+        "P13591": "group/1ba82729-df92-4792-a105-132c19e676e7"
+      },
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 5,
+        "with_references": 6,
+        "qualifier_rate": 0.22727272727272727,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 4,
+          "geo_attribute": 1,
+          "node_property": 2,
+          "federation_id": 14,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13636363636363635,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16349179",
+      "label": "Arkivi Qendror Shteteror I Filmit",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P3749": "9420475727305386438",
+        "P2671": "/g/11c3w97rg0",
+        "P244": "no2023093669"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.21428571428571427,
+        "reference_rate": 0.35714285714285715,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 1,
+          "media_reference": 1,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17145833",
+      "label": "Theatre on Film and Tape Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q334453",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q334453",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1220": "109388",
+        "P646": "/m/012gbty8",
+        "P3430": "w6n120kf"
+      },
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 3,
+        "with_references": 3,
+        "qualifier_rate": 0.13636363636363635,
+        "reference_rate": 0.13636363636363635,
+        "route_counts": {
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "federation_id": 3,
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "node_property": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4090909090909091,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2324577",
+      "label": "Staatliches Filmarchiv der DDR",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P227": "2022434-5",
+        "P213": "0000000110096489",
+        "P244": "n82066879",
+        "P214": "124356008",
+        "P646": "/m/03wgmxh",
+        "P8189": "987007461568105171",
+        "P269": "169089509",
+        "P9964": "2022434-5",
+        "P13591": "group/6cabdf38-4b7c-42ed-bc28-934ba2f21848"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 4,
+        "with_references": 12,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.6,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 9,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q25461912",
+      "label": "Filmske novosti",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q375336",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q375336",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P345": "co0066720"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28726037",
+      "label": "Arhiva Națională de Filme",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P214": "147463168",
+        "P244": "no92004437",
+        "P2671": "/g/11c49635kf",
+        "P269": "13679808X",
+        "P11693": "9594315236",
+        "P8189": "987007398101905171"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 1,
+        "with_references": 6,
+        "qualifier_rate": 0.0625,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "edge_candidate": 7,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q30282650",
+      "label": "Kan Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2013": "KanILArchive",
+        "P2002": "KanILArchive",
+        "P2003": "kanilarchive",
+        "P2397": "UCNeddAJjp9vxE4gcuQlc4WA",
+        "P7085": "kan_archive"
+      },
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 8,
+        "with_references": 1,
+        "qualifier_rate": 0.4444444444444444,
+        "reference_rate": 0.05555555555555555,
+        "route_counts": {
+          "node_property": 3,
+          "federation_id": 6,
+          "measured_attribute": 4,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3888888888888889,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q30880038",
+      "label": "Archivio Nazionale del Film di Famiglia",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2671": "/g/11dxcgw34v",
+        "P8038": "15612"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.5555555555555556,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2,
+          "node_property": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3111411",
+      "label": "Gosfilmofond of Russia",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q2319498",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q2319498",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1483": "5000001010",
+        "P2924": "2373664",
+        "P2671": "/g/120ykx82",
+        "P2013": "gosfilmofond",
+        "P2003": "gosfilmofond",
+        "P2397": "UCI0vmWwhBJL43NDhGyLiT4Q",
+        "P3185": "gosfilmfondrf",
+        "P2335": "506708",
+        "P269": "169444392",
+        "P3789": "gosfilmofond",
+        "P8816": "id/5f16c044d0ef0c417ae2ea5f",
+        "P10152": "23635314",
+        "P5163": "gosfilmofond",
+        "P214": "150963393",
+        "P2186": "RU-5000001010",
+        "P8189": "987007306674605171",
+        "P13591": "group/2fae42b5-2c76-467b-b0cc-926de4d5b650"
+      },
+      "statement_profile": {
+        "statement_count": 39,
+        "with_qualifiers": 8,
+        "with_references": 12,
+        "qualifier_rate": 0.20512820512820512,
+        "reference_rate": 0.3076923076923077,
+        "route_counts": {
+          "edge_candidate": 11,
+          "node_property": 6,
+          "temporal_anchor": 1,
+          "federation_id": 19,
+          "media_reference": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.20512820512820512,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3621632",
+      "label": "Audiovisual Archive of the Democratic and Labour Movement",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P213": "0000000109455245",
+        "P3987": "468690",
+        "P244": "n2004027741",
+        "P4339": "12557",
+        "P214": "152647727",
+        "P646": "/m/012kxdnj",
+        "P9871": "10358",
+        "P8189": "987009541103905171",
+        "P396": "IEIV022450",
+        "P11012": "Q258761",
+        "P13591": "group/729a3663-e562-414e-bb4a-4210312806a2"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.11764705882352941,
+        "reference_rate": 0.11764705882352941,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 11,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11764705882352941,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4504294",
+      "label": "Central State Archive of Cinema and Photo Documents of St. Petersburg",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1574516",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1574516",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 3,
+        "with_references": 3,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 4,
+          "node_property": 5,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.5833333333333334,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q46114920",
+      "label": "Yorkshire Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q708676",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q708676",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P3642": "2512",
+        "P4527": "86785",
+        "P2427": "grid.502883.4",
+        "P6782": "05g94t868",
+        "P4702": "yorkshire-film-archive",
+        "P3057": "1093468",
+        "P1320": "gb/04480153",
+        "P2622": "04480153"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 10,
+        "with_references": 14,
+        "qualifier_rate": 0.43478260869565216,
+        "reference_rate": 0.6086956521739131,
+        "route_counts": {
+          "federation_id": 8,
+          "edge_candidate": 6,
+          "node_property": 2,
+          "geo_attribute": 1,
+          "measured_attribute": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.391304347826087,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4708546",
+      "label": "Alaska Film Archives",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q43229",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q43229",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/0988_n"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "node_property": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4835525",
+      "label": "BFI National Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P3642": "2870",
+        "P7764": "GB-1456",
+        "P646": "/m/03cvt25",
+        "P10565": "212171"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 1,
+        "with_references": 8,
+        "qualifier_rate": 0.05,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "edge_candidate": 8,
+          "federation_id": 4,
+          "node_property": 6,
+          "measured_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.35,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4894418",
+      "label": "Filmoteca de Catalunya",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/0h97wsm",
+        "P214": "134488148",
+        "P1273": "a1108215x",
+        "P950": "XX109157",
+        "P227": "3001369-0",
+        "P213": "0000000122889363",
+        "P244": "no90011105",
+        "P1296": "0243569",
+        "P6698": "カタルーニャ映画ライブラリ",
+        "P9984": "981058520617506706",
+        "P11686": "981058520617506706",
+        "P1607": "3747717",
+        "P10689": "147085468",
+        "P12385": "https://www.enciclopedia.cat/diccionari-del-cinema-a-catalunya/filmoteca-de-catalunya",
+        "P8189": "987007332635205171",
+        "P13591": "group/f2bd115c-9f1d-4e90-ac7f-84bc871af4a3"
+      },
+      "statement_profile": {
+        "statement_count": 36,
+        "with_qualifiers": 6,
+        "with_references": 13,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3611111111111111,
+        "route_counts": {
+          "node_property": 5,
+          "federation_id": 16,
+          "edge_candidate": 11,
+          "media_reference": 2,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5187116",
+      "label": "Croatian Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P214": "147062120",
+        "P3500": "362130",
+        "P213": "0000000107015254",
+        "P691": "kn20090227004",
+        "P244": "no96036261",
+        "P646": "/m/05sxs8b",
+        "P7037": "21069",
+        "P13591": "group/4529f579-8573-4cbb-9436-de75394d96ac",
+        "P2013": "Hrvatski-dr%C5%BEavni-arhiv-HDA-124359250912928",
+        "P2003": "hrvatski_drzavni_arhiv",
+        "P2397": "UC4Mw5-8uRHnXYLTKrZhklEw",
+        "P11245": "hrvatskidrzavniarhiv5637"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 6,
+        "with_references": 10,
+        "qualifier_rate": 0.24,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 12,
+          "temporal_anchor": 1,
+          "node_property": 3,
+          "geo_attribute": 1,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q55698564",
+      "label": "State Film and Photo Documents Archive of Republic of Azerbaijan",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q27032363",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q27032363",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "geo_attribute": 1,
+          "node_property": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4166666666666667,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5937570",
+      "label": "Human Studies Film Archives",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2581": "02735945n",
+        "P646": "/m/098bbx",
+        "P6698": "人類学研究フィルムアーカイブ"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 4,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.4444444444444444,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7058910",
+      "label": "North Eastern Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q109326243",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q109326243",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P3642": "519",
+        "P646": "/m/0dtwxf"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q745350",
+      "label": "Filmarchiv Austria",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q33506",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P213": "0000000110117411",
+        "P3500": "256154",
+        "P2427": "grid.451577.5",
+        "P691": "zmp2018985695",
+        "P6366": "2802772979",
+        "P6782": "01m90ba17",
+        "P7917": "M10115",
+        "P214": "137543277",
+        "P646": "/m/04_02mf",
+        "P6698": "オーストリア映画アーカイブ",
+        "P11693": "567071073",
+        "P8189": "987007337530705171",
+        "P2003": "filmarchivaustria",
+        "P2013": "filmarchivaustria",
+        "P227": "2175638-7",
+        "P244": "no2002063301",
+        "P1207": "n2020044093",
+        "P7842": "19285",
+        "P13591": "group/5c78aebe-9de9-4b66-acdd-77bacf174462"
+      },
+      "statement_profile": {
+        "statement_count": 35,
+        "with_qualifiers": 5,
+        "with_references": 17,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.4857142857142857,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 3,
+          "federation_id": 19,
+          "geo_attribute": 1,
+          "media_reference": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.17142857142857143,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q756683",
+      "label": "Hong Kong Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q1352795",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P214": "124664010",
+        "P3500": "71135",
+        "P269": "071331123",
+        "P213": "0000000086157412",
+        "P244": "no2001024164",
+        "P5909": "9811107252003406",
+        "P646": "/m/0djkzx",
+        "P10689": "100010202",
+        "P13591": "group/2823169f-4601-4a8c-a095-73adc528a8a4"
+      },
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 1,
+        "with_references": 11,
+        "qualifier_rate": 0.05263157894736842,
+        "reference_rate": 0.5789473684210527,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "federation_id": 9
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21052631578947367,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q781183",
+      "label": "Istituto Luce",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q375336",
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q375336",
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P213": "0000000122877071",
+        "P227": "5533044-7",
+        "P214": "312739479",
+        "P244": "n84093813",
+        "P4702": "istituto-luce-cinecitta",
+        "P2671": "/g/121g0xr6",
+        "P6698": "イスティトゥート・ルーチェ・チネチッタ",
+        "P8189": "987007450544405171",
+        "P269": "059203854",
+        "P3365": "luce_res-e483c6d6-cfac-11df-8719-d5ce3506d72e",
+        "P9760": "istituto-nazionale-l-u-c-e",
+        "P2397": "UCK5nqdvIHtjGEsCSR_eN4fQ",
+        "P12142": "10.5237/BEBA-B533",
+        "P9964": "5533044-7",
+        "P13591": "group/020504d5-79f4-41b8-a967-bfa9e7ec1f9c",
+        "P8750": "270759"
+      },
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 12,
+        "with_references": 17,
+        "qualifier_rate": 0.3157894736842105,
+        "reference_rate": 0.4473684210526316,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 2,
+          "media_reference": 3,
+          "node_property": 2,
+          "federation_id": 16,
+          "measured_attribute": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21052631578947367,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q101918951",
+      "label": "Chinese Independent Film Archive (CIFA)",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q43229"
+      ],
+      "matched_classes": [
+        "Q43229"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q110689191",
+      "label": "Kimberlee Granholm",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 7,
+        "with_references": 10,
+        "qualifier_rate": 0.6363636363636364,
+        "reference_rate": 0.9090909090909091,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112463517",
+      "label": "Q112463517",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "mzk2013757993",
+        "P214": "299792322",
+        "P227": "1190846993",
+        "P213": "0000000403207859",
+        "P10387": "87838"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 1,
+        "with_references": 13,
+        "qualifier_rate": 0.0625,
+        "reference_rate": 0.8125,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 5,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112471331",
+      "label": "Eva Orbanz",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "xx0179243",
+        "P214": "64160116",
+        "P1207": "n2012262488",
+        "P213": "0000000063107893",
+        "P244": "n91069799",
+        "P268": "13494324x",
+        "P269": "097574511",
+        "P227": "103444686X",
+        "P8189": "987007312671905171",
+        "P9918": "PE00393845",
+        "P13049": "103444686X",
+        "P10608": "agent/gnd_103444686X",
+        "P13591": "person/eb302eb0-315f-4679-8bb2-c7b3440ea242"
+      },
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 1,
+        "with_references": 12,
+        "qualifier_rate": 0.045454545454545456,
+        "reference_rate": 0.5454545454545454,
+        "route_counts": {
+          "edge_candidate": 8,
+          "federation_id": 13,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112483991",
+      "label": "Ross Melnick",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "mub2014847192",
+        "P214": "251336272",
+        "P269": "172085527",
+        "P227": "1055091483",
+        "P8189": "987007459135105171",
+        "P213": "0000000374952074",
+        "P10608": "agent/gnd_1055091483",
+        "P13591": "person/2ffdc590-4235-44a3-a492-26e1a0761bad"
+      },
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 1,
+        "with_references": 16,
+        "qualifier_rate": 0.047619047619047616,
+        "reference_rate": 0.7619047619047619,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 8,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112513800",
+      "label": "Ian W. MacDonald",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "xx0216897",
+        "P214": "305930297",
+        "P227": "1046186892",
+        "P213": "000000012433082X",
+        "P13591": "person/f410b088-39de-47d9-b4f7-641027d8d111",
+        "P8179": "ncf11873817",
+        "P244": "n2014001021",
+        "P1006": "375549862",
+        "P9171": "387545",
+        "P1207": "n2019009579",
+        "P2671": "/g/11mw1qv52"
+      },
+      "statement_profile": {
+        "statement_count": 42,
+        "with_qualifiers": 12,
+        "with_references": 31,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.7380952380952381,
+        "route_counts": {
+          "edge_candidate": 20,
+          "federation_id": 14,
+          "temporal_anchor": 2,
+          "node_property": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113623100",
+      "label": "Black Film Center & Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "159722642",
+        "P2002": "BlackFilmCenter",
+        "P244": "no89014612",
+        "P2671": "/g/1262k2fv3",
+        "P791": "US-INBLOIUB",
+        "P8189": "987007451857505171"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "edge_candidate": 8,
+          "node_property": 4,
+          "federation_id": 6,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q115364184",
+      "label": "Markéta Vojtěchová-Ambrožová",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "85728808",
+        "P691": "xx0065773",
+        "P1953": "2938974",
+        "P13577": "Q5683"
+      },
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 1,
+        "with_references": 22,
+        "qualifier_rate": 0.03225806451612903,
+        "reference_rate": 0.7096774193548387,
+        "route_counts": {
+          "edge_candidate": 22,
+          "federation_id": 4,
+          "temporal_anchor": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03225806451612903,
+        "edge_candidate_count": 22,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q116380819",
+      "label": "Jonáš Kucharský",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "ola20221171865",
+        "P496": "0000-0002-0047-7883",
+        "P214": "20167319444677741625"
+      },
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 1,
+        "with_references": 22,
+        "qualifier_rate": 0.041666666666666664,
+        "reference_rate": 0.9166666666666666,
+        "route_counts": {
+          "edge_candidate": 20,
+          "federation_id": 3,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1205625",
+      "label": "German film archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/12214ks4",
+        "P13081": "XSUGEOPFWVCMZ7M2NSXUGVLI3RZRTAU3",
+        "P214": "131110753",
+        "P227": "6016882-1",
+        "P646": "/m/03wgq5c"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 12,
+        "with_references": 3,
+        "qualifier_rate": 0.48,
+        "reference_rate": 0.12,
+        "route_counts": {
+          "geo_attribute": 1,
+          "temporal_anchor": 1,
+          "edge_candidate": 10,
+          "federation_id": 5,
+          "node_property": 6,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.28,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q1205627",
+      "label": "Deutsches Filmhaus",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/12233ffy"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.45454545454545453,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 7,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2727272727272727,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q121965404",
+      "label": "Q121965404",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb002733996",
+        "P212": "978-80-7004-169-7"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 14,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "node_property": 2,
+          "measured_attribute": 1,
+          "edge_candidate": 8
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21428571428571427,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122019322",
+      "label": "Q122019322",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb002998564",
+        "P212": "978-80-7004-187-1"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 14,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "node_property": 4,
+          "edge_candidate": 6,
+          "federation_id": 2,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.35714285714285715,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122024006",
+      "label": "Q122024006",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb003022203",
+        "P212": "978-80-7004-190-1",
+        "P648": "OL44407758M"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 14,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.9333333333333333,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "node_property": 3,
+          "federation_id": 3,
+          "measured_attribute": 1,
+          "edge_candidate": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.26666666666666666,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125166449",
+      "label": "Kush Varia",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "xx0315220",
+        "P213": "0000000403583766",
+        "P214": "300300244",
+        "P13591": "person/088fa0a1-1bff-46bb-b232-319475dba624"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 10,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.9090909090909091,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125960452",
+      "label": "DFF Fassbinder Center",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q126960498",
+      "label": "Alex Marlow-Mann",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "xx0319154",
+        "P213": "0000000119278756",
+        "P496": "0000-0002-2168-2974",
+        "P10069": "108080",
+        "P214": "170507561",
+        "P13591": "person/384e296d-1baa-49da-b585-9dbc00d8d976"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 1,
+        "with_references": 15,
+        "qualifier_rate": 0.058823529411764705,
+        "reference_rate": 0.8823529411764706,
+        "route_counts": {
+          "edge_candidate": 11,
+          "federation_id": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130987743",
+      "label": "Q130987743",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P13081": "TC6ITGEUAHMOFJPDIZUV66UEUWI4QOIL"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1,
+          "geo_attribute": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q132673503",
+      "label": "Q132673503",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q133042451",
+      "label": "Q133042451",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q133854804",
+      "label": "Philippine Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2013": "FDCPPFA"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 2,
+        "with_references": 7,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134613913",
+      "label": "Q134613913",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134876132",
+      "label": "Archivo Fílmico de la Cinemateca Nacional",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1352795",
+      "label": "cinematheque",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q17197366"
+      ],
+      "matched_classes": [
+        "Q17197366"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03m3yw6",
+        "P3417": "Cinémathèque",
+        "P3219": "cinema-aspects-generaux-les-cinematheques",
+        "P5398": "000001982",
+        "P1296": "0108990",
+        "P6706": "cinetèca",
+        "P508": "36420",
+        "P268": "119453988",
+        "P8814": "06123204-n",
+        "P12385": "filmoteca-0",
+        "P2671": "/g/122smcr5",
+        "P4342": "cinematek",
+        "P13411": "Q1979"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 3,
+        "with_references": 6,
+        "qualifier_rate": 0.13043478260869565,
+        "reference_rate": 0.2608695652173913,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 14,
+          "edge_candidate": 7,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08695652173913043,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136350723",
+      "label": "Mitsuyo Wada-Marciano",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "xx0335970",
+        "P213": "0000000055236265",
+        "P1207": "n2012152327"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 11,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.9166666666666666,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136673645",
+      "label": "Bruce Davis",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "jo20251277393",
+        "P213": "0000000373460270"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 13,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "edge_candidate": 10,
+          "federation_id": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136768420",
+      "label": "Short films of the Zagreb School of Animated Films (1956 – 1979)",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 4,
+        "with_references": 10,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.8333333333333334,
+        "route_counts": {
+          "edge_candidate": 8,
+          "measured_attribute": 1,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1414359",
+      "label": "Federal Archives Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P227": "5084102-6",
+        "P791": "DE-B1588",
+        "P2671": "/g/121x_ts0",
+        "P214": "147894556",
+        "P8179": "ncf11122331",
+        "P213": "0000000123425966",
+        "P8189": "987007398123005171",
+        "P244": "n93006535",
+        "P271": "DA08647887",
+        "P691": "pna2009497771",
+        "P11496": "1140563741588728448",
+        "P13384": "11609",
+        "P13591": "group/05d0672d-1e60-48c9-b933-13391974fc66"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 2,
+        "with_references": 9,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.45,
+        "route_counts": {
+          "federation_id": 13,
+          "edge_candidate": 5,
+          "node_property": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16409195",
+      "label": "Estonian Film Archives",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "252843758",
+        "P244": "no2012100132",
+        "P13591": "group/36729a83-919b-414d-a67c-e12bcb9b5c4a"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.2222222222222222,
+        "route_counts": {
+          "edge_candidate": 4,
+          "geo_attribute": 1,
+          "federation_id": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16516906",
+      "label": "Slovak Film Institute",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "149072947",
+        "P691": "mzk2006318298",
+        "P213": "0000000122273403",
+        "P3500": "193039",
+        "P2671": "/g/1ym_l8157",
+        "P7522": "0023293",
+        "P244": "n93046574",
+        "P13591": "group/8d5c71e4-8d8d-4e2b-817d-cef8d2835b6d"
+      },
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.05263157894736842,
+        "reference_rate": 0.2631578947368421,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "edge_candidate": 6,
+          "geo_attribute": 1,
+          "federation_id": 8,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21052631578947367,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17017075",
+      "label": "North West Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3642": "2873",
+        "P646": "/m/0g5rg49"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 3,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.42857142857142855,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1778574",
+      "label": "Reichsfilmarchiv",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P227": "7566359-4",
+        "P646": "/m/02qw926",
+        "P214": "243897630"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.09090909090909091,
+        "route_counts": {
+          "temporal_anchor": 2,
+          "federation_id": 3,
+          "edge_candidate": 5,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q20009044",
+      "label": "Archivio cinematografico Giuseppe Magnarin",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11b7qs69lh"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 3,
+          "media_reference": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2258858",
+      "label": "Fries Film & Audio Archief",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.2222222222222222,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 2,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28225393",
+      "label": "Bangladesh Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "144461705",
+        "P244": "n2005211165",
+        "P2671": "/g/11cs9lq25m",
+        "P213": "0000000097595290"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 4,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.3076923076923077,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 2,
+          "federation_id": 4,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23076923076923078,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2860521",
+      "label": "CNC French Film Archives",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "155512954",
+        "P268": "11874566d",
+        "P2671": "/g/1239phl1",
+        "P13591": "group/a1d5df43-02f6-4140-bed2-3f0ce3f310b3"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 4,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q29468796",
+      "label": "Yale Film Study Center",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2013": "yalefilmcenter",
+        "P2002": "yalefilmcenter",
+        "P2671": "/g/11dxl6ldmh"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 6,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3621641",
+      "label": "National Film Archive of the Resistance",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11b6m4gzn0",
+        "P7764": "IT-TO1035",
+        "P4662": "18097",
+        "P9449": "49",
+        "P13591": "group/276b5650-d0af-47f5-9bfe-03a1f55480ef"
+      },
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 3,
+        "with_references": 11,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.6111111111111112,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 5,
+          "node_property": 7,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4444444444444444,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3853718",
+      "label": "Mediateca Regionale Toscana",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P213": "0000000121824437",
+        "P2671": "/g/12q4zn7fk"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4650373",
+      "label": "ABS-CBN Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0nb7ys9"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2,
+          "federation_id": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4671357",
+      "label": "Academy Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "125656106",
+        "P244": "n96107060",
+        "P345": "co0131577",
+        "P646": "/m/0988wc",
+        "P213": "0000000086712455",
+        "P3430": "w6m43nwf",
+        "P13591": "group/69822d32-2b15-4e80-b85f-a60770959b0a"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 4,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.26666666666666666,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 7,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13333333333333333,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q47017659",
+      "label": "Lincolnshire Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3642": "2929"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q47490669",
+      "label": "South West Film and Television Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3642": "2623"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4,
+          "node_property": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q48770412",
+      "label": "New Zealand Film Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11gf62pxhq",
+        "P6683": "81245"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "temporal_anchor": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q50841422",
+      "label": "Moving Image Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3642": "2120",
+        "P2002": "Scotsonscreen"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 5,
+        "with_references": 2,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "federation_id": 2,
+          "node_property": 1,
+          "edge_candidate": 6,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5120823",
+      "label": "National Cinematheque of Lebanon",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0h96dmw"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q54933435",
+      "label": "Kinoteka Bosne i Hercegovine",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 5,
+          "geo_attribute": 1,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q55614421",
+      "label": "Indiana University Libraries Moving Image Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11f5lxwwnb",
+        "P244": "no2019025025",
+        "P214": "4133155105776576320002",
+        "P213": "0000000495160276",
+        "P2002": "iulmia",
+        "P2003": "iulmovingimagearchive"
+      },
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.09523809523809523,
+        "reference_rate": 0.23809523809523808,
+        "route_counts": {
+          "federation_id": 6,
+          "node_property": 5,
+          "edge_candidate": 8,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5773492",
+      "label": "Historic Films Archive",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02qgb2t",
+        "P214": "161049011"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6171972",
+      "label": "Jeanine Basinger",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "1237442",
+        "P213": "000000011558078X",
+        "P345": "nm0059903",
+        "P1006": "068483236",
+        "P2163": "1438659",
+        "P244": "n78090486",
+        "P227": "135760119",
+        "P269": "035395745",
+        "P950": "XX1128851",
+        "P268": "13186544v",
+        "P3987": "553767",
+        "P1258": "celebrity/jeanine_basinger",
+        "P5739": "6183",
+        "P1207": "n2004250668",
+        "P646": "/m/0dt_pm",
+        "P691": "pna20211110925",
+        "P4985": "147980",
+        "P9743": "107aNEyqqm",
+        "P3368": "2202959",
+        "P8189": "987007442173605171",
+        "P10302": "jeanine-basinger",
+        "P1015": "90374101",
+        "P8179": "ncf11260801",
+        "P7699": "LNB:V*74972;=BP",
+        "P271": "DA07872447",
+        "P409": "35670668",
+        "P1375": "000057854",
+        "P7293": "9813180734705606",
+        "P3065": "A002974667",
+        "P11496": "1140845216693497600",
+        "P12098": "836774",
+        "P12458": "242449",
+        "P10832": "E39PBJjMDXYdQjpTm4FGPcJYyd",
+        "P10069": "88326",
+        "P13049": "135760119",
+        "P10608": "agent/gnd_135760119",
+        "P5340": "267867",
+        "P12854": "5d7768940ab2440020070345",
+        "P13591": "person/11bd816e-56c0-4c9a-aa22-9c269cdb63ea",
+        "P7902": "135760119",
+        "P2605": "349648"
+      },
+      "statement_profile": {
+        "statement_count": 55,
+        "with_qualifiers": 2,
+        "with_references": 35,
+        "qualifier_rate": 0.03636363636363636,
+        "reference_rate": 0.6363636363636364,
+        "route_counts": {
+          "federation_id": 41,
+          "edge_candidate": 12,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6971345",
+      "label": "National Center for Jewish Film",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P213": "0000000121100500",
+        "P2427": "grid.447339.e",
+        "P691": "zmp2018986381",
+        "P6782": "0324psq83",
+        "P214": "132972163",
+        "P646": "/m/098b6f",
+        "P8189": "987007313965805171",
+        "P244": "nr95024259",
+        "P13591": "group/2bcf00d4-0d3a-4cea-885a-3d757a354b95"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 6,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "edge_candidate": 3,
+          "federation_id": 9,
+          "node_property": 2,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1875,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7940581",
+      "label": "Myrtil Frída",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "jk01031903",
+        "P2605": "1686",
+        "P345": "nm0297028",
+        "P214": "58641471",
+        "P244": "no91009949",
+        "P213": "0000000055674417",
+        "P6844": "37785",
+        "P8385": "62104",
+        "P1207": "n2017085557",
+        "P7293": "9810630446905606",
+        "P9037": "ef41fa23-0258-4e0e-b79e-cc005da663e6",
+        "P9160": "55802",
+        "P2671": "/g/121qg4d_",
+        "P2600": "6000000017218267892",
+        "P7520": "129719",
+        "P10554": "16873856",
+        "P4985": "1721778",
+        "P10302": "myrtil-frida",
+        "P10832": "E39PBJyX6j36Ggpq8rG8QKJ4bd"
+      },
+      "statement_profile": {
+        "statement_count": 45,
+        "with_qualifiers": 3,
+        "with_references": 27,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.6,
+        "route_counts": {
+          "edge_candidate": 21,
+          "federation_id": 19,
+          "temporal_anchor": 3,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.044444444444444446,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q89582553",
+      "label": "Li Xianting Film Fund Archive",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q166118"
+      ],
+      "matched_classes": [
+        "Q166118"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q89582575",
+      "label": "Li Xianting's Film Fund",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q2620430"
+      ],
+      "matched_classes": [
+        "Q2620430"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P244": "no2018114068"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q960602",
+      "label": "Prelinger Archives",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "305457386",
+        "P244": "no2013132788",
+        "P8605": "prelinger_archives",
+        "P646": "/m/0584rj",
+        "P13591": "group/90649e20-d166-4326-848b-a0fed53d9817"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.1875,
+        "reference_rate": 0.3125,
+        "route_counts": {
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 5,
+          "edge_candidate": 8
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q98894399",
+      "label": "Filmarchief Groesbeek",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q726929"
+      ],
+      "matched_classes": [
+        "Q726929"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

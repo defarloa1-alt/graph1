@@ -23,7 +23,7 @@ Mode behavior:
 
 Mode default budgets:
 - `production`: `sparql_limit=500`, `max_sources_per_seed=200`, `max_new_nodes_per_seed=100`
-- `discovery`: `sparql_limit=2000`, `max_sources_per_seed=1000`, `max_new_nodes_per_seed=500`
+- `discovery`: `sparql_limit=2000`, `max_sources_per_seed=1000`, `max_new_nodes_per_seed=1500`
 
 Report contents include:
 - candidate and accepted/rejected source counts

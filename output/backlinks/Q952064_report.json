@@ -1,0 +1,1137 @@
+{
+  "generated_at": "2026-02-25T00:15:49.470436+00:00",
+  "seed_qid": "Q952064",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 31,
+    "candidate_sources_before_budget": 24,
+    "candidate_sources_considered": 24,
+    "accepted_before_node_budget": 20,
+    "accepted": 20,
+    "rejected": 4,
+    "entities_profiled": 20,
+    "frontier_eligible": 20,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.16666666666666666,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "class_not_allowed": 4
+  },
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 9,
+    "unscoped": 11,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 312,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 42,
+    "with_references": 45,
+    "qualifier_rate": 0.1346153846153846,
+    "reference_rate": 0.14423076923076922,
+    "datatype_counts": {
+      "wikibase-item": 165,
+      "external-id": 65,
+      "time": 34,
+      "commonsMedia": 10,
+      "string": 13,
+      "quantity": 11,
+      "globe-coordinate": 13,
+      "monolingualtext": 1
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 165,
+      "string": 88,
+      "time": 34,
+      "quantity": 11,
+      "globecoordinate": 13,
+      "monolingualtext": 1
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 165,
+      "external-id|string": 65,
+      "time|time": 34,
+      "commonsMedia|string": 10,
+      "string|string": 13,
+      "quantity|quantity": 11,
+      "globe-coordinate|globecoordinate": 13,
+      "monolingualtext|monolingualtext": 1
+    },
+    "route_counts": {
+      "edge_candidate": 165,
+      "federation_id": 65,
+      "temporal_uncertain": 15,
+      "media_reference": 10,
+      "temporal_anchor": 19,
+      "node_property": 14,
+      "measured_attribute": 11,
+      "geo_attribute": 13
+    },
+    "rank_counts": {
+      "normal": 312
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 20,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q18161661",
+      "label": "Seaton Down Hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q10855061",
+        "Q1232974",
+        "Q164099"
+      ],
+      "matched_classes": [
+        "Q10855061",
+        "Q1232974",
+        "Q164099"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q17334923",
+        "Q386724"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/0120zck0"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.15384615384615385,
+        "reference_rate": 0.07692307692307693,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 1,
+          "temporal_uncertain": 1,
+          "media_reference": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15384615384615385,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q187776",
+      "label": "denarius",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q8142"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P508": "15872",
+        "P646": "/m/02b1d",
+        "P1014": "300037266",
+        "P2950": "denarius",
+        "P227": "4257529-1",
+        "P2924": "1947485",
+        "P2581": "03715318n",
+        "P3219": "denier-romain",
+        "P1417": "science/denarius",
+        "P4212": "pcrtmKHYJPrErU",
+        "P7844": "T505-2256",
+        "P244": "sh85036691",
+        "P268": "15117873b",
+        "P8189": "987007548139805171",
+        "P9082": "460c9376-b802-4a6b-8e7d-d0100d74a315",
+        "P691": "ph534658",
+        "P10077": "numismatica/1186444",
+        "P9495": "term/3F70EF44-935A-4AA9-ABB1-E64E6D4A19F7",
+        "P12596": "102236",
+        "P7305": "4007978",
+        "P6262": "cs.historika:Denár",
+        "P13279": "1464",
+        "P13591": "concept/dc8121e9-c2d2-4673-9695-d3b7e139aa93",
+        "P1036": "737.4"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 49,
+        "with_qualifiers": 13,
+        "with_references": 11,
+        "qualifier_rate": 0.2653061224489796,
+        "reference_rate": 0.22448979591836735,
+        "route_counts": {
+          "node_property": 2,
+          "federation_id": 26,
+          "edge_candidate": 15,
+          "measured_attribute": 4,
+          "media_reference": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16326530612244897,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2629914",
+      "label": "Hoxne treasure",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q15484785",
+        "Q164099"
+      ],
+      "matched_classes": [
+        "Q15484785",
+        "Q164099"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q17334923",
+        "Q82794"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/0cls08",
+        "P8406": "T2080561",
+        "P12190": "2008"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.08695652173913043,
+        "reference_rate": 0.17391304347826086,
+        "route_counts": {
+          "edge_candidate": 13,
+          "geo_attribute": 1,
+          "federation_id": 3,
+          "node_property": 2,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "temporal_uncertain": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2608695652173913,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q376895",
+      "label": "as",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_classes": [
+        "Q8142",
+        "Q918448"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q8142"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/01qktg",
+        "P508": "25941",
+        "P2950": "as",
+        "P2924": "1834785",
+        "P1417": "topic/aes-grave",
+        "P244": "sh85008505",
+        "P4212": "pcrtmjVjRMpJM1",
+        "P7844": "T505-2235",
+        "P1014": "300194586",
+        "P8189": "987007295769205171",
+        "P227": "1214308481",
+        "P10077": "numismatica/1186101",
+        "P9495": "term/BAE91536-1679-4E1A-B91F-2A4D2244FA64",
+        "P12596": "13908",
+        "P7305": "4007630",
+        "P13591": "concept/134e4f47-7c76-4399-9dda-b4b11a36ed7b",
+        "P1036": "332.4043"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 45,
+        "with_qualifiers": 11,
+        "with_references": 6,
+        "qualifier_rate": 0.24444444444444444,
+        "reference_rate": 0.13333333333333333,
+        "route_counts": {
+          "node_property": 4,
+          "federation_id": 19,
+          "edge_candidate": 14,
+          "measured_attribute": 7,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.26666666666666666,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q535476",
+      "label": "siliqua",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q8142"
+      ],
+      "matched_classes": [
+        "Q8142"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q8142"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/02rr9f",
+        "P2950": "siliqua",
+        "P1014": "300037271",
+        "P7844": "T505-5508",
+        "P10077": "numismatica/1187291",
+        "P9495": "term/505b8f5e-cc5d-4a19-83a0-c9a2f24e0769",
+        "P12596": "34944"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.18181818181818182,
+        "route_counts": {
+          "node_property": 2,
+          "federation_id": 7,
+          "edge_candidate": 11,
+          "media_reference": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13636363636363635,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131561738",
+      "label": "Porta do Bispo Odoario treasure",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131572358",
+      "label": "Penadominga hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131574024",
+      "label": "O Cadramón hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 7,
+          "temporal_uncertain": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131574516",
+      "label": "Quintá da Grade hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "geo_attribute": 1,
+          "temporal_uncertain": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131599741",
+      "label": "Avenida Rodríguez Mourelo hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8,
+          "geo_attribute": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131600236",
+      "label": "Rúa San Fernando hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "geo_attribute": 1,
+          "temporal_anchor": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131602557",
+      "label": "Rúa Cedrón del Valle hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "temporal_uncertain": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q131607625",
+      "label": "Duarría hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "geo_attribute": 1,
+          "temporal_uncertain": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q30624639",
+      "label": "Wold Newton hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q164099"
+      ],
+      "matched_classes": [
+        "Q164099"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q17334923"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11df3wh9r0",
+        "P12190": "14923"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.13333333333333333,
+        "route_counts": {
+          "edge_candidate": 9,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "geo_attribute": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q31280774",
+      "label": "Q31280774",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q272937"
+      ],
+      "matched_classes": [
+        "Q272937"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4222797",
+      "label": "Shrewsbury Hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q164099"
+      ],
+      "matched_classes": [
+        "Q164099"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q17334923"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0ch513_"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 3,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.23076923076923078,
+        "route_counts": {
+          "node_property": 1,
+          "geo_attribute": 1,
+          "edge_candidate": 7,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3076923076923077,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q638048",
+      "label": "Roman Imperial coinage",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q17524420"
+      ],
+      "matched_classes": [
+        "Q17524420"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/122y5rwy",
+        "P4212": "pcrtwqW8eGs8Jp"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q662137",
+      "label": "Roman Republican currency",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q17524420"
+      ],
+      "matched_classes": [
+        "Q17524420"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02_txw",
+        "P12596": "159816"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "federation_id": 2,
+          "node_property": 1,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7796335",
+      "label": "Thornbury Hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q220659"
+      ],
+      "matched_classes": [
+        "Q220659"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/04yblzs"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.38461538461538464,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 7,
+          "node_property": 1,
+          "media_reference": 1,
+          "federation_id": 1,
+          "temporal_uncertain": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3076923076923077,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7984372",
+      "label": "West Bagborough Hoard",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q220659"
+      ],
+      "matched_classes": [
+        "Q220659"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0ch5p79"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 6,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.46153846153846156,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 7,
+          "node_property": 1,
+          "media_reference": 1,
+          "federation_id": 1,
+          "temporal_uncertain": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3076923076923077,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q105581554",
+      "label": "Restitution coins",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q113813711"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2797722",
+      "label": "Aes",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q113813711"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3854059",
+      "label": "Judaea Capta coinage",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q1894248"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q5207701",
+      "label": "Dacicus",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q113813711"
+      ],
+      "backlink_hits": 1
+    }
+  ]
+}

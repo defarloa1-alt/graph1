@@ -1,0 +1,519 @@
+{
+  "generated_at": "2026-02-24T00:27:25.494134+00:00",
+  "seed_qid": "Q46303",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 15,
+    "candidate_sources_before_budget": 14,
+    "candidate_sources_considered": 14,
+    "accepted_before_node_budget": 8,
+    "accepted": 8,
+    "rejected": 6,
+    "entities_profiled": 8,
+    "frontier_eligible": 8,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.42857142857142855,
+    "unresolved_class_gate_passed": false,
+    "unsupported_pair_rate": 0.01639344262295082,
+    "datatype_gate_passed": true,
+    "overall_status": "blocked_by_policy"
+  },
+  "rejection_reasons": {
+    "no_p31": 6
+  },
+  "datatype_profile_summary": {
+    "statement_count": 123,
+    "missing_datavalue_statement_count": 1,
+    "with_qualifiers": 12,
+    "with_references": 59,
+    "qualifier_rate": 0.0975609756097561,
+    "reference_rate": 0.4796747967479675,
+    "datatype_counts": {
+      "external-id": 9,
+      "wikibase-item": 104,
+      "math": 2,
+      "string": 2,
+      "globe-coordinate": 1,
+      "monolingualtext": 2,
+      "commonsMedia": 2,
+      "quantity": 1
+    },
+    "value_type_counts": {
+      "string": 15,
+      "wikibase-entityid": 103,
+      "globecoordinate": 1,
+      "monolingualtext": 2,
+      "quantity": 1,
+      "": 1
+    },
+    "pair_counts": {
+      "external-id|string": 9,
+      "wikibase-item|wikibase-entityid": 103,
+      "math|string": 2,
+      "string|string": 2,
+      "globe-coordinate|globecoordinate": 1,
+      "monolingualtext|monolingualtext": 2,
+      "commonsMedia|string": 2,
+      "quantity|quantity": 1,
+      "wikibase-item|": 1
+    },
+    "route_counts": {
+      "federation_id": 9,
+      "edge_candidate": 103,
+      "quarantine_unsupported_pair": 2,
+      "node_property": 4,
+      "geo_attribute": 1,
+      "media_reference": 2,
+      "measured_attribute": 1,
+      "quarantine_missing_datavalue": 1
+    },
+    "rank_counts": {
+      "normal": 122,
+      "preferred": 1
+    },
+    "quarantine_reasons": {
+      "unsupported_pair": 2,
+      "missing_datavalue": 1
+    },
+    "unsupported_pairs": {
+      "math|string": 2
+    },
+    "unsupported_statement_count": 2,
+    "unsupported_pair_rate": 0.01639344262295082,
+    "frontier_eligible_count": 8,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q7835583",
+      "label": "trapezoidal rule",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q51846061",
+        "Q97610683"
+      ],
+      "matched_classes": [
+        "Q51846061",
+        "Q97610683"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P6366": "157033734",
+        "P646": "/m/0j65w95"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 5,
+        "with_references": 1,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.06666666666666667,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 11,
+          "quarantine_unsupported_pair": 2
+        },
+        "unsupported_statement_count": 2,
+        "unsupported_pair_rate": 0.13333333333333333,
+        "unsupported_pairs": {
+          "math|string": 2
+        },
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "unsupported_pair": 2
+        }
+      }
+    },
+    {
+      "qid": "Q107300489",
+      "label": "Trapez Street in Warsaw",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "matched_classes": [
+        "Q79007"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 3,
+          "geo_attribute": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.5,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q114523396",
+      "label": "Q114523396",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q46303"
+      ],
+      "matched_classes": [
+        "Q46303"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 1,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q118111634",
+      "label": "Q118111634",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q3578796"
+      ],
+      "matched_classes": [
+        "Q3578796"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123115730",
+      "label": "Maths and Geometry program for Italian primary school",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 52,
+        "with_qualifiers": 0,
+        "with_references": 51,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.9807692307692307,
+        "route_counts": {
+          "edge_candidate": 51,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.019230769230769232,
+        "edge_candidate_count": 51,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q127789059",
+      "label": "Angles. Circle. Area and of triangles, parallelograms and trapezoids. Points on the plane",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.15,
+        "route_counts": {
+          "edge_candidate": 20
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q23852663",
+      "label": "Q23852663",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q13433827"
+      ],
+      "matched_classes": [
+        "Q13433827"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q7835582",
+      "label": "trapezoid graph",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q136032484"
+      ],
+      "matched_classes": [
+        "Q136032484"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6366": "10325715",
+        "P646": "/m/0gmgb1r",
+        "P10283": "C10325715",
+        "P13104": "gc_59"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 5,
+        "with_references": 2,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.13333333333333333,
+        "route_counts": {
+          "edge_candidate": 7,
+          "media_reference": 1,
+          "federation_id": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q117008856",
+      "label": "proper trapezoid",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1194115",
+      "label": "isosceles trapezoid",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12218380",
+      "label": "right trapezoid",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q45867",
+      "label": "parallelogram",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q7682884",
+      "label": "tangential trapezoid",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q93938811",
+      "label": "irregular trapezium",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

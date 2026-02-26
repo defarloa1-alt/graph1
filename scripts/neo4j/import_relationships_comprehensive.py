@@ -177,33 +177,28 @@ def generate_comprehensive_relationship_import(
                         # Extract qualifiers (temporal, location, etc.)
                         qualifiers = claim.get('qualifiers', {})
                         
-                        # Build property string
+                        # Build property string (Cypher SET uses = not :)
                         props = [
-                            f"wikidata_pid: '{prop_id}'",
-                            f"in_registry: {in_registry}",
-                            "created_at: datetime()",
-                            "source: 'wikidata'"
+                            f"r.wikidata_pid = '{prop_id}'",
+                            f"r.in_registry = {str(in_registry).lower()}",
+                            "r.created_at = datetime()",
+                            "r.source = 'wikidata'"
                         ]
                         
                         # Add temporal qualifiers if present
                         if 'P580' in qualifiers:  # start time
-                            # TODO: Parse and add temporal_start_year
-                            props.append("has_temporal: true")
+                            props.append("r.has_temporal = true")
                         
                         # Add location qualifier if present
                         if 'P276' in qualifiers:  # location
-                            # TODO: Parse and add location_qid
-                            props.append("has_location: true")
+                            props.append("r.has_location = true")
                         
                         prop_string = ", ".join(props)
                         
-                        cypher = f"""
-// {qid_from} --{rel_type}({prop_id})--> {qid_to}
-MATCH (from:Entity {{qid: '{qid_from}'}})
+                        cypher = f"""MATCH (from:Entity {{qid: '{qid_from}'}})
 MATCH (to:Entity {{qid: '{qid_to}'}})
 MERGE (from)-[r:{rel_type}]->(to)
-ON CREATE SET
-  r.{prop_string};
+ON CREATE SET {prop_string};
 """
                         cypher_lines.append(cypher)
                         relationship_count += 1

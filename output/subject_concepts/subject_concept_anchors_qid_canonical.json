@@ -1,0 +1,429 @@
+[
+  {
+    "qid": "Q104867898",
+    "label": "Marriage alliances and political kinship",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "BIOGRAPHIC"
+  },
+  {
+    "qid": "Q105427",
+    "label": "Institutions: Senate, Assemblies, Magistracies",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q11019",
+    "label": "Trade routes and maritime networks",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "ECONOMIC"
+  },
+  {
+    "qid": "Q11469",
+    "label": "Landholding, Agriculture, and Estates",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "ECONOMIC"
+  },
+  {
+    "qid": "Q1200427",
+    "label": "Culture, Ideas, and Communication",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.90",
+    "primary_facet": "CULTURAL"
+  },
+  {
+    "qid": "Q1234567",
+    "label": "Finance, contracts, and publicani",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "ECONOMIC"
+  },
+  {
+    "qid": "Q1243998",
+    "label": "Battles and Operations",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "MILITARY"
+  },
+  {
+    "qid": "Q131416",
+    "label": "Priesthoods and sacred colleges",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "RELIGIOUS"
+  },
+  {
+    "qid": "Q1363254",
+    "label": "Land reform, redistribution, agrarian policy",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "ECONOMIC"
+  },
+  {
+    "qid": "Q1367629",
+    "label": "Ritual Practice, Omens, and Public Ceremony",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "RELIGIOUS"
+  },
+  {
+    "qid": "Q1392538",
+    "label": "Society and Social Structure",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "SOCIAL"
+  },
+  {
+    "qid": "Q15265460",
+    "label": "Economy and Resource Systems",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "ECONOMIC"
+  },
+  {
+    "qid": "Q1541",
+    "label": "Forums, public speech, persuasion",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "COMMUNICATION"
+  },
+  {
+    "qid": "Q15800869",
+    "label": "Early Republic (periodization)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "TEMPORAL"
+  },
+  {
+    "qid": "Q1593880",
+    "label": "Institutions of slavery and manumission",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "SOCIAL"
+  },
+  {
+    "qid": "Q17167",
+    "label": "Roman Republic",
+    "domain_qid": "Q17167",
+    "confidence": "root",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q172845",
+    "label": "Religion and Public Cult",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "RELIGIOUS"
+  },
+  {
+    "qid": "Q1747183",
+    "label": "Internal wars (civil/social/rebellion)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.90",
+    "primary_facet": "MILITARY"
+  },
+  {
+    "qid": "Q1764124",
+    "label": "External wars (interstate/expansionary)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "MILITARY"
+  },
+  {
+    "qid": "Q1812526",
+    "label": "Reforms and constitutional change",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.75",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q182547",
+    "label": "Provinces and Administration",
+    "domain_qid": "Q17167",
+    "confidence": "llm:1.00",
+    "primary_facet": "GEOGRAPHIC"
+  },
+  {
+    "qid": "Q185816",
+    "label": "Naval warfare and sea operations",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "MILITARY"
+  },
+  {
+    "qid": "Q186916",
+    "label": "Chronology and Periodization",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "TEMPORAL"
+  },
+  {
+    "qid": "Q1944199",
+    "label": "Mechanisms of patronage",
+    "domain_qid": "Q17167",
+    "confidence": "llm:1.00",
+    "primary_facet": "SOCIAL"
+  },
+  {
+    "qid": "Q19895241",
+    "label": "Symbols, memory, persuasive narratives",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "COMMUNICATION"
+  },
+  {
+    "qid": "Q1993655",
+    "label": "Civil wars and internal conflicts",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q201452",
+    "label": "Diplomacy and International Relations",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "DIPLOMATIC"
+  },
+  {
+    "qid": "Q2063299",
+    "label": "Elite competition and network power",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.90",
+    "primary_facet": "SOCIAL"
+  },
+  {
+    "qid": "Q2065169",
+    "label": "Political violence, proscriptions, purges",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.90",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q2067204",
+    "label": "Oratory, Rhetoric, and Propaganda",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "COMMUNICATION"
+  },
+  {
+    "qid": "Q1887031",
+    "label": "Republican ideals (virtus, mos maiorum, liberty)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "INTELLECTUAL"
+  },
+  {
+    "qid": "Q20720797",
+    "label": "Factions, Patronage Power, and Civil Conflict",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q207544",
+    "label": "Geography, Provinces, and Expansion",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "GEOGRAPHIC"
+  },
+  {
+    "qid": "Q337547",
+    "label": "Public ritual, auspices, legitimacy",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "RELIGIOUS"
+  },
+  {
+    "qid": "Q211364",
+    "label": "Popular/admin offices: Tribune, Aedile, Quaestor",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q212943",
+    "label": "Religious Offices, Priesthoods, and Authority",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "RELIGIOUS"
+  },
+  {
+    "qid": "Q213810",
+    "label": "Law, Citizenship, and Constitutional Practice",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q2277",
+    "label": "Transition to Empire",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.90",
+    "primary_facet": "TEMPORAL"
+  },
+  {
+    "qid": "Q2345364",
+    "label": "Historiography, Sources, and Historical Method",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "INTELLECTUAL"
+  },
+  {
+    "qid": "Q236885",
+    "label": "Dictatorship & extraordinary commands",
+    "domain_qid": "Q17167",
+    "confidence": "llm:1.00",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q2576746",
+    "label": "Constitutionalism and mixed government models",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "INTELLECTUAL"
+  },
+  {
+    "qid": "Q271108",
+    "label": "Factional politics (Optimates/Populares framing)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q2817119",
+    "label": "Envoys, embassies, negotiation practice",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "DIPLOMATIC"
+  },
+  {
+    "qid": "Q2862991",
+    "label": "Warfare and Military Systems",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "MILITARY"
+  },
+  {
+    "qid": "Q2916317",
+    "label": "Military roles & command structure",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "MILITARY"
+  },
+  {
+    "qid": "Q3277005",
+    "label": "Magistracies (powers, term limits, imperium)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q3932035",
+    "label": "Client Kingdoms, Alliances, and Hegemony",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "DIPLOMATIC"
+  },
+  {
+    "qid": "Q2815472",
+    "label": "Late Republic (periodization)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "TEMPORAL"
+  },
+  {
+    "qid": "Q39686",
+    "label": "Offices and Magistracies (Cursus Honorum)",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q4119583",
+    "label": "Treaties, Negotiations, and Envoys",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "DIPLOMATIC"
+  },
+  {
+    "qid": "Q46303",
+    "label": "Wars and Campaigns",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "MILITARY"
+  },
+  {
+    "qid": "Q6106068",
+    "label": "Middle Republic (periodization)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:1.00",
+    "primary_facet": "TEMPORAL"
+  },
+  {
+    "qid": "Q657326",
+    "label": "Social orders (Patrician, Plebeian, Equites)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.85",
+    "primary_facet": "SOCIAL"
+  },
+  {
+    "qid": "Q726929",
+    "label": "Courts, trials, legal procedure",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q838930",
+    "label": "Rome and Italy (Republic Context)",
+    "domain_qid": "Q17167",
+    "confidence": "llm:1.00",
+    "primary_facet": "GEOGRAPHIC"
+  },
+  {
+    "qid": "Q7188",
+    "label": "Government and Constitutional Structure",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q8464",
+    "label": "Slavery, Labor, and Dependency",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "SOCIAL"
+  },
+  {
+    "qid": "Q859980",
+    "label": "Popular assemblies and voting",
+    "domain_qid": "Q17167",
+    "confidence": "curated",
+    "primary_facet": "POLITICAL"
+  },
+  {
+    "qid": "Q899409",
+    "label": "Families, Gentes, and Prosopography",
+    "domain_qid": "Q17167",
+    "confidence": "llm:1.00",
+    "primary_facet": "BIOGRAPHIC"
+  },
+  {
+    "qid": "Q9070",
+    "label": "Civic Culture, Identity, and Romanitas",
+    "domain_qid": "Q17167",
+    "confidence": "llm:1.00",
+    "primary_facet": "CULTURAL"
+  },
+  {
+    "qid": "Q952064",
+    "label": "Markets, money, and exchange",
+    "domain_qid": "Q17167",
+    "confidence": "llm:0.95",
+    "primary_facet": "ECONOMIC"
+  }
+]

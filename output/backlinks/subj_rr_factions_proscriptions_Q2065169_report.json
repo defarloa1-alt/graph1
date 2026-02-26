@@ -1,0 +1,868 @@
+{
+  "generated_at": "2026-02-24T00:27:19.910074+00:00",
+  "seed_qid": "Q2065169",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 25,
+    "candidate_sources_before_budget": 19,
+    "candidate_sources_considered": 19,
+    "accepted_before_node_budget": 19,
+    "accepted": 19,
+    "rejected": 0,
+    "entities_profiled": 19,
+    "frontier_eligible": 19,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 105,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 0,
+    "with_references": 75,
+    "qualifier_rate": 0.0,
+    "reference_rate": 0.7142857142857143,
+    "datatype_counts": {
+      "external-id": 34,
+      "wikibase-item": 66,
+      "monolingualtext": 3,
+      "string": 1,
+      "quantity": 1
+    },
+    "value_type_counts": {
+      "string": 35,
+      "wikibase-entityid": 66,
+      "monolingualtext": 3,
+      "quantity": 1
+    },
+    "pair_counts": {
+      "external-id|string": 34,
+      "wikibase-item|wikibase-entityid": 66,
+      "monolingualtext|monolingualtext": 3,
+      "string|string": 1,
+      "quantity|quantity": 1
+    },
+    "route_counts": {
+      "federation_id": 34,
+      "edge_candidate": 66,
+      "node_property": 4,
+      "measured_attribute": 1
+    },
+    "rank_counts": {
+      "normal": 105
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 19,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q137406670",
+      "label": "Em Monteiro Lobato",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P4344": "21093148-em-monteiro-lobato",
+        "P11704": "21093148"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8333333333333334,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137406679",
+      "label": "Escola Municipal de Ensino Fundamental Bom Jesus",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P4344": "21093334-escola-municipal-de-ensino-fundamental-bom-jesus",
+        "P11704": "21093334"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8333333333333334,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137415341",
+      "label": "Escola Municipal de Ensino Fundamental Rachel de Queiroz",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P4344": "21231133-escola-municipal-de-ensino-fundamental-rachel-de-queiroz",
+        "P11704": "21231133"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8333333333333334,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137416772",
+      "label": "Centro de Ensino Josue Montello - Anexo I - Curvelandia",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P4344": "21260168-centro-de-ensino-josue-montello---anexo-i---curvelandia",
+        "P11704": "21260168"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8333333333333334,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137416855",
+      "label": "Escola Municipal de Ensino Fundamental Vale do Tocantins",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q136386339",
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P4344": "21261652-escola-municipal-de-ensino-fundamental-vale-do-tocantins",
+        "P11704": "21261652"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8333333333333334,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q88474168",
+      "label": "Biblioteca Pública Municipal Paulo Freire",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q28564",
+        "Q7075"
+      ],
+      "matched_classes": [
+        "Q28564",
+        "Q7075"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130277842",
+      "label": "mayor of Vila Nova dos Martírios",
+      "properties": [
+        "P1001"
+      ],
+      "p31": [
+        "Q30185"
+      ],
+      "matched_classes": [
+        "Q30185"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "node_property": 2,
+          "edge_candidate": 5,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.375,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137406702",
+      "label": "Escola Municipal de Ensino Fundamental Duque de Caxias",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q3914"
+      ],
+      "matched_classes": [
+        "Q3914"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21093725-escola-municipal-de-ensino-fundamental-duque-de-caxias",
+        "P11704": "21093725"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137406714",
+      "label": "Unidade Integrada de Ensino Fundamental Humberto de Campos",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21093970-unidade-integrada-de-ensino-fundamental-humberto-de-campos",
+        "P11704": "21093970"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137406740",
+      "label": "Escola Municipal de Ensino Fundamental Jose de Ribamar Fiquene",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q3914"
+      ],
+      "matched_classes": [
+        "Q3914"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21094691-escola-municipal-de-ensino-fundamental-jose-de-ribamar-fiquene",
+        "P11704": "21094691"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137406757",
+      "label": "Escola Municipal de Ensino Fundamental São Francisco",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21095027-escola-municipal-de-ensino-fundamental-sao-francisco",
+        "P11704": "21095027"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137415365",
+      "label": "Centro de Ensino Josue Montello",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q3914"
+      ],
+      "matched_classes": [
+        "Q3914"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21231559-centro-de-ensino-josue-montello",
+        "P11704": "21231559"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137415532",
+      "label": "Escola Municipal de Ensino Fundamental Paulo Lopes da Rocha",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q3914"
+      ],
+      "matched_classes": [
+        "Q3914"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21234507-escola-municipal-de-ensino-fundamental-paulo-lopes-da-rocha",
+        "P11704": "21234507"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137415869",
+      "label": "Escola Infantil Sonho de Criança",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q3914"
+      ],
+      "matched_classes": [
+        "Q3914"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21241767-escola-infantil-sonho-de-crianca",
+        "P11704": "21241767"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137415871",
+      "label": "Escola Muncipal Infantil Criança Feliz",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21241791-escola-muncipal-infantil-crianca-feliz",
+        "P11704": "21241791"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137416856",
+      "label": "Escola Infantil Mundo do Saber",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21261660-escola-infantil-mundo-do-saber",
+        "P11704": "21261660"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137417286",
+      "label": "Centro de Ensino Josue Montello - Anexo II - Marcolandia",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q19855165"
+      ],
+      "matched_classes": [
+        "Q19855165"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21269238-centro-de-ensino-josue-montello---anexo-ii---marcolandia",
+        "P11704": "21269238"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137417305",
+      "label": "Escola Municipal Infantil Pequeno Príncipe",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q3914"
+      ],
+      "matched_classes": [
+        "Q3914"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21269483-escola-municipal-infantil-pequeno-principe",
+        "P11704": "21269483"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137417822",
+      "label": "Escola Municipal Infantil Futuras Geracoes",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q3914"
+      ],
+      "matched_classes": [
+        "Q3914"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4344": "21276684-escola-municipal-infantil-futuras-geracoes",
+        "P11704": "21276684"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

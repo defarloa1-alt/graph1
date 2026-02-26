@@ -1,0 +1,231 @@
+{
+  "root_qid": "Q17167",
+  "total_concepts": 86,
+  "anchored": 80,
+  "unanchored": 6,
+  "curated": 13,
+  "llm_resolved": 67,
+  "coverage_pct": 86.0,
+  "passed": false,
+  "failures": [
+    {
+      "subject_id": "subj_rr_command_imperium",
+      "label": "Imperium, command authority, delegation",
+      "qid": "Q17167",
+      "issue_type": "FAILURE",
+      "code": "ROOT_FALLBACK",
+      "message": "Resolved to root QID Q17167 - likely a fallback, not a real anchor",
+      "detail": "LLM defaulted to the domain root rather than finding a specific entity"
+    },
+    {
+      "subject_id": "subj_rr_econ_tax_revenue",
+      "label": "Taxation, Tribute, and Provincial Revenue",
+      "qid": "Q17167",
+      "issue_type": "FAILURE",
+      "code": "ROOT_FALLBACK",
+      "message": "Resolved to root QID Q17167 - likely a fallback, not a real anchor",
+      "detail": "LLM defaulted to the domain root rather than finding a specific entity"
+    },
+    {
+      "subject_id": "subj_rr_ideas_political_thought",
+      "label": "Republicanism and Political Thought",
+      "qid": "Q17167",
+      "issue_type": "FAILURE",
+      "code": "ROOT_FALLBACK",
+      "message": "Resolved to root QID Q17167 - likely a fallback, not a real anchor",
+      "detail": "LLM defaulted to the domain root rather than finding a specific entity"
+    },
+    {
+      "subject_id": "subj_rr_hist_sources",
+      "label": "Primary sources and traditions",
+      "qid": "Q17167",
+      "issue_type": "FAILURE",
+      "code": "ROOT_FALLBACK",
+      "message": "Resolved to root QID Q17167 - likely a fallback, not a real anchor",
+      "detail": "LLM defaulted to the domain root rather than finding a specific entity"
+    },
+    {
+      "subject_id": "subj_rr_time_early_events",
+      "label": "Early Republic: institutional formation",
+      "qid": "Q17167",
+      "issue_type": "FAILURE",
+      "code": "ROOT_FALLBACK",
+      "message": "Resolved to root QID Q17167 - likely a fallback, not a real anchor",
+      "detail": "LLM defaulted to the domain root rather than finding a specific entity"
+    },
+    {
+      "subject_id": "subj_rr_econ_finance_contracts",
+      "label": "Finance, contracts, and publicani",
+      "qid": "Q1234567",
+      "issue_type": "FAILURE",
+      "code": "PLACEHOLDER_QID",
+      "message": "QID Q1234567 matches a known placeholder pattern",
+      "detail": "LLM likely hallucinated this identifier"
+    }
+  ],
+  "warnings": [
+    {
+      "subject_id": "subj_rr_mil_command_roles",
+      "label": "Command, Leadership, and Military Roles",
+      "qid": null,
+      "issue_type": "WARNING",
+      "code": "NO_MATCH",
+      "message": "No Wikidata anchor found",
+      "detail": "Requires manual curation or prompt refinement"
+    },
+    {
+      "subject_id": "subj_rr_battles_land",
+      "label": "Land battles and field operations",
+      "qid": null,
+      "issue_type": "WARNING",
+      "code": "NO_MATCH",
+      "message": "No Wikidata anchor found",
+      "detail": "Requires manual curation or prompt refinement"
+    },
+    {
+      "subject_id": "subj_rr_logistics_supply",
+      "label": "Supply, pay, and military economy",
+      "qid": null,
+      "issue_type": "WARNING",
+      "code": "NO_MATCH",
+      "message": "No Wikidata anchor found",
+      "detail": "Requires manual curation or prompt refinement"
+    },
+    {
+      "subject_id": "subj_rr_econ_trade_markets",
+      "label": "Trade, Markets, and Mediterranean Networks",
+      "qid": null,
+      "issue_type": "WARNING",
+      "code": "NO_MATCH",
+      "message": "No Wikidata anchor found",
+      "detail": "Requires manual curation or prompt refinement"
+    },
+    {
+      "subject_id": "subj_rr_geo_frontiers_theaters",
+      "label": "Frontiers and Theaters of War",
+      "qid": null,
+      "issue_type": "WARNING",
+      "code": "NO_MATCH",
+      "message": "No Wikidata anchor found",
+      "detail": "Requires manual curation or prompt refinement"
+    },
+    {
+      "subject_id": "subj_rr_dip_treaty_systems",
+      "label": "Treaty systems, guarantees, hostages",
+      "qid": null,
+      "issue_type": "WARNING",
+      "code": "NO_MATCH",
+      "message": "No Wikidata anchor found",
+      "detail": "Requires manual curation or prompt refinement"
+    },
+    {
+      "subject_id": "subj_rr_military, subj_rr_mil_org_logistics, subj_rr_logistics_recruitment",
+      "label": "(multiple)",
+      "qid": "Q2862991",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q2862991 assigned to 3 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_military', 'subj_rr_mil_org_logistics', 'subj_rr_logistics_recruitment']"
+    },
+    {
+      "subject_id": "subj_rr_society, subj_rr_soc_orders_status",
+      "label": "(multiple)",
+      "qid": "Q1392538",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q1392538 assigned to 2 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_society', 'subj_rr_soc_orders_status']"
+    },
+    {
+      "subject_id": "subj_rr_gov_institutions, subj_rr_gov_senate",
+      "label": "(multiple)",
+      "qid": "Q105427",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q105427 assigned to 2 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_gov_institutions', 'subj_rr_gov_senate']"
+    },
+    {
+      "subject_id": "subj_rr_gov_offices, subj_rr_off_consul_praetor",
+      "label": "(multiple)",
+      "qid": "Q39686",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q39686 assigned to 2 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_gov_offices', 'subj_rr_off_consul_praetor']"
+    },
+    {
+      "subject_id": "subj_rr_gov_law, subj_rr_law_citizenship_status, subj_rr_social_citizenship",
+      "label": "(multiple)",
+      "qid": "Q213810",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q213810 assigned to 3 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_gov_law', 'subj_rr_law_citizenship_status', 'subj_rr_social_citizenship']"
+    },
+    {
+      "subject_id": "subj_rr_factions_civil_wars, subj_rr_soc_patronage, subj_rr_time_late_crisis",
+      "label": "(multiple)",
+      "qid": "Q1993655",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q1993655 assigned to 3 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_factions_civil_wars', 'subj_rr_soc_patronage', 'subj_rr_time_late_crisis']"
+    },
+    {
+      "subject_id": "subj_rr_soc_family_gentes, subj_rr_family_gentes",
+      "label": "(multiple)",
+      "qid": "Q899409",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q899409 assigned to 2 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_soc_family_gentes', 'subj_rr_family_gentes']"
+    },
+    {
+      "subject_id": "subj_rr_slavery_institutions, subj_rr_labor_economy",
+      "label": "(multiple)",
+      "qid": "Q1593880",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q1593880 assigned to 2 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_slavery_institutions', 'subj_rr_labor_economy']"
+    },
+    {
+      "subject_id": "subj_rr_geo_provinces_admin, subj_rr_geo_provincial_governance, subj_rr_geo_provincial_economy",
+      "label": "(multiple)",
+      "qid": "Q182547",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q182547 assigned to 3 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_geo_provinces_admin', 'subj_rr_geo_provincial_governance', 'subj_rr_geo_provincial_economy']"
+    },
+    {
+      "subject_id": "subj_rr_ideas_historiography, subj_rr_hist_method",
+      "label": "(multiple)",
+      "qid": "Q2345364",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q2345364 assigned to 2 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_ideas_historiography', 'subj_rr_hist_method']"
+    },
+    {
+      "subject_id": "subj_rr_time_middle, subj_rr_time_middle_imperialism",
+      "label": "(multiple)",
+      "qid": "Q6106068",
+      "issue_type": "WARNING",
+      "code": "DUPLICATE_ANCHOR",
+      "message": "QID Q6106068 assigned to 2 distinct SubjectConcepts",
+      "detail": "Subjects share the same Wikidata backlink universe: ['subj_rr_time_middle', 'subj_rr_time_middle_imperialism']"
+    },
+    {
+      "subject_id": "subj_rr_hist_sources",
+      "label": "Primary sources and traditions",
+      "qid": "Q17167",
+      "issue_type": "WARNING",
+      "code": "LOW_CONFIDENCE",
+      "message": "Confidence 0.65 below threshold 0.7",
+      "detail": "Consider manual review or re-resolution with a more specific prompt"
+    }
+  ],
+  "summary": "Total concepts: 86\nVerified anchors: 74/86 (86.0%)\nCurated: 13 | LLM-resolved: 67 | No-match: 6\nFailures: 6 | Warnings: 18\nStatus: FAILED"
+}

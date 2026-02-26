@@ -1,0 +1,4522 @@
+{
+  "generated_at": "2026-02-25T00:13:25.664639+00:00",
+  "seed_qid": "Q236885",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 76,
+    "candidate_sources_before_budget": 75,
+    "candidate_sources_considered": 75,
+    "accepted_before_node_budget": 75,
+    "accepted": 75,
+    "rejected": 0,
+    "entities_profiled": 75,
+    "frontier_eligible": 75,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 12,
+    "unscoped": 63,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 3330,
+    "missing_datavalue_statement_count": 221,
+    "with_qualifiers": 791,
+    "with_references": 1047,
+    "qualifier_rate": 0.23753753753753754,
+    "reference_rate": 0.3144144144144144,
+    "datatype_counts": {
+      "wikibase-item": 2096,
+      "external-id": 976,
+      "time": 165,
+      "string": 14,
+      "monolingualtext": 62,
+      "commonsMedia": 16,
+      "quantity": 1
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 1890,
+      "string": 1006,
+      "": 221,
+      "time": 150,
+      "monolingualtext": 62,
+      "quantity": 1
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 1890,
+      "external-id|string": 976,
+      "wikibase-item|": 206,
+      "time|": 15,
+      "string|string": 14,
+      "time|time": 150,
+      "monolingualtext|monolingualtext": 62,
+      "commonsMedia|string": 16,
+      "quantity|quantity": 1
+    },
+    "route_counts": {
+      "edge_candidate": 1890,
+      "federation_id": 976,
+      "quarantine_missing_datavalue": 221,
+      "node_property": 76,
+      "temporal_anchor": 49,
+      "media_reference": 16,
+      "measured_attribute": 1,
+      "temporal_uncertain": 101
+    },
+    "rank_counts": {
+      "normal": 3316,
+      "deprecated": 9,
+      "preferred": 5
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 221
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 75,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q4895971",
+      "label": "Marcus Fabius Ambustus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5",
+        "Q64643615"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/0bmcvqj"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.041666666666666664,
+        "reference_rate": 0.20833333333333334,
+        "route_counts": {
+          "edge_candidate": 20,
+          "federation_id": 1,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1048",
+      "label": "Julius Caesar",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "286265178",
+        "P244": "n79021400",
+        "P268": "11894764p",
+        "P213": "0000000382473815",
+        "P227": "118518275",
+        "P691": "jn19981000434",
+        "P349": "00435043",
+        "P409": "36153573",
+        "P1017": "ADV11355843",
+        "P906": "180826",
+        "P1005": "25745",
+        "P646": "/m/041wm",
+        "P1273": "a10430179",
+        "P1296": "0017211",
+        "P1006": "070224498",
+        "P269": "027303136",
+        "P1422": "628",
+        "P1807": "3661",
+        "P1430": "4331",
+        "P345": "nm2471712",
+        "P648": "OL7178325A",
+        "P950": "XX841352",
+        "P2163": "31693",
+        "P1417": "biography/Julius-Caesar-Roman-ruler",
+        "P2799": "390",
+        "P1263": "783/000044651",
+        "P2950": "julius_caesar",
+        "P1899": "2012",
+        "P245": "500077373",
+        "P1711": "58909",
+        "P3348": "172257",
+        "P3365": "gaio-giulio-cesare",
+        "P3430": "w6f872sd",
+        "P3417": "Julius-Caesar-historical-figure",
+        "P3762": "16886",
+        "P3569": "geschiedenis-oudheid/caesar",
+        "P1003": "000036044",
+        "P1015": "90063226",
+        "P1207": "n93125041",
+        "P396": "CFIV024046",
+        "P4159": "Julius_Caesar_(1)",
+        "P1280": "13219683",
+        "P3630": "10952",
+        "P1415": "48304",
+        "P4459": "14777/cayo-julio-cesar",
+        "P3219": "cesar-101-44",
+        "P3987": "159728",
+        "P5019": "caesar",
+        "P5361": "CaesarJulius",
+        "P949": "000027422",
+        "P4223": "gaio-giulio-cesare",
+        "P5613": "Jules-Cesar",
+        "P1741": "88038",
+        "P5587": "0xbdd6fj3p61h54",
+        "P2963": "16535395",
+        "P1871": "cnp01316739",
+        "P1368": "000030603",
+        "P3065": "A000027235",
+        "P1375": "000054781",
+        "P271": "DA02136466",
+        "P1670": "0040D2199",
+        "P4619": "000540369",
+        "P5034": "KAC199638731",
+        "P3846": "87097968192927",
+        "P1315": "1221023",
+        "P3222": "caesar",
+        "P434": "700c2278-910d-40d5-b85a-4c95a39a95ef",
+        "P5905": "4005-19792",
+        "P5247": "3005-2196",
+        "P6327": "988392",
+        "P1580": "a1244651",
+        "P6573": "Julius_Cäsar",
+        "P2966": "caesar-julius-100-b-c-44-b-c",
+        "P6404": "gaio-giulio-cesare",
+        "P6873": "54",
+        "P6941": "448",
+        "P2381": "166899",
+        "P4342": "Julius_Caesar",
+        "P6999": "75",
+        "P1695": "a0000001178361",
+        "P7042": "caes",
+        "P6831": "565",
+        "P1185": "4464",
+        "P7041": "296",
+        "P7466": "1329",
+        "P7507": "545",
+        "P1245": "1443151",
+        "P902": "010301",
+        "P5390": "classiques/cesar_jules/cesar_jules",
+        "P6844": "161051",
+        "P7796": "1418",
+        "P6060": "CAES1",
+        "P5492": "2169",
+        "P6058": "personnage/Jules_César/112421",
+        "P2600": "6000000001336610897",
+        "P7935": "Iulius_Caesar",
+        "P7029": "778727",
+        "P3788": "000027708",
+        "P7024": "000000429",
+        "P6394": "a11126073",
+        "P7039": "000007841",
+        "P7293": "9810585154105606",
+        "P4212": "pcrtr5oYOj7OBr",
+        "P6863": "1957",
+        "P7865": "95a5yja38danygu695b5yc1j6gr38dg",
+        "P8122": "A4644",
+        "P4553": "14499",
+        "P2977": "JuCaesa",
+        "P5731": "87883",
+        "P5375": "3897",
+        "P4839": "Entity[\"Concept\", \"GaiusJuliusCaesar::9cbpq\"]",
+        "P5739": "12586",
+        "P7986": "42386",
+        "P7902": "118518275",
+        "P1309": "vtls000890734",
+        "P8189": "987007259336005171",
+        "P3847": "person:julius_caesar",
+        "P7699": "LNB:V*72318;=BH",
+        "P8179": "ncf10031720",
+        "P7369": "000010638",
+        "P8408": "JuliusCaesar-HistoricPerson",
+        "P8034": "495/42092",
+        "P8406": "T012962",
+        "P1819": "I00446749",
+        "P8566": "10",
+        "P7982": "11368",
+        "P8547": "000001269",
+        "P8589": "A007937",
+        "P5063": "i94620",
+        "P8750": "587",
+        "P8826": "H0012829",
+        "P8848": "1118310",
+        "P8833": "20128",
+        "P6839": "UsefulNotes/JuliusCaesar",
+        "P8065": "426",
+        "P8795": "20080",
+        "P6764": "N29",
+        "P8496": "julius-caesar-gaius-100-44-bc-roman-statesman",
+        "P535": "7181",
+        "P9000": "Julius_Caesar",
+        "P9017": "286265178",
+        "P9037": "0c3dd285-04e4-4c7b-a768-155edd850d3c",
+        "P9081": "7901",
+        "P1938": "3621",
+        "P8472": "1378",
+        "P2432": "532",
+        "P8814": "10897913-n",
+        "P8980": "000041439",
+        "P7444": "20396",
+        "P9223": "b1faf8c3-589f-4100-ab8e-82d8ccc9521b",
+        "P8885": "율리우스 카이사르",
+        "P9106": "3394",
+        "P9282": "1171",
+        "P8947": "76803",
+        "P8849": "7656293",
+        "P6821": "alvin-person:25707",
+        "P6683": "274479",
+        "P5821": "6475",
+        "P8851": "54655497",
+        "P9498": "36bb",
+        "P2924": "4673979",
+        "P9534": "18033",
+        "P7666": "julijus-cezaris",
+        "P9653": "1093",
+        "P6868": "2429195118",
+        "P8349": "14966",
+        "P9226": "cesar-cayo-julio-100-c-44-c",
+        "P7711": "T513-4878",
+        "P9507": "21473",
+        "P9756": "404",
+        "P9337": "72778",
+        "P9918": "PE00116920",
+        "P9984": "981058520240406706",
+        "P10031": "172",
+        "P6385": "istoriya/TSEZAR_GA_YULI.html",
+        "P10242": "06182/eu_z_1052/z1052",
+        "P7305": "3884463",
+        "P10297": "m041wm",
+        "P1260": "LSH/agents/5324",
+        "P8313": "Julius_Cæsar",
+        "P8069": "3",
+        "P10553": "135515068",
+        "P6706": "Césare,+Gàio+Giùlio",
+        "P9495": "person/9F25A47F-9F7B-4EF0-9B0A-CDD251DF1FA4",
+        "P10565": "204760",
+        "P9247": "5112",
+        "P9791": "430",
+        "P10864": "62160",
+        "P10757": "774",
+        "P8168": "Q452342",
+        "P7502": "Julius_Caesar-JXEN",
+        "P4549": "10626",
+        "P1890": "000038275",
+        "P2607": "8ec440d3-e767-481d-a42b-ab6b8da53b89",
+        "P7400": "caesarjulius",
+        "P4862": "B00JH3EFXE",
+        "P11252": "168",
+        "P11239": "0010000128",
+        "P9943": "person/697805117105",
+        "P10227": "vtls000049593",
+        "P3280": "0001493723",
+        "P1149": "DG261-DG267",
+        "P11496": "1140563741705045376",
+        "P11686": "981058520240406706",
+        "P11790": "232",
+        "P1617": "fcf53b69-2e34-425a-933b-5796bd0cc897",
+        "P11828": "796",
+        "P11182": "4411",
+        "P10780": "jules-cesar",
+        "P11179": "932",
+        "P11835": "9505",
+        "P11514": "gai-iulii-tsezar-d8609f",
+        "P8896": "8-3811",
+        "P3544": "49479",
+        "P3553": "19632677",
+        "P12098": "958875",
+        "P12086": "Julius_Caesar",
+        "P8603": "1349",
+        "P12385": "gai-juli-cesar",
+        "P12458": "232230",
+        "P12483": "14796",
+        "P7700": "vtls005536195",
+        "P12597": "14774",
+        "P12615": "2683",
+        "P6262": "cs.historika:Gaius_Iulius_Caesar",
+        "P9707": "43691",
+        "P12749": "Q69548",
+        "P12780": "942",
+        "P8982": "16980",
+        "P12800": "en:Julius_Caesar",
+        "P8590": "3886",
+        "P12502": "6209",
+        "P13030": "person/2068",
+        "P13019": "116995",
+        "P13049": "118518275",
+        "P12040": "person/104MKQ",
+        "P13094": "XWkRtVSMSBGdRXKOevkrWAB",
+        "P10608": "agent/gnd_118518275",
+        "P13166": "74948",
+        "P4813": "241750",
+        "P9964": "118518275",
+        "P5562": "cesar_cayo_julio",
+        "P13311": "Q40380",
+        "P6698": "ガイウス・ユリウス・カエサル",
+        "P13371": "biografias/11643",
+        "P10387": "259",
+        "P2592": "15287",
+        "P13591": "person/7f30ab8f-520c-430b-8c01-ccc986299f50",
+        "P13736": "153",
+        "P12869": "urn:cts:latinLit:phi0448",
+        "P5648": "85602",
+        "P10400": "6003",
+        "P2538": "17986",
+        "P2605": "780472"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 453,
+        "with_qualifiers": 105,
+        "with_references": 111,
+        "qualifier_rate": 0.23178807947019867,
+        "reference_rate": 0.24503311258278146,
+        "route_counts": {
+          "edge_candidate": 145,
+          "federation_id": 288,
+          "node_property": 11,
+          "temporal_anchor": 6,
+          "media_reference": 2,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03090507726269316,
+        "edge_candidate_count": 145,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1091296",
+      "label": "Publius Cornelius Rufinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0cztd4",
+        "P6863": "550",
+        "P2600": "6000000041260450461"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 4,
+        "with_references": 8,
+        "qualifier_rate": 0.14814814814814814,
+        "reference_rate": 0.2962962962962963,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 3,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07407407407407407,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q1215407",
+      "label": "Lucius Manlius Capitolinus Imperiosus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "493",
+        "P2671": "/g/1222z4sr",
+        "P8069": "24712"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 32,
+        "with_qualifiers": 7,
+        "with_references": 12,
+        "qualifier_rate": 0.21875,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "edge_candidate": 22,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 5,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 22,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 5
+        }
+      }
+    },
+    {
+      "qid": "Q1219017",
+      "label": "Gaius Plautius Decianus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0w1d4km",
+        "P6863": "561",
+        "P1711": "177469",
+        "P214": "27155103999376202517",
+        "P227": "1178753581",
+        "P12597": "65853",
+        "P13030": "person/9568",
+        "P13049": "1178753581"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 32,
+        "with_qualifiers": 4,
+        "with_references": 9,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.28125,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 8,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09375,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1219030",
+      "label": "Publius Valerius Publicola",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "511",
+        "P2671": "/g/121y0bq6"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 26,
+        "with_qualifiers": 3,
+        "with_references": 7,
+        "qualifier_rate": 0.11538461538461539,
+        "reference_rate": 0.2692307692307692,
+        "route_counts": {
+          "edge_candidate": 18,
+          "temporal_uncertain": 2,
+          "node_property": 1,
+          "federation_id": 2,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11538461538461539,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1223522",
+      "label": "Caius Poetelius Libo Visolus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121qfrxt",
+        "P8069": "24738"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 3,
+        "with_references": 7,
+        "qualifier_rate": 0.13043478260869565,
+        "reference_rate": 0.30434782608695654,
+        "route_counts": {
+          "edge_candidate": 15,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08695652173913043,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q1223605",
+      "label": "Publius Manlius Capitolinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0wy0msf",
+        "P6863": "450"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 26,
+        "with_qualifiers": 5,
+        "with_references": 9,
+        "qualifier_rate": 0.19230769230769232,
+        "reference_rate": 0.34615384615384615,
+        "route_counts": {
+          "edge_candidate": 19,
+          "federation_id": 2,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1227246",
+      "label": "Quintus Servilius Ahala",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "490",
+        "P2671": "/g/121p7ml5",
+        "P8069": "24117"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 10,
+        "with_references": 6,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "edge_candidate": 21,
+          "quarantine_missing_datavalue": 4,
+          "federation_id": 3,
+          "node_property": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q1229565",
+      "label": "Lucius Papirius Crassus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/122hpkqz",
+        "P6863": "533",
+        "P8069": "24721"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 6,
+        "with_references": 8,
+        "qualifier_rate": 0.1935483870967742,
+        "reference_rate": 0.25806451612903225,
+        "route_counts": {
+          "edge_candidate": 22,
+          "quarantine_missing_datavalue": 4,
+          "federation_id": 3,
+          "node_property": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03225806451612903,
+        "edge_candidate_count": 22,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q1230841",
+      "label": "Titus Quinctius Poenus Capitolinus Crispinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "483",
+        "P2671": "/g/1237k3sd",
+        "P8069": "18366"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 8,
+        "with_references": 9,
+        "qualifier_rate": 0.26666666666666666,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "edge_candidate": 21,
+          "temporal_uncertain": 2,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1231649",
+      "label": "Gaius Maenius",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/08hdby",
+        "P6863": "540",
+        "P8168": "Q484825",
+        "P9106": "3861"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 5,
+        "with_references": 8,
+        "qualifier_rate": 0.17857142857142858,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 4,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10714285714285714,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1234290",
+      "label": "Quintus Publilius Philo",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1296": "0052964",
+        "P6863": "517",
+        "P2671": "/g/1213hcy9",
+        "P9106": "5428",
+        "P7305": "3964331",
+        "P12385": "quint-publili-filo",
+        "P8069": "24499"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 40,
+        "with_qualifiers": 16,
+        "with_references": 19,
+        "qualifier_rate": 0.4,
+        "reference_rate": 0.475,
+        "route_counts": {
+          "edge_candidate": 28,
+          "federation_id": 7,
+          "temporal_anchor": 1,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 28,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q1235979",
+      "label": "Titus Quinctius Cincinnatus Capitolinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "415",
+        "P2671": "/g/120y3bkm",
+        "P8069": "24563"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 33,
+        "with_qualifiers": 9,
+        "with_references": 12,
+        "qualifier_rate": 0.2727272727272727,
+        "reference_rate": 0.36363636363636365,
+        "route_counts": {
+          "edge_candidate": 25,
+          "quarantine_missing_datavalue": 3,
+          "federation_id": 4,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.030303030303030304,
+        "edge_candidate_count": 25,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1236683",
+      "label": "Lucius Volumnius Flamma Violens",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03d5787",
+        "P6863": "608",
+        "P3368": "2170253",
+        "P8069": "24729"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 7,
+        "with_references": 8,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 4,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1261606",
+      "label": "Tiberius Coruncanius",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/026mw4z",
+        "P1417": "biography/Tiberius-Coruncanius",
+        "P227": "102385785",
+        "P214": "24990199",
+        "P1871": "cnp00283911",
+        "P8122": "A3099",
+        "P7902": "102385785",
+        "P6863": "683",
+        "P9106": "1891",
+        "P6706": "Coruncànio,+Tibèrio",
+        "P10832": "E39PBJmTjx3Pg4YBPRJDrwBwYP"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 37,
+        "with_qualifiers": 7,
+        "with_references": 15,
+        "qualifier_rate": 0.1891891891891892,
+        "reference_rate": 0.40540540540540543,
+        "route_counts": {
+          "edge_candidate": 20,
+          "federation_id": 11,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.02702702702702703,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q127386308",
+      "label": "Caius Poetelius Libo Visolus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "4611"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 3,
+        "with_references": 2,
+        "qualifier_rate": 0.1875,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 1,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q1439387",
+      "label": "Lucius Veturius Philo",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0w1d_fl",
+        "P6863": "824"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 3,
+        "with_references": 11,
+        "qualifier_rate": 0.10714285714285714,
+        "reference_rate": 0.39285714285714285,
+        "route_counts": {
+          "edge_candidate": 19,
+          "federation_id": 2,
+          "temporal_uncertain": 2,
+          "temporal_anchor": 2,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q1491536",
+      "label": "Gaius Servilius Geminus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0w1dpxl",
+        "P6863": "931",
+        "P3368": "2454985",
+        "P8168": "Q484713"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 43,
+        "with_qualifiers": 19,
+        "with_references": 28,
+        "qualifier_rate": 0.4418604651162791,
+        "reference_rate": 0.6511627906976745,
+        "route_counts": {
+          "edge_candidate": 34,
+          "federation_id": 4,
+          "quarantine_missing_datavalue": 2,
+          "node_property": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.023255813953488372,
+        "edge_candidate_count": 34,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q15034789",
+      "label": "Manius Valerius Maximus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "37",
+        "P646": "/m/0wdt5_t"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 37,
+        "with_qualifiers": 10,
+        "with_references": 17,
+        "qualifier_rate": 0.2702702702702703,
+        "reference_rate": 0.4594594594594595,
+        "route_counts": {
+          "edge_candidate": 27,
+          "temporal_uncertain": 1,
+          "temporal_anchor": 2,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05405405405405406,
+        "edge_candidate_count": 27,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q151478",
+      "label": "Gnaeus Fulvius Maximus Centumalus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0jt4bvh",
+        "P6863": "629",
+        "P8069": "24203"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 8,
+        "with_references": 9,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.32142857142857145,
+        "route_counts": {
+          "temporal_uncertain": 2,
+          "edge_candidate": 18,
+          "federation_id": 3,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 3,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q155312",
+      "label": "Gaius Claudius Centho",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/026yvf0",
+        "P4159": "Gaius_Claudius_Centho_(1)",
+        "P6863": "776",
+        "P1185": "165474"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 37,
+        "with_qualifiers": 9,
+        "with_references": 19,
+        "qualifier_rate": 0.24324324324324326,
+        "reference_rate": 0.5135135135135135,
+        "route_counts": {
+          "edge_candidate": 26,
+          "federation_id": 4,
+          "temporal_uncertain": 2,
+          "temporal_anchor": 1,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08108108108108109,
+        "edge_candidate_count": 26,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q16198778",
+      "label": "Gaius Aemilius Mamercus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "131",
+        "P646": "/m/0w1g2_0"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 7,
+        "with_references": 9,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.32142857142857145,
+        "route_counts": {
+          "edge_candidate": 21,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 3,
+          "temporal_uncertain": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q274545",
+      "label": "Quintus Fabius Maximus Verrucosus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "74644223",
+        "P227": "118531697",
+        "P646": "/m/030qr",
+        "P1422": "902",
+        "P1871": "cnp00548696",
+        "P244": "no2013102370",
+        "P1296": "0025709",
+        "P4389": "cp96994",
+        "P269": "168848627",
+        "P1273": "a11065382",
+        "P1417": "biography/Quintus-Fabius-Maximus-Verrucosus",
+        "P3219": "quintus-fabius-maximus",
+        "P213": "0000000010636572",
+        "P691": "jn20000700504",
+        "P2924": "4704727",
+        "P6404": "fabio-massimo-quinto-detto-il-temporeggiatore",
+        "P2163": "1957338",
+        "P7902": "118531697",
+        "P6863": "712",
+        "P9037": "4842fdce-12ec-4beb-9d80-32b12ad92353",
+        "P7666": "fabijus-maksimas",
+        "P9756": "3047",
+        "P9984": "981058614685606706",
+        "P3222": "fabius-cunctator",
+        "P6385": "istoriya/FABI_MAKSIM_KUNKTATOR_KVINT.html",
+        "P950": "XX5038322",
+        "P8069": "11073",
+        "P1711": "69287",
+        "P6327": "985713",
+        "P4342": "Quintus_Fabius_Maximus",
+        "P6706": "Fàbio+Màssimo,+Quinto,+detto+il+Temporeggiatóre",
+        "P7293": "9810561165505606",
+        "P5019": "fabius-quintus-20",
+        "P1207": "n2016007689",
+        "P8947": "184823",
+        "P9106": "2617",
+        "P9507": "21788",
+        "P3368": "729886",
+        "P10553": "079332285",
+        "P7305": "3899526",
+        "P11686": "981058614685606706",
+        "P12385": "quint-fabi-maxim-verrugos",
+        "P12483": "94087",
+        "P12597": "134032",
+        "P10832": "E39PBJqFQ6mTHWkf9qQTRTTmBP",
+        "P13049": "118531697",
+        "P13591": "person/cfbe4bcc-ca54-48da-b4f0-2300d049f5cc",
+        "P13834": "people/f/a.htm#fabius-maximus"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 89,
+        "with_qualifiers": 17,
+        "with_references": 26,
+        "qualifier_rate": 0.19101123595505617,
+        "reference_rate": 0.29213483146067415,
+        "route_counts": {
+          "edge_candidate": 33,
+          "node_property": 2,
+          "federation_id": 49,
+          "media_reference": 1,
+          "quarantine_missing_datavalue": 3,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.033707865168539325,
+        "edge_candidate_count": 33,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q294862",
+      "label": "Marcus Furius Camillus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "32790362",
+        "P213": "0000000091973596",
+        "P244": "n80089831",
+        "P227": "118668110",
+        "P646": "/m/014w4r",
+        "P1422": "1591",
+        "P1871": "cnp00584235",
+        "P3365": "marco-furio-camillo",
+        "P3219": "camille-lat-marcus-furius-camillus",
+        "P2163": "1811091",
+        "P1417": "biography/Marcus-Furius-Camillus",
+        "P268": "14451157x",
+        "P6404": "marco-furio-camillo",
+        "P1296": "0013861",
+        "P7902": "118668110",
+        "P1711": "142670",
+        "P4342": "Marcus_Furius_Camillus",
+        "P7982": "30101",
+        "P8034": "495/294295",
+        "P1207": "n2006117094",
+        "P906": "182716",
+        "P8179": "ncf11847404",
+        "P3348": "340876",
+        "P8189": "987007274798905171",
+        "P269": "131174703",
+        "P8750": "353923",
+        "P5587": "0xbdd9jj0zz330r",
+        "P9097": "12380685",
+        "P7666": "kamilas",
+        "P6327": "60964",
+        "P950": "XX1255250",
+        "P8349": "29851",
+        "P6764": "N529",
+        "P9106": "2758",
+        "P9164": "38371",
+        "P8795": "15768",
+        "P9522": "3319",
+        "P9536": "5a1d4d054ab9d081344ce088",
+        "P1015": "1615358755670",
+        "P7699": "LNB:V*300721;=1A",
+        "P10031": "1283",
+        "P6385": "istoriya/KAMILL_MARK_FURI.html",
+        "P8313": "Marcus_Furius_Camillus",
+        "P9000": "Camillus",
+        "P4223": "marco-furio-camillo",
+        "P10553": "079452388",
+        "P7305": "3919619",
+        "P7293": "9810687002305606",
+        "P1375": "000358752",
+        "P1006": "137189079",
+        "P691": "jn20000700273",
+        "P6863": "340",
+        "P8168": "Q467708",
+        "P12385": "marc-furi-camil",
+        "P12458": "49944",
+        "P12597": "130977",
+        "P12582": "20110803095838911",
+        "P10832": "E39PBJpjgdmgKGq3gBpTQhYtrq",
+        "P13049": "118668110",
+        "P13591": "person/c4231f9f-f095-4d64-b288-1b567311fc74",
+        "P8069": "23211"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 109,
+        "with_qualifiers": 20,
+        "with_references": 35,
+        "qualifier_rate": 0.1834862385321101,
+        "reference_rate": 0.3211009174311927,
+        "route_counts": {
+          "edge_candidate": 36,
+          "federation_id": 65,
+          "node_property": 2,
+          "temporal_anchor": 2,
+          "media_reference": 1,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.027522935779816515,
+        "edge_candidate_count": 36,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q297783",
+      "label": "Appius Claudius Caecus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P244": "nr95020971",
+        "P214": "51580452",
+        "P227": "11942598X",
+        "P646": "/m/01jgfh",
+        "P1871": "cnp00405967",
+        "P4159": "Appius_Claudius_Caecus_(1)",
+        "P1417": "biography/Appius-Claudius-Caecus",
+        "P2163": "357131",
+        "P4212": "pcrtuq8US4AAfg",
+        "P950": "XX1261781",
+        "P6941": "4",
+        "P6404": "appio-claudio-cieco",
+        "P6999": "3",
+        "P3365": "appio-claudio-cieco",
+        "P4223": "appio-claudio-cieco",
+        "P648": "OL4704081A",
+        "P7041": "373",
+        "P1296": "0018141",
+        "P268": "15059315x",
+        "P3222": "claudius-(censor-312-fkr)",
+        "P8065": "214",
+        "P4342": "Appius_Claudius_Caecus",
+        "P7982": "31771",
+        "P8122": "A4682",
+        "P3348": "221534",
+        "P7902": "11942598X",
+        "P1819": "I00735569",
+        "P6706": "Clàudio+Cièco,+Àppio",
+        "P8034": "495/51625",
+        "P269": "084675942",
+        "P8750": "270698",
+        "P6863": "591",
+        "P6385": "kultura_i_obrazovanie/literatura/APPI_KLAVDI.html",
+        "P10242": "01296/eu_c_0664/c0664",
+        "P11252": "4861",
+        "P8947": "81295",
+        "P10031": "1239",
+        "P7305": "3870474",
+        "P8179": "ncf11969035",
+        "P245": "500356675",
+        "P1185": "132736",
+        "P12385": "api-claudi",
+        "P8168": "Q506627",
+        "P10832": "E39PBJxCwRDktGMcdDmFkMpF8C",
+        "P13049": "11942598X",
+        "P13591": "person/a9aedf5e-eac0-4d7d-a347-f395ff94b111",
+        "P8069": "23173"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 97,
+        "with_qualifiers": 20,
+        "with_references": 30,
+        "qualifier_rate": 0.20618556701030927,
+        "reference_rate": 0.30927835051546393,
+        "route_counts": {
+          "edge_candidate": 37,
+          "node_property": 3,
+          "federation_id": 50,
+          "temporal_uncertain": 1,
+          "media_reference": 2,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.061855670103092786,
+        "edge_candidate_count": 37,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q309637",
+      "label": "Cincinnatus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P244": "n2002039502",
+        "P214": "38733419",
+        "P227": "124874576",
+        "P646": "/m/017tcg",
+        "P1422": "4028",
+        "P1263": "833/000107512",
+        "P1711": "22868",
+        "P1296": "0017796",
+        "P1871": "cnp00583167",
+        "P3417": "Cincinnatus",
+        "P3219": "cincinnatus-lucius-quinctius",
+        "P2977": "LuCinci",
+        "P213": "0000000038295829",
+        "P2163": "1812599",
+        "P1417": "biography/Lucius-Quinctius-Cincinnatus",
+        "P6404": "lucio-quinzio-cincinnato",
+        "P6863": "142",
+        "P8122": "A3647",
+        "P3222": "cincinnatus",
+        "P4342": "Lucius_Quinctius_Cincinnatus",
+        "P268": "148824517",
+        "P1017": "ADV12009300",
+        "P7293": "9810597181405606",
+        "P269": "236288857",
+        "P5063": "i94728",
+        "P9000": "Cincinnatus",
+        "P1695": "a0000003636715",
+        "P8814": "10918060-n",
+        "P8034": "495/281417",
+        "P9106": "5479",
+        "P4839": "Entity[\"Concept\", \"Cincinnatus::y4684\"]",
+        "P9097": "12465061",
+        "P6706": "Cincinnato,+Lùcio+Quìnzio",
+        "P7666": "cincinatas",
+        "P7305": "3888751",
+        "P10297": "m017tcg",
+        "P6385": "istoriya/TSINTSINNAT_LUTSI_KVINKTSI.html",
+        "P12385": "luci-quint-cincinnat",
+        "P10832": "E39PCjHmjkQTmmrGgP4vVbbMrq",
+        "P13049": "124874576",
+        "P13591": "person/8438072c-a220-4c3e-b7a0-caa4085c3481",
+        "P8069": "23960"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 93,
+        "with_qualifiers": 20,
+        "with_references": 28,
+        "qualifier_rate": 0.21505376344086022,
+        "reference_rate": 0.3010752688172043,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "edge_candidate": 42,
+          "node_property": 2,
+          "federation_id": 45,
+          "temporal_uncertain": 1,
+          "media_reference": 1,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.043010752688172046,
+        "edge_candidate_count": 42,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q3290250",
+      "label": "Marcus Claudius Glicia",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121n9qkk",
+        "P6863": "754"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.2777777777777778,
+        "route_counts": {
+          "edge_candidate": 14,
+          "temporal_uncertain": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q334940",
+      "label": "Aulus Cornelius Cossus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1219xvv1",
+        "P6863": "432"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 6,
+        "with_references": 2,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.07407407407407407,
+        "route_counts": {
+          "edge_candidate": 19,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 3,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q359810",
+      "label": "Lucius Caecilius Metellus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03cch4t",
+        "P4159": "Lucius_Caecilius_Metellus_(consul_251_BC)_(1)",
+        "P1417": "biography/Lucius-Caecilius-Metellus",
+        "P1819": "I00733977",
+        "P6863": "751",
+        "P9106": "1219",
+        "P1006": "131551973",
+        "P214": "285852627",
+        "P2600": "6000000012691639866",
+        "P7982": "40401",
+        "P8349": "37194",
+        "P1185": "412199",
+        "P8313": "Lucius_Caecilius_Metellus",
+        "P12582": "20110803095541147",
+        "P8168": "Q1092903",
+        "P8069": "20727"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 58,
+        "with_qualifiers": 20,
+        "with_references": 22,
+        "qualifier_rate": 0.3448275862068966,
+        "reference_rate": 0.3793103448275862,
+        "route_counts": {
+          "edge_candidate": 35,
+          "temporal_anchor": 1,
+          "federation_id": 16,
+          "quarantine_missing_datavalue": 4,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.034482758620689655,
+        "edge_candidate_count": 35,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q3622696",
+      "label": "Quintus Fabius Ambustus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/06hxsk",
+        "P6863": "528"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 4,
+        "with_references": 7,
+        "qualifier_rate": 0.16,
+        "reference_rate": 0.28,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 19,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q369710",
+      "label": "Marcus Claudius Marcellus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/120q71fq",
+        "P1819": "I00735958",
+        "P6863": "557",
+        "P8069": "24661"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 26,
+        "with_qualifiers": 3,
+        "with_references": 8,
+        "qualifier_rate": 0.11538461538461539,
+        "reference_rate": 0.3076923076923077,
+        "route_counts": {
+          "edge_candidate": 16,
+          "federation_id": 4,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q3757313",
+      "label": "Gaius Claudius Regilllensis",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11vdhb5xw"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.26666666666666666,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q3772609",
+      "label": "Gnaeus Quinctius Capitolinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "487",
+        "P2671": "/g/122tpd0t"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 4,
+        "with_references": 8,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.36363636363636365,
+        "route_counts": {
+          "edge_candidate": 16,
+          "temporal_uncertain": 2,
+          "federation_id": 2,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q4244600",
+      "label": "Gaius Julius Jullus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1218dvv0",
+        "P6863": "512"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 2,
+        "with_references": 3,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.15,
+        "route_counts": {
+          "edge_candidate": 13,
+          "temporal_anchor": 1,
+          "temporal_uncertain": 1,
+          "federation_id": 2,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q435352",
+      "label": "Quintus Fabius Maximus Rullianus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01yyc1",
+        "P1296": "0025707",
+        "P7704": "agent/base/148616",
+        "P6863": "559",
+        "P7666": "fabijus-maksimas-rulianas",
+        "P3222": "fabius-maximus",
+        "P4342": "Quintus_Fabius_Maximus_Rullianus",
+        "P6706": "Fàbio+Màssimo+Rulliano,+Quinto",
+        "P5019": "fabius-quintus-40",
+        "P9106": "2616",
+        "P8313": "Rullianus",
+        "P12385": "quint-fabi-maxim-rullia",
+        "P8069": "20960"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 46,
+        "with_qualifiers": 11,
+        "with_references": 17,
+        "qualifier_rate": 0.2391304347826087,
+        "reference_rate": 0.3695652173913043,
+        "route_counts": {
+          "edge_candidate": 29,
+          "federation_id": 13,
+          "temporal_uncertain": 2,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06521739130434782,
+        "edge_candidate_count": 29,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q435408",
+      "label": "Gaius Duilius",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02cvsr",
+        "P1422": "4683",
+        "P1296": "0023114",
+        "P1417": "biography/Gaius-Duilius",
+        "P6404": "gaio-duilio",
+        "P4342": "Gaius_Duilius",
+        "P6863": "724",
+        "P214": "166149542591600300636",
+        "P6394": "a11447102",
+        "P227": "101762061X",
+        "P268": "177398230",
+        "P3222": "duilius",
+        "P1871": "cnp01416308",
+        "P9106": "2313",
+        "P7902": "101762061X",
+        "P8313": "Gajus_Duilius",
+        "P8069": "17665",
+        "P950": "XX5669434",
+        "P7305": "3894776",
+        "P12385": "gai-nepos-duili",
+        "P12483": "5643",
+        "P10832": "E39PBJgxvTvQFpqpqdPFpHpQMP"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 53,
+        "with_qualifiers": 12,
+        "with_references": 11,
+        "qualifier_rate": 0.22641509433962265,
+        "reference_rate": 0.20754716981132076,
+        "route_counts": {
+          "edge_candidate": 24,
+          "federation_id": 23,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05660377358490566,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q453874",
+      "label": "Marcus Valerius Corvus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01k8f8",
+        "P1296": "0069018",
+        "P6404": "marco-valerio-corvo",
+        "P6863": "522",
+        "P4342": "Valerius_Corvus",
+        "P3222": "valerius-corvus",
+        "P8069": "17875",
+        "P10297": "m01k8f8",
+        "P12385": "marc-valeri-corb",
+        "P12597": "130254",
+        "P9106": "6680",
+        "P8313": "Marcus_Valerius_Corvus",
+        "P12582": "20110803115058611",
+        "P1711": "150747"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 56,
+        "with_qualifiers": 14,
+        "with_references": 17,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.30357142857142855,
+        "route_counts": {
+          "edge_candidate": 34,
+          "federation_id": 14,
+          "node_property": 2,
+          "temporal_anchor": 2,
+          "quarantine_missing_datavalue": 3,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05357142857142857,
+        "edge_candidate_count": 34,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q465309",
+      "label": "Lucius Papirius Cursor",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/07rp1b",
+        "P6863": "534",
+        "P8313": "Lucius_Papirius_Cursor",
+        "P8069": "18425",
+        "P12582": "20110803100304715"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 54,
+        "with_qualifiers": 25,
+        "with_references": 25,
+        "qualifier_rate": 0.46296296296296297,
+        "reference_rate": 0.46296296296296297,
+        "route_counts": {
+          "edge_candidate": 41,
+          "media_reference": 1,
+          "federation_id": 5,
+          "temporal_uncertain": 2,
+          "temporal_anchor": 1,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07407407407407407,
+        "edge_candidate_count": 41,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q483783",
+      "label": "Sulla",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "84037378",
+        "P213": "0000000107610985",
+        "P244": "n83212399",
+        "P227": "11864260X",
+        "P906": "262364",
+        "P646": "/m/01jrq4",
+        "P1422": "625",
+        "P1006": "070081980",
+        "P1263": "285/000097991",
+        "P1871": "cnp01321531",
+        "P2950": "sulla",
+        "P3430": "w6tt60hj",
+        "P950": "XX1121979",
+        "P4159": "Lucius_Cornelius_Sulla_(1)",
+        "P1017": "ADV11478698",
+        "P1207": "n00098823",
+        "P1273": "a11028385",
+        "P2799": "73990",
+        "P1005": "1224347",
+        "P3219": "sylla-et-sa-posterite-reperes-chronologiques",
+        "P2924": "4172784",
+        "P3987": "91142",
+        "P268": "12005009r",
+        "P5587": "xv8bf5zg44mf283",
+        "P1417": "biography/Sulla",
+        "P269": "028159624",
+        "P691": "jx20101122014",
+        "P6941": "652",
+        "P7041": "1342",
+        "P3365": "lucio-cornelio-silla",
+        "P4223": "lucio-cornelio-silla",
+        "P6404": "lucio-cornelio-silla",
+        "P1296": "0064525",
+        "P6863": "1746",
+        "P6058": "personnage/wd/145483",
+        "P1315": "1490080",
+        "P3417": "Cornelius-Sulla",
+        "P1280": "91826787",
+        "P2977": "LuSulla",
+        "P4839": "Entity[\"Concept\", \"LuciusCorneliusSullaFelix::x9nnk\"]",
+        "P5821": "81493",
+        "P4342": "Lucius_Cornelius_Sulla",
+        "P5019": "sulla-lucius",
+        "P4212": "pcrtd9l270YsOX",
+        "P2163": "120909",
+        "P1580": "a1267328",
+        "P8122": "A4560",
+        "P8065": "2057",
+        "P7982": "58706",
+        "P3222": "sulla",
+        "P7902": "11864260X",
+        "P7711": "T513-44375",
+        "P4619": "000350703",
+        "P7699": "LNB:BGRd;=BV",
+        "P7029": "7790435",
+        "P7369": "000029107",
+        "P1819": "I00735453",
+        "P5063": "i97057",
+        "P8496": "cornelius-sulla-felix-lucius-c-138-bc-78-bc-general-and-statesman",
+        "P8034": "495/44176",
+        "P6821": "alvin-person:25659",
+        "P8750": "7467",
+        "P6327": "1004254",
+        "P5271": "27267",
+        "P9000": "sulla",
+        "P9037": "63a93d02-d0cd-4471-8c06-27bccc5dc9f8",
+        "P9097": "12382688",
+        "P8814": "11344085-n",
+        "P8349": "47638",
+        "P7293": "9810696541505606",
+        "P9081": "22870",
+        "P9164": "8178",
+        "P9106": "1878",
+        "P9918": "PE00082420",
+        "P9984": "981058614799606706",
+        "P6385": "istoriya/SULLA_LUTSI_KORNELI.html",
+        "P7305": "3981245",
+        "P8313": "Lucius_Cornelius_Sulla",
+        "P8069": "39",
+        "P10553": "145339769",
+        "P8189": "987007276616305171",
+        "P8179": "ncf10663931",
+        "P10227": "vtls001155841",
+        "P409": "49284436",
+        "P1711": "148419",
+        "P5617": "lucius-cornelius-sulla-19026",
+        "P1185": "167376",
+        "P11686": "981058614799606706",
+        "P9226": "sila-felix-lucio-cornelio-138-c-78-c",
+        "P9536": "5a1d4d044ab9d081344c5ab9",
+        "P10141": "25559",
+        "P11252": "5071",
+        "P9247": "28338",
+        "P1015": "90236000",
+        "P1375": "000359011",
+        "P1368": "000223137",
+        "P12086": "Lucius_Cornelius_Sulla",
+        "P12385": "luci-corneli-sulla",
+        "P12458": "107878",
+        "P12483": "146614",
+        "P12597": "40124",
+        "P12780": "4770",
+        "P12800": "fr:Sylla",
+        "P12869": "urn:cts:latinLit:phi0652",
+        "P13030": "person/2880",
+        "P13049": "11864260X",
+        "P10608": "agent/gnd_11864260X",
+        "P9964": "11864260X",
+        "P2600": "6000000009553345029",
+        "P13591": "person/b9aab778-6c48-4313-9c93-751001c6b791",
+        "P7666": "sula-3"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 190,
+        "with_qualifiers": 39,
+        "with_references": 62,
+        "qualifier_rate": 0.20526315789473684,
+        "reference_rate": 0.3263157894736842,
+        "route_counts": {
+          "edge_candidate": 59,
+          "node_property": 3,
+          "federation_id": 123,
+          "media_reference": 2,
+          "temporal_anchor": 2,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.02631578947368421,
+        "edge_candidate_count": 59,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q519186",
+      "label": "Quintus Hortensius",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02rf7k9",
+        "P1417": "biography/Quintus-Hortensius",
+        "P7982": "26175",
+        "P5019": "hortensius-quintus",
+        "P4223": "quinto-ortensio",
+        "P9106": "3159",
+        "P8349": "27071",
+        "P7666": "hortenzijus",
+        "P6385": "istoriya/GORTENZI_KVINT.html",
+        "P6863": "664",
+        "P3368": "1965808",
+        "P8069": "25059"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 33,
+        "with_qualifiers": 9,
+        "with_references": 7,
+        "qualifier_rate": 0.2727272727272727,
+        "reference_rate": 0.21212121212121213,
+        "route_counts": {
+          "edge_candidate": 15,
+          "federation_id": 12,
+          "temporal_uncertain": 2,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q529867",
+      "label": "Titus Larcius",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/04x45p",
+        "P6863": "17",
+        "P7982": "35451",
+        "P8349": "33820",
+        "P8069": "24139"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 15,
+        "with_references": 11,
+        "qualifier_rate": 0.39473684210526316,
+        "reference_rate": 0.2894736842105263,
+        "route_counts": {
+          "edge_candidate": 27,
+          "federation_id": 5,
+          "quarantine_missing_datavalue": 3,
+          "temporal_uncertain": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07894736842105263,
+        "edge_candidate_count": 27,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q542883",
+      "label": "Marcus Fabius Buteo",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0bb6_b",
+        "P6863": "762",
+        "P12582": "20110803095807218"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 34,
+        "with_qualifiers": 4,
+        "with_references": 13,
+        "qualifier_rate": 0.11764705882352941,
+        "reference_rate": 0.38235294117647056,
+        "route_counts": {
+          "edge_candidate": 23,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 4,
+          "temporal_uncertain": 2,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08823529411764706,
+        "edge_candidate_count": 23,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q5759141",
+      "label": "Gaius Claudius Crassus Inrelligensis",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1819": "I00735570",
+        "P2671": "/g/120p4d8m",
+        "P6863": "543"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 3,
+        "with_references": 4,
+        "qualifier_rate": 0.10714285714285714,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "edge_candidate": 19,
+          "temporal_anchor": 3,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q589448",
+      "label": "Lucius Furius Camillus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "414",
+        "P2671": "/g/121rvmqq",
+        "P9106": "2756",
+        "P12582": "20110803095838909",
+        "P8069": "25116"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 7,
+        "with_references": 10,
+        "qualifier_rate": 0.22580645161290322,
+        "reference_rate": 0.3225806451612903,
+        "route_counts": {
+          "edge_candidate": 21,
+          "temporal_anchor": 1,
+          "federation_id": 5,
+          "quarantine_missing_datavalue": 2,
+          "temporal_uncertain": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06451612903225806,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q59559",
+      "label": "Marcus Aemilius Papus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "576",
+        "P2671": "/g/1211r71v"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 26,
+        "with_qualifiers": 5,
+        "with_references": 4,
+        "qualifier_rate": 0.19230769230769232,
+        "reference_rate": 0.15384615384615385,
+        "route_counts": {
+          "edge_candidate": 17,
+          "temporal_uncertain": 2,
+          "federation_id": 2,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11538461538461539,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q63314619",
+      "label": "Manius Valerius",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "22",
+        "P2671": "/g/11h6ydjkkf"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 26,
+        "with_qualifiers": 7,
+        "with_references": 10,
+        "qualifier_rate": 0.2692307692307692,
+        "reference_rate": 0.38461538461538464,
+        "route_counts": {
+          "edge_candidate": 18,
+          "node_property": 1,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 3,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11538461538461539,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q637596",
+      "label": "Quintus Servilius Priscus Structus Fidenas",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "244",
+        "P2671": "/g/11j19z0xzp",
+        "P8069": "24402"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 33,
+        "with_qualifiers": 7,
+        "with_references": 12,
+        "qualifier_rate": 0.21212121212121213,
+        "reference_rate": 0.36363636363636365,
+        "route_counts": {
+          "edge_candidate": 24,
+          "temporal_uncertain": 1,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 3,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06060606060606061,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q655227",
+      "label": "Lucius Cornelius Lentulus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "565",
+        "P2671": "/g/121dctkp",
+        "P8069": "24617"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 29,
+        "with_qualifiers": 6,
+        "with_references": 8,
+        "qualifier_rate": 0.20689655172413793,
+        "reference_rate": 0.27586206896551724,
+        "route_counts": {
+          "edge_candidate": 20,
+          "temporal_uncertain": 2,
+          "node_property": 2,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13793103448275862,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q657468",
+      "label": "Aulus Postumius Albus Regillensis",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/047r264",
+        "P1422": "3981",
+        "P3365": "postumio-albo-regillense-aulo",
+        "P6863": "27",
+        "P3368": "2611199",
+        "P1607": "3738011",
+        "P8069": "24618"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 44,
+        "with_qualifiers": 15,
+        "with_references": 6,
+        "qualifier_rate": 0.3409090909090909,
+        "reference_rate": 0.13636363636363635,
+        "route_counts": {
+          "edge_candidate": 29,
+          "federation_id": 7,
+          "temporal_uncertain": 2,
+          "media_reference": 1,
+          "quarantine_missing_datavalue": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 29,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q657609",
+      "label": "Appius Claudius Crassus Inregillensis",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "335",
+        "P2671": "/g/121c9y63",
+        "P8069": "25110"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 5,
+        "with_references": 9,
+        "qualifier_rate": 0.17857142857142858,
+        "reference_rate": 0.32142857142857145,
+        "route_counts": {
+          "edge_candidate": 19,
+          "temporal_anchor": 2,
+          "temporal_uncertain": 1,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03571428571428571,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q659723",
+      "label": "Publius Sulpicius Galba Maximus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01kd2g",
+        "P6404": "publio-sulpicio-galba",
+        "P6863": "936",
+        "P8069": "14278"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 12,
+        "with_references": 14,
+        "qualifier_rate": 0.3157894736842105,
+        "reference_rate": 0.3684210526315789,
+        "route_counts": {
+          "edge_candidate": 26,
+          "federation_id": 4,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 5,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07894736842105263,
+        "edge_candidate_count": 26,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 5
+        }
+      }
+    },
+    {
+      "qid": "Q670737",
+      "label": "Aulus Postumius Tubertus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/09k4k9y",
+        "P1256": "98B(TUBERTUS, A.P.)",
+        "P6863": "249",
+        "P8069": "17345",
+        "P9106": "5284",
+        "P2950": "aulus_postumius"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 39,
+        "with_qualifiers": 10,
+        "with_references": 5,
+        "qualifier_rate": 0.2564102564102564,
+        "reference_rate": 0.1282051282051282,
+        "route_counts": {
+          "federation_id": 6,
+          "edge_candidate": 24,
+          "media_reference": 1,
+          "node_property": 2,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10256410256410256,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 5
+        }
+      }
+    },
+    {
+      "qid": "Q682087",
+      "label": "Gaius Poetelius Libo Visolus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "499",
+        "P2671": "/g/120z6ysk",
+        "P8069": "18434"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 26,
+        "with_qualifiers": 5,
+        "with_references": 6,
+        "qualifier_rate": 0.19230769230769232,
+        "reference_rate": 0.23076923076923078,
+        "route_counts": {
+          "edge_candidate": 18,
+          "temporal_uncertain": 2,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11538461538461539,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q691437",
+      "label": "Marcus Papirius Crassus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/120qddcn",
+        "P6863": "553"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.13636363636363635,
+        "reference_rate": 0.22727272727272727,
+        "route_counts": {
+          "edge_candidate": 16,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q703448",
+      "label": "Marcus Livius Salinator",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/082hj7",
+        "P1422": "4020",
+        "P6863": "827",
+        "P9106": "3743",
+        "P6706": "Lìvio+Salinatóre,+Marco",
+        "P12582": "20110803100110329",
+        "P8069": "23212"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 41,
+        "with_qualifiers": 9,
+        "with_references": 12,
+        "qualifier_rate": 0.21951219512195122,
+        "reference_rate": 0.2926829268292683,
+        "route_counts": {
+          "edge_candidate": 27,
+          "federation_id": 7,
+          "temporal_anchor": 3,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.024390243902439025,
+        "edge_candidate_count": 27,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q709224",
+      "label": "Marcus Fabius Ambustus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/040532y",
+        "P6863": "498",
+        "P8069": "18436"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 33,
+        "with_qualifiers": 5,
+        "with_references": 13,
+        "qualifier_rate": 0.15151515151515152,
+        "reference_rate": 0.3939393939393939,
+        "route_counts": {
+          "edge_candidate": 24,
+          "federation_id": 3,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06060606060606061,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q710851",
+      "label": "Quintus Fulvius Flaccus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01k21r",
+        "P1296": "0028485",
+        "P6404": "quinto-fulvio-flacco",
+        "P6863": "781",
+        "P6385": "istoriya/FLAKK.html",
+        "P7305": "3903170",
+        "P3368": "1965806",
+        "P12385": "gens-fulvia",
+        "P12582": "20110803095838198",
+        "P8069": "24106"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 53,
+        "with_qualifiers": 21,
+        "with_references": 28,
+        "qualifier_rate": 0.39622641509433965,
+        "reference_rate": 0.5283018867924528,
+        "route_counts": {
+          "edge_candidate": 37,
+          "federation_id": 10,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 3,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03773584905660377,
+        "edge_candidate_count": 37,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q714798",
+      "label": "Aulus Atilius Caiatinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/079bbm",
+        "P6999": "5",
+        "P6863": "727",
+        "P9106": "928",
+        "P12582": "20110803095431739",
+        "P8069": "20746"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 32,
+        "with_qualifiers": 5,
+        "with_references": 9,
+        "qualifier_rate": 0.15625,
+        "reference_rate": 0.28125,
+        "route_counts": {
+          "edge_candidate": 20,
+          "federation_id": 6,
+          "quarantine_missing_datavalue": 2,
+          "temporal_uncertain": 2,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09375,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q714821",
+      "label": "Titus Manlius Imperiosus Torquatus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0flxjs",
+        "P1422": "809",
+        "P1711": "48605",
+        "P2163": "1832701",
+        "P1296": "0066559",
+        "P244": "n78098465",
+        "P214": "1278706",
+        "P3365": "manlio-imperioso-torquato-tito",
+        "P6404": "manlio-imperioso-torquato-tito",
+        "P6863": "497",
+        "P7902": "1188662694",
+        "P227": "1188662694",
+        "P4212": "pcrtkgPvSJBQmG",
+        "P4342": "Titus_Manlius_Imperiosus_Torquatus",
+        "P8313": "Manlius_Torquatus",
+        "P7982": "38657",
+        "P8349": "36374",
+        "P268": "17133537c",
+        "P5019": "manlius-titus",
+        "P8034": "495/302061",
+        "P8069": "20011",
+        "P12385": "tit-manli-torquat",
+        "P12582": "20110803100131787",
+        "P10832": "E39PBJwxMRtHRbhTYFdCqB3hHC",
+        "P2950": "titus_manlius_torquatus",
+        "P9964": "1188662694",
+        "P13049": "1188662694"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 63,
+        "with_qualifiers": 15,
+        "with_references": 21,
+        "qualifier_rate": 0.23809523809523808,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 28,
+          "federation_id": 29,
+          "media_reference": 1,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06349206349206349,
+        "edge_candidate_count": 28,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q715851",
+      "label": "Quintus Ogulnius Gallus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1422": "5366",
+        "P6404": "quinto-ogulnio-gallo",
+        "P6863": "632",
+        "P2671": "/g/120qkc4l",
+        "P9106": "4531",
+        "P8069": "24112"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 9,
+        "with_references": 10,
+        "qualifier_rate": 0.3,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 19,
+          "federation_id": 6,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 3,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q716420",
+      "label": "Gnaeus Domitius Calvinus Maximus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "638",
+        "P646": "/m/0q2t2pm"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 8,
+        "with_references": 6,
+        "qualifier_rate": 0.25806451612903225,
+        "reference_rate": 0.1935483870967742,
+        "route_counts": {
+          "edge_candidate": 23,
+          "temporal_anchor": 1,
+          "quarantine_missing_datavalue": 4,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03225806451612903,
+        "edge_candidate_count": 23,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q718133",
+      "label": "Titus Manlius Torquatus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/083f5_",
+        "P6863": "787",
+        "P1185": "1464972",
+        "P1711": "150746",
+        "P9106": "3922",
+        "P12597": "129478",
+        "P12582": "20110803100131807",
+        "P8069": "24531"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 9,
+        "with_references": 10,
+        "qualifier_rate": 0.23684210526315788,
+        "reference_rate": 0.2631578947368421,
+        "route_counts": {
+          "edge_candidate": 25,
+          "federation_id": 8,
+          "quarantine_missing_datavalue": 2,
+          "node_property": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.02631578947368421,
+        "edge_candidate_count": 25,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q723447",
+      "label": "Publius Cornelius Rufinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121qmp0f",
+        "P8175": "7367b84eebb542c0ad484cb355fa3378",
+        "P6863": "658",
+        "P2600": "6000000041260525262",
+        "P8069": "24630"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 32,
+        "with_qualifiers": 8,
+        "with_references": 13,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.40625,
+        "route_counts": {
+          "edge_candidate": 22,
+          "temporal_uncertain": 1,
+          "federation_id": 5,
+          "quarantine_missing_datavalue": 3,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03125,
+        "edge_candidate_count": 22,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q736087",
+      "label": "Marcus Junius Pera",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0bb6vj",
+        "P6863": "797",
+        "P8069": "24793"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 26,
+        "with_qualifiers": 5,
+        "with_references": 12,
+        "qualifier_rate": 0.19230769230769232,
+        "reference_rate": 0.46153846153846156,
+        "route_counts": {
+          "temporal_uncertain": 2,
+          "edge_candidate": 19,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11538461538461539,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q738433",
+      "label": "Gaius Sulpicius Peticus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/013703js",
+        "P6863": "445",
+        "P8069": "18664",
+        "P3368": "2454990"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 42,
+        "with_qualifiers": 20,
+        "with_references": 25,
+        "qualifier_rate": 0.47619047619047616,
+        "reference_rate": 0.5952380952380952,
+        "route_counts": {
+          "edge_candidate": 33,
+          "temporal_uncertain": 2,
+          "federation_id": 4,
+          "quarantine_missing_datavalue": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 33,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q772650",
+      "label": "Aulus Cornelius Cossus Arvina",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1211jhz9",
+        "P6863": "510",
+        "P8069": "23956"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 34,
+        "with_qualifiers": 8,
+        "with_references": 6,
+        "qualifier_rate": 0.23529411764705882,
+        "reference_rate": 0.17647058823529413,
+        "route_counts": {
+          "edge_candidate": 25,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 4,
+          "node_property": 1,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.058823529411764705,
+        "edge_candidate_count": 25,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q779125",
+      "label": "Publius Cornelius Rutilus Cossus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/120hzd4q",
+        "P6863": "328"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 8,
+        "with_references": 12,
+        "qualifier_rate": 0.25806451612903225,
+        "reference_rate": 0.3870967741935484,
+        "route_counts": {
+          "edge_candidate": 21,
+          "node_property": 1,
+          "temporal_uncertain": 3,
+          "federation_id": 2,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.12903225806451613,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q857105",
+      "label": "Gaius Sulpicius Longus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "541",
+        "P2671": "/g/121k3jb5",
+        "P8069": "24704"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 7,
+        "with_references": 9,
+        "qualifier_rate": 0.23333333333333334,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "edge_candidate": 22,
+          "temporal_uncertain": 2,
+          "federation_id": 3,
+          "quarantine_missing_datavalue": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 22,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q9064243",
+      "label": "Publius Cornelius Scipio Barbatus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6863": "612",
+        "P646": "/m/0w1b8y2"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 7,
+        "with_references": 9,
+        "qualifier_rate": 0.23333333333333334,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "edge_candidate": 21,
+          "node_property": 1,
+          "temporal_uncertain": 2,
+          "federation_id": 2,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q929498",
+      "label": "Quintus Caecilius Metellus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03ccy9x",
+        "P1296": "0042254",
+        "P4159": "Quintus_Caecilius_Metellus_(consul_206_BC)_(1)",
+        "P7041": "931",
+        "P6941": "0106",
+        "P244": "nr95026784",
+        "P214": "2359574",
+        "P1819": "I00735441",
+        "P6863": "891",
+        "P9106": "1220",
+        "P3365": "quinto-cecilio-metello",
+        "P8122": "A3554",
+        "P213": "0000000054356038",
+        "P3368": "1965787",
+        "P11252": "4999",
+        "P1185": "412198",
+        "P12385": "metel",
+        "P12582": "20110803095541167",
+        "P10832": "E39PBJdWHF7RMvCtphKWYJQcyd",
+        "P8069": "23842"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 66,
+        "with_qualifiers": 23,
+        "with_references": 29,
+        "qualifier_rate": 0.3484848484848485,
+        "reference_rate": 0.4393939393939394,
+        "route_counts": {
+          "edge_candidate": 38,
+          "federation_id": 20,
+          "temporal_anchor": 1,
+          "quarantine_missing_datavalue": 4,
+          "temporal_uncertain": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.045454545454545456,
+        "edge_candidate_count": 38,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q929627",
+      "label": "Gaius Junius Bubulcus Brutus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0bbx3gh",
+        "P7704": "agent/base/34356",
+        "P6863": "587",
+        "P8069": "24705"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 8,
+        "with_references": 10,
+        "qualifier_rate": 0.25806451612903225,
+        "reference_rate": 0.3225806451612903,
+        "route_counts": {
+          "edge_candidate": 21,
+          "federation_id": 4,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 3,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0967741935483871,
+        "edge_candidate_count": 21,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 3
+        }
+      }
+    },
+    {
+      "qid": "Q935315",
+      "label": "Gaius Marcius Rutilus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/021vfw",
+        "P6863": "505",
+        "P9106": "3956",
+        "P12582": "20110803100133341",
+        "P8069": "24706"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 32,
+        "with_qualifiers": 5,
+        "with_references": 9,
+        "qualifier_rate": 0.15625,
+        "reference_rate": 0.28125,
+        "route_counts": {
+          "edge_candidate": 20,
+          "federation_id": 5,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09375,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q957079",
+      "label": "Mamercus Aemilius Mamercinus",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0kfy_f1",
+        "P6863": "203",
+        "P3368": "2258010",
+        "P8069": "24419"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 34,
+        "with_qualifiers": 10,
+        "with_references": 14,
+        "qualifier_rate": 0.29411764705882354,
+        "reference_rate": 0.4117647058823529,
+        "route_counts": {
+          "edge_candidate": 24,
+          "temporal_uncertain": 1,
+          "federation_id": 4,
+          "node_property": 1,
+          "quarantine_missing_datavalue": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.058823529411764705,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 4
+        }
+      }
+    },
+    {
+      "qid": "Q963870",
+      "label": "Lucius Aemilius Mamercinus Privernas",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0w1d5l_",
+        "P6863": "529",
+        "P8069": "24708"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 9,
+        "with_references": 8,
+        "qualifier_rate": 0.2903225806451613,
+        "reference_rate": 0.25806451612903225,
+        "route_counts": {
+          "edge_candidate": 23,
+          "federation_id": 3,
+          "temporal_uncertain": 2,
+          "quarantine_missing_datavalue": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0967741935483871,
+        "edge_candidate_count": 23,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    }
+  ],
+  "rejected": []
+}

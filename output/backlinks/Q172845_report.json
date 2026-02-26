@@ -1,0 +1,253 @@
+{
+  "generated_at": "2026-02-25T00:10:38.032177+00:00",
+  "seed_qid": "Q172845",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 2,
+    "candidate_sources_before_budget": 2,
+    "candidate_sources_considered": 2,
+    "accepted_before_node_budget": 2,
+    "accepted": 2,
+    "rejected": 0,
+    "entities_profiled": 2,
+    "frontier_eligible": 2,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 2,
+    "unscoped": 0,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 46,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 5,
+    "with_references": 16,
+    "qualifier_rate": 0.10869565217391304,
+    "reference_rate": 0.34782608695652173,
+    "datatype_counts": {
+      "wikibase-item": 18,
+      "globe-coordinate": 3,
+      "external-id": 10,
+      "monolingualtext": 4,
+      "commonsMedia": 4,
+      "string": 1,
+      "url": 1,
+      "quantity": 3,
+      "time": 2
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 18,
+      "globecoordinate": 3,
+      "string": 16,
+      "monolingualtext": 4,
+      "quantity": 3,
+      "time": 2
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 18,
+      "globe-coordinate|globecoordinate": 3,
+      "external-id|string": 10,
+      "monolingualtext|monolingualtext": 4,
+      "commonsMedia|string": 4,
+      "string|string": 1,
+      "url|string": 1,
+      "quantity|quantity": 3,
+      "time|time": 2
+    },
+    "route_counts": {
+      "edge_candidate": 18,
+      "geo_attribute": 3,
+      "federation_id": 10,
+      "node_property": 6,
+      "media_reference": 4,
+      "measured_attribute": 3,
+      "temporal_anchor": 2
+    },
+    "rank_counts": {
+      "normal": 45,
+      "deprecated": 1
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 2,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q113006941",
+      "label": "Parc Gilles-Villeneuve",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q22698"
+      ],
+      "matched_classes": [
+        "Q22698"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q6671777"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P821": "ESDET",
+        "P2100": "386320",
+        "P10689": "114837781"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.2222222222222222,
+        "route_counts": {
+          "edge_candidate": 10,
+          "geo_attribute": 2,
+          "federation_id": 3,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2777777777777778,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q172860",
+      "label": "Circuit Gilles Villeneuve",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q2338524"
+      ],
+      "matched_classes": [
+        "Q2338524"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q17334923"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03sf74",
+        "P1566": "5922806",
+        "P2100": "279179",
+        "P6807": "Circuit_Gilles_Villeneuve",
+        "P402": "284595",
+        "P214": "2409155105769176320001",
+        "P10046": "10885563534042444372"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 3,
+        "with_references": 12,
+        "qualifier_rate": 0.10714285714285714,
+        "reference_rate": 0.42857142857142855,
+        "route_counts": {
+          "node_property": 4,
+          "edge_candidate": 8,
+          "geo_attribute": 1,
+          "federation_id": 7,
+          "media_reference": 3,
+          "measured_attribute": 3,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.39285714285714285,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

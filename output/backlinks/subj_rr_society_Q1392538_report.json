@@ -1,0 +1,699 @@
+{
+  "generated_at": "2026-02-24T00:25:29.412415+00:00",
+  "seed_qid": "Q1392538",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 28,
+    "candidate_sources_before_budget": 13,
+    "candidate_sources_considered": 13,
+    "accepted_before_node_budget": 12,
+    "accepted": 12,
+    "rejected": 1,
+    "entities_profiled": 12,
+    "frontier_eligible": 12,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.07692307692307693,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "no_p31": 1
+  },
+  "datatype_profile_summary": {
+    "statement_count": 213,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 49,
+    "with_references": 26,
+    "qualifier_rate": 0.2300469483568075,
+    "reference_rate": 0.12206572769953052,
+    "datatype_counts": {
+      "wikibase-item": 113,
+      "monolingualtext": 8,
+      "external-id": 87,
+      "commonsMedia": 4,
+      "time": 1
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 113,
+      "monolingualtext": 8,
+      "string": 91,
+      "time": 1
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 113,
+      "monolingualtext|monolingualtext": 8,
+      "external-id|string": 87,
+      "commonsMedia|string": 4,
+      "time|time": 1
+    },
+    "route_counts": {
+      "edge_candidate": 113,
+      "node_property": 8,
+      "federation_id": 87,
+      "media_reference": 4,
+      "temporal_uncertain": 1
+    },
+    "rank_counts": {
+      "normal": 212,
+      "deprecated": 1
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 12,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q106619266",
+      "label": "plebeius",
+      "properties": [
+        "P279",
+        "P31"
+      ],
+      "p31": [
+        "Q1392538",
+        "Q2135465",
+        "Q5737899"
+      ],
+      "matched_classes": [
+        "Q1392538",
+        "Q2135465",
+        "Q5737899"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 6,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3076923076923077,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q104687",
+      "label": "plebeians",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538",
+        "Q189970",
+        "Q851990"
+      ],
+      "matched_classes": [
+        "Q1392538",
+        "Q189970",
+        "Q851990"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P508": "29744",
+        "P349": "00575632",
+        "P646": "/m/01kdqq",
+        "P4212": "pcrtq0vazjRSi8",
+        "P3365": "plebe",
+        "P4223": "plebe",
+        "P2924": "3144732",
+        "P244": "sh85103443",
+        "P1296": "0201857",
+        "P6404": "plebe",
+        "P920": "LEM201012242",
+        "P268": "11970884c",
+        "P4342": "plebeier",
+        "P8189": "987007555703705171",
+        "P6385": "istoriya/PLEBS.html",
+        "P8313": "so8rwu0rwß8véh38",
+        "P9000": "Plebeians",
+        "P12385": "plebeu",
+        "P12596": "68981",
+        "P12800": "fr:plebebiens",
+        "P8885": "플레브스",
+        "P13591": "concept/7d69bad4-2195-4664-9310-2ed90806ed25",
+        "P3222": "plebejer",
+        "P7666": "plebejai"
+      },
+      "statement_profile": {
+        "statement_count": 46,
+        "with_qualifiers": 15,
+        "with_references": 6,
+        "qualifier_rate": 0.32608695652173914,
+        "reference_rate": 0.13043478260869565,
+        "route_counts": {
+          "federation_id": 25,
+          "edge_candidate": 20,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.021739130434782608,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q154668",
+      "label": "patricii",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538",
+        "Q2305862",
+        "Q851990"
+      ],
+      "matched_classes": [
+        "Q1392538",
+        "Q2305862",
+        "Q851990"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P508": "29740",
+        "P646": "/m/0bh9gp0",
+        "P244": "sh85098730",
+        "P1417": "topic/patrician",
+        "P3219": "nobilitas",
+        "P2924": "2324333",
+        "P4212": "pcrt4fQLDtf2cZ",
+        "P1296": "0199793",
+        "P6404": "patriziato",
+        "P9000": "Patrician",
+        "P268": "123514339",
+        "P8189": "987007529571105171",
+        "P3365": "patriziato",
+        "P4223": "patriziato",
+        "P6385": "istoriya/PATRITSII.html",
+        "P8313": "patricier",
+        "P5019": "patrizier-antikes-rom",
+        "P4342": "patrisier",
+        "P6058": "images/Patricien_portant_les_effigies_de_ses_ancêtres/1009960",
+        "P12385": "patriciat",
+        "P12596": "10003",
+        "P12800": "fr:Patricien_(Rome_antique)",
+        "P13613": "164359",
+        "P13591": "concept/5fe657e7-3193-4d27-b33e-ed483b1148b2",
+        "P7666": "patricijai-1"
+      },
+      "statement_profile": {
+        "statement_count": 48,
+        "with_qualifiers": 15,
+        "with_references": 8,
+        "qualifier_rate": 0.3125,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "federation_id": 26,
+          "edge_candidate": 20,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.041666666666666664,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q98108984",
+      "label": "patricia",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q189970",
+        "Q2628882",
+        "Q5737899"
+      ],
+      "matched_classes": [
+        "Q189970",
+        "Q2628882",
+        "Q5737899"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113653584",
+      "label": "Ordines",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538",
+        "Q176799"
+      ],
+      "matched_classes": [
+        "Q1392538",
+        "Q176799"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2694748",
+      "label": "honestiores",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538",
+        "Q187588"
+      ],
+      "matched_classes": [
+        "Q1392538",
+        "Q187588"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1417": "topic/honestiores",
+        "P2671": "/g/11bc6b54d7",
+        "P8313": "honestiores",
+        "P8669": "honestiores"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2858087",
+      "label": "humiliores",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538",
+        "Q187588"
+      ],
+      "matched_classes": [
+        "Q1392538",
+        "Q187588"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1417": "topic/humiliores",
+        "P2671": "/g/11bc5kdg5x",
+        "P8669": "humiliores"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.08333333333333333,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 3,
+          "node_property": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q56636325",
+      "label": "honestiores and humiliores",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538",
+        "Q187588"
+      ],
+      "matched_classes": [
+        "Q1392538",
+        "Q187588"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2671": "/g/121vrf7b"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1001045",
+      "label": "nobiles",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q187588"
+      ],
+      "matched_classes": [
+        "Q187588"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02tfh6",
+        "P227": "4138020-4",
+        "P6385": "istoriya/nobilitet",
+        "P2924": "2665502",
+        "P4342": "nobiles",
+        "P11514": "nobilitet-48c5f5",
+        "P3222": "nobiles"
+      },
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 4,
+        "with_references": 2,
+        "qualifier_rate": 0.21052631578947367,
+        "reference_rate": 0.10526315789473684,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122166",
+      "label": "equites",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538"
+      ],
+      "matched_classes": [
+        "Q1392538"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0209n0",
+        "P2581": "16983903n",
+        "P3219": "chevaliers-romains",
+        "P244": "sh85044534",
+        "P1417": "topic/eques",
+        "P6404": "ordine-equestre",
+        "P4212": "pcrtOsxJT4LGRE",
+        "P4342": "equites",
+        "P3222": "equites",
+        "P8349": "19884",
+        "P7982": "18186",
+        "P3365": "ordine-equestre",
+        "P8189": "987007553017605171",
+        "P6385": "istoriya/VSADNIKI.html",
+        "P7305": "3897172",
+        "P13591": "concept/b5c47e01-0680-4b35-8ff3-714f9c77694a",
+        "P7666": "raiteliai"
+      },
+      "statement_profile": {
+        "statement_count": 31,
+        "with_qualifiers": 9,
+        "with_references": 6,
+        "qualifier_rate": 0.2903225806451613,
+        "reference_rate": 0.1935483870967742,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 17,
+          "media_reference": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06451612903225806,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1225322",
+      "label": "ordo senatorius",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1392538"
+      ],
+      "matched_classes": [
+        "Q1392538"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121vr4ck",
+        "P4212": "pcrtnz7hwxgTNX"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1800139",
+      "label": "laeti",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q187588"
+      ],
+      "matched_classes": [
+        "Q187588"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0dt558",
+        "P4212": "pcrthLvH2kSwTy"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q107181605",
+      "label": "patricians and plebeians",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

@@ -1,0 +1,6270 @@
+{
+  "generated_at": "2026-02-24T00:25:43.346196+00:00",
+  "seed_qid": "Q207544",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 196,
+    "candidate_sources_before_budget": 148,
+    "candidate_sources_considered": 148,
+    "accepted_before_node_budget": 148,
+    "accepted": 148,
+    "rejected": 0,
+    "entities_profiled": 148,
+    "frontier_eligible": 148,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 2361,
+    "missing_datavalue_statement_count": 4,
+    "with_qualifiers": 320,
+    "with_references": 794,
+    "qualifier_rate": 0.1355357899195256,
+    "reference_rate": 0.336298178737823,
+    "datatype_counts": {
+      "wikibase-item": 1516,
+      "external-id": 468,
+      "commonsMedia": 81,
+      "string": 70,
+      "monolingualtext": 111,
+      "time": 87,
+      "url": 13,
+      "quantity": 15
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 1514,
+      "string": 631,
+      "monolingualtext": 111,
+      "time": 86,
+      "": 4,
+      "quantity": 15
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 1514,
+      "external-id|string": 468,
+      "commonsMedia|string": 81,
+      "string|string": 70,
+      "monolingualtext|monolingualtext": 111,
+      "time|time": 86,
+      "wikibase-item|": 2,
+      "url|string": 12,
+      "quantity|quantity": 15,
+      "time|": 1,
+      "url|": 1
+    },
+    "route_counts": {
+      "edge_candidate": 1514,
+      "federation_id": 468,
+      "media_reference": 81,
+      "node_property": 193,
+      "temporal_anchor": 86,
+      "quarantine_missing_datavalue": 4,
+      "measured_attribute": 15
+    },
+    "rank_counts": {
+      "normal": 2346,
+      "deprecated": 7,
+      "preferred": 8
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 4
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 148,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q2542307",
+      "label": "The Cowardly Lion",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q130287298",
+        "Q1569167",
+        "Q15711870",
+        "Q15773317",
+        "Q15773347",
+        "Q15912682",
+        "Q3658341",
+        "Q63975020",
+        "Q88594442"
+      ],
+      "matched_classes": [
+        "Q130287298",
+        "Q1569167",
+        "Q15711870",
+        "Q15773317",
+        "Q15773347",
+        "Q15912682",
+        "Q3658341",
+        "Q63975020",
+        "Q88594442"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 9,
+      "external_ids": {
+        "P646": "/m/02zqby",
+        "P1417": "topic/Cowardly-Lion",
+        "P5247": "3005-6906",
+        "P244": "no2015016254",
+        "P2163": "881979",
+        "P214": "313505375",
+        "P5905": "4005-24717",
+        "P8189": "987011052451905171",
+        "P10832": "E39PCjCcbbYGhRMXTY3GC7MrRq",
+        "P13591": "person/c9930429-e338-49d0-94b6-ceec8ea1f957",
+        "P10757": "13683"
+      },
+      "statement_profile": {
+        "statement_count": 40,
+        "with_qualifiers": 5,
+        "with_references": 9,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.225,
+        "route_counts": {
+          "edge_candidate": 26,
+          "federation_id": 12,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05,
+        "edge_candidate_count": 26,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1168555",
+      "label": "The Tin Man",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1114461",
+        "Q15711870",
+        "Q15773317",
+        "Q15773347",
+        "Q18327510",
+        "Q3658341",
+        "Q4258797"
+      ],
+      "matched_classes": [
+        "Q1114461",
+        "Q15711870",
+        "Q15773317",
+        "Q15773347",
+        "Q18327510",
+        "Q3658341",
+        "Q4258797"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 7,
+      "external_ids": {
+        "P345": "ch0004331",
+        "P646": "/m/02jy7w",
+        "P214": "314909573",
+        "P244": "no2015027498",
+        "P1417": "topic/Tin-Man",
+        "P2163": "1151291",
+        "P5247": "3005-6959",
+        "P5905": "4005-24728",
+        "P8189": "987007530480405171",
+        "P10832": "E39PCjCVQ8fX8bMgr66TCpTd8K",
+        "P13591": "person/659eddb1-0cd2-4895-aa63-2dfb3340e92c",
+        "P10757": "21146"
+      },
+      "statement_profile": {
+        "statement_count": 40,
+        "with_qualifiers": 4,
+        "with_references": 14,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.35,
+        "route_counts": {
+          "federation_id": 12,
+          "edge_candidate": 25,
+          "media_reference": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.075,
+        "edge_candidate_count": 25,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2583524",
+      "label": "Dorothy Gale",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15632617",
+        "Q15711870",
+        "Q15773317",
+        "Q15773347",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15632617",
+        "Q15711870",
+        "Q15773317",
+        "Q15773347",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 5,
+      "external_ids": {
+        "P646": "/m/020hj1",
+        "P3417": "Dorothy-Gale-Wizard-of-Oz-character",
+        "P345": "ch0513290",
+        "P5863": "Dorothy-Gale.The-Wizard-of-Oz",
+        "P6327": "1044211",
+        "P1417": "topic/Dorothy",
+        "P5247": "3005-6904",
+        "P244": "no2014026773",
+        "P2163": "937146",
+        "P214": "306393682",
+        "P5905": "4005-24723",
+        "P7106": "dorothy-gale",
+        "P5421": "198332",
+        "P4839": "Entity[\"FictionalCharacter\", \"DorothyGale::3n3b2\"]",
+        "P10832": "E39PBJvH8bYXRtxyv86TwRJhpP",
+        "P8189": "987011052452205171",
+        "P11924": "reference-to-dorothy-gale",
+        "P13591": "person/be289bf4-5d46-423e-85e7-206ba113a37a",
+        "P10757": "21144"
+      },
+      "statement_profile": {
+        "statement_count": 65,
+        "with_qualifiers": 20,
+        "with_references": 6,
+        "qualifier_rate": 0.3076923076923077,
+        "reference_rate": 0.09230769230769231,
+        "route_counts": {
+          "edge_candidate": 39,
+          "node_property": 2,
+          "federation_id": 21,
+          "media_reference": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 39,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2293194",
+      "label": "Toto",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15720625",
+        "Q15912682",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15720625",
+        "Q15912682",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/04nnqc",
+        "P1417": "topic/Toto-fictional-dog",
+        "P244": "sh2001005264",
+        "P5905": "4005-21479",
+        "P13591": "concept/1e3b495f-0e7c-4306-82be-74d8947cf817"
+      },
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.10526315789473684,
+        "reference_rate": 0.2631578947368421,
+        "route_counts": {
+          "edge_candidate": 12,
+          "node_property": 1,
+          "federation_id": 5,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10526315789473684,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3821514",
+      "label": "Good Witch of the North",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912738",
+        "Q3658341",
+        "Q63975020"
+      ],
+      "matched_classes": [
+        "Q15912738",
+        "Q3658341",
+        "Q63975020"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P6327": "92388",
+        "P646": "/m/060_19",
+        "P6262": "pdsh:Good_Witch_of_the_North",
+        "P345": "ch0305825"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 13,
+        "with_references": 1,
+        "qualifier_rate": 0.52,
+        "reference_rate": 0.04,
+        "route_counts": {
+          "edge_candidate": 17,
+          "media_reference": 1,
+          "federation_id": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.04,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3835867",
+      "label": "Scarecrow",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q27598544",
+        "Q3658341",
+        "Q55753925"
+      ],
+      "matched_classes": [
+        "Q27598544",
+        "Q3658341",
+        "Q55753925"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/02ztbm",
+        "P1417": "topic/Scarecrow-fictional-character",
+        "P5247": "3005-6908",
+        "P244": "no2015016334",
+        "P2163": "1106546",
+        "P214": "313505446",
+        "P5905": "4005-24726",
+        "P8189": "987007417747305171",
+        "P10832": "E39PCjvkyh4JHYxWdhqJqwv7Md",
+        "P13591": "person/fc65c746-578c-4bbe-bd13-507ceb7401d3"
+      },
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.09523809523809523,
+        "reference_rate": 0.19047619047619047,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 10,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09523809523809523,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4911898",
+      "label": "Billina",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912682",
+        "Q18683244",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15912682",
+        "Q18683244",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P6327": "23635",
+        "P6262": "disney:Billina",
+        "P646": "/m/06bkkr"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 4,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 3,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5943551",
+      "label": "Hungry Tiger",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912682",
+        "Q27229763",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15912682",
+        "Q27229763",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P6327": "92401",
+        "P2671": "/g/11c1v8x8d6"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 3,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q10306627",
+      "label": "Jellia Jamb",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P6327": "92395",
+        "P646": "/m/027vnm3"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.08333333333333333,
+        "route_counts": {
+          "edge_candidate": 9,
+          "media_reference": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q114568959",
+      "label": "The Master Key",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189",
+        "Q42396623"
+      ],
+      "matched_classes": [
+        "Q3331189",
+        "Q42396623"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P724": "maskterkeyelectric00baumrich",
+        "P243": "1049652648"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.23529411764705882,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "node_property": 4,
+          "quarantine_missing_datavalue": 2,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.29411764705882354,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    },
+    {
+      "qid": "Q114644968",
+      "label": "Queen Zixi of Ix",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q1347298",
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q1347298",
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 6,
+        "with_references": 0,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 15,
+          "temporal_anchor": 1,
+          "node_property": 4,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23809523809523808,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q114666212",
+      "label": "The Practical Boy",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q133250",
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q133250",
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 6,
+        "with_references": 0,
+        "qualifier_rate": 0.2857142857142857,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 15,
+          "temporal_anchor": 1,
+          "node_property": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23809523809523808,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1997848",
+      "label": "Princess Ozma",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/021r28",
+        "P3417": "Princess-Ozma",
+        "P244": "sh99003963",
+        "P6262": "hero:Princess_Ozma"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 5,
+        "with_references": 9,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.45,
+        "route_counts": {
+          "edge_candidate": 11,
+          "federation_id": 6,
+          "media_reference": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2292767",
+      "label": "Glinda the Good Witch",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q115537581",
+        "Q15912738"
+      ],
+      "matched_classes": [
+        "Q115537581",
+        "Q15912738"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/022qn6",
+        "P1417": "topic/Glinda-the-Good-Witch",
+        "P6327": "92398",
+        "P10757": "21148"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 10,
+          "federation_id": 4,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2382687",
+      "label": "Wizard of Oz",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15632617",
+        "Q4258797"
+      ],
+      "matched_classes": [
+        "Q15632617",
+        "Q4258797"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/021r0s",
+        "P214": "313505419",
+        "P244": "no2015016303",
+        "P2163": "1176451",
+        "P6327": "46181",
+        "P5905": "4005-24719",
+        "P949": "005144839",
+        "P8189": "987011052452005171",
+        "P10832": "E39PBJcGjCtWb4jCWP3MHH74MP"
+      },
+      "statement_profile": {
+        "statement_count": 49,
+        "with_qualifiers": 24,
+        "with_references": 6,
+        "qualifier_rate": 0.4897959183673469,
+        "reference_rate": 0.12244897959183673,
+        "route_counts": {
+          "edge_candidate": 35,
+          "federation_id": 9,
+          "node_property": 2,
+          "media_reference": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10204081632653061,
+        "edge_candidate_count": 35,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3051679",
+      "label": "Elphaba",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15773347",
+        "Q15912738"
+      ],
+      "matched_classes": [
+        "Q15773347",
+        "Q15912738"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/04lbl_",
+        "P6262": "wicked:Elphaba_Thropp",
+        "P244": "no2025027332",
+        "P10757": "1630486"
+      },
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 4,
+        "with_references": 2,
+        "qualifier_rate": 0.19047619047619047,
+        "reference_rate": 0.09523809523809523,
+        "route_counts": {
+          "edge_candidate": 16,
+          "federation_id": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3642335",
+      "label": "Boq",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15773347",
+        "Q28020127"
+      ],
+      "matched_classes": [
+        "Q15773347",
+        "Q28020127"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P6327": "92390",
+        "P646": "/m/0627w5"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.08333333333333333,
+        "route_counts": {
+          "edge_candidate": 9,
+          "media_reference": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3822977",
+      "label": "Wicked Witch of the East",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912738",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15912738",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/03rm0y",
+        "P6327": "92389"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 3,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4024385",
+      "label": "Aunt Em",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P6327": "92387",
+        "P6262": "disney:Aunt_Em_(Muppets_Wizard_of_Oz)",
+        "P646": "/m/08lkfj"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 3,
+        "with_references": 2,
+        "qualifier_rate": 0.17647058823529413,
+        "reference_rate": 0.11764705882352941,
+        "route_counts": {
+          "edge_candidate": 14,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4024504",
+      "label": "Uncle Henry",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15632617",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P6327": "858",
+        "P646": "/m/08sn38"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.0625,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 13,
+          "media_reference": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4298959",
+      "label": "Mo",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276",
+        "Q20750954"
+      ],
+      "matched_classes": [
+        "Q1145276",
+        "Q20750954"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/03mdvz6"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4467002",
+      "label": "Jack Pumpkinhead",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q28020127",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q28020127",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P6327": "23639",
+        "P646": "/m/03m57_"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5567035",
+      "label": "Glass Cat",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912682",
+        "Q27120684"
+      ],
+      "matched_classes": [
+        "Q15912682",
+        "Q27120684"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/026r0y1"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6101019",
+      "label": "Ix",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276",
+        "Q20750954"
+      ],
+      "matched_classes": [
+        "Q1145276",
+        "Q20750954"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/03mdvxv"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7048506",
+      "label": "Nome King",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15773347",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15773347",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/03nq19"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 10,
+          "media_reference": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7144376",
+      "label": "Patchwork Girl",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q2918349",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q2918349",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/03l_y_",
+        "P6262": "hero:Patchwork_Girl"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 2,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7801855",
+      "label": "Tik-Tok",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15773347",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15773347",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P6327": "23634",
+        "P646": "/m/02yx0k"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.1875,
+        "route_counts": {
+          "edge_candidate": 12,
+          "media_reference": 1,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q8029062",
+      "label": "Woggle-Bug",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912682",
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q15912682",
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P4839": "Entity[\"FictionalCharacter\", \"WoggleBug::6742m\"]",
+        "P646": "/m/02_82p"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q103846057",
+      "label": "Baum, L. Frank (15 May 1856–06 May 1919), children's author, journalist, and playwright",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q13433827"
+      ],
+      "matched_classes": [
+        "Q13433827"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P356": "10.1093/ANB/9780198606697.ARTICLE.1600088"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.7142857142857143,
+        "route_counts": {
+          "node_property": 2,
+          "edge_candidate": 3,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107618924",
+      "label": "Ini Archibong",
+      "properties": [
+        "P737"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6578": "C90BC094D1241A29",
+        "P2042": "ini-archibong",
+        "P8943": "824687",
+        "P345": "nm4090974",
+        "P3782": "ini-archibong",
+        "P2671": "/g/11n2msjcrr",
+        "P827": "w3ct1tcy"
+      },
+      "statement_profile": {
+        "statement_count": 73,
+        "with_qualifiers": 13,
+        "with_references": 58,
+        "qualifier_rate": 0.1780821917808219,
+        "reference_rate": 0.7945205479452054,
+        "route_counts": {
+          "edge_candidate": 57,
+          "temporal_anchor": 1,
+          "node_property": 6,
+          "federation_id": 7,
+          "media_reference": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1095890410958904,
+        "edge_candidate_count": 57,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q109326659",
+      "label": "The Boy Fortune Hunters in the South Seas",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "55763",
+        "P1274": "1173711"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 8,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8888888888888888,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 2,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q111910191",
+      "label": "The Suicide of Kiaros",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "292851"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q111955332",
+      "label": "Aunt ’Phroney’s Boy",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.05,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 13,
+          "temporal_anchor": 1,
+          "node_property": 5,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q114424137",
+      "label": "The Queen of Quok",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1495510",
+        "P7439": "211883"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q114568940",
+      "label": "The Master Key",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5331": "3856802900",
+        "P648": "OL262383W"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.07142857142857142,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "node_property": 5,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.42857142857142855,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q114644790",
+      "label": "Queen Zixi of Ix, Part 1",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q1347298"
+      ],
+      "matched_classes": [
+        "Q1347298"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 13,
+          "temporal_anchor": 1,
+          "node_property": 5,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q115408847",
+      "label": "Queen Zixi of Ix, Part 2",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q1347298"
+      ],
+      "matched_classes": [
+        "Q1347298"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.19047619047619047,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 13,
+          "temporal_anchor": 1,
+          "node_property": 6,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q115857935",
+      "label": "Boy Fortune Hunters",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q115868483",
+      "label": "Queen Zixi of Ix, Part 3",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q1347298"
+      ],
+      "matched_classes": [
+        "Q1347298"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.19047619047619047,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 13,
+          "temporal_anchor": 1,
+          "node_property": 6,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q116446966",
+      "label": "Queen Zixi of Ix, Part 4",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q1347298"
+      ],
+      "matched_classes": [
+        "Q1347298"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 14,
+          "temporal_anchor": 1,
+          "node_property": 6,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3181818181818182,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122007399",
+      "label": "Q122007399",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb002955092",
+        "P212": "978-80-7407-368-7"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 13,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "edge_candidate": 6,
+          "measured_attribute": 1,
+          "node_property": 3,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3076923076923077,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122078138",
+      "label": "Q122078138",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb003180049",
+        "P212": "978-80-7642-901-7"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 12,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "edge_candidate": 7,
+          "federation_id": 2,
+          "measured_attribute": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122120395",
+      "label": "Q122120395",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb003395757",
+        "P212": "978-80-908449-1-9"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 9,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "measured_attribute": 1,
+          "edge_candidate": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122123631",
+      "label": "Q122123631",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb003417021",
+        "P212": "978-80-7407-412-7"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 12,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "edge_candidate": 6,
+          "federation_id": 2,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1250364",
+      "label": "The Road to Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "26624",
+        "P648": "OL262390W",
+        "P1274": "8011",
+        "P646": "/m/01zk4b",
+        "P1085": "52858"
+      },
+      "statement_profile": {
+        "statement_count": 29,
+        "with_qualifiers": 2,
+        "with_references": 13,
+        "qualifier_rate": 0.06896551724137931,
+        "reference_rate": 0.4482758620689655,
+        "route_counts": {
+          "edge_candidate": 19,
+          "federation_id": 5,
+          "node_property": 3,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13793103448275862,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1250366",
+      "label": "The Emerald City of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "517",
+        "P648": "OL18409W",
+        "P3417": "The-Emerald-City-of-Oz",
+        "P1417": "topic/the-Emerald-City",
+        "P1274": "810",
+        "P646": "/m/01ydrq",
+        "P7439": "494215",
+        "P1085": "20363"
+      },
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 3,
+        "with_references": 14,
+        "qualifier_rate": 0.10714285714285714,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 15,
+          "federation_id": 9,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10714285714285714,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q126687731",
+      "label": "The Last Egyptian",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2969": "3095087",
+        "P957": "1-58963-919-7",
+        "P212": "978-1-58963-919-5",
+        "P243": "419213619",
+        "P648": "OL9547570M"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 7,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.5833333333333334,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 5,
+          "node_property": 1,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130295",
+      "label": "The Wonderful Wizard of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0f6vx",
+        "P268": "13747365q",
+        "P227": "4357615-1",
+        "P244": "n81036429",
+        "P214": "183869923",
+        "P1274": "807",
+        "P2034": "43936",
+        "P3417": "The-Wizard-of-Oz-1",
+        "P1417": "topic/The-Wonderful-Wizard-of-Oz",
+        "P5571": "4955",
+        "P269": "100937365",
+        "P435": "c6c6fb26-9e4f-432f-ad76-3a0a327d2dd6",
+        "P6175": "513",
+        "P2191": "1138421",
+        "P6839": "Literature/TheWonderfulWizardOfOz",
+        "P5331": "3980332625",
+        "P8189": "987007585866305171",
+        "P10291": "179071",
+        "P6262": "memory-beta:The_Wizard_of_Oz",
+        "P9983": "mago-di-oz-il",
+        "P8383": "1993810",
+        "P648": "OL18417W",
+        "P12086": "De_tovenaar_van_Oz",
+        "P12931": "305",
+        "P9818": "9761",
+        "P6221": "113947",
+        "P1617": "daae6ff6-caa1-4611-bf89-6eb1e6c9a9bf",
+        "P7439": "162132",
+        "P1085": "20410"
+      },
+      "statement_profile": {
+        "statement_count": 96,
+        "with_qualifiers": 17,
+        "with_references": 41,
+        "qualifier_rate": 0.17708333333333334,
+        "reference_rate": 0.4270833333333333,
+        "route_counts": {
+          "edge_candidate": 56,
+          "federation_id": 30,
+          "node_property": 6,
+          "media_reference": 2,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 56,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q132663891",
+      "label": "Q132663891",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5749": "0590413740",
+        "P957": "0-590-41374-0",
+        "P212": "978-0-590-41374-9",
+        "P648": "OL47130824M"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "federation_id": 4,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134481408",
+      "label": "Sam Steele's Adventures in Panama",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1189364"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134481409",
+      "label": "The Boy Fortune Hunters in Egypt",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1231430"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134481410",
+      "label": "The Boy Fortune Hunters in China",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1186068",
+        "P2034": "55767"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134481411",
+      "label": "The Boy Fortune Hunters in Yucatan",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1173705",
+        "P2034": "63508"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134516609",
+      "label": "Mary Louise",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "940052"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134516610",
+      "label": "Mary Louise in the Country",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1342623"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134516611",
+      "label": "The Flying Girl and Her Chum",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1172538"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134610997",
+      "label": "Emerald City of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P9818": "9740"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q13629454",
+      "label": "Betsy Bobbin",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136409727",
+      "label": "The Life and Adventures of Santa Claus",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136890545",
+      "label": "The Patchwork Girl",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q28020127"
+      ],
+      "matched_classes": [
+        "Q28020127"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137643649",
+      "label": "Q137643649",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5749": "0593114752",
+        "P2969": "46064195",
+        "P957": "0-593-11475-2",
+        "P212": "978-0-593-11475-9",
+        "P648": "OL28908804M"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.08333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "federation_id": 5,
+          "measured_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137643767",
+      "label": "Q137643767",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5749": "0593117212",
+        "P2969": "52916050",
+        "P957": "0-593-11721-2",
+        "P212": "978-0-593-11721-7",
+        "P648": "OL28655530M"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 4,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.26666666666666666,
+        "route_counts": {
+          "edge_candidate": 7,
+          "node_property": 1,
+          "federation_id": 5,
+          "measured_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13333333333333333,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q15032608",
+      "label": "The Enchanted Island of Yew",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "9544",
+        "P646": "/m/026w5r1"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.35714285714285715,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q15912693",
+      "label": "Oz universe",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q559618"
+      ],
+      "matched_classes": [
+        "Q559618"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P4073": "oz"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.3,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q15912727",
+      "label": "Jinjur",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q95074"
+      ],
+      "matched_classes": [
+        "Q95074"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5905": "4005-24710",
+        "P646": "/m/07tk4l"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q15912731",
+      "label": "Shaggy Man",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/07hc2j"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16385081",
+      "label": "Aunt Jane's Nieces on Vacation",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02rbv38"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.35714285714285715,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q16386472",
+      "label": "John Dough and the Cherub",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "197752",
+        "P646": "/m/02qd63r"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 6,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1875,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1659447",
+      "label": "The Marvelous Land of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01_ycx",
+        "P2034": "54",
+        "P648": "OL18396W",
+        "P1274": "8010",
+        "P5571": "19816",
+        "P2191": "1138422",
+        "P6839": "Literature/TheMarvelousLandOfOz",
+        "P8383": "21430714"
+      },
+      "statement_profile": {
+        "statement_count": 33,
+        "with_qualifiers": 3,
+        "with_references": 15,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.45454545454545453,
+        "route_counts": {
+          "edge_candidate": 20,
+          "federation_id": 8,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "node_property": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.12121212121212122,
+        "edge_candidate_count": 20,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17030278",
+      "label": "Sam Steele's Adventures on Land and Sea",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1170550",
+        "P2671": "/g/11c2l8sffb"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.4166666666666667,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17031274",
+      "label": "The Woggle-Bug Book",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/05q9483"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.13333333333333333,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "node_property": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17142148",
+      "label": "Merryland",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276"
+      ],
+      "matched_classes": [
+        "Q1145276"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0v3gkl5"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17145795",
+      "label": "Nome Kingdom",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276"
+      ],
+      "matched_classes": [
+        "Q1145276"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/012s8k9z"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17486589",
+      "label": "Lorin Morgan-Richards",
+      "properties": [
+        "P737"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P345": "nm4575645",
+        "P214": "24396355",
+        "P244": "no2007156146",
+        "P1953": "418787",
+        "P2963": "2943244",
+        "P648": "OL7361824A",
+        "P2013": "lorinmorganrichards",
+        "P2003": "lorin_morgan_richards",
+        "P2600": "6000000002046607395",
+        "P2949": "Morgan-Richards-1",
+        "P3478": "5604298",
+        "P2847": "+LorinMorganRichards",
+        "P3836": "ravenabovepress",
+        "P2397": "UCBj97hhUqp7NgMYsf3Gnr5Q",
+        "P3417": "Lorin-Morgan-Richards",
+        "P646": "/m/011jjbpg",
+        "P9965": "97779",
+        "P434": "3342c187-d034-4de8-b30e-b7dc4cff0f0b",
+        "P3368": "2165956",
+        "P10832": "E39PBJqfKPdKPvfx9fjFGqY9Dq",
+        "P13591": "person/ad5fab69-b555-4be1-ad99-2b728eca2381",
+        "P11892": "lorin_morgan_richards"
+      },
+      "statement_profile": {
+        "statement_count": 77,
+        "with_qualifiers": 12,
+        "with_references": 14,
+        "qualifier_rate": 0.15584415584415584,
+        "reference_rate": 0.18181818181818182,
+        "route_counts": {
+          "edge_candidate": 42,
+          "temporal_anchor": 2,
+          "media_reference": 2,
+          "node_property": 3,
+          "federation_id": 23,
+          "measured_attribute": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.12987012987012986,
+        "edge_candidate_count": 42,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q19098968",
+      "label": "Life and Adventures of Santa Claus",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.42857142857142855,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q19100401",
+      "label": "The Surprising Adventures of the Magical Monarch of Mo and His People",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2167095",
+      "label": "Oz book series",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q277759"
+      ],
+      "matched_classes": [
+        "Q277759"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1235": "455",
+        "P5792": "2659",
+        "P646": "/m/02qh5x",
+        "P6947": "41459",
+        "P8513": "103",
+        "P4073": "oz"
+      },
+      "statement_profile": {
+        "statement_count": 37,
+        "with_qualifiers": 1,
+        "with_references": 20,
+        "qualifier_rate": 0.02702702702702703,
+        "reference_rate": 0.5405405405405406,
+        "route_counts": {
+          "edge_candidate": 28,
+          "temporal_anchor": 2,
+          "federation_id": 6,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.02702702702702703,
+        "edge_candidate_count": 28,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q23808630",
+      "label": "L. Frank Baum bibliography",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q1631107"
+      ],
+      "matched_classes": [
+        "Q1631107"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11clw75n5s"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28668463",
+      "label": "Q28668463",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 2,
+        "with_references": 3,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2918164",
+      "label": "Land of Oz",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276"
+      ],
+      "matched_classes": [
+        "Q1145276"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02qhdd",
+        "P3417": "Land-of-Oz",
+        "P5905": "4020-56057",
+        "P1417": "topic/Land-of-Oz",
+        "P244": "sh88002570",
+        "P8189": "987007539261905171",
+        "P7562": "ozworld",
+        "P6262": "oz:Land_of_Oz",
+        "P13591": "concept/ba6a3312-bb14-4461-a737-aaf4dcfff987"
+      },
+      "statement_profile": {
+        "statement_count": 36,
+        "with_qualifiers": 7,
+        "with_references": 15,
+        "qualifier_rate": 0.19444444444444445,
+        "reference_rate": 0.4166666666666667,
+        "route_counts": {
+          "edge_candidate": 19,
+          "federation_id": 11,
+          "media_reference": 3,
+          "node_property": 2,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3224175",
+      "label": "Q3224175",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q14406742"
+      ],
+      "matched_classes": [
+        "Q14406742"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P8619": "10537",
+        "P2671": "/g/122k6379"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3822980",
+      "label": "Wicked Witch of the West",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912738"
+      ],
+      "matched_classes": [
+        "Q15912738"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1417": "topic/Wicked-Witch-of-the-West",
+        "P5247": "3005-6917",
+        "P4839": "Entity[\"FictionalCharacter\", \"WickedWitchOfTheWest::4qt84\"]",
+        "P646": "/m/03r8vn",
+        "P244": "no2025027336",
+        "P10757": "21149"
+      },
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 4,
+        "with_references": 3,
+        "qualifier_rate": 0.14814814814814814,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 16,
+          "node_property": 2,
+          "media_reference": 2,
+          "federation_id": 6,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14814814814814814,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q4180222",
+      "label": "The Life and Adventures of Santa Claus",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P243": "3343074",
+        "P646": "/m/08r95w",
+        "P2034": "520",
+        "P5331": "2946067282",
+        "P648": "OL262374W",
+        "P1274": "8009"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 3,
+        "with_references": 6,
+        "qualifier_rate": 0.12,
+        "reference_rate": 0.24,
+        "route_counts": {
+          "edge_candidate": 15,
+          "federation_id": 6,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.12,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4375085",
+      "label": "A Kidnapped Santa Claus",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1016426",
+        "P6262": "oz:A_Kidnapped_Santa_Claus",
+        "P646": "/m/05b2b8j",
+        "P648": "OL24690468W"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 3,
+        "with_references": 4,
+        "qualifier_rate": 0.17647058823529413,
+        "reference_rate": 0.23529411764705882,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "federation_id": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.058823529411764705,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q473588",
+      "label": "Dorothy and the Wizard in Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/020hg9",
+        "P2034": "420",
+        "P648": "OL18412W",
+        "P1274": "809",
+        "P1085": "12452"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 2,
+        "with_references": 17,
+        "qualifier_rate": 0.08,
+        "reference_rate": 0.68,
+        "route_counts": {
+          "edge_candidate": 16,
+          "federation_id": 5,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.12,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4743720",
+      "label": "American Fairy Tales",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "38950",
+        "P646": "/m/026r4wy"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 9,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.6923076923076923,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4764801",
+      "label": "Animal Fairy Tales",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P243": "23200754",
+        "P1274": "1161930",
+        "P5331": "1809463639",
+        "P646": "/m/04zzzm3"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 0,
+        "with_references": 10,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.7692307692307693,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 4,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4767669",
+      "label": "Annabel",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1176336"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.2727272727272727,
+        "reference_rate": 0.45454545454545453,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821956",
+      "label": "Aunt Jane's Nieces",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1183173",
+        "P646": "/m/026m9rl"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 2,
+        "with_references": 7,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821959",
+      "label": "Aunt Jane's Nieces Abroad",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1342346",
+        "P646": "/m/053gqmx"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 2,
+        "with_references": 8,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.5714285714285714,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821961",
+      "label": "Aunt Jane's Nieces Out West",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1478656",
+        "P646": "/m/02rb4kv"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 9,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.5625,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821962",
+      "label": "Aunt Jane's Nieces and Uncle John",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/05b6179"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 2,
+        "with_references": 8,
+        "qualifier_rate": 0.13333333333333333,
+        "reference_rate": 0.5333333333333333,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821963",
+      "label": "Aunt Jane's Nieces at Millville",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1342359",
+        "P646": "/m/058l6ns"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 2,
+        "with_references": 8,
+        "qualifier_rate": 0.13333333333333333,
+        "reference_rate": 0.5333333333333333,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821964",
+      "label": "Aunt Jane's Nieces at Work",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1342394",
+        "P646": "/m/05b2zvx"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 9,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.5625,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821965",
+      "label": "Aunt Jane's Nieces in Society",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/05b6575"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 2,
+        "with_references": 8,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.5714285714285714,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821966",
+      "label": "Aunt Jane's Nieces in the Red Cross",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1186499",
+        "P646": "/m/05b4p1c"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 2,
+        "with_references": 8,
+        "qualifier_rate": 0.13333333333333333,
+        "reference_rate": 0.5333333333333333,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4821967",
+      "label": "Aunt Jane's Nieces on the Ranch",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "matched_classes": [
+        "Q47461344"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1342407",
+        "P646": "/m/02rb5nx"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 9,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.5625,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5003855",
+      "label": "By the Candelabra's Glare",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/04zzftk"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 2,
+        "with_references": 6,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.5454545454545454,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5227941",
+      "label": "Daughters of Destiny",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1173151"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.15384615384615385,
+        "reference_rate": 0.38461538461538464,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5299399",
+      "label": "Dot and Tot of Merryland",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P243": "2462654",
+        "P5331": "4968592",
+        "P1274": "14732",
+        "P646": "/m/09kfd6"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 2,
+        "with_references": 7,
+        "qualifier_rate": 0.11764705882352941,
+        "reference_rate": 0.4117647058823529,
+        "route_counts": {
+          "edge_candidate": 10,
+          "federation_id": 4,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11764705882352941,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5437599",
+      "label": "Father Goose's Year Book",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/04_0_d2",
+        "P6262": "oz:Father_Goose's_Year_Book",
+        "P243": "2460761"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 3,
+        "with_references": 5,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "quarantine_missing_datavalue": 1,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13333333333333333,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q5437600",
+      "label": "Father Goose: His Book",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1844": "001021658",
+        "P646": "/m/06l0z7b"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 2,
+        "with_references": 6,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.42857142857142855,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5569658",
+      "label": "Glinda of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "961",
+        "P648": "OL262391W",
+        "P1274": "817",
+        "P6839": "Literature/GlindaOfOz",
+        "P646": "/m/0220p0",
+        "P8383": "1038511",
+        "P7439": "494221",
+        "P724": "glindaofoz00961gut"
+      },
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 3,
+        "with_references": 14,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.5185185185185185,
+        "route_counts": {
+          "edge_candidate": 15,
+          "media_reference": 1,
+          "federation_id": 8,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q56599071",
+      "label": "Tamawaca Folks",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P724": "tamawacfolkssumm00baumrich"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.375,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q59459451",
+      "label": "Aunt Jane's Nieces",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P724": "auntjanesnieces00vand",
+        "P1144": "06034811"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 2,
+          "federation_id": 2,
+          "node_property": 3,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.35714285714285715,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q615227",
+      "label": "The Patchwork Girl of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "955",
+        "P648": "OL18405W",
+        "P1274": "811",
+        "P646": "/m/0f0s8",
+        "P1085": "73387"
+      },
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 2,
+        "with_references": 14,
+        "qualifier_rate": 0.07407407407407407,
+        "reference_rate": 0.5185185185185185,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 5,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6229852",
+      "label": "John Dough",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02z339w"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q634885",
+      "label": "Ozma of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0200pr",
+        "P2034": "486",
+        "P648": "OL18415W",
+        "P1274": "808",
+        "P5571": "19817",
+        "P6839": "Literature/OzmaOfOz",
+        "P8383": "891152",
+        "P6221": "113945",
+        "P1085": "12472"
+      },
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 2,
+        "with_references": 16,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.5333333333333333,
+        "route_counts": {
+          "edge_candidate": 17,
+          "federation_id": 9,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6456455",
+      "label": "L. Frank Baum's Juvenile Speaker",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1677747",
+        "P646": "/m/04_14hf"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 6,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6484128",
+      "label": "Land of Ev",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276"
+      ],
+      "matched_classes": [
+        "Q1145276"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03cll4n"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6652545",
+      "label": "Little Wizard Stories of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "536217",
+        "P646": "/m/04t1m7c",
+        "P7439": "1030857"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 8,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "federation_id": 3,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1875,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6897068",
+      "label": "Mombi",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q15912738"
+      ],
+      "matched_classes": [
+        "Q15912738"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6327": "83997",
+        "P646": "/m/011l8ptd",
+        "P6262": "oz:Mombi_(Novels)"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 3,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 4,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6917355",
+      "label": "Mother Goose in Prose",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "5312",
+        "P648": "OL18403W",
+        "P724": "mothergooseinpro00baum",
+        "P1274": "940736",
+        "P6262": "oz:Mother_Goose_in_Prose",
+        "P646": "/m/07_5bf",
+        "P1085": "232903"
+      },
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 2,
+        "with_references": 12,
+        "qualifier_rate": 0.09523809523809523,
+        "reference_rate": 0.5714285714285714,
+        "route_counts": {
+          "edge_candidate": 11,
+          "federation_id": 7,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09523809523809523,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6989959",
+      "label": "Nelebel's Fairyland",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1153371",
+        "P646": "/m/05p65n3"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7048233",
+      "label": "Noland",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276"
+      ],
+      "matched_classes": [
+        "Q1145276"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03cf35v"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7049300",
+      "label": "Nonestica",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q17199338"
+      ],
+      "matched_classes": [
+        "Q17199338"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0cvzbl"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7081651",
+      "label": "Ojo the Lucky",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/064tjm"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7095271",
+      "label": "Oogaboo",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1145276"
+      ],
+      "matched_classes": [
+        "Q1145276"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "media_reference": 1,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7143069",
+      "label": "Pastoria",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/07yhx8"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7186661",
+      "label": "Phoebe Daring",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/04zx0bm"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7209626",
+      "label": "Policeman Bluejay",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1171327",
+        "P646": "/m/04yb819"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 7,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7226214",
+      "label": "Polychrome",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3417": "Polychrome",
+        "P646": "/m/0544m4"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7270426",
+      "label": "Queen Lurline",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/049bkz"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7270552",
+      "label": "Queen Zixi of Ix",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "55737",
+        "P1274": "1345514",
+        "P724": "cihm_99284",
+        "P6262": "oz:Queen_Zixi_of_Ix",
+        "P6839": "Literature/QueenZixiOfIx",
+        "P646": "/m/0582c2",
+        "P8383": "105529"
+      },
+      "statement_profile": {
+        "statement_count": 30,
+        "with_qualifiers": 4,
+        "with_references": 9,
+        "qualifier_rate": 0.13333333333333333,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "edge_candidate": 17,
+          "temporal_anchor": 1,
+          "federation_id": 7,
+          "node_property": 2,
+          "media_reference": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7271157",
+      "label": "Queer Visitors from the Marvelous Land of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q21191134"
+      ],
+      "matched_classes": [
+        "Q21191134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P6262": "oz:Queer_Visitors_from_the_Marvelous_Land_of_Oz",
+        "P1235": "27874",
+        "P646": "/m/04cshv2"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.13333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 1,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13333333333333333,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7335058",
+      "label": "Rinkitink in Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "958",
+        "P648": "OL262376W",
+        "P1274": "813",
+        "P646": "/m/021741"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 2,
+        "with_references": 12,
+        "qualifier_rate": 0.08695652173913043,
+        "reference_rate": 0.5217391304347826,
+        "route_counts": {
+          "edge_candidate": 14,
+          "media_reference": 2,
+          "federation_id": 4,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.17391304347826086,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7537357",
+      "label": "Sky Island",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "9540",
+        "P646": "/m/026vncx"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 2,
+        "with_references": 11,
+        "qualifier_rate": 0.11764705882352941,
+        "reference_rate": 0.6470588235294118,
+        "route_counts": {
+          "edge_candidate": 12,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11764705882352941,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7557349",
+      "label": "Soldier with the Green Whiskers",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03c09rp"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7728900",
+      "label": "The Daring Twins",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/04z_004"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.15384615384615385,
+        "reference_rate": 0.3076923076923077,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7733533",
+      "label": "The Fate of a Crown",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/052163t"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.45454545454545453,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7734594",
+      "label": "The Flying Girl",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/04t1m6c",
+        "P1274": "1172370"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.4166666666666667,
+        "route_counts": {
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7745733",
+      "label": "The Last Egyptian",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5331": "74658",
+        "P724": "cihm_79062",
+        "P648": "OL18391W",
+        "P8383": "3126231",
+        "P646": "/m/04q318j",
+        "P1085": "8634122"
+      },
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 3,
+        "with_references": 7,
+        "qualifier_rate": 0.15789473684210525,
+        "reference_rate": 0.3684210526315789,
+        "route_counts": {
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05263157894736842,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7748719",
+      "label": "The Lost Princess of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "959",
+        "P648": "OL18411W",
+        "P1274": "814",
+        "P646": "/m/021ckw",
+        "P724": "lostprincessofoz00baum"
+      },
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 2,
+        "with_references": 13,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.5416666666666666,
+        "route_counts": {
+          "edge_candidate": 15,
+          "media_reference": 1,
+          "federation_id": 5,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7749508",
+      "label": "The Magic of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "419",
+        "P648": "OL262380W",
+        "P1274": "816",
+        "P646": "/m/021qwn",
+        "P724": "themagicofoz50194gut"
+      },
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 2,
+        "with_references": 12,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 15,
+          "media_reference": 1,
+          "federation_id": 5,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7749512",
+      "label": "The Magical Monarch of Mo",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "197749",
+        "P646": "/m/06pbbz"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7749622",
+      "label": "The Maid of Arran",
+      "properties": [
+        "P86"
+      ],
+      "p31": [
+        "Q58483083"
+      ],
+      "matched_classes": [
+        "Q58483083"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0dk6x2"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7750594",
+      "label": "The Master Key",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "819",
+        "P6839": "Literature/TheMasterKey",
+        "P646": "/m/03mblff"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 3,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7755824",
+      "label": "The Oz Film Manufacturing Company",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q375336"
+      ],
+      "matched_classes": [
+        "Q375336"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02r4slq",
+        "P11806": "75429"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.4444444444444444,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7761845",
+      "label": "The Runaway Shadows",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1191904",
+        "P6262": "oz:The_Runaway_Shadows_or_A_Trick_of_Jack_Frost",
+        "P646": "/m/05p6_g1"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 4,
+        "with_references": 1,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.05,
+        "route_counts": {
+          "edge_candidate": 11,
+          "federation_id": 3,
+          "temporal_anchor": 1,
+          "node_property": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7762405",
+      "label": "The Scarecrow of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "957",
+        "P648": "OL262377W",
+        "P1274": "812",
+        "P646": "/m/020wl9",
+        "P4839": "Entity[\"Book\", \"TheScarecrowOfOz\"]"
+      },
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 2,
+        "with_references": 12,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 15,
+          "media_reference": 1,
+          "federation_id": 5,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7762755",
+      "label": "The Sea Fairies",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "9541",
+        "P646": "/m/026v988"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 2,
+        "with_references": 8,
+        "qualifier_rate": 0.11764705882352941,
+        "reference_rate": 0.47058823529411764,
+        "route_counts": {
+          "edge_candidate": 11,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.17647058823529413,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7769241",
+      "label": "The Tiger's Eye",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1274": "1018397",
+        "P646": "/m/05b3718"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7769442",
+      "label": "The Tin Woodman of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "30852",
+        "P648": "OL262381W",
+        "P1274": "815",
+        "P646": "/m/02047h",
+        "P724": "tinwoodmanofoz00baum"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 2,
+        "with_references": 13,
+        "qualifier_rate": 0.08695652173913043,
+        "reference_rate": 0.5652173913043478,
+        "route_counts": {
+          "edge_candidate": 14,
+          "federation_id": 5,
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13043478260869565,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7770880",
+      "label": "The Twinkle Tales",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q277759"
+      ],
+      "matched_classes": [
+        "Q277759"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1235": "28223",
+        "P646": "/m/02vlghr"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7801858",
+      "label": "Tik-Tok of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2034": "956",
+        "P648": "OL18414W",
+        "P1274": "818",
+        "P646": "/m/020rt0",
+        "P1085": "20413"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 2,
+        "with_references": 12,
+        "qualifier_rate": 0.08695652173913043,
+        "reference_rate": 0.5217391304347826,
+        "route_counts": {
+          "edge_candidate": 14,
+          "media_reference": 1,
+          "federation_id": 5,
+          "temporal_anchor": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13043478260869565,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7846326",
+      "label": "Trot",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q3658341"
+      ],
+      "matched_classes": [
+        "Q3658341"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/09l_br"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q8018058",
+      "label": "Munchkin",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q2590445"
+      ],
+      "matched_classes": [
+        "Q2590445"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1417": "topic/munchkins",
+        "P646": "/m/02909c"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.2222222222222222,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q85808878",
+      "label": "The Wonderful Wizard of Oz",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P957": "1-58240-715-0"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.0625,
+        "route_counts": {
+          "edge_candidate": 11,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "measured_attribute": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1875,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

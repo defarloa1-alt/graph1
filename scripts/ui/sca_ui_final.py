@@ -62,7 +62,7 @@ Press the button again to start another traversal.
         "python",
         "scripts/agents/sca_generic_traversal.py",
         seed_qid,
-        "3",  # depth
+        "5",  # depth
         "5000",  # max entities
         str(throttle)
     ]

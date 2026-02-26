@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-02-25T00:14:17.329574+00:00",
+  "seed_qid": "Q2815472",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 2,
+    "candidate_sources_before_budget": 1,
+    "candidate_sources_considered": 1,
+    "accepted_before_node_budget": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "entities_profiled": 1,
+    "frontier_eligible": 1,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 1,
+    "unscoped": 0,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 80,
+    "missing_datavalue_statement_count": 2,
+    "with_qualifiers": 14,
+    "with_references": 20,
+    "qualifier_rate": 0.175,
+    "reference_rate": 0.25,
+    "datatype_counts": {
+      "string": 2,
+      "wikibase-item": 39,
+      "external-id": 28,
+      "commonsMedia": 3,
+      "time": 4,
+      "globe-coordinate": 1,
+      "quantity": 2,
+      "monolingualtext": 1
+    },
+    "value_type_counts": {
+      "string": 31,
+      "wikibase-entityid": 39,
+      "time": 4,
+      "globecoordinate": 1,
+      "quantity": 2,
+      "monolingualtext": 1,
+      "": 2
+    },
+    "pair_counts": {
+      "string|string": 2,
+      "wikibase-item|wikibase-entityid": 39,
+      "external-id|string": 28,
+      "commonsMedia|string": 1,
+      "time|time": 4,
+      "globe-coordinate|globecoordinate": 1,
+      "quantity|quantity": 2,
+      "monolingualtext|monolingualtext": 1,
+      "commonsMedia|": 2
+    },
+    "route_counts": {
+      "node_property": 3,
+      "edge_candidate": 39,
+      "federation_id": 28,
+      "media_reference": 1,
+      "temporal_anchor": 4,
+      "geo_attribute": 1,
+      "measured_attribute": 2,
+      "quarantine_missing_datavalue": 2
+    },
+    "rank_counts": {
+      "normal": 75,
+      "preferred": 3,
+      "deprecated": 2
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 2
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 1,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q3024240"
+      ],
+      "matched_classes": [
+        "Q11514315",
+        "Q3024240"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q186081",
+        "Q82794"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/06frc",
+        "P1900": "dates/lod/69",
+        "P3417": "Roman-Republic",
+        "P3219": "rome-et-empire-romain-la-republique",
+        "P1417": "place/Roman-Republic",
+        "P244": "sh85115114",
+        "P4212": "pcrtoNSSGgIkbX",
+        "P6366": "2775878175",
+        "P5063": "i83100",
+        "P8814": "08817810-n",
+        "P3553": "20018539",
+        "P8189": "987007543885005171",
+        "P6839": "UsefulNotes/TheRomanRepublic",
+        "P8895": "The_Roman_Republic",
+        "P4839": "Entity[\"HistoricalCountry\", \"RomanRepublic\"]",
+        "P9000": "Roman_Republic",
+        "P3222": "romerska-republiken",
+        "P268": "11951115f",
+        "P1245": "913399",
+        "P2581": "00068190n",
+        "P1617": "59b8efc7-928f-480b-aa65-17f685d42638",
+        "P11835": "6001",
+        "P9957": "93573",
+        "P12800": "fr:République_romaine",
+        "P2950": "roman_republic",
+        "P8168": "Q995825",
+        "P13591": "place/c82952da-e51c-474c-91ff-98de477d4fa1"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 80,
+        "with_qualifiers": 14,
+        "with_references": 20,
+        "qualifier_rate": 0.175,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "node_property": 3,
+          "edge_candidate": 39,
+          "federation_id": 28,
+          "media_reference": 1,
+          "temporal_anchor": 4,
+          "geo_attribute": 1,
+          "measured_attribute": 2,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0875,
+        "edge_candidate_count": 39,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    }
+  ],
+  "rejected": []
+}

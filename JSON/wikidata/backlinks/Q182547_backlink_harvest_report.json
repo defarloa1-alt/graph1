@@ -1,0 +1,2231 @@
+{
+  "generated_at": "2026-02-24T20:24:09.380233+00:00",
+  "seed_qid": "Q182547",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 5,
+    "max_new_nodes_per_seed": 3,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P31"
+    ],
+    "property_count": 1,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 181,
+    "candidate_sources_before_budget": 164,
+    "candidate_sources_considered": 5,
+    "accepted_before_node_budget": 5,
+    "accepted": 3,
+    "rejected": 161,
+    "entities_profiled": 3,
+    "frontier_eligible": 3,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "source_budget_exceeded": 159,
+    "node_budget_exceeded": 2
+  },
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 3,
+    "unscoped": 0,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 88,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 8,
+    "with_references": 9,
+    "qualifier_rate": 0.09090909090909091,
+    "reference_rate": 0.10227272727272728,
+    "datatype_counts": {
+      "wikibase-item": 50,
+      "external-id": 31,
+      "commonsMedia": 3,
+      "globe-coordinate": 1,
+      "string": 2,
+      "time": 1
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 50,
+      "string": 36,
+      "globecoordinate": 1,
+      "time": 1
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 50,
+      "external-id|string": 31,
+      "commonsMedia|string": 3,
+      "globe-coordinate|globecoordinate": 1,
+      "string|string": 2,
+      "time|time": 1
+    },
+    "route_counts": {
+      "edge_candidate": 50,
+      "federation_id": 31,
+      "media_reference": 3,
+      "geo_attribute": 1,
+      "node_property": 2,
+      "temporal_anchor": 1
+    },
+    "rank_counts": {
+      "normal": 87,
+      "preferred": 1
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 3,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q186513",
+      "label": "Hispania",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q1620908",
+        "Q182547",
+        "Q2221906",
+        "Q24457356"
+      ],
+      "matched_classes": [
+        "Q11514315",
+        "Q1620908",
+        "Q182547",
+        "Q24457356"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885",
+        "Q186081",
+        "Q82794"
+      ],
+      "backlink_hits": 5,
+      "external_ids": {
+        "P2950": "hispania",
+        "P2581": "01330091n",
+        "P4212": "pcrtOcmNSkGR47",
+        "P1417": "place/Hispania-ancient-region-Iberian-Peninsula",
+        "P244": "sh85126072",
+        "P691": "ge134425",
+        "P8406": "T2080663",
+        "P646": "/m/02gv34",
+        "P8189": "987007563376405171",
+        "P9957": "11409",
+        "P8313": "Hispania",
+        "P8988": "area&id=1013227",
+        "P9037": "3f6c8bf4-ecce-4d9d-b0f3-d0faf19815e6",
+        "P12749": "Q78902",
+        "P12800": "es:Hispania",
+        "P13030": "region/365",
+        "P13591": "place/75c797a6-8ea2-491d-a7ed-4162ed2389bb"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 50,
+        "with_qualifiers": 7,
+        "with_references": 6,
+        "qualifier_rate": 0.14,
+        "reference_rate": 0.12,
+        "route_counts": {
+          "edge_candidate": 28,
+          "federation_id": 18,
+          "media_reference": 2,
+          "geo_attribute": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08,
+        "edge_candidate_count": 28,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q879466",
+      "label": "Roman Gaul",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q182547",
+        "Q4204501",
+        "Q56061"
+      ],
+      "matched_classes": [
+        "Q11514315",
+        "Q182547",
+        "Q4204501",
+        "Q56061"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q16334295",
+        "Q186081",
+        "Q82794"
+      ],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P3219": "conquete-romaine-des-gaules-reperes-chronologiques",
+        "P7786": "T93-620",
+        "P8406": "T2080557",
+        "P646": "/m/0118cdbs",
+        "P9000": "Roman_Gaul",
+        "P4212": "pcrtGrQ5rGj213",
+        "P12800": "fr:Gaule_romaine"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.08695652173913043,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 14,
+          "temporal_anchor": 1,
+          "federation_id": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.043478260869565216,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1007736",
+      "label": "Transalpine Gaul",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1620908",
+        "Q182547"
+      ],
+      "matched_classes": [
+        "Q1620908",
+        "Q182547"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P214": "240353375",
+        "P4212": "pcrtaSwaVbHyT2",
+        "P2671": "/g/120x6w36",
+        "P9495": "geo/cd1d700f-601b-4dff-abf5-6b684e43b8a5",
+        "P2950": "gallia_transalpina",
+        "P8069": "10426"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.06666666666666667,
+        "reference_rate": 0.06666666666666667,
+        "route_counts": {
+          "edge_candidate": 8,
+          "federation_id": 6,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q156789",
+      "label": "Raetia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q1620908",
+        "Q182547"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q21556455",
+      "label": "Phrygia Pakatiane",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547",
+        "Q34876"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q2455975",
+      "label": "Venetia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547",
+        "Q82794"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q2859371",
+      "label": "Arabia Deserta",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547",
+        "Q8514"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q3060427",
+      "label": "Euphratensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q106810694",
+        "Q182547"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q3179417",
+      "label": "Epirus vetus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547",
+        "Q24200131"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q650788",
+      "label": "Hispania Carthaginensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547",
+        "Q429699"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1003997",
+      "label": "Judaea",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1018744",
+      "label": "Byzacena",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q10971",
+      "label": "Gallia Lugdunensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1126678",
+      "label": "Hispania Citerior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q113330081",
+      "label": "Macedonia Prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1148125",
+      "label": "Lesser Armenia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1156891",
+      "label": "Dacia Ripensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11921790",
+      "label": "Phoenice I",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11923208",
+      "label": "Phrygia Prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11938232",
+      "label": "Moesia Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11939056",
+      "label": "Numidia Cirtensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11939098",
+      "label": "Noricum mediterraneum",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11939100",
+      "label": "Noricum Ripense",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11939617",
+      "label": "Osroene",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11950671",
+      "label": "Syria I",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11950672",
+      "label": "Syria Phoenice",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11950673",
+      "label": "Syria II",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1196595",
+      "label": "Scythia Minor",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1227090",
+      "label": "Diospontus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12270914",
+      "label": "Tres Daciae",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12277185",
+      "label": "Dacia Superior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1227719",
+      "label": "Moesia Inferior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12277575",
+      "label": "Dacia Porolissensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12390412",
+      "label": "Q12390412",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1244742",
+      "label": "Mauretania Tingitana",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1246140",
+      "label": "Lycia et Pamphylia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1247297",
+      "label": "Lower Pannonia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1249412",
+      "label": "Galatia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1254480",
+      "label": "Roman Armenia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12899473",
+      "label": "Q12899473",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12899918",
+      "label": "Q12899918",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12901244",
+      "label": "Numidia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12902006",
+      "label": "Q12902006",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q13142962",
+      "label": "Vallis Poenina",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1330965",
+      "label": "Dalmatia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1427468",
+      "label": "Flavia Caesariensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1467406",
+      "label": "Maxima Caesariensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1514139",
+      "label": "Germania prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1516702",
+      "label": "Valentia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q152136",
+      "label": "Germania Inferior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q153553",
+      "label": "Germania Superior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1567711",
+      "label": "Haemimontus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q16142051",
+      "label": "Phrygia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q16334725",
+      "label": "Belgica Prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q16334728",
+      "label": "Belgica Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q16630763",
+      "label": "Q16630763",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1669578",
+      "label": "Syria Palaestina",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q170062",
+      "label": "Pannonia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1751941",
+      "label": "Raetia Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q181238",
+      "label": "Africa",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q181748",
+      "label": "Q181748",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1820754",
+      "label": "Epirus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1823160",
+      "label": "Libya Superior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q18236771",
+      "label": "Moesia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q185103",
+      "label": "Roman Britain",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q188650",
+      "label": "Lusitania",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q196974",
+      "label": "Zeugitana",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1980265",
+      "label": "Q1980265",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q199728",
+      "label": "Cisalpine Gaul",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20108009",
+      "label": "Q20108009",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20108340",
+      "label": "Lydia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20108447",
+      "label": "Q20108447",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20108448",
+      "label": "Q20108448",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20108543",
+      "label": "Q20108543",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q202311",
+      "label": "Roman Egypt",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q204772",
+      "label": "Achaea",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q206443",
+      "label": "Gallia Belgica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q207118",
+      "label": "Roman Syria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q207497",
+      "label": "Macedonia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q21556456",
+      "label": "Phrygia Saloutaria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q21556457",
+      "label": "Nesoi",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q216791",
+      "label": "Hispania Tarraconensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q219415",
+      "label": "Hispania Baetica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q221353",
+      "label": "Arabia Petraea",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q24049878",
+      "label": "Crete",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q24901055",
+      "label": "Province of Apulia and Calabria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q24909849",
+      "label": "Moesia prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2528747",
+      "label": "Rhodope",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q25535434",
+      "label": "Bithynia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2604816",
+      "label": "Pannonia Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q26897",
+      "label": "Gallia Narbonensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q27150039",
+      "label": "Coele-Syria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q281345",
+      "label": "Corsica and Sardinia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2870967",
+      "label": "Augustamnica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2967757",
+      "label": "Cyprus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q309270",
+      "label": "Alpes Maritimae",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q31194291",
+      "label": "Q31194291",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3129863",
+      "label": "Hellespontus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3274024",
+      "label": "Palaestina Prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3320446",
+      "label": "Hispania Balearica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q33490",
+      "label": "Cappadocia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3396685",
+      "label": "Pontus Polemoniacus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3557971",
+      "label": "Viennensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3593523",
+      "label": "Insulae",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q360922",
+      "label": "Alpes Graiae",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3626028",
+      "label": "Dacia Mediterranea",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3651804",
+      "label": "Campania",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q368405",
+      "label": "Tres Alpes",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q369692",
+      "label": "Gallaecia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q371291",
+      "label": "Britannia Prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3716754",
+      "label": "Tripolitania",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3878417",
+      "label": "Noricum",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3893371",
+      "label": "Pannonia Savia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3934036",
+      "label": "Raetia Prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q40169",
+      "label": "Assyria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4221249",
+      "label": "Cyrenaica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4819648",
+      "label": "Cilicia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4896786",
+      "label": "Palaestina Salutaris",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q522421",
+      "label": "Aquitania Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q5412023",
+      "label": "Europa",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q60836975",
+      "label": "Tuscia et Umbria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q60837462",
+      "label": "Q60837462",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6088742",
+      "label": "Transduriana",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q615945",
+      "label": "Phrygia II",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q623322",
+      "label": "Alpes Cottiae",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q634977",
+      "label": "Praevalitana",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q635058",
+      "label": "Thracia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q642188",
+      "label": "Upper Pannonia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6546893",
+      "label": "Liguria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q660100",
+      "label": "Alpes Poeninae",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q66011896",
+      "label": "Libya Inferior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q6645669",
+      "label": "Pannonia Prima",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q670837",
+      "label": "Moesia Superior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q682900",
+      "label": "Maxima Sequanorum",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q685537",
+      "label": "Britannia Inferior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q691321",
+      "label": "Sicilia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q692775",
+      "label": "Creta et Cyrenaica",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q698597",
+      "label": "Vindelicia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q7126539",
+      "label": "Palaestina Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q715376",
+      "label": "Gallia Aquitania",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q72909819",
+      "label": "Macedonia Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q734505",
+      "label": "Mauretania Caesariensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q747040",
+      "label": "Hispania Ulterior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q748818",
+      "label": "Dacia Inferior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q753824",
+      "label": "Illyricum",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q765845",
+      "label": "Mesopotamia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q827501",
+      "label": "Dardania",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q830896",
+      "label": "Epirus Nova",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q831791",
+      "label": "Germania Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q841916",
+      "label": "Pannonia Valeria",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q89702616",
+      "label": "Narbonensis I",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q89702680",
+      "label": "Narbonensis II",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q9030702",
+      "label": "Mauretania Sitifensis",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q913382",
+      "label": "Bithynia et Pontus",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q918056",
+      "label": "Britannia Secunda",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q918059",
+      "label": "Britannia Superior",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q95438177",
+      "label": "Q95438177",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q95599765",
+      "label": "Q95599765",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q95627649",
+      "label": "Q95627649",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q95689723",
+      "label": "Lucania et Bruttium",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q971609",
+      "label": "Dacia",
+      "reason": "source_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q106117326",
+      "label": "Q106117326",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q15893266",
+        "Q182547"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q11921789",
+      "label": "Phoenice II",
+      "reason": "node_budget_exceeded",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q176799",
+        "Q182547"
+      ],
+      "backlink_hits": 2
+    }
+  ]
+}

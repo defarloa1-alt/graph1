@@ -1,0 +1,1224 @@
+{
+  "generated_at": "2026-02-25T00:15:21.454246+00:00",
+  "seed_qid": "Q7188",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 42,
+    "candidate_sources_before_budget": 30,
+    "candidate_sources_considered": 30,
+    "accepted_before_node_budget": 19,
+    "accepted": 19,
+    "rejected": 11,
+    "entities_profiled": 19,
+    "frontier_eligible": 19,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.36666666666666664,
+    "unresolved_class_gate_passed": false,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "blocked_by_policy"
+  },
+  "rejection_reasons": {
+    "no_p31": 9,
+    "class_not_allowed": 2
+  },
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 6,
+    "unscoped": 13,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 387,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 53,
+    "with_references": 76,
+    "qualifier_rate": 0.13695090439276486,
+    "reference_rate": 0.19638242894056848,
+    "datatype_counts": {
+      "wikibase-item": 192,
+      "string": 12,
+      "time": 20,
+      "monolingualtext": 13,
+      "external-id": 126,
+      "commonsMedia": 6,
+      "url": 8,
+      "quantity": 7,
+      "globe-coordinate": 3
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 192,
+      "string": 152,
+      "time": 20,
+      "monolingualtext": 13,
+      "quantity": 7,
+      "globecoordinate": 3
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 192,
+      "string|string": 12,
+      "time|time": 20,
+      "monolingualtext|monolingualtext": 13,
+      "external-id|string": 126,
+      "commonsMedia|string": 6,
+      "url|string": 8,
+      "quantity|quantity": 7,
+      "globe-coordinate|globecoordinate": 3
+    },
+    "route_counts": {
+      "edge_candidate": 192,
+      "node_property": 33,
+      "temporal_anchor": 20,
+      "federation_id": 126,
+      "media_reference": 6,
+      "measured_attribute": 7,
+      "geo_attribute": 3
+    },
+    "rank_counts": {
+      "normal": 382,
+      "deprecated": 5
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 19,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q119890944",
+      "label": "Q119890944",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q110313262",
+        "Q1269627",
+        "Q820655"
+      ],
+      "matched_classes": [
+        "Q110313262",
+        "Q1269627",
+        "Q820655"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724",
+        "Q49848"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P8635": "0000031287",
+        "P12498": "316a0021"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8,
+          "node_property": 4,
+          "temporal_anchor": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12043649",
+      "label": "Terezín Memorial",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q166118",
+        "Q33506",
+        "Q5003624"
+      ],
+      "matched_classes": [
+        "Q166118",
+        "Q33506",
+        "Q5003624"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q178706",
+        "Q386724"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P2427": "grid.486018.3",
+        "P213": "0000000107304830",
+        "P691": "kn20010724606",
+        "P244": "n50080864",
+        "P6782": "04phre941",
+        "P214": "134171411",
+        "P3500": "48352",
+        "P9037": "5583ee12-ff75-4e06-b0d2-645c71d74454",
+        "P8189": "987007266387705171",
+        "P7293": "9810594368305606",
+        "P227": "5076209-6",
+        "P4156": "00177288",
+        "P8987": "w9qggpv",
+        "P2013": "TerezinMemorial",
+        "P12596": "31745",
+        "P2002": "pamatnikterezin"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 8,
+        "with_references": 14,
+        "qualifier_rate": 0.21052631578947367,
+        "reference_rate": 0.3684210526315789,
+        "route_counts": {
+          "edge_candidate": 11,
+          "media_reference": 1,
+          "federation_id": 16,
+          "node_property": 5,
+          "measured_attribute": 4,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2631578947368421,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q48877003",
+      "label": "Government of Mato Grosso do Sul",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q174834",
+        "Q35798",
+        "Q61642861"
+      ],
+      "matched_classes": [
+        "Q35798",
+        "Q61642861"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q16334295",
+        "Q43229"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/11f31y866k"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.08333333333333333,
+        "route_counts": {
+          "edge_candidate": 14,
+          "node_property": 5,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "media_reference": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 14,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q546113",
+      "label": "public policy",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q11862829",
+        "Q151885",
+        "Q96251375"
+      ],
+      "matched_classes": [
+        "Q11862829",
+        "Q151885"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P1014": "300054445",
+        "P3417": "Public-Policy",
+        "P3827": "public-policy",
+        "P227": "4182679-6",
+        "P5198": "29491403X",
+        "P244": "sh85056091",
+        "P486": "D011640",
+        "P5429": "mediatopic/20000621",
+        "P672": "I01.655.500.608",
+        "P6366": "109986646",
+        "P5922": "160510",
+        "P7033": "scot/4923",
+        "P5437": "8466",
+        "P8408": "PublicPolicy",
+        "P8519": "82644",
+        "P646": "/m/01400v",
+        "P5337": "CAAqJggKIiBDQkFTRWdvSkwyMHZNREUwTURCMkVnVmxiaTFIUWlnQVAB",
+        "P3553": "19626064",
+        "P2004": "5436",
+        "P8189": "987007536022105171",
+        "P8529": "440709",
+        "P10283": "C109986646",
+        "P691": "ph127073",
+        "P5160": "tgm004644",
+        "P1617": "e5550730-c760-4b2e-a870-6f387cec492c",
+        "P3916": "concept5185",
+        "P11093": "kamu_politikasi",
+        "P2671": "/g/11x985nn2",
+        "P13388": "isut224",
+        "P13591": "concept/2654da9b-9e06-426c-8522-48f9c496ed42",
+        "P13780": "disciplines/191"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 64,
+        "with_qualifiers": 14,
+        "with_references": 12,
+        "qualifier_rate": 0.21875,
+        "reference_rate": 0.1875,
+        "route_counts": {
+          "edge_candidate": 27,
+          "node_property": 2,
+          "federation_id": 35
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03125,
+        "edge_candidate_count": 27,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q130472575",
+      "label": "government policy",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q151885",
+        "Q96251375"
+      ],
+      "matched_classes": [
+        "Q151885"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1014": "300055507",
+        "P3417": "Government-Policy",
+        "P3916": "concept5185",
+        "P4644": "5c003e77-867f-4213-b7e9-0a4671362646",
+        "P5160": "tgm004644",
+        "P5198": "29491403X",
+        "P7033": "scot/4923",
+        "P8072": "170661",
+        "P8370": "1002729",
+        "P10376": "earth-and-planetary-sciences/government-policy",
+        "P9497": "10504",
+        "P10690": "3718",
+        "P5437": "2506"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 15,
+          "node_property": 1,
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.045454545454545456,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q135246615",
+      "label": "High Digital Council (Mauritania)",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q2659904",
+        "Q4686866"
+      ],
+      "matched_classes": [
+        "Q2659904",
+        "Q4686866"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q43229"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q328616",
+      "label": "corrections",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q1756157",
+        "Q2478386"
+      ],
+      "matched_classes": [
+        "Q1756157"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/012qvj",
+        "P227": "4057808-2",
+        "P3417": "Corrections",
+        "P3827": "correctional-system",
+        "P2581": "00022850n",
+        "P5748": "86.37",
+        "P8408": "Correction",
+        "P902": "009597",
+        "P2671": "/g/11bc6cjngl",
+        "P7870": "81271",
+        "P3911": "15979-6",
+        "P12596": "12972",
+        "P691": "ph127392",
+        "P5437": "3962"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 28,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.17857142857142858,
+        "route_counts": {
+          "federation_id": 16,
+          "edge_candidate": 12
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3398872",
+      "label": "government spokesperson",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q12737077",
+        "Q4164871"
+      ],
+      "matched_classes": [
+        "Q12737077",
+        "Q4164871"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4164871"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P227": "4049024-5",
+        "P2671": "/g/121b6wf6",
+        "P691": "ph224035",
+        "P268": "15908839k",
+        "P13591": "concept/ace9935d-ae07-4c09-baea-f28dac35fbad"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.05555555555555555,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 4,
+          "federation_id": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107076327",
+      "label": "Franklin County Government Center",
+      "properties": [
+        "P366"
+      ],
+      "p31": [
+        "Q1497364"
+      ],
+      "matched_classes": [
+        "Q1497364"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2270": "106232"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8571428571428571,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q10861594",
+      "label": "Mendoza Government House",
+      "properties": [
+        "P366"
+      ],
+      "p31": [
+        "Q41176"
+      ],
+      "matched_classes": [
+        "Q41176"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q41176"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1hl3h48wf"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.1875,
+        "route_counts": {
+          "node_property": 1,
+          "media_reference": 1,
+          "edge_candidate": 11,
+          "temporal_anchor": 1,
+          "measured_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1875,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q116853962",
+      "label": "Ministerie van Onderwijs, Nieuwe Uitleg, Den Haag",
+      "properties": [
+        "P366"
+      ],
+      "p31": [
+        "Q1021645"
+      ],
+      "matched_classes": [
+        "Q1021645"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "geo_attribute": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.36363636363636365,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q119891158",
+      "label": "Q119891158",
+      "properties": [
+        "P50"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "matched_classes": [
+        "Q820655"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q49848"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P8635": "0000032923",
+        "P12498": "317a0007"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.05555555555555555,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8,
+          "node_property": 4,
+          "temporal_anchor": 4,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12131057",
+      "label": "Q12131057",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q610018"
+      ],
+      "matched_classes": [
+        "Q610018"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121t5v4t"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 9
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136459662",
+      "label": "Q136459662",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q28017710"
+      ],
+      "matched_classes": [
+        "Q28017710"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q35127"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2013": "316773194855373"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 8,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.7272727272727273,
+        "route_counts": {
+          "edge_candidate": 8,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136459990",
+      "label": "Q136459990",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q28017710"
+      ],
+      "matched_classes": [
+        "Q28017710"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q35127"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2013": "650816431438826"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.18181818181818182,
+        "route_counts": {
+          "edge_candidate": 7,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1591200",
+      "label": "budget law",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "matched_classes": [
+        "Q820655"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q49848"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/12271smx",
+        "P691": "ph384531",
+        "P3911": "16100-2",
+        "P12086": "Budgetrecht",
+        "P1368": "000187135"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4230443",
+      "label": "United Nations Congress on Crime Prevention and Criminal Justice",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q625994"
+      ],
+      "matched_classes": [
+        "Q625994"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q16334295"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2002": "CrimeCongressUN",
+        "P646": "/m/0134h385",
+        "P11686": "981058522524406706"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 14,
+        "with_references": 0,
+        "qualifier_rate": 0.56,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 19,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "federation_id": 3,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4516921",
+      "label": "Member of the Government",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q11424"
+      ],
+      "matched_classes": [
+        "Q11424"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P345": "tt0032337",
+        "P1970": "46032",
+        "P3143": "32275",
+        "P480": "125003",
+        "P1258": "m/chlen_pravitelstva_2011",
+        "P2529": "201788",
+        "P2603": "45515",
+        "P1562": "v172651",
+        "P2704": "10.5240/ACAC-177B-C801-F695-ACAA-N",
+        "P3212": "0000-0000-5DC4-0000-H-0000-0000-N",
+        "P2678": "7273",
+        "P5032": "103530",
+        "P5510": "Q6UJ9A003BU5",
+        "P2671": "/g/1229dy0n",
+        "P4947": "414133",
+        "P6127": "member-of-the-government",
+        "P1651": "KtF8qBL3-5M",
+        "P12096": "386361",
+        "P12492": "259270",
+        "P11460": "5f4074ff5a76a80042df4c81"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 43,
+        "with_qualifiers": 6,
+        "with_references": 19,
+        "qualifier_rate": 0.13953488372093023,
+        "reference_rate": 0.4418604651162791,
+        "route_counts": {
+          "federation_id": 20,
+          "edge_candidate": 17,
+          "temporal_anchor": 3,
+          "measured_attribute": 1,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06976744186046512,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5260571",
+      "label": "departmental secretary",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q4164871"
+      ],
+      "matched_classes": [
+        "Q4164871"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4164871"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/09rwl6d"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q105766489",
+      "label": "government secretariat",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1092023",
+      "label": "sovereign default",
+      "reason": "no_p31",
+      "properties": [
+        "P710"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11204",
+      "label": "legislature",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q134964284",
+      "label": "ministry of Grenada",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2108043",
+      "label": "Prawer plan",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P170"
+      ],
+      "p31": [
+        "Q1371819"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2285706",
+      "label": "head of government",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q136649946"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2920329",
+      "label": "political agenda",
+      "reason": "no_p31",
+      "properties": [
+        "P170"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3356147",
+      "label": "Quebec government agency",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q35798",
+      "label": "executive branch",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q72815718",
+      "label": "Compulsory cartel",
+      "reason": "no_p31",
+      "properties": [
+        "P710"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q86689642",
+      "label": "deputy ministry",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "generated_at": "2026-02-25T00:12:26.428397+00:00",
+  "seed_qid": "Q211364",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 1,
+    "candidate_sources_before_budget": 1,
+    "candidate_sources_considered": 1,
+    "accepted_before_node_budget": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "entities_profiled": 1,
+    "frontier_eligible": 1,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 0,
+    "unscoped": 1,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 11,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 3,
+    "with_references": 0,
+    "qualifier_rate": 0.2727272727272727,
+    "reference_rate": 0.0,
+    "datatype_counts": {
+      "wikibase-item": 10,
+      "external-id": 1
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 10,
+      "string": 1
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 10,
+      "external-id|string": 1
+    },
+    "route_counts": {
+      "edge_candidate": 10,
+      "federation_id": 1
+    },
+    "rank_counts": {
+      "normal": 11
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 1,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q125840190",
+      "label": "Bernard Bashaasha",
+      "properties": [
+        "P39"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P496": "0000-0001-5574-2093"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 3,
+        "with_references": 0,
+        "qualifier_rate": 0.2727272727272727,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 10,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 """
 Chrystallum Configuration Loader
-Loads API keys from config.py or environment variables
+Loads API keys from .env, config.py, or environment variables
 Priority: environment variables > config.py > defaults
 """
 
 import os
 import sys
 from pathlib import Path
+
+# Load .env so PPLX_API_KEY etc. are available
+try:
+    from dotenv import load_dotenv
+    _root = Path(__file__).resolve().parents[1]
+    load_dotenv(_root / ".env")
+except ImportError:
+    pass
 
 # Try to load from config.py first
 try:
@@ -49,7 +57,8 @@ def get_config(key: str, default=None):
 
 # API Keys
 OPENAI_API_KEY = get_config("OPENAI_API_KEY")
-PERPLEXITY_API_KEY = get_config("PERPLEXITY_API_KEY")
+# Perplexity: PPLX_API_KEY (official) or PERPLEXITY_API_KEY (legacy)
+PERPLEXITY_API_KEY = get_config("PPLX_API_KEY") or get_config("PERPLEXITY_API_KEY")
 
 # Neo4j Configuration
 NEO4J_URI = get_config("NEO4J_URI", "bolt://localhost:7687")

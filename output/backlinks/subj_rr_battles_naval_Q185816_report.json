@@ -1,0 +1,638 @@
+{
+  "generated_at": "2026-02-24T00:27:45.117911+00:00",
+  "seed_qid": "Q185816",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 18,
+    "candidate_sources_before_budget": 13,
+    "candidate_sources_considered": 13,
+    "accepted_before_node_budget": 11,
+    "accepted": 11,
+    "rejected": 2,
+    "entities_profiled": 11,
+    "frontier_eligible": 11,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.15384615384615385,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "no_p31": 2
+  },
+  "datatype_profile_summary": {
+    "statement_count": 174,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 30,
+    "with_references": 55,
+    "qualifier_rate": 0.1724137931034483,
+    "reference_rate": 0.3160919540229885,
+    "datatype_counts": {
+      "external-id": 61,
+      "wikibase-item": 100,
+      "commonsMedia": 3,
+      "quantity": 1,
+      "string": 4,
+      "time": 3,
+      "monolingualtext": 2
+    },
+    "value_type_counts": {
+      "string": 68,
+      "wikibase-entityid": 100,
+      "quantity": 1,
+      "time": 3,
+      "monolingualtext": 2
+    },
+    "pair_counts": {
+      "external-id|string": 61,
+      "wikibase-item|wikibase-entityid": 100,
+      "commonsMedia|string": 3,
+      "quantity|quantity": 1,
+      "string|string": 4,
+      "time|time": 3,
+      "monolingualtext|monolingualtext": 2
+    },
+    "route_counts": {
+      "federation_id": 61,
+      "edge_candidate": 100,
+      "media_reference": 3,
+      "measured_attribute": 1,
+      "node_property": 6,
+      "temporal_anchor": 3
+    },
+    "rank_counts": {
+      "normal": 173,
+      "deprecated": 1
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 11,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q2316258",
+      "label": "cosmic calendar",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q12132",
+        "Q1406161",
+        "Q16686448",
+        "Q185816"
+      ],
+      "matched_classes": [
+        "Q12132",
+        "Q1406161",
+        "Q16686448",
+        "Q185816"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P646": "/m/02771pk",
+        "P3417": "Cosmic-Calendar",
+        "P6366": "29801213"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "federation_id": 3,
+          "edge_candidate": 7,
+          "media_reference": 2,
+          "measured_attribute": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1963130",
+      "label": "map–territory relation",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q185816",
+        "Q33104279"
+      ],
+      "matched_classes": [
+        "Q185816",
+        "Q33104279"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/023kf3",
+        "P6366": "186701620"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4153449",
+      "label": "JSM-method",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q2695280",
+        "Q46857"
+      ],
+      "matched_classes": [
+        "Q2695280",
+        "Q46857"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2671": "/g/1227d67_"
+      },
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2631578947368421,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112515951",
+      "label": "Anne Gléonec",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P691": "xx0219393",
+        "P214": "281711150",
+        "P269": "157615669",
+        "P227": "1145310451",
+        "P213": "0000000388492654"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 1,
+        "with_references": 14,
+        "qualifier_rate": 0.058823529411764705,
+        "reference_rate": 0.8235294117647058,
+        "route_counts": {
+          "edge_candidate": 11,
+          "federation_id": 5,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12382962",
+      "label": "analogist",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q1387659"
+      ],
+      "matched_classes": [
+        "Q1387659"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1426774",
+      "label": "double colon",
+      "properties": [
+        "P366"
+      ],
+      "p31": [
+        "Q1206110"
+      ],
+      "matched_classes": [
+        "Q1206110"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121k2wkj"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 5,
+        "with_references": 0,
+        "qualifier_rate": 0.35714285714285715,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 12,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q208555",
+      "label": "parable",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q223393"
+      ],
+      "matched_classes": [
+        "Q223393"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/013d41",
+        "P1014": "300185342",
+        "P227": "4075855-2",
+        "P3827": "parables",
+        "P3569": "literatuur-internationaal/parabel",
+        "P4953": "gf2014026467",
+        "P244": "sh00006882",
+        "P1417": "art/parable",
+        "P4212": "pcrtZvJ0E1aj5P",
+        "P3417": "Parables",
+        "P7033": "scot/1002",
+        "P1296": "0129524",
+        "P8519": "82665",
+        "P2347": "5556",
+        "P508": "31118",
+        "P268": "11976366h",
+        "P950": "XX528753",
+        "P6293": "Y100693",
+        "P9466": "parabel",
+        "P10719": "cv01677",
+        "P8814": "06384713-n",
+        "P691": "ph238389",
+        "P5160": "tgm007458",
+        "P8313": "parabel_-_lignelse",
+        "P1617": "24d1a469-cedc-4e99-9aed-d0a1e0c60dbb",
+        "P11943": "94",
+        "P6781": "Definition:Parabola",
+        "P12086": "Parabel",
+        "P12385": "parabola-0",
+        "P8189": "987007292692505171",
+        "P12596": "150441",
+        "P13591": "concept/82b6eee1-01f9-4c25-b629-01f1dd4e2a24",
+        "P7314": "kissa--kuran",
+        "P7666": "parabole-1",
+        "P1036": "809.3"
+      },
+      "statement_profile": {
+        "statement_count": 57,
+        "with_qualifiers": 17,
+        "with_references": 13,
+        "qualifier_rate": 0.2982456140350877,
+        "reference_rate": 0.22807017543859648,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 36,
+          "media_reference": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05263157894736842,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q23853806",
+      "label": "Q23853806",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q13433827"
+      ],
+      "matched_classes": [
+        "Q13433827"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q24332693",
+      "label": "Q24332693",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q13433827"
+      ],
+      "matched_classes": [
+        "Q13433827"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q97065658",
+      "label": "Paul Natale Zammit",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5731": "49189",
+        "P214": "188473110",
+        "P269": "077822919",
+        "P1207": "n2013193351",
+        "P1006": "073819573",
+        "P213": "0000000356613175",
+        "P5739": "85679",
+        "P9522": "10856",
+        "P227": "1192479483",
+        "P12458": "250366",
+        "P10844": "170310",
+        "P396": "TO0V441067",
+        "P691": "zmp20261286086"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 3,
+        "with_references": 13,
+        "qualifier_rate": 0.12,
+        "reference_rate": 0.52,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 2,
+          "federation_id": 13
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q97359011",
+      "label": "Kill the chicken to scare the monkey",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q185816"
+      ],
+      "matched_classes": [
+        "Q185816"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 1,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q1150290",
+      "label": "gravitoelectromagnetism",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3537618",
+      "label": "analogical model",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

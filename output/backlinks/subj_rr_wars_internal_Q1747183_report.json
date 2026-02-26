@@ -1,0 +1,934 @@
+{
+  "generated_at": "2026-02-24T00:27:39.436618+00:00",
+  "seed_qid": "Q1747183",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 20,
+    "candidate_sources_before_budget": 20,
+    "candidate_sources_considered": 20,
+    "accepted_before_node_budget": 20,
+    "accepted": 20,
+    "rejected": 0,
+    "entities_profiled": 20,
+    "frontier_eligible": 20,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 254,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 36,
+    "with_references": 70,
+    "qualifier_rate": 0.14173228346456693,
+    "reference_rate": 0.2755905511811024,
+    "datatype_counts": {
+      "external-id": 42,
+      "wikibase-item": 158,
+      "commonsMedia": 18,
+      "time": 30,
+      "globe-coordinate": 2,
+      "string": 4
+    },
+    "value_type_counts": {
+      "string": 64,
+      "wikibase-entityid": 158,
+      "time": 30,
+      "globecoordinate": 2
+    },
+    "pair_counts": {
+      "external-id|string": 42,
+      "wikibase-item|wikibase-entityid": 158,
+      "commonsMedia|string": 18,
+      "time|time": 30,
+      "globe-coordinate|globecoordinate": 2,
+      "string|string": 4
+    },
+    "route_counts": {
+      "federation_id": 42,
+      "edge_candidate": 158,
+      "media_reference": 18,
+      "temporal_anchor": 30,
+      "geo_attribute": 2,
+      "node_property": 4
+    },
+    "rank_counts": {
+      "normal": 254
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 20,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q1003174",
+      "label": "Battle of Forum Gallorum",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/06_3hc"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.75,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q111805415",
+      "label": "Roman Civil War of 406–411",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112468507",
+      "label": "War of Jovinus",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 5,
+        "with_references": 0,
+        "qualifier_rate": 0.4166666666666667,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 10,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112725976",
+      "label": "War of Heraclianus",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1230563",
+      "label": "Battle of the Colline Gate",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03f89l",
+        "P1417": "topic/Battle-of-the-Colline-Gate"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 5,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.45454545454545453,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 5,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2727272727272727,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1238338",
+      "label": "Caesar's Civil War",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/08w4qg",
+        "P2581": "02512350n",
+        "P2924": "1811016",
+        "P1417": "event/Roman-Civil-War",
+        "P244": "sh85115123",
+        "P691": "ph615999",
+        "P8189": "987007543887505171",
+        "P12086": "Burgeroorlog_tussen_Pompeius_en_Caesar",
+        "P8885": "카이사르의 내전",
+        "P13591": "activity/ca4f2e9b-c9a7-4eaf-b624-4db36e32f588"
+      },
+      "statement_profile": {
+        "statement_count": 57,
+        "with_qualifiers": 10,
+        "with_references": 8,
+        "qualifier_rate": 0.17543859649122806,
+        "reference_rate": 0.14035087719298245,
+        "route_counts": {
+          "edge_candidate": 43,
+          "node_property": 1,
+          "federation_id": 10,
+          "temporal_anchor": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03508771929824561,
+        "edge_candidate_count": 43,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1862056",
+      "label": "Battle of Pistoria",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/08tdys",
+        "P2581": "02482956n"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5454545454545454,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 8,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1891307",
+      "label": "Gildonic revolt",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q124734"
+      ],
+      "matched_classes": [
+        "Q124734"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0c9bnn"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "temporal_anchor": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2116320",
+      "label": "Final War of the Roman Republic",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/08t9fj"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.26666666666666666,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 11,
+          "media_reference": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q21235602",
+      "label": "Firmus revolt",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q6107280"
+      ],
+      "matched_classes": [
+        "Q6107280"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11b8c3w2br"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q243721",
+      "label": "Year of the Five Emperors",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0c80lt",
+        "P4212": "pcrt2Wpv1iajT0",
+        "P8313": "femkejseråret"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.4,
+        "route_counts": {
+          "federation_id": 3,
+          "edge_candidate": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q24893061",
+      "label": "Battle of Interamna Nahars",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11bzs__0qy"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2583092",
+      "label": "Liberators' Civil War",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02675_h",
+        "P2581": "03635931n"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 5,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2734925",
+      "label": "Sulla's First Civil War",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02p83n_"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "federation_id": 1,
+          "media_reference": 1,
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3778588",
+      "label": "Roman civil war of 350–353",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/07k7x_0"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "federation_id": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q470596",
+      "label": "Year of the Four Emperors",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01qpx7",
+        "P4212": "pcrtAtcv6Rkpug",
+        "P3219": "annee-des-trois-empereurs",
+        "P8885": "네 황제의 해",
+        "P11835": "4304",
+        "P8313": "firekejseråret",
+        "P12086": "Vierkeizerjaar"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 9,
+        "with_references": 4,
+        "qualifier_rate": 0.36,
+        "reference_rate": 0.16,
+        "route_counts": {
+          "federation_id": 7,
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "media_reference": 8,
+          "node_property": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q521868",
+      "label": "Sulla's Civil War",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02qyrl3",
+        "P2581": "00224328n"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5555555555555556,
+        "route_counts": {
+          "edge_candidate": 4,
+          "federation_id": 2,
+          "media_reference": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q643987",
+      "label": "Perusine War",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "matched_classes": [
+        "Q198"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/02rlq0h",
+        "P227": "4173933-4",
+        "P1417": "topic/Battle-of-Perusia",
+        "P2924": "2776337",
+        "P5019": "perusinischer-krieg-römische-antike"
+      },
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 3,
+        "with_references": 7,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.4666666666666667,
+        "route_counts": {
+          "federation_id": 5,
+          "edge_candidate": 7,
+          "media_reference": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06666666666666667,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q680766",
+      "label": "Carausian Revolt",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q124734"
+      ],
+      "matched_classes": [
+        "Q124734"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0d5_r2"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5714285714285714,
+        "route_counts": {
+          "federation_id": 1,
+          "node_property": 1,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q759835",
+      "label": "Civil Wars of the Tetrarchy",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q8465"
+      ],
+      "matched_classes": [
+        "Q8465"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/07k4h1x"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

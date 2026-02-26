@@ -1,0 +1,1382 @@
+{
+  "domain_qid": "Q17167",
+  "summary": {
+    "reports_processed": 58,
+    "total_entities": 6073,
+    "entities_with_p31": 5516,
+    "no_p31": 557,
+    "mapped_to_canonical": 879,
+    "off_schema_entities": 4637,
+    "pct_on_schema": 15.94,
+    "canonical_types_count": 150
+  },
+  "by_canonical_type": [
+    {
+      "type": "Human",
+      "count": 451,
+      "pct": 51.31
+    },
+    {
+      "type": "Battle",
+      "count": 127,
+      "pct": 14.45
+    },
+    {
+      "type": "Building",
+      "count": 52,
+      "pct": 5.92
+    },
+    {
+      "type": "Siege",
+      "count": 48,
+      "pct": 5.46
+    },
+    {
+      "type": "Temple",
+      "count": 37,
+      "pct": 4.21
+    },
+    {
+      "type": "Currency",
+      "count": 29,
+      "pct": 3.3
+    },
+    {
+      "type": "War",
+      "count": 19,
+      "pct": 2.16
+    },
+    {
+      "type": "Sculpture",
+      "count": 13,
+      "pct": 1.48
+    },
+    {
+      "type": "Company",
+      "count": 11,
+      "pct": 1.25
+    },
+    {
+      "type": "Monument",
+      "count": 10,
+      "pct": 1.14
+    },
+    {
+      "type": "Painting",
+      "count": 10,
+      "pct": 1.14
+    },
+    {
+      "type": "Concept",
+      "count": 10,
+      "pct": 1.14
+    },
+    {
+      "type": "Church Building",
+      "count": 7,
+      "pct": 0.8
+    },
+    {
+      "type": "Organization",
+      "count": 6,
+      "pct": 0.68
+    },
+    {
+      "type": "Artifact",
+      "count": 6,
+      "pct": 0.68
+    },
+    {
+      "type": "Military Unit",
+      "count": 5,
+      "pct": 0.57
+    },
+    {
+      "type": "Book",
+      "count": 4,
+      "pct": 0.46
+    },
+    {
+      "type": "Castle",
+      "count": 4,
+      "pct": 0.46
+    },
+    {
+      "type": "Coin",
+      "count": 3,
+      "pct": 0.34
+    },
+    {
+      "type": "Group of Humans",
+      "count": 3,
+      "pct": 0.34
+    },
+    {
+      "type": "Civil War",
+      "count": 2,
+      "pct": 0.23
+    },
+    {
+      "type": "Region",
+      "count": 2,
+      "pct": 0.23
+    },
+    {
+      "type": "Citation",
+      "count": 2,
+      "pct": 0.23
+    },
+    {
+      "type": "Lighthouse",
+      "count": 2,
+      "pct": 0.23
+    },
+    {
+      "type": "Earthquake",
+      "count": 2,
+      "pct": 0.23
+    },
+    {
+      "type": "Calendar",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Treaty",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Province",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Mosque",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Cathedral",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Mountain",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Bridge",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Port",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Position",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Conference",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "City",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Rebellion",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Religious Order",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "type": "Tool",
+      "count": 1,
+      "pct": 0.11
+    }
+  ],
+  "by_category": [
+    {
+      "category": "Person",
+      "count": 454,
+      "pct": 51.65
+    },
+    {
+      "category": "Event",
+      "count": 200,
+      "pct": 22.75
+    },
+    {
+      "category": "Infrastructure",
+      "count": 116,
+      "pct": 13.2
+    },
+    {
+      "category": "Concept",
+      "count": 40,
+      "pct": 4.55
+    },
+    {
+      "category": "Work",
+      "count": 29,
+      "pct": 3.3
+    },
+    {
+      "category": "Organization",
+      "count": 23,
+      "pct": 2.62
+    },
+    {
+      "category": "Artifact",
+      "count": 10,
+      "pct": 1.14
+    },
+    {
+      "category": "Place",
+      "count": 5,
+      "pct": 0.57
+    },
+    {
+      "category": "Agreement",
+      "count": 1,
+      "pct": 0.11
+    },
+    {
+      "category": "Position",
+      "count": 1,
+      "pct": 0.11
+    }
+  ],
+  "off_schema_top_p31s": [
+    {
+      "p31_qid": "Q899409",
+      "count": 1064
+    },
+    {
+      "p31_qid": "Q11469",
+      "count": 680
+    },
+    {
+      "p31_qid": "Q125191",
+      "count": 594
+    },
+    {
+      "p31_qid": "Q631931",
+      "count": 489
+    },
+    {
+      "p31_qid": "Q11019",
+      "count": 259
+    },
+    {
+      "p31_qid": "Q211364",
+      "count": 222
+    },
+    {
+      "p31_qid": "Q3331189",
+      "count": 201
+    },
+    {
+      "p31_qid": "Q182547",
+      "count": 193
+    },
+    {
+      "p31_qid": "Q7725634",
+      "count": 122
+    },
+    {
+      "p31_qid": "Q918448",
+      "count": 111
+    },
+    {
+      "p31_qid": "Q1573728",
+      "count": 93
+    },
+    {
+      "p31_qid": "Q726929",
+      "count": 90
+    },
+    {
+      "p31_qid": "Q1922981",
+      "count": 87
+    },
+    {
+      "p31_qid": "Q839954",
+      "count": 68
+    },
+    {
+      "p31_qid": "Q47461344",
+      "count": 66
+    },
+    {
+      "p31_qid": "Q861911",
+      "count": 53
+    },
+    {
+      "p31_qid": "Q13433827",
+      "count": 52
+    },
+    {
+      "p31_qid": "Q2319498",
+      "count": 51
+    },
+    {
+      "p31_qid": "Q486972",
+      "count": 37
+    },
+    {
+      "p31_qid": "Q220659",
+      "count": 33
+    },
+    {
+      "p31_qid": "Q3658341",
+      "count": 27
+    },
+    {
+      "p31_qid": "Q831663",
+      "count": 26
+    },
+    {
+      "p31_qid": "Q657326",
+      "count": 26
+    },
+    {
+      "p31_qid": "Q21481766",
+      "count": 22
+    },
+    {
+      "p31_qid": "Q11514315",
+      "count": 20
+    },
+    {
+      "p31_qid": "Q15661340",
+      "count": 20
+    },
+    {
+      "p31_qid": "Q1352795",
+      "count": 20
+    },
+    {
+      "p31_qid": "Q600134",
+      "count": 17
+    },
+    {
+      "p31_qid": "Q294422",
+      "count": 17
+    },
+    {
+      "p31_qid": "Q8465",
+      "count": 16
+    }
+  ],
+  "per_anchor": [
+    {
+      "seed_qid": "Q104867898",
+      "anchor_label": "Marriage alliances and political kinship",
+      "total_entities": 1,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 1,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q105427",
+      "anchor_label": "Institutions: Senate, Assemblies, Magistracies",
+      "total_entities": 2,
+      "mapped_to_schema": 2,
+      "off_schema_entities": 0,
+      "no_p31": 0,
+      "pct_on_schema": 100.0,
+      "top_types": [
+        {
+          "type": "Painting",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Work",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q11019",
+      "anchor_label": "Trade routes and maritime networks",
+      "total_entities": 898,
+      "mapped_to_schema": 105,
+      "off_schema_entities": 350,
+      "no_p31": 443,
+      "pct_on_schema": 11.7,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 86
+        },
+        {
+          "type": "Company",
+          "count": 10
+        },
+        {
+          "type": "Painting",
+          "count": 6
+        },
+        {
+          "type": "Organization",
+          "count": 1
+        },
+        {
+          "type": "Sculpture",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 86
+        },
+        {
+          "category": "Organization",
+          "count": 11
+        },
+        {
+          "category": "Work",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q11469",
+      "anchor_label": "Landholding, Agriculture, and Estates",
+      "total_entities": 1347,
+      "mapped_to_schema": 8,
+      "off_schema_entities": 1324,
+      "no_p31": 15,
+      "pct_on_schema": 0.6,
+      "top_types": [
+        {
+          "type": "Building",
+          "count": 3
+        },
+        {
+          "type": "Sculpture",
+          "count": 3
+        },
+        {
+          "type": "Company",
+          "count": 1
+        },
+        {
+          "type": "Monument",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Infrastructure",
+          "count": 4
+        },
+        {
+          "category": "Work",
+          "count": 3
+        },
+        {
+          "category": "Organization",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1200427",
+      "anchor_label": "Culture, Ideas, and Communication",
+      "total_entities": 26,
+      "mapped_to_schema": 2,
+      "off_schema_entities": 17,
+      "no_p31": 7,
+      "pct_on_schema": 7.7,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q131416",
+      "anchor_label": "Priesthoods and sacred colleges",
+      "total_entities": 279,
+      "mapped_to_schema": 204,
+      "off_schema_entities": 75,
+      "no_p31": 0,
+      "pct_on_schema": 73.1,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 159
+        },
+        {
+          "type": "Building",
+          "count": 36
+        },
+        {
+          "type": "Monument",
+          "count": 3
+        },
+        {
+          "type": "Church Building",
+          "count": 2
+        },
+        {
+          "type": "Mosque",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 159
+        },
+        {
+          "category": "Infrastructure",
+          "count": 44
+        },
+        {
+          "category": "Place",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1367629",
+      "anchor_label": "Ritual Practice, Omens, and Public Ceremony",
+      "total_entities": 14,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 13,
+      "no_p31": 1,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q1392538",
+      "anchor_label": "Society and Social Structure",
+      "total_entities": 13,
+      "mapped_to_schema": 1,
+      "off_schema_entities": 11,
+      "no_p31": 1,
+      "pct_on_schema": 7.7,
+      "top_types": [
+        {
+          "type": "Military Unit",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Organization",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q15265460",
+      "anchor_label": "Economy and Resource Systems",
+      "total_entities": 19,
+      "mapped_to_schema": 2,
+      "off_schema_entities": 15,
+      "no_p31": 2,
+      "pct_on_schema": 10.5,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1541",
+      "anchor_label": "Forums, public speech, persuasion",
+      "total_entities": 268,
+      "mapped_to_schema": 15,
+      "off_schema_entities": 253,
+      "no_p31": 0,
+      "pct_on_schema": 5.6,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 13
+        },
+        {
+          "type": "Painting",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 13
+        },
+        {
+          "category": "Work",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1593880",
+      "anchor_label": "Institutions of slavery and manumission",
+      "total_entities": 13,
+      "mapped_to_schema": 2,
+      "off_schema_entities": 11,
+      "no_p31": 0,
+      "pct_on_schema": 15.4,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q17167",
+      "anchor_label": "Roman Republic",
+      "total_entities": 230,
+      "mapped_to_schema": 122,
+      "off_schema_entities": 106,
+      "no_p31": 2,
+      "pct_on_schema": 53.0,
+      "top_types": [
+        {
+          "type": "Battle",
+          "count": 60
+        },
+        {
+          "type": "Siege",
+          "count": 21
+        },
+        {
+          "type": "Human",
+          "count": 15
+        },
+        {
+          "type": "Currency",
+          "count": 11
+        },
+        {
+          "type": "War",
+          "count": 10
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Event",
+          "count": 91
+        },
+        {
+          "category": "Person",
+          "count": 15
+        },
+        {
+          "category": "Concept",
+          "count": 11
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q172845",
+      "anchor_label": "Religion and Public Cult",
+      "total_entities": 2,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 2,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q1747183",
+      "anchor_label": "Internal wars (civil/social/rebellion)",
+      "total_entities": 20,
+      "mapped_to_schema": 5,
+      "off_schema_entities": 15,
+      "no_p31": 0,
+      "pct_on_schema": 25.0,
+      "top_types": [
+        {
+          "type": "Battle",
+          "count": 4
+        },
+        {
+          "type": "War",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Event",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1764124",
+      "anchor_label": "External wars (interstate/expansionary)",
+      "total_entities": 21,
+      "mapped_to_schema": 17,
+      "off_schema_entities": 4,
+      "no_p31": 0,
+      "pct_on_schema": 81.0,
+      "top_types": [
+        {
+          "type": "Battle",
+          "count": 10
+        },
+        {
+          "type": "Siege",
+          "count": 5
+        },
+        {
+          "type": "War",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Event",
+          "count": 17
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1812526",
+      "anchor_label": "Reforms and constitutional change",
+      "total_entities": 1,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 1,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q182547",
+      "anchor_label": "Provinces and Administration",
+      "total_entities": 172,
+      "mapped_to_schema": 6,
+      "off_schema_entities": 165,
+      "no_p31": 1,
+      "pct_on_schema": 3.5,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 2
+        },
+        {
+          "type": "Military Unit",
+          "count": 1
+        },
+        {
+          "type": "Province",
+          "count": 1
+        },
+        {
+          "type": "Region",
+          "count": 1
+        },
+        {
+          "type": "Book",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Place",
+          "count": 2
+        },
+        {
+          "category": "Person",
+          "count": 2
+        },
+        {
+          "category": "Organization",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q185816",
+      "anchor_label": "Naval warfare and sea operations",
+      "total_entities": 13,
+      "mapped_to_schema": 4,
+      "off_schema_entities": 7,
+      "no_p31": 2,
+      "pct_on_schema": 30.8,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 2
+        },
+        {
+          "type": "Calendar",
+          "count": 1
+        },
+        {
+          "type": "Civil War",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 2
+        },
+        {
+          "category": "Concept",
+          "count": 1
+        },
+        {
+          "category": "Event",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q186916",
+      "anchor_label": "Chronology and Periodization",
+      "total_entities": 1,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 1,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q1993655",
+      "anchor_label": "Civil wars and internal conflicts",
+      "total_entities": 5,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 5,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q201452",
+      "anchor_label": "Diplomacy and International Relations",
+      "total_entities": 1,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 1,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q2063299",
+      "anchor_label": "Elite competition and network power",
+      "total_entities": 3,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 3,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q2065169",
+      "anchor_label": "Political violence, proscriptions, purges",
+      "total_entities": 19,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 19,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q2067204",
+      "anchor_label": "Oratory, Rhetoric, and Propaganda",
+      "total_entities": 1,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 1,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q2067294",
+      "anchor_label": "Republican ideals (virtus, mos maiorum, liberty)",
+      "total_entities": 1,
+      "mapped_to_schema": 1,
+      "off_schema_entities": 0,
+      "no_p31": 0,
+      "pct_on_schema": 100.0,
+      "top_types": [
+        {
+          "type": "Castle",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Infrastructure",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q207544",
+      "anchor_label": "Geography, Provinces, and Expansion",
+      "total_entities": 148,
+      "mapped_to_schema": 2,
+      "off_schema_entities": 146,
+      "no_p31": 0,
+      "pct_on_schema": 1.4,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q211364",
+      "anchor_label": "Popular/admin offices: Tribune, Aedile, Quaestor",
+      "total_entities": 314,
+      "mapped_to_schema": 14,
+      "off_schema_entities": 239,
+      "no_p31": 61,
+      "pct_on_schema": 4.5,
+      "top_types": [
+        {
+          "type": "Concept",
+          "count": 10
+        },
+        {
+          "type": "Human",
+          "count": 2
+        },
+        {
+          "type": "Citation",
+          "count": 1
+        },
+        {
+          "type": "Civil War",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Concept",
+          "count": 10
+        },
+        {
+          "category": "Person",
+          "count": 2
+        },
+        {
+          "category": "Work",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q212943",
+      "anchor_label": "Religious Offices, Priesthoods, and Authority",
+      "total_entities": 24,
+      "mapped_to_schema": 21,
+      "off_schema_entities": 3,
+      "no_p31": 0,
+      "pct_on_schema": 87.5,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 21
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 21
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q213810",
+      "anchor_label": "Law, Citizenship, and Constitutional Practice",
+      "total_entities": 4,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 4,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q2277",
+      "anchor_label": "Transition to Empire",
+      "total_entities": 722,
+      "mapped_to_schema": 197,
+      "off_schema_entities": 517,
+      "no_p31": 8,
+      "pct_on_schema": 27.3,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 48
+        },
+        {
+          "type": "Battle",
+          "count": 38
+        },
+        {
+          "type": "Temple",
+          "count": 37
+        },
+        {
+          "type": "Siege",
+          "count": 20
+        },
+        {
+          "type": "Building",
+          "count": 13
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Event",
+          "count": 68
+        },
+        {
+          "category": "Infrastructure",
+          "count": 60
+        },
+        {
+          "category": "Person",
+          "count": 49
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q2345364",
+      "anchor_label": "Historiography, Sources, and Historical Method",
+      "total_entities": 16,
+      "mapped_to_schema": 6,
+      "off_schema_entities": 10,
+      "no_p31": 0,
+      "pct_on_schema": 37.5,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 5
+        },
+        {
+          "type": "Artifact",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 5
+        },
+        {
+          "category": "Artifact",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q236885",
+      "anchor_label": "Dictatorship & extraordinary commands",
+      "total_entities": 80,
+      "mapped_to_schema": 75,
+      "off_schema_entities": 5,
+      "no_p31": 0,
+      "pct_on_schema": 93.8,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 75
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 75
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q271108",
+      "anchor_label": "Factional politics (Optimates/Populares framing)",
+      "total_entities": 19,
+      "mapped_to_schema": 17,
+      "off_schema_entities": 1,
+      "no_p31": 1,
+      "pct_on_schema": 89.5,
+      "top_types": [
+        {
+          "type": "Battle",
+          "count": 15
+        },
+        {
+          "type": "Siege",
+          "count": 2
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Event",
+          "count": 17
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q3277005",
+      "anchor_label": "Magistracies (powers, term limits, imperium)",
+      "total_entities": 2,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 2,
+      "no_p31": 0,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q3932035",
+      "anchor_label": "Client Kingdoms, Alliances, and Hegemony",
+      "total_entities": 10,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 9,
+      "no_p31": 1,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q39686",
+      "anchor_label": "Offices and Magistracies (Cursus Honorum)",
+      "total_entities": 16,
+      "mapped_to_schema": 8,
+      "off_schema_entities": 8,
+      "no_p31": 0,
+      "pct_on_schema": 50.0,
+      "top_types": [
+        {
+          "type": "Castle",
+          "count": 3
+        },
+        {
+          "type": "Church Building",
+          "count": 3
+        },
+        {
+          "type": "Monument",
+          "count": 1
+        },
+        {
+          "type": "Human",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Infrastructure",
+          "count": 7
+        },
+        {
+          "category": "Person",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q46303",
+      "anchor_label": "Wars and Campaigns",
+      "total_entities": 14,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 8,
+      "no_p31": 6,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q6106068",
+      "anchor_label": "Middle Republic (periodization)",
+      "total_entities": 2,
+      "mapped_to_schema": 1,
+      "off_schema_entities": 1,
+      "no_p31": 0,
+      "pct_on_schema": 50.0,
+      "top_types": [
+        {
+          "type": "Book",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Work",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q657326",
+      "anchor_label": "Social orders (Patrician, Plebeian, Equites)",
+      "total_entities": 43,
+      "mapped_to_schema": 3,
+      "off_schema_entities": 37,
+      "no_p31": 3,
+      "pct_on_schema": 7.0,
+      "top_types": [
+        {
+          "type": "Group of Humans",
+          "count": 2
+        },
+        {
+          "type": "Organization",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 2
+        },
+        {
+          "category": "Organization",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q726929",
+      "anchor_label": "Courts, trials, legal procedure",
+      "total_entities": 118,
+      "mapped_to_schema": 21,
+      "off_schema_entities": 97,
+      "no_p31": 0,
+      "pct_on_schema": 17.8,
+      "top_types": [
+        {
+          "type": "Human",
+          "count": 13
+        },
+        {
+          "type": "Artifact",
+          "count": 5
+        },
+        {
+          "type": "Organization",
+          "count": 3
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Person",
+          "count": 13
+        },
+        {
+          "category": "Artifact",
+          "count": 5
+        },
+        {
+          "category": "Organization",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q899409",
+      "anchor_label": "Families, Gentes, and Prosopography",
+      "total_entities": 1066,
+      "mapped_to_schema": 0,
+      "off_schema_entities": 1065,
+      "no_p31": 1,
+      "pct_on_schema": 0.0,
+      "top_types": [],
+      "top_categories": []
+    },
+    {
+      "seed_qid": "Q952064",
+      "anchor_label": "Markets, money, and exchange",
+      "total_entities": 105,
+      "mapped_to_schema": 18,
+      "off_schema_entities": 85,
+      "no_p31": 2,
+      "pct_on_schema": 17.1,
+      "top_types": [
+        {
+          "type": "Currency",
+          "count": 16
+        },
+        {
+          "type": "Human",
+          "count": 1
+        },
+        {
+          "type": "Coin",
+          "count": 1
+        }
+      ],
+      "top_categories": [
+        {
+          "category": "Concept",
+          "count": 16
+        },
+        {
+          "category": "Person",
+          "count": 1
+        },
+        {
+          "category": "Artifact",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

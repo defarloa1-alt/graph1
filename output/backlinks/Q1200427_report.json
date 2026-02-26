@@ -1,0 +1,381 @@
+{
+  "generated_at": "2026-02-25T00:09:32.524552+00:00",
+  "seed_qid": "Q1200427",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 19,
+    "candidate_sources_before_budget": 17,
+    "candidate_sources_considered": 17,
+    "accepted_before_node_budget": 2,
+    "accepted": 2,
+    "rejected": 15,
+    "entities_profiled": 2,
+    "frontier_eligible": 2,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.8823529411764706,
+    "unresolved_class_gate_passed": false,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "blocked_by_policy"
+  },
+  "rejection_reasons": {
+    "no_p31": 7,
+    "class_not_allowed": 8
+  },
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 2,
+    "unscoped": 0,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 9,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 1,
+    "with_references": 0,
+    "qualifier_rate": 0.1111111111111111,
+    "reference_rate": 0.0,
+    "datatype_counts": {
+      "wikibase-item": 8,
+      "commonsMedia": 1
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 8,
+      "string": 1
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 8,
+      "commonsMedia|string": 1
+    },
+    "route_counts": {
+      "edge_candidate": 8,
+      "media_reference": 1
+    },
+    "rank_counts": {
+      "normal": 9
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 2,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q114804468",
+      "label": "Tourism in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q116213",
+        "Q49389",
+        "Q98374854"
+      ],
+      "matched_classes": [
+        "Q49389",
+        "Q98374854"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q151885"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134462832",
+      "label": "Dance in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q107357104"
+      ],
+      "matched_classes": [
+        "Q107357104"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q6671777"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 2,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q1051574",
+      "label": "caupona",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q10656554",
+      "label": "death in ancient Rome",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q111676757"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q107013169",
+      "label": "religion in ancient Rome",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q66374263"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q115148329",
+      "label": "Toys and games in ancient Rome",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q173799"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q133850272",
+      "label": "Witchcraft in ancient Greece and Rome",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q111676757"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q134730409",
+      "label": "Q134730409",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q120870093"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q137752711",
+      "label": "ancient Roman iconography",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P737"
+      ],
+      "p31": [
+        "Q115857096"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q14752696",
+      "label": "ancient Roman structure",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q175836",
+      "label": "thermopolium",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2354361",
+      "label": "Q2354361",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q25052509",
+      "label": "venereum",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3354732",
+      "label": "Roman art",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q25679497"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3397950",
+      "label": "popina",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3589331",
+      "label": "Q3589331",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q8564316",
+      "label": "food in ancient Rome",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q115857096"
+      ],
+      "backlink_hits": 1
+    }
+  ]
+}

@@ -1,0 +1,604 @@
+[
+  {
+    "subject_id": "subj_rr_governance",
+    "label": "Government and Constitutional Structure",
+    "anchor_qid": "Q8434",
+    "anchor_label": "Constitution of the Roman Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_military",
+    "label": "Warfare and Military Systems",
+    "anchor_qid": "Q2862991",
+    "anchor_label": "Roman army of the mid-Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_society",
+    "label": "Society and Social Structure",
+    "anchor_qid": "Q1392538",
+    "anchor_label": "social class in ancient Rome",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_economy",
+    "label": "Economy and Resource Systems",
+    "anchor_qid": "Q15265460",
+    "anchor_label": "economy of the ancient Roman civilization",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_geography",
+    "label": "Geography, Provinces, and Expansion",
+    "anchor_qid": "Q207544",
+    "anchor_label": "Roman province",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_diplomacy",
+    "label": "Diplomacy and International Relations",
+    "anchor_qid": "Q201452",
+    "anchor_label": "Foreign relations of ancient Rome",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_religion",
+    "label": "Religion and Public Cult",
+    "anchor_qid": "Q172845",
+    "anchor_label": "State religion of ancient Rome",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_culture_ideas",
+    "label": "Culture, Ideas, and Communication",
+    "anchor_qid": "Q1200427",
+    "anchor_label": "culture of ancient Rome",
+    "confidence": "llm:0.90"
+  },
+  {
+    "subject_id": "subj_rr_periodization",
+    "label": "Chronology and Periodization",
+    "anchor_qid": "Q186916",
+    "anchor_label": "Timeline of ancient Rome",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_gov_institutions",
+    "label": "Institutions: Senate, Assemblies, Magistracies",
+    "anchor_qid": "Q105427",
+    "anchor_label": "(curated: Q105427)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_gov_offices",
+    "label": "Offices and Magistracies (Cursus Honorum)",
+    "anchor_qid": "Q39686",
+    "anchor_label": "(curated: Q39686)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_gov_law",
+    "label": "Law, Citizenship, and Constitutional Practice",
+    "anchor_qid": "Q213810",
+    "anchor_label": "Roman citizenship",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_gov_factions",
+    "label": "Factions, Patronage Power, and Civil Conflict",
+    "anchor_qid": "Q20720797",
+    "anchor_label": "Patronage in ancient Rome",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_gov_senate",
+    "label": "The Senate (structure, procedure, power)",
+    "anchor_qid": "Q105427",
+    "anchor_label": "(curated: Q105427)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_gov_assemblies",
+    "label": "Popular assemblies and voting",
+    "anchor_qid": "Q859980",
+    "anchor_label": "(curated: Q859980)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_gov_magistracies",
+    "label": "Magistracies (powers, term limits, imperium)",
+    "anchor_qid": "Q3277005",
+    "anchor_label": "executive magistrate of the Roman Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_off_consul_praetor",
+    "label": "Senior offices: Consul, Praetor, Censor",
+    "anchor_qid": "Q39686",
+    "anchor_label": "(curated: Q39686)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_off_tribune_aedile",
+    "label": "Popular/admin offices: Tribune, Aedile, Quaestor",
+    "anchor_qid": "Q211364",
+    "anchor_label": "Roman Republic",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_off_dictatorship",
+    "label": "Dictatorship & extraordinary commands",
+    "anchor_qid": "Q236885",
+    "anchor_label": "Roman dictator",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_law_citizenship_status",
+    "label": "Citizenship, rights, legal status",
+    "anchor_qid": "Q213810",
+    "anchor_label": "Roman citizenship",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_law_courts_procedure",
+    "label": "Courts, trials, legal procedure",
+    "anchor_qid": "Q726929",
+    "anchor_label": "Quaestio perpetua",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_law_reforms",
+    "label": "Reforms and constitutional change",
+    "anchor_qid": "Q1812526",
+    "anchor_label": "Constitutional reforms of Lucius Cornelius Sulla",
+    "confidence": "llm:0.75"
+  },
+  {
+    "subject_id": "subj_rr_factions_optimates_populares",
+    "label": "Factional politics (Optimates/Populares framing)",
+    "anchor_qid": "Q271108",
+    "anchor_label": "populares",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_factions_civil_wars",
+    "label": "Civil wars and internal conflicts",
+    "anchor_qid": "Q1993655",
+    "anchor_label": "(curated: Q1993655)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_factions_proscriptions",
+    "label": "Political violence, proscriptions, purges",
+    "anchor_qid": "Q2065169",
+    "anchor_label": "Proscription",
+    "confidence": "llm:0.90"
+  },
+  {
+    "subject_id": "subj_rr_mil_wars_campaigns",
+    "label": "Wars and Campaigns",
+    "anchor_qid": "Q46303",
+    "anchor_label": "(curated: Q46303)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_mil_battles_ops",
+    "label": "Battles and Operations",
+    "anchor_qid": "Q1243998",
+    "anchor_label": "list of Roman battles",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_mil_command_roles",
+    "label": "Command, Leadership, and Military Roles",
+    "anchor_qid": null,
+    "anchor_label": null,
+    "confidence": "none"
+  },
+  {
+    "subject_id": "subj_rr_mil_org_logistics",
+    "label": "Army Organization, Recruitment, and Logistics",
+    "anchor_qid": "Q2862991",
+    "anchor_label": "Roman army of the mid-Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_wars_external",
+    "label": "External wars (interstate/expansionary)",
+    "anchor_qid": "Q1764124",
+    "anchor_label": "Third Mithridatic War",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_wars_internal",
+    "label": "Internal wars (civil/social/rebellion)",
+    "anchor_qid": "Q1747183",
+    "anchor_label": "list of Roman civil wars and revolts",
+    "confidence": "llm:0.90"
+  },
+  {
+    "subject_id": "subj_rr_battles_land",
+    "label": "Land battles and field operations",
+    "anchor_qid": null,
+    "anchor_label": null,
+    "confidence": "none"
+  },
+  {
+    "subject_id": "subj_rr_battles_naval",
+    "label": "Naval warfare and sea operations",
+    "anchor_qid": "Q185816",
+    "anchor_label": "(curated: Q185816)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_command_imperium",
+    "label": "Imperium, command authority, delegation",
+    "anchor_qid": "Q17167",
+    "anchor_label": "Roman Republic",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_command_roles_registry",
+    "label": "Military roles & command structure",
+    "anchor_qid": "Q2916317",
+    "anchor_label": "structural history of the Roman military",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_logistics_recruitment",
+    "label": "Recruitment, conscription, service obligations",
+    "anchor_qid": "Q2862991",
+    "anchor_label": "Roman army of the mid-Republic",
+    "confidence": "llm:0.90"
+  },
+  {
+    "subject_id": "subj_rr_logistics_supply",
+    "label": "Supply, pay, and military economy",
+    "anchor_qid": null,
+    "anchor_label": null,
+    "confidence": "none"
+  },
+  {
+    "subject_id": "subj_rr_soc_orders_status",
+    "label": "Orders, Status, and Citizenship",
+    "anchor_qid": "Q1392538",
+    "anchor_label": "social class in ancient Rome",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_soc_patronage",
+    "label": "Patronage, Clientage, and Elite Networks",
+    "anchor_qid": "Q1993655",
+    "anchor_label": "(curated: Q1993655)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_soc_family_gentes",
+    "label": "Families, Gentes, and Prosopography",
+    "anchor_qid": "Q899409",
+    "anchor_label": "gens",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_soc_slavery_labor",
+    "label": "Slavery, Labor, and Dependency",
+    "anchor_qid": "Q8464",
+    "anchor_label": "(curated: Q8464)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_social_orders",
+    "label": "Social orders (Patrician, Plebeian, Equites)",
+    "anchor_qid": "Q657326",
+    "anchor_label": "Ordines (ancient Roman)",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_social_citizenship",
+    "label": "Citizenship expansion and integration",
+    "anchor_qid": "Q213810",
+    "anchor_label": "Roman citizenship",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_patronage_mechanisms",
+    "label": "Mechanisms of patronage",
+    "anchor_qid": "Q1944199",
+    "anchor_label": "Patronage in ancient Rome",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_patronage_elite_competition",
+    "label": "Elite competition and network power",
+    "anchor_qid": "Q2063299",
+    "anchor_label": "Optimates and populares",
+    "confidence": "llm:0.90"
+  },
+  {
+    "subject_id": "subj_rr_family_gentes",
+    "label": "Gentes, lineages, naming systems",
+    "anchor_qid": "Q899409",
+    "anchor_label": "gens",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_family_alliances",
+    "label": "Marriage alliances and political kinship",
+    "anchor_qid": "Q104867898",
+    "anchor_label": "Weddings in ancient Rome",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_slavery_institutions",
+    "label": "Institutions of slavery and manumission",
+    "anchor_qid": "Q1593880",
+    "anchor_label": "slavery in ancient Rome",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_labor_economy",
+    "label": "Labor systems (free/enslaved/dependent)",
+    "anchor_qid": "Q1593880",
+    "anchor_label": "slavery in ancient Rome",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_econ_land_agriculture",
+    "label": "Landholding, Agriculture, and Estates",
+    "anchor_qid": "Q11469",
+    "anchor_label": "(curated: Q11469)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_econ_tax_revenue",
+    "label": "Taxation, Tribute, and Provincial Revenue",
+    "anchor_qid": "Q17167",
+    "anchor_label": "publicani",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_econ_trade_markets",
+    "label": "Trade, Markets, and Mediterranean Networks",
+    "anchor_qid": null,
+    "anchor_label": null,
+    "confidence": "none"
+  },
+  {
+    "subject_id": "subj_rr_econ_land_reform",
+    "label": "Land reform, redistribution, agrarian policy",
+    "anchor_qid": "Q1363254",
+    "anchor_label": "(curated: Q1363254)",
+    "confidence": "curated"
+  },
+  {
+    "subject_id": "subj_rr_econ_finance_contracts",
+    "label": "Finance, contracts, and publicani",
+    "anchor_qid": "Q1234567",
+    "anchor_label": "publicani",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_trade_routes",
+    "label": "Trade routes and maritime networks",
+    "anchor_qid": "Q11019",
+    "anchor_label": "Roman trade",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_markets_money",
+    "label": "Markets, money, and exchange",
+    "anchor_qid": "Q952064",
+    "anchor_label": "Roman currency",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_geo_rome_italy",
+    "label": "Rome and Italy (Republic Context)",
+    "anchor_qid": "Q838930",
+    "anchor_label": "Roman Republic",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_geo_provinces_admin",
+    "label": "Provinces and Administration",
+    "anchor_qid": "Q182547",
+    "anchor_label": "Roman province",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_geo_frontiers_theaters",
+    "label": "Frontiers and Theaters of War",
+    "anchor_qid": null,
+    "anchor_label": null,
+    "confidence": "none"
+  },
+  {
+    "subject_id": "subj_rr_geo_provincial_governance",
+    "label": "Provincial governance and administration",
+    "anchor_qid": "Q182547",
+    "anchor_label": "Roman province",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_geo_provincial_economy",
+    "label": "Provincial extraction, tribute, local economies",
+    "anchor_qid": "Q182547",
+    "anchor_label": "Roman province",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_dip_treaties",
+    "label": "Treaties, Negotiations, and Envoys",
+    "anchor_qid": "Q4119583",
+    "anchor_label": "Roman diplomacy",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_dip_clients",
+    "label": "Client Kingdoms, Alliances, and Hegemony",
+    "anchor_qid": "Q3932035",
+    "anchor_label": "ancient Roman client kingdom",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_dip_envoys",
+    "label": "Envoys, embassies, negotiation practice",
+    "anchor_qid": "Q2817119",
+    "anchor_label": "Ancient Roman diplomats",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_dip_treaty_systems",
+    "label": "Treaty systems, guarantees, hostages",
+    "anchor_qid": null,
+    "anchor_label": null,
+    "confidence": "none"
+  },
+  {
+    "subject_id": "subj_rr_rel_offices",
+    "label": "Religious Offices, Priesthoods, and Authority",
+    "anchor_qid": "Q212943",
+    "anchor_label": "pontifex maximus",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_rel_rituals",
+    "label": "Ritual Practice, Omens, and Public Ceremony",
+    "anchor_qid": "Q1367629",
+    "anchor_label": "ancient Roman festival",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_rel_priesthoods",
+    "label": "Priesthoods and sacred colleges",
+    "anchor_qid": "Q131416",
+    "anchor_label": "College of Pontiffs",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_rel_public_ritual",
+    "label": "Public ritual, auspices, legitimacy",
+    "anchor_qid": "Q207640",
+    "anchor_label": "auspices",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_ideas_oratory",
+    "label": "Oratory, Rhetoric, and Propaganda",
+    "anchor_qid": "Q2067204",
+    "anchor_label": "Roman Republican oratory",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_ideas_historiography",
+    "label": "Historiography, Sources, and Historical Method",
+    "anchor_qid": "Q2345364",
+    "anchor_label": "Roman historiography",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_ideas_political_thought",
+    "label": "Republicanism and Political Thought",
+    "anchor_qid": "Q17167",
+    "anchor_label": "Roman Republic",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_cult_identity",
+    "label": "Civic Culture, Identity, and Romanitas",
+    "anchor_qid": "Q9070",
+    "anchor_label": "Romanitas",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_oratory_forums",
+    "label": "Forums, public speech, persuasion",
+    "anchor_qid": "Q1541",
+    "anchor_label": "Contio",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_propaganda_symbols",
+    "label": "Symbols, memory, persuasive narratives",
+    "anchor_qid": "Q19895241",
+    "anchor_label": "comitia curiata",
+    "confidence": "llm:0.85"
+  },
+  {
+    "subject_id": "subj_rr_hist_sources",
+    "label": "Primary sources and traditions",
+    "anchor_qid": "Q17167",
+    "anchor_label": "Roman Republic",
+    "confidence": "llm:0.65"
+  },
+  {
+    "subject_id": "subj_rr_hist_method",
+    "label": "Historical method, bias, source criticism",
+    "anchor_qid": "Q2345364",
+    "anchor_label": "Roman historiography",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_thought_republicanism",
+    "label": "Republican ideals (virtus, mos maiorum, liberty)",
+    "anchor_qid": "Q1887031",
+    "anchor_label": "mos maiorum",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_thought_constitutionalism",
+    "label": "Constitutionalism and mixed government models",
+    "anchor_qid": "Q2576746",
+    "anchor_label": "Constitution of the Roman Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_time_early",
+    "label": "Early Republic (periodization)",
+    "anchor_qid": "Q15800869",
+    "anchor_label": "Early Roman Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_time_middle",
+    "label": "Middle Republic (periodization)",
+    "anchor_qid": "Q6106068",
+    "anchor_label": "Middle Roman Republic",
+    "confidence": "llm:1.00"
+  },
+  {
+    "subject_id": "subj_rr_time_late",
+    "label": "Late Republic (periodization)",
+    "anchor_qid": "Q3952",
+    "anchor_label": "Late Roman Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_time_transition",
+    "label": "Transition to Empire",
+    "anchor_qid": "Q2277",
+    "anchor_label": "Roman Empire",
+    "confidence": "llm:0.90"
+  },
+  {
+    "subject_id": "subj_rr_time_early_events",
+    "label": "Early Republic: institutional formation",
+    "anchor_qid": "Q17167",
+    "anchor_label": "Roman Republic",
+    "confidence": "llm:0.90"
+  },
+  {
+    "subject_id": "subj_rr_time_middle_imperialism",
+    "label": "Middle Republic: expansion and imperialism",
+    "anchor_qid": "Q6106068",
+    "anchor_label": "Middle Roman Republic",
+    "confidence": "llm:0.95"
+  },
+  {
+    "subject_id": "subj_rr_time_late_crisis",
+    "label": "Late Republic: crisis, reform, civil war",
+    "anchor_qid": "Q1993655",
+    "anchor_label": "(curated: Q1993655)",
+    "confidence": "curated"
+  }
+]

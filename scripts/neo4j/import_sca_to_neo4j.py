@@ -119,21 +119,21 @@ class Neo4jImporter:
         print(f"GENERATING NEO4J CYPHER")
         print(f"{'='*80}\n")
         
-        # Generate node creation
+        # Generate node creation — MERGE on qid for idempotency and multi-seed deduplication
         for i, (qid, entity) in enumerate(self.entities.items(), 1):
             label = entity.get('label', qid)
             props = entity.get('properties', 0)
-            
-            # Create node (generic for now)
+            label_escaped = label.replace("\\", "\\\\").replace("'", "\\'")
+
+            # MERGE on qid: creates if absent, matches if present (no duplicates across seeds)
             cypher = f"""
 // Entity {i}: {qid} ({label})
-CREATE (n{i}:Entity {{
-  qid: '{qid}',
-  label: '{label}',
-  properties_count: {props},
-  discovered_from: 'sca_traversal',
-  imported_at: datetime()
-}})
+MERGE (n{i}:Entity {{qid: '{qid}'}})
+ON CREATE SET
+  n{i}.label = '{label_escaped}',
+  n{i}.properties_count = {props},
+  n{i}.discovered_from = 'sca_traversal',
+  n{i}.imported_at = datetime()
 """
             self.cypher_statements.append(cypher)
             

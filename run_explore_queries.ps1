@@ -6,7 +6,7 @@ $NEO4J_USER = "neo4j"
 $NEO4J_PASSWORD = "K2sHUx9dFYhEOurYzNjlBuNb8AV9-Xlw-KJcQ85QBHM"
 
 # Read the Cypher file
-$queries = Get-Content "explore_imported_entities.cypher" -Raw
+$queries = Get-Content "Cypher/explore_imported_entities.cypher" -Raw
 
 # Split by semicolons (each query ends with ;)
 $queryList = $queries -split ";"

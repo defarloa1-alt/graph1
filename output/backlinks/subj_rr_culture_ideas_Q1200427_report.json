@@ -1,0 +1,975 @@
+{
+  "generated_at": "2026-02-24T00:25:59.421754+00:00",
+  "seed_qid": "Q1200427",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 28,
+    "candidate_sources_before_budget": 26,
+    "candidate_sources_considered": 26,
+    "accepted_before_node_budget": 19,
+    "accepted": 19,
+    "rejected": 7,
+    "entities_profiled": 19,
+    "frontier_eligible": 19,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.2692307692307692,
+    "unresolved_class_gate_passed": false,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "blocked_by_policy"
+  },
+  "rejection_reasons": {
+    "no_p31": 7
+  },
+  "datatype_profile_summary": {
+    "statement_count": 272,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 26,
+    "with_references": 57,
+    "qualifier_rate": 0.09558823529411764,
+    "reference_rate": 0.20955882352941177,
+    "datatype_counts": {
+      "wikibase-item": 171,
+      "commonsMedia": 8,
+      "url": 3,
+      "string": 7,
+      "time": 8,
+      "external-id": 70,
+      "monolingualtext": 3,
+      "quantity": 2
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 171,
+      "string": 88,
+      "time": 8,
+      "monolingualtext": 3,
+      "quantity": 2
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 171,
+      "commonsMedia|string": 8,
+      "url|string": 3,
+      "string|string": 7,
+      "time|time": 8,
+      "external-id|string": 70,
+      "monolingualtext|monolingualtext": 3,
+      "quantity|quantity": 2
+    },
+    "route_counts": {
+      "edge_candidate": 171,
+      "media_reference": 8,
+      "node_property": 13,
+      "temporal_anchor": 6,
+      "federation_id": 70,
+      "measured_attribute": 2,
+      "temporal_uncertain": 2
+    },
+    "rank_counts": {
+      "normal": 272
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 19,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q114804468",
+      "label": "Tourism in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q116213",
+        "Q49389",
+        "Q98374854"
+      ],
+      "matched_classes": [
+        "Q116213",
+        "Q49389",
+        "Q98374854"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q105303231",
+      "label": "Nos ancêtres les Romains",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-2-07-053159-2",
+        "P957": "2-07-053159-7",
+        "P268": "35794758b",
+        "P648": "OL12395889M",
+        "P2969": "2798540",
+        "P5749": "2070531597",
+        "P724": "nosancetreslesro0000hano"
+      },
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 2,
+        "with_references": 3,
+        "qualifier_rate": 0.08,
+        "reference_rate": 0.12,
+        "route_counts": {
+          "edge_candidate": 11,
+          "node_property": 5,
+          "temporal_anchor": 1,
+          "federation_id": 7,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.24,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q10656554",
+      "label": "death in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q111676757"
+      ],
+      "matched_classes": [
+        "Q111676757"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107013169",
+      "label": "religion in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q66374263"
+      ],
+      "matched_classes": [
+        "Q66374263"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.18181818181818182,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q115148329",
+      "label": "Toys and games in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q173799"
+      ],
+      "matched_classes": [
+        "Q173799"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 11,
+          "media_reference": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3125,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q120241328",
+      "label": "Civitas, empire, and Romanization",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 16
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123527933",
+      "label": "Miscellanea Eruditae Antiquitatis 1679",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q25839930"
+      ],
+      "matched_classes": [
+        "Q25839930"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P243": "165860067",
+        "P4109": "urn:nbn:de:bvb:12-bsb10211935-4"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23076923076923078,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q133850272",
+      "label": "Witchcraft in ancient Greece and Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q111676757"
+      ],
+      "matched_classes": [
+        "Q111676757"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134462832",
+      "label": "Dance in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q107357104"
+      ],
+      "matched_classes": [
+        "Q107357104"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 2,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134730409",
+      "label": "Q134730409",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q120870093"
+      ],
+      "matched_classes": [
+        "Q120870093"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137752711",
+      "label": "ancient Roman iconography",
+      "properties": [
+        "P737"
+      ],
+      "p31": [
+        "Q115857096"
+      ],
+      "matched_classes": [
+        "Q115857096"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q137827748",
+      "label": "Q137827748",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P9097": "12445056",
+        "P244": "nb2009018465",
+        "P214": "56931742",
+        "P8189": "987007441476905171",
+        "P227": "1067275053",
+        "P268": "15590439q",
+        "P213": "0000000116299121",
+        "P1207": "n2008084550",
+        "P3065": "A027670791",
+        "P269": "059822171"
+      },
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3157894736842105,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 11,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1888820",
+      "label": "culture of the Roman Republic",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q19958368"
+      ],
+      "matched_classes": [
+        "Q19958368"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121djt98"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q19198571",
+      "label": "Gefangene Germaninnen",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q191067"
+      ],
+      "matched_classes": [
+        "Q191067"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 15,
+        "with_qualifiers": 4,
+        "with_references": 5,
+        "qualifier_rate": 0.26666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 3,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.26666666666666666,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2455687",
+      "label": "culture of the Roman Empire",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q19958368"
+      ],
+      "matched_classes": [
+        "Q19958368"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.16666666666666666,
+        "route_counts": {
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q272851",
+      "label": "Roman naming conventions",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q10594245"
+      ],
+      "matched_classes": [
+        "Q10594245"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0cx28",
+        "P3417": "Roman-Naming-Conventions",
+        "P8885": "로마식 작명법"
+      },
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.05555555555555555,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "federation_id": 3,
+          "edge_candidate": 15
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3354732",
+      "label": "Roman art",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q25679497"
+      ],
+      "matched_classes": [
+        "Q25679497"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P508": "3831",
+        "P349": "00560765",
+        "P3417": "Roman-Art",
+        "P4212": "pcrtujPu6BHFnB",
+        "P3219": "rome-et-empire-romain-l-art-romain",
+        "P1296": "0208603",
+        "P7033": "scot/1153",
+        "P6366": "181399949",
+        "P7786": "T93-916",
+        "P3222": "romersk-konst",
+        "P4342": "romersk_kunst",
+        "P5019": "römische-kunst",
+        "P8408": "RomanEmpireArt",
+        "P9000": "Roman_Art",
+        "P268": "119309766",
+        "P244": "sh85007869",
+        "P950": "XX525354",
+        "P10283": "C181399949",
+        "P8189": "987007295497505171",
+        "P691": "ph128315",
+        "P1368": "000053016",
+        "P6058": "divers/art_de_la_Rome_antique/187135",
+        "P12385": "art-roma",
+        "P13591": "concept/a2f76508-45fd-4496-8f81-c493df88076c",
+        "P8636": "R/roman-art",
+        "P1036": "709.37"
+      },
+      "statement_profile": {
+        "statement_count": 44,
+        "with_qualifiers": 12,
+        "with_references": 13,
+        "qualifier_rate": 0.2727272727272727,
+        "reference_rate": 0.29545454545454547,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 26,
+          "edge_candidate": 15,
+          "temporal_uncertain": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06818181818181818,
+        "edge_candidate_count": 15,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4224629",
+      "label": "Georgy Knabe",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "22309216",
+        "P213": "0000000116061930",
+        "P1006": "182368513",
+        "P269": "134518969",
+        "P268": "13567175j",
+        "P691": "jx20050923013",
+        "P244": "n82071706",
+        "P1207": "n99020073",
+        "P7293": "9810614034305606",
+        "P2671": "/g/120vhg0h",
+        "P9037": "a86fe926-7355-49ed-a5fe-5f923f6b69f7",
+        "P10033": "knabe-georgij-stepanovich",
+        "P8189": "987007587726105171",
+        "P227": "1055744886",
+        "P12458": "226452",
+        "P10832": "E39PBJbCHxhhXXXwtjGcbkwpyd",
+        "P1368": "000093641",
+        "P535": "276289072"
+      },
+      "statement_profile": {
+        "statement_count": 39,
+        "with_qualifiers": 1,
+        "with_references": 20,
+        "qualifier_rate": 0.02564102564102564,
+        "reference_rate": 0.5128205128205128,
+        "route_counts": {
+          "edge_candidate": 19,
+          "temporal_anchor": 2,
+          "federation_id": 18
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q8564316",
+      "label": "food in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q115857096"
+      ],
+      "matched_classes": [
+        "Q115857096"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0rpjgfs",
+        "P12800": "fr:Aliments_dans_la_Rome_antique"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 7,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q1051574",
+      "label": "caupona",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q14752696",
+      "label": "ancient Roman structure",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q175836",
+      "label": "thermopolium",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2354361",
+      "label": "Q2354361",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q25052509",
+      "label": "venereum",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3397950",
+      "label": "popina",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q3589331",
+      "label": "Q3589331",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

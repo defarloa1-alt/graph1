@@ -1,206 +1,136 @@
 {
-  "generated_at": "2026-02-14T14:58:38.735150+00:00",
+  "generated_at": "2026-02-25T20:11:43.551673+00:00",
   "seed_qid": "Q1048",
   "config": {
-    "mode": "discovery",
+    "mode": "production",
     "schema_path": "JSON\\chrystallum_schema.json",
     "output_dir": "JSON/wikidata/backlinks",
     "max_depth": 1,
-    "sparql_limit": 120,
-    "max_sources_per_seed": 50,
-    "max_new_nodes_per_seed": 20,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 1500,
     "unresolved_class_threshold": 0.2,
     "unsupported_pair_threshold": 0.1,
     "min_temporal_precision": 9,
     "literal_heavy_threshold": 0.8,
     "max_p279_hops": 4,
     "timeout_s": 45,
-    "sleep_ms": 25,
+    "sleep_ms": 100,
     "batch_size": 40
   },
   "allowlists": {
     "properties": [
-      "P17",
-      "P19",
-      "P20",
-      "P31",
-      "P39",
-      "P50",
-      "P61",
-      "P84",
-      "P86",
-      "P101",
-      "P106",
       "P112",
-      "P131",
       "P138",
-      "P140",
-      "P166",
-      "P170",
-      "P176",
-      "P186",
-      "P279",
-      "P361",
-      "P366",
-      "P527",
-      "P576",
-      "P580",
-      "P582",
       "P710",
       "P737",
       "P828",
-      "P921",
-      "P1001",
-      "P1056",
-      "P1071",
-      "P1142",
-      "P1366",
-      "P1399",
-      "P1412",
-      "P1441",
-      "P1448",
-      "P2079",
-      "P2561",
-      "P2578",
-      "P2579"
+      "P1441"
     ],
-    "property_count": 43,
-    "class_allowlist_mode": "disabled",
-    "classes_count": 0,
-    "p31_denylist": []
+    "property_count": 6,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
   },
   "counts": {
-    "backlink_rows": 120,
-    "candidate_sources_before_budget": 93,
-    "candidate_sources_considered": 50,
-    "accepted_before_node_budget": 49,
-    "accepted": 20,
-    "rejected": 73,
-    "entities_profiled": 20,
-    "frontier_eligible": 20,
+    "backlink_rows": 87,
+    "candidate_sources_before_budget": 61,
+    "candidate_sources_considered": 61,
+    "accepted_before_node_budget": 45,
+    "accepted": 45,
+    "rejected": 16,
+    "entities_profiled": 45,
+    "frontier_eligible": 45,
     "frontier_excluded": 0
   },
   "gates": {
-    "unresolved_class_rate": 0.02,
-    "unresolved_class_gate_passed": true,
+    "unresolved_class_rate": 0.26229508196721313,
+    "unresolved_class_gate_passed": false,
     "unsupported_pair_rate": 0.0,
     "datatype_gate_passed": true,
-    "overall_status": "pass"
+    "overall_status": "blocked_by_policy"
   },
   "rejection_reasons": {
-    "no_p31": 1,
-    "source_budget_exceeded": 43,
-    "node_budget_exceeded": 29
+    "class_not_allowed": 15,
+    "no_p31": 1
+  },
+  "scoping": {
+    "temporal_scoped": 5,
+    "domain_scoped": 29,
+    "unscoped": 11,
+    "ambiguous_category_count": 0
   },
   "datatype_profile_summary": {
-    "statement_count": 524,
-    "missing_datavalue_statement_count": 1,
-    "with_qualifiers": 82,
-    "with_references": 139,
-    "qualifier_rate": 0.15648854961832062,
-    "reference_rate": 0.2652671755725191,
+    "statement_count": 1509,
+    "missing_datavalue_statement_count": 4,
+    "with_qualifiers": 192,
+    "with_references": 428,
+    "qualifier_rate": 0.1272365805168986,
+    "reference_rate": 0.2836315440689198,
     "datatype_counts": {
-      "globe-coordinate": 12,
-      "commonsMedia": 17,
-      "wikibase-item": 280,
-      "time": 14,
-      "external-id": 147,
-      "string": 18,
-      "monolingualtext": 12,
-      "url": 7,
+      "string": 41,
+      "external-id": 608,
+      "wikibase-item": 697,
+      "time": 37,
+      "globe-coordinate": 26,
+      "commonsMedia": 45,
+      "monolingualtext": 26,
+      "url": 12,
       "quantity": 17
     },
     "value_type_counts": {
-      "globecoordinate": 12,
-      "string": 189,
-      "wikibase-entityid": 280,
-      "time": 13,
-      "monolingualtext": 12,
-      "quantity": 17,
-      "": 1
+      "string": 706,
+      "wikibase-entityid": 695,
+      "time": 36,
+      "globecoordinate": 26,
+      "monolingualtext": 26,
+      "quantity": 16,
+      "": 4
     },
     "pair_counts": {
-      "globe-coordinate|globecoordinate": 12,
-      "commonsMedia|string": 17,
-      "wikibase-item|wikibase-entityid": 280,
-      "time|time": 13,
-      "external-id|string": 147,
-      "string|string": 18,
-      "monolingualtext|monolingualtext": 12,
-      "url|string": 7,
-      "quantity|quantity": 17,
-      "time|": 1
+      "string|string": 41,
+      "external-id|string": 608,
+      "wikibase-item|wikibase-entityid": 695,
+      "time|time": 36,
+      "globe-coordinate|globecoordinate": 26,
+      "commonsMedia|string": 45,
+      "monolingualtext|monolingualtext": 26,
+      "url|string": 12,
+      "quantity|quantity": 16,
+      "time|": 1,
+      "quantity|": 1,
+      "wikibase-item|": 2
     },
     "route_counts": {
-      "geo_attribute": 12,
-      "media_reference": 17,
-      "edge_candidate": 280,
-      "temporal_anchor": 13,
-      "federation_id": 147,
-      "node_property": 37,
-      "measured_attribute": 17,
-      "quarantine_missing_datavalue": 1
+      "node_property": 79,
+      "federation_id": 608,
+      "edge_candidate": 695,
+      "temporal_anchor": 34,
+      "geo_attribute": 26,
+      "media_reference": 45,
+      "measured_attribute": 16,
+      "quarantine_missing_datavalue": 4,
+      "temporal_uncertain": 2
     },
     "rank_counts": {
-      "normal": 521,
-      "deprecated": 2,
-      "preferred": 1
+      "normal": 1495,
+      "deprecated": 11,
+      "preferred": 3
     },
     "quarantine_reasons": {
-      "missing_datavalue": 1
+      "missing_datavalue": 4
     },
     "unsupported_pairs": {},
     "unsupported_statement_count": 0,
     "unsupported_pair_rate": 0.0,
-    "frontier_eligible_count": 20,
+    "frontier_eligible_count": 45,
     "frontier_excluded_count": 0,
     "literal_heavy_threshold": 0.8,
     "min_temporal_precision": 9
   },
   "accepted": [
-    {
-      "qid": "Q25238182",
-      "label": "crossing the Rubicon",
-      "properties": [
-        "P710"
-      ],
-      "p31": [
-        "Q13418847",
-        "Q184511",
-        "Q4350791",
-        "Q467011"
-      ],
-      "matched_classes": [
-        "Q13418847",
-        "Q184511",
-        "Q4350791",
-        "Q467011"
-      ],
-      "matched_allowlist_ancestors": [],
-      "backlink_hits": 4,
-      "statement_profile": {
-        "statement_count": 14,
-        "with_qualifiers": 0,
-        "with_references": 2,
-        "qualifier_rate": 0.0,
-        "reference_rate": 0.14285714285714285,
-        "route_counts": {
-          "geo_attribute": 1,
-          "media_reference": 1,
-          "edge_candidate": 10,
-          "temporal_anchor": 1,
-          "federation_id": 1
-        },
-        "unsupported_statement_count": 0,
-        "unsupported_pair_rate": 0.0,
-        "unsupported_pairs": {},
-        "literal_heavy_ratio": 0.14285714285714285,
-        "edge_candidate_count": 10,
-        "frontier_eligible": true,
-        "frontier_exclusion_reason": "",
-        "quarantine_reasons": {}
-      }
-    },
     {
       "qid": "Q11184",
       "label": "Julian calendar",
@@ -217,8 +147,43 @@
         "Q669102",
         "Q9337488"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q12132",
+        "Q39546"
+      ],
       "backlink_hits": 3,
+      "external_ids": {
+        "P227": "4318310-4",
+        "P646": "/m/03_n6",
+        "P3417": "Julian-Calendar",
+        "P3827": "julian-calendar",
+        "P2924": "4163808",
+        "P244": "sh85018840",
+        "P268": "11952376f",
+        "P950": "XX558693",
+        "P4342": "juliansk_kalender",
+        "P6081": "59029060",
+        "P1417": "science/Julian-calendar",
+        "P1014": "300404468",
+        "P508": "61992",
+        "P6262": "calendars:Julian_calendar",
+        "P8408": "JulianCalendar",
+        "P9287": "13184",
+        "P8189": "987007293778905171",
+        "P691": "ph909990",
+        "P9082": "0afa673d-c550-43ac-b656-75761cdedd87",
+        "P10565": "72498",
+        "P6781": "Definition:Calendar/Julian",
+        "P12086": "Juliaanse_kalender",
+        "P12800": "it:Calendario_giuliano",
+        "P8168": "Q505980",
+        "P13591": "concept/25ed170a-cdd3-4a63-bc74-387b33127784",
+        "P1036": "529.42",
+        "P7666": "julijaus-kalendorius"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
       "statement_profile": {
         "statement_count": 51,
         "with_qualifiers": 10,
@@ -257,8 +222,25 @@
         "Q756780",
         "Q839954"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q82794",
+        "Q937228"
+      ],
       "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/094lwp",
+        "P1936": "14305",
+        "P2581": "02663531n",
+        "P1584": "256155",
+        "P1481": "3600",
+        "P8068": "389000UAug",
+        "P8406": "T004975",
+        "P8519": "60504",
+        "P9957": "11234"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "temporal_scoped",
+      "scoping_confidence": 0.95,
       "statement_profile": {
         "statement_count": 45,
         "with_qualifiers": 8,
@@ -299,8 +281,17 @@
         "Q2431196",
         "Q776061"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q386724",
+        "Q39546"
+      ],
       "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/1234hh7v"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
       "statement_profile": {
         "statement_count": 22,
         "with_qualifiers": 2,
@@ -341,8 +332,16 @@
         "Q2502622",
         "Q911663"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
       "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/120v11cp"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
       "statement_profile": {
         "statement_count": 11,
         "with_qualifiers": 0,
@@ -382,8 +381,26 @@
         "Q27686",
         "Q8719053"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q43229",
+        "Q4830453"
+      ],
       "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/03fz0m",
+        "P1305": "10652",
+        "P2581": "03720366n",
+        "P1004": "b970348e-44c1-484a-8ca0-86b6d5438d55",
+        "P1417": "place/Caesars-Palace",
+        "P5652": "7242",
+        "P2002": "CaesarsPalace",
+        "P2013": "caesarspalace",
+        "P2003": "caesarspalace",
+        "P691": "ko20231181487"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
       "statement_profile": {
         "statement_count": 39,
         "with_qualifiers": 12,
@@ -410,35 +427,43 @@
       }
     },
     {
-      "qid": "Q105337036",
-      "label": "Kaì sú téknon",
+      "qid": "Q106841551",
+      "label": "Colonia Laus Iulia Corinthiensis",
       "properties": [
-        "P50"
+        "P112"
       ],
       "p31": [
-        "Q206287",
-        "Q355409"
+        "Q2202509",
+        "Q756780"
       ],
       "matched_classes": [
-        "Q206287",
-        "Q355409"
+        "Q2202509",
+        "Q756780"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
       "backlink_hits": 2,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
       "statement_profile": {
-        "statement_count": 10,
-        "with_qualifiers": 5,
-        "with_references": 1,
-        "qualifier_rate": 0.5,
-        "reference_rate": 0.1,
+        "statement_count": 13,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.15384615384615385,
+        "reference_rate": 0.0,
         "route_counts": {
           "edge_candidate": 9,
-          "node_property": 1
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "geo_attribute": 1
         },
         "unsupported_statement_count": 0,
         "unsupported_pair_rate": 0.0,
         "unsupported_pairs": {},
-        "literal_heavy_ratio": 0.1,
+        "literal_heavy_ratio": 0.23076923076923078,
         "edge_candidate_count": 9,
         "frontier_eligible": true,
         "frontier_exclusion_reason": "",
@@ -459,8 +484,29 @@
         "Q44539",
         "Q867143"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q44539"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/05qkwg",
+        "P5383": "10046",
+        "P244": "no2008073535",
+        "P214": "141106950",
+        "P1584": "277569430",
+        "P8068": "419125SJul",
+        "P1566": "10278739",
+        "P1481": "15048",
+        "P454": "20009659",
+        "P4839": "Entity[\"Building\", \"TempleOfCaesar::n4ryw\"]",
+        "P6787": "2100169",
+        "P8313": "Cæsars_tempel",
+        "P12086": "Tempel_van_Caesar",
+        "P10510": "5744"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "temporal_scoped",
+      "scoping_confidence": 0.95,
       "statement_profile": {
         "statement_count": 37,
         "with_qualifiers": 1,
@@ -499,8 +545,33 @@
         "Q3965305",
         "Q46831"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/01kn8c",
+        "P1566": "3198561",
+        "P1936": "41950",
+        "P214": "239873704",
+        "P402": "2174015",
+        "P2581": "01808015n",
+        "P269": "027530159",
+        "P268": "11955079c",
+        "P227": "4028982-5",
+        "P1417": "place/Julian-Alps",
+        "P691": "ge129501",
+        "P7305": "3868195",
+        "P3365": "alpi-giulie",
+        "P6706": "Giùlie,+Alpi-",
+        "P1617": "42352824-4e90-478f-9b95-f3d1de1d8bd0",
+        "P2326": "-83798",
+        "P1584": "197108",
+        "P1958": "42779"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "temporal_scoped",
+      "scoping_confidence": 0.95,
       "statement_profile": {
         "statement_count": 78,
         "with_qualifiers": 9,
@@ -526,46 +597,6 @@
       }
     },
     {
-      "qid": "Q1789521",
-      "label": "Giulio Cesare",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q182531",
-        "Q847109"
-      ],
-      "matched_classes": [
-        "Q182531",
-        "Q847109"
-      ],
-      "matched_allowlist_ancestors": [],
-      "backlink_hits": 2,
-      "statement_profile": {
-        "statement_count": 35,
-        "with_qualifiers": 13,
-        "with_references": 14,
-        "qualifier_rate": 0.37142857142857144,
-        "reference_rate": 0.4,
-        "route_counts": {
-          "node_property": 3,
-          "edge_candidate": 22,
-          "geo_attribute": 1,
-          "federation_id": 1,
-          "media_reference": 1,
-          "measured_attribute": 7
-        },
-        "unsupported_statement_count": 0,
-        "unsupported_pair_rate": 0.0,
-        "unsupported_pairs": {},
-        "literal_heavy_ratio": 0.34285714285714286,
-        "edge_candidate_count": 22,
-        "frontier_eligible": true,
-        "frontier_exclusion_reason": "",
-        "quarantine_reasons": {}
-      }
-    },
-    {
       "qid": "Q188751",
       "label": "Caesar",
       "properties": [
@@ -579,8 +610,27 @@
         "Q355567",
         "Q4164871"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q386724",
+        "Q4164871"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/024c73",
+        "P2924": "2061955",
+        "P5019": "caesar-30",
+        "P7982": "11367",
+        "P1014": "300264244",
+        "P6385": "istoriya/TSEZAR.html",
+        "P8313": "cæsar",
+        "P8069": "19767",
+        "P13279": "844",
+        "P13613": "98632",
+        "P7314": "kayser"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
       "statement_profile": {
         "statement_count": 27,
         "with_qualifiers": 8,
@@ -604,45 +654,6 @@
       }
     },
     {
-      "qid": "Q271723",
-      "label": "Alea iacta est",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q1935136",
-        "Q3062294"
-      ],
-      "matched_classes": [
-        "Q1935136",
-        "Q3062294"
-      ],
-      "matched_allowlist_ancestors": [],
-      "backlink_hits": 2,
-      "statement_profile": {
-        "statement_count": 23,
-        "with_qualifiers": 4,
-        "with_references": 5,
-        "qualifier_rate": 0.17391304347826086,
-        "reference_rate": 0.21739130434782608,
-        "route_counts": {
-          "federation_id": 11,
-          "edge_candidate": 9,
-          "temporal_anchor": 1,
-          "media_reference": 1,
-          "node_property": 1
-        },
-        "unsupported_statement_count": 0,
-        "unsupported_pair_rate": 0.0,
-        "unsupported_pairs": {},
-        "literal_heavy_ratio": 0.08695652173913043,
-        "edge_candidate_count": 9,
-        "frontier_eligible": true,
-        "frontier_exclusion_reason": "",
-        "quarantine_reasons": {}
-      }
-    },
-    {
       "qid": "Q320210",
       "label": "Caesar's Rhine bridges",
       "properties": [
@@ -656,8 +667,18 @@
         "Q428759",
         "Q673234"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/0gzmbq",
+        "P1936": "44552",
+        "P2581": "03558255n"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
       "statement_profile": {
         "statement_count": 19,
         "with_qualifiers": 3,
@@ -700,8 +721,19 @@
         "Q41176",
         "Q5518"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q2385804",
+        "Q41176"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P5114": "RMPC12000C",
+        "P2671": "/g/11h1v4y_1",
+        "P11012": "Q252335"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
       "statement_profile": {
         "statement_count": 19,
         "with_qualifiers": 0,
@@ -727,78 +759,6 @@
       }
     },
     {
-      "qid": "Q50243793",
-      "label": "Q50243793",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q1302249",
-        "Q1580166"
-      ],
-      "matched_classes": [
-        "Q1302249",
-        "Q1580166"
-      ],
-      "matched_allowlist_ancestors": [],
-      "backlink_hits": 2,
-      "statement_profile": {
-        "statement_count": 6,
-        "with_qualifiers": 1,
-        "with_references": 1,
-        "qualifier_rate": 0.16666666666666666,
-        "reference_rate": 0.16666666666666666,
-        "route_counts": {
-          "edge_candidate": 5,
-          "node_property": 1
-        },
-        "unsupported_statement_count": 0,
-        "unsupported_pair_rate": 0.0,
-        "unsupported_pairs": {},
-        "literal_heavy_ratio": 0.16666666666666666,
-        "edge_candidate_count": 5,
-        "frontier_eligible": true,
-        "frontier_exclusion_reason": "",
-        "quarantine_reasons": {}
-      }
-    },
-    {
-      "qid": "Q50822621",
-      "label": "Julio César",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q12308941",
-        "Q1243157"
-      ],
-      "matched_classes": [
-        "Q12308941",
-        "Q1243157"
-      ],
-      "matched_allowlist_ancestors": [],
-      "backlink_hits": 2,
-      "statement_profile": {
-        "statement_count": 14,
-        "with_qualifiers": 2,
-        "with_references": 0,
-        "qualifier_rate": 0.14285714285714285,
-        "reference_rate": 0.0,
-        "route_counts": {
-          "edge_candidate": 11,
-          "node_property": 3
-        },
-        "unsupported_statement_count": 0,
-        "unsupported_pair_rate": 0.0,
-        "unsupported_pairs": {},
-        "literal_heavy_ratio": 0.21428571428571427,
-        "edge_candidate_count": 11,
-        "frontier_eligible": true,
-        "frontier_exclusion_reason": "",
-        "quarantine_reasons": {}
-      }
-    },
-    {
       "qid": "Q668691",
       "label": "Chaussée Jules César",
       "properties": [
@@ -812,8 +772,19 @@
         "Q14752696",
         "Q194029"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q34442",
+        "Q82794"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P1584": "113295",
+        "P4212": "pcrtSjFs0TZ4oE",
+        "P646": "/m/0278k41"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "temporal_scoped",
+      "scoping_confidence": 0.95,
       "statement_profile": {
         "statement_count": 13,
         "with_qualifiers": 0,
@@ -838,43 +809,6 @@
       }
     },
     {
-      "qid": "Q80849333",
-      "label": "Ut est rerum omnium magister usus",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q206287",
-        "Q3062294"
-      ],
-      "matched_classes": [
-        "Q206287",
-        "Q3062294"
-      ],
-      "matched_allowlist_ancestors": [],
-      "backlink_hits": 2,
-      "statement_profile": {
-        "statement_count": 6,
-        "with_qualifiers": 0,
-        "with_references": 0,
-        "qualifier_rate": 0.0,
-        "reference_rate": 0.0,
-        "route_counts": {
-          "edge_candidate": 4,
-          "federation_id": 1,
-          "node_property": 1
-        },
-        "unsupported_statement_count": 0,
-        "unsupported_pair_rate": 0.0,
-        "unsupported_pairs": {},
-        "literal_heavy_ratio": 0.16666666666666666,
-        "edge_candidate_count": 4,
-        "frontier_eligible": true,
-        "frontier_exclusion_reason": "",
-        "quarantine_reasons": {}
-      }
-    },
-    {
       "qid": "Q856968",
       "label": "Forum of Caesar",
       "properties": [
@@ -888,8 +822,27 @@
         "Q174782",
         "Q839954"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q82794",
+        "Q937228"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/0bl4__",
+        "P227": "4220870-1",
+        "P214": "315161176",
+        "P1584": "445545537",
+        "P5383": "10081",
+        "P8068": "419125SFJu",
+        "P6286": "15668",
+        "P7305": "3902102",
+        "P10832": "E39PBJxCDkQX4TJCYYKJK7Ytrq",
+        "P12835": "152192",
+        "P12855": "08047530"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "temporal_scoped",
+      "scoping_confidence": 0.95,
       "statement_profile": {
         "statement_count": 28,
         "with_qualifiers": 2,
@@ -925,11 +878,32 @@
         "Q92306274"
       ],
       "matched_classes": [
-        "Q5",
-        "Q92306274"
+        "Q5"
       ],
-      "matched_allowlist_ancestors": [],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
       "backlink_hits": 2,
+      "external_ids": {
+        "P214": "301122921",
+        "P7935": "Ps_Caesar",
+        "P7041": "1192",
+        "P7293": "9810662013905606",
+        "P1368": "000015049",
+        "P271": "DA12561151",
+        "P691": "jn19992000914",
+        "P7699": "LNB:Phu;=B9",
+        "P1207": "n98010422",
+        "P7986": "42997",
+        "P269": "111134706",
+        "P9661": "23268",
+        "P11496": "1140845216597827200",
+        "P1006": "165622865",
+        "P13591": "person/ac5c4ff2-736b-43fc-be72-4fca1c5dab27"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
       "statement_profile": {
         "statement_count": 27,
         "with_qualifiers": 2,
@@ -949,599 +923,1855 @@
         "frontier_exclusion_reason": "",
         "quarantine_reasons": {}
       }
-    }
-  ],
-  "rejected": [
-    {
-      "qid": "Q180943",
-      "label": "Caesar cipher",
-      "reason": "no_p31",
-      "properties": [
-        "P138"
-      ],
-      "p31": [],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q253539",
-      "label": "Legio X Gemina",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P112"
-      ],
-      "p31": [
-        "Q163323"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q2618230",
-      "label": "18458 Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q3863"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q2738549",
-      "label": "Caesarsboom",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q811534"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q280868",
-      "label": "Battle of Gergovia",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P710"
-      ],
-      "p31": [
-        "Q188055"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q29288",
-      "label": "Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q134768"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3396592",
-      "label": "pont Jules-César",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q12280"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q34228518",
-      "label": "Iulius 131 (Pauly-Wissowa)",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q13433827"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3448621",
-      "label": "rue Jules-César",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q79007"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3665313",
-      "label": "Caesar cut",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q327496"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3694616",
-      "label": "Corso Giulio Cesare",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q79007"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3704081",
-      "label": "De analogia",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q47461344"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3769592",
-      "label": "cultural depictions of Julius Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q20742825"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q38040394",
-      "label": "Caesarova kašna",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q12029081"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3831412",
-      "label": "Lex Julia de repetundis",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q820655"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q3902216",
-      "label": "Piazza Giulio Cesare",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q174782"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q47494867",
-      "label": "A Roman massacre in the far north: Caesar's attempted annihilation of the Tencteri and Usipetes in the Dutch river area",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q21481766"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q49053259",
-      "label": "Mount Julius Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q8502"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q5016945",
-      "label": "Caesar!",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q3511312"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q5018164",
-      "label": "Cal McLish",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q5"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q50711037",
-      "label": "Novum Comum",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P112"
-      ],
-      "p31": [
-        "Q756780"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q51488513",
-      "label": "Porta Romana",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P176"
-      ],
-      "p31": [
-        "Q82117"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q52130919",
-      "label": "Julius Caesar, Roman Emperor (BC 100-44)",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q3305213"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q52750731",
-      "label": "L. L. Giulio Cesare",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q3831968"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q52914955",
-      "label": "Liceo G.Cesare - M.Valgimigli",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q5518"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q544948",
-      "label": "Commentarii de Bello Civili",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q7725634"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q55740805",
-      "label": "The Gallic War",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3331189"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q56503167",
-      "label": "The Civil Wars",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3331189"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q56870106",
-      "label": "Q56870106",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q953806"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q60967968",
-      "label": "Q60967968",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3062294"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q631476",
-      "label": "Julius Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q55818"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q63253991",
-      "label": "I fatti di Cesare",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q185363"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q63283650",
-      "label": "HV Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q847017"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q634719",
-      "label": "Legio III Gallica",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P112"
-      ],
-      "p31": [
-        "Q163323"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q6416967",
-      "label": "Lucca Conference",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P710"
-      ],
-      "p31": [
-        "Q321839"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q65122324",
-      "label": "last words of Julius Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q355409"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q66538187",
-      "label": "Julius Caesar (Andrea Ferrucci)",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q241045"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q6852241",
-      "label": "military campaigns of Julius Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P710"
-      ],
-      "p31": [
-        "Q831663"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q70493194",
-      "label": "Caesar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q70253004"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q85087148",
-      "label": "Avenue Jules César - Julius Caesarlaan",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q79007"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q875563",
-      "label": "Giulio Cesare in Egitto",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P138"
-      ],
-      "p31": [
-        "Q58483083"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q917212",
-      "label": "Legio I Germanica",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P112"
-      ],
-      "p31": [
-        "Q163323"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q9358",
-      "label": "Friedrich Nietzsche",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P737"
-      ],
-      "p31": [
-        "Q5"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q94331606",
-      "label": "Commentaries of Julius Cæsar",
-      "reason": "source_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q17518870"
-      ],
-      "backlink_hits": 1
     },
     {
       "qid": "Q104848509",
       "label": "Caesar's Retreat",
-      "reason": "node_budget_exceeded",
       "properties": [
         "P138"
       ],
       "p31": [
         "Q131295"
       ],
-      "backlink_hits": 1
+      "matched_classes": [
+        "Q131295"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q43229"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11kwvc7j3w"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.17647058823529413,
+        "reference_rate": 0.058823529411764705,
+        "route_counts": {
+          "federation_id": 1,
+          "geo_attribute": 1,
+          "edge_candidate": 12,
+          "temporal_uncertain": 1,
+          "quarantine_missing_datavalue": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.17647058823529413,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
     },
     {
-      "qid": "Q106199",
-      "label": "Commentarii de Bello Gallico",
-      "reason": "node_budget_exceeded",
+      "qid": "Q106982704",
+      "label": "Piazzale Giulio Cesare",
       "properties": [
-        "P50"
+        "P138"
       ],
       "p31": [
-        "Q7725634"
+        "Q174782"
       ],
-      "backlink_hits": 1
+      "matched_classes": [
+        "Q174782"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
     },
     {
-      "qid": "Q1148938",
-      "label": "The Ides of March",
-      "reason": "node_budget_exceeded",
+      "qid": "Q108390243",
+      "label": "Viale Giulio Cesare",
       "properties": [
-        "P921"
+        "P138"
       ],
       "p31": [
-        "Q47461344"
+        "Q79007"
       ],
-      "backlink_hits": 1
+      "matched_classes": [
+        "Q79007"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q34442"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "geo_attribute": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q110959673",
+      "label": "Q110959673",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "matched_classes": [
+        "Q79007"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q34442"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P402": "3422029",
+        "P3182": "1312054935H",
+        "P13133": "991009313205493514"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 3,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q111821370",
+      "label": "Jules César",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q2175765"
+      ],
+      "matched_classes": [
+        "Q2175765"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 5,
+        "with_references": 1,
+        "qualifier_rate": 0.35714285714285715,
+        "reference_rate": 0.07142857142857142,
+        "route_counts": {
+          "edge_candidate": 13,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
     },
     {
       "qid": "Q121",
       "label": "July",
-      "reason": "node_budget_exceeded",
       "properties": [
         "P138"
       ],
       "p31": [
         "Q47018901"
       ],
-      "backlink_hits": 1
+      "matched_classes": [
+        "Q47018901"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q186081"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1245": "6976",
+        "P227": "4389806-3",
+        "P646": "/m/040fv",
+        "P1256": "23I31",
+        "P1296": "0118365",
+        "P1417": "topic/July",
+        "P3365": "luglio",
+        "P2581": "00048548n",
+        "P5019": "juli-20",
+        "P3417": "July-month",
+        "P4342": "suoidnemánnu",
+        "P6771": "293606",
+        "P8408": "July",
+        "P6228": "6810",
+        "P6262": "farmerbob-lore:July",
+        "P9318": "suoidnemannu",
+        "P1014": "300410296",
+        "P8313": "juli",
+        "P8814": "15236963-n",
+        "P11473": "2850",
+        "P6781": "Mathematician:Mathematicians/Sorted_By_Birthday/July",
+        "P12288": "Luglio",
+        "P12385": "juliol",
+        "P12596": "37155",
+        "P12800": "en:July",
+        "P4073": "july",
+        "P8885": "7월",
+        "P8669": "jul",
+        "P13600": "7._Juli",
+        "P11408": "7月",
+        "P6900": "7月",
+        "P7666": "liepa"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 116,
+        "with_qualifiers": 34,
+        "with_references": 15,
+        "qualifier_rate": 0.29310344827586204,
+        "reference_rate": 0.12931034482758622,
+        "route_counts": {
+          "media_reference": 3,
+          "federation_id": 39,
+          "edge_candidate": 62,
+          "node_property": 11,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.12931034482758622,
+        "edge_candidate_count": 62,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
     },
     {
-      "qid": "Q1226598",
-      "label": "Anticato",
-      "reason": "node_budget_exceeded",
+      "qid": "Q131029915",
+      "label": "Q131029915",
       "properties": [
-        "P50"
+        "P138"
       ],
       "p31": [
-        "Q7725634"
+        "Q15275719"
       ],
-      "backlink_hits": 1
+      "matched_classes": [
+        "Q15275719"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q1656682"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11ltrxzjvl"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "measured_attribute": 1,
+          "media_reference": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q167440",
+      "label": "Legio IV Macedonica",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "matched_classes": [
+        "Q163323"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q176799"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01qffw"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 7,
+          "federation_id": 1,
+          "temporal_anchor": 2,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q168553",
+      "label": "Legio XIII Gemina",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "matched_classes": [
+        "Q163323"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q176799"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01sw4z",
+        "P244": "n87805396",
+        "P214": "149016943",
+        "P949": "004109617",
+        "P2163": "621470",
+        "P8189": "987007433932705171",
+        "P13591": "group/59a84f3c-bf76-4a7e-9840-f1052b59a51b"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 0,
+        "with_references": 9,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5294117647058824,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 8,
+          "federation_id": 7,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11764705882352941,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q253539",
+      "label": "Legio X Gemina",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "matched_classes": [
+        "Q163323"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q176799"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01sw4k",
+        "P214": "204978118",
+        "P269": "130286990",
+        "P227": "4575929-7",
+        "P268": "16171523w"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 4,
+        "with_references": 12,
+        "qualifier_rate": 0.21052631578947367,
+        "reference_rate": 0.631578947368421,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 10,
+          "federation_id": 6,
+          "media_reference": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15789473684210525,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q280868",
+      "label": "Battle of Gergovia",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q188055"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/041gx4",
+        "P1936": "17713",
+        "P244": "sh85054295",
+        "P8189": "987007565439705171",
+        "P13591": "concept/6da97086-3359-4f3a-8e7b-5cc0dab3b662"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 18,
+        "with_qualifiers": 1,
+        "with_references": 6,
+        "qualifier_rate": 0.05555555555555555,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 5,
+          "edge_candidate": 9,
+          "temporal_anchor": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3396592",
+      "label": "pont Jules-César",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12280"
+      ],
+      "matched_classes": [
+        "Q12280"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q12280"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1235qkbl"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 5,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3448621",
+      "label": "rue Jules-César",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "matched_classes": [
+        "Q79007"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q34442"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P630": "4942",
+        "P3182": "7551125063H",
+        "P2671": "/g/120wq_tk",
+        "P8168": "Q445310",
+        "P13133": "991001175112506314"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 5,
+        "with_references": 10,
+        "qualifier_rate": 0.21739130434782608,
+        "reference_rate": 0.43478260869565216,
+        "route_counts": {
+          "edge_candidate": 10,
+          "federation_id": 5,
+          "geo_attribute": 1,
+          "measured_attribute": 2,
+          "node_property": 2,
+          "media_reference": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.34782608695652173,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3665313",
+      "label": "Caesar cut",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q327496"
+      ],
+      "matched_classes": [
+        "Q327496"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q937228"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/06j1y6"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 2,
+          "federation_id": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3694616",
+      "label": "Corso Giulio Cesare",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "matched_classes": [
+        "Q79007"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q34442"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121fx202"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "geo_attribute": 1,
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.375,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q38040394",
+      "label": "Caesarova kašna",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12029081"
+      ],
+      "matched_classes": [
+        "Q12029081"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q860861"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P762": "13603/8-3600",
+        "P4075": "1000123451",
+        "P6736": "14027",
+        "P2671": "/g/11b6ghhqp2",
+        "P6482": "Q38040394",
+        "P8988": "base&id=1836571"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 25,
+        "with_qualifiers": 2,
+        "with_references": 12,
+        "qualifier_rate": 0.08,
+        "reference_rate": 0.48,
+        "route_counts": {
+          "federation_id": 6,
+          "edge_candidate": 13,
+          "media_reference": 1,
+          "node_property": 3,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3902216",
+      "label": "Piazza Giulio Cesare",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q174782"
+      ],
+      "matched_classes": [
+        "Q174782"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/120wrm_q"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q49053259",
+      "label": "Mount Julius Caesar",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q8502"
+      ],
+      "matched_classes": [
+        "Q8502"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q8502"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1566": "5361406",
+        "P590": "262037",
+        "P3109": "2672",
+        "P3309": "152196",
+        "P3907": "32356"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 1,
+        "with_references": 9,
+        "qualifier_rate": 0.05,
+        "reference_rate": 0.45,
+        "route_counts": {
+          "federation_id": 5,
+          "geo_attribute": 1,
+          "edge_candidate": 12,
+          "measured_attribute": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5018164",
+      "label": "Cal McLish",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1825": "m/mclisca01",
+        "P1826": "mclish001cal",
+        "P4376": "cal-mclish",
+        "P535": "57742150",
+        "P3574": "1008626",
+        "P3541": "118811",
+        "P3571": "25050",
+        "P6976": "mclic101",
+        "P646": "/m/0dnt6p",
+        "P5421": "3872",
+        "P4731": "15178",
+        "P2600": "6000000030576989337",
+        "P2482": "Cal-McLish",
+        "P4409": "mclisca01"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 42,
+        "with_qualifiers": 1,
+        "with_references": 20,
+        "qualifier_rate": 0.023809523809523808,
+        "reference_rate": 0.47619047619047616,
+        "route_counts": {
+          "temporal_anchor": 2,
+          "edge_candidate": 24,
+          "federation_id": 14,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.047619047619047616,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q50711037",
+      "label": "Novum Comum",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q756780"
+      ],
+      "matched_classes": [
+        "Q756780"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q82794"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q52750731",
+      "label": "L. L. Giulio Cesare",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q3831968"
+      ],
+      "matched_classes": [
+        "Q3831968"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q2385804"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5114": "BAPS06101T"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 8,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8888888888888888,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q52914955",
+      "label": "Liceo G.Cesare - M.Valgimigli",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q5518"
+      ],
+      "matched_classes": [
+        "Q5518"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q2385804"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5114": "RNPC01000V",
+        "P11012": "Q251123"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.7,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 3,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q56870106",
+      "label": "Q56870106",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q953806"
+      ],
+      "matched_classes": [
+        "Q953806"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q6671777"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.1111111111111111,
+        "route_counts": {
+          "edge_candidate": 7,
+          "geo_attribute": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q63283650",
+      "label": "HV Caesar",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q847017"
+      ],
+      "matched_classes": [
+        "Q847017"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q16334295"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11fjz2fszb"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "temporal_anchor": 2,
+          "federation_id": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q634719",
+      "label": "Legio III Gallica",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "matched_classes": [
+        "Q163323"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q176799"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01zw7b",
+        "P244": "no2007022093",
+        "P949": "004652348",
+        "P214": "145793487",
+        "P227": "7564210-4",
+        "P2163": "1668219",
+        "P8189": "987007386555005171",
+        "P13591": "group/d7ef2d1d-fb1c-4404-a155-efe8fa0dddfe"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 3,
+        "with_references": 13,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.6190476190476191,
+        "route_counts": {
+          "node_property": 2,
+          "edge_candidate": 9,
+          "federation_id": 9,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6416967",
+      "label": "Lucca Conference",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q321839"
+      ],
+      "matched_classes": [
+        "Q321839"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q937228"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121_c2sm",
+        "P646": "/m/0k990gg"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 2,
+          "geo_attribute": 1,
+          "edge_candidate": 7,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6852241",
+      "label": "military campaigns of Julius Caesar",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "matched_classes": [
+        "Q831663"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q43229"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0dgshyd"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 3,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q85087148",
+      "label": "Avenue Jules César - Julius Caesarlaan",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "matched_classes": [
+        "Q79007"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q34442"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P13994": "11500129"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 11,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q875563",
+      "label": "Giulio Cesare in Egitto",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q58483083"
+      ],
+      "matched_classes": [
+        "Q58483083"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q386724"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P435": "e600063c-b8bc-4141-a6ce-482c5d1f86b3",
+        "P646": "/m/01zwsv",
+        "P227": "300064624",
+        "P268": "139131219",
+        "P244": "n85064890",
+        "P214": "178649088",
+        "P906": "171627",
+        "P839": "Giulio_Cesare_in_Egitto,_HWV_17_(Handel,_George_Frideric)",
+        "P3219": "giulio-cesare",
+        "P5358": "giuliocesare",
+        "P5229": "26095",
+        "P8313": "Giulio_Cesare_in_Egitto",
+        "P8189": "987007321913905171",
+        "P10565": "457199",
+        "P1617": "4993798e-9cb7-4506-887d-74a09eba2890",
+        "P5587": "c9prr7kw5923pjb",
+        "P12930": "1943",
+        "P10765": "U00000579513"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 38,
+        "with_qualifiers": 4,
+        "with_references": 21,
+        "qualifier_rate": 0.10526315789473684,
+        "reference_rate": 0.5526315789473685,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 18,
+          "media_reference": 1,
+          "temporal_anchor": 2,
+          "node_property": 3,
+          "measured_attribute": 1,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15789473684210525,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q917212",
+      "label": "Legio I Germanica",
+      "properties": [
+        "P112"
+      ],
+      "p31": [
+        "Q163323"
+      ],
+      "matched_classes": [
+        "Q163323"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q176799"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/01ql6c",
+        "P9000": "Legio_I_Germanica"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 24,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.08333333333333333,
+        "reference_rate": 0.041666666666666664,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 18,
+          "federation_id": 2,
+          "media_reference": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.08333333333333333,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q9358",
+      "label": "Friedrich Nietzsche",
+      "properties": [
+        "P737"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q5"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P227": "118587943",
+        "P214": "89798474",
+        "P268": "11917712p",
+        "P269": "086200038",
+        "P349": "00451342",
+        "P244": "n79021132",
+        "P213": "0000000122828181",
+        "P434": "d20d70cd-db2d-476c-80f5-87ebfda2a850",
+        "P906": "205999",
+        "P646": "/m/02wh0",
+        "P865": "n0341",
+        "P1273": "a10430969",
+        "P1207": "n94000943",
+        "P866": "friedrich-nietzsche",
+        "P1015": "90051300",
+        "P723": "niet003",
+        "P1263": "914/000031821",
+        "P1741": "136578",
+        "P1711": "61685",
+        "P839": "Category:Nietzsche,_Friedrich",
+        "P1953": "720221",
+        "P648": "OL20157A",
+        "P345": "nm0631346",
+        "P2018": "P-Nietzsche.Friedrich",
+        "P2252": "38445",
+        "P1003": "000159813",
+        "P1315": "965056",
+        "P1296": "0046051",
+        "P2163": "31611",
+        "P1938": "779",
+        "P2799": "548",
+        "P1977": "12091",
+        "P2949": "Nietzsche-5",
+        "P1899": "411",
+        "P949": "000099691",
+        "P3123": "nietzsche",
+        "P863": "thinker/3642",
+        "P2188": "1792",
+        "P3430": "w6zk5h48",
+        "P3417": "Friedrich-Nietzsche-philosopher-author",
+        "P3762": "1680",
+        "P650": "439285",
+        "P3222": "friedrich-nietzsche",
+        "P3065": "A000122265",
+        "P1417": "biography/Friedrich-Nietzsche",
+        "P1607": "76461",
+        "P3630": "2132",
+        "P1728": "mn0001731235",
+        "P4293": "pe/012893",
+        "P1902": "3kb5fJZ2Hktci2A1wHXnHP",
+        "P4431": "friedrich-nietzsches-169th-birthday",
+        "P3219": "friedrich-nietzsche",
+        "P4629": "Nietzsche, Friedrich Wilhelm, 1844-1900",
+        "P1280": "7943267",
+        "P2924": "2665066",
+        "P3154": "nietzfri",
+        "P5068": "1885790",
+        "P5088": "nietzsch",
+        "P5101": "NietzscheF",
+        "P5243": "nietzsche-friedrich-086200038",
+        "P5019": "nietzsche-friedrich-wilhelm",
+        "P3987": "178002",
+        "P5375": "1880",
+        "P5441": "Nietzsche,_Friedrich",
+        "P5450": "56",
+        "P3235": "friedrich-nietzsche",
+        "P5570": "-47060",
+        "P5613": "Friedrich-Nietzsche",
+        "P691": "jn19990006124",
+        "P950": "XX905825",
+        "P1017": "ADV10176479",
+        "P1006": "068384998",
+        "P1670": "0015C0735",
+        "P5705": "friedrich-nietzsche",
+        "P5731": "50250",
+        "P5587": "31fhj7hm1w1m1l6",
+        "P4399": "pessoa407738/nietzsche",
+        "P1150": "DD 8480",
+        "P2963": "1938",
+        "P1871": "cnp02033585",
+        "P5882": "M00000238774",
+        "P245": "500222156",
+        "P409": "35471497",
+        "P1005": "9003",
+        "P3280": "0000029033",
+        "P2607": "906a25bf-5f6d-44e2-b050-357bde1758d3",
+        "P3847": "person:friedrich_wilhelm_nietzsche_(1844-1900)",
+        "P6302": "7269",
+        "P3232": "Friedrich Nietzsche",
+        "P4862": "B000APYT8O",
+        "P2850": "31470939",
+        "P396": "CFIV001040",
+        "P6573": "Friedrich_Nietzsche",
+        "P5859": "550",
+        "P2889": "M9GK-1YZ",
+        "P6745": "nietfr",
+        "P5491": "47423",
+        "P5739": "57391",
+        "P6844": "15739",
+        "P5905": "4005-72172",
+        "P6925": "80484",
+        "P6873": "275",
+        "P4212": "pcrtoRaAAq7qKG",
+        "P3365": "friedrich-wilhelm-nietzsche",
+        "P4223": "friedrich-wilhelm-nietzsche",
+        "P6404": "friedrich-wilhelm-nietzsche",
+        "P1438": "12989",
+        "P7208": "n/friedrich-nietzsche",
+        "P7311": "1453",
+        "P5034": "KAC199620237",
+        "P4104": "1003016",
+        "P7466": "364",
+        "P7507": "294",
+        "P2013": "FriedrichNietzscheAuthor",
+        "P902": "011641",
+        "P7613": "132",
+        "P5390": "classiques/nietzsche/nietzsche",
+        "P7704": "agent/base/200",
+        "P7753": "nietzsch",
+        "P7796": "1369",
+        "P2600": "6000000022464951164",
+        "P535": "1481",
+        "P6058": "personnage/wd/135272",
+        "P7902": "118587943",
+        "P7993": "friedrich-wilhelm-nietzsche",
+        "P7865": "95a5yja38danygu695b5yc1g64r38c0",
+        "P1580": "a1270705",
+        "P8234": "2002",
+        "P1309": "vtls000957039",
+        "P8235": "2002",
+        "P1233": "302319",
+        "P4611": "197532",
+        "P4343": "Nietzsche, Friedrich",
+        "P271": "DA00158683",
+        "P2734": "NietzscheFriedrich",
+        "P2381": "46774",
+        "P5504": "people/102576",
+        "P8406": "T062440",
+        "P8034": "495/74146",
+        "P8432": "N/Nietzsche_Friedrich",
+        "P8385": "16074",
+        "P6821": "alvin-person:14490",
+        "P8547": "000005794",
+        "P8496": "nietzche-friedrich-wilhelm-1844-1900-philosopher",
+        "P1556": "nietzsche.friedrich",
+        "P5063": "i96406",
+        "P6412": "10121",
+        "P3788": "000055707",
+        "P4619": "000589296",
+        "P7369": "000007045",
+        "P8179": "ncf10070256",
+        "P3846": "87097968757525",
+        "P6394": "a1113401x",
+        "P3348": "61017",
+        "P8189": "987007266069605171",
+        "P7699": "LNB:V*26132;=BA",
+        "P1368": "000003353",
+        "P7026": "11065",
+        "P7029": "772013",
+        "P1375": "000100794",
+        "P7293": "9810610275805606",
+        "P7039": "000068389",
+        "P8750": "14244",
+        "P8805": "160000008437327",
+        "P8795": "20010",
+        "P8849": "4009317",
+        "P8833": "28488",
+        "P4084": "35373",
+        "P8851": "7116903",
+        "P7982": "43734",
+        "P8870": "C4436",
+        "P8914": "19569",
+        "P8974": "a/743ed848-ecc4-4a6b-8e04-358d25a19079",
+        "P8980": "000208220",
+        "P9037": "4366c11a-587e-4fdb-a27d-ff7358ebc829",
+        "P9048": "71",
+        "P4342": "Friedrich_Nietzsche",
+        "P9164": "63693",
+        "P9178": "565",
+        "P9179": "53653",
+        "P9226": "nietzsche-friedrich-1844-1900",
+        "P5421": "78533",
+        "P9223": "88851a08-d6fd-4294-9023-478ad92c31c9",
+        "P9251": "3712",
+        "P8902": "people/89358",
+        "P8349": "38909",
+        "P9171": "22257",
+        "P7700": "vtls005046589",
+        "P9141": "1600",
+        "P8168": "Q220133",
+        "P5617": "friedrich-nietzsche-373",
+        "P7666": "friedrich-nietzsche",
+        "P9459": "friedrich-nietzsche",
+        "P9352": "111631",
+        "P9522": "8056",
+        "P9556": "nietzsche-friedrich__1475",
+        "P9626": "1012",
+        "P9678": "10042",
+        "P9686": "3088",
+        "P1695": "a0000001181373",
+        "P9807": "153051",
+        "P7212": "friedrich-nietzsche-lyrics.html",
+        "P6839": "Creator/FriedrichNietzsche",
+        "P9918": "PE00000089",
+        "P9984": "981058519885006706",
+        "P6385": "kultura_i_obrazovanie/literatura/NITSSHE_FRIDRIH.html",
+        "P10069": "48875",
+        "P6441": "4508932",
+        "P10242": "04416/eu_n_0775/n0775",
+        "P7775": "Friedrich_Nietzsche",
+        "P8313": "Friedrich_Nietzsche",
+        "P9466": "Friedrich_Nietzsche",
+        "P7305": "3947559",
+        "P10227": "vtls000844476",
+        "P10021": "a10002174",
+        "P9995": "223836",
+        "P3368": "3736220",
+        "P9247": "20981",
+        "P701": "P42550",
+        "P10141": "69744",
+        "P8238": "63542",
+        "P10553": "133733971",
+        "P8591": "19943",
+        "P8410": "9780195396577-0081",
+        "P6870": "134787",
+        "P10757": "3451",
+        "P10565": "111178",
+        "P7502": "Friedrich_Nietzsche-PAW",
+        "P9001": "8-0911",
+        "P9212": "5401",
+        "P1890": "000034489",
+        "P11155": "82477",
+        "P11156": "56937",
+        "P11239": "0005916877",
+        "P10302": "friedrich-nietzsche",
+        "P1185": "107895",
+        "P10780": "friedrich-nietzsche",
+        "P11496": "1140282266609639296",
+        "P11249": "14135504",
+        "P5002": "2577741",
+        "P11686": "981058519885006706",
+        "P11514": "nitsshe-fridrikh-770d9f",
+        "P2732": "38737",
+        "P10376": "mathematics/nietzsche",
+        "P1617": "f0a48087-5fbc-47f0-8796-e0883c0b4129",
+        "P9943": "person/489673989127",
+        "P11870": "3342",
+        "P11180": "7349",
+        "P11158": "5731",
+        "P9371": "166012387",
+        "P10832": "E39PBJmtyMkfvvT3yjm9mrhWDq",
+        "P7400": "nietzschefriedrich",
+        "P4839": "Entity[\"Person\", \"FriedrichNietzsche::3q3v6\"]",
+        "P12098": "891979",
+        "P12086": "Friedrich_Nietzsche",
+        "P9885": "b0461e0d-4f2a-580f-3034-3da37104331b",
+        "P9802": "22192",
+        "P12385": "friedrich-wilhelm-nietzsche",
+        "P11386": "friedrich-nietzsche",
+        "P12458": "64782",
+        "P12483": "12358",
+        "P4359": "friedrichnietzsche",
+        "P12597": "31383",
+        "P12582": "20110803100234344",
+        "P12615": "1377",
+        "P12614": "n/nicshe_f",
+        "P12386": "u17773",
+        "P9707": "59762",
+        "P12674": "Q123336",
+        "P6214": "jmb-pers-117478",
+        "P270": "n2004347556",
+        "P6702": "hri43lequvuetvui",
+        "P1213": "000195035",
+        "P10307": "AC000545232",
+        "P12800": "en:Friedrich_Nietzsche",
+        "P12836": "27234123",
+        "P12874": "301014",
+        "P5489": "291318",
+        "P12430": "d044879b-5956-460f-8c26-67a157558407",
+        "P12502": "14788",
+        "P13019": "43504",
+        "P13049": "118587943",
+        "P9964": "118587943",
+        "P8885": "프리드리히 니체",
+        "P10608": "agent/gnd_118587943",
+        "P13051": "26403",
+        "P13166": "60939",
+        "P6706": "Nietzsche,+Friedrich+Wilhelm",
+        "P11227": "128060",
+        "P6698": "フリードリヒ・ニーチェ",
+        "P10387": "1297",
+        "P11818": "gdjzkfeeijjjkxx",
+        "P6640": "262562",
+        "P13437": "Nietzsche_Friedrich",
+        "P13455": "310",
+        "P13509": "6466",
+        "P13596": "nietzsche-friedrich",
+        "P8445": "26676",
+        "P13591": "person/58a613e3-7c25-4303-aafa-b9bbb8199718",
+        "P13613": "157068",
+        "P8895": "Friedrich_Nietzsche",
+        "P13834": "people/n/i.htm#nietzsche-friedrich",
+        "P5361": "NietzscheFriedrichWilhelm1844-1900",
+        "P13906": "1649716",
+        "P13951": "136793",
+        "P14073": "01944072-fe3f-73a8-96b0-17b82e1cf1f6",
+        "P10400": "594"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 524,
+        "with_qualifiers": 64,
+        "with_references": 155,
+        "qualifier_rate": 0.12213740458015267,
+        "reference_rate": 0.2958015267175573,
+        "route_counts": {
+          "edge_candidate": 162,
+          "federation_id": 341,
+          "media_reference": 8,
+          "node_property": 7,
+          "temporal_anchor": 4,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.02862595419847328,
+        "edge_candidate_count": 162,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q25238182",
+      "label": "crossing the Rubicon",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q13418847",
+        "Q184511",
+        "Q4350791",
+        "Q467011"
+      ],
+      "backlink_hits": 4
+    },
+    {
+      "qid": "Q124800412",
+      "label": "Q124800412",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q15711870",
+        "Q2962925"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q137907746",
+      "label": "Júlio César",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12308941",
+        "Q1243157"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1789521",
+      "label": "Giulio Cesare",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q182531",
+        "Q847109"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q50822621",
+      "label": "Julio César",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q12308941",
+        "Q1243157"
+      ],
+      "backlink_hits": 2
     },
     {
       "qid": "Q1247098",
       "label": "Caesar's Comet",
-      "reason": "node_budget_exceeded",
+      "reason": "class_not_allowed",
       "properties": [
         "P138"
       ],
@@ -1553,7 +2783,7 @@
     {
       "qid": "Q12734616",
       "label": "Lusus Troiae",
-      "reason": "node_budget_exceeded",
+      "reason": "class_not_allowed",
       "properties": [
         "P112"
       ],
@@ -1563,213 +2793,19 @@
       "backlink_hits": 1
     },
     {
-      "qid": "Q12899121",
-      "label": "Caesaris coniugium non facto modo turpi, sed etiam fama sinistra vacare debet",
-      "reason": "node_budget_exceeded",
+      "qid": "Q180943",
+      "label": "Caesar cipher",
+      "reason": "no_p31",
       "properties": [
-        "P50"
+        "P138"
       ],
-      "p31": [
-        "Q206287"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q12902604",
-      "label": "Life of Julius Caesar",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q7725634"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q167440",
-      "label": "Legio IV Macedonica",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P112"
-      ],
-      "p31": [
-        "Q163323"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q1674806",
-      "label": "Carry On Cleo",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q11424"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q168553",
-      "label": "Legio XIII Gemina",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P112"
-      ],
-      "p31": [
-        "Q163323"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q20875544",
-      "label": "Caesar",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q7725634"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q20891729",
-      "label": "Yuliy Tsezar'",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q13433827"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q20995325",
-      "label": "Tsezar'",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q13433827"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q20995326",
-      "label": "Tsezar', Yuliy",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q13433827"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q21163096",
-      "label": "Comentários sobre a Guerra Gálica",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3331189"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q21163272",
-      "label": "Commentaries on the Gallic War",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3331189"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q21163301",
-      "label": "Q21163301",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3331189"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q21163322",
-      "label": "Q21163322",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3331189"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q21163341",
-      "label": "Commentarii de Bello Gallico",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P50"
-      ],
-      "p31": [
-        "Q3331189"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q21234676",
-      "label": "Sources and historiography on Julius Caesar",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q17524420"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q2241402",
-      "label": "The Death of Kings",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q47461344"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q2245607",
-      "label": "The Field of Swords",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q47461344"
-      ],
+      "p31": [],
       "backlink_hits": 1
     },
     {
       "qid": "Q22683858",
       "label": "Debate over the execution of Catiline's supporters",
-      "reason": "node_budget_exceeded",
+      "reason": "class_not_allowed",
       "properties": [
         "P710"
       ],
@@ -1781,7 +2817,7 @@
     {
       "qid": "Q228036",
       "label": "cesarean section",
-      "reason": "node_budget_exceeded",
+      "reason": "class_not_allowed",
       "properties": [
         "P138"
       ],
@@ -1791,38 +2827,74 @@
       "backlink_hits": 1
     },
     {
-      "qid": "Q24266820",
-      "label": "EB-11 / Caesar, Gaius Julius",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q13433827"
-      ],
-      "backlink_hits": 1
-    },
-    {
-      "qid": "Q24963317",
-      "label": "Caesar, Life of a Colossus",
-      "reason": "node_budget_exceeded",
-      "properties": [
-        "P921"
-      ],
-      "p31": [
-        "Q7725634"
-      ],
-      "backlink_hits": 1
-    },
-    {
       "qid": "Q25207142",
       "label": "French ship César",
-      "reason": "node_budget_exceeded",
+      "reason": "class_not_allowed",
       "properties": [
         "P138"
       ],
       "p31": [
         "Q264934"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2618230",
+      "label": "18458 Caesar",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q3863"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2738549",
+      "label": "Caesarsboom",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q811534"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q29288",
+      "label": "Caesar",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q134768"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q631476",
+      "label": "Julius Caesar",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q55818"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q70493194",
+      "label": "Caesar",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q70253004"
       ],
       "backlink_hits": 1
     }

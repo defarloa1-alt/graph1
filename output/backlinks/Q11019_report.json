@@ -1,0 +1,1121 @@
+{
+  "generated_at": "2026-02-25T00:09:05.997215+00:00",
+  "seed_qid": "Q11019",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 41,
+    "candidate_sources_before_budget": 29,
+    "candidate_sources_considered": 29,
+    "accepted_before_node_budget": 17,
+    "accepted": 17,
+    "rejected": 12,
+    "entities_profiled": 17,
+    "frontier_eligible": 17,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.41379310344827586,
+    "unresolved_class_gate_passed": false,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "blocked_by_policy"
+  },
+  "rejection_reasons": {
+    "class_not_allowed": 3,
+    "no_p31": 9
+  },
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 14,
+    "unscoped": 3,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 335,
+    "missing_datavalue_statement_count": 2,
+    "with_qualifiers": 89,
+    "with_references": 139,
+    "qualifier_rate": 0.2656716417910448,
+    "reference_rate": 0.41492537313432837,
+    "datatype_counts": {
+      "wikibase-item": 169,
+      "time": 16,
+      "globe-coordinate": 5,
+      "commonsMedia": 10,
+      "quantity": 30,
+      "external-id": 85,
+      "string": 7,
+      "url": 5,
+      "monolingualtext": 8
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 168,
+      "time": 16,
+      "globecoordinate": 5,
+      "string": 106,
+      "quantity": 30,
+      "monolingualtext": 8,
+      "": 2
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 168,
+      "time|time": 16,
+      "globe-coordinate|globecoordinate": 5,
+      "commonsMedia|string": 10,
+      "quantity|quantity": 30,
+      "external-id|string": 85,
+      "string|string": 6,
+      "url|string": 5,
+      "monolingualtext|monolingualtext": 8,
+      "wikibase-item|": 1,
+      "string|": 1
+    },
+    "route_counts": {
+      "edge_candidate": 168,
+      "temporal_anchor": 16,
+      "geo_attribute": 5,
+      "media_reference": 10,
+      "measured_attribute": 30,
+      "federation_id": 85,
+      "node_property": 19,
+      "quarantine_missing_datavalue": 2
+    },
+    "rank_counts": {
+      "normal": 326,
+      "preferred": 9
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 2
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 17,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q11856368",
+      "label": "Q11856368",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q2111762",
+        "Q4830453",
+        "Q76384695"
+      ],
+      "matched_classes": [
+        "Q2111762",
+        "Q4830453",
+        "Q76384695"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/122kclkx"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 21,
+        "with_qualifiers": 2,
+        "with_references": 7,
+        "qualifier_rate": 0.09523809523809523,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 16,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "measured_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q207770",
+      "label": "Pirelli",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q43229",
+        "Q4830453",
+        "Q891723"
+      ],
+      "matched_classes": [
+        "Q43229",
+        "Q4830453",
+        "Q891723"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q43229",
+        "Q4830453"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/0d63b",
+        "P946": "IT0005278236",
+        "P3417": "Pirelli",
+        "P213": "0000000121727274",
+        "P1296": "0051140",
+        "P3347": "4295875704",
+        "P2657": "7655050974-03",
+        "P2427": "grid.425004.7",
+        "P1417": "topic/Pirelli-SpA",
+        "P1278": "815600A0C9AFC1F2A709",
+        "P2002": "pirelli",
+        "P4527": "82773",
+        "P2397": "UCRcfcmDBCczrnod3uLDWsTA",
+        "P6366": "2799899383",
+        "P244": "n50071900",
+        "P227": "4511950-8",
+        "P214": "142501160",
+        "P6782": "03eh15043",
+        "P2013": "Pirelli",
+        "P2003": "pirelli",
+        "P8313": "Pirelli",
+        "P269": "029527198",
+        "P7502": "Pirelli-DZ6A4",
+        "P2174": "10541",
+        "P691": "kn20080116027",
+        "P2088": "pirelli",
+        "P11822": "h1/co/A0266H/0705/L",
+        "P9152": "1e22b552-97f1-5fe3-a3d1-72a30c7e4298",
+        "P9871": "6731",
+        "P12385": "pirelli",
+        "P13591": "group/3bfbec81-8295-43b3-a726-828e9534d6d5",
+        "P11471": "58203"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 102,
+        "with_qualifiers": 52,
+        "with_references": 55,
+        "qualifier_rate": 0.5098039215686274,
+        "reference_rate": 0.5392156862745098,
+        "route_counts": {
+          "node_property": 3,
+          "edge_candidate": 40,
+          "federation_id": 37,
+          "temporal_anchor": 2,
+          "measured_attribute": 18,
+          "media_reference": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.22549019607843138,
+        "edge_candidate_count": 40,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q45557",
+      "label": "FLSmidth",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q4830453",
+        "Q6881511",
+        "Q891723"
+      ],
+      "matched_classes": [
+        "Q4830453",
+        "Q6881511",
+        "Q891723"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P646": "/m/03m5nmy",
+        "P946": "DK0010234384",
+        "P3417": "Flsmidth",
+        "P1059": "58180912",
+        "P2427": "grid.424384.d",
+        "P1320": "dk/58180912",
+        "P6782": "03qf09715",
+        "P2013": "flsmidthgroup",
+        "P2002": "flsmidth",
+        "P2003": "flsmidthgroup",
+        "P1278": "213800G7EG4156NNPG91",
+        "P9477": "FLSmidth_A/S",
+        "P3500": "265989",
+        "P13092": "K000328743"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 42,
+        "with_qualifiers": 9,
+        "with_references": 15,
+        "qualifier_rate": 0.21428571428571427,
+        "reference_rate": 0.35714285714285715,
+        "route_counts": {
+          "edge_candidate": 17,
+          "node_property": 2,
+          "federation_id": 15,
+          "temporal_anchor": 1,
+          "media_reference": 2,
+          "measured_attribute": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.21428571428571427,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q106498358",
+      "label": "Champion Register Company",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q4830453",
+        "Q6881511"
+      ],
+      "matched_classes": [
+        "Q4830453",
+        "Q6881511"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P244": "no2021044558"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q118435893",
+      "label": "Q118435893",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q460178",
+        "Q83405"
+      ],
+      "matched_classes": [
+        "Q460178",
+        "Q83405"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q41176",
+        "Q4830453"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 5,
+        "with_references": 2,
+        "qualifier_rate": 0.35714285714285715,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "edge_candidate": 9,
+          "node_property": 3,
+          "geo_attribute": 1,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q17112014",
+      "label": "KHD Humboldt Wedag",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q219577",
+        "Q4830453"
+      ],
+      "matched_classes": [
+        "Q219577",
+        "Q4830453"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2427": "grid.506436.2",
+        "P214": "239682205",
+        "P6782": "03hm29g42",
+        "P646": "/m/03p2hwf",
+        "P2088": "khd-humboldt-wedag",
+        "P946": "DE0006578008"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 0,
+        "with_references": 8,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 8,
+          "temporal_anchor": 1,
+          "federation_id": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0625,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3150628",
+      "label": "Q3150628",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q4830453",
+        "Q6881511"
+      ],
+      "matched_classes": [
+        "Q4830453",
+        "Q6881511"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2671": "/g/12222333"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q78625394",
+      "label": "Q78625394",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q1662011",
+        "Q83405"
+      ],
+      "matched_classes": [
+        "Q1662011",
+        "Q83405"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q41176"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "edge_candidate": 6,
+          "geo_attribute": 1,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "quarantine_missing_datavalue": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 1
+        }
+      }
+    },
+    {
+      "qid": "Q107539671",
+      "label": "Q107539671",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q79007"
+      ],
+      "matched_classes": [
+        "Q79007"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q34442"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.3076923076923077,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "media_reference": 1,
+          "node_property": 4,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.46153846153846156,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q109570506",
+      "label": "Mitsubishi Logisnext Americas Inc.",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q783794"
+      ],
+      "matched_classes": [
+        "Q783794"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q43229"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q115555263",
+      "label": "Terrormachine",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q541947"
+      ],
+      "matched_classes": [
+        "Q541947"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q105543609"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q340736",
+      "label": "Achshalter",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q811909"
+      ],
+      "matched_classes": [
+        "Q811909"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q39546"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121n9hb0"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q37802777",
+      "label": "Maschinenfabrik Warchalowski, Eissler",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q1662011"
+      ],
+      "matched_classes": [
+        "Q1662011"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q41176"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2951": "12182",
+        "P9154": "15929"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 7,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 7,
+          "geo_attribute": 1,
+          "node_property": 2,
+          "media_reference": 1,
+          "federation_id": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5358802",
+      "label": "Elematic",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q4830453"
+      ],
+      "matched_classes": [
+        "Q4830453"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03hkbvm"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q6883012",
+      "label": "Mitsubishi Caterpillar Forklift Europe B.V.",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q4830453"
+      ],
+      "matched_classes": [
+        "Q4830453"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/09m5zt8"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.7142857142857143,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q705337",
+      "label": "Krones AG",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q4830453"
+      ],
+      "matched_classes": [
+        "Q4830453"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/05b_2_y",
+        "P946": "DE0006335003",
+        "P2002": "kronesag",
+        "P3417": "Krones-company",
+        "P213": "0000000106596472",
+        "P214": "129032471",
+        "P227": "10046578-X",
+        "P409": "36220630",
+        "P691": "xx0042545",
+        "P244": "n82146193",
+        "P2013": "kronesag",
+        "P4264": "krones-ag",
+        "P2003": "kronesag",
+        "P2397": "UCK_tCsEN3gO3GHL6U4Ci0BQ",
+        "P1278": "529900NY2GSZWWUBW049",
+        "P2088": "krones"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 42,
+        "with_qualifiers": 15,
+        "with_references": 27,
+        "qualifier_rate": 0.35714285714285715,
+        "reference_rate": 0.6428571428571429,
+        "route_counts": {
+          "edge_candidate": 13,
+          "node_property": 2,
+          "federation_id": 18,
+          "temporal_anchor": 1,
+          "media_reference": 2,
+          "measured_attribute": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.23809523809523808,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q82555746",
+      "label": "Société du Renard",
+      "properties": [
+        "P1056"
+      ],
+      "p31": [
+        "Q4830453"
+      ],
+      "matched_classes": [
+        "Q4830453"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q4830453"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11frl0b250"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8,
+          "federation_id": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q10676736",
+      "label": "E-clip",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q228039",
+        "Q44409287"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1411232",
+      "label": "fuel tank",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q15297198",
+      "label": "mechanical system",
+      "reason": "no_p31",
+      "properties": [
+        "P527"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1552626",
+      "label": "mechanical joint",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q194302",
+      "label": "clutch",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q44409287"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2583685",
+      "label": "propulsion",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q47146",
+      "label": "user interface",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q517596",
+      "label": "mechanism",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q56303805",
+      "label": "Q56303805",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q66120897",
+      "label": "automated service",
+      "reason": "class_not_allowed",
+      "properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q130303173"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q80594",
+      "label": "self-destruct",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q98534678",
+      "label": "control device",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

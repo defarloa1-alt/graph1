@@ -1,0 +1,276 @@
+{
+  "generated_at": "2026-02-24T00:31:34.792076+00:00",
+  "seed_qid": "Q6106068",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 5,
+    "candidate_sources_before_budget": 2,
+    "candidate_sources_considered": 2,
+    "accepted_before_node_budget": 2,
+    "accepted": 2,
+    "rejected": 0,
+    "entities_profiled": 2,
+    "frontier_eligible": 2,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 100,
+    "missing_datavalue_statement_count": 2,
+    "with_qualifiers": 18,
+    "with_references": 20,
+    "qualifier_rate": 0.18,
+    "reference_rate": 0.2,
+    "datatype_counts": {
+      "time": 5,
+      "monolingualtext": 2,
+      "wikibase-item": 52,
+      "external-id": 32,
+      "url": 1,
+      "string": 2,
+      "commonsMedia": 3,
+      "globe-coordinate": 1,
+      "quantity": 2
+    },
+    "value_type_counts": {
+      "time": 5,
+      "monolingualtext": 2,
+      "wikibase-entityid": 52,
+      "string": 36,
+      "globecoordinate": 1,
+      "quantity": 2,
+      "": 2
+    },
+    "pair_counts": {
+      "time|time": 5,
+      "monolingualtext|monolingualtext": 2,
+      "wikibase-item|wikibase-entityid": 52,
+      "external-id|string": 32,
+      "url|string": 1,
+      "string|string": 2,
+      "commonsMedia|string": 1,
+      "globe-coordinate|globecoordinate": 1,
+      "quantity|quantity": 2,
+      "commonsMedia|": 2
+    },
+    "route_counts": {
+      "temporal_anchor": 5,
+      "node_property": 5,
+      "edge_candidate": 52,
+      "federation_id": 32,
+      "media_reference": 1,
+      "geo_attribute": 1,
+      "measured_attribute": 2,
+      "quarantine_missing_datavalue": 2
+    },
+    "rank_counts": {
+      "normal": 95,
+      "preferred": 3,
+      "deprecated": 2
+    },
+    "quarantine_reasons": {
+      "missing_datavalue": 2
+    },
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 2,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q122861593",
+      "label": "Carsten Hjort Lange: From Hannibal to Sulla: The Birth of Civil War in Republican Rome. Berlin: De Gruyter 2024",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q193495",
+        "Q3331189",
+        "Q571"
+      ],
+      "matched_classes": [
+        "Q193495",
+        "Q3331189",
+        "Q571"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P212": "978-3-11-133521-6",
+        "P648": "OL50648687M"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 4,
+        "with_references": 0,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "node_property": 2,
+          "edge_candidate": 13,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q3024240"
+      ],
+      "matched_classes": [
+        "Q11514315",
+        "Q3024240"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/06frc",
+        "P1900": "dates/lod/69",
+        "P3417": "Roman-Republic",
+        "P3219": "rome-et-empire-romain-la-republique",
+        "P1417": "place/Roman-Republic",
+        "P244": "sh85115114",
+        "P4212": "pcrtoNSSGgIkbX",
+        "P6366": "2775878175",
+        "P5063": "i83100",
+        "P8814": "08817810-n",
+        "P3553": "20018539",
+        "P8189": "987007543885005171",
+        "P6839": "UsefulNotes/TheRomanRepublic",
+        "P8895": "The_Roman_Republic",
+        "P4839": "Entity[\"HistoricalCountry\", \"RomanRepublic\"]",
+        "P9000": "Roman_Republic",
+        "P3222": "romerska-republiken",
+        "P268": "11951115f",
+        "P1245": "913399",
+        "P2581": "00068190n",
+        "P1617": "59b8efc7-928f-480b-aa65-17f685d42638",
+        "P11835": "6001",
+        "P9957": "93573",
+        "P12800": "fr:République_romaine",
+        "P2950": "roman_republic",
+        "P8168": "Q995825",
+        "P13591": "place/c82952da-e51c-474c-91ff-98de477d4fa1"
+      },
+      "statement_profile": {
+        "statement_count": 80,
+        "with_qualifiers": 14,
+        "with_references": 20,
+        "qualifier_rate": 0.175,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "node_property": 3,
+          "edge_candidate": 39,
+          "federation_id": 28,
+          "media_reference": 1,
+          "temporal_anchor": 4,
+          "geo_attribute": 1,
+          "measured_attribute": 2,
+          "quarantine_missing_datavalue": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0875,
+        "edge_candidate_count": 39,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {
+          "missing_datavalue": 2
+        }
+      }
+    }
+  ],
+  "rejected": []
+}

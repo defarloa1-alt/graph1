@@ -1,0 +1,884 @@
+{
+  "generated_at": "2026-02-24T00:31:03.043795+00:00",
+  "seed_qid": "Q2345364",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 18,
+    "candidate_sources_before_budget": 16,
+    "candidate_sources_considered": 16,
+    "accepted_before_node_budget": 16,
+    "accepted": 16,
+    "rejected": 0,
+    "entities_profiled": 16,
+    "frontier_eligible": 16,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 355,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 55,
+    "with_references": 126,
+    "qualifier_rate": 0.15492957746478872,
+    "reference_rate": 0.35492957746478876,
+    "datatype_counts": {
+      "wikibase-item": 180,
+      "url": 6,
+      "time": 13,
+      "monolingualtext": 14,
+      "external-id": 137,
+      "string": 1,
+      "commonsMedia": 1,
+      "quantity": 3
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 180,
+      "string": 145,
+      "time": 13,
+      "monolingualtext": 14,
+      "quantity": 3
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 180,
+      "url|string": 6,
+      "time|time": 13,
+      "monolingualtext|monolingualtext": 14,
+      "external-id|string": 137,
+      "string|string": 1,
+      "commonsMedia|string": 1,
+      "quantity|quantity": 3
+    },
+    "route_counts": {
+      "edge_candidate": 180,
+      "node_property": 21,
+      "temporal_anchor": 13,
+      "federation_id": 137,
+      "media_reference": 1,
+      "measured_attribute": 3
+    },
+    "rank_counts": {
+      "normal": 352,
+      "preferred": 3
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 16,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q136101450",
+      "label": "Bulletin analytique d'histoire romaine",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1789476",
+        "Q737498"
+      ],
+      "matched_classes": [
+        "Q1789476",
+        "Q737498"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P236": "0525-1044",
+        "P4730": "4873",
+        "P6981": "47311"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.058823529411764705,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 11,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.11764705882352941,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q652779",
+      "label": "LacusCurtius",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q212805",
+        "Q35127"
+      ],
+      "matched_classes": [
+        "Q212805",
+        "Q35127"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/03r86r"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 9,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107155265",
+      "label": "Brandon F. Jones",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 29,
+        "with_qualifiers": 16,
+        "with_references": 13,
+        "qualifier_rate": 0.5517241379310345,
+        "reference_rate": 0.4482758620689655,
+        "route_counts": {
+          "edge_candidate": 27,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.06896551724137931,
+        "edge_candidate_count": 27,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125915525",
+      "label": "Roman Historiography (2011)",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-1-4051-2183-5",
+        "P648": "OL11650034M",
+        "P5749": "1405121831",
+        "P724": "romanhistoriogra0000mehl",
+        "P1144": "2010047219"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.21428571428571427,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125915776",
+      "label": "Literary Texts and the Roman Historian",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-1-134-96233-4",
+        "P648": "OL29428357M"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125915866",
+      "label": "The Roman Historians",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-1-134-81652-1",
+        "P648": "OL29427265M"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.18181818181818182,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125916021",
+      "label": "Emperors and Historiography",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-90-04-17438-2",
+        "P648": "OL27035947M",
+        "P243": "465389663",
+        "P1144": "2010290854"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3076923076923077,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "federation_id": 4,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15384615384615385,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125916107",
+      "label": "The Play of Allusion in the Historia Augusta",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-0-299-30604-5",
+        "P648": "OL36213518M"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q125916140",
+      "label": "Historia Augusta Papers",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-0-19-814853-1",
+        "P648": "OL3503595M",
+        "P243": "9083347",
+        "P1144": "82023965"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.38461538461538464,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "federation_id": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.15384615384615385,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q135716488",
+      "label": "periodisation of Roman civilisation",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q816829"
+      ],
+      "matched_classes": [
+        "Q816829"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 8
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q136085200",
+      "label": "Mary Harrington",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 7,
+        "with_references": 0,
+        "qualifier_rate": 0.3684210526315789,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 17,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.10526315789473684,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q21013724",
+      "label": "Jonathan Groß",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P227": "110759393X",
+        "P214": "162146937857113832463",
+        "P244": "n2017000602",
+        "P1207": "n2017049087",
+        "P269": "198319355",
+        "P268": "17139471q",
+        "P213": "000000046091981X",
+        "P949": "004927732",
+        "P496": "0000-0002-2564-9530",
+        "P2002": "jonathan_grss",
+        "P7902": "110759393X",
+        "P9984": "981058608435106706",
+        "P8189": "987007385558705171",
+        "P10553": "863531466",
+        "P11686": "981058608435106706",
+        "P6634": "jonathan-groß-b91ba1104",
+        "P11079": "jonagr",
+        "P4033": "jonathangross@mastodon.social",
+        "P8168": "Q646456",
+        "P12361": "jonathangross.bsky.social",
+        "P2013": "gnathon",
+        "P10832": "E39PBJwD6f99hPTtGDdY7WFxjC",
+        "P13049": "110759393X",
+        "P4174": "Jonathan Groß",
+        "P4872": "554738511",
+        "P13591": "person/e31295dc-d18f-4cfe-a63c-d64299162ebf",
+        "P648": "OL10060612A"
+      },
+      "statement_profile": {
+        "statement_count": 64,
+        "with_qualifiers": 17,
+        "with_references": 10,
+        "qualifier_rate": 0.265625,
+        "reference_rate": 0.15625,
+        "route_counts": {
+          "edge_candidate": 31,
+          "temporal_anchor": 1,
+          "node_property": 1,
+          "media_reference": 1,
+          "federation_id": 27,
+          "measured_attribute": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.078125,
+        "edge_candidate_count": 31,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2833716",
+      "label": "Alexandre Grandazzi",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "54198102",
+        "P269": "030867614",
+        "P268": "12219717t",
+        "P227": "137943504",
+        "P213": "0000000117637938",
+        "P2732": "247322",
+        "P3762": "180378",
+        "P1006": "107876736",
+        "P4285": "030867614",
+        "P4369": "53008",
+        "P691": "jo2018994679",
+        "P244": "nr92019424",
+        "P1207": "n2006104405",
+        "P646": "/m/0c4wvcq",
+        "P7293": "9810683253605606",
+        "P9097": "12362761",
+        "P3987": "320194",
+        "P8189": "987007432654705171",
+        "P11249": "14753810",
+        "P11496": "1140563741534277888",
+        "P271": "DA15535792",
+        "P3630": "117322",
+        "P12458": "23091",
+        "P10832": "E39PBJmHMPkP4BqGXJBXp4KTpP",
+        "P1368": "000340214",
+        "P13049": "137943504",
+        "P8034": "495/314788",
+        "P1015": "24372",
+        "P4619": "000495472",
+        "P8179": "ncf12109899",
+        "P349": "01051926",
+        "P409": "35080751",
+        "P1005": "80702",
+        "P3065": "A003314078",
+        "P8851": "29715559",
+        "P1315": "820696",
+        "P13591": "person/8e827de1-45bf-487d-a0f7-48cd9281c2d9",
+        "P396": "RAVV081870"
+      },
+      "statement_profile": {
+        "statement_count": 65,
+        "with_qualifiers": 8,
+        "with_references": 41,
+        "qualifier_rate": 0.12307692307692308,
+        "reference_rate": 0.6307692307692307,
+        "route_counts": {
+          "federation_id": 38,
+          "edge_candidate": 24,
+          "temporal_anchor": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.015384615384615385,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3649502",
+      "label": "Q3649502",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q2345364"
+      ],
+      "matched_classes": [
+        "Q2345364"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 2,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q62559594",
+      "label": "John Briscoe",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5463": "Briscoe_John",
+        "P9037": "fd12bde5-a005-4667-bf41-aa294cc95b77",
+        "P691": "mub2013778619",
+        "P214": "109861434",
+        "P1207": "n00013827",
+        "P3987": "186153",
+        "P213": "0000000110038684",
+        "P244": "n81004016",
+        "P268": "12053569j",
+        "P269": "028767578",
+        "P7293": "9810581017205606",
+        "P227": "138910014",
+        "P11249": "14501773",
+        "P9984": "981058588373506706",
+        "P11686": "981058588373506706",
+        "P8189": "987007259148105171",
+        "P9097": "12418330",
+        "P10553": "606727337",
+        "P8034": "495/216978",
+        "P1015": "90411909",
+        "P8179": "ncf11185044",
+        "P271": "DA01827574",
+        "P409": "36146249",
+        "P1006": "069669155",
+        "P3065": "A003044113",
+        "P2734": "BriscoeJohn",
+        "P1280": "228394083",
+        "P950": "XX1212434",
+        "P1607": "3146782",
+        "P3368": "434684",
+        "P396": "RAVV072990",
+        "P9164": "6068",
+        "P9661": "26326",
+        "P10141": "58594",
+        "P11496": "1140000791819431936",
+        "P12458": "81369",
+        "P13049": "138910014",
+        "P13591": "person/8f866ea4-398a-45d5-bf7b-acf43e7fa58c",
+        "P14107": "5311"
+      },
+      "statement_profile": {
+        "statement_count": 52,
+        "with_qualifiers": 5,
+        "with_references": 25,
+        "qualifier_rate": 0.09615384615384616,
+        "reference_rate": 0.4807692307692308,
+        "route_counts": {
+          "edge_candidate": 12,
+          "federation_id": 39,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q727497",
+      "label": "Faits des Romains",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "matched_classes": [
+        "Q7725634"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "179920586",
+        "P269": "028201043",
+        "P227": "4167422-4",
+        "P244": "n94123662",
+        "P268": "12008424g",
+        "P4549": "1132",
+        "P646": "/m/0kfwxgb",
+        "P8189": "987007289818305171",
+        "P11686": "981060875974806706",
+        "P9984": "981060875974806706"
+      },
+      "statement_profile": {
+        "statement_count": 17,
+        "with_qualifiers": 0,
+        "with_references": 8,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.47058823529411764,
+        "route_counts": {
+          "federation_id": 10,
+          "edge_candidate": 6,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

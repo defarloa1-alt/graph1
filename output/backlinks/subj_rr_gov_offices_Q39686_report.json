@@ -1,0 +1,785 @@
+{
+  "generated_at": "2026-02-24T00:26:15.879740+00:00",
+  "seed_qid": "Q39686",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 19,
+    "candidate_sources_before_budget": 16,
+    "candidate_sources_considered": 16,
+    "accepted_before_node_budget": 16,
+    "accepted": 16,
+    "rejected": 0,
+    "entities_profiled": 16,
+    "frontier_eligible": 16,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 153,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 19,
+    "with_references": 107,
+    "qualifier_rate": 0.12418300653594772,
+    "reference_rate": 0.6993464052287581,
+    "datatype_counts": {
+      "wikibase-item": 82,
+      "monolingualtext": 14,
+      "globe-coordinate": 13,
+      "external-id": 24,
+      "string": 5,
+      "url": 6,
+      "quantity": 6,
+      "commonsMedia": 1,
+      "time": 2
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 82,
+      "monolingualtext": 14,
+      "globecoordinate": 13,
+      "string": 36,
+      "quantity": 6,
+      "time": 2
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 82,
+      "monolingualtext|monolingualtext": 14,
+      "globe-coordinate|globecoordinate": 13,
+      "external-id|string": 24,
+      "string|string": 5,
+      "url|string": 6,
+      "quantity|quantity": 6,
+      "commonsMedia|string": 1,
+      "time|time": 2
+    },
+    "route_counts": {
+      "edge_candidate": 82,
+      "node_property": 25,
+      "geo_attribute": 13,
+      "federation_id": 24,
+      "measured_attribute": 6,
+      "media_reference": 1,
+      "temporal_anchor": 2
+    },
+    "rank_counts": {
+      "normal": 153
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 16,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q112169839",
+      "label": "Castello di Copiano",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q1497375",
+        "Q23413"
+      ],
+      "matched_classes": [
+        "Q1497375",
+        "Q23413"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P3503": "1A130-00002"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.875,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112812536",
+      "label": "Q112812536",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q1497375",
+        "Q16970"
+      ],
+      "matched_classes": [
+        "Q1497375",
+        "Q16970"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P3503": "PV240-01083",
+        "P5611": "62284",
+        "P2186": "03C9790002"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 8,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.7272727272727273,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 1,
+          "federation_id": 3,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112941791",
+      "label": "Biblioteca Comunale di Copiano",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q124750618",
+        "Q28564"
+      ],
+      "matched_classes": [
+        "Q124750618",
+        "Q28564"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P791": "IT-PV0031",
+        "P2186": "03C9790004"
+      },
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 12,
+        "with_references": 24,
+        "qualifier_rate": 0.4444444444444444,
+        "reference_rate": 0.8888888888888888,
+        "route_counts": {
+          "edge_candidate": 10,
+          "node_property": 8,
+          "federation_id": 2,
+          "geo_attribute": 1,
+          "measured_attribute": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.5555555555555556,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q104092023",
+      "label": "Q104092023",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q4989906"
+      ],
+      "matched_classes": [
+        "Q4989906"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2186": "03C9790001"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 1,
+        "with_references": 6,
+        "qualifier_rate": 0.1111111111111111,
+        "reference_rate": 0.6666666666666666,
+        "route_counts": {
+          "edge_candidate": 4,
+          "geo_attribute": 1,
+          "media_reference": 1,
+          "federation_id": 1,
+          "node_property": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.4444444444444444,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112317558",
+      "label": "Castello di Copiano",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q23413"
+      ],
+      "matched_classes": [
+        "Q23413"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3503": "1A130-00003",
+        "P11729": "382591"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.7777777777777778,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112317738",
+      "label": "Q112317738",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q23413"
+      ],
+      "matched_classes": [
+        "Q23413"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3503": "1A130-00004"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.875,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112813616",
+      "label": "Q112813616",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q16970"
+      ],
+      "matched_classes": [
+        "Q16970"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3503": "PV240-01084"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.875,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112818252",
+      "label": "Q112818252",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q607241"
+      ],
+      "matched_classes": [
+        "Q607241"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3503": "PV240-01086"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.875,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q112894119",
+      "label": "Q112894119",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q200334"
+      ],
+      "matched_classes": [
+        "Q200334"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3503": "PV240-01085"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 7,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.875,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q114561161",
+      "label": "Carlo De Vecchi",
+      "properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.75,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q119938569",
+      "label": "Q119938569",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q16970"
+      ],
+      "matched_classes": [
+        "Q16970"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5611": "62669",
+        "P2186": "03C9790003"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.125,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 2,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134624166",
+      "label": "Town hall of Copiano",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q25550691"
+      ],
+      "matched_classes": [
+        "Q25550691"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2186": "03C9790006"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q30025070",
+      "label": "Copiano",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q15303838"
+      ],
+      "matched_classes": [
+        "Q15303838"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P1566": "3178140",
+        "P7197": "3178140",
+        "P2326": "-116162",
+        "P13591": "place/992ea059-3c99-4bc5-b16b-36618a0fd439"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 2,
+        "with_references": 3,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.2727272727272727,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 4,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09090909090909091,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q52785647",
+      "label": "Copiano De Amicis",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q9842"
+      ],
+      "matched_classes": [
+        "Q9842"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5114": "PVEE81303B"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 8,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.8888888888888888,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q52828918",
+      "label": "Copiano",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q126807"
+      ],
+      "matched_classes": [
+        "Q126807"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P5114": "PVAA813014"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 8,
+        "qualifier_rate": 0.0,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.375,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q89688296",
+      "label": "cemetery of Copiano",
+      "properties": [
+        "P131"
+      ],
+      "p31": [
+        "Q39614"
+      ],
+      "matched_classes": [
+        "Q39614"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P10689": "131787014",
+        "P2186": "03C9790005"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "geo_attribute": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

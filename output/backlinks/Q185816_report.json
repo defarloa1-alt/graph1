@@ -1,0 +1,257 @@
+{
+  "generated_at": "2026-02-25T00:11:07.910676+00:00",
+  "seed_qid": "Q185816",
+  "config": {
+    "mode": "production",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 500,
+    "max_sources_per_seed": 200,
+    "max_new_nodes_per_seed": 200,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P112",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561"
+    ],
+    "property_count": 35,
+    "class_allowlist_mode": "schema",
+    "classes_count": 150,
+    "p31_denylist": [
+      "Q4167836"
+    ]
+  },
+  "counts": {
+    "backlink_rows": 4,
+    "candidate_sources_before_budget": 3,
+    "candidate_sources_considered": 3,
+    "accepted_before_node_budget": 3,
+    "accepted": 3,
+    "rejected": 0,
+    "entities_profiled": 3,
+    "frontier_eligible": 3,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "scoping": {
+    "temporal_scoped": 0,
+    "domain_scoped": 2,
+    "unscoped": 1,
+    "ambiguous_category_count": 0
+  },
+  "datatype_profile_summary": {
+    "statement_count": 36,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 5,
+    "with_references": 5,
+    "qualifier_rate": 0.1388888888888889,
+    "reference_rate": 0.1388888888888889,
+    "datatype_counts": {
+      "wikibase-item": 33,
+      "external-id": 2,
+      "string": 1
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 33,
+      "string": 3
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 33,
+      "external-id|string": 2,
+      "string|string": 1
+    },
+    "route_counts": {
+      "edge_candidate": 33,
+      "federation_id": 2,
+      "node_property": 1
+    },
+    "rank_counts": {
+      "normal": 36
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 3,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q4153449",
+      "label": "JSM-method",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q2695280",
+        "Q46857"
+      ],
+      "matched_classes": [
+        "Q46857"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q937228"
+      ],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P2671": "/g/1227d67_"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 19,
+        "with_qualifiers": 0,
+        "with_references": 5,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2631578947368421,
+        "route_counts": {
+          "edge_candidate": 18,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12382962",
+      "label": "analogist",
+      "properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q1387659"
+      ],
+      "matched_classes": [
+        "Q1387659"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q1387659"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "ambiguous_category": false,
+      "scoping_status": "unscoped",
+      "scoping_confidence": 0.4,
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1426774",
+      "label": "double colon",
+      "properties": [
+        "P366"
+      ],
+      "p31": [
+        "Q1206110"
+      ],
+      "matched_classes": [
+        "Q1206110"
+      ],
+      "matched_allowlist_ancestors": [
+        "Q6671777"
+      ],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121k2wkj"
+      },
+      "ambiguous_category": false,
+      "scoping_status": "domain_scoped",
+      "scoping_confidence": 0.85,
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 5,
+        "with_references": 0,
+        "qualifier_rate": 0.35714285714285715,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 12,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 12,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

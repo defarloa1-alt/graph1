@@ -1,0 +1,1815 @@
+{
+  "generated_at": "2026-02-24T00:28:32.687214+00:00",
+  "seed_qid": "Q657326",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 66,
+    "candidate_sources_before_budget": 43,
+    "candidate_sources_considered": 43,
+    "accepted_before_node_budget": 40,
+    "accepted": 40,
+    "rejected": 3,
+    "entities_profiled": 40,
+    "frontier_eligible": 40,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.06976744186046512,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "no_p31": 3
+  },
+  "datatype_profile_summary": {
+    "statement_count": 414,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 69,
+    "with_references": 101,
+    "qualifier_rate": 0.16666666666666666,
+    "reference_rate": 0.24396135265700483,
+    "datatype_counts": {
+      "string": 9,
+      "external-id": 165,
+      "wikibase-item": 222,
+      "commonsMedia": 5,
+      "monolingualtext": 5,
+      "time": 5,
+      "url": 1,
+      "quantity": 2
+    },
+    "value_type_counts": {
+      "string": 180,
+      "wikibase-entityid": 222,
+      "monolingualtext": 5,
+      "time": 5,
+      "quantity": 2
+    },
+    "pair_counts": {
+      "string|string": 9,
+      "external-id|string": 165,
+      "wikibase-item|wikibase-entityid": 222,
+      "commonsMedia|string": 5,
+      "monolingualtext|monolingualtext": 5,
+      "time|time": 5,
+      "url|string": 1,
+      "quantity|quantity": 2
+    },
+    "route_counts": {
+      "node_property": 15,
+      "federation_id": 165,
+      "edge_candidate": 222,
+      "media_reference": 5,
+      "temporal_anchor": 3,
+      "temporal_uncertain": 2,
+      "measured_attribute": 2
+    },
+    "rank_counts": {
+      "normal": 411,
+      "deprecated": 3
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 40,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q177826",
+      "label": "clergy",
+      "properties": [
+        "P279",
+        "P31"
+      ],
+      "p31": [
+        "Q111252415",
+        "Q127871326",
+        "Q16334295",
+        "Q187588",
+        "Q657326",
+        "Q874405"
+      ],
+      "matched_classes": [
+        "Q111252415",
+        "Q127871326",
+        "Q16334295",
+        "Q187588",
+        "Q657326",
+        "Q874405"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 12,
+      "external_ids": {
+        "P508": "2978",
+        "P1014": "300025747",
+        "P227": "4031147-8",
+        "P3417": "Clergy",
+        "P3827": "clerics",
+        "P3916": "concept5426",
+        "P3569": "religie-en-levensbeschouwing/clerus",
+        "P1225": "10640491",
+        "P486": "D002977",
+        "P2581": "00019726n",
+        "P5198": "294904778",
+        "P2924": "1971106",
+        "P4212": "pcrtpAmioxn6lc",
+        "P4946": "dg2015060401",
+        "P6404": "clero",
+        "P1417": "topic/clergy-Christianity",
+        "P1296": "0267859",
+        "P5437": "6009",
+        "P8408": "ReligiousLeader",
+        "P8519": "64096",
+        "P646": "/m/0db79",
+        "P4527": "90548",
+        "P9070": "C\\L\\Clergy",
+        "P672": "M01.526.799.500",
+        "P2347": "6343",
+        "P3365": "clero",
+        "P4223": "clero",
+        "P9082": "7181e2e5-b838-491d-8988-180bf791d462",
+        "P8313": "gejstlighed",
+        "P8814": "08169784-n",
+        "P8168": "Q141465",
+        "P268": "11931214z",
+        "P9497": "4337",
+        "P10376": "social-sciences/clergy",
+        "P1617": "d2415f5a-010b-4702-8cc6-59709599fa89",
+        "P950": "XX525807",
+        "P8679": "120.107-010",
+        "P8734": "21-2011.00",
+        "P3911": "14012-2",
+        "P12086": "Geestelijke",
+        "P1368": "000038909",
+        "P12385": "clero",
+        "P12596": "17011",
+        "P12800": "fr:Clergé_français_de_l'Ancien_Régime",
+        "P2950": "clergy",
+        "P5002": "Духовенство",
+        "P13030": "class_status/37",
+        "P8370": "1001028",
+        "P13591": "concept/a536598b-7dd7-4a1a-8bf7-3d95157ed3ec",
+        "P1036": "200.92"
+      },
+      "statement_profile": {
+        "statement_count": 81,
+        "with_qualifiers": 21,
+        "with_references": 13,
+        "qualifier_rate": 0.25925925925925924,
+        "reference_rate": 0.16049382716049382,
+        "route_counts": {
+          "node_property": 3,
+          "federation_id": 53,
+          "edge_candidate": 24,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.04938271604938271,
+        "edge_candidate_count": 24,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q47805",
+      "label": "Cossacks",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q12737077",
+        "Q187588",
+        "Q25380035",
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q12737077",
+        "Q187588",
+        "Q25380035",
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 4,
+      "external_ids": {
+        "P349": "00566668",
+        "P227": "4032542-8",
+        "P646": "/m/0fy5b",
+        "P3219": "cosaques",
+        "P2924": "2032333",
+        "P1417": "topic/Cossack",
+        "P6404": "cosacchi",
+        "P6058": "divers/wd/37570",
+        "P2347": "20599",
+        "P8408": "Cossack",
+        "P9070": "C\\O\\Cossacks",
+        "P244": "sh85033189",
+        "P268": "11952207b",
+        "P2163": "880643",
+        "P6293": "Y105435",
+        "P6385": "istoriya/KAZAKI.html",
+        "P8189": "987007567989005171",
+        "P4342": "kosakker",
+        "P10565": "186497",
+        "P9495": "term/50507044-C614-4E52-98DC-147A625A4BAA",
+        "P1617": "c013fe86-551f-48af-aad2-4a0c7ff662d4",
+        "P12597": "150437",
+        "P12596": "14491",
+        "P7305": "3926692"
+      },
+      "statement_profile": {
+        "statement_count": 45,
+        "with_qualifiers": 14,
+        "with_references": 8,
+        "qualifier_rate": 0.3111111111111111,
+        "reference_rate": 0.17777777777777778,
+        "route_counts": {
+          "node_property": 1,
+          "federation_id": 24,
+          "edge_candidate": 19,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.044444444444444446,
+        "edge_candidate_count": 19,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4366993",
+      "label": "taxable estates of the realm",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q187588",
+        "Q4430245",
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q187588",
+        "Q4430245",
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/122whv7r"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 13
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q9069149",
+      "label": "Q9069149",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q16334295",
+        "Q355567",
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q16334295",
+        "Q355567",
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 3,
+      "external_ids": {
+        "P2671": "/g/122x8dfr",
+        "P7388": "17607",
+        "P3218": "121025"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113950299",
+      "label": "Q113950299",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q7210356",
+        "Q874405"
+      ],
+      "matched_classes": [
+        "Q7210356",
+        "Q874405"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 9
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11795278",
+      "label": "Obszarnik",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q545779",
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q545779",
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11909956",
+      "label": "brazo / braç",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q7210356",
+        "Q874405"
+      ],
+      "matched_classes": [
+        "Q7210356",
+        "Q874405"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1807": "2558",
+        "P2671": "/g/12195n8s"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.07692307692307693,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 11,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q368173",
+      "label": "Hermetic Order of the Golden Dawn",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q43229",
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q43229",
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/03l50",
+        "P3417": "Hermetic-Order-of-the-Golden-Dawn",
+        "P213": "0000000123152849",
+        "P214": "141032362",
+        "P269": "027228150",
+        "P227": "2088985-9",
+        "P409": "35189787",
+        "P691": "kn20060425005",
+        "P244": "n50064303",
+        "P268": "11931577p",
+        "P7775": "Hermetic_Order_of_the_Golden_Dawn",
+        "P8189": "987007262501505171",
+        "P1015": "99023860",
+        "P8168": "Q370377",
+        "P7502": "Hermetic_Order_of_the_Golden_Dawn-V69P",
+        "P4619": "000456520",
+        "P8179": "ncf10752884",
+        "P7699": "LNB:V*271514;=BG",
+        "P10227": "vtls000028971",
+        "P13591": "group/4c560f69-0a87-495f-959d-5ec9376b4ac3"
+      },
+      "statement_profile": {
+        "statement_count": 32,
+        "with_qualifiers": 2,
+        "with_references": 19,
+        "qualifier_rate": 0.0625,
+        "reference_rate": 0.59375,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 8,
+          "federation_id": 20,
+          "temporal_anchor": 1,
+          "media_reference": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.09375,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q63993747",
+      "label": "peasantry",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q187588",
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q187588",
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P1014": "300025939",
+        "P3916": "concept1838",
+        "P4255": "Peasantry",
+        "P5198": "294931473",
+        "P8519": "92792",
+        "P2347": "20274",
+        "P5437": "6001",
+        "P2671": "/g/121lgyv5"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.35714285714285715,
+        "route_counts": {
+          "federation_id": 8,
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q104411107",
+      "label": "Q104411107",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 2,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q106327366",
+      "label": "Q106327366",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 1,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q106327391",
+      "label": "Q106327391",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 1,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q106371563",
+      "label": "Q106371563",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q107169340",
+      "label": "New Bashkirs",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "temporal_uncertain": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113950296",
+      "label": "Q113950296",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q113950299"
+      ],
+      "matched_classes": [
+        "Q113950299"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "edge_candidate": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11741885",
+      "label": "Q11741885",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/120ktg14",
+        "P8935": "Komornyk"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q120241333",
+      "label": "Formation, consolidation, crisis, and fragmentation of the State as a political power",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.4444444444444444,
+        "route_counts": {
+          "edge_candidate": 9
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12043740",
+      "label": "Gentlemen's class",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/120qcjx7",
+        "P8168": "Q369965"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12097095",
+      "label": "Q12097095",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/122q9v82",
+        "P8935": "Gorodnyky"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q121362917",
+      "label": "Origins, development, and international repercussions of industrial and financial capitalism.",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 9,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.9,
+        "route_counts": {
+          "node_property": 1,
+          "edge_candidate": 9
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q12136944",
+      "label": "Q12136944",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1hc0gydvb",
+        "P8935": "Otchychy"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122039034",
+      "label": "Q122039034",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb003093854"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 0,
+        "with_references": 12,
+        "qualifier_rate": 0.0,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "temporal_anchor": 1,
+          "federation_id": 1,
+          "measured_attribute": 1,
+          "node_property": 1,
+          "edge_candidate": 8
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q122131007",
+      "label": "Q122131007",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P3184": "cnb003447691",
+        "P212": "978-80-87292-55-6"
+      },
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 1,
+        "with_references": 16,
+        "qualifier_rate": 0.0625,
+        "reference_rate": 1.0,
+        "route_counts": {
+          "node_property": 3,
+          "temporal_anchor": 1,
+          "federation_id": 2,
+          "measured_attribute": 1,
+          "edge_candidate": 9
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q123375760",
+      "label": "Q123375760",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q187588"
+      ],
+      "matched_classes": [
+        "Q187588"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 4
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q13031107",
+      "label": "Q13031107",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 1,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1507115",
+      "label": "Imperial Estate",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/03c4j5",
+        "P227": "4049169-9",
+        "P2924": "2006510",
+        "P7305": "3979018"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 2,
+        "with_references": 2,
+        "qualifier_rate": 0.2,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "federation_id": 4,
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2036865",
+      "label": "Rayah",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/025sy7m",
+        "P7314": "reaya",
+        "P12739": "6945280093"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 1,
+        "with_references": 2,
+        "qualifier_rate": 0.16666666666666666,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "federation_id": 3,
+          "edge_candidate": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2055100",
+      "label": "Boyar scions",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2924": "1949960",
+        "P2671": "/g/122hjj6q",
+        "P11514": "deti-boiarskie-fd4425"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 5,
+        "with_references": 0,
+        "qualifier_rate": 0.625,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 3
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4146466",
+      "label": "Q4146466",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121dpqqg",
+        "P11514": "gostinaia-sotnia-6f0afa"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.4,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4146521",
+      "label": "Gosti",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P11514": "gosti-elitnaia-kupecheskaia-gruppa-6ba94e"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4146721",
+      "label": "Q4146721",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11h1v0ng3"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.5,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4240478",
+      "label": "Q4240478",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/123978tm"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q4469719",
+      "label": "Q4469719",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1hb_dyxsc"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5148501",
+      "label": "Q5148501",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/123dmh44z"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q56359378",
+      "label": "Q56359378",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11f2wbm8vt",
+        "P8935": "Dvoryanstvo_sluzhyle"
+      },
+      "statement_profile": {
+        "statement_count": 3,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 1,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q58849706",
+      "label": "clergy of the kingdom of Aragon",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q11909956"
+      ],
+      "matched_classes": [
+        "Q11909956"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 11
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 11,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q67203418",
+      "label": "Sächsische Landstände",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q1260512"
+      ],
+      "matched_classes": [
+        "Q1260512"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11h_7bc8f8"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 3,
+        "with_references": 2,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.2222222222222222,
+        "route_counts": {
+          "edge_candidate": 6,
+          "federation_id": 1,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2222222222222222,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q837268",
+      "label": "knighthood",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P227": "4547352-3",
+        "P7305": "3970344",
+        "P902": "017434"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "node_property": 2,
+          "federation_id": 3,
+          "edge_candidate": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2857142857142857,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q85968683",
+      "label": "Q85968683",
+      "properties": [
+        "P31"
+      ],
+      "p31": [
+        "Q657326"
+      ],
+      "matched_classes": [
+        "Q657326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11j7j9v3f7"
+      },
+      "statement_profile": {
+        "statement_count": 4,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 2,
+          "temporal_uncertain": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 2,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q909656",
+      "label": "Third Estate",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q127871326"
+      ],
+      "matched_classes": [
+        "Q127871326"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P244": "n50070684",
+        "P268": "119543898",
+        "P1417": "topic/Third-Estate",
+        "P3219": "tiers-etat",
+        "P227": "4150694-7",
+        "P1296": "0239520",
+        "P1245": "1680317",
+        "P6404": "terzo-stato",
+        "P2671": "/g/1215vs53",
+        "P4342": "tredjestanden",
+        "P8189": "987007592350505171",
+        "P12385": "tercer-estat",
+        "P12800": "fr:Tiers_état_en_France_en_1789",
+        "P3222": "tredje-ståndet",
+        "P7305": "3978908",
+        "P3417": "Third-Estate",
+        "P5019": "dritter-stand",
+        "P9545": "199058",
+        "P7666": "treciasis-luomas"
+      },
+      "statement_profile": {
+        "statement_count": 27,
+        "with_qualifiers": 5,
+        "with_references": 4,
+        "qualifier_rate": 0.18518518518518517,
+        "reference_rate": 0.14814814814814814,
+        "route_counts": {
+          "edge_candidate": 8,
+          "federation_id": 19
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q20439660",
+      "label": "Q20439660",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q4429470",
+      "label": "Social estates in the Russian Empire",
+      "reason": "no_p31",
+      "properties": [
+        "P279"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q587666",
+      "label": "tripartite society",
+      "reason": "no_p31",
+      "properties": [
+        "P527"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

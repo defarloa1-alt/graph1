@@ -148,12 +148,13 @@ def process_checkpoint_with_ciphers(checkpoint_file: str, limit: int = 300):
         # Escape label for Cypher (critical for special characters)
         label_escaped = label.replace("\\", "\\\\").replace("'", "\\'")
         
+        # MERGE on qid for idempotency and multi-seed deduplication
         cypher = f"""
 // Entity {i}: {qid} ({label})
-MERGE (n:Entity {{entity_cipher: '{entity_cipher}'}})
+MERGE (n:Entity {{qid: '{qid}'}})
 ON CREATE SET
+  n.entity_cipher = '{entity_cipher}',
   n.entity_id = '{entity_id}',
-  n.qid = '{qid}',
   n.label = '{label_escaped}',
   n.entity_type = '{entity_type}',
   n.namespace = 'wd',

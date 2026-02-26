@@ -1,0 +1,1749 @@
+{
+  "summary": {
+    "reports_processed": 61,
+    "entities_with_p31": 9327,
+    "total_p31_mentions": 11548,
+    "unique_p31_types": 1130
+  },
+  "distribution": [
+    {
+      "p31_qid": "Q5",
+      "label": "human",
+      "count": 2550,
+      "pct": 22.08
+    },
+    {
+      "p31_qid": "Q899409",
+      "label": "gens",
+      "count": 1064,
+      "pct": 9.21
+    },
+    {
+      "p31_qid": "Q11469",
+      "label": "Q11469",
+      "count": 683,
+      "pct": 5.91
+    },
+    {
+      "p31_qid": "Q125191",
+      "label": "Q125191",
+      "count": 594,
+      "pct": 5.14
+    },
+    {
+      "p31_qid": "Q79007",
+      "label": "street",
+      "count": 585,
+      "pct": 5.07
+    },
+    {
+      "p31_qid": "Q631931",
+      "label": "Q631931",
+      "count": 491,
+      "pct": 4.25
+    },
+    {
+      "p31_qid": "Q7725634",
+      "label": "literary work",
+      "count": 353,
+      "pct": 3.06
+    },
+    {
+      "p31_qid": "Q3331189",
+      "label": "version, edition or translation",
+      "count": 270,
+      "pct": 2.34
+    },
+    {
+      "p31_qid": "Q11019",
+      "label": "Q11019",
+      "count": 261,
+      "pct": 2.26
+    },
+    {
+      "p31_qid": "Q211364",
+      "label": "Q211364",
+      "count": 231,
+      "pct": 2.0
+    },
+    {
+      "p31_qid": "Q182547",
+      "label": "Roman province",
+      "count": 196,
+      "pct": 1.7
+    },
+    {
+      "p31_qid": "Q918448",
+      "label": "denomination",
+      "count": 139,
+      "pct": 1.2
+    },
+    {
+      "p31_qid": "Q178561",
+      "label": "battle",
+      "count": 127,
+      "pct": 1.1
+    },
+    {
+      "p31_qid": "Q8434",
+      "label": "education",
+      "count": 106,
+      "pct": 0.92
+    },
+    {
+      "p31_qid": "Q726929",
+      "label": "film archive",
+      "count": 97,
+      "pct": 0.84
+    },
+    {
+      "p31_qid": "Q1573728",
+      "label": "Q1573728",
+      "count": 93,
+      "pct": 0.81
+    },
+    {
+      "p31_qid": "Q3658341",
+      "label": "Q3658341",
+      "count": 88,
+      "pct": 0.76
+    },
+    {
+      "p31_qid": "Q1922981",
+      "label": "glassware",
+      "count": 87,
+      "pct": 0.75
+    },
+    {
+      "p31_qid": "Q2319498",
+      "label": "architectural landmark",
+      "count": 87,
+      "pct": 0.75
+    },
+    {
+      "p31_qid": "Q47461344",
+      "label": "Q47461344",
+      "count": 84,
+      "pct": 0.73
+    },
+    {
+      "p31_qid": "Q839954",
+      "label": "archaeological site",
+      "count": 83,
+      "pct": 0.72
+    },
+    {
+      "p31_qid": "Q811979",
+      "label": "Q811979",
+      "count": 78,
+      "pct": 0.68
+    },
+    {
+      "p31_qid": "Q15632617",
+      "label": "fictional human",
+      "count": 67,
+      "pct": 0.58
+    },
+    {
+      "p31_qid": "Q13433827",
+      "label": "Q13433827",
+      "count": 58,
+      "pct": 0.5
+    },
+    {
+      "p31_qid": "Q41176",
+      "label": "building",
+      "count": 55,
+      "pct": 0.48
+    },
+    {
+      "p31_qid": "Q486972",
+      "label": "Q486972",
+      "count": 54,
+      "pct": 0.47
+    },
+    {
+      "p31_qid": "Q861911",
+      "label": "Q861911",
+      "count": 53,
+      "pct": 0.46
+    },
+    {
+      "p31_qid": "Q188055",
+      "label": "Q188055",
+      "count": 49,
+      "pct": 0.42
+    },
+    {
+      "p31_qid": "Q1145276",
+      "label": "fictional country",
+      "count": 46,
+      "pct": 0.4
+    },
+    {
+      "p31_qid": "Q220659",
+      "label": "Q220659",
+      "count": 43,
+      "pct": 0.37
+    },
+    {
+      "p31_qid": "Q3947",
+      "label": "house",
+      "count": 43,
+      "pct": 0.37
+    },
+    {
+      "p31_qid": "Q44539",
+      "label": "temple",
+      "count": 38,
+      "pct": 0.33
+    },
+    {
+      "p31_qid": "Q163740",
+      "label": "Q163740",
+      "count": 34,
+      "pct": 0.29
+    },
+    {
+      "p31_qid": "Q253019",
+      "label": "Q253019",
+      "count": 31,
+      "pct": 0.27
+    },
+    {
+      "p31_qid": "Q43229",
+      "label": "organization",
+      "count": 30,
+      "pct": 0.26
+    },
+    {
+      "p31_qid": "Q13137339",
+      "label": "Q13137339",
+      "count": 30,
+      "pct": 0.26
+    },
+    {
+      "p31_qid": "Q8142",
+      "label": "Q8142",
+      "count": 29,
+      "pct": 0.25
+    },
+    {
+      "p31_qid": "Q657326",
+      "label": "estates of the realm",
+      "count": 29,
+      "pct": 0.25
+    },
+    {
+      "p31_qid": "Q294422",
+      "label": "Q294422",
+      "count": 29,
+      "pct": 0.25
+    },
+    {
+      "p31_qid": "Q113813711",
+      "label": "Q113813711",
+      "count": 28,
+      "pct": 0.24
+    },
+    {
+      "p31_qid": "Q831663",
+      "label": "Q831663",
+      "count": 28,
+      "pct": 0.24
+    },
+    {
+      "p31_qid": "Q108329152",
+      "label": "Q108329152",
+      "count": 25,
+      "pct": 0.22
+    },
+    {
+      "p31_qid": "Q21481766",
+      "label": "Q21481766",
+      "count": 22,
+      "pct": 0.19
+    },
+    {
+      "p31_qid": "Q11514315",
+      "label": "Q11514315",
+      "count": 20,
+      "pct": 0.17
+    },
+    {
+      "p31_qid": "Q15661340",
+      "label": "Q15661340",
+      "count": 20,
+      "pct": 0.17
+    },
+    {
+      "p31_qid": "Q198",
+      "label": "Q198",
+      "count": 20,
+      "pct": 0.17
+    },
+    {
+      "p31_qid": "Q3950",
+      "label": "Q3950",
+      "count": 20,
+      "pct": 0.17
+    },
+    {
+      "p31_qid": "Q1352795",
+      "label": "Q1352795",
+      "count": 20,
+      "pct": 0.17
+    },
+    {
+      "p31_qid": "Q4830453",
+      "label": "Q4830453",
+      "count": 19,
+      "pct": 0.16
+    },
+    {
+      "p31_qid": "Q26703203",
+      "label": "Stolperstein",
+      "count": 18,
+      "pct": 0.16
+    }
+  ],
+  "per_anchor": [
+    {
+      "seed_qid": "Q104867898",
+      "anchor_label": "Marriage alliances and political kinship",
+      "entity_count": 1,
+      "top_p31s": [
+        {
+          "p31": "Q16516287",
+          "label": "Q16516287",
+          "count": 1,
+          "pct": 100.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q105427",
+      "anchor_label": "Institutions: Senate, Assemblies, Magist",
+      "entity_count": 2,
+      "top_p31s": [
+        {
+          "p31": "Q3305213",
+          "label": "painting",
+          "count": 2,
+          "pct": 100.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q11019",
+      "anchor_label": "Trade routes and maritime networks",
+      "entity_count": 686,
+      "top_p31s": [
+        {
+          "p31": "Q11019",
+          "label": "Q11019",
+          "count": 261,
+          "pct": 38.0
+        },
+        {
+          "p31": "Q1573728",
+          "label": "Q1573728",
+          "count": 93,
+          "pct": 13.6
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 86,
+          "pct": 12.5
+        },
+        {
+          "p31": "Q3331189",
+          "label": "version, edition or translation",
+          "count": 34,
+          "pct": 5.0
+        },
+        {
+          "p31": "Q4830453",
+          "label": "Q4830453",
+          "count": 11,
+          "pct": 1.6
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q11469",
+      "anchor_label": "Landholding, Agriculture, and Estates",
+      "entity_count": 1985,
+      "top_p31s": [
+        {
+          "p31": "Q11469",
+          "label": "Q11469",
+          "count": 683,
+          "pct": 34.4
+        },
+        {
+          "p31": "Q125191",
+          "label": "Q125191",
+          "count": 594,
+          "pct": 29.9
+        },
+        {
+          "p31": "Q631931",
+          "label": "Q631931",
+          "count": 491,
+          "pct": 24.7
+        },
+        {
+          "p31": "Q1922981",
+          "label": "glassware",
+          "count": 87,
+          "pct": 4.4
+        },
+        {
+          "p31": "Q220659",
+          "label": "Q220659",
+          "count": 20,
+          "pct": 1.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1200427",
+      "anchor_label": "Culture, Ideas, and Communication",
+      "entity_count": 21,
+      "top_p31s": [
+        {
+          "p31": "Q111676757",
+          "label": "Q111676757",
+          "count": 2,
+          "pct": 9.5
+        },
+        {
+          "p31": "Q115857096",
+          "label": "Q115857096",
+          "count": 2,
+          "pct": 9.5
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 2,
+          "pct": 9.5
+        },
+        {
+          "p31": "Q19958368",
+          "label": "culture of an area",
+          "count": 2,
+          "pct": 9.5
+        },
+        {
+          "p31": "Q116213",
+          "label": "vacation",
+          "count": 1,
+          "pct": 4.8
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q131416",
+      "anchor_label": "Priesthoods and sacred colleges",
+      "entity_count": 337,
+      "top_p31s": [
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 159,
+          "pct": 47.2
+        },
+        {
+          "p31": "Q2319498",
+          "label": "architectural landmark",
+          "count": 85,
+          "pct": 25.2
+        },
+        {
+          "p31": "Q41176",
+          "label": "building",
+          "count": 36,
+          "pct": 10.7
+        },
+        {
+          "p31": "Q1081138",
+          "label": "Q1081138",
+          "count": 8,
+          "pct": 2.4
+        },
+        {
+          "p31": "Q13433827",
+          "label": "Q13433827",
+          "count": 8,
+          "pct": 2.4
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1367629",
+      "anchor_label": "Ritual Practice, Omens, and Public Cerem",
+      "entity_count": 22,
+      "top_p31s": [
+        {
+          "p31": "Q1367629",
+          "label": "Q1367629",
+          "count": 11,
+          "pct": 50.0
+        },
+        {
+          "p31": "Q375011",
+          "label": "Q375011",
+          "count": 8,
+          "pct": 36.4
+        },
+        {
+          "p31": "Q13433827",
+          "label": "Q13433827",
+          "count": 2,
+          "pct": 9.1
+        },
+        {
+          "p31": "Q1445650",
+          "label": "holiday",
+          "count": 1,
+          "pct": 4.5
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1392538",
+      "anchor_label": "Society and Social Structure",
+      "entity_count": 24,
+      "top_p31s": [
+        {
+          "p31": "Q1392538",
+          "label": "social class in ancient Rome",
+          "count": 9,
+          "pct": 37.5
+        },
+        {
+          "p31": "Q187588",
+          "label": "Q187588",
+          "count": 5,
+          "pct": 20.8
+        },
+        {
+          "p31": "Q5737899",
+          "label": "Q5737899",
+          "count": 2,
+          "pct": 8.3
+        },
+        {
+          "p31": "Q189970",
+          "label": "Q189970",
+          "count": 2,
+          "pct": 8.3
+        },
+        {
+          "p31": "Q851990",
+          "label": "Q851990",
+          "count": 2,
+          "pct": 8.3
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q15265460",
+      "anchor_label": "Economy and Resource Systems",
+      "entity_count": 20,
+      "top_p31s": [
+        {
+          "p31": "Q3331189",
+          "label": "version, edition or translation",
+          "count": 2,
+          "pct": 10.0
+        },
+        {
+          "p31": "Q10383930",
+          "label": "academic work",
+          "count": 2,
+          "pct": 10.0
+        },
+        {
+          "p31": "Q21481766",
+          "label": "Q21481766",
+          "count": 2,
+          "pct": 10.0
+        },
+        {
+          "p31": "Q8161",
+          "label": "tax",
+          "count": 2,
+          "pct": 10.0
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 2,
+          "pct": 10.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1541",
+      "anchor_label": "Forums, public speech, persuasion",
+      "entity_count": 324,
+      "top_p31s": [
+        {
+          "p31": "Q3331189",
+          "label": "version, edition or translation",
+          "count": 108,
+          "pct": 33.3
+        },
+        {
+          "p31": "Q861911",
+          "label": "Q861911",
+          "count": 53,
+          "pct": 16.4
+        },
+        {
+          "p31": "Q47461344",
+          "label": "Q47461344",
+          "count": 43,
+          "pct": 13.3
+        },
+        {
+          "p31": "Q7725634",
+          "label": "literary work",
+          "count": 38,
+          "pct": 11.7
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 13,
+          "pct": 4.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1593880",
+      "anchor_label": "Institutions of slavery and manumission",
+      "entity_count": 13,
+      "top_p31s": [
+        {
+          "p31": "Q121493639",
+          "label": "Q121493639",
+          "count": 6,
+          "pct": 46.2
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 2,
+          "pct": 15.4
+        },
+        {
+          "p31": "Q133492",
+          "label": "Q133492",
+          "count": 1,
+          "pct": 7.7
+        },
+        {
+          "p31": "Q600134",
+          "label": "Q600134",
+          "count": 1,
+          "pct": 7.7
+        },
+        {
+          "p31": "Q21481766",
+          "label": "Q21481766",
+          "count": 1,
+          "pct": 7.7
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q17167",
+      "anchor_label": "Roman Republic",
+      "entity_count": 271,
+      "top_p31s": [
+        {
+          "p31": "Q178561",
+          "label": "battle",
+          "count": 60,
+          "pct": 22.1
+        },
+        {
+          "p31": "Q918448",
+          "label": "denomination",
+          "count": 26,
+          "pct": 9.6
+        },
+        {
+          "p31": "Q188055",
+          "label": "Q188055",
+          "count": 21,
+          "pct": 7.7
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 15,
+          "pct": 5.5
+        },
+        {
+          "p31": "Q8142",
+          "label": "Q8142",
+          "count": 11,
+          "pct": 4.1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q172845",
+      "anchor_label": "Religion and Public Cult",
+      "entity_count": 2,
+      "top_p31s": [
+        {
+          "p31": "Q22698",
+          "label": "Q22698",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "p31": "Q2338524",
+          "label": "Q2338524",
+          "count": 1,
+          "pct": 50.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1747183",
+      "anchor_label": "Internal wars (civil/social/rebellion)",
+      "entity_count": 20,
+      "top_p31s": [
+        {
+          "p31": "Q8465",
+          "label": "Q8465",
+          "count": 12,
+          "pct": 60.0
+        },
+        {
+          "p31": "Q178561",
+          "label": "battle",
+          "count": 4,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q124734",
+          "label": "rebellion",
+          "count": 2,
+          "pct": 10.0
+        },
+        {
+          "p31": "Q6107280",
+          "label": "Q6107280",
+          "count": 1,
+          "pct": 5.0
+        },
+        {
+          "p31": "Q198",
+          "label": "Q198",
+          "count": 1,
+          "pct": 5.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1764124",
+      "anchor_label": "External wars (interstate/expansionary)",
+      "entity_count": 22,
+      "top_p31s": [
+        {
+          "p31": "Q178561",
+          "label": "battle",
+          "count": 10,
+          "pct": 45.5
+        },
+        {
+          "p31": "Q188055",
+          "label": "Q188055",
+          "count": 6,
+          "pct": 27.3
+        },
+        {
+          "p31": "Q1261499",
+          "label": "Q1261499",
+          "count": 2,
+          "pct": 9.1
+        },
+        {
+          "p31": "Q198",
+          "label": "Q198",
+          "count": 2,
+          "pct": 9.1
+        },
+        {
+          "p31": "Q13433827",
+          "label": "Q13433827",
+          "count": 1,
+          "pct": 4.5
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1812526",
+      "anchor_label": "Reforms and constitutional change",
+      "entity_count": 1,
+      "top_p31s": [
+        {
+          "p31": "Q13433827",
+          "label": "Q13433827",
+          "count": 1,
+          "pct": 100.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q182547",
+      "anchor_label": "Provinces and Administration",
+      "entity_count": 188,
+      "top_p31s": [
+        {
+          "p31": "Q182547",
+          "label": "Roman province",
+          "count": 164,
+          "pct": 87.2
+        },
+        {
+          "p31": "Q1620908",
+          "label": "Q1620908",
+          "count": 3,
+          "pct": 1.6
+        },
+        {
+          "p31": "Q11514315",
+          "label": "Q11514315",
+          "count": 2,
+          "pct": 1.1
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 2,
+          "pct": 1.1
+        },
+        {
+          "p31": "Q15644911",
+          "label": "administrative territorial entity of the Roman Empire",
+          "count": 2,
+          "pct": 1.1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q185816",
+      "anchor_label": "Naval warfare and sea operations",
+      "entity_count": 16,
+      "top_p31s": [
+        {
+          "p31": "Q185816",
+          "label": "Q185816",
+          "count": 3,
+          "pct": 18.8
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 2,
+          "pct": 12.5
+        },
+        {
+          "p31": "Q13433827",
+          "label": "Q13433827",
+          "count": 2,
+          "pct": 12.5
+        },
+        {
+          "p31": "Q12132",
+          "label": "Q12132",
+          "count": 1,
+          "pct": 6.2
+        },
+        {
+          "p31": "Q1406161",
+          "label": "artistic theme",
+          "count": 1,
+          "pct": 6.2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q186916",
+      "anchor_label": "Chronology and Periodization",
+      "entity_count": 2,
+      "top_p31s": [
+        {
+          "p31": "Q11514315",
+          "label": "Q11514315",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "p31": "Q67439188",
+          "label": "chronology",
+          "count": 1,
+          "pct": 50.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q1993655",
+      "anchor_label": "Civil wars and internal conflicts",
+      "entity_count": 5,
+      "top_p31s": [
+        {
+          "p31": "Q39594",
+          "label": "Q39594",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q79007",
+          "label": "street",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q1638962",
+          "label": "chitalishte",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q27108230",
+          "label": "campground",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q35509",
+          "label": "cave",
+          "count": 1,
+          "pct": 20.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q201452",
+      "anchor_label": "Diplomacy and International Relations",
+      "entity_count": 1,
+      "top_p31s": [
+        {
+          "p31": "Q645924",
+          "label": "Q645924",
+          "count": 1,
+          "pct": 100.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q2063299",
+      "anchor_label": "Elite competition and network power",
+      "entity_count": 3,
+      "top_p31s": [
+        {
+          "p31": "Q17315159",
+          "label": "Q17315159",
+          "count": 3,
+          "pct": 100.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q2065169",
+      "anchor_label": "Political violence, proscriptions, purge",
+      "entity_count": 25,
+      "top_p31s": [
+        {
+          "p31": "Q19855165",
+          "label": "rural school",
+          "count": 10,
+          "pct": 40.0
+        },
+        {
+          "p31": "Q3914",
+          "label": "school",
+          "count": 7,
+          "pct": 28.0
+        },
+        {
+          "p31": "Q136386339",
+          "label": "Q136386339",
+          "count": 5,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q28564",
+          "label": "Q28564",
+          "count": 1,
+          "pct": 4.0
+        },
+        {
+          "p31": "Q7075",
+          "label": "library",
+          "count": 1,
+          "pct": 4.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q2067204",
+      "anchor_label": "Oratory, Rhetoric, and Propaganda",
+      "entity_count": 1,
+      "top_p31s": [
+        {
+          "p31": "Q115937312",
+          "label": "Confucius Institute",
+          "count": 1,
+          "pct": 100.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q2067294",
+      "anchor_label": "Republican ideals (virtus, mos maiorum, ",
+      "entity_count": 2,
+      "top_p31s": [
+        {
+          "p31": "Q23413",
+          "label": "castle",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "p31": "Q839954",
+          "label": "archaeological site",
+          "count": 1,
+          "pct": 50.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q207544",
+      "anchor_label": "Geography, Provinces, and Expansion",
+      "entity_count": 196,
+      "top_p31s": [
+        {
+          "p31": "Q7725634",
+          "label": "literary work",
+          "count": 62,
+          "pct": 31.6
+        },
+        {
+          "p31": "Q3658341",
+          "label": "Q3658341",
+          "count": 27,
+          "pct": 13.8
+        },
+        {
+          "p31": "Q3331189",
+          "label": "version, edition or translation",
+          "count": 13,
+          "pct": 6.6
+        },
+        {
+          "p31": "Q47461344",
+          "label": "Q47461344",
+          "count": 12,
+          "pct": 6.1
+        },
+        {
+          "p31": "Q1145276",
+          "label": "fictional country",
+          "count": 8,
+          "pct": 4.1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q207640",
+      "anchor_label": "Q207640",
+      "entity_count": 615,
+      "top_p31s": [
+        {
+          "p31": "Q7725634",
+          "label": "literary work",
+          "count": 230,
+          "pct": 37.4
+        },
+        {
+          "p31": "Q3331189",
+          "label": "version, edition or translation",
+          "count": 67,
+          "pct": 10.9
+        },
+        {
+          "p31": "Q15632617",
+          "label": "fictional human",
+          "count": 60,
+          "pct": 9.8
+        },
+        {
+          "p31": "Q3658341",
+          "label": "Q3658341",
+          "count": 60,
+          "pct": 9.8
+        },
+        {
+          "p31": "Q1145276",
+          "label": "fictional country",
+          "count": 38,
+          "pct": 6.2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q211364",
+      "anchor_label": "Popular/admin offices: Tribune, Aedile, ",
+      "entity_count": 355,
+      "top_p31s": [
+        {
+          "p31": "Q211364",
+          "label": "Q211364",
+          "count": 231,
+          "pct": 65.1
+        },
+        {
+          "p31": "Q151885",
+          "label": "Q151885",
+          "count": 10,
+          "pct": 2.8
+        },
+        {
+          "p31": "Q3062294",
+          "label": "Q3062294",
+          "count": 5,
+          "pct": 1.4
+        },
+        {
+          "p31": "Q1151067",
+          "label": "Q1151067",
+          "count": 4,
+          "pct": 1.1
+        },
+        {
+          "p31": "Q1398821",
+          "label": "Q1398821",
+          "count": 3,
+          "pct": 0.8
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q212943",
+      "anchor_label": "Religious Offices, Priesthoods, and Auth",
+      "entity_count": 26,
+      "top_p31s": [
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 21,
+          "pct": 80.8
+        },
+        {
+          "p31": "Q1530022",
+          "label": "Q1530022",
+          "count": 1,
+          "pct": 3.8
+        },
+        {
+          "p31": "Q2659904",
+          "label": "Q2659904",
+          "count": 1,
+          "pct": 3.8
+        },
+        {
+          "p31": "Q21070568",
+          "label": "human whose existence is disputed",
+          "count": 1,
+          "pct": 3.8
+        },
+        {
+          "p31": "Q64643615",
+          "label": "prosopographical phantom",
+          "count": 1,
+          "pct": 3.8
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q213810",
+      "anchor_label": "Law, Citizenship, and Constitutional Pra",
+      "entity_count": 6,
+      "top_p31s": [
+        {
+          "p31": "Q820655",
+          "label": "Q820655",
+          "count": 2,
+          "pct": 33.3
+        },
+        {
+          "p31": "Q1392538",
+          "label": "social class in ancient Rome",
+          "count": 1,
+          "pct": 16.7
+        },
+        {
+          "p31": "Q189970",
+          "label": "Q189970",
+          "count": 1,
+          "pct": 16.7
+        },
+        {
+          "p31": "Q851990",
+          "label": "Q851990",
+          "count": 1,
+          "pct": 16.7
+        },
+        {
+          "p31": "Q42138",
+          "label": "Q42138",
+          "count": 1,
+          "pct": 16.7
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q2277",
+      "anchor_label": "Transition to Empire",
+      "entity_count": 1109,
+      "top_p31s": [
+        {
+          "p31": "Q839954",
+          "label": "archaeological site",
+          "count": 81,
+          "pct": 7.3
+        },
+        {
+          "p31": "Q918448",
+          "label": "denomination",
+          "count": 49,
+          "pct": 4.4
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 48,
+          "pct": 4.3
+        },
+        {
+          "p31": "Q44539",
+          "label": "temple",
+          "count": 38,
+          "pct": 3.4
+        },
+        {
+          "p31": "Q486972",
+          "label": "Q486972",
+          "count": 38,
+          "pct": 3.4
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q2345364",
+      "anchor_label": "Historiography, Sources, and Historical ",
+      "entity_count": 18,
+      "top_p31s": [
+        {
+          "p31": "Q3331189",
+          "label": "version, edition or translation",
+          "count": 6,
+          "pct": 33.3
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 5,
+          "pct": 27.8
+        },
+        {
+          "p31": "Q1789476",
+          "label": "Q1789476",
+          "count": 1,
+          "pct": 5.6
+        },
+        {
+          "p31": "Q737498",
+          "label": "academic journal",
+          "count": 1,
+          "pct": 5.6
+        },
+        {
+          "p31": "Q212805",
+          "label": "digital library",
+          "count": 1,
+          "pct": 5.6
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q236885",
+      "anchor_label": "Dictatorship & extraordinary commands",
+      "entity_count": 82,
+      "top_p31s": [
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 75,
+          "pct": 91.5
+        },
+        {
+          "p31": "Q13433827",
+          "label": "Q13433827",
+          "count": 3,
+          "pct": 3.7
+        },
+        {
+          "p31": "Q64643615",
+          "label": "prosopographical phantom",
+          "count": 1,
+          "pct": 1.2
+        },
+        {
+          "p31": "Q480319",
+          "label": "title of authority",
+          "count": 1,
+          "pct": 1.2
+        },
+        {
+          "p31": "Q56019",
+          "label": "Q56019",
+          "count": 1,
+          "pct": 1.2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q271108",
+      "anchor_label": "Factional politics (Optimates/Populares ",
+      "entity_count": 19,
+      "top_p31s": [
+        {
+          "p31": "Q178561",
+          "label": "battle",
+          "count": 15,
+          "pct": 78.9
+        },
+        {
+          "p31": "Q188055",
+          "label": "Q188055",
+          "count": 2,
+          "pct": 10.5
+        },
+        {
+          "p31": "Q198",
+          "label": "Q198",
+          "count": 1,
+          "pct": 5.3
+        },
+        {
+          "p31": "Q8465",
+          "label": "Q8465",
+          "count": 1,
+          "pct": 5.3
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q3277005",
+      "anchor_label": "Magistracies (powers, term limits, imper",
+      "entity_count": 2,
+      "top_p31s": [
+        {
+          "p31": "Q17279032",
+          "label": "Q17279032",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "p31": "Q7725634",
+          "label": "literary work",
+          "count": 1,
+          "pct": 50.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q3932035",
+      "anchor_label": "Client Kingdoms, Alliances, and Hegemony",
+      "entity_count": 16,
+      "top_p31s": [
+        {
+          "p31": "Q3932035",
+          "label": "Q3932035",
+          "count": 9,
+          "pct": 56.2
+        },
+        {
+          "p31": "Q3932025",
+          "label": "Hellenistic kingdom",
+          "count": 2,
+          "pct": 12.5
+        },
+        {
+          "p31": "Q3024240",
+          "label": "historical country",
+          "count": 2,
+          "pct": 12.5
+        },
+        {
+          "p31": "Q48349",
+          "label": "empire",
+          "count": 1,
+          "pct": 6.2
+        },
+        {
+          "p31": "Q1250464",
+          "label": "realm",
+          "count": 1,
+          "pct": 6.2
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q3952",
+      "anchor_label": "Q3952",
+      "entity_count": 1570,
+      "top_p31s": [
+        {
+          "p31": "Q79007",
+          "label": "street",
+          "count": 576,
+          "pct": 36.7
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 565,
+          "pct": 36.0
+        },
+        {
+          "p31": "Q811979",
+          "label": "Q811979",
+          "count": 74,
+          "pct": 4.7
+        },
+        {
+          "p31": "Q3947",
+          "label": "house",
+          "count": 38,
+          "pct": 2.4
+        },
+        {
+          "p31": "Q253019",
+          "label": "Q253019",
+          "count": 31,
+          "pct": 2.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q39686",
+      "anchor_label": "Offices and Magistracies (Cursus Honorum",
+      "entity_count": 19,
+      "top_p31s": [
+        {
+          "p31": "Q23413",
+          "label": "castle",
+          "count": 3,
+          "pct": 15.8
+        },
+        {
+          "p31": "Q16970",
+          "label": "Q16970",
+          "count": 3,
+          "pct": 15.8
+        },
+        {
+          "p31": "Q1497375",
+          "label": "architectural ensemble",
+          "count": 2,
+          "pct": 10.5
+        },
+        {
+          "p31": "Q124750618",
+          "label": "Q124750618",
+          "count": 1,
+          "pct": 5.3
+        },
+        {
+          "p31": "Q28564",
+          "label": "Q28564",
+          "count": 1,
+          "pct": 5.3
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q46303",
+      "anchor_label": "Wars and Campaigns",
+      "entity_count": 9,
+      "top_p31s": [
+        {
+          "p31": "Q600134",
+          "label": "Q600134",
+          "count": 2,
+          "pct": 22.2
+        },
+        {
+          "p31": "Q51846061",
+          "label": "Q51846061",
+          "count": 1,
+          "pct": 11.1
+        },
+        {
+          "p31": "Q97610683",
+          "label": "Q97610683",
+          "count": 1,
+          "pct": 11.1
+        },
+        {
+          "p31": "Q79007",
+          "label": "street",
+          "count": 1,
+          "pct": 11.1
+        },
+        {
+          "p31": "Q46303",
+          "label": "Q46303",
+          "count": 1,
+          "pct": 11.1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q6106068",
+      "anchor_label": "Middle Republic (periodization)",
+      "entity_count": 5,
+      "top_p31s": [
+        {
+          "p31": "Q193495",
+          "label": "monograph",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q3331189",
+          "label": "version, edition or translation",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q571",
+          "label": "book",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q11514315",
+          "label": "Q11514315",
+          "count": 1,
+          "pct": 20.0
+        },
+        {
+          "p31": "Q3024240",
+          "label": "historical country",
+          "count": 1,
+          "pct": 20.0
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q657326",
+      "anchor_label": "Social orders (Patrician, Plebeian, Equi",
+      "entity_count": 57,
+      "top_p31s": [
+        {
+          "p31": "Q657326",
+          "label": "estates of the realm",
+          "count": 29,
+          "pct": 50.9
+        },
+        {
+          "p31": "Q187588",
+          "label": "Q187588",
+          "count": 5,
+          "pct": 8.8
+        },
+        {
+          "p31": "Q874405",
+          "label": "Q874405",
+          "count": 3,
+          "pct": 5.3
+        },
+        {
+          "p31": "Q127871326",
+          "label": "Q127871326",
+          "count": 2,
+          "pct": 3.5
+        },
+        {
+          "p31": "Q16334295",
+          "label": "Q16334295",
+          "count": 2,
+          "pct": 3.5
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q726929",
+      "anchor_label": "Courts, trials, legal procedure",
+      "entity_count": 241,
+      "top_p31s": [
+        {
+          "p31": "Q726929",
+          "label": "film archive",
+          "count": 97,
+          "pct": 40.2
+        },
+        {
+          "p31": "Q1352795",
+          "label": "Q1352795",
+          "count": 20,
+          "pct": 8.3
+        },
+        {
+          "p31": "Q166118",
+          "label": "Q166118",
+          "count": 14,
+          "pct": 5.8
+        },
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 13,
+          "pct": 5.4
+        },
+        {
+          "p31": "Q41253",
+          "label": "Q41253",
+          "count": 6,
+          "pct": 2.5
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q8434",
+      "anchor_label": "Q8434",
+      "entity_count": 1995,
+      "top_p31s": [
+        {
+          "p31": "Q5",
+          "label": "human",
+          "count": 1522,
+          "pct": 76.3
+        },
+        {
+          "p31": "Q8434",
+          "label": "education",
+          "count": 106,
+          "pct": 5.3
+        },
+        {
+          "p31": "Q163740",
+          "label": "Q163740",
+          "count": 28,
+          "pct": 1.4
+        },
+        {
+          "p31": "Q43229",
+          "label": "organization",
+          "count": 23,
+          "pct": 1.2
+        },
+        {
+          "p31": "Q2385804",
+          "label": "educational institution",
+          "count": 9,
+          "pct": 0.5
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q899409",
+      "anchor_label": "Families, Gentes, and Prosopography",
+      "entity_count": 1068,
+      "top_p31s": [
+        {
+          "p31": "Q899409",
+          "label": "gens",
+          "count": 1064,
+          "pct": 99.6
+        },
+        {
+          "p31": "Q8436",
+          "label": "family",
+          "count": 1,
+          "pct": 0.1
+        },
+        {
+          "p31": "Q23641869",
+          "label": "family in ancient Rome",
+          "count": 1,
+          "pct": 0.1
+        },
+        {
+          "p31": "Q10856962",
+          "label": "Q10856962",
+          "count": 1,
+          "pct": 0.1
+        },
+        {
+          "p31": "Q13433827",
+          "label": "Q13433827",
+          "count": 1,
+          "pct": 0.1
+        }
+      ]
+    },
+    {
+      "seed_qid": "Q952064",
+      "anchor_label": "Markets, money, and exchange",
+      "entity_count": 146,
+      "top_p31s": [
+        {
+          "p31": "Q918448",
+          "label": "denomination",
+          "count": 64,
+          "pct": 43.8
+        },
+        {
+          "p31": "Q113813711",
+          "label": "Q113813711",
+          "count": 16,
+          "pct": 11.0
+        },
+        {
+          "p31": "Q8142",
+          "label": "Q8142",
+          "count": 16,
+          "pct": 11.0
+        },
+        {
+          "p31": "Q272937",
+          "label": "Q272937",
+          "count": 11,
+          "pct": 7.5
+        },
+        {
+          "p31": "Q164099",
+          "label": "Q164099",
+          "count": 4,
+          "pct": 2.7
+        }
+      ]
+    }
+  ]
+}

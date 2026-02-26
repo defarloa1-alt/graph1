@@ -120,13 +120,13 @@ def import_entities_with_parameters(checkpoint_file: str, limit: int = 2600, bat
                 
                 print(f"Importing batch {i//batch_size + 1} ({len(batch)} entities)...")
                 
-                # Parameterized query
+                # Parameterized query — MERGE on qid for idempotency and multi-seed deduplication
                 cypher = """
                 UNWIND $entities AS entity
-                MERGE (n:Entity {entity_cipher: entity.entity_cipher})
+                MERGE (n:Entity {qid: entity.qid})
                 ON CREATE SET
+                    n.entity_cipher = entity.entity_cipher,
                     n.entity_id = entity.entity_id,
-                    n.qid = entity.qid,
                     n.label = entity.label,
                     n.entity_type = entity.entity_type,
                     n.namespace = 'wd',
@@ -169,12 +169,8 @@ def import_entities_with_parameters(checkpoint_file: str, limit: int = 2600, bat
 
 
 if __name__ == "__main__":
-    checkpoint_file = "output/checkpoints/QQ17167_checkpoint_20260221_061318.json"
-    
-    if len(sys.argv) > 1:
-        limit = int(sys.argv[1])
-    else:
-        limit = 2600
+    checkpoint_file = sys.argv[1] if len(sys.argv) > 1 else "output/checkpoints/QQ17167_checkpoint_20260221_061318.json"
+    limit = int(sys.argv[2]) if len(sys.argv) > 2 else 2600
     
     print(f"Importing {limit} entities from {checkpoint_file}")
     import_entities_with_parameters(checkpoint_file, limit)

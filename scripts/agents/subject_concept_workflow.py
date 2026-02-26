@@ -164,7 +164,14 @@ class SubjectConceptDiscoveryWorkflow:
         return classified
     
     def _classify_with_perplexity(self, candidate: Dict) -> Dict:
-        """Classify a single candidate using Perplexity"""
+        """Classify a single Wikidata ENTITY candidate using Perplexity.
+
+        IMPORTANT: This is ONLY for entity classification (Period|Event|SubjectConcept).
+        Do NOT use for property-to-facet mapping. For unknown property labels, use:
+        - CSV lookup: CSV/property_mappings/property_facet_mapping_HYBRID.csv
+        - LLM resolver: llm_resolve_unknown_properties.resolve_property_with_llm()
+        That returns {pid, facet, confidence} — never SubjectConcept proposals.
+        """
         
         prompt = f"""
         Analyze this historical concept for classification:

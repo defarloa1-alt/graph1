@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "metadata": {
-    "version": "3.3",
+    "version": "3.5",
     "description": "Complete Chrystallum Knowledge Graph Schema",
-    "last_updated": "2025-12-12",
+    "last_updated": "2026-02-24",
     "source_files": [
       "Reference/neo4j_entities_deduplicated.csv",
       "relations/canonical_relationship_types.csv",
@@ -932,6 +932,37 @@
         "wikidata_qid": "Q11042"
       }
     ]
+  },
+  "entity_scoping": {
+    "description": "Determines harvester scoping rule per entity category. Temporal entities get date/period checks; conceptual entities get domain-proximity only (no temporal constraint).",
+    "rationale": "Concepts like imperium, mos maiorum, the Senate as institution are atemporal or trans-temporal. Temporal filtering would incorrectly exclude the most conceptually central entities. Domain specificity (Q17167 or SubjectConcept neighborhood in claim set) is the right signal for conceptual entities.",
+    "scoping_classes": {
+      "temporal": {
+        "description": "Entities with birth/death dates or that exist in a specific time. Scoping: date range, period membership, external_ids (PeriodO, Pleiades).",
+        "categories": ["Person", "Event", "Agreement", "Position"]
+      },
+      "conceptual": {
+        "description": "Institutions, structures, legal concepts, geographic entities. Atemporal or trans-temporal. Scoping: domain graph proximity only — entity must have Q17167 or SubjectConcept neighborhood in claim set.",
+        "categories": ["Organization", "Place", "Infrastructure", "Material", "Concept", "Religious"]
+      }
+    },
+    "category_to_scoping_class": {
+      "Person": "temporal",
+      "Event": "temporal",
+      "Agreement": "temporal",
+      "Position": "temporal",
+      "Organization": "conceptual",
+      "Place": "conceptual",
+      "Infrastructure": "conceptual",
+      "Material": "conceptual",
+      "Concept": "conceptual",
+      "Religious": "conceptual"
+    },
+    "anchor_to_property_allowlist": {
+      "description": "Per-anchor QID: which backlink properties to harvest. Reduces noise; from property_chain_trace. Empty = harvest all (legacy).",
+      "Q182547": ["P31"],
+      "Q337547": ["P140", "P101", "P361"]
+    }
   },
   "relationships": {
     "description": "Relationship types with directionality and Wikidata properties",
@@ -7322,6 +7353,172 @@
         }
       ]
     }
+  },
+  "epistemological_frameworks": {
+    "description": "Self-describing frameworks that govern how claims are made, resolved, and contested. These are first-class graph nodes. SFAs query these nodes to determine which framework governs a given claim type before proposing. All claims carry RESOLVED_USING edges back to the framework applied.",
+    "design_principle": "Frameworks are themselves contestable. New frameworks can be proposed by SFAs with source: sfa_inference and promoted to authoritative status through the same debate protocol they govern. The graph is self-instructing.",
+    "frameworks": [
+      {
+        "id": "F000",
+        "label": "PMEST",
+        "full_name": "Ranganathan Facet Analysis: Personality, Matter, Energy, Space, Time",
+        "wikidata_qid": "Q3437069",
+        "spec_url": "https://www.isko.org/cyclo/facet",
+        "source": "library_science_standard",
+        "confidence": "authoritative",
+        "applies_to": ["facet_skeleton_generation", "domain_decomposition", "sfa_bootstrap"],
+        "role": "meta_framework",
+        "description": "The theoretical foundation for how SFAs generate their initial facet skeleton for any domain. PMEST is domain-agnostic: every subject can be decomposed along Personality (the primary focus entity type), Matter (materials or attributes), Energy (actions and processes), Space (geographic), and Time (temporal). SFAs specialize these five axes for their domain then map Wikidata properties into the resulting buckets.",
+        "pmest_axes": [
+          { "axis": "P", "name": "Personality", "military_example": "Commanders, armies, states, alliances", "roman_republic_example": "Magistrates, gentes, factions" },
+          { "axis": "M", "name": "Matter", "military_example": "Weapons, fortifications, logistics materiel", "roman_republic_example": "Land, grain, coinage, legal texts" },
+          { "axis": "E", "name": "Energy", "military_example": "Battles, campaigns, sieges, doctrinal innovation", "roman_republic_example": "Elections, trials, wars, legislative acts" },
+          { "axis": "S", "name": "Space", "military_example": "Theaters, regions, fortification lines", "roman_republic_example": "Provinces, Rome itself, allied territories" },
+          { "axis": "T", "name": "Time", "military_example": "Eras, campaigns, periods of doctrine", "roman_republic_example": "Early/Middle/Late Republic, crisis periods" }
+        ],
+        "bootstrap_protocol": {
+          "step_1": "Instantiate PMEST axes for the SFA's domain",
+          "step_2": "Map Wikidata properties around the root QID into PMEST buckets by label/description pattern matching",
+          "step_3": "Check bootstrap_readiness in this schema. If current_state is BOOTSTRAP_REQUIRED, treat all facets as equiprobable regardless of cluster entity counts",
+          "step_4": "Emit facet skeleton as JSON proposal with source: sfa_inference and framework: F000",
+          "step_5": "After scoped re-harvest, re-run step 2-4 using scoped entity counts to weight facet salience. Supersede bootstrap proposal."
+        },
+        "bootstrap_readiness_pointer": "See bootstrap_readiness object in this schema for current entity layer trustworthiness. As of 2026-02-24: BOOTSTRAP_REQUIRED. 73.7% of MEMBER_OF edges are unscoped noise. SFA must use structural priors only, not cluster entity counts, until scoped re-harvest completes.",
+        "sfa_instruction": "F000 governs how you decompose your domain before you make any specific claims. Run PMEST first. Produce a facet skeleton. Every downstream claim you make should be traceable to one of the five PMEST axes. When the graph entity layer is trustworthy (bootstrap_readiness.current_state != BOOTSTRAP_REQUIRED), weight your facets by scoped entity density. Until then, treat all five axes as equally important starting points."
+      },
+      {
+        "id": "F001",
+        "label": "SKOS",
+        "full_name": "Simple Knowledge Organization System",
+        "wikidata_qid": "Q6774353",
+        "spec_url": "https://www.w3.org/TR/skos-reference/",
+        "source": "w3c_standard",
+        "confidence": "authoritative",
+        "applies_to": ["hierarchy_placement", "concept_alignment", "broader_narrower_dispute"],
+        "resolution_mechanisms": [
+          { "name": "exactMatch", "use_when": "Two concepts are identical in meaning across different systems" },
+          { "name": "closeMatch", "use_when": "Two concepts are similar but not identical; use when hierarchy is contested but near-equivalent" },
+          { "name": "broadMatch", "use_when": "Claim is that concept A belongs under concept B in the hierarchy" },
+          { "name": "narrowMatch", "use_when": "Claim is that concept B is more specific than concept A" },
+          { "name": "relatedMatch", "use_when": "Concepts are related but neither broader nor narrower" }
+        ],
+        "sfa_instruction": "When the dispute is about WHERE a concept sits in the hierarchy — not whether the claim is factually true — use SKOS. State which match type applies and why. Do not use AIF argumentation for pure placement disputes."
+      },
+      {
+        "id": "F002",
+        "label": "AIF",
+        "full_name": "Argument Interchange Format",
+        "wikidata_qid": "Q4672077",
+        "spec_url": "http://www.arg.dundee.ac.uk/aif",
+        "source": "academic_standard",
+        "confidence": "authoritative",
+        "applies_to": ["factual_dispute", "causal_claim", "interpretive_claim", "cross_facet_conflict"],
+        "resolution_mechanisms": [
+          { "name": "support", "use_when": "One claim or piece of evidence supports another" },
+          { "name": "attack", "use_when": "One claim directly contradicts or undermines another" },
+          { "name": "undercut", "use_when": "A claim does not contradict the conclusion but undermines the reasoning path to it" },
+          { "name": "rebuttal", "use_when": "A counter-claim with its own supporting evidence" }
+        ],
+        "grounding": "Dung Abstract Argumentation Framework (Q4919743) — AIF is the concrete implementation. Extensions: preferred, grounded, stable.",
+        "sfa_instruction": "When SFAs dispute the factual truth of a claim — not just its placement — use AIF. Structure your claim as a node, identify attack and support relationships from other SFAs, and compute which claims survive in the preferred extension. Use undercut when you challenge reasoning not conclusion."
+      },
+      {
+        "id": "F003",
+        "label": "PROV-O",
+        "full_name": "W3C Provenance Ontology",
+        "wikidata_qid": "Q7216394",
+        "spec_url": "https://www.w3.org/TR/prov-o/",
+        "source": "w3c_standard",
+        "confidence": "authoritative",
+        "applies_to": ["provenance_question", "confidence_assessment", "source_attribution", "derivation_chain"],
+        "resolution_mechanisms": [
+          { "name": "wasGeneratedBy", "use_when": "Claim was generated by an activity (harvest, SFA inference, curation)" },
+          { "name": "wasDerivedFrom", "use_when": "Claim is derived from another entity or claim" },
+          { "name": "wasAttributedTo", "use_when": "Claim is attributed to an agent (SFA, harvester, human curator)" },
+          { "name": "hadPrimarySource", "use_when": "Claim traces back to a primary source (Wikidata, ancient text, authority record)" },
+          { "name": "wasInvalidatedBy", "use_when": "Claim was invalidated by a later activity" }
+        ],
+        "sfa_instruction": "Every claim written to the graph must carry PROV-O attribution. Source field must identify the agent. Confidence must be set. When questioning the reliability of a claim, frame the dispute as a provenance question: what was the derivation chain and where is it weak? This is not an argumentation framework — do not use it for factual disputes, use it to assess how well-grounded a claim is."
+      },
+      {
+        "id": "F004",
+        "label": "Wikidata_Rank",
+        "full_name": "Wikidata Statement Rank System",
+        "wikidata_qid": "Q17521449",
+        "spec_url": "https://www.wikidata.org/wiki/Help:Ranking",
+        "source": "wikidata_standard",
+        "confidence": "authoritative",
+        "applies_to": ["multiple_valid_values", "temporal_succession", "deprecated_claim", "preferred_current_value"],
+        "resolution_mechanisms": [
+          { "name": "preferred", "use_when": "This is the current or best-supported value; show this by default" },
+          { "name": "normal", "use_when": "This value is valid but not preferred; all normal ranks shown when preferred absent" },
+          { "name": "deprecated", "use_when": "This value is known to be wrong or superseded; kept for audit trail" }
+        ],
+        "sfa_instruction": "When multiple values are all factually valid (e.g., Caesar held multiple offices, a province had several governors), use rank to distinguish current/best from historical alternatives. Do not use rank to resolve genuine factual disputes — that is AIF territory. Use rank for ordering, not for adjudicating truth."
+      },
+      {
+        "id": "F005",
+        "label": "Contested_Claim",
+        "full_name": "Chrystallum Contested Claim Protocol",
+        "wikidata_qid": null,
+        "spec_url": null,
+        "source": "chrystallum_native",
+        "confidence": "authoritative",
+        "applies_to": ["genuine_scholarly_disagreement", "unresolved_after_three_rounds", "multi_facet_ownership"],
+        "resolution_mechanisms": [
+          { "name": "contested", "use_when": "Dispute is genuine and both positions have legitimate scholarly support; record all positions with weights" },
+          { "name": "multi_facet", "use_when": "Claim legitimately belongs to multiple facets; record all with confidence weights rather than forcing one winner" },
+          { "name": "frontier", "use_when": "Claim cannot be resolved with current entity layer; flag for revisit when evidence accumulates" }
+        ],
+        "sfa_instruction": "Contested claims are not failures — they are correct epistemic outputs when genuine disagreement exists. After three rounds, if residual conflict remains, write the claim as contested with all SFA positions recorded and confidence-weighted. The graph holds disagreement honestly rather than forcing false consensus. Frontier claims are re-evaluated when the entity layer grows."
+      }
+    ],
+    "claim_types": [
+      { "name": "hierarchy_placement", "governed_by": "F001", "description": "Where does this concept sit in the SubjectConcept DAG?" },
+      { "name": "concept_alignment", "governed_by": "F001", "description": "Are these two concepts the same, similar, broader, or narrower?" },
+      { "name": "factual_dispute", "governed_by": "F002", "description": "Is this claim factually true? Competing sources or SFA reasoning disagree." },
+      { "name": "causal_claim", "governed_by": "F002", "description": "Did X cause Y? Contested causal chain." },
+      { "name": "interpretive_claim", "governed_by": "F002", "description": "What does this event or pattern mean? Competing historical interpretations." },
+      { "name": "cross_facet_conflict", "governed_by": "F002", "description": "Multiple SFAs claim ownership of the same entity or event." },
+      { "name": "provenance_question", "governed_by": "F003", "description": "How reliable is this claim? What is its derivation chain?" },
+      { "name": "confidence_assessment", "governed_by": "F003", "description": "What confidence should this claim carry given its sources?" },
+      { "name": "multiple_valid_values", "governed_by": "F004", "description": "Multiple values are all true; need ordering or preference." },
+      { "name": "temporal_succession", "governed_by": "F004", "description": "A value that was true is now superseded by a more current value." },
+      { "name": "genuine_scholarly_disagreement", "governed_by": "F005", "description": "Debate has no resolution; both positions have scholarly warrant." },
+      { "name": "multi_facet_ownership", "governed_by": "F005", "description": "Entity legitimately belongs to multiple facets with different weights." },
+      { "name": "frontier_claim", "governed_by": "F005", "description": "Claim cannot be resolved yet; flag for future evidence." }
+    ],
+    "inter_framework_relations": [
+      { "from": "F000", "rel": "PRECEDES", "to": "F001", "note": "PMEST facet skeleton generation runs before any hierarchy placement claims (F001)" },
+      { "from": "F000", "rel": "PRECEDES", "to": "F002", "note": "PMEST decomposition runs before any factual dispute claims (F002)" },
+      { "from": "F000", "rel": "GROUNDS", "to": "F001", "note": "PMEST axes provide the conceptual substrate that SKOS hierarchy organizes" },
+      { "from": "F000", "rel": "GROUNDS", "to": "F002", "note": "PMEST axes define what counts as a cross-facet conflict for AIF" },
+      { "from": "F002", "rel": "SUBSUMES", "to": "Dung_AAF", "note": "AIF is the concrete implementation of Dung's Abstract Argumentation Framework" },
+      { "from": "F003", "rel": "COMPATIBLE_WITH", "to": "F004", "note": "PROV-O provenance and Wikidata rank can co-exist on the same claim" },
+      { "from": "F001", "rel": "USED_BY", "to": "F002", "note": "AIF arguments can reference SKOS concept placements as premises" },
+      { "from": "F005", "rel": "INVOKED_AFTER", "to": "F002", "note": "Contested Claim protocol is the fallback when AIF debate does not converge" }
+    ],
+    "bootstrap_readiness": {
+      "description": "Conditions under which SFA facet inference from the graph is reliable vs. when it must fall back to structural priors.",
+      "current_state": "BOOTSTRAP_REQUIRED",
+      "diagnosis": "Per scoping_advisor_report.md (2026-02-24): 87.1% of MEMBER_OF edges are unscoped noise (6,374 total, 822 scoped, 5,552 unscoped). This is worse than the initial partial run (73.7%) because Q899409 Families/Prosopography is now uncapped at 999 entities and 98.2% unscoped. Top noise offenders by count: Q11469 Agriculture 961 unscoped (95.8%), Q899409 Families 981 unscoped (98.2%), Q7188 Government 913 unscoped (93.0%). 100% unscoped clusters: External wars, Internal wars, Political violence, Factional politics, Cursus Honorum offices, Ritual/Omens, Society/Social Structure. SFA cannot trust graph entity distribution as a signal for facet salience until scoped re-harvest is complete.",
+      "states": {
+        "BOOTSTRAP_REQUIRED": "Scoped re-harvest not yet complete. Entity layer is 87.1% noise. SFA must use F000 PMEST structural priors only. Do not weight facets by cluster entity counts.",
+        "PHASE1_COMPLETE": "Scoped entities present, federation IDs confirmed on entity nodes, Phase 2 enrichment not yet run. SFA may weight facets by scoped entity density in trustworthy clusters (unscoped_pct < 40%, scoped >= 10). Wikidata-only signal — biased toward elite actors and major events.",
+        "PHASE2_COMPLETE": "Federation records interrogated. Primary source claims (attestations, social bonds, place precision, uncertainty metadata) written to graph from Trismegistos, LGPN, Pleiades. SFA may weight facets by enriched entity density. Social history layer now visible. Qualitatively richer signal than PHASE1_COMPLETE."
+      },
+      "readiness_threshold": "SFA may use graph entity counts as facet salience signal only when cluster % unscoped < 40% AND scoped entity count >= 10.",
+      "fallback_when_bootstrap": "Use F000 PMEST structural priors + Wikidata property inspection directly. Do not weight facets by cluster entity counts. Treat all facets as equiprobable until scoped layer exists.",
+      "clusters_currently_trustworthy": [
+        { "qid": "Q182547", "label": "Provinces and Administration", "unscoped_pct": 48.0, "scoped": 89, "note": "Best cluster — nearly half scoped, P1584 Pleiades driving temporal anchors" },
+        { "qid": "Q337547", "label": "Public ritual, auspices, legitimacy", "unscoped_pct": 57.7, "scoped": 113, "note": "Strong domain scoping via VIAF + ritual/religious authority backlinks" },
+        { "qid": "Q1541", "label": "Forums, public speech, persuasion", "unscoped_pct": 62.3, "scoped": 101, "note": "Reasonable scoping via VIAF on orators and jurists" },
+        { "qid": "Q726929", "label": "Courts, trials, legal procedure", "unscoped_pct": 58.5, "scoped": 49, "note": "New entrant — below 10 scoped threshold in previous run, now at 49" },
+        { "qid": "Q212943", "label": "Religious Offices, Priesthoods, and Authority", "unscoped_pct": 62.5, "scoped": 9, "note": "Borderline — 9 scoped entities, just under threshold. Monitor on next run." }
+      ],
+      "clusters_currently_untrusted": "All clusters with unscoped_pct >= 80% — see scoping_advisor_report.md for full list."
+    },
+    "sfa_claim_classifier_instruction": "Before proposing any claim, execute this classification sequence: (1) Is this a question of WHERE a concept belongs in the hierarchy? → F001 SKOS. (2) Is this a question of WHETHER a factual claim is true, with competing evidence or SFA positions? → F002 AIF. (3) Is this a question of HOW RELIABLE or WELL-SOURCED a claim is? → F003 PROV-O. (4) Are multiple values all valid and I need to order them? → F004 Wikidata Rank. (5) Has debate been exhausted with no convergence, or does this legitimately belong to multiple facets? → F005 Contested Claim. State the framework ID in your proposal. The SCA routes proposals by framework ID."
   },
   "temporal_periods": {
     "description": "Historical period definitions with Wikidata QIDs",

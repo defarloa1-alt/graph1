@@ -1,0 +1,847 @@
+{
+  "generated_at": "2026-02-24T00:25:34.981847+00:00",
+  "seed_qid": "Q15265460",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 22,
+    "candidate_sources_before_budget": 19,
+    "candidate_sources_considered": 19,
+    "accepted_before_node_budget": 17,
+    "accepted": 17,
+    "rejected": 2,
+    "entities_profiled": 17,
+    "frontier_eligible": 17,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.10526315789473684,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {
+    "no_p31": 2
+  },
+  "datatype_profile_summary": {
+    "statement_count": 241,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 21,
+    "with_references": 60,
+    "qualifier_rate": 0.08713692946058091,
+    "reference_rate": 0.24896265560165975,
+    "datatype_counts": {
+      "wikibase-item": 158,
+      "monolingualtext": 7,
+      "time": 9,
+      "external-id": 54,
+      "string": 5,
+      "quantity": 3,
+      "commonsMedia": 3,
+      "url": 2
+    },
+    "value_type_counts": {
+      "wikibase-entityid": 158,
+      "monolingualtext": 7,
+      "time": 9,
+      "string": 64,
+      "quantity": 3
+    },
+    "pair_counts": {
+      "wikibase-item|wikibase-entityid": 158,
+      "monolingualtext|monolingualtext": 7,
+      "time|time": 9,
+      "external-id|string": 54,
+      "string|string": 5,
+      "quantity|quantity": 3,
+      "commonsMedia|string": 3,
+      "url|string": 2
+    },
+    "route_counts": {
+      "edge_candidate": 158,
+      "node_property": 14,
+      "temporal_anchor": 9,
+      "federation_id": 54,
+      "measured_attribute": 3,
+      "media_reference": 3
+    },
+    "rank_counts": {
+      "normal": 241
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 17,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q109669836",
+      "label": "The Economy of Pompeii",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1711593",
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q1711593",
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P212": "978-0-19-878657-3",
+        "P648": "OL27712540M",
+        "P5749": "0198786573",
+        "P243": "970604159",
+        "P1144": "2016939406"
+      },
+      "statement_profile": {
+        "statement_count": 14,
+        "with_qualifiers": 1,
+        "with_references": 4,
+        "qualifier_rate": 0.07142857142857142,
+        "reference_rate": 0.2857142857142857,
+        "route_counts": {
+          "edge_candidate": 7,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "federation_id": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07142857142857142,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113575023",
+      "label": "Banking in ancient Rome",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q806718",
+        "Q806750"
+      ],
+      "matched_classes": [
+        "Q806718",
+        "Q806750"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 7
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113653932",
+      "label": "Tributum soli",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q607695",
+        "Q926871"
+      ],
+      "matched_classes": [
+        "Q607695",
+        "Q926871"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q109658066",
+      "label": "The Roman retail revolution: the socio-economic world of the taberna",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q10383930"
+      ],
+      "matched_classes": [
+        "Q10383930"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.05,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 18,
+          "node_property": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.05,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q109669854",
+      "label": "Measuring the movement economy: a network analysis of Pompeii",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q21481766"
+      ],
+      "matched_classes": [
+        "Q21481766"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.0625,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 13,
+          "node_property": 2,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 13,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q110187353",
+      "label": "The Archaeology of the Roman Economy",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q10383930"
+      ],
+      "matched_classes": [
+        "Q10383930"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P957": "0-7134-4594-7",
+        "P648": "OL2336062M"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.09090909090909091,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 1,
+          "temporal_anchor": 1,
+          "measured_attribute": 1,
+          "federation_id": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113331641",
+      "label": "Mining in ancient Rome",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q44497"
+      ],
+      "matched_classes": [
+        "Q44497"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "media_reference": 2,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3333333333333333,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113505056",
+      "label": "Taxation in ancient Rome",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q8161"
+      ],
+      "matched_classes": [
+        "Q8161"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113561863",
+      "label": "poverty in ancient Rome",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q10294"
+      ],
+      "matched_classes": [
+        "Q10294"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q113653947",
+      "label": "Vicesima libertatis",
+      "properties": [
+        "P279"
+      ],
+      "p31": [
+        "Q8161"
+      ],
+      "matched_classes": [
+        "Q8161"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q120241328",
+      "label": "Civitas, empire, and Romanization",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "matched_classes": [
+        "Q600134"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 16,
+        "with_qualifiers": 0,
+        "with_references": 4,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 16
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 16,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q134519860",
+      "label": "Marine Lépée",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "20171395858130521883",
+        "P269": "269292063",
+        "P496": "0000-0002-7086-8353",
+        "P4450": "marine-lepee"
+      },
+      "statement_profile": {
+        "statement_count": 22,
+        "with_qualifiers": 4,
+        "with_references": 18,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.8181818181818182,
+        "route_counts": {
+          "edge_candidate": 17,
+          "federation_id": 4,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 17,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q51538642",
+      "label": "The Rural Economy of Roman Britain: New Visions of the Countryside of Roman Britain Volume 2",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "matched_classes": [
+        "Q3331189"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P212": "978-0-907764-44-1",
+        "P4028": "378645722436715014",
+        "P648": "OL39941746M",
+        "P243": "1013824717",
+        "P1144": "2017433252"
+      },
+      "statement_profile": {
+        "statement_count": 20,
+        "with_qualifiers": 5,
+        "with_references": 4,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.2,
+        "route_counts": {
+          "measured_attribute": 1,
+          "node_property": 3,
+          "federation_id": 5,
+          "edge_candidate": 10,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q51630228",
+      "label": "The Economy of Roman Britain",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q21481766"
+      ],
+      "matched_classes": [
+        "Q21481766"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 0,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 6,
+          "node_property": 2,
+          "temporal_anchor": 1,
+          "measured_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.3,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q55761373",
+      "label": "Economy, western Roman provinces",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q13433827"
+      ],
+      "matched_classes": [
+        "Q13433827"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P356": "10.1002/9781444338386.WBEAH06116"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 3,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.3,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 7,
+          "node_property": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q5915570",
+      "label": "industry in ancient Rome",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q125150968"
+      ],
+      "matched_classes": [
+        "Q125150968"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1224tc3j"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 5,
+          "node_property": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q7173970",
+      "label": "Peter Fibiger Bang",
+      "properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "matched_classes": [
+        "Q5"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P214": "29850522",
+        "P213": "0000000116144787",
+        "P227": "124656749",
+        "P1006": "316302228",
+        "P269": "115506594",
+        "P268": "15583618t",
+        "P691": "jo2013778757",
+        "P3987": "474977",
+        "P244": "no2007067976",
+        "P1207": "n2010112682",
+        "P646": "/m/0cm9kz2",
+        "P7293": "9810624890605606",
+        "P9097": "12451426",
+        "P396": "TSAV446514",
+        "P10553": "363176985",
+        "P3368": "345473",
+        "P8189": "987007291638005171",
+        "P11249": "14038623",
+        "P8034": "495/350527",
+        "P1015": "9015939",
+        "P8179": "ncf11630018",
+        "P3846": "87097968096162",
+        "P5034": "KAC2022E0932",
+        "P7699": "LNB:DD8N;=w3",
+        "P1368": "000259605",
+        "P271": "DA17382976",
+        "P9171": "161630",
+        "P3065": "A013799708",
+        "P2734": "BangPeterFibiger",
+        "P9661": "158411",
+        "P11496": "1140000791565629056",
+        "P12458": "830094",
+        "P10832": "E39PBJrWC6Cm986yHGhKkwkhpP",
+        "P13166": "231729",
+        "P13591": "person/d9dfdc80-9c5e-450f-b0af-8a184b43d71f",
+        "P14107": "4714"
+      },
+      "statement_profile": {
+        "statement_count": 57,
+        "with_qualifiers": 5,
+        "with_references": 27,
+        "qualifier_rate": 0.08771929824561403,
+        "reference_rate": 0.47368421052631576,
+        "route_counts": {
+          "federation_id": 36,
+          "edge_candidate": 18,
+          "temporal_anchor": 1,
+          "media_reference": 1,
+          "node_property": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.03508771929824561,
+        "edge_candidate_count": 18,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "qid": "Q2008214",
+      "label": "Roman commerce",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q381101",
+      "label": "Aerarium",
+      "reason": "no_p31",
+      "properties": [
+        "P361"
+      ],
+      "p31": [],
+      "backlink_hits": 1
+    }
+  ]
+}

@@ -1,0 +1,980 @@
+{
+  "generated_at": "2026-02-24T00:27:33.616361+00:00",
+  "seed_qid": "Q1764124",
+  "config": {
+    "mode": "discovery",
+    "schema_path": "JSON\\chrystallum_schema.json",
+    "output_dir": "JSON/wikidata/backlinks",
+    "max_depth": 1,
+    "sparql_limit": 2000,
+    "max_sources_per_seed": 1000,
+    "max_new_nodes_per_seed": 500,
+    "unresolved_class_threshold": 0.2,
+    "unsupported_pair_threshold": 0.1,
+    "min_temporal_precision": 9,
+    "literal_heavy_threshold": 0.8,
+    "max_p279_hops": 4,
+    "timeout_s": 45,
+    "sleep_ms": 100,
+    "batch_size": 40
+  },
+  "allowlists": {
+    "properties": [
+      "P17",
+      "P19",
+      "P20",
+      "P31",
+      "P39",
+      "P50",
+      "P61",
+      "P84",
+      "P86",
+      "P101",
+      "P106",
+      "P112",
+      "P131",
+      "P138",
+      "P140",
+      "P166",
+      "P170",
+      "P176",
+      "P186",
+      "P279",
+      "P361",
+      "P366",
+      "P527",
+      "P576",
+      "P580",
+      "P582",
+      "P710",
+      "P737",
+      "P828",
+      "P921",
+      "P1001",
+      "P1056",
+      "P1071",
+      "P1142",
+      "P1366",
+      "P1399",
+      "P1412",
+      "P1441",
+      "P1448",
+      "P2079",
+      "P2561",
+      "P2578",
+      "P2579"
+    ],
+    "property_count": 43,
+    "class_allowlist_mode": "disabled",
+    "classes_count": 0,
+    "p31_denylist": []
+  },
+  "counts": {
+    "backlink_rows": 22,
+    "candidate_sources_before_budget": 21,
+    "candidate_sources_considered": 21,
+    "accepted_before_node_budget": 21,
+    "accepted": 21,
+    "rejected": 0,
+    "entities_profiled": 21,
+    "frontier_eligible": 21,
+    "frontier_excluded": 0
+  },
+  "gates": {
+    "unresolved_class_rate": 0.0,
+    "unresolved_class_gate_passed": true,
+    "unsupported_pair_rate": 0.0,
+    "datatype_gate_passed": true,
+    "overall_status": "pass"
+  },
+  "rejection_reasons": {},
+  "datatype_profile_summary": {
+    "statement_count": 192,
+    "missing_datavalue_statement_count": 0,
+    "with_qualifiers": 23,
+    "with_references": 63,
+    "qualifier_rate": 0.11979166666666667,
+    "reference_rate": 0.328125,
+    "datatype_counts": {
+      "external-id": 32,
+      "wikibase-item": 109,
+      "commonsMedia": 8,
+      "globe-coordinate": 16,
+      "time": 24,
+      "string": 2,
+      "monolingualtext": 1
+    },
+    "value_type_counts": {
+      "string": 42,
+      "wikibase-entityid": 109,
+      "globecoordinate": 16,
+      "time": 24,
+      "monolingualtext": 1
+    },
+    "pair_counts": {
+      "external-id|string": 32,
+      "wikibase-item|wikibase-entityid": 109,
+      "commonsMedia|string": 8,
+      "globe-coordinate|globecoordinate": 16,
+      "time|time": 24,
+      "string|string": 2,
+      "monolingualtext|monolingualtext": 1
+    },
+    "route_counts": {
+      "federation_id": 32,
+      "edge_candidate": 109,
+      "media_reference": 8,
+      "geo_attribute": 16,
+      "temporal_anchor": 24,
+      "node_property": 3
+    },
+    "rank_counts": {
+      "normal": 191,
+      "preferred": 1
+    },
+    "quarantine_reasons": {},
+    "unsupported_pairs": {},
+    "unsupported_statement_count": 0,
+    "unsupported_pair_rate": 0.0,
+    "frontier_eligible_count": 21,
+    "frontier_excluded_count": 0,
+    "literal_heavy_threshold": 0.8,
+    "min_temporal_precision": 9
+  },
+  "accepted": [
+    {
+      "qid": "Q972445",
+      "label": "Siege of Cyzicus",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561",
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q178561",
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 2,
+      "external_ids": {
+        "P646": "/m/08x6fd",
+        "P2581": "02531585n"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5454545454545454,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q11688128",
+      "label": "Battle of Neae",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "matched_classes": [
+        "Q1261499"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121jnnb6"
+      },
+      "statement_profile": {
+        "statement_count": 5,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q1616064",
+      "label": "Mithridatic Wars",
+      "properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "matched_classes": [
+        "Q198"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P508": "29385",
+        "P1417": "event/Mithradatic-wars",
+        "P244": "sh85115119",
+        "P646": "/m/043db7",
+        "P268": "11983381w",
+        "P950": "XX5053953",
+        "P8189": "987007543883905171",
+        "P8313": "de_mithridatiske_krige",
+        "P13591": "concept/7c3d9003-3a6c-4a4c-a3f5-5b7ed0fd6ae2"
+      },
+      "statement_profile": {
+        "statement_count": 23,
+        "with_qualifiers": 4,
+        "with_references": 11,
+        "qualifier_rate": 0.17391304347826086,
+        "reference_rate": 0.4782608695652174,
+        "route_counts": {
+          "edge_candidate": 9,
+          "federation_id": 9,
+          "node_property": 1,
+          "temporal_anchor": 2,
+          "media_reference": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.13043478260869565,
+        "edge_candidate_count": 9,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2095250",
+      "label": "Battle of the Rhyndacus",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0h55d9d"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.375,
+        "route_counts": {
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2299845",
+      "label": "Battle of Tigranocerta",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/06kn4x"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.6,
+        "route_counts": {
+          "federation_id": 1,
+          "media_reference": 1,
+          "edge_candidate": 6,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2331925",
+      "label": "Battle of Chalcedon",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0drwzx4",
+        "P2581": "02302537n"
+      },
+      "statement_profile": {
+        "statement_count": 11,
+        "with_qualifiers": 2,
+        "with_references": 5,
+        "qualifier_rate": 0.18181818181818182,
+        "reference_rate": 0.45454545454545453,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 6,
+          "media_reference": 1,
+          "geo_attribute": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.18181818181818182,
+        "edge_candidate_count": 6,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2464364",
+      "label": "Battle of Zela",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/0drzm27"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 1,
+        "with_references": 3,
+        "qualifier_rate": 0.14285714285714285,
+        "reference_rate": 0.42857142857142855,
+        "route_counts": {
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "edge_candidate": 4,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.14285714285714285,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q25417293",
+      "label": "Pontic Wars",
+      "properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q13433827"
+      ],
+      "matched_classes": [
+        "Q13433827"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {},
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 1,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.1,
+        "route_counts": {
+          "edge_candidate": 8,
+          "node_property": 1,
+          "media_reference": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 8,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q26263215",
+      "label": "Siege of Amaseia",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11bc6czf1z"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 1,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 4,
+          "geo_attribute": 1,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q2707112",
+      "label": "Battle of the Lycus",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/08vzth",
+        "P2581": "02508849n"
+      },
+      "statement_profile": {
+        "statement_count": 9,
+        "with_qualifiers": 2,
+        "with_references": 4,
+        "qualifier_rate": 0.2222222222222222,
+        "reference_rate": 0.4444444444444444,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.1111111111111111,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28664422",
+      "label": "Siege of Themiscyra",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11cr_tqq6s"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 0,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "edge_candidate": 3,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28665781",
+      "label": "Battle of the Granicus",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11c535d878"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 2,
+        "with_references": 0,
+        "qualifier_rate": 0.3333333333333333,
+        "reference_rate": 0.0,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 5
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q28729885",
+      "label": "Battle of Tenedos",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/09kyx4"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 3,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.5,
+        "route_counts": {
+          "edge_candidate": 3,
+          "temporal_anchor": 1,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q32361260",
+      "label": "Battle of Lemnos",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "matched_classes": [
+        "Q1261499"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11c1pd59zc"
+      },
+      "statement_profile": {
+        "statement_count": 7,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.42857142857142855,
+        "reference_rate": 0.14285714285714285,
+        "route_counts": {
+          "edge_candidate": 5,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3486025",
+      "label": "Siege of Sinope",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/122czl2f"
+      },
+      "statement_profile": {
+        "statement_count": 6,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.3333333333333333,
+        "route_counts": {
+          "edge_candidate": 3,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 3,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3625438",
+      "label": "Siege of Amisus",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/121vrg0k"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 2,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.25,
+        "route_counts": {
+          "edge_candidate": 4,
+          "temporal_anchor": 2,
+          "geo_attribute": 1,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.125,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3625506",
+      "label": "Siege of Nisibis",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "matched_classes": [
+        "Q188055"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/1228rrpk"
+      },
+      "statement_profile": {
+        "statement_count": 13,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.15384615384615385,
+        "reference_rate": 0.07692307692307693,
+        "route_counts": {
+          "edge_candidate": 10,
+          "geo_attribute": 1,
+          "federation_id": 1,
+          "temporal_anchor": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.07692307692307693,
+        "edge_candidate_count": 10,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3650934",
+      "label": "Caucasian campaign of Pompey",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "matched_classes": [
+        "Q831663"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/11fldrljf1"
+      },
+      "statement_profile": {
+        "statement_count": 12,
+        "with_qualifiers": 3,
+        "with_references": 1,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.08333333333333333,
+        "route_counts": {
+          "edge_candidate": 7,
+          "media_reference": 1,
+          "federation_id": 1,
+          "node_property": 1,
+          "temporal_anchor": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.16666666666666666,
+        "edge_candidate_count": 7,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q3778702",
+      "label": "Pompey's Jewish War",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "matched_classes": [
+        "Q198"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P2671": "/g/120tb3bx"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 2,
+        "with_references": 1,
+        "qualifier_rate": 0.25,
+        "reference_rate": 0.125,
+        "route_counts": {
+          "edge_candidate": 5,
+          "temporal_anchor": 2,
+          "federation_id": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.0,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q604993",
+      "label": "Battle of Cabira",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/08x6lc"
+      },
+      "statement_profile": {
+        "statement_count": 8,
+        "with_qualifiers": 0,
+        "with_references": 6,
+        "qualifier_rate": 0.0,
+        "reference_rate": 0.75,
+        "route_counts": {
+          "federation_id": 1,
+          "edge_candidate": 4,
+          "media_reference": 1,
+          "temporal_anchor": 1,
+          "geo_attribute": 1
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.25,
+        "edge_candidate_count": 4,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    },
+    {
+      "qid": "Q647463",
+      "label": "Battle of Artaxata",
+      "properties": [
+        "P361"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "matched_classes": [
+        "Q178561"
+      ],
+      "matched_allowlist_ancestors": [],
+      "backlink_hits": 1,
+      "external_ids": {
+        "P646": "/m/08w4yt",
+        "P2581": "02512476n"
+      },
+      "statement_profile": {
+        "statement_count": 10,
+        "with_qualifiers": 1,
+        "with_references": 6,
+        "qualifier_rate": 0.1,
+        "reference_rate": 0.6,
+        "route_counts": {
+          "federation_id": 2,
+          "edge_candidate": 5,
+          "temporal_anchor": 1,
+          "geo_attribute": 2
+        },
+        "unsupported_statement_count": 0,
+        "unsupported_pair_rate": 0.0,
+        "unsupported_pairs": {},
+        "literal_heavy_ratio": 0.2,
+        "edge_candidate_count": 5,
+        "frontier_eligible": true,
+        "frontier_exclusion_reason": "",
+        "quarantine_reasons": {}
+      }
+    }
+  ],
+  "rejected": []
+}

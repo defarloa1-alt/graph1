@@ -1,0 +1,48 @@
+{
+  "domain_qid": "Q17167",
+  "description": "Curated narrative paths for Roman Republic. Each path is a coherent story route through SubjectConcepts. Paths may cross hierarchy branches.",
+  "paths": [
+    {
+      "id": "land_reform_to_civil_war",
+      "label": "Land reform, social orders, and civil war",
+      "path": ["Q1363254", "Q657326", "Q1993655"],
+      "summary": "Agrarian crisis → Patrician-Plebeian tensions → Civil conflict"
+    },
+    {
+      "id": "government_to_factions",
+      "label": "Government, factions, and civil war",
+      "path": ["Q7188", "Q20720797", "Q1993655"],
+      "summary": "Constitutional structure → Factional politics → Internal wars"
+    },
+    {
+      "id": "society_to_slavery",
+      "label": "Society, slavery, and labor",
+      "path": ["Q1392538", "Q8464", "Q1593880"],
+      "summary": "Social structure → Slavery → Slave institutions"
+    },
+    {
+      "id": "military_to_battles",
+      "label": "Military, campaigns, and battles",
+      "path": ["Q2862991", "Q46303", "Q1243998"],
+      "summary": "Warfare → Wars and campaigns → Battles and operations"
+    },
+    {
+      "id": "economy_to_land",
+      "label": "Economy, landholding, and land reform",
+      "path": ["Q15265460", "Q11469", "Q1363254"],
+      "summary": "Economic systems → Land and agriculture → Agrarian reform"
+    },
+    {
+      "id": "geography_to_provinces",
+      "label": "Geography, expansion, and provinces",
+      "path": ["Q207544", "Q182547", "Q838930"],
+      "summary": "Geography and expansion → Provinces → Rome and Italy"
+    },
+    {
+      "id": "periodization_to_transition",
+      "label": "Chronology, Late Republic, and transition to Empire",
+      "path": ["Q186916", "Q2815472", "Q2277"],
+      "summary": "Periodization → Late Republic → Transition to Empire"
+    }
+  ]
+}
