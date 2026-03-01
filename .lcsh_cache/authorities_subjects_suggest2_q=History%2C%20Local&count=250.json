@@ -1,0 +1,184 @@
+{
+  "q": "History, Local",
+  "count": 2,
+  "pagesize": 250,
+  "start": 1,
+  "sortmethod": "alpha",
+  "searchtype": "left-anchored",
+  "directory": "/authorities/subjects/",
+  "hits": [
+    {
+      "suggestLabel": "History, Local",
+      "uri": "http://id.loc.gov/authorities/subjects/sh00005861",
+      "aLabel": "History, Local",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh00005861",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "Topic",
+          "SimpleType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1140"
+        ],
+        "notes": [
+          "Use as a topical subdivision under names of countries, etc., for the collective histories of several local units. For the history of a single locality, use the subdivision --History under the name of the locality."
+        ],
+        "genres": [],
+        "variantLabels": [
+          "Local history"
+        ],
+        "languages": [],
+        "relateds": [
+          "History"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "History"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xHistory, Local"
+        ],
+        "gacs": []
+      }
+    },
+    {
+      "suggestLabel": "History, Local--Collectibles",
+      "uri": "http://id.loc.gov/authorities/subjects/sh00005862",
+      "aLabel": "History, Local--Collectibles",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh00005862",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1140"
+        ],
+        "notes": [
+          "Use as a topical subdivision under names of countries, etc."
+        ],
+        "genres": [],
+        "variantLabels": [],
+        "languages": [],
+        "relateds": [
+          "Collectibles"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "Collectibles"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xHistory, Local$xCollectibles"
+        ],
+        "gacs": []
+      }
+    },
+    {
+      "suggestLabel": "History, Local (USE Local history)",
+      "uri": "http://id.loc.gov/authorities/subjects/sh85077932",
+      "aLabel": "Local history",
+      "vLabel": "History, Local",
+      "sLabel": "",
+      "code": "",
+      "token": "sh85077932",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "Topic",
+          "SimpleType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_LCSHAuthorizedHeadings",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General"
+        ],
+        "notes": [
+          "Here are entered works on the writing and compiling of local histories. Collective histories, and works on the historiography, of several localities of a country, state, etc., are entered under the name of the place with subdivision [History, Local.] Individual local histories are entered under [[place]--History.]"
+        ],
+        "genres": [],
+        "variantLabels": [
+          "Historiography, Local",
+          "History, Local",
+          "Local historiography",
+          "Local history--Historiography"
+        ],
+        "languages": [],
+        "relateds": [
+          "Historiography"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "Historiography"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "150 0$aLocal history"
+        ],
+        "gacs": []
+      }
+    }
+  ]
+}

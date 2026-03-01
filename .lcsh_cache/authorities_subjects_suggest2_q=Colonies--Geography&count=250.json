@@ -1,0 +1,67 @@
+{
+  "q": "Colonies--Geography",
+  "count": 1,
+  "pagesize": 250,
+  "start": 1,
+  "sortmethod": "alpha",
+  "searchtype": "left-anchored",
+  "directory": "/authorities/subjects/",
+  "hits": [
+    {
+      "suggestLabel": "Colonies--Geography",
+      "uri": "http://id.loc.gov/authorities/subjects/sh2002012515",
+      "aLabel": "Colonies--Geography",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh2002012515",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1149.5"
+        ],
+        "notes": [
+          "Use as a topical subdivision under names of countries, cities, etc."
+        ],
+        "genres": [],
+        "variantLabels": [],
+        "languages": [],
+        "relateds": [
+          "Geography"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "Geography"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xColonies$xGeography"
+        ],
+        "gacs": []
+      }
+    }
+  ]
+}

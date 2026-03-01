@@ -1,6 +1,6 @@
 @echo off
 REM Fresh Chrystallum Rebuild - Temporal First, Then Geographic
-REM Instance: f7b612a3 (Neo4j Aura)
+cd /d "%~dp0\.."
 
 echo ========================================
 echo FRESH CHRYSTALLUM REBUILD
@@ -17,7 +17,7 @@ echo.
 REM Verify env vars are set
 if "%NEO4J_URI%"=="" (
     echo ERROR: NEO4J_URI not set
-    echo Run setup_aura_connection.bat first
+    echo Run scripts\setup\setup_aura_connection.bat first
     pause
     exit /b 1
 )

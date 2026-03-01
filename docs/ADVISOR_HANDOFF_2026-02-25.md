@@ -11,7 +11,7 @@
 1. **Graph orientation** — Query the self-description node (Cypher below)
 2. **This document** — Current state, pipeline, and priorities
 3. **Baseline** — `docs/BASELINE_POST_DPRR_2026-02-25.md` (the numbers that matter)
-4. **KANBAN** — `KANBAN.md` (what's done, ready, on hold)
+4. **KANBAN** — LachyFS extension (Ctrl+Shift+P → "Open Kanban Board"); tasks in `.devtool/features/`, context in `.devtool/KANBAN_CONTEXT.md`
 
 ---
 
@@ -111,7 +111,7 @@ RETURN sd.narrative, sd.federation_summary, sd.subject_summary,
 |------|---------|
 | `docs/BASELINE_POST_DPRR_2026-02-25.md` | Formal baseline numbers |
 | `docs/SELF_DESCRIBING_SUBGRAPH_DESIGN.md` | Structure vs Process, SchemaRegistry, FederationRegistry, cleanup phases |
-| `KANBAN.md` | Current priorities and done list |
+| Kanban (extension) | Current priorities and done list; `.devtool/features/` |
 | `AI_CONTEXT.md` | Session handover log (long; skim for recent) |
 | `docs/HARVESTER_SCOPING_DESIGN.md` | Scoping rules |
 | `Federation/CHRYSTALLUM_HANDOFF.md` | Legacy handoff (ITGAR, Fischer, governance — specified but not built) |

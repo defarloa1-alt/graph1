@@ -1,6 +1,6 @@
 @echo off
 REM Chrystallum Quick Configuration Setup (Windows)
-REM Run this after copying config.py.example to config.py
+cd /d "%~dp0\..\.."
 
 echo.
 echo ============================================================

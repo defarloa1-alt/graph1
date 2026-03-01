@@ -1,18 +1,31 @@
 #!/usr/bin/env python3
 """
 Enrich Place nodes with Wikidata QIDs from Pleiades-GeoNames-Wikidata crosswalk
+
+DEPRECATED: Use scripts/backbone/geographic/enrich_places_from_crosswalk.py instead.
+That script uses config_loader, adds geonames_id/tgn_id, and normalizes pleiades_id matching.
 """
 import csv
+import os
 from pathlib import Path
 from neo4j import GraphDatabase
 
-URI = "neo4j+s://f7b612a3.databases.neo4j.io"
-USERNAME = "neo4j"
-PASSWORD = "K2sHUx9dFYhEOurYzNjlBuNb8AV9-Xlw-KJcQ85QBHM"
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(_PROJECT_ROOT) not in __import__("sys").path:
+    __import__("sys").path.insert(0, str(_PROJECT_ROOT))
+try:
+    from config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
+except ImportError:
+    NEO4J_URI = os.environ.get("NEO4J_URI", "bolt://localhost:7687")
+    NEO4J_USERNAME = os.environ.get("NEO4J_USERNAME", "neo4j")
+    NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD", "")
+
+URI = NEO4J_URI
+USERNAME = NEO4J_USERNAME
+PASSWORD = NEO4J_PASSWORD
 DATABASE = "neo4j"
 
-PROJECT_ROOT = Path(__file__).parent
-CROSSWALK_CSV = PROJECT_ROOT / "CSV" / "geographic" / "pleiades_geonames_wikidata_tgn_crosswalk_v1.csv"
+CROSSWALK_CSV = _PROJECT_ROOT / "CSV" / "geographic" / "pleiades_geonames_wikidata_tgn_crosswalk_v1.csv"
 
 print("=" * 80)
 print("WIKIDATA QID ENRICHMENT FOR PLACES")

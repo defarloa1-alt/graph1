@@ -1,6 +1,6 @@
 #!/bin/bash
 # Chrystallum Quick Configuration Setup (Linux/Mac)
-# Run this after setting up your API keys
+cd "$(cd "$(dirname "$0")/../.." && pwd)"
 
 echo ""
 echo "============================================================"

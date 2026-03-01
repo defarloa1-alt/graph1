@@ -115,7 +115,7 @@ def main():
     
     # Also save mapping
     import json
-    mapping_file = 'historical_entity_type_mapping.json'
+    mapping_file = 'config/historical_entity_type_mapping.json'
     with open(mapping_file, 'w') as f:
         json.dump(type_mapping, f, indent=2)
     print(f"💾 Type mapping saved to: {mapping_file}")

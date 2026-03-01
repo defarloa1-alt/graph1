@@ -71,10 +71,12 @@ def main():
         session.run("MATCH (fr:FederationRoot) DETACH DELETE fr")
         print("  Done.")
 
-        # Step 2: Registry root
+        # Step 2: Registry root (use canonical id to avoid duplicate Chrystallum nodes; see docs/CHRYSTALLUM_SUBGRAPH_SPEC.md)
         print("[Step 2] Creating SYS_FederationRegistry...")
         session.run("""
-            MERGE (sys:Chrystallum {name: "Chrystallum"})
+            MERGE (sys:Chrystallum {id: 'CHRYSTALLUM_ROOT'})
+            SET sys.label = 'Chrystallum',
+                sys.name = 'Chrystallum Knowledge Graph'
             MERGE (fr:SYS_FederationRegistry {system: true, label: "FederationRegistry"})
             MERGE (sys)-[:HAS_FEDERATION]->(fr)
         """)

@@ -1,6 +1,6 @@
 @echo off
 REM Neo4j Aura Connection Setup for Fresh Chrystallum Instance
-REM Instance: f7b612a3
+cd /d "%~dp0\..\.."
 
 echo ========================================
 echo Neo4j Aura Connection Setup

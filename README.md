@@ -22,13 +22,13 @@ pip install -r requirements.txt
 
 **Windows:**
 ```cmd
-setup_config.bat
+scripts\setup\setup_config.bat
 ```
 
 **Linux/Mac:**
 ```bash
-chmod +x setup_config.sh
-./setup_config.sh
+chmod +x scripts/setup/setup_config.sh
+./scripts/setup/setup_config.sh
 ```
 
 Follow the prompts to add your API keys to `config.py`.
@@ -51,16 +51,16 @@ python Neo4j/schema/run_cypher_file.py Neo4j/schema/02_schema_indexes.cypher
 **Gradio (Recommended):**
 ```bash
 pip install gradio
-launch_gradio_ui.bat        # Windows
-./launch_gradio_ui.sh       # Linux/Mac
+scripts\launchers\launch_gradio_ui.bat     # Windows
+./scripts/launchers/launch_gradio_ui.sh    # Linux/Mac
 ```
 Opens: http://localhost:7860
 
 **Streamlit:**
 ```bash
 pip install streamlit
-launch_streamlit_ui.bat     # Windows
-./launch_streamlit_ui.sh    # Linux/Mac
+scripts\launchers\launch_streamlit_ui.bat  # Windows
+./scripts/launchers/launch_streamlit_ui.sh # Linux/Mac
 ```
 Opens: http://localhost:8501
 
@@ -254,10 +254,12 @@ Graph1/
 ├── Facets/facet_registry_master.json       # Facet definitions
 ├── config.py.example                        # Configuration template
 ├── .env.example                             # Environment variable template
-├── setup_config.bat                         # Windows setup script
-├── setup_config.sh                          # Linux/Mac setup script
-├── launch_gradio_ui.bat / .sh               # Launch Gradio UI
-├── launch_streamlit_ui.bat / .sh            # Launch Streamlit UI
+├── scripts/setup/                           # Setup scripts
+│   ├── setup_config.bat / .sh               # Windows/Linux config setup
+│   └── setup_aura_connection.bat             # Neo4j Aura connection
+├── scripts/launchers/                        # UI launchers
+│   ├── launch_gradio_ui.bat / .sh           # Gradio UI
+│   └── launch_streamlit_ui.bat / .sh        # Streamlit UI
 └── requirements.txt                         # Python dependencies
 ```
 

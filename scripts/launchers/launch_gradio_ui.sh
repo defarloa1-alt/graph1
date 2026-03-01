@@ -1,6 +1,6 @@
 #!/bin/bash
-# Launch Gradio Agent UI
-# Linux/Mac shell script
+# Launch Gradio Agent UI (run from project root)
+cd "$(cd "$(dirname "$0")/../.." && pwd)"
 
 echo "======================================"
 echo "Chrystallum Agent UI - Gradio Launch"

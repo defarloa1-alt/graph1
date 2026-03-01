@@ -1,0 +1,120 @@
+{
+  "q": "Doctrines--History",
+  "count": 2,
+  "pagesize": 250,
+  "start": 1,
+  "sortmethod": "alpha",
+  "searchtype": "left-anchored",
+  "directory": "/authorities/subjects/",
+  "hits": [
+    {
+      "suggestLabel": "Doctrines--History",
+      "uri": "http://id.loc.gov/authorities/subjects/sh99005684",
+      "aLabel": "Doctrines--History",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh99005684",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1185",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1187"
+        ],
+        "notes": [
+          "Use as a topical subdivision under individual religions and Christian denominations."
+        ],
+        "genres": [],
+        "variantLabels": [],
+        "languages": [],
+        "relateds": [
+          "History"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "History"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xDoctrines$xHistory"
+        ],
+        "gacs": []
+      }
+    },
+    {
+      "suggestLabel": "Doctrines--History--Modern period, 1500-",
+      "uri": "http://id.loc.gov/authorities/subjects/sh99005685",
+      "aLabel": "Doctrines--History--Modern period, 1500-",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh99005685",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1187"
+        ],
+        "notes": [
+          "Use as a topical subdivision under individual Christian denominations."
+        ],
+        "genres": [],
+        "variantLabels": [],
+        "languages": [],
+        "relateds": [],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xDoctrines$xHistory$yModern period, 1500-"
+        ],
+        "gacs": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "source": "single",
+  "provider": "perplexity",
+  "total_units": 1,
+  "total_results": 1,
+  "subclass_only": false,
+  "contexts": [
+    {
+      "identifier": "Q17167",
+      "lcc_code": null,
+      "lcc_label": "Roman Republic",
+      "parent_class": null,
+      "lcsh_id": "sh85115114",
+      "lcsh_heading": null,
+      "fast_id": null,
+      "dewey": null,
+      "qid": "Q17167",
+      "wikidata_description": "period of ancient Roman civilization (509 BC–27 BC)",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Roman_Republic",
+      "wikipedia_extract": "The Roman Republic (Latin: Res publica Romana, pronounced [ˈreːs ˈpuːblɪka roːˈmaːna]) was the era of classical Roman civilisation beginning with the overthrow of the Roman Kingdom (traditionally dated to 509 BC) and ending in 27 BC with the establishment of the Roman Empire following the War of Actium. During this period, Rome's control expanded from the city's immediate surroundings to hegemony over the entire Mediterranean world.\nRoman society at the time was primarily a cultural mix of Latin and Etruscan societies, as well as of Sabine, Oscan, and Greek cultural elements, which is especially visible in the ancient Roman religion and its pantheon. Its political organisation developed at around the same time as direct democracy in ancient Greece, with collective and annual magistracies, overseen by a senate. There were annual elections, but the republican system was an elective oligarchy, not a democracy, with a number of powerful families largely monopolising the senior magistracies. Roman institutions underwent considerable changes throughout the Republic to adapt to difficulties such as the creation of promagistracies to rule its conquered provinces and, after the Social War during the late Republic, the inclusion of peninsular Italians as citizens and senators.\nUnlike the Pax Romana of the Roman Empire, republican Rome was in a state of near-perpetual war. Its first enemies were its Latin and Etruscan neighbours, as well as the Gauls, who sacked Rome around 387 BC. After the Gallic sack, Rome conquered most of the Italian peninsula in a century and became one of the Mediterranean great powers. Its greatest strategic rival was Carthage, against which it waged three wars. Rome defeated Carthage at the Battle of Zama in 202 BC and in the following decades became the dominant power in the ancient Mediterranean world. It then embarked on a long series of difficult conquests, defeating Philip V and Perseus of Macedon, Antiochus III of the Seleucid Empire, the Lusitanian Viriathus, the Numidian Jugurtha, the Pontic king Mithridates VI, Vercingetorix of the Arverni tribe of Gaul, and the Egyptian queen Cleopatra.\nAt home, during the Conflict of the Orders, the patricians, the closed oligarchic elite, came into conflict with the more numerous plebs; this was resolved peacefully, with the plebs achieving political equality by the 4th century BC. The late Republic, from 133 BC onward, saw substantial domestic strife, often anachronistically seen as a conflict between optimates and populares, referring to conservative and reformist politicians, respectively. The Social War between Rome and its Italian allies over citizenship and Roman hegemony in Italy greatly expanded the scope of civil violence. Mass slavery also contributed to three Servile Wars. Political violence at home coupled with powerful semi-autonomous generals led to civil wars that broke the Republic. The first involved Marius and Sulla. After a generation, the Republic fell into civil war...",
+      "harvest_summary": null
+    }
+  ],
+  "results": [
+    {
+      "identifier": "Q17167",
+      "facets": [
+        {
+          "facet": "ARCHAEOLOGICAL",
+          "weight": 0.0,
+          "reason": "No Pleiades ID, no mentions of sites, excavations, artifacts, or material culture in evidence → very weak signal."
+        },
+        {
+          "facet": "ARTISTIC",
+          "weight": 0.2,
+          "reason": "Mentions cultural mix visible in religion, but no direct art, sculpture, architecture, or literature → very weak."
+        },
+        {
+          "facet": "BIOGRAPHIC",
+          "weight": 0.6,
+          "reason": "Wikipedia mentions specific leaders (Marius, Sulla, generals) and conflicts → moderate prosopographic lines."
+        },
+        {
+          "facet": "COMMUNICATION",
+          "weight": 0.0,
+          "reason": "No mentions of oratory, rhetoric, propaganda, or media → very weak signal."
+        },
+        {
+          "facet": "CULTURAL",
+          "weight": 0.8,
+          "reason": "Explicit 'cultural mix of Latin, Etruscan, Sabine, Oscan, Greek' and religion pantheon → strong cultural identity signal."
+        },
+        {
+          "facet": "DEMOGRAPHIC",
+          "weight": 0.4,
+          "reason": "Mentions citizenship expansion (Social War, Italians as citizens), mass slavery → moderate population lines."
+        },
+        {
+          "facet": "DIPLOMATIC",
+          "weight": 0.2,
+          "reason": "No treaties, alliances, embassies; conquests are military → weak signal."
+        },
+        {
+          "facet": "ECONOMIC",
+          "weight": 0.0,
+          "reason": "No mentions of trade, finance, markets, land, or currency → very weak signal."
+        },
+        {
+          "facet": "ENVIRONMENTAL",
+          "weight": 0.0,
+          "reason": "No climate, ecology, agriculture, or resources → very weak signal."
+        },
+        {
+          "facet": "GEOGRAPHIC",
+          "weight": 0.9,
+          "reason": "Expansion from city to Mediterranean hegemony, conquests of Italy, Carthage, etc. → strong territorial signal."
+        },
+        {
+          "facet": "INTELLECTUAL",
+          "weight": 0.0,
+          "reason": "No philosophy, law texts, historiography, or scholarship → very weak signal."
+        },
+        {
+          "facet": "LINGUISTIC",
+          "weight": 0.0,
+          "reason": "Latin name given but no languages, scripts analysis → very weak signal."
+        },
+        {
+          "facet": "MILITARY",
+          "weight": 1.0,
+          "reason": "Near-perpetual war, conquests, Punic Wars, generals, civil wars, Servile Wars → primary military era signal."
+        },
+        {
+          "facet": "POLITICAL",
+          "weight": 1.0,
+          "reason": "Senate, magistracies, elections, oligarchy, Conflict of the Orders, optimates/populares → core governance signal."
+        },
+        {
+          "facet": "RELIGIOUS",
+          "weight": 0.6,
+          "reason": "Ancient Roman religion and pantheon explicitly noted in cultural mix → moderate ritual/cult lines."
+        },
+        {
+          "facet": "SCIENTIFIC",
+          "weight": 0.0,
+          "reason": "No medicine, astronomy, math, or natural philosophy → very weak signal."
+        },
+        {
+          "facet": "SOCIAL",
+          "weight": 0.8,
+          "reason": "Conflict of Orders (patricians vs plebs), political equality, mass slavery, Servile Wars → strong class structure signal."
+        },
+        {
+          "facet": "TECHNOLOGICAL",
+          "weight": 0.0,
+          "reason": "No roads, aqueducts, engineering, or construction → very weak signal."
+        }
+      ],
+      "summary": "The Roman Republic was the period of ancient Roman civilization from 509 BC to 27 BC, marked by political institutions, territorial expansion through wars, and social conflicts.",
+      "material_type": "secondary",
+      "material_reason": "Wikipedia extract is historical narrative summarizing era, events, institutions (not primary texts or inscriptions).",
+      "wikipedia_url": null
+    }
+  ]
+}

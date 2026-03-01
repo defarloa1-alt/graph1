@@ -21,7 +21,7 @@ pip install requests beautifulsoup4 lxml
 
 Or use the requirements file:
 ```powershell
-pip install -r requirements_backlinks.txt
+pip install -r scripts/requirements_backlinks.txt
 ```
 
 ### Step 2: Run the Script

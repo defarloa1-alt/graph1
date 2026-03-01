@@ -1,4 +1,4 @@
-﻿# Virtual Environment
+# Virtual Environment
 .venv/
 venv/
 env/
@@ -27,7 +27,9 @@ wheels/
 *.egg
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 .idea/
 *.swp
 *.swo
@@ -55,6 +57,8 @@ Geographic/pleiades_*.csv
 Geographic/temp/
 Geographic/*.zip
 Subjects/*.gz
+Subjects/subjects.skosrdf.jsonld/
+Subjects/subjects_simplified.csv
 Python/fast/key/FASTTopical_parsed.csv
 
 # Generated outputs

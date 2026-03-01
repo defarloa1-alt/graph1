@@ -24,3 +24,14 @@ python -m pytest tests/test_sca_salience.py -v
 ## Dependencies
 
 - pytest (in requirements.txt)
+
+## Perplexity API (scripts using LLM)
+
+Scripts like `enrich_survey_facets_llm.py` and `subject_characterization_agent.py` call the Perplexity API. Configure via `.env` or `config.py`:
+
+| Env var | Notes |
+|---------|-------|
+| `PPLX_API_KEY` | Preferred (Perplexity's official name) |
+| `PERPLEXITY_API_KEY` | Legacy alias |
+
+Use `scripts.config_loader` so keys load from `.env` and `config.py`. Model: `sonar-pro` (avoid deprecated `llama-3.1-sonar-large-128k-online`).

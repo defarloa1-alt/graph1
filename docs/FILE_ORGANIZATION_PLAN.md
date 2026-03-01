@@ -14,7 +14,7 @@
 - Move files incrementally as we edit/update them
 - Keep AI_CONTEXT.md in root (coordination hub)
 - Keep scripts/ folder unchanged (already organized)
-- Keep KANBAN.md and REQUIREMENTS.md in root (visibility)
+- Keep REQUIREMENTS.md in root (visibility); Kanban in LachyFS extension (`.devtool/features/`)
 
 ---
 
@@ -23,7 +23,7 @@
 ### **Root (Minimal - ~15 files)**
 ```
 AI_CONTEXT.md              (coordination hub - STAYS)
-KANBAN.md                  (project board - STAYS)
+Kanban                     (LachyFS extension, .devtool/features/ - no KANBAN.md)
 REQUIREMENTS.md            (requirements - STAYS)
 README.md                  (project overview)
 requirements.txt           (Python deps)
@@ -109,7 +109,7 @@ Old analysis versions → Archive/
 
 **Keep in Root:**
 - ✅ AI_CONTEXT.md (coordination hub)
-- ✅ KANBAN.md (visibility)
+- ✅ Kanban (extension; .devtool/features/)
 - ✅ REQUIREMENTS.md (visibility)
 - ✅ README.md (entry point)
 

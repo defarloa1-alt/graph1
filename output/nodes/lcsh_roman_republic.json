@@ -1,0 +1,482 @@
+{
+  "federation": "lcsh",
+  "domain": "roman_republic",
+  "seed_id": "sh85115114",
+  "seed_label": "Rome--History--Republic, 510-30 B.C.",
+  "surveyed_at": "2026-03-01T10:40:31.677236+00:00",
+  "node_count": 15,
+  "meta": {
+    "mode": "live",
+    "cache_dir": ".lcsh_cache"
+  },
+  "summary": {
+    "total_nodes": 15,
+    "survivors": 0,
+    "survival_rate": 0.0,
+    "field_coverage": {
+      "temporal_range": 1,
+      "spatial_anchor": 0,
+      "concept_ref": 15,
+      "person_ref": 0,
+      "text_ref": 0,
+      "event_ref": 0,
+      "wikidata_qid": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": "sh99005024",
+      "label": "History",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh99005024",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh99005024",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "INTELLECTUAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 0,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "INTELLECTUAL"
+    },
+    {
+      "id": "sh85115114",
+      "label": "Rome--History--Republic, 510-30 B.C.",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh85115114",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": [
+        -510,
+        -30
+      ],
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh85115114",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "POLITICAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 0,
+      "is_seed": true,
+      "_active_dimensions": [
+        "INTELLECTUAL",
+        "TEMPORAL"
+      ],
+      "_dimension_score": 2,
+      "_survives": false,
+      "_semantic_facet": "POLITICAL"
+    },
+    {
+      "id": "sh00005865",
+      "label": "History, Naval",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh00005865",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh00005865",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "MILITARY"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "MILITARY"
+    },
+    {
+      "id": "sh00006030",
+      "label": "Historical geography",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh00006030",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh00006030",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "GEOGRAPHIC"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "GEOGRAPHIC"
+    },
+    {
+      "id": "sh00005861",
+      "label": "History, Local",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh00005861",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh00005861",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "GEOGRAPHIC"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "GEOGRAPHIC"
+    },
+    {
+      "id": "sh99004871",
+      "label": "Criticism, interpretation, etc.--History",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh99004871",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh99004871",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "INTELLECTUAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "INTELLECTUAL"
+    },
+    {
+      "id": "sh00006055",
+      "label": "History of doctrines",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh00006055",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh00006055",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "INTELLECTUAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "INTELLECTUAL"
+    },
+    {
+      "id": "sh99005577",
+      "label": "Criticism and interpretation--History",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh99005577",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh99005577",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "INTELLECTUAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "INTELLECTUAL"
+    },
+    {
+      "id": "sh00005863",
+      "label": "History, Military",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh00005863",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh00005863",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "MILITARY"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "MILITARY"
+    },
+    {
+      "id": "sh99005684",
+      "label": "Doctrines--History",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh99005684",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh99005684",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "INTELLECTUAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "INTELLECTUAL"
+    },
+    {
+      "id": "sh99005617",
+      "label": "Diplomatic history",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh99005617",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh99005617",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "DIPLOMATIC"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "DIPLOMATIC"
+    },
+    {
+      "id": "sh99005023",
+      "label": "Church history",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh99005023",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh99005023",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "RELIGIOUS"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "RELIGIOUS"
+    },
+    {
+      "id": "sh00006053",
+      "label": "History of Biblical events",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh00006053",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh00006053",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "RELIGIOUS"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "RELIGIOUS"
+    },
+    {
+      "id": "sh00006054",
+      "label": "History of contemporary events",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh00006054",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh00006054",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "POLITICAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "POLITICAL"
+    },
+    {
+      "id": "sh2002012516",
+      "label": "Colonies--History",
+      "federation": "lcsh",
+      "uri": "https://id.loc.gov/authorities/subjects/sh2002012516",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": null,
+      "spatial_anchor": null,
+      "concept_ref": "https://id.loc.gov/authorities/subjects/sh2002012516",
+      "person_ref": null,
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "semantic_facet": "POLITICAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 1,
+      "is_seed": false,
+      "_active_dimensions": [
+        "INTELLECTUAL"
+      ],
+      "_dimension_score": 1,
+      "_survives": false,
+      "_semantic_facet": "POLITICAL"
+    }
+  ]
+}

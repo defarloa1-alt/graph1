@@ -1,0 +1,120 @@
+{
+  "q": "Colonies--History",
+  "count": 1,
+  "pagesize": 250,
+  "start": 1,
+  "sortmethod": "alpha",
+  "searchtype": "left-anchored",
+  "directory": "/authorities/subjects/",
+  "hits": [
+    {
+      "suggestLabel": "Colonies--History",
+      "uri": "http://id.loc.gov/authorities/subjects/sh2002012516",
+      "aLabel": "Colonies--History",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh2002012516",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1149.5"
+        ],
+        "notes": [
+          "Use as a topical subdivision under names of countries, cities, etc."
+        ],
+        "genres": [],
+        "variantLabels": [],
+        "languages": [],
+        "relateds": [
+          "History"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "History"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xColonies$xHistory"
+        ],
+        "gacs": []
+      }
+    },
+    {
+      "suggestLabel": "Colonies--History",
+      "uri": "http://id.loc.gov/authorities/subjects/sh2008101208",
+      "aLabel": "Colonies--History",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh2008101208",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_LCSHAuthorizedHeadings",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General"
+        ],
+        "notes": [
+          "[Record generated for validation purposes.]"
+        ],
+        "genres": [],
+        "variantLabels": [],
+        "languages": [],
+        "relateds": [],
+        "occupations": [],
+        "activityfields": [],
+        "sources": [
+          "found : Work cat.: La possession du monde, c2000"
+        ],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "150  $aColonies$xHistory"
+        ],
+        "gacs": []
+      }
+    }
+  ]
+}

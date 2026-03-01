@@ -1,0 +1,256 @@
+{
+  "q": "Historical geography",
+  "count": 2,
+  "pagesize": 250,
+  "start": 1,
+  "sortmethod": "alpha",
+  "searchtype": "left-anchored",
+  "directory": "/authorities/subjects/",
+  "hits": [
+    {
+      "suggestLabel": "Historical geography",
+      "uri": "http://id.loc.gov/authorities/subjects/sh00006030",
+      "aLabel": "Historical geography",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh00006030",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "Topic",
+          "SimpleType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1140"
+        ],
+        "notes": [
+          "Use as a topical subdivision under names of countries, cities, etc."
+        ],
+        "genres": [],
+        "variantLabels": [
+          "Geography--History"
+        ],
+        "languages": [],
+        "relateds": [
+          "Geography",
+          "History"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "Geography",
+          "History"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xHistorical geography"
+        ],
+        "gacs": []
+      }
+    },
+    {
+      "suggestLabel": "Historical geography",
+      "uri": "http://id.loc.gov/authorities/subjects/sh85054019",
+      "aLabel": "Historical geography",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh85054019",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "Topic",
+          "SimpleType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_LCSHAuthorizedHeadings",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General"
+        ],
+        "notes": [
+          "Here are entered works which take a historical approach to the geography of countries, regions, etc., at a particular period in the past. Works on the branch of geography that deals with human governments, the boundaries and subdivisions of political units and the situations of cities are entered under [Political geography.] Works on the use of spatial data as a historical research methodology are entered under [Spatial history.]",
+          "subdivision [Historical geography] under names of countries, cities, etc."
+        ],
+        "genres": [],
+        "variantLabels": [
+          "Geography, Historical",
+          "Geography, Historical"
+        ],
+        "languages": [],
+        "relateds": [
+          "Geography, Historical",
+          "Geography"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [
+          {
+            "classuri": "http://id.loc.gov/authorities/classification/G141",
+            "code": "G141",
+            "label": "Geography. Anthropology. Recreation--Geography (General)--Historical geography",
+            "assigner": "DLC"
+          }
+        ],
+        "lcclasses": [
+          {
+            "classuri": "http://id.loc.gov/authorities/classification/G141",
+            "code": "G141",
+            "label": "Geography. Anthropology. Recreation--Geography (General)--Historical geography",
+            "assigner": "DLC"
+          }
+        ],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "Geography"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [
+          "Geography, HistoricalGeography, Historical"
+        ],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "150  $aHistorical geography"
+        ],
+        "gacs": []
+      }
+    },
+    {
+      "suggestLabel": "Historical geography--Maps",
+      "uri": "http://id.loc.gov/authorities/subjects/sh00006045",
+      "aLabel": "Historical geography--Maps",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh00006045",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_Subdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_TopicSubdivisions",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General",
+          "http://id.loc.gov/authorities/subjects/collection_PatternHeadingH1140"
+        ],
+        "notes": [
+          "Use this subdivision combination as a form subdivision under names of countries, cities, etc."
+        ],
+        "genres": [],
+        "variantLabels": [],
+        "languages": [],
+        "relateds": [
+          "Maps"
+        ],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [
+          "Maps"
+        ],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "180  $xHistorical geography$vMaps"
+        ],
+        "gacs": []
+      }
+    },
+    {
+      "suggestLabel": "Historical geography--Maps",
+      "uri": "http://id.loc.gov/authorities/subjects/sh85054020",
+      "aLabel": "Historical geography--Maps",
+      "vLabel": "",
+      "sLabel": "",
+      "code": "",
+      "token": "sh85054020",
+      "rank": "",
+      "more": {
+        "nonlatinLabels": [],
+        "vernacularLabels": [],
+        "rdftypes": [
+          "ComplexSubject",
+          "ComplexType",
+          "Authority"
+        ],
+        "collections": [
+          "http://id.loc.gov/authorities/subjects/collection_LCSHAuthorizedHeadings",
+          "http://id.loc.gov/authorities/subjects/collection_LCSH_General"
+        ],
+        "notes": [
+          "subdivision [Historical geography--Maps] under names of countries, cities, etc."
+        ],
+        "genres": [],
+        "variantLabels": [
+          "Atlases, Historical",
+          "Historical atlases",
+          "Historical maps"
+        ],
+        "languages": [],
+        "relateds": [],
+        "occupations": [],
+        "activityfields": [],
+        "locales": [],
+        "birthplaces": [],
+        "birthdates": [],
+        "deathdates": [],
+        "establishDates": [],
+        "terminateDates": [],
+        "lcclasss": [],
+        "lcclasses": [],
+        "hasRelatedAuthoritys": [],
+        "broaders": [],
+        "sees": [],
+        "hasEarlierEstablishedForms": [],
+        "hasLaterEstablishedForms": [],
+        "useFors": [],
+        "marcKeys": [
+          "150  $aHistorical geography$vMaps"
+        ],
+        "gacs": []
+      }
+    }
+  ]
+}

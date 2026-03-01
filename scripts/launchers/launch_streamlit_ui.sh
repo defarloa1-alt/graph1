@@ -1,6 +1,6 @@
 #!/bin/bash
-# Launch Streamlit Agent UI
-# Linux/Mac shell script
+# Launch Streamlit Agent UI (run from project root)
+cd "$(cd "$(dirname "$0")/../.." && pwd)"
 
 echo "======================================"
 echo "Chrystallum Agent UI - Streamlit Launch"

@@ -1,0 +1,147 @@
+{
+  "run_at": "2026-02-26T20:49:04.181353+00:00",
+  "seed_qid": "Q17167",
+  "seed_label": "Roman Republic",
+  "dry_run": true,
+  "layer": 1,
+  "federation": "wikidata",
+  "total_positions": 8,
+  "addressable_from": {
+    "lcsh": [
+      {
+        "qid": "Q17167",
+        "label": "Roman Republic",
+        "value": "sh85115114",
+        "hops": 0
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "value": "n79039816",
+        "hops": 1
+      }
+    ],
+    "fast": [
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "value": "1754964",
+        "hops": 1
+      }
+    ]
+  },
+  "write_summary": {
+    "policy_ensured": false,
+    "anchors_created": 0,
+    "positioned_as_to_entity": 0,
+    "positioned_as_to_anchor": 0,
+    "provides_anchor": 0,
+    "errors": []
+  },
+  "positions": [
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "hops": 0,
+      "property": "SELF",
+      "rel_type": "SELF",
+      "anchor_type": "DomainRoot",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": "sh85115114",
+      "fast_id": null,
+      "has_anchors": true
+    },
+    {
+      "qid": "Q3024240",
+      "label": "historical country",
+      "hops": 1,
+      "property": "P31",
+      "rel_type": "INSTANCE_OF_CLASS",
+      "anchor_type": "HistoricalCountry",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": null,
+      "fast_id": null,
+      "has_anchors": false
+    },
+    {
+      "qid": "Q11514315",
+      "label": "historical period",
+      "hops": 1,
+      "property": "P31",
+      "rel_type": "INSTANCE_OF_CLASS",
+      "anchor_type": "HistoricalPeriod",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": null,
+      "fast_id": null,
+      "has_anchors": false
+    },
+    {
+      "qid": "Q2815472",
+      "label": "Late Roman Republic",
+      "hops": 1,
+      "property": "P527",
+      "rel_type": "COMPOSITIONAL_CHILD",
+      "anchor_type": "ClassificationAnchor",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": null,
+      "fast_id": null,
+      "has_anchors": false
+    },
+    {
+      "qid": "Q2839628",
+      "label": "Early Roman Republic",
+      "hops": 1,
+      "property": "P527",
+      "rel_type": "COMPOSITIONAL_CHILD",
+      "anchor_type": "ClassificationAnchor",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": null,
+      "fast_id": null,
+      "has_anchors": false
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "hops": 1,
+      "property": "P361",
+      "rel_type": "COMPOSITIONAL_PARENT",
+      "anchor_type": "CivilisationContext",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": "n79039816",
+      "fast_id": "1754964",
+      "has_anchors": true
+    },
+    {
+      "qid": "Q666680",
+      "label": "aristocratic republic",
+      "hops": 1,
+      "property": "P122",
+      "rel_type": "TYPE_ANCHOR",
+      "anchor_type": "FormOfGovernmentType",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": null,
+      "fast_id": null,
+      "has_anchors": false
+    },
+    {
+      "qid": "Q6106068",
+      "label": "Middle Roman Republic",
+      "hops": 1,
+      "property": "P527",
+      "rel_type": "COMPOSITIONAL_CHILD",
+      "anchor_type": "ClassificationAnchor",
+      "dewey": null,
+      "lcc": null,
+      "lcsh_id": null,
+      "fast_id": null,
+      "has_anchors": false
+    }
+  ]
+}

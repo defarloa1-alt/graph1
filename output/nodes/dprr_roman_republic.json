@@ -1,0 +1,108 @@
+{
+  "federation": "dprr",
+  "domain": "roman_republic",
+  "seed_id": "1",
+  "seed_label": "Consul",
+  "surveyed_at": "2026-02-27T03:55:10.003565+00:00",
+  "node_count": 2,
+  "meta": {
+    "source": "romanrepublic.ac.uk SPARQL",
+    "query": "PostAssertions"
+  },
+  "summary": {
+    "total_nodes": 2,
+    "survivors": 2,
+    "survival_rate": 1.0,
+    "field_coverage": {
+      "temporal_range": 2,
+      "spatial_anchor": 2,
+      "concept_ref": 0,
+      "person_ref": 2,
+      "text_ref": 0,
+      "event_ref": 0,
+      "wikidata_qid": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": "1",
+      "label": "Consul",
+      "federation": "dprr",
+      "uri": "http://romanrepublic.ac.uk/rdf/post/1",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": [
+        -200,
+        -200
+      ],
+      "spatial_anchor": "https://pleiades.stoa.org/places/423025",
+      "concept_ref": null,
+      "person_ref": "http://romanrepublic.ac.uk/rdf/person/1",
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "office_uri": "http://romanrepublic.ac.uk/rdf/office/1",
+        "office_label": "Consul",
+        "year_raw": "-200",
+        "semantic_facet": "POLITICAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 0,
+      "is_seed": false,
+      "_active_dimensions": [
+        "BIOGRAPHIC",
+        "GEOGRAPHIC",
+        "POLITICAL",
+        "SOCIAL",
+        "TEMPORAL"
+      ],
+      "_dimension_score": 5,
+      "_survives": true,
+      "_semantic_facet": "POLITICAL"
+    },
+    {
+      "id": "2",
+      "label": "Praetor",
+      "federation": "dprr",
+      "uri": "http://romanrepublic.ac.uk/rdf/post/2",
+      "domain": "roman_republic",
+      "alt_labels": [],
+      "scope_note": "",
+      "temporal_range": [
+        -150,
+        -150
+      ],
+      "spatial_anchor": "https://pleiades.stoa.org/places/423025",
+      "concept_ref": null,
+      "person_ref": "http://romanrepublic.ac.uk/rdf/person/2",
+      "text_ref": null,
+      "event_ref": null,
+      "wikidata_qid": null,
+      "properties": {
+        "office_uri": "http://romanrepublic.ac.uk/rdf/office/2",
+        "office_label": "Praetor",
+        "year_raw": "-150",
+        "semantic_facet": "POLITICAL"
+      },
+      "aligned_ids": {},
+      "status": "raw",
+      "pattern_type": "UNKNOWN",
+      "survey_depth": 0,
+      "is_seed": false,
+      "_active_dimensions": [
+        "BIOGRAPHIC",
+        "GEOGRAPHIC",
+        "POLITICAL",
+        "SOCIAL",
+        "TEMPORAL"
+      ],
+      "_dimension_score": 5,
+      "_survives": true,
+      "_semantic_facet": "POLITICAL"
+    }
+  ]
+}

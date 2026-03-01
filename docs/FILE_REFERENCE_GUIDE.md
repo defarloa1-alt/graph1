@@ -31,7 +31,7 @@ C:\Projects\Graph1\
 | File | Size | Modified | Purpose |
 |------|------|----------|---------|
 | `AI_CONTEXT.md` | 373 KB | 2026-02-22 | AI agent coordination hub - STAYS |
-| `KANBAN.md` | 6 KB | 2026-02-22 | Project Kanban board - STAYS |
+| Kanban | — | — | LachyFS extension (`.devtool/features/`); no KANBAN.md |
 | `REQUIREMENTS.md` | 58 KB | 2026-02-21 | Requirements tracking - STAYS |
 | `README.md` | 12 KB | 2026-02-19 | Project overview - STAYS |
 | `requirements.txt` | 0.2 KB | - | Python dependencies - STAYS |
@@ -212,7 +212,7 @@ C:\Projects\Graph1\
 - 8 → cypher/ (various subfolders)
 
 ### **Keep in Root (6 files):**
-- AI_CONTEXT.md, KANBAN.md, REQUIREMENTS.md, README.md, requirements.txt, .gitignore
+- AI_CONTEXT.md (deprecated), Kanban (extension), REQUIREMENTS.md, README.md, requirements.txt, .gitignore
 
 ### **Archive Duplicates (~8 files):**
 - Old PM plan versions

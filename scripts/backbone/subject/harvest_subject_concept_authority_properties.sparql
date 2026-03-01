@@ -1,0 +1,75 @@
+# Harvest P244 (LCCN/LCSH), P2163 (FAST), P1149 (LCC), P1036 (Dewey) for 61 SubjectConcept QIDs
+# Run at: https://query.wikidata.org/
+# Purpose: Populate authority crosswalk before LCC derivation, Dewey bridge, etc.
+
+SELECT ?item ?qid ?p244 ?p2163 ?p1149 ?p1036 WHERE {
+  VALUES ?item {
+    wd:Q104867898
+    wd:Q105427
+    wd:Q11019
+    wd:Q11469
+    wd:Q1200427
+    wd:Q1234567
+    wd:Q1243998
+    wd:Q131416
+    wd:Q1363254
+    wd:Q1367629
+    wd:Q1392538
+    wd:Q15265460
+    wd:Q1541
+    wd:Q15800869
+    wd:Q1593880
+    wd:Q17167
+    wd:Q172845
+    wd:Q1747183
+    wd:Q1764124
+    wd:Q1812526
+    wd:Q182547
+    wd:Q185816
+    wd:Q186916
+    wd:Q1944199
+    wd:Q19895241
+    wd:Q1993655
+    wd:Q201452
+    wd:Q2063299
+    wd:Q2065169
+    wd:Q2067204
+    wd:Q1887031
+    wd:Q20720797
+    wd:Q207544
+    wd:Q337547
+    wd:Q211364
+    wd:Q212943
+    wd:Q213810
+    wd:Q2277
+    wd:Q2345364
+    wd:Q236885
+    wd:Q2576746
+    wd:Q271108
+    wd:Q2817119
+    wd:Q2862991
+    wd:Q2916317
+    wd:Q3277005
+    wd:Q3932035
+    wd:Q2815472
+    wd:Q39686
+    wd:Q4119583
+    wd:Q46303
+    wd:Q6106068
+    wd:Q657326
+    wd:Q726929
+    wd:Q838930
+    wd:Q7188
+    wd:Q8464
+    wd:Q859980
+    wd:Q899409
+    wd:Q9070
+    wd:Q952064
+  }
+  BIND(REPLACE(STR(?item), ".*/(Q.+)$", "$1") AS ?qid)
+  OPTIONAL { ?item wdt:P244 ?p244 . }
+  OPTIONAL { ?item wdt:P2163 ?p2163 . }
+  OPTIONAL { ?item wdt:P1149 ?p1149 . }
+  OPTIONAL { ?item wdt:P1036 ?p1036 . }
+}
+ORDER BY ?qid

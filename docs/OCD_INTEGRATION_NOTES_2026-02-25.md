@@ -161,4 +161,4 @@ SELECT ?item ?itemLabel WHERE {
 |----------|-----------|--------------|
 | OCD as bibliography node | `docs/SELF_DESCRIBING_SUBGRAPH_DESIGN_2026-02-25.md` | BibliographyRegistry branch is where OCD node lives |
 | P9106/P1343 mapping | `AI_CONTEXT.md` Pipeline Contract | P1343 canonicalization already run (3,226 edges) |
-| Taxonomy gaps | `KANBAN.md` OCD Parsing and Alignment (Ready) | KANBAN item exists; this doc gives it detail |
+| Taxonomy gaps | Kanban OCD Parsing and Alignment (Ready) | Kanban item exists; this doc gives it detail |

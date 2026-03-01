@@ -1,6 +1,6 @@
 @echo off
-REM Launch Streamlit Agent UI
-REM Windows batch script
+REM Launch Streamlit Agent UI (run from project root)
+cd /d "%~dp0\..\.."
 
 echo ======================================
 echo Chrystallum Agent UI - Streamlit Launch

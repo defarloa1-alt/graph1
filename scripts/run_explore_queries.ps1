@@ -1,5 +1,6 @@
 # PowerShell script to run explore queries against Neo4j
-# Usage: .\run_explore_queries.ps1
+# Usage: .\scripts\run_explore_queries.ps1
+Set-Location (Join-Path $PSScriptRoot "..")
 
 $NEO4J_URI = "neo4j+s://f7b612a3.databases.neo4j.io"
 $NEO4J_USER = "neo4j"

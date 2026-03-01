@@ -1,6 +1,6 @@
 @echo off
-REM Launch Gradio Agent UI
-REM Windows batch script
+REM Launch Gradio Agent UI (run from project root)
+cd /d "%~dp0\..\.."
 
 echo ======================================
 echo Chrystallum Agent UI - Gradio Launch

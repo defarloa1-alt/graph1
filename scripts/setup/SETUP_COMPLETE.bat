@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0\..\.."
 echo.
 echo ========================================
 echo Neo4j MCP Server Setup Complete!
@@ -11,7 +12,7 @@ echo   - MCP_SETUP_INSTRUCTIONS.md (READ THIS FIRST)
 echo   - CURSOR_MCP_QUICK_START.md
 echo   - CURSOR_MCP_SETUP.md
 echo   - mcp-config.json
-echo   - test_mcp_connection.bat
+echo   - scripts\test_mcp_connection.bat
 echo.
 echo MCP SERVER LOCATION:
 echo   - mcp\neo4j-server\dist\index.js (6,842 bytes)

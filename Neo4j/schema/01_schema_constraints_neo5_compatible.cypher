@@ -197,6 +197,10 @@ FOR (rc:RetrievalContext) REQUIRE rc.retrieval_id IS UNIQUE;
 CREATE CONSTRAINT agent_id_unique IF NOT EXISTS
 FOR (a:Agent) REQUIRE a.agent_id IS UNIQUE;
 
+// Discipline taxonomy registry (academic disciplines with subject backbone)
+CREATE CONSTRAINT discipline_qid_unique IF NOT EXISTS
+FOR (d:Discipline) REQUIRE d.qid IS UNIQUE;
+
 // ============================================================================
 // REQUIRED PROPERTY CONSTRAINTS
 // ============================================================================

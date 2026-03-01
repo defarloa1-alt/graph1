@@ -1,5 +1,6 @@
 # Setup Neo4j MCP Server Environment Variables
 # Run this before starting Cursor
+Set-Location (Join-Path $PSScriptRoot "..\..")
 
 $env:NEO4J_URI = "neo4j+s://f7b612a3.databases.neo4j.io"
 $env:NEO4J_USERNAME = "neo4j"
@@ -11,5 +12,5 @@ Write-Host "NEO4J_URI: $env:NEO4J_URI" -ForegroundColor Cyan
 
 # Test the MCP server
 Write-Host "`nTesting MCP server..." -ForegroundColor Yellow
-cd "c:\Projects\Graph1\mcp\neo4j-server"
+cd "mcp\neo4j-server"
 npm run start

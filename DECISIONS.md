@@ -11,7 +11,7 @@
 | Topic | Entries |
 |-------|---------|
 | Schema / node model | D-003, D-004, D-007, D-008, D-022, D-028 |
-| Federation | D-006, D-014, D-022, D-023 |
+| Federation | D-006, D-014, D-022, D-023, D-037 |
 | Pipeline / harvester | D-009, D-010, D-011 |
 | Agent architecture (SCA/SFA) | D-012, D-013 |
 | Temporal model | D-005, D-015 |
@@ -24,10 +24,21 @@
 | MCP / tooling | D-031, D-034 |
 | D6/D7 threshold refactor | D-032 |
 | D10/D8 claim promotion + SFA confidence | D-033 |
+| Game of Life → backlog | D-037 |
 
 ---
 
 ## Entries
+
+---
+
+### D-037 — Game of Life Update Dynamics → Backlog
+**Date:** 2026-02-27  
+**Status:** Decided  
+**Context:** The federation schema includes `survives`, `has_floor`, and design for Game-of-Life–style update rules (DEAD/STUB/ALIVE/SPAWN). The update dynamics were never implemented. `survives` excludes LCSH entirely (no POLITICAL+GEOGRAPHIC) and is not wired to any loader or synthesis.  
+**Decision:** Move Game-of-Life update dynamics to backlog. Keep `adjacency()`, dimension derivation, and schema structure. Defer: `apply_rules.py`, SPAWN/birth rule, `survives` as pipeline filter.  
+**Rationale:** Half-built experiment adds confusion without delivering value. Schema remains useful; the cellular-automaton experiment can be revisited when the matrix pipeline exists.  
+**Consequences:** KANBAN.md updated; Phase 0c simplified to matrix-only; synthesis can proceed from matrix without apply_rules.
 
 ---
 
@@ -347,21 +358,21 @@
 **Date:** 2026-02-25  
 **Status:** Decided  
 **Context:** AI_CONTEXT.md was a catch-all for session handoff — mixing decisions, QA results, pipeline notes, and process guidance. Became unwieldy and was partially lost when the main chat session crashed. Not a reliable persistence mechanism.  
-**Decision:** Deprecate AI_CONTEXT.md. Redistribute live content to: DECISIONS.md (why), KANBAN.md (what), `docs/architecture/` (how), START_HERE.txt (orientation). Move AI_CONTEXT.md to Archive/ after redistribution is confirmed complete.  
+**Decision:** Deprecate AI_CONTEXT.md. Redistribute live content to: DECISIONS.md (why), Kanban (what — LachyFS extension, `.devtool/features/`), `docs/architecture/` (how), START_HERE.txt (orientation). Move AI_CONTEXT.md to Archive/ after redistribution is confirmed complete.  
 **Alternatives considered:** Restructure AI_CONTEXT.md rather than deprecate.  
 **Rationale:** A single file trying to serve multiple purposes serves none of them well. Separation by concern is more maintainable and more scannable for a new agent entering a session.  
-**Consequences:** START_HERE.txt must be updated to point to DECISIONS.md, KANBAN.md, and the consolidated architecture doc instead of AI_CONTEXT.md. Any agent that starts a session by reading AI_CONTEXT.md will find it in Archive/ with a note pointing to the replacement files.  
+**Consequences:** START_HERE.txt must be updated to point to DECISIONS.md, Kanban (extension), and the consolidated architecture doc instead of AI_CONTEXT.md. Any agent that starts a session by reading AI_CONTEXT.md will find it in Archive/ with a note pointing to the replacement files.  
 
 ---
 
 ### D-017 — Folder Organization: Root Discipline
 **Date:** 2026-02-25  
-**Status:** Decided, not yet executed  
+**Status:** Executed (2026-02-26)  
 **Context:** Root directory contains ~150 files — scripts, docs, analysis files, and config mixed with no structure. Makes orientation difficult for new agents and developers.  
-**Decision:** Five files only at root: KANBAN.md, REQUIREMENTS.md, DECISIONS.md, README.md, START_HERE.txt (plus .env/config.py). Everything else has a home: active docs → `docs/` with subdirectories (architecture/, federations/, agents/, sessions/), scripts stay in `scripts/`, root-level Python scripts → `scripts/legacy/`, inactive markdown → `Archive/`.  
+**Decision:** Four files only at root: REQUIREMENTS.md, DECISIONS.md, README.md, START_HERE.txt (plus .env/config.py). Kanban lives in LachyFS extension (`.devtool/features/`); no KANBAN.md. Everything else has a home: active docs → `docs/` with subdirectories (architecture/, federations/, agents/, sessions/), scripts stay in `scripts/`, root-level Python scripts → `scripts/legacy/`, inactive markdown → `Archive/`.  
 **Alternatives considered:** Incremental cleanup over time.  
-**Rationale:** Clean root = fast orientation. Five files is scannable. Everything else is findable via folder structure.  
-**Consequences:** Dev must grep active scripts for hardcoded relative paths before moving root-level Python files. Moving `scripts/` contents is safe (already in a folder). AGENT_REFERENCE_FILE_PATHS.md must be updated after any moves. Pending dev availability.  
+**Rationale:** Clean root = fast orientation. Four files is scannable. Kanban in extension keeps root minimal. Everything else is findable via folder structure.  
+**Consequences:** Dev must grep active scripts for hardcoded relative paths before moving root-level Python files. Moving `scripts/` contents is safe (already in a folder). AGENT_REFERENCE_FILE_PATHS.md must be updated after any moves. **Executed 2026-02-26:** Deleted duplicate `enrich_subject_concept_authority_ids.py`; moved HANDOFF, AGENTS to docs/; moved `historical_entity_type_mapping.json` to config/; moved launchers to scripts/launchers/; moved setup scripts to scripts/setup/; moved run_explore_queries.ps1, run_subj_rr_migration.ps1, rebuild_chrystallum_fresh.bat, test_mcp_connection.bat to scripts/. All scripts updated to cd to project root when run from new locations.  
 
 ---
 
@@ -394,7 +405,7 @@
 **Decision:** Chronological append-only DECISIONS.md at root. Topical index at top updated at milestones. Five fields per entry: Context, Decision, Alternatives considered, Rationale, Consequences. Both architect (Claude) and dev append. Neither edits past entries.  
 **Alternatives considered:** Topical-only organization; embedding decisions in KANBAN.  
 **Rationale:** Chronological append requires no filing judgment — reduces friction to zero. Topical index at top provides lookup without restructuring. Separation from KANBAN keeps each file focused: KANBAN = work state, DECISIONS = reasoning.  
-**Consequences:** AI_CONTEXT.md deprecated (see D-016). START_HERE.txt updated to point here. New agents entering a session should read: START_HERE.txt → KANBAN.md → DECISIONS.md (recent entries) → relevant architecture doc.
+**Consequences:** AI_CONTEXT.md deprecated (see D-016). START_HERE.txt updated to point here. New agents entering a session should read: START_HERE.txt → Kanban (extension) → DECISIONS.md (recent entries) → relevant architecture doc.
 
 ---
 
@@ -405,4 +416,4 @@
 **Decision:** Deprioritize Mercury to Phase D. Revised sequence: Phase A (Trismegistos crosswalk, VIAF, noise audit) → Phase B (Pleiades Phase 2, LGPN forward, Getty AAT) → Phase C (Trismegistos Phase 2, EDH, OCD) → Phase D (Mercury, Syme index, epigraphic sources).  
 **Alternatives considered:** Run Mercury now; add Pleiades Phase 2 in parallel.  
 **Rationale:** Each phase makes the next more valuable. Pleiades Phase 2 activates 41,884 Place nodes — the biggest single activation in the graph. Mercury's evidence chain only closes when findspots link to places with coordinates. Coins are important for numismatic/economic SFAs later but are not foundational infrastructure. Building Mercury before the geographic and prosopographic layers are solid optimizes for a specific SFA before the general foundation is ready.  
-**Consequences:** KANBAN updated with phased operational sequence. Mercury moves to Phase D. Trismegistos crosswalk, VIAF, Pleiades Phase 2, LGPN, Getty AAT prioritized before Mercury.  
+**Consequences:** Kanban updated with phased operational sequence. Mercury moves to Phase D. Trismegistos crosswalk, VIAF, Pleiades Phase 2, LGPN, Getty AAT prioritized before Mercury.  

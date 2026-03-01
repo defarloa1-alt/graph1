@@ -1,0 +1,20 @@
+{
+  "results": {
+    "bindings": [
+      {
+        "post": {"type": "uri", "value": "http://romanrepublic.ac.uk/rdf/post/1"},
+        "person": {"type": "uri", "value": "http://romanrepublic.ac.uk/rdf/person/1"},
+        "office": {"type": "uri", "value": "http://romanrepublic.ac.uk/rdf/office/1"},
+        "officeLabel": {"type": "literal", "value": "Consul"},
+        "year": {"type": "literal", "value": "-200"}
+      },
+      {
+        "post": {"type": "uri", "value": "http://romanrepublic.ac.uk/rdf/post/2"},
+        "person": {"type": "uri", "value": "http://romanrepublic.ac.uk/rdf/person/2"},
+        "office": {"type": "uri", "value": "http://romanrepublic.ac.uk/rdf/office/2"},
+        "officeLabel": {"type": "literal", "value": "Praetor"},
+        "year": {"type": "literal", "value": "-150"}
+      }
+    ]
+  }
+}

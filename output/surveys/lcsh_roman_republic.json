@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "mode": "csv",
+    "seed": "sh85115114",
+    "cache_dir": null
+  },
+  "seed": "sh85115114",
+  "seed_prefLabel": "Rome--History--Republic, 510-30 B.C.",
+  "position_statement": "Rome--History → Rome--History--Republic, 510-30 B.C.",
+  "ancestors": [
+    {
+      "lcsh_id": "sh85115108",
+      "prefLabel": "Rome--History",
+      "depth": 0
+    }
+  ],
+  "descendants": [
+    {
+      "lcsh_id": "sh85115116",
+      "prefLabel": "Rome--History--Republic, 265-30 B.C.",
+      "depth": 1,
+      "facet": "POLITICAL"
+    },
+    {
+      "lcsh_id": "sh85115113",
+      "prefLabel": "Rome--History--Republic, 510-265 B.C.",
+      "depth": 1,
+      "facet": "POLITICAL"
+    },
+    {
+      "lcsh_id": "sh85115115",
+      "prefLabel": "Rome--History--Republic, 510-30 B.C.--Juvenile literature",
+      "depth": 1,
+      "facet": "ARTISTIC"
+    },
+    {
+      "lcsh_id": "sh2008116725",
+      "prefLabel": "Rome--History--Republic, 265-30 B.C.--Fiction",
+      "depth": 2,
+      "facet": "POLITICAL"
+    }
+  ],
+  "related": {
+    "siblings": []
+  },
+  "dimensional_summary": {
+    "ARCHAEOLOGICAL": 0,
+    "ARTISTIC": 1,
+    "BIOGRAPHIC": 0,
+    "COMMUNICATION": 0,
+    "CULTURAL": 0,
+    "DEMOGRAPHIC": 0,
+    "DIPLOMATIC": 0,
+    "ECONOMIC": 0,
+    "ENVIRONMENTAL": 0,
+    "GEOGRAPHIC": 0,
+    "INTELLECTUAL": 0,
+    "LINGUISTIC": 0,
+    "MILITARY": 0,
+    "POLITICAL": 3,
+    "RELIGIOUS": 0,
+    "SCIENTIFIC": 0,
+    "SOCIAL": 0,
+    "TECHNOLOGICAL": 0
+  },
+  "synthesis_prompt": "# LCSH Domain Survey — Roman Republic\n\n**Seed:** sh85115114 — Rome--History--Republic, 510-30 B.C.\n\n## Position (upward chain)\n\nRome--History → Rome--History--Republic, 510-30 B.C.\n\n## Ancestors (navigation from above)\n\n- L0: Rome--History (sh85115108)\n\n## Descendants (candidate SubjectConcepts, by depth)\n\n### Depth 1\n- Rome--History--Republic, 265-30 B.C. (sh85115116) [POLITICAL]\n- Rome--History--Republic, 510-265 B.C. (sh85115113) [POLITICAL]\n- Rome--History--Republic, 510-30 B.C.--Juvenile literature (sh85115115) [ARTISTIC]\n\n### Depth 2\n- Rome--History--Republic, 265-30 B.C.--Fiction (sh2008116725) [POLITICAL]\n\n## Related (boundary)\n\nSiblings (same broader):\n\n## Dimensional summary\n\n| Facet | Count |\n|-------|-------|\n| POLITICAL | 3 |\n| ARTISTIC | 1 |\n\n---\n\n## Synthesis task\n\nGiven this LCSH landscape, propose a set of SubjectConcepts for the Roman Republic domain.\nEach SubjectConcept should:\n1. Be grounded in one or more sh… headings above\n2. Be at a useful navigation granularity (not too broad, not every LCSH subdivision)\n3. Have a clear primary facet\n4. Support multi-directional entry (place, period, person, bibliography)\n\nReturn structured proposals with: lcsh_id(s), label, primary_facet, rationale."
+}

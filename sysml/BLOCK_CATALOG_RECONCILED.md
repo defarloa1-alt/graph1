@@ -415,7 +415,7 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Build priority:** 2 (ahead of SchemaRegistry — bibliographic discovery is the most significant unbuilt agent capability)
 
 #### «block» SYS_ProcessRegistry
-**Responsibility:** SYS_ADR nodes, SYS_PipelineStage nodes, SYS_Baseline nodes. KanbanItem snapshots only — canonical KANBAN stays in KANBAN.md.  
+**Responsibility:** SYS_ADR nodes, SYS_PipelineStage nodes, SYS_Baseline nodes. KanbanItem snapshots only — canonical Kanban in LachyFS extension (`.devtool/features/`).  
 **Status:** Pending | **Build priority:** 4
 
 ---

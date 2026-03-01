@@ -1,0 +1,49 @@
+=== STEP 1 - SYS_Policy ===
+MERGE (p:SYS_Policy {name: 'FederationPositioningHopsSemantics'})
+SET p.definition   = '{"0": "self", "1": "direct parent", "2": "grandparent", "n": "nth ancestor"}',
+    p.rule         = 'shortest path from domain root to anchor through traversed properties',
+    p.last_updated = toString(datetime()),
+    p.updated_by   = 'sca_federation_positioning'
+RETURN p.name;
+
+=== STEP 2 - Q1307214 ===
+MATCH (sc:SubjectConcept {qid: 'Q17167'}), (target:Entity {qid: 'Q1307214'})
+MERGE (sc)-[r:POSITIONED_AS {federation: 'wikidata', property: 'P31', hops: 1}]->(target)
+SET r.rel_type = 'INSTANCE_OF_CLASS', r.anchor_type = 'FormOfGovernment', r.confidence = 'HIGH',
+    r.policy_ref = 'FederationPositioningHopsSemantics', r.positioned_at = toString(datetime())
+RETURN target.qid;
+
+=== STEP 3 - Q11514315 ===
+MATCH (sc:SubjectConcept {qid: 'Q17167'}), (target:Entity {qid: 'Q11514315'})
+MERGE (sc)-[r:POSITIONED_AS {federation: 'wikidata', property: 'P31', hops: 1}]->(target)
+SET r.rel_type = 'INSTANCE_OF_CLASS', r.anchor_type = 'HistoricalPeriod', r.confidence = 'HIGH',
+    r.policy_ref = 'FederationPositioningHopsSemantics', r.positioned_at = toString(datetime())
+RETURN target.qid;
+
+=== STEP 4 - Q3024240 ===
+MATCH (sc:SubjectConcept {qid: 'Q17167'}), (target:Entity {qid: 'Q3024240'})
+MERGE (sc)-[r:POSITIONED_AS {federation: 'wikidata', property: 'P31', hops: 1}]->(target)
+SET r.rel_type = 'INSTANCE_OF_CLASS', r.anchor_type = 'HistoricalCountry', r.confidence = 'HIGH',
+    r.policy_ref = 'FederationPositioningHopsSemantics', r.positioned_at = toString(datetime())
+RETURN target.qid;
+
+=== STEP 5 - Q48349 ===
+MATCH (sc:SubjectConcept {qid: 'Q17167'}), (target:Entity {qid: 'Q48349'})
+MERGE (sc)-[r:POSITIONED_AS {federation: 'wikidata', property: 'P31', hops: 1}]->(target)
+SET r.rel_type = 'INSTANCE_OF_CLASS', r.anchor_type = 'FormOfGovernment', r.confidence = 'MEDIUM',
+    r.policy_ref = 'FederationPositioningHopsSemantics', r.positioned_at = toString(datetime())
+RETURN target.qid;
+
+=== STEP 6 - Q666680 ===
+MATCH (sc:SubjectConcept {qid: 'Q17167'}), (target:Entity {qid: 'Q666680'})
+MERGE (sc)-[r:POSITIONED_AS {federation: 'wikidata', property: 'P122', hops: 1}]->(target)
+SET r.rel_type = 'TYPE_ANCHOR', r.anchor_type = 'FormOfGovernmentType', r.confidence = 'HIGH',
+    r.policy_ref = 'FederationPositioningHopsSemantics', r.positioned_at = toString(datetime())
+RETURN target.qid;
+
+=== STEP 7 - Q1747689 ===
+MATCH (sc:SubjectConcept {qid: 'Q17167'}), (target:Entity {qid: 'Q1747689'})
+MERGE (sc)-[r:POSITIONED_AS {federation: 'wikidata', property: 'P361', hops: 1}]->(target)
+SET r.rel_type = 'COMPOSITIONAL_PARENT', r.anchor_type = 'CivilisationContext', r.confidence = 'HIGH',
+    r.policy_ref = 'FederationPositioningHopsSemantics', r.positioned_at = toString(datetime())
+RETURN target.qid;

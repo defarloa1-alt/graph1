@@ -512,7 +512,7 @@ Files:
 
 Update:
   DECISIONS.md — D-036 entry
-  KANBAN.md    — D-036 implementation items (post-prototype backlog)
+  Kanban       — D-036 implementation items (post-prototype backlog)
   sysml/BLOCK_CATALOG_RECONCILED.md:
     Claim block: credence, likelihood, marginal, fractal_dimension,
                  boundary_status, life_pattern, corroboration_count,

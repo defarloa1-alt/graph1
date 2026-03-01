@@ -1,6 +1,6 @@
 @echo off
 REM Test Neo4j MCP Server Connection
-REM Run this to verify the MCP server can connect to Neo4j
+cd /d "%~dp0\.."
 
 echo ========================================
 echo Testing Neo4j MCP Server Connection
