@@ -1,12 +1,12 @@
 ---
 id: "cleanup-federation-source-duplicates-2026-02-26"
-status: "todo"
+status: "done"
 priority: "medium"
 assignee: null
 dueDate: null
 created: "2026-02-26T00:00:00.000Z"
-modified: "2026-02-26T00:00:00.000Z"
-completedAt: null
+modified: "2026-03-01T00:00:00.000Z"
+completedAt: "2026-03-01T00:00:00.000Z"
 labels: ["dev", "cleanup"]
 order: "a1"
 ---

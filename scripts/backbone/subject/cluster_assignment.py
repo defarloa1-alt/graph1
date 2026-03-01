@@ -700,6 +700,37 @@ def write_to_neo4j(
             if updated:
                 print(f"  harvest_status updated: {updated} SubjectConcepts marked confirmed (entity_count > 0)")
 
+        # D-035: entity_count post-pass — reads D12 thresholds from graph (wire read path)
+        with driver.session() as session:
+            thresh_rec = session.run("""
+                MATCH (t:SYS_Threshold)
+                WHERE t.name IN ['level2_child_overload', 'crosslink_ratio_split']
+                RETURN t.name AS name, t.value AS value
+            """)
+            thresh_map = {r["name"]: r["value"] for r in thresh_rec}
+            child_overload = int(thresh_map.get("level2_child_overload", 12))
+            crosslink_thresh = float(thresh_map.get("crosslink_ratio_split", 0.3))
+
+            result = session.run("""
+                MATCH (sc:SubjectConcept)
+                OPTIONAL MATCH (sc)<-[:MEMBER_OF]-(e:Entity)
+                WITH sc, count(e) AS total
+                OPTIONAL MATCH (sc)<-[:MEMBER_OF]-(e2:Entity)-[:MEMBER_OF]->(other:SubjectConcept)
+                WHERE other <> sc
+                WITH sc, total, count(DISTINCT e2) AS crosslinked
+                SET sc.entity_count = total,
+                    sc.split_candidate = (total > $child_overload OR
+                        (total > 0 AND toFloat(crosslinked)/toFloat(total) >= $crosslink_thresh))
+                RETURN count(sc) AS updated
+            """, child_overload=child_overload, crosslink_thresh=crosslink_thresh)
+            row = result.single()
+            ec_updated = row["updated"] if row else 0
+            if ec_updated:
+                print(
+                    f"  entity_count + split_candidate: {ec_updated} SubjectConcepts updated "
+                    f"(D12: child_overload={child_overload}, crosslink_thresh={crosslink_thresh})"
+                )
+
         return created, failed
 
     finally:

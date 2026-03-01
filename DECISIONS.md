@@ -10,7 +10,7 @@
 
 | Topic | Entries |
 |-------|---------|
-| Schema / node model | D-003, D-004, D-007, D-008, D-022, D-028 |
+| Schema / node model | D-003, D-004, D-007, D-008, D-022, D-028, D-038 |
 | Federation | D-006, D-014, D-022, D-023, D-037 |
 | Pipeline / harvester | D-009, D-010, D-011 |
 | Agent architecture (SCA/SFA) | D-012, D-013 |
@@ -417,3 +417,26 @@
 **Alternatives considered:** Run Mercury now; add Pleiades Phase 2 in parallel.  
 **Rationale:** Each phase makes the next more valuable. Pleiades Phase 2 activates 41,884 Place nodes — the biggest single activation in the graph. Mercury's evidence chain only closes when findspots link to places with coordinates. Coins are important for numismatic/economic SFAs later but are not foundational infrastructure. Building Mercury before the geographic and prosopographic layers are solid optimizes for a specific SFA before the general foundation is ready.  
 **Consequences:** Kanban updated with phased operational sequence. Mercury moves to Phase D. Trismegistos crosswalk, VIAF, Pleiades Phase 2, LGPN, Getty AAT prioritized before Mercury.  
+
+---
+
+### D-038 — Office → Position Relabeling; Institution Absorbed into Organization
+
+**Date:** 2026-03-01  
+**Status:** Implemented  
+**Context:** Three entity label types defined but ambiguous: `Office` (171 nodes, DPRR-sourced), `Institution` (0 nodes, defined but never populated), `Organization` (0 nodes, defined but empty). Inspection found: (1) Office nodes carry only a DPRR integer ID as `label` — human-readable names never stored; (2) `Institution` and `Organization` were conceptually overlapping with no clear discriminator; (3) Wikidata uses P39 "position held" pointing to position items, not "office" items.
+
+**Decision:**  
+1. Relabeled all `Office` nodes → `Position`. Added `office_uri = 'http://romanrepublic.ac.uk/rdf/office/{id}'` for future enrichment linkage.  
+2. Added `Position` EntityType (tier=4, wikidata_pid=P39, source=dprr).  
+3. Deprecated `Institution` type — absorbed into `Organization` via `org_type` discriminator property (values: institution | military | religious | guild | other).  
+4. Updated `Organization` EntityType description accordingly.  
+5. Added `POSITION_HELD` to SYS_RelationshipType with domain=Entity, range=Position, wikidata_pid=P39.  
+6. Updated `dprr_import.py` to MERGE `Position` nodes (not `Office`), with `office_uri` on CREATE.  
+7. Created `scripts/federation/enrich_position_labels.py` to backfill `label_name` from DPRR SPARQL once endpoint is accessible.
+
+**Blocker:** DPRR SPARQL endpoint (`romanrepublic.ac.uk/rdf/endpoint/`) is behind CloudFlare bot protection as of 2026-03-01. Enrichment script written and ready; run when endpoint is accessible again.
+
+**Alternatives considered:** Keep `Office` label (domain-specific, not Wikidata-aligned); create `Institution` as distinct node type (no clear domain need now).  
+**Rationale:** P39 alignment makes Position nodes interoperable with Wikidata harvest pipelines. Single `Organization` type with `org_type` discriminator is simpler than three overlapping collective-entity types (Institution / Organization / Position) with no populated nodes.  
+**Consequences:** All 171 former Office nodes are now `Position`. POSITION_HELD edges unchanged. Index created on `Position.label` and `Position.office_uri`. Future Organization population (Senate, Legions, Colleges) will use `org_type` to discriminate. Enrichment script ready but blocked on DPRR access.

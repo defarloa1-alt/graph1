@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python claude/run_scripts.py 10)",
+      "Bash(python claude/run_scripts.py 11)",
+      "Bash(python claude/run_scripts.py 13)",
+      "Bash(python:*)"
+    ]
+  }
+}

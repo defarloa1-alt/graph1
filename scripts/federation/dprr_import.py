@@ -434,7 +434,7 @@ def run_neo4j_import(
                 """, {"dprr_uri": p.get("dprr_uri", ""), "entity_id": entity_id, "entity_cipher": entity_cipher, "label": label, "dprr_id": str(dprr_id)})
                 stats["group_c_created"] += 1
 
-        # PostAssertions -> POSITION_HELD (simplified: office as label for now)
+        # PostAssertions -> POSITION_HELD
         for post in posts:
             pid = post.get("person_id")
             qid = alignment.get(str(pid)) if pid else None
@@ -444,7 +444,9 @@ def run_neo4j_import(
             year = post.get("year", "")
             session.run("""
                 MATCH (e:Entity {qid: $qid})
-                MERGE (o:Office {label: $office})
+                MERGE (o:Position {label: $office})
+                ON CREATE SET o.office_uri = 'http://romanrepublic.ac.uk/rdf/office/' + $office,
+                              o.source = 'dprr'
                 MERGE (e)-[r:POSITION_HELD]->(o)
                 SET r.dprr_assertion_uri = $uri,
                     r.secondary_source = 'Broughton_MRR',
@@ -554,14 +556,14 @@ def run_neo4j_import_group_c_posts(
         "posts_skipped_no_entity": 0,
         "statuses_imported": 0,
         "statuses_skipped_no_entity": 0,
-        "office_nodes_before": 0,
-        "office_nodes_after": 0,
+        "position_nodes_before": 0,
+        "position_nodes_after": 0,
     }
 
     with driver.session(database=NEO4J_DATABASE or "neo4j") as session:
-        # Office count before (for delta)
-        r = session.run("MATCH (o:Office) RETURN count(o) as c")
-        stats["office_nodes_before"] = r.single().get("c", 0) or 0
+        # Position count before (for delta)
+        r = session.run("MATCH (o:Position) RETURN count(o) as c")
+        stats["position_nodes_before"] = r.single().get("c", 0) or 0
         for post in posts_group_c:
             pid = str(post.get("person_id", ""))
             p = person_by_id.get(pid, {})
@@ -574,7 +576,9 @@ def run_neo4j_import_group_c_posts(
             result = session.run(
                 """
                 MATCH (e:Entity {dprr_uri: $dprr_uri})
-                MERGE (o:Office {label: $office})
+                MERGE (o:Position {label: $office})
+                ON CREATE SET o.office_uri = 'http://romanrepublic.ac.uk/rdf/office/' + $office,
+                              o.source = 'dprr'
                 MERGE (e)-[r:POSITION_HELD]->(o)
                 SET r.dprr_assertion_uri = $uri,
                     r.secondary_source = 'Broughton_MRR',
@@ -621,9 +625,9 @@ def run_neo4j_import_group_c_posts(
             else:
                 stats["statuses_skipped_no_entity"] += 1
 
-        # Office count after (for delta)
-        r = session.run("MATCH (o:Office) RETURN count(o) as c")
-        stats["office_nodes_after"] = r.single().get("c", 0) or 0
+        # Position count after (for delta)
+        r = session.run("MATCH (o:Position) RETURN count(o) as c")
+        stats["position_nodes_after"] = r.single().get("c", 0) or 0
 
     driver.close()
     return stats
@@ -685,9 +689,9 @@ def main():
         print(f"  Statuses fetched (Group C): {stats.get('statuses_fetched_group_c', 0)}")
         print(f"  Statuses imported: {stats.get('statuses_imported', 0)}")
         print(f"  Statuses skipped (no entity): {stats.get('statuses_skipped_no_entity', 0)}")
-        ob, oa = stats.get("office_nodes_before", 0), stats.get("office_nodes_after", 0)
+        ob, oa = stats.get("position_nodes_before", 0), stats.get("position_nodes_after", 0)
         if ob or oa:
-            print(f"  Office nodes: {oa} (delta +{oa - ob})")
+            print(f"  Position nodes: {oa} (delta +{oa - ob})")
         print(f"  Report: {out_path}")
         return
     elif args.status_assertions:
