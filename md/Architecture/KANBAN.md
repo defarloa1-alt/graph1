@@ -1,5 +1,5 @@
 # Chrystallum KANBAN
-_Last updated: 2026-02-27_
+_Last updated: 2026-03-01_
 
 ---
 
@@ -71,6 +71,13 @@ _Last updated: 2026-02-27_
 ---
 
 ## ✅ DONE (this session)
+
+- [x] **Place enrichment pipeline** (2026-03-01)
+  - `enrich_places_from_crosswalk.py` — qid, geonames_id, tgn_id from crosswalk
+  - `link_pleiades_place_to_geo_backbone.py` — toString(pleiades_id) fix for type mismatch
+  - `run_place_enrichment_pipeline.bat` / `.sh` — one-shot pipeline
+  - 2,779 Place nodes enriched; 32,480 Pleiades_Place→Place linked
+  - `docs/GEO_BACKBONE_MAPPING_STATUS.md` updated
 
 - [x] **Phase 0a — All six federation surveys complete**
   - LCSH, Pleiades, Periodo, DPRR, WorldCat, LCC — all run, output in `output/nodes/*.json`

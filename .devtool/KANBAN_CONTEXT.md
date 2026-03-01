@@ -1,6 +1,6 @@
 # Kanban Context — Operational Sequence & Metrics
 
-**Last Updated:** 2026-02-27  
+**Last Updated:** 2026-03-01  
 **PM:** AI PM Agent  
 **Current Focus:** Phase 0c — build_adjacency_matrix.py
 
@@ -15,6 +15,8 @@ Tasks are managed in the LachyFS Kanban Markdown extension. Run **"Open Kanban B
 **Phase 0a DONE:** All six surveys run (LCSH, Pleiades, PeriodO, DPRR, WorldCat, LCC). Output in `output/nodes/*.json`. Enriched with semantic_facet. Loaded to Neo4j via load_lcsh_survey, load_federation_survey, load_lcc_nodes.
 
 **Phase 0b DONE:** align_federations.py — 34k nodes, 1k aligned, ~7k edges. Output: output/aligned/roman_republic_aligned.json
+
+**Place enrichment DONE (2026-03-01):** enrich_places_from_crosswalk.py, link_pleiades_place_to_geo_backbone (toString fix), run_place_enrichment_pipeline.bat/.sh. 2,779 Place nodes enriched; 32,480 Pleiades_Place→Place linked.
 
 **Phase 0c IN PROGRESS:** build_adjacency_matrix.py — adjacency matrix from aligned nodes.
 
