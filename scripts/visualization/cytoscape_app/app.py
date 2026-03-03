@@ -20,11 +20,19 @@ Usage:
     uvicorn app:app --reload --port 8765
 """
 
+import os
 import sys
 from pathlib import Path
 
 project_root = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(project_root / "scripts"))
+
+# Load .env from project root (NEO4J_URI, NEO4J_PASSWORD, etc.)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(project_root / ".env")
+except ImportError:
+    pass  # python-dotenv optional; env vars or config.py still work
 
 from config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, NEO4J_DATABASE
 
