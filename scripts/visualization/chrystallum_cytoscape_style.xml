@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Chrystallum Cytoscape Desktop Visual Style
+
+  Import via: File > Import > Styles from File...
+
+  Node colouring:  by node_labels (Person=blue, Gens=amber, Praenomen=teal,
+                   Nomen=indigo, Cognomen=violet, Tribe=green, Position=orange,
+                   Place=red, MythologicalPerson=purple)
+  Node size:       mapped to degree (more connections = larger)
+  Node label:      label property, falling back to label_latin, then entity_id
+  Edge colouring:  by rel_type (family=warm, onomastic=cool, political=neutral)
+  Gens grouping:   use gens_prefix property with Compound Spring Embedder
+                   (Layout > Compound Spring Embedder; Group Attribute = gens_prefix)
+-->
+<vizmap id="chrystallum" documentVersion="3.0">
+  <visualStyle name="Chrystallum">
+
+    <!-- ================================================================== -->
+    <!-- DEFAULT NODE PROPERTIES                                             -->
+    <!-- ================================================================== -->
+    <network>
+      <visualProperty name="NETWORK_BACKGROUND_PAINT" default="#1a1a2e"/>
+    </network>
+
+    <node>
+      <visualProperty name="NODE_SHAPE" default="ELLIPSE"/>
+      <visualProperty name="NODE_SIZE" default="30.0"/>
+      <visualProperty name="NODE_FILL_COLOR" default="#4a90d9"/>
+      <visualProperty name="NODE_BORDER_PAINT" default="#2c3e50"/>
+      <visualProperty name="NODE_BORDER_WIDTH" default="1.5"/>
+      <visualProperty name="NODE_LABEL_COLOR" default="#ecf0f1"/>
+      <visualProperty name="NODE_LABEL_FONT_SIZE" default="10"/>
+      <visualProperty name="NODE_TRANSPARENCY" default="220"/>
+      <visualProperty name="NODE_TOOLTIP" default=""/>
+
+      <!-- Label mapping: use 'label' column -->
+      <visualProperty name="NODE_LABEL" default="">
+        <passthroughMapping attributeName="label" attributeType="string"/>
+      </visualProperty>
+
+      <!-- Tooltip: show entity_id -->
+      <visualProperty name="NODE_TOOLTIP" default="">
+        <passthroughMapping attributeName="entity_id" attributeType="string"/>
+      </visualProperty>
+
+      <!-- Size by degree (Cytoscape auto-computes degree) -->
+      <visualProperty name="NODE_SIZE" default="30.0">
+        <continuousMapping attributeName="Degree" attributeType="integer">
+          <continuousMappingPoint attrValue="1"   lesser="20.0"  equal="20.0"  greater="20.0"/>
+          <continuousMappingPoint attrValue="10"  lesser="35.0"  equal="35.0"  greater="35.0"/>
+          <continuousMappingPoint attrValue="50"  lesser="60.0"  equal="60.0"  greater="60.0"/>
+          <continuousMappingPoint attrValue="200" lesser="100.0" equal="100.0" greater="100.0"/>
+        </continuousMapping>
+      </visualProperty>
+
+      <!-- Colour by node_labels -->
+      <visualProperty name="NODE_FILL_COLOR" default="#4a90d9">
+        <discreteMapping attributeName="node_labels" attributeType="string">
+          <!-- Person (blue) -->
+          <discreteMappingEntry attributeValue="Entity,Person" value="#4a90d9"/>
+          <!-- MythologicalPerson (purple) -->
+          <discreteMappingEntry attributeValue="Entity,MythologicalPerson,Person" value="#9b59b6"/>
+          <!-- Gens (amber) -->
+          <discreteMappingEntry attributeValue="Gens" value="#f39c12"/>
+          <!-- Praenomen (teal) -->
+          <discreteMappingEntry attributeValue="Praenomen" value="#1abc9c"/>
+          <!-- Nomen (indigo) -->
+          <discreteMappingEntry attributeValue="Nomen" value="#3f51b5"/>
+          <!-- Cognomen (violet) -->
+          <discreteMappingEntry attributeValue="Cognomen" value="#8e44ad"/>
+          <!-- Tribe (green) -->
+          <discreteMappingEntry attributeValue="Tribe" value="#27ae60"/>
+          <!-- Position (orange) -->
+          <discreteMappingEntry attributeValue="Position" value="#e67e22"/>
+          <!-- Place (red) -->
+          <discreteMappingEntry attributeValue="Place" value="#e74c3c"/>
+          <!-- Pleiades_Place (darker red) -->
+          <discreteMappingEntry attributeValue="Pleiades_Place" value="#c0392b"/>
+          <!-- Polity (steel) -->
+          <discreteMappingEntry attributeValue="Polity" value="#607d8b"/>
+          <!-- SocialOrder (pink) -->
+          <discreteMappingEntry attributeValue="SocialOrder" value="#e91e63"/>
+          <!-- PoliticalFaction (brown) -->
+          <discreteMappingEntry attributeValue="PoliticalFaction" value="#795548"/>
+          <!-- Religion (gold) -->
+          <discreteMappingEntry attributeValue="Religion" value="#ffd700"/>
+          <!-- Periodo_Period (yellow) -->
+          <discreteMappingEntry attributeValue="Periodo_Period" value="#ffeb3b"/>
+          <!-- Entity only (grey) -->
+          <discreteMappingEntry attributeValue="Entity" value="#95a5a6"/>
+        </discreteMapping>
+      </visualProperty>
+
+      <!-- Shape by node type for quick visual scan -->
+      <visualProperty name="NODE_SHAPE" default="ELLIPSE">
+        <discreteMapping attributeName="node_labels" attributeType="string">
+          <discreteMappingEntry attributeValue="Entity,Person" value="ELLIPSE"/>
+          <discreteMappingEntry attributeValue="Gens" value="DIAMOND"/>
+          <discreteMappingEntry attributeValue="Praenomen" value="ROUND_RECTANGLE"/>
+          <discreteMappingEntry attributeValue="Nomen" value="ROUND_RECTANGLE"/>
+          <discreteMappingEntry attributeValue="Cognomen" value="ROUND_RECTANGLE"/>
+          <discreteMappingEntry attributeValue="Tribe" value="HEXAGON"/>
+          <discreteMappingEntry attributeValue="Position" value="OCTAGON"/>
+          <discreteMappingEntry attributeValue="Place" value="TRIANGLE"/>
+          <discreteMappingEntry attributeValue="Pleiades_Place" value="TRIANGLE"/>
+        </discreteMapping>
+      </visualProperty>
+    </node>
+
+    <!-- ================================================================== -->
+    <!-- DEFAULT EDGE PROPERTIES                                             -->
+    <!-- ================================================================== -->
+    <edge>
+      <visualProperty name="EDGE_WIDTH" default="1.5"/>
+      <visualProperty name="EDGE_STROKE_UNSELECTED_PAINT" default="#7f8c8d"/>
+      <visualProperty name="EDGE_TARGET_ARROW_SHAPE" default="DELTA"/>
+      <visualProperty name="EDGE_TRANSPARENCY" default="180"/>
+      <visualProperty name="EDGE_LABEL_FONT_SIZE" default="8"/>
+
+      <!-- Edge label = relationship type -->
+      <visualProperty name="EDGE_LABEL" default="">
+        <passthroughMapping attributeName="rel_type" attributeType="string"/>
+      </visualProperty>
+
+      <!-- Colour by relationship type -->
+      <visualProperty name="EDGE_STROKE_UNSELECTED_PAINT" default="#7f8c8d">
+        <discreteMapping attributeName="rel_type" attributeType="string">
+          <!-- Family (warm reds/oranges) -->
+          <discreteMappingEntry attributeValue="FATHER_OF" value="#e74c3c"/>
+          <discreteMappingEntry attributeValue="MOTHER_OF" value="#e91e63"/>
+          <discreteMappingEntry attributeValue="CHILD_OF" value="#ff7043"/>
+          <discreteMappingEntry attributeValue="SIBLING_OF" value="#ff8a65"/>
+          <discreteMappingEntry attributeValue="SPOUSE_OF" value="#f06292"/>
+          <!-- Onomastic (cool blues/greens) -->
+          <discreteMappingEntry attributeValue="MEMBER_OF_GENS" value="#f39c12"/>
+          <discreteMappingEntry attributeValue="HAS_PRAENOMEN" value="#1abc9c"/>
+          <discreteMappingEntry attributeValue="HAS_NOMEN" value="#3f51b5"/>
+          <discreteMappingEntry attributeValue="HAS_COGNOMEN" value="#8e44ad"/>
+          <discreteMappingEntry attributeValue="MEMBER_OF_TRIBE" value="#27ae60"/>
+          <!-- Political/civic (neutral) -->
+          <discreteMappingEntry attributeValue="POSITION_HELD" value="#e67e22"/>
+          <discreteMappingEntry attributeValue="CITIZEN_OF" value="#607d8b"/>
+          <discreteMappingEntry attributeValue="MEMBER_OF_FACTION" value="#795548"/>
+          <discreteMappingEntry attributeValue="IN_SOCIAL_ORDER" value="#e91e63"/>
+          <!-- Geographic -->
+          <discreteMappingEntry attributeValue="BORN_IN" value="#00bcd4"/>
+          <discreteMappingEntry attributeValue="DIED_IN" value="#455a64"/>
+          <discreteMappingEntry attributeValue="LOCATED_IN" value="#4caf50"/>
+        </discreteMapping>
+      </visualProperty>
+
+      <!-- SPOUSE_OF is bidirectional — no arrow -->
+      <visualProperty name="EDGE_TARGET_ARROW_SHAPE" default="DELTA">
+        <discreteMapping attributeName="rel_type" attributeType="string">
+          <discreteMappingEntry attributeValue="SPOUSE_OF" value="NONE"/>
+          <discreteMappingEntry attributeValue="SIBLING_OF" value="NONE"/>
+        </discreteMapping>
+      </visualProperty>
+
+      <!-- Dashed lines for onomastic edges (they are reference, not narrative) -->
+      <visualProperty name="EDGE_LINE_TYPE" default="SOLID">
+        <discreteMapping attributeName="rel_type" attributeType="string">
+          <discreteMappingEntry attributeValue="HAS_PRAENOMEN" value="LONG_DASH"/>
+          <discreteMappingEntry attributeValue="HAS_NOMEN" value="LONG_DASH"/>
+          <discreteMappingEntry attributeValue="HAS_COGNOMEN" value="LONG_DASH"/>
+          <discreteMappingEntry attributeValue="MEMBER_OF_TRIBE" value="LONG_DASH"/>
+        </discreteMapping>
+      </visualProperty>
+    </edge>
+
+  </visualStyle>
+</vizmap>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chrystallum Graph Viewer</title>
+<script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
+<script src="https://unpkg.com/layout-base@2.0.1/layout-base.js"></script>
+<script src="https://unpkg.com/cose-base@2.2.0/cose-base.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #1a1a2e;
+    color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  header {
+    padding: 10px 20px;
+    background: #16213e;
+    border-bottom: 1px solid #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4a90d9;
+    white-space: nowrap;
+  }
+  .controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .controls select, .controls input, .controls button {
+    padding: 6px 10px;
+    border: 1px solid #2c3e50;
+    border-radius: 4px;
+    background: #0f3460;
+    color: #ecf0f1;
+    font-size: 13px;
+  }
+  .controls button {
+    background: #4a90d9;
+    border-color: #4a90d9;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .controls button:hover { background: #357abd; }
+  .controls input { width: 260px; }
+  .controls select { min-width: 120px; }
+  #main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  #cy {
+    flex: 1;
+    background: #1a1a2e;
+  }
+  #sidebar {
+    width: 280px;
+    background: #16213e;
+    border-left: 1px solid #2c3e50;
+    padding: 12px;
+    overflow-y: auto;
+    font-size: 12px;
+  }
+  #sidebar h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #4a90d9;
+  }
+  #sidebar .prop-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-bottom: 1px solid #2c3e5040;
+  }
+  #sidebar .prop-key { color: #95a5a6; }
+  #sidebar .prop-val { color: #ecf0f1; text-align: right; max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
+  #search-results {
+    position: absolute;
+    top: 46px;
+    left: 260px;
+    background: #16213e;
+    border: 1px solid #2c3e50;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    min-width: 320px;
+  }
+  #search-results .sr-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #2c3e5040;
+    font-size: 13px;
+  }
+  #search-results .sr-item:hover { background: #0f3460; }
+  #search-results .sr-item .sr-id { color: #95a5a6; font-size: 11px; }
+  #stats-bar {
+    padding: 4px 20px;
+    background: #0f3460;
+    font-size: 11px;
+    color: #95a5a6;
+    border-top: 1px solid #2c3e50;
+    display: flex;
+    gap: 16px;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>CHRYSTALLUM</h1>
+  <div class="controls">
+    <select id="view-select">
+      <option value="person">Person Ego</option>
+      <option value="gens">Gens Network</option>
+      <option value="family">Family Tree</option>
+      <option value="offices">Offices</option>
+    </select>
+    <input id="search-input" type="text" placeholder="Search by name, DPRR ID, or gens prefix...">
+    <select id="hops-select">
+      <option value="1">1 hop</option>
+      <option value="2" selected>2 hops</option>
+      <option value="3">3 hops</option>
+    </select>
+    <button id="btn-load">Load</button>
+    <button id="btn-fit">Fit</button>
+    <button id="btn-layout">Re-layout</button>
+  </div>
+  <div id="search-results"></div>
+</header>
+<div id="main">
+  <div id="cy"></div>
+  <div id="sidebar">
+    <h3>Node Details</h3>
+    <div id="detail-body"><p style="color:#95a5a6">Click a node to inspect.</p></div>
+    <h3 style="margin-top:16px">Legend</h3>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>Person</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#f39c12"></span>Gens</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#1abc9c"></span>Praenomen</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#3f51b5"></span>Nomen</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#8e44ad"></span>Cognomen</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#27ae60"></span>Tribe</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#e67e22"></span>Position</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#e74c3c"></span>Place</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#9b59b6"></span>Mythological</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#95a5a6"></span>Entity</div>
+    </div>
+    <h3 style="margin-top:16px">Graph Stats</h3>
+    <div id="stats-body"><p style="color:#95a5a6">Loading...</p></div>
+  </div>
+</div>
+<div id="stats-bar">
+  <span id="sb-nodes">Nodes: 0</span>
+  <span id="sb-edges">Edges: 0</span>
+  <span id="sb-view">View: —</span>
+</div>
+
+<script>
+// ── Colour map (matches Cytoscape Desktop style) ──────────────────────
+const COLOURS = {
+  'Person':            '#4a90d9',
+  'Entity,Person':     '#4a90d9',
+  'Entity,MythologicalPerson,Person': '#9b59b6',
+  'Gens':              '#f39c12',
+  'Praenomen':         '#1abc9c',
+  'Nomen':             '#3f51b5',
+  'Cognomen':          '#8e44ad',
+  'Tribe':             '#27ae60',
+  'Position':          '#e67e22',
+  'Place':             '#e74c3c',
+  'Pleiades_Place':    '#c0392b',
+  'Periodo_Period':    '#ffeb3b',
+  'Entity':            '#95a5a6',
+};
+const EDGE_COLOURS = {
+  'FATHER_OF':       '#e74c3c',
+  'MOTHER_OF':       '#e91e63',
+  'CHILD_OF':        '#ff7043',
+  'SIBLING_OF':      '#ff8a65',
+  'SPOUSE_OF':       '#f06292',
+  'MEMBER_OF_GENS':  '#f39c12',
+  'HAS_PRAENOMEN':   '#1abc9c',
+  'HAS_NOMEN':       '#3f51b5',
+  'HAS_COGNOMEN':    '#8e44ad',
+  'MEMBER_OF_TRIBE': '#27ae60',
+  'POSITION_HELD':   '#e67e22',
+};
+
+function nodeColour(labels) {
+  if (!labels) return '#95a5a6';
+  if (COLOURS[labels]) return COLOURS[labels];
+  for (const [k, v] of Object.entries(COLOURS)) {
+    if (labels.includes(k)) return v;
+  }
+  return '#95a5a6';
+}
+
+// ── Cytoscape instance ────────────────────────────────────────────────
+const cy = cytoscape({
+  container: document.getElementById('cy'),
+  elements: [],
+  style: [
+    {
+      selector: 'node',
+      style: {
+        'label': 'data(label)',
+        'font-size': 9,
+        'color': '#ecf0f1',
+        'text-outline-color': '#1a1a2e',
+        'text-outline-width': 1.5,
+        'text-valign': 'bottom',
+        'text-margin-y': 4,
+        'width': 'mapData(degree, 0, 50, 20, 60)',
+        'height': 'mapData(degree, 0, 50, 20, 60)',
+        'background-color': function(ele) {
+          return nodeColour(ele.data('node_labels'));
+        },
+        'border-width': 1,
+        'border-color': '#2c3e50',
+      }
+    },
+    {
+      selector: 'node:selected',
+      style: {
+        'border-width': 3,
+        'border-color': '#f1c40f',
+        'overlay-opacity': 0.15,
+        'overlay-color': '#f1c40f',
+      }
+    },
+    {
+      selector: 'edge',
+      style: {
+        'width': 1.5,
+        'line-color': function(ele) {
+          return EDGE_COLOURS[ele.data('rel_type')] || '#7f8c8d';
+        },
+        'target-arrow-color': function(ele) {
+          return EDGE_COLOURS[ele.data('rel_type')] || '#7f8c8d';
+        },
+        'target-arrow-shape': function(ele) {
+          const rt = ele.data('rel_type');
+          return (rt === 'SPOUSE_OF' || rt === 'SIBLING_OF') ? 'none' : 'triangle';
+        },
+        'curve-style': 'bezier',
+        'opacity': 0.7,
+        'label': '',
+      }
+    },
+    {
+      selector: 'edge:selected',
+      style: {
+        'label': 'data(rel_type)',
+        'font-size': 8,
+        'color': '#f1c40f',
+        'text-outline-color': '#1a1a2e',
+        'text-outline-width': 1,
+        'width': 3,
+        'opacity': 1,
+      }
+    },
+  ],
+  layout: { name: 'cose', animate: false },
+  wheelSensitivity: 0.3,
+});
+
+// ── State ─────────────────────────────────────────────────────────────
+let currentEntityId = null;
+
+// ── API helpers ───────────────────────────────────────────────────────
+async function api(path) {
+  const resp = await fetch(path);
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.detail || resp.statusText);
+  }
+  return resp.json();
+}
+
+function updateStatusBar() {
+  document.getElementById('sb-nodes').textContent = 'Nodes: ' + cy.nodes().length;
+  document.getElementById('sb-edges').textContent = 'Edges: ' + cy.edges().length;
+  document.getElementById('sb-view').textContent = 'View: ' + document.getElementById('view-select').value;
+}
+
+async function loadView() {
+  const view = document.getElementById('view-select').value;
+  const hops = parseInt(document.getElementById('hops-select').value);
+
+  if (!currentEntityId && view !== 'gens') {
+    alert('Search for a person first.');
+    return;
+  }
+
+  let data;
+  try {
+    if (view === 'person') {
+      data = await api(`/api/person/${encodeURIComponent(currentEntityId)}?hops=${hops}`);
+    } else if (view === 'gens') {
+      // For gens, use the search input as a prefix
+      const prefix = document.getElementById('search-input').value.trim().toUpperCase();
+      if (prefix.length < 2) { alert('Enter a gens prefix (e.g. POMP)'); return; }
+      data = await api(`/api/gens/${encodeURIComponent(prefix)}`);
+    } else if (view === 'family') {
+      data = await api(`/api/family/${encodeURIComponent(currentEntityId)}?depth=${hops}`);
+    } else if (view === 'offices') {
+      data = await api(`/api/offices/${encodeURIComponent(currentEntityId)}`);
+    }
+  } catch (e) {
+    alert('Error: ' + e.message);
+    return;
+  }
+
+  cy.elements().remove();
+  cy.add(data.elements);
+  doLayout(view);
+  updateStatusBar();
+}
+
+function doLayout(view) {
+  const opts = (view === 'family')
+    ? { name: 'breadthfirst', directed: true, spacingFactor: 1.2, animate: true, animationDuration: 400 }
+    : { name: 'cose', animate: true, animationDuration: 600, nodeRepulsion: 8000,
+        idealEdgeLength: 80, gravity: 0.3 };
+  cy.layout(opts).run();
+}
+
+// ── Search ────────────────────────────────────────────────────────────
+let searchTimeout = null;
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+searchInput.addEventListener('input', function() {
+  clearTimeout(searchTimeout);
+  const q = this.value.trim();
+  if (q.length < 2) { searchResults.style.display = 'none'; return; }
+  searchTimeout = setTimeout(async () => {
+    try {
+      const data = await api(`/api/search?q=${encodeURIComponent(q)}&limit=20`);
+      searchResults.innerHTML = '';
+      if (data.results.length === 0) {
+        searchResults.innerHTML = '<div class="sr-item" style="color:#95a5a6">No results</div>';
+      } else {
+        for (const p of data.results) {
+          const div = document.createElement('div');
+          div.className = 'sr-item';
+          div.innerHTML = `${esc(p.label || p.label_latin || p.entity_id)}<br><span class="sr-id">${esc(p.entity_id)} ${p.dprr_id ? '(DPRR ' + esc(p.dprr_id) + ')' : ''}</span>`;
+          div.addEventListener('click', () => {
+            currentEntityId = p.entity_id;
+            searchInput.value = p.label || p.label_latin || p.entity_id;
+            searchResults.style.display = 'none';
+            loadView();
+          });
+          searchResults.appendChild(div);
+        }
+      }
+      searchResults.style.display = 'block';
+    } catch (e) { console.error(e); }
+  }, 300);
+});
+
+document.addEventListener('click', (e) => {
+  if (!searchResults.contains(e.target) && e.target !== searchInput) {
+    searchResults.style.display = 'none';
+  }
+});
+
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ── Node click → sidebar detail ───────────────────────────────────────
+cy.on('tap', 'node', function(evt) {
+  const data = evt.target.data();
+  const body = document.getElementById('detail-body');
+  const skip = new Set(['id', 'label']);
+  let html = '';
+  for (const [k, v] of Object.entries(data)) {
+    if (skip.has(k) || v === null || v === '' || v === undefined) continue;
+    html += `<div class="prop-row"><span class="prop-key">${esc(k)}</span><span class="prop-val">${esc(String(v))}</span></div>`;
+  }
+  body.innerHTML = `<div style="font-weight:600;margin-bottom:8px;color:#f1c40f">${esc(data.label)}</div>${html}`;
+});
+
+// Double-click a Person node → reload ego graph centered on it
+cy.on('dbltap', 'node', function(evt) {
+  const data = evt.target.data();
+  if (data.node_labels && data.node_labels.includes('Person') && data.entity_id) {
+    currentEntityId = data.entity_id;
+    searchInput.value = data.label || data.entity_id;
+    document.getElementById('view-select').value = 'person';
+    loadView();
+  }
+});
+
+// ── Button handlers ───────────────────────────────────────────────────
+document.getElementById('btn-load').addEventListener('click', loadView);
+document.getElementById('btn-fit').addEventListener('click', () => cy.fit(undefined, 30));
+document.getElementById('btn-layout').addEventListener('click', () => {
+  doLayout(document.getElementById('view-select').value);
+});
+
+// Enter key in search triggers load
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    searchResults.style.display = 'none';
+    if (currentEntityId) loadView();
+  }
+});
+
+// ── Load stats on startup ─────────────────────────────────────────────
+(async function() {
+  try {
+    const s = await api('/api/stats');
+    const body = document.getElementById('stats-body');
+    let html = '';
+    for (const [k, v] of Object.entries(s)) {
+      html += `<div class="prop-row"><span class="prop-key">${k}</span><span class="prop-val">${v.toLocaleString()}</span></div>`;
+    }
+    body.innerHTML = html;
+  } catch (e) {
+    document.getElementById('stats-body').innerHTML = '<p style="color:#e74c3c">Could not load stats</p>';
+  }
+})();
+</script>
+</body>
+</html>
