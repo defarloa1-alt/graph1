@@ -9,7 +9,7 @@
 //   - 1 SYS_RelationshipType: CO_OCCURS_WITH (meta-relationship)
 //   - 3 SYS_ExtractionLayer nodes (Layer 0, 1, 2)
 //   - 1 SYS_ConfidenceModifier (co_occurrence_untyped)
-//   - 1 SYS_DecisionTable (D15_predicate_refinement)
+//   - 1 SYS_DecisionTable (D40_predicate_refinement)
 //   - 5 SYS_DecisionRow (refinement rules)
 //   - 1 SYS_ADR (ADR-008)
 //   - 1 SYS_OnboardingStep (step 16)
@@ -118,71 +118,73 @@ SET cm.label = 'Untyped Co-Occurrence',
     cm.cidoc_crm_class = 'I6_Belief_Value';
 
 
-// ── SECTION 4: D15 Predicate Refinement Decision Table ─────────────────────
+// ── SECTION 4: D40 Predicate Refinement Decision Table ─────────────────────
 // Governs the upgrade from Layer 0 → Layer 1 → Layer 2
+// NOTE: Originally D15, renumbered to D40 to avoid collision with
+//       D15_DETERMINE_federation_state in the live graph.
 
-MERGE (dt:SYS_DecisionTable {table_id: 'D15'})
+MERGE (dt:SYS_DecisionTable {table_id: 'D40'})
 SET dt.label = 'Predicate Refinement',
     dt.description = 'Governs how CO_OCCURS_WITH edges get refined into typed predicates. Determines when and how to upgrade Layer 0 signals to Layer 1 classified relationships.',
     dt.version = '1.0',
     dt.status = 'active';
 
 // Row 1: Index qualifier pattern match → direct classification
-MERGE (r:SYS_DecisionRow {row_id: 'D15_R01'})
+MERGE (r:SYS_DecisionRow {row_id: 'D40_R01'})
 SET r.condition = 'extraction_context contains qualifier phrase matching relationship_phrase_pattern',
     r.action = 'Classify CO_OCCURS_WITH → matched kernel type. Set extraction_layer = 1. Apply confidence bump +0.20.',
     r.example = '"wife of X" → SPOUSE_OF, "in alliance with X" → ALLIED_WITH',
     r.priority = 1;
-MATCH (dt:SYS_DecisionTable {table_id: 'D15'}), (r:SYS_DecisionRow {row_id: 'D15_R01'})
+MATCH (dt:SYS_DecisionTable {table_id: 'D40'}), (r:SYS_DecisionRow {row_id: 'D40_R01'})
 MERGE (dt)-[:HAS_ROW]->(r);
 
 // Row 2: Office/date parenthetical → POSITION_HELD
-MERGE (r:SYS_DecisionRow {row_id: 'D15_R02'})
+MERGE (r:SYS_DecisionRow {row_id: 'D40_R02'})
 SET r.condition = 'extraction_context contains office abbreviation + year pattern: (cos.|pr.|tr.pl.|etc. NN B.C.)',
     r.action = 'Create typed POSITION_HELD edge with temporal anchor. Set extraction_layer = 1. Confidence +0.25 (office+year is near-unique identifier).',
     r.example = '"(cos. 46 B.C.)" → POSITION_HELD {position: consul, year: -46}',
     r.priority = 2;
-MATCH (dt:SYS_DecisionTable {table_id: 'D15'}), (r:SYS_DecisionRow {row_id: 'D15_R02'})
+MATCH (dt:SYS_DecisionTable {table_id: 'D40'}), (r:SYS_DecisionRow {row_id: 'D40_R02'})
 MERGE (dt)-[:HAS_ROW]->(r);
 
 // Row 3: Same-headword co-occurrence → infer gens membership
-MERGE (r:SYS_DecisionRow {row_id: 'D15_R03'})
+MERGE (r:SYS_DecisionRow {row_id: 'D40_R03'})
 SET r.condition = 'Two entities share index headword in gentilicial index AND headword is a gens name',
     r.action = 'Create MEMBER_OF_GENS edge for both entities to shared gens. Set extraction_layer = 1. Confidence +0.15.',
     r.example = 'Entries under "Aemilius" headword → both MEMBER_OF_GENS Aemilii',
     r.priority = 3;
-MATCH (dt:SYS_DecisionTable {table_id: 'D15'}), (r:SYS_DecisionRow {row_id: 'D15_R03'})
+MATCH (dt:SYS_DecisionTable {table_id: 'D40'}), (r:SYS_DecisionRow {row_id: 'D40_R03'})
 MERGE (dt)-[:HAS_ROW]->(r);
 
 // Row 4: Cross-reference page overlap → strengthen co-occurrence
-MERGE (r:SYS_DecisionRow {row_id: 'D15_R04'})
+MERGE (r:SYS_DecisionRow {row_id: 'D40_R04'})
 SET r.condition = 'Two CO_OCCURS_WITH entities share 3+ page references in same work',
     r.action = 'Apply multi_source_agreement modifier (+0.05). Flag for priority predicate classification.',
     r.example = 'Lepidus and Antonius share pages 109, 167, 192, 276 → strong co-occurrence signal',
     r.priority = 4;
-MATCH (dt:SYS_DecisionTable {table_id: 'D15'}), (r:SYS_DecisionRow {row_id: 'D15_R04'})
+MATCH (dt:SYS_DecisionTable {table_id: 'D40'}), (r:SYS_DecisionRow {row_id: 'D40_R04'})
 MERGE (dt)-[:HAS_ROW]->(r);
 
 // Row 5: No pattern match — retain as Layer 0
-MERGE (r:SYS_DecisionRow {row_id: 'D15_R05'})
+MERGE (r:SYS_DecisionRow {row_id: 'D40_R05'})
 SET r.condition = 'No qualifier phrase, no office pattern, no structural signal',
     r.action = 'Retain as CO_OCCURS_WITH at Layer 0. Confidence remains 0.30-0.40. Mark for body-text pass if available.',
     r.example = 'Entity A appears on same page as Entity B with no qualifying text',
     r.priority = 99;
-MATCH (dt:SYS_DecisionTable {table_id: 'D15'}), (r:SYS_DecisionRow {row_id: 'D15_R05'})
+MATCH (dt:SYS_DecisionTable {table_id: 'D40'}), (r:SYS_DecisionRow {row_id: 'D40_R05'})
 MERGE (dt)-[:HAS_ROW]->(r);
 
-// Wire D15 into pipeline: D8 (source quality) → D15 → D10 (claim promotion)
+// Wire D40 into pipeline: D8 (source quality) → D40 → D10 (claim promotion)
 MATCH (d8:SYS_DecisionTable {table_id: 'D8'})
-MATCH (d15:SYS_DecisionTable {table_id: 'D15'})
+MATCH (d15:SYS_DecisionTable {table_id: 'D40'})
 MERGE (d8)-[:FEEDS_INTO]->(d15);
 
-MATCH (d15:SYS_DecisionTable {table_id: 'D15'})
+MATCH (d15:SYS_DecisionTable {table_id: 'D40'})
 MATCH (d10:SYS_DecisionTable {table_id: 'D10'})
 MERGE (d15)-[:FEEDS_INTO]->(d10);
 
 // CIDOC mapping
-MATCH (dt:SYS_DecisionTable {table_id: 'D15'}), (cc:SYS_CidocClass {class_id: 'I3_Inference_Logic'})
+MATCH (dt:SYS_DecisionTable {table_id: 'D40'}), (cc:SYS_CidocClass {class_id: 'I3_Inference_Logic'})
 MERGE (dt)-[:MAPS_TO_CIDOC {note: 'Predicate refinement rules ARE inference logic applied during extraction'}]->(cc);
 
 
@@ -207,7 +209,7 @@ SET p1.label = 'Pass 1: Co-Occurrence Extraction',
 MERGE (p2:SYS_ExtractionPass {pass_id: 'pass_2_predicate_classification'})
 SET p2.label = 'Pass 2: Predicate Classification',
     p2.pass_number = 2,
-    p2.description = 'Slower, more expensive, high-precision pass. Classify each CO_OCCURS_WITH edge into typed predicate from 48-type kernel. Apply D15 refinement rules.',
+    p2.description = 'Slower, more expensive, high-precision pass. Classify each CO_OCCURS_WITH edge into typed predicate from 48-type kernel. Apply D40 refinement rules.',
     p2.input = 'CO_OCCURS_WITH ScaffoldEdges with extraction_context',
     p2.output = 'Typed ScaffoldEdge (ALLIED_WITH, SPOUSE_OF, etc.) + Claim with confidence + provenance',
     p2.extraction_layer = 1,
@@ -216,7 +218,7 @@ SET p2.label = 'Pass 2: Predicate Classification',
     p2.edges_refined_per_page = '30-70',
     p2.edges_retained_layer_0 = '30-130',
     p2.nlp_required = 'Relationship extraction: pattern matching + NLP classification',
-    p2.decision_table = 'D15';
+    p2.decision_table = 'D40';
 
 // Pass sequence
 MATCH (p1:SYS_ExtractionPass {pass_id: 'pass_1_co_occurrence'})
@@ -241,16 +243,16 @@ MERGE (adr:SYS_ADR {adr_id: 'ADR-008'})
 SET adr.title = 'Predicate-Dropped Co-Occurrence Layer',
     adr.status = 'ACCEPTED',
     adr.date = '2026-03-01',
-    adr.summary = 'Text assertions decompose into three extraction layers: Layer 0 (co-occurrence, predicate dropped, S↔O only), Layer 1 (typed predicate, S→P→O), Layer 2 (qualified with provenance). CO_OCCURS_WITH is a meta-relationship type in the kernel — not semantic but statistical. Two-pass extraction: Pass 1 extracts entity pairs cheaply via NER; Pass 2 classifies predicates via D15 refinement rules. Layer 0 links enable frontier discovery: unknown entities with many co-occurrence links to known entities are priority resolution candidates.',
+    adr.summary = 'Text assertions decompose into three extraction layers: Layer 0 (co-occurrence, predicate dropped, S↔O only), Layer 1 (typed predicate, S→P→O), Layer 2 (qualified with provenance). CO_OCCURS_WITH is a meta-relationship type in the kernel — not semantic but statistical. Two-pass extraction: Pass 1 extracts entity pairs cheaply via NER; Pass 2 classifies predicates via D40 refinement rules. Layer 0 links enable frontier discovery: unknown entities with many co-occurrence links to known entities are priority resolution candidates.',
     adr.rationale = 'Layer 0 maps to CIDOC P140+P141 without P177 — exactly what Wikidata can express. Layer 1+ adds P177 (predicate type) — exactly what Wikidata cannot express and what Chrystallum implements. This decomposition explains where Chrystallum adds value over Wikidata and formalizes the incremental graph-building process.',
-    adr.impacts = 'SFA_INDEX_READER gains two-pass architecture. All SYS_RelationshipType nodes gain extraction_layer property. D15 decision table governs predicate refinement. Confidence gradient: 0.30-0.40 (Layer 0) → 0.50-0.70 (Layer 1) → 0.70-0.82 (Layer 2).';
+    adr.impacts = 'SFA_INDEX_READER gains two-pass architecture. All SYS_RelationshipType nodes gain extraction_layer property. D40 decision table governs predicate refinement. Confidence gradient: 0.30-0.40 (Layer 0) → 0.50-0.70 (Layer 1) → 0.70-0.82 (Layer 2).';
 
 
 // ── SECTION 8: Onboarding Step 16 ─────────────────────────────────────────
 
 MERGE (step:SYS_OnboardingStep {step_id: 'onboard_s16'})
 SET step.label = 'Co-Occurrence Layer and Two-Pass Extraction',
-    step.description = 'Understand the three extraction layers (co-occurrence → typed predicate → qualified claim) and the two-pass extraction architecture. CO_OCCURS_WITH is Layer 0 — a statistical signal, not a semantic claim. Pass 1 (NER) → Pass 2 (predicate classification via D15). Layer 0 links enable frontier entity discovery.',
+    step.description = 'Understand the three extraction layers (co-occurrence → typed predicate → qualified claim) and the two-pass extraction architecture. CO_OCCURS_WITH is Layer 0 — a statistical signal, not a semantic claim. Pass 1 (NER) → Pass 2 (predicate classification via D40). Layer 0 links enable frontier entity discovery.',
     step.query_hint = 'MATCH (l:SYS_ExtractionLayer) RETURN l.layer_id, l.label, l.confidence_range, l.cidoc_coverage ORDER BY l.layer_number',
     step.depends_on = 'onboard_s15';
 
@@ -323,12 +325,12 @@ SET ctx.label = 'Co-Assignment (Open Syllabus)',
 // RETURN length(path), end.layer_id
 // Expected: 2, layer_2
 //
-// -- D15 decision table with rows
-// MATCH (dt:SYS_DecisionTable {table_id:'D15'})-[:HAS_ROW]->(r) RETURN count(r)
+// -- D40 decision table with rows
+// MATCH (dt:SYS_DecisionTable {table_id:'D40'})-[:HAS_ROW]->(r) RETURN count(r)
 // Expected: 5
 //
-// -- D15 wired into pipeline
-// MATCH (d8:SYS_DecisionTable {table_id:'D8'})-[:FEEDS_INTO]->(d15:SYS_DecisionTable {table_id:'D15'})-[:FEEDS_INTO]->(d10:SYS_DecisionTable {table_id:'D10'})
+// -- D40 wired into pipeline
+// MATCH (d8:SYS_DecisionTable {table_id:'D8'})-[:FEEDS_INTO]->(d40:SYS_DecisionTable {table_id:'D40'})-[:FEEDS_INTO]->(d10:SYS_DecisionTable {table_id:'D10'})
 // RETURN d8.label, d15.label, d10.label
 // Expected: 3 labels
 //
