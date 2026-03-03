@@ -170,6 +170,9 @@ def load_harvest_reports(harvest_dir: Path) -> dict[str, list[dict]]:
                        entity.get("id", ""))
                 label = (entity.get("label") or
                          entity.get("entity_label", ""))
+                # Skip id_hash mistaken for qid (32-char hex, no Q prefix)
+                if qid and len(qid) == 32 and all(c in "0123456789abcdef" for c in qid.lower()):
+                    continue
                 if qid:
                     record = {
                         "entity_qid": qid,

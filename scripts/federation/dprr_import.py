@@ -11,6 +11,9 @@ Group C: No alignment -> CREATE new nodes with dprr_uri as primary id
 
 Reification: Option A (edge provenance) per docs/IMPORT_DECISIONS.md
 
+ADR-008 Layer 1: Deterministic pre-processing (DPRR label parsing, P-code mapping,
+date normalisation) is applied during ingest. See dprr_layer1.py.
+
 Usage:
     python scripts/federation/dprr_import.py --dry-run
     python scripts/federation/dprr_import.py --limit-persons 500
@@ -29,7 +32,9 @@ from pathlib import Path
 import requests
 
 _scripts = Path(__file__).resolve().parents[1]
+_federation = Path(__file__).resolve().parent
 sys.path.insert(0, str(_scripts))
+sys.path.insert(0, str(_federation))
 try:
     from config_loader import (
         NEO4J_URI,
@@ -39,12 +44,21 @@ try:
         WIKIDATA_SPARQL_ENDPOINT,
     )
     from tools.entity_cipher import generate_entity_cipher
+    from dprr_layer1 import (
+        parse_dprr_label,
+        derive_label_latin,
+        derive_label_sort,
+    )
 except ImportError:
     NEO4J_URI = NEO4J_USERNAME = NEO4J_PASSWORD = NEO4J_DATABASE = None
     WIKIDATA_SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
     generate_entity_cipher = None
+    parse_dprr_label = derive_label_latin = derive_label_sort = None
 
+# RDF4J-style: https://romanrepublic.ac.uk/rdf/repositories/dprr/query
+# Legacy: http://romanrepublic.ac.uk/rdf/endpoint/
 DPRR_ENDPOINT = "http://romanrepublic.ac.uk/rdf/endpoint/"
+DPRR_REPOSITORY_QUERY = "https://romanrepublic.ac.uk/rdf/repositories/dprr/query"
 DPRR_ONTOLOGY = "http://romanrepublic.ac.uk/rdf/ontology#"
 USER_AGENT = "Chrystallum/1.0 (DPRR federation import)"
 PAGE_SIZE = 500
@@ -98,11 +112,50 @@ def _extract_id(uri: str) -> str | None:
     return m.group(1) if m else None
 
 
+def get_dprr_federation_status() -> str | None:
+    """
+    Check SYS_FederationSource status for DPRR. OPS-001 / ADR-008: when status='blocked',
+    live SPARQL queries will fail (Anubis). Returns 'blocked' | 'operational' | None (not found / no Neo4j).
+    """
+    if not NEO4J_URI or not NEO4J_PASSWORD:
+        return None
+    try:
+        from neo4j import GraphDatabase
+    except ImportError:
+        return None
+    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME or "neo4j", NEO4J_PASSWORD))
+    try:
+        with driver.session(database=NEO4J_DATABASE or "neo4j") as session:
+            result = session.run("""
+                MATCH (n:SYS_FederationSource)
+                WHERE n.name = 'DPRR' OR n.source_id = 'dprr'
+                RETURN n.status AS status
+                LIMIT 1
+            """)
+            row = result.single()
+            return row["status"] if row else None
+    finally:
+        driver.close()
+
+
 def _query_dprr(sparql: str, timeout: int = 60) -> list[dict]:
     headers = {"Accept": "application/sparql-results+json", "User-Agent": USER_AGENT}
     r = requests.get(DPRR_ENDPOINT, params={"query": sparql}, headers=headers, timeout=timeout)
     r.raise_for_status()
-    return r.json().get("results", {}).get("bindings", [])
+    try:
+        data = r.json()
+    except requests.exceptions.JSONDecodeError as e:
+        preview = (r.text or "")[:300]
+        if "Anubis" in preview or "proof-of-work" in preview.lower() or "Making" in preview:
+            raise RuntimeError(
+                "DPRR endpoint returned HTML (Anubis anti-bot) instead of JSON. "
+                "The endpoint may require browser-based access. Use --offline to test with sample data."
+            ) from e
+        raise RuntimeError(
+            f"DPRR endpoint returned non-JSON (status {r.status_code}). "
+            f"Preview: {preview[:100]!r}"
+        ) from e
+    return data.get("results", {}).get("bindings", [])
 
 
 def _query_wikidata(sparql: str, timeout: int = 60) -> list[dict]:
@@ -138,7 +191,33 @@ def fetch_wikidata_p6863_alignment() -> dict[str, str]:
 # ---------------------------------------------------------------------------
 # Phase 1: Fetch DPRR persons
 # ---------------------------------------------------------------------------
-def fetch_persons(limit: int = 5000, offset: int = 0) -> list[dict]:
+def _sample_persons(limit: int = 100) -> list[dict]:
+    """Sample DPRR-style persons for offline/demo mode. ADR-008 Layer 1 test data."""
+    samples = [
+        ("POMP1976 Cn. Pompeius (31) Cn. f. Sex. n. Clu. Magnus", "1976"),
+        ("CORN54 -. Cornelia (54) Clu. ", "54"),
+        ("IVLI104 C. Iulius (104) Fab. Caesar", "104"),
+        ("CICER106 M. Tullius (106) Cor. Cicero", "106"),
+    ]
+    out = []
+    for i, (label, dprr_id) in enumerate(samples[:limit]):
+        rec = {
+            "dprr_id": dprr_id,
+            "dprr_uri": f"http://romanrepublic.ac.uk/rdf/entity/Person/{dprr_id}",
+            "label": label,
+            "cognomen": label.split()[-1] if label.split() else "",
+        }
+        if parse_dprr_label and label:
+            parsed = parse_dprr_label(label)
+            rec["onomastic_parse"] = parsed.to_dict()
+        out.append(rec)
+    return out
+
+
+def fetch_persons(limit: int = 5000, offset: int = 0, offline: bool = False) -> list[dict]:
+    if offline:
+        return _sample_persons(limit)
+
     sparql = f"""
     PREFIX vocab: <{DPRR_ONTOLOGY}>
     SELECT ?person ?name ?cognomen WHERE {{
@@ -159,19 +238,26 @@ def fetch_persons(limit: int = 5000, offset: int = 0) -> list[dict]:
         cognomen = r.get("cognomen", {}).get("value", "") if r.get("cognomen") else ""
         # Use hasName (full display) as label; fallback to cognomen or dprr_id
         label = name or cognomen or str(dprr_id)
-        out.append({
+        rec = {
             "dprr_id": dprr_id,
             "dprr_uri": uri,
             "label": label,
             "cognomen": cognomen,
-        })
+        }
+        # ADR-008 Layer 1: DPRR label parsing (deterministic)
+        if parse_dprr_label and label:
+            parsed = parse_dprr_label(label)
+            rec["onomastic_parse"] = parsed.to_dict()
+        out.append(rec)
     return out
 
 
 # ---------------------------------------------------------------------------
 # Phase 2: Fetch PostAssertions
 # ---------------------------------------------------------------------------
-def fetch_post_assertions(limit: int = 15000, offset: int = 0) -> list[dict]:
+def fetch_post_assertions(limit: int = 15000, offset: int = 0, offline: bool = False) -> list[dict]:
+    if offline:
+        return []
     sparql = f"""
     PREFIX vocab: <{DPRR_ONTOLOGY}>
     SELECT ?post ?person ?office ?year WHERE {{
@@ -221,7 +307,9 @@ def fetch_all_relationship_labels() -> list[tuple[str, int]]:
     return [(r.get("name", {}).get("value", "").lower(), int(r.get("count", {}).get("value", 0))) for r in rows if r.get("name")]
 
 
-def fetch_relationship_assertions(limit: int = 10000, offset: int = 0) -> list[dict]:
+def fetch_relationship_assertions(limit: int = 10000, offset: int = 0, offline: bool = False) -> list[dict]:
+    if offline:
+        return []
     sparql = f"""
     PREFIX vocab: <{DPRR_ONTOLOGY}>
     SELECT ?rel ?person1 ?person2 ?relType ?name WHERE {{
@@ -254,7 +342,9 @@ def fetch_relationship_assertions(limit: int = 10000, offset: int = 0) -> list[d
 # ---------------------------------------------------------------------------
 # Phase 4: Fetch StatusAssertions
 # ---------------------------------------------------------------------------
-def fetch_status_assertions(limit: int = 3000, offset: int = 0) -> list[dict]:
+def fetch_status_assertions(limit: int = 3000, offset: int = 0, offline: bool = False) -> list[dict]:
+    if offline:
+        return []
     sparql = f"""
     PREFIX vocab: <{DPRR_ONTOLOGY}>
     SELECT ?status ?person ?statusType ?year WHERE {{
@@ -398,7 +488,14 @@ def run_neo4j_import(
         for p in persons:
             dprr_id = p.get("dprr_id")
             qid = alignment.get(str(dprr_id)) if dprr_id else None
-            label = p.get("label", "").replace("\\", "\\\\").replace("'", "\\'")
+            raw_label = p.get("label", "")
+            label_dprr = raw_label.replace("\\", "\\\\").replace("'", "\\'") if raw_label else ""
+            # ADR-007 four-label schema: derive label_latin, label_sort from parse
+            parsed = parse_dprr_label(raw_label) if parse_dprr_label and raw_label else None
+            label_latin = derive_label_latin(parsed) if parsed else None
+            label_sort = derive_label_sort(parsed) if parsed else None
+            # label = display; DPRR-only: use label_latin until Wikidata P1559 enrichment
+            label = (label_latin or label_dprr) if (label_latin or label_dprr) else ""
             if qid:
                 entity_id = f"person_q{qid[1:].lower()}"
                 entity_cipher = generate_entity_cipher(qid, "PERSON", "wd") if generate_entity_cipher else f"ent_per_{qid}"
@@ -407,6 +504,9 @@ def run_neo4j_import(
                     SET e.entity_id = COALESCE(e.entity_id, $entity_id),
                         e.entity_cipher = COALESCE(e.entity_cipher, $entity_cipher),
                         e.label = $label,
+                        e.label_dprr = $label_dprr,
+                        e.label_latin = $label_latin,
+                        e.label_sort = $label_sort,
                         e.entity_type = COALESCE(e.entity_type, 'PERSON'),
                         e.dprr_id = $dprr_id,
                         e.dprr_uri = $dprr_uri,
@@ -414,7 +514,11 @@ def run_neo4j_import(
                         e.scoping_status = 'temporal_scoped',
                         e.scoping_confidence = 0.85,
                         e.scoping_source = 'DPRR'
-                """, {"qid": qid, "entity_id": entity_id, "entity_cipher": entity_cipher, "label": label, "dprr_id": str(dprr_id), "dprr_uri": p.get("dprr_uri", "")})
+                """, {
+                    "qid": qid, "entity_id": entity_id, "entity_cipher": entity_cipher,
+                    "label": label, "label_dprr": label_dprr or None, "label_latin": label_latin or None, "label_sort": label_sort or None,
+                    "dprr_id": str(dprr_id), "dprr_uri": p.get("dprr_uri", ""),
+                })
                 stats["group_a_merged"] += 1
             else:
                 entity_id = f"person_dprr_{dprr_id}"
@@ -424,6 +528,9 @@ def run_neo4j_import(
                     SET e.entity_id = $entity_id,
                         e.entity_cipher = $entity_cipher,
                         e.label = $label,
+                        e.label_dprr = $label_dprr,
+                        e.label_latin = $label_latin,
+                        e.label_sort = $label_sort,
                         e.entity_type = 'PERSON',
                         e.dprr_id = $dprr_id,
                         e.dprr_imported = true,
@@ -431,7 +538,11 @@ def run_neo4j_import(
                         e.scoping_confidence = 0.85,
                         e.scoping_source = 'DPRR',
                         e.source = 'dprr'
-                """, {"dprr_uri": p.get("dprr_uri", ""), "entity_id": entity_id, "entity_cipher": entity_cipher, "label": label, "dprr_id": str(dprr_id)})
+                """, {
+                    "dprr_uri": p.get("dprr_uri", ""), "entity_id": entity_id, "entity_cipher": entity_cipher,
+                    "label": label, "label_dprr": label_dprr or None, "label_latin": label_latin or None, "label_sort": label_sort or None,
+                    "dprr_id": str(dprr_id),
+                })
                 stats["group_c_created"] += 1
 
         # PostAssertions -> POSITION_HELD
@@ -648,7 +759,14 @@ def main():
     ap.add_argument("--check-relationship-types", action="store_true", help="Verify full DPRR vocabulary against mapping")
     ap.add_argument("--status-assertions", action="store_true", help="Import only StatusAssertions (fetch persons for matching)")
     ap.add_argument("--group-c-posts", action="store_true", help="Import Group C POSITION_HELD + status via dprr_uri (694 status re-attempt)")
+    ap.add_argument("--offline", action="store_true", help="Use sample data when DPRR endpoint unavailable (Anubis anti-bot)")
+    ap.add_argument("--force", action="store_true", help="Attempt live DPRR query even when SYS_FederationSource.status='blocked' (OPS-001)")
+    ap.add_argument("--dprr-endpoint", default=None, help="Override DPRR SPARQL URL (e.g. https://romanrepublic.ac.uk/rdf/repositories/dprr/query)")
     args = ap.parse_args()
+
+    if args.dprr_endpoint:
+        global DPRR_ENDPOINT
+        DPRR_ENDPOINT = args.dprr_endpoint.rstrip("/")
 
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -657,21 +775,33 @@ def main():
     print("DPRR FEDERATION IMPORT")
     print("=" * 70)
 
+    # OPS-001 / ADR-008: respect SYS_FederationSource.status='blocked' — avoid silent failure
+    if not args.offline and not args.force:
+        status = get_dprr_federation_status()
+        if status == "blocked":
+            print("\n  DPRR federation source is marked 'blocked' (Anubis on SPARQL endpoint).")
+            print("  Use --offline for sample data, or --force to attempt live query anyway.")
+            print("  See Person/chrystallum_ops001_dprr_snapshot.docx")
+            sys.exit(1)
+
     alignment = fetch_wikidata_p6863_alignment()
+
+    if args.offline:
+        print("[Offline] Using sample data (DPRR endpoint bypassed)")
 
     if args.group_c_posts:
         # Group C POSITION_HELD + status assertions via dprr_uri
         print("[Group C] Fetching persons for matching...")
-        persons = fetch_persons(limit=args.limit_persons)
+        persons = fetch_persons(limit=args.limit_persons, offline=args.offline)
         for p in persons:
             p["qid"] = alignment.get(str(p.get("dprr_id", "")), "")
         group_c_count = sum(1 for p in persons if p.get("dprr_id") and not p.get("qid"))
         print(f"  Fetched {len(persons)} persons ({group_c_count} Group C)")
         print("[Group C] Fetching PostAssertions...")
-        posts = fetch_post_assertions(limit=args.limit_posts)
+        posts = fetch_post_assertions(limit=args.limit_posts, offline=args.offline)
         print(f"  Fetched {len(posts)} post assertions")
         print("[Group C] Fetching StatusAssertions...")
-        statuses = fetch_status_assertions(limit=args.limit_statuses)
+        statuses = fetch_status_assertions(limit=args.limit_statuses, offline=args.offline)
         print(f"  Fetched {len(statuses)} status assertions")
         print("[Group C] Neo4j import (POSITION_HELD + HAS_STATUS via dprr_uri)...")
         stats = run_neo4j_import_group_c_posts(persons, posts, statuses, dry_run=args.dry_run)
@@ -697,30 +827,37 @@ def main():
     elif args.status_assertions:
         # Status-assertions-only mode
         print("[Status-only] Fetching persons for matching...")
-        persons = fetch_persons(limit=args.limit_persons)
+        persons = fetch_persons(limit=args.limit_persons, offline=args.offline)
         for p in persons:
             p["qid"] = alignment.get(str(p.get("dprr_id", "")), "")
         print(f"  Fetched {len(persons)} persons")
         posts, rels = [], []
         unmapped_labels, unmapped_count = [], 0
         print("[Status-only] Fetching StatusAssertions...")
-        statuses = fetch_status_assertions(limit=args.limit_statuses)
+        statuses = fetch_status_assertions(limit=args.limit_statuses, offline=args.offline)
         print(f"  Fetched {len(statuses)} status assertions")
         print("[Status-only] Neo4j import (status assertions only)...")
         stats = run_neo4j_import(alignment, persons, posts, rels, statuses, dry_run=args.dry_run, unmapped_rel_count=0, status_only=True)
     else:
         print("[Phase 1] Fetching DPRR persons...")
-        persons = fetch_persons(limit=args.limit_persons)
+        try:
+            persons = fetch_persons(limit=args.limit_persons, offline=args.offline)
+        except RuntimeError as e:
+            if args.offline:
+                raise
+            print(f"\n  DPRR fetch failed: {e}")
+            print("  Use --offline to test with sample data.")
+            sys.exit(1)
         for p in persons:
             p["qid"] = alignment.get(str(p.get("dprr_id", "")), "")
         print(f"  Fetched {len(persons)} persons")
 
         print("[Phase 2] Fetching PostAssertions...")
-        posts = fetch_post_assertions(limit=args.limit_posts)
+        posts = fetch_post_assertions(limit=args.limit_posts, offline=args.offline)
         print(f"  Fetched {len(posts)} post assertions")
 
         print("[Phase 3] Fetching RelationshipAssertions...")
-        rels = fetch_relationship_assertions(limit=args.limit_rels)
+        rels = fetch_relationship_assertions(limit=args.limit_rels, offline=args.offline)
         print(f"  Fetched {len(rels)} relationship assertions")
 
         # Relationship mapping completeness check
@@ -737,11 +874,20 @@ def main():
                 print("  All relationship types mapped.")
 
         print("[Phase 4] Fetching StatusAssertions...")
-        statuses = fetch_status_assertions(limit=args.limit_statuses)
+        statuses = fetch_status_assertions(limit=args.limit_statuses, offline=args.offline)
         print(f"  Fetched {len(statuses)} status assertions")
 
         print("[Phase 5] Neo4j import...")
         stats = run_neo4j_import(alignment, persons, posts, rels, statuses, dry_run=args.dry_run, unmapped_rel_count=unmapped_count)
+
+    # ADR-008 Layer 1: parse stats when onomastic_parse is present
+    layer1_stats = None
+    if parse_dprr_label and persons:
+        with_parse = sum(1 for p in persons if p.get("onomastic_parse"))
+        layer1_stats = {
+            "persons_with_onomastic_parse": with_parse,
+            "sample_parsed": persons[0].get("onomastic_parse") if persons and persons[0].get("onomastic_parse") else None,
+        }
 
     report = {
         "source": "DPRR",
@@ -753,6 +899,7 @@ def main():
         "unmapped_rel_labels": unmapped_labels,
         "unmapped_rel_count": unmapped_count,
         "import_stats": stats,
+        "layer1_stats": layer1_stats,
     }
 
     with open(out_path, "w", encoding="utf-8") as f:

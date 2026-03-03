@@ -95,6 +95,13 @@ SET t.value = 0.90, t.unit = 'probability', t.decision_table = 'D10_DETERMINE_cl
     t.rationale = 'Minimum posterior for auto-promotion',
     t.last_reviewed = '2026-02-25', t.system = true;
 
+// D10 — ancient person domain override (ADR-007 §7.4, OI-06)
+MERGE (t:SYS_Threshold {name: 'claim_promotion_confidence_ancient_person'})
+SET t.value = 0.75, t.unit = 'score', t.decision_table = 'D10_DETERMINE_claim_promotion_eligibility',
+    t.domain_scope = 'ancient_person',
+    t.rationale = 'Lower threshold for ancient persons (sparse provenance)',
+    t.last_reviewed = '2026-03-02', t.system = true;
+
 // D14 — entity resolution acceptance
 MERGE (t:SYS_Threshold {name: 'entity_resolution_confidence'})
 SET t.value = 0.75, t.unit = 'score', t.decision_table = 'D14_DETERMINE_entity_resolution_acceptance',

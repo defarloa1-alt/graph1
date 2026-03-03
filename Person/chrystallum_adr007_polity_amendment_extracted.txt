@@ -1,0 +1,181 @@
+
+CHRYSTALLUM
+Schema Amendment
+:Polity  →  :HistoricalPolity
+ADR-007 Amendment · 2026-03-03
+
+
+1. Problem Statement
+1.1  Three findings from live graph audit
+
+Finding 1 — Heterogeneous :Polity population.
+The 20 current :Polity nodes span ancient civilisations, dissolved 19th-century empires, and fully contemporary sovereign states (Germany, France, United States, Switzerland, Argentina). These share a label but have fundamentally different semantics and roles in the corpus.
+
+Finding 2 — Roman Republic absent; wrong node receiving CITIZEN_OF.
+The correct Roman Republic — Q17167, the state 509–27 BCE — carries no :Polity label and has zero CITIZEN_OF edges. Eighteen CITIZEN_OF edges instead point to Q1747689 "Ancient Rome", a civilisational container, not a polity. For 4,772 DPRR persons this is a foundational gap.
+
+Finding 3 — QID disambiguation hazard.
+Four Wikidata items are labelled "Roman Republic" in the graph. They are entirely different entities:
+
+
+Any query using the label string "Roman Republic" to find the CITIZEN_OF target will return ambiguous or wrong results. Always reference Q17167 by QID explicitly.
+
+2. Wikidata Ontology — How Polities Are Modelled
+Wikidata has no single "polity" P31 value. It distinguishes by temporal status and constitutional form. The key discriminator for historical vs. current is the presence of P576 (dissolved/abolished date) on the item.
+
+
+Temporal scoping properties on :HistoricalPolity nodes:
+P571 — inception date (foundation)
+P576 — dissolved/abolished; absence means currently existing
+P1365 — replaces (predecessor state)
+P1366 — replaced by (successor state)
+P122 — basic form of government: republic, monarchy, empire…
+Q17167 Roman Republic carries P31 = historical country + historical period + form of government — multiple P31 values are normal in Wikidata. The presence of "historical country" alone is sufficient for :HistoricalPolity classification.
+
+3. Decision — Label Strategy
+3.1  Is :Polity first-class or a subclass?
+First-class, for the historical subset. Three reasons:
+Unique property set: inception_year, dissolution_year, political_form, predecessor/successor links — not shared by any other node type.
+CITIZEN_OF semantics require precision: Pompey's citizenship was Republican, not generically "Roman". The target node must encode the constitutional form and temporal bounds of the specific polity.
+CIDOC-CRM E74_Group — collective entity with temporal bounds — is explicitly distinct from E53_Place and E21_Person, confirming first-class ontological status.
+
+3.2  Label assignment rules
+
+"Ancient Rome" Q1747689 is a civilisational container spanning Kingdom, Republic, and Empire. It receives no :Polity label. After Step 4 migration it will have no CITIZEN_OF edges and can be reclassified as entity_type=CONCEPT or a future :Civilization node type.
+
+4. :HistoricalPolity Node Schema
+4.1  Properties
+
+4.2  Relationships
+
+4.3  CIDOC-CRM alignment
+
+5. Migration Cypher
+Five steps. Steps 1–3 are additive and idempotent. Steps 4–5 modify existing edges — run in a transaction with rollback available. Verify counts before committing.
+
+Step 1 — Set entity_type = POLITY on historical nodes
+MATCH (n:Entity)
+WHERE n.qid IN [
+  'Q17167',    // Roman Republic 509-27 BCE
+  'Q42834',    // Western Roman Empire
+  'Q131964',   // Austrian Empire (dissolved 1918)
+  'Q34266',    // Russian Empire  (dissolved 1917)
+  'Q28513',    // Austria-Hungary (dissolved 1918)
+  'Q170174',   // Papal States    (dissolved 1870)
+  'Q3755547',  // Kingdom of Italy 1861-1946
+  'Q1206012',  // German Reich    (dissolved 1945)
+  'Q1003997'   // Judaea (Roman province)
+]
+SET n.entity_type = 'POLITY'
+
+Step 2 — Apply :Polity and :HistoricalPolity labels
+MATCH (n:Entity)
+WHERE n.entity_type = 'POLITY'
+SET n:Polity:HistoricalPolity
+
+Step 3 — Enrich Roman Republic Q17167 with schema properties
+MATCH (n:Entity {qid: "Q17167"})
+SET n.entity_type      = 'POLITY',
+    n.label            = 'Roman Republic',
+    n.label_latin      = 'Res Publica Romana',
+    n.inception_year   = -509,
+    n.dissolution_year = -27,
+    n.political_form   = 'republic',
+    n.cidoc_class      = 'E74_Group'
+SET n:Polity:HistoricalPolity
+
+Step 4 — Re-target CITIZEN_OF edges from Q1747689 → Q17167
+18 CITIZEN_OF edges point to Q1747689 (Ancient Rome — wrong). Verify the count of 18 before running. This creates replacement edges to Q17167 and deletes the originals.
+// Verify count:
+MATCH ()-[r:CITIZEN_OF]->(n:Entity {qid:"Q1747689"})
+RETURN count(r) AS to_migrate   // expect 18
+
+// Execute:
+MATCH (person:Entity)-[r:CITIZEN_OF]->(wrong:Entity {qid:"Q1747689"})
+MATCH (correct:Entity {qid:"Q17167"})
+MERGE (person)-[r2:CITIZEN_OF]->(correct)
+  ON CREATE SET r2 = properties(r)
+DELETE r
+RETURN count(r2) AS migrated
+
+Step 5 — Remove :Polity label from contemporary sovereign states
+MATCH (n:Polity)
+WHERE n.qid IN [
+  'Q38',   // Italy
+  'Q183',  // Germany
+  'Q142',  // France
+  'Q145',  // United Kingdom
+  'Q237',  // Vatican City
+  'Q40',   // Austria (current)
+  'Q28',   // Hungary
+  'Q36',   // Poland
+  'Q30',   // United States
+  'Q414',  // Argentina
+  'Q39'    // Switzerland
+]
+REMOVE n:Polity:HistoricalPolity
+SET n.entity_type = 'CONCEPT'
+
+6. Open Items
+Field | Value
+Status | DRAFT — pending review
+Amends | ADR-007 Person Node Schema — §4 First-class node types
+Trigger | Live graph audit: 20 :Polity nodes heterogeneous; Roman Republic (Q17167) absent from :Polity; CITIZEN_OF gap for 4,772 DPRR persons
+CIDOC-CRM alignment | E74_Group (collective entity with temporal bounds)
+QID hazard identified | Four items labelled "Roman Republic" in graph — Q17167 is the ancient state; Q1072140 is the 1849 Risorgimento republic
+Open items raised | OI-007-09 · OI-007-10 · OI-007-11 · OI-007-12 · OI-007-13
+QID | What it actually is | P31 values | Required action
+Q17167 | Roman Republic 509–27 BCE — the ancient state | historical country · historical period · form of government | → :HistoricalPolity target for CITIZEN_OF
+Q1072140 | Roman Republic 1849 — short-lived Risorgimento state | revolution · conflict | No :Polity label; entity_type → EVENT
+Q175881 | Disambiguation or redirect | (no P31 in graph) | Audit — OI-007-11
+Q346629 | Disambiguation; P1889 from Q1072140 | (no P31 in graph) | Audit — OI-007-11
+Wikidata P31 | QID | Meaning | Chrystallum mapping
+historical country | Q3024240 | Former sovereign state; P576 present | → :HistoricalPolity
+empire | Q133442 | State ruled by emperor; typically dissolved | → :HistoricalPolity
+historical period | Q11514315 | Temporal period — one of Q17167's P31 values | → :HistoricalPolity (verify P576)
+form of government | Q1307214 | Constitutional form — also on Q17167 | → :HistoricalPolity when temporally scoped
+Roman province | Q47521597 | Administrative division of Roman state | → :HistoricalPolity (sub-polity)
+ancient civilization | Q28171280 | Civilisational container — not a state | → plain :Entity, no :Polity label
+sovereign state | Q3624078 | Currently existing; no P576 | → plain :Entity, drop :Polity
+country | Q6256 | General — check P576 | → case-by-case
+Label combination | Applied to | Examples
+:Entity + :Polity + :HistoricalPolity | Dissolved states · ancient polities · Roman provinces · client kingdoms | Roman Republic Q17167 · Western Roman Empire · Austrian Empire · Judaea · Ptolemaic Kingdom
+:Entity only (no polity labels) | Contemporary sovereign states · civilisational containers | Germany · France · US · Italy · "Ancient Rome" Q1747689
+Property | Type | Source | Description
+entity_id | String | Chrystallum | polity_qXXX format — e.g. polity_q17167
+entity_type | String | Chrystallum | POLITY — reclassified from CONCEPT or SUBJECTCONCEPT
+qid | String | Wikidata | Wikidata item QID
+label | String | Wikidata | English display name
+label_latin | String | Wikidata P1705 / sources | Latin name — Res Publica Romana · Imperium Romanum etc.
+political_form | String | Wikidata P122 | republic · empire · kingdom · province · client_kingdom · city_state
+inception_year | Integer | Wikidata P571 | Negative = BCE. Roman Republic: -509
+dissolution_year | Integer | Wikidata P576 | Negative = BCE. Roman Republic: -27
+inception_precision | String | Derived from P571 | year · decade · century · approximate
+dissolution_precision | String | Derived from P576 | year · decade · century · approximate
+predecessor_qid | String | Wikidata P1365 | QID of predecessor polity node
+successor_qid | String | Wikidata P1366 | QID of successor polity node
+capital_qid | String | Wikidata P36 | QID of capital :Place node
+pleiades_id | String | Pleiades | Pleiades place identifier where applicable
+period_qid | String | Wikidata P2348 | QID of associated :Period node
+cidoc_class | String | Chrystallum | E74_Group — fixed value
+entity_cipher | String | Chrystallum | Content-addressable hash
+Relationship | Direction | Target | Wikidata basis
+CITIZEN_OF | Person → Polity | Incoming from :Person | P27 (country of citizenship)
+PRECEDED_BY | Polity → Polity | Predecessor state | P1365 replaces
+FOLLOWED_BY | Polity → Polity | Successor state | P1366 replaced by
+HAD_CAPITAL | Polity → Place | Capital city | P36
+LOCATED_IN | Polity → Place/Polity | Geographic containment | P131 / P17
+IN_PERIOD | Polity → Period | Associated historical period | P2348
+SUBPOLITY_OF | Polity → Polity | Province/client kingdom → parent state | P749 / P361
+Chrystallum element | CIDOC-CRM class / property | Notes
+:HistoricalPolity node | E74_Group | Collective entity with temporal bounds
+inception_year, dissolution_year | E52_Time-Span on E74_Group | Temporal extent of the political entity
+CITIZEN_OF (Person → Polity) | P107i is current or former member of | Membership / citizenship
+PRECEDED_BY / FOLLOWED_BY | Temporal part-of chain on E74_Group | Succession of states
+political_form property | E55_Type via P2 has type | Constitutional classification
+ID | Item | Priority | Notes
+OI-007-09 | CITIZEN_OF backfill — connect 4,772 DPRR persons to Q17167 | High | All DPRR persons are Roman Republican citizens by definition. Harvest agent sets CITIZEN_OF → Q17167 for all persons with no existing CITIZEN_OF edge and IN_PERIOD → pre-27 BCE.
+OI-007-10 | Populate inception_year / dissolution_year on all :HistoricalPolity nodes | Medium | Wikidata P571/P576 harvest. Required before temporal validity window queries.
+OI-007-11 | Q175881 and Q346629 disambiguation audit | Medium | Confirm both are disambiguation/redirect items with no meaningful content. Merge or remove.
+OI-007-12 | Expand :HistoricalPolity for non-DPRR corpus polities | Low | Ptolemaic Kingdom, Seleucid Empire, Hasmonean Kingdom, client kingdoms. Add QIDs to Step 1 as corpus grows.
+OI-007-13 | Reclassify Q1747689 "Ancient Rome" post-migration | Low | After Step 4, Q1747689 will have no CITIZEN_OF edges. Candidate for entity_type=CIVILIZATION if that type is defined in a future ADR; otherwise remains CONCEPT.

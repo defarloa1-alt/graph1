@@ -1,0 +1,253 @@
+
+CHRYSTALLUM
+Development Report
+Person Schema, Harvest Architecture & Backlink Capture
+2026-03-03
+
+
+
+1. Session Context
+This report covers decisions and artefacts produced in the design session following completion of the ADR-007 core specification. Starting point was the question of GEDCOM/standards alignment. Ending point is a calibrated Wikidata backlink capture design grounded in real P31 data from Pompey's backlink profile.
+
+
+2. Standards Alignment  (ADR-007 Appendix)
+GEDCOM and CIDOC-CRM alignment was added as Appendix A to ADR-007 rather than a separate ADR. Rationale: this is reference material that supplements the schema, not an architectural decision that changes it.
+2.1  Standards evaluated
+
+2.2  GEDCOM 7.0 key mapping decisions
+The graph model is the source of truth. GEDCOM is a derived export — a projection of the graph, not the internal model. Three non-obvious mapping decisions:
+No FAM node exists in the graph. Family units are derived at export time by finding shared FATHER_OF/MOTHER_OF targets. Ambiguous parentage produces multiple FAM candidates — flagged for review.
+Tria nomina maps to GEDCOM NAME subtags imperfectly: praenomen → GIVN, nomen → SURN, cognomen → NICK. Gens and tribe use custom _GENS and _TRIBE extension tags.
+BCE year offset: year N BCE = GEDCOM year (N+1) BC. 106 BCE → 0107 BC. Must be applied consistently at export — off-by-one errors corrupt all ancient dates.
+
+2.3  CIDOC-CRM forward-looking event nodes
+Full CRM compliance requires birth, death, marriage, and office holding as first-class event nodes. These are deferred per OI-02 but the target classes are documented in Appendix A.1.3 to guide future ADRs.
+
+3. Person Harvest Agent Architecture  (ADR-008)
+The central question: how much of the harvest pipeline should be agent-driven reasoning versus deterministic rule execution? The answer is a three-layer split. The agent operates only in the middle layer and never writes to the graph.
+3.1  The core decision
+
+The agent never writes directly to the graph. It receives a fixed context packet (pre-fetched graph state + federation raw data) and produces a PersonHarvestPlan. Layer 3 executes the plan deterministically. The plan is auditable and resumable — a timed-out harvest resumes from step N without re-reasoning.
+
+3.2  Why agent is necessary for name reconciliation
+The same person expressed across seven federation sources:
+
+No deterministic string matcher reliably unifies these. The agent brings world knowledge to reason over the full name surface, date window, and cross-IDs. Once it resolves identity, the merge is deterministic.
+
+3.3  Federation scope mismatch — a key agent task
+A deterministic coverage matrix (source × attribute) would be brittle and require manual maintenance as new federations are added. The agent instead reasons about what each source should cover given its domain: VIAF silence on offices = scope mismatch; DPRR silence on a Wikidata P21 target = genuine absence. Different handlers, different confidence.
+
+3.4  PersonHarvestPlan — key fields
+
+3.5  Family tree traversal strategy
+Person-by-person construction, depth-first along paternal lines (DPRR filiation is primarily paternal), then maternal, then spouses, siblings, children. Five stopping conditions including: no DPRR record + no Wikidata P31=human confirmation → ScaffoldNode stub only; mythological persons (Romulus, Remus) are terminal nodes.
+⚑  8-generation lineages already confirmed in graph (Cornelia (409), Calventia (B)). Average DPRR person has 2.2 family connections — deep trees are the exception.
+
+4. DPRR Status & StatusType Resolution  (OPS-001)
+4.1  Snapshot completeness
+The February 2026 import is assessed as complete for all five phases. Accepted as a stable baseline. No re-import attempt until KDL provides a data dump.
+
+4.2  StatusType resolution — OI-01 closed
+Resolved from DPRR ontology documentation and Django codebase without needing the blocked endpoint. The DPRR Status authority list explicitly identifies exactly two values: eques and senator.
+
+✓  OI-01 closed. HAS_STATUS enrichment is unblocked.
+
+4.3  SYS_FederationSource update required
+DPRR node currently shows status = "operational" — inaccurate. Must be updated before harvest agent runs to prevent silent Anubis challenge failure. Cypher provided in OPS-001.
+
+4.4  Wikidata proxy for drift detection
+While blocked, DPRR drift detectable via Wikidata P6863 property. SPARQL query provided in OPS-001 — filters for items modified after 2026-02-25. Detects new alignments and changed Wikidata items; cannot detect DPRR-only changes.
+
+5. Person Label Strategy  (ADR-007 Section 4 update)
+The current label on DPRR persons (POMP1976 Cn. Pompeius (31) Cn. f. Sex. n. Clu. Magnus) is a technical key, not a display label. It conflates gens prefix, DPRR ID, tria nomina, and filiation into a single opaque string. Once these are parsed into first-class nodes per ADR-007, the label needs to be separated into four distinct properties.
+
+
+label_sort is the property that makes family tree list views meaningful. Without it, list ordering defaults to English first name and scatters related persons. With it, all Pompeii sort together, cognomina within the gens are ordered, praenomen disambiguates last.
+⚑  For DPRR-only persons awaiting Wikidata enrichment, label is temporarily set to label_latin. It is never null or empty.
+
+6. Wikidata Backlink Capture Design
+6.1  Design rationale
+The family tree LLM harvest pass is expensive. Wikidata backlink capture is cheap and deterministic — it runs in Layer 1 alongside DPRR label parsing, before the LLM is invoked. Piggybacking it on the harvest pass avoids a second iteration over 2,856 QID-bearing persons later.
+Two signals captured: (1) categorised backlink counts — a multi-dimensional prominence vector that drives harvest prioritisation and federation source selection; (2) raw person→person candidate list — seed for future relationship enrichment, stored as a JSON property for later agent classification.
+
+6.2  What is not done during this pass
+No WD_BacklinkCandidate nodes created
+No relationship edges written from backlink data
+No LLM classification of candidates
+No blocking on Wikidata timeout — any failure returns None and harvest continues
+
+6.3  Bucket taxonomy — calibrated from real P31 data
+Initial classifier used six generic buckets. Running the P31 query against Pompey's actual backlinks (28 items, 43 distinct P31 values) revealed the generic buckets were too coarse. The dominant signal — numismatic — was entirely absent.
+
+
+6.4  The numismatic finding
+Coins and coin types account for 50 of Pompey's backlinks — more than humans, media, and scholarly reception combined. This was completely absent from the initial classifier. For Roman Republican prosopography this is a fundamental gap: numismatic evidence is a primary attestation type for the period.
+Architectural implication: wd_bl_numismatic > 0 on a Person node triggers Nomisma as a priority source in the PersonHarvestPlan. The backlink profile drives federation source selection, not just enrichment depth.
+
+6.5  Properties written to Person node
+
+6.6  SPARQL queries
+Two queries defined for use from the harvest script or direct investigation:
+
+Full backlink profile with per-item P31 (for harvest script Layer 1):
+SELECT ?prop ?item ?itemLabel (GROUP_CONCAT(DISTINCT ?p31Label; separator=", ") AS ?types) WHERE {
+  ?item ?prop wd:Q125414 .
+  FILTER(STRSTARTS(STR(?prop), "http://www.wikidata.org/prop/direct/"))
+  FILTER(?prop != schema:dateModified)
+  FILTER(?prop != owl:sameAs)
+  OPTIONAL { ?item wdt:P31 ?p31 . ?p31 rdfs:label ?p31Label FILTER(lang(?p31Label)="en") }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+}
+GROUP BY ?prop ?item ?itemLabel
+ORDER BY ?types ?itemLabel
+
+Distinct P31 taxonomy with counts (for classifier calibration):
+SELECT DISTINCT ?p31 ?p31Label (COUNT(DISTINCT ?item) AS ?cnt) WHERE {
+  ?item ?prop wd:Q125414 .
+  FILTER(STRSTARTS(STR(?prop), "http://www.wikidata.org/prop/direct/"))
+  ?item wdt:P31 ?p31 .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+}
+GROUP BY ?p31 ?p31Label
+ORDER BY DESC(?cnt)
+
+6.7  Integration point in harvest script
+Drop into per-person loop after DPRR label parse, before LLM context packet assembly:
+from wd_backlink_capture import capture_backlinks, build_update_cypher, RateLimiter
+rl = RateLimiter()   # one instance for whole run — 3 req/s conservative
+
+# Inside per-person loop:
+if person["qid"] and person["qid"].startswith("Q"):
+    rl.wait()
+    bl = capture_backlinks(qid=person["qid"], label=person["label"])
+    if bl:
+        cypher, params = build_update_cypher(person["entity_id"], bl)
+        session.run(cypher, params)
+        # Optional: pass profile into LLM context packet
+        context_packet["backlink_profile"] = {
+            "total": bl["wd_bl_total"],
+            "numismatic": bl["wd_bl_numismatic"],
+            "persons": bl["wd_bl_persons"],
+            "events": bl["wd_bl_events"],
+        }
+
+⚑  Persons where wd_bl_capped = true hit the 500-row LIMIT. Caesar, Cicero, Augustus will almost certainly cap. Flag for targeted follow-up query with property filtering after main pass.
+
+7. Open Items & Next Steps
+7.1  Immediate — before harvest script runs
+
+7.2  ADR open items carried forward
+
+7.3  Post-harvest pass — backlink enrichment
+Once wd_bl_candidate_persons is populated across the corpus, a dedicated enrichment pass resolves candidates:
+Query: MATCH (n:Entity) WHERE n.wd_bl_candidate_persons IS NOT NULL
+For each person: deserialise JSON, resolve each QID against graph
+Agent classifies P-codes → candidate canonical relationship types
+High-confidence candidates → claim edges via Layer 3 execution
+Low-confidence → WD_BacklinkCandidate ScaffoldNodes for human review
+
+⚑  Persons with wd_bl_numismatic > 0 enter Nomisma harvest queue immediately after backlink capture — no need to wait for the enrichment pass.
+Document | Status
+ADR-007  Person Node Schema | DRAFT — updated with label strategy + standards appendix
+ADR-008  Person Harvest Agent Architecture | DRAFT — agent/deterministic split defined
+OPS-001  DPRR Static Snapshot | ACCEPTED — StatusType resolved, SYS_FederationSource update pending
+wd_backlink_capture.py | DRAFT — pending bucket taxonomy update
+Area | Decisions made | Artefacts produced
+Standards alignment | GEDCOM 7.0 as export target; CIDOC-CRM as internal anchor; GEDCOM-X rejected | ADR-007 Appendix A (A.1 CIDOC-CRM, A.2 GEDCOM 7.0, A.3 strategy summary)
+Harvest architecture | Agent-orchestrated, deterministically-executed three-layer model | ADR-008 Person Harvest Agent Architecture (8 sections)
+DPRR access | Static snapshot accepted; endpoint blocked by Anubis; StatusType resolved | OPS-001 operational note
+Person label strategy | Four-property label model defined | ADR-007 Section 4 updated; worked example updated
+Backlink capture | Side-capture design for LLM harvest pass; bucket taxonomy from real data | wd_backlink_capture.py (450 lines); bucket taxonomy revised
+Standard | Decision | Rationale
+GEDCOM 7.0 | Export target — mapping defined | Primary genealogy interchange format; every tool speaks it; derivable from graph
+CIDOC-CRM (ISO 21127) | Internal ontological anchor — alignment documented | Semantic interoperability with DPRR, Europeana, LOD; OCD integration path
+CRMsoc (social extension) | Alignment documented | Group membership, faction joining events, office holding model
+GEDCOM-X | Rejected | Ecosystem never materialised; tooling still targets GEDCOM 7.0
+OWL/RDF (LOD) | Future — not yet scoped | Public URI publication; VIAF/Wikidata alignment
+Future node | CRM class
+BirthEvent | E67_Birth
+DeathEvent | E69_Death
+Marriage | E5_Event (custom)
+OfficeHolding | E7_Activity
+FactionJoining | E85_Joining
+Layer | Mode | Responsibility
+Layer 1 | Deterministic pre-processing | DPRR label parsing · P-code → canonical rel mapping · date normalisation · DPRR ID exact match
+Layer 2 | Agent reasoning | Cross-federation name reconciliation · conflict type classification · authority tier weighting · filiation disambiguation · ConflictNote drafting
+Layer 3 | Deterministic execution | Schema-validated Cypher writes · D10 threshold evaluation · claim status state machine · GEDCOM export projection
+Source | Name form
+DPRR | POMP1976 Cn. Pompeius (31) Cn. f. Sex. n. Clu. Magnus
+Wikidata | Gnaeus Pompeius Magnus
+VIAF | Pompeius Magnus, Gnaeus, 106-48 B.C.
+LC (LCNAF) | Pompey, the Great, 106-48 B.C.
+Nomisma | pompey
+Trismegistos | Pompeios Megás
+LGPN | Πομπήιος Μέγας
+Field | Purpose
+identity_resolution_decisions[] | Per-source: matched_to, confidence, rationale, method
+attribute_claims[] | Per attribute: source, value, claim_tier, conflict_type, recommended_action
+conflict_notes[] | Full ConflictNote draft for Type 4 (hard irreconcilable) conflicts
+onomastic_parse | DPRR label parse result: praenomen, nomen, cognomen[], gens, tribe, filiation_chain[]
+domain_scope | ancient_person if IN_PERIOD → pre-CE; drives threshold override to 0.75
+execution_status | PENDING / IN_PROGRESS / COMPLETE / FAILED / RESUMED — supports resumability
+agent_model | Model identifier for audit; plan can be re-reasoned with a better model
+Phase | Records | Status
+0 — P6863 alignment | 2,961 dprr_id → QID | Complete
+1 — Persons | 4,772 nodes | Complete
+2 — PostAssertions | 9,807 → 6,934 POSITION_HELD edges | Complete
+3 — RelationshipAssertions | 6,928 edges | Complete
+4 — StatusAssertions | 1,919 HAS_STATUS edges | Complete
+Label | Resolved value | Count | Basis
+1 | eques | 395 | DPRR Status authority list — explicit
+2 | senator | 1,524 | Includes ex-officio via add_senator_statusassertions office-holding rules
+Property | Current | Required
+status | "operational" | "blocked"
+block_reason | (absent) | Anubis bot protection on SPARQL endpoint
+update_path | (absent) | contact_kdl_for_dump
+snapshot_complete | (absent) | true
+Property | Value (Pompey example) | Source | Purpose
+label | Gnaeus Pompeius Magnus | Wikidata / fallback label_latin | Canonical display label. English full name. Never empty. Used for UI, graph traversal, search.
+label_latin | Cn. Pompeius Magnus | DPRR label parse / Wikidata P1559 | Tria nomina without DPRR metadata. Primary label for academic display and scholarly citation.
+label_dprr | POMP1976 Cn. Pompeius (31) Cn. f. Sex. n. Clu. Magnus | DPRR | Immutable DPRR string as imported. Provenance anchor only. Never modified after ingest. Null for non-DPRR persons.
+label_sort | pompeius magnus gnaeus | Derived | Sort key in Roman prosopographical convention: nomen + cognomen + praenomen. Lowercased, diacritics stripped.
+P31 (top results from Pompey) | Count | Bucket | Downstream action
+coin (Q41207) + coin type (Q113813711) + aureus | 50 | numismatic | Add Nomisma to harvest plan as priority source
+human (Q5) | 16 | persons | Family/social network candidates
+film + TV series + TV film + web series | 12 | modern_reception | Cultural footprint — low prosopographic weight
+painting + statue + bust + drawing + artistic theme | 10 | visual_arts | Iconographic record
+archaeological site + Roman arch site + theatre + building + domus + city | 10 | physical_legacy | → Pleiades enrichment candidate
+encyclopedia article + dictionary entry | 8 | scholarly_reception | Reference work coverage signal
+civil war + alliance + agreement + contract + govt reorganisation + historical event | 7 | political_acts | Event participation
+Roman legion (Q163323) | 2 | military_units | Command relationships → legion enrichment
+fictional human + TV character + comics character | 4 | fictional_representations | Discard for prosopography; note for significance scoring
+Wikimedia category + Wikidata property | 3 | — filter — | Discard at SPARQL level via VALUES exclusion
+Property | Type | Description
+wd_bl_total | INT | Sum of all backlink source items
+wd_bl_persons | INT | Items with P31=human pointing at this person
+wd_bl_numismatic | INT | Coins, coin types, aurei — NEW; triggers Nomisma harvest
+wd_bl_events | INT | Battles, wars, civil wars, military operations
+wd_bl_political_acts | INT | Alliances, treaties, reorganisations, historical events
+wd_bl_military_units | INT | Roman legions, cohorts — command relationship signal
+wd_bl_physical_legacy | INT | Archaeological sites, buildings, cities — Pleiades signal
+wd_bl_scholarly_reception | INT | Encyclopedia articles, dictionary entries
+wd_bl_modern_reception | INT | Films, TV series, documentaries
+wd_bl_visual_arts | INT | Paintings, statues, busts, drawings
+wd_bl_fictional_representations | INT | Fictional humans, TV/comics characters
+wd_bl_other | INT | Unclassified — for later taxonomy extension
+wd_bl_harvested_at | DateTime | Timestamp of capture
+wd_bl_capped | Boolean | True if result hit 500-row SPARQL LIMIT — counts understated
+wd_bl_candidate_persons | JSON string | List of {qid, label, property_id} for person→person backlinks not in graph
+Item | Action | Owner
+SYS_FederationSource DPRR status | Apply Cypher from OPS-001 — set status="blocked" + snapshot properties | Write agent
+StatusType relabelling | Apply Cypher from OPS-001 — label "1"→eques, "2"→senator | Write agent
+wd_backlink_capture.py bucket update | Update _classify_type() with revised 10-bucket taxonomy + SPARQL filter for Wikimedia category noise | Dev
+ID | Item | ADR
+OI-007-02 | OfficeHolding event node migration (POSITION_HELD properties pre-populated) | ADR-007
+OI-007-03 | MythologicalPerson schema (Romulus/Remus/Europa held with DQ_UNRESOLVED_PERSONHOOD) | ADR-007
+OI-007-04 | OCD federation integration — data access agreement required | ADR-007
+OI-007-05 | EDH epigraphic enrichment — harvest planning | ADR-007
+OI-007-07 | LGPN integration — lgpn_id property reserved | ADR-007
+OI-007-08 | Filiation as first-class relationship — post first-pass review | ADR-007
+OI-008-01 | SYS_HarvestPlan node definition — register as system node type | ADR-008
+OI-008-03 | Agent model selection and versioning policy | ADR-008
+OI-008-04 | Parallel harvest across independent gens subgraphs | ADR-008
+OI-008-05 | GEDCOM export agent — post first-pass harvest | ADR-008

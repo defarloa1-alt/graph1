@@ -1,0 +1,195 @@
+CHRYSTALLUM  —  OPERATIONAL NOTE
+OPS-001  ·  DPRR Federation Source — Static Snapshot Status
+Issued: 2026-03-03  ·  Status: ACCEPTED  ·  Review trigger: DPRR endpoint status change
+Field
+Value
+Document type
+Operational Note — no architectural change; supplements ADR-007 and ADR-008
+Scope
+DPRR SYS_FederationSource · StatusType resolution · ADR-007 OI-01 closure
+Related ADRs
+ADR-007 (Person Node Schema) · ADR-008 (Person Harvest Agent)
+Decision
+Static snapshot accepted as complete baseline. Re-import deferred until KDL data dump obtained.
+1. Situation
+The full DPRR dataset was imported 2026-02-25 via the live SPARQL endpoint at http://romanrepublic.ac.uk/rdf/endpoint/ using scripts/federation/dprr_import.py. All five phases completed successfully. The endpoint is now blocked by Anubis bot protection and is not accessible for programmatic queries.
+This note records the accepted operational posture: treat the February 2026 import as a complete, stable baseline. Proceed with person schema enrichment against the static snapshot. No re-import attempt will be made until a data dump is obtained directly from King's Digital Lab (KDL).
+2. Snapshot Completeness
+Phase
+Content
+Records
+Status
+0
+Wikidata P6863 alignment
+2,961 dprr_id to QID mappings
+Complete
+1
+DPRR persons
+4,772 nodes (2,960 Group A + 1,916 Group C)
+Complete
+2
+PostAssertions (offices)
+9,807 assertions / 6,934 POSITION_HELD edges / 166 positions
+Complete
+3
+RelationshipAssertions
+6,928 edges (SIBLING_OF, FATHER_OF, SPOUSE_OF, MOTHER_OF)
+Complete
+4
+StatusAssertions
+1,992 assertions / 1,919 HAS_STATUS edges
+Complete
+5
+Write to Neo4j
+All nodes carry dprr_id, dprr_uri, dprr_imported=true
+Complete
+Every relationship edge carries a dprr_assertion_uri or source_uri linking back to the original DPRR RDF entity. The provenance chain is fully intact. The snapshot is self-contained — no live endpoint access is required to use the data.
+3. StatusType Resolution  (closes ADR-007 OI-01)
+Finding
+The DPRR ontology rdfs:comment explicitly states the Status authority list "at present, only two are identified in this way: eques and senator." The Django codebase contains an add_senator_statusassertions management command that populates senator status ex-officio for persons holding qualifying posts (consul, praetor, aedile, tribunus plebis, censor, princeps senatus). This explains the asymmetric counts — senator is far more numerous than eques because it is derived from office-holding across the full corpus.
+Current label
+Resolved value
+Count
+Basis
+1
+eques
+395
+DPRR Status authority list — explicit
+2
+senator
+1,524
+DPRR Status authority list — includes ex-officio via office-holding rules
+Cypher — verify then apply
+MATCH (n:StatusType)
+RETURN n.label, count { ()-[:HAS_STATUS]->(n) } AS usage
+// Expected: label "1" -> 395 uses = eques
+//           label "2" -> 1524 uses = senator
+MATCH (n:StatusType {label: "1"})
+SET n.label = "eques", n.label_latin = "eques", n.dprr_status_id = 1,
+    n.description = "Equestrian order — DPRR Status authority list"
+MATCH (n:StatusType {label: "2"})
+SET n.label = "senator", n.label_latin = "senator", n.dprr_status_id = 2,
+    n.description = "Senatorial order — includes ex-officio per DPRR office-holding rules"
+[OK] OI-01 from ADR-007 is closed. HAS_STATUS enrichment is unblocked.
+4. SYS_FederationSource Update Required
+The DPRR federation source node currently shows status = "operational". This is inaccurate. It must be updated before the harvest agent runs, to prevent a silent failure where the agent queries a blocked endpoint and receives an Anubis challenge page instead of a SPARQL error.
+Property
+Current value
+Required value
+status
+"operational"
+"blocked"
+block_reason
+(absent)
+Anubis bot protection on SPARQL endpoint
+block_type
+(absent)
+bot_challenge
+blocked_since
+(absent)
+2026-03-01
+last_successful_access
+(absent)
+2026-02-25
+snapshot_date
+(absent)
+2026-02-25
+snapshot_complete
+(absent)
+true
+snapshot_persons
+(absent)
+4772
+snapshot_posts
+(absent)
+6934
+snapshot_relationships
+(absent)
+6928
+snapshot_status_assertions
+(absent)
+1919
+update_path
+(absent)
+contact_kdl_for_dump
+update_path_alt
+(absent)
+wikidata_p6863_proxy
+kdl_contact
+(absent)
+Kings Digital Lab, Kings College London
+kdl_github
+(absent)
+https://github.com/kingsdigitallab/dprr-django
+Cypher
+MATCH (n:SYS_FederationSource {source_id: "dprr"})
+SET n.status = "blocked",
+    n.block_reason = "Anubis bot protection on SPARQL endpoint",
+    n.block_type = "bot_challenge",
+    n.blocked_since = "2026-03-01",
+    n.last_successful_access = "2026-02-25",
+    n.snapshot_date = "2026-02-25",
+    n.snapshot_complete = true,
+    n.snapshot_persons = 4772,
+    n.snapshot_posts = 6934,
+    n.snapshot_relationships = 6928,
+    n.snapshot_status_assertions = 1919,
+    n.update_path = "contact_kdl_for_dump",
+    n.update_path_alt = "wikidata_p6863_proxy",
+    n.kdl_contact = "Kings Digital Lab, Kings College London",
+    n.kdl_github = "https://github.com/kingsdigitallab/dprr-django"
+5. Impact on ADR-008 Harvest Agent
+ADR-008 Section 6 defines dprr_raw in the agent context packet as a live SPARQL query. With the endpoint blocked, this must be replaced by a graph-local read for all DPRR-sourced persons.
+Context packet field
+Previous behaviour
+Updated behaviour (while blocked)
+dprr_raw
+Live SPARQL query to DPRR endpoint
+Read from graph: all properties and edges on Person where dprr_id IS NOT NULL. No external call.
+dprr_assertion_uri resolution
+Could re-fetch individual assertion RDF
+URI retained as provenance reference only. No re-fetch attempted while status = blocked.
+New DPRR person discovery
+Discoverable via SPARQL harvest
+Not discoverable until dump obtained. Wikidata P6863 proxy surfaces new QID alignments only.
+[!]  ADR-008 should note at next revision: harvest agent must check SYS_FederationSource.status before any external query. "blocked" status routes to graph-local read, not network call.
+6. Wikidata Proxy for Drift Detection
+While the DPRR endpoint is blocked, changes to the DPRR corpus can be partially detected via Wikidata through the P6863 (DPRR person ID) property. Run periodically against the Wikidata SPARQL endpoint.
+SELECT ?person ?dprr_id ?label ?modified WHERE {
+  ?person wdt:P6863 ?dprr_id .
+  ?person rdfs:label ?label FILTER(lang(?label) = "en") .
+  ?person schema:dateModified ?modified .
+  FILTER(?modified > "2026-02-25T00:00:00Z"^^xsd:dateTime)
+}
+ORDER BY DESC(?modified)
+What this detects
+What it cannot detect
+New Wikidata items with P6863 set after snapshot date
+New DPRR persons without Wikidata QID alignment
+Changes to existing Wikidata items (dates, offices, family links)
+DPRR assertion corrections not yet reflected in Wikidata
+New P6863 alignments for previously unlinked DPRR persons
+Persons removed or merged in DPRR (deletions invisible via modification date)
+7. Path to Full Re-Import
+Step
+Action
+Notes
+1
+Obtain data
+Option A (preferred): Email KDL — request Turtle or N-Triples dump. DPRR is AHRC-funded open access; dump requests are reasonable. Reference the existing P6863 alignment and dprr_import.py provenance.
+
+Option B: Monitor endpoint with periodic lightweight HEAD probe (not SPARQL). If Anubis is lifted, proceed to re-import.
+
+Option C: Wikidata P6863 proxy for incremental updates only (Section 6).
+2
+Diff against snapshot
+Compare incoming data against snapshot_date 2026-02-25. New persons enter full harvest pipeline. Changed assertions trigger conflict detection per ADR-007 Section 7.
+3
+Update SYS_FederationSource
+Set status = "operational". Clear block_reason, block_type, blocked_since. Update last_successful_access.
+4
+Re-enable live dprr_raw query
+Revert ADR-008 context packet to live SPARQL query for dprr_raw.
+5
+Verify StatusType
+Confirm eques/senator labels still match DPRR Status authority list after any schema changes in the new data.

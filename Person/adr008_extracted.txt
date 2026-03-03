@@ -1,0 +1,510 @@
+CHRYSTALLUM
+ADR-008
+Person Harvest Agent Architecture
+Agent-Orchestrated, Deterministically-Executed Person Profile Construction
+Field
+Value
+Status
+DRAFT
+Version
+0.1
+Supersedes
+—
+Depends on
+ADR-005 (Federated Claims Signing), ADR-006 (Bootstrap Scaffold Contract), ADR-007 (Person Node Schema)
+Primary corpus
+DPRR · Wikidata · VIAF · FAST/LC · Nomisma · Trismegistos · LGPN
+Key decision
+Agent reasoning for reconciliation; deterministic execution for all graph writes
+1. Context and Problem Statement
+ADR-007 defines the Person node schema and establishes a federated profile construction approach where multiple authority sources (DPRR, Wikidata, VIAF, FAST, Nomisma, Trismegistos, LGPN) each contribute claims to a single person profile. The question this ADR addresses is: how much of the harvest pipeline should be agent-driven reasoning versus deterministic rule execution?
+The naive answer — "use agents for everything because federations are complex" — introduces unnecessary non-determinism into operations that are actually mechanical. The opposite extreme — "use deterministic rules throughout" — breaks immediately on the core problem federations create: the same person expressed in radically different name forms across sources that have no shared identifier.
+The name reconciliation problem
+Consider Pompey (DPRR 1976) across the seven operational federation sources:
+Source
+Name form presented
+DPRR
+POMP1976 Cn. Pompeius (31) Cn. f. Sex. n. Clu. Magnus
+Wikidata
+Gnaeus Pompeius Magnus
+VIAF
+Pompeius Magnus, Gnaeus, 106-48 B.C.
+LC (LCNAF)
+Pompey, the Great, 106-48 B.C.
+Nomisma
+pompey
+Trismegistos
+Pompeios Megás
+LGPN
+Πομπήιος Μέγας
+No deterministic string matcher, edit-distance scorer, or lookup table reliably unifies these. The cognomen is the primary identifier in some sources; the praenomen in others; the Latin form in some, transliterated Greek in one, a bare slug in another. An agent reasoning over the full name surface, the date window, and the DPRR ID cross-link is the only reliable reconciler across this surface area.
+However: once the agent concludes these records all refer to POMP1976, the merge is arithmetic. The agent decides what; a deterministic writer executes how. This distinction drives the entire architecture.
+2. Decision
+The Person Harvest Agent operates on a three-layer architecture: deterministic pre-processing feeds structured input to agent reasoning, which hands structured decisions to deterministic execution. The agent operates only in the middle layer and never writes directly to the graph.
+Layer
+Mode
+Responsibility
+Writes to graph?
+Layer 1
+Deterministic pre-processing
+DPRR label parsing · P-code → canonical rel mapping · date normalisation · DPRR ID exact match
+No — produces structured input for Layer 2
+Layer 2
+Agent reasoning
+Cross-federation name reconciliation · conflict type classification · authority tier weighting · filiation disambiguation · ConflictNote drafting
+No — produces PersonHarvestPlan decisions for Layer 3
+Layer 3
+Deterministic execution
+Schema-validated Cypher writes via template · D10 threshold evaluation · claim status state machine · GEDCOM export projection
+Yes — only layer that touches the graph
+⚑  The agent's reasoning is front-loaded and fully auditable via the PersonHarvestPlan record before any write occurs. If a federation source times out mid-cycle, execution resumes from the plan without re-reasoning.
+3. Layer 1 — Deterministic Pre-Processing
+Layer 1 transforms raw source data into normalised, structured inputs. No judgment calls occur here. Each operation has a defined rule and a defined output schema.
+3.1  DPRR label parsing
+The DPRR label encodes tria nomina, filiation, tribe, and cognomen in a consistent positional format. A grammar-based parser (not an agent) extracts these components for every DPRR-sourced person as part of ingest. This is Layer 1 because the format is regular and the rules are fixed.
+Token
+Rule
+Output field
+Edge case handling
+Prefix (4 chars)
+Uppercase gens abbreviation → :Gens lookup
+gens_prefix
+Unknown prefix → flag DQ_UNKNOWN_GENS; continue
+Numeric suffix
+Integer after prefix → DPRR person ID
+dprr_id
+Always present; parse failure = fatal error
+Token 2
+Praenomen abbreviation ending in "."
+praenomen_abbrev
+"-." = unknown praenomen → null, not error
+Token 3
+Nomen (capitalised, no period)
+nomen
+Multi-word nomina (rare) → join tokens until parenthesis
+Parenthesised integer
+DPRR ordinal within gens
+dprr_ordinal
+Always present in DPRR labels
+f./n. chain
+Filiation: Cn. f. = son of Gnaeus; Sex. n. = grandson of Sextus
+filiation_chain[]
+May be absent; partial chains permitted
+3-4 char abbreviation (post-filiation)
+Tribal abbreviation → :Tribe lookup
+tribe_abbrev
+May be absent for some persons
+Final token(s)
+Cognomen(s), capitalised, after tribe
+cognomen[]
+Multiple cognomina permitted; each → separate :Cognomen node
+3.2  P-code → canonical relationship mapping
+Raw Wikidata P-code edges on Entity nodes are mapped to canonical Chrystallum relationship types via a lookup table. This is deterministic — no interpretation required.
+P-code
+Canonical relationship
+Target node type
+Notes
+P19
+BORN_IN
+:Place
+Target Entity linked to :Place or :Pleiades_Place
+P20
+DIED_IN
+:Place
+Same as P19
+P21
+gender property (literal)
+— (property on node)
+male/female from target Entity label
+P27
+CITIZEN_OF
+:Polity
+Target Entity promoted to :Polity if not already
+P102
+MEMBER_OF_FACTION
+:PoliticalFaction
+P106
+occupation property (literal)
+— (property on node)
+Light-weight tag; not first-class node
+P140
+HAS_RELIGION
+:Religion
+P241
+SERVED_IN
+:MilitaryBranch
+P410
+HELD_RANK
+:Rank
+P463
+MEMBER_OF_FACTION
+:PoliticalFaction
+Overlaps P102; both processed
+P509
+cause_of_death property (literal)
+—
+P1196
+manner_of_death property (literal)
+—
+P1343
+DESCRIBED_BY
+:Entity (reference work)
+Retained as-is; HAS_ENTRY_IN derived separately
+P2348
+IN_PERIOD
+:Periodo_Period
+P3716
+IN_SOCIAL_ORDER
+:SocialOrder
+P5025
+MEMBER_OF_GENS
+:Gens
+Cross-check against DPRR gens_prefix
+P11491
+MEMBER_OF_TRIBE
+:Tribe
+Cross-check against DPRR tribe_abbrev
+3.3  Date normalisation
+All dates are normalised to ISO 8601 with negative years for BCE (106 BCE = -0106). Wikidata temporal precision integers are mapped to date field granularity. The BCE→GEDCOM offset (N BCE → year N+1 BC) is applied only at export time, never stored internally.
+Wikidata precision
+Chrystallum handling
+Example
+9 (year)
+birth_earliest = Jan 1; birth_latest = Dec 31 of same year
+-0106-01-01 / -0106-12-31
+10 (month)
+birth_earliest = 1st of month; birth_latest = last of month
+-0106-09-01 / -0106-09-30
+11 (day)
+Point date; birth_earliest = birth_latest
+-0106-09-29
+8 (decade)
+birth_earliest = year 0; birth_latest = year 9 of decade
+-0109 / -0100
+7 (century)
+birth_earliest / latest span full century; flag min_temporal_precision check
+Threshold: precision ≥ 9 per SYS_Threshold
+3.4  DPRR ID exact match
+If two source records both carry the same dprr_id, they resolve to the same person node. This is a hash lookup — no agent involvement. The DPRR ID is the strongest identity anchor in the corpus and takes precedence over all name-based matching.
+4. Layer 2 — Agent Reasoning
+The agent receives the structured output of Layer 1 and produces a PersonHarvestPlan: a complete, serialised record of every decision made during the reasoning phase. No graph writes occur during Layer 2. The plan is auditable, resumable, and version-controlled.
+4.1  Tasks requiring agent reasoning
+Task
+Why deterministic fails
+Agent approach
+Cross-federation name reconciliation
+Name surface varies radically across sources; no shared identifier except DPRR ID (which may be absent)
+Reason over full name surface + date window + available cross-IDs. Produce identity_resolution_decision with confidence and rationale.
+Conflict type classification (Types 1–4)
+Distinguishing precision gap from soft conflict from hard conflict requires understanding of what each source is expected to cover
+Classify each attribute disagreement. Produce conflict_type and recommended_resolution_path.
+Authority tier weighting
+Source authority varies by attribute — DPRR outranks Wikidata on offices but Wikidata may be more current on cross-IDs
+Assign source_authority_tier per claim per attribute, not per source globally. Reason about attribute-level coverage.
+Filiation chain disambiguation
+DPRR filiation strings have edge cases: unknown praenomina ("-. f."), identical names across generations, maternal vs paternal ambiguity
+Parse filiation chains; where ambiguous, reason over gens network to identify most likely parent nodes already in graph.
+Federation scope mismatch vs. genuine absence
+A lookup table of source × attribute coverage would be brittle and require manual maintenance as new federations are added
+Reason about what each source should cover given its domain. VIAF silence on offices = scope mismatch. DPRR silence on a Wikidata P21 target = genuine absence.
+Mythological / legendary classification
+Wikidata has no single P31 value for "legendary historical figure"; Romulus has P31=human in some claims, legendary character in others
+Reason over available P31 values, period context, and gens records. Produce person_class decision: confirmed / mythological / needs_review.
+ConflictNote drafting
+Human reviewers need context, not raw data. The note must explain the disagreement in terms a prosopographer can act on.
+Draft ConflictNote with: conflict_type, attributes_in_dispute, sources_involved, tiebreaker_needed, recommended_resolution, ocd_applicable flag.
+4.2  PersonHarvestPlan structure
+The PersonHarvestPlan is the output of Layer 2 and the input to Layer 3. It is stored as a node in the graph (SYS_HarvestPlan) linked to the target Person node, providing a complete audit trail of agent reasoning independent of the claims themselves.
+Field
+Type
+Description
+plan_id
+String
+UUID; unique per harvest cycle
+person_entity_id
+String
+Target person node entity_id
+dprr_id
+String
+DPRR ID if known; null for non-DPRR persons
+created_at
+DateTime
+Plan creation timestamp
+harvest_mode
+Enum
+DISCOVERY / PRODUCTION (per ADR HarvestModeBudgets policy)
+sources_queried[]
+String[]
+Ordered list of federation sources queried
+identity_resolution_decisions[]
+Object[]
+Per-source: {source, matched_to, confidence, rationale, method}
+attribute_claims[]
+Object[]
+Per attribute: {attribute, source, value, claim_tier, conflict_type, recommended_action}
+conflict_notes[]
+Object[]
+One per Type 4 conflict: full ConflictNote draft
+onomastic_parse
+Object
+DPRR label parse result: {praenomen, nomen, cognomen[], gens, tribe, filiation_chain[]}
+person_class
+Enum
+CONFIRMED / MYTHOLOGICAL / NEEDS_REVIEW
+domain_scope
+String
+ancient_person if IN_PERIOD → pre-CE; drives threshold override
+threshold_override
+Float
+0.75 if domain_scope=ancient_person; else 0.9 (claim_promotion_confidence)
+execution_status
+Enum
+PENDING / IN_PROGRESS / COMPLETE / FAILED / RESUMED
+resume_from_step
+String
+Step name for resumption after interruption
+agent_model
+String
+Model identifier used for reasoning (for audit)
+reasoning_tokens
+Integer
+Token count consumed by Layer 2 (for cost tracking)
+4.3  Agent constraints
+The agent operating in Layer 2 is explicitly prohibited from:
+Writing any node or relationship directly to the graph
+Evaluating numeric confidence thresholds (D10 decision table is Layer 3)
+Generating freeform Cypher
+Making promotion decisions (ApprovalRequired policy; human gate)
+Querying the live graph during reasoning — all graph state needed for reasoning is pre-fetched and provided as structured context before the agent is invoked
+The last constraint is important: the agent receives a context packet, not live graph access. This makes the reasoning deterministic relative to a fixed graph snapshot, prevents the agent from making writes through tool calls, and enables the plan to be replayed or audited against the same inputs.
+5. Layer 3 — Deterministic Execution
+Layer 3 consumes the PersonHarvestPlan and executes all graph writes. Every write follows a schema-validated template. No judgment occurs here.
+5.1  Write operations and templates
+Operation
+Trigger
+ADR-006 pattern
+Key validation
+Create :Person label
+Plan: person_class = CONFIRMED
+Add :Person label to existing :Entity node
+entity_id must match person_q{qid} format; dprr_id cross-check if present
+Create :MythologicalPerson
+Plan: person_class = MYTHOLOGICAL
+Add :MythologicalPerson label; set mythological=true
+Requires DQ_UNRESOLVED_PERSONHOOD flag simultaneously
+Write onomastic nodes
+Plan: onomastic_parse populated
+ScaffoldNode per :Praenomen, :Nomen, :Cognomen, :Gens, :Tribe
+Merge on label_latin — do not duplicate existing nodes
+Write canonical relationships
+Plan: attribute_claims[] for relational attributes
+ScaffoldEdge with source, confidence, claim_tier, provenance
+Schema template per relationship type; wrong direction = fatal error
+Write literal properties
+Plan: attribute_claims[] for property attributes
+Direct property set on Person node
+Type validation; null on absence, not empty string
+Write CHALLENGES_CLAIM edge
+Plan: conflict_type = Type 4 in attribute_claims[]
+ScaffoldEdge between two Claim nodes
+Both claim nodes must exist before edge is written
+Write ConflictNote node
+Plan: conflict_notes[] populated
+New node with SYS_ prefix; link to Person and both conflicting claims
+resolution_status = PENDING; ocd_applicable flag from plan
+Write SYS_HarvestPlan node
+Plan complete
+New SYS_HarvestPlan node; link to Person
+Idempotent: if plan_id already exists, skip
+Evaluate claim promotion
+All Proposed claims written
+D10 decision table; threshold = plan.threshold_override
+ApprovalRequired policy: no auto-promotion; all go to Under Review
+5.2  Execution sequence
+Operations execute in a fixed dependency order. Each step is idempotent — re-running a completed step is safe and produces no duplicate writes.
+Step
+Operation
+Depends on
+Resumable?
+1
+Write SYS_HarvestPlan node
+Plan complete
+Yes — skip if plan_id exists
+2
+Merge :Gens, :Tribe, :Polity nodes
+Onomastic parse
+Yes — merge semantics
+3
+Merge :Praenomen, :Nomen, :Cognomen nodes
+Step 2
+Yes — merge on label_latin
+4
+Apply :Person or :MythologicalPerson label
+Person_class decision
+Yes — label add is idempotent
+5
+Write literal properties (dates, gender, IDs)
+Step 4
+Yes — property set is idempotent
+6
+Write onomastic relationships (HAS_PRAENOMEN etc.)
+Steps 3, 4
+Yes — ScaffoldEdge merge
+7
+Write civic/political relationships (CITIZEN_OF, IN_SOCIAL_ORDER etc.)
+Step 4
+Yes
+8
+Write family relationships enrichments (SPOUSE_OF qualifiers, CHILD_OF materialisation)
+Step 4
+Yes
+9
+Write office/military relationships (HELD_RANK, SERVED_IN, POSITION_HELD enrichment)
+Step 4
+Yes
+10
+Write authority record links (LINKED_VIA_AUTHORITY, HAS_ENTRY_IN)
+Step 4
+Yes
+11
+Write conflict structures (CHALLENGES_CLAIM, ConflictNote nodes)
+Steps 5–10
+Yes — skip if ConflictNote for same conflict_id exists
+12
+Evaluate D10 for all new Proposed claims
+Steps 5–10
+Yes — re-evaluation is safe
+13
+Update SYS_HarvestPlan execution_status to COMPLETE
+Step 12
+Yes
+6. Agent Context Packet
+Before the agent is invoked, a deterministic pre-fetch assembles everything the agent needs to reason. The agent receives this packet and nothing else — no live graph access, no additional tool calls during reasoning. This keeps the reasoning reproducible and auditable.
+Context section
+Content
+Source
+person_stub
+Current Person node properties as known (entity_id, dprr_id, qid, existing labels, existing literal properties)
+Graph pre-fetch
+existing_family
+Existing FATHER_OF, MOTHER_OF, SIBLING_OF, SPOUSE_OF edges with targets (label, dprr_id, qid)
+Graph pre-fetch
+existing_offices
+Existing POSITION_HELD edges with Position labels and edge properties
+Graph pre-fetch
+gens_network
+All persons in the same :Gens already in the graph (label, dprr_id, period)
+Graph pre-fetch — used for filiation disambiguation
+dprr_raw
+Full DPRR record for this person (all fields, assertion URIs)
+DPRR federation query
+wikidata_raw
+Full Wikidata item (all P-codes, qualifiers, references)
+Wikidata federation query
+viaf_raw
+VIAF cluster record (name forms, source library IDs)
+VIAF federation query (if viaf_id known or derivable)
+fast_raw
+FAST authority record
+FAST federation query (if fast_id known)
+nomisma_raw
+Nomisma person record (if nomisma_id known)
+Nomisma federation query
+trismegistos_raw
+Trismegistos author record (if trismegistos_id known)
+Trismegistos federation query
+lgpn_raw
+LGPN record (if lgpn_id known)
+LGPN federation query
+layer1_output
+Structured output of Layer 1: parsed onomastic components, normalised dates, P-code mappings, exact ID matches
+Layer 1 deterministic output
+system_policies
+Active SYS_Policy nodes relevant to person harvest
+Graph pre-fetch
+system_thresholds
+Relevant SYS_Threshold values (claim_promotion_confidence, entity_resolution_confidence etc.)
+Graph pre-fetch
+⚑  Federation queries are executed before agent invocation. If a source is unavailable, its section is null and the agent reasons with reduced input — it does not retry or re-query.
+7. Family Tree Construction Strategy
+ADR-007 establishes a person-by-person construction approach: each person is fully enriched (including full ancestry) before moving to the next. This section defines the traversal rules and stopping conditions.
+7.1  Traversal order
+Construction proceeds depth-first along paternal lines (FATHER_OF chains) because DPRR filiation is predominantly paternal and the gens network is the primary analytical axis. Maternal lines (MOTHER_OF) are pursued to the same depth but may terminate earlier where DPRR records are thinner.
+Traversal priority
+Rationale
+1. Paternal ancestor chain (FATHER_OF recursive)
+DPRR filiation is primarily paternal; gens identity follows paternal line
+2. Maternal ancestor chain (MOTHER_OF recursive)
+Maternal lines important for adoption, alliance, and inheritance analysis
+3. Spouses (SPOUSE_OF)
+Each spouse may introduce a new gens subgraph worth traversing
+4. Siblings (SIBLING_OF)
+Enriched after parents to avoid duplicate parent resolution
+5. Children (FATHER_OF / MOTHER_OF outbound)
+Enriched last; descendants are lower priority than ancestors for prosopography
+7.2  Stopping conditions
+A traversal branch terminates when any of the following conditions is met:
+Condition
+Action
+Notes
+No DPRR record exists for the ancestor AND no Wikidata P31=human confirmation
+Create ScaffoldNode stub; attach DQ_MISSING_P31 flag; do not enrich further
+Preserves the filiation link without creating an unverifiable profile
+Person is already fully enriched in the graph (execution_status = COMPLETE on SYS_HarvestPlan)
+Skip; do not re-enrich
+Idempotency — same person may appear in multiple family trees
+DPRR filiation string terminates (no further f./n. tokens)
+Terminal ancestor reached; stop paternal/maternal chain
+Typical depth: 2–3 generations in DPRR; 8 generations observed in specific lineages
+Person is mythological (person_class = MYTHOLOGICAL)
+Enrich as :MythologicalPerson; do not traverse their ancestors
+Romulus and Remus are terminal nodes — their parents are divine and out of scope
+Harvest budget exhausted (max_new_nodes_production threshold)
+Suspend traversal; record resume_from_step in SYS_HarvestPlan
+Budget per D7_DETERMINE_harvest_allowlist_eligibility decision table
+⚑  The 8-generation lineages already in the graph (Cornelia (409), Calventia (B)) confirm DPRR can support deep traversal where records exist. The average DPRR person has 2.2 family connections — deep trees are the exception.
+8. Consequences
+8.1  Positive
+Agent reasoning is front-loaded and fully auditable before any graph write occurs. The PersonHarvestPlan is the audit trail.
+Execution is resumable without re-reasoning. A timed-out harvest resumes from step N, not from the beginning.
+New federation sources can be added by extending the context packet and the federation tier table in ADR-007. Layer 1 and Layer 3 require no changes for a new source whose data maps to existing relationship types.
+Conflict resolution is structurally separate from profile construction. ConflictNote nodes accumulate without blocking the harvest of non-conflicting claims.
+The agent model is replaceable without changing the graph schema. agent_model is recorded on the SYS_HarvestPlan for audit; a better model can re-reason the same context packet and produce a new plan.
+8.2  Costs and risks
+Risk
+Likelihood
+Mitigation
+Agent produces inconsistent PersonHarvestPlans for the same person across runs (non-deterministic reasoning)
+Medium
+Record agent_model and context packet hash on plan. Flag if same person produces divergent plans across model versions.
+Context packet grows too large for agent context window as federation sources multiply
+Low-medium
+Cap raw federation payloads in context packet. Pre-summarise via Layer 1 before agent invocation. Full raw data in graph, not in context.
+Layer 1 DPRR parser fails on edge-case label formats
+Low
+Parser emits structured error with unparsed tokens; agent receives partial onomastic_parse and reasons with what is available. Never silently drops data.
+Family tree traversal creates runaway harvest via large gens networks
+Medium
+max_new_nodes_production threshold (1,500) and max_sources_production (1,000) per D7 decision table act as circuit breakers.
+StatusType semantics (values 1 and 2) unresolved before harvest begins
+High (if unresolved)
+Block HAS_STATUS enrichment until OI-01 from ADR-007 is resolved. Do not write HAS_STATUS claims with unknown semantics.
+8.3  Open items
+ID
+Item
+Deferred to
+OI-008-01
+SYS_HarvestPlan node definition — register as system node type with constraints
+Schema registration sprint
+OI-008-02
+Context packet size limits — define max payload per federation source
+Performance testing
+OI-008-03
+Agent model selection and versioning policy — which model, how upgrades are managed
+Agent operations ADR (future)
+OI-008-04
+Parallel harvest across independent gens subgraphs — currently assumed sequential
+Scale ADR (future)
+OI-008-05
+GEDCOM export agent — separate agent that reads PersonHarvestPlan and projects to GEDCOM 7.0
+Post first-pass harvest

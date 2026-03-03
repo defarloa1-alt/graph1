@@ -1,0 +1,38 @@
+ADR-008: Person Harvest Agent Architecture — Summary & Advice
+Core idea
+Agent reasoning for reconciliation; deterministic execution for all graph writes.
+The agent decides what (identity, conflicts, authority); a deterministic writer executes how (Cypher, state machine). The agent never writes to the graph.
+Three-layer architecture
+Layer	Mode	Responsibility	Writes?
+1	Deterministic	DPRR label parsing, P-code→canonical mapping, date normalisation, DPRR ID exact match	No
+2	Agent reasoning	Name reconciliation, conflict classification, authority tier weighting, filiation disambiguation, ConflictNote drafting	No
+3	Deterministic	Schema-validated Cypher, D10 thresholds, claim state machine	Yes
+Alignment with current work
+ADR-007 Section 3: The 25 noise nodes are handled before harvest. The veto gate (P31 ≠ human when dprr_id IS NULL) is enforced in Layer 1/3; mythological and biblical cases are handled by the agent in Layer 2.
+DPRR import (dprr_import.py): Effectively Layer 1 + partial Layer 3. ADR-008 adds Layer 2 (agent) and formalises the split.
+Entity cipher: entity_id format person_q{qid} is already used; ADR-008 keeps this.
+Implementation advice
+Start with Layer 1.
+Implement the DPRR label grammar parser (tria nomina, filiation, tribe) and P-code→canonical mapping. This is fully specifiable and testable.
+Define the PersonHarvestPlan schema.
+OI-008-01: register SYS_HarvestPlan as a system node type. The plan is the contract between Layer 2 and Layer 3.
+Context packet before agent.
+Pre-fetch graph state and federation data into a single context packet. No live graph access during reasoning. This keeps runs reproducible and auditable.
+Resolve OI-01 (StatusType semantics) before HAS_STATUS.
+ADR-008 treats this as high risk: do not write HAS_STATUS until DPRR StatusType 1/2 are defined.
+Family tree traversal.
+Depth-first along paternal lines, then maternal, then spouses/siblings/children. Use D7 budget limits (e.g. 1,500 new nodes) as circuit breakers.
+GEDCOM export.
+Deferred to a separate agent that consumes PersonHarvestPlan and projects to GEDCOM 7.0.
+Gaps and risks
+Risk	Mitigation
+Agent non-determinism across runs	Store agent_model and context packet hash on the plan; flag divergent plans
+Context packet too large	Cap federation payloads; summarise in Layer 1; keep full data in graph, not in context
+Runaway family traversal	Enforce max_new_nodes_production and max_sources_production from D7
+DPRR parser edge cases	Emit structured errors with unparsed tokens; pass partial onomastic_parse to the agent
+Suggested implementation order
+Layer 1: DPRR label parser + P-code mapping (extend dprr_import.py or a new module).
+PersonHarvestPlan schema: Cypher for SYS_HarvestPlan node and constraints.
+Context packet builder: Deterministic pre-fetch of graph + federation data.
+Layer 2 agent: Prompt + tooling that consumes the context packet and returns a plan (no graph writes).
+Layer 3 executor: Template-based Cypher writer that consumes the plan and applies the 13-step sequence.

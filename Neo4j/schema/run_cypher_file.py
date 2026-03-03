@@ -11,6 +11,14 @@ import argparse
 import os
 from pathlib import Path
 
+# Load .env from project root so NEO4J_URI, NEO4J_PASSWORD are available
+try:
+    from dotenv import load_dotenv
+    _root = Path(__file__).resolve().parents[2]
+    load_dotenv(_root / ".env")
+except ImportError:
+    pass
+
 from neo4j import GraphDatabase
 
 
@@ -68,7 +76,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("cypher_file", help="Path to .cypher file")
     parser.add_argument("--uri", default=os.getenv("NEO4J_URI", "bolt://127.0.0.1:7687"))
-    parser.add_argument("--user", default=os.getenv("NEO4J_USER", "neo4j"))
+    parser.add_argument("--user", default=os.getenv("NEO4J_USERNAME") or os.getenv("NEO4J_USER", "neo4j"))
     parser.add_argument("--password", default=os.getenv("NEO4J_PASSWORD", "Chrystallum"))
     args = parser.parse_args()
 
