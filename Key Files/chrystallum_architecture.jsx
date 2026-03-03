@@ -308,7 +308,7 @@ export default function ChrystallumArchitecture() {
           [":Cognomen", "993", C.blue],
           [":Praenomen", "24", C.blue],
           [":Tribe", "29", C.blue],
-          [":HistoricalPolity", "1→20", C.amber],
+          [":HistoricalPolity", "9", C.amber],
         ].map(([label, count, col], i) => (
           <NodeChip key={label} x={375} y={446 + i * 11} label={label} count={count} fill={col} />
         ))}
@@ -453,7 +453,7 @@ export default function ChrystallumArchitecture() {
           ["Schema", "SYS_ValidationRule + SYS_PropertyMapping — schema is data"],
           ["Merges", "entity_cipher + edge_cipher — O(1) SHA-256 content-address"],
           ["Agent integration", "Three-layer: det. pre → LLM reason → det. execute"],
-          ["Temporal scoping", "IN_PERIOD → :Periodo_Period + inception/dissolution on nodes"],
+          ["Temporal scoping", "IN_PERIOD → :Periodo_Period · :HistoricalPolity → STARTS_IN_YEAR/ENDS_IN_YEAR → :Year"],
           ["Standards alignment", "CIDOC-CRM internal · GEDCOM 7.0 export target"],
           ["Self-description", "14-step onboarding protocol; graph explains itself to agents"],
         ].map(([k, v], i) => (
@@ -511,10 +511,10 @@ export default function ChrystallumArchitecture() {
         {/* ── GLASS BEAD GAME footnote ─────────────────────────────────────── */}
         <Box x={10} y={1082} w={W - 20} h={36} fill="#FDFEFE" stroke={C.mid} rx={4} />
         <Txt x={W / 2} y={1097} s={9} fill={C.slate} center italic>
-          "An accessible implementation of Hermann Hesse's Glass Bead Game — cross-domain knowledge synthesis
+          &quot;An accessible implementation of Hermann Hesse&apos;s Glass Bead Game — cross-domain knowledge synthesis&quot;
         </Txt>
         <Txt x={W / 2} y={1110} s={9} fill={C.slate} center italic>
-          from bookmark organisation (Level 1) to transcendent synthesis (Level 5)  ·  RAND systems analysis lineage"
+          from bookmark organisation (Level 1) to transcendent synthesis (Level 5)  ·  RAND systems analysis lineage
         </Txt>
 
       </svg>
