@@ -5,7 +5,7 @@ This folder contains JSON Schema contracts and one sequence diagram generated fr
 ## Scope and status
 
 - Canonical block catalog: `sysml/BLOCK_CATALOG_RECONCILED.md` (v1.2, 2026-03-03)
-- DMN decision tables: `sysml/DMN_DECISION_TABLES.md` (D1–D17, 2026-03-03)
+- DMN decision tables: `sysml/DMN_DECISION_TABLES.md` (D1–D21, D30–D32; 2026-03-03)
 - Superseded starter: `Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md`
 - Contract status: draft-to-operational artifacts
 - Current enforcement: schema validation via `scripts/tools/validate_sysml_contracts.py`
@@ -41,7 +41,8 @@ These are complementary and should not be conflated.
 - Added `VisualizationSubsystem` block (GraphMLExporter, CytoscapeWebViewer)
 - Added `SYS_HarvestPlanRegistry` to MetanodeSubsystem
 - Extended D10 with `domain_scope` input for ancient person threshold (0.75)
-- Added DMN tables D15 (person label gate), D16 (conflict classification), D17 (conflict resolution ladder)
+- Added DMN tables D30 (person label gate), D31 (conflict classification), D32 (conflict resolution ladder)
+- Documented previously undocumented D15–D21 (federation scoring tables resident in graph)
 - Added 3 new decision services: PersonLabelGateService, ConflictClassificationService, ConflictResolutionLadder
 - Updated root block counts: 105,559 nodes / 107,870 edges
 - Updated DPRRAdapter with onomastic parsing and operational counts

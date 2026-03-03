@@ -1,7 +1,7 @@
 # JSX Architecture Diagram — Alignment Patch
 
 **Date:** 2026-03-03
-**Source of truth:** Graph census via `run_cypher_readonly` + `sysml/BLOCK_CATALOG_RECONCILED.md` v1.2 + `sysml/DMN_DECISION_TABLES.md` D1–D17
+**Source of truth:** Graph census via `run_cypher_readonly` + `sysml/BLOCK_CATALOG_RECONCILED.md` v1.2 + `sysml/DMN_DECISION_TABLES.md` D1–D21, D30–D32
 **Applies to:** Both `chrystallum_architecture.jsx` (Platform) and Logical Architecture JSX (Top-Down)
 **Nomisma decision:** Mark as "future design intent" — no SYS_FederationSource node in graph
 
@@ -69,14 +69,14 @@ In the Chrystallum vs. Native Neo4j comparison:
 
 The JSX shows `:HistoricalPolity 9` but the graph has 20 `Entity:Polity` nodes. The label mismatch needs investigation — if `:HistoricalPolity` is a distinct label from `:Polity`, the count may be correct. If they're the same, update to 20.
 
-### L5b. (Optional) Add D15–D17 to Layer 2 agent section
+### L5b. (Optional) Add D30–D32 to Layer 2 agent section
 
 After "ConflictNote drafting for human review" add:
 
 ```
-D15 person label gate (3 gates + veto)
-D16 conflict type classification (Types 1–4)
-D17 conflict resolution ladder (Type 4 escalation)
+D30 person label gate (3 gates + veto)
+D31 conflict type classification (Types 1–4)
+D32 conflict resolution ladder (Type 4 escalation)
 ```
 
 ### L5c. (Optional) Add edge count to bottom stats
@@ -116,7 +116,7 @@ SYS_WikidataProperty   22 P-code → relationship type mappings
 SYS_HarvestPlan        Audit trail for agent reasoning cycles (ADR-008)
 ```
 
-### P4. Add D15–D17 to DECISION TABLE ENGINE
+### P4. Add D30–D32 to DECISION TABLE ENGINE
 
 ```diff
   D10    Claim promotion — confidence ≥ threshold + ApprovalRequired policy
@@ -125,9 +125,9 @@ SYS_HarvestPlan        Audit trail for agent reasoning cycles (ADR-008)
   D-harvest  Budget ctrl — depth limits · result caps · new node limits per run
   D-route  Source routing — local canonical → remote · Wikidata universal fallback
   D-validate  Entity validation — literal-heavy rejection · temporal precision floor
-+ D15    Person label gate — 3 gates (DPRR authority, Wikidata P31, namespace) + veto
-+ D16    Conflict type classification — Types 1–4 taxonomy per ADR-007 §7.1
-+ D17    Conflict resolution ladder — authority tier → tiebreaker → human escalation
++ D30    Person label gate — 3 gates (DPRR authority, Wikidata P31, namespace) + veto
++ D31    Conflict type classification — Types 1–4 taxonomy per ADR-007 §7.1
++ D32    Conflict resolution ladder — authority tier → tiebreaker → human escalation
 ```
 
 ### P5. D10 domain_scope annotation
@@ -258,9 +258,9 @@ For the Platform JSX Decision Table Engine section, these are the D-number mappi
 | D-route | D4 | ExternalFederationGateway |
 | D-validate | D6 | wikidata_backlink_harvest.py |
 | D10 | D10 | claim_ingestion_pipeline.py |
-| (new) D15 | D15 | adr007_apply_person_label.py |
-| (new) D16 | D16 | person_harvest_agent.py |
-| (new) D17 | D17 | person_harvest_agent.py |
+| (new) D30 | D30 | adr007_apply_person_label.py |
+| (new) D31 | D31 | person_harvest_agent.py |
+| (new) D32 | D32 | person_harvest_agent.py |
 
 ---
 

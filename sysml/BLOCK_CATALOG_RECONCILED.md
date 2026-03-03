@@ -34,7 +34,7 @@
 | `ConflictResolutionService` added | ADR-007 §7 | CHALLENGES_CLAIM edge, ConflictNote node, Types 1–4 taxonomy |
 | `SYS_HarvestPlan` added to MetanodeSubsystem | ADR-008 §4.2 | Audit trail for person harvest agent reasoning |
 | DMN D10 extended for domain-scoped threshold | ADR-007 §7.4 | claim_promotion_confidence_ancient_person = 0.75 for pre-CE persons |
-| DMN D15–D17 added | ADR-007 §2, §7 | Person label gate, conflict classification, conflict resolution ladder |
+| DMN D30–D32 added (person domain); D15–D21 documented | ADR-007 §2, §7; graph census | Person label gate, conflict classification, conflict resolution ladder; federation scoring tables documented |
 | Root block counts updated | Graph census 2026-03-03 | node_count: 60,925→105,559; edge_count: 49,152→107,870 |
 | `DPRRAdapter` counts and onomastic parsing updated | ADR-007 §5, graph census | Onomastic parsing operational; person counts updated |
 | `SYS_FederationRegistry` source count updated | Graph census | 13→17 federation source nodes |
@@ -106,9 +106,9 @@ Blocks in this catalog are **structural** — they describe what the system is c
   «block» ToolingSubsystem         ← new (D-031)
     «block» ChrystallumMCPServer
 
-«decisionService» PersonLabelGateService     ← DMN D15, not SysML block
-«decisionService» ConflictClassificationService ← DMN D16, not SysML block
-«decisionService» ConflictResolutionLadder   ← DMN D17, not SysML block
+«decisionService» PersonLabelGateService     ← DMN D30, not SysML block
+«decisionService» ConflictClassificationService ← DMN D31, not SysML block
+«decisionService» ConflictResolutionLadder   ← DMN D32, not SysML block
 «decisionService» FederationDispatcher      ← DMN, not SysML block
 «decisionService» AgentRoutingService       ← DMN, not SysML block
 «decisionService» ScopingService            ← DMN, not SysML block
@@ -477,7 +477,7 @@ Blocks in this catalog are **structural** — they describe what the system is c
 - Civic edges: CITIZEN_OF(5,049), POSITION_HELD(7,342), HAS_STATUS(1,919)
 - Polity nodes: 20
 
-**Decision tables:** D10 (claim promotion — domain-scoped override), D15 (person label gate), D16 (conflict classification), D17 (conflict resolution ladder)
+**Decision tables:** D10 (claim promotion — domain-scoped override), D30 (person label gate), D31 (conflict classification), D32 (conflict resolution ladder)
 
 #### «block» DPRRLabelParser
 **Responsibility:** Layer 1 deterministic pre-processing. Grammar-based extraction of tria nomina from DPRR label strings. No agent involvement. Produces structured onomastic_parse for Layer 2 and OnomasticStore.
@@ -594,7 +594,7 @@ Blocks in this catalog are **structural** — they describe what the system is c
 | 1 — Precision gap | Source B more precise than A | Accept higher-precision; both as provenance |
 | 2 — Silence | Source B doesn't cover attribute | Write from A; silence is not contradiction |
 | 3 — Soft conflict | Overlapping but non-identical values | Compute intersection; write as range |
-| 4 — Hard conflict | Non-overlapping values from covering sources | Resolution ladder (D17) → escalate if unresolvable |
+| 4 — Hard conflict | Non-overlapping values from covering sources | Resolution ladder (D32) → escalate if unresolvable |
 
 **Graph structures:**
 - `CHALLENGES_CLAIM` edge: challenger_source, challenge_type, created_at — links two Claim nodes
@@ -803,7 +803,7 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 18. IBD — PersonSubsystem: Layer 1 → Layer 2 → Layer 3 flow, context packet assembly
 19. Sequence — Person harvest cycle: DPRRLabelParser → PersonReasoningAgent → PersonHarvestExecutor → OnomasticStore
 20. Sequence — Conflict resolution: ConflictClassificationService → ConflictResolutionLadder → human escalation
-21. DMN — PersonLabelGateService (D15): 3 gates + veto
-22. DMN — ConflictClassificationService (D16): Types 1–4 taxonomy
-23. DMN — ConflictResolutionLadder (D17): 4-step escalation
+21. DMN — PersonLabelGateService (D30): 3 gates + veto
+22. DMN — ConflictClassificationService (D31): Types 1–4 taxonomy
+23. DMN — ConflictResolutionLadder (D32): 4-step escalation
 24. BDD — VisualizationSubsystem: GraphMLExporter + CytoscapeWebViewer

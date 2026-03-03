@@ -1,8 +1,13 @@
-# Chrystallum — DMN Decision Tables D1–D14
+# Chrystallum — DMN Decision Tables
 
-**Date:** 2026-02-25  
-**Source:** output/DMN_EXTRACTION_AUDIT.md  
+**Date:** 2026-03-03
+**Source:** output/DMN_EXTRACTION_AUDIT.md + SYS_DecisionTable graph nodes
 **Principle (D-024):** Values subject to change by business owner or domain expert belong in decision tables, not in code. Thresholds and policies are stored in SYS_Threshold and SYS_Policy nodes; tables reference them by name.
+
+**ID ranges:**
+- D1–D14: Core platform (harvester, federation, claims, SFA)
+- D15–D21: Federation scoring & normalization (graph-resident, added post-v1)
+- D30–D39: Person domain (ADR-007/008)
 
 ---
 
@@ -24,9 +29,20 @@
 | D12 | SubjectConcept split trigger | SubjectConcept split logic | crosslink_ratio_split, level2_child_overload |
 | D13 | SFA drift alert | SFA drift detector | facet_drift_alert |
 | D14 | entity resolution acceptance | claim_ingestion_pipeline.py | entity_resolution_confidence, entity_resolution_fuzzy, entity_resolution_similarity_min; EntityResolutionFallback |
-| D15 | person label application | adr007_apply_person_label.py | — (gate logic: dprr_id, P31 targets, entity_id prefix) |
-| D16 | conflict type classification | person_harvest_agent.py (Layer 2) | — (taxonomy: Types 1–4 per ADR-007 §7.1) |
-| D17 | conflict resolution (Type 4) | person_harvest_agent.py (Layer 2) | claim_promotion_confidence_ancient_person; source_authority_tier per ADR-007 §8 |
+| | | | |
+| **D15–D21** | **Federation scoring & normalization** | **Graph-resident** | **Added post-v1; previously undocumented** |
+| D15 | federation state | federation scoring pipeline | — (4 rows: operational/partial/blocked/planned routing) |
+| D16 | place federation score | federation scoring pipeline | — (4 rows: Pleiades match quality) |
+| D17 | period federation score | federation scoring pipeline | — (3 rows: PeriodO alignment) |
+| D18 | subject authority score | federation scoring pipeline | — (subject-level authority weighting) |
+| D19 | DPRR relationship normalization | dprr_adapter.py | — (P-code → canonical rel type mapping) |
+| D20 | discipline authority score | federation scoring pipeline | — (discipline-level weighting) |
+| D21 | weighted link signals | federation scoring pipeline | — (backlink significance composite) |
+| | | | |
+| **D30–D39** | **Person domain (ADR-007/008)** | | |
+| D30 | person label application | adr007_apply_person_label.py | — (gate logic: dprr_id, P31 targets, entity_id prefix) |
+| D31 | conflict type classification | person_harvest_agent.py (Layer 2) | — (taxonomy: Types 1–4 per ADR-007 §7.1) |
+| D32 | conflict resolution (Type 4) | person_harvest_agent.py (Layer 2) | claim_promotion_confidence_ancient_person; source_authority_tier per ADR-007 §8 |
 
 ---
 
@@ -357,7 +373,7 @@
 
 ---
 
-## D15 DETERMINE person label application
+## D30 DETERMINE person label application
 
 **Purpose:** Decide whether a node receives the `:Person` label per ADR-007 §2. Three gates (any sufficient) plus a veto condition. Applied during Phase 1 of person schema implementation.
 
@@ -396,7 +412,7 @@
 
 ---
 
-## D16 DETERMINE conflict type classification
+## D31 DETERMINE conflict type classification
 
 **Purpose:** Classify disagreements between federation sources into one of four types, each with a distinct resolution action. Only Type 4 requires human escalation. Applied by PersonReasoningAgent (Layer 2) during person harvest.
 
@@ -424,11 +440,11 @@
 | 3 | NOT null | — | B > A | — | 1 (Precision gap) | Accept B; both as provenance |
 | 4 | NOT null | — | A > B | — | 1 (Precision gap) | Accept A; both as provenance |
 | 5 | NOT null | TRUE | — | TRUE | 3 (Soft conflict) | Compute intersection; write as range |
-| 6 | NOT null | TRUE | — | FALSE | 4 (Hard conflict) | Resolution ladder (D17) |
+| 6 | NOT null | TRUE | — | FALSE | 4 (Hard conflict) | Resolution ladder (D32) |
 
 ---
 
-## D17 DETERMINE conflict resolution (Type 4 hard conflicts)
+## D32 DETERMINE conflict resolution (Type 4 hard conflicts)
 
 **Purpose:** 4-step escalation ladder for Type 4 hard conflicts where non-overlapping values come from sources that both cover the attribute. Applied by PersonReasoningAgent (Layer 2), with Step 4 deferred to human review.
 
@@ -477,5 +493,6 @@
 3. **D14 match-type thresholds:** Consider adding entity_resolution_near_exact (0.92), entity_resolution_abbreviation (0.95), entity_resolution_semantic (0.92) to SYS_Threshold for full externalisation.
 4. **D9 constitution mapping:** Per-facet constitution doc set to be designed; may use SYS_FacetConstitution or similar node type.
 5. **D10 domain_scope:** PersonHarvestExecutor must check IN_PERIOD → Periodo_Period end_date to determine domain_scope before evaluating D10. The ancient_person threshold (0.75) must be registered as SYS_Threshold `claim_promotion_confidence_ancient_person`.
-6. **D15 person label gate:** Applied as a batch operation during Phase 1; idempotent — re-running does not duplicate labels.
-7. **D16/D17 conflict resolution:** Applied by PersonReasoningAgent during Layer 2 reasoning. Outputs are recorded in the PersonHarvestPlan, not executed directly. Execution happens in Layer 3 (PersonHarvestExecutor Step 11).
+6. **D30 person label gate:** Applied as a batch operation during Phase 1; idempotent — re-running does not duplicate labels.
+7. **D31/D32 conflict resolution:** Applied by PersonReasoningAgent during Layer 2 reasoning. Outputs are recorded in the PersonHarvestPlan, not executed directly. Execution happens in Layer 3 (PersonHarvestExecutor Step 11).
+8. **D15–D21 federation scoring:** These tables were created directly in the graph as SYS_DecisionTable nodes before the DMN doc was written. They are now documented here for the first time. D20 and D21 each have a duplicate node in the graph (same table_id, one with name property, one without) — deduplicate when next writing to SYS_DecisionTable.
