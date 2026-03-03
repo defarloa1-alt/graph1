@@ -1,0 +1,139 @@
+# Roman Republic Federation Synthesis — SubjectConcept Proposal
+
+## Context
+The Chrystallum project has federated nodes from multiple authorities (DPRR, Pleiades, LCSH, LCC, WorldCat).
+Nodes are connected when they share alignment dimensions: TEMPORAL (overlapping dates), GEOGRAPHIC (same place),
+INTELLECTUAL (same concept), SOCIAL (same person), BIBLIOGRAPHIC (same text), EVENT (same event).
+
+## Matrix Summary
+- **Total nodes:** 40259
+- **Total edges:** 26904781
+
+### Nodes by federation
+  - pleiades: 32572
+  - dprr: 7335
+  - worldcat: 196
+  - lcc: 141
+  - lcsh: 15
+
+### Edge dimensions (neighbour-dim pairs)
+  - GEOGRAPHIC: 53809560
+  - TEMPORAL: 1397002
+  - SOCIAL: 21710
+  - INTELLECTUAL: 2
+
+### Cross-federation edges
+  - Found: 0 in sample of 50000 edges
+  - Sample (first 200):
+
+
+### Top 30 nodes by neighbour count
+
+- **pleiades:423025** — Roma
+  14670 neighbours (TEMPORAL:7335, GEOGRAPHIC:7335)
+
+- **dprr:7373** — aedilis
+  14649 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313, SOCIAL:1)
+
+- **dprr:8413** — praetor
+  14649 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313, SOCIAL:1)
+
+- **dprr:10207** — praetor
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7371** — aedilis
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7433** — quaestor
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7543** — praefectus
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7554** — triumvir - unspecified
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7680** — senator - office unknown
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7692** — senator - office unknown
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7812** — praetor
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7872** — senator - office unknown
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:9069** — praetor
+  14648 neighbours (GEOGRAPHIC:7335, TEMPORAL:7313)
+
+- **dprr:7381** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7389** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7390** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7392** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7397** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7400** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7407** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7414** — tribunus plebis
+  14580 neighbours (GEOGRAPHIC:7335, TEMPORAL:7245)
+
+- **dprr:7555** — viocurus
+  14161 neighbours (GEOGRAPHIC:7335, TEMPORAL:6826)
+
+- **dprr:7565** — viocurus
+  14161 neighbours (GEOGRAPHIC:7335, TEMPORAL:6826)
+
+- **dprr:9318** — quaestor pro praetore
+  13665 neighbours (GEOGRAPHIC:7335, TEMPORAL:6330)
+
+- **dprr:7502** — proconsul
+  13474 neighbours (GEOGRAPHIC:7335, TEMPORAL:6139)
+
+- **dprr:7313** — praetor
+  12751 neighbours (GEOGRAPHIC:7335, TEMPORAL:5416)
+
+- **dprr:7883** — senator - office unknown
+  12751 neighbours (GEOGRAPHIC:7335, TEMPORAL:5416)
+
+- **dprr:7514** — proquaestor pro propraetore
+  12729 neighbours (GEOGRAPHIC:7335, TEMPORAL:5394)
+
+- **dprr:8978** — aedilis curulis
+  11908 neighbours (GEOGRAPHIC:7335, TEMPORAL:4573)
+
+- **dprr:7512** — proconsul
+  11827 neighbours (GEOGRAPHIC:7335, TEMPORAL:4492)
+
+---
+
+## Your Task
+
+Propose **SubjectConcepts** for the Roman Republic domain (Q17167) based on this federation evidence.
+
+For each proposed SubjectConcept:
+1. **Name** — A short label (e.g. 'Offices and Magistracies', 'Rome and Italy')
+2. **Evidence** — Which federation nodes or clusters support it? Cite node keys (e.g. dprr:7373, pleiades:423025)
+3. **Dimensions** — Which alignment dimensions connect the evidence? (GEOGRAPHIC, TEMPORAL, etc.)
+4. **Primary facet** — POLITICAL, MILITARY, SOCIAL, ECONOMIC, RELIGIOUS, CULTURAL, GEOGRAPHIC, etc.
+
+Prioritise clusters that:
+- Span multiple federations (cross-federation edges)
+- Have strong GEOGRAPHIC or TEMPORAL coherence
+- Could serve as thematic anchors for entity organisation
+
+Output your proposals as a structured list. Each proposal must cite specific federation evidence from the matrix above.

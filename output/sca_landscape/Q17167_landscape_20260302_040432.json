@@ -1,0 +1,344 @@
+{
+  "seed_qid": "Q17167",
+  "seed_label": "Roman Republic",
+  "model": "claude-sonnet-4-6",
+  "synthesized_at": "2026-03-02T09:04:32.360263+00:00",
+  "input_taxonomy": "output/taxonomy_recursive/Q17167_recursive_20260220_135756.json",
+  "input_lateral": "output/lateral/Q17167_lateral_20260301_221807.json",
+  "tier_counts": {
+    "primary": 9,
+    "secondary": 38,
+    "meta": 53
+  },
+  "usage": {
+    "input_tokens": 2571,
+    "output_tokens": 5236
+  },
+  "landscape": {
+    "landscape_narrative": "The Roman Republic (Q17167, 509–27 BC) occupies a foundational position in Western historical classification, sitting at the intersection of ancient Mediterranean civilizations, political theory, and the longstanding scholarly tradition of Greco-Roman studies. In library and archival authority systems, it is classified under LCSH sh85115114 and BnF 11951115f, anchored within the broader Ancient Rome node (FAST 1204885, LCSH n79039816) which itself spans the monarchic, republican, and imperial phases of Roman history. The Republic is taxonomically distinguished from the Roman Kingdom (Q201038, LCSH sh85115111) that preceded it and the empire that followed, placing it squarely within the domain of form_of_government (Q1307214, GND 4359546-7) and political system (Q28108) discourse — a classification lineage running through LCC JC348–JC497. Its chronological boundaries make it a canonical example of the Q6428674 'era' concept, and its institutional complexity (Senate, assemblies, magistracies) situates it equally within the administrative territorial entity (Q56061) and sovereign state (Q3624078) frameworks.\n\nAcademically, the Roman Republic is treated as a primary case study across political science, ancient history, legal history, and archaeology. It represents one of the most thoroughly documented ancient civilizations (Q28171280), with dense authority coverage in LCSH, GND, BnF, and FAST, making it a high-confidence anchor for federated knowledge graph traversal. The Greco-Roman world node (Q937284, LCSH sh85041289) provides lateral connectivity to Hellenistic domains, while Western culture (Q478958, FAST 863138) situates the Republic within the long-durée heritage tradition. The Republic's institutional legacy — codified law, senatorial governance, electoral assemblies, military organization — renders it a cross-cutting domain that activates nearly all 18 SFA channels, with especially strong signal in POLITICAL, MILITARY, LEGAL/SOCIAL, ECONOMIC, and GEOGRAPHIC facets.\n\nFrom a classification architecture perspective, the Roman Republic domain is unusually rich in reusable taxonomy nodes: form_of_government, ancient civilization, empire, sovereign state, and civilization are all cross-domain concepts that will recur for Ancient Greece, Byzantine Empire, Achaemenid Persia, and other future Chrystallum subject entities. The primary authority tier provides robust multi-system anchoring (FAST, LCC, GND, BnF), while the secondary tier supplies granular ontological scaffolding (era, time interval, juridical person, legal form) that can be reused without re-traversal. The lateral entity set, while not exhaustive, covers the principal institutional actors and major military events, offering SFAs concrete Wikidata and LCSH entry points for content-layer investigation.",
+    "facet_pointers": {
+      "ARCHAEOLOGICAL": {
+        "relevance": "medium",
+        "anchor_qids": [
+          "Q220",
+          "Q1747689",
+          "Q465299"
+        ],
+        "authority_anchors": {
+          "Pleiades": "423025",
+          "TGN": "7000874",
+          "LCSH": "n79018704",
+          "FAST": "1204500"
+        },
+        "resource_hint": "Begin with the Pleiades node for Rome (423025) and TGN 7000874 to identify excavated Republican-period contexts in the city; the archaeological culture node (Q465299, PSH 5156) provides a secondary classification anchor for material culture assemblages associated with the Republican period."
+      },
+      "ARTISTIC": {
+        "relevance": "medium",
+        "anchor_qids": [
+          "Q220",
+          "Q1747689",
+          "Q8432"
+        ],
+        "authority_anchors": {
+          "LCSH": "n79018704",
+          "FAST": "1204885",
+          "BnF": "119328036"
+        },
+        "resource_hint": "Traverse from the Ancient Rome node (Q1747689, FAST 1204885) toward Republican-period visual and plastic arts; Rome (Q220, TGN 7000874) is the primary geographic anchor for monumental and decorative artistic production under the Republic."
+      },
+      "BIOGRAPHIC": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q1747689",
+          "Q17167"
+        ],
+        "authority_anchors": {
+          "LCSH": "sh85115114",
+          "BnF": "11951115f",
+          "FAST": "1204885"
+        },
+        "resource_hint": "Use LCSH sh85115114 and the Ancient Rome authority (FAST 1204885) as entry points for prosopographic traversal; key Republican figures (consuls, generals, tribunes) cluster around the Roman Senate (Q130614) and citizens' assemblies (Q1114821) nodes which serve as institutional anchors for biographical records."
+      },
+      "COMMUNICATION": {
+        "relevance": "medium",
+        "anchor_qids": [
+          "Q1747689",
+          "Q937284",
+          "Q11042"
+        ],
+        "authority_anchors": {
+          "LCSH": "sh85041289",
+          "GND": "4125698-0",
+          "BnF": "11931827z"
+        },
+        "resource_hint": "The Greco-Roman world node (Q937284, LCSH sh85041289) anchors the rhetorical and epistolary traditions of the Republic; the culture node (Q11042, GND 4125698-0) provides the broader communicative-cultural context. Investigate oratory, epigraphy, and senatorial records as primary communication modalities."
+      },
+      "CULTURAL": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q478958",
+          "Q8432",
+          "Q937284",
+          "Q11042"
+        ],
+        "authority_anchors": {
+          "FAST": "863138",
+          "LCSH": "sh85026423",
+          "GND": "4067906-8",
+          "BnF": "13319049t",
+          "PSH": "9736"
+        },
+        "resource_hint": "Begin traversal at Western culture (Q478958, FAST 863138) and civilization (Q8432, LCSH sh85026423) to map the Republic's cultural legacy; the Greco-Roman world node (Q937284) provides cross-domain cultural connectivity to Hellenistic influences on Republican Rome."
+      },
+      "DEMOGRAPHIC": {
+        "relevance": "medium",
+        "anchor_qids": [
+          "Q1747689",
+          "Q220",
+          "Q56061"
+        ],
+        "authority_anchors": {
+          "LCSH": "n79039816",
+          "FAST": "1204885",
+          "GND": "4076778-4"
+        },
+        "resource_hint": "Anchor demographic investigation in the Ancient Rome node (Q1747689, GND 4076778-4) and the administrative territorial entity framework (Q56061, LCSH sh85000909); census records, tribal organization, and citizen rolls are the primary demographic evidence sources for Republican Rome."
+      },
+      "DIPLOMATIC": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q124988",
+          "Q596373",
+          "Q75813",
+          "Q937284"
+        ],
+        "authority_anchors": {
+          "LCSH": "sh85109114",
+          "FAST": "1204885",
+          "GND": "4076778-4"
+        },
+        "resource_hint": "The Punic Wars (Q124988, LCSH sh85109114) and Macedonian Wars (Q75813) are the primary event anchors for Republican-era diplomacy and treaty-making; the Greco-Roman world node (Q937284, LCSH sh85041289) provides the bilateral diplomatic context with Hellenistic states."
+      },
+      "ECONOMIC": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q952064",
+          "Q1747689",
+          "Q220"
+        ],
+        "authority_anchors": {
+          "LCSH": "n79039816",
+          "FAST": "1204885",
+          "TGN": "7000874"
+        },
+        "resource_hint": "Roman currency (Q952064) is the primary object anchor for economic investigation; traverse from Ancient Rome (Q1747689, FAST 1204885) to Republican-period fiscal institutions, tax structures, and trade networks, with Rome (Q220, Pleiades 423025) as the geographic economic hub."
+      },
+      "ENVIRONMENTAL": {
+        "relevance": "low",
+        "anchor_qids": [
+          "Q220",
+          "Q82794",
+          "Q183366"
+        ],
+        "authority_anchors": {
+          "Pleiades": "423025",
+          "GND": "4049029-4",
+          "TGN": "7000874"
+        },
+        "resource_hint": "Begin with Rome's Pleiades node (423025) and the region/territory nodes (Q82794, Q183366) for environmental context; investigation should focus on the Italian Peninsula's agricultural and hydraulic landscape as it supported Republican-era expansion."
+      },
+      "GEOGRAPHIC": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q220",
+          "Q1747689",
+          "Q82794",
+          "Q183366"
+        ],
+        "authority_anchors": {
+          "Pleiades": "423025",
+          "TGN": "7000874",
+          "LCSH": "n79018704",
+          "FAST": "1204500",
+          "GND": "4184803-2"
+        },
+        "resource_hint": "Rome (Q220, Pleiades 423025, TGN 7000874) is the primary geographic anchor; traverse outward through territory (Q183366, GND 4184803-2) and region (Q82794) nodes to map the expanding Republican domain across the Italian Peninsula, North Africa, Iberia, and the Eastern Mediterranean."
+      },
+      "INTELLECTUAL": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q478958",
+          "Q937284",
+          "Q8432"
+        ],
+        "authority_anchors": {
+          "FAST": "863138",
+          "LCSH": "sh85041289",
+          "GND": "4067906-8"
+        },
+        "resource_hint": "Anchor intellectual history traversal at Western culture (Q478958, FAST 863138) and the Greco-Roman world (Q937284, LCSH sh85041289); Republican-era philosophy, rhetoric, jurisprudence, and historiography are the primary intellectual production domains to investigate."
+      },
+      "LINGUISTIC": {
+        "relevance": "medium",
+        "anchor_qids": [
+          "Q1747689",
+          "Q937284",
+          "Q11042"
+        ],
+        "authority_anchors": {
+          "LCSH": "n79039816",
+          "GND": "4076778-4",
+          "BnF": "119328036"
+        },
+        "resource_hint": "Traverse from the Ancient Rome node (Q1747689) and Greco-Roman world (Q937284, LCSH sh85041289) toward Latin language development and the bilingual Greek-Latin intellectual environment of the late Republic; noun and concept nodes (Q1084, Q151885) may provide ontological anchors for linguistic categorization."
+      },
+      "MILITARY": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q124988",
+          "Q202161",
+          "Q75813",
+          "Q3778726",
+          "Q596373",
+          "Q1238338",
+          "Q677316"
+        ],
+        "authority_anchors": {
+          "LCSH": "sh85109114",
+          "FAST": "1354980",
+          "LCSH_gallic": "sh85053541",
+          "LCSH_civil": "sh85115123",
+          "LCSH_social": "sh85115118"
+        },
+        "resource_hint": "The Punic Wars (Q124988, LCSH sh85109114), Gallic War (Q202161, LCSH sh85053541), Caesar's Civil War (Q1238338, LCSH sh85115123), and Social War (Q677316, LCSH sh85115118, FAST 1354980) are the highest-authority military event anchors; Macedonian Wars (Q75813), Sertorian War (Q3778726), and Pyrrhic War (Q596373) fill out the military event coverage despite lacking full authority IDs."
+      },
+      "POLITICAL": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q130614",
+          "Q1114821",
+          "Q1307214",
+          "Q183039",
+          "Q28108",
+          "Q17167"
+        ],
+        "authority_anchors": {
+          "LCC": "JC348-JC497",
+          "GND": "4359546-7",
+          "LCSH": "sh85115114",
+          "BnF": "11951115f",
+          "Gran": "0184522"
+        },
+        "resource_hint": "Begin with the Roman Senate (Q130614) and citizens' assemblies (Q1114821) as institutional anchors; the form_of_government (Q1307214, GND 4359546-7) and form_of_state (Q183039, LCC JC348–JC497) nodes provide the classificatory framework for investigating Republican constitutional structures, magistracies, and legislative processes."
+      },
+      "RELIGIOUS": {
+        "relevance": "medium",
+        "anchor_qids": [
+          "Q1747689",
+          "Q220",
+          "Q8432"
+        ],
+        "authority_anchors": {
+          "LCSH": "n79039816",
+          "FAST": "1204885",
+          "TGN": "7000874"
+        },
+        "resource_hint": "Traverse from the Ancient Rome node (Q1747689, FAST 1204885) toward Republican-era state religion, priestly colleges, and augural institutions; Rome (Q220, Pleiades 423025) anchors the geographic dimension of Republican sacred topography and temple construction."
+      },
+      "SCIENTIFIC": {
+        "relevance": "low",
+        "anchor_qids": [
+          "Q1747689",
+          "Q478958"
+        ],
+        "authority_anchors": {
+          "FAST": "1204885",
+          "LCSH": "n79039816"
+        },
+        "resource_hint": "Scientific activity in the Republic is largely derivative of Hellenistic transmission; begin with the Ancient Rome (Q1747689) and Western culture (Q478958) nodes to identify natural philosophy, agronomy, and engineering knowledge as practiced in the Republican period."
+      },
+      "SOCIAL": {
+        "relevance": "high",
+        "anchor_qids": [
+          "Q8425",
+          "Q1639378",
+          "Q1747689",
+          "Q155076"
+        ],
+        "authority_anchors": {
+          "LCSH": "sh85124175",
+          "GND": "4020588-5",
+          "LCSH_social": "sh85124081",
+          "LCSH_juridical": "sh85071094",
+          "GND_juridical": "4029063-3"
+        },
+        "resource_hint": "Society (Q8425, LCSH sh85124175) and social system (Q1639378, LCSH sh85124081) are the primary taxonomic anchors; juridical person (Q155076, LCSH sh85071094) connects to the legal status distinctions (citizen, slave, freedman, Latin) central to Republican social stratification. The Social War (Q677316) provides an event anchor for social conflict analysis."
+      },
+      "TECHNOLOGICAL": {
+        "relevance": "medium",
+        "anchor_qids": [
+          "Q1747689",
+          "Q220",
+          "Q952064"
+        ],
+        "authority_anchors": {
+          "FAST": "1204885",
+          "Pleiades": "423025",
+          "TGN": "7000874"
+        },
+        "resource_hint": "Traverse from the Ancient Rome node (Q1747689) toward Republican-era military engineering, road construction, and hydraulic infrastructure; Rome (Q220, Pleiades 423025) anchors the urban technological context (aqueducts, fortifications, coinage manufacture via Q952064)."
+      }
+    },
+    "taxonomy_candidates": [
+      {
+        "qid": "Q1307214",
+        "label": "form of government",
+        "tier": "secondary",
+        "reuse_reason": "Directly classifies the constitutional type of any future polity domain (democracy, oligarchy, theocracy); essential taxonomy node for Ancient Greece, Byzantine Empire, Achaemenid Persia, and any medieval or early modern state entity."
+      },
+      {
+        "qid": "Q183039",
+        "label": "form of state",
+        "tier": "primary",
+        "reuse_reason": "Broader classificatory parent of form_of_government; reusable across all state-level historical domains in Chrystallum, providing the LCC JC348–JC497 anchor for political system classification."
+      },
+      {
+        "qid": "Q28171280",
+        "label": "ancient civilization",
+        "tier": "secondary",
+        "reuse_reason": "Cross-domain classifier for any pre-medieval civilizational entity (Ancient Egypt, Mesopotamia, Ancient Greece, Carthage); PSH 5071 provides a controlled vocabulary anchor for comparative ancient world traversal."
+      },
+      {
+        "qid": "Q8432",
+        "label": "civilization",
+        "tier": "secondary",
+        "reuse_reason": "High-level cultural taxonomy node reusable for any civilization-scale historical subject; multi-system authority coverage (LCSH sh85026423, GND 4067906-8, BnF 13319049t, PSH 9736) maximizes federated linking potential."
+      },
+      {
+        "qid": "Q6428674",
+        "label": "era",
+        "tier": "secondary",
+        "reuse_reason": "Temporal classification node applicable to any historically bounded period domain; GND 4317859-5 anchor enables chronological scoping across ancient, medieval, and modern subject entities."
+      },
+      {
+        "qid": "Q48349",
+        "label": "empire",
+        "tier": "primary",
+        "reuse_reason": "Classifies imperial-phase polities across multiple future domains (Roman Empire, Byzantine Empire, Ottoman Empire, Achaemenid Persia); LCC JC359 and GND 4139742-3 provide strong cross-system authority anchoring."
+      },
+      {
+        "qid": "Q937284",
+        "label": "Greco-Roman world",
+        "tier": "secondary",
+        "reuse_reason": "Lateral cross-domain connector linking Roman and Greek historical entities; LCSH sh85041289 provides a well-established authority anchor for any domain operating in the ancient Mediterranean cultural sphere."
+      },
+      {
+        "qid": "Q3624078",
+        "label": "sovereign state",
+        "tier": "secondary",
+        "reuse_reason": "Fundamental political classification node for any territorially bounded polity with recognized sovereignty; reusable across virtually all historical state domains in Chrystallum."
+      }
+    ],
+    "sca_notes": "1. BOUNDARY NOTE: The Roman Republic (Q17167) and Ancient Rome (Q1747689) are distinct nodes — the former is a temporal/political phase, the latter a civilizational umbrella spanning Kingdom, Republic, and Empire. SFAs should be careful not to conflate authority anchors: LCSH sh85115114 is Republic-specific, while n79039816/FAST 1204885 covers all of Ancient Rome. Cross-facet contamination risk is high if SFAs use the broader Ancient Rome node as a Republic-specific anchor.\n\n2. AUTHORITY GAP: Three military events (Sertorian War Q3778726, Macedonian Wars Q75813, Pyrrhic War Q596373) lack LCSH/FAST authority IDs in the provided context. The MILITARY SFA should flag these for authority enrichment; they are resolvable via LCSH (e.g., sh85079233 for Macedonian Wars) but cannot be confirmed from provided data alone.\n\n3. INSTITUTIONAL NODES: The Roman Senate (Q130614) and citizens' assemblies (Q1114821) appear in lateral entities without authority IDs beyond Wikidata QIDs. These are high-value institutional nodes for POLITICAL and SOCIAL SFAs; authority enrichment (likely available in LCSH under 'Rome (City) — Politics and government') should be prioritized.\n\n4. META-ONTOLOGICAL NOISE: A substantial portion of the secondary tier (abstract entity, abstract noun, concept, noun, object, etc.) reflects ontological scaffolding with no domain-content value for Republican Rome SFAs. These nodes are correctly excluded from SFA pointers; their presence in the neighborhood is an artifact of Wikidata's class hierarchy traversal and does not reflect subject relevance.\n\n5. TEMPORAL FRAMING: The 509–27 BC span is itself a contested historiographical construct (the 509 BC foundation date is disputed; the 27 BC terminus conflates Octavian's formal assumption of Augustus title). SFAs in INTELLECTUAL and POLITICAL facets should be aware that the time interval node (Q186081, GND 4190608-1) and era node (Q6428674) may carry different periodization assumptions across authority systems."
+  }
+}

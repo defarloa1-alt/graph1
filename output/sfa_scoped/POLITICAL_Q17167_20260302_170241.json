@@ -1,0 +1,239 @@
+{
+  "facet": "POLITICAL",
+  "seed_qid": "Q17167",
+  "scoped_at": "2026-03-02T17:02:41.719456+00:00",
+  "input_export": "output\\reports\\federated_roman_republic_20260302_164839.json",
+  "output": {
+    "facet": "POLITICAL",
+    "seed_qid": "Q17167",
+    "scoped_disciplines": [
+      {
+        "qid": "Q2515460",
+        "label": "constitutional history",
+        "dewey": "342",
+        "lcc": "JN",
+        "lcsh_id": "sh85031326",
+        "fast_id": null,
+        "rationale": "Directly traces the evolution of Roman Republican institutions, magistracies, and constitutional arrangements as expressions of political power."
+      },
+      {
+        "qid": "Q11206",
+        "label": "constitutional law",
+        "dewey": "342",
+        "lcc": "K3154",
+        "lcsh_id": "sh85031329",
+        "fast_id": null,
+        "rationale": "Covers the formal structures of Republican governance — consular authority, senatorial supremacy, and the distribution of sovereign power."
+      },
+      {
+        "qid": "Q191600",
+        "label": "civil and political rights",
+        "dewey": "323",
+        "lcc": "JC571",
+        "lcsh_id": "sh85026371",
+        "fast_id": null,
+        "rationale": "Citizenship as a political status (civitas) was the foundational category determining participation in Roman Republican governance."
+      },
+      {
+        "qid": "Q159385",
+        "label": "geopolitics",
+        "dewey": "320.12",
+        "lcc": "JC319",
+        "lcsh_id": "sh85054192",
+        "fast_id": null,
+        "rationale": "The Republic's expansion, provincial governance, and interstate relations with Carthage, Greece, and the East are core political phenomena."
+      },
+      {
+        "qid": "Q47398",
+        "label": "economic history",
+        "dewey": null,
+        "lcc": null,
+        "lcsh_id": "sh85040817",
+        "fast_id": "901974",
+        "rationale": "Included only insofar as fiscal policy, grain supply (annona), and land redistribution debates (Gracchan reforms) were instruments of political contestation."
+      },
+      {
+        "qid": "Q770723",
+        "label": "auxiliary science of history",
+        "dewey": "907.2",
+        "lcc": null,
+        "lcsh_id": "sh85010480",
+        "fast_id": null,
+        "rationale": "Provides methodological tools (epigraphy, numismatics as political propaganda) for reconstructing Republican political history."
+      },
+      {
+        "qid": "Q171251",
+        "label": "administrative law",
+        "dewey": "342",
+        "lcc": "K3400-K3431",
+        "lcsh_id": "sh85000913",
+        "fast_id": null,
+        "rationale": "Provincial administration and magisterial imperium represent political control mechanisms, making administrative law politically relevant here."
+      }
+    ],
+    "scoped_lcc": [
+      {
+        "code": "JC",
+        "label": "Political theory — General and comparative",
+        "rationale": "Covers theories of sovereignty, republicanism, and political authority directly applicable to the Roman Republic's governmental model."
+      },
+      {
+        "code": "JC319",
+        "label": "Geopolitics",
+        "rationale": "Encompasses Roman territorial expansion, hegemony over Italy, and imperial projection as political phenomena."
+      },
+      {
+        "code": "JC571",
+        "label": "Civil and political rights",
+        "rationale": "Political citizenship (civitas Romana) and its gradual extension were central political events of the Republican period."
+      },
+      {
+        "code": "JN",
+        "label": "Political institutions — Europe",
+        "rationale": "Houses scholarship on Roman Republican constitutional arrangements and their European institutional legacy."
+      },
+      {
+        "code": "DG",
+        "label": "History of Italy — Rome (Ancient)",
+        "rationale": "The primary LCC location for historical and political narrative of the Roman Republic, including senatorial politics and civil wars."
+      },
+      {
+        "code": "K",
+        "label": "Law — General",
+        "rationale": "Included selectively where law functions as a political weapon — e.g., quaestiones perpetuae and proscription legislation."
+      },
+      {
+        "code": "K3154",
+        "label": "Constitutional history and law — Ancient",
+        "rationale": "Directly relevant to the formal constitutional arrangements of the Roman Republic including the cursus honorum and tribunicia potestas."
+      }
+    ],
+    "scoped_lcsh": [
+      {
+        "lcsh_id": "sh85115114",
+        "label": "Rome — History — Republic, 510–30 B.C.",
+        "rationale": "The canonical LCSH heading precisely delimiting the political history of the Roman Republic as a discrete governmental era."
+      },
+      {
+        "lcsh_id": "sh85031326",
+        "label": "Constitutional history",
+        "rationale": "Covers the historical development of Republican constitutional structures including consuls, Senate, tribunes, and popular assemblies."
+      },
+      {
+        "lcsh_id": "sh85031329",
+        "label": "Constitutional law",
+        "rationale": "Formal legal-political framework of Republican magistracies, vetoes, and the lex as an instrument of political sovereignty."
+      },
+      {
+        "lcsh_id": "sh85026371",
+        "label": "Civil and political rights",
+        "rationale": "Citizenship extension (Social War, Latin rights) was a defining political conflict of the late Republic."
+      },
+      {
+        "lcsh_id": "sh85054192",
+        "label": "Geopolitics",
+        "rationale": "Roman Republican foreign policy, provincial creation, and interstate dominance are geopolitical expressions of political power."
+      },
+      {
+        "lcsh_id": "sh99005617",
+        "label": "Diplomatic history",
+        "rationale": "Treaties, alliances (foedera), and Roman diplomatic supremacy were political instruments of the Republic's power system."
+      },
+      {
+        "lcsh_id": "sh00005863",
+        "label": "History, Military",
+        "rationale": "Included only where military command (imperium) and triumphs functioned as political power resources, not for operational military history per se."
+      },
+      {
+        "lcsh_id": "sh99005024",
+        "label": "History",
+        "rationale": "General historical heading anchoring the Republican period's political narrative within the broader Roman historical record."
+      },
+      {
+        "lcsh_id": "sh2002012516",
+        "label": "Colonies — History",
+        "rationale": "Roman colonization was a deliberate political tool for controlling territory and extending citizen communities."
+      },
+      {
+        "lcsh_id": "sh00006030",
+        "label": "Historical geography",
+        "rationale": "The political map of Republican Rome — provincial boundaries, allied territories, and voting districts (tribus) — is essential political geography."
+      }
+    ],
+    "scoped_entities": [
+      {
+        "qid": "Q17167",
+        "label": "Roman Republic",
+        "entity_type": "polity",
+        "rationale": "The primary subject entity — an aristocratic republic representing a distinct form of government and historical political period."
+      },
+      {
+        "qid": "Q130614",
+        "label": "Roman Senate",
+        "entity_type": "institution",
+        "rationale": "The dominant political institution of the Republic, controlling foreign policy, finance, and provincial governance."
+      },
+      {
+        "qid": "Q1114821",
+        "label": "Citizens' assemblies of the Roman Republic",
+        "entity_type": "institution",
+        "rationale": "The comitia and concilium plebis were the sovereign legislative and electoral bodies expressing popular political will."
+      },
+      {
+        "qid": "Q842606",
+        "label": "Roman emperor",
+        "entity_type": "political role",
+        "rationale": "Relevant as the institutional endpoint whose emergence marks the political collapse of the Republican system."
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "entity_type": "concept",
+        "rationale": "The encompassing political civilisation within which the Republican form of government operated and evolved."
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "entity_type": "place",
+        "rationale": "The seat of Republican political institutions — Senate, Forum Romanum, and all central magistracies were located here."
+      },
+      {
+        "qid": "Q1238338",
+        "label": "Caesar's Civil War",
+        "entity_type": "event",
+        "rationale": "The defining political crisis that terminated the Republican constitution and demonstrated the failure of its power-sharing mechanisms."
+      },
+      {
+        "qid": "Q2429397",
+        "label": "Ancient Carthage",
+        "entity_type": "place/polity",
+        "rationale": "Rome's primary political and military rival, whose defeat structured Roman Republican imperialism and provincial expansion."
+      },
+      {
+        "qid": "Q4350094",
+        "label": "Deposition of Romulus Augustulus",
+        "entity_type": "event",
+        "rationale": "Marks the formal end of the Western Roman political tradition descended from the Republic, relevant as a terminal political boundary."
+      },
+      {
+        "qid": "Q6343",
+        "label": "Carthage",
+        "entity_type": "place",
+        "rationale": "The city whose political destruction (146 BCE) marked Rome's unchallenged political hegemony in the Mediterranean."
+      },
+      {
+        "qid": "Q1524",
+        "label": "Athens",
+        "entity_type": "place",
+        "rationale": "Politically significant as a model for Republican constitutional thought and as a subject of Roman political subordination after 146 BCE."
+      },
+      {
+        "qid": "Q23725",
+        "label": "Byzantium",
+        "entity_type": "place",
+        "rationale": "Relevant as a Greek polis under Republican political control and later as the site of imperial political continuity."
+      }
+    ],
+    "sfa_rationale": "The POLITICAL facet of the Roman Republic centres on its distinctive form of government — an aristocratic republic governed through the Senate, magistracies, and popular assemblies — and the political dynamics of its rise, internal contestation, and fall. The scope prioritises governance structures (constitutional history, senatorial authority, citizen assemblies), political rights (civitas, the extension of the franchise), and geopolitical power projection (provincialisation, foreign policy, civil wars) as instruments and expressions of political power. Items primarily belonging to legal doctrine, social stratification, artistic production, or military operations are excluded unless they served as direct mechanisms of political authority — such as quaestiones as political battlegrounds or military imperium as a political resource."
+  }
+}

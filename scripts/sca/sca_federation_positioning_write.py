@@ -180,6 +180,13 @@ SET p.definition   = $definition,
 RETURN p.name AS name
 """
 
+ENSURE_SUBJECT_CONCEPT_Q = """
+MERGE (sc:SubjectConcept {qid: $qid})
+ON CREATE SET sc.label = $label, sc.subject_id = $subject_id, sc.updated_at = $updated_at
+ON MATCH SET sc.label = coalesce(sc.label, $label), sc.subject_id = coalesce(sc.subject_id, $subject_id)
+RETURN sc.qid AS qid
+"""
+
 CHECK_ENTITY_Q = """
 MATCH (e:Entity {qid: $qid}) RETURN e.entity_id AS entity_id LIMIT 1
 """
@@ -302,6 +309,15 @@ def run(dry_run: bool, password: str):
                 updated_at=now)
             results["policy"] = True
             print(f"  [OK] {POLICY_REF}")
+
+            # 1b. Ensure SubjectConcept Q17167 exists (source for POSITIONED_AS)
+            print("\n[1b/4] Ensuring SubjectConcept Q17167...")
+            session.run(ENSURE_SUBJECT_CONCEPT_Q,
+                qid=DOMAIN_QID,
+                label=DOMAIN_LABEL,
+                subject_id=f"subj_{DOMAIN_QID.lower()}",
+                updated_at=now)
+            print(f"  [OK] SubjectConcept {DOMAIN_QID} ({DOMAIN_LABEL})")
 
             # 2. ClassificationAnchor nodes + POSITIONED_AS edges
             print("\n[2/4] Writing ClassificationAnchor nodes and POSITIONED_AS edges...")

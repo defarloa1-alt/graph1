@@ -1,0 +1,120 @@
+{
+  "facet": "POLITICAL",
+  "seed_qid": "Q17167",
+  "model": "claude-sonnet-4-6",
+  "proposed_at": "2026-03-02T09:39:07.369149",
+  "proposals_count": 7,
+  "output": {
+    "facet": "POLITICAL",
+    "seed_qid": "Q17167",
+    "seed_label": "Roman Republic",
+    "proposals": [
+      {
+        "proposed_label": "Roman Republican Magistracies",
+        "proposed_scope": "Covers all elected and appointed offices of the Roman Republic, including their powers (imperium, potestas), tenure rules, eligibility requirements, and the cursus honorum as a structured career path. Encompasses ordinary magistracies (consul, praetor, quaestor, aedile, censor, tribune of the plebs) and extraordinary offices (dictator, magister equitum, interrex).",
+        "evidence_basis": [
+          "DPRR: 171 distinct positions with 7342 POSITION_HELD edges; top positions by holder count include consul (677), praetor (964), quaestor (345), censor (143), dictator (69) — clear empirical density",
+          "LCC DG95 'Magistracies' is a dedicated heading within the Roman political institutions cluster",
+          "SCA resource hint explicitly names magistracies as a primary Republican constitutional structure",
+          "WorldCat titles: 'Seven Roman Statesmen of the later republic' and administrative/military governance works cluster around office-holding"
+        ],
+        "anchor_qid": "Q192496",
+        "lcc_anchor": "DG95",
+        "d12_split_recommended": true,
+        "d12_note": "Recommend splitting into two child concepts: (1) 'Ordinary Magistracies' (consul, praetor, quaestor, aedile, censor, tribune of the plebs, consul suffectus) and (2) 'Extraordinary and Promagistracies' (dictator, magister equitum, proconsul, propraetor, proquaestor, praefectus, interrex) — DPRR shows promagistrate class alone has 138+ holders and proconsul 281, crossing the >12 entity threshold per subclass; crosslink_ratio with 'Military Command' concept is estimated ≥0.3 for promagistracies specifically.",
+        "confidence": 0.97
+      },
+      {
+        "proposed_label": "Roman Senate",
+        "proposed_scope": "Covers the Senate as an institution of the Roman Republic: its composition, membership criteria, seating order, deliberative procedures (senatus consulta), relations with magistrates, and its evolving authority from the early to late Republic. Includes the role of the princeps senatus and the 'senator - office unknown' prosopographic category.",
+        "evidence_basis": [
+          "DPRR: 'senator - office unknown' is the 6th largest position category (299 holders), indicating dense prosopographic population",
+          "LCC DG99 'Senate' is a dedicated heading; SCA anchor QID Q130614 (Roman Senate) explicitly flagged as institutional anchor",
+          "LCSH sh85115114 and authority anchors BnF/GND support Senate as a top-level political institution node",
+          "WorldCat: multiple titles on Republican governance, constitutional collapse, and statesmanship center on senatorial authority"
+        ],
+        "anchor_qid": "Q130614",
+        "lcc_anchor": "DG99",
+        "d12_split_recommended": false,
+        "d12_note": "",
+        "confidence": 0.96
+      },
+      {
+        "proposed_label": "Republican Electoral Assemblies",
+        "proposed_scope": "Covers the citizens' assemblies of the Roman Republic as electoral and legislative bodies: the comitia centuriata, comitia tributa, concilium plebis, and comitia curiata. Includes voting procedures, tribal and centuriate organization, electoral law, and the role of assemblies in passing leges and plebiscita.",
+        "evidence_basis": [
+          "SCA anchor QID Q1114821 (citizens' assemblies) explicitly designated as an institutional anchor alongside the Senate",
+          "LCC DG91 'Political institutions' and DG89 'Constitution' cover assembly-based legislative and electoral structures",
+          "DPRR: 'repulsa (cos.)' (50 holders) — failed consular candidacies — is direct evidence of assembly electoral outcomes being tracked prosopographically",
+          "WorldCat: works on Roman colonization and legislative processes reference comitial authorization; 'history of revolutions in government' titles center on assembly-based political change"
+        ],
+        "anchor_qid": "Q1114821",
+        "lcc_anchor": "DG91",
+        "d12_split_recommended": false,
+        "d12_note": "",
+        "confidence": 0.92
+      },
+      {
+        "proposed_label": "Republican Constitutional Law and Governance",
+        "proposed_scope": "Covers the formal constitutional framework of the Roman Republic: the unwritten constitution, mos maiorum, distribution of powers between Senate and magistrates, edicts of magistrates (edicta magistratum), and the legal scaffolding of Republican government including public law (ius publicum) and constitutional precedent.",
+        "evidence_basis": [
+          "LCC DG89 'Constitution', DG167 'Public law', KJA2095-2100 'Roman constitutional law', and KJA285-365 'Edicta magistratum' all anchor this concept",
+          "SCA form_of_government (Q1307214, GND 4359546-7) and form_of_state (Q183039, LCC JC348-JC497) nodes explicitly pointed to constitutional structures",
+          "WorldCat: 'Violence, justice, and law in classical antiquity' and Lintott's collected papers directly address Republican constitutional law",
+          "KJA2-3660 Roman Law heading cluster reinforces a distinct legal-constitutional scope separate from social or military facets"
+        ],
+        "anchor_qid": "Q1307214",
+        "lcc_anchor": "KJA2095-2100",
+        "d12_split_recommended": false,
+        "d12_note": "",
+        "confidence": 0.89
+      },
+      {
+        "proposed_label": "Plebeian Institutions and the Struggle of the Orders",
+        "proposed_scope": "Covers specifically plebeian political institutions — tribunes of the plebs, aediles of the plebs, the concilium plebis — and the historical process of the Conflict of the Orders (494–287 BCE) through which plebeians gained political equality. Includes the Licinian-Sextian laws, the Lex Hortensia, and related constitutional milestones.",
+        "evidence_basis": [
+          "DPRR: tribunus plebis is the 3rd largest position by holder count (519 holders) and aedilis plebis has 81 holders — sufficient density to warrant a dedicated concept",
+          "LCC DG221-239 'Early Republic' and DG241-259 'Middle Republic' headings bracket the chronological span of the Struggle of the Orders",
+          "Crosslink_ratio with 'Republican Electoral Assemblies' is bounded because the concilium plebis has distinct membership and legislative outcomes (plebiscita); separate concept prevents conflation",
+          "LCSH sh85115114 and GND 4359546-7 both surface plebeian office-holding as a distinct historiographic category in Republican political history"
+        ],
+        "anchor_qid": "Q28108",
+        "lcc_anchor": "DG221-239",
+        "d12_split_recommended": false,
+        "d12_note": "",
+        "confidence": 0.87
+      },
+      {
+        "proposed_label": "Military Command and Promagistracies",
+        "proposed_scope": "Covers the extension of imperium beyond Rome and Italy through promagistracies (proconsul, propraetor, proquaestor) and the governance of military commands (provinciae). Includes the role of legati, praefecti, and military tribunes as subordinate commanders, as well as triumphs as the formal recognition of military-political achievement.",
+        "evidence_basis": [
+          "DPRR: proconsul (281 holders), propraetor (97), proquaestor (49), praefectus (132), legatus/lieutenant (463), legatus/ambassador (219), legatus/envoy (179), triumphator (260), tribunus militum (237) — combined this cluster exceeds 1700 POSITION_HELD edges, far above the >12 threshold",
+          "LCC KJA2095-2100 'Provincial command' explicitly a separate heading from magistracies proper",
+          "D12 split flagged in Magistracies proposal: promagistracy crosslink_ratio with military-political sphere estimated ≥0.3",
+          "WorldCat: 'Rome and the Mediterranean 290 to 146 BC: the imperial republic' and military administration titles confirm this as a distinct historiographic cluster"
+        ],
+        "anchor_qid": "Q183039",
+        "lcc_anchor": "KJA2095-2100",
+        "d12_split_recommended": false,
+        "d12_note": "",
+        "confidence": 0.91
+      },
+      {
+        "proposed_label": "Late Republican Political Crisis and Factional Politics",
+        "proposed_scope": "Covers the political breakdown of Republican institutions in the late Republic (c. 133–27 BCE), including tribunician radicalism (Gracchi), proscriptions, extra-constitutional commands, factional violence, civil wars, and transitional arrangements (triumvirates, dictatorship of Caesar). Distinct from military command in focusing on constitutional rupture and political agency.",
+        "evidence_basis": [
+          "LCC DG261-269 'Late Republic' is a dedicated chronological-political heading",
+          "WorldCat: 'The collapse of the Roman Republic', 'A history of exile in the Roman Republic', 'An history of the revolutions that happened in the government of the Roman republic' — multiple titles cluster around this theme",
+          "DPRR: 'repulsa (cos.)' (50 holders) and triumvir coloniis deducendis (67 holders) reflect late Republican political mechanisms tracked prosopographically",
+          "SCA anchor QIDs include Q17167 (Roman Republic overall) and Q183039; the political crisis period warrants scoped separation to avoid entity sprawl across the full 509–27 BCE span"
+        ],
+        "anchor_qid": "Q190926",
+        "lcc_anchor": "DG261-269",
+        "d12_split_recommended": false,
+        "d12_note": "",
+        "confidence": 0.85
+      }
+    ],
+    "sfa_notes": "The DPRR magistracy data is the primary driver of concept granularity here: with 7342 edges across 171 positions, a single 'Roman Magistracies' node would violate the D12 >12 threshold and the promagistracy cluster warrants full separation given its crosslink_ratio with military command themes. The boundary between 'Military Command and Promagistracies' (POLITICAL facet) and any future MILITARY facet SubjectConcept must be carefully managed — the POLITICAL facet should retain promagistracies as constitutional-political mechanisms while a MILITARY facet would own tactical command and army organization. The 'Plebeian Institutions' concept carries some risk of overlap with 'Republican Electoral Assemblies' (shared concilium plebis entities), but the historical-institutional distinctiveness of the Struggle of the Orders justifies separation; crosslink edges between these two concepts should be explicitly modeled as NARROWER_THAN or RELATED_TO rather than collapsed."
+  }
+}

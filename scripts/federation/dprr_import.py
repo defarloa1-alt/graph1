@@ -444,7 +444,7 @@ def run_neo4j_import(
             year = post.get("year", "")
             session.run("""
                 MATCH (e:Entity {qid: $qid})
-                MERGE (o:Position {label: $office})
+                MERGE (o:Position {dprr_office_id: toInteger($office)})
                 ON CREATE SET o.office_uri = 'http://romanrepublic.ac.uk/rdf/office/' + $office,
                               o.source = 'dprr'
                 MERGE (e)-[r:POSITION_HELD]->(o)
@@ -576,7 +576,7 @@ def run_neo4j_import_group_c_posts(
             result = session.run(
                 """
                 MATCH (e:Entity {dprr_uri: $dprr_uri})
-                MERGE (o:Position {label: $office})
+                MERGE (o:Position {dprr_office_id: toInteger($office)})
                 ON CREATE SET o.office_uri = 'http://romanrepublic.ac.uk/rdf/office/' + $office,
                               o.source = 'dprr'
                 MERGE (e)-[r:POSITION_HELD]->(o)

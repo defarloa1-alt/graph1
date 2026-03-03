@@ -11,9 +11,9 @@
 | Topic | Entries |
 |-------|---------|
 | Schema / node model | D-003, D-004, D-007, D-008, D-022, D-028, D-038 |
-| Federation | D-006, D-014, D-022, D-023, D-037 |
+| Federation | D-006, D-014, D-022, D-023, D-037, D-039 |
 | Pipeline / harvester | D-009, D-010, D-011 |
-| Agent architecture (SCA/SFA) | D-012, D-013 |
+| Agent architecture (SCA/SFA) | D-012, D-013, D-039 |
 | Temporal model | D-005, D-015 |
 | Self-describing subgraph | D-016, D-017, D-018, D-026, D-029 |
 | Graph cleanup | D-001, D-002, D-015, D-027 |
@@ -25,10 +25,26 @@
 | D6/D7 threshold refactor | D-032 |
 | D10/D8 claim promotion + SFA confidence | D-033 |
 | Game of Life → backlog | D-037 |
+| SFA→graph mapping / D9 constitution | D-040 |
 
 ---
 
 ## Entries
+
+---
+
+### D-040 — SFA Export → Graph Mapping; D9 Constitution Layer
+
+**Date:** 2026-03-02  
+**Status:** Decided — spec drafted  
+**Context:** SFA QID Explorer produces 36 schema nodes (7 disciplines, 7 LCC, 10 LCSH, 12 entities), 859 bibliography entries, and a scope rationale. D9 (`DETERMINE_SFA_constitution_layer`) exists with `status: 'placeholder'` and note "Full facet-to-constitution mapping TBD." The SFA export is the raw material that fills that placeholder.  
+**Decision:**  
+1. **No new node types.** Every SFA export item maps to existing Chrystallum types: disciplines → `Discipline`, LCC → `LCC_Class`, LCSH → `LCSH_Heading`, entities → `Organization` / `Place` / `Event` / `Position`.  
+2. **SubjectConcept wiring is Step 3.** The graph has 61 SubjectConcepts. Disciplines and LCSH provide *scholarly framing* for SubjectConcepts — they do not replace them. "Constitutional history" (discipline) frames "Government & Constitutional Structure" (SubjectConcept); the relationship is the facet's interpretive framework.  
+3. **Relationship grammar exists.** 20 POLITICAL relationship types in SYS_RelationshipType, 25 Wikidata property mappings. The SFA maps which verb combinations are valid within the facet's scope boundary.  
+4. **Scope rationale drives D5/D8.** The "unless" clause ("Items primarily belonging to legal doctrine... are excluded UNLESS they served as direct mechanisms of political authority") is the boundary-case decision logic for D5 (scope match) and D8 (facet assignment).  
+**Rationale:** D9 was waiting for this. The export consolidates into a proposed schema; the constitution layer is the graph representation of that schema.  
+**Consequences:** docs/architecture/D9_SFA_CONSTITUTION_SPEC.md; LLM export extended with subject_concept_wiring; D9 table structure sketched for implementation.
 
 ---
 
@@ -439,4 +455,31 @@
 
 **Alternatives considered:** Keep `Office` label (domain-specific, not Wikidata-aligned); create `Institution` as distinct node type (no clear domain need now).  
 **Rationale:** P39 alignment makes Position nodes interoperable with Wikidata harvest pipelines. Single `Organization` type with `org_type` discriminator is simpler than three overlapping collective-entity types (Institution / Organization / Position) with no populated nodes.  
-**Consequences:** All 171 former Office nodes are now `Position`. POSITION_HELD edges unchanged. Index created on `Position.label` and `Position.office_uri`. Future Organization population (Senate, Legions, Colleges) will use `org_type` to discriminate. Enrichment script ready but blocked on DPRR access.
+**Consequences:** All 171 former Office nodes are now `Position`. POSITION_HELD edges unchanged. Index created on `Position.label` and `Position.office_uri`. Future Organization population (Senate, Legions, Colleges) will use `org_type` to discriminate.
+
+**Update (2026-03-01):** DPRR SPARQL blocker resolved via static extraction. Fetched full DPRR Turtle dump from `gillisandrew/dprr-mcp` (GitHub), parsed 204 office `rdfs:label` entries into `scripts/federation/dprr_office_labels.json`. Enrichment script updated to load static JSON by default (`--live` flag for SPARQL fallback). All 171 Position nodes enriched with `label_name` (0 missing). Key labels: consul=3, quaestor=5, augur=16, tribunus plebis=17, praetor=42, proconsul=197, pontifex=8.
+
+**Update (2026-03-02):** Property naming corrected to match graph convention. `label` was holding the numeric DPRR office ID (e.g., "3") — inconsistent with all other entity types where `label` = human-readable name. Fix: `dprr_office_id` (integer) added to hold the numeric ID; `label` now holds the human name (e.g., "consul"); `label_name` property removed. MERGE key in `dprr_import.py` updated from `{label}` to `{dprr_office_id}`. `enrich_position_labels.py` updated to match on `dprr_office_id` and SET `label`. All 171 nodes migrated.
+
+---
+
+### D-039 — Works Layer Architecture and SFA_INDEX_READER Pipeline
+
+**Date:** 2026-03-01  
+**Status:** Spec complete; implementation Phase D  
+**Context:** SFA_INDEX_READER_Spec_v1 established the full architecture for extracting structured claims from scholarly book indexes (photographs/OCR). A 20-page index yields ~1,750 structured claims with page-level provenance. The spec requires a Works layer (currently 0 Work nodes) and a bibliographic enrichment pipeline. OpenAlex secondary scholarship discussion prompted review of how these sources fit together.
+
+**Decision:**  
+1. **Works layer** will be built in Phase D, not before SubjectConcepts and SCA/SFA framework are defined. Works are the evidence corpus for claim-making — they require the claim layer to exist first.  
+2. **Bibliographic pipeline** (for the Index Reader's step 3.1 source identification): Open Syllabus → Open Library → OpenAlex → VIAF → Wikidata. This runs before any index parsing to enrich the Work node.  
+3. **Four new SYS_FederationSource nodes** registered as `planned / phase=D`: Open Syllabus, Open Library, OpenAlex, Perseus Digital Library.  
+4. **15 new SYS_RelationshipType entries** added for Index Reader relationship kernel (ALLIED_WITH, SUPPORTER_OF, DECLARED_HOSTIS, PROSCRIBED, SERVED_UNDER, DESCENDANT_OF, MARRIED_INTO, HAS_LINEAGE, HELD_PRIESTHOOD, SUBJECT_OF_WORK, INVOLVED_IN_EVENT, TAUGHT_WITH, CITES, AUTHORED_BY, EVIDENCED_IN).  
+5. **SFA_INDEX_READER agent node** registered with status=spec_only, confidence_ceiling=0.82.  
+6. **Primary vs secondary source split**: Ancient primary sources (Livy, Polybius, Cicero) via Wikidata + Perseus CTS URNs. Secondary scholarship via OpenAlex (free, concept-filtered). Open Syllabus requires data access agreement.  
+7. **Priority works**: Syme *Roman Revolution* (Q2163013) = CRITICAL; Broughton *MRR* (Q12060973) = HIGH (dedicated sub-parser needed; MRR is effectively a structured database); Gruen, Badian, Lintott, CAH vols. 8-9 = HIGH/MEDIUM.
+
+**Key insight:** The POSITION_HELD edges with `year` property (7,342 edges, built from DPRR) are the entity resolution backbone for the Index Reader. "(cos. 46 B.C.)" = compound key: POSITION_HELD where label=3 (consul) AND year=-46. This is already in the graph.
+
+**Alternatives considered:** OpenAlex snapshot (330GB compressed) — rejected in favour of API for targeted Roman Republic concept filtering. Open Syllabus as immediate pipeline entry — blocked on data access agreement.  
+**Rationale:** Works layer requires SubjectConcepts and SFAs to be useful. Building evidence before the claim infrastructure is ready creates orphaned nodes. The spec is complete and the infrastructure is registered; implementation waits on Phase B/C completion.  
+**Consequences:** 17 SYS_FederationSource total (was 13). 95 SYS_RelationshipType total (was 80). SFA_INDEX_READER agent node registered. No Work nodes yet. Apply for Open Syllabus data access when Phase C is underway.

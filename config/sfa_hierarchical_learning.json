@@ -1,0 +1,64 @@
+{
+  "description": "SFA hierarchical learning: top-level anchors and traversal properties. SFA reiterates step 1 for each anchor.",
+  "subject_qid": "Q17167",
+  "subject_label": "Roman Republic",
+
+  "learning_anchors": [
+    {
+      "qid": "Q1307214",
+      "label": "form of government",
+      "property": "P31",
+      "anchor_type": "FormOfGovernment",
+      "order": 1
+    },
+    {
+      "qid": "Q11514315",
+      "label": "historical period",
+      "property": "P31",
+      "anchor_type": "HistoricalPeriod",
+      "order": 2
+    },
+    {
+      "qid": "Q3024240",
+      "label": "historical country",
+      "property": "P31",
+      "anchor_type": "HistoricalCountry",
+      "order": 3
+    },
+    {
+      "qid": "Q666680",
+      "label": "aristocratic republic",
+      "property": "P122",
+      "anchor_type": "FormOfGovernmentType",
+      "order": 4
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "property": "P361",
+      "anchor_type": "CivilisationContext",
+      "order": 5
+    },
+    {
+      "qid": "Q48349",
+      "label": "empire",
+      "property": "P31",
+      "anchor_type": "FormOfGovernment",
+      "order": 6
+    }
+  ],
+
+  "traversal_properties": {
+    "up": ["P31", "P279", "P361"],
+    "down": ["P527", "P150"],
+    "succession": ["P155", "P156"],
+    "type_anchor": ["P122"]
+  },
+
+  "traversal_properties_flat": ["P31", "P279", "P361", "P527", "P150", "P155", "P156", "P122"],
+
+  "p31_denylist": ["Q4167836"],
+
+  "max_hops_per_anchor": 4,
+  "max_nodes_per_anchor": 200
+}

@@ -1,0 +1,591 @@
+{
+  "total": 25,
+  "by_flag": {
+    "DQ_WRONG_ENTITY_TYPE": [
+      {
+        "entity_id": "person_q6501000",
+        "entity_cipher": "ent_per_Q6501000",
+        "qid": "Q6501000",
+        "label": "Chang'an",
+        "entity_type": "PERSON",
+        "p31_targets": [
+          {
+            "label": "archaeological site",
+            "qid": "Q839954"
+          }
+        ],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q20717624",
+        "entity_cipher": "ent_per_Q20717624",
+        "qid": "Q20717624",
+        "label": "Derbe",
+        "entity_type": "PERSON",
+        "p31_targets": [
+          {
+            "label": "archaeological site",
+            "qid": "Q839954"
+          }
+        ],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q114353657",
+        "entity_cipher": "ent_per_Q114353657",
+        "qid": "Q114353657",
+        "label": "Human",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q155552",
+        "entity_cipher": "ent_per_Q155552",
+        "qid": "Q155552",
+        "label": "Mediterranean Region",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q112437254",
+        "entity_cipher": "ent_per_Q112437254",
+        "qid": "Q112437254",
+        "label": "Nisibis",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q1136681",
+        "entity_cipher": "ent_per_Q1136681",
+        "qid": "Q1136681",
+        "label": "Seleucia",
+        "entity_type": "PERSON",
+        "p31_targets": [
+          {
+            "label": "archaeological site",
+            "qid": "Q839954"
+          },
+          {
+            "label": "ancient city",
+            "qid": "Q15661340"
+          }
+        ],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "PLACE"
+      },
+      {
+        "entity_id": "person_q4155679",
+        "entity_cipher": "ent_per_Q4155679",
+        "qid": "Q4155679",
+        "label": "Twelve Apostles",
+        "entity_type": "PERSON",
+        "p31_targets": [
+          {
+            "label": "group of humans",
+            "qid": "Q16334295"
+          }
+        ],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q1396807",
+        "entity_cipher": "ent_per_Q1396807",
+        "qid": "Q1396807",
+        "label": "Tychicus",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q1549591",
+        "entity_cipher": "ent_per_Q1549591",
+        "qid": "Q1549591",
+        "label": "big city",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q515",
+        "entity_cipher": "ent_per_Q515",
+        "qid": "Q515",
+        "label": "city",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q55208590",
+        "entity_cipher": "ent_per_Q55208590",
+        "qid": "Q55208590",
+        "label": "extinct human group",
+        "entity_type": "PERSON",
+        "p31_targets": [
+          {
+            "label": "group of humans",
+            "qid": "Q16334295"
+          }
+        ],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q1156970",
+        "entity_cipher": "ent_per_Q1156970",
+        "qid": "Q1156970",
+        "label": "humanity",
+        "entity_type": "PERSON",
+        "p31_targets": [
+          {
+            "label": "group of humans",
+            "qid": "Q16334295"
+          }
+        ],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q2088005",
+        "entity_cipher": "ent_per_Q2088005",
+        "qid": "Q2088005",
+        "label": "list of mayors of Rome",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q6581097",
+        "entity_cipher": "ent_per_Q6581097",
+        "qid": "Q6581097",
+        "label": "male",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q18387795",
+        "entity_cipher": "ent_per_Q18387795",
+        "qid": "Q18387795",
+        "label": "perspective-taking",
+        "entity_type": "PERSON",
+        "p31_targets": [
+          {
+            "label": "human behavior",
+            "qid": "Q3769299"
+          }
+        ],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q7281",
+        "entity_cipher": "ent_per_Q7281",
+        "qid": "Q7281",
+        "label": "propaganda",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      },
+      {
+        "entity_id": "person_q48841461",
+        "entity_cipher": "ent_per_Q48841461",
+        "qid": "Q48841461",
+        "label": "\u0141acina",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+        "suggested_entity_type": "CONCEPT"
+      }
+    ],
+    "DQ_UNRESOLVED_PERSONHOOD": [
+      {
+        "entity_id": "person_q165170",
+        "entity_cipher": "ent_per_Q165170",
+        "qid": "Q165170",
+        "label": "Europa",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_UNRESOLVED_PERSONHOOD",
+        "suggested_entity_type": null
+      },
+      {
+        "entity_id": "person_q1242632",
+        "entity_cipher": "ent_per_Q1242632",
+        "qid": "Q1242632",
+        "label": "Remus",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_UNRESOLVED_PERSONHOOD",
+        "suggested_entity_type": null
+      },
+      {
+        "entity_id": "person_q2186",
+        "entity_cipher": "ent_per_Q2186",
+        "qid": "Q2186",
+        "label": "Romulus",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_UNRESOLVED_PERSONHOOD",
+        "suggested_entity_type": null
+      }
+    ],
+    "DQ_MISSING_P31": [
+      {
+        "entity_id": "person_q43399",
+        "entity_cipher": "ent_per_Q43399",
+        "qid": "Q43399",
+        "label": "Andrew the Apostle",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_MISSING_P31",
+        "suggested_entity_type": null
+      },
+      {
+        "entity_id": "person_q468859",
+        "entity_cipher": "ent_per_Q468859",
+        "qid": "Q468859",
+        "label": "Aristarchus of Thessalonica",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_MISSING_P31",
+        "suggested_entity_type": null
+      },
+      {
+        "entity_id": "person_q466687",
+        "entity_cipher": "ent_per_Q466687",
+        "qid": "Q466687",
+        "label": "Damaris",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_MISSING_P31",
+        "suggested_entity_type": null
+      },
+      {
+        "entity_id": "person_q23581940",
+        "entity_cipher": "ent_per_Q23581940",
+        "qid": "Q23581940",
+        "label": "Saint Peter's mother-in-law",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_MISSING_P31",
+        "suggested_entity_type": null
+      },
+      {
+        "entity_id": "person_q312376",
+        "entity_cipher": "ent_per_Q312376",
+        "qid": "Q312376",
+        "label": "Silas",
+        "entity_type": "PERSON",
+        "p31_targets": [],
+        "dq_flag": "DQ_MISSING_P31",
+        "suggested_entity_type": null
+      }
+    ]
+  },
+  "classified": [
+    {
+      "entity_id": "person_q43399",
+      "entity_cipher": "ent_per_Q43399",
+      "qid": "Q43399",
+      "label": "Andrew the Apostle",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_MISSING_P31",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q468859",
+      "entity_cipher": "ent_per_Q468859",
+      "qid": "Q468859",
+      "label": "Aristarchus of Thessalonica",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_MISSING_P31",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q6501000",
+      "entity_cipher": "ent_per_Q6501000",
+      "qid": "Q6501000",
+      "label": "Chang'an",
+      "entity_type": "PERSON",
+      "p31_targets": [
+        {
+          "label": "archaeological site",
+          "qid": "Q839954"
+        }
+      ],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q466687",
+      "entity_cipher": "ent_per_Q466687",
+      "qid": "Q466687",
+      "label": "Damaris",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_MISSING_P31",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q20717624",
+      "entity_cipher": "ent_per_Q20717624",
+      "qid": "Q20717624",
+      "label": "Derbe",
+      "entity_type": "PERSON",
+      "p31_targets": [
+        {
+          "label": "archaeological site",
+          "qid": "Q839954"
+        }
+      ],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q165170",
+      "entity_cipher": "ent_per_Q165170",
+      "qid": "Q165170",
+      "label": "Europa",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_UNRESOLVED_PERSONHOOD",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q114353657",
+      "entity_cipher": "ent_per_Q114353657",
+      "qid": "Q114353657",
+      "label": "Human",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q155552",
+      "entity_cipher": "ent_per_Q155552",
+      "qid": "Q155552",
+      "label": "Mediterranean Region",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q112437254",
+      "entity_cipher": "ent_per_Q112437254",
+      "qid": "Q112437254",
+      "label": "Nisibis",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q1242632",
+      "entity_cipher": "ent_per_Q1242632",
+      "qid": "Q1242632",
+      "label": "Remus",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_UNRESOLVED_PERSONHOOD",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q2186",
+      "entity_cipher": "ent_per_Q2186",
+      "qid": "Q2186",
+      "label": "Romulus",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_UNRESOLVED_PERSONHOOD",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q23581940",
+      "entity_cipher": "ent_per_Q23581940",
+      "qid": "Q23581940",
+      "label": "Saint Peter's mother-in-law",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_MISSING_P31",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q1136681",
+      "entity_cipher": "ent_per_Q1136681",
+      "qid": "Q1136681",
+      "label": "Seleucia",
+      "entity_type": "PERSON",
+      "p31_targets": [
+        {
+          "label": "archaeological site",
+          "qid": "Q839954"
+        },
+        {
+          "label": "ancient city",
+          "qid": "Q15661340"
+        }
+      ],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "PLACE"
+    },
+    {
+      "entity_id": "person_q312376",
+      "entity_cipher": "ent_per_Q312376",
+      "qid": "Q312376",
+      "label": "Silas",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_MISSING_P31",
+      "suggested_entity_type": null
+    },
+    {
+      "entity_id": "person_q4155679",
+      "entity_cipher": "ent_per_Q4155679",
+      "qid": "Q4155679",
+      "label": "Twelve Apostles",
+      "entity_type": "PERSON",
+      "p31_targets": [
+        {
+          "label": "group of humans",
+          "qid": "Q16334295"
+        }
+      ],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q1396807",
+      "entity_cipher": "ent_per_Q1396807",
+      "qid": "Q1396807",
+      "label": "Tychicus",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q1549591",
+      "entity_cipher": "ent_per_Q1549591",
+      "qid": "Q1549591",
+      "label": "big city",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q515",
+      "entity_cipher": "ent_per_Q515",
+      "qid": "Q515",
+      "label": "city",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q55208590",
+      "entity_cipher": "ent_per_Q55208590",
+      "qid": "Q55208590",
+      "label": "extinct human group",
+      "entity_type": "PERSON",
+      "p31_targets": [
+        {
+          "label": "group of humans",
+          "qid": "Q16334295"
+        }
+      ],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q1156970",
+      "entity_cipher": "ent_per_Q1156970",
+      "qid": "Q1156970",
+      "label": "humanity",
+      "entity_type": "PERSON",
+      "p31_targets": [
+        {
+          "label": "group of humans",
+          "qid": "Q16334295"
+        }
+      ],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q2088005",
+      "entity_cipher": "ent_per_Q2088005",
+      "qid": "Q2088005",
+      "label": "list of mayors of Rome",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q6581097",
+      "entity_cipher": "ent_per_Q6581097",
+      "qid": "Q6581097",
+      "label": "male",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q18387795",
+      "entity_cipher": "ent_per_Q18387795",
+      "qid": "Q18387795",
+      "label": "perspective-taking",
+      "entity_type": "PERSON",
+      "p31_targets": [
+        {
+          "label": "human behavior",
+          "qid": "Q3769299"
+        }
+      ],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q7281",
+      "entity_cipher": "ent_per_Q7281",
+      "qid": "Q7281",
+      "label": "propaganda",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    },
+    {
+      "entity_id": "person_q48841461",
+      "entity_cipher": "ent_per_Q48841461",
+      "qid": "Q48841461",
+      "label": "\u0141acina",
+      "entity_type": "PERSON",
+      "p31_targets": [],
+      "dq_flag": "DQ_WRONG_ENTITY_TYPE",
+      "suggested_entity_type": "CONCEPT"
+    }
+  ]
+}

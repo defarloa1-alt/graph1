@@ -17,6 +17,7 @@ python-dotenv==1.0.0
 
 # Utilities
 pydantic>=2.7.4
+ijson>=3.2.0  # Streaming JSON for large aligned files (build_adjacency_matrix)
 
 # MCP HTTP transport (D-034)
 fastapi>=0.100.0
