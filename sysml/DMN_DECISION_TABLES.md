@@ -24,6 +24,9 @@
 | D12 | SubjectConcept split trigger | SubjectConcept split logic | crosslink_ratio_split, level2_child_overload |
 | D13 | SFA drift alert | SFA drift detector | facet_drift_alert |
 | D14 | entity resolution acceptance | claim_ingestion_pipeline.py | entity_resolution_confidence, entity_resolution_fuzzy, entity_resolution_similarity_min; EntityResolutionFallback |
+| D15 | person label application | adr007_apply_person_label.py | — (gate logic: dprr_id, P31 targets, entity_id prefix) |
+| D16 | conflict type classification | person_harvest_agent.py (Layer 2) | — (taxonomy: Types 1–4 per ADR-007 §7.1) |
+| D17 | conflict resolution (Type 4) | person_harvest_agent.py (Layer 2) | claim_promotion_confidence_ancient_person; source_authority_tier per ADR-007 §8 |
 
 ---
 
@@ -214,7 +217,7 @@
 
 ## D10 DETERMINE claim promotion eligibility
 
-**Purpose:** Decide whether a claim can be auto-promoted to asserted, or requires human approval.
+**Purpose:** Decide whether a claim can be auto-promoted to asserted, or requires human approval. Supports domain-scoped threshold override for ancient persons (ADR-007 §7.4).
 
 **Inputs:**
 
@@ -224,20 +227,24 @@
 | posterior_probability | Real [0,1] | Bayesian posterior (if computed) |
 | review_count | Integer | Number of human reviews |
 | ApprovalRequired | Boolean | SYS_Policy active (gate condition) |
+| domain_scope | String \| null | `ancient_person` if Person has IN_PERIOD → Periodo_Period with end_date before year 0; null otherwise |
 
 **Output:** `promote: Boolean`, `reason: String`
 
 **Hit policy:** FIRST
 
-**SYS_Threshold:** claim_promotion_confidence (0.90), claim_promotion_posterior (0.90)  
+**SYS_Threshold:** claim_promotion_confidence (0.90), claim_promotion_posterior (0.90), claim_promotion_confidence_ancient_person (0.75)
 **SYS_Policy:** ApprovalRequired
 
-| # | ApprovalRequired | confidence | posterior_probability | review_count | promote | reason |
-|---|-----------------|------------|----------------------|--------------|---------|--------|
-| 1 | TRUE | — | — | — | FALSE | ApprovalRequired gate |
-| 2 | FALSE | < claim_promotion_confidence | — | — | FALSE | Below confidence |
-| 3 | FALSE | — | < claim_promotion_posterior | — | FALSE | Below posterior |
-| 4 | FALSE | ≥ | ≥ | ≥ 0 | TRUE | Auto-promote |
+| # | ApprovalRequired | domain_scope | confidence | posterior_probability | review_count | promote | reason |
+|---|-----------------|--------------|------------|----------------------|--------------|---------|--------|
+| 1 | TRUE | — | — | — | — | FALSE | ApprovalRequired gate |
+| 2 | FALSE | `ancient_person` | < claim_promotion_confidence_ancient_person | — | — | FALSE | Below ancient person confidence (0.75) |
+| 3 | FALSE | null | < claim_promotion_confidence | — | — | FALSE | Below confidence (0.90) |
+| 4 | FALSE | — | — | < claim_promotion_posterior | — | FALSE | Below posterior |
+| 5 | FALSE | — | ≥ (scoped) | ≥ | ≥ 0 | TRUE | Auto-promote |
+
+**ADR-007 §7.4 rationale:** The global 0.90 threshold was calibrated for modern, well-documented entities. It is too high for ancient persons where even primary sources rarely support 0.90 confidence on birth years and office dates. The domain-scoped override (0.75) calibrates the threshold to what the historical evidence can actually support.
 
 ---
 
@@ -350,9 +357,125 @@
 
 ---
 
+## D15 DETERMINE person label application
+
+**Purpose:** Decide whether a node receives the `:Person` label per ADR-007 §2. Three gates (any sufficient) plus a veto condition. Applied during Phase 1 of person schema implementation.
+
+**ADR:** ADR-007 §2
+
+**Inputs:**
+
+| Input | Type | Source |
+|-------|------|--------|
+| dprr_id | String \| null | Node property |
+| p31_targets | String[] | Labels of P31 target nodes |
+| entity_id_prefix | String | First 7 chars of entity_id |
+| entity_type | String | Node property |
+| has_non_human_p31 | Boolean | EXISTS { (n)-[:P31]->(m) WHERE m.label <> 'human' AND n.dprr_id IS NULL } |
+
+**Output:** `apply_person_label: Boolean`, `apply_mythological: Boolean`, `dq_flag: String | null`
+
+**Hit policy:** FIRST
+
+| # | dprr_id | p31_targets | entity_id_prefix | entity_type | has_non_human_p31 | apply_person_label | apply_mythological | dq_flag |
+|---|---------|-------------|------------------|-------------|-------------------|--------------------|--------------------|---------|
+| 1 | — | — | — | — | TRUE | FALSE | FALSE | DQ_WRONG_ENTITY_TYPE |
+| 2 | NOT NULL | — | — | — | FALSE | TRUE | FALSE | — |
+| 3 | NULL | includes 'human' | 'person_' | — | FALSE | TRUE | FALSE | — |
+| 4 | NULL | includes 'human' | NOT 'person_' | 'CONCEPT' | FALSE | TRUE | FALSE | — |
+| 5 | NULL | empty | — | — | FALSE | FALSE | TRUE | DQ_UNRESOLVED_PERSONHOOD |
+| 6 | — | — | — | — | — | FALSE | FALSE | DQ_MISSING_P31 |
+
+**Notes:**
+- Row 1 is the veto — fires regardless of other gates if P31 resolves to non-human and no DPRR authority
+- Row 2 is Gate A (DPRR authority — 4,772 nodes)
+- Row 3 is Gate B (Wikidata-confirmed human in person_ namespace — 377 nodes)
+- Row 4 is Gate C (namespace leak repair — concept_ entities with P31→human)
+- Row 5 catches Romulus/Remus/Europa (no P31, no DPRR, but valid mythological)
+- Row 6 is the fallback for biblical persons pending P31 re-fetch
+
+---
+
+## D16 DETERMINE conflict type classification
+
+**Purpose:** Classify disagreements between federation sources into one of four types, each with a distinct resolution action. Only Type 4 requires human escalation. Applied by PersonReasoningAgent (Layer 2) during person harvest.
+
+**ADR:** ADR-007 §7.1
+
+**Inputs:**
+
+| Input | Type | Source |
+|-------|------|--------|
+| source_a_value | Any | Value from Source A for the attribute |
+| source_b_value | Any \| null | Value from Source B (null = silence) |
+| source_a_precision | Integer | Date precision or value specificity of A |
+| source_b_precision | Integer \| null | Date precision or value specificity of B |
+| source_b_covers_attribute | Boolean | Whether Source B's domain includes this attribute |
+| values_overlap | Boolean | Whether A and B ranges/values intersect |
+
+**Output:** `conflict_type: Integer (1–4)`, `agent_action: String`
+
+**Hit policy:** FIRST
+
+| # | source_b_value | source_b_covers_attribute | source_b_precision vs source_a_precision | values_overlap | conflict_type | agent_action |
+|---|---------------|---------------------------|------------------------------------------|----------------|---------------|-------------|
+| 1 | null | FALSE | — | — | 2 (Silence) | Write A; silence is not contradiction |
+| 2 | null | TRUE | — | — | 2 (Silence) | Write A; flag genuine absence |
+| 3 | NOT null | — | B > A | — | 1 (Precision gap) | Accept B; both as provenance |
+| 4 | NOT null | — | A > B | — | 1 (Precision gap) | Accept A; both as provenance |
+| 5 | NOT null | TRUE | — | TRUE | 3 (Soft conflict) | Compute intersection; write as range |
+| 6 | NOT null | TRUE | — | FALSE | 4 (Hard conflict) | Resolution ladder (D17) |
+
+---
+
+## D17 DETERMINE conflict resolution (Type 4 hard conflicts)
+
+**Purpose:** 4-step escalation ladder for Type 4 hard conflicts where non-overlapping values come from sources that both cover the attribute. Applied by PersonReasoningAgent (Layer 2), with Step 4 deferred to human review.
+
+**ADR:** ADR-007 §7.2
+
+**Inputs:**
+
+| Input | Type | Source |
+|-------|------|--------|
+| source_a_tier | String | primary / secondary_academic / secondary_populist / tertiary |
+| source_b_tier | String | Same enum |
+| tiebreaker_source_value | Any \| null | Value from a third federation source (if available) |
+| tiebreaker_agrees_with | String \| null | 'A' or 'B' or null |
+
+**Output:** `resolution: String`, `candidate_claim: String`, `challenger_claim: String`, `escalate_to_human: Boolean`
+
+**Hit policy:** FIRST
+
+| # | source_a_tier vs source_b_tier | tiebreaker_source_value | tiebreaker_agrees_with | resolution | escalate_to_human |
+|---|-------------------------------|------------------------|------------------------|------------|-------------------|
+| 1 | A outranks B | — | — | A is candidate; B writes CHALLENGES_CLAIM | FALSE |
+| 2 | B outranks A | — | — | B is candidate; A writes CHALLENGES_CLAIM | FALSE |
+| 3 | Same tier | NOT null | 'A' | A is candidate (2-against-1 majority) | FALSE |
+| 4 | Same tier | NOT null | 'B' | B is candidate (2-against-1 majority) | FALSE |
+| 5 | Same tier | null | — | Both Proposed / Under Review; write ConflictNote | TRUE |
+| 6 | Same tier | NOT null | null (disagrees with both) | Both Proposed / Under Review; write ConflictNote | TRUE |
+
+**Authority tier ranking (ADR-007 §8):**
+- `primary` (DPRR for persons, Trismegistos for attested, Nomisma for numismatic) > `secondary_academic` (VIAF, FAST/LC, Trismegistos, LGPN) > `secondary_populist` (Wikidata) > `tertiary`
+- Tier is attribute-level, not source-global — DPRR outranks Wikidata on offices but Wikidata may be more current on cross-IDs
+
+**ConflictNote structure (written at Step 5/6):**
+- `conflict_type: 'hard'`
+- `attributes_in_dispute: String[]`
+- `sources_involved: String[]`
+- `tiebreaker_needed: Boolean`
+- `resolution_status: 'PENDING'`
+- `ocd_applicable: Boolean` (OCD reserved slot may resolve later)
+
+---
+
 ## Implementation notes
 
 1. **Read from graph:** Scripts should query SYS_Threshold and SYS_Policy by name; do not hardcode values.
 2. **FORBIDDEN_FACETS:** Both sca_agent.py and subject_concept_facet_agents.py should read NoTemporalFacet, NoClassificationFacet (and equivalents for PATRONAGE, GENEALOGICAL) from graph.
 3. **D14 match-type thresholds:** Consider adding entity_resolution_near_exact (0.92), entity_resolution_abbreviation (0.95), entity_resolution_semantic (0.92) to SYS_Threshold for full externalisation.
 4. **D9 constitution mapping:** Per-facet constitution doc set to be designed; may use SYS_FacetConstitution or similar node type.
+5. **D10 domain_scope:** PersonHarvestExecutor must check IN_PERIOD → Periodo_Period end_date to determine domain_scope before evaluating D10. The ancient_person threshold (0.75) must be registered as SYS_Threshold `claim_promotion_confidence_ancient_person`.
+6. **D15 person label gate:** Applied as a batch operation during Phase 1; idempotent — re-running does not duplicate labels.
+7. **D16/D17 conflict resolution:** Applied by PersonReasoningAgent during Layer 2 reasoning. Outputs are recorded in the PersonHarvestPlan, not executed directly. Execution happens in Layer 3 (PersonHarvestExecutor Step 11).

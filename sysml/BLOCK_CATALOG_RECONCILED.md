@@ -1,11 +1,12 @@
 # Chrystallum — SysML Block Catalog (Reconciled)
 
-**Version:** 1.1  
-**Date:** 2026-02-25  
-**Target:** Visual Paradigm 17.3, SysML v1.6  
-**Status:** Current  
-**Supersedes:** `Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md`  
+**Version:** 1.2
+**Date:** 2026-03-03
+**Target:** Visual Paradigm 17.3, SysML v1.6
+**Status:** Current
+**Supersedes:** v1.1 (2026-02-25)
 **Source of truth:** `DECISIONS.md` (all changes traceable to a decision entry)
+**ADR alignment:** ADR-007 (Person Node Schema), ADR-008 (Person Harvest Agent)
 
 ---
 
@@ -27,6 +28,17 @@
 | ToolingSubsystem + ChrystallumMCPServer added | D-031 | MCP read-only server for policy/threshold; FORBIDDEN_FACETS refactor |
 | ChrystallumMCPServer Phase 2: run_cypher_readonly, HTTP | D-034 | get_federation_sources, get_subject_concepts, read-only Cypher; Claude.ai connector |
 | Harvester value properties → SYS_Threshold refs | D-032 | D6/D7 thresholds; ExternalFederationGateway scoping; ClusterAssignment DPRR |
+| `PersonSubsystem` added (5 child blocks) | ADR-007, ADR-008 | Person node schema, onomastic layer, 3-layer harvest agent architecture |
+| `OnomasticStore` added (5 node types operational) | ADR-007 §5 | Gens(585), Praenomen(24), Nomen(917), Cognomen(993), Tribe(29) — all operational |
+| `PersonHarvestAgent` added (3 layers) | ADR-008 | DPRRLabelParser + PersonReasoningAgent + PersonHarvestExecutor |
+| `ConflictResolutionService` added | ADR-007 §7 | CHALLENGES_CLAIM edge, ConflictNote node, Types 1–4 taxonomy |
+| `SYS_HarvestPlan` added to MetanodeSubsystem | ADR-008 §4.2 | Audit trail for person harvest agent reasoning |
+| DMN D10 extended for domain-scoped threshold | ADR-007 §7.4 | claim_promotion_confidence_ancient_person = 0.75 for pre-CE persons |
+| DMN D15–D17 added | ADR-007 §2, §7 | Person label gate, conflict classification, conflict resolution ladder |
+| Root block counts updated | Graph census 2026-03-03 | node_count: 60,925→105,559; edge_count: 49,152→107,870 |
+| `DPRRAdapter` counts and onomastic parsing updated | ADR-007 §5, graph census | Onomastic parsing operational; person counts updated |
+| `SYS_FederationRegistry` source count updated | Graph census | 13→17 federation source nodes |
+| `VisualizationSubsystem` added | Implementation | GraphML export + cytoscape.js web viewer |
 
 ---
 
@@ -82,9 +94,21 @@ Blocks in this catalog are **structural** — they describe what the system is c
     «block» SYS_FederationRegistry
     «block» SYS_BibliographyRegistry
     «block» SYS_ProcessRegistry
+  «block» PersonSubsystem                    ← new (ADR-007, ADR-008)
+    «block» DPRRLabelParser                  ← Layer 1: deterministic onomastic extraction
+    «block» PersonReasoningAgent             ← Layer 2: cross-federation reconciliation
+    «block» PersonHarvestExecutor            ← Layer 3: 13-step idempotent writes
+    «block» OnomasticStore                   ← Gens, Praenomen, Nomen, Cognomen, Tribe
+    «block» ConflictResolutionService        ← CHALLENGES_CLAIM, ConflictNote, Types 1–4
+  «block» VisualizationSubsystem             ← new (implementation)
+    «block» GraphMLExporter
+    «block» CytoscapeWebViewer
   «block» ToolingSubsystem         ← new (D-031)
     «block» ChrystallumMCPServer
 
+«decisionService» PersonLabelGateService     ← DMN D15, not SysML block
+«decisionService» ConflictClassificationService ← DMN D16, not SysML block
+«decisionService» ConflictResolutionLadder   ← DMN D17, not SysML block
 «decisionService» FederationDispatcher      ← DMN, not SysML block
 «decisionService» AgentRoutingService       ← DMN, not SysML block
 «decisionService» ScopingService            ← DMN, not SysML block
@@ -104,8 +128,8 @@ Blocks in this catalog are **structural** — they describe what the system is c
 - `version: String`
 - `neo4j_uri: String`
 - `baseline_date: String`
-- `node_count: Integer = 60925`
-- `edge_count: Integer = 49152`
+- `node_count: Integer = 105559`
+- `edge_count: Integer = 107870`
 
 ---
 
@@ -204,9 +228,9 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Phase 1:** Complete | **Phase 2:** Complete
 
 #### «block» DPRRAdapter
-**Status:** Operational | **Wikidata PID:** P6863  
-**Scoping role:** Elite Roman persons  
-**Phase 1:** Complete | **Phase 2:** Complete  
+**Status:** Operational | **Wikidata PID:** P6863
+**Scoping role:** Elite Roman persons
+**Phase 1:** Complete | **Phase 2:** Complete | **Phase 3 (Onomastic):** Complete
 **Value properties:**
 - `group_a_merged: Integer = 2960`
 - `group_c_created: Integer = 1916`
@@ -214,6 +238,15 @@ Blocks in this catalog are **structural** — they describe what the system is c
 - `status_assertions: Integer = 1992`
 - `match_strategy_a: String = "qid"`
 - `match_strategy_c: String = "dprr_uri"`
+- `dprr_persons_with_label: Integer = 4772`
+- `onomastic_parse_operational: Boolean = true`
+- `gens_nodes_created: Integer = 585`
+- `praenomen_nodes_created: Integer = 24`
+- `nomen_nodes_created: Integer = 917`
+- `cognomen_nodes_created: Integer = 993`
+- `tribe_nodes_created: Integer = 29`
+
+**ADR-007 onomastic parsing:** DPRR label strings are parsed via grammar-based extraction (ADR-008 Layer 1) into gens_prefix, praenomen, nomen, cognomen[], tribe, and filiation_chain[]. Parsed components feed OnomasticStore node creation.
 
 #### «block» PleiadesAdapter
 **Status:** Operational | **Wikidata PID:** P1584  
@@ -404,19 +437,208 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Status:** Pending | **Build priority:** 3 (after BibliographyRegistry)
 
 #### «block» SYS_FederationRegistry
-**Responsibility:** 13 SYS_FederationSource nodes. Scoping advisor queries live.  
-**Status:** Complete ✅ 2026-02-25  
-**Value properties per source:** `name`, `status`, `confidence`, `scoping_role`, `wikidata_property`, `phase1_complete`, `phase2_complete`, `system: true`  
-**Current counts:** operational (7), partial (2), planned (4)
+**Responsibility:** 17 SYS_FederationSource nodes. Scoping advisor queries live.
+**Status:** Complete ✅ 2026-02-25; updated 2026-03-03
+**Value properties per source:** `name`, `status`, `confidence`, `scoping_role`, `wikidata_property`, `phase1_complete`, `phase2_complete`, `system: true`
+**Current counts:** 17 sources total (operational + partial + planned)
 
 #### «block» SYS_BibliographyRegistry
 **Responsibility:** Living discovery layer. Auto-constructed from VIAF→LC SRU→MARC chain. Not a static curated list. JUSTIFIES_DESIGN_CHOICE edges from ADR nodes to literature. VIAF_SUBJECT_OF edges from Entity nodes to BibliographySource nodes.  
 **Status:** Pending — 3 BibliographySource nodes exist, 0 edges  
 **Build priority:** 2 (ahead of SchemaRegistry — bibliographic discovery is the most significant unbuilt agent capability)
 
+#### «block» SYS_HarvestPlanRegistry
+**Responsibility:** SYS_HarvestPlan nodes — one per person harvest cycle. Complete audit trail of agent reasoning (Layer 2 output). Links to target Person node. Stores plan_id, sources_queried, identity_resolution_decisions, attribute_claims, conflict_notes, onomastic_parse, person_class, domain_scope, threshold_override, execution_status, resume_from_step, agent_model, reasoning_tokens.
+**Status:** Defined in ADR-008 §4.2 | **Build priority:** 2 (needed before person harvest begins)
+**Value properties:**
+- `plan_count: Integer = 0` — none written yet; populated when PersonHarvestExecutor runs
+
 #### «block» SYS_ProcessRegistry
-**Responsibility:** SYS_ADR nodes, SYS_PipelineStage nodes, SYS_Baseline nodes. KanbanItem snapshots only — canonical Kanban in LachyFS extension (`.devtool/features/`).  
+**Responsibility:** SYS_ADR nodes, SYS_PipelineStage nodes, SYS_Baseline nodes. KanbanItem snapshots only — canonical Kanban in LachyFS extension (`.devtool/features/`).
 **Status:** Pending | **Build priority:** 4
+
+---
+
+### «block» PersonSubsystem
+**Responsibility:** Person profile construction, onomastic node management, cross-federation harvest, and conflict resolution for the Roman Republican prosopographical corpus. Three-layer architecture per ADR-008: deterministic pre-processing → agent reasoning → deterministic execution. The agent never writes directly to the graph.
+
+**ADR alignment:** ADR-007 (Person Node Schema), ADR-008 (Person Harvest Agent Architecture)
+
+**Key insight:** The name reconciliation problem across 7 federation sources (DPRR, Wikidata, VIAF, LC, Nomisma, Trismegistos, LGPN) is the only operation requiring agent reasoning. Everything else — label parsing, P-code mapping, date normalisation, graph writes — is deterministic.
+
+**Census (2026-03-03):**
+- `:Person` nodes: 5,149 (label applied via gates A/B/C + veto per ADR-007 §2)
+- `:MythologicalPerson` nodes: 3 (Romulus, Remus, Europa)
+- DPRR persons: 4,772 (with dprr_id)
+- Wikidata-confirmed persons: 377 (P31→human, no dprr_id)
+- Onomastic nodes: Gens(585), Praenomen(24), Nomen(917), Cognomen(993), Tribe(29)
+- Onomastic edges: MEMBER_OF_GENS(4,749), HAS_NOMEN(4,531), HAS_COGNOMEN(3,758), HAS_PRAENOMEN(3,581), MEMBER_OF_TRIBE(345)
+- Family edges: FATHER_OF(2,155), SIBLING_OF(2,144), MOTHER_OF(634), SPOUSE_OF(600)
+- Civic edges: CITIZEN_OF(5,049), POSITION_HELD(7,342), HAS_STATUS(1,919)
+- Polity nodes: 20
+
+**Decision tables:** D10 (claim promotion — domain-scoped override), D15 (person label gate), D16 (conflict classification), D17 (conflict resolution ladder)
+
+#### «block» DPRRLabelParser
+**Responsibility:** Layer 1 deterministic pre-processing. Grammar-based extraction of tria nomina from DPRR label strings. No agent involvement. Produces structured onomastic_parse for Layer 2 and OnomasticStore.
+**ADR:** ADR-008 §3.1
+**Implementation:** `scripts/federation/dprr_label_parser.py` (planned)
+
+**Token extraction rules (fixed grammar):**
+
+| Token position | Content | Output field |
+|----------------|---------|--------------|
+| Prefix (4 chars) | Uppercase gens abbreviation | gens_prefix |
+| Numeric suffix | DPRR person ID | dprr_id |
+| Token 2 | Praenomen abbreviation (ending ".") | praenomen_abbrev |
+| Token 3 | Nomen (capitalised, no period) | nomen |
+| Parenthesised integer | DPRR ordinal within gens | dprr_ordinal |
+| f./n. chain | Filiation: Cn. f. = son of Gnaeus | filiation_chain[] |
+| 3–4 char abbreviation | Tribal abbreviation | tribe_abbrev |
+| Final token(s) | Cognomen(s) | cognomen[] |
+
+**Flow ports:**
+- `dprrLabelsIn: ~DPRRLabelSet`
+- `onomasticParseOut: OnomasticParseResult`
+
+#### «block» PersonReasoningAgent
+**Responsibility:** Layer 2 agent reasoning. Receives structured output of Layer 1 + federation source raw data as a context packet. Produces a PersonHarvestPlan — a complete serialised record of every decision. No graph writes occur during Layer 2. No live graph access — agent receives a pre-fetched context packet only.
+**ADR:** ADR-008 §4
+**Implementation:** `scripts/agents/person_harvest_agent.py` (planned)
+
+**Tasks requiring agent reasoning:**
+- Cross-federation name reconciliation (7 sources, radically different name forms)
+- Conflict type classification (Types 1–4 per ADR-007 §7.1)
+- Authority tier weighting (attribute-level, not source-global)
+- Filiation chain disambiguation (edge cases: unknown praenomina, identical names across generations)
+- Federation scope mismatch vs. genuine absence
+- Mythological / legendary classification
+- ConflictNote drafting (human-readable context for prosopographer review)
+
+**Agent constraints (ADR-008 §4.3):**
+- PROHIBITED: Writing any node or relationship directly to the graph
+- PROHIBITED: Evaluating numeric confidence thresholds (D10 is Layer 3)
+- PROHIBITED: Generating freeform Cypher
+- PROHIBITED: Making promotion decisions (ApprovalRequired policy; human gate)
+- PROHIBITED: Querying live graph during reasoning — all state pre-fetched
+
+**Flow ports:**
+- `contextPacketIn: ~PersonContextPacket`
+- `harvestPlanOut: PersonHarvestPlan`
+
+#### «block» PersonHarvestExecutor
+**Responsibility:** Layer 3 deterministic execution. Consumes PersonHarvestPlan and executes all graph writes via schema-validated templates. 13-step idempotent execution sequence. Resumable — a timed-out harvest resumes from step N without re-reasoning.
+**ADR:** ADR-008 §5
+**Implementation:** `scripts/agents/person_harvest_executor.py` (planned)
+
+**Execution sequence (dependency ordered, each step idempotent):**
+
+| Step | Operation | Depends on |
+|------|-----------|------------|
+| 1 | Write SYS_HarvestPlan node | Plan complete |
+| 2 | Merge :Gens, :Tribe, :Polity nodes | Onomastic parse |
+| 3 | Merge :Praenomen, :Nomen, :Cognomen nodes | Step 2 |
+| 4 | Apply :Person or :MythologicalPerson label | person_class decision |
+| 5 | Write literal properties (dates, gender, IDs) | Step 4 |
+| 6 | Write onomastic relationships | Steps 3, 4 |
+| 7 | Write civic/political relationships | Step 4 |
+| 8 | Write family relationship enrichments | Step 4 |
+| 9 | Write office/military relationships | Step 4 |
+| 10 | Write authority record links | Step 4 |
+| 11 | Write conflict structures | Steps 5–10 |
+| 12 | Evaluate D10 for all new Proposed claims | Steps 5–10 |
+| 13 | Update SYS_HarvestPlan execution_status=COMPLETE | Step 12 |
+
+**Value properties:**
+- `execution_status: Enum = PENDING | IN_PROGRESS | COMPLETE | FAILED | RESUMED`
+
+**Flow ports:**
+- `harvestPlanIn: ~PersonHarvestPlan`
+- `writeResultOut: PersonWriteReport`
+
+#### «block» OnomasticStore
+**Responsibility:** Manages the 5 first-class onomastic node types shared across persons. These are the primary axes of Roman prosopographical analysis — gens networks, tribal distributions, name patterns. Modelled as nodes (not properties) because they are query-critical.
+**ADR:** ADR-007 §5
+
+**Node types managed:**
+
+| Label | Count | Key properties | Source |
+|-------|-------|---------------|--------|
+| `:Gens` | 585 | gens_id, label_latin, gens_prefix | DPRR label parse / Wikidata P5025 |
+| `:Praenomen` | 24 | praenomen_id, label_latin, abbreviation | DPRR label parse / Wikidata P2358 |
+| `:Nomen` | 917 | nomen_id, label_latin, gens_link | DPRR label parse / Wikidata P2359 |
+| `:Cognomen` | 993 | cognomen_id, label_latin | DPRR label parse / Wikidata P2365 |
+| `:Tribe` | 29 | tribe_id, label_latin, abbreviation | DPRR label parse / Wikidata P11491 |
+
+**Relationship types:**
+
+| Relationship | From | To | Count | Cardinality |
+|-------------|------|-----|-------|-------------|
+| HAS_PRAENOMEN | :Person | :Praenomen | 3,581 | 0..1 per person |
+| HAS_NOMEN | :Person | :Nomen | 4,531 | 1 per person |
+| HAS_COGNOMEN | :Person | :Cognomen | 3,758 | 0..* (multiple permitted) |
+| MEMBER_OF_GENS | :Person | :Gens | 4,749 | 1 per person |
+| MEMBER_OF_TRIBE | :Person | :Tribe | 345 | 0..1 per person |
+
+**Constraint:** All node creation uses MERGE semantics on label_latin — no duplicate onomastic nodes permitted.
+
+#### «block» ConflictResolutionService
+**Responsibility:** Manages disagreements between federation sources for the same person attribute. Classifies conflicts into 4 types and applies resolution per ADR-007 §7.
+**ADR:** ADR-007 §7
+**Implementation:** `scripts/federation/conflict_resolver.py` (planned)
+
+**Conflict type taxonomy:**
+
+| Type | Description | Agent action |
+|------|-------------|-------------|
+| 1 — Precision gap | Source B more precise than A | Accept higher-precision; both as provenance |
+| 2 — Silence | Source B doesn't cover attribute | Write from A; silence is not contradiction |
+| 3 — Soft conflict | Overlapping but non-identical values | Compute intersection; write as range |
+| 4 — Hard conflict | Non-overlapping values from covering sources | Resolution ladder (D17) → escalate if unresolvable |
+
+**Graph structures:**
+- `CHALLENGES_CLAIM` edge: challenger_source, challenge_type, created_at — links two Claim nodes
+- `ConflictNote` node: conflict_type, attributes_in_dispute[], sources_involved[], tiebreaker_needed, resolution_status, ocd_applicable
+- `source_authority_tier` property on claims: primary / secondary_academic / secondary_populist / tertiary
+
+**Domain-scoped confidence threshold (ADR-007 §7.4):**
+- Global: `claim_promotion_confidence = 0.90`
+- Ancient persons: `claim_promotion_confidence_ancient_person = 0.75` (when Person has IN_PERIOD → Periodo_Period with end_date before year 0)
+
+**Flow ports:**
+- `conflictInputIn: ~ConflictCandidate`
+- `resolutionOut: ConflictResolution`
+
+---
+
+### «block» VisualizationSubsystem
+**Responsibility:** Graph export and interactive visualization. Read-only — no graph writes.
+
+#### «block» GraphMLExporter
+**Responsibility:** Export Neo4j subgraphs to GraphML format for Cytoscape Desktop. Five filtered views: persons_network, persons_onomastic, persons_offices, geo_roman_republic, full.
+**Implementation:** `scripts/visualization/export_graphml.py`
+
+**Value properties:**
+- `person_filter: String = ":Person label"` — uses label gates, not entity_id prefix
+- `geo_cap: Integer = 5000` — Roman Republic-scoped geo export capped for Desktop performance
+- `gens_prefix_exported: Boolean = true` — enables Compound Spring Embedder grouping
+
+#### «block» CytoscapeWebViewer
+**Responsibility:** FastAPI + cytoscape.js interactive graph viewer. Parameterised endpoints only — no raw Cypher from client. Neo4j credentials server-side only.
+**Implementation:** `scripts/visualization/cytoscape_app/app.py`
+
+**Value properties:**
+- `node_cap: Integer = 2000` — max nodes per query response
+- `family_depth_default: Integer = 3` — max generations in family tree view
+- `transport: String = "http"` — FastAPI on configurable port
+
+**Endpoints (all parameterised, read-only):**
+- `GET /api/person/{entity_id}?hops=1..3` — ego subgraph
+- `GET /api/gens/{prefix}` — gens members via MEMBER_OF_GENS
+- `GET /api/family/{entity_id}?depth=1..5` — depth-limited family tree
+- `GET /api/offices/{entity_id}` — POSITION_HELD with temporal edge properties
+- `GET /api/search?q=...` — label search (parameterised CONTAINS)
+- `GET /api/stats` — graph summary statistics
 
 ---
 
@@ -429,8 +651,11 @@ These were previously modeled as SysML blocks. Under D-024 they are decision ser
 | FederationDispatcher | assertion datatype, value_type, class_gate result | route (edge_candidate / federation_id / temporal_anchor / node_property / quarantine), frontier_eligible | 1 |
 | ScopingService | entity external IDs (pleiades_id, lgpn_id etc.) | is_scoped: Boolean, scoping_source: String | 1 |
 | AgentRoutingService | SubjectConcept anchor, facet match, temporal scope, geographic scope | primary_agent_facet, secondary_reviewer_set, escalation_flag | 2 |
-| ClaimPromotionService | review_count, consensus_score, source_agent, confidence | promote: Boolean, deny_reason: String | 2 |
+| ClaimPromotionService | review_count, consensus_score, source_agent, confidence, domain_scope | promote: Boolean, deny_reason: String | 2 |
 | HarvestAllowlistService | PID, does_it_discover_new_entities: Boolean | include_in_allowlist: Boolean, rationale: String | 3 |
+| PersonLabelGateService | dprr_id, P31 targets, entity_id prefix, entity_type | person_label: Boolean, mythological: Boolean, dq_flag: String | 1 |
+| ConflictClassificationService | source_A_value, source_B_value, source_coverage_map | conflict_type: Enum(1–4), recommended_action: String | 2 |
+| ConflictResolutionLadder | conflict_type=4, authority_tiers, tiebreaker_sources | resolution: String, claims_written: Integer, escalate: Boolean | 2 |
 
 ---
 
@@ -516,6 +741,13 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 | ThresholdQueryRequest | name: String — MCP tool request for SYS_Threshold |
 | ListRequest | type: String (enum: policies \| thresholds) — MCP list request |
 | MCPToolResponse | content: JSON, isError: Boolean — MCP tool response |
+| DPRRLabelSet | Set of DPRR label strings for onomastic parsing |
+| OnomasticParseResult | Structured parse: gens_prefix, praenomen, nomen, cognomen[], tribe, filiation_chain[] |
+| PersonContextPacket | Pre-fetched graph state + federation raw data for agent reasoning (ADR-008 §6) |
+| PersonHarvestPlan | Serialised decisions from Layer 2: identity resolution, attribute claims, conflict notes, person_class |
+| PersonWriteReport | Execution result from Layer 3: steps completed, claims written, conflicts flagged |
+| ConflictCandidate | Two claims on same attribute from different sources with disagreement metadata |
+| ConflictResolution | Resolution outcome: winning claim, challenger edge, ConflictNote if unresolved |
 
 ---
 
@@ -539,6 +771,13 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 | GraphPersistenceService | Neo4j/schema/*.cypher |
 | SYS_FederationRegistry | scripts/neo4j/rebuild_federation_registry.py |
 | ChrystallumMCPServer | scripts/mcp/chrystallum_mcp_server.py |
+| DPRRLabelParser | scripts/federation/dprr_label_parser.py (planned) |
+| PersonReasoningAgent | scripts/agents/person_harvest_agent.py (planned) |
+| PersonHarvestExecutor | scripts/agents/person_harvest_executor.py (planned) |
+| OnomasticStore | scripts/neo4j/adr007_create_onomastic_nodes.py (operational) |
+| ConflictResolutionService | scripts/federation/conflict_resolver.py (planned) |
+| GraphMLExporter | scripts/visualization/export_graphml.py |
+| CytoscapeWebViewer | scripts/visualization/cytoscape_app/app.py |
 
 ---
 
@@ -560,3 +799,11 @@ Promotion eligibility governed by ClaimPromotionService DMN. Not agent-authorita
 14. DMN — ScopingService decision table
 15. DMN — AgentRoutingService DRD
 16. XMI export for version control
+17. BDD — PersonSubsystem: 5 child blocks, 3-layer architecture
+18. IBD — PersonSubsystem: Layer 1 → Layer 2 → Layer 3 flow, context packet assembly
+19. Sequence — Person harvest cycle: DPRRLabelParser → PersonReasoningAgent → PersonHarvestExecutor → OnomasticStore
+20. Sequence — Conflict resolution: ConflictClassificationService → ConflictResolutionLadder → human escalation
+21. DMN — PersonLabelGateService (D15): 3 gates + veto
+22. DMN — ConflictClassificationService (D16): Types 1–4 taxonomy
+23. DMN — ConflictResolutionLadder (D17): 4-step escalation
+24. BDD — VisualizationSubsystem: GraphMLExporter + CytoscapeWebViewer

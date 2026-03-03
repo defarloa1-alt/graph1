@@ -4,10 +4,13 @@ This folder contains JSON Schema contracts and one sequence diagram generated fr
 
 ## Scope and status
 
-- Canonical model source: `Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md`
+- Canonical block catalog: `sysml/BLOCK_CATALOG_RECONCILED.md` (v1.2, 2026-03-03)
+- DMN decision tables: `sysml/DMN_DECISION_TABLES.md` (D1–D17, 2026-03-03)
+- Superseded starter: `Key Files/2-13-26 SysML v2 System Model - Blocks and Ports (Starter).md`
 - Contract status: draft-to-operational artifacts
 - Current enforcement: schema validation via `scripts/tools/validate_sysml_contracts.py`
 - Runtime wiring status: partial (contracts exist, only some are currently reflected in executable paths)
+- ADR alignment: ADR-007 (Person Node Schema), ADR-008 (Person Harvest Agent)
 
 ## Lifecycle note (important)
 
@@ -31,6 +34,19 @@ These are complementary and should not be conflated.
 - `tgn_batch_lookup_in.json`: input contract for batch TGN lookup requests.
 - `tgn_mapping_out.json`: output contract for TGN-to-Wikidata mapping results.
 - `period_workflow_sequence.png`: visual sequence diagram from review.
+
+## v1.2 changes (2026-03-03)
+
+- Added `PersonSubsystem` block with 5 child blocks (DPRRLabelParser, PersonReasoningAgent, PersonHarvestExecutor, OnomasticStore, ConflictResolutionService)
+- Added `VisualizationSubsystem` block (GraphMLExporter, CytoscapeWebViewer)
+- Added `SYS_HarvestPlanRegistry` to MetanodeSubsystem
+- Extended D10 with `domain_scope` input for ancient person threshold (0.75)
+- Added DMN tables D15 (person label gate), D16 (conflict classification), D17 (conflict resolution ladder)
+- Added 3 new decision services: PersonLabelGateService, ConflictClassificationService, ConflictResolutionLadder
+- Updated root block counts: 105,559 nodes / 107,870 edges
+- Updated DPRRAdapter with onomastic parsing and operational counts
+- Updated SYS_FederationRegistry: 13→17 sources
+- Added 7 new port flow types for person harvest pipeline
 
 ## Validation
 
