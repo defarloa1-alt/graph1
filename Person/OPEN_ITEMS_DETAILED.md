@@ -84,6 +84,11 @@
 **What it does:** The agent produces a PersonHarvestPlan (JSON-serialisable). Store it as a graph node `(:SYS_HarvestPlan)` linked to the target Person. Enables audit trail, re-reasoning with a different model, and resumability. Idempotent: skip if `plan_id` already exists.  
 **Deliverable:** Cypher template to MERGE SYS_HarvestPlan; register as system node type (OI-008-01).
 
+### Person Harvest Gradio UI (pinned)
+**What it does:** When person extract is ready, launch in Gradio with verbose streaming for every step. Each step (discovery, context packet, agent, executor) can take time; UI streams progress so user sees what is happening.  
+**Plan:** `Person/PERSON_HARVEST_GRADIO_PLAN.md` — New tab, streaming output, step-by-step verbose.  
+**Deliverable:** Person Harvest tab in `agent_gradio_app.py`; orchestrator yields progress for Gradio streaming.
+
 ---
 
 ## Phase 7 — Conflict Resolution

@@ -118,7 +118,7 @@ def execute_plan(plan: dict, session, dry_run: bool = False) -> dict:
 
     stats["updated"] = 1
 
-    # Write FATHER_OF / MOTHER_OF from attribute_claims
+    # Write FATHER_OF / MOTHER_OF / SIBLING_OF / SPOUSE_OF from attribute_claims
     for claim in plan.get("attribute_claims", []):
         attr = claim.get("attribute", "")
         val = claim.get("value", "")
@@ -126,6 +126,10 @@ def execute_plan(plan: dict, session, dry_run: bool = False) -> dict:
             _ensure_father_of(session, qid, val, dry_run, stats)
         elif attr == "mother_qid" and val:
             _ensure_mother_of(session, qid, val, dry_run, stats)
+        elif attr == "sibling_qid" and val and qid:
+            _ensure_sibling_of(session, qid, val, dry_run, stats)
+        elif attr == "spouse_qid" and val and qid:
+            _ensure_spouse_of(session, qid, val, dry_run, stats)
 
     # Temporal backbone: BORN_IN_YEAR, DIED_IN_YEAR, birth_date, death_date
     _write_temporal_to_entity(
@@ -214,4 +218,44 @@ def _ensure_mother_of(session, child_qid: str, mother_qid: str, dry_run: bool, s
         MERGE (c:Entity {qid: $child_qid})
         MERGE (m)-[:MOTHER_OF]->(c)
     """, mother_qid=mother_qid, m_entity_id=f"person_q{mother_qid[1:].lower()}" if mother_qid.startswith("Q") else f"person_q{mother_qid}", m_cipher=f"ent_per_{mother_qid}", child_qid=child_qid)
+    stats["created"] += 1
+
+
+def _ensure_sibling_of(session, qid_a: str, qid_b: str, dry_run: bool, stats: dict):
+    """Create (a)-[:SIBLING_OF]-(b). Symmetric; MERGE avoids duplicates."""
+    if dry_run or qid_a == qid_b:
+        return
+    session.run("""
+        MERGE (a:Entity {qid: $qid_a})
+        ON CREATE SET a.entity_id = $a_entity_id, a.entity_cipher = $a_cipher, a.label = '', a.entity_type = 'PERSON'
+        MERGE (b:Entity {qid: $qid_b})
+        ON CREATE SET b.entity_id = $b_entity_id, b.entity_cipher = $b_cipher, b.label = '', b.entity_type = 'PERSON'
+        MERGE (a)-[:SIBLING_OF]-(b)
+    """,
+        qid_a=qid_a, qid_b=qid_b,
+        a_entity_id=f"person_q{qid_a[1:].lower()}" if qid_a.startswith("Q") else f"person_q{qid_a}",
+        a_cipher=f"ent_per_{qid_a}",
+        b_entity_id=f"person_q{qid_b[1:].lower()}" if qid_b.startswith("Q") else f"person_q{qid_b}",
+        b_cipher=f"ent_per_{qid_b}",
+    )
+    stats["created"] += 1
+
+
+def _ensure_spouse_of(session, qid_a: str, qid_b: str, dry_run: bool, stats: dict):
+    """Create (a)-[:SPOUSE_OF]-(b). Symmetric; MERGE avoids duplicates."""
+    if dry_run or qid_a == qid_b:
+        return
+    session.run("""
+        MERGE (a:Entity {qid: $qid_a})
+        ON CREATE SET a.entity_id = $a_entity_id, a.entity_cipher = $a_cipher, a.label = '', a.entity_type = 'PERSON'
+        MERGE (b:Entity {qid: $qid_b})
+        ON CREATE SET b.entity_id = $b_entity_id, b.entity_cipher = $b_cipher, b.label = '', b.entity_type = 'PERSON'
+        MERGE (a)-[:SPOUSE_OF]-(b)
+    """,
+        qid_a=qid_a, qid_b=qid_b,
+        a_entity_id=f"person_q{qid_a[1:].lower()}" if qid_a.startswith("Q") else f"person_q{qid_a}",
+        a_cipher=f"ent_per_{qid_a}",
+        b_entity_id=f"person_q{qid_b[1:].lower()}" if qid_b.startswith("Q") else f"person_q{qid_b}",
+        b_cipher=f"ent_per_{qid_b}",
+    )
     stats["created"] += 1

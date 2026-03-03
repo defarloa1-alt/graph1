@@ -98,7 +98,7 @@ export default function ChrystallumArchitecture() {
     { id: "LGPN", status: "operational", x: 560 },
     { id: "VIAF", status: "partial", x: 645 },
     { id: "Getty AAT", status: "partial", x: 730 },
-    { id: "Nomisma", status: "planned", x: 825 },
+    { id: "Nomisma", status: "future", x: 825 },
     { id: "OCD", status: "planned", x: 910 },
     { id: "OpenAlex", status: "planned", x: 995 },
   ];
@@ -116,7 +116,7 @@ export default function ChrystallumArchitecture() {
 
       {/* legend */}
       <div style={{ display: "flex", gap: 16, marginBottom: 10, fontSize: 10, color: C.slate }}>
-        {[["operational", C.green], ["partial", C.amber], ["blocked", C.red], ["planned", C.mid]].map(([l, c]) => (
+        {[["operational", C.green], ["partial", C.amber], ["blocked", C.red], ["planned", C.mid], ["future", C.mid]].map(([l, c]) => (
           <span key={l} style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: c, display: "inline-block" }} />
             {l}
@@ -137,7 +137,7 @@ export default function ChrystallumArchitecture() {
 
         {/* ── LAYER 0: Federation Sources ───────────────────────────────────── */}
         <LayerHeader x={10} y={10} w={W - 20} label="LAYER 0 — Federation Sources"
-          sub="17 registered · 5 operational · 2 partial · 1 blocked · 9 planned" fill={C.navy} />
+          sub="17 registered · 6 operational · 2 partial · 1 blocked · 8 planned · 1 future" fill={C.navy} />
 
         {/* source boxes */}
         {federationSources.map((src, i) => {
@@ -151,13 +151,13 @@ export default function ChrystallumArchitecture() {
                 fill={hover === src.id ? "#EBF5FB" : C.light}
                 stroke={src.status === "blocked" ? C.red
                   : src.status === "partial" ? C.amber
-                    : src.status === "planned" ? C.mid : C.teal}
+                    : src.status === "planned" || src.status === "future" ? C.mid : C.teal}
                 strokeWidth={1.5}
-                strokeDasharray={src.status === "planned" ? "4,2" : undefined} />
+                strokeDasharray={src.status === "planned" || src.status === "future" ? "4,2" : undefined} />
               <Dot x={bx + bw - 8} y={by + 8} status={src.status} />
               <Txt x={bx + bw / 2} y={by + 20} s={8} fill={C.dark} center bold>{src.id}</Txt>
               <Txt x={bx + bw / 2} y={by + 31} s={7} fill={C.mid} center italic>
-                {src.status === "blocked" ? "snapshot" : src.status}
+                {src.status === "blocked" ? "snapshot" : src.status === "future" ? "future" : src.status}
               </Txt>
             </g>
           );
@@ -274,7 +274,7 @@ export default function ChrystallumArchitecture() {
         })}
 
         {/* ── NEO4J GRAPH ───────────────────────────────────────────────────── */}
-        <LayerHeader x={10} y={390} w={W - 20} label="NEO4J GRAPH  (~103,000 nodes · 93 relationship types)"
+        <LayerHeader x={10} y={390} w={W - 20} label="NEO4J GRAPH  (105,559 nodes · 97 relationship types)"
           sub="Single source of truth · ADR-001 cipher architecture · ADR-006 provenance" fill={C.navy} />
 
         {/* SYS layer */}
@@ -371,7 +371,7 @@ export default function ChrystallumArchitecture() {
 
         {[
           { x: 20, w: 200, title: "Cypher Query Patterns", fill: "#F8F9FA", stroke: C.slate,
-            items: ["SYS_QueryPattern registry (5)", "Onboarding: 14-step protocol", "Subgraph traversal", "Cross-domain synthesis"] },
+            items: ["SYS_QueryPattern registry (5)", "Onboarding: 26-step protocol", "Subgraph traversal", "Cross-domain synthesis"] },
           { x: 230, w: 200, title: "MCP (Model Context Protocol)", fill: "#EAFAF1", stroke: C.teal,
             items: ["read-only + write tools", "Claude direct access", "run_cypher_readonly", "Agent tool binding"] },
           { x: 440, w: 200, title: "Neo4j Bloom / Browser", fill: "#EBF0F7", stroke: C.blue,
@@ -447,7 +447,7 @@ export default function ChrystallumArchitecture() {
 
         {[
           ["Node labels", "Declared in SYS_NodeType registry within the graph itself"],
-          ["Relationships", "All 93 types registered in SYS_RelationshipType with domain/range"],
+          ["Relationships", "All 97 types registered in SYS_RelationshipType with domain/range"],
           ["Provenance", "ADR-006: every ScaffoldEdge carries FROM/TO dprr_assertion_uri"],
           ["Confidence", "SYS_ConfidenceTier + per-claim confidence property (0–1)"],
           ["Schema", "SYS_ValidationRule + SYS_PropertyMapping — schema is data"],
@@ -455,7 +455,7 @@ export default function ChrystallumArchitecture() {
           ["Agent integration", "Three-layer: det. pre → LLM reason → det. execute"],
           ["Temporal scoping", "IN_PERIOD → :Periodo_Period · :HistoricalPolity → STARTS_IN_YEAR/ENDS_IN_YEAR → :Year"],
           ["Standards alignment", "CIDOC-CRM internal · GEDCOM 7.0 export target"],
-          ["Self-description", "14-step onboarding protocol; graph explains itself to agents"],
+          ["Self-description", "26-step onboarding protocol; graph explains itself to agents"],
         ].map(([k, v], i) => (
           <g key={k}>
             <Txt x={562} y={832 + i * 17} s={9} fill={C.teal} bold>{k}:</Txt>
@@ -469,8 +469,8 @@ export default function ChrystallumArchitecture() {
         {/* ── METRICS BAR ───────────────────────────────────────────────────── */}
         <Box x={10} y={1016} w={W - 20} h={58} fill={C.navy} stroke={C.navy} rx={5} />
         {[
-          ["~103,000", "total nodes"],
-          ["93", "rel types"],
+          ["105,559", "total nodes"],
+          ["97", "rel types"],
           ["4,772", "DPRR persons"],
           ["7,342", "POSITION_HELD edges"],
           ["43,958", ":Place nodes"],

@@ -94,6 +94,22 @@ def produce_harvest_plan(
                     "claim_tier": "primary",
                     "conflict_type": None,
                 })
+            elif pid == "P3373" and val:
+                plan["attribute_claims"].append({
+                    "attribute": "sibling_qid",
+                    "source": "wikidata",
+                    "value": val,
+                    "claim_tier": "primary",
+                    "conflict_type": None,
+                })
+            elif pid == "P26" and val:
+                plan["attribute_claims"].append({
+                    "attribute": "spouse_qid",
+                    "source": "wikidata",
+                    "value": val,
+                    "claim_tier": "primary",
+                    "conflict_type": None,
+                })
 
     # If OpenAI available, run full agent reasoning
     if HAS_OPENAI:

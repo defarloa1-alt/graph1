@@ -9,6 +9,21 @@
 
 ---
 
+## Counts — DEPRECATED (use graph_census)
+
+**Hand-maintained counts in this document are deprecated.** Graph-level counts (nodes, relationships, labels, SYS_ layer, federation sources, decision tables) come from the live graph via:
+
+```bash
+python -m scripts.tools.graph_census -o output/census.md
+# or JSON: python -m scripts.tools.graph_census --json -o output/census.json
+```
+
+Use `output/census.md` (or `output/census.json`) as the authoritative source for counts. This catalog retains **structural** definitions only; do not hand-edit numeric values.
+
+Block-level value properties (e.g. `member_of_edges_written`, `place_nodes_imported`) are illustrative. Where they map to census fields (`label_counts`, `rel_type_counts`, `federation_sources`), use census output. Pipeline-specific metrics come from run reports.
+
+---
+
 ## Reconciliation Notes (Changes from Feb-13 Starter)
 
 | Change | Decision | Reason |
@@ -104,8 +119,8 @@ Blocks in this catalog are **structural** — they describe what the system is c
 - `version: String`
 - `neo4j_uri: String`
 - `baseline_date: String`
-- `node_count: Integer = 60925`
-- `edge_count: Integer = 49152`
+- `node_count: Integer` — from graph_census `total_nodes` (do not hand-edit)
+- `edge_count: Integer` — from graph_census `total_rels` (do not hand-edit)
 
 ---
 
@@ -166,8 +181,8 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Value properties:**
 - `dprr_scoping_confidence: Real [SYS_Threshold: scoping_confidence_temporal_med]` — same node as temporal_med (0.85)
 - `federation_id_map: String` — P1584→pleiades_id, P1696→trismegistos_id, P1047→lgpn_id, P214→viaf_id, P1014→getty_aat_id, P2192→edh_id, P9106→ocd_id
-- `member_of_edges_written: Integer = 9144`
-- `entities_in_clusters: Integer = 6990`
+- `member_of_edges_written: Integer` — from census `rel_type_counts.MEMBER_OF` (do not hand-edit)
+- `entities_in_clusters: Integer` — from census `label_counts.SubjectConcept` or run report (do not hand-edit)
 
 **Flow ports:**
 - `edgeProposalsIn: ~EdgeProposalSet`
@@ -207,11 +222,11 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Status:** Operational | **Wikidata PID:** P6863  
 **Scoping role:** Elite Roman persons  
 **Phase 1:** Complete | **Phase 2:** Complete  
-**Value properties:**
-- `group_a_merged: Integer = 2960`
-- `group_c_created: Integer = 1916`
-- `posts_imported: Integer = 9807`
-- `status_assertions: Integer = 1992`
+**Value properties:** (from pipeline run reports; do not hand-edit)
+- `group_a_merged: Integer`
+- `group_c_created: Integer`
+- `posts_imported: Integer`
+- `status_assertions: Integer`
 - `match_strategy_a: String = "qid"`
 - `match_strategy_c: String = "dprr_uri"`
 
@@ -219,17 +234,17 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Status:** Operational | **Wikidata PID:** P1584  
 **Scoping role:** Ancient places  
 **Phase 1:** Complete | **Phase 2:** Pending  
-**Value properties:**
-- `place_nodes_imported: Integer = 41884`
-- `place_nodes_enriched: Integer = 0` — Phase 2 not run
-- `entities_with_pleiades_id: Integer = 164`
+**Value properties:** (from census `label_counts` / run reports; do not hand-edit)
+- `place_nodes_imported: Integer` — census `label_counts.Pleiades_Place`
+- `place_nodes_enriched: Integer` — Phase 2 not run
+- `entities_with_pleiades_id: Integer`
 
 #### «block» TrismegistosAdapter
 **Status:** Operational | **Wikidata PID:** P1696  
 **Scoping role:** Non-elite persons and inscriptions (documentary/epigraphic)  
 **Phase 1:** Complete | **Phase 2:** Pending  
-**Value properties:**
-- `current_overlap: Integer = 0` — DPRR-anchored harvest; TM persons not yet in entity set
+**Value properties:** (from run reports; do not hand-edit)
+- `current_overlap: Integer` — DPRR-anchored harvest; TM persons not yet in entity set
 - `api_endpoint: String = "https://www.trismegistos.org/dataservices/per/index.php"`
 
 #### «block» LGPNAdapter
@@ -237,8 +252,8 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Note:** P1838 = PSS-archi (French buildings). NOT LGPN. See D-023.  
 **Scoping role:** Greek personal names  
 **Phase 1:** Complete | **Phase 2:** Pending  
-**Value properties:**
-- `entities_with_lgpn_id: Integer = 1`
+**Value properties:** (from census; do not hand-edit)
+- `entities_with_lgpn_id: Integer`
 - `forward_sparql_designed: Boolean = false`
 
 #### «block» VIAFAdapter
@@ -246,7 +261,7 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Scoping role:** Person name authority; entry point to library authority ecosystem  
 **Phase 1:** Pending | **Phase 2:** Pending  
 **Value properties:**
-- `entities_with_viaf_id: Integer = 947` — confirmed via SPARQL
+- `entities_with_viaf_id: Integer` — from census / SPARQL (do not hand-edit)
 
 #### «block» GettyAATAdapter
 **Status:** Partial | **Wikidata PID:** P1014  
@@ -296,8 +311,8 @@ Blocks in this catalog are **structural** — they describe what the system is c
 
 #### «block» VIAFResolver
 **Responsibility:** For each of the 947 VIAF-matched entities: resolve viaf_id → VIAF cluster → LC control number. Entry point to the MARC chain.  
-**Value properties:**
-- `viaf_entity_count: Integer = 947`
+**Value properties:** (from census; do not hand-edit)
+- `viaf_entity_count: Integer`
 - `viaf_api_base: String = "https://viaf.org/viaf/"`
 
 **Flow ports:**
@@ -334,9 +349,9 @@ Blocks in this catalog are **structural** — they describe what the system is c
 #### «block» SCAEngine
 **Responsibility:** Empirical foundation layer. Grounded harvest evidence, confidence scores, entity counts, narrative paths. Answers "what does the data support?" Queries SYS_FederationRegistry live — no hardcoded config.  
 **Implementation:** `scripts/agents/sca_agent.py`  
-**Value properties:**
-- `subject_concepts_active: Integer = 61`
-- `narrative_paths_count: Integer = 7`
+**Value properties:** (from census `label_counts`; do not hand-edit)
+- `subject_concepts_active: Integer` — census `label_counts.SubjectConcept`
+- `narrative_paths_count: Integer`
 - `path_weight: Real = 0.05`
 - `path_weight_cap: Real = 0.15`
 - `bootstrap_source: String = "SYS_FederationRegistry"`
@@ -407,7 +422,7 @@ Blocks in this catalog are **structural** — they describe what the system is c
 **Responsibility:** 13 SYS_FederationSource nodes. Scoping advisor queries live.  
 **Status:** Complete ✅ 2026-02-25  
 **Value properties per source:** `name`, `status`, `confidence`, `scoping_role`, `wikidata_property`, `phase1_complete`, `phase2_complete`, `system: true`  
-**Current counts:** operational (7), partial (2), planned (4)
+**Current counts:** from census `federation_sources` (by status); do not hand-edit
 
 #### «block» SYS_BibliographyRegistry
 **Responsibility:** Living discovery layer. Auto-constructed from VIAF→LC SRU→MARC chain. Not a static curated list. JUSTIFIES_DESIGN_CHOICE edges from ADR nodes to literature. VIAF_SUBJECT_OF edges from Entity nodes to BibliographySource nodes.  

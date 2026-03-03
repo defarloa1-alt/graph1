@@ -116,7 +116,7 @@ def _fetch_wikidata_item(qid: str, timeout: int = 30) -> dict | None:
     query = f"""
     SELECT ?prop ?value ?valueLabel WHERE {{
       wd:{qid} ?prop ?value .
-      VALUES ?prop {{ wdt:P22 wdt:P25 wdt:P27 wdt:P31 wdt:P569 wdt:P570 wdt:P19 wdt:P20 wdt:P6863 }}
+      VALUES ?prop {{ wdt:P22 wdt:P25 wdt:P26 wdt:P27 wdt:P31 wdt:P3373 wdt:P569 wdt:P570 wdt:P19 wdt:P20 wdt:P6863 }}
       SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
     }}
     """
