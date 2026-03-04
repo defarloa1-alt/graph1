@@ -92,22 +92,23 @@ def _sparql_get(query: str, retries: int = 3) -> List[Dict]:
     """Execute SPARQL query against Wikidata with retry/rate-limit handling."""
     headers = {
         "Accept": "application/sparql-results+json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "User-Agent": USER_AGENT,
     }
     for attempt in range(1, retries + 1):
         try:
-            resp = requests.get(
+            resp = requests.post(
                 SPARQL_URL,
-                params={"query": query},
+                data={"query": query},
                 headers=headers,
                 timeout=SPARQL_TIMEOUT_S,
             )
             resp.raise_for_status()
             return resp.json().get("results", {}).get("bindings", [])
         except requests.exceptions.HTTPError:
-            if resp.status_code == 429:
+            if resp.status_code in (429, 403):
                 wait = 5 * attempt
-                print(f"  [rate-limit] waiting {wait}s...")
+                print(f"  [rate-limit/{resp.status_code}] waiting {wait}s...")
                 time.sleep(wait)
             else:
                 raise
