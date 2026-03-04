@@ -92,7 +92,8 @@ def main() -> int:
     elif args.from_graph:
         with driver.session(database=db) as session:
             queue = discover_from_graph(session, limit=args.limit)
-            queue = [{"qid": r.get("qid"), "label": r.get("label", ""), "dprr_id": r.get("dprr_id")} for r in queue if r.get("qid") or r.get("dprr_id")]
+            # Require qid for family traversal — null-QID persons cannot be Wikidata-fetched
+            queue = [{"qid": r.get("qid"), "label": r.get("label", ""), "dprr_id": r.get("dprr_id")} for r in queue if r.get("qid")]
     else:
         queue = discover_roman_republic_persons(limit=args.limit)
         queue = [q for q in queue if q.get("qid")]
@@ -108,6 +109,7 @@ def main() -> int:
     seen = set()
     total_stats = {"created": 0, "updated": 0, "skipped": 0}
     frontier = deque(queue)
+    MAX_SIBLINGS_ENQUEUE = 8  # Cap sibling fan-out before unlimited runs
 
     with driver.session(database=db) as session:
         while frontier and len(seen) < args.limit:
@@ -118,6 +120,11 @@ def main() -> int:
             if key in seen:
                 continue
             seen.add(key)
+
+            # Skip null-QID persons — no Wikidata fetch possible; log and don't process
+            if not qid:
+                print(f"  SKIP DQ_MISSING_QID {key}")
+                continue
 
             # Build context, plan, execute
             try:
@@ -158,8 +165,8 @@ def main() -> int:
             label = person.get("label", "") or qid or str(dprr_id)
             print(f"  {label[:40]:<40} | updated={stats.get('updated',0)} created={stats.get('created',0)}")
 
-            # Enqueue family for full tree traversal: parents, children, siblings, spouses, stepparents
-            if not args.dry_run and qid:
+            # Enqueue family for full tree traversal (skip if MythologicalPerson — ADR-008)
+            if not args.dry_run and qid and plan.get("person_class") != "MYTHOLOGICAL":
                 ancestry = fetch_ancestry_qids(qid)
                 for parent_qid in [ancestry.get("father_qid"), ancestry.get("mother_qid")]:
                     if parent_qid and parent_qid not in seen:
@@ -167,11 +174,20 @@ def main() -> int:
                 # From packet: children (P40), siblings (P3373), spouses (P26), stepparents (P3448)
                 wd = packet.get("wikidata_raw") or {}
                 claims = wd.get("claims", {})
-                for prop in ("P40", "P3373", "P26", "P3448"):
+                for prop in ("P40", "P26", "P3448"):
                     for v in claims.get(prop, []):
                         other_qid = (v.get("value") or "").split("/")[-1]
                         if other_qid and other_qid.startswith("Q") and other_qid not in seen:
                             frontier.append({"qid": other_qid, "label": "", "dprr_id": None})
+                # Siblings: cap to avoid frontier balloon (Caesar/Pompey gens)
+                sibling_count = 0
+                for v in claims.get("P3373", []):
+                    if sibling_count >= MAX_SIBLINGS_ENQUEUE:
+                        break
+                    other_qid = (v.get("value") or "").split("/")[-1]
+                    if other_qid and other_qid.startswith("Q") and other_qid not in seen:
+                        frontier.append({"qid": other_qid, "label": "", "dprr_id": None})
+                        sibling_count += 1
 
     driver.close()
     print()

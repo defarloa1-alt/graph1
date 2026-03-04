@@ -49,6 +49,15 @@ def produce_harvest_plan(
     wd = context_packet.get("wikidata_raw") or {}
     claims = wd.get("claims", {})
 
+    # MythologicalPerson: P31 = mythical/fictional character → do not traverse (ADR-008)
+    MYTHOLOGICAL_P31 = {"Q4271324", "Q95074", "Q178885"}  # mythical character, fictional character, deity
+    p31_vals = claims.get("P31", [])
+    for v in p31_vals:
+        inst = (v.get("value") or "").upper()
+        if inst in MYTHOLOGICAL_P31:
+            plan["person_class"] = "MYTHOLOGICAL"
+            break
+
     # Parent sex (P21) for P40 child_qid → FATHER_OF vs MOTHER_OF vs PARENT_OF
     plan["parent_sex"] = None
     p21_vals = claims.get("P21", [])
