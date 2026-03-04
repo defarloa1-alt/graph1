@@ -47,6 +47,15 @@ def produce_harvest_plan(
     stub = context_packet.get("person_stub") or {}
     dprr = context_packet.get("dprr_raw")
     wd = context_packet.get("wikidata_raw") or {}
+    claims = wd.get("claims", {})
+
+    # Parent sex (P21) for P40 child_qid → FATHER_OF vs MOTHER_OF vs PARENT_OF
+    plan["parent_sex"] = None
+    p21_vals = claims.get("P21", [])
+    if p21_vals:
+        sex_qid = (p21_vals[0].get("value") or "").upper()
+        if sex_qid in ("Q6581097", "Q6581072"):  # male, female
+            plan["parent_sex"] = "male" if sex_qid == "Q6581097" else "female"
 
     # Identity: if dprr_id matches, strong resolution
     if dprr and dprr.get("dprr_id"):
@@ -58,7 +67,6 @@ def produce_harvest_plan(
         })
 
     # Attribute claims from Wikidata
-    claims = wd.get("claims", {})
     for pid, vals in claims.items():
         for v in vals:
             val = v.get("value", "")
@@ -105,6 +113,23 @@ def produce_harvest_plan(
             elif pid == "P26" and val:
                 plan["attribute_claims"].append({
                     "attribute": "spouse_qid",
+                    "source": "wikidata",
+                    "value": val,
+                    "claim_tier": "primary",
+                    "conflict_type": None,
+                })
+            elif pid == "P40" and val:
+                # Parent's perspective: (parent)-[:FATHER_OF|MOTHER_OF|PARENT_OF]->(child)
+                plan["attribute_claims"].append({
+                    "attribute": "child_qid",
+                    "source": "wikidata",
+                    "value": val,
+                    "claim_tier": "primary",
+                    "conflict_type": None,
+                })
+            elif pid == "P3448" and val:
+                plan["attribute_claims"].append({
+                    "attribute": "stepparent_qid",
                     "source": "wikidata",
                     "value": val,
                     "claim_tier": "primary",

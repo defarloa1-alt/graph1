@@ -59,9 +59,9 @@ def build_context_packet(
     if row:
         packet["person_stub"] = dict(row)
 
-    # 2. existing_family (FATHER_OF, MOTHER_OF, SIBLING_OF, SPOUSE_OF)
+    # 2. existing_family (FATHER_OF, MOTHER_OF, PARENT_OF, SIBLING_OF, SPOUSE_OF, STEPPARENT_OF)
     r = session.run("""
-        MATCH (e:Entity)-[r:FATHER_OF|MOTHER_OF|SIBLING_OF|SPOUSE_OF]-(other:Entity)
+        MATCH (e:Entity)-[r:FATHER_OF|MOTHER_OF|PARENT_OF|SIBLING_OF|SPOUSE_OF|STEPPARENT_OF]-(other:Entity)
         WHERE e.qid = $qid OR e.dprr_id = $dprr_id
         RETURN type(r) AS rel, other.label AS target_label, other.qid AS target_qid, other.dprr_id AS target_dprr_id
     """, qid=qid, dprr_id=dprr_id or "")
@@ -116,7 +116,7 @@ def _fetch_wikidata_item(qid: str, timeout: int = 30) -> dict | None:
     query = f"""
     SELECT ?prop ?value ?valueLabel WHERE {{
       wd:{qid} ?prop ?value .
-      VALUES ?prop {{ wdt:P22 wdt:P25 wdt:P26 wdt:P27 wdt:P31 wdt:P3373 wdt:P569 wdt:P570 wdt:P19 wdt:P20 wdt:P6863 }}
+      VALUES ?prop {{ wdt:P22 wdt:P25 wdt:P26 wdt:P27 wdt:P31 wdt:P40 wdt:P3373 wdt:P3448 wdt:P21 wdt:P569 wdt:P570 wdt:P19 wdt:P20 wdt:P6863 }}
       SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
     }}
     """

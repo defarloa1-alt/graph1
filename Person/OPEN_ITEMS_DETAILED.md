@@ -60,6 +60,14 @@
 
 ## Phase 4.3 — Family & Office Enrichment
 
+### Person harvest family tree traversal ✓ (2026-03-03)
+**What it does:** Full family tree mapping via person harvest. Traversal enqueues parents (P22, P25), children (P40), siblings (P3373), spouses (P26), stepparents (P3448). Writes FATHER_OF, MOTHER_OF, PARENT_OF (when sex unknown), SIBLING_OF, SPOUSE_OF, STEPPARENT_OF. P21 (sex) used to choose FATHER_OF vs MOTHER_OF for P40.  
+**Status:** Implemented in orchestrator, agent, executor, context_packet.
+
+### ADOPTED_BY / P1038 (backlog)
+**What it does:** Wikidata P1038 (relative) with P1039 (kinship to subject) qualifiers covers adoption, stepchildren, and other kinship. ADR-007 defines ADOPTED_BY. Deferred until P1038 qualifier parsing is in place.  
+**Deliverable:** Agent + executor handling for P1038+P1039 → ADOPTED_BY, STEPCHILD_OF.
+
 ### CHILD_OF materialisation
 **What it does:** FATHER_OF and MOTHER_OF exist (person→parent). CHILD_OF is the inverse (parent→child). Many genealogy tools and GEDCOM expect bidirectional parent–child links. Materialising CHILD_OF from existing FATHER_OF/MOTHER_OF creates ~2,582 new edges so that (parent)-[:CHILD_OF]->(child) exists wherever (child)-[:FATHER_OF|MOTHER_OF]->(parent) exists.  
 **Deliverable:** Script to MERGE (p)-[:CHILD_OF]->(c) for each (c)-[:FATHER_OF|MOTHER_OF]->(p).

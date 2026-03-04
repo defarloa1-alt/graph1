@@ -158,12 +158,20 @@ def main() -> int:
             label = person.get("label", "") or qid or str(dprr_id)
             print(f"  {label[:40]:<40} | updated={stats.get('updated',0)} created={stats.get('created',0)}")
 
-            # Enqueue ancestors (P22, P25) — need qid for Wikidata lookup
+            # Enqueue family for full tree traversal: parents, children, siblings, spouses, stepparents
             if not args.dry_run and qid:
                 ancestry = fetch_ancestry_qids(qid)
-                for role, parent_qid in [("father_qid", ancestry.get("father_qid")), ("mother_qid", ancestry.get("mother_qid"))]:
+                for parent_qid in [ancestry.get("father_qid"), ancestry.get("mother_qid")]:
                     if parent_qid and parent_qid not in seen:
                         frontier.append({"qid": parent_qid, "label": "", "dprr_id": None})
+                # From packet: children (P40), siblings (P3373), spouses (P26), stepparents (P3448)
+                wd = packet.get("wikidata_raw") or {}
+                claims = wd.get("claims", {})
+                for prop in ("P40", "P3373", "P26", "P3448"):
+                    for v in claims.get(prop, []):
+                        other_qid = (v.get("value") or "").split("/")[-1]
+                        if other_qid and other_qid.startswith("Q") and other_qid not in seen:
+                            frontier.append({"qid": other_qid, "label": "", "dprr_id": None})
 
     driver.close()
     print()

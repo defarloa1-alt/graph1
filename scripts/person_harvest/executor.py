@@ -118,7 +118,8 @@ def execute_plan(plan: dict, session, dry_run: bool = False) -> dict:
 
     stats["updated"] = 1
 
-    # Write FATHER_OF / MOTHER_OF / SIBLING_OF / SPOUSE_OF from attribute_claims
+    # Write FATHER_OF / MOTHER_OF / PARENT_OF / SIBLING_OF / SPOUSE_OF / STEPPARENT_OF from attribute_claims
+    parent_sex = plan.get("parent_sex")
     for claim in plan.get("attribute_claims", []):
         attr = claim.get("attribute", "")
         val = claim.get("value", "")
@@ -126,6 +127,10 @@ def execute_plan(plan: dict, session, dry_run: bool = False) -> dict:
             _ensure_father_of(session, qid, val, dry_run, stats)
         elif attr == "mother_qid" and val:
             _ensure_mother_of(session, qid, val, dry_run, stats)
+        elif attr == "child_qid" and val and qid:
+            _ensure_parent_of(session, qid, val, parent_sex, dry_run, stats)
+        elif attr == "stepparent_qid" and val and qid:
+            _ensure_stepparent_of(session, qid, val, dry_run, stats)
         elif attr == "sibling_qid" and val and qid:
             _ensure_sibling_of(session, qid, val, dry_run, stats)
         elif attr == "spouse_qid" and val and qid:
@@ -218,6 +223,53 @@ def _ensure_mother_of(session, child_qid: str, mother_qid: str, dry_run: bool, s
         MERGE (c:Entity {qid: $child_qid})
         MERGE (m)-[:MOTHER_OF]->(c)
     """, mother_qid=mother_qid, m_entity_id=f"person_q{mother_qid[1:].lower()}" if mother_qid.startswith("Q") else f"person_q{mother_qid}", m_cipher=f"ent_per_{mother_qid}", child_qid=child_qid)
+    stats["created"] += 1
+
+
+def _ensure_parent_of(
+    session,
+    parent_qid: str,
+    child_qid: str,
+    parent_sex: str | None,
+    dry_run: bool,
+    stats: dict,
+):
+    """Create (parent)-[:FATHER_OF|MOTHER_OF|PARENT_OF]->(child). Uses parent_sex for edge type."""
+    if dry_run or parent_qid == child_qid:
+        return
+    rel_type = "FATHER_OF" if parent_sex == "male" else "MOTHER_OF" if parent_sex == "female" else "PARENT_OF"
+    session.run(f"""
+        MERGE (p:Entity {{qid: $parent_qid}})
+        ON CREATE SET p.entity_id = $p_entity_id, p.entity_cipher = $p_cipher, p.label = '', p.entity_type = 'PERSON'
+        MERGE (c:Entity {{qid: $child_qid}})
+        ON CREATE SET c.entity_id = $c_entity_id, c.entity_cipher = $c_cipher, c.label = '', c.entity_type = 'PERSON'
+        MERGE (p)-[:{rel_type}]->(c)
+    """,
+        parent_qid=parent_qid,
+        child_qid=child_qid,
+        p_entity_id=f"person_q{parent_qid[1:].lower()}" if parent_qid.startswith("Q") else f"person_q{parent_qid}",
+        p_cipher=f"ent_per_{parent_qid}",
+        c_entity_id=f"person_q{child_qid[1:].lower()}" if child_qid.startswith("Q") else f"person_q{child_qid}",
+        c_cipher=f"ent_per_{child_qid}",
+    )
+    stats["created"] += 1
+
+
+def _ensure_stepparent_of(session, stepchild_qid: str, stepparent_qid: str, dry_run: bool, stats: dict):
+    """Create (stepparent)-[:STEPPARENT_OF]->(stepchild)."""
+    if dry_run or stepchild_qid == stepparent_qid:
+        return
+    session.run("""
+        MERGE (sp:Entity {qid: $stepparent_qid})
+        ON CREATE SET sp.entity_id = $sp_entity_id, sp.entity_cipher = $sp_cipher, sp.label = '', sp.entity_type = 'PERSON'
+        MERGE (sc:Entity {qid: $stepchild_qid})
+        MERGE (sp)-[:STEPPARENT_OF]->(sc)
+    """,
+        stepparent_qid=stepparent_qid,
+        stepchild_qid=stepchild_qid,
+        sp_entity_id=f"person_q{stepparent_qid[1:].lower()}" if stepparent_qid.startswith("Q") else f"person_q{stepparent_qid}",
+        sp_cipher=f"ent_per_{stepparent_qid}",
+    )
     stats["created"] += 1
 
 
