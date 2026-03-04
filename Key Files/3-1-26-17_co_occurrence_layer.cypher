@@ -176,12 +176,12 @@ MERGE (dt)-[:HAS_ROW]->(r);
 
 // Wire D40 into pipeline: D8 (source quality) → D40 → D10 (claim promotion)
 MATCH (d8:SYS_DecisionTable {table_id: 'D8'})
-MATCH (d15:SYS_DecisionTable {table_id: 'D40'})
-MERGE (d8)-[:FEEDS_INTO]->(d15);
+MATCH (d40:SYS_DecisionTable {table_id: 'D40'})
+MERGE (d8)-[:FEEDS_INTO]->(d40);
 
-MATCH (d15:SYS_DecisionTable {table_id: 'D40'})
+MATCH (d40:SYS_DecisionTable {table_id: 'D40'})
 MATCH (d10:SYS_DecisionTable {table_id: 'D10'})
-MERGE (d15)-[:FEEDS_INTO]->(d10);
+MERGE (d40)-[:FEEDS_INTO]->(d10);
 
 // CIDOC mapping
 MATCH (dt:SYS_DecisionTable {table_id: 'D40'}), (cc:SYS_CidocClass {class_id: 'I3_Inference_Logic'})
@@ -331,7 +331,7 @@ SET ctx.label = 'Co-Assignment (Open Syllabus)',
 //
 // -- D40 wired into pipeline
 // MATCH (d8:SYS_DecisionTable {table_id:'D8'})-[:FEEDS_INTO]->(d40:SYS_DecisionTable {table_id:'D40'})-[:FEEDS_INTO]->(d10:SYS_DecisionTable {table_id:'D10'})
-// RETURN d8.label, d15.label, d10.label
+// RETURN d8.label, d40.label, d10.label
 // Expected: 3 labels
 //
 // -- Two extraction passes
