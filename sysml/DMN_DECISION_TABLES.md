@@ -8,6 +8,8 @@
 - D1–D14: Core platform (harvester, federation, claims, SFA)
 - D15–D21: Federation scoring & normalization (graph-resident, added post-v1)
 - D30–D39: Person domain (ADR-007/008)
+- D40: Co-occurrence predicate refinement (renumbered from D15 collision)
+- D33–D34: Temporal bridge track routing & federation completeness (ADR-013)
 
 ---
 
@@ -43,6 +45,8 @@
 | D30 | person label application | adr007_apply_person_label.py | — (gate logic: dprr_id, P31 targets, entity_id prefix) |
 | D31 | conflict type classification | person_harvest_agent.py (Layer 2) | — (taxonomy: Types 1–4 per ADR-007 §7.1) |
 | D32 | conflict resolution (Type 4) | person_harvest_agent.py (Layer 2) | claim_promotion_confidence_ancient_person; source_authority_tier per ADR-007 §8 |
+| D33 | temporal bridge track | temporal_bridge_discovery.py | temporal_gap_direct_max (150), temporal_gap_high_priority (500), confidence_no_temporal_data (0.75), confidence_temporal_impossibility (0.10) |
+| D34 | person federation completeness | federation_scorer.py | — (unifies D15–D18 code-side view; weight tables + score→state mapping) |
 
 ---
 
@@ -483,6 +487,78 @@
 - `tiebreaker_needed: Boolean`
 - `resolution_status: 'PENDING'`
 - `ocd_applicable: Boolean` (OCD reserved slot may resolve later)
+
+---
+
+## D33 DETERMINE temporal bridge track
+
+**Purpose:** Route relationship types to validation tracks (DIRECT_HISTORICAL / BRIDGING_DISCOVERY / UNKNOWN) and apply track-specific temporal gap thresholds. Family relationship types (PARENT_OF, MARRIED_TO, SIBLING_OF, etc.) are DIRECT and get gap validation; cross-temporal relationships (EXCAVATED_REMAINS_OF, REINTERPRETED, etc.) are BRIDGING and skip gap checks.
+
+**ADR:** ADR-013
+
+**Inputs:**
+
+| Input | Type | Source |
+|-------|------|--------|
+| relationship_type | String | Claim relationship type |
+| temporal_gap | Integer | Absolute year difference between source and target |
+| has_temporal_data | Boolean | Whether both entities have dates |
+
+**Output:** `track: String`, `valid: Boolean`, `confidence: Real`, `reason: String`
+
+**Hit policy:** FIRST (Table B); UNIQUE (Table A — one row per rel type)
+
+**SYS_Threshold:** temporal_gap_direct_max (150), temporal_gap_high_priority (500), confidence_no_temporal_data (0.75), confidence_temporal_impossibility (0.10)
+
+**Table A — Track assignment:** 11 DIRECT types (FOUGHT_ALONGSIDE, MARRIED_TO, PARENT_OF, TAUGHT, MET_WITH, DEFEATED_IN_BATTLE, NEGOTIATED_WITH, ALLIED_WITH, BETRAYED, COMPETED_WITH, ADVISED), 24 BRIDGING types (DISCOVERED_EVIDENCE_FOR through TRANSLATED_WORK_OF), default UNKNOWN. Full row list in ADR-013.
+
+**Table B — Gap validation:**
+
+| # | track | has_temporal_data | temporal_gap | valid | confidence | reason |
+|---|-------|-------------------|-------------|-------|------------|--------|
+| 1 | DIRECT_HISTORICAL | FALSE | — | TRUE | confidence_no_temporal_data | no_temporal_data_available |
+| 2 | DIRECT_HISTORICAL | TRUE | > temporal_gap_direct_max | FALSE | confidence_temporal_impossibility | temporal_impossibility_direct_claim |
+| 3 | DIRECT_HISTORICAL | TRUE | ≤ temporal_gap_direct_max | TRUE | (computed) | contemporaneous_plausible |
+| 4 | BRIDGING_DISCOVERY | — | — | TRUE | (computed) | bridge_validated |
+| 5 | UNKNOWN | — | — | FALSE | 0.0 | unknown_relationship_type |
+
+**Status:** Proposed (ADR-013). Hardcoded values in `temporal_bridge_discovery.py:58-99, 281-299`.
+
+---
+
+## D34 DETERMINE person federation completeness
+
+**Purpose:** Score federation completeness for person entities based on component presence. Provides code-facing unified view of D15–D18 weights and state boundaries.
+
+**ADR:** ADR-013
+
+**Inputs:**
+
+| Input | Type | Source |
+|-------|------|--------|
+| component | String | Federation component name |
+| component_present | Boolean | Whether the component has a non-null value |
+
+**Output:** `weight: Integer` (summed to produce federation score 0–100), `federation_state: String`
+
+**Hit policy:** UNIQUE (Table A/B — one row per component), FIRST (Table C — score ranges)
+
+**Table A — Place/period weights:** place_qid=30, period_qid=30, geo_context_qid=20, temporal_bounds=15, relationships=5.
+
+**Table B — Subject/authority weights:** lcsh_id=30, fast_id=30, lcc_class=20, qid=20.
+
+**Table C — Score → state:**
+
+| # | score_min | score_max | federation_state |
+|---|-----------|-----------|-----------------|
+| 1 | 0 | 39 | FS0_UNFEDERATED |
+| 2 | 40 | 59 | FS1_BASE |
+| 3 | 60 | 79 | FS2_FEDERATED |
+| 4 | 80 | 100 | FS3_WELL_FEDERATED |
+
+**Relationship to D15–D18:** Compatible structure. Migration path: make `federation_scorer.py` read D15–D18 directly, or create D34 as unified table.
+
+**Status:** Proposed (ADR-013). Hardcoded values in `federation_scorer.py:19-34`.
 
 ---
 
