@@ -1,0 +1,58 @@
+{
+  "proposals": [
+    {
+      "dprr_id": "1050",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1050",
+      "label": "L. Fabius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No search results match L. Fabius who served as legatus in 203 BC - results are either generic name entries or individuals from different time periods",
+      "search_results_count": 8,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1107",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1107",
+      "label": "Cn. Ligurius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "All search results are either encyclopedic articles about the Ligurius name in general or unrelated items (lyngurium gemstone). None represent the specific individual Cn. Ligurius who served as tribunus militum in 197 BCE.",
+      "search_results_count": 4,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1129",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1129",
+      "label": "C. Publicius Bibulus",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No matching Wikidata item found for C. Publicius Bibulus. The search results mostly contain general entries about the cognomen 'Bibulus' or different individuals like Marcus Calpurnius Bibulus, who belongs to a different family (Calpurnius vs Publicius) and time period (1st century BC vs 2nd century BC).",
+      "search_results_count": 8,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1174",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1174",
+      "label": "Sex. Orfidienus",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "The only search result is an encyclopedic article about the name Orfidienus, not a person. No human entities matching Sex. Orfidienus from the Roman Republic period were found.",
+      "search_results_count": 1,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1178",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1178",
+      "label": "Cn. Fulvius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No suitable match found. Q127948101 has correct name but wrong time period (117-116 BC vs 190 BC praetorship), Q151478 has correct name but appears to be from earlier period with different cognomen, and other results are not relevant persons.",
+      "search_results_count": 9,
+      "wikipedia_praetors_candidates": 1
+    }
+  ],
+  "meta": {
+    "count": 5,
+    "applied": 0
+  }
+}

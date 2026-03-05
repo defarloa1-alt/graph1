@@ -1,0 +1,2238 @@
+{
+  "target_qid": "Q17167",
+  "timestamp": "2026-03-04T17:07:41.650754+00:00",
+  "max_backlinks": 20,
+  "max_depth": 2,
+  "summary": {
+    "total_backlinks": 122,
+    "total_traversal_edges": 127,
+    "by_depth": {
+      "depth_1": 13,
+      "depth_2": 114
+    },
+    "by_property": {
+      "P17": 8,
+      "P710": 12,
+      "P527": 5,
+      "P31": 6,
+      "P138": 4,
+      "P39": 1,
+      "P361": 45,
+      "P921": 42,
+      "P101": 1,
+      "P1269": 2,
+      "P131": 2
+    },
+    "by_entity_type": {
+      "Q8142": 2,
+      "Q918448": 4,
+      "Q7048891": 1,
+      "Q178561": 20,
+      "Q176799": 8,
+      "Q851436": 1,
+      "Q131569": 1,
+      "Q4157074": 1,
+      "Q148837": 2,
+      "Q15661340": 3,
+      "Q1292119": 1,
+      "Q11514315": 2,
+      "Q104212151": 1,
+      "Q182547": 1,
+      "Q198": 8,
+      "Q41207": 6,
+      "Q220659": 6,
+      "Q476078": 6,
+      "Q272937": 1,
+      "Q11639620": 1,
+      "Q5": 2,
+      "Q21070568": 1,
+      "Q113371917": 1,
+      "Q202167": 6,
+      "Q13433827": 19,
+      "Q1580166": 5,
+      "Q1238720": 1,
+      "Q1711593": 1,
+      "Q3331189": 2,
+      "Q47461344": 2,
+      "Q172331": 1,
+      "Q628455": 1,
+      "Q188055": 6,
+      "Q737498": 2,
+      "Q773668": 1,
+      "Q1002697": 1,
+      "Q5633421": 5,
+      "Q186081": 1,
+      "Q1047113": 1,
+      "Q207694": 1,
+      "Q3329412": 1,
+      "Q11483816": 1,
+      "Q47258130": 1,
+      "Q277759": 2,
+      "Q1459574": 1,
+      "Q13136": 1,
+      "Q1302249": 2,
+      "Q839954": 1,
+      "Q53731850": 1,
+      "Q124734": 1,
+      "Q600134": 1,
+      "Q2101619": 1,
+      "Q93342462": 1,
+      "Q5107": 1,
+      "Q82794": 1,
+      "Q2418896": 1,
+      "Q207174": 1,
+      "Q11688446": 1,
+      "Q37484": 1,
+      "Q7725634": 1,
+      "Q17537576": 1,
+      "Q1261499": 9,
+      "Q467011": 1,
+      "Q625298": 1
+    }
+  },
+  "backlinks": [
+    {
+      "qid": "Q476078",
+      "label": "aureus",
+      "via_properties": [
+        "P17"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q7048891",
+        "Q8142",
+        "Q918448"
+      ],
+      "p31_labels": {
+        "Q8142": "currency",
+        "Q918448": "denomination",
+        "Q7048891": "non-decimal currency"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q233402",
+      "label": "Battle of Nola",
+      "via_properties": [
+        "P17",
+        "P710"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q178561"
+      ],
+      "p31_labels": {
+        "Q178561": "battle"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q181733",
+      "label": "Praetorian Guard",
+      "via_properties": [
+        "P17"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q176799",
+        "Q851436"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit",
+        "Q851436": "bodyguard"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q188322",
+      "label": "Ebro Treaty",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q131569",
+        "Q4157074"
+      ],
+      "p31_labels": {
+        "Q131569": "treaty",
+        "Q4157074": "boundary delimitation"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q23725",
+      "label": "Byzantium",
+      "via_properties": [
+        "P17"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q148837",
+        "Q15661340"
+      ],
+      "p31_labels": {
+        "Q148837": "polis",
+        "Q15661340": "ancient city"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q486761",
+      "label": "classical antiquity",
+      "via_properties": [
+        "P527"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q11514315",
+        "Q1292119"
+      ],
+      "p31_labels": {
+        "Q1292119": "style",
+        "Q11514315": "historical period"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q104212151"
+      ],
+      "p31_labels": {
+        "Q104212151": "series of wars"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia",
+      "via_properties": [
+        "P17"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q182547"
+      ],
+      "p31_labels": {
+        "Q182547": "Roman province"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q277376",
+      "label": "tressis",
+      "via_properties": [
+        "P17"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q918448"
+      ],
+      "p31_labels": {
+        "Q918448": "denomination"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q374658",
+      "label": "Dextans",
+      "via_properties": [
+        "P17"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q918448"
+      ],
+      "p31_labels": {
+        "Q918448": "denomination"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q548953",
+      "label": "sextans",
+      "via_properties": [
+        "P17"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q8142"
+      ],
+      "p31_labels": {
+        "Q8142": "currency"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q6271",
+      "label": "Second Punic War",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q198"
+      ],
+      "p31_labels": {
+        "Q198": "war"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q6286",
+      "label": "First Punic War",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q198"
+      ],
+      "p31_labels": {
+        "Q198": "war"
+      },
+      "depth": 1,
+      "target_qid": "Q17167",
+      "parent_qid": null
+    },
+    {
+      "qid": "Q27485355",
+      "label": "Aureus (2000.14.140)",
+      "via_properties": [
+        "P31"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q220659",
+        "Q41207",
+        "Q476078"
+      ],
+      "p31_labels": {
+        "Q41207": "coin",
+        "Q220659": "archaeological artefact",
+        "Q476078": "aureus"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q27666192",
+      "label": "Mus\u00e9e Saint-Raymond, 2000 14 129",
+      "via_properties": [
+        "P31"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q220659",
+        "Q41207",
+        "Q476078"
+      ],
+      "p31_labels": {
+        "Q41207": "coin",
+        "Q220659": "archaeological artefact",
+        "Q476078": "aureus"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q27672980",
+      "label": "Mus\u00e9e Saint-Raymond, 2000 14 56",
+      "via_properties": [
+        "P31"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q220659",
+        "Q41207",
+        "Q476078"
+      ],
+      "p31_labels": {
+        "Q41207": "coin",
+        "Q220659": "archaeological artefact",
+        "Q476078": "aureus"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q27901525",
+      "label": "Q27901525",
+      "via_properties": [
+        "P31"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q220659",
+        "Q41207",
+        "Q476078"
+      ],
+      "p31_labels": {
+        "Q41207": "coin",
+        "Q220659": "archaeological artefact",
+        "Q476078": "aureus"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q27920361",
+      "label": "Mus\u00e9e Saint-Raymond, 2000 14 175",
+      "via_properties": [
+        "P31"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q220659",
+        "Q41207",
+        "Q476078"
+      ],
+      "p31_labels": {
+        "Q41207": "coin",
+        "Q220659": "archaeological artefact",
+        "Q476078": "aureus"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q27920453",
+      "label": "Mus\u00e9e Saint-Raymond, 2000 14 81",
+      "via_properties": [
+        "P31"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q220659",
+        "Q41207",
+        "Q476078"
+      ],
+      "p31_labels": {
+        "Q41207": "coin",
+        "Q220659": "archaeological artefact",
+        "Q476078": "aureus"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q10380912",
+      "label": "Q10380912",
+      "via_properties": [
+        "P527"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q272937"
+      ],
+      "p31_labels": {
+        "Q272937": "treasure"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q1533172",
+      "label": "\u00f8re",
+      "via_properties": [
+        "P138"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q11639620"
+      ],
+      "p31_labels": {
+        "Q11639620": "monetary subunit"
+      },
+      "depth": 2,
+      "target_qid": "Q476078",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q48438",
+      "label": "Saint George",
+      "via_properties": [
+        "P39"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q113371917",
+        "Q21070568",
+        "Q5"
+      ],
+      "p31_labels": {
+        "Q5": "human",
+        "Q21070568": "human whose existence is disputed",
+        "Q113371917": "legendary saint"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q134462272",
+      "label": "Cohors IIII Praetoria",
+      "via_properties": [
+        "P361"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q176799",
+        "Q202167"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit",
+        "Q202167": "cohort"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q134462292",
+      "label": "Cohors III Praetoria",
+      "via_properties": [
+        "P361"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q176799",
+        "Q202167"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit",
+        "Q202167": "cohort"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q134462294",
+      "label": "Cohors II Praetoria",
+      "via_properties": [
+        "P361"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q176799",
+        "Q202167"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit",
+        "Q202167": "cohort"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q134467462",
+      "label": "Cohors VIII praetoria",
+      "via_properties": [
+        "P361"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q176799",
+        "Q202167"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit",
+        "Q202167": "cohort"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q134467470",
+      "label": "Cohors VIIII praetoria",
+      "via_properties": [
+        "P361"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q176799",
+        "Q202167"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit",
+        "Q202167": "cohort"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q134467471",
+      "label": "Cohors X praetoria",
+      "via_properties": [
+        "P361"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q176799",
+        "Q202167"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit",
+        "Q202167": "cohort"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q120360302",
+      "label": "1911 Encyclop\u00e6dia Britannica/Praetorians",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q1347879",
+      "label": "Equites singulares Augusti",
+      "via_properties": [
+        "P361"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q176799"
+      ],
+      "p31_labels": {
+        "Q176799": "military unit"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q23854193",
+      "label": "Q23854193",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q45206976",
+      "label": "Q45206976",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q1580166"
+      ],
+      "p31_labels": {
+        "Q1580166": "dictionary entry"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q87027608",
+      "label": "Q87027608",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q181733",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q122733112",
+      "label": "City of Caesar, City of God: Constantinople and Jerusalem in Late Antiquity, ed. Konstantin M. Klein, Johannes Wienand. Berlin: De Gruyter 2022",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 4,
+      "p31": [
+        "Q1238720",
+        "Q1711593",
+        "Q3331189",
+        "Q47461344"
+      ],
+      "p31_labels": {
+        "Q1238720": "volume",
+        "Q1711593": "edited volume",
+        "Q3331189": "version, edition or translation",
+        "Q47461344": "written work"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q617075",
+      "label": "Byzantine Rite",
+      "via_properties": [
+        "P138"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q172331",
+        "Q628455"
+      ],
+      "p31_labels": {
+        "Q172331": "liturgy",
+        "Q628455": "rite"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q115172390",
+      "label": "Q115172390",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q16683515",
+      "label": "Siege of Byzantium",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q188055"
+      ],
+      "p31_labels": {
+        "Q188055": "siege"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q16683533",
+      "label": "Siege of Perinthus",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q188055"
+      ],
+      "p31_labels": {
+        "Q188055": "siege"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q16912790",
+      "label": "Athenian-Macedonian War (340\u2013338 BC)",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q198"
+      ],
+      "p31_labels": {
+        "Q198": "war"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q2338771",
+      "label": "Cretan War of 205-200 BCE",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q198"
+      ],
+      "p31_labels": {
+        "Q198": "war"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q24362188",
+      "label": "Q24362188",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q24798537",
+      "label": "Q24798537",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q3310015",
+      "label": "Michel Kaplan",
+      "via_properties": [
+        "P101"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q5"
+      ],
+      "p31_labels": {
+        "Q5": "human"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q34399796",
+      "label": "Byzantion 1 (Pauly-Wissowa)",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q387020",
+      "label": "Social War of 357-355 BCE",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q198"
+      ],
+      "p31_labels": {
+        "Q198": "war"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q45268955",
+      "label": "Q45268955",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q1580166"
+      ],
+      "p31_labels": {
+        "Q1580166": "dictionary entry"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q84637217",
+      "label": "1911 Encyclop\u00e6dia Britannica/Byzantium",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13433827"
+      ],
+      "p31_labels": {
+        "Q13433827": "encyclopedia article"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q97305706",
+      "label": "War of Byzantium against Bithynia and Rhodes",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q198"
+      ],
+      "p31_labels": {
+        "Q198": "war"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q97306131",
+      "label": "War between Antiochus I Soter and the Northern League",
+      "via_properties": [
+        "P710"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q198"
+      ],
+      "p31_labels": {
+        "Q198": "war"
+      },
+      "depth": 2,
+      "target_qid": "Q23725",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q2397875",
+      "label": "Hermeneus",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 4,
+      "p31": [
+        "Q1002697",
+        "Q5633421",
+        "Q737498",
+        "Q773668"
+      ],
+      "p31_labels": {
+        "Q737498": "academic journal",
+        "Q773668": "open-access journal",
+        "Q1002697": "periodical",
+        "Q5633421": "scientific journal"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q41493",
+      "label": "ancient history",
+      "via_properties": [
+        "P527"
+      ],
+      "backlink_hits": 3,
+      "p31": [
+        "Q1047113",
+        "Q11514315",
+        "Q186081"
+      ],
+      "p31_labels": {
+        "Q186081": "time interval",
+        "Q1047113": "field of study",
+        "Q11514315": "historical period"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q414952",
+      "label": "Akademisches Kunstmuseum",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q207694",
+        "Q3329412"
+      ],
+      "p31_labels": {
+        "Q207694": "art museum",
+        "Q3329412": "archaeological museum"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q640954",
+      "label": "Colloquium Balticum",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 2,
+      "p31": [
+        "Q11483816",
+        "Q47258130"
+      ],
+      "p31_labels": {
+        "Q11483816": "annual event",
+        "Q47258130": "academic conference series"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q1248438",
+      "label": "Philologus",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q5633421"
+      ],
+      "p31_labels": {
+        "Q5633421": "scientific journal"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q138951",
+      "label": "Zaberns Bildb\u00e4nde zur Arch\u00e4ologie",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q277759"
+      ],
+      "p31_labels": {
+        "Q277759": "book series"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q15755172",
+      "label": "Scholia",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q5633421"
+      ],
+      "p31_labels": {
+        "Q5633421": "scientific journal"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q1678614",
+      "label": "Jahrbuch fuer Antike und Christentum",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q5633421"
+      ],
+      "p31_labels": {
+        "Q5633421": "scientific journal"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q1791692",
+      "label": "Q1791692",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q1459574"
+      ],
+      "p31_labels": {
+        "Q1459574": "compendium"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q2134796",
+      "label": "Reallexikon f\u00fcr Antike und Christentum",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q13136"
+      ],
+      "p31_labels": {
+        "Q13136": "reference work"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    },
+    {
+      "qid": "Q460575",
+      "label": "The Cambridge Ancient History",
+      "via_properties": [
+        "P921"
+      ],
+      "backlink_hits": 1,
+      "p31": [
+        "Q277759"
+      ],
+      "p31_labels": {
+        "Q277759": "book series"
+      },
+      "depth": 2,
+      "target_qid": "Q486761",
+      "parent_qid": "Q17167"
+    }
+  ],
+  "by_depth": {
+    "depth_1": [
+      {
+        "qid": "Q476078",
+        "label": "aureus",
+        "via_properties": [
+          "P17"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q7048891",
+          "Q8142",
+          "Q918448"
+        ],
+        "p31_labels": {
+          "Q8142": "currency",
+          "Q918448": "denomination",
+          "Q7048891": "non-decimal currency"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q233402",
+        "label": "Battle of Nola",
+        "via_properties": [
+          "P17",
+          "P710"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q178561"
+        ],
+        "p31_labels": {
+          "Q178561": "battle"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q181733",
+        "label": "Praetorian Guard",
+        "via_properties": [
+          "P17"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q176799",
+          "Q851436"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit",
+          "Q851436": "bodyguard"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q188322",
+        "label": "Ebro Treaty",
+        "via_properties": [
+          "P710"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q131569",
+          "Q4157074"
+        ],
+        "p31_labels": {
+          "Q131569": "treaty",
+          "Q4157074": "boundary delimitation"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q23725",
+        "label": "Byzantium",
+        "via_properties": [
+          "P17"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q148837",
+          "Q15661340"
+        ],
+        "p31_labels": {
+          "Q148837": "polis",
+          "Q15661340": "ancient city"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "via_properties": [
+          "P527"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q11514315",
+          "Q1292119"
+        ],
+        "p31_labels": {
+          "Q1292119": "style",
+          "Q11514315": "historical period"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q124988",
+        "label": "Punic Wars",
+        "via_properties": [
+          "P710"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q104212151"
+        ],
+        "p31_labels": {
+          "Q104212151": "series of wars"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q210718",
+        "label": "Asia",
+        "via_properties": [
+          "P17"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q182547"
+        ],
+        "p31_labels": {
+          "Q182547": "Roman province"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q277376",
+        "label": "tressis",
+        "via_properties": [
+          "P17"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q918448"
+        ],
+        "p31_labels": {
+          "Q918448": "denomination"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q374658",
+        "label": "Dextans",
+        "via_properties": [
+          "P17"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q918448"
+        ],
+        "p31_labels": {
+          "Q918448": "denomination"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q548953",
+        "label": "sextans",
+        "via_properties": [
+          "P17"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q8142"
+        ],
+        "p31_labels": {
+          "Q8142": "currency"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q6271",
+        "label": "Second Punic War",
+        "via_properties": [
+          "P710"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q198"
+        ],
+        "p31_labels": {
+          "Q198": "war"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      },
+      {
+        "qid": "Q6286",
+        "label": "First Punic War",
+        "via_properties": [
+          "P710"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q198"
+        ],
+        "p31_labels": {
+          "Q198": "war"
+        },
+        "depth": 1,
+        "target_qid": "Q17167",
+        "parent_qid": null
+      }
+    ],
+    "depth_2": [
+      {
+        "qid": "Q27485355",
+        "label": "Aureus (2000.14.140)",
+        "via_properties": [
+          "P31"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q220659",
+          "Q41207",
+          "Q476078"
+        ],
+        "p31_labels": {
+          "Q41207": "coin",
+          "Q220659": "archaeological artefact",
+          "Q476078": "aureus"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q27666192",
+        "label": "Mus\u00e9e Saint-Raymond, 2000 14 129",
+        "via_properties": [
+          "P31"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q220659",
+          "Q41207",
+          "Q476078"
+        ],
+        "p31_labels": {
+          "Q41207": "coin",
+          "Q220659": "archaeological artefact",
+          "Q476078": "aureus"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q27672980",
+        "label": "Mus\u00e9e Saint-Raymond, 2000 14 56",
+        "via_properties": [
+          "P31"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q220659",
+          "Q41207",
+          "Q476078"
+        ],
+        "p31_labels": {
+          "Q41207": "coin",
+          "Q220659": "archaeological artefact",
+          "Q476078": "aureus"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q27901525",
+        "label": "Q27901525",
+        "via_properties": [
+          "P31"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q220659",
+          "Q41207",
+          "Q476078"
+        ],
+        "p31_labels": {
+          "Q41207": "coin",
+          "Q220659": "archaeological artefact",
+          "Q476078": "aureus"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q27920361",
+        "label": "Mus\u00e9e Saint-Raymond, 2000 14 175",
+        "via_properties": [
+          "P31"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q220659",
+          "Q41207",
+          "Q476078"
+        ],
+        "p31_labels": {
+          "Q41207": "coin",
+          "Q220659": "archaeological artefact",
+          "Q476078": "aureus"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q27920453",
+        "label": "Mus\u00e9e Saint-Raymond, 2000 14 81",
+        "via_properties": [
+          "P31"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q220659",
+          "Q41207",
+          "Q476078"
+        ],
+        "p31_labels": {
+          "Q41207": "coin",
+          "Q220659": "archaeological artefact",
+          "Q476078": "aureus"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q10380912",
+        "label": "Q10380912",
+        "via_properties": [
+          "P527"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q272937"
+        ],
+        "p31_labels": {
+          "Q272937": "treasure"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q1533172",
+        "label": "\u00f8re",
+        "via_properties": [
+          "P138"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q11639620"
+        ],
+        "p31_labels": {
+          "Q11639620": "monetary subunit"
+        },
+        "depth": 2,
+        "target_qid": "Q476078",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q48438",
+        "label": "Saint George",
+        "via_properties": [
+          "P39"
+        ],
+        "backlink_hits": 3,
+        "p31": [
+          "Q113371917",
+          "Q21070568",
+          "Q5"
+        ],
+        "p31_labels": {
+          "Q5": "human",
+          "Q21070568": "human whose existence is disputed",
+          "Q113371917": "legendary saint"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q134462272",
+        "label": "Cohors IIII Praetoria",
+        "via_properties": [
+          "P361"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q176799",
+          "Q202167"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit",
+          "Q202167": "cohort"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q134462292",
+        "label": "Cohors III Praetoria",
+        "via_properties": [
+          "P361"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q176799",
+          "Q202167"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit",
+          "Q202167": "cohort"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q134462294",
+        "label": "Cohors II Praetoria",
+        "via_properties": [
+          "P361"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q176799",
+          "Q202167"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit",
+          "Q202167": "cohort"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q134467462",
+        "label": "Cohors VIII praetoria",
+        "via_properties": [
+          "P361"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q176799",
+          "Q202167"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit",
+          "Q202167": "cohort"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q134467470",
+        "label": "Cohors VIIII praetoria",
+        "via_properties": [
+          "P361"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q176799",
+          "Q202167"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit",
+          "Q202167": "cohort"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q134467471",
+        "label": "Cohors X praetoria",
+        "via_properties": [
+          "P361"
+        ],
+        "backlink_hits": 2,
+        "p31": [
+          "Q176799",
+          "Q202167"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit",
+          "Q202167": "cohort"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q120360302",
+        "label": "1911 Encyclop\u00e6dia Britannica/Praetorians",
+        "via_properties": [
+          "P921"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q13433827"
+        ],
+        "p31_labels": {
+          "Q13433827": "encyclopedia article"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q1347879",
+        "label": "Equites singulares Augusti",
+        "via_properties": [
+          "P361"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q176799"
+        ],
+        "p31_labels": {
+          "Q176799": "military unit"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q23854193",
+        "label": "Q23854193",
+        "via_properties": [
+          "P921"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q13433827"
+        ],
+        "p31_labels": {
+          "Q13433827": "encyclopedia article"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q45206976",
+        "label": "Q45206976",
+        "via_properties": [
+          "P921"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q1580166"
+        ],
+        "p31_labels": {
+          "Q1580166": "dictionary entry"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      },
+      {
+        "qid": "Q87027608",
+        "label": "Q87027608",
+        "via_properties": [
+          "P921"
+        ],
+        "backlink_hits": 1,
+        "p31": [
+          "Q13433827"
+        ],
+        "p31_labels": {
+          "Q13433827": "encyclopedia article"
+        },
+        "depth": 2,
+        "target_qid": "Q181733",
+        "parent_qid": "Q17167"
+      }
+    ]
+  },
+  "p31_by_qid": {
+    "Q6271": [
+      "Q198"
+    ],
+    "Q6286": [
+      "Q198"
+    ],
+    "Q23725": [
+      "Q148837",
+      "Q15661340"
+    ],
+    "Q48438": [
+      "Q5",
+      "Q21070568",
+      "Q113371917"
+    ],
+    "Q124988": [
+      "Q104212151"
+    ],
+    "Q181733": [
+      "Q176799",
+      "Q851436"
+    ],
+    "Q188322": [
+      "Q131569",
+      "Q4157074"
+    ],
+    "Q210718": [
+      "Q182547"
+    ],
+    "Q233402": [
+      "Q178561"
+    ],
+    "Q277376": [
+      "Q918448"
+    ],
+    "Q374658": [
+      "Q918448"
+    ],
+    "Q387020": [
+      "Q198"
+    ],
+    "Q476078": [
+      "Q8142",
+      "Q918448",
+      "Q7048891"
+    ],
+    "Q486761": [
+      "Q1292119",
+      "Q11514315"
+    ],
+    "Q548953": [
+      "Q8142",
+      "Q918448"
+    ],
+    "Q617075": [
+      "Q172331",
+      "Q628455"
+    ],
+    "Q1347879": [
+      "Q176799"
+    ],
+    "Q1533172": [
+      "Q11639620"
+    ],
+    "Q2338771": [
+      "Q198"
+    ],
+    "Q2397875": [
+      "Q737498",
+      "Q773668",
+      "Q1002697",
+      "Q5633421"
+    ],
+    "Q3310015": [
+      "Q5"
+    ],
+    "Q10380912": [
+      "Q272937"
+    ],
+    "Q16683515": [
+      "Q188055"
+    ],
+    "Q16683533": [
+      "Q188055"
+    ],
+    "Q16912790": [
+      "Q198"
+    ],
+    "Q23854193": [
+      "Q13433827"
+    ],
+    "Q24362188": [
+      "Q13433827"
+    ],
+    "Q24798537": [
+      "Q13433827"
+    ],
+    "Q27485355": [
+      "Q41207",
+      "Q220659",
+      "Q476078"
+    ],
+    "Q27666192": [
+      "Q41207",
+      "Q220659",
+      "Q476078"
+    ],
+    "Q27672980": [
+      "Q41207",
+      "Q220659",
+      "Q476078"
+    ],
+    "Q27901525": [
+      "Q41207",
+      "Q220659",
+      "Q476078"
+    ],
+    "Q27920361": [
+      "Q41207",
+      "Q220659",
+      "Q476078"
+    ],
+    "Q27920453": [
+      "Q41207",
+      "Q220659",
+      "Q476078"
+    ],
+    "Q34399796": [
+      "Q13433827"
+    ],
+    "Q45206976": [
+      "Q1580166"
+    ],
+    "Q45268955": [
+      "Q1580166"
+    ],
+    "Q84637217": [
+      "Q13433827"
+    ],
+    "Q87027608": [
+      "Q13433827"
+    ],
+    "Q97305706": [
+      "Q198"
+    ],
+    "Q97306131": [
+      "Q198"
+    ],
+    "Q115172390": [
+      "Q13433827"
+    ],
+    "Q120360302": [
+      "Q13433827"
+    ],
+    "Q122733112": [
+      "Q1238720",
+      "Q1711593",
+      "Q3331189",
+      "Q47461344"
+    ],
+    "Q134462272": [
+      "Q176799",
+      "Q202167"
+    ],
+    "Q134462292": [
+      "Q176799",
+      "Q202167"
+    ],
+    "Q134462294": [
+      "Q176799",
+      "Q202167"
+    ],
+    "Q134467462": [
+      "Q176799",
+      "Q202167"
+    ],
+    "Q134467470": [
+      "Q176799",
+      "Q202167"
+    ],
+    "Q134467471": [
+      "Q176799",
+      "Q202167"
+    ],
+    "Q48": [
+      "Q5107",
+      "Q82794",
+      "Q2418896"
+    ],
+    "Q6334": [
+      "Q198"
+    ],
+    "Q18986": [
+      "Q148837",
+      "Q15661340",
+      "Q93342462"
+    ],
+    "Q41493": [
+      "Q186081",
+      "Q1047113",
+      "Q11514315"
+    ],
+    "Q113317": [
+      "Q1261499"
+    ],
+    "Q138951": [
+      "Q277759"
+    ],
+    "Q179591": [
+      "Q178561"
+    ],
+    "Q200056": [
+      "Q178561"
+    ],
+    "Q207250": [
+      "Q178561"
+    ],
+    "Q233363": [
+      "Q178561"
+    ],
+    "Q233373": [
+      "Q178561"
+    ],
+    "Q233386": [
+      "Q178561"
+    ],
+    "Q233406": [
+      "Q178561"
+    ],
+    "Q271873": [
+      "Q178561"
+    ],
+    "Q378957": [
+      "Q178561"
+    ],
+    "Q383855": [
+      "Q37484",
+      "Q7725634",
+      "Q17537576"
+    ],
+    "Q414952": [
+      "Q207694",
+      "Q3329412"
+    ],
+    "Q460575": [
+      "Q277759"
+    ],
+    "Q611895": [
+      "Q2101619"
+    ],
+    "Q631410": [
+      "Q5633421"
+    ],
+    "Q640954": [
+      "Q11483816",
+      "Q47258130"
+    ],
+    "Q1132393": [
+      "Q124734"
+    ],
+    "Q1248438": [
+      "Q5633421"
+    ],
+    "Q1678614": [
+      "Q5633421"
+    ],
+    "Q1791692": [
+      "Q1459574"
+    ],
+    "Q1892445": [
+      "Q839954",
+      "Q15661340"
+    ],
+    "Q2134796": [
+      "Q13136"
+    ],
+    "Q5128255": [
+      "Q737498"
+    ],
+    "Q15755172": [
+      "Q5633421"
+    ],
+    "Q19992158": [
+      "Q13433827"
+    ],
+    "Q24495460": [
+      "Q13433827"
+    ],
+    "Q24817801": [
+      "Q13433827"
+    ],
+    "Q43372407": [
+      "Q13433827"
+    ],
+    "Q43433286": [
+      "Q13433827"
+    ],
+    "Q45176678": [
+      "Q1580166"
+    ],
+    "Q56285235": [
+      "Q13433827"
+    ],
+    "Q84659199": [
+      "Q13433827"
+    ],
+    "Q84691905": [
+      "Q13433827"
+    ],
+    "Q102243215": [
+      "Q53731850"
+    ],
+    "Q106044427": [
+      "Q1302249",
+      "Q1580166"
+    ],
+    "Q111724481": [
+      "Q1302249",
+      "Q1580166"
+    ],
+    "Q112792517": [
+      "Q13433827"
+    ],
+    "Q116289120": [
+      "Q13433827"
+    ],
+    "Q116456439": [
+      "Q13433827"
+    ],
+    "Q121817082": [
+      "Q47461344"
+    ],
+    "Q122045574": [
+      "Q3331189"
+    ],
+    "Q123116313": [
+      "Q600134"
+    ],
+    "Q130237163": [
+      "Q207174",
+      "Q11688446"
+    ],
+    "Q134836736": [
+      "Q467011"
+    ],
+    "Q6881": [
+      "Q1261499"
+    ],
+    "Q6891": [
+      "Q178561"
+    ],
+    "Q233366": [
+      "Q178561"
+    ],
+    "Q277345": [
+      "Q1261499"
+    ],
+    "Q379280": [
+      "Q178561"
+    ],
+    "Q427853": [
+      "Q178561"
+    ],
+    "Q533090": [
+      "Q188055"
+    ],
+    "Q590014": [
+      "Q1261499"
+    ],
+    "Q728550": [
+      "Q178561"
+    ],
+    "Q778730": [
+      "Q178561"
+    ],
+    "Q815118": [
+      "Q188055"
+    ],
+    "Q917376": [
+      "Q178561",
+      "Q188055"
+    ],
+    "Q963839": [
+      "Q178561"
+    ],
+    "Q1134649": [
+      "Q1261499"
+    ],
+    "Q1355206": [
+      "Q1261499"
+    ],
+    "Q1432659": [
+      "Q1261499"
+    ],
+    "Q1433214": [
+      "Q625298"
+    ],
+    "Q1476126": [
+      "Q178561"
+    ],
+    "Q1886703": [
+      "Q1261499"
+    ],
+    "Q2263273": [
+      "Q188055"
+    ],
+    "Q2265544": [
+      "Q1261499"
+    ],
+    "Q2478491": [
+      "Q178561"
+    ]
+  },
+  "llm_analysis": {
+    "assessment": "This entity shows moderate connectivity with 122 backlinks heavily skewed toward depth-2 connections (114 vs 13 direct). The property mix is dominated by P361 (part of) and P921 (main subject) relations, suggesting this is likely a conceptual or thematic entity that serves as a subject classification rather than a concrete object.",
+    "connectivity_score": 6,
+    "positioning_suggestions": [
+      "Map to LCC class based on the high prevalence of P921 (main subject) indicating scholarly/academic classification",
+      "Consider LCSH subject heading alignment given the conceptual nature suggested by property distribution",
+      "Explore topical or thematic faceting rather than entity-based given the 'part of' and 'main subject' relationship patterns"
+    ],
+    "caveats": [
+      "Heavy reliance on depth-2 connections may indicate indirect relevance rather than core domain positioning",
+      "Need to identify the actual target entity Q17167 to validate the property relationship patterns",
+      "The mix of entity types suggests diverse domains which could indicate either broad conceptual scope or classification ambiguity"
+    ]
+  }
+}

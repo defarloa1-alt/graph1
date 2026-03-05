@@ -147,6 +147,59 @@ def get_subject_concepts() -> list:
         driver.close()
 
 
+def get_domain_structure(qid: str) -> dict:
+    """
+    Get SCA domain structure for a subject QID. Returns SubjectDomain + WikidataTypes.
+    Use to ground a new SCA session — all data needed about the domain.
+    """
+    driver = get_driver()
+    try:
+        with driver.session() as session:
+            # SubjectDomain
+            r = session.run(
+                """
+                MATCH (d:SubjectDomain {seed_qid: $qid})
+                RETURN d.seed_qid AS seed_qid, d.timestamp AS timestamp,
+                       d.types_count AS types_count, d.backlinks_total AS backlinks_total,
+                       d.training_qids_count AS training_qids_count,
+                       d.structural_props AS structural_props,
+                       d.training_qids AS training_qids
+                """,
+                qid=qid.strip().upper(),
+            )
+            row = r.single()
+            if not row:
+                return {"error": f"No SubjectDomain for {qid}. Run SCA traversal and persist first."}
+
+            domain = dict(row)
+            if domain.get("structural_props"):
+                try:
+                    domain["structural_props"] = json.loads(domain["structural_props"])
+                except (TypeError, json.JSONDecodeError):
+                    pass
+            if domain.get("training_qids"):
+                try:
+                    domain["training_qids"] = json.loads(domain["training_qids"])
+                except (TypeError, json.JSONDecodeError):
+                    pass
+
+            # WikidataTypes used by this domain
+            r2 = session.run(
+                """
+                MATCH (d:SubjectDomain {seed_qid: $qid})-[:USES_TYPE]->(w:WikidataType)
+                RETURN w.qid AS qid, w.label AS label, w.tier AS tier,
+                       w.depth AS depth, w.backlink_count AS backlink_count,
+                       w.traversal_boundary AS traversal_boundary
+                ORDER BY w.depth, w.label
+                """,
+                qid=qid.strip().upper(),
+            )
+            domain["types"] = [dict(r) for r in r2]
+            return domain
+    finally:
+        driver.close()
+
+
 def run_cypher_readonly(query: str, params: dict = None) -> list:
     """
     Execute a read-only Cypher query against Chrystallum Neo4j (D-034).
@@ -231,6 +284,16 @@ TOOLS = {
         "description": "List SubjectConcept nodes with label, entity_count, and facet assignments",
         "inputSchema": {"type": "object", "properties": {}}
     },
+    "get_domain_structure": {
+        "description": "Get SCA domain structure for a subject QID (SubjectDomain + WikidataTypes). Ground new sessions.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "qid": {"type": "string", "description": "Subject QID, e.g. Q17167 (Roman Republic)"}
+            },
+            "required": ["qid"]
+        }
+    },
     "run_cypher_readonly": {
         "description": "Execute a read-only MATCH query against Chrystallum Neo4j. MATCH only — no writes permitted. 500 char limit, 500 row cap.",
         "inputSchema": {
@@ -290,6 +353,8 @@ def handle_request(req: dict) -> dict:
                 result = get_federation_sources()
             elif tool_name == "get_subject_concepts":
                 result = get_subject_concepts()
+            elif tool_name == "get_domain_structure":
+                result = get_domain_structure(arguments.get("qid", ""))
             elif tool_name == "run_cypher_readonly":
                 query = arguments.get("query", "")
                 params = arguments.get("params", {})

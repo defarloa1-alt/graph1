@@ -1,0 +1,58 @@
+{
+  "proposals": [
+    {
+      "dprr_id": "1050",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1050",
+      "label": "L. Fabius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No search results match the specific L. Fabius who served as legatus in 203 BC. Results are either generic name entries or individuals from different time periods.",
+      "search_results_count": 8,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1107",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1107",
+      "label": "Cn. Ligurius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "The search results only contain encyclopedic articles from Pauly-Wissowa RE and a mythical gemstone entry. None represent actual Roman persons. While the RE articles may reference Roman individuals named Ligurius, they are not Wikidata items about the persons themselves. No suitable match for Cn. Ligurius, the Roman military tribune from 197 BC.",
+      "search_results_count": 4,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1129",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1129",
+      "label": "C. Publicius Bibulus",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No Wikidata search results were provided to match against C. Publicius Bibulus, who served as aedilis plebis in 195 BCE.",
+      "search_results_count": 0,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1174",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1174",
+      "label": "Sex. Orfidienus",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No Wikidata search results were provided for Sex. Orfidienus, a praefectus from 191 BCE. Without any candidates to evaluate, no match can be proposed.",
+      "search_results_count": 0,
+      "wikipedia_praetors_candidates": 0
+    },
+    {
+      "dprr_id": "1178",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1178",
+      "label": "Cn. Fulvius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No good matches found - Q763405 is wrong person entirely, Q127948101 is ~70 years too late (117-116 BC vs 190 BC), and Q151478 is ~110 years too early (300 BC vs 190 BC)",
+      "search_results_count": 3,
+      "wikipedia_praetors_candidates": 1
+    }
+  ],
+  "meta": {
+    "count": 5,
+    "applied": 0
+  }
+}

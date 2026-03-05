@@ -1,0 +1,553 @@
+{
+  "seed_qid": "Q17167",
+  "timestamp": "2026-03-04T19:00:34.919247+00:00",
+  "max_depth": 2,
+  "summary": {
+    "types_discovered": 7,
+    "backlinks_total": 50,
+    "training_qids_count": 50
+  },
+  "types": [
+    {
+      "qid": "Q3024240",
+      "label": "historical country",
+      "depth": 1,
+      "source": "P31",
+      "backlink_count": 50,
+      "backlinks_by_instance_of": {
+        "Q1620908": [
+          {
+            "qid": "Q327",
+            "label": "Brittany"
+          },
+          {
+            "qid": "Q11768",
+            "label": "Ancient Egypt"
+          }
+        ],
+        "Q3024240": [
+          {
+            "qid": "Q327",
+            "label": "Brittany"
+          },
+          {
+            "qid": "Q2184",
+            "label": "Russian Soviet Federative Socialist Republic"
+          },
+          {
+            "qid": "Q2277",
+            "label": "Roman Empire"
+          },
+          {
+            "qid": "Q2895",
+            "label": "Byelorussian Soviet Socialist Republic"
+          },
+          {
+            "qid": "Q4712",
+            "label": "Duchy of Burgundy"
+          },
+          {
+            "qid": "Q4948",
+            "label": "Republic of Venice"
+          },
+          {
+            "qid": "Q5257",
+            "label": "Satavahana dynasty"
+          },
+          {
+            "qid": "Q5324",
+            "label": "Gurjara-Pratihara"
+          },
+          {
+            "qid": "Q5743",
+            "label": "Ebla"
+          },
+          {
+            "qid": "Q5780",
+            "label": "Meroë"
+          },
+          {
+            "qid": "Q5790",
+            "label": "Seuna Dynasty"
+          },
+          {
+            "qid": "Q7209",
+            "label": "Han dynasty"
+          },
+          {
+            "qid": "Q7318",
+            "label": "Nazi Germany"
+          },
+          {
+            "qid": "Q8733",
+            "label": "Qing dynasty"
+          },
+          {
+            "qid": "Q8935",
+            "label": "First Republic of Venezuela"
+          }
+        ],
+        "Q3502482": [
+          {
+            "qid": "Q327",
+            "label": "Brittany"
+          },
+          {
+            "qid": "Q11768",
+            "label": "Ancient Egypt"
+          }
+        ],
+        "Q11514315": [
+          {
+            "qid": "Q2277",
+            "label": "Roman Empire"
+          },
+          {
+            "qid": "Q5324",
+            "label": "Gurjara-Pratihara"
+          },
+          {
+            "qid": "Q5743",
+            "label": "Ebla"
+          },
+          {
+            "qid": "Q7209",
+            "label": "Han dynasty"
+          },
+          {
+            "qid": "Q8733",
+            "label": "Qing dynasty"
+          },
+          {
+            "qid": "Q8950",
+            "label": "Second Republic of Venezuela"
+          },
+          {
+            "qid": "Q12544",
+            "label": "Byzantine Empire"
+          },
+          {
+            "qid": "Q16410",
+            "label": "Hungarian People's Republic"
+          },
+          {
+            "qid": "Q17167",
+            "label": "Roman Republic"
+          }
+        ],
+        "Q154547": [
+          {
+            "qid": "Q4712",
+            "label": "Duchy of Burgundy"
+          }
+        ],
+        "Q1371288": [
+          {
+            "qid": "Q4712",
+            "label": "Duchy of Burgundy"
+          },
+          {
+            "qid": "Q28025",
+            "label": "Ryukyu Kingdom"
+          }
+        ],
+        "Q13417114": [
+          {
+            "qid": "Q5324",
+            "label": "Gurjara-Pratihara"
+          }
+        ],
+        "Q755017": [
+          {
+            "qid": "Q5743",
+            "label": "Ebla"
+          }
+        ],
+        "Q15661340": [
+          {
+            "qid": "Q5743",
+            "label": "Ebla"
+          },
+          {
+            "qid": "Q5780",
+            "label": "Meroë"
+          }
+        ],
+        "Q164950": [
+          {
+            "qid": "Q5790",
+            "label": "Seuna Dynasty"
+          },
+          {
+            "qid": "Q26996",
+            "label": "Kidarites"
+          },
+          {
+            "qid": "Q27260",
+            "label": "Samma dynasty"
+          },
+          {
+            "qid": "Q28208",
+            "label": "Goryeo"
+          }
+        ],
+        "Q12857432": [
+          {
+            "qid": "Q7209",
+            "label": "Han dynasty"
+          }
+        ],
+        "Q50068795": [
+          {
+            "qid": "Q7209",
+            "label": "Han dynasty"
+          },
+          {
+            "qid": "Q8733",
+            "label": "Qing dynasty"
+          }
+        ],
+        "Q7270": [
+          {
+            "qid": "Q8950",
+            "label": "Second Republic of Venezuela"
+          }
+        ],
+        "Q28171280": [
+          {
+            "qid": "Q11768",
+            "label": "Ancient Egypt"
+          }
+        ],
+        "Q165116": [
+          {
+            "qid": "Q20135",
+            "label": "Grand Duchy of Hesse"
+          }
+        ],
+        "Q26879769": [
+          {
+            "qid": "Q20135",
+            "label": "Grand Duchy of Hesse"
+          }
+        ],
+        "Q113136497": [
+          {
+            "qid": "Q20135",
+            "label": "Grand Duchy of Hesse"
+          }
+        ],
+        "Q1138494": [
+          {
+            "qid": "Q23148",
+            "label": "Cornwall"
+          }
+        ],
+        "Q15304003": [
+          {
+            "qid": "Q25227",
+            "label": "Netherlands Antilles"
+          }
+        ],
+        "Q4204501": [
+          {
+            "qid": "Q26576",
+            "label": "Hephthalites"
+          }
+        ],
+        "Q112099": [
+          {
+            "qid": "Q28025",
+            "label": "Ryukyu Kingdom"
+          }
+        ],
+        "Q417175": [
+          {
+            "qid": "Q28025",
+            "label": "Ryukyu Kingdom"
+          }
+        ],
+        "Q3241965": [
+          {
+            "qid": "Q28025",
+            "label": "Ryukyu Kingdom"
+          }
+        ],
+        "Q1250464": [
+          {
+            "qid": "Q28057",
+            "label": "Tamna"
+          }
+        ],
+        "Q59281": [
+          {
+            "qid": "Q28278",
+            "label": "Provisional Government of the Republic of Korea"
+          }
+        ],
+        "Q678116": [
+          {
+            "qid": "Q28278",
+            "label": "Provisional Government of the Republic of Korea"
+          }
+        ]
+      },
+      "tier": "secondary"
+    },
+    {
+      "qid": "Q11514315",
+      "label": "historical period",
+      "depth": 1,
+      "source": "P31"
+    },
+    {
+      "qid": "Q1620908",
+      "label": "historical region",
+      "depth": 2
+    },
+    {
+      "qid": "Q3502482",
+      "label": "cultural region",
+      "depth": 2
+    },
+    {
+      "qid": "Q154547",
+      "label": "duchy",
+      "depth": 2
+    },
+    {
+      "qid": "Q1371288",
+      "label": "vassal state",
+      "depth": 2
+    },
+    {
+      "qid": "Q13417114",
+      "label": "noble family",
+      "depth": 2
+    }
+  ],
+  "structural_props": {
+    "P361": [
+      [
+        "Q1747689",
+        "Ancient Rome"
+      ]
+    ],
+    "P527": [
+      [
+        "Q2815472",
+        "Late Roman Republic"
+      ],
+      [
+        "Q2839628",
+        "Early Roman Republic"
+      ],
+      [
+        "Q6106068",
+        "Middle Roman Republic"
+      ]
+    ]
+  },
+  "training_qids": [
+    {
+      "qid": "Q11768",
+      "label": "Ancient Egypt"
+    },
+    {
+      "qid": "Q11774",
+      "label": "Gupta Empire"
+    },
+    {
+      "qid": "Q12536",
+      "label": "Abbasid Caliphate"
+    },
+    {
+      "qid": "Q12544",
+      "label": "Byzantine Empire"
+    },
+    {
+      "qid": "Q12548",
+      "label": "Holy Roman Empire"
+    },
+    {
+      "qid": "Q12557",
+      "label": "Mongol Empire"
+    },
+    {
+      "qid": "Q12560",
+      "label": "Ottoman Empire"
+    },
+    {
+      "qid": "Q15180",
+      "label": "Soviet Union"
+    },
+    {
+      "qid": "Q15581",
+      "label": "Principality of Catalonia"
+    },
+    {
+      "qid": "Q15864",
+      "label": "United Kingdom of the Netherlands"
+    },
+    {
+      "qid": "Q16410",
+      "label": "Hungarian People's Republic"
+    },
+    {
+      "qid": "Q16957",
+      "label": "German Democratic Republic"
+    },
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic"
+    },
+    {
+      "qid": "Q17557",
+      "label": "California Republic"
+    },
+    {
+      "qid": "Q19083",
+      "label": "Kingdom of Iberia"
+    },
+    {
+      "qid": "Q20135",
+      "label": "Grand Duchy of Hesse"
+    },
+    {
+      "qid": "Q2184",
+      "label": "Russian Soviet Federative Socialist Republic"
+    },
+    {
+      "qid": "Q2277",
+      "label": "Roman Empire"
+    },
+    {
+      "qid": "Q22880",
+      "label": "Electoral Palatinate"
+    },
+    {
+      "qid": "Q23148",
+      "label": "Cornwall"
+    },
+    {
+      "qid": "Q25227",
+      "label": "Netherlands Antilles"
+    },
+    {
+      "qid": "Q25979",
+      "label": "Kushan Empire"
+    },
+    {
+      "qid": "Q26472",
+      "label": "Dali Kingdom"
+    },
+    {
+      "qid": "Q26576",
+      "label": "Hephthalites"
+    },
+    {
+      "qid": "Q26996",
+      "label": "Kidarites"
+    },
+    {
+      "qid": "Q27260",
+      "label": "Samma dynasty"
+    },
+    {
+      "qid": "Q27306",
+      "label": "Kingdom of Prussia"
+    },
+    {
+      "qid": "Q27842",
+      "label": "Kingdom of Singapura"
+    },
+    {
+      "qid": "Q28025",
+      "label": "Ryukyu Kingdom"
+    },
+    {
+      "qid": "Q28057",
+      "label": "Tamna"
+    },
+    {
+      "qid": "Q28084",
+      "label": "Gaya confederacy"
+    },
+    {
+      "qid": "Q28179",
+      "label": "Joseon"
+    },
+    {
+      "qid": "Q28208",
+      "label": "Goryeo"
+    },
+    {
+      "qid": "Q28233",
+      "label": "Korean Empire"
+    },
+    {
+      "qid": "Q28278",
+      "label": "Provisional Government of the Republic of Korea"
+    },
+    {
+      "qid": "Q28307",
+      "label": "Mustang"
+    },
+    {
+      "qid": "Q2895",
+      "label": "Byelorussian Soviet Socialist Republic"
+    },
+    {
+      "qid": "Q327",
+      "label": "Brittany"
+    },
+    {
+      "qid": "Q4712",
+      "label": "Duchy of Burgundy"
+    },
+    {
+      "qid": "Q4948",
+      "label": "Republic of Venice"
+    },
+    {
+      "qid": "Q5257",
+      "label": "Satavahana dynasty"
+    },
+    {
+      "qid": "Q5324",
+      "label": "Gurjara-Pratihara"
+    },
+    {
+      "qid": "Q5743",
+      "label": "Ebla"
+    },
+    {
+      "qid": "Q5780",
+      "label": "Meroë"
+    },
+    {
+      "qid": "Q5790",
+      "label": "Seuna Dynasty"
+    },
+    {
+      "qid": "Q7209",
+      "label": "Han dynasty"
+    },
+    {
+      "qid": "Q7318",
+      "label": "Nazi Germany"
+    },
+    {
+      "qid": "Q8733",
+      "label": "Qing dynasty"
+    },
+    {
+      "qid": "Q8935",
+      "label": "First Republic of Venezuela"
+    },
+    {
+      "qid": "Q8950",
+      "label": "Second Republic of Venezuela"
+    }
+  ]
+}

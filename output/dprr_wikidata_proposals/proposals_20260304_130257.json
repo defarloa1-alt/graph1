@@ -1,0 +1,26 @@
+{
+  "proposals": [
+    {
+      "dprr_id": "1050",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1050",
+      "label": "L. Fabius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "No Wikidata item matches L. Fabius who served as legatus in 203 BC. Search results contain only generic name entries, unrelated modern items, or other Roman Fabii from different time periods with different offices.",
+      "search_results_count": 8
+    },
+    {
+      "dprr_id": "1107",
+      "dprr_uri": "http://romanrepublic.ac.uk/rdf/entity/Person/1107",
+      "label": "Cn. Ligurius",
+      "proposed_qid": null,
+      "confidence": "none",
+      "reasoning": "All search results are either RE encyclopedic articles about the Ligurius family or unrelated items (lyngurium is a mythical gemstone). None represent actual historical persons from the Roman Republic era who could match Cn. Ligurius, the military tribune from 197 BCE.",
+      "search_results_count": 4
+    }
+  ],
+  "meta": {
+    "count": 2,
+    "applied": 0
+  }
+}

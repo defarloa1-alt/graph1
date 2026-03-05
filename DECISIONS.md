@@ -24,12 +24,39 @@
 | MCP / tooling | D-031, D-034 |
 | D6/D7 threshold refactor | D-032 |
 | D10/D8 claim promotion + SFA confidence | D-033 |
+| Federation scoring → SYS_Threshold (D41/D42) | D-041 |
 | Game of Life → backlog | D-037 |
 | SFA→graph mapping / D9 constitution | D-040 |
+| **Open** Biographical SFA scope | D-042 |
 
 ---
 
 ## Entries
+
+---
+
+the go### D-041 — Federation Scoring Rules → SYS_Threshold (D41/D42 Migration)
+
+**Date:** 2026-03-03  
+**Status:** Decided — implemented  
+**Context:** federation_scorer.py had hardcoded WEIGHTS and STATES. Per D-024, values subject to change by business owner belong in decision tables / SYS_Threshold, not in code.  
+**Decision:**  
+1. Add SYS_Threshold nodes for place_period_subgraph weights, state boundaries, and D16/D17/D18 component weights via `scripts/neo4j/hardcoded_rules_migration.cypher`.  
+2. Create `federation_config_loader.py` to load weights and states from Neo4j when available.  
+3. Refactor `FederationScorer` to read from config loader at init; fallback to hardcoded defaults when Neo4j unavailable (dry run, tests).  
+**Rationale:** D15–D18 decision tables already exist (16_dm_rules_from_code.cypher). Thresholds make the numeric values queryable and adjustable without code changes.  
+**Consequences:** hardcoded_rules_migration.cypher; federation_config_loader.py; federation_scorer.py refactored. Run migration before first use with Neo4j.
+
+---
+
+### D-042 — Biographical SFA Scope (OPEN)
+
+**Date:** 2026-03-04  
+**Status:** Open — not decided  
+**Context:** Person extraction, family tree construction, DPRR–Wikidata alignment, and prosopographical integration are currently implemented as standalone scripts (dprr_import, person_harvest, dprr_wikidata_matcher).  
+**Proposal:** This work should be owned by the Biographical SFA. The SFA would consume DPRR, Wikipedia lists, PIR, etc. and produce Entity nodes, family edges, and alignment claims. D4 (AgentRouter) would route person-related work to the Biographical SFA.  
+**Rationale:** Aligns with SFA architecture; person/biographical scope is a natural facet.  
+**Consequences:** TBD — either refactor scripts into SFA tooling or document as future migration.
 
 ---
 

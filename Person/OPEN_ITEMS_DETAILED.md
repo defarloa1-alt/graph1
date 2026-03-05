@@ -36,6 +36,16 @@
 **What it does:** Populate inception_year and dissolution_year from Wikidata P571/P576 on :HistoricalPolity nodes.  
 **Action:** Run `scripts/maintenance/enrich_historical_polity_temporal.py --execute`. Script created; run periodically to fill gaps from Wikidata.
 
+### OI-008-06: Label-gap remediation — Population A (blocker before next harvest)
+**What it does:** 66 :Entity nodes with `entity_type=CONCEPT` have family edges and real Wikidata QIDs (`Q\d+`). These were subject-concept stubs; person harvest wrote correct family edges but targets were never promoted. Example: Caesar (Q1048), Augustus (Q1405).  
+**Action:** Run `scripts/maintenance/oi008_06_label_promotion_concept_to_person.cypher` before the next person harvest. Promotes only Population A (qid =~ `^Q[0-9]+$`). Sets `:Person`, `entity_type=PERSON`, `entity_id = 'person_' + toLower(qid)`. Do NOT promote Population B (80 hash-QID nodes — see OI-008-07).  
+**Owner:** Dev
+
+### OI-008-07: DPRR hash-QID ancestor stubs ✓
+**What it does:** 80 :Entity nodes had 32-char hex in `qid` (id_hash mistaken for Wikidata QID), empty label, `con_qHASH` entity_id. Origin: cluster_assignment/harvest bug, not intentional DPRR-only stubs.  
+**Action:** Ran `scripts/neo4j/cleanup_hash_qid_entities.py --execute` — 80 nodes DETACH DELETEd. Verified 0 remaining.  
+**Owner:** Dev
+
 ---
 
 ## Phase 4 — P-code Promotion (remaining)

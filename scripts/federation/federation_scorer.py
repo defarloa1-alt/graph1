@@ -7,31 +7,45 @@ cipher keys for vertex jump navigation.
 
 Design: Cipher = primary key to what+when+where subgraph concept
 Purpose: Enable agent vertex jumping across Place→Period→Place dimensions
+
+D-024: Weights and state boundaries read from SYS_Threshold when Neo4j
+available. Fallback to hardcoded defaults for dry run / tests.
 """
 
 import hashlib
 from typing import Dict, Optional
 
+from .federation_config_loader import (
+    load_federation_thresholds,
+    load_place_periodo_half_credit,
+    DEFAULT_WEIGHTS,
+    DEFAULT_STATES,
+    DEFAULT_PLACE_WEIGHTS,
+    DEFAULT_PERIOD_WEIGHTS,
+    DEFAULT_SUBJECT_WEIGHTS,
+)
+
 
 class FederationScorer:
-    """Score federation completeness for vertex jump patterns"""
-    
-    # Scoring weights (total = 100)
-    WEIGHTS = {
-        'place_qid': 30,        # What: Place federated to Wikidata
-        'period_qid': 30,       # When: Period federated to Wikidata  
-        'geo_context_qid': 20,  # Where: Geographic context federated
-        'temporal_bounds': 15,  # Temporal signal present
-        'relationships': 5      # Vertex jump edges exist
-    }
-    
-    # Federation states
-    STATES = {
-        'FS0_UNFEDERATED': (0, 39),
-        'FS1_BASE': (40, 59),
-        'FS2_FEDERATED': (60, 79),
-        'FS3_WELL_FEDERATED': (80, 100)
-    }
+    """Score federation completeness for vertex jump patterns.
+    Reads weights and state boundaries from SYS_Threshold when Neo4j available.
+    """
+
+    # Class-level fallbacks (used when config load fails)
+    WEIGHTS = DEFAULT_WEIGHTS
+    STATES = DEFAULT_STATES
+
+    def __init__(self, driver=None):
+        """
+        Args:
+            driver: Optional Neo4j driver. If provided, loads config from graph.
+        """
+        self._driver = driver
+        self._weights, self._states = load_federation_thresholds(driver)
+        self._periodo_half = load_place_periodo_half_credit(driver)
+        self._place_weights = DEFAULT_PLACE_WEIGHTS  # TODO: load from graph
+        self._period_weights = DEFAULT_PERIOD_WEIGHTS  # TODO: load from graph
+        self._subject_weights = DEFAULT_SUBJECT_WEIGHTS  # TODO: load from graph
     
     def score_place_period_subgraph(
         self,
@@ -59,37 +73,38 @@ class FederationScorer:
             }
         """
         score = 0
-        
+        w = self._weights
+
         # WHAT: Place has QID?
         what_qid = place_node.get('qid')
         if what_qid:
-            score += self.WEIGHTS['place_qid']
-        
+            score += w['place_qid']
+
         # WHEN: Period has QID?
         when_qid = period_node.get('qid') if period_node else None
         when_periodo = period_node.get('periodo_id') if period_node else None
         if when_qid:
-            score += self.WEIGHTS['period_qid']
+            score += w['period_qid']
         elif when_periodo:
-            score += self.WEIGHTS['period_qid'] // 2  # Half credit for periodo without qid
-        
+            score += int(w['period_qid'] * self._periodo_half)  # Half credit for periodo without qid
+
         # WHERE: Geographic context has QID?
         where_qid = geo_context_node.get('qid') if geo_context_node else None
         if where_qid:
-            score += self.WEIGHTS['geo_context_qid']
-        
+            score += w['geo_context_qid']
+
         # Temporal bounds present?
         has_temporal = bool(
             place_node.get('min_date') or place_node.get('max_date') or
             (period_node and (period_node.get('start_year') or period_node.get('start')))
         )
         if has_temporal:
-            score += self.WEIGHTS['temporal_bounds']
-        
+            score += w['temporal_bounds']
+
         # Relationships exist? (can we vertex jump?)
         has_relationships = bool(period_node and geo_context_node)
         if has_relationships:
-            score += self.WEIGHTS['relationships']
+            score += w['relationships']
         
         # Determine state
         state = self._get_state(score)
@@ -123,25 +138,26 @@ class FederationScorer:
         This is for initial place loading before relationships exist.
         """
         score = 0
-        
+        pw = self._place_weights
+
         # Has Pleiades ID? (always yes for our data)
         if place_node.get('pleiades_id'):
-            score += 20
-        
+            score += pw['pleiades']
+
         # Has Wikidata QID?
         has_qid = bool(place_node.get('qid'))
         if has_qid:
-            score += 50
-        
+            score += pw['qid']
+
         # Has temporal bounds?
         has_temporal = bool(place_node.get('min_date') or place_node.get('max_date'))
         if has_temporal:
-            score += 20
-        
+            score += pw['temporal']
+
         # Has coordinates?
         has_coords = bool(place_node.get('lat') and place_node.get('long'))
         if has_coords:
-            score += 10
+            score += pw['coords']
         
         state = self._get_state(score)
         
@@ -163,23 +179,24 @@ class FederationScorer:
     def score_period_simple(self, period_node: Dict) -> Dict:
         """Score a standalone Period."""
         score = 0
-        
+        pw = self._period_weights
+
         # Has PeriodO ID? (always yes for our data)
         if period_node.get('authority') == 'PeriodO' or period_node.get('periodo_id'):
-            score += 30
-        
+            score += pw['periodo']
+
         # Has Wikidata QID?
         has_qid = bool(period_node.get('qid'))
         if has_qid:
-            score += 50
-        
+            score += pw['qid']
+
         # Has temporal bounds?
         has_temporal = bool(
             period_node.get('start_year') or period_node.get('start') or
             period_node.get('end_year') or period_node.get('end')
         )
         if has_temporal:
-            score += 20
+            score += pw['temporal']
         
         state = self._get_state(score)
         
@@ -198,8 +215,8 @@ class FederationScorer:
         }
     
     def _get_state(self, score: int) -> str:
-        """Map score to federation state."""
-        for state_name, (min_score, max_score) in self.STATES.items():
+        """Map score to federation state (from SYS_Threshold when available)."""
+        for state_name, (min_score, max_score) in self._states.items():
             if min_score <= score <= max_score:
                 return state_name
         return 'FS0_UNFEDERATED'
@@ -243,26 +260,27 @@ class FederationScorer:
             }
         """
         score = 0
-        
+        sw = self._subject_weights
+
         # LCSH (Library of Congress Subject Headings)
         has_lcsh = bool(concept_node.get('lcsh_id'))
         if has_lcsh:
-            score += 30
-        
+            score += sw['lcsh']
+
         # FAST (Faceted Application of Subject Terminology)
         has_fast = bool(concept_node.get('fast_id'))
         if has_fast:
-            score += 30
-        
+            score += sw['fast']
+
         # LCC (Library of Congress Classification)
         has_lcc = bool(concept_node.get('lcc_class'))
         if has_lcc:
-            score += 20
-        
+            score += sw['lcc']
+
         # Wikidata QID
         has_qid = bool(concept_node.get('qid'))
         if has_qid:
-            score += 20
+            score += sw['qid']
         
         # Determine state
         state = self._get_state(score)

@@ -1,0 +1,59 @@
+{
+  "proposals": [
+    {
+      "dprr_id": "1050",
+      "label": "L. Fabius",
+      "dry_run": true,
+      "context_sample": {
+        "birth_date": null,
+        "death_date": null,
+        "offices": [
+          {
+            "name": null,
+            "pos": "legatus (envoy)",
+            "year_start": -203
+          }
+        ],
+        "family": []
+      }
+    },
+    {
+      "dprr_id": "1107",
+      "label": "Cn. Ligurius",
+      "dry_run": true,
+      "context_sample": {
+        "birth_date": null,
+        "death_date": null,
+        "offices": [
+          {
+            "name": null,
+            "pos": "tribunus militum",
+            "year_start": -197
+          }
+        ],
+        "family": []
+      }
+    },
+    {
+      "dprr_id": "1129",
+      "label": "C. Publicius Bibulus",
+      "dry_run": true,
+      "context_sample": {
+        "birth_date": null,
+        "death_date": null,
+        "offices": [
+          {
+            "name": null,
+            "pos": "aedilis plebis",
+            "year_start": -195
+          }
+        ],
+        "family": []
+      }
+    }
+  ],
+  "meta": {
+    "count": 3,
+    "applied": 0
+  }
+}

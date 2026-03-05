@@ -27,6 +27,14 @@ SET rt.domain = 'Person',
     rt.wikidata_pid = 'P3448',
     rt.symmetric = false;
 
+// Bootstrap: Create at least one relationship of each type so Neo4j schema
+// recognizes them (fixes "relationship type does not exist" warning in MATCH).
+MERGE (bootstrap:SYS_SchemaBootstrap {id: 'family_tree_rels'})
+WITH bootstrap
+MERGE (bootstrap)-[:PARENT_OF {bootstrap: true}]->(bootstrap)
+WITH bootstrap
+MERGE (bootstrap)-[:STEPPARENT_OF {bootstrap: true}]->(bootstrap);
+
 // ============================================================================
 // VERIFICATION
 // ============================================================================
