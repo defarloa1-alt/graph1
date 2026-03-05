@@ -151,7 +151,7 @@ CSV/geographic/pleiades_geonames_wikidata_tgn_crosswalk_v1.csv
 - **Columns:** pleiades_id, geonames_id, wikidata_qid, tgn_id, has_wikidata_match, is_fully_triangulated
 - **Rows:** 4,555
 - **Usage:** Wikidata QID enrichment, federation scoring
-- **Used by:** enrich_places_with_wikidata.py
+- **Used by:** enrich_places_from_crosswalk.py (enrich_places_with_wikidata.py archived 2026-03-02)
 
 **Pleiades ↔ GeoNames:**
 ```

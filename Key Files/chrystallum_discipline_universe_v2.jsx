@@ -131,11 +131,18 @@ WHERE d.entity_type='CONCEPT'
 OPTIONAL MATCH (d)-[r:DISCIPLINE_HAS_PART]->(d2)
 RETURN d, r, d2` },
     { id:"CQ-02", name:"Facet → discipline map",
-      desc:"For a given facet, all disciplines that serve it → two-tier graph",
+      desc:"For a given facet, all disciplines that serve it → two-tier graph. Requires :Facet nodes.",
       query:`MATCH (f:Facet {label:$facet_label})
 MATCH (d:Entity {entity_type:'CONCEPT'})
 WHERE $facet_label IN d.facets
 RETURN f, d, d.primary_for` },
+    { id:"CQ-02b", name:"Facet → discipline map (no Facet nodes)",
+      desc:"Fallback when :Facet nodes absent — filter disciplines by facet_label in d.facets",
+      query:`MATCH (d:Entity {entity_type:'CONCEPT'})
+WHERE $facet_label IN d.facets
+RETURN d.qid AS qid, d.label AS label, d.facets AS facets, d.primary_for AS primary_for,
+       d.in_graph AS in_graph, d.needs_harvest AS needs_harvest, d.oa_id AS oa_id,
+       d.lcsh AS lcsh, d.lcc AS lcc, d.repos AS repos` },
     { id:"CQ-03", name:"Discipline → federation sources",
       desc:"Which sources can enrich a discipline → TEACHES_VIA edges",
       query:`MATCH (d:Entity {qid:$qid})
@@ -154,7 +161,52 @@ RETURN d, h, w ORDER BY w.citation_count DESC LIMIT 25` },
 WHERE d.needs_harvest = true
 RETURN d.qid, d.label, d.facet_count
 ORDER BY d.facet_count DESC` },
+    { id:"CQ-05b", name:"Harvest gap by facet",
+      desc:"Disciplines needing harvest for a specific facet (per-facet state)",
+      query:`MATCH (d:Entity {entity_type:'CONCEPT'})
+WHERE (d.needs_harvest = true OR d.needs_harvest_by_facet[$facet_label] = true)
+  AND $facet_label IN d.facets
+RETURN d.qid, d.label, d.facets, d.primary_for, d.needs_harvest_by_facet
+ORDER BY size(d.facets) DESC` },
   ],
+  agent_io: {
+    request: {
+      facet_label: "string — must match FACET_COLOR keys",
+      mode: "scope | harvest_plan | status_snapshot",
+      constraints: {
+        discipline_qids: "string[] optional",
+        max_disciplines: "int optional",
+        prioritize_primary_for: "bool default true",
+        exclude_repos: "string[] optional",
+      },
+      context: { seed_entity_qid: "string optional", campaign_id: "string optional" },
+    },
+    response_scope: {
+      facet_label: "string",
+      facet_color: "string",
+      discipline_universe: "array of {qid, label, role, in_graph, needs_harvest, facet_count, lcc, repos}",
+      total_disciplines: "int",
+    },
+    response_harvest_plan: {
+      facet_label: "string",
+      harvest_jobs: "array of {job_id, discipline_qid, discipline_label, facet_role, priority_score, urls, status}",
+      facet_discipline_snapshot: "{discipline_count, primary_count, harvest_gap_count}",
+    },
+    response_status_snapshot: {
+      facet_label: "string",
+      coverage: "{disciplines_total, disciplines_in_graph, disciplines_needs_harvest, harvest_jobs_pending, harvest_jobs_completed}",
+      graph_ready_for_ui: "bool",
+    },
+    harvest_job_schema: {
+      job_id: "uuid",
+      discipline_qid: "string",
+      facet_label: "string",
+      repo_key: "string",
+      url: "string",
+      status: "pending | running | completed | failed | skipped",
+      campaign_id: "string optional",
+    },
+  },
 };
 
 // ══════════════════════════════════════════════════════════════════════════════
