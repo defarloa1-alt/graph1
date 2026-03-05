@@ -54,6 +54,7 @@ for i, prop in enumerate(properties, 1):
 CREATE (:PropertyMapping {{
   property_id: '{prop['property_id']}',
   property_label: '{label}',
+  label: '{label}',
   property_description: '{desc}',
   primary_facet: '{prop['primary_facet']}',
   secondary_facets: '{prop['secondary_facets']}',

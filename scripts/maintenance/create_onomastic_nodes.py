@@ -145,19 +145,19 @@ def main() -> int:
             """, nomen_id=nomen, label_latin=nomen)
         print(f"  Nomen nodes: {len(nomen_set)}")
 
-        # 6. Create Cognomen nodes
+        # 6. Create Cognomen nodes (label = display name)
         for cognomen in cognomen_set:
             session.run("""
                 MERGE (c:Cognomen {cognomen_id: $cognomen_id})
-                SET c.label_latin = $label_latin
+                SET c.label_latin = $label_latin, c.label = $label_latin
             """, cognomen_id=cognomen, label_latin=cognomen)
         print(f"  Cognomen nodes: {len(cognomen_set)}")
 
-        # 7. Create Tribe nodes
+        # 7. Create Tribe nodes (label = full name for display; tribe_id = abbreviation)
         for tribe_id, label_latin in tribe_set:
             session.run("""
                 MERGE (t:Tribe {tribe_id: $tribe_id})
-                SET t.label_latin = $label_latin, t.abbreviation = $abbreviation
+                SET t.label_latin = $label_latin, t.abbreviation = $abbreviation, t.label = $label_latin
             """, tribe_id=tribe_id, label_latin=label_latin, abbreviation=tribe_id)
         print(f"  Tribe nodes: {len(tribe_set)}")
 

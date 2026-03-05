@@ -165,10 +165,11 @@ def parse_dprr_label(label: str) -> DPRRLabelParse:
             result.tribe_abbrev = cand
             tokens = tokens[1:]
 
-    # 7. Remaining = cognomen(s)
+    # 7. Remaining = cognomen(s) — strip trailing ? from uncertain cognomens
     if tokens:
-        result.cognomen = [t for t in tokens if t and t[0].isupper()]
-        result.unparsed_tokens = [t for t in tokens if t not in result.cognomen]
+        cognomen_tokens = [t for t in tokens if t and t[0].isupper()]
+        result.cognomen = [t.rstrip("?") for t in cognomen_tokens]
+        result.unparsed_tokens = [t for t in tokens if t not in cognomen_tokens]
 
     return result
 

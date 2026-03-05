@@ -36,6 +36,7 @@ ENTITY_TYPE_PREFIXES = {
     "MATERIAL": "mat",
     "OBJECT": "obj",
     "CONCEPT": "con",  # Abstract concepts
+    "STUB": "stb",     # Backlink candidates awaiting resolution
 }
 
 FACET_PREFIXES = {

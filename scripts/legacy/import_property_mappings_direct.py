@@ -57,6 +57,7 @@ try:
         CREATE (pm:PropertyMapping {
           property_id: $property_id,
           property_label: $property_label,
+          label: $property_label,
           property_description: $property_description,
           primary_facet: $primary_facet,
           secondary_facets: $secondary_facets,
