@@ -29,6 +29,9 @@ from pathlib import Path
 from urllib.request import urlretrieve
 import logging
 
+# Increase CSV field size limit to handle large GeoJSON geometry fields
+csv.field_size_limit(sys.maxsize)
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
