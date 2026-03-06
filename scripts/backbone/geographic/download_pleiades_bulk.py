@@ -29,6 +29,9 @@ from pathlib import Path
 from urllib.request import urlretrieve
 import logging
 
+# Increase CSV field size limit to handle large GeoJSON geometry fields
+csv.field_size_limit(sys.maxsize)
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -174,64 +177,75 @@ def process_places(input_csv: Path, output_csv: Path) -> dict:
 def process_names(input_csv: Path, output_csv: Path) -> dict:
     """
     Process pleiades-names-latest.csv into Neo4j-ready format.
-    
-    Expected columns: id, nameAttested, nameLanguage, nameType, pid (place ID), ...
-    
+
+    Preserves temporal bounds so PlaceName nodes record when each
+    name was in use (e.g. Latin "Roma" vs Greek "Ῥώμη" across periods).
+
     Output format:
-    name_id, pleiades_id, name_attested, language, name_type, romanized, created, modified
+    name_id, pleiades_id, name_attested, language, name_type, romanized,
+    min_date, max_date, time_periods, time_periods_keys, created, modified
     """
     logger.info(f"Processing names from {input_csv}...")
-    
-    stats = {"total": 0, "attested": 0, "errors": 0}
-    
+
+    stats = {"total": 0, "attested": 0, "with_temporal": 0, "errors": 0}
+
     try:
         with open(input_csv, 'r', encoding='utf-8') as f_in:
             with open(output_csv, 'w', encoding='utf-8', newline='') as f_out:
                 reader = csv.DictReader(f_in)
                 writer = csv.writer(f_out)
-                
+
                 # Write header
                 writer.writerow([
-                    'name_id', 'pleiades_id', 'name_attested', 'language', 
-                    'name_type', 'romanized', 'created', 'modified'
+                    'name_id', 'pleiades_id', 'name_attested', 'language',
+                    'name_type', 'romanized', 'min_date', 'max_date',
+                    'time_periods', 'time_periods_keys', 'created', 'modified'
                 ])
-                
+
                 for row in reader:
                     stats["total"] += 1
-                    
+
                     try:
                         name_id = row.get('id', '').strip()
                         pleiades_id = row.get('pid', '').strip()
-                        
+
                         # Strip /places/ prefix if present
                         if pleiades_id.startswith('/places/'):
                             pleiades_id = pleiades_id.replace('/places/', '')
-                        
+
                         name_attested = row.get('nameAttested', '').strip()
                         language = row.get('nameLanguage', '').strip()
                         name_type = row.get('nameType', '').strip()
                         romanized = row.get('nameTransliterated', '').strip()
+                        min_date = row.get('minDate', '').strip()
+                        max_date = row.get('maxDate', '').strip()
+                        time_periods = row.get('timePeriods', '').strip()
+                        time_periods_keys = row.get('timePeriodsKeys', '').strip()
                         created = row.get('created', '').strip()
                         modified = row.get('modified', '').strip()
-                        
+
                         if name_attested:
                             stats["attested"] += 1
-                        
+                        if min_date or max_date:
+                            stats["with_temporal"] += 1
+
                         writer.writerow([
                             name_id, pleiades_id, name_attested, language,
-                            name_type, romanized, created, modified
+                            name_type, romanized, min_date, max_date,
+                            time_periods, time_periods_keys, created, modified
                         ])
-                        
+
                     except Exception as e:
                         stats["errors"] += 1
                         logger.warning(f"Error processing name row {stats['total']}: {e}")
-        
+
         logger.info(f"✓ Processed {stats['total']} names:")
         logger.info(f"  - {stats['attested']} with attested forms")
+        logger.info(f"  - {stats['with_temporal']} with temporal bounds")
         logger.info(f"  - {stats['errors']} errors")
-        
+
         return stats
-        
+
     except Exception as e:
         logger.error(f"✗ Failed to process names: {e}")
         return stats
@@ -239,60 +253,83 @@ def process_names(input_csv: Path, output_csv: Path) -> dict:
 def process_locations(input_csv: Path, output_csv: Path) -> dict:
     """
     Process pleiades-locations-latest.csv into Neo4j-ready format.
-    
-    Expected columns: id, pid (place ID), title, locationTypeURI, lat, long, ...
-    
+
+    Preserves featureType and temporal bounds so Location nodes can serve
+    as time-scoped place-role records (e.g. "port 400 BCE–300 CE").
+
     Output format:
-    location_id, pleiades_id, title, location_type, lat, long, precision, created, modified
+    location_id, pleiades_id, title, location_type, feature_type,
+    lat, long, precision, min_date, max_date, time_periods,
+    time_periods_keys, created, modified
     """
     logger.info(f"Processing locations from {input_csv}...")
-    
-    stats = {"total": 0, "with_coords": 0, "errors": 0}
-    
+
+    stats = {"total": 0, "with_coords": 0, "with_feature_type": 0,
+             "with_temporal": 0, "errors": 0}
+
     try:
         with open(input_csv, 'r', encoding='utf-8') as f_in:
             with open(output_csv, 'w', encoding='utf-8', newline='') as f_out:
                 reader = csv.DictReader(f_in)
                 writer = csv.writer(f_out)
-                
+
                 # Write header
                 writer.writerow([
                     'location_id', 'pleiades_id', 'title', 'location_type',
-                    'lat', 'long', 'precision', 'created', 'modified'
+                    'feature_type', 'lat', 'long', 'precision',
+                    'min_date', 'max_date', 'time_periods',
+                    'time_periods_keys', 'created', 'modified'
                 ])
-                
+
                 for row in reader:
                     stats["total"] += 1
-                    
+
                     try:
                         location_id = row.get('id', '').strip()
                         pleiades_id = row.get('pid', '').strip()
                         title = row.get('title', '').strip()
                         location_type = row.get('locationType', '').strip()
+                        feature_type = row.get('featureType', '').strip()
                         lat = row.get('reprLat', '').strip()
                         long = row.get('reprLong', '').strip()
                         precision = row.get('locationPrecision', '').strip()
+                        min_date = row.get('minDate', '').strip()
+                        max_date = row.get('maxDate', '').strip()
+                        time_periods = row.get('timePeriods', '').strip()
+                        time_periods_keys = row.get('timePeriodsKeys', '').strip()
                         created = row.get('created', '').strip()
                         modified = row.get('modified', '').strip()
-                        
+
+                        # Strip /places/ prefix if present
+                        if pleiades_id.startswith('/places/'):
+                            pleiades_id = pleiades_id.replace('/places/', '')
+
                         if lat and long:
                             stats["with_coords"] += 1
-                        
+                        if feature_type and feature_type != 'unknown':
+                            stats["with_feature_type"] += 1
+                        if min_date or max_date:
+                            stats["with_temporal"] += 1
+
                         writer.writerow([
                             location_id, pleiades_id, title, location_type,
-                            lat, long, precision, created, modified
+                            feature_type, lat, long, precision,
+                            min_date, max_date, time_periods,
+                            time_periods_keys, created, modified
                         ])
-                        
+
                     except Exception as e:
                         stats["errors"] += 1
                         logger.warning(f"Error processing location row {stats['total']}: {e}")
-        
+
         logger.info(f"✓ Processed {stats['total']} locations:")
         logger.info(f"  - {stats['with_coords']} with coordinates")
+        logger.info(f"  - {stats['with_feature_type']} with known feature type")
+        logger.info(f"  - {stats['with_temporal']} with temporal bounds")
         logger.info(f"  - {stats['errors']} errors")
-        
+
         return stats
-        
+
     except Exception as e:
         logger.error(f"✗ Failed to process locations: {e}")
         return stats

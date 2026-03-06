@@ -20,6 +20,13 @@ These are complementary and should not be conflated.
 
 ## File crosswalk
 
+### Geographic spatial-temporal node contracts (2026-03-06)
+- `place_geometry_node.json`: node contract for PlaceGeometry (time-bounded spatial geometry).
+- `place_name_node.json`: node contract for PlaceName (time-bounded name attestation).
+- `geo_place_node.json`: node contract for GeoPlace (modern admin hierarchy from GeoNames).
+- Constitution source: `Key Files/chrystallum_geographic_constitution.jsx`
+
+### Port contracts (original)
 - `claim_scope_validation_in.json`: input contract for spatiotemporal claim scope validation.
 - `spatiotemporal_validation_out.json`: output contract for geographic-temporal validation result.
 - `dispatcher_decision_out.json`: output contract for federation dispatcher routing decision.
