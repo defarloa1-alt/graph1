@@ -68,6 +68,19 @@ Opens: http://localhost:8501
 
 ---
 
+## 🤖 For AI Agents
+
+**The JSX files are the definitive guide for learning the system.** Read these as the source of truth:
+
+| File | Purpose |
+|------|---------|
+| `Key Files/chrystallum_architecture.jsx` | System layers, federation sources, harvest pipeline, agent constraints, SYS/Domain/Claim layers, cipher architecture |
+| `Key Files/chrystallum_discipline_universe.jsx` | 18 facets, disciplines, repository index, SCA invocation model, SCA signals |
+
+Also read `docs/AGENT_HANDOFF_2026-03-06.md` and `docs/AGENTS.md` for constraints and process.
+
+---
+
 ## 📚 What Is This?
 
 Chrystallum is a **5.5-layer authority stack** for historical knowledge:

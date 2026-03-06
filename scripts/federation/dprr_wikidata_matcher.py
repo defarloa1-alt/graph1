@@ -94,7 +94,7 @@ def load_group_c_context(session, limit: int | None = None) -> list[dict]:
         WHERE e.dprr_uri IS NOT NULL AND (e.qid IS NULL OR e.qid = '')
         WITH e
         OPTIONAL MATCH (e)-[r:POSITION_HELD]->(p:Position)
-        WITH e, collect(DISTINCT {pos: p.label, name: p.label_name, year_start: r.year_start}) AS offices
+        WITH e, collect(DISTINCT {pos: p.label, name: p.label_name, year_start: coalesce(r.start_year, r.year)}) AS offices
         OPTIONAL MATCH (e)-[rel:FATHER_OF|MOTHER_OF|PARENT_OF|SIBLING_OF|SPOUSE_OF|STEPPARENT_OF]-(other:Entity)
         WITH e, offices,
              collect(DISTINCT {type: type(rel), target: other.label, target_qid: other.qid}) AS family

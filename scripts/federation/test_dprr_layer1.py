@@ -9,6 +9,7 @@ from dprr_layer1 import (
     parse_dprr_label,
     map_pcode_to_canonical,
     normalise_wikidata_date,
+    PRAENOMEN_ABBREV_TO_FULL,
     DPRRLabelParse,
 )
 
@@ -45,6 +46,11 @@ def test_parse_minimal():
     assert p.cognomen == ["Magnus"]
 
 
+def test_praenomen_ser_servius():
+    """Ser. = Servius (not Sergius); Sherk, Rome and the Greek East"""
+    assert PRAENOMEN_ABBREV_TO_FULL.get("Ser.") == "Servius"
+
+
 def test_map_pcode():
     assert map_pcode_to_canonical("P19") == ("BORN_IN", "Place")
     assert map_pcode_to_canonical("P27") == ("CITIZEN_OF", "Polity")
@@ -75,6 +81,8 @@ if __name__ == "__main__":
     print("  parse_unknown_praenomen OK")
     test_parse_minimal()
     print("  parse_minimal OK")
+    test_praenomen_ser_servius()
+    print("  praenomen_ser_servius OK")
     test_map_pcode()
     print("  map_pcode OK")
     test_normalise_date_year()

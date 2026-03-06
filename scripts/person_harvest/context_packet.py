@@ -71,7 +71,7 @@ def build_context_packet(
     r = session.run("""
         MATCH (e:Entity)-[r:POSITION_HELD]->(p:Position)
         WHERE e.qid = $qid OR e.dprr_id = $dprr_id
-        RETURN p.label AS position, p.label_name AS label_name, r.year_start AS year_start
+        RETURN p.label AS position, p.label_name AS label_name, coalesce(r.start_year, r.year) AS year_start
     """, qid=qid, dprr_id=dprr_id or "")
     packet["existing_offices"] = [dict(row) for row in r]
 

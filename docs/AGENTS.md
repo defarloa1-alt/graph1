@@ -28,6 +28,7 @@
 |------|------|
 | `AGENTS.md` (this file) | Always — constraints and process |
 | `DECISIONS.md` | Always — why decisions were made, topical index |
+| `docs/AGENT_HANDOFF_2026-03-06.md` | New session — current state, to-do list, key docs |
 | `sysml/BLOCK_CATALOG_RECONCILED.md` | Before touching any block — structural truth |
 | `sysml/DMN_DECISION_TABLES.md` | Before touching thresholds, policies, or decision logic |
 | `output/PROCESS_MODEL_FIRST_CHANGE_COMMUNICATION.md` | Before any structural change — model-first sequence |

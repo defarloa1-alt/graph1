@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Check biographic harvest state in graph. Run after harvest to verify writes."""
+"""Check biographic harvest state in graph. Run after harvest to verify writes.
+
+Progress mode (--progress): shows done/total, %, and rough ETA if elapsed_hours given.
+"""
+import argparse
 import os
 import sys
 from pathlib import Path
@@ -16,6 +20,11 @@ from neo4j import GraphDatabase
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description="Biographic harvest graph check")
+    ap.add_argument("--progress", "-p", action="store_true", help="Show progress (done/total, %%, ETA)")
+    ap.add_argument("--elapsed", type=float, default=None, help="Hours elapsed (for ETA estimate)")
+    args = ap.parse_args()
+
     uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
     user = os.getenv("NEO4J_USERNAME") or os.getenv("NEO4J_USER", "neo4j")
     password = os.getenv("NEO4J_PASSWORD")
@@ -30,6 +39,11 @@ def main() -> int:
         # Persons with bio harvested
         bio_harvested = session.run(
             "MATCH (p:Person) WHERE p.bio_harvested_at IS NOT NULL RETURN count(p) AS c"
+        ).single()["c"]
+
+        # Total to harvest (same query as --all)
+        total_to_harvest = session.run(
+            "MATCH (p:Person) WHERE p.qid IS NOT NULL AND p.dprr_id IS NOT NULL RETURN count(p) AS c"
         ).single()["c"]
 
         # Recent (last 25 by harvested_at - approximate)
@@ -74,6 +88,21 @@ def main() -> int:
         ).single()["c"]
 
     driver.close()
+
+    if args.progress:
+        remaining = total_to_harvest - bio_harvested
+        pct = 100 * bio_harvested / total_to_harvest if total_to_harvest else 0
+        print("Biographic Harvest — Progress")
+        print("=" * 50)
+        print(f"Done:      {bio_harvested:,} / {total_to_harvest:,}")
+        print(f"Remaining: {remaining:,}")
+        print(f"Progress:  {pct:.1f}%")
+        if args.elapsed and bio_harvested > 0:
+            rate = bio_harvested / args.elapsed
+            eta_hours = remaining / rate if rate else 0
+            print(f"Rate:      ~{rate:.0f} persons/hour (last {args.elapsed}h)")
+            print(f"ETA:       ~{eta_hours:.1f} hours remaining")
+        return 0
 
     print("Biographic Harvest — Graph Check")
     print("=" * 50)

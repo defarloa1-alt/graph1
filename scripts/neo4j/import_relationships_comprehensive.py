@@ -20,7 +20,7 @@ sys.path.insert(0, str(project_root))
 
 
 def load_relationship_registry():
-    """Load canonical relationship mappings from registry CSV"""
+    """Load canonical relationship mappings and labels from registry CSV"""
     registry = {}
     registry_file = project_root / "Relationships" / "relationship_types_registry_master.csv"
     
@@ -35,10 +35,11 @@ def load_relationship_registry():
             wikidata_pid = row.get('wikidata_property', '').strip()
             rel_type = row.get('relationship_type', '').strip()
             lifecycle = row.get('lifecycle_status', '')
+            label = (row.get('wikidata_label', '') or rel_type or '').strip()
             
             # Only use implemented relationships
             if wikidata_pid and rel_type and lifecycle == 'implemented':
-                registry[wikidata_pid] = rel_type
+                registry[wikidata_pid] = {'rel_type': rel_type, 'label': label or rel_type}
     
     return registry
 
@@ -147,13 +148,15 @@ def generate_comprehensive_relationship_import(
             if prop_id not in props_to_import:
                 continue
             
-            # Determine relationship type
+            # Determine relationship type and label
             if prop_id in RELATIONSHIP_MAP:
-                rel_type = RELATIONSHIP_MAP[prop_id]
+                entry = RELATIONSHIP_MAP[prop_id]
+                rel_type = entry['rel_type'] if isinstance(entry, dict) else entry
+                label = (entry.get('label') or rel_type) if isinstance(entry, dict) else rel_type
                 in_registry = True
             else:
-                # Fallback for unmapped properties
                 rel_type = f"WIKIDATA_{prop_id}"
+                label = prop_id  # fallback: use PID until enrich_edge_labels runs
                 in_registry = False
             
             # Track usage
@@ -161,6 +164,7 @@ def generate_comprehensive_relationship_import(
                 property_usage[prop_id] = {
                     'count': 0,
                     'rel_type': rel_type,
+                    'label': label,
                     'in_registry': in_registry
                 }
             
@@ -178,8 +182,11 @@ def generate_comprehensive_relationship_import(
                         qualifiers = claim.get('qualifiers', {})
                         
                         # Build property string (Cypher SET uses = not :)
+                        label_val = property_usage[prop_id].get('label', prop_id)
+                        label_esc = label_val.replace("'", "\\'")  # escape for Cypher
                         props = [
                             f"r.wikidata_pid = '{prop_id}'",
+                            f"r.label = '{label_esc}'",
                             f"r.in_registry = {str(in_registry).lower()}",
                             "r.created_at = datetime()",
                             "r.source = 'wikidata'"

@@ -181,12 +181,13 @@ def parse_dprr_label(label: str) -> DPRRLabelParse:
 # label_latin = tria nomina for scholarly citation (praenomen + nomen + cognomen)
 # label_sort = nomen + cognomen + praenomen lowercased for prosopographical ordering
 
+# Sherk, Rome and the Greek East (1984): Ser. = Servius (not Sergius)
 PRAENOMEN_ABBREV_TO_FULL: dict[str, str] = {
     "A.": "Aulus", "Ap.": "Appius", "C.": "Gaius", "Cn.": "Gnaeus", "D.": "Decimus",
     "Dec.": "Decimus", "K.": "Kaeso", "L.": "Lucius", "M.": "Marcus", "M'.": "Manius",
     "Mam.": "Mamercus", "Man.": "Manius", "N.": "Numerius", "Oct.": "Octavius",
     "P.": "Publius", "Post.": "Postumus", "Pro.": "Proculus", "Q.": "Quintus",
-    "S.": "Servius", "Sec.": "Sextus", "Ser.": "Sergius", "Sex.": "Sextus",
+    "S.": "Servius", "Sec.": "Sextus", "Ser.": "Servius", "Sex.": "Sextus",
     "Sp.": "Spurius", "St.": "Statius", "T.": "Titus", "Ti.": "Tiberius",
     "V.": "Vibius", "Vol.": "Volusus", "Faust.": "Faustus",
 }

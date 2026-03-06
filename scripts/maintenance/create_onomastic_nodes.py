@@ -33,6 +33,17 @@ from scripts.federation.dprr_layer1 import (
 )
 
 
+# DPRR gens prefix (4-letter) -> full Latin gens name (feminine form: gens Pompeia, etc.)
+GENS_PREFIX_TO_LATIN: dict[str, str] = {
+    "POMP": "Pompeia", "CORN": "Cornelia", "IVLI": "Iulia", "TULL": "Tullia",
+    "CICER": "Tullia",  # Cicero = cognomen of gens Tullia
+    "ANTO": "Antonia", "CASS": "Cassia", "CATO": "Porcia", "CLAU": "Claudia",
+    "DOMI": "Domitia", "FABI": "Fabia", "FLAM": "Flaminia", "FULV": "Fulvia",
+    "LICI": "Licinia", "LIVI": "Livia", "MARC": "Marcia", "METT": "Mettia",
+    "PLAU": "Plautia", "SCAU": "Scauria", "SEMP": "Sempronia", "SERV": "Servilia",
+    "SULP": "Sulpicia", "TERE": "Terentia", "VALE": "Valeria", "VARG": "Vargunteia",
+}
+
 # Tribe abbreviation -> label_latin (standard Roman tribe names)
 TRIBE_ABBREV_TO_FULL: dict[str, str] = {
     "Aem.": "Aemilia", "Ani.": "Aniensis", "Arn.": "Arnensis", "Cam.": "Camilia",
@@ -87,7 +98,7 @@ def main() -> int:
         links = {"entity_id": entity_id, "gens": None, "praenomen": None, "nomen": None, "cognomen": [], "tribe": None}
 
         if parsed.gens_prefix:
-            label_latin = parsed.gens_prefix  # Can enrich with GENS_PREFIX_TO_LATIN later
+            label_latin = GENS_PREFIX_TO_LATIN.get(parsed.gens_prefix, parsed.gens_prefix)
             gens_set.add((parsed.gens_prefix, label_latin))
             links["gens"] = parsed.gens_prefix
 

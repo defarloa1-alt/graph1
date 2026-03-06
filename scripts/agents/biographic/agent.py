@@ -607,10 +607,12 @@ def harvest_person(
     session,
     dry_run: bool = False,
     decision_model=None,
+    skip_backlinks: bool = True,
 ):
     """
     Harvest biographical context for one person.
     If decision_model is provided and has BacklinkRouting, uses it for routing.
+    skip_backlinks=True (default): omit backlinks; run backlink_harvest separately.
     """
     from collections import Counter
 
@@ -690,36 +692,20 @@ def harvest_person(
               f"{m['start_year'] or '?'}->{m['end_year'] or '?'}  "
               f"end:{m['end_reason'] or '-'}")
 
-    # 3. Backlinks — use decision model if available
-    backlink_map = None
-    if decision_model and decision_model._backlink:
-        backlink_map = {}
-        for pid in BACKLINK_PREDICATE_MAP:
-            backlink_map[pid] = lambda p=pid, dm=decision_model: dm.route_backlink(p, None)
-        # Build map from pid -> (edge_type, direction, qualifier, sfa_queue)
-        def _route(pid, itl):
-            r = decision_model.route_backlink(pid, itl)
-            return (r["edge_type"], r["direction"], r.get("qualifier"), r["sfa_queue"])
-        backlink_map = {pid: (lambda p=pid: lambda itl: _route(p, itl))() for pid in BACKLINK_PREDICATE_MAP}
-        # Simpler: fetch_backlinks uses predicate_map for routing; we need to build
-        # a map that returns (edge_type, direction, qualifier, sfa_queue) per (pid, item_type_label).
-        # fetch_backlinks does the routing per row. So we need to either:
-        # 1. Change fetch_backlinks to accept a decision_model and call route_backlink per row
-        # 2. Or pre-build a mapping. The decision model routes by (pred_pid, item_type_class).
-        # So we need to call route_backlink per backlink item. Let me change fetch_backlinks
-        # to accept an optional decision_model and use it when present.
-        pass  # Will use decision_model in the loop below
-
-    print("  [3/3] Fetching backlinks...")
-    backlinks = fetch_backlinks(qid)
-
-    if decision_model and decision_model._backlink:
-        for bl in backlinks:
-            r = decision_model.route_backlink(bl["pred_pid"], bl["item_type_label"])
-            bl["edge_type"] = r["edge_type"]
-            bl["direction"] = r["direction"]
-            bl["qualifier"] = r.get("qualifier")
-            bl["sfa_queue"] = r["sfa_queue"]
+    # 3. Backlinks — skip by default; run backlink_harvest separately
+    if skip_backlinks:
+        print("  [3/3] Skipping backlinks (run backlink_harvest separately)")
+        backlinks = []
+    else:
+        print("  [3/3] Fetching backlinks...")
+        backlinks = fetch_backlinks(qid)
+        if decision_model and decision_model._backlink:
+            for bl in backlinks:
+                r = decision_model.route_backlink(bl["pred_pid"], bl["item_type_label"])
+                bl["edge_type"] = r["edge_type"]
+                bl["direction"] = r["direction"]
+                bl["qualifier"] = r.get("qualifier")
+                bl["sfa_queue"] = r["sfa_queue"]
 
     bl_by_queue = Counter(b["sfa_queue"] for b in backlinks)
     bl_by_type  = Counter(f"{b['edge_type']} ({b['sfa_queue']})" for b in backlinks)

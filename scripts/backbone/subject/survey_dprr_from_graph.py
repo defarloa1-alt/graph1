@@ -109,17 +109,17 @@ def query_post_assertions(session, start_year: int, end_year: int) -> list[dict]
     """
     result = session.run("""
         MATCH (e:Entity)-[r:POSITION_HELD]->(p:Position)
-        WHERE r.year_start IS NOT NULL
-          AND toInteger(r.year_start) >= $start_year
-          AND toInteger(r.year_start) <= $end_year
+        WHERE (r.start_year IS NOT NULL OR r.year IS NOT NULL)
+          AND toInteger(coalesce(r.start_year, r.year)) >= $start_year
+          AND toInteger(coalesce(r.start_year, r.year)) <= $end_year
         RETURN r.dprr_assertion_uri  AS post_uri,
                e.dprr_uri            AS person_uri,
                e.entity_id           AS entity_id,
                p.label               AS position_id,
                p.label_name          AS position_label,
-               toInteger(r.year_start) AS year_start,
-               toInteger(r.year_end)   AS year_end
-        ORDER BY r.year_start, r.dprr_assertion_uri
+               toInteger(coalesce(r.start_year, r.year)) AS year_start,
+               toInteger(coalesce(r.end_year, r.start_year, r.year)) AS year_end
+        ORDER BY year_start, r.dprr_assertion_uri
     """, start_year=start_year, end_year=end_year)
     return [dict(rec) for rec in result]
 

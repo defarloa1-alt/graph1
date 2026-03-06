@@ -1,31 +1,39 @@
 # Biographic Subject Agent
 
-Harvests biographical context for Person nodes with Wikidata QIDs. This agent *is* the harvest — forward properties, backlinks, and spouse qualifiers.
+Harvests biographical context for Person nodes with Wikidata QIDs: forward properties, spouse qualifiers, and (optionally) backlinks.
 
 ## What it does
 
 1. **Forward properties** — P569/570 (birth/death), P19/20/119 (places), P509 (cause of death), external IDs (VIAF, GND, LCNAF, OCD, etc.), events (P607, P793, P1344, P166)
-2. **Backlinks** — items that reference the person (undeclared children, subordinates, founded orgs, etc.)
-3. **Spouse qualifiers** — enriches SPOUSE_OF edges with start_year, end_year, series_ordinal, end_reason, place_of_marriage
+2. **Spouse qualifiers** — enriches SPOUSE_OF edges with start_year, end_year, series_ordinal, end_reason, place_of_marriage
+3. **Backlinks** — items that reference the person (children, spouses, founded orgs, etc.). **Skipped by default**; run `backlink_harvest` separately to avoid SPARQL timeouts.
 
 ## Usage
 
 ```bash
-# From project root
+# Phase 1: Harvest bio + events + marriages (no backlinks by default)
 python -m scripts.agents.biographic --dprr 1976
-python -m scripts.agents.biographic --all   # DPRR persons only (dprr_id IS NOT NULL)
-python -m scripts.agents.biographic --all --dry
+python -m scripts.agents.biographic --all   # DPRR persons only
+python -m scripts.agents.biographic --all --limit 25 --dry
+
+# Include backlinks inline (can timeout on heavy persons)
+python -m scripts.agents.biographic --all --backlinks
+
+# Phase 2: Backlink harvest (separate pass, verbose for validation)
+python -m scripts.agents.biographic.backlink_harvest --from-graph --limit 25 --verbose
+python -m scripts.agents.biographic.backlink_harvest --qids Q125414 Q1048 --dry -v
 ```
 
 ## Package structure
 
 ```
 scripts/agents/biographic/
-├── __init__.py       # Exports BiographicAgent, harvest_person, load_decision_model
-├── agent.py          # Core harvest logic
-├── decision_loader.py # Loads SYS_Policy / SYS_WikidataProperty from graph
-├── cli.py            # argparse + main
-├── __main__.py       # python -m entry point
+├── __init__.py         # Exports BiographicAgent, harvest_person, load_decision_model
+├── agent.py            # Core harvest logic
+├── backlink_harvest.py # Standalone backlink pass (run after harvest)
+├── decision_loader.py  # Loads SYS_Policy / SYS_WikidataProperty from graph
+├── cli.py              # argparse + main
+├── __main__.py         # python -m entry point
 └── README.md
 ```
 

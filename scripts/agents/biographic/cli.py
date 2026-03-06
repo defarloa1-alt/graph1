@@ -52,6 +52,7 @@ def main():
     parser.add_argument("--all",  action="store_true", help="All DPRR persons with QIDs (dprr_id IS NOT NULL)")
     parser.add_argument("--limit", type=int, default=None, help="Max persons to harvest (for incremental runs)")
     parser.add_argument("--dry",  action="store_true", help="Dry run — no writes")
+    parser.add_argument("--backlinks", action="store_true", help="Include backlinks inline (default: skip; run backlink_harvest separately)")
     args = parser.parse_args()
 
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
@@ -101,6 +102,7 @@ def main():
                     session,
                     dry_run=args.dry,
                     decision_model=decision_model,
+                    skip_backlinks=not args.backlinks,
                 )
             except Exception as e:
                 print(f"  ERROR on {r['qid']}: {e}")

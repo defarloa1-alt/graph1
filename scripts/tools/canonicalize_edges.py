@@ -3,6 +3,7 @@
 Canonicalize PID Edges - Add Semantic Properties
 
 Stamp canonical properties on existing PID edges:
+- label (human-readable, from registry or PID)
 - canonical_type (INSTANCE_OF, PART_OF, etc.)
 - canonical_category (Hierarchical, Temporal, etc.)
 - cidoc_crm_property
@@ -24,10 +25,11 @@ from datetime import datetime
 
 from neo4j import GraphDatabase
 
-# Project root
-ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+# Project root and scripts (for config_loader / .env)
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+SCRIPTS = PROJECT_ROOT / "scripts"
+sys.path.insert(0, str(SCRIPTS))
+sys.path.insert(0, str(PROJECT_ROOT))
 
 # Neo4j config: prefer config_loader / .env
 try:
@@ -40,7 +42,7 @@ except ImportError:
 
 parser = argparse.ArgumentParser(description="Stamp canonical properties on PID edges")
 parser.add_argument("--dry-run", action="store_true", help="Report only, no writes")
-parser.add_argument("--registry", default=str(ROOT / "Relationships/relationship_types_registry_master.csv"),
+parser.add_argument("--registry", default=str(PROJECT_ROOT / "Relationships/relationship_types_registry_master.csv"),
                     help="Path to relationship registry CSV")
 args = parser.parse_args()
 
@@ -76,25 +78,34 @@ with open(registry_path, encoding='utf-8-sig') as f:
             'canonical_type': row.get('relationship_type', '').strip(),
             'category': row.get('category', '').strip(),
             'cidoc_crm': row.get('cidoc_crm_code', '').strip(),
-            'lifecycle': row.get('lifecycle_status', '').strip()
+            'lifecycle': row.get('lifecycle_status', '').strip(),
+            'label': (row.get('wikidata_label', '') or row.get('relationship_type', '')).strip() or None,
         }
 
 print(f"  Registry loaded: {len(registry)} PID mappings")
 print()
 
-# Get all PID edge types in database
+# Get all PID-like edge types in database (P31, P279, WIKIDATA_P6379, etc.)
 print("Querying edge types in database...")
 with driver.session() as session:
     result = session.run("""
         CALL db.relationshipTypes() YIELD relationshipType
         WHERE relationshipType STARTS WITH 'P'
-        RETURN relationshipType as pid
-        ORDER BY pid
+           OR relationshipType STARTS WITH 'WIKIDATA_P'
+        RETURN relationshipType as rel_type
+        ORDER BY rel_type
     """)
-    
-    db_pids = [r['pid'] for r in result]
+    db_rel_types = [r['rel_type'] for r in result]
 
-print(f"  PID edge types in database: {len(db_pids)}")
+# Normalize: P31 -> P31, WIKIDATA_P6379 -> P6379 (for registry lookup)
+def rel_type_to_pid(rt: str) -> str:
+    if rt.startswith('WIKIDATA_'):
+        return rt.replace('WIKIDATA_', '', 1)
+    return rt
+
+db_pids = [(rt, rel_type_to_pid(rt)) for rt in db_rel_types]
+
+print(f"  PID-like edge types in database: {len(db_pids)}")
 print()
 
 # Canonicalize each PID
@@ -104,27 +115,34 @@ print()
 stamped = 0
 skipped = 0
 
-for i, pid in enumerate(db_pids):
+for i, (rel_type, pid) in enumerate(db_pids):
+    # Escape rel_type for Cypher (WIKIDATA_P6379 is valid; backticks if needed)
+    cypher_rel = f"`{rel_type}`" if " " in rel_type or "-" in rel_type else rel_type
     if pid in registry:
         mapping = registry[pid]
+        label = mapping.get('label') or pid  # Prefer human-readable label over PID
         if not args.dry_run:
             with driver.session() as session:
                 result = session.run(f"""
-                    MATCH ()-[r:{pid}]->()
+                    MATCH ()-[r:{cypher_rel}]->()
                     SET r.canonical_type = $canonical_type,
                         r.canonical_category = $category,
                         r.cidoc_crm_property = $cidoc_crm,
+                        r.label = $label,
+                        r.wikidata_pid = $pid,
                         r.in_registry = true,
                         r.canonicalized_at = datetime()
                     RETURN count(r) as updated
                 """,
                 canonical_type=mapping['canonical_type'],
                 category=mapping['category'],
-                cidoc_crm=mapping['cidoc_crm'])
+                cidoc_crm=mapping['cidoc_crm'],
+                label=label,
+                pid=pid)
                 count = result.single()['updated']
         else:
             with driver.session() as session:
-                count = session.run(f"MATCH ()-[r:{pid}]->() RETURN count(r) as c", {}).single()['c']
+                count = session.run(f"MATCH ()-[r:{cypher_rel}]->() RETURN count(r) as c", {}).single()['c']
         stamped += count
         if (i + 1) % 50 == 0:
             print(f"  Progress: {i + 1}/{len(db_pids)} PIDs processed, {stamped:,} edges {'would be ' if args.dry_run else ''}stamped")
@@ -132,15 +150,16 @@ for i, pid in enumerate(db_pids):
         if not args.dry_run:
             with driver.session() as session:
                 result = session.run(f"""
-                    MATCH ()-[r:{pid}]->()
-                    SET r.in_registry = false,
+                    MATCH ()-[r:{cypher_rel}]->()
+                    SET r.wikidata_pid = $pid,
+                        r.in_registry = false,
                         r.needs_mapping = true
                     RETURN count(r) as updated
-                """)
+                """, pid=pid)
                 count = result.single()['updated']
         else:
             with driver.session() as session:
-                count = session.run(f"MATCH ()-[r:{pid}]->() RETURN count(r) as c", {}).single()['c']
+                count = session.run(f"MATCH ()-[r:{cypher_rel}]->() RETURN count(r) as c", {}).single()['c']
         skipped += count
 
 driver.close()
@@ -156,6 +175,7 @@ print(f"Edges marked unmapped: {skipped:,}")
 print(f"Total edges processed: {stamped + skipped:,}")
 print()
 print("Canonical properties added:")
+print("  - label (human-readable, not just PID)")
 print("  - canonical_type (INSTANCE_OF, PART_OF, etc.)")
 print("  - canonical_category (Hierarchical, Temporal, etc.)")
 print("  - cidoc_crm_property")
