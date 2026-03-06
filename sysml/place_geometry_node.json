@@ -1,0 +1,75 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://chrystallum.org/schemas/place_geometry_node.json",
+    "title": "PlaceGeometry Node",
+    "description": "Time-bounded spatial geometry for a Place. A Place may have multiple geometries representing different periods (e.g., city walls expanding over centuries). Sources: Pleiades locations[], Wikidata P625/P3896.",
+    "type": "object",
+    "required": [
+        "geometry_id",
+        "geometry_type",
+        "source"
+    ],
+    "properties": {
+        "geometry_id": {
+            "type": "string",
+            "description": "Unique identifier, pattern: geo_{pleiades_id}_{index} or geo_{qid}_{index}",
+            "pattern": "^geo_.+"
+        },
+        "geometry_type": {
+            "type": "string",
+            "enum": ["point", "bbox", "polygon", "polyline", "multipolygon"],
+            "description": "Type of spatial geometry"
+        },
+        "latitude": {
+            "type": ["number", "null"],
+            "minimum": -90,
+            "maximum": 90,
+            "description": "Representative point latitude (WGS84). Required for point type."
+        },
+        "longitude": {
+            "type": ["number", "null"],
+            "minimum": -180,
+            "maximum": 180,
+            "description": "Representative point longitude (WGS84). Required for point type."
+        },
+        "bbox": {
+            "type": ["array", "null"],
+            "items": { "type": "number" },
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "Bounding box as [minLon, minLat, maxLon, maxLat]"
+        },
+        "geojson": {
+            "type": ["string", "null"],
+            "description": "Full GeoJSON geometry string for polygons, polylines, multipolygons. Consumed directly by map renderers (Leaflet, Mapbox, Deck.gl)."
+        },
+        "start_year": {
+            "type": ["integer", "null"],
+            "description": "Year this geometry becomes valid. Negative for BCE."
+        },
+        "end_year": {
+            "type": ["integer", "null"],
+            "description": "Year this geometry ceases to be valid. Negative for BCE."
+        },
+        "precision": {
+            "type": "string",
+            "enum": ["exact", "approximate", "rough", "unlocated"],
+            "default": "approximate",
+            "description": "Spatial precision qualifier from source data"
+        },
+        "source": {
+            "type": "string",
+            "enum": ["pleiades", "wikidata", "geonames", "manual"],
+            "description": "Which authority provided this geometry"
+        },
+        "source_id": {
+            "type": ["string", "null"],
+            "description": "Identifier in the source system (pleiades location URI, Wikidata statement ID)"
+        },
+        "accuracy_radius_m": {
+            "type": ["number", "null"],
+            "description": "Accuracy radius in meters, from Pleiades accuracy assessment"
+        }
+    },
+    "additionalProperties": false
+}

@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://chrystallum.org/schemas/geo_place_node.json",
+    "title": "GeoPlace Node",
+    "description": "Modern geographic entity from GeoNames, providing the spatial admin hierarchy. These are NOT historical places — they are the modern geographic index used for containment queries (e.g., 'all ancient sites in modern Turkey'). Connected via ADMIN_CHILD_OF to form the admin tree.",
+    "type": "object",
+    "required": [
+        "geonames_id",
+        "label",
+        "feature_code",
+        "country_code"
+    ],
+    "properties": {
+        "geonames_id": {
+            "type": "string",
+            "description": "GeoNames identifier"
+        },
+        "label": {
+            "type": "string",
+            "description": "Primary name from GeoNames"
+        },
+        "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "description": "WGS84 latitude"
+        },
+        "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "description": "WGS84 longitude"
+        },
+        "feature_class": {
+            "type": "string",
+            "enum": ["A", "H", "L", "P", "R", "S", "T", "U", "V"],
+            "description": "GeoNames feature class (A=admin, P=populated, H=hydro, etc.)"
+        },
+        "feature_code": {
+            "type": "string",
+            "description": "GeoNames feature code (ADM1, PCLI, PPL, etc.)"
+        },
+        "country_code": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$",
+            "description": "ISO 3166-1 alpha-2 country code"
+        },
+        "admin1_code": {
+            "type": ["string", "null"],
+            "description": "GeoNames admin1 code (state/province)"
+        },
+        "admin2_code": {
+            "type": ["string", "null"],
+            "description": "GeoNames admin2 code (county/district)"
+        },
+        "population": {
+            "type": ["integer", "null"],
+            "description": "Population from GeoNames"
+        },
+        "elevation_m": {
+            "type": ["integer", "null"],
+            "description": "Elevation in meters"
+        },
+        "timezone": {
+            "type": ["string", "null"],
+            "description": "IANA timezone identifier"
+        },
+        "boundary_geojson": {
+            "type": ["string", "null"],
+            "description": "Admin boundary polygon as GeoJSON string. Source: GADM or Natural Earth."
+        },
+        "qid": {
+            "type": ["string", "null"],
+            "pattern": "^Q[0-9]+$",
+            "description": "Wikidata QID for cross-reference"
+        }
+    },
+    "additionalProperties": false
+}
