@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import re
 import sys
+import time
 from pathlib import Path
 
 _root = Path(__file__).resolve().parents[3]  # project root (Graph1)
@@ -44,9 +45,15 @@ NEO4J_USER     = _env.get("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = _env["NEO4J_PASSWORD"]
 
 WIKIDATA_SPARQL = "https://query.wikidata.org/sparql"
+WIKIDATA_API = "https://www.wikidata.org/w/api.php"
 HEADERS = {"User-Agent": "Chrystallum-BiographicAgent/1.0 (chrystallum@example.com)"}
-SLEEP_SEC  = 1.0
+SLEEP_SEC  = 2.0
+SPARQL_TIMEOUT = 90
+SPARQL_RETRIES = 3
+API_TIMEOUT = 30
+API_RETRIES = 3
 BATCH_SIZE = 25
+USE_API = True  # Use REST API for entity data (faster, fewer timeouts); SPARQL only for backlinks
 
 # ── Backlink predicate map (fallback when SYS_Policy BacklinkRouting not present) ─
 BACKLINK_PREDICATE_MAP = {
@@ -101,14 +108,226 @@ def parse_year(date_str: str) -> int | None:
 
 
 def sparql(query: str) -> list[dict]:
-    resp = requests.get(
-        WIKIDATA_SPARQL,
-        params={"query": query, "format": "json"},
-        headers=HEADERS,
-        timeout=45,
-    )
-    resp.raise_for_status()
-    return resp.json()["results"]["bindings"]
+    last_err = None
+    for attempt in range(SPARQL_RETRIES):
+        try:
+            resp = requests.get(
+                WIKIDATA_SPARQL,
+                params={"query": query, "format": "json"},
+                headers=HEADERS,
+                timeout=SPARQL_TIMEOUT,
+            )
+            if resp.status_code in (429, 502, 503, 504):
+                if attempt < SPARQL_RETRIES - 1:
+                    wait = (attempt + 1) * (30 if resp.status_code == 429 else 20)
+                    print(f"    Wikidata {resp.status_code}, retry in {wait}s...")
+                    time.sleep(wait)
+                    continue
+                resp.raise_for_status()
+            resp.raise_for_status()
+            return resp.json()["results"]["bindings"]
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError, requests.exceptions.HTTPError) as e:
+            last_err = e
+            if attempt < SPARQL_RETRIES - 1:
+                wait = (attempt + 1) * 15
+                print(f"    Wikidata timeout, retry in {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
+    raise last_err
+
+
+def _api_get(params: dict) -> dict:
+    """Wikidata REST API with retries."""
+    last_err = None
+    for attempt in range(API_RETRIES):
+        try:
+            params = {**params, "format": "json"}
+            resp = requests.get(
+                WIKIDATA_API,
+                params=params,
+                headers=HEADERS,
+                timeout=API_TIMEOUT,
+            )
+            if resp.status_code in (429, 502, 503, 504):
+                if attempt < API_RETRIES - 1:
+                    wait = (attempt + 1) * (30 if resp.status_code == 429 else 15)
+                    print(f"    Wikidata API {resp.status_code}, retry in {wait}s...")
+                    time.sleep(wait)
+                    continue
+                resp.raise_for_status()
+            resp.raise_for_status()
+            return resp.json()
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError, requests.exceptions.HTTPError) as e:
+            last_err = e
+            if attempt < API_RETRIES - 1:
+                wait = (attempt + 1) * 10
+                print(f"    Wikidata API timeout, retry in {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
+    raise last_err
+
+
+def fetch_entity_api(qids: str | list[str]) -> dict:
+    """Fetch entity/entities via wbgetentities. ids can be 'Q1048' or 'Q1048|Q510990'."""
+    ids = qids if isinstance(qids, str) else "|".join(qids)
+    data = _api_get({"action": "wbgetentities", "ids": ids, "props": "claims|labels"})
+    return data.get("entities", {})
+
+
+def _parse_claim_value(snak: dict) -> str | None:
+    if snak.get("snaktype") != "value":
+        return None
+    dv = snak.get("datavalue", {})
+    val = dv.get("value")
+    if isinstance(val, dict):
+        if "id" in val:
+            return val["id"]
+        if "time" in val:
+            return val["time"]
+        if "text" in val:
+            return val.get("text", "")
+        if "value" in val:
+            return val.get("value", "")
+    return str(val) if val is not None else None
+
+
+def _parse_entity_to_props(entity: dict) -> dict:
+    """Parse wbgetentities entity to our props format."""
+    claims = entity.get("claims", {})
+    result = {}
+    labels = entity.get("labels", {}).get("en", {}).get("value", "")
+
+    SCALAR_PIDS = {k: v for k, v in FORWARD_PROPS.items() if v not in (
+        "conflict_qid", "significant_event_qid", "participated_in_qid", "award_qid"
+    )}
+    EVENTS = {k: v for k, v in FORWARD_PROPS.items() if v in (
+        "conflict_qid", "significant_event_qid", "participated_in_qid", "award_qid"
+    )}
+
+    for pid, key in SCALAR_PIDS.items():
+        if pid not in claims:
+            continue
+        for stmt in claims[pid]:
+            if stmt.get("mainsnak", {}).get("snaktype") != "value":
+                continue
+            val = _parse_claim_value(stmt["mainsnak"])
+            if val:
+                if key in ("birth_date", "death_date") and isinstance(val, str) and "T" in val:
+                    val = val.split("T")[0].replace("-00-00", "-01-01")
+                result[key] = val
+            break
+
+    for pid, key in EVENTS.items():
+        if pid not in claims:
+            continue
+        result[key] = []
+        for stmt in claims[pid]:
+            if stmt.get("mainsnak", {}).get("snaktype") != "value":
+                continue
+            val = _parse_claim_value(stmt["mainsnak"])
+            if val and val.startswith("Q"):
+                label = None
+                result[key].append({"qid": val, "label": label})
+        result[key] = [{"qid": r["qid"], "label": r.get("label")} for r in result[key]]
+
+    return result
+
+
+def _parse_entity_to_marriages(entity: dict, entities_by_id: dict) -> list[dict]:
+    """Parse P26 claims with qualifiers to marriages."""
+    claims = entity.get("claims", {}).get("P26", [])
+    marriages = []
+    for stmt in claims:
+        if stmt.get("mainsnak", {}).get("snaktype") != "value":
+            continue
+        spouse_val = stmt["mainsnak"].get("datavalue", {}).get("value", {})
+        spouse_id = spouse_val.get("id") if isinstance(spouse_val, dict) else None
+        if not spouse_id or not str(spouse_id).startswith("Q") or "genid" in str(spouse_id):
+            continue
+        spouse_label = None
+        if spouse_id in entities_by_id:
+            spouse_label = entities_by_id[spouse_id].get("labels", {}).get("en", {}).get("value")
+        qualifiers = stmt.get("qualifiers") or {}
+        start = (qualifiers.get("P580") or [{}])[0].get("datavalue", {}).get("value", {}).get("time", "")
+        end = (qualifiers.get("P582") or [{}])[0].get("datavalue", {}).get("value", {}).get("time", "")
+        end_cause_val = (qualifiers.get("P1534") or [{}])[0].get("datavalue", {}).get("value", {})
+        ecid = end_cause_val.get("id") if isinstance(end_cause_val, dict) else None
+        end_reason = entities_by_id.get(ecid, {}).get("labels", {}).get("en", {}).get("value") if ecid else None
+        place_val = (qualifiers.get("P2842") or [{}])[0].get("datavalue", {}).get("value", {})
+        place_qid = place_val.get("id") if isinstance(place_val, dict) else None
+        place_label = None
+        if place_qid and place_qid in entities_by_id:
+            place_label = entities_by_id[place_qid].get("labels", {}).get("en", {}).get("value")
+        ord_val = (qualifiers.get("P1545") or [{}])[0].get("datavalue", {}).get("value", {})
+        series_ordinal = ord_val.get("amount") if isinstance(ord_val, dict) else None
+        marriages.append({
+            "spouse_qid": spouse_id,
+            "spouse_label": spouse_label,
+            "start_year": parse_year(start),
+            "end_year": parse_year(end),
+            "series_ordinal": series_ordinal,
+            "end_reason": end_reason,
+            "place_qid": place_qid,
+            "place_label": place_label,
+        })
+    return marriages
+
+
+def fetch_person_via_api(qid: str) -> tuple[dict, list[dict], dict]:
+    """
+    Fetch person + forward props + marriages via wbgetentities.
+    Returns (props, marriages, place_labels) where place_labels is {qid: label}.
+    """
+    entities = fetch_entity_api(qid)
+    person = entities.get(qid, {})
+    if not person or "missing" in person:
+        return {}, [], {}
+
+    props = _parse_entity_to_props(person)
+    ref_qids = {qid}
+    for key in ("birth_place_qid", "death_place_qid", "burial_place_qid"):
+        v = props.get(key)
+        if v and str(v).startswith("Q"):
+            ref_qids.add(v)
+    for evt in props.get("conflict_qid", []) + props.get("significant_event_qid", []) + props.get("participated_in_qid", []) + props.get("award_qid", []):
+        if evt.get("qid"):
+            ref_qids.add(evt["qid"])
+    for stmt in person.get("claims", {}).get("P26", []):
+        v = stmt.get("mainsnak", {}).get("datavalue", {}).get("value", {})
+        if isinstance(v, dict) and v.get("id") and str(v["id"]).startswith("Q"):
+            ref_qids.add(v["id"])
+        for q in (stmt.get("qualifiers") or {}).get("P2842", []):
+            v2 = q.get("datavalue", {}).get("value", {})
+            if isinstance(v2, dict) and v2.get("id"):
+                ref_qids.add(v2["id"])
+        for q in (stmt.get("qualifiers") or {}).get("P1534", []):
+            v2 = q.get("datavalue", {}).get("value", {})
+            if isinstance(v2, dict) and v2.get("id"):
+                ref_qids.add(v2["id"])
+
+    ref_qids = [q for q in ref_qids if q != qid and q and str(q).startswith("Q")][:49]
+    if ref_qids:
+        time.sleep(SLEEP_SEC)
+        more = fetch_entity_api(ref_qids)
+        entities.update(more)
+
+    entities_by_id = {eid: e for eid, e in entities.items() if isinstance(e, dict) and "missing" not in e}
+    for key in ("conflict_qid", "significant_event_qid", "participated_in_qid", "award_qid"):
+        for evt in props.get(key, []):
+            qid = evt.get("qid")
+            if qid and qid in entities_by_id:
+                evt["label"] = entities_by_id[qid].get("labels", {}).get("en", {}).get("value")
+    marriages = _parse_entity_to_marriages(person, entities_by_id)
+    place_labels = {}
+    for pid in ("P19", "P20", "P119"):
+        for stmt in person.get("claims", {}).get(pid, []):
+            v = _parse_claim_value(stmt.get("mainsnak", {}))
+            if v and v in entities_by_id:
+                place_labels[v] = entities_by_id[v].get("labels", {}).get("en", {}).get("value")
+
+    return props, marriages, place_labels
 
 
 def fetch_forward_props(qid: str) -> dict:
@@ -366,9 +585,13 @@ SET r.edge_type        = $edge_type,
 
 WRITE_EVENT_PARTICIPATION = """
 MERGE (evt:Event {qid: $event_qid})
-  ON CREATE SET evt.label     = $event_label,
-                evt.event_type = $event_type,
-                evt.qid        = $event_qid
+  ON CREATE SET evt.label       = $event_label,
+                evt.event_type  = $event_type,
+                evt.entity_type = 'EVENT',
+                evt.entity_id   = 'evt_' + $event_qid,
+                evt.start_date  = $start_date,
+                evt.qid         = $event_qid
+  ON MATCH SET evt.label = coalesce(evt.label, $event_label)
 MERGE (p:Person {qid: $person_qid})
 MERGE (p)-[r:PARTICIPATED_IN]->(evt)
 SET r.source = 'wikidata_' + $prop_id,
@@ -395,15 +618,25 @@ def harvest_person(
     print(f"Harvesting: {dprr_id} / {qid}")
     print(f"{'='*60}")
 
-    # 1. Forward properties
-    print("  [1/3] Fetching forward properties...")
-    props = fetch_forward_props(qid)
+    # 1. Forward properties (API path avoids SPARQL timeouts)
+    def _valid_qid(v):
+        return v if (v and re.match(r"^Q\d+$", str(v).strip())) else None
+
+    if USE_API:
+        print("  [1/3] Fetching forward properties (API)...")
+        props, marriages, place_labels_map = fetch_person_via_api(qid)
+    else:
+        print("  [1/3] Fetching forward properties...")
+        props = fetch_forward_props(qid)
+        marriages = []
+        place_labels_map = {}
+
     birth_year = parse_year(props.get("birth_date", ""))
     death_year = parse_year(props.get("death_date", ""))
 
-    birth_place_qid  = props.get("birth_place_qid")
-    death_place_qid  = props.get("death_place_qid")
-    burial_place_qid = props.get("burial_place_qid")
+    birth_place_qid  = _valid_qid(props.get("birth_place_qid"))
+    death_place_qid  = _valid_qid(props.get("death_place_qid"))
+    burial_place_qid = _valid_qid(props.get("burial_place_qid"))
 
     birth_pleiades  = resolve_place_pleiades(session, birth_place_qid)
     death_pleiades  = resolve_place_pleiades(session, death_place_qid)
@@ -412,6 +645,10 @@ def harvest_person(
     def place_label(qid_val):
         if not qid_val:
             return None
+        if not re.match(r"^Q\d+$", str(qid_val).strip()):
+            return None
+        if USE_API and qid_val in place_labels_map:
+            return place_labels_map.get(qid_val) or qid_val
         try:
             rows = sparql(f"""
             SELECT ?label WHERE {{
@@ -438,12 +675,18 @@ def harvest_person(
     for e in conflicts + events:
         print(f"      {e.get('label') or e['qid']}")
 
-    # 2. Spouse qualifiers
-    print("  [2/3] Fetching spouse qualifiers...")
-    marriages = fetch_spouse_qualifiers(qid)
+    # 2. Spouse qualifiers (already fetched via API when USE_API)
+    if not USE_API:
+        print("  [2/3] Fetching spouse qualifiers...")
+        marriages = fetch_spouse_qualifiers(qid)
+    else:
+        print("  [2/3] Spouse qualifiers (from API)")
     print(f"    marriages with qualifiers: {len(marriages)}")
     for m in marriages:
-        print(f"      {m['spouse_label']:<30} ord:{m['series_ordinal']}  "
+        lbl = m.get("spouse_label") or m.get("spouse_qid") or "?"
+        if lbl and ("genid" in str(lbl) or lbl.startswith("http")):
+            lbl = "(anonymous)"
+        print(f"      {str(lbl)[:30]:<30} ord:{m['series_ordinal']}  "
               f"{m['start_year'] or '?'}->{m['end_year'] or '?'}  "
               f"end:{m['end_reason'] or '-'}")
 
@@ -517,37 +760,61 @@ def harvest_person(
     })
 
     for m in marriages:
-        if m.get("spouse_qid"):
-            try:
-                session.run(WRITE_MARRIAGE_QUALIFIERS, {
-                    "person_qid":     qid,
-                    "spouse_qid":     m["spouse_qid"],
-                    "start_year":     m["start_year"],
-                    "end_year":       m["end_year"],
-                    "series_ordinal": m["series_ordinal"],
-                    "end_reason":     m["end_reason"],
-                    "place_qid":      m["place_qid"],
-                    "place_label":    m["place_label"],
-                })
-            except Exception as e:
-                print(f"    WARN marriage write failed for {m['spouse_qid']}: {e}")
+        sq = m.get("spouse_qid")
+        if not sq or "genid" in str(sq) or not re.match(r"^Q\d+$", str(sq).strip()):
+            continue
+        try:
+            place_qid = _valid_qid(m.get("place_qid"))
+            session.run(WRITE_MARRIAGE_QUALIFIERS, {
+                "person_qid":     qid,
+                "spouse_qid":     m["spouse_qid"],
+                "start_year":     m["start_year"],
+                "end_year":       m["end_year"],
+                "series_ordinal": m["series_ordinal"],
+                "end_reason":     m["end_reason"],
+                "place_qid":      place_qid,
+                "place_label":    m["place_label"] if place_qid else None,
+            })
+        except Exception as e:
+            print(f"    WARN marriage write failed for {m['spouse_qid']}: {e}")
+
+    def _event_start_date(evt_qid: str, evt_label: str, birth_yr, death_yr) -> str | None:
+        """Derive start_date for Event (schema requires it). Use person's dates as proxy."""
+        yr = death_yr or birth_yr
+        if yr is None:
+            return None
+        return f"{yr:+05d}-01-01".replace("+", "")
 
     for evt in conflicts:
-        session.run(WRITE_EVENT_PARTICIPATION, {
-            "person_qid":  qid,
-            "event_qid":   evt["qid"],
-            "event_label": evt["label"],
-            "event_type":  "conflict",
-            "prop_id":     "p607",
-        })
+        start_date = _event_start_date(evt["qid"], evt.get("label"), birth_year, death_year)
+        if not start_date:
+            continue
+        try:
+            session.run(WRITE_EVENT_PARTICIPATION, {
+                "person_qid":  qid,
+                "event_qid":   evt["qid"],
+                "event_label": evt.get("label") or evt["qid"],
+                "event_type":  "conflict",
+                "prop_id":     "p607",
+                "start_date":  start_date,
+            })
+        except Exception as e:
+            print(f"    WARN event write failed for {evt['qid']}: {e}")
     for evt in events:
-        session.run(WRITE_EVENT_PARTICIPATION, {
-            "person_qid":  qid,
-            "event_qid":   evt["qid"],
-            "event_label": evt["label"],
-            "event_type":  "significant_event",
-            "prop_id":     "p793_p1344",
-        })
+        start_date = _event_start_date(evt["qid"], evt.get("label"), birth_year, death_year)
+        if not start_date:
+            continue
+        try:
+            session.run(WRITE_EVENT_PARTICIPATION, {
+                "person_qid":  qid,
+                "event_qid":   evt["qid"],
+                "event_label": evt.get("label") or evt["qid"],
+                "event_type":  "significant_event",
+                "prop_id":     "p793_p1344",
+                "start_date":  start_date,
+            })
+        except Exception as e:
+            print(f"    WARN event write failed for {evt['qid']}: {e}")
 
     for bl in backlinks:
         try:

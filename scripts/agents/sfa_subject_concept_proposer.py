@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 sfa_subject_concept_proposer.py
---------------------------------
+PREFERRED: python -m scripts.agents.sfa propose --facet POLITICAL [--seed Q17167]
+
 Subject Facet Agent (SFA) — SubjectConcept Proposer
 
 Consumes the SCA landscape output for a seed QID and proposes concrete

@@ -31,14 +31,15 @@ with driver.session() as session:
     print("  [OK] Cleared old structure")
     print()
     
-    # STEP 2: Create Chrystallum root
+    # STEP 2: Create Chrystallum root (use id for canonical key; see docs/CHRYSTALLUM_SUBGRAPH_SPEC.md)
     print("[STEP 2] Creating Chrystallum (center node)...")
     session.run("""
-        CREATE (sys:Chrystallum {
-          name: 'Chrystallum Knowledge Graph',
-          version: '1.0',
-          created: datetime()
-        })
+        MERGE (sys:Chrystallum {id: 'CHRYSTALLUM_ROOT'})
+        SET sys.name = 'Chrystallum Knowledge Graph',
+            sys.version = '1.0',
+            sys.label = 'Chrystallum',
+            sys.type = 'knowledge_graph_root',
+            sys.created = datetime()
     """)
     print("  [OK] Created Chrystallum")
     print()
@@ -46,7 +47,7 @@ with driver.session() as session:
     # STEP 3: Create FederationRoot + 10 federation nodes
     print("[STEP 3] Creating FederationRoot + 10 federations...")
     session.run("""
-        MATCH (sys:Chrystallum)
+        MATCH (sys:Chrystallum {id: 'CHRYSTALLUM_ROOT'})
         
         CREATE (fed_root:FederationRoot {name: 'Federations'})
         CREATE (sys)-[:HAS_FEDERATION_ROOT]->(fed_root)
@@ -143,7 +144,7 @@ with driver.session() as session:
     ]
     
     session.run("""
-        MATCH (sys:Chrystallum)
+        MATCH (sys:Chrystallum {id: 'CHRYSTALLUM_ROOT'})
         CREATE (facet_root:FacetRoot {name: 'Canonical Facets', count: 18})
         CREATE (sys)-[:HAS_FACET_ROOT]->(facet_root)
     """)
@@ -208,7 +209,7 @@ with driver.session() as session:
     print()
     
     result = session.run("""
-        MATCH (sys:Chrystallum)
+        MATCH (sys:Chrystallum {id: 'CHRYSTALLUM_ROOT'})
         MATCH (sys)-[:HAS_FEDERATION_ROOT]->(fed_root)
         MATCH (sys)-[:HAS_FACET_ROOT]->(facet_root)
         MATCH (fed_root)-[:HAS_FEDERATION]->(fed)

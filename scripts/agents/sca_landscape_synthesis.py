@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 SCA Landscape Synthesis — LLM reasoning pass.
+PREFERRED: python -m scripts.agents.sca landscape Q17167 --taxonomy ... --lateral ...
 
 Takes taxonomy harvest + lateral exploration data for a seed QID and produces:
   - Domain landscape narrative (where the subject sits academically)

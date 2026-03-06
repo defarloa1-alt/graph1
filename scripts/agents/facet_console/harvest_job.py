@@ -83,6 +83,37 @@ def create_harvest_job(
     return job
 
 
+def claim_next_pending_job(facet_label: str, agent_id: str | None = None) -> dict | None:
+    """
+    Claim the first pending job for a facet. Sets status to 'running'.
+    Returns the job dict or None if no pending job. Single-process safe;
+    for multi-process use external locking.
+    """
+    jobs = list_harvest_jobs(facet_label, status="pending")
+    if not jobs:
+        return None
+    job = jobs[0]
+    job_id = job["job_id"]
+    out_dir = JOBS_DIR / facet_label.replace(" ", "_")
+    jobs_file = out_dir / "jobs.jsonl"
+    all_jobs = list_harvest_jobs(facet_label)
+    claimed_job = None
+    new_lines = []
+    for j in all_jobs:
+        if j["job_id"] == job_id and j.get("status") == "pending":
+            j = dict(j)
+            j["status"] = "running"
+            if agent_id:
+                j["claimed_by"] = agent_id
+            claimed_job = j
+        new_lines.append(json.dumps(j, ensure_ascii=False))
+    if claimed_job:
+        with open(jobs_file, "w", encoding="utf-8") as f:
+            f.write("\n".join(new_lines) + "\n")
+        return claimed_job
+    return None
+
+
 def list_harvest_jobs(facet_label: str, status: str | None = None) -> list[dict]:
     """List harvest jobs for a facet. Optionally filter by status."""
     out_dir = JOBS_DIR / facet_label.replace(" ", "_")

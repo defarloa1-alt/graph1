@@ -22,19 +22,20 @@ except ImportError:
     NEO4J_URI = NEO4J_USERNAME = NEO4J_PASSWORD = NEO4J_DATABASE = None
 
 FEDERATION_SOURCES = [
-    {"name": "Wikidata", "status": "operational", "confidence": 0.90, "scoping_role": "discovery_hub", "wikidata_property": "", "license": "CC0", "phase1": True, "phase2": True},
-    {"name": "DPRR", "status": "operational", "confidence": 0.85, "scoping_role": "persons", "wikidata_property": "P6863", "license": "CC-BY", "phase1": True, "phase2": True},
-    {"name": "Pleiades", "status": "operational", "confidence": 0.92, "scoping_role": "places", "wikidata_property": "P1584", "license": "CC-BY", "phase1": True, "phase2": False},
-    {"name": "Trismegistos", "status": "operational", "confidence": 0.95, "scoping_role": "persons/inscriptions", "wikidata_property": "P1696/P4230", "license": "custom", "phase1": True, "phase2": False},
-    {"name": "LGPN", "status": "operational", "confidence": 0.93, "scoping_role": "persons", "wikidata_property": "P1047", "license": "custom", "phase1": True, "phase2": False},
-    {"name": "PeriodO", "status": "operational", "confidence": 0.85, "scoping_role": "temporal", "wikidata_property": "", "license": "CC0", "phase1": True, "phase2": False},
-    {"name": "LCSH/FAST/LCC", "status": "operational", "confidence": 0.90, "scoping_role": "subject_classification", "wikidata_property": "P244/P1014", "license": "CC0", "phase1": True, "phase2": True},
-    {"name": "CHRR", "status": "planned", "confidence": None, "scoping_role": "material_evidence", "wikidata_property": "", "license": "ODbL", "phase1": False, "phase2": False},
-    {"name": "CRRO", "status": "planned", "confidence": None, "scoping_role": "material_evidence", "wikidata_property": "", "license": "CC-BY", "phase1": False, "phase2": False},
-    {"name": "OCD", "status": "planned", "confidence": None, "scoping_role": "taxonomy/grounding", "wikidata_property": "P9106", "license": "public_domain", "phase1": False, "phase2": False},
-    {"name": "EDH", "status": "planned", "confidence": None, "scoping_role": "inscriptions", "wikidata_property": "P2192", "license": "CC-BY", "phase1": False, "phase2": False},
-    {"name": "VIAF", "status": "partial", "confidence": 0.85, "scoping_role": "persons", "wikidata_property": "P214", "license": "CC0", "phase1": False, "phase2": False},
-    {"name": "Getty AAT", "status": "partial", "confidence": 0.90, "scoping_role": "concepts", "wikidata_property": "P1014", "license": "CC-BY", "phase1": False, "phase2": False},
+    {"name": "Wikidata", "status": "operational", "confidence": 0.90, "scoping_role": "discovery_hub", "wikidata_property": "", "wikidata_pid": "", "license": "CC0", "phase1": True, "phase2": True},
+    {"name": "DPRR", "status": "operational", "confidence": 0.85, "scoping_role": "persons", "wikidata_property": "P6863", "wikidata_pid": "P6863", "license": "CC-BY", "phase1": True, "phase2": True},
+    {"name": "Pleiades", "status": "operational", "confidence": 0.92, "scoping_role": "places", "wikidata_property": "P1584", "wikidata_pid": "P1584", "license": "CC-BY", "phase1": True, "phase2": False},
+    {"name": "Trismegistos", "status": "operational", "confidence": 0.95, "scoping_role": "persons/inscriptions", "wikidata_property": "P1696/P4230", "wikidata_pid": "P1696", "license": "custom", "phase1": True, "phase2": False},
+    {"name": "LGPN", "status": "operational", "confidence": 0.93, "scoping_role": "persons", "wikidata_property": "P1047", "wikidata_pid": "P1047", "license": "custom", "phase1": True, "phase2": False},
+    {"name": "PeriodO", "status": "operational", "confidence": 0.85, "scoping_role": "temporal", "wikidata_property": "", "wikidata_pid": "", "license": "CC0", "phase1": True, "phase2": False},
+    {"name": "LCSH/FAST/LCC", "status": "operational", "confidence": 0.90, "scoping_role": "subject_classification", "wikidata_property": "P244/P1014", "wikidata_pid": "P244", "license": "CC0", "phase1": True, "phase2": True},
+    {"name": "CHRR", "status": "planned", "confidence": None, "scoping_role": "material_evidence", "wikidata_property": "", "wikidata_pid": "", "license": "ODbL", "phase1": False, "phase2": False},
+    {"name": "CRRO", "status": "planned", "confidence": None, "scoping_role": "material_evidence", "wikidata_property": "", "wikidata_pid": "", "license": "CC-BY", "phase1": False, "phase2": False},
+    {"name": "OCD", "status": "planned", "confidence": None, "scoping_role": "taxonomy/grounding", "wikidata_property": "P9106", "wikidata_pid": "P9106", "license": "public_domain", "phase1": False, "phase2": False},
+    {"name": "EDH", "status": "planned", "confidence": None, "scoping_role": "inscriptions", "wikidata_property": "P2192", "wikidata_pid": "P2192", "license": "CC-BY", "phase1": False, "phase2": False},
+    {"name": "VIAF", "status": "partial", "confidence": 0.85, "scoping_role": "persons", "wikidata_property": "P214", "wikidata_pid": "P214", "license": "CC0", "phase1": False, "phase2": False},
+    {"name": "Getty AAT", "status": "partial", "confidence": 0.90, "scoping_role": "concepts", "wikidata_property": "P1014", "wikidata_pid": "P1014", "license": "CC-BY", "phase1": False, "phase2": False},
+    {"name": "Nomisma", "status": "operational", "confidence": 0.88, "scoping_role": "numismatics", "wikidata_property": "", "wikidata_pid": "", "license": "CC-BY", "phase1": True, "phase2": False},
 ]
 
 
@@ -93,6 +94,7 @@ def main():
                     confidence: $confidence,
                     scoping_role: $scoping_role,
                     wikidata_property: $wikidata_property,
+                    wikidata_pid: $wikidata_pid,
                     license: $license,
                     access_pattern: "api",
                     phase1_complete: $phase1,

@@ -23,7 +23,8 @@ MATCH (fr:FederationRoot) DETACH DELETE fr
 ## Step 2 — Create registry root
 
 ```cypher
-MERGE (sys:Chrystallum {name: "Chrystallum"})
+MERGE (sys:Chrystallum {id: 'CHRYSTALLUM_ROOT'})
+SET sys.label = 'Chrystallum', sys.name = 'Chrystallum Knowledge Graph'
 CREATE (fr:SYS_FederationRegistry {system: true, label: "FederationRegistry"})
 MERGE (sys)-[:HAS_FEDERATION]->(fr)
 ```

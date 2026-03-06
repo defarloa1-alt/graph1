@@ -17,10 +17,17 @@ from neo4j import GraphDatabase
 
 # Suppress Neo4j property warnings (e.g. facets, primary_for not in graph)
 try:
-    from neo4j import NotificationMinimumSeverity
-    _DRIVER_CONFIG = {"warn_notification_severity": NotificationMinimumSeverity.OFF}
+    from neo4j import NotificationMinimumSeverity, NotificationDisabledClassification
+    _DRIVER_CONFIG = {
+        "warn_notification_severity": NotificationMinimumSeverity.OFF,
+        "notifications_disabled_classifications": [NotificationDisabledClassification.UNRECOGNIZED],
+    }
 except ImportError:
-    _DRIVER_CONFIG = {}
+    try:
+        from neo4j import NotificationMinimumSeverity
+        _DRIVER_CONFIG = {"warn_notification_severity": NotificationMinimumSeverity.OFF}
+    except ImportError:
+        _DRIVER_CONFIG = {}
 
 from scripts.agents.facet_console.discipline_registry import get_facet_disciplines
 from scripts.agents.facet_console.harvest_job import create_harvest_job, REPOS_TEMPLATES

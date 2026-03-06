@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 SFA Scope Federated View — Reason over full federated view, produce scoped list for facet.
+PREFERRED: python -m scripts.agents.sfa scope --facet POLITICAL [--seed Q17167]
 
 Takes the full federated export (disciplines, LCC, LCSH, entities) and uses LLM
 reasoning to filter down to a facet-relevant scoped list. This is the SFA learning

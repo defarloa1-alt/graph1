@@ -85,9 +85,12 @@ SET c.label = 'Chrystallum',
 
 ## 5. Naming Inconsistencies to Resolve
 
-| Legacy / Alternate | Canonical (this spec) |
-|--------------------|------------------------|
-| HAS_FACET_ROOT | HAS_FACET_CLUSTER |
+| Path | Use |
+|------|-----|
+| **HAS_FACET_ROOT** | Canonical for agent traversal, harvest plans, bootstrap |
+| HAS_FACET_CLUSTER | Created by create_facets_cluster.cypher; both may coexist |
+
+**Agent traversal:** Use `HAS_FACET_ROOT`. `bridge_facet_root.cypher` creates it for bootstrap compatibility.
 | HAS_SUBCLUSTER (federation) | HAS_FEDERATION_CLUSTER |
 | FederationRoot → Federation | SYS_FederationRegistry → SYS_FederationSource (rebuild) |
 | FacetRoot → Facet | Facets:Category → CanonicalFacet |

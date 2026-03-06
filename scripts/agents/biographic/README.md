@@ -13,7 +13,7 @@ Harvests biographical context for Person nodes with Wikidata QIDs. This agent *i
 ```bash
 # From project root
 python -m scripts.agents.biographic --dprr 1976
-python -m scripts.agents.biographic --all
+python -m scripts.agents.biographic --all   # DPRR persons only (dprr_id IS NOT NULL)
 python -m scripts.agents.biographic --all --dry
 ```
 

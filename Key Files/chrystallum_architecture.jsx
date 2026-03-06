@@ -4,7 +4,7 @@ const C = {
   navy: "#1F3864", blue: "#2E75B6", teal: "#17A589",
   amber: "#D4A017", green: "#1E8449", red: "#C0392B",
   slate: "#4A5568", light: "#EBF0F7", white: "#FFFFFF",
-  mid: "#BDC3C7", dark: "#2C3E50",
+  mid: "#BDC3C7", dark: "#2C3E50", purple: "#6B46C1",
 };
 
 // ── tiny primitives ────────────────────────────────────────────────────────────
@@ -289,9 +289,13 @@ export default function ChrystallumArchitecture() {
           ["SYS_RelationshipType", "97", C.slate],
           ["SYS_NodeType + PropertyMapping", "10 + 500", C.slate],
           ["SYS_ADR + OnboardingProtocol", "5 + 2", C.navy],
+          ["Framework (HAS_FRAMEWORK)", "3", C.purple],
+          ["Fallacy + TaskType (Fischer)", "6 + 11", C.purple],
+          ["DigitalPrinciple (Milligan)", "6", C.purple],
+          ["RepertoirePattern + Mechanism (PRH)", "12 + 7", C.purple],
         ].map(([label, count, col], i) => (
           <g key={label}>
-            <NodeChip x={20} y={428 + i * 12} label={label} count={count} fill={col} />
+            <NodeChip x={20} y={428 + i * 8} label={label} count={count} fill={col} />
           </g>
         ))}
 
