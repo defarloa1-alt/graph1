@@ -161,18 +161,18 @@ class PleiadesImporter:
         return count
     
     def import_names(self, limit: int = None):
-        """Import PlaceName nodes and relationships."""
+        """Import PlaceName nodes with temporal bounds."""
         logger.info(f"Importing names from {NAMES_CSV}...")
-        
+
         if not NAMES_CSV.exists():
             logger.error(f"File not found: {NAMES_CSV}")
             return 0
-        
+
         import csv
         count = 0
         batch_size = 1000
         batch = []
-        
+
         query = """
         UNWIND $batch AS row
         MATCH (p:Place {pleiades_id: row.pleiades_id})
@@ -181,13 +181,17 @@ class PleiadesImporter:
             n.label = row.name_attested,
             n.language = row.language,
             n.name_type = row.name_type,
-            n.romanized = row.romanized
+            n.romanized = row.romanized,
+            n.min_date = row.min_date,
+            n.max_date = row.max_date,
+            n.time_periods = row.time_periods,
+            n.time_periods_keys = row.time_periods_keys
         MERGE (p)-[:HAS_NAME]->(n)
         """
-        
+
         with open(NAMES_CSV, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
-            
+
             with self.driver.session(database=self.database) as session:
                 for row in reader:
                     name_data = {
@@ -196,86 +200,100 @@ class PleiadesImporter:
                         'name_attested': row['name_attested'],
                         'language': row['language'],
                         'name_type': row['name_type'],
-                        'romanized': row['romanized']
+                        'romanized': row['romanized'],
+                        'min_date': int(row['min_date']) if row.get('min_date') else None,
+                        'max_date': int(row['max_date']) if row.get('max_date') else None,
+                        'time_periods': row.get('time_periods', '') or None,
+                        'time_periods_keys': row.get('time_periods_keys', '') or None,
                     }
-                    
+
                     batch.append(name_data)
                     count += 1
-                    
+
                     if len(batch) >= batch_size:
                         session.run(query, batch=batch)
                         logger.info(f"  Imported {count} names...")
                         batch = []
-                    
+
                     if limit and count >= limit:
                         break
-                
+
                 # Import remaining batch
                 if batch:
                     session.run(query, batch=batch)
-        
+
         logger.info(f"  ✓ Imported {count} names")
         return count
     
     def import_locations(self, limit: int = None):
-        """Import Location nodes and relationships."""
+        """Import Location nodes with feature types and temporal bounds."""
         logger.info(f"Importing locations from {LOCATIONS_CSV}...")
-        
+
         if not LOCATIONS_CSV.exists():
             logger.error(f"File not found: {LOCATIONS_CSV}")
             return 0
-        
+
         import csv
         count = 0
         batch_size = 1000
         batch = []
-        
+
         query = """
         UNWIND $batch AS row
         MATCH (p:Place {pleiades_id: row.pleiades_id})
         MERGE (l:Location {location_id: row.location_id})
         SET l.title = row.title,
             l.location_type = row.location_type,
+            l.feature_type = row.feature_type,
             l.lat = row.lat,
             l.long = row.long,
-            l.precision = row.precision
+            l.precision = row.precision,
+            l.min_date = row.min_date,
+            l.max_date = row.max_date,
+            l.time_periods = row.time_periods,
+            l.time_periods_keys = row.time_periods_keys
         MERGE (p)-[:HAS_LOCATION]->(l)
         """
-        
+
         with open(LOCATIONS_CSV, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
-            
+
             with self.driver.session(database=self.database) as session:
                 for row in reader:
                     # Skip rows without coordinates
                     if not row['lat'] or not row['long']:
                         continue
-                        
+
                     location_data = {
                         'pleiades_id': row['pleiades_id'],
                         'location_id': row['location_id'],
                         'title': row['title'],
-                        'location_type': row['location_type'],
+                        'location_type': row.get('location_type', ''),
+                        'feature_type': row.get('feature_type', '') or None,
                         'lat': float(row['lat']),
                         'long': float(row['long']),
-                        'precision': row['precision']
+                        'precision': row['precision'],
+                        'min_date': int(row['min_date']) if row.get('min_date') else None,
+                        'max_date': int(row['max_date']) if row.get('max_date') else None,
+                        'time_periods': row.get('time_periods', '') or None,
+                        'time_periods_keys': row.get('time_periods_keys', '') or None,
                     }
-                    
+
                     batch.append(location_data)
                     count += 1
-                    
+
                     if len(batch) >= batch_size:
                         session.run(query, batch=batch)
                         logger.info(f"  Imported {count} locations...")
                         batch = []
-                    
+
                     if limit and count >= limit:
                         break
-                
+
                 # Import remaining batch
                 if batch:
                     session.run(query, batch=batch)
-        
+
         logger.info(f"  ✓ Imported {count} locations")
         return count
     
