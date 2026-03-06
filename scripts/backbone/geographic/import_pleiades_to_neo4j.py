@@ -45,6 +45,16 @@ PLACES_CSV = GEOGRAPHIC_DIR / "pleiades_places.csv"
 NAMES_CSV = GEOGRAPHIC_DIR / "pleiades_names.csv"
 LOCATIONS_CSV = GEOGRAPHIC_DIR / "pleiades_coordinates.csv"
 
+def _normalize_pleiades_id(val: str) -> str:
+    """Strip /places/ prefix so pleiades_id matches Place nodes (e.g. /places/48210385 -> 48210385)."""
+    if not val:
+        return val
+    s = str(val).strip()
+    if s.startswith("/places/"):
+        return s.replace("/places/", "", 1)
+    return s
+
+
 class PleiadesImporter:
     """Import Pleiades data to Neo4j."""
     
@@ -190,8 +200,11 @@ class PleiadesImporter:
             
             with self.driver.session(database=self.database) as session:
                 for row in reader:
+                    pleiades_id = _normalize_pleiades_id(row.get('pleiades_id', ''))
+                    if not pleiades_id:
+                        continue
                     name_data = {
-                        'pleiades_id': row['pleiades_id'],
+                        'pleiades_id': pleiades_id,
                         'name_id': row['name_id'],
                         'name_attested': row['name_attested'],
                         'language': row['language'],
@@ -250,9 +263,13 @@ class PleiadesImporter:
                     # Skip rows without coordinates
                     if not row['lat'] or not row['long']:
                         continue
-                        
+
+                    pleiades_id = _normalize_pleiades_id(row.get('pleiades_id', ''))
+                    if not pleiades_id:
+                        continue
+
                     location_data = {
-                        'pleiades_id': row['pleiades_id'],
+                        'pleiades_id': pleiades_id,
                         'location_id': row['location_id'],
                         'title': row['title'],
                         'location_type': row['location_type'],
