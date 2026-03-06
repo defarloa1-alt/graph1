@@ -3,21 +3,25 @@
 Fix Place nodes where label is set to a QID or GeoNames ID instead of a real name.
 
 Two passes:
-  1. 70 nodes where label = qid  → fetch from Wikidata SPARQL (batch)
-  2. 1,147 nodes where label = geonames_id → fetch from GeoNames API
+  1. Nodes where label = qid  -> fetch from Wikidata SPARQL (batch)
+  2. Nodes where label = geonames_id -> lookup from:
+     a) CSV/geographic/geonames_labels_cache_v1.json (local cache)
+     b) Geographic/geonames_allCountries.zip (GeoNames dump, col 0=id, col 1=name)
+        Auto-downloads ~1.5 GB if not present.
 
 Usage:
     python scripts/neo4j/fix_bad_labels.py --dry-run
     python scripts/neo4j/fix_bad_labels.py
-    python scripts/neo4j/fix_bad_labels.py --geonames-user YOUR_USERNAME
+    python scripts/neo4j/fix_bad_labels.py --skip-download   # skip allCountries if missing
 """
 
 import argparse
 import json
 import sys
 import time
-import urllib.request
 import urllib.parse
+import urllib.request
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -34,9 +38,15 @@ except ImportError:
     NEO4J_USERNAME = os.environ.get("NEO4J_USERNAME", "neo4j")
     NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD", "")
 
+GEONAMES_CACHE = ROOT / "CSV" / "geographic" / "geonames_labels_cache_v1.json"
+GEONAMES_ZIP = ROOT / "Geographic" / "geonames_allCountries.zip"
+GEONAMES_ZIP_URL = "http://download.geonames.org/export/dump/allCountries.zip"
+
+
+# ── Wikidata SPARQL ──────────────────────────────────────────────────────────
 
 def fetch_wikidata_labels(qids):
-    """Fetch labels for a batch of QIDs via Wikidata SPARQL."""
+    """Fetch English labels for a batch of QIDs via Wikidata SPARQL."""
     values = " ".join(f"wd:{q}" for q in qids)
     sparql = f"""
     SELECT ?item ?label WHERE {{
@@ -59,33 +69,82 @@ def fetch_wikidata_labels(qids):
     return labels
 
 
-def fetch_geonames_name(geonames_id, username):
-    """Fetch place name for a single GeoNames ID."""
-    url = f"http://api.geonames.org/getJSON?geonameId={geonames_id}&username={username}"
-    req = urllib.request.Request(url, headers={"User-Agent": "Chrystallum/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read())
-        if "name" in data:
-            return data["name"]
-        if "status" in data:
-            print(f"  [WARN] GeoNames API error for {geonames_id}: {data['status']}")
-            return None
-    except Exception as e:
-        print(f"  [WARN] GeoNames API failed for {geonames_id}: {e}")
-    return None
+# ── GeoNames dump lookup ─────────────────────────────────────────────────────
 
+def load_geonames_cache():
+    """Load the local JSON cache if it exists."""
+    if GEONAMES_CACHE.exists():
+        with open(GEONAMES_CACHE) as f:
+            return json.load(f)
+    return {}
+
+
+def download_geonames_zip():
+    """Download allCountries.zip (~1.5 GB)."""
+    GEONAMES_ZIP.parent.mkdir(parents=True, exist_ok=True)
+    print(f"  Downloading {GEONAMES_ZIP_URL} (~1.5 GB)...")
+    req = urllib.request.Request(GEONAMES_ZIP_URL,
+                                headers={"User-Agent": "Chrystallum-Graph1/1.0"})
+    with urllib.request.urlopen(req, timeout=3600) as resp:
+        GEONAMES_ZIP.write_bytes(resp.read())
+    print(f"  Saved to {GEONAMES_ZIP}")
+
+
+def lookup_geonames_from_zip(target_ids):
+    """
+    Stream allCountries.txt from zip, extracting names only for target IDs.
+    Returns dict {geonames_id: name}.
+    """
+    if not GEONAMES_ZIP.exists():
+        return {}
+
+    target_set = set(target_ids)
+    labels = {}
+    count = 0
+
+    with zipfile.ZipFile(GEONAMES_ZIP, "r") as zf:
+        txt_name = next((n for n in zf.namelist() if n.lower().endswith(".txt")), None)
+        if not txt_name:
+            print("  [WARN] No .txt file found in zip")
+            return {}
+
+        print(f"  Streaming {txt_name} for {len(target_set)} IDs...")
+        with zf.open(txt_name, "r") as fh:
+            for raw in fh:
+                count += 1
+                if count % 5_000_000 == 0:
+                    print(f"    ...scanned {count:,} rows, found {len(labels)}/{len(target_set)}")
+                try:
+                    line = raw.decode("utf-8", errors="replace").rstrip("\n")
+                except Exception:
+                    continue
+                parts = line.split("\t")
+                if len(parts) < 2:
+                    continue
+                gid = parts[0].strip()
+                if gid in target_set:
+                    name = (parts[1] or parts[2] if len(parts) > 2 else parts[1]).strip()
+                    if name:
+                        labels[gid] = name
+                    if len(labels) == len(target_set):
+                        break  # found all
+
+    print(f"  Scanned {count:,} rows total, resolved {len(labels)}/{len(target_set)} IDs")
+    return labels
+
+
+# ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="Fix bad labels on Place nodes")
-    parser.add_argument("--dry-run", action="store_true", help="Report only")
-    parser.add_argument("--geonames-user", default="demo",
-                        help="GeoNames API username (default: demo, register at geonames.org)")
+    parser.add_argument("--dry-run", action="store_true", help="Report only, no writes")
+    parser.add_argument("--skip-download", action="store_true",
+                        help="Don't download allCountries.zip if missing")
     args = parser.parse_args()
 
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
 
-    # --- Pass 1: QID labels via Wikidata ---
+    # ── Pass 1: QID labels via Wikidata ──
     print("=== Pass 1: Fix label = QID (Wikidata SPARQL) ===")
     with driver.session() as session:
         result = session.run(
@@ -96,7 +155,6 @@ def main():
     print(f"  Found {len(qids)} nodes with label = qid")
 
     if qids:
-        # Batch in groups of 50 for SPARQL
         wd_labels = {}
         for i in range(0, len(qids), 50):
             batch = qids[i:i+50]
@@ -118,66 +176,89 @@ def main():
                         qid=qid, label=label
                     )
                     updated += 1
-                print(f"  [DONE] Updated {updated} labels from Wikidata")
+                print(f"  Updated {updated} labels from Wikidata")
         else:
-            for qid, label in list(wd_labels.items())[:5]:
+            for qid, label in list(wd_labels.items())[:10]:
                 print(f"    {qid} -> {label}")
-            if len(wd_labels) > 5:
-                print(f"    ... and {len(wd_labels) - 5} more")
+            if len(wd_labels) > 10:
+                print(f"    ... and {len(wd_labels) - 10} more")
 
-    # --- Pass 2: GeoNames labels ---
+    # ── Pass 2: GeoNames labels ──
     print()
-    print("=== Pass 2: Fix label = geonames_id (GeoNames API) ===")
+    print("=== Pass 2: Fix label = geonames_id ===")
     with driver.session() as session:
         result = session.run(
             "MATCH (p:Place) WHERE p.label = p.geonames_id "
-            "RETURN p.geonames_id AS gid LIMIT 1200"
+            "RETURN p.geonames_id AS gid"
         )
         gids = [r["gid"] for r in result]
 
     print(f"  Found {len(gids)} nodes with label = geonames_id")
 
-    if gids:
-        if args.geonames_user == "demo":
-            print("  [WARN] Using 'demo' username — limited to ~100 requests/day.")
-            print("  Register at geonames.org and use --geonames-user YOUR_USERNAME")
+    if not gids:
+        driver.close()
+        print("\nDone.")
+        return
 
-        gn_labels = {}
-        errors = 0
-        for i, gid in enumerate(gids):
-            if args.dry_run and i >= 5:
-                break
-            name = fetch_geonames_name(gid, args.geonames_user)
-            if name:
-                gn_labels[gid] = name
-            else:
-                errors += 1
-            if (i + 1) % 100 == 0:
-                print(f"  Fetched {i+1}/{len(gids)} ({errors} errors)...")
-            # GeoNames rate limit: ~1 req/sec for free accounts
-            time.sleep(0.5)
-
-        print(f"  Got {len(gn_labels)} labels from GeoNames ({errors} errors)")
-
-        if not args.dry_run:
-            with driver.session() as session:
-                updated = 0
-                for gid, label in gn_labels.items():
-                    session.run(
-                        "MATCH (p:Place {geonames_id: $gid}) "
-                        "WHERE p.label = p.geonames_id "
-                        "SET p.label = $label, p.label_clean = $label",
-                        gid=gid, label=label
-                    )
-                    updated += 1
-                print(f"  [DONE] Updated {updated} labels from GeoNames")
+    # Step 2a: local JSON cache
+    cache = load_geonames_cache()
+    gn_labels = {}
+    remaining = []
+    for gid in gids:
+        if gid in cache:
+            gn_labels[gid] = cache[gid]
+        elif str(gid) in cache:
+            gn_labels[gid] = cache[str(gid)]
         else:
-            for gid, label in list(gn_labels.items())[:5]:
-                print(f"    {gid} -> {label}")
+            remaining.append(gid)
+
+    print(f"  From local cache: {len(gn_labels)} resolved, {len(remaining)} remaining")
+
+    # Step 2b: allCountries.zip dump
+    if remaining:
+        if not GEONAMES_ZIP.exists() and not args.skip_download:
+            download_geonames_zip()
+
+        if GEONAMES_ZIP.exists():
+            zip_labels = lookup_geonames_from_zip(remaining)
+            gn_labels.update(zip_labels)
+            still_missing = len(remaining) - len(zip_labels)
+            if still_missing > 0:
+                print(f"  Still missing after dump: {still_missing}")
+        else:
+            print("  [SKIP] allCountries.zip not found. Use --skip-download=false or download manually:")
+            print(f"    wget -O {GEONAMES_ZIP} {GEONAMES_ZIP_URL}")
+
+    print(f"  Total resolved: {len(gn_labels)}/{len(gids)}")
+
+    if not args.dry_run:
+        with driver.session() as session:
+            updated = 0
+            for gid, label in gn_labels.items():
+                session.run(
+                    "MATCH (p:Place {geonames_id: $gid}) "
+                    "WHERE p.label = p.geonames_id "
+                    "SET p.label = $label, p.label_clean = $label",
+                    gid=gid, label=label
+                )
+                updated += 1
+            print(f"  Updated {updated} labels from GeoNames")
+    else:
+        for gid, label in list(gn_labels.items())[:10]:
+            print(f"    {gid} -> {label}")
+        if len(gn_labels) > 10:
+            print(f"    ... and {len(gn_labels) - 10} more")
+
+    # Update the local cache with new lookups for future runs
+    if gn_labels and not args.dry_run:
+        cache.update(gn_labels)
+        GEONAMES_CACHE.parent.mkdir(parents=True, exist_ok=True)
+        with open(GEONAMES_CACHE, "w") as f:
+            json.dump(cache, f, indent=2, ensure_ascii=False)
+        print(f"  Updated cache ({len(cache)} total entries)")
 
     driver.close()
-    print()
-    print("Done.")
+    print("\nDone.")
 
 
 if __name__ == "__main__":
