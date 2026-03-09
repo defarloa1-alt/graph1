@@ -63,6 +63,18 @@ const DISCIPLINE_BACKBONE = {
     { id:"World History", pid:"P9000", col:"world_history_id", count:0, note:"World History Encyclopedia" },
   ],
   no_english_label: 155,
+
+  openalex: {
+    total_validated: 605,
+    pct: "62%",
+    verified: 470,
+    verified_multi: 135,
+    no_id: 367,
+    note: "Validated against OpenAlex API — all C-prefix, display_name fuzzy-checked",
+    validation_script: "scripts/federation/validate_openalex_ids.py",
+    fix_script:        "scripts/federation/apply_openalex_fixes.py",
+    validated_csv:     "output/discipline_taxonomy_openalex_final.csv",
+  },
 };
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -81,6 +93,32 @@ const PRINCIPLES = [
     desc:"The CSV contains no facet assignments. Facets are assigned by classify_discipline_facets.py (deterministic QID matching + Claude LLM) and stored as HAS_FACET relationships. The harvest is facet-agnostic." },
   { id:"DP-06", name:"Suspect flagging is the curation checkpoint",
     desc:"flag_discipline_suspects.py catches non-disciplines (persons, taxa, tech specs, occupational roles) that slip through P279/P527 expansion. The wider seed means more noise — the flag script is the filter, not the seed query." },
+  { id:"DP-07", name:"OpenAlex concept IDs are corpus routing keys, not identity keys",
+    desc:"605 disciplines (62%) have a validated openalex_id (C-prefix). These are entry points for works harvest — not cipher/identity keys. A discipline's cipher is still Hash(QID+PID+authority_value). openalex_id enables ROUTES_TO open_alex with a direct concept query. Validated against OpenAlex API with fuzzy display_name match ≥ 0.60. Multi-ID rows resolved to primary + alternatives." },
+  { id:"DP-08", name:"DOAJ is a rights oracle, not a content source",
+    desc:"DOAJ inclusion = gold OA certification. Any work where source.is_in_doaj=true (from OpenAlex work response) may be harvested, queried, abstracted, and cited without per-article rights inspection. DOAJ does not supply entity facts — it pre-authorises SFA corpus access tier. Three tiers: GOLD (DOAJ-indexed, full harvest), GREEN (oa_status=green, metadata+abstract), CLOSED (cite only). DOAJ certification rides free inside each OpenAlex work response — no separate DOAJ API call per work needed." },
+];
+
+// ══════════════════════════════════════════════════════════════════════════════
+// CORPUS TIERS — gold OA pipeline via OpenAlex + DOAJ (DP-08)
+// SFA reads these tiers from graph policy DOAJGoldOAByDefinition
+// ══════════════════════════════════════════════════════════════════════════════
+const CORPUS_TIERS = [
+  { tier:"gold_oa",  label:"GOLD OA",
+    filter:"work.primary_location.source.is_in_doaj = true",
+    authority:"DOAJ",
+    permission:"Full harvest — abstract, snippet cite, metadata. No per-article rights check.",
+    color:"#2ECC71" },
+  { tier:"green_oa", label:"GREEN OA",
+    filter:"work.open_access.oa_status = 'green'",
+    authority:"OpenAlex OA status",
+    permission:"Metadata + abstract only. No full-text.",
+    color:"#3498DB" },
+  { tier:"closed",   label:"CLOSED",
+    filter:"all other",
+    authority:null,
+    permission:"Bibliographic cite only. Title, authors, year, DOI.",
+    color:"#E74C3C" },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -109,9 +147,13 @@ const NODE_TYPES = [
       { name:"babelnet_id",     type:"string", desc:"BabelNet synset ID" },
       { name:"kbpedia_id",      type:"string", desc:"KBpedia concept ID" },
       { name:"world_history_id", type:"string", desc:"World History Encyclopedia ID" },
-      { name:"primary_facet",    type:"string", desc:"Assigned by classify_discipline_facets.py (not from harvest)" },
+      { name:"primary_facet",       type:"string",  desc:"Assigned by classify_discipline_facets.py (not from harvest)" },
+      { name:"openalex_id",         type:"string",  desc:"Validated OpenAlex concept ID (C-prefix). 605 disciplines (62%). Corpus routing key." },
+      { name:"openalex_display",    type:"string",  desc:"OpenAlex canonical display_name (may differ from Wikidata label — e.g. 'Roman history' for 'history of Rome')" },
+      { name:"openalex_alternatives", type:"string", desc:"Pipe-separated alt concept IDs (from multi-ID resolution). Preserved, not primary." },
+      { name:"openalex_status",     type:"string",  desc:"'verified' | 'verified_multi' | 'no_id'. Never load without this set." },
     ],
-    current_count: 5866,
+    current_count: 6080,
   },
   { name:"LCSH_Heading", status:"operational", color:C.lcsh,
     desc:"Library of Congress Subject Heading node. Created from backbone disciplines with lcsh_id. Source: subjects_simplified.csv (LoC SKOS dump).",
@@ -280,8 +322,14 @@ const DISCIPLINE_FED = [
     desc:"Library of Congress bibliographic system. Primary corpus query keys for OpenAlex, Open Library, WorldCat, HathiTrust." },
   { id:"open_alex", name:"OpenAlex", color:"#2E8B57", status:"operational",
     role:"corpus_source",
-    routing:"universal — query by concept ID or LCSH",
-    desc:"7,309 works for Q17167 domain. Free API (key since Feb 2026). Concepts, works, journals." },
+    routing:"605 disciplines with validated openalex_id — direct concept query",
+    desc:"Primary corpus gateway. 605 validated concept IDs (C-prefix). Work response includes is_in_doaj + oa_status — DOAJ tier determined here, no separate call needed. 100k req/day (free key)." },
+  { id:"doaj", name:"DOAJ", color:"#2ECC71", status:"operational",
+    role:"rights_oracle",
+    scoping_role:"gold_oa_corpus",
+    routing:"rights layer — not queried per-work; certification rides in OpenAlex response",
+    per_article_check: false,
+    desc:"Gold OA by definition. Any DOAJ-indexed journal's articles may be harvested freely. Certification is carried inside every OpenAlex work response (source.is_in_doaj). DOAJ API used for journal-level metadata only, not per-work lookup." },
   { id:"open_library", name:"Open Library", color:"#1A3A5C", status:"operational",
     role:"corpus_source",
     routing:"universal — query by subject slug",
@@ -299,7 +347,7 @@ const ENDPOINTS = [
   { name:"LCSH Authority",    status:"OPEN", api:"id.loc.gov/authorities/subjects/{lcsh}.json",
     note:"No auth. SKOS linked data. Broader/narrower terms." },
   { name:"DOAJ",              status:"OPEN", api:"doaj.org/api/search/journals/{query}",
-    note:"No auth. OA journals. 2 req/sec." },
+    note:"Rights oracle. Gold OA by definition. DOAJ status rides free inside OpenAlex work response — no per-work lookup needed. 2 req/sec for journal-level metadata." },
   { name:"Zenodo",            status:"OPEN", api:"zenodo.org/api/records?q={query}",
     note:"No auth. Research records, datasets, preprints." },
   { name:"Europeana",         status:"KEY",  api:"api.europeana.eu/record/v2/search.json",
@@ -401,6 +449,7 @@ export default function DisciplineConstitution() {
           <Stat n={DISCIPLINE_BACKBONE.two_tier.expanded.count.toLocaleString()} label="Navigable" color={C.expanded} sub="hierarchy context" />
           <Stat n="18" label="Facets" color={C.lcsh} sub="classification target" />
           <Stat n="128" label="FIELD_OF_WORK" color={C.neo} sub="Person → Discipline" />
+          <Stat n={DISCIPLINE_BACKBONE.openalex.total_validated} label="OpenAlex IDs" color="#2E8B57" sub="62% — validated C-prefix" />
         </div>
 
         {/* two-tier model */}
@@ -446,6 +495,20 @@ export default function DisciplineConstitution() {
                 {a.count.toLocaleString()}
               </div>
               <div style={{ fontSize:9, color:C.dim }}>{a.note}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* corpus tiers */}
+        <SectionTitle color="#2ECC71">Corpus Access Tiers (DP-08)</SectionTitle>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:10, marginBottom:16 }}>
+          {CORPUS_TIERS.map(t => (
+            <div key={t.tier} style={{ background:C.panel, borderRadius:8, padding:12,
+              borderLeft:`4px solid ${t.color}` }}>
+              <div style={{ fontSize:11, fontWeight:"bold", color:t.color, marginBottom:4 }}>{t.label}</div>
+              <div style={{ fontSize:8, color:C.dim, marginBottom:6, fontFamily:"monospace" }}>{t.filter}</div>
+              <div style={{ fontSize:9, color:C.bright, marginBottom:4 }}>{t.permission}</div>
+              {t.authority && <Pill label={t.authority} color={t.color} s={7} />}
             </div>
           ))}
         </div>
