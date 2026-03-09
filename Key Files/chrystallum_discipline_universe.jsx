@@ -112,6 +112,7 @@ RETURN d.qid AS qid, d.label AS label,
        d.lcsh_id AS lcsh_id, d.lcc AS lcc, d.gnd_id AS gnd_id,
        d.fast_id AS fast_id, d.ddc AS ddc, d.aat_id AS aat_id,
        d.kbpedia_id AS kbpedia_id, d.babelnet_id AS babelnet_id,
+       d.openalex_id AS openalex_id,
        d.subclass_of AS subclass_of, d.subclass_of_label AS subclass_of_label,
        f.label AS primary_facet
 ORDER BY d.label`;
@@ -192,19 +193,19 @@ function Mono({ children, col = C.teal }) {
 }
 
 // ── AUTHORITY BADGES ─────────────────────────────────────────────────────────
-function AuthBadges({ row }) {
+function AuthBadges({ row, showLabels = false }) {
   const badges = [];
-  if (row.primary_facet) badges.push({ label: row.primary_facet, col: FACET_COLORS[row.primary_facet] || C.slate, isFacet: true });
-  if (row.lcsh_id) badges.push({ label: `LCSH: ${row.lcsh_id.split("|")[0]}`, col: C.purple });
-  if (row.lcc) badges.push({ label: `LCC: ${row.lcc.split("|")[0]}`, col: C.amber });
-  if (row.gnd_id) badges.push({ label: `GND: ${row.gnd_id}`, col: C.teal });
-  if (row.fast_id) badges.push({ label: `FAST: ${row.fast_id}`, col: C.navy });
+  if (row.primary_facet) badges.push({ label: row.primary_facet, col: FACET_COLORS[row.primary_facet] || C.slate });
+  if (row.lcsh_id) badges.push({ label: showLabels ? `LCSH · ${row.label}` : `LCSH: ${row.lcsh_id.split("|")[0]}`, col: C.purple });
+  if (row.lcc) badges.push({ label: showLabels ? `LCC · ${row.lcc.split("|")[0]}` : `LCC: ${row.lcc.split("|")[0]}`, col: C.amber });
+  if (row.gnd_id) badges.push({ label: showLabels ? `GND · ${row.gnd_id}` : `GND: ${row.gnd_id}`, col: C.teal });
+  if (row.fast_id) badges.push({ label: showLabels ? `FAST · ${row.fast_id}` : `FAST: ${row.fast_id}`, col: C.navy });
   if (row.ddc) badges.push({ label: `DDC: ${row.ddc.split("|")[0]}`, col: C.slate });
   if (row.aat_id) badges.push({ label: `AAT: ${row.aat_id}`, col: C.orange });
-  if (row.kbpedia_id) badges.push({ label: `KBpedia: ${row.kbpedia_id}`, col: C.cyan });
+  if (row.openalex_id) badges.push({ label: showLabels ? `OA · ${row.label}` : `OA: ${row.openalex_id}`, col: C.cyan });
   if (badges.length === 0) return null;
   return (
-    <span style={{ display: "inline-flex", gap: 3, marginLeft: 6 }}>
+    <span style={{ display: "inline-flex", gap: 3, marginLeft: 6, flexWrap: "wrap" }}>
       {badges.map(b => <Tag key={b.label} label={b.label} fill={b.col} s={7} />)}
     </span>
   );
@@ -504,8 +505,8 @@ export default function DisciplineUniverse_Root() {
         </div>
         <div style={{ fontSize: 9, color: C.slate, marginTop: 4, fontStyle: "italic",
           fontFamily: "Arial,sans-serif" }}>
-          Source: Neo4j Aura (live) — backbone Discipline nodes (Q11862829 academic discipline,
-          P279/P527 subclass expansion). Facet assignments from HAS_FACET edges (primary=true).
+          Source: Neo4j Aura (live) — backbone Discipline nodes (P31=Q11862829 academic discipline,
+          authority-filtered: LCSH · LCC · FAST · DDC required). Facet assignments from HAS_FACET edges (primary=true).
         </div>
       </div>
 
@@ -649,7 +650,14 @@ export default function DisciplineUniverse_Root() {
                   gap: 6, borderLeft: `2px solid ${r.lcsh_id && r.lcc ? C.green : r.lcsh_id ? C.amber : C.rule}`,
                   marginBottom: 1 }}>
                   <Mono col={C.slate}>{r.qid}</Mono>
-                  <span style={{ fontSize: 10.5, color: C.ink, minWidth: 180 }}>{r.label}</span>
+                  <div style={{ minWidth: 200 }}>
+                    <span style={{ fontSize: 10.5, color: C.ink }}>{r.label}</span>
+                    {r.subclass_of_label && (
+                      <span style={{ fontSize: 8, color: C.dim, marginLeft: 6 }}>
+                        ⊂ {r.subclass_of_label.split("|")[0]}
+                      </span>
+                    )}
+                  </div>
                   <AuthBadges row={r} />
                 </div>
               ))}
