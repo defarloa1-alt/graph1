@@ -200,14 +200,14 @@ def get_domain_structure(qid: str) -> dict:
         driver.close()
 
 
-def run_cypher_readonly(query: str, params: dict = None, max_chars: int = 500) -> list:
+def run_cypher_readonly(query: str, params: dict = None, max_chars: int = 500, max_rows: int = 500) -> list:
     """
     Execute a read-only Cypher query against Chrystallum Neo4j (D-034).
     Safety constraints:
     - Query must start with MATCH (case-insensitive, stripped)
     - Query must not contain forbidden keywords
     - Query length capped at max_chars (default 500 for MCP; 2000 for /api/cypher)
-    - Result rows capped at 500
+    - Result rows capped at max_rows (default 500 for MCP; 5000 for /api/cypher)
     """
     if params is None:
         params = {}
@@ -235,9 +235,9 @@ def run_cypher_readonly(query: str, params: dict = None, max_chars: int = 500) -
             result = session.run(query, params)
             rows = [dict(r) for r in result]
             # Row cap
-            if len(rows) > 500:
-                rows = rows[:500]
-                rows.append({"warning": "Result capped at 500 rows"})
+            if len(rows) > max_rows:
+                rows = rows[:max_rows]
+                rows.append({"warning": f"Result capped at {max_rows} rows"})
             return rows
     finally:
         driver.close()
@@ -440,7 +440,7 @@ def create_http_app():
                 status_code=400,
                 content={"error": f"Invalid JSON body: {e}"},
             )
-        result = run_cypher_readonly(query, params, max_chars=2000)
+        result = run_cypher_readonly(query, params, max_chars=2000, max_rows=5000)
         if not result or not isinstance(result, list):
             return JSONResponse(content={"rows": []})
         if len(result) == 1 and "error" in result[0]:
