@@ -42,11 +42,17 @@ PERSON_ROUTES = {
     "sc_constitution": [
         "consul", "praetor", "quaestor", "censor",
         "aedilis curulis", "aedilis plebis",
-        "tribunus plebis", "dictator", "interrex",
+        "tribunus plebis", "interrex",
         "princeps senatus", "senator - office unknown",
         "decemvir consulari imperio legibus scribundis",
         "tribunus militum consulari potestate",
-        "repulsa (cos.)", "repulsa (cens.)",
+        "proquaestor",                               # promagistrate quaestorial
+        "repulsa (cos.)", "repulsa (cens.)", "repulsa (pr.)",
+        # All DPRR dictator label variants (exact long-form titles):
+        "dictator",
+        "dictator comitiorum habendorum causa",
+        "dictator legibus faciendis et rei publicae constituendae causa",
+        "dictator perpetuus",
     ],
     "sc_military": [
         "tribunus militum", "legatus (lieutenant)",
@@ -63,6 +69,7 @@ PERSON_ROUTES = {
     ],
     "sc_economy": [
         "monetalis",
+        "moneyer",    # DPRR alternate label for same role
     ],
 }
 
