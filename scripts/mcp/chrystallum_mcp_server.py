@@ -200,21 +200,21 @@ def get_domain_structure(qid: str) -> dict:
         driver.close()
 
 
-def run_cypher_readonly(query: str, params: dict = None) -> list:
+def run_cypher_readonly(query: str, params: dict = None, max_chars: int = 500) -> list:
     """
     Execute a read-only Cypher query against Chrystallum Neo4j (D-034).
     Safety constraints:
     - Query must start with MATCH (case-insensitive, stripped)
     - Query must not contain forbidden keywords
-    - Query length capped at 500 characters
+    - Query length capped at max_chars (default 500 for MCP; 2000 for /api/cypher)
     - Result rows capped at 500
     """
     if params is None:
         params = {}
 
     # Safety check 1: length
-    if len(query) > 500:
-        return [{"error": "Query exceeds 500 character limit"}]
+    if len(query) > max_chars:
+        return [{"error": f"Query exceeds {max_chars} character limit"}]
 
     # Safety check 2: must start with MATCH
     query_stripped = query.strip().upper()
@@ -387,11 +387,22 @@ def create_http_app():
         from fastapi import Depends, FastAPI, HTTPException, Request
         from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
         from fastapi.responses import JSONResponse
+        from fastapi.middleware.cors import CORSMiddleware
         import uvicorn
     except ImportError:
         raise RuntimeError("FastAPI/uvicorn not installed. Run: pip install fastapi uvicorn")
 
     app = FastAPI(title="Chrystallum MCP Server", version="2.0.0")
+
+    # CORS for viewer (deployed on Vercel/Netlify/etc.)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["GET", "POST", "OPTIONS"],
+        allow_headers=["*"],
+    )
+
     API_KEY = os.getenv("MCP_API_KEY")
     # Auth optional when MCP_API_KEY not set (Claude web can't send custom headers)
     security = HTTPBearer(auto_error=False)
@@ -409,6 +420,40 @@ def create_http_app():
         body = await request.json()
         response = handle_request(body)
         return JSONResponse(content=response)
+
+    @app.post("/api/cypher")
+    async def api_cypher(request: Request):
+        """
+        REST endpoint for read-only Cypher. Used by the Chrystallum viewer.
+        Body: { "query": "MATCH ...", "params": {} }
+        Response: { "rows": [...] } or { "error": "..." }
+        Same safety as run_cypher_readonly (MATCH only, 500 char limit, 500 row cap).
+        """
+        try:
+            body = await request.json()
+            query = body.get("query", "")
+            params = body.get("params", {})
+            if not isinstance(params, dict):
+                params = {}
+        except Exception as e:
+            return JSONResponse(
+                status_code=400,
+                content={"error": f"Invalid JSON body: {e}"},
+            )
+        result = run_cypher_readonly(query, params, max_chars=2000)
+        if not result or not isinstance(result, list):
+            return JSONResponse(content={"rows": []})
+        if len(result) == 1 and "error" in result[0]:
+            return JSONResponse(
+                status_code=400,
+                content={"error": result[0]["error"]},
+            )
+        # Strip trailing warning dict if present
+        if result and "warning" in result[-1]:
+            warning = result[-1]["warning"]
+            rows = result[:-1]
+            return JSONResponse(content={"rows": rows, "warning": warning})
+        return JSONResponse(content={"rows": result})
 
     @app.get("/health")
     async def health():
