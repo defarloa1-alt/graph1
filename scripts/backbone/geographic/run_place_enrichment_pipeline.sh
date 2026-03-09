@@ -1,6 +1,6 @@
 #!/bin/bash
 # Place Enrichment Pipeline — run from project root
-# Fixes sparse Place attributes by enriching from crosswalk and linking hierarchy
+# Federation to GeoNames and Wikidata. See Geographic/FEDERATION_HAPPY_PATH.md for full flow and unhappy-path discussion.
 
 cd "$(dirname "$0")/.."
 
@@ -17,22 +17,28 @@ echo ""
 [ -n "$VIRTUAL_ENV" ] || { echo "Activating virtual environment..."; source .venv/bin/activate 2>/dev/null || true; }
 
 # 1. Enrich Place from crosswalk (qid, geonames_id, tgn_id)
-echo "[1/3] Enriching Place nodes from crosswalk..."
+echo "[1/5] Enriching Place nodes from crosswalk..."
 python scripts/backbone/geographic/enrich_places_from_crosswalk.py || exit 1
 echo ""
 
-# 2. Link Pleiades_Place -> Place (geo backbone)
-echo "[2/3] Linking Pleiades_Place to Place backbone..."
-python scripts/backbone/subject/link_pleiades_place_to_geo_backbone.py || exit 1
+# 2. Place admin hierarchy — GeoNames (requires geonames_allCountries.zip)
+echo "[2/5] Place admin hierarchy (GeoNames)..."
+python scripts/backbone/geographic/link_place_admin_hierarchy_geonames.py || exit 1
 echo ""
 
-# 3. Place hierarchy (optional — requires GeoNames allCountries.txt)
-echo "[3/3] Place admin hierarchy (GeoNames)..."
-if [ -f scripts/backbone/geographic/link_place_admin_hierarchy_geonames.py ]; then
-    python scripts/backbone/geographic/link_place_admin_hierarchy_geonames.py
-else
-    echo "Skipping — link_place_admin_hierarchy_geonames.py not found"
-fi
+# 3. Place admin hierarchy — Wikidata (P131/P17)
+echo "[3/5] Place admin hierarchy (Wikidata)..."
+python scripts/backbone/geographic/link_place_admin_hierarchy.py || exit 1
+echo ""
+
+# 4. Wikidata geo enrichment (P625, P3896, P131, P17)
+echo "[4/5] Wikidata geo enrichment..."
+python scripts/backbone/geographic/enrich_places_from_wikidata_geo.py || exit 1
+echo ""
+
+# 5. Link Pleiades_Place -> Place (geo backbone)
+echo "[5/5] Linking Pleiades_Place to Place backbone..."
+python scripts/backbone/geographic/link_pleiades_place_to_geo_backbone.py || exit 1
 echo ""
 
 echo "============================================"

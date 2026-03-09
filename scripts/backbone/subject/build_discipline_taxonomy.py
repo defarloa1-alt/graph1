@@ -2,7 +2,7 @@
 """
 Build academic discipline taxonomy from Wikidata (no LLM).
 
-1. Fetch items that are both academic discipline (Q11862829) and field of study (Q2267705)
+1. Fetch items that are academic discipline (Q11862829)
 2. Expand via P279 (subclass of) and P527 (has part(s))
 3. Fetch authority IDs: P2163 FAST, P227 GND, P244 LCSH, P1036 DDC, P1014 AAT,
    P2581 BabelNet, P8408 KBpedia, P9000 World History, P1149 LCC
@@ -95,12 +95,11 @@ def main():
     parser.add_argument("--expand-levels", type=int, default=2, help="Levels to expand P279/P527 (default 2)")
     args = parser.parse_args()
 
-    # 1. Seed: items that are both academic discipline and field of study
-    print("1. Fetching seed items (academic discipline + field of study)...")
+    # 1. Seed: items that are academic discipline (Q11862829)
+    print("1. Fetching seed items (academic discipline)...")
     sparql = """
     SELECT ?item ?itemLabel WHERE {
       ?item wdt:P31 wd:Q11862829 .
-      ?item wdt:P31 wd:Q2267705 .
       SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
     }
     ORDER BY ?itemLabel

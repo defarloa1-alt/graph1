@@ -12,7 +12,7 @@ Each facet agent analyzes SubjectConcepts from its specialized perspective:
 Architecture:
 - On-demand agent creation (not all 1,422 upfront)
 - Stateless operation (bootstrap from Chrystallum)
-- Perplexity API for reasoning
+- Claude API with tool-use for reasoning (agents can query the graph live)
 - Wikidata SPARQL for enrichment
 - Neo4j for persistence
 """
@@ -24,6 +24,11 @@ from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 from neo4j import GraphDatabase
 import requests
+
+try:
+    import anthropic
+except ImportError:
+    anthropic = None
 
 
 # ============================================================================
@@ -82,19 +87,72 @@ def _load_sfa_proposal_confidence_default(driver) -> float:
 class SubjectConceptFacetAgent:
     """Base class for facet-specific subject concept agents"""
     
+    # Claude tools exposed to the SFA agent during reasoning.
+    # Each tool executes via the Python Neo4j driver — same data as MCP.
+    GRAPH_TOOLS = [
+        {
+            "name": "query_graph",
+            "description": (
+                "Execute a read-only Cypher query against the Chrystallum Neo4j graph. "
+                "Returns up to 50 rows. Use this to inspect decision tables, thresholds, "
+                "federation sources, existing SubjectConcepts, relationship types, etc."
+            ),
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "cypher": {
+                        "type": "string",
+                        "description": "A read-only Cypher MATCH query (no CREATE/MERGE/DELETE).",
+                    },
+                },
+                "required": ["cypher"],
+            },
+        },
+        {
+            "name": "get_threshold",
+            "description": "Get a specific SYS_Threshold value by name.",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Threshold name (e.g. 'level2_child_overload').",
+                    },
+                },
+                "required": ["name"],
+            },
+        },
+        {
+            "name": "get_decision_table",
+            "description": "Get all rows from a SYS_DecisionTable by table_id.",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "table_id": {
+                        "type": "string",
+                        "description": "Decision table ID (e.g. 'D8', 'D12').",
+                    },
+                },
+                "required": ["table_id"],
+            },
+        },
+    ]
+
     def __init__(self,
                  facet_key: str,
                  facet_label: str,
                  neo4j_driver,
-                 perplexity_api_key: Optional[str] = None):
+                 anthropic_api_key: Optional[str] = None,
+                 model: str = "claude-sonnet-4-20250514"):
         """
-        Initialize a facet-specific agent
-        
+        Initialize a facet-specific agent.
+
         Args:
             facet_key: Facet key (UPPERCASE, e.g., "MILITARY")
             facet_label: Facet label (e.g., "Military")
             neo4j_driver: Neo4j driver instance
-            perplexity_api_key: Perplexity API key
+            anthropic_api_key: Anthropic API key (falls back to ANTHROPIC_API_KEY env var)
+            model: Claude model ID for reasoning
         """
         # Validate facet (D-031: forbidden facets from SYS_Policy)
         forbidden = _load_forbidden_facets(neo4j_driver)
@@ -102,18 +160,18 @@ class SubjectConceptFacetAgent:
             raise ValueError(f"Invalid facet: {facet_key}. Must be one of {CANONICAL_FACETS}")
         if facet_key in forbidden:
             raise ValueError(f"Forbidden facet: {facet_key}")
-        
+
         self.facet_key = facet_key
         self.facet_label = facet_label
         self.driver = neo4j_driver
-        
-        # Perplexity API
-        self.perplexity_api_key = perplexity_api_key or os.getenv('PERPLEXITY_API_KEY')
-        self.perplexity_url = "https://api.perplexity.ai/chat/completions"
-        
+        self.model = model
+
+        # Claude API
+        self._anthropic_api_key = anthropic_api_key or os.getenv("ANTHROPIC_API_KEY")
+
         # Agent ID
         self.agent_id = f"SFA_{facet_key}"
-        
+
         # System context (loaded on demand)
         self.federations = []
         self.entity_types = []
@@ -134,6 +192,111 @@ class SubjectConceptFacetAgent:
             self.federations = [dict(f) for f in data['federations']]
             self.entity_types = [dict(et) for et in data['entity_types']]
     
+    def accept_facet_pack(self, pack: Dict) -> Dict:
+        """Accept a facet pack from the SCA router (DI pipeline step 3).
+
+        The pack contains:
+          - facet_delta: candidates with QIDs, scores, signals, federation sources
+          - discipline_traversal: academic disciplines with authority IDs
+          - corpus_endpoints: 14 sources with query keys and live counts
+          - domain_context: seed, LCSH tether, sub-subjects
+
+        Returns an SFA evaluation response with per-candidate assessments
+        and optional proposals (within-facet additions, cross-facet links).
+        """
+        fd = pack["facet_delta"]
+        domain = pack.get("domain_context", {})
+        seed = domain.get("seed", {})
+
+        candidates = fd.get("candidates", [])
+        primary = [c for c in candidates if c.get("role") == "primary"]
+        secondary = [c for c in candidates if c.get("role") != "primary"]
+
+        # Build evaluation prompt with full context
+        prompt = self._build_pack_evaluation_prompt(pack)
+
+        # Run Claude agent with graph tool access
+        evaluation = None
+        if self._anthropic_api_key or os.getenv("ANTHROPIC_API_KEY"):
+            try:
+                system = (
+                    f"You are SFA_{self.facet_key}, a specialized {self.facet_label} "
+                    f"historian evaluating candidates for the Chrystallum knowledge graph. "
+                    f"You have tools to query the live Neo4j graph. Use them to check "
+                    f"existing nodes, decision tables, and thresholds before making judgments.\n\n"
+                    f"GRAPH SCHEMA HINTS (use these property names in Cypher):\n"
+                    f"- SubjectConcept: label, subject_id, wikidata_qid, lcsh_id, seed_qid, concept_cipher\n"
+                    f"- Facet: label (e.g. 'Military'), key is just the label\n"
+                    f"- SYS_DecisionTable: table_id (e.g. 'D8'), label, description\n"
+                    f"- SYS_Threshold: name, value, unit, description\n"
+                    f"- SYS_FederationSource: source_id, label, phase\n"
+                    f"- SYS_RelationshipType: rel_type, domain\n"
+                    f"- Entity: label, qid, dprr_id\n"
+                    f"- Place: label, pleiades_id, geonames_id\n\n"
+                    f"IMPORTANT: Keep graph queries minimal. You already have the candidates "
+                    f"in the prompt — focus on evaluating them, not re-discovering the graph. "
+                    f"Return structured JSON."
+                )
+                evaluation = self._run_claude_agent(system, prompt)
+            except Exception as e:
+                evaluation = {"error": str(e)}
+
+        return {
+            "facet_key": self.facet_key,
+            "agent_id": self.agent_id,
+            "seed_qid": seed.get("qid"),
+            "seed_label": seed.get("label"),
+            "status": "evaluated" if evaluation and "error" not in evaluation else "pack_received",
+            "candidate_count": len(candidates),
+            "primary_count": len(primary),
+            "secondary_count": len(secondary),
+            "federation_sources": [s.get("source_id") for s in fd.get("federation_sources", [])],
+            "disciplines": [
+                d.get("label") for d in pack.get("discipline_traversal", {}).get("disciplines", [])
+            ],
+            "corpus_endpoints_available": len(
+                pack.get("corpus_endpoints", {}).get("endpoints", {})
+            ),
+            "evaluation": evaluation,
+            "timestamp": datetime.utcnow().isoformat(),
+        }
+
+    def _build_pack_evaluation_prompt(self, pack: Dict) -> str:
+        """Build an evaluation prompt from a full facet pack."""
+        fd = pack["facet_delta"]
+        domain = pack.get("domain_context", {})
+        seed = domain.get("seed", {})
+        disciplines = pack.get("discipline_traversal", {}).get("disciplines", [])
+
+        candidate_lines = []
+        for c in fd.get("candidates", [])[:20]:  # cap at 20 for prompt size
+            signals = "; ".join(s.get("reason", "") for s in c.get("signals", [])[:3])
+            candidate_lines.append(
+                f"  - {c['label']} ({c['qid']}) role={c.get('role','?')} score={c.get('score',0)} | {signals}"
+            )
+
+        disc_lines = [f"  - {d.get('label', '?')} ({d.get('qid', '?')})" for d in disciplines]
+
+        return f"""You are SFA_{self.facet_key}, a specialized {self.facet_label} historian.
+
+Domain seed: {seed.get('label', '?')} ({seed.get('qid', '?')})
+Facet: {self.facet_label} -- {fd.get('evidence_summary', '')}
+
+Candidates ({len(fd.get('candidates', []))} total, showing top 20):
+{chr(10).join(candidate_lines) if candidate_lines else '  (none)'}
+
+Academic disciplines:
+{chr(10).join(disc_lines) if disc_lines else '  (none)'}
+
+Tasks:
+1. Which candidates are genuinely relevant to {self.facet_label}? Flag any mis-routed ones.
+2. What within-facet concepts did the harvest MISS that should be added?
+3. Any cross-facet relationships worth proposing?
+4. Confidence that this facet is active for this domain (0-1)?
+
+Provide structured JSON with keys: relevant_candidates, misrouted, proposed_additions, cross_facet_links, confidence.
+"""
+
     def analyze_subject_concept(self, subject_concept_id: str) -> Dict:
         """
         Analyze a SubjectConcept from this facet's perspective
@@ -159,9 +322,14 @@ class SubjectConceptFacetAgent:
         
         # Prepare facet-specific analysis prompt
         prompt = self._build_analysis_prompt(sc)
-        
-        # Query Perplexity
-        analysis = self._query_perplexity(prompt)
+
+        # Run Claude agent with graph tool access
+        system = (
+            f"You are SFA_{self.facet_key}, a specialized {self.facet_label} "
+            f"historian analyzing subjects for the Chrystallum knowledge graph. "
+            f"You have tools to query the live Neo4j graph."
+        )
+        analysis = self._run_claude_agent(system, prompt)
         
         return {
             'subject_concept_id': subject_concept_id,
@@ -191,39 +359,142 @@ class SubjectConceptFacetAgent:
         Provide structured, scholarly analysis with sources.
         """
     
-    def _query_perplexity(self, prompt: str, model: str = "llama-3.1-sonar-large-128k-online") -> Dict:
-        """Query Perplexity API"""
-        if not self.perplexity_api_key:
-            raise ValueError("PERPLEXITY_API_KEY not set")
-        
-        headers = {
-            "Authorization": f"Bearer {self.perplexity_api_key}",
-            "Content-Type": "application/json"
-        }
-        
-        payload = {
-            "model": model,
-            "messages": [
-                {
-                    "role": "system",
-                    "content": f"You are a specialized {self.facet_label} historian analyzing historical subjects. Provide scholarly analysis with citations."
-                },
-                {
-                    "role": "user",
-                    "content": prompt
+    # ------------------------------------------------------------------
+    # Claude agentic loop with graph tools
+    # ------------------------------------------------------------------
+
+    def _get_anthropic_client(self):
+        """Get Anthropic client, reading API key from env or .env file."""
+        if not anthropic:
+            raise ImportError("anthropic package required. Run: pip install anthropic")
+        key = self._anthropic_api_key
+        if not key:
+            env_path = os.path.join(os.path.dirname(__file__), "..", "..", ".env")
+            if os.path.exists(env_path):
+                for line in open(env_path):
+                    if line.startswith("ANTHROPIC_API_KEY="):
+                        key = line.split("=", 1)[1].strip().strip('"').strip("'")
+                        break
+        if not key:
+            raise ValueError("ANTHROPIC_API_KEY not found in environment or .env")
+        return anthropic.Anthropic(api_key=key)
+
+    def _handle_tool_call(self, tool_name: str, tool_input: dict) -> str:
+        """Execute a graph tool call and return result as string."""
+        try:
+            if tool_name == "query_graph":
+                cypher = tool_input.get("cypher", "")
+                # Safety: reject mutations
+                upper = cypher.upper().strip()
+                if any(kw in upper for kw in ["CREATE", "MERGE", "DELETE", "SET ", "REMOVE", "DROP"]):
+                    return json.dumps({"error": "Only read-only queries allowed"})
+                with self.driver.session() as session:
+                    result = session.run(cypher)
+                    rows = [dict(r) for r in result][:50]
+                    # Convert neo4j types to serializable
+                    return json.dumps(rows, default=str, ensure_ascii=False)
+
+            elif tool_name == "get_threshold":
+                name = tool_input.get("name", "")
+                with self.driver.session() as session:
+                    result = session.run(
+                        "MATCH (t:SYS_Threshold {name: $name}) RETURN t",
+                        name=name,
+                    )
+                    rec = result.single()
+                    if rec:
+                        return json.dumps(dict(rec["t"]), default=str)
+                    return json.dumps({"error": f"Threshold '{name}' not found"})
+
+            elif tool_name == "get_decision_table":
+                table_id = tool_input.get("table_id", "")
+                with self.driver.session() as session:
+                    result = session.run(
+                        """
+                        MATCH (dt:SYS_DecisionTable {table_id: $tid})
+                        OPTIONAL MATCH (dt)-[:HAS_ROW]->(r:SYS_DecisionRow)
+                        RETURN dt, collect(r) AS rows
+                        """,
+                        tid=table_id,
+                    )
+                    rec = result.single()
+                    if rec:
+                        dt = dict(rec["dt"])
+                        rows = [dict(r) for r in rec["rows"]]
+                        return json.dumps({"table": dt, "rows": rows}, default=str)
+                    return json.dumps({"error": f"Decision table '{table_id}' not found"})
+
+            else:
+                return json.dumps({"error": f"Unknown tool: {tool_name}"})
+        except Exception as e:
+            return json.dumps({"error": str(e)})
+
+    def _run_claude_agent(self, system: str, user_prompt: str, max_turns: int = 20) -> Dict:
+        """Run a Claude agentic loop with graph tool access.
+
+        Claude can call query_graph / get_threshold / get_decision_table
+        during reasoning. The loop continues until Claude produces a final
+        text response (no more tool calls) or max_turns is reached.
+
+        Returns dict with 'content' (final text), 'model', 'tool_calls' (list),
+        and 'usage' (token counts).
+        """
+        client = self._get_anthropic_client()
+        messages = [{"role": "user", "content": user_prompt}]
+        tool_log = []
+        total_input = 0
+        total_output = 0
+
+        for turn in range(max_turns):
+            response = client.messages.create(
+                model=self.model,
+                max_tokens=4096,
+                system=system,
+                tools=self.GRAPH_TOOLS,
+                messages=messages,
+            )
+            total_input += response.usage.input_tokens
+            total_output += response.usage.output_tokens
+
+            # Check if Claude wants to use tools
+            if response.stop_reason == "tool_use":
+                # Process all tool_use blocks
+                assistant_content = response.content
+                tool_results = []
+                for block in assistant_content:
+                    if block.type == "tool_use":
+                        result_str = self._handle_tool_call(block.name, block.input)
+                        tool_log.append({
+                            "tool": block.name,
+                            "input": block.input,
+                            "output_preview": result_str[:200],
+                        })
+                        tool_results.append({
+                            "type": "tool_result",
+                            "tool_use_id": block.id,
+                            "content": result_str,
+                        })
+                messages.append({"role": "assistant", "content": assistant_content})
+                messages.append({"role": "user", "content": tool_results})
+            else:
+                # Final response — extract text
+                text = ""
+                for block in response.content:
+                    if hasattr(block, "text"):
+                        text += block.text
+                return {
+                    "content": text,
+                    "model": self.model,
+                    "tool_calls": tool_log,
+                    "usage": {"input_tokens": total_input, "output_tokens": total_output},
                 }
-            ]
-        }
-        
-        response = requests.post(self.perplexity_url, json=payload, headers=headers)
-        response.raise_for_status()
-        
-        data = response.json()
-        
+
+        # max_turns exceeded — return what we have
         return {
-            'content': data['choices'][0]['message']['content'],
-            'model': model,
-            'usage': data.get('usage', {})
+            "content": "[max tool turns exceeded]",
+            "model": self.model,
+            "tool_calls": tool_log,
+            "usage": {"input_tokens": total_input, "output_tokens": total_output},
         }
     
     def discover_related_entities(self, subject_concept_id: str, entity_type: str = "Human") -> List[Dict]:
@@ -476,45 +747,47 @@ class SubjectConceptAgentFactory:
     def create_agent(cls,
                     facet_key: str,
                     neo4j_driver,
-                    perplexity_api_key: Optional[str] = None) -> SubjectConceptFacetAgent:
+                    anthropic_api_key: Optional[str] = None,
+                    model: str = "claude-sonnet-4-20250514") -> SubjectConceptFacetAgent:
         """
-        Create a facet-specific agent
-        
+        Create a facet-specific agent.
+
         Args:
             facet_key: Facet key (UPPERCASE)
             neo4j_driver: Neo4j driver instance
-            perplexity_api_key: Perplexity API key
-        
+            anthropic_api_key: Anthropic API key
+            model: Claude model ID
+
         Returns:
             Facet agent instance
         """
         if facet_key not in CANONICAL_FACETS:
             raise ValueError(f"Invalid facet: {facet_key}")
-        
-        # Get specialized agent class or use base class
+
         agent_class = cls.SPECIALIZED_AGENTS.get(facet_key, SubjectConceptFacetAgent)
-        
-        # Convert facet key to label
         facet_label = facet_key.capitalize()
-        
+
         return agent_class(
             facet_key=facet_key,
             facet_label=facet_label,
             neo4j_driver=neo4j_driver,
-            perplexity_api_key=perplexity_api_key
+            anthropic_api_key=anthropic_api_key,
+            model=model,
         )
-    
+
     @classmethod
     def create_all_agents(cls,
                          neo4j_driver,
-                         perplexity_api_key: Optional[str] = None) -> Dict[str, SubjectConceptFacetAgent]:
+                         anthropic_api_key: Optional[str] = None,
+                         model: str = "claude-sonnet-4-20250514") -> Dict[str, SubjectConceptFacetAgent]:
         """
-        Create all 18 facet agents
-        
+        Create all 18 facet agents.
+
         Args:
             neo4j_driver: Neo4j driver instance
-            perplexity_api_key: Perplexity API key
-        
+            anthropic_api_key: Anthropic API key
+            model: Claude model ID
+
         Returns:
             Dict mapping facet keys to agent instances
         """
@@ -523,9 +796,9 @@ class SubjectConceptAgentFactory:
             agents[facet_key] = cls.create_agent(
                 facet_key=facet_key,
                 neo4j_driver=neo4j_driver,
-                perplexity_api_key=perplexity_api_key
+                anthropic_api_key=anthropic_api_key,
+                model=model,
             )
-        
         return agents
 
 
@@ -535,24 +808,27 @@ class SubjectConceptAgentFactory:
 
 class MultiFacetSubjectAnalyzer:
     """Analyze a subject concept across multiple facets"""
-    
-    def __init__(self, neo4j_driver, perplexity_api_key: Optional[str] = None):
+
+    def __init__(self, neo4j_driver, anthropic_api_key: Optional[str] = None,
+                 model: str = "claude-sonnet-4-20250514"):
         self.driver = neo4j_driver
-        self.perplexity_api_key = perplexity_api_key
-    
+        self.anthropic_api_key = anthropic_api_key
+        self.model = model
+
     def analyze_subject_all_facets(self, subject_concept_id: str) -> Dict:
         """
         Analyze a subject concept across all 18 facets
-        
+
         Args:
             subject_concept_id: Subject concept ID
-        
+
         Returns:
             Combined analysis from all facets
         """
         agents = SubjectConceptAgentFactory.create_all_agents(
             neo4j_driver=self.driver,
-            perplexity_api_key=self.perplexity_api_key
+            anthropic_api_key=self.anthropic_api_key,
+            model=self.model,
         )
         
         analyses = {}
@@ -575,12 +851,12 @@ class MultiFacetSubjectAnalyzer:
                                        subject_concept_id: str,
                                        facet_keys: List[str]) -> Dict:
         """
-        Analyze a subject concept from selected facets
-        
+        Analyze a subject concept from selected facets.
+
         Args:
             subject_concept_id: Subject concept ID
             facet_keys: List of facet keys to analyze
-        
+
         Returns:
             Combined analysis from selected facets
         """
@@ -589,7 +865,8 @@ class MultiFacetSubjectAnalyzer:
             agent = SubjectConceptAgentFactory.create_agent(
                 facet_key=facet_key,
                 neo4j_driver=self.driver,
-                perplexity_api_key=self.perplexity_api_key
+                anthropic_api_key=self.anthropic_api_key,
+                model=self.model,
             )
             
             print(f"Analyzing from {facet_key} perspective...")
@@ -616,48 +893,33 @@ if __name__ == "__main__":
     from pathlib import Path
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     from config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
-    PERPLEXITY_API_KEY = None  # Optional for demo
 
-    # Initialize Neo4j driver
     driver = GraphDatabase.driver(
         NEO4J_URI,
         auth=(NEO4J_USERNAME, NEO4J_PASSWORD or "")
     )
-    
+
     print("=" * 80)
-    print("SUBJECT CONCEPT FACET AGENTS - Example Usage")
+    print("SUBJECT CONCEPT FACET AGENTS - Claude Agent Demo")
     print("=" * 80)
     print()
-    
-    # Create a single facet agent
-    print("Creating MILITARY facet agent...")
+
+    print("Creating MILITARY facet agent (Claude + graph tools)...")
     military_agent = SubjectConceptAgentFactory.create_agent(
         facet_key="MILITARY",
         neo4j_driver=driver,
-        perplexity_api_key=PERPLEXITY_API_KEY
     )
     print(f"  Agent ID: {military_agent.agent_id}")
+    print(f"  Model:    {military_agent.model}")
+    print(f"  Tools:    {[t['name'] for t in military_agent.GRAPH_TOOLS]}")
     print()
-    
-    # Create all 18 facet agents
+
     print("Creating all 18 facet agents...")
-    all_agents = SubjectConceptAgentFactory.create_all_agents(
-        neo4j_driver=driver,
-        perplexity_api_key=PERPLEXITY_API_KEY
-    )
+    all_agents = SubjectConceptAgentFactory.create_all_agents(neo4j_driver=driver)
     print(f"  Created {len(all_agents)} agents:")
     for facet_key in CANONICAL_FACETS:
         print(f"    - {facet_key}: {all_agents[facet_key].agent_id}")
     print()
-    
-    # Multi-facet analyzer
-    print("Creating multi-facet analyzer...")
-    analyzer = MultiFacetSubjectAnalyzer(
-        neo4j_driver=driver,
-        perplexity_api_key=PERPLEXITY_API_KEY
-    )
-    print("  Analyzer ready for cross-facet analysis")
-    print()
-    
+
     driver.close()
-    print("✓ Demo complete")
+    print("Done.")

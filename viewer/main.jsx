@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 
 // Import Chrystallum JSX components from Key Files
-import DisciplineUniverse from "../Key Files/chrystallum_discipline_universe.jsx";
-import TOCConstitution from "../Key Files/chrystallum_toc_constitution.jsx";
+import ChrystallumSystemMap from "../Key Files/chrystallum_system_map.jsx";
 import ChrystallumArchitecture from "../Key Files/chrystallum_architecture.jsx";
-
+import DisciplineUniverse from "../Key Files/chrystallum_discipline_universe.jsx";
 const APPS = [
-  ["discipline", "Discipline Universe", DisciplineUniverse],
-  ["toc", "TOC Constitution", TOCConstitution],
+  ["systemmap", "System Map (live)", ChrystallumSystemMap],
   ["architecture", "Architecture", ChrystallumArchitecture],
+  ["discipline", "Discipline Universe", DisciplineUniverse],
 ];
 
 function App() {
-  const [active, setActive] = useState("discipline");
+  const [active, setActive] = useState("systemmap");
   const Current = APPS.find(([k]) => k === active)?.[2] || DisciplineUniverse;
 
   return (

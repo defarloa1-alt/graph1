@@ -86,7 +86,7 @@ const NodeChip = ({ x, y, label, count, fill = C.blue }) => (
 
 export default function ChrystallumArchitecture() {
   const [hover, setHover] = useState(null);
-  const W = 1100, H = 1380;
+  const W = 1100, H = 1480;
 
   const federationSources = [
     { id: "Wikidata", status: "operational", x: 30 },
@@ -111,7 +111,7 @@ export default function ChrystallumArchitecture() {
         <span style={{ fontSize: 13, color: C.slate, marginLeft: 12 }}>
           Logical Architecture — Top-Down View
         </span>
-        <span style={{ float: "right", fontSize: 11, color: C.mid }}>2026-03-03</span>
+        <span style={{ float: "right", fontSize: 11, color: C.mid }}>2026-03-08</span>
       </div>
 
       {/* legend */}
@@ -274,20 +274,22 @@ export default function ChrystallumArchitecture() {
         })}
 
         {/* ── NEO4J GRAPH ───────────────────────────────────────────────────── */}
-        <LayerHeader x={10} y={390} w={W - 20} label="NEO4J GRAPH  (105,559 nodes · 97 relationship types)"
+        <LayerHeader x={10} y={390} w={W - 20} label="NEO4J GRAPH  (~110k nodes · 113 relationship types)"
           sub="Single source of truth · ADR-001 cipher architecture · ADR-006 provenance" fill={C.navy} />
 
         {/* SYS layer */}
-        <Section x={15} y={410} w={340} h={130} title="SYSTEM LAYER  (self-describing)" titleFill={C.navy} />
+        <Section x={15} y={410} w={340} h={210} title="SYSTEM LAYER  (self-describing)" titleFill={C.navy} />
         {[
           ["SYS_FederationSource", "17", C.blue],
           ["SYS_AuthorityTier", "6", C.blue],
           ["SYS_ConfidenceTier", "8", C.blue],
           ["SYS_DecisionTable + DecisionRow", "23 + 128", C.teal],
-          ["SYS_Policy", "13", C.teal],
-          ["SYS_Threshold", "25", C.teal],
-          ["SYS_RelationshipType", "97", C.slate],
-          ["SYS_NodeType + PropertyMapping", "10 + 500", C.slate],
+          ["SYS_Policy", "20", C.teal],
+          ["SYS_Threshold", "27", C.teal],
+          ["SYS_FacetRouter", "38", C.teal],
+          ["SYS_CurationDecision", "15", C.teal],
+          ["SYS_RelationshipType", "113", C.slate],
+          ["SYS_NodeType", "10", C.slate],
           ["SYS_ADR + OnboardingProtocol", "5 + 2", C.navy],
           ["Framework (HAS_FRAMEWORK)", "3", C.purple],
           ["Fallacy + TaskType (Fischer)", "6 + 11", C.purple],
@@ -300,12 +302,12 @@ export default function ChrystallumArchitecture() {
         ))}
 
         {/* Domain layer */}
-        <Section x={365} y={410} w={490} h={130} title="DOMAIN LAYER  (knowledge)" titleFill={C.blue} />
+        <Section x={365} y={410} w={490} h={210} title="DOMAIN LAYER  (knowledge)" titleFill={C.blue} />
 
         {/* Person cluster */}
         <Section x={372} y={428} w={155} h={108} title=":Person cluster" titleFill={C.teal} fill="#EAFAF1" />
         {[
-          [":Person", "5,152", C.teal],
+          [":Person", "5,248", C.teal],
           [":MythologicalPerson", "3", C.teal],
           [":Gens", "585", C.blue],
           [":Nomen", "917", C.blue],
@@ -330,7 +332,7 @@ export default function ChrystallumArchitecture() {
         {/* Knowledge cluster */}
         <Section x={692} y={428} w={158} h={108} title="Knowledge / Taxonomy" titleFill={C.slate} fill="#F8F9FA" />
         {[
-          [":Discipline", "1,363", C.navy],
+          [":Discipline", "675", C.navy],
           [":LCC_Class", "4,490", C.navy],
           [":Periodo_Period", "1,118", C.teal],
           [":LCSH_Heading", "15", C.blue],
@@ -338,12 +340,58 @@ export default function ChrystallumArchitecture() {
           [":Year", "4,025", C.mid],
           [":Position", "171", C.slate],
           [":Facet", "18", C.blue],
+          [":SubjectConcept", "61", C.blue],
         ].map(([label, count, col], i) => (
           <NodeChip key={label} x={695} y={446 + i * 11} label={label} count={count} fill={col} />
         ))}
 
+        {/* Person External ID Nodes */}
+        <Section x={372} y={540} w={238} h={76} title="Person External IDs  (16 types · 4,232 nodes)"
+          titleFill={C.purple} fill="#F3F0FF" />
+        {[
+          ["VIAF_Cluster", "843"],
+          ["GND_Person", "699"],
+          ["ISNI_Record", "467"],
+          ["BritishMuseum_Person", "460"],
+          ["LCNAF_Authority", "395"],
+          ["OCD_Entry", "341"],
+        ].map(([label, count], i) => (
+          <g key={label}>
+            <Txt x={378} y={560 + i * 10} s={7.5} fill={C.purple}>{label}</Txt>
+            <Txt x={500} y={560 + i * 10} s={7.5} fill={C.slate}>{count}</Txt>
+          </g>
+        ))}
+        <Txt x={520} y={570} s={7.5} fill={C.purple} italic>+ 10 more types</Txt>
+        <Txt x={520} y={582} s={7} fill={C.slate} italic>cipher: QID:PID:value</Txt>
+
+        {/* Discipline External ID Nodes */}
+        <Section x={616} y={540} w={238} h={76} title="Discipline External IDs  (12 types · 3,028 nodes)"
+          titleFill={C.purple} fill="#F3F0FF" />
+        {[
+          ["FAST_Heading", "675"],
+          ["Getty_AAT_Concept", "618"],
+          ["OpenAlex_Concept", "592"],
+          ["GND_Concept", "462"],
+          ["BnF_Concept", "189"],
+          ["MeSH_Descriptor", "167"],
+        ].map(([label, count], i) => (
+          <g key={label}>
+            <Txt x={622} y={560 + i * 10} s={7.5} fill={C.purple}>{label}</Txt>
+            <Txt x={744} y={560 + i * 10} s={7.5} fill={C.slate}>{count}</Txt>
+          </g>
+        ))}
+        <Txt x={764} y={570} s={7.5} fill={C.purple} italic>+ 6 more types</Txt>
+        <Txt x={764} y={582} s={7} fill={C.slate} italic>cipher: QID:PID:value</Txt>
+
+        {/* FIELD_OF_WORK bridge annotation */}
+        <Arrow x1={450} y1={536} x2={450} y2={540} stroke={C.purple} width={1.2} />
+        <Arrow x1={735} y1={536} x2={735} y2={540} stroke={C.purple} width={1.2} />
+        <Txt x={528} y={536} s={7.5} fill={C.teal} bold center>FIELD_OF_WORK (128)</Txt>
+        <Arrow x1={500} y1={530} x2={530} y2={530} stroke={C.teal} width={1} dashed />
+        <Arrow x1={555} y1={530} x2={620} y2={530} stroke={C.teal} width={1} dashed />
+
         {/* Claim / provenance layer */}
-        <Section x={860} y={410} w={228} h={130} title="CLAIM & PROVENANCE LAYER" titleFill={C.amber} />
+        <Section x={860} y={410} w={228} h={210} title="CLAIM & PROVENANCE LAYER" titleFill={C.amber} />
         {[
           ["Claim status cycle:", "", C.amber],
           ["  Proposed → Under Review", "", C.amber],
@@ -359,19 +407,20 @@ export default function ChrystallumArchitecture() {
         ))}
 
         {/* ── CIPHER ARCHITECTURE ───────────────────────────────────────────── */}
-        <Section x={15} y={553} w={1074} h={42} title="CIPHER ARCHITECTURE  (ADR-001)" titleFill={C.navy} />
+        <Section x={15} y={633} w={1074} h={54} title="CIPHER ARCHITECTURE  (ADR-001)" titleFill={C.navy} />
         {[
           "entity_cipher: SHA-256 hash of (entity_type + canonical_id + source_namespace)",
           "→ O(1) vertex lookup · content-addressable storage · deduplication without graph traversal",
           "→ cross-federation merge: same cipher = same entity regardless of source label",
           "edge_cipher: hash of (source_entity_id + rel_type + target_entity_id) · idempotent MERGE",
+          "external_id_cipher: QID:PID:value — deterministic jump address (e.g. Q2263:P214:27062070 = Cicero's VIAF)",
         ].map((t, i) => (
-          <Txt key={t} x={22} y={572 + i * 11} s={8} fill={i === 0 ? C.navy : C.slate}
+          <Txt key={t} x={22} y={652 + i * 11} s={8} fill={i === 0 ? C.navy : i === 4 ? C.purple : C.slate}
             bold={i === 0}>{t}</Txt>
         ))}
 
         {/* ── QUERY / ACCESS LAYER ──────────────────────────────────────────── */}
-        <LayerHeader x={10} y={606} w={W - 20} label="QUERY & ACCESS LAYER" fill={C.slate} />
+        <LayerHeader x={10} y={698} w={W - 20} label="QUERY & ACCESS LAYER" fill={C.slate} />
 
         {[
           { x: 20, w: 200, title: "Cypher Query Patterns", fill: "#F8F9FA", stroke: C.slate,
@@ -386,19 +435,19 @@ export default function ChrystallumArchitecture() {
             items: ["OI-008-05", "FAM derived at export", "BCE year offset applied", "Custom _GENS _TRIBE tags"] },
         ].map(({ x, w, title, fill, stroke, items }) => (
           <g key={title}>
-            <Box x={x} y={624} w={w} h={72} fill={fill} stroke={stroke} rx={4} />
-            <Txt x={x + w / 2} y={638} s={9} fill={stroke} bold center>{title}</Txt>
+            <Box x={x} y={716} w={w} h={72} fill={fill} stroke={stroke} rx={4} />
+            <Txt x={x + w / 2} y={730} s={9} fill={stroke} bold center>{title}</Txt>
             {items.map((item, i) => (
               <g key={item}>
-                <circle cx={x + 10} cy={648 + i * 12} r={2.5} fill={stroke} opacity={0.6} />
-                <Txt x={x + 16} y={652 + i * 12} s={8} fill={C.dark}>{item}</Txt>
+                <circle cx={x + 10} cy={740 + i * 12} r={2.5} fill={stroke} opacity={0.6} />
+                <Txt x={x + 16} y={744 + i * 12} s={8} fill={C.dark}>{item}</Txt>
               </g>
             ))}
           </g>
         ))}
 
         {/* ── STANDARDS ALIGNMENT ───────────────────────────────────────────── */}
-        <LayerHeader x={10} y={706} w={W - 20} label="STANDARDS ALIGNMENT" fill={C.navy} />
+        <LayerHeader x={10} y={798} w={W - 20} label="STANDARDS ALIGNMENT" fill={C.navy} />
 
         {[
           { x: 20, label: "CIDOC-CRM\n(ISO 21127)", role: "Internal ontological anchor", status: "E74_Group · E53_Place · E21_Person", col: C.navy },
@@ -408,23 +457,23 @@ export default function ChrystallumArchitecture() {
           { x: 860, label: "OpenAlex / FAST\nLCNAF / VIAF", role: "Authority record IDs", status: "Partial — via Wikidata", col: C.amber },
         ].map(({ x, label, role, status, col }) => (
           <g key={label}>
-            <Box x={x} y={724} w={200} h={52} fill={C.light} stroke={col} rx={4} />
-            <Txt x={x + 100} y={738} s={10} fill={col} bold center>{label.split("\n")[0]}</Txt>
-            {label.includes("\n") && <Txt x={x + 100} y={749} s={10} fill={col} bold center>{label.split("\n")[1]}</Txt>}
-            <Txt x={x + 100} y={label.includes("\n") ? 761 : 751} s={8} fill={C.slate} center>{role}</Txt>
-            <Txt x={x + 100} y={label.includes("\n") ? 772 : 762} s={7.5} fill={C.mid} center italic>{status}</Txt>
+            <Box x={x} y={816} w={200} h={52} fill={C.light} stroke={col} rx={4} />
+            <Txt x={x + 100} y={830} s={10} fill={col} bold center>{label.split("\n")[0]}</Txt>
+            {label.includes("\n") && <Txt x={x + 100} y={841} s={10} fill={col} bold center>{label.split("\n")[1]}</Txt>}
+            <Txt x={x + 100} y={label.includes("\n") ? 853 : 843} s={8} fill={C.slate} center>{role}</Txt>
+            <Txt x={x + 100} y={label.includes("\n") ? 864 : 854} s={7.5} fill={C.mid} center italic>{status}</Txt>
           </g>
         ))}
 
         {/* ── NEO4J COMPARISON ──────────────────────────────────────────────── */}
-        <LayerHeader x={10} y={788} w={W - 20}
+        <LayerHeader x={10} y={880} w={W - 20}
           label="CHRYSTALLUM vs. NATIVE NEO4J — Where the Architecture Diverges"
           fill={C.dark} />
 
         {/* left: native neo4j */}
-        <Box x={15} y={806} w={520} h={200} fill="#F8F9FA" stroke={C.mid} rx={5} />
-        <rect x={15} y={806} width={520} height={20} rx={4} fill={C.mid} />
-        <Txt x={275} y={820} s={10} fill={C.white} bold center>Native Neo4j / Property Graph</Txt>
+        <Box x={15} y={898} w={520} h={200} fill="#F8F9FA" stroke={C.mid} rx={5} />
+        <rect x={15} y={898} width={520} height={20} rx={4} fill={C.mid} />
+        <Txt x={275} y={912} s={10} fill={C.white} bold center>Native Neo4j / Property Graph</Txt>
 
         {[
           ["Node labels", "Ontology defined in application code, not in graph"],
@@ -439,22 +488,22 @@ export default function ChrystallumArchitecture() {
           ["Self-description", "Not native — no registry of node/rel types in graph"],
         ].map(([k, v], i) => (
           <g key={k}>
-            <Txt x={22} y={832 + i * 17} s={9} fill={C.red} bold>{k}:</Txt>
-            <Txt x={130} y={832 + i * 17} s={8.5} fill={C.dark}>{v}</Txt>
+            <Txt x={22} y={924 + i * 17} s={9} fill={C.red} bold>{k}:</Txt>
+            <Txt x={130} y={924 + i * 17} s={8.5} fill={C.dark}>{v}</Txt>
           </g>
         ))}
 
         {/* right: chrystallum */}
-        <Box x={555} y={806} w={535} h={200} fill="#EAFAF1" stroke={C.teal} rx={5} />
-        <rect x={555} y={806} width={535} height={20} rx={4} fill={C.teal} />
-        <Txt x={822} y={820} s={10} fill={C.white} bold center>Chrystallum (on Neo4j)</Txt>
+        <Box x={555} y={898} w={535} h={200} fill="#EAFAF1" stroke={C.teal} rx={5} />
+        <rect x={555} y={898} width={535} height={20} rx={4} fill={C.teal} />
+        <Txt x={822} y={912} s={10} fill={C.white} bold center>Chrystallum (on Neo4j)</Txt>
 
         {[
           ["Node labels", "Declared in SYS_NodeType registry within the graph itself"],
-          ["Relationships", "All 97 types registered in SYS_RelationshipType with domain/range"],
+          ["Relationships", "All 113 types registered in SYS_RelationshipType with domain/range"],
           ["Provenance", "ADR-006: every ScaffoldEdge carries FROM/TO dprr_assertion_uri"],
           ["Confidence", "SYS_ConfidenceTier + per-claim confidence property (0–1)"],
-          ["Schema", "SYS_ValidationRule + SYS_PropertyMapping — schema is data"],
+          ["Schema", "SYS_ValidationRule + SYS_FacetRouter — schema is data"],
           ["Merges", "entity_cipher + edge_cipher — O(1) SHA-256 content-address"],
           ["Agent integration", "Three-layer: det. pre → LLM reason → det. execute"],
           ["Temporal scoping", "IN_PERIOD → :Periodo_Period · :HistoricalPolity → STARTS_IN_YEAR/ENDS_IN_YEAR → :Year"],
@@ -462,33 +511,33 @@ export default function ChrystallumArchitecture() {
           ["Self-description", "26-step onboarding protocol; graph explains itself to agents"],
         ].map(([k, v], i) => (
           <g key={k}>
-            <Txt x={562} y={832 + i * 17} s={9} fill={C.teal} bold>{k}:</Txt>
-            <Txt x={670} y={832 + i * 17} s={8.5} fill={C.dark}>{v}</Txt>
+            <Txt x={562} y={924 + i * 17} s={9} fill={C.teal} bold>{k}:</Txt>
+            <Txt x={670} y={924 + i * 17} s={8.5} fill={C.dark}>{v}</Txt>
           </g>
         ))}
 
         {/* centre divider arrow */}
-        <Txt x={540} y={910} s={20} fill={C.mid} center>→</Txt>
+        <Txt x={540} y={1002} s={20} fill={C.mid} center>→</Txt>
 
         {/* ── METRICS BAR ───────────────────────────────────────────────────── */}
-        <Box x={10} y={1016} w={W - 20} h={58} fill={C.navy} stroke={C.navy} rx={5} />
+        <Box x={10} y={1108} w={W - 20} h={58} fill={C.navy} stroke={C.navy} rx={5} />
         {[
-          ["105,559", "total nodes"],
-          ["97", "rel types"],
-          ["4,772", "DPRR persons"],
-          ["7,342", "POSITION_HELD edges"],
+          ["~110k", "total nodes"],
+          ["113", "rel types"],
+          ["5,248", "Person nodes"],
+          ["4,232", "Person ext ID nodes"],
+          ["3,028", "Discipline ext IDs"],
           ["43,958", ":Place nodes"],
-          ["32,572", "Pleiades places"],
-          ["1,363", ":Discipline nodes"],
-          ["17", "federation sources"],
-          ["0.75 / 0.90", "confidence thresholds"],
+          ["675", ":Discipline nodes"],
+          ["18", "Facets"],
+          ["128", "FIELD_OF_WORK"],
         ].map(([n, l], i) => {
           const bx = 22 + i * 119;
           return (
             <g key={n}>
-              <Txt x={bx} y={1037} s={14} fill={C.white} bold>{n}</Txt>
-              <Txt x={bx} y={1050} s={8} fill="rgba(255,255,255,0.65)">{l}</Txt>
-              {i < 8 && <line x1={bx + 110} y1={1020} x2={bx + 110} y2={1070}
+              <Txt x={bx} y={1129} s={14} fill={C.white} bold>{n}</Txt>
+              <Txt x={bx} y={1142} s={8} fill="rgba(255,255,255,0.65)">{l}</Txt>
+              {i < 8 && <line x1={bx + 110} y1={1112} x2={bx + 110} y2={1162}
                 stroke="rgba(255,255,255,0.2)" strokeWidth={1} />}
             </g>
           );
@@ -503,21 +552,23 @@ export default function ChrystallumArchitecture() {
         <Arrow x1={550} y1={302} x2={550} y2={310} stroke={C.slate} width={2} />
         {/* L3 → Graph */}
         <Arrow x1={550} y1={378} x2={550} y2={390} stroke={C.navy} width={2} />
-        {/* Graph → Query */}
-        <Arrow x1={550} y1={596} x2={550} y2={606} stroke={C.slate} width={2} />
+        {/* Graph → Cipher */}
+        <Arrow x1={550} y1={622} x2={550} y2={633} stroke={C.navy} width={2} />
+        {/* Cipher → Query */}
+        <Arrow x1={550} y1={688} x2={550} y2={698} stroke={C.slate} width={2} />
 
         {/* SYS layer ref arrow back into L1 */}
-        <Line x1={185} y1={542} x2={185} y2={330} stroke={C.slate} dashed width={1.2} />
+        <Line x1={185} y1={622} x2={185} y2={330} stroke={C.slate} dashed width={1.2} />
         <Txt x={188} y={490} s={7.5} fill={C.slate} italic>policies +</Txt>
         <Txt x={188} y={500} s={7.5} fill={C.slate} italic>thresholds</Txt>
         <polygon points="185,330 182,338 188,338" fill={C.slate} />
 
         {/* ── GLASS BEAD GAME footnote ─────────────────────────────────────── */}
-        <Box x={10} y={1082} w={W - 20} h={36} fill="#FDFEFE" stroke={C.mid} rx={4} />
-        <Txt x={W / 2} y={1097} s={9} fill={C.slate} center italic>
+        <Box x={10} y={1174} w={W - 20} h={36} fill="#FDFEFE" stroke={C.mid} rx={4} />
+        <Txt x={W / 2} y={1189} s={9} fill={C.slate} center italic>
           &quot;An accessible implementation of Hermann Hesse&apos;s Glass Bead Game — cross-domain knowledge synthesis&quot;
         </Txt>
-        <Txt x={W / 2} y={1110} s={9} fill={C.slate} center italic>
+        <Txt x={W / 2} y={1202} s={9} fill={C.slate} center italic>
           from bookmark organisation (Level 1) to transcendent synthesis (Level 5)  ·  RAND systems analysis lineage
         </Txt>
 

@@ -16,7 +16,16 @@
       "Bash(curl -s \"https://api.github.com/repos/dh-199-the-shape-of-roman-history/DPRRViz/git/trees/master?recursive=1\")",
       "Bash(curl -s \"https://raw.githubusercontent.com/gillisandrew/dprr-mcp/main/data/dprr.ttl\")",
       "WebFetch(domain:docs.openalex.org)",
-      "Bash(c:/Projects/Graph1/DECISIONS.md:*)"
+      "Bash(c:/Projects/Graph1/DECISIONS.md:*)",
+      "WebFetch(domain:id.loc.gov)",
+      "Bash(git checkout -- output/subject_schema/Q17167_subject_schema.json)",
+      "Bash(curl -s \"https://www.wikidata.org/w/api.php?action=wbsearchentities&search=Roman+medicine&language=en&format=json&limit=10\")",
+      "Bash(curl -s \"https://www.wikidata.org/w/api.php?action=wbsearchentities&search=Roman+technology&language=en&format=json&limit=10\")",
+      "mcp__claude_ai_Chrystal_MCP__run_cypher_readonly",
+      "Bash(wc -l /c/Projects/Graph1/scripts/sca/*.py)",
+      "mcp__claude_ai_Chrystal_MCP__list_thresholds",
+      "Bash(npx vite build)",
+      "Bash(xargs grep -l \"discipline\\\\|Q11862829\\\\|Q2267705\")"
     ]
   }
 }

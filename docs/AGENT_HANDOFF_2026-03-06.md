@@ -20,6 +20,7 @@
 ## Important Docs by Domain
 
 ### Architecture & System
+- `docs/DOMAIN_INITIATOR.md` — Domain Initiator (DI): harvest + backbone tether + facet classification; SCA coordinates SFAs
 - `docs/SELF_DESCRIBING_SUBGRAPH_DESIGN_2026-02-25.md` — Graph self-description, SYS_ nodes
 - `docs/FEDERATION_ARCHITECTURE.md` — Federation sources, scoping
 - `docs/architecture/D9_SFA_CONSTITUTION_SPEC.md` — SFA constitution layer (D-040)
@@ -79,6 +80,7 @@
 | `scripts/maintenance/enrich_edge_labels.py` | Fetch Wikidata labels for unmapped PIDs |
 | `scripts/tools/graph_census.py` | Query SYS_*, domain counts, relationship counts |
 | `scripts/tools/export_jsx_data.py` | Dump JSON for JSX architecture data |
+| `scripts/agents/domain_initiator/harvest.py` | DI harvest (seed + backlinks, all labeled) |
 | `scripts/agents/biographic/` | CLI, agent, backlink harvest |
 | `scripts/federation/dprr_import.py` | DPRR person/position import |
 | `scripts/neo4j/import_relationships_comprehensive.py` | Wikidata relationship import (uses registry) |

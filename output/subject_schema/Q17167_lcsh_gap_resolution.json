@@ -1,0 +1,118 @@
+{
+  "seed_qid": "Q17167",
+  "resolution_date": "2026-03-06",
+  "note": "All 4 gaps from Q17167_subject_schema.json verified against LoC Authorities API. LLM guessed 2 candidate sh-IDs incorrectly; corrected here.",
+  "resolutions": [
+    {
+      "gap_label": "Roman Republican Diplomacy and Foreign Relations",
+      "status": "RESOLVED",
+      "llm_candidate_was_wrong": true,
+      "llm_guessed": "sh85115143",
+      "llm_guessed_actual_label": "Rome--History--Antoninus Pius, 138-161",
+      "correct_id": "sh85115105",
+      "correct_heading": "Rome--Foreign relations--510-30 B.C.",
+      "note": "Period-scoped LCSH heading exists for exactly the Republican era (510-30 B.C.). Cipherable.",
+      "proposed_label": "Roman Foreign Relations",
+      "wikidata_qid": "NEEDS_LOOKUP",
+      "lcc_codes": [
+        "DG234",
+        "DG237",
+        "DG241"
+      ],
+      "facets": {
+        "primary": "Diplomatic",
+        "secondary": [
+          "Political",
+          "Military",
+          "Communication"
+        ]
+      }
+    },
+    {
+      "gap_label": "Roman Republican Prosopography",
+      "status": "GENUINE_GAP",
+      "llm_candidate_was_wrong": true,
+      "llm_guessed": "sh85115107",
+      "llm_guessed_actual_label": "Rome--Foreign relations--306-363 (not Biography at all)",
+      "note": "No LCSH heading for Roman prosopography as a method/field. Role-specific biography headings exist (Emperors, Orators, etc.) but none for Republican magistrates collectively. Remains flagged for human curation.",
+      "correct_id": null,
+      "correct_heading": null
+    },
+    {
+      "gap_label": "Roman Colonization and Land Distribution",
+      "status": "PARTIAL_RESOLUTION_SPLIT",
+      "note": "No single heading covers coloniae + ager publicus + agrarian legislation. Two partial headings confirmed. Recommend creating TWO SubjectConcepts.",
+      "proposed_split": [
+        {
+          "label": "Agrarian Laws and Land Reform",
+          "lcsh_id": "sh85002255",
+          "lcsh_heading": "Agrarian laws of Rome",
+          "lcc_codes": [
+            "DG115",
+            "DG91"
+          ],
+          "facets": {
+            "primary": "Political",
+            "secondary": [
+              "Economic",
+              "Social",
+              "Geographic",
+              "Demographic"
+            ]
+          }
+        },
+        {
+          "label": "Roman Land Tenure and Colonization",
+          "lcsh_id": "sh2009128666",
+          "lcsh_heading": "Land tenure--Rome",
+          "lcc_codes": [
+            "DG115",
+            "DG15"
+          ],
+          "facets": {
+            "primary": "Economic",
+            "secondary": [
+              "Geographic",
+              "Demographic",
+              "Social",
+              "Political"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "gap_label": "Roman Republican Coinage and Numismatics",
+      "status": "RESOLVED",
+      "llm_candidate_was_wrong": true,
+      "llm_guessed": "sh85027798",
+      "llm_guessed_actual_label": "Coins--Collectors and collecting",
+      "correct_id": "sh85027857",
+      "correct_heading": "Coins, Roman",
+      "note": "Correct heading confirmed. sh85027857 is the canonical entry. Cipherable.",
+      "proposed_label": "Roman Republican Coinage",
+      "wikidata_qid": "NEEDS_LOOKUP",
+      "lcc_codes": [
+        "DG113",
+        "CJ833-857"
+      ],
+      "facets": {
+        "primary": "Economic",
+        "secondary": [
+          "Political",
+          "Artistic",
+          "Communication",
+          "Archaeological"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "fully_resolved": 2,
+    "genuine_gap": 1,
+    "partial_resolution_becomes_2_concepts": 1,
+    "new_cipherable_concepts": 4,
+    "total_after_resolution": 22,
+    "note": "18 original + 2 resolved (Diplomacy + Coinage) + 2 from Colonization split = 22 cipherable. Prosopography remains gap."
+  }
+}

@@ -1,0 +1,734 @@
+{
+  "seed_qid": "Q17167",
+  "seed_label": "Roman Republic",
+  "subject_concepts": [
+    {
+      "label": "Roman Law",
+      "lcsh_heading": "Roman law",
+      "wikidata_qid": "Q173862",
+      "lcc_primary": "KJA1",
+      "lcc_codes": [
+        "DG87",
+        "DG155",
+        "DG159",
+        "DG163",
+        "DG167",
+        "KJA1-9999"
+      ],
+      "cross_class_notes": "Core juridical treatment at KJA 1-9999 (European Law schedule); historical treatment duplicated across DG87 and DG155-167. All merged here as one intellectual concept.",
+      "facets": {
+        "primary": "Political",
+        "secondary": [
+          "Social",
+          "Economic",
+          "Intellectual",
+          "Biographic"
+        ]
+      },
+      "scope_note": "Legal system of the Roman Republic including public law (leges, plebiscita, senatus consulta), private law (ius civile, ius gentium), criminal law (quaestiones perpetuae), and jurisprudence. Covers the Twelve Tables through late-Republican codification efforts.",
+      "rationale": "DG87 and DG155-167 subdivide the same domain by legal branch; KJA shelves the same content for law-faculty audiences. One concept with multiple LCC codes avoids fragmentation.",
+      "lcsh_id": "sh85114931",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Roman law",
+      "concept_cipher": "6712d360bb01e141f45afe7d1ea312ebf011378d1f67ad9bdcc548fdf99a1246"
+    },
+    {
+      "label": "Roman Constitution",
+      "lcsh_heading": "Constitutional history--Rome",
+      "wikidata_qid": "Q1167954",
+      "lcc_primary": "DG89",
+      "lcc_codes": [
+        "DG89",
+        "DG233",
+        "JC81"
+      ],
+      "cross_class_notes": "Also shelved at JC81-93 (Political science -- Ancient state). DG233 is the period-specific constitutional shelf for the Republic.",
+      "facets": {
+        "primary": "Political",
+        "secondary": [
+          "Social",
+          "Intellectual",
+          "Diplomatic"
+        ]
+      },
+      "scope_note": "The unwritten constitutional order of the Republic: separation of powers, checks and balances (provocatio, intercessio), concepts of imperium, potestas, and auctoritas. Includes the mixed-constitution theory of Polybius and Cicero's De re publica.",
+      "rationale": "Distinct from magistracies or the Senate as institutions; this concept covers the structural and theoretical framework that organizes those institutions. JC81 cross-class reflects political-theory scholarship on the same topic.",
+      "lcsh_id": "sh2008101619",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Constitutional history--Rome",
+      "concept_cipher": "68569a163c219c37e977516cc625f1777dd6a33ca2f5aab5d0661e02245962c2"
+    },
+    {
+      "label": "Roman Magistracies",
+      "lcsh_heading": "Rome--Officials and employees",
+      "wikidata_qid": "Q842079",
+      "lcc_primary": "DG95",
+      "lcc_codes": [
+        "DG95",
+        "DG91"
+      ],
+      "cross_class_notes": "DG91 (political institutions) covers the institutional framework within which magistracies operate; merged because magistracies ARE the primary political institutions of the Republic.",
+      "facets": {
+        "primary": "Political",
+        "secondary": [
+          "Biographic",
+          "Military",
+          "Social",
+          "Economic"
+        ]
+      },
+      "scope_note": "Elected offices of the Republic and the cursus honorum: consul, praetor, censor, aedile, quaestor, tribune of the plebs, dictator. Covers qualifications, tenure, collegiality, prorogatio imperii, and the interplay of patrician and plebeian magistracies.",
+      "rationale": "DG91 (political institutions) and DG95 (magistracies) are inseparable for the Republic, where the magistracies constituted the executive branch. Biographic facet reflects prosopographic study of office-holders; Military facet reflects imperium-bearing offices.",
+      "lcsh_id": "sh85115176",
+      "lcsh_id_status": "verified",
+      "concept_cipher": "a89cd85566f839447d10b3b538f52951002a37b23da3dad68de3651329bc1109",
+      "lcsh_id_resolved_label": "Rome--Officials and employees"
+    },
+    {
+      "label": "Roman Senate",
+      "lcsh_heading": "Rome--Senate",
+      "wikidata_qid": "Q622664",
+      "lcc_primary": "DG99",
+      "lcc_codes": [
+        "DG99"
+      ],
+      "cross_class_notes": "None -- uniquely shelved under DG99.",
+      "facets": {
+        "primary": "Political",
+        "secondary": [
+          "Social",
+          "Biographic",
+          "Diplomatic",
+          "Economic"
+        ]
+      },
+      "scope_note": "The advisory and deliberative council of the Republic: composition (lectio senatus), procedures (relatio, senatus consultum), auctoritas patrum, and its evolving role from royal council to de facto governing body. Includes senatorial class (ordo senatorius) and its socio-economic prerequisites.",
+      "rationale": "The Senate is the single most studied Republican institution and warrants its own concept node distinct from magistracies and assemblies. Diplomatic facet reflects its monopoly on foreign policy; Economic facet reflects financial oversight.",
+      "lcsh_id": "sh85115178",
+      "lcsh_id_status": "lcsh_ceiling",
+      "concept_cipher": "7a7fc7ac09ada5e6b3d4d8f04e25e7dd9adc400ffc13cc2729af0b1c1dc66fb3",
+      "lcsh_id_resolved_label": "Rome--Politics and government"
+    },
+    {
+      "label": "Roman Popular Assemblies",
+      "lcsh_heading": "Rome--Assemblies",
+      "wikidata_qid": "Q1140498",
+      "lcc_primary": "DG101",
+      "lcc_codes": [
+        "DG101"
+      ],
+      "cross_class_notes": "None.",
+      "facets": {
+        "primary": "Political",
+        "secondary": [
+          "Social",
+          "Demographic",
+          "Communication"
+        ]
+      },
+      "scope_note": "Legislative and electoral assemblies of the Republic: comitia centuriata, comitia tributa, concilium plebis, and comitia curiata (vestigial). Covers voting procedures, tribal organization, the role of contiones, and the Conflict of the Orders as expressed through assembly politics.",
+      "rationale": "Assemblies are structurally distinct from both Senate and magistracies -- they represent popular sovereignty. Demographic facet reflects the census-based and tribal organization; Communication facet reflects contiones and political speech.",
+      "lcsh_id": "sh85115178",
+      "lcsh_id_status": "lcsh_ceiling",
+      "concept_cipher": "0881965ac26e5fd4db9923d46919b1cc5e18c7be5fc5855c01f7bb2ff09e04fa",
+      "lcsh_id_resolved_label": "Rome--Politics and government"
+    },
+    {
+      "label": "Roman Republican Army",
+      "lcsh_heading": "Rome--Army",
+      "wikidata_qid": "Q1249453",
+      "lcc_primary": "DG105",
+      "lcc_codes": [
+        "DG105"
+      ],
+      "cross_class_notes": "Military history of specific campaigns is in DG235-248 (period section, not used as concepts). Equipment and tactics also treated in U29-U35 (Military science -- Ancient).",
+      "facets": {
+        "primary": "Military",
+        "secondary": [
+          "Political",
+          "Social",
+          "Technological",
+          "Economic",
+          "Demographic"
+        ]
+      },
+      "scope_note": "Organization, recruitment, tactics, and social role of the Roman army in the Republic: the citizen militia, manipular legion, Marian reforms, auxilia, military tribunes, and the increasingly professional army of the late Republic. Includes military technology (siege warfare, fortification) and the army's role in political crises.",
+      "rationale": "Central Republican institution with its own rich scholarly literature. Social and Demographic facets reflect the militia principle and property qualifications; Political facet reflects the army as an instrument of political power in the late Republic.",
+      "lcsh_id": "sh85115090",
+      "lcsh_id_status": "verified",
+      "concept_cipher": "d73ff6b770070fba33d05e6fe2afcf45fee3c1d7cb6b91978f07378c307fdb30",
+      "lcsh_id_resolved_label": "Rome--Army"
+    },
+    {
+      "label": "Roman Navy",
+      "lcsh_heading": "Rome--Navy",
+      "wikidata_qid": "Q1548099",
+      "lcc_primary": "DG109",
+      "lcc_codes": [
+        "DG109"
+      ],
+      "cross_class_notes": "None.",
+      "facets": {
+        "primary": "Military",
+        "secondary": [
+          "Technological",
+          "Economic",
+          "Diplomatic"
+        ]
+      },
+      "scope_note": "Roman naval forces during the Republic: the creation of a fleet during the First Punic War, naval tactics (corvus, ramming), anti-piracy campaigns (lex Gabinia), and the naval dimension of civil wars (Actium, Naulochus). Rome's traditional reliance on allied navies.",
+      "rationale": "Distinct from the army in organization, technology, and scholarship. Smaller in scope but independently classified at DG109.",
+      "lcsh_id": "sh87007223",
+      "lcsh_id_status": "verified",
+      "concept_cipher": "f20ffc5aee4979197cf18ab7f23597c6fcbcf901694b07f7ee3637fc0a13be2b",
+      "lcsh_id_resolved_label": "Rome--Navy"
+    },
+    {
+      "label": "Roman Republican Religion",
+      "lcsh_heading": "Rome--Religion",
+      "wikidata_qid": "Q1156882",
+      "lcc_primary": "DG65",
+      "lcc_codes": [
+        "DG65",
+        "DG69",
+        "DG171",
+        "DG175",
+        "DG179",
+        "DG183",
+        "DG187"
+      ],
+      "cross_class_notes": "Also treated at BL798-BL820 (Religion -- Roman religion) in the BL schedule. DG69 (festivals) and DG171-187 (cults, priesthoods, temples, sacred places) are all sub-aspects merged here.",
+      "facets": {
+        "primary": "Religious",
+        "secondary": [
+          "Political",
+          "Cultural",
+          "Social",
+          "Archaeological",
+          "Artistic"
+        ]
+      },
+      "scope_note": "State religion and religious practice in the Republic: the pantheon, sacra publica and privata, divination (augury, haruspicy), priestly colleges (pontifices, augures, vestales, XVviri), festivals (feriae, ludi), temples, sacred law, and the politicization of religious office. Includes the introduction of foreign cults (Magna Mater, Bacchic controversy).",
+      "rationale": "DG65, DG69, and DG171-187 fragment a single intellectual domain (Roman religion) across thematic and detailed sub-schedules. Merging into one concept preserves coherence. Political facet is essential: religion was inseparable from Republican statecraft.",
+      "lcsh_id": "sh96009771",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Rome--Religion",
+      "concept_cipher": "db29dbd7c25bc1db69055b0549a1e8d1621fc28511bb06810d7b682af8c250c3"
+    },
+    {
+      "label": "Roman Republican Economy and Finance",
+      "lcsh_heading": "Rome--Economic conditions",
+      "wikidata_qid": "Q108656502",
+      "lcc_primary": "DG115",
+      "lcc_codes": [
+        "DG113",
+        "DG115"
+      ],
+      "cross_class_notes": "Also treated at HC39 (Economic history -- Ancient) for broader comparative context.",
+      "facets": {
+        "primary": "Economic",
+        "secondary": [
+          "Political",
+          "Social",
+          "Demographic",
+          "Technological",
+          "Environmental"
+        ]
+      },
+      "scope_note": "Economic structures and public finance of the Republic: agriculture (latifundia, ager publicus), trade networks and maritime commerce, taxation (tributum, vectigalia, publicani), the aerarium, land distribution controversies, debt crises, and the economic consequences of conquest. Excludes coinage/numismatics (see Roman Republican Coinage and Numismatics).",
+      "rationale": "DG113 (finance) and DG115 (economy) are inseparable for the Republic -- public finance was the mechanism through which economic policy was enacted. Environmental facet reflects agrarian and resource dimensions. Coinage carved out as separate concept (CJ833-839) with dedicated federation anchors (Nomisma, CRRO).",
+      "lcsh_id": "sh85115103",
+      "lcsh_id_status": "verified",
+      "concept_cipher": "38cd4f1099ceefbf4f60d15276e28b2036f22e0f9a8fed6530d141101151ae11",
+      "lcsh_id_resolved_label": "Rome--Economic conditions--510-30 B.C."
+    },
+    {
+      "label": "Roman Slavery",
+      "lcsh_heading": "Slavery--Rome",
+      "wikidata_qid": "Q2636041",
+      "lcc_primary": "DG119",
+      "lcc_codes": [
+        "DG119"
+      ],
+      "cross_class_notes": "Also shelved at HT863 (Sociology -- Slavery, ancient). Cross-class merge not needed: DG119 is the primary historical treatment.",
+      "facets": {
+        "primary": "Social",
+        "secondary": [
+          "Economic",
+          "Political",
+          "Demographic",
+          "Cultural"
+        ]
+      },
+      "scope_note": "The institution of slavery in the Republic: sources of slaves (warfare, piracy, debt-bondage), slave labor in agriculture and mining, domestic slavery, manumission and freedmen (liberti), the Servile Wars (especially Spartacus), and legal status of slaves and freedpersons.",
+      "rationale": "Slavery is a structurally distinct social institution with its own LCSH heading and dedicated scholarship. Economic facet reflects the labor system; Demographic facet reflects population composition.",
+      "lcsh_id": "sh85123324",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Slavery--Rome",
+      "concept_cipher": "9e41e92e16ad09f86659b8579baa86abe750086f29d4666ad3897ee8772a2055"
+    },
+    {
+      "label": "Women in Ancient Rome",
+      "lcsh_heading": "Women--Rome",
+      "wikidata_qid": "Q7315528",
+      "lcc_primary": "DG121",
+      "lcc_codes": [
+        "DG121"
+      ],
+      "cross_class_notes": "Also treated at HQ1136 (Women -- History -- Ancient). DG125 (family) overlaps but is kept separate as a broader social-structural concept.",
+      "facets": {
+        "primary": "Social",
+        "secondary": [
+          "Political",
+          "Economic",
+          "Biographic",
+          "Cultural",
+          "Religious"
+        ]
+      },
+      "scope_note": "Roles, legal status, and agency of women in the Republic: manus and tutela mulierum, property rights, marriage patterns, exemplary women (Cornelia, Clodia), women's participation in religious cults, and evolving freedoms of the late Republic.",
+      "rationale": "Independently classified at DG121 with robust LCSH heading. Biographic facet reflects prosopographic and biographical studies of individual Republican women.",
+      "lcsh_id": "sh2010119009",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Women--Rome--Social conditions",
+      "concept_cipher": "fd2c2548655cb709ffe71a5c80a2795d0b51e7005287a2384450d73623ed36a3"
+    },
+    {
+      "label": "Roman Family and Kinship",
+      "lcsh_heading": "Families--Rome",
+      "wikidata_qid": "Q7568068",
+      "lcc_primary": "DG125",
+      "lcc_codes": [
+        "DG125"
+      ],
+      "cross_class_notes": "Overlaps with DG121 (women) on marriage law, but family is the broader structural concept encompassing patria potestas, adoption, inheritance, and gens.",
+      "facets": {
+        "primary": "Social",
+        "secondary": [
+          "Political",
+          "Economic",
+          "Biographic",
+          "Demographic",
+          "Religious"
+        ]
+      },
+      "scope_note": "The familia as the fundamental social and legal unit of the Republic: patria potestas, marriage forms (cum manu / sine manu), adoption (adrogatio, adoptio), divorce, inheritance, the gens and nomen system, and the political significance of noble lineages (imagines maiorum). Includes funerary practice and ancestor cult.",
+      "rationale": "Distinct from Women (DG121) in scope -- covers the structural institution. Political facet reflects the role of great families (gentes) in Republican politics; Religious facet reflects ancestor veneration.",
+      "lcsh_id": "sh2009124087",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Families--Rome",
+      "concept_cipher": "daed4a3d75f03afc31856ad1084f333d1526f0c05afa334eb510817255be55e7"
+    },
+    {
+      "label": "Roman Social Life and Customs",
+      "lcsh_heading": "Rome--Social life and customs",
+      "wikidata_qid": "Q106653986",
+      "lcc_primary": "DG61",
+      "lcc_codes": [
+        "DG59",
+        "DG61",
+        "DG129",
+        "DG131"
+      ],
+      "cross_class_notes": "DG59 (Roman life and customs), DG61 (social life), DG129 (daily life), DG131 (manners and customs) all describe overlapping aspects of the same social-cultural domain.",
+      "facets": {
+        "primary": "Social",
+        "secondary": [
+          "Cultural",
+          "Economic",
+          "Demographic",
+          "Environmental"
+        ]
+      },
+      "scope_note": "Everyday life in the Republic: housing, diet, dress, entertainment (ludi, gladiatorial games in their early form), patron-client relations (clientela), social hierarchies (patrician/plebeian, equites, proletarii), urbanization, and the rhythms of public and private life.",
+      "rationale": "DG59, DG61, DG129, and DG131 fragment daily-life topics across redundant shelving positions. Merged into one concept. Cultural facet reflects customs and practices; Demographic facet reflects social stratification.",
+      "lcsh_id": "sh2010111081",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Rome--Social life and customs",
+      "concept_cipher": "3dba372f1157aa1befc8661b85e755f6c94f64b9fb7990754eb9b9f88cafbe9e"
+    },
+    {
+      "label": "Roman Education",
+      "lcsh_heading": "Education--Rome",
+      "wikidata_qid": "Q55640615",
+      "lcc_primary": "DG83",
+      "lcc_codes": [
+        "DG83",
+        "DG151"
+      ],
+      "cross_class_notes": "DG83 and DG151 are duplicate shelving for education within the DG schedule. Also treated at LA81-LA85 (History of education -- Ancient).",
+      "facets": {
+        "primary": "Intellectual",
+        "secondary": [
+          "Social",
+          "Cultural",
+          "Communication",
+          "Linguistic"
+        ]
+      },
+      "scope_note": "Educational practices and institutions in the Republic: rhetorical training, grammaticus and rhetor, Greek influence on Roman education, the role of education in forming the ruling class, and the tension between Greek learning and Roman mos maiorum.",
+      "rationale": "DG83 and DG151 both shelve education; merged. Linguistic facet reflects bilingual (Latin-Greek) education; Communication facet reflects centrality of oratory.",
+      "lcsh_id": "sh2008119007",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Education--Rome",
+      "concept_cipher": "2464ff620eabe3941b51a197867b1997b6ac7c93969176130313e40e123d1dae"
+    },
+    {
+      "label": "Roman Republican Art and Architecture",
+      "lcsh_heading": "Art, Roman",
+      "wikidata_qid": "Q3444339",
+      "lcc_primary": "DG75",
+      "lcc_codes": [
+        "DG75",
+        "DG78",
+        "DG42",
+        "DG45",
+        "DG51",
+        "DG55"
+      ],
+      "cross_class_notes": "Also shelved at N5760-N5770 (Visual arts -- Roman) and NA310-NA340 (Architecture -- Roman). DG42 (monuments), DG45 (public buildings), DG51 (private buildings), DG55 (streets/fora) are topographical-architectural sub-aspects merged here.",
+      "facets": {
+        "primary": "Artistic",
+        "secondary": [
+          "Archaeological",
+          "Cultural",
+          "Political",
+          "Religious",
+          "Technological"
+        ]
+      },
+      "scope_note": "Visual arts and built environment of the Republic: temple architecture, triumphal monuments, portraiture and veristic style, wall painting (early styles), mosaic, coins as artistic objects, public building programs, fora, and the relationship between art and political self-representation (triumph, funerary art).",
+      "rationale": "DG75 (art), DG78 (architecture/topography), and DG42-55 (specific building types and public spaces) all describe the material and aesthetic culture of Rome. Merging avoids fragmentation while preserving the topographic dimension. Archaeological facet reflects the material evidence base.",
+      "lcsh_id": "sh85007869",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Art, Roman",
+      "concept_cipher": "536ad5eeb27f98a7ddaecaf2f51f74a57a9b63669f7f2373a22b8b5d40edba88"
+    },
+    {
+      "label": "Roman Epigraphy and Inscriptions",
+      "lcsh_heading": "Inscriptions, Latin",
+      "wikidata_qid": "Q1498507",
+      "lcc_primary": "DG79",
+      "lcc_codes": [
+        "DG79",
+        "CN510-CN540"
+      ],
+      "cross_class_notes": "DG79 shelves inscriptions under Roman history; CN510-540 shelves Latin epigraphy under the general Inscriptions/Epigraphy class. Same intellectual domain.",
+      "facets": {
+        "primary": "Linguistic",
+        "secondary": [
+          "Archaeological",
+          "Biographic",
+          "Political",
+          "Religious",
+          "Communication"
+        ]
+      },
+      "scope_note": "Latin inscriptions as primary sources for the Republic: laws on bronze (leges), magistrates' dedications, funerary epigraphy (elogia), the senatus consultum de Bacchanalibus, fasti consulares and triumphales, milestones, and boundary markers. Includes epigraphic method, CIL, and the Imagines Italicae project.",
+      "rationale": "Cross-class merge of DG79 and CN. Epigraphy is simultaneously a linguistic discipline, an archaeological practice, and a source base for biography and political history -- all facets are genuinely active.",
+      "lcsh_id": "sh85066606",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Inscriptions, Latin",
+      "concept_cipher": "e8adcabcc0139f85000e8c2e8d2cd5a6d20c0f7fbcbaf3e486c44d0e318f0fd2"
+    },
+    {
+      "label": "Roman Republican Literature and Intellectual Life",
+      "lcsh_heading": "Latin literature--History and criticism",
+      "wikidata_qid": "Q232368",
+      "lcc_primary": "DG143",
+      "lcc_codes": [
+        "DG143",
+        "DG147",
+        "PA6001-PA6971"
+      ],
+      "cross_class_notes": "DG143 (literature as historical context) and DG147 (philosophy) are shelved under History; PA6001-6971 shelves Latin literature under Classical Philology. Merged as the intellectual-cultural production of the Republic.",
+      "facets": {
+        "primary": "Intellectual",
+        "secondary": [
+          "Communication",
+          "Cultural",
+          "Linguistic",
+          "Political",
+          "Social"
+        ]
+      },
+      "scope_note": "Literary and philosophical production of the Republic as both cultural artifacts and historical sources: epic (Ennius, Lucretius), drama (Plautus, Terence), oratory (Cicero), history (Sallust, Caesar, Livy's early books), satire (Lucilius), philosophy (Cicero, Lucretius), and antiquarianism (Varro). Covers Hellenization, patronage, and the social function of literature.",
+      "rationale": "DG143, DG147, and PA6001+ all treat Roman intellectual production from different shelving perspectives. The Political facet reflects literature as a tool of political argument; Communication facet reflects oratory and publication.",
+      "lcsh_id": "sh2008106708",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Latin literature--History and criticism",
+      "concept_cipher": "2fc32f48aba0ee9b1f84c2bd25d4fe2841d1d64f3a831b0427e5737955b34cbf"
+    },
+    {
+      "label": "Roman Science, Technology, and Medicine",
+      "lcsh_heading": "Science, Ancient--Rome",
+      "wikidata_qid": "Q282413",
+      "lcc_primary": "DG135",
+      "lcc_codes": [
+        "DG135",
+        "DG139"
+      ],
+      "cross_class_notes": "Also treated at Q124.95-Q125 (History of science -- Ancient) and R138 (History of medicine -- Roman). DG135 (science/technology) and DG139 (medicine) merged.",
+      "facets": {
+        "primary": "Scientific",
+        "secondary": [
+          "Technological",
+          "Environmental",
+          "Economic",
+          "Intellectual"
+        ]
+      },
+      "scope_note": "Scientific knowledge, technical practice, and medical traditions in the Republic: engineering (aqueducts, roads, bridges), agricultural science (Cato, Varro), military technology, surveying (agrimensores), Hellenistic scientific reception, and medical practice (before Galen). Includes the pragmatic Roman relationship to Greek theoretical science.",
+      "rationale": "DG135 and DG139 are inseparable for the Republican period where science, technology, and medicine formed a small but coherent knowledge domain. Environmental facet reflects agricultural and hydraulic engineering.",
+      "lcsh_id": "sh85118612",
+      "lcsh_id_status": "verified",
+      "concept_cipher": "481620aad5f579006c622d41b17a23279a265ad25e2e8d9695b22f8b11931fd5",
+      "lcsh_id_resolved_label": "Science, Ancient"
+    },
+    {
+      "label": "Roman Historiography and Sources",
+      "lcsh_heading": "Rome--Historiography",
+      "wikidata_qid": "Q55070614",
+      "lcc_primary": "DG35",
+      "lcc_codes": [
+        "DG31",
+        "DG35"
+      ],
+      "cross_class_notes": "DG31 (sources) and DG35 (historiography) are complementary aspects of the same methodological domain.",
+      "facets": {
+        "primary": "Intellectual",
+        "secondary": [
+          "Communication",
+          "Biographic",
+          "Political",
+          "Linguistic"
+        ]
+      },
+      "scope_note": "The study and critique of sources for Republican history: the annalistic tradition (Fabius Pictor, Cato the Elder), the development of Roman historical writing, source criticism, the problem of the early Republic's evidence gap, antiquarian traditions, and modern historiographical debates (prosopography, structuralism, New Republic).",
+      "rationale": "DG31 and DG35 together define the evidentiary and methodological foundation for all other Republican concepts. Biographic facet reflects prosopographic method; Political facet reflects ancient historians' focus on res publica.",
+      "lcsh_id": "sh2008116719",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Rome--Historiography",
+      "concept_cipher": "79570fb4a13f468622f389aea8a1c176100d2981a33b43093288d8dc51c99f44"
+    },
+    {
+      "label": "Archaeology of Republican Rome",
+      "lcsh_heading": "Rome--Antiquities",
+      "wikidata_qid": "Q839954",
+      "lcc_primary": "DG37",
+      "lcc_codes": [
+        "DG37",
+        "DG41"
+      ],
+      "cross_class_notes": "DG37 (archaeology) and DG41 (topography of Rome) are merged as the material-spatial study of the city and its territory.",
+      "facets": {
+        "primary": "Archaeological",
+        "secondary": [
+          "Geographic",
+          "Artistic",
+          "Environmental",
+          "Technological"
+        ]
+      },
+      "scope_note": "Material culture and excavation of Republican-era sites: the Forum Romanum, Palatine, Esquiline, the Servian Wall, mid-Republican temples, colonial foundations, field survey of the Roman countryside, ceramic studies, and numismatics as archaeological evidence. Includes urban topography and the physical development of Rome.",
+      "rationale": "DG37 and DG41 together cover the material and spatial dimensions of Republican Rome. Geographic facet reflects topographic study; Environmental facet reflects landscape archaeology and site formation.",
+      "lcsh_id": "sh85115088",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Rome--Antiquities",
+      "concept_cipher": "8ebbd0f115b6c773d4c2842400c0e2862edc2696c8bf047789f3720e8c8c9f09"
+    },
+    {
+      "label": "Roman Republican Coinage and Numismatics",
+      "lcsh_heading": "Coins, Roman",
+      "wikidata_qid": "Q952064",
+      "lcc_primary": "CJ",
+      "lcc_codes": [
+        "CJ833",
+        "CJ835"
+      ],
+      "cross_class_notes": "CJ833-839 is the primary numismatic shelf; also treated under DG113 (finance) for economic context. Promoted from gaps section after LoC verification confirmed standalone heading sh85027857.",
+      "facets": {
+        "primary": "Economic",
+        "secondary": [
+          "Archaeological",
+          "Artistic",
+          "Technological"
+        ]
+      },
+      "scope_note": "Roman Republican coinage and numismatics: coin types (denarius, as, sestertius), mints and minting technology, monetary policy, devaluations, coin iconography and propaganda, coin hoards. Federation anchors: Nomisma (roman_republic), CRRO.",
+      "rationale": "Numismatics is a distinct field with its own LCSH heading (Coins, Roman), dedicated LCC range (CJ833-839), and dedicated federation sources (Nomisma, CRRO). Carved out from Economy and Finance to prevent overloading a single concept.",
+      "lcsh_id": "sh85027857",
+      "lcsh_id_status": "verified",
+      "lcsh_id_resolved_label": "Coins, Roman",
+      "concept_cipher": "d68cd6993b6b4b6139dec0e9deaa902dfe4f4bd46393c55d066c05ef307fb9b2"
+    }
+  ],
+  "gaps": [
+    {
+      "label": "Roman Republican Diplomacy and Foreign Relations",
+      "description": "No single LCSH heading cleanly covers Republican diplomatic practice (foedera, deditio, amicitia, legati, the fetial procedure) as a thematic concept distinct from specific wars. DG234 provides a shelving position but the LCSH heading structure routes to period subdivisions rather than a thematic concept.",
+      "lcc_codes": [
+        "DG234"
+      ],
+      "facets": [
+        "Diplomatic",
+        "Political",
+        "Military",
+        "Communication"
+      ]
+    },
+    {
+      "label": "Patron-Client Relations in the Roman Republic",
+      "description": "Clientela is a foundational social institution of the Republic crosscutting politics, law, and social structure. It is not clearly captured by any single LCSH heading though it appears in social history scholarship. May require a new or composite heading.",
+      "lcc_codes": [
+        "DG61",
+        "DG91"
+      ],
+      "facets": [
+        "Social",
+        "Political",
+        "Economic",
+        "Diplomatic"
+      ]
+    },
+    {
+      "label": "Pre-Roman Italy and Italic Peoples",
+      "description": "DG13-16 covers Etruscans and pre-Roman Italic peoples (Samnites, Latins, Oscans, Umbrians) who are essential context for the Republic but may not have a single LCSH heading covering the whole pre-Roman Italian ethno-political landscape relevant to Republican expansion.",
+      "lcc_codes": [
+        "DG13",
+        "DG15",
+        "DG16"
+      ],
+      "facets": [
+        "Geographic",
+        "Demographic",
+        "Archaeological",
+        "Linguistic",
+        "Cultural"
+      ]
+    }
+  ],
+  "merge_log": [
+    {
+      "merged_from": [
+        "DG87 (Law)",
+        "DG155 (Law general)",
+        "DG159 (Private law)",
+        "DG163 (Criminal law)",
+        "DG167 (Public law)",
+        "KJA 1-9999 (Roman law)"
+      ],
+      "merged_into": "Roman Law",
+      "reason": "All are aspects or subdivisions of the same intellectual concept 'Roman law'. DG87 is the summary shelf; DG155-167 subdivide by branch; KJA is the same content shelved for law audiences."
+    },
+    {
+      "merged_from": [
+        "DG65 (Religion)",
+        "DG69 (Festivals)",
+        "DG171 (Religion general)",
+        "DG175 (Cults)",
+        "DG179 (Priesthoods)",
+        "DG183 (Temples)",
+        "DG187 (Sacred places)"
+      ],
+      "merged_into": "Roman Republican Religion",
+      "reason": "Festivals, cults, priesthoods, temples, and sacred places are all sub-aspects of Roman religion. Fragmenting them would create concepts too narrow to stand independently at the first schema level."
+    },
+    {
+      "merged_from": [
+        "DG59 (Roman life and customs)",
+        "DG61 (Social life)",
+        "DG129 (Daily life)",
+        "DG131 (Manners and customs)"
+      ],
+      "merged_into": "Roman Social Life and Customs",
+      "reason": "Four overlapping shelving positions for the same social-cultural domain. Daily life, manners, and customs are not independently coherent at the first level."
+    },
+    {
+      "merged_from": [
+        "DG75 (Art)",
+        "DG78 (Architecture/Topography)",
+        "DG42 (Monuments)",
+        "DG45 (Public buildings)",
+        "DG51 (Private buildings)",
+        "DG55 (Streets, fora, public spaces)"
+      ],
+      "merged_into": "Roman Republican Art and Architecture",
+      "reason": "Monuments, buildings, streets, and fora are the material substrate of Roman art and architecture. All describe the built visual environment and are best unified at first level."
+    },
+    {
+      "merged_from": [
+        "DG83 (Education)",
+        "DG151 (Education)"
+      ],
+      "merged_into": "Roman Education",
+      "reason": "Duplicate shelving for the same topic within the DG schedule."
+    },
+    {
+      "merged_from": [
+        "DG135 (Science, technology)",
+        "DG139 (Medicine)"
+      ],
+      "merged_into": "Roman Science, Technology, and Medicine",
+      "reason": "For the Republican period, science, technology, and medicine form a small coherent domain not warranting three separate first-level concepts."
+    },
+    {
+      "merged_from": [
+        "DG143 (Literature, historical context)",
+        "DG147 (Philosophy)",
+        "PA6001-PA6971 (Latin literature)"
+      ],
+      "merged_into": "Roman Republican Literature and Intellectual Life",
+      "reason": "Literature as historical source (DG143), Roman philosophy (DG147), and Latin literary studies (PA) all address the intellectual production of the Republic from different disciplinary angles."
+    },
+    {
+      "merged_from": [
+        "DG31 (Sources)",
+        "DG35 (Historiography)"
+      ],
+      "merged_into": "Roman Historiography and Sources",
+      "reason": "Sources and historiography are complementary methodological concerns -- the evidence base and its scholarly analysis."
+    },
+    {
+      "merged_from": [
+        "DG37 (Archaeology)",
+        "DG41 (Topography of Rome)"
+      ],
+      "merged_into": "Archaeology of Republican Rome",
+      "reason": "Archaeology and urban topography are methodologically unified -- excavation produces topographic knowledge; topographic study drives excavation priorities."
+    },
+    {
+      "merged_from": [
+        "DG79 (Inscriptions)",
+        "CN510-CN540 (Latin epigraphy)"
+      ],
+      "merged_into": "Roman Epigraphy and Inscriptions",
+      "reason": "Same intellectual domain -- Latin inscriptions -- shelved under History (DG) and under Epigraphy (CN) for different audiences."
+    },
+    {
+      "merged_from": [
+        "DG89 (Constitution)",
+        "DG233 (Constitution/magistrates, Republic period)",
+        "JC81 (Ancient political theory)"
+      ],
+      "merged_into": "Roman Constitution",
+      "reason": "DG89 is the thematic shelf, DG233 the period shelf, and JC81 the political-science shelf -- all for the same concept of the Republican constitutional order."
+    },
+    {
+      "merged_from": [
+        "DG91 (Political institutions)",
+        "DG95 (Magistracies)"
+      ],
+      "merged_into": "Roman Magistracies",
+      "reason": "For the Republic, the magistracies ARE the political institutions. DG91 is the general container; DG95 is the specific content. Inseparable at first level."
+    },
+    {
+      "merged_from": [
+        "DG113 (Finance)",
+        "DG115 (Economy)"
+      ],
+      "merged_into": "Roman Republican Economy and Finance",
+      "reason": "Public finance and economic structure are inseparable for the Republic -- taxation, land distribution, and monetary policy are simultaneously fiscal and economic."
+    }
+  ]
+}

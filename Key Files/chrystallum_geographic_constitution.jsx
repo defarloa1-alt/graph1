@@ -19,6 +19,32 @@ const C = {
 const STATUS_COL = { operational:C.pass, planned:C.warn, migration_pending:C.warn, blocked:C.fail };
 
 // ══════════════════════════════════════════════════════════════════════════════
+// GEO BACKBONE — Pleiades Place filtered to settlements and regions
+// ══════════════════════════════════════════════════════════════════════════════
+const GEO_BACKBONE = {
+  definition: "Place nodes with place_scope = 'v1_core'",
+  v1_core_types: ["settlement","villa","fort","station","colony","region","province","camp","city","town","village"],
+  deferred: "rivers, mountains, temples, roads, tombs, etc. — in graph but not backbone",
+  total_places: 44193,
+  sc_candidates: {
+    total: 4868,
+    pct: "11.0%",
+    principle: "Entity with ≥1 bibliographic authority ID (VIAF, GND, LoC, FAST, GeoNames) is recognized by the bibliographic control universe → SubjectConcept candidate",
+    biblio_distribution: [
+      { biblio_ids:0, count:39325, note:"Not a subject — just a graph node" },
+      { biblio_ids:1, count:3307, note:"Mostly GeoNames-only" },
+      { biblio_ids:2, count:304 }, { biblio_ids:3, count:432 },
+      { biblio_ids:4, count:423 }, { biblio_ids:5, count:402 },
+    ],
+    avg_biblio_ids: 1.8,
+    candidate_facets: ["GEOGRAPHIC"],
+    script: "scripts/neo4j/compute_sc_candidates.py",
+  },
+  query: "MATCH (p:Place) WHERE p.place_scope = 'v1_core' RETURN p",
+  tagging_script: "scripts/neo4j/tag_place_scope.py",
+};
+
+// ══════════════════════════════════════════════════════════════════════════════
 // DESIGN PRINCIPLES — agent reads these to understand geographic architecture
 // ══════════════════════════════════════════════════════════════════════════════
 const PRINCIPLES = [
@@ -45,11 +71,24 @@ const NODE_TYPES = [
       { name:"label",       type:"string",  desc:"Current preferred display name" },
     ],
     optional_props:[
-      { name:"pleiades_id", type:"string",  desc:"Pleiades identifier" },
-      { name:"qid",         type:"string",  pattern:"Q[0-9]+", desc:"Wikidata QID" },
-      { name:"description", type:"string",  desc:"Brief description" },
-      { name:"min_date",    type:"integer", desc:"Earliest attested date (derived from sub-nodes)" },
-      { name:"max_date",    type:"integer", desc:"Latest attested date (derived from sub-nodes)" },
+      { name:"pleiades_id",       type:"string",  desc:"Pleiades identifier (42,065 Places)" },
+      { name:"qid",               type:"string",  pattern:"Q[0-9]+", desc:"Wikidata QID (2,808 Places)" },
+      { name:"place_scope",       type:"enum",    values:["v1_core","deferred"], desc:"v1_core = backbone (settlements, regions); deferred = rivers, temples, etc." },
+      { name:"description",       type:"string",  desc:"Brief description" },
+      { name:"min_date",          type:"integer", desc:"Earliest attested date (derived from sub-nodes)" },
+      { name:"max_date",          type:"integer", desc:"Latest attested date (derived from sub-nodes)" },
+      { name:"geonames_id",       type:"string",  desc:"GeoNames ID (P1566) — crosswalk authority" },
+      { name:"tgn_id",            type:"string",  desc:"Getty TGN ID (P1667) — crosswalk authority" },
+      { name:"viaf_id",           type:"string",  desc:"VIAF cluster ID (P214) — library authority" },
+      { name:"gnd_id",            type:"string",  desc:"GND ID (P227) — library authority" },
+      { name:"loc_authority_id",  type:"string",  desc:"LoC authority ID (P244). sh-prefix = LCSH subject heading; n-prefix = NAF named entity" },
+      { name:"fast_id",           type:"string",  desc:"FAST subject heading ID (P2163)" },
+      { name:"osm_relation_id",   type:"string",  desc:"OpenStreetMap relation ID (P402) — modern reference" },
+      { name:"instance_of",       type:"string",  desc:"Wikidata P31 instance_of labels (pipe-separated)" },
+      { name:"inception_year",    type:"integer", desc:"Year of founding/inception (P571)" },
+      { name:"dissolved_year",    type:"integer", desc:"Year of dissolution (P576)" },
+      { name:"federation_score",  type:"integer", desc:"D16 v2 score (0-100). 9 rules: qid(25)+pleiades(20)+geonames(10)+tgn(5)+library(10)+osm(5)+coords(10)+temporal(10)+class(5)" },
+      { name:"federation_score_version", type:"string", desc:"Scoring rubric version (D16_v2_9rule)" },
     ],
     deprecated_props:[
       { name:"lat",         reason:"Moved to PlaceGeometry" },
@@ -57,7 +96,12 @@ const NODE_TYPES = [
       { name:"bbox",        reason:"Moved to PlaceGeometry" },
       { name:"place_type",  reason:"Moved to HAS_TYPE → PlaceType relationship" },
     ],
-    current_count: 44064,
+    current_count: 44193,
+    enrichment_stats: {
+      with_qid: 2808, with_pleiades: 42065, with_loc: 1071, with_viaf: 1483,
+      with_gnd: 1112, with_osm: 1051, with_tgn: 510, with_instance_of: 2737,
+      with_inception_year: 491, scored: 44193,
+    },
   },
   { name:"PlaceName", status:"migration_pending", color:C.name,
     desc:"Time-bounded name attestation. A Place may have multiple names across time and language (Byzantium → Constantinople → Istanbul).",
@@ -144,6 +188,52 @@ const NODE_TYPES = [
     current_count: 14,
     note:"Migration Step 3 splits compound strings ('settlement, archaeological-site') and MERGE creates additional PlaceType nodes.",
   },
+  { name:"ClassificationAnchor", status:"operational", color:C.wikidata,
+    desc:"Bibliographic classification coordinate for a Place with an LCSH subject heading. Bridges geographic backbone to LCSH/FAST/LCC authority system. Created from Place nodes whose loc_authority_id starts with 'sh'.",
+    required_props:[
+      { name:"qid",          type:"string",  pattern:"Q[0-9]+", desc:"Wikidata QID (same as owning Place)" },
+      { name:"label",        type:"string",  desc:"English label from Wikidata" },
+      { name:"anchor_type",  type:"enum",    values:["HistoricalPlace","PhysicalFeature","Hydrography","GeographicPlace","AdministrativeDivision","Settlement","PoliticalEntity"], desc:"Classification derived from instance_of" },
+      { name:"federation",   type:"string",  desc:"Always 'wikidata'" },
+    ],
+    optional_props:[
+      { name:"lcsh_id",       type:"string", desc:"LCSH subject heading ID (sh-prefix)" },
+      { name:"fast_id",       type:"string", desc:"FAST ID" },
+      { name:"gnd_id",        type:"string", desc:"GND ID" },
+      { name:"lcc",           type:"string", desc:"Library of Congress Classification notation" },
+      { name:"dewey",         type:"string", desc:"Dewey Decimal Classification notation" },
+      { name:"source_type",   type:"string", desc:"Always 'geographic_lcsh'" },
+    ],
+    current_count: 201,
+    note:"Created by wire_place_classification_anchors.py. 93 HistoricalPlace, 54 PhysicalFeature, 26 Hydrography, 19 GeographicPlace, 4 AdminDiv, 3 Settlement, 2 PoliticalEntity.",
+  },
+  { name:"SubjectConcept", status:"operational", color:"#9B59B6",
+    desc:"Geographic subject classification node. 7 concepts bootstrapped from ClassificationAnchor types. Places with instance_of are wired via MEMBER_OF.",
+    required_props:[
+      { name:"subject_id",    type:"string", desc:"e.g. GEO_HIST_PLACES, GEO_HYDROGRAPHY" },
+      { name:"label",         type:"string", desc:"Human-readable label" },
+      { name:"seed_domain",   type:"string", desc:"Always 'geographic' for these" },
+      { name:"anchor_type",   type:"string", desc:"Maps to ClassificationAnchor.anchor_type" },
+    ],
+    optional_props:[
+      { name:"scope_note",    type:"string", desc:"Description of what this concept covers" },
+      { name:"lcsh_heading",  type:"string", desc:"Canonical LCSH heading" },
+      { name:"lcsh_id",       type:"string", desc:"LCSH ID (sh-prefix)" },
+      { name:"lcc_primary",   type:"string", desc:"Primary LCC class" },
+      { name:"entity_count",  type:"integer", desc:"Number of MEMBER_OF Place nodes" },
+    ],
+    current_count: 7,
+    subjects: [
+      { id:"GEO_SETTLEMENTS",       members:1612, anchors:3,  label:"Settlements & Urban Places" },
+      { id:"GEO_HIST_PLACES",       members:520,  anchors:93, label:"Historical Places & Archaeological Sites" },
+      { id:"GEO_GENERAL",           members:345,  anchors:19, label:"General Geographic Places" },
+      { id:"GEO_ADMIN_DIVISIONS",   members:316,  anchors:4,  label:"Administrative & Political Divisions" },
+      { id:"GEO_HYDROGRAPHY",       members:254,  anchors:26, label:"Hydrography & Water Bodies" },
+      { id:"GEO_PHYS_FEATURES",     members:248,  anchors:54, label:"Physical Geography & Landforms" },
+      { id:"GEO_POLITICAL_ENTITIES", members:140, anchors:2,  label:"States, Empires & Political Entities" },
+    ],
+    note:"3,435 Places classified via instance_of pattern matching. 41k Pleiades-only Places unclassified (no instance_of data).",
+  },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -172,13 +262,32 @@ const REL_TYPES = [
     current_count: 32480 },
   { name:"BORN_IN_PLACE",             source:"Person",         target:"Place",         status:"operational",
     desc:"Person born at this place", category:"biographic", temporal:false,
-    current_count: 1284 },
+    current_count: 1635 },
   { name:"DIED_IN_PLACE",             source:"Person",         target:"Place",         status:"operational",
     desc:"Person died at this place", category:"biographic", temporal:false,
-    current_count: 238 },
+    current_count: 313 },
   { name:"BURIED_AT",                 source:"Person",         target:"Place",         status:"operational",
     desc:"Person buried at this place", category:"biographic", temporal:false,
     current_count: 15 },
+  // ── New relationships from geographic classification bootstrap (2026-03-08) ──
+  { name:"MEMBER_OF",                 source:"Place",          target:"SubjectConcept", status:"operational",
+    desc:"Place classified into geographic SubjectConcept by instance_of pattern matching", category:"classification", temporal:false,
+    current_count: 3435 },
+  { name:"POSITIONED_AS",             source:"Place",          target:"ClassificationAnchor", status:"operational",
+    desc:"Place self-anchored to its ClassificationAnchor (hops=0, confidence=1.0)", category:"classification", temporal:false,
+    current_count: 201 },
+  { name:"PROVIDES_ANCHOR",           source:"SYS_FederationSource", target:"ClassificationAnchor", status:"operational",
+    desc:"Wikidata federation source provides this classification anchor", category:"federation", temporal:false,
+    current_count: 201 },
+  { name:"ANCHORS",                   source:"ClassificationAnchor", target:"SubjectConcept", status:"operational",
+    desc:"ClassificationAnchor grounds a SubjectConcept via shared anchor_type", category:"classification", temporal:false,
+    current_count: 201 },
+  { name:"HAS_PRIMARY_FACET",         source:"SubjectConcept", target:"Facet",          status:"operational",
+    desc:"SubjectConcept belongs to Geographic facet", category:"classification", temporal:false,
+    current_count: 7 },
+  { name:"MANAGES_FACET",             source:"SYS_SFAAgent",   target:"Facet",          status:"operational",
+    desc:"Geographic SFA agent manages the Geographic facet", category:"system", temporal:false,
+    current_count: 1 },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -201,14 +310,14 @@ const GEO_FED = [
     provides:["GeoPlace nodes with feature codes", "ADMIN_CHILD_OF hierarchy", "Modern coordinates", "Admin boundary polygons (via GADM/Natural Earth)"],
     current_state:"1,743 backbone stubs as Place nodes (node_type='geonames_place_backbone'). No coordinates, no feature codes, no hierarchy edges.",
     ingestion_notes:"Full GeoNames dump (allCountries.zip) is 1.5GB. For Chrystallum, filter to countries with Pleiades coverage (IT, GR, TR, EG, TN, LY, SY, etc.) + admin levels 0-2." },
-  { id:"wikidata_geo", name:"Wikidata (geographic)", color:C.wikidata, status:"planned",
+  { id:"wikidata_geo", name:"Wikidata (geographic)", color:C.wikidata, status:"operational",
     role:"bridge_layer",
-    desc:"Universal knowledge bridge. Cross-references (GeoNames ID P1566, Pleiades ID P4145). Multilingual labels. Modern coordinates P625. Geoshape polygons P3896.",
+    desc:"Universal knowledge bridge. Cross-references (GeoNames ID P1566, Pleiades ID P4145). Multilingual labels. Modern coordinates P625. External authority IDs. Classification anchors via LCSH.",
     endpoint:"https://query.wikidata.org/sparql",
     api:"https://www.wikidata.org/wiki/Special:EntityData/{qid}.json",
-    provides:["SAME_AS bridge edges", "Modern coordinates (P625)", "Geoshape polygons (P3896 → Commons Data)", "Multilingual labels", "GeoNames ID (P1566) for hierarchy linkage", "Pleiades ID (P4145) for identity linkage"],
-    current_state:"2,786 Places have qid. 331 Wikidata backbone stubs. No SAME_AS edges, no P3896 geoshapes harvested.",
-    ingestion_notes:"SPARQL query: SELECT ?place ?pleiades ?geonames ?coords ?geoshape WHERE { ?place wdt:P4145 ?pleiades . OPTIONAL { ?place wdt:P1566 ?geonames } OPTIONAL { ?place wdt:P625 ?coords } OPTIONAL { ?place wdt:P3896 ?geoshape } }" },
+    provides:["External authority IDs (VIAF, GND, LoC, FAST, OSM, TGN, GeoNames)", "instance_of classification", "Temporal bounds (inception/dissolved year)", "ClassificationAnchor nodes (LCSH-grounded)", "Modern coordinates (P625)", "Geoshape polygons (P3896 → Commons Data)", "Multilingual labels"],
+    current_state:"2,808 Places have qid. 2,739 enriched with external IDs (2026-03-08). 201 ClassificationAnchors with LCSH subject headings. VIAF: 1,483 | GND: 1,112 | LoC: 1,071 | OSM: 1,051 | TGN: 510 | instance_of: 2,737 | inception_year: 491.",
+    ingestion_notes:"Enrichment via Wikidata API (wbgetentities, 50/batch). Scripts: enrich_place_external_ids.py (bulk IDs), wire_place_classification_anchors.py (LCSH anchors). P3896 geoshapes NOT yet harvested." },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -245,7 +354,62 @@ const GEO_RULES = [
     trigger:"GeoPlace nodes exist but no ADMIN_CHILD_OF edges",
     action:"For each GeoPlace: lookup parent admin in GeoNames hierarchy. MERGE parent GeoPlace if absent. CREATE (child)-[:ADMIN_CHILD_OF]->(parent). Repeat up to country level.",
     rationale:"The admin tree is what makes 'ancient sites in Andalusia' work. Without it, GeoPlace nodes are isolated stubs." },
+  // ── Decision table rules (implemented in Neo4j, 2026-03-08) ──
+  { id:"GR-07", name:"D16 Federation Scoring (9-rule)",
+    facets:["Geographic"],
+    trigger:"Place node exists (any Place, scored on write/rescore)",
+    action:"Apply D16_SCORE_place_federation: qid(+25) + pleiades(+20) + geonames(+10) + tgn(+5) + library_auth(+10) + osm(+5) + coords(+10) + temporal(+10) + instance_of(+5) = max 100. Write federation_score, federation_score_version.",
+    rationale:"Quantifies Place data richness. Score drives SFA prioritization — high-scoring Places are processed first. Rebalanced from 4-rule (max 100) to 9-rule (max 100) based on geographic property survey of 264 Wikidata entities across 25 classes." },
+  { id:"GR-08", name:"D5 Temporal Bypass for Physical Features",
+    facets:["Geographic"],
+    trigger:"Place has instance_of matching atemporal physical feature class",
+    action:"Skip D5_SCOPE_temporal_overlap check. Bypass classes: river (Q4022), mountain (Q8502), lake (Q23397), sea (Q165), peninsula (Q34763), valley (Q39816), continent (Q5107), waterfall (Q34038), island (Q23442), ocean, strait, cape.",
+    rationale:"Physical features have 0% temporal coverage in Wikidata (no P571 inception / P576 dissolution). They are permanent geographic fixtures — always in scope if spatially relevant. Without bypass, every river and mountain would fail temporal overlap and be excluded." },
+  { id:"GR-09", name:"LCSH Classification Anchor Wiring",
+    facets:["Geographic"],
+    trigger:"Place has loc_authority_id starting with 'sh' (LCSH subject heading)",
+    action:"Create ClassificationAnchor node with same QID. Fetch Dewey/LCC/FAST/GND from Wikidata. Wire POSITIONED_AS (Place→Anchor, hops=0, confidence=1.0). Wire PROVIDES_ANCHOR (Wikidata→Anchor). Classify anchor_type from instance_of.",
+    rationale:"201 Places have LCSH subject headings — they ARE subjects in the Library of Congress classification. Wiring them as ClassificationAnchors bridges the geographic backbone to the bibliographic authority system that SubjectConcepts are built on." },
+  { id:"GR-10", name:"SubjectConcept Membership by instance_of",
+    facets:["Geographic"],
+    trigger:"Place has instance_of property (from Wikidata P31 enrichment)",
+    action:"Pattern-match instance_of labels against 7 SubjectConcept definitions. Wire MEMBER_OF to matching SubjectConcept. Unmatched Places fall back to GEO_GENERAL.",
+    rationale:"Automated classification of 3,435 Places into 7 geographic SubjectConcepts. Uses Wikidata instance_of as the routing signal — the same property that drives ClassificationAnchor type classification." },
 ];
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SFA AGENT & CLASSIFICATION INFRASTRUCTURE
+// ══════════════════════════════════════════════════════════════════════════════
+const GEO_SFA = {
+  agent_id: "sfa_geographic",
+  label: "Geographic SFA",
+  status: "bootstrap",
+  facet: "Geographic",
+  entity_types: ["Place"],
+  description: "Subject Facet Agent for the Geographic facet. Manages Place entities, spatial relationships, and geographic classification anchors. Covers 7 SubjectConcepts.",
+  decision_tables: [
+    { id:"D16_SCORE_place_federation", rules:9, max_score:100,
+      desc:"Component scoring rubric for Place nodes. Rebalanced 2026-03-08 from geographic property survey.",
+      dimensions:["wikidata_alignment(25)","place_authority(20)","crosswalk_authority(15)","library_authority(10)","modern_reference(5)","geospatial(10)","temporal_bounds(10)","class_signal(5)"] },
+    { id:"D5_SCOPE_temporal_overlap", rules:1,
+      desc:"Temporal bypass for atemporal physical features (river, mountain, lake, sea, etc.)" },
+  ],
+  classification_pipeline: {
+    step_1: "enrich_place_external_ids.py — bulk Wikidata API harvest of authority IDs for Places with QIDs",
+    step_2: "wire_place_classification_anchors.py — create ClassificationAnchors for Places with LCSH (sh-prefix) IDs",
+    step_3: "bootstrap_geo_subject_concepts.py — create 7 SubjectConcepts, wire MEMBER_OF by instance_of pattern",
+    step_4: "rescore_places_d16.py — apply 9-rule D16 scoring to all 44,193 Places",
+    step_5: "compute_sc_candidates.py — flag 4,868 Places as sc_candidate=true based on biblio authority ID presence, route to GEOGRAPHIC facet",
+  },
+  coverage: {
+    total_places: 44193,
+    classified_places: 3435,
+    unclassified_places: 41456,
+    unclassified_reason: "Pleiades-only imports with no Wikidata instance_of data. Needs Pleiades→class mapping or QID alignment.",
+    classification_anchors: 201,
+    subject_concepts: 7,
+  },
+};
 
 // ══════════════════════════════════════════════════════════════════════════════
 // NAMED QUERIES
@@ -846,6 +1010,82 @@ function MigrationTab() {
   );
 }
 
+// ── SFA TAB ─────────────────────────────────────────────────────────────────
+function SfaTab() {
+  return (
+    <div>
+      <div style={{border:`1px solid ${C.neo}40`,borderLeft:`3px solid ${C.neo}`,
+        borderRadius:6,padding:12,background:C.panel,marginBottom:12}}>
+        <div style={{display:"flex",gap:8,alignItems:"center",marginBottom:6}}>
+          <span style={{fontWeight:"bold",color:C.neo,fontSize:13}}>{GEO_SFA.label}</span>
+          <Tag label={GEO_SFA.status} color={C.warn}/>
+          <Tag label={`agent_id: ${GEO_SFA.agent_id}`} color={C.dim}/>
+        </div>
+        <div style={{fontSize:9,color:C.dim,marginBottom:8,lineHeight:1.5}}>{GEO_SFA.description}</div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
+          <div>
+            <SHead col={C.neo}>DECISION TABLES</SHead>
+            {GEO_SFA.decision_tables.map(dt=>(
+              <div key={dt.id} style={{marginBottom:6,paddingLeft:8,borderLeft:`2px solid ${C.neo}`}}>
+                <Mono col={C.neo} s={8.5}>{dt.id}</Mono>
+                <span style={{fontSize:8,color:C.dim,marginLeft:6}}>{dt.rules} rules{dt.max_score?`, max ${dt.max_score}`:""}</span>
+                <div style={{fontSize:7.5,color:C.dim}}>{dt.desc}</div>
+                {dt.dimensions && <div style={{marginTop:2,display:"flex",gap:3,flexWrap:"wrap"}}>
+                  {dt.dimensions.map(d=><Tag key={d} label={d} color={C.neo} size={6.5}/>)}
+                </div>}
+              </div>
+            ))}
+          </div>
+          <div>
+            <SHead col={C.wikidata}>CLASSIFICATION PIPELINE</SHead>
+            {Object.entries(GEO_SFA.classification_pipeline).map(([step,desc])=>(
+              <div key={step} style={{fontSize:8,color:C.dim,marginBottom:4,paddingLeft:8,
+                borderLeft:`2px solid ${C.wikidata}`}}>
+                <Mono col={C.wikidata} s={7.5}>{step}</Mono>
+                <span style={{marginLeft:6}}>{desc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <SHead col={C.pleiades}>COVERAGE</SHead>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:8,marginBottom:12}}>
+        {[["Total Places",GEO_SFA.coverage.total_places,C.pleiades],
+          ["Classified",GEO_SFA.coverage.classified_places,C.pass],
+          ["Unclassified",GEO_SFA.coverage.unclassified_places,C.warn],
+          ["Anchors",GEO_SFA.coverage.classification_anchors,C.wikidata],
+          ["SubjectConcepts",GEO_SFA.coverage.subject_concepts,C.neo],
+        ].map(([label,val,col])=>(
+          <div key={label} style={{background:col+"10",border:`1px solid ${col}30`,borderRadius:4,
+            padding:"6px 10px",textAlign:"center"}}>
+            <div style={{fontSize:16,fontWeight:"bold",color:col}}>{val.toLocaleString()}</div>
+            <div style={{fontSize:7.5,color:C.dim}}>{label}</div>
+          </div>
+        ))}
+      </div>
+      <SHead col="#9B59B6">SUBJECT CONCEPTS</SHead>
+      <div style={{borderRadius:4,overflow:"hidden",border:`1px solid ${C.border}`}}>
+        <div style={{display:"grid",gridTemplateColumns:"200px 80px 80px 1fr",
+          background:C.border,padding:"4px 8px",fontSize:7.5,fontWeight:"bold",color:C.dim}}>
+          <span>Subject ID</span><span>Members</span><span>Anchors</span><span>Label</span>
+        </div>
+        {NODE_TYPES.find(n=>n.name==="SubjectConcept")?.subjects?.map(s=>(
+          <div key={s.id} style={{display:"grid",gridTemplateColumns:"200px 80px 80px 1fr",
+            padding:"3px 8px",borderTop:`1px solid ${C.border}`,fontSize:8}}>
+            <Mono col="#9B59B6" s={8}>{s.id}</Mono>
+            <span style={{color:C.bright}}>{s.members.toLocaleString()}</span>
+            <span style={{color:C.wikidata}}>{s.anchors}</span>
+            <span style={{color:C.dim}}>{s.label}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{marginTop:8,fontSize:7.5,color:C.warn,fontStyle:"italic"}}>
+        {GEO_SFA.coverage.unclassified_reason}
+      </div>
+    </div>
+  );
+}
+
 // ── BOOTSTRAP TAB ────────────────────────────────────────────────────────────
 function BootstrapTab() {
   return (
@@ -894,6 +1134,7 @@ export default function App() {
     ["rules",       `Rules (${GEO_RULES.length})`],
     ["queries",     `Queries (${GEO_QUERIES.length})`],
     ["fed",         `Federation (${GEO_FED.length})`],
+    ["sfa",         "SFA Agent"],
     ["map",         `Map Layers (${MAP_LAYERS.length})`],
     ["migration",   "Migration"],
     ["bootstrap",   "Agent Bootstrap"],
@@ -915,6 +1156,7 @@ export default function App() {
         <div style={{fontSize:9,color:C.dim,marginBottom:6}}>
           Temporal decomposition of Place with multi-fidelity spatial model.
           Places are identities with time-bounded names and geometries, not flat coordinate properties.
+          44,193 Places | 201 ClassificationAnchors | 7 SubjectConcepts | 3,435 classified | D16 scored.
         </div>
         <div style={{display:"flex",gap:8,flexWrap:"wrap",fontSize:8,color:C.dim}}>
           <span>{NODE_TYPES.length} node types</span>
@@ -923,12 +1165,16 @@ export default function App() {
           <span>-</span><span>{GEO_QUERIES.length} named queries</span>
           <span>-</span><span>{GEO_FED.length} federation sources</span>
           <span>-</span><span>{MAP_LAYERS.length} map layers</span>
+          <span>-</span><span>1 SFA agent</span>
         </div>
         <div style={{marginTop:8,background:C.neo+"10",border:`1px solid ${C.neo}30`,
           borderRadius:4,padding:"5px 10px",fontSize:8,color:C.neo}}>
           AGENT INSTRUCTION: This is the geographic domain constitution.
-          Three source layers: Pleiades (identity), GeoNames (spatial hierarchy), Wikidata (bridge).
+          Geo backbone = Place WHERE place_scope='v1_core' (settlements, regions, villas, forts, colonies).
+          Three source layers: Pleiades (identity), GeoNames (spatial hierarchy), Wikidata (bridge + enrichment).
           All node types and relationships are registered as SYS_ nodes in Neo4j.
+          SFA agent: sfa_geographic (status=bootstrap). 7 SubjectConcepts with LCSH/FAST/LCC authority.
+          D16 scoring (9 rules, max 100) applied to all Places. D5 temporal bypass for atemporal features.
           Query SYS_NodeType WHERE domain='geographic' to bootstrap.
         </div>
       </div>
@@ -948,6 +1194,7 @@ export default function App() {
       {view==="rules"      && <RulesTab/>}
       {view==="queries"    && <QueriesTab/>}
       {view==="fed"        && <FedTab/>}
+      {view==="sfa"        && <SfaTab/>}
       {view==="map"        && <MapTab/>}
       {view==="migration"  && <MigrationTab/>}
       {view==="bootstrap"  && <BootstrapTab/>}

@@ -1,0 +1,306 @@
+{
+  "seed_qid": "Q17167",
+  "seed_label": "Roman Republic",
+  "generated": "2026-03-08T20:55:38.193656+00:00",
+  "facets_trained": [
+    "military"
+  ],
+  "facets_missing": [
+    "archaeological",
+    "artistic",
+    "biographic",
+    "communication",
+    "cultural",
+    "demographic",
+    "diplomatic",
+    "economic",
+    "environmental",
+    "geographic",
+    "intellectual",
+    "linguistic",
+    "political",
+    "religious",
+    "scientific",
+    "social",
+    "technological"
+  ],
+  "proposals": [
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_wars",
+      "label": "Wars & Campaigns",
+      "description": "Major wars, battles, and military campaigns of the Republic including Punic, Macedonian, Gallic, and Social Wars",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [
+        "Q124988",
+        "Q596373",
+        "Q75813",
+        "Q202161",
+        "Q677316"
+      ],
+      "estimated_concepts": 25,
+      "needs": "Chronological sequencing, battle geography, commander prosopography, casualty analysis",
+      "concept_cipher": "12eb20ad0637d4d0",
+      "facet_weights": {
+        "military": 1.0
+      },
+      "confidence": 0.82,
+      "threshold_used": "level2_child_overload=12"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_organization",
+      "label": "Military Organization & Units",
+      "description": "Legion structure, unit types, recruitment, and military reforms throughout Republican period",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [
+        "Q60792542"
+      ],
+      "estimated_concepts": 20,
+      "needs": "Unit hierarchies, equipment catalogs, recruitment demographics, reform timelines",
+      "concept_cipher": "48cc816a75c0e1de",
+      "facet_weights": {
+        "military": 1.0
+      },
+      "confidence": 0.82,
+      "threshold_used": "level2_child_overload=12"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_civil_wars",
+      "label": "Civil Wars & Internal Conflicts",
+      "description": "Internal military conflicts from Gracchi through Augustus including Sulla, Marius, Caesar",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [],
+      "estimated_concepts": 15,
+      "needs": "Factional analysis, veteran settlement patterns, constitutional impacts",
+      "concept_cipher": "ac4ee11103f5da10",
+      "facet_weights": {
+        "military": 1.0
+      },
+      "confidence": 0.82,
+      "threshold_used": "level2_child_overload=12"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_battles",
+      "label": "Individual Battles & Engagements",
+      "description": "Specific battles and military engagements with tactical and strategic significance",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [
+        "Q104834716",
+        "Q11688220",
+        "Q1974201",
+        "Q233402",
+        "Q3491975",
+        "Q4872838",
+        "Q60524410",
+        "Q60524412",
+        "Q60524449",
+        "Q60524464",
+        "Q9172749",
+        "Q9173528"
+      ],
+      "estimated_concepts": 15,
+      "needs": "Tactical analysis, terrain studies, casualty records, source criticism",
+      "concept_cipher": "32ca655f67d295e3",
+      "facet_weights": {
+        "military": 1.0
+      },
+      "confidence": 0.82,
+      "threshold_used": "level2_child_overload=12"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_command",
+      "label": "Command & Strategy",
+      "description": "Military leadership, command structures, strategic planning, and general competency",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [],
+      "estimated_concepts": 10,
+      "needs": "Prosopographical data, command hierarchies, strategic doctrines, leadership analysis",
+      "concept_cipher": "c085c8099c6729fe",
+      "facet_weights": {
+        "military": 1.0
+      },
+      "confidence": 0.82,
+      "threshold_used": "level2_child_overload=12"
+    }
+  ],
+  "candidate_consensus": {
+    "Q124988": {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "confirm": 1,
+      "reject": 0,
+      "reroute": 0,
+      "total_votes": 1,
+      "consensus": "confirm",
+      "verdicts": [
+        {
+          "qid": "Q124988",
+          "label": "Punic Wars",
+          "verdict": "confirm",
+          "reroute_to": null,
+          "evidence": "Core Republican military conflicts extensively referenced in Polybius commentary and civil war contexts",
+          "source_facet": "military"
+        }
+      ]
+    },
+    "Q596373": {
+      "qid": "Q596373",
+      "label": "Pyrrhic War",
+      "confirm": 1,
+      "reject": 0,
+      "reroute": 0,
+      "total_votes": 1,
+      "consensus": "confirm",
+      "verdicts": [
+        {
+          "qid": "Q596373",
+          "label": "Pyrrhic War",
+          "verdict": "confirm",
+          "reroute_to": null,
+          "evidence": "Important early Republican military engagement showing adaptation to new warfare styles",
+          "source_facet": "military"
+        }
+      ]
+    },
+    "Q75813": {
+      "qid": "Q75813",
+      "label": "Macedonian Wars",
+      "confirm": 1,
+      "reject": 0,
+      "reroute": 0,
+      "total_votes": 1,
+      "consensus": "confirm",
+      "verdicts": [
+        {
+          "qid": "Q75813",
+          "label": "Macedonian Wars",
+          "verdict": "confirm",
+          "reroute_to": null,
+          "evidence": "Key Republican expansion wars in Eastern Mediterranean, well-documented in classical sources",
+          "source_facet": "military"
+        }
+      ]
+    },
+    "Q677316": {
+      "qid": "Q677316",
+      "label": "Social War of 91-87 BCE",
+      "confirm": 1,
+      "reject": 0,
+      "reroute": 0,
+      "total_votes": 1,
+      "consensus": "confirm",
+      "verdicts": [
+        {
+          "qid": "Q677316",
+          "label": "Social War of 91-87 BCE",
+          "verdict": "confirm",
+          "reroute_to": null,
+          "evidence": "Critical military conflict that preceded civil wars and demonstrated military recruitment issues",
+          "source_facet": "military"
+        }
+      ]
+    },
+    "Q202161": {
+      "qid": "Q202161",
+      "label": "Gallic War",
+      "confirm": 1,
+      "reject": 0,
+      "reroute": 0,
+      "total_votes": 1,
+      "consensus": "confirm",
+      "verdicts": [
+        {
+          "qid": "Q202161",
+          "label": "Gallic War",
+          "verdict": "confirm",
+          "reroute_to": null,
+          "evidence": "Major Republican conquest campaign with extensive documentation and military significance",
+          "source_facet": "military"
+        }
+      ]
+    },
+    "Q181733": {
+      "qid": "Q181733",
+      "label": "Praetorian Guard",
+      "confirm": 0,
+      "reject": 1,
+      "reroute": 0,
+      "total_votes": 1,
+      "consensus": "reject",
+      "verdicts": [
+        {
+          "qid": "Q181733",
+          "label": "Praetorian Guard",
+          "verdict": "reject",
+          "reroute_to": null,
+          "evidence": "Primarily Imperial institution; Republican bodyguard arrangements were different and less formalized",
+          "source_facet": "military"
+        }
+      ]
+    },
+    "Q60792542": {
+      "qid": "Q60792542",
+      "label": "Fimbrian legions",
+      "confirm": 1,
+      "reject": 0,
+      "reroute": 0,
+      "total_votes": 1,
+      "consensus": "confirm",
+      "verdicts": [
+        {
+          "qid": "Q60792542",
+          "label": "Fimbrian legions",
+          "verdict": "confirm",
+          "reroute_to": null,
+          "evidence": "Specific Republican military units involved in civil wars, showing evolution of professional army",
+          "source_facet": "military"
+        }
+      ]
+    },
+    "Q48349": {
+      "qid": "Q48349",
+      "label": "empire",
+      "confirm": 0,
+      "reject": 0,
+      "reroute": 1,
+      "total_votes": 1,
+      "consensus": "mixed",
+      "verdicts": [
+        {
+          "qid": "Q48349",
+          "label": "empire",
+          "verdict": "reroute",
+          "reroute_to": "Political",
+          "evidence": "Too broad and conceptual for Military facet; belongs in Political discussions of Republican expansion and governance",
+          "source_facet": "military"
+        }
+      ]
+    }
+  },
+  "cross_facet_links": [
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q596373",
+      "label": "Pyrrhic War",
+      "confidence": 0.8,
+      "evidence": "This war demonstrates Roman military adaptation against Hellenistic warfare tactics and represents early Republican expansion",
+      "target_facet": "Diplomatic",
+      "reasoning": "Wars necessarily involve diplomatic aspects - alliances, treaties, negotiations with Greek states",
+      "source_facet": "military"
+    }
+  ]
+}

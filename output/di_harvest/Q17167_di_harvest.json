@@ -1,0 +1,5419 @@
+{
+  "recommended_next_steps": [
+    {
+      "action": "DI_CLASSIFY",
+      "reason": "Run LLM classification for all 18 facets",
+      "hint": "Consume this harvest; output per-facet deltas for SCA routing"
+    },
+    {
+      "action": "RESOLVE_SUBJECT",
+      "reason": "Harvest contains FAST/Dewey/LCNAF links",
+      "hint": "Resolve to most granular subject in LCC/LCSH/FAST backbone; tether domain"
+    },
+    {
+      "action": "GEO_FACET",
+      "reason": "97 candidates have geo properties",
+      "hint": "Run Geo Agent classify on geo-filtered subset, or consume via DI classify"
+    }
+  ],
+  "seed": {
+    "qid": "Q17167",
+    "label": "Roman Republic"
+  },
+  "backlinks_total": 80,
+  "forward_links_total": 34,
+  "both_directions_total": 5,
+  "candidates_count": 109,
+  "candidates": [
+    {
+      "qid": "Q1114821",
+      "label": "citizens' assemblies of the Roman Republic",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q17197366",
+          "label": "type of organization"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q11204",
+          "label": "legislature"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q1747689",
+          "value_label": "Ancient Rome"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4514363-8"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P194",
+          "label": "legislative body"
+        }
+      ]
+    },
+    {
+      "qid": "Q11514315",
+      "label": "historical period",
+      "link_direction": "forward",
+      "instance_of": [],
+      "subclass_of": [
+        {
+          "qid": "Q6428674",
+          "label": "era"
+        }
+      ],
+      "geo_properties": [],
+      "external_ids": [],
+      "recommended_actions": [],
+      "connecting_properties": [
+        {
+          "pid": "P31",
+          "label": "instance of"
+        }
+      ]
+    },
+    {
+      "qid": "Q1238338",
+      "label": "Caesar's Civil War",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q8465",
+          "label": "civil war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q186513",
+          "value_label": "Hispania"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q23522",
+          "value_label": "Balkans"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q15",
+          "value_label": "Africa"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q32047",
+          "value_label": "Illyria"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q202311",
+          "value_label": "Roman Egypt"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q145694",
+          "value_label": "Italian Peninsula"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85115123"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P793",
+          "label": "significant event"
+        }
+      ]
+    },
+    {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "link_direction": "both",
+      "instance_of": [
+        {
+          "qid": "Q104212151",
+          "label": "series of wars"
+        },
+        {
+          "qid": "Q198",
+          "label": "war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q2429397",
+          "value_label": "Ancient Carthage"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "937.04"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85109114"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4176367-1"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P793",
+          "label": "significant event"
+        }
+      ]
+    },
+    {
+      "qid": "Q130614",
+      "label": "Roman Senate",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q11204",
+          "label": "legislature"
+        },
+        {
+          "qid": "Q123432",
+          "label": "aristocracy"
+        },
+        {
+          "qid": "Q2570643",
+          "label": "senate"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q2915100",
+          "label": "political institutions of ancient Rome"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q1747689",
+          "value_label": "Ancient Rome"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "n79133788"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "239895420"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4070408-7"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P194",
+          "label": "legislative body"
+        }
+      ]
+    },
+    {
+      "qid": "Q1307214",
+      "label": "form of government",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q19478619",
+          "label": "metaclass"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q183039",
+          "label": "form of state"
+        },
+        {
+          "qid": "Q2752458",
+          "label": "administrative type"
+        },
+        {
+          "qid": "Q28108",
+          "label": "political system"
+        }
+      ],
+      "geo_properties": [],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "321"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4359546-7"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P31",
+          "label": "instance of"
+        }
+      ]
+    },
+    {
+      "qid": "Q13285410",
+      "label": "Category:People from the Roman Republic",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q4167836",
+          "label": "Wikimedia category"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [],
+      "external_ids": [],
+      "recommended_actions": [],
+      "connecting_properties": [
+        {
+          "pid": "P1792",
+          "label": "category of associated people"
+        }
+      ]
+    },
+    {
+      "qid": "Q15",
+      "label": "Africa",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q5107",
+          "label": "continent"
+        },
+        {
+          "qid": "Q2221906",
+          "label": "geographic location"
+        },
+        {
+          "qid": "Q82794",
+          "label": "region"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "6255146"
+        },
+        {
+          "pid": "P3896",
+          "label": "geoshape",
+          "value": "Data:Africa Flickr.map"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "21.09375, 7.1881"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "0, 15"
+        },
+        {
+          "pid": "P706",
+          "label": "located in/on physical feature",
+          "value_qid": "Q39061",
+          "value_label": "Northern Hemisphere"
+        },
+        {
+          "pid": "P706",
+          "label": "located in/on physical feature",
+          "value_qid": "Q41228",
+          "value_label": "Southern Hemisphere"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "6255146"
+        },
+        {
+          "pid": "P2163",
+          "label": "FAST ID",
+          "value": "1239509"
+        },
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "2--6"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85001531"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "127043766"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "173744536"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4000695-5"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P1566, P3896, P625, P706",
+          "hint": "GeoNames ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P30",
+          "label": "continent"
+        }
+      ]
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q3024240",
+          "label": "historical country"
+        },
+        {
+          "qid": "Q28171280",
+          "label": "ancient civilization"
+        },
+        {
+          "qid": "Q26907166",
+          "label": "temporal entity"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q465299",
+          "label": "archaeological culture"
+        },
+        {
+          "qid": "Q120754777",
+          "label": "Roman civilization"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.89, 12.48"
+        },
+        {
+          "pid": "P706",
+          "label": "located in/on physical feature",
+          "value_qid": "Q72499",
+          "value_label": "Mediterranean Basin"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P2163",
+          "label": "FAST ID",
+          "value": "1204885"
+        },
+        {
+          "pid": "P2163",
+          "label": "FAST ID",
+          "value": "1754964"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "n79039816"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85115064"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "244992873"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "145348938"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4076778-4"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P625, P706",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P361",
+          "label": "part of"
+        }
+      ]
+    },
+    {
+      "qid": "Q201038",
+      "label": "Roman Kingdom",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        },
+        {
+          "qid": "Q3024240",
+          "label": "historical country"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q830852",
+          "label": "history of ancient Rome"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q1048669",
+          "value_label": "Latium"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.88333333, 12.48333333"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85115111"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P155",
+          "label": "follows"
+        },
+        {
+          "pid": "P1365",
+          "label": "replaces"
+        }
+      ]
+    },
+    {
+      "qid": "Q202161",
+      "label": "Gallic War",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q198",
+          "label": "war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q38060",
+          "value_label": "Gaul"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85053541"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P793",
+          "label": "significant event"
+        }
+      ]
+    },
+    {
+      "qid": "Q206414",
+      "label": "Principate",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q1307214",
+          "label": "form of government"
+        },
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "937.06"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4047276-0"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P1366",
+          "label": "replaced by"
+        },
+        {
+          "pid": "P156",
+          "label": "followed by"
+        }
+      ]
+    },
+    {
+      "qid": "Q220",
+      "label": "Rome",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q902814",
+          "label": "border city"
+        },
+        {
+          "qid": "Q3685476",
+          "label": "abolished municipality in Italy"
+        },
+        {
+          "qid": "Q1200957",
+          "label": "tourist destination"
+        },
+        {
+          "qid": "Q200250",
+          "label": "metropolis"
+        },
+        {
+          "qid": "Q51929311",
+          "label": "largest city"
+        },
+        {
+          "qid": "Q1187811",
+          "label": "college town"
+        },
+        {
+          "qid": "Q1549591",
+          "label": "big city"
+        },
+        {
+          "qid": "Q747074",
+          "label": "comune of Italy"
+        },
+        {
+          "qid": "Q108178728",
+          "label": "national capital"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "423025"
+        },
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "3169070"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q15119",
+          "value_label": "Province of Rome"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q170174",
+          "value_label": "Papal States"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q1558632",
+          "value_label": "Rome"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q1747689",
+          "value_label": "Ancient Rome"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q42834",
+          "value_label": "Western Roman Empire"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q18288160",
+          "value_label": "Metropolitan City of Rome"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q3677829",
+          "value_label": "circle of Rome"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q38",
+          "value_label": "Italy"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q170174",
+          "value_label": "Papal States"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q3755547",
+          "value_label": "Kingdom of Italy"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q583038",
+          "value_label": "Ostrogothic Kingdom"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q12544",
+          "value_label": "Byzantine Empire"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q172579",
+          "value_label": "Kingdom of Italy"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q201038",
+          "value_label": "Roman Kingdom"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q42834",
+          "value_label": "Western Roman Empire"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q237",
+          "value_label": "Vatican City"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.893055555556, 12.482777777778"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "423025"
+        },
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "3169070"
+        },
+        {
+          "pid": "P2163",
+          "label": "FAST ID",
+          "value": "1204500"
+        },
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "2--45632"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "n79018704"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "251380480"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "6280157416838916710001"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "445149106006268490419"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "243431474"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4050471-2"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P131, P1566, P1584, P17, P625",
+          "hint": "Pleiades ID → consider CREATE_OR_ENRICH_PLACE; GeoNames ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P36",
+          "label": "capital"
+        }
+      ]
+    },
+    {
+      "qid": "Q2277",
+      "label": "Roman Empire",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q48349",
+          "label": "empire"
+        },
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        },
+        {
+          "qid": "Q3024240",
+          "label": "historical country"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "8354456"
+        },
+        {
+          "pid": "P3896",
+          "label": "geoshape",
+          "value": "Data:Imperio Romano 117.map"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.9, 12.5"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "8354456"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "28145424500486830493"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P1566, P3896, P625",
+          "hint": "GeoNames ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P1366",
+          "label": "replaced by"
+        },
+        {
+          "pid": "P156",
+          "label": "followed by"
+        }
+      ]
+    },
+    {
+      "qid": "Q2815472",
+      "label": "Late Roman Republic",
+      "link_direction": "both",
+      "instance_of": [
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P527",
+          "label": "has part(s)"
+        }
+      ]
+    },
+    {
+      "qid": "Q2839628",
+      "label": "Early Roman Republic",
+      "link_direction": "both",
+      "instance_of": [
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P527",
+          "label": "has part(s)"
+        }
+      ]
+    },
+    {
+      "qid": "Q3024240",
+      "label": "historical country",
+      "link_direction": "forward",
+      "instance_of": [],
+      "subclass_of": [
+        {
+          "qid": "Q19953632",
+          "label": "former administrative territorial entity"
+        },
+        {
+          "qid": "Q96196009",
+          "label": "former or current state"
+        },
+        {
+          "qid": "Q19832712",
+          "label": "historical administrative division"
+        },
+        {
+          "qid": "Q6256",
+          "label": "country"
+        }
+      ],
+      "geo_properties": [],
+      "external_ids": [],
+      "recommended_actions": [],
+      "connecting_properties": [
+        {
+          "pid": "P31",
+          "label": "instance of"
+        }
+      ]
+    },
+    {
+      "qid": "Q337547",
+      "label": "ancient Roman religion",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q108704490",
+          "label": "polytheistic religion"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "292"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh96009771"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P140",
+          "label": "religion or worldview"
+        },
+        {
+          "pid": "P3075",
+          "label": "official religion"
+        }
+      ]
+    },
+    {
+      "qid": "Q346629",
+      "label": "Roman Republic",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q4167410",
+          "label": "Wikimedia disambiguation page"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [],
+      "external_ids": [],
+      "recommended_actions": [],
+      "connecting_properties": [
+        {
+          "pid": "P1889",
+          "label": "different from"
+        }
+      ]
+    },
+    {
+      "qid": "Q35497",
+      "label": "Ancient Greek",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q34770",
+          "label": "language"
+        },
+        {
+          "qid": "Q2315359",
+          "label": "historical language"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q2042538",
+          "label": "Hellenic"
+        }
+      ],
+      "geo_properties": [],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "480"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4113791-7"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P2936",
+          "label": "language used"
+        }
+      ]
+    },
+    {
+      "qid": "Q3778726",
+      "label": "Sertorian War",
+      "link_direction": "both",
+      "instance_of": [
+        {
+          "qid": "Q8465",
+          "label": "civil war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q186513",
+          "value_label": "Hispania"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P793",
+          "label": "significant event"
+        }
+      ]
+    },
+    {
+      "qid": "Q397",
+      "label": "Latin",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q45762",
+          "label": "dead language"
+        },
+        {
+          "qid": "Q436240",
+          "label": "ancient language"
+        },
+        {
+          "qid": "Q34770",
+          "label": "language"
+        },
+        {
+          "qid": "Q839470",
+          "label": "sacred language"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q33478",
+          "label": "Latino-Faliscan"
+        },
+        {
+          "qid": "Q85380120",
+          "label": "Southern European language"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q237",
+          "value_label": "Vatican City"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.4, 13.1"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "470"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85074944"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4114364-4"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P625",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P2936",
+          "label": "language used"
+        },
+        {
+          "pid": "P37",
+          "label": "official language"
+        }
+      ]
+    },
+    {
+      "qid": "Q46",
+      "label": "Europe",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q2418896",
+          "label": "part of the world"
+        },
+        {
+          "qid": "Q5107",
+          "label": "continent"
+        },
+        {
+          "qid": "Q82794",
+          "label": "region"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "6255148"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "48.690959, 9.14062"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "53.5, 15.5"
+        },
+        {
+          "pid": "P706",
+          "label": "located in/on physical feature",
+          "value_qid": "Q39061",
+          "value_label": "Northern Hemisphere"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "6255148"
+        },
+        {
+          "pid": "P2163",
+          "label": "FAST ID",
+          "value": "1245064"
+        },
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "2--4"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85045631"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "170298814"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4015701-5"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P1566, P625, P706",
+          "hint": "GeoNames ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P30",
+          "label": "continent"
+        }
+      ]
+    },
+    {
+      "qid": "Q48",
+      "label": "Asia",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q5107",
+          "label": "continent"
+        },
+        {
+          "qid": "Q2418896",
+          "label": "part of the world"
+        },
+        {
+          "qid": "Q82794",
+          "label": "region"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "915832"
+        },
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "6255147"
+        },
+        {
+          "pid": "P3896",
+          "label": "geoshape",
+          "value": "Data:Asia Flickr.map"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "43.681111111111115, 87.33111111111111"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "35, 108"
+        },
+        {
+          "pid": "P706",
+          "label": "located in/on physical feature",
+          "value_qid": "Q186198",
+          "value_label": "Eastern Hemisphere"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "915832"
+        },
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "6255147"
+        },
+        {
+          "pid": "P2163",
+          "label": "FAST ID",
+          "value": "1240495"
+        },
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "2--5"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85008606"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "315526119"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4003217-6"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P1566, P1584, P3896, P625, P706",
+          "hint": "Pleiades ID → consider CREATE_OR_ENRICH_PLACE; GeoNames ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P30",
+          "label": "continent"
+        }
+      ]
+    },
+    {
+      "qid": "Q48349",
+      "label": "empire",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q7269",
+          "label": "monarchy"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q1250464",
+          "label": "realm"
+        },
+        {
+          "qid": "Q3624078",
+          "label": "sovereign state"
+        }
+      ],
+      "geo_properties": [],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "321.03"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4139742-3"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P31",
+          "label": "instance of"
+        }
+      ]
+    },
+    {
+      "qid": "Q486761",
+      "label": "classical antiquity",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        },
+        {
+          "qid": "Q1292119",
+          "label": "style"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q41493",
+          "label": "ancient history"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q11772",
+          "value_label": "Ancient Greece"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q1747689",
+          "value_label": "Ancient Rome"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "938"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85026450"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4068754-5"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P2348",
+          "label": "time period"
+        }
+      ]
+    },
+    {
+      "qid": "Q596373",
+      "label": "Pyrrhic War",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q104212151",
+          "label": "series of wars"
+        },
+        {
+          "qid": "Q198",
+          "label": "war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q913582",
+          "value_label": "Roman Italy"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "937.03"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4998009-9"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P793",
+          "label": "significant event"
+        }
+      ]
+    },
+    {
+      "qid": "Q6106068",
+      "label": "Middle Roman Republic",
+      "link_direction": "both",
+      "instance_of": [
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P527",
+          "label": "has part(s)"
+        }
+      ]
+    },
+    {
+      "qid": "Q6173448",
+      "label": "Wikipedia:Vital articles/Level/4",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q14204246",
+          "label": "Wikimedia project page"
+        },
+        {
+          "qid": "Q51539995",
+          "label": "WikiProject focus list"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [],
+      "external_ids": [],
+      "recommended_actions": [],
+      "connecting_properties": [
+        {
+          "pid": "P5008",
+          "label": "on focus list of Wikimedia project"
+        }
+      ]
+    },
+    {
+      "qid": "Q666680",
+      "label": "aristocratic republic",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q1307214",
+          "label": "form of government"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q7270",
+          "label": "republic"
+        },
+        {
+          "qid": "Q123432",
+          "label": "aristocracy"
+        }
+      ],
+      "geo_properties": [],
+      "external_ids": [],
+      "recommended_actions": [],
+      "connecting_properties": [
+        {
+          "pid": "P122",
+          "label": "basic form of government"
+        }
+      ]
+    },
+    {
+      "qid": "Q677316",
+      "label": "Social War of 91-87 BCE",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q198",
+          "label": "war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q38",
+          "value_label": "Italy"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q38",
+          "value_label": "Italy"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P2163",
+          "label": "FAST ID",
+          "value": "1354980"
+        },
+        {
+          "pid": "P1036",
+          "label": "Dewey Decimal Classification",
+          "value": "937.05"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85115118"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4146948-3"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P793",
+          "label": "significant event"
+        }
+      ]
+    },
+    {
+      "qid": "Q6944405",
+      "label": "Category:Roman Republic",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q4167836",
+          "label": "Wikimedia category"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [],
+      "external_ids": [],
+      "recommended_actions": [],
+      "connecting_properties": [
+        {
+          "pid": "P910",
+          "label": "topic's main category"
+        }
+      ]
+    },
+    {
+      "qid": "Q75813",
+      "label": "Macedonian Wars",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q104212151",
+          "label": "series of wars"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q83958",
+          "value_label": "Macedonia"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P793",
+          "label": "significant event"
+        }
+      ]
+    },
+    {
+      "qid": "Q952064",
+      "label": "Roman currency",
+      "link_direction": "forward",
+      "instance_of": [
+        {
+          "qid": "Q17524420",
+          "label": "aspect of history"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q28783456",
+          "label": "obsolete currency"
+        }
+      ],
+      "geo_properties": [],
+      "external_ids": [
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "sh85027857"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        }
+      ],
+      "connecting_properties": [
+        {
+          "pid": "P38",
+          "label": "currency"
+        }
+      ]
+    },
+    {
+      "qid": "Q104834716",
+      "label": "Battle near Osca",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q100707898",
+          "value_label": "Osca"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q106841885",
+      "label": "half-stater",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q113813711",
+          "label": "coin type"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q440311",
+          "label": "ancient Greek coinage"
+        },
+        {
+          "qid": "Q921668",
+          "label": "stater"
+        },
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q107013169",
+      "label": "religion in ancient Rome",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q66374263",
+          "label": "religion of an area"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q13198592",
+          "label": "religion on the Earth"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q1747689",
+          "value_label": "Ancient Rome"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q11320126",
+      "label": "didrachm",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q15078648",
+          "label": "ancient drachma"
+        },
+        {
+          "qid": "Q610038",
+          "label": "silver coin"
+        },
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q11688220",
+      "label": "Battle of Petelia",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q3900811",
+          "value_label": "Petelia"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.265, 17.0489"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q11905280",
+      "label": "Q11905280",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q213283",
+          "label": "diplomatic mission"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q11948139",
+      "label": "Seleuceia in Cilicia",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q15661340",
+          "label": "ancient city"
+        },
+        {
+          "qid": "Q839954",
+          "label": "archaeological site"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "648771"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q650630",
+          "value_label": "Silifke"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q650630",
+          "value_label": "Silifke"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q93180",
+          "value_label": "Seleucid Empire"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2022162",
+          "value_label": "Kingdom of Pergamon"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q43",
+          "value_label": "Turkey"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "36.3765, 33.9165"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "648771"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P131, P1584, P17, P276, P625",
+          "hint": "Pleiades ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ]
+    },
+    {
+      "qid": "Q1228632",
+      "label": "victoriatus",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q122918768",
+      "label": "Pompey's eastern settlement",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q2520735",
+          "label": "government reorganization"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q210718",
+          "value_label": "Asia"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q913382",
+          "value_label": "Bithynia et Pontus"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q4819648",
+          "value_label": "Cilicia"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q207118",
+          "value_label": "Roman Syria"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q1234467",
+      "label": "dodrans",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q124798662",
+      "label": "Q124798662",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q56061",
+          "label": "administrative territorial entity"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q1249059",
+      "label": "triens",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q1249076",
+      "label": "quadrans",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q113813711",
+          "label": "coin type"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q41207",
+          "label": "coin"
+        },
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q1249093",
+      "label": "semis",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q125727661",
+      "label": "March on Rome",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q45382",
+          "label": "coup d'état"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q220",
+          "value_label": "Rome"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q12594116",
+      "label": "political violence in the late Roman Republic",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q115857096",
+          "label": "aspect of history in a geographic region"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571642",
+      "label": "20-As",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        },
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571668",
+      "label": "40-As",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        },
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571682",
+      "label": "60-As",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        },
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571751",
+      "label": "denarius serratus",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571920",
+      "label": "double-litra",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571942",
+      "label": "double victoriatus",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571969",
+      "label": "half victoriatus",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q129571980",
+      "label": "half-litra",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q137921341",
+      "label": "Siege of Nola",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q72288",
+          "value_label": "Nola"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q137972719",
+      "label": "Siege of Carthago Nova",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q2727884",
+          "value_label": "Carthago Nova"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q1422780",
+      "label": "nexum",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q93288",
+          "label": "contract"
+        },
+        {
+          "qid": "Q2135465",
+          "label": "legal term or legal concept"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q2165988",
+          "label": "debt bondage"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q15078648",
+      "label": "ancient drachma",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q113813711",
+          "label": "coin type"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        },
+        {
+          "qid": "Q13400856",
+          "label": "drachma"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q41207",
+          "label": "coin"
+        },
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q15282014",
+      "label": "Lex Iulia de civitate",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q820655",
+          "label": "statute"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q15651483",
+      "label": "First secessio plebis in 494 BC",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q845114",
+          "label": "secessio plebis"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q1812526",
+      "label": "Constitutional reforms of Lucius Cornelius Sulla",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q820655",
+          "label": "statute"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q181733",
+      "label": "Praetorian Guard",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q176799",
+          "label": "military unit"
+        },
+        {
+          "qid": "Q851436",
+          "label": "bodyguard"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q971045",
+          "label": "royal guard"
+        },
+        {
+          "qid": "Q11010841",
+          "label": "imperial guard"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q1747689",
+          "value_label": "Ancient Rome"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "188516801"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4076781-4"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q1888820",
+      "label": "culture of the Roman Republic",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q19958368",
+          "label": "culture of an area"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q1200427",
+          "label": "culture of ancient Rome"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q1974201",
+      "label": "Battle of Geronium",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q3761234",
+          "value_label": "Geronium"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.76183333, 14.73336111"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q20102510",
+      "label": "Battle of Cartagena",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q2727884",
+          "value_label": "Carthago Nova"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "37.6, -0.9819444444444444"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q20108410",
+      "label": "Lex Mamilia de senatoribus",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q820655",
+          "label": "statute"
+        },
+        {
+          "qid": "Q1214249",
+          "label": "plebiscite"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q2022780",
+      "label": "Suci",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q133311",
+          "label": "tribe"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q173082",
+          "value_label": "Dacia"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q182547",
+          "label": "Roman province"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "981509"
+        },
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "8378482"
+        },
+        {
+          "pid": "P131",
+          "label": "located in the administrative territorial entity",
+          "value_qid": "Q1223088",
+          "value_label": "Diocese of Asia"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q12544",
+          "value_label": "Byzantine Empire"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "38.4, 28.3"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "981509"
+        },
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "8378482"
+        },
+        {
+          "pid": "P244",
+          "label": "Library of Congress Authority ID",
+          "value": "n86104083"
+        },
+        {
+          "pid": "P214",
+          "label": "VIAF ID",
+          "value": "144332473"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4068890-2"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "RESOLVE_SUBJECT",
+          "reason": "Has FAST, Dewey, or LCNAF; resolve to most granular subject in backbone",
+          "hint": "Query LCC/LCSH/FAST for finest-grained subject; tether domain"
+        },
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P131, P1566, P1584, P17, P625",
+          "hint": "Pleiades ID → consider CREATE_OR_ENRICH_PLACE; GeoNames ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ]
+    },
+    {
+      "qid": "Q2123159",
+      "label": "half aureus",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        },
+        {
+          "qid": "Q113813711",
+          "label": "coin type"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q2123190",
+      "label": "quincussis",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q21328960",
+      "label": "122 BC eruption of Mount Etna",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q7692360",
+          "label": "volcanic eruption"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q16990",
+          "value_label": "Mount Etna"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q233402",
+      "label": "Battle of Nola",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q72288",
+          "value_label": "Nola"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "40.9261111, 14.5275"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q23725",
+      "label": "Byzantium",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q15661340",
+          "label": "ancient city"
+        },
+        {
+          "qid": "Q148837",
+          "label": "polis"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "520985"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q844930",
+          "value_label": "Classical Athens"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.013416666666664, 28.98363888888889"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "520985"
+        },
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4088772-8"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P1584, P17, P625",
+          "hint": "Pleiades ID → consider CREATE_OR_ENRICH_PLACE"
+        }
+      ]
+    },
+    {
+      "qid": "Q277376",
+      "label": "tressis",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q3256634",
+      "label": "litra",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q113813711",
+          "label": "coin type"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q41207",
+          "label": "coin"
+        },
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q3491975",
+      "label": "Battle of Cremona",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q6231",
+          "value_label": "Cremona"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "45.133333, 10.033333"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q3624157",
+      "label": "Roman Republican art",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q1792644",
+          "label": "art style"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q374658",
+      "label": "Dextans",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q3924071",
+      "label": "Sulla's proscription",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q723838",
+          "label": "proscription"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q476078",
+      "label": "aureus",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q7048891",
+          "label": "non-decimal currency"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q860641",
+          "label": "gold coin"
+        },
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [
+        {
+          "pid": "P227",
+          "label": "GND ID",
+          "value": "4873978-9"
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q4872838",
+      "label": "Battle of the Baetis River",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q14309",
+          "value_label": "Guadalquivir"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q4984206",
+      "label": "Buddhism and the Roman world",
+      "link_direction": "backlink",
+      "instance_of": [],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q54864605",
+      "label": "Siege of Salona",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q1258998",
+          "value_label": "Salona"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "43.53944444444444, 16.483055555555556"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q548953",
+      "label": "sextans",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q5763780",
+      "label": "Caesarians",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q1393724",
+          "label": "political faction"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524410",
+      "label": "Battle of Italica",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q658893",
+          "value_label": "Italica"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "37.443889, -6.046667"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524412",
+      "label": "Battle of Lauron",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q11045304",
+          "value_label": "Lauro"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.15222222222222, -0.4425"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524449",
+      "label": "Battle of Sucro",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q14311",
+          "value_label": "Júcar"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.163889, -0.251667"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524464",
+      "label": "Battle of Valentia",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q9092331",
+          "value_label": "Valentia Edetanorum"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.466667, -0.375"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276, P625",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q60792542",
+      "label": "Fimbrian legions",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q176799",
+          "label": "military unit"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q6082350",
+      "label": "Pompeians",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q1393724",
+          "label": "political faction"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q6503456",
+      "label": "Law of majestas",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q820655",
+          "label": "statute"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q663270",
+      "label": "Semuncia",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q113813711",
+          "label": "coin type"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        },
+        {
+          "qid": "Q11650194",
+          "label": "bronze coin"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q671292",
+      "label": "quartuncia",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q3647172",
+          "label": "unit of mass"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q6852241",
+      "label": "military campaigns of Julius Caesar",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q831663",
+          "label": "military campaign"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q7362271",
+      "label": "Roman army mutiny in 342 BC",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q511866",
+          "label": "mutiny"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q1438",
+          "value_label": "Campania"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q747480",
+      "label": "Conflict of the Orders",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q2672648",
+          "label": "social conflict"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q780548",
+      "label": "fabula praetexta",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q7777573",
+          "label": "theatrical genre"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q829397",
+      "label": "bes",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8142",
+          "label": "currency"
+        },
+        {
+          "qid": "Q3647172",
+          "label": "unit of mass"
+        },
+        {
+          "qid": "Q918448",
+          "label": "denomination"
+        }
+      ],
+      "subclass_of": [
+        {
+          "qid": "Q952064",
+          "label": "Roman currency"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q845114",
+      "label": "secessio plebis",
+      "link_direction": "backlink",
+      "instance_of": [],
+      "subclass_of": [
+        {
+          "qid": "Q1471594",
+          "label": "collective action"
+        },
+        {
+          "qid": "Q687031",
+          "label": "secession"
+        }
+      ],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q86009943",
+      "label": "Trial of the Vestal Virgins",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q8016240",
+          "label": "trial"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    },
+    {
+      "qid": "Q9172749",
+      "label": "Battle of Apamea",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q617550",
+          "value_label": "Apamea"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q9173074",
+      "label": "Battle of Carteia",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q1261499",
+          "label": "naval battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q97616842",
+          "value_label": "Carteia"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q9173528",
+      "label": "Battle of Saguntum",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q47483",
+          "value_label": "Sagunto"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17, P276",
+          "hint": "Location only → may be event; run Geo Agent classify"
+        }
+      ]
+    },
+    {
+      "qid": "Q97172543",
+      "label": "Q97172543",
+      "link_direction": "backlink",
+      "instance_of": [
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        }
+      ],
+      "external_ids": [],
+      "recommended_actions": [
+        {
+          "action": "GEO_FACET",
+          "reason": "Has geo properties: P17",
+          "hint": "Run Geo Agent classify for place vs event"
+        }
+      ]
+    }
+  ],
+  "subject_backbone_links": {
+    "fast": [
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "fast_id": "1239509"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "fast_id": "1204885"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "fast_id": "1754964"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "fast_id": "1204500"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "fast_id": "1245064"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "fast_id": "1240495"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "fast_id": "1354980"
+      }
+    ],
+    "dewey": [
+      {
+        "qid": "Q124988",
+        "label": "Punic Wars",
+        "dewey_id": "937.04"
+      },
+      {
+        "qid": "Q1307214",
+        "label": "form of government",
+        "dewey_id": "321"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "dewey_id": "2--6"
+      },
+      {
+        "qid": "Q206414",
+        "label": "Principate",
+        "dewey_id": "937.06"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "dewey_id": "2--45632"
+      },
+      {
+        "qid": "Q337547",
+        "label": "ancient Roman religion",
+        "dewey_id": "292"
+      },
+      {
+        "qid": "Q35497",
+        "label": "Ancient Greek",
+        "dewey_id": "480"
+      },
+      {
+        "qid": "Q397",
+        "label": "Latin",
+        "dewey_id": "470"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "dewey_id": "2--4"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "dewey_id": "2--5"
+      },
+      {
+        "qid": "Q48349",
+        "label": "empire",
+        "dewey_id": "321.03"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "dewey_id": "938"
+      },
+      {
+        "qid": "Q596373",
+        "label": "Pyrrhic War",
+        "dewey_id": "937.03"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "dewey_id": "937.05"
+      }
+    ],
+    "lcnaf": [
+      {
+        "qid": "Q17167",
+        "label": "Roman Republic",
+        "lcnaf_id": "sh85115114"
+      },
+      {
+        "qid": "Q1238338",
+        "label": "Caesar's Civil War",
+        "lcnaf_id": "sh85115123"
+      },
+      {
+        "qid": "Q124988",
+        "label": "Punic Wars",
+        "lcnaf_id": "sh85109114"
+      },
+      {
+        "qid": "Q130614",
+        "label": "Roman Senate",
+        "lcnaf_id": "n79133788"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "lcnaf_id": "sh85001531"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "lcnaf_id": "n79039816"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "lcnaf_id": "sh85115064"
+      },
+      {
+        "qid": "Q201038",
+        "label": "Roman Kingdom",
+        "lcnaf_id": "sh85115111"
+      },
+      {
+        "qid": "Q202161",
+        "label": "Gallic War",
+        "lcnaf_id": "sh85053541"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "lcnaf_id": "n79018704"
+      },
+      {
+        "qid": "Q337547",
+        "label": "ancient Roman religion",
+        "lcnaf_id": "sh96009771"
+      },
+      {
+        "qid": "Q397",
+        "label": "Latin",
+        "lcnaf_id": "sh85074944"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "lcnaf_id": "sh85045631"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "lcnaf_id": "sh85008606"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "lcnaf_id": "sh85026450"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "lcnaf_id": "sh85115118"
+      },
+      {
+        "qid": "Q952064",
+        "label": "Roman currency",
+        "lcnaf_id": "sh85027857"
+      },
+      {
+        "qid": "Q210718",
+        "label": "Asia",
+        "lcnaf_id": "n86104083"
+      }
+    ]
+  },
+  "discipline_traversal": {
+    "context_parents": [
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "via": "P361"
+      },
+      {
+        "qid": "Q3024240",
+        "label": "historical country",
+        "via": "P31"
+      },
+      {
+        "qid": "Q11514315",
+        "label": "historical period",
+        "via": "P31"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "via": "P2348"
+      },
+      {
+        "qid": "Q120754777",
+        "label": "Roman civilization",
+        "via": "Q1747689/P361"
+      },
+      {
+        "qid": "Q41493",
+        "label": "ancient history",
+        "via": "Q486761/P361"
+      }
+    ],
+    "disciplines": [
+      {
+        "qid": "Q435608",
+        "label": "ancient history",
+        "reached_via": "Q1747689",
+        "reached_via_property": "P2579",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q18343057"
+          }
+        }
+      },
+      {
+        "qid": "Q495527",
+        "label": "classical philology",
+        "reached_via": "Q486761",
+        "reached_via_property": "P2579",
+        "authority_ids": {
+          "P244": {
+            "label": "Library of Congress Authority ID",
+            "value": "sh85026710"
+          },
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q7298503"
+          },
+          "P1036": {
+            "label": "Dewey Decimal Classification",
+            "value": "480"
+          }
+        }
+      },
+      {
+        "qid": "Q112939719",
+        "label": "Classical Greek and Roman history",
+        "reached_via": "Q486761",
+        "reached_via_property": "P2579",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q18343057"
+          }
+        }
+      },
+      {
+        "qid": "Q136980874",
+        "label": "Roman studies",
+        "reached_via": "Q120754777",
+        "reached_via_property": "P2579"
+      }
+    ],
+    "sub_disciplines": [
+      {
+        "qid": "Q757248",
+        "label": "papyrology",
+        "reached_via": "Q435608",
+        "reached_via_property": "P527",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q9063371"
+          },
+          "P1036": {
+            "label": "Dewey Decimal Classification",
+            "value": "091"
+          }
+        }
+      },
+      {
+        "qid": "Q7798",
+        "label": "History of ancient Greece",
+        "reached_via": "Q112939719",
+        "reached_via_property": "P527",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q6594815"
+          }
+        }
+      },
+      {
+        "qid": "Q830852",
+        "label": "history of ancient Rome",
+        "reached_via": "Q112939719",
+        "reached_via_property": "P527",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q6957668"
+          }
+        }
+      },
+      {
+        "qid": "Q120532172",
+        "label": "Q120532172",
+        "reached_via": "Q435608",
+        "reached_via_property": "P279_child"
+      },
+      {
+        "qid": "Q1806979",
+        "label": "Latin studies",
+        "reached_via": "Q495527",
+        "reached_via_property": "P279_child"
+      },
+      {
+        "qid": "Q16267481",
+        "label": "Greek studies",
+        "reached_via": "Q495527",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P244": {
+            "label": "Library of Congress Authority ID",
+            "value": "sh85057184"
+          },
+          "P1036": {
+            "label": "Dewey Decimal Classification",
+            "value": "480"
+          }
+        }
+      },
+      {
+        "qid": "Q64968842",
+        "label": "Greek philology",
+        "reached_via": "Q495527",
+        "reached_via_property": "P279_child"
+      },
+      {
+        "qid": "Q648154",
+        "label": "Byzantine studies",
+        "reached_via": "Q136980874",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P244": {
+            "label": "Library of Congress Authority ID",
+            "value": "sh85018523"
+          },
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q8331174"
+          }
+        }
+      },
+      {
+        "qid": "Q2345364",
+        "label": "Roman historiography",
+        "reached_via": "Q136980874",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q7777280"
+          },
+          "P921": {
+            "label": "main subject",
+            "value": "Q1747689"
+          }
+        }
+      },
+      {
+        "qid": "Q136980940",
+        "label": "ancient Roman studies",
+        "reached_via": "Q136980874",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q8823021"
+          }
+        }
+      }
+    ]
+  },
+  "corpus_endpoints": {
+    "authority_keys": {
+      "lcsh": [
+        "sh85115114",
+        "sh85026710",
+        "sh85057184",
+        "sh85018523"
+      ],
+      "dewey": [
+        "480",
+        "091",
+        "480"
+      ],
+      "fast": [],
+      "lcc": []
+    },
+    "subject_query": "Roman Republic",
+    "endpoints": {
+      "open_alex": {
+        "label": "OpenAlex",
+        "base_url": "https://api.openalex.org/works",
+        "query_type": "topic+keyword",
+        "description": "Academic works by topic and keyword, ranked by citation count",
+        "topic_id": "https://openalex.org/T10165",
+        "topic_name": "Classical Antiquity Studies",
+        "works_count": 7309,
+        "query_seed": "Roman Republic",
+        "status": "probed"
+      },
+      "internet_archive": {
+        "label": "Internet Archive",
+        "base_url": "https://archive.org/advancedsearch.php",
+        "query_type": "lcsh_subject",
+        "description": "Full-text books and primary sources, especially pre-1928 public domain",
+        "query": "subject:(\"Roman Republic\" OR \"Roman Republic\") AND mediatype:texts",
+        "works_count": 309,
+        "status": "probed"
+      },
+      "worldcat": {
+        "label": "WorldCat",
+        "base_url": "https://search.worldcat.org/search",
+        "query_type": "lcsh_subject",
+        "description": "Global library holdings by LCSH subject heading",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "perseus_digital_library": {
+        "label": "Perseus Digital Library",
+        "base_url": "https://catalog.perseus.org/catalog",
+        "query_type": "keyword",
+        "description": "Classical primary sources with full text, morphological tools, and translations",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "jstor": {
+        "label": "JSTOR",
+        "base_url": "https://www.jstor.org/action/doBasicSearch",
+        "query_type": "keyword",
+        "description": "Academic journal articles, especially humanities and classics",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "google_books": {
+        "label": "Google Books",
+        "base_url": "https://www.googleapis.com/books/v1/volumes",
+        "query_type": "lcsh_subject",
+        "description": "Book metadata and previews, searchable by LCSH subject",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "hathi_trust": {
+        "label": "HathiTrust",
+        "base_url": "https://catalog.hathitrust.org/api/volumes/brief/oclc/",
+        "query_type": "oclc+lcsh",
+        "description": "Digitized library collections, full text for public domain works",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "open_library": {
+        "label": "Open Library",
+        "base_url": "https://openlibrary.org/search.json",
+        "query_type": "subject+keyword",
+        "description": "Open-access book metadata and lending, Internet Archive integration",
+        "works_count": 121,
+        "query_seed": "Roman Republic",
+        "status": "probed"
+      },
+      "open_syllabus": {
+        "label": "Open Syllabus",
+        "base_url": "https://api.opensyllabus.org/",
+        "query_type": "keyword",
+        "description": "Most-assigned academic texts by field, indicates canonical teaching corpus",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "wikidata_p921": {
+        "label": "Wikidata (main subject reverse)",
+        "base_url": "https://query.wikidata.org/sparql",
+        "query_type": "sparql_p921",
+        "description": "Scholarly works in Wikidata whose P921 (main subject) = seed or discipline QID",
+        "seed_qid": "Q17167",
+        "discipline_qids": [
+          "Q435608",
+          "Q495527",
+          "Q112939719",
+          "Q136980874"
+        ],
+        "status": "ready"
+      },
+      "loc": {
+        "label": "Library of Congress",
+        "base_url": "https://id.loc.gov/",
+        "query_type": "lcsh_id",
+        "description": "Authority records, subject heading hierarchy, narrower/broader terms",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "lcc_codes": [],
+        "status": "ready"
+      },
+      "fast": {
+        "label": "FAST (OCLC)",
+        "base_url": "https://fast.oclc.org/searchfast/fastsuggest",
+        "query_type": "fast_id",
+        "description": "Faceted subject headings derived from LCSH, optimized for machine use",
+        "fast_ids": [],
+        "status": "no_fast"
+      },
+      "viaf": {
+        "label": "VIAF",
+        "base_url": "https://viaf.org/viaf/search",
+        "query_type": "keyword",
+        "description": "Virtual authority file linking national libraries, resolves name variants",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "gnd": {
+        "label": "GND (German National Library)",
+        "base_url": "https://lobid.org/gnd/search",
+        "query_type": "keyword",
+        "description": "German authority file with rich subject relationships and classifications",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      }
+    }
+  },
+  "_meta": {
+    "rule": "Never pass PID or QID without label",
+    "pid_labels_resolved": 571,
+    "qid_labels_resolved": 1102
+  }
+}

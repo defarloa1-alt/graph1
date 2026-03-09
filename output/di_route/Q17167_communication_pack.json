@@ -1,0 +1,704 @@
+{
+  "facet_key": "communication",
+  "facet_label": "Communication",
+  "facet_definition": "Communications, messaging, narratives, propaganda, ceremonies, oral traditions; how claims/events were transmitted and framed",
+  "facet_delta": {
+    "candidate_count": 1,
+    "primary_count": 0,
+    "secondary_count": 1,
+    "candidates": [
+      {
+        "qid": "Q780548",
+        "label": "fabula praetexta",
+        "role": "secondary",
+        "score": 8.0,
+        "signals": [
+          {
+            "tier": 1,
+            "source": "instance_of",
+            "qid": "Q7777573",
+            "label": "theatrical genre",
+            "role": "secondary",
+            "reason": "instance_of theatrical genre (Q7777573)"
+          }
+        ]
+      }
+    ],
+    "federation_sources": [],
+    "evidence_summary": "1 candidates (0 primary, 1 secondary); types: theatrical genre",
+    "recommended_action": "SFA_EVALUATE"
+  },
+  "discipline_traversal": {
+    "context_parents": [
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "via": "P361"
+      },
+      {
+        "qid": "Q3024240",
+        "label": "historical country",
+        "via": "P31"
+      },
+      {
+        "qid": "Q11514315",
+        "label": "historical period",
+        "via": "P31"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "via": "P2348"
+      },
+      {
+        "qid": "Q120754777",
+        "label": "Roman civilization",
+        "via": "Q1747689/P361"
+      },
+      {
+        "qid": "Q41493",
+        "label": "ancient history",
+        "via": "Q486761/P361"
+      }
+    ],
+    "disciplines": [
+      {
+        "qid": "Q435608",
+        "label": "ancient history",
+        "reached_via": "Q1747689",
+        "reached_via_property": "P2579",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q18343057"
+          }
+        }
+      },
+      {
+        "qid": "Q495527",
+        "label": "classical philology",
+        "reached_via": "Q486761",
+        "reached_via_property": "P2579",
+        "authority_ids": {
+          "P244": {
+            "label": "Library of Congress Authority ID",
+            "value": "sh85026710"
+          },
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q7298503"
+          },
+          "P1036": {
+            "label": "Dewey Decimal Classification",
+            "value": "480"
+          }
+        }
+      },
+      {
+        "qid": "Q112939719",
+        "label": "Classical Greek and Roman history",
+        "reached_via": "Q486761",
+        "reached_via_property": "P2579",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q18343057"
+          }
+        }
+      },
+      {
+        "qid": "Q136980874",
+        "label": "Roman studies",
+        "reached_via": "Q120754777",
+        "reached_via_property": "P2579"
+      }
+    ],
+    "sub_disciplines": [
+      {
+        "qid": "Q757248",
+        "label": "papyrology",
+        "reached_via": "Q435608",
+        "reached_via_property": "P527",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q9063371"
+          },
+          "P1036": {
+            "label": "Dewey Decimal Classification",
+            "value": "091"
+          }
+        }
+      },
+      {
+        "qid": "Q7798",
+        "label": "History of ancient Greece",
+        "reached_via": "Q112939719",
+        "reached_via_property": "P527",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q6594815"
+          }
+        }
+      },
+      {
+        "qid": "Q830852",
+        "label": "history of ancient Rome",
+        "reached_via": "Q112939719",
+        "reached_via_property": "P527",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q6957668"
+          }
+        }
+      },
+      {
+        "qid": "Q120532172",
+        "label": "Q120532172",
+        "reached_via": "Q435608",
+        "reached_via_property": "P279_child"
+      },
+      {
+        "qid": "Q1806979",
+        "label": "Latin studies",
+        "reached_via": "Q495527",
+        "reached_via_property": "P279_child"
+      },
+      {
+        "qid": "Q16267481",
+        "label": "Greek studies",
+        "reached_via": "Q495527",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P244": {
+            "label": "Library of Congress Authority ID",
+            "value": "sh85057184"
+          },
+          "P1036": {
+            "label": "Dewey Decimal Classification",
+            "value": "480"
+          }
+        }
+      },
+      {
+        "qid": "Q64968842",
+        "label": "Greek philology",
+        "reached_via": "Q495527",
+        "reached_via_property": "P279_child"
+      },
+      {
+        "qid": "Q648154",
+        "label": "Byzantine studies",
+        "reached_via": "Q136980874",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P244": {
+            "label": "Library of Congress Authority ID",
+            "value": "sh85018523"
+          },
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q8331174"
+          }
+        }
+      },
+      {
+        "qid": "Q2345364",
+        "label": "Roman historiography",
+        "reached_via": "Q136980874",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q7777280"
+          },
+          "P921": {
+            "label": "main subject",
+            "value": "Q1747689"
+          }
+        }
+      },
+      {
+        "qid": "Q136980940",
+        "label": "ancient Roman studies",
+        "reached_via": "Q136980874",
+        "reached_via_property": "P279_child",
+        "authority_ids": {
+          "P910": {
+            "label": "topic's main category",
+            "value": "Q8823021"
+          }
+        }
+      }
+    ]
+  },
+  "corpus_endpoints": {
+    "authority_keys": {
+      "lcsh": [
+        "sh85115114",
+        "sh85026710",
+        "sh85057184",
+        "sh85018523"
+      ],
+      "dewey": [
+        "480",
+        "091",
+        "480"
+      ],
+      "fast": [],
+      "lcc": []
+    },
+    "subject_query": "Roman Republic",
+    "endpoints": {
+      "open_alex": {
+        "label": "OpenAlex",
+        "base_url": "https://api.openalex.org/works",
+        "query_type": "topic+keyword",
+        "description": "Academic works by topic and keyword, ranked by citation count",
+        "topic_id": "https://openalex.org/T10165",
+        "topic_name": "Classical Antiquity Studies",
+        "works_count": 7309,
+        "query_seed": "Roman Republic",
+        "status": "probed"
+      },
+      "internet_archive": {
+        "label": "Internet Archive",
+        "base_url": "https://archive.org/advancedsearch.php",
+        "query_type": "lcsh_subject",
+        "description": "Full-text books and primary sources, especially pre-1928 public domain",
+        "query": "subject:(\"Roman Republic\" OR \"Roman Republic\") AND mediatype:texts",
+        "works_count": 309,
+        "status": "probed"
+      },
+      "worldcat": {
+        "label": "WorldCat",
+        "base_url": "https://search.worldcat.org/search",
+        "query_type": "lcsh_subject",
+        "description": "Global library holdings by LCSH subject heading",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "perseus_digital_library": {
+        "label": "Perseus Digital Library",
+        "base_url": "https://catalog.perseus.org/catalog",
+        "query_type": "keyword",
+        "description": "Classical primary sources with full text, morphological tools, and translations",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "jstor": {
+        "label": "JSTOR",
+        "base_url": "https://www.jstor.org/action/doBasicSearch",
+        "query_type": "keyword",
+        "description": "Academic journal articles, especially humanities and classics",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "google_books": {
+        "label": "Google Books",
+        "base_url": "https://www.googleapis.com/books/v1/volumes",
+        "query_type": "lcsh_subject",
+        "description": "Book metadata and previews, searchable by LCSH subject",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "hathi_trust": {
+        "label": "HathiTrust",
+        "base_url": "https://catalog.hathitrust.org/api/volumes/brief/oclc/",
+        "query_type": "oclc+lcsh",
+        "description": "Digitized library collections, full text for public domain works",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "open_library": {
+        "label": "Open Library",
+        "base_url": "https://openlibrary.org/search.json",
+        "query_type": "subject+keyword",
+        "description": "Open-access book metadata and lending, Internet Archive integration",
+        "works_count": 121,
+        "query_seed": "Roman Republic",
+        "status": "probed"
+      },
+      "open_syllabus": {
+        "label": "Open Syllabus",
+        "base_url": "https://api.opensyllabus.org/",
+        "query_type": "keyword",
+        "description": "Most-assigned academic texts by field, indicates canonical teaching corpus",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "wikidata_p921": {
+        "label": "Wikidata (main subject reverse)",
+        "base_url": "https://query.wikidata.org/sparql",
+        "query_type": "sparql_p921",
+        "description": "Scholarly works in Wikidata whose P921 (main subject) = seed or discipline QID",
+        "seed_qid": "Q17167",
+        "discipline_qids": [
+          "Q435608",
+          "Q495527",
+          "Q112939719",
+          "Q136980874"
+        ],
+        "status": "ready"
+      },
+      "loc": {
+        "label": "Library of Congress",
+        "base_url": "https://id.loc.gov/",
+        "query_type": "lcsh_id",
+        "description": "Authority records, subject heading hierarchy, narrower/broader terms",
+        "lcsh_ids": [
+          "sh85115114",
+          "sh85026710",
+          "sh85057184",
+          "sh85018523"
+        ],
+        "lcc_codes": [],
+        "status": "ready"
+      },
+      "fast": {
+        "label": "FAST (OCLC)",
+        "base_url": "https://fast.oclc.org/searchfast/fastsuggest",
+        "query_type": "fast_id",
+        "description": "Faceted subject headings derived from LCSH, optimized for machine use",
+        "fast_ids": [],
+        "status": "no_fast"
+      },
+      "viaf": {
+        "label": "VIAF",
+        "base_url": "https://viaf.org/viaf/search",
+        "query_type": "keyword",
+        "description": "Virtual authority file linking national libraries, resolves name variants",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      },
+      "gnd": {
+        "label": "GND (German National Library)",
+        "base_url": "https://lobid.org/gnd/search",
+        "query_type": "keyword",
+        "description": "German authority file with rich subject relationships and classifications",
+        "query_seed": "Roman Republic",
+        "status": "ready"
+      }
+    }
+  },
+  "domain_context": {
+    "seed": {
+      "qid": "Q17167",
+      "label": "Roman Republic"
+    },
+    "domain_tether": {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "lcnaf_id": "sh85115114",
+      "type": "lcnaf"
+    },
+    "sub_subjects": [
+      {
+        "qid": "Q1238338",
+        "label": "Caesar's Civil War",
+        "lcnaf_id": "sh85115123",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q124988",
+        "label": "Punic Wars",
+        "lcnaf_id": "sh85109114",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q130614",
+        "label": "Roman Senate",
+        "lcnaf_id": "n79133788",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "lcnaf_id": "sh85001531",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "lcnaf_id": "n79039816",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "lcnaf_id": "sh85115064",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q201038",
+        "label": "Roman Kingdom",
+        "lcnaf_id": "sh85115111",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q202161",
+        "label": "Gallic War",
+        "lcnaf_id": "sh85053541",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "lcnaf_id": "n79018704",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q337547",
+        "label": "ancient Roman religion",
+        "lcnaf_id": "sh96009771",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q397",
+        "label": "Latin",
+        "lcnaf_id": "sh85074944",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "lcnaf_id": "sh85045631",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "lcnaf_id": "sh85008606",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "lcnaf_id": "sh85026450",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "lcnaf_id": "sh85115118",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q952064",
+        "label": "Roman currency",
+        "lcnaf_id": "sh85027857",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q210718",
+        "label": "Asia",
+        "lcnaf_id": "n86104083",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q124988",
+        "label": "Punic Wars",
+        "dewey_id": "937.04",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q1307214",
+        "label": "form of government",
+        "dewey_id": "321",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "dewey_id": "2--6",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q206414",
+        "label": "Principate",
+        "dewey_id": "937.06",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "dewey_id": "2--45632",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q337547",
+        "label": "ancient Roman religion",
+        "dewey_id": "292",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q35497",
+        "label": "Ancient Greek",
+        "dewey_id": "480",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q397",
+        "label": "Latin",
+        "dewey_id": "470",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "dewey_id": "2--4",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "dewey_id": "2--5",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q48349",
+        "label": "empire",
+        "dewey_id": "321.03",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "dewey_id": "938",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q596373",
+        "label": "Pyrrhic War",
+        "dewey_id": "937.03",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "dewey_id": "937.05",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "fast_id": "1239509",
+        "type": "fast"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "fast_id": "1204885",
+        "type": "fast"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "fast_id": "1754964",
+        "type": "fast"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "fast_id": "1204500",
+        "type": "fast"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "fast_id": "1245064",
+        "type": "fast"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "fast_id": "1240495",
+        "type": "fast"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "fast_id": "1354980",
+        "type": "fast"
+      }
+    ],
+    "backbone_summary": {
+      "lcnaf_count": 18,
+      "dewey_count": 14,
+      "fast_count": 7
+    },
+    "temporal_entities": [
+      {
+        "qid": "Q11514315",
+        "label": "historical period"
+      },
+      {
+        "qid": "Q13285410",
+        "label": "Category:People from the Roman Republic"
+      },
+      {
+        "qid": "Q201038",
+        "label": "Roman Kingdom"
+      },
+      {
+        "qid": "Q206414",
+        "label": "Principate"
+      },
+      {
+        "qid": "Q2277",
+        "label": "Roman Empire"
+      },
+      {
+        "qid": "Q2815472",
+        "label": "Late Roman Republic"
+      },
+      {
+        "qid": "Q2839628",
+        "label": "Early Roman Republic"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity"
+      },
+      {
+        "qid": "Q6106068",
+        "label": "Middle Roman Republic"
+      },
+      {
+        "qid": "Q6944405",
+        "label": "Category:Roman Republic"
+      },
+      {
+        "qid": "Q97172543",
+        "label": "Q97172543"
+      }
+    ],
+    "classification_summary": {
+      "total_candidates": 109,
+      "routed": 96,
+      "temporal_skipped": 11,
+      "unrouted": 2,
+      "facets_activated": 15
+    }
+  }
+}

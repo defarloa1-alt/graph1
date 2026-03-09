@@ -1,7 +1,22 @@
 # Place Logical Model
 
 **Purpose:** Logical model of geographic entities in Chrystallum.  
-**Source:** `import_pleiades_to_neo4j.py`, `ARCHITECTURE_ONTOLOGY.md`, `link_pleiades_place_to_geo_backbone.py`, `link_place_admin_hierarchy.py`
+**Source:** `import_pleiades_to_neo4j.py`, `ARCHITECTURE_ONTOLOGY.md`, `link_pleiades_place_to_geo_backbone.py`, `link_place_admin_hierarchy.py`, `tag_place_scope.py`
+
+---
+
+## Geo Backbone Definition
+
+**The Geo SFA backbone is Pleiades Place data filtered to settlements and regions.**
+
+| Scope | place_scope | Place types | Count (approx) |
+|-------|-------------|-------------|----------------|
+| **v1_core** (backbone) | `v1_core` | settlement, villa, fort, station, colony, region, province, camp, city, town, village | ~20k |
+| **deferred** | `deferred` | rivers, mountains, temples, roads, tombs, etc. | ~24k |
+
+- **Backbone** = `Place WHERE place_scope = 'v1_core'` — used for "where did this happen?", admin hierarchy, SFA resolution.
+- **Deferred** = still in graph for future enrichment; not part of core backbone.
+- **Tagging:** `scripts/neo4j/tag_place_scope.py` (run after Pleiades import).
 
 ---
 

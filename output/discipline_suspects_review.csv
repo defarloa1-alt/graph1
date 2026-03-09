@@ -1,25 +1,204 @@
-qid,label,subclass_of,subclass_of_label,part_of,part_of_label,has_parts,has_parts_label,fast_id,gnd_id,lcsh_id,ddc,aat_id,babelnet_id,kbpedia_id,world_history_id,lcc,source,lcsh_label,lcc_label,aat_label,fast_label,flag_reason
-Q46202,Bose–Einstein condensate,,,,,,,,4402897-0,sh92005509,530.474,,,,,,major,,,,,known_bad_qid
-Q160,Cetacea,,,,,,,,4064432-7,sh85022218,599.5,300310322,,,,,major,,,,,known_bad_qid
-Q235955,Clarice Lispector,,,,,,,17375,118780158,n50051357,,,,,,PQ9697.L585,major,,,,,known_bad_qid
-Q1370467,EuroVoc,,,Q54837|Q75487064,Semantic Web|EU Vocabularies,,,,4474210-1,,,,00472535n,,,,discipline,,,,,known_bad_qid
-Q2551624,IPv6,,,Q251212,Internet of things,,,,4462513-3,,,,,InternetProtocol-v6,,,discipline,,,,,known_bad_qid
-Q11802245,Integrated software,Q7397,software,,,,,,,sh88000222,,,,,,,discipline,,,,,known_bad_qid
-Q10322548,MQTT,,,Q251212,Internet of things,,,,1145336337,,004.62,,,,,,discipline,,,,,known_bad_qid
-Q5185,Nematoda,,,,,,,,4128872-5,sh85090702,592.57,300310241,,,,,major,,,,,known_bad_qid
-Q1147173,Q1147173,Q2043282,business administration,,,,,,4120425-6,,381,,,,,,discipline,,,,,known_bad_qid
-Q26185,Quaternary,,,,,,,,4048009-4,sh85097144|sh85054111,551.79,300391278,,,,,major,,,,,known_bad_qid
-Q220,Rome,,,,,,,1204500,4050471-2,n79018704,2--45632,,,,,,major,,,,,known_bad_qid
-Q1864603,Tibetologist,,,,,,,,7635239-0|7635240-7,,,,,,,,major,,,,,known_bad_qid
-Q2755217,UNIMARC,,,Q722609,MARC standards,,,,4186896-1,sh85139700,025.316,,,,,Z699.4.U22,discipline,,,,,known_bad_qid
-Q7161124,Universidade de Passo Fundo,,,,,,,,,n83007526,,,,,,,major,,,,,known_bad_qid
-Q7048977,abstract entity,Q35120,entity,Q18205125,abstract and concrete,,,,4191666-9,,,,14781583n,,,,discipline,,,,,known_bad_qid
-Q189533,academic degree,Q4218455|Q618779|Q427581,qualification|award|intangible asset,Q1815842,academic achievement,,,,4141686-7,sh85036481,378.2,300312080,00000554n,EducationalDegree,,,discipline,,,,,known_bad_qid
-Q3882459,acoustic wave,Q3882429,elastic wave,,,,,,4191490-9,sh85125404,,,,,,,discipline,,,,,known_bad_qid
-Q1914636,activity,Q3249551,process,,,Q4026292|Q52948,action|interaction,,4058882-8,,,,00059125n,ActivityByType,,,discipline,,,,,known_bad_qid
-Q4773904,anthropologist,,,,,,,810184,4142642-3|4254397-6,sh85005579,301.092,300025583,,,,,major,,,,,known_bad_qid
-Q3264451,cardiologist,,,,,,,,7627836-0|4202582-5,sh85020211,616.120092,,,,,,major,,,,,occupational_ist
-Q12765408,epidemiologist,,,,,,,,1028597347|1130736415,,,,,,,,major,,,,,occupational_ist
-Q1930187,journalist,,,,,,,984188,4028781-6|4028786-5,sh85070788,070.4023|070.92|070.4082,300025501,,,,,major,,,,,occupational_ist
-Q185351,jurist,,,,,,,,4029050-5|4130076-2,,340.092,300236907,,,,,major,,,,,occupational_ist
-Q486748,pianist,,,,,,,,4131406-2|4426550-5,sh85101720,786.2092,300235018,,,,,major,,,,,occupational_ist
+qid,label,subclass_of,subclass_of_label,part_of,part_of_label,has_parts,has_parts_label,fast_id,gnd_id,lcsh_id,ddc,aat_id,babelnet_id,kbpedia_id,world_history_id,lcc,flag_reason
+Q383968,African American studies,Q1143546,cultural studies,,,,,,,sh85001992,,,,AfricanAmericanStudies,,,regional_language_variant
+Q233762,American literature,Q116476,Western literature,Q113128838,North American literature,,,807113,,sh85004336,810,,01263633n,,,PS,regional_language_variant
+Q25340364,American literature,Q58854,literary criticism,Q470125,American studies,,,,,sh85004336,,,,,,,regional_language_variant
+Q470125,American studies,Q928786,area studies,,,,,,4142196-6,,427.973|810,,,AmericanStudies,,,regional_language_variant
+Q4825228,Australian studies,Q1595873|Q1143546,domestic studies|cultural studies,,,,,,,,,,,AustralianStudies,,,regional_language_variant
+Q764912,British literature,Q8242,literature,Q112939639,British and Irish literature,,,,7503210-7,,,,,,,,regional_language_variant
+Q4971458,British studies,,,,,,,,,,,,,BritishStudies,,,regional_language_variant
+Q1723523,Canadian literature,Q8242,literature,Q113128838,North American literature,Q115160921|Q115154799,Canadian literature in French|Canadian literature in English,845111,,sh85019388,,,,,,,regional_language_variant
+Q4676302,Canadian studies,Q928786|Q27968|Q1277348,area studies|English studies|Romance studies,,,Q1723523|Q2945|Q1103954|Q276861,Canadian literature|history of Canada|culture of Canada|politics of Canada,,7686561-7,,427.971|810,,,,,,regional_language_variant
+Q85710429,Caribbean studies,Q28617|Q928786,Latin American studies|area studies,,,,,,,,,,,,,,regional_language_variant
+Q1860,English,Q1346342|Q5329170,Anglic|Anglo-Frisian,,,Q7985|Q7976|Q44679|Q1348800|Q44676|Q7979|Q1553250|Q665624|Q2363292|Q7269768|Q4567134|Q8002|Q23580217|Q1156228|Q12859294|Q7033019|Q44661|Q603200|Q111911970|Q1068863,received pronunciation|American English|Australian English|Indian English|Canadian English|British English|Scottish English|Hiberno-English|Welsh English|Quebec English|Caribbean English|African American Vernacular English|European English|South African English|Pakistani English|Nigerian English|New Zealand English|Jamaican English|Belizean English|Hong Kong English,910920,4014777-0,sh85043413,420,300388277,00030862n,EnglishLanguage,,PE,natural_language
+Q130192,English as a second or foreign language,Q1860|Q7691272,English|teaching English as a second or foreign language,,,,,,,sh85043710,,,,,,,natural_language
+Q1370467,EuroVoc,,,Q54837|Q75487064,Semantic Web|EU Vocabularies,,,,4474210-1,,,,00472535n,,,,known_bad_qid
+Q1048268,European integration,,,,,,,,4071013-0,,,,,EuropeanIntegration,,,regional_language_variant
+Q1377029,European studies,Q1595873,domestic studies,,,,,,,,,,,EuropeanStudies,,,regional_language_variant
+Q17076284,French as a foreign language,Q1450761,French studies,,,,,,,,,,,,,,natural_language
+Q9129,Greek,Q2042538|Q85380120,Hellenic|Southern European language,,,Q29448469|Q35497|Q107358|Q36387|Q36510|Q4400023,Latin or Greek word|Ancient Greek|Koine Greek|medieval Greek|Modern Greek|Mariupolitan Greek,,,sh85057151,,300389734,00041634n,ModernGreekLanguage,,,natural_language
+Q104628254,Hong Kong studies,Q476294|Q162817,oriental studies|East Asian studies,Q476294,oriental studies,,,,,,,,,,,,regional_language_variant
+Q376022,Indian philosophy,Q5891,philosophy,,,,,,,sh85100930,181.4,,,,,,regional_language_variant
+Q683732,Irish literature,Q8242,literature,Q112939639,British and Irish literature,,,,,sh85068106,891.62,,03009487n,,,,regional_language_variant
+Q123556059,Irish studies,,,,,,,,,,,,,,,,regional_language_variant
+Q114082626,New Zealand fiction,Q936855,New Zealand literature,Q936855,New Zealand literature,,,,,,,,,,,,regional_language_variant
+Q936855,New Zealand literature,Q8242,literature,,,Q114082626,New Zealand fiction,,,sh85091517,,,,,,,regional_language_variant
+Q114082643,New Zealand poetry,Q482,poetry,,,,,,,,,,,,,,regional_language_variant
+Q115669647,Nigerian studies,,,,,,,,,,,,,,,,regional_language_variant
+Q124455513,Pakistani linguistics,Q7125797|Q371231,Pakistan studies|language geography,,,,,,,,,,,,,,regional_language_variant
+Q102077247,Q102077247,Q309|Q150737,history|architectural engineering,,,,,,,,,,,,,,malformed_label
+Q10308243,Q10308243,,,,,,,,,,,,,,,,malformed_label
+Q10405762,Q10405762,Q134995,bibliography,,,,,,,,,,,,,,malformed_label
+Q104673525,Q104673525,,,,,,,,,,,,,,,,malformed_label
+Q10479191,Q10479191,,,,,,,,,,,,,,,,malformed_label
+Q105834508,Q105834508,Q208217,literary studies,,,,,,,,,,,,,,malformed_label
+Q106484750,Q106484750,,,,,,,,,,,,,,,,malformed_label
+Q106545901,Q106545901,,,,,,,,,,,,,,,,malformed_label
+Q10877842,Q10877842,,,,,,,,,,,,,,,,malformed_label
+Q108805509,Q108805509,Q109607254,Romance literature,,,,,,,,,,,,,,malformed_label
+Q109364835,Q109364835,,,,,,,,,,,,,,,,malformed_label
+Q109450440,Q109450440,Q843601,health sciences,,,,,,,,,,,,,,malformed_label
+Q10958685,Q10958685,Q5369632,Chinese Classical Studies,,,,,,,,,,,,,,malformed_label
+Q109595305,Q109595305,Q3606845,agricultural science,,,,,,,,,,,,,,malformed_label
+Q109674603,Q109674603,,,Q1066186,study of history,,,,,,,,,,,,malformed_label
+Q109806590,Q109806590,,,Q333,astronomy,,,,,,,,,,,,malformed_label
+Q109888405,Q109888405,,,Q164204,musicology,,,,,,,,,,,,malformed_label
+Q110566862,Q110566862,Q208217,literary studies,,,,,,,,,,,,,,malformed_label
+Q111596971,Q111596971,Q8087,geometry,,,,,,,,,,,,,,malformed_label
+Q113296423,Q113296423,,,Q1066186,study of history,,,,,,,,,,,,malformed_label
+Q113476418,Q113476418,,,,,,,,,,,,,,,,malformed_label
+Q113547265,Q113547265,,,,,,,,,,,,,,,,malformed_label
+Q114284672,Q114284672,Q382995,legal science,,,,,,,,,,,,,,malformed_label
+Q114284676,Q114284676,,,,,,,,,,,,,,,,malformed_label
+Q1147173,Q1147173,Q2043282,business administration,,,,,,4120425-6,,381,,,,,,known_bad_qid
+Q115160211,Q115160211,,,,,,,,,,,,,,,,malformed_label
+Q11533186,Q11533186,,,,,,,,,,,,,,,,malformed_label
+Q115800114,Q115800114,,,,,,,,,,,,,,,,malformed_label
+Q11615971,Q11615971,,,,,,,,,,,,,,,,malformed_label
+Q116201778,Q116201778,,,,,,,,,,,,,,,,malformed_label
+Q11777885,Q11777885,Q394,metrology,,,,,,,,,,,,,,malformed_label
+Q11790212,Q11790212,,,,,,,,,,,,,,,,malformed_label
+Q11903225,Q11903225,,,,,,,,,,,,,,,,malformed_label
+Q11906702,Q11906702,,,,,,,,,,,,,,,,malformed_label
+Q11937582,Q11937582,Q30642|Q182557,natural language processing|computational linguistics,,,,,,,,,,,,,,malformed_label
+Q12112477,Q12112477,Q1071,geography,,,,,,,,,,,,,,malformed_label
+Q121267483,Q121267483,,,,,,,,,,,,,,,,malformed_label
+Q122016408,Q122016408,Q12453,measurement,,,,,,,,,,,,,,malformed_label
+Q12218851,Q12218851,Q194380,Arabic literature,,,,,,,,,,,,,,malformed_label
+Q12230961,Q12230961,,,,,,,,,,,,,,,,malformed_label
+Q122382480,Q122382480,,,,,,,,,,,,,,,,malformed_label
+Q12248834,Q12248834,Q3059502,critique,,,,,,,,,,,,,,malformed_label
+Q12292472,Q12292472,,,,,,,,,,,,,,,,malformed_label
+Q12293401,Q12293401,,,,,,,,,,,,,,,,malformed_label
+Q12293407,Q12293407,,,,,,,,,,,,,,,,malformed_label
+Q123412953,Q123412953,,,,,,,,,,,,,,,,malformed_label
+Q12341449,Q12341449,,,,,,,,,,,,,,,,malformed_label
+Q123460022,Q123460022,Q521|Q7168,physiology|histology,,,,,,,,,,,,,,malformed_label
+Q1234750,Q1234750,,,,,,,,,,,,,,,,malformed_label
+Q12366740,Q12366740,,,,,,,,,,,,,,,,malformed_label
+Q124032307,Q124032307,Q1071|Q8134,geography|economics,,,,,,,,,,,,,,malformed_label
+Q124419987,Q124419987,Q459381,literary theory,,,,,,,,,,,,,,malformed_label
+Q124735654,Q124735654,Q1277348,Romance studies,,,Q1721024|Q1109432,Portuguese studies|hispanism,,,,,,,,,,malformed_label
+Q125399444,Q125399444,Q818557,observational astronomy,,,,,,,,,,,,,,malformed_label
+Q125548096,Q125548096,,,,,,,,,,,,,,,,malformed_label
+Q125745936,Q125745936,,,,,,,,,,,,,,,,malformed_label
+Q126207863,Q126207863,,,,,,,,,,,,,,,,malformed_label
+Q12712210,Q12712210,,,Q843909,Islamic studies,,,,,,,,,,,,malformed_label
+Q12764583,Q12764583,Q1126894,phraseology,,,,,,,,,,,,,,malformed_label
+Q12765509,Q12765509,,,,,,,,,,,,,,,,malformed_label
+Q127693658,Q127693658,Q128406|Q113884277|Q127693772,pharmacology|molecular pharmacology|cellular pharmacology,,,,,,,,,,,,,,malformed_label
+Q12823214,Q12823214,,,,,,,,,,,,,,,,malformed_label
+Q131006663,Q131006663,Q80083,humanities,Q33122512,social sciences and humanities,,,,,,,,,,,,malformed_label
+Q131199733,Q131199733,Q7787,history of Europe,,,,,,,,,,,,,,malformed_label
+Q1317771,Q1317771,Q59950,urbanism,,,,,,,,,,,,,,malformed_label
+Q132816556,Q132816556,Q207011|Q420|Q413,neuroscience|biology|physics,,,,,,,,,,,,,,malformed_label
+Q134194705,Q134194705,Q136822,higher education,,,,,,,,,,,,,,malformed_label
+Q135116545,Q135116545,Q77604,radiology,,,,,,,,,,,,,,malformed_label
+Q136419412,Q136419412,Q7725634,literary work,,,,,,,,,,,,,,malformed_label
+Q136556947,Q136556947,,,Q136514010,Esprit Dog,,,,,,,,,,,,malformed_label
+Q136556948,Q136556948,,,Q136514010,Esprit Dog,,,,,,,,,,,,malformed_label
+Q136556949,Q136556949,,,Q136514010,Esprit Dog,,,,,,,,,,,,malformed_label
+Q1413626,Q1413626,,,,,,,,,,,,,,,,malformed_label
+Q1481081,Q1481081,,,,,,,,,,,,,,,,malformed_label
+Q1503150,Q1503150,,,,,,,,,,,,,,,,malformed_label
+Q1521170,Q1521170,,,,,,,,,,,,,,,,malformed_label
+Q15895758,Q15895758,,,Q200253,traditional Chinese medicine,,,,,,,,,,,,malformed_label
+Q15896735,Q15896735,,,,,,,,,,,,,,,,malformed_label
+Q1622256,Q1622256,Q7922,pedagogy,,,,,,,,,,,,,,malformed_label
+Q16527837,Q16527837,,,,,,,,,,,,,,,,malformed_label
+Q1702943,Q1702943,,,Q1383443,practical theology,,,,,,,,,,,,malformed_label
+Q17174864,Q17174864,,,,,,,,,,,,,,,,malformed_label
+Q17620657,Q17620657,Q28598|Q16527837,cultural anthropology|Q16527837,,,,,,,,,,,,,,malformed_label
+Q18088513,Q18088513,,,,,,,,,,,,,,,,malformed_label
+Q18424298,Q18424298,Q11790208,Forest sciences,,,,,,,,,,,,,,malformed_label
+Q19709905,Q19709905,,,,,,,,,,,,,,,,malformed_label
+Q19710514,Q19710514,,,,,,,,,,,,,,,,malformed_label
+Q20098764,Q20098764,,,,,,,,,,,,,,,,malformed_label
+Q2011433,Q2011433,Q817121,regional geography,,,,,,,,,,,,,,malformed_label
+Q2051672,Q2051672,Q1244108,liturgics,,,,,,,,,,,,,,malformed_label
+Q20825826,Q20825826,,,,,,,,,,,,,,,,malformed_label
+Q20871691,Q20871691,,,,,,,,,,,,,,,,malformed_label
+Q21002563,Q21002563,,,,,,,,,,,,,,,,malformed_label
+Q2113057,Q2113057,Q1414089,art theory,,,,,,,,,,,,,,malformed_label
+Q2200257,Q2200257,,,,,,,,,,,,,,,,malformed_label
+Q22341214,Q22341214,,,,,,,,,,,,,,,,malformed_label
+Q2242794,Q2242794,Q128406,pharmacology,,,,,,,,,,,,,,malformed_label
+Q2251373,Q2251373,,,,,,,,4124150-2,,,,,,,,malformed_label
+Q2306058,Q2306058,Q5817147,Social economy,,,,,,,,,,,,,,malformed_label
+Q23772857,Q23772857,,,,,,,,,,,,,,,,malformed_label
+Q25382590,Q25382590,,,Q161272,social psychology,,,,,,,,,,,,malformed_label
+Q25447165,Q25447165,Q8162,linguistics,,,,,,,,,,,,,,malformed_label
+Q25448174,Q25448174,,,,,,,,,,,,,,,,malformed_label
+Q25504439,Q25504439,,,,,,,,,,,,,,,,malformed_label
+Q2626091,Q2626091,Q50675,historiography,,,,,,,,,,,,,,malformed_label
+Q2761146,Q2761146,,,,,,,,,,,,,,,,malformed_label
+Q3007473,Q3007473,Q1985804,culture of France,,,,,,,,,,,,,,malformed_label
+Q30971997,Q30971997,,,,,,,,,,,,,,,,malformed_label
+Q3123542,Q3123542,Q46255,geophysics,,,,,,,,,,,,,,malformed_label
+Q31281932,Q31281932,,,,,,,,,,,,,,,,malformed_label
+Q31452095,Q31452095,,,,,,,,,,,,,,,,malformed_label
+Q31842110,Q31842110,Q17737,theory,Q1192971,network theory,,,,,,,,,,,,malformed_label
+Q31892484,Q31892484,,,,,,,,,,,,,,,,malformed_label
+Q31899564,Q31899564,,,,,,,,,,,,,,,,malformed_label
+Q3332456,Q3332456,Q11190,medicine,,,,,,,,,,,,,,malformed_label
+Q3410122,Q3410122,Q624758,psychopathology,,,,,,,,,,,,,,malformed_label
+Q3475775,Q3475775,,,,,Q333|Q37547|Q338,astronomy|astrophysics|cosmology,,,,,,,,,,malformed_label
+Q3536414,Q3536414,,,,,,,,,,,,,,,,malformed_label
+Q3578749,Q3578749,Q8134|Q349,economics|sport,,,,,,,,,,,,,,malformed_label
+Q3898568,Q3898568,Q7922,pedagogy,,,,,,,,,,,,,,malformed_label
+Q4213801,Q4213801,,,,,,,,,,,,,,,,malformed_label
+Q4450944,Q4450944,,,,,,,,,,,,,,,,malformed_label
+Q4483589,Q4483589,Q521,physiology,Q420,biology,,,,,,,,,,,,malformed_label
+Q51128236,Q51128236,Q1298380|Q7922,sports science|pedagogy,,,,,,,,,,,,,,malformed_label
+Q538734,Q538734,Q208217,literary studies,,,,,,,,,,,,,,malformed_label
+Q55694741,Q55694741,Q83371,seismology,,,,,,,,,,,,,,malformed_label
+Q56179507,Q56179507,Q21166956,lutenist,,,,,,,,,,,,,,malformed_label
+Q56300741,Q56300741,Q34749|Q47913,social science|intelligence agency,,,,,,,,,,,,,,malformed_label
+Q56324043,Q56324043,,,,,,,,,,,,,,,,malformed_label
+Q56878041,Q56878041,,,,,,,,,,,,,,,,malformed_label
+Q5701884,Q5701884,,,,,,,,,,,,,,,,malformed_label
+Q5705290,Q5705290,,,,,,,,,,,,,,,,malformed_label
+Q5834144,Q5834144,Q1757598,visual art education,,,,,,,,,,,,,,malformed_label
+Q6005263,Q6005263,,,,,,,,,,,,,,,,malformed_label
+Q60588609,Q60588609,,,,,,,,,,,,,,,,malformed_label
+Q60967239,Q60967239,,,,,,,,,,,,,,,,malformed_label
+Q61448113,Q61448113,,,,,,,,,,,,,,,,malformed_label
+Q62006072,Q62006072,,,,,,,,,,,,,,,,malformed_label
+Q620682,Q620682,Q1957908,manufacture of machinery and equipment,,,,,,,,,,,,,,malformed_label
+Q65283811,Q65283811,,,,,,,,,,,,,,,,malformed_label
+Q65292904,Q65292904,,,,,,,,,,,,,,,,malformed_label
+Q67637396,Q67637396,,,,,Q7162|Q4023882,genetics|selective breeding,,,,,,,,,,malformed_label
+Q789784,Q789784,Q1147173,Q1147173,,,,,,4257143-1,,381.2|382,,,,,,malformed_label
+Q829161,Q829161,,,,,,,,,,,,,,,,malformed_label
+Q87736180,Q87736180,,,Q183257|Q1416259,psychotherapy|body psychotherapy,,,,,,,,,,,,malformed_label
+Q89031952,Q89031952,,,,,,,,,,,,,,,,malformed_label
+Q9033886,Q9033886,,,,,,,,,,,,,,,,malformed_label
+Q9178165,Q9178165,Q441,botany,,,,,,,,,,,,,,malformed_label
+Q9288997,Q9288997,Q18336,heraldry,,,,,,,,,,,,,,malformed_label
+Q9352339,Q9352339,,,,,,,,,,,,,,,,malformed_label
+Q9378283,Q9378283,,,,,,,,,,,,,,,,malformed_label
+Q96249413,Q96249413,,,,,,,,,,,,,,,,malformed_label
+Q96463190,Q96463190,Q340169,communications media,,,,,,,,,,,,,,malformed_label
+Q97164575,Q97164575,,,,,,,,,,,,,,,,malformed_label
+Q99976367,Q99976367,Q4932206,jurisprudence,,,,,,,,,,,,,,malformed_label
+Q67511251,Royal Command and Staff College,,,,,,,,,,,,,,,,university
+Q122969414,Russian language,,,,,,,,,,,,,,,,natural_language
+Q116196774,Scottish studies,,,,,,,,,,,,,,,,regional_language_variant
+Q115669494,South African studies,,,,,,,,,,,,,,,,regional_language_variant
+Q1864603,Tibetologist,Q84505214,East Asian studies scholar,,,,,,7635239-0|7635240-7,,,,,,,,known_bad_qid
+Q2755217,UNIMARC,,,Q722609,MARC standards,,,,4186896-1,sh85139700,025.316,,,,,Z699.4.U22,known_bad_qid
+Q169411,Unified Modeling Language,,,,,,,1160249,4469781-8,sh97003561,,,02571962n,UnifiedModelingLanguage,,,natural_language
+Q189533,academic degree,Q4218455|Q618779|Q427581,qualification|award|intangible asset,Q1815842,academic achievement,,,,4141686-7,sh85036481,378.2,300312080,00000554n,EducationalDegree,,,known_bad_qid
+Q1914636,activity,Q3249551,process,,,Q4026292|Q52948,action|interaction,,4058882-8,,,,00059125n,ActivityByType,,,known_bad_qid
+Q119204227,college teaching,Q352842,teaching,,,,,,,sh85028395,,,,,,,university
+Q5333591,economics of language,Q8134,economics,,,,,,,,,,,,,,natural_language
+Q192161,formal language,Q649732,formal system,,,,,,4017848-1,sh85050802,511.3,,00213650n,FormalLanguage,,,natural_language
+Q3839507,functional programming language,Q9143,programming language,,,,,,,,,,,,,,natural_language
+Q21166956,lutenist,Q115246813,plucked instrument player,,,,,,4606716-4|4685940-8,sh85078991,,300235043,,,,,occupational_ist
+Q118541692,modern litterature and language,,,Q80083|Q8242|Q614380,humanities|literature|education in France,,,,,,,,,,,,natural_language
+Q484761,philosophy of language,Q5891,philosophy,Q5891,philosophy,,,,4056486-1,,121.68|401,,,PhilosophyOfLanguage,,,natural_language
+Q9143,programming language,Q629206,computer language,Q68,computer,Q1152399|Q25346349|Q1199356|Q865760,syntax|execution model|standard library|type system,1078704,4047409-4,sh85107313,005.13,,00064652n,ProgrammingLanguage,,,natural_language
+Q739465,study of the Hebrew language,Q8162|Q40634|Q2142577,linguistics|philology|Semitic studies,Q42002,Jewish studies,,,,4159338-8,,492.4|892.4,,03089274n,,,,natural_language
+Q7691272,teaching English as a second or foreign language,Q1455196|Q2313213,second-language education|language education,,,,,,,,,,,,,,natural_language
+Q921767,theory of language,Q3239681,scientific theory,Q8162,linguistics,,,,4121708-1,sh85074574,,,,,,,natural_language
+Q113784815,translation by target language,Q7553,translation,,,,,,,,,,,,,,natural_language
+Q1667633,university history,Q1066186,study of history,,,,,,7504326-9,,,,,,,,university

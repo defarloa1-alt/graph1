@@ -10,6 +10,11 @@ All Place-related documentation, data, and references in one place.
 |------|---------|
 | [PLEIADES_QUICK_START.md](PLEIADES_QUICK_START.md) | Download → import → verify; schema; example queries; coverage; troubleshooting |
 | [LOGICAL_MODEL.md](LOGICAL_MODEL.md) | Place logical model: diagram, nodes, relationships, data flow, architecture gap |
+| [FEDERATION_HAPPY_PATH.md](FEDERATION_HAPPY_PATH.md) | GeoNames & Wikidata federation: happy path, order, unhappy-path discussion |
+| [GEO_EXPANSION_PROCESS.md](GEO_EXPANSION_PROCESS.md) | Domain QID → backlinks → geo filter → Geo Agent (LLM) → delta applier → expanded Place backbone |
+| [GEO_AGENT_DELTA_SCHEMA.md](GEO_AGENT_DELTA_SCHEMA.md) | Geo Agent delta types (CREATE_OR_ENRICH_PLACE, ATTACH_EVENT_TO_PLACE) and output format |
+| [GEO_AGENT_REVIEW.md](../docs/GEO_AGENT_REVIEW.md) | Full design doc for review — Geo Agent, backbone, SFA handoff |
+| [../md/Agents/geo_agent_classification_prompt.md](../md/Agents/geo_agent_classification_prompt.md) | Geo Agent prompt — classification + deltas |
 | [GEOGRAPHIC_CONSOLIDATION_2026-02-12.md](GEOGRAPHIC_CONSOLIDATION_2026-02-12.md) | File inventory; TGN sources; archived items |
 | [geographic_registry_master.csv](geographic_registry_master.csv) | Curated place→facet mapping (political, cultural_geographic, pure_spatial) |
 
@@ -45,10 +50,20 @@ All Place-related documentation, data, and references in one place.
 | `build_pleiades_geonames_crosswalk.py` | Pleiades → GeoNames crosswalk from pleiades_plus.csv |
 | `build_geonames_wikidata_bridge.py` | GeoNames → Wikidata mapping; merge into federated crosswalk |
 | `enrich_places_from_crosswalk.py` | Enrich Place with qid, geonames_id, tgn_id from crosswalk |
+| `enrich_places_from_wikidata_geo.py` | Enrich Place with P625 (coords), P3896 (geoshape), P131/P17 (admin hierarchy) from Wikidata |
+| `geo_backlink_discovery.py` | Domain QID → backlinks → filter geo-type → output JSON bundle for Geo Agent |
 | `link_place_admin_hierarchy_geonames.py` | Place(geonames_id) parents; LOCATED_IN from Pleiades to GeoNames |
 | `link_place_admin_hierarchy.py` | Place → Place (LOCATED_IN) from crosswalk + Wikidata P131/P17 |
 | `link_pleiades_place_to_geo_backbone.py` | Link Pleiades_Place → Place (ALIGNED_WITH_GEO_BACKBONE) |
 | `build_place_type_hierarchy.py` | PlaceType taxonomy |
+
+**Maintenance (scripts/neo4j/):**
+
+| Script | Purpose |
+|--------|---------|
+| `tag_place_scope.py` | Tag Place with `place_scope = 'v1_core'` (settlements, regions) or `deferred` |
+
+**Geo backbone** = Place nodes with `place_scope = 'v1_core'`. Run `tag_place_scope.py` after Pleiades import.
 
 ---
 

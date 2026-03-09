@@ -35,6 +35,7 @@ from .agent import (
     NEO4J_USER,
     SLEEP_SEC,
     WRITE_BACKLINK_CANDIDATE,
+    _entity_type_from_item_type,
     fetch_backlinks,
 )
 from .decision_loader import load_decision_model
@@ -111,11 +112,13 @@ def harvest_backlinks_for_person(
     written = 0
     for bl in backlinks:
         try:
+            entity_type = _entity_type_from_item_type(bl.get("item_type_label"))
             session.run(WRITE_BACKLINK_CANDIDATE, {
                 "person_qid":      qid,
                 "item_qid":        bl["item_qid"],
                 "item_label":      bl["item_label"],
-                "entity_cipher":   generate_entity_cipher(bl["item_qid"], "STUB", "wd"),
+                "entity_type":     entity_type,
+                "entity_cipher":   generate_entity_cipher(bl["item_qid"], entity_type, "wd"),
                 "item_type_qid":   bl["item_type_qid"],
                 "item_type_label": bl["item_type_label"],
                 "pred_pid":        bl["pred_pid"],

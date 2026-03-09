@@ -74,7 +74,7 @@ def fetch_wikidata_labels(qids):
 def load_geonames_cache():
     """Load the local JSON cache if it exists."""
     if GEONAMES_CACHE.exists():
-        with open(GEONAMES_CACHE) as f:
+        with open(GEONAMES_CACHE, encoding="utf-8") as f:
             return json.load(f)
     return {}
 
@@ -253,7 +253,7 @@ def main():
     if gn_labels and not args.dry_run:
         cache.update(gn_labels)
         GEONAMES_CACHE.parent.mkdir(parents=True, exist_ok=True)
-        with open(GEONAMES_CACHE, "w") as f:
+        with open(GEONAMES_CACHE, "w", encoding="utf-8") as f:
             json.dump(cache, f, indent=2, ensure_ascii=False)
         print(f"  Updated cache ({len(cache)} total entries)")
 

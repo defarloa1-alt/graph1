@@ -1,0 +1,890 @@
+{
+  "seed": {
+    "qid": "Q17167",
+    "label": "Roman Republic"
+  },
+  "qualifying_filter": "at least one of P625, P276, P131, P3896, P1584, P1566 (P17 alone excluded)",
+  "backlinks_total": 80,
+  "candidates_count": 27,
+  "geo_property_counts": [
+    {
+      "pid": "P131",
+      "label": "located in administrative entity",
+      "count": 2
+    },
+    {
+      "pid": "P1566",
+      "label": "GeoNames ID",
+      "count": 1
+    },
+    {
+      "pid": "P1584",
+      "label": "Pleiades ID",
+      "count": 3
+    },
+    {
+      "pid": "P17",
+      "label": "country",
+      "count": 32
+    },
+    {
+      "pid": "P276",
+      "label": "location",
+      "count": 28
+    },
+    {
+      "pid": "P3896",
+      "label": "geoshape",
+      "count": 0
+    },
+    {
+      "pid": "P625",
+      "label": "coordinate location",
+      "count": 14
+    },
+    {
+      "pid": "P706",
+      "label": "located in/on physical feature",
+      "count": 0
+    }
+  ],
+  "candidates": [
+    {
+      "qid": "Q122918768",
+      "label": "Pompey's eastern settlement",
+      "instance_of": [
+        {
+          "qid": "Q2520735",
+          "label": "government reorganization"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q210718",
+          "value_label": "Asia"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q913382",
+          "value_label": "Bithynia et Pontus"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q4819648",
+          "value_label": "Cilicia"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q207118",
+          "value_label": "Roman Syria"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524410",
+      "label": "Battle of Italica",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q658893",
+          "value_label": "Italica"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "37.443889, -6.046667"
+        }
+      ]
+    },
+    {
+      "qid": "Q9173528",
+      "label": "Battle of Saguntum",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q47483",
+          "value_label": "Sagunto"
+        }
+      ]
+    },
+    {
+      "qid": "Q11948139",
+      "label": "Seleuceia in Cilicia",
+      "instance_of": [
+        {
+          "qid": "Q15661340",
+          "label": "ancient city"
+        },
+        {
+          "qid": "Q839954",
+          "label": "archaeological site"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P131",
+          "label": "located in administrative entity",
+          "value_qid": "Q650630",
+          "value_label": "Silifke"
+        },
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "648771"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q93180",
+          "value_label": "Seleucid Empire"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2022162",
+          "value_label": "Kingdom of Pergamon"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q43",
+          "value_label": "Turkey"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q650630",
+          "value_label": "Silifke"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "36.3765, 33.9165"
+        }
+      ]
+    },
+    {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "instance_of": [
+        {
+          "qid": "Q104212151",
+          "label": "series of wars"
+        },
+        {
+          "qid": "Q198",
+          "label": "war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q2429397",
+          "value_label": "Ancient Carthage"
+        }
+      ]
+    },
+    {
+      "qid": "Q54864605",
+      "label": "Siege of Salona",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q1258998",
+          "value_label": "Salona"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "43.53944444444444, 16.483055555555556"
+        }
+      ]
+    },
+    {
+      "qid": "Q4872838",
+      "label": "Battle of the Baetis River",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q14309",
+          "value_label": "Guadalquivir"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524412",
+      "label": "Battle of Lauron",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q11045304",
+          "value_label": "Lauro"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.15222222222222, -0.4425"
+        }
+      ]
+    },
+    {
+      "qid": "Q9173074",
+      "label": "Battle of Carteia",
+      "instance_of": [
+        {
+          "qid": "Q1261499",
+          "label": "naval battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q97616842",
+          "value_label": "Carteia"
+        }
+      ]
+    },
+    {
+      "qid": "Q1974201",
+      "label": "Battle of Geronium",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q3761234",
+          "value_label": "Geronium"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.76183333, 14.73336111"
+        }
+      ]
+    },
+    {
+      "qid": "Q233402",
+      "label": "Battle of Nola",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q72288",
+          "value_label": "Nola"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "40.9261111, 14.5275"
+        }
+      ]
+    },
+    {
+      "qid": "Q125727661",
+      "label": "March on Rome",
+      "instance_of": [
+        {
+          "qid": "Q45382",
+          "label": "coup d'état"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q220",
+          "value_label": "Rome"
+        }
+      ]
+    },
+    {
+      "qid": "Q20102510",
+      "label": "Battle of Cartagena",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q2727884",
+          "value_label": "Carthago Nova"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "37.6, -0.9819444444444444"
+        }
+      ]
+    },
+    {
+      "qid": "Q137972719",
+      "label": "Siege of Carthago Nova",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q2727884",
+          "value_label": "Carthago Nova"
+        }
+      ]
+    },
+    {
+      "qid": "Q11688220",
+      "label": "Battle of Petelia",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q3900811",
+          "value_label": "Petelia"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.265, 17.0489"
+        }
+      ]
+    },
+    {
+      "qid": "Q3778726",
+      "label": "Sertorian War",
+      "instance_of": [
+        {
+          "qid": "Q8465",
+          "label": "civil war"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q186513",
+          "value_label": "Hispania"
+        }
+      ]
+    },
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "instance_of": [
+        {
+          "qid": "Q11514315",
+          "label": "historical period"
+        },
+        {
+          "qid": "Q1307214",
+          "label": "form of government"
+        },
+        {
+          "qid": "Q48349",
+          "label": "empire"
+        },
+        {
+          "qid": "Q3024240",
+          "label": "historical country"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.9, 12.5"
+        }
+      ]
+    },
+    {
+      "qid": "Q104834716",
+      "label": "Battle near Osca",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q100707898",
+          "value_label": "Osca"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524464",
+      "label": "Battle of Valentia",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q9092331",
+          "value_label": "Valentia Edetanorum"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.466667, -0.375"
+        }
+      ]
+    },
+    {
+      "qid": "Q137921341",
+      "label": "Siege of Nola",
+      "instance_of": [
+        {
+          "qid": "Q188055",
+          "label": "siege"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q72288",
+          "value_label": "Nola"
+        }
+      ]
+    },
+    {
+      "qid": "Q21328960",
+      "label": "122 BC eruption of Mount Etna",
+      "instance_of": [
+        {
+          "qid": "Q7692360",
+          "label": "volcanic eruption"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q16990",
+          "value_label": "Mount Etna"
+        }
+      ]
+    },
+    {
+      "qid": "Q7362271",
+      "label": "Roman army mutiny in 342 BC",
+      "instance_of": [
+        {
+          "qid": "Q511866",
+          "label": "mutiny"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q1438",
+          "value_label": "Campania"
+        }
+      ]
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia",
+      "instance_of": [
+        {
+          "qid": "Q182547",
+          "label": "Roman province"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P131",
+          "label": "located in administrative entity",
+          "value_qid": "Q1223088",
+          "value_label": "Diocese of Asia"
+        },
+        {
+          "pid": "P1566",
+          "label": "GeoNames ID",
+          "value": "8378482"
+        },
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "981509"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q12544",
+          "value_label": "Byzantine Empire"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "38.4, 28.3"
+        }
+      ]
+    },
+    {
+      "qid": "Q9172749",
+      "label": "Battle of Apamea",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q617550",
+          "value_label": "Apamea"
+        }
+      ]
+    },
+    {
+      "qid": "Q3491975",
+      "label": "Battle of Cremona",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q6231",
+          "value_label": "Cremona"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "45.133333, 10.033333"
+        }
+      ]
+    },
+    {
+      "qid": "Q23725",
+      "label": "Byzantium",
+      "instance_of": [
+        {
+          "qid": "Q15661340",
+          "label": "ancient city"
+        },
+        {
+          "qid": "Q148837",
+          "label": "polis"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P1584",
+          "label": "Pleiades ID",
+          "value": "520985"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q844930",
+          "value_label": "Classical Athens"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q2277",
+          "value_label": "Roman Empire"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "41.013416666666664, 28.98363888888889"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524449",
+      "label": "Battle of Sucro",
+      "instance_of": [
+        {
+          "qid": "Q178561",
+          "label": "battle"
+        }
+      ],
+      "subclass_of": [],
+      "geo_properties": [
+        {
+          "pid": "P17",
+          "label": "country",
+          "value_qid": "Q17167",
+          "value_label": "Roman Republic"
+        },
+        {
+          "pid": "P276",
+          "label": "location",
+          "value_qid": "Q14311",
+          "value_label": "Júcar"
+        },
+        {
+          "pid": "P625",
+          "label": "coordinate location",
+          "value": "39.163889, -0.251667"
+        }
+      ]
+    }
+  ]
+}

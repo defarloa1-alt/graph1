@@ -1,8 +1,12 @@
 # SCA–SFA Contract
 
+**Domain Initiator (DI)** feeds the SCA: see `docs/DOMAIN_INITIATOR.md`. The DI harvests once and classifies by facet; the SCA coordinates SFAs and routes DI output.
+
+---
+
 ## The Dialogue
 
-**SCA → SFA:** "Here is the structured harvest. 58 SubjectConcepts, 35 edges, 15 unconfirmed, seven narrative paths. Entity counts from cluster assignment."
+**SCA → SFA:** "Here is the structured harvest. 21 SubjectConcepts (Q17167 domain, all LCSH-verified), 112 facet edges, 15 curation decisions, 38 FacetRouter patterns. Entity counts from cluster assignment."
 
 **SFA → Graph:** "I accept this as the empirical base. I am adding: within-facet concepts the harvest missed, cross-facet relationships Wikidata doesn't encode, and framework overlays (traversal instructions for specific interpretive contexts)."
 

@@ -2,27 +2,17 @@
 """
 Flag discipline registry rows that may be non-disciplines for manual review.
 
-The filtered file (discipline_majors_consolidated_disciplines_filtered.csv) should
-already have removed universities, degree programs, and obvious occupational roles.
-This script catches slippage: named persons, biological taxa, places, occupational
--ist/-ologist labels, technical specs, and generic concepts.
+Catches slippage from P279/P527 expansion: named persons, biological taxa, places,
+occupational -ist/-ologist labels, technical specs, natural languages (not the study
+of languages), and generic concepts.
 
 Output:
   - output/discipline_suspects_flagged.csv (all rows + flag_reason column)
   - output/discipline_suspects_review.csv (flagged rows only, for curation)
 
-Open Syllabus context:
-  Open Syllabus (opensyllabus.org) classifies ~7.5M syllabi into ~70 fields from
-  CIP (Classification of Instructional Programs) codes. That taxonomy is
-  empirically grounded in what colleges actually teach. Our Wikidata+LCSH
-  approach is authority-based and broader. Open Syllabus could be used to:
-  - Validate which of our disciplines appear in real curricula
-  - Prioritize enrichment for high-syllabus-count fields
-  - Crosswalk CIP codes to our master_id (lcsh_id, etc.)
-
 Usage:
   python scripts/backbone/subject/flag_discipline_suspects.py
-  python scripts/backbone/subject/flag_discipline_suspects.py -i CSV/discipline_majors_consolidated_disciplines_filtered.csv
+  python scripts/backbone/subject/flag_discipline_suspects.py -i output/discipline_taxonomy_new.csv
 """
 
 import argparse
@@ -72,6 +62,33 @@ TECH_SPEC_PATTERN = re.compile(r"^(IPv[46]|MQTT|UNIMARC|API|UML|JSON|XML|HTML|RD
 # Malformed: label looks like a QID
 MALFORMED_QID_LABEL = re.compile(r"^Q\d+$")
 
+# Natural languages — the language itself, not the study of it.
+# "English" is Q1860 (academic discipline AND language). We flag the bare name;
+# "English studies", "English linguistics", "English literature" are legitimate disciplines.
+DISCIPLINE_SUFFIXES = {"studies", "linguistics", "literature", "philology", "language studies"}
+NATURAL_LANGUAGES = {
+    "english", "french", "german", "spanish", "chinese", "japanese", "arabic",
+    "russian", "italian", "portuguese", "korean", "hindi", "turkish", "dutch",
+    "polish", "swedish", "greek", "latin", "hebrew", "persian", "thai",
+    "vietnamese", "malay", "bengali", "ukrainian", "czech", "romanian",
+    "hungarian", "finnish", "norwegian", "danish", "indonesian", "tagalog",
+    "swahili", "yoruba", "zulu", "tamil", "urdu", "punjabi", "gujarati",
+    "catalan", "basque", "welsh", "irish", "scottish gaelic", "breton",
+    "albanian", "serbian", "croatian", "bosnian", "slovenian", "slovak",
+    "bulgarian", "macedonian", "estonian", "latvian", "lithuanian",
+    "icelandic", "maltese", "afrikaans", "hausa", "amharic", "somali",
+    "tibetan", "burmese", "khmer", "lao", "mongolian", "kazakh",
+    "uzbek", "azerbaijani", "georgian", "armenian", "nepali", "sinhala",
+}
+
+# Regional language variants (P527 children of language items)
+REGIONAL_VARIANT_PATTERN = re.compile(
+    r"^(American|British|Australian|Canadian|Indian|South African|Nigerian|"
+    r"Caribbean|Scottish|Irish|New Zealand|European|Pakistani|Jamaican|"
+    r"Hong Kong|Singapore|Philippine|Belizean|Quebec|African American)\s+\w+$",
+    re.I,
+)
+
 
 def _flag_row(row: dict) -> str | None:
     """Return flag reason if row is suspect, else None."""
@@ -93,6 +110,20 @@ def _flag_row(row: dict) -> str | None:
     if TECH_SPEC_PATTERN.match(label):
         return "tech_spec"
 
+    # Natural language (bare name, not "X studies" / "X linguistics" / "X literature")
+    label_lower = label.lower()
+    if label_lower in NATURAL_LANGUAGES:
+        # Check it's not "X studies" etc. (bare name = language, not discipline)
+        return "natural_language"
+    # "X language" but not "X language studies"
+    if label_lower.endswith(" language") and not any(label_lower.endswith(s) for s in DISCIPLINE_SUFFIXES):
+        stem = label_lower.replace(" language", "").strip()
+        if stem and len(stem) > 2:
+            return "natural_language"
+    # Regional variant (American English, British English, etc.)
+    if REGIONAL_VARIANT_PATTERN.match(label):
+        return "regional_language_variant"
+
     return None
 
 
@@ -101,7 +132,7 @@ def main():
     parser.add_argument(
         "-i", "--input",
         type=Path,
-        default=_PROJECT / "CSV" / "discipline_majors_consolidated_disciplines_filtered (1).csv"
+        default=_PROJECT / "output" / "discipline_taxonomy_new.csv"
     )
     parser.add_argument("-o", "--output-dir", type=Path, default=_PROJECT / "output")
     args = parser.parse_args()

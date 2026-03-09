@@ -1,0 +1,6628 @@
+# Chrystallum Discipline Taxonomy
+
+**Source:** Wikidata SPARQL (live query)
+**Filter:** `?item wdt:P31 wd:Q11862829` (academic discipline) UNION `?item wdt:P31 wd:Q2267705` (field of study)
+**Hierarchy:** P279 (subclass of) only — no P527 expansion
+**Authority IDs:** P244 (LCSH), P2163 (FAST), P227 (GND), P1149 (LCC), P1036 (DDC)
+
+| Metric | Count |
+|--------|-------|
+| Disciplines | 5006 |
+| Have LCSH | 921 |
+| Have LCC | 191 |
+| Have GND | 825 |
+| Have FAST | 343 |
+| Synthetic parents (not disciplines) | 980 |
+| Root nodes | 2565 |
+
+## Taxonomy Tree
+
+- **academic administration** `Q4671162` **[1]** *(structural parent — not itself a discipline)*
+    - **student affairs** `Q6522361`
+
+- **academic degree** `Q189533` **[1]** *(structural parent — not itself a discipline)*
+    - **computer science and engineering** `Q11492827`
+
+- **academic discipline** `Q11862829` **[4]** *(structural parent — not itself a discipline)*
+    - **branch of economics** `Q127601778`
+    - **branch of philosophy** `Q22811234`
+    - **knowledge assembly** `Q114662985`
+    - **Pacific Language Studies** `Q64800617`
+
+- **academic major** `Q4671286` **[1]** *(structural parent — not itself a discipline)*
+    - **social sciences humanities & the arts for people & the economy** `Q103459375`
+
+- **accounting** `Q4116214` **[3]** *(structural parent — not itself a discipline)*
+    - **management accounting** `Q2990807`  LCSH:`sh85080364` GND:`4032592-1` DDC:`658.1511`
+    - **Māori accounting** `Q110373956`
+    - **Not-for-profit accounting and accountability** `Q112970867`
+
+- **acoustic environment** `Q110933862` **[2]** *(structural parent — not itself a discipline)*
+    - **auditory ecology** `Q131339872`
+    - **human auditory ecology** `Q131152189`
+
+- **action theory** `Q175661` **[1]** *(structural parent — not itself a discipline)*
+    - **speech act theory** `Q2313306`  GND:`4077747-9`
+
+- **activity** `Q1914636` **[8]** *(structural parent — not itself a discipline)*
+    - **automation** `Q184199`  LCSH:`sh85010116` GND:`4003957-2` DDC:`629.8|658.514|338.454|338.456|338.064|303.4834|670.427`
+    - **computational statistics** `Q5157340`
+    - **merchandising** `Q740777`  LCSH:`sh85083755` GND:`4138191-9` DDC:`658.8`
+    - **new product development** `Q1395034`  GND:`4139402-1`
+    - **photography** `Q11633`  LCSH:`sh85101206|sh00006943` LCC:`TR` GND:`4045895-7` FAST:`1061714` DDC:`770`
+    - **politics** `Q7163` **[5]**  LCSH:`sh2002011436` GND:`4046514-7` FAST:`1919741` DDC:`320|324`
+        - **global politics** `Q5570874`  LCSH:`sh85148216`
+        - **international politics** `Q1762091`  GND:`4072885-7`
+        - **Maori politics** `Q6950632`
+        - **political communication** `Q1660049`  LCSH:`sh85029088` GND:`4134262-8` DDC:`320.014`
+        - **politics of outer space** `Q4811702`
+    - **public speaking** `Q18342738`  LCSH:`sh85108814` LCC:`PN4001-PN4355`
+    - **sorting** `Q2303697`
+
+- **actuarial science** `Q1128453` **[1]** *(structural parent — not itself a discipline)*
+    - **actuarial mathematics** `Q64686951`
+
+- **addictology** `Q2362817` **[1]** *(structural parent — not itself a discipline)*
+    - **tobaccology** `Q1898664`
+
+- **administration** `Q50412353` **[1]** *(structural parent — not itself a discipline)*
+    - **development administration** `Q17997697`
+
+- **administrative law** `Q171251` **[1]** *(structural parent — not itself a discipline)*
+    - **administrative law of Norway** `Q131819730`
+
+- **aeronautics** `Q8421` **[2]** *(structural parent — not itself a discipline)*
+    - **aeronautical meteorology** `Q1434024`
+    - **military aeronautics** `Q137524220`
+
+- **agricultural planning** `Q116603541` **[1]** *(structural parent — not itself a discipline)*
+    - **agricultural land planning** `Q110252296`
+
+- **agricultural production** `Q56299222` **[1]** *(structural parent — not itself a discipline)*
+    - **plant production** `Q11870294`
+
+- **agriculture** `Q11451` **[4]** *(structural parent — not itself a discipline)*
+    - **agricultural entomology** `Q12779382`
+    - **Agricultural spatial analysis and modelling** `Q110252322`
+    - **agricultural systems analysis and modelling** `Q110252329`
+    - **maple sugaring** `Q2823820`
+
+- **algebra** `Q3968` **[1]** *(structural parent — not itself a discipline)*
+    - **applied algebra** `Q131148155`
+
+- **algorithm** `Q8366` **[1]** *(structural parent — not itself a discipline)*
+    - **natural language generation** `Q1513879`  LCSH:`sh2017004703`
+
+- **alternative medicine** `Q188504` **[1]** *(structural parent — not itself a discipline)*
+    - **naturopathy** `Q213403`  LCSH:`sh85090300` GND:`4041382-2` DDC:`615.535`
+
+- **analysis** `Q217602` **[15]** *(structural parent — not itself a discipline)*
+    - **analysis** `Q1544924`  LCSH:`sh85088952` GND:`4040814-0` DDC:`780.15|781|781.8`
+    - **analysis of social structure** `Q15148892`
+    - **citation analysis** `Q206276`
+    - **cultural analysis** `Q13586578`
+    - **data analysis** `Q1988917` **[1]**  GND:`4123037-1` DDC:`519.53`
+        - **business analytics** `Q5001829`
+    - **economic analysis** `Q9150374`
+    - **educational assessment** `Q2585724`
+    - **failure analysis** `Q1022240` **[1]**
+        - **failure mode and effects analysis** `Q1389268`
+    - **Geographical Analysis** `Q124623818`
+    - **methodology** `Q185698` **[5]**  LCSH:`sh85084414` GND:`4139716-2` FAST:`1018722` DDC:`101`
+        - **design method** `Q2292993`
+        - **economic methodology** `Q2473359`
+        - **Indigenous methodologies** `Q113127911`
+        - **Māori research methods** `Q110321526`
+        - **project management** `Q179012` **[1]**  LCSH:`sh85065919` GND:`4047441-0` DDC:`658.404`
+            - **EU project management** `Q3734933`
+    - **microscopy** `Q1074953` **[1]**  LCSH:`sh92003369` GND:`4039238-7`
+        - **quantitative microscopy** `Q131548248`
+    - **online discourse analysis** `Q120970690`
+    - **particle-size analysis** `Q7140480`
+    - **research analysis** `Q107567031`
+    - **semantic analysis** `Q3614998`
+
+- **analytical chemical technique** `Q4751159` **[1]** *(structural parent — not itself a discipline)*
+    - **exploratory data analysis** `Q1322871`  GND:`4128896-8`
+
+- **analytics** `Q485396` **[4]** *(structural parent — not itself a discipline)*
+    - **geospatial analytics** `Q137045724`
+    - **geospatial data analytics** `Q137047508`
+    - **social media analytics** `Q1140126`
+    - **visual analytics** `Q2528440`
+
+- **anatomical pathology** `Q683455` **[1]** *(structural parent — not itself a discipline)*
+    - **histopathology** `Q1070952`
+
+- **anatomy** `Q514` **[8]** *(structural parent — not itself a discipline)*
+    - **bat anatomy** `Q107333083`  LCSH:`sh2020005786`
+    - **chondrology** `Q131344592`
+    - **desmology** `Q126364739`
+    - **myology** `Q674407`
+    - **neuroanatomy** `Q948647`  LCSH:`sh85091113` GND:`4171577-9` FAST:`1036307` DDC:`573.833|611.8`
+    - **organology** `Q1297776`
+    - **pharyngology** `Q2085182`
+    - **veterinary anatomy and physiology** `Q110245169`
+
+- **angiography** `Q468414` **[1]** *(structural parent — not itself a discipline)*
+    - **arteriography** `Q707818`  DDC:`616.0757`
+
+- **animal anatomy** `Q8198634` **[5]** *(structural parent — not itself a discipline)*
+    - **amphibian anatomy** `Q10818148`  LCSH:`sh85004599` LCC:`QL669` FAST:`807902`
+    - **bird anatomy** `Q136352`  LCSH:`sh85014311` LCC:`QL697|SF767.B57`
+    - **mammal anatomy** `Q3615129`  LCSH:`sh85080261` LCC:`QL739` FAST:`1006953`
+    - **reptile anatomy** `Q106099201`  LCSH:`sh85112965` LCC:`QL669` FAST:`1095022`
+    - **vertebrate anatomy** `Q10818163`  LCSH:`sh85142903` LCC:`QL801` FAST:`1165546`
+
+- **animal ecology** `Q10900987` **[3]** *(structural parent — not itself a discipline)*
+    - **larval ecology** `Q104197468`  LCSH:`sh94008158` FAST:`992729`
+    - **vertebrate ecology** `Q73403730` **[1]**
+        - **fish ecology** `Q107556817`  LCSH:`sh85048747` FAST:`926419`
+    - **wildlife ecology** `Q99303595`
+
+- **animal nutrition** `Q113388602` **[1]** *(structural parent — not itself a discipline)*
+    - **livestock nutrition** `Q115161676`
+
+- **animal reproduction** `Q3427333` **[1]** *(structural parent — not itself a discipline)*
+    - **fish reproduction** `Q17013672`  LCSH:`sh85048800` FAST:`926594`
+
+- **animal science** `Q168091` **[4]** *(structural parent — not itself a discipline)*
+    - **animal health** `Q64812946`  LCSH:`sh89002218`
+    - **animal husbandry** `Q80962` **[4]**  LCSH:`sh85005169` GND:`4117220-6` DDC:`636`
+        - **animal breeding** `Q227675`  LCSH:`sh88005077` GND:`4060143-2`
+        - **Animal protection (incl. pests and pathogens)** `Q110295623`
+        - **captive breeding** `Q1350718`
+        - **Environmental studies in animal production** `Q110252455`
+    - **dairy science** `Q122705444`  GND:`4169930-0`
+    - **poultry science** `Q45098068`
+
+- **animal structure** `Q25570959` **[1]** *(structural parent — not itself a discipline)*
+    - **arthropod anatomy** `Q2845653` **[1]**
+        - **spider anatomy** `Q7577047`
+
+- **application** `Q166142` **[2]** *(structural parent — not itself a discipline)*
+    - **data entry and microcomputer applications** `Q21572113`
+    - **web browser** `Q6368`  LCSH:`sh98001500` GND:`4423006-0`
+
+- **applied behavior analysis** `Q621607` **[1]** *(structural parent — not itself a discipline)*
+    - **organizational behavior management** `Q10611384`
+
+- **applied ethics** `Q538733` **[1]** *(structural parent — not itself a discipline)*
+    - **Human rights and justice issues (excl. law)** `Q110467952`
+
+- **aptitude** `Q1347367` **[1]** *(structural parent — not itself a discipline)*
+    - **multilingualism** `Q30081`  LCSH:`sh85088352` GND:`4038403-2` FAST:`1028907` DDC:`306.446`
+
+- **archaeological science** `Q637284` **[1]** *(structural parent — not itself a discipline)*
+    - **biomolecular archaeology** `Q130320558`  LCSH:`sh2010013493` LCC:`CC79.B56` FAST:`1763661`
+
+- **archeogenetics** `Q636489` **[1]** *(structural parent — not itself a discipline)*
+    - **genetic history of the Middle East** `Q4785363`
+
+- **art of the Earth** `Q13150034` **[1]** *(structural parent — not itself a discipline)*
+    - **Chinese art** `Q756615`  LCSH:`sh85007599` DDC:`709.51`
+
+- **art repatriation** `Q873642` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori repatriation** `Q110321513`
+
+- **art theory** `Q1414089` **[1]** *(structural parent — not itself a discipline)*
+    - **Q2113057** `Q2113057`
+
+- **artificial intelligence** `Q11660` **[7]** *(structural parent — not itself a discipline)*
+    - **AI Deployment Architecture (AIDA)** `Q136909490`
+    - **applied artificial intelligence** `Q117289639`
+    - **distributed artificial intelligence** `Q3153007`  LCSH:`sh88004324` GND:`4281805-9`
+    - **explainable AI** `Q40890078`  GND:`1263068472`
+    - **machine learning** `Q2539` **[4]**  LCSH:`sh85079324` GND:`4193754-5` DDC:`006.31`
+        - **one-shot learning** `Q7092335`
+        - **semi-supervised and unsupervised learning** `Q113127963`
+        - **statistical relational learning** `Q7604413`
+        - **zero-shot learning** `Q96416030`
+    - **machine unlearning** `Q118970497`
+    - **natural language processing** `Q30642` **[5]**  LCSH:`sh88002425`
+        - **information extraction** `Q1662562` **[1]**
+            - **open information extraction** `Q30692626`
+        - **Māori natural language processing** `Q110402865`
+        - **natural language understanding** `Q1078276`
+        - **Q11937582** `Q11937582`
+        - **speech recognition** `Q189436`  LCSH:`sh85010109` GND:`4116578-0` DDC:`006.454`
+
+- **Asian literature** `Q149512` **[4]** *(structural parent — not itself a discipline)*
+    - **Japanese literature** `Q231425`  LCSH:`sh85069668` DDC:`895.6`
+    - **Punjabi literature** `Q3631294`
+    - **South Asian literature** `Q149267`
+    - **South-East Asian literature** `Q113128868`
+
+- **astronautics** `Q22719` **[1]** *(structural parent — not itself a discipline)*
+    - **space environment** `Q7572581`
+
+- **audiovisual production** `Q21198548` **[1]** *(structural parent — not itself a discipline)*
+    - **video production** `Q12996592`
+
+- **aviation** `Q765633` **[1]** *(structural parent — not itself a discipline)*
+    - **aviation management** `Q64686934`
+
+- **bachelor's degree** `Q163727` **[1]** *(structural parent — not itself a discipline)*
+    - **Saqafi** `Q29573983`
+
+- **bacteriology** `Q243748` **[9]** *(structural parent — not itself a discipline)*
+    - **aerobacteriology** `Q126364885`
+    - **bacterial ecology** `Q104825451`  LCSH:`sh85010814` LCC:`QR100` FAST:`825157`
+    - **clinical bacteriology** `Q113884267`
+    - **cytobacteriology** `Q115254236`
+    - **marine bacteriology** `Q126364871`
+    - **medical bacteriology** `Q112234648`
+    - **mycoplasmology** `Q127478574`
+    - **phytobacteriology** `Q134891445`
+    - **veterinary bacteriology** `Q110245095`
+
+- **behavior** `Q9332` **[1]** *(structural parent — not itself a discipline)*
+    - **animal behavior** `Q2990593`  LCC:`QL750-QL795` GND:`4062860-7`
+
+- **behavioral neuroscience** `Q846566` **[1]** *(structural parent — not itself a discipline)*
+    - **developmental psychobiology** `Q5266815`
+
+- **Berber literature** `Q680555` **[1]** *(structural parent — not itself a discipline)*
+    - **Shilha literature** `Q22948388`
+
+- **Bible study** `Q366732` **[1]** *(structural parent — not itself a discipline)*
+    - **New Testament studies** `Q1981839`
+
+- **biblical criticism** `Q373665` **[1]** *(structural parent — not itself a discipline)*
+    - **Bible as literature** `Q47489173`
+
+- **bilingual book** `Q3257212` **[1]** *(structural parent — not itself a discipline)*
+    - **bilingual dictionary** `Q2640207`  GND:`4231044-1`
+
+- **bilingual, multilingual, and multicultural education** `Q22952179` **[1]** *(structural parent — not itself a discipline)*
+    - **multicultural education** `Q3719890`  LCSH:`sh85067223` DDC:`370.117`
+
+- **biocommunication** `Q1667324` **[1]** *(structural parent — not itself a discipline)*
+    - **neurocommunications** `Q21662378`
+
+- **biodiversity** `Q47041` **[1]** *(structural parent — not itself a discipline)*
+    - **functional diversity** `Q113242927`
+
+- **biogeochemistry** `Q864379` **[1]** *(structural parent — not itself a discipline)*
+    - **Environmental biogeochemistry** `Q112939668`
+
+- **biogeography** `Q52106` **[4]** *(structural parent — not itself a discipline)*
+    - **Conservation Biogeography** `Q124811051`
+    - **insular biogeography** `Q1664460`  GND:`4424641-9`
+    - **marine biogeography** `Q129748379`
+    - **synthetic biogeography** `Q15696405`
+
+- **biography** `Q36279` **[1]** *(structural parent — not itself a discipline)*
+    - **hagiology** `Q2034710`
+
+- **biological classification** `Q11398` **[2]** *(structural parent — not itself a discipline)*
+    - **animal taxonomy** `Q1469725`
+    - **plant taxonomy** `Q1138178`
+
+- **biological process** `Q2996394` **[1]** *(structural parent — not itself a discipline)*
+    - **molecular evolution** `Q856529`  LCSH:`sh85022912` DDC:`572.838`
+
+- **biological research** `Q30032115` **[2]** *(structural parent — not itself a discipline)*
+    - **genetic research** `Q69953209` **[1]**
+        - **gain of function research** `Q105590653`
+    - **pharmaceutical research** `Q64816679`
+
+- **biomedical investigative technique** `Q66648976` **[1]** *(structural parent — not itself a discipline)*
+    - **vaccine development** `Q27133094`
+
+- **biomedicine** `Q864601` **[11]** *(structural parent — not itself a discipline)*
+    - **adenology** `Q12761879`
+    - **biomedical sciences** `Q13439429`
+    - **cardiovascular medicine and haematology** `Q113129005`
+    - **clinical sciences** `Q113129019` **[3]**
+        - **anaesthesiology** `Q615057` **[1]**  LCSH:`sh85004972` GND:`4142321-5`
+            - **veterinary anaesthesiology and intensive care** `Q110245130`
+        - **otolaryngology** `Q189553`  LCSH:`sh85096050` GND:`4023088-0` FAST:`1048946` DDC:`617.51`
+        - **surgery** `Q40821` **[5]**  LCSH:`sh85130766` GND:`4009987-8` DDC:`617`
+            - **burn surgery** `Q109727983`
+            - **neurosurgery** `Q188449`  LCSH:`sh85090934` GND:`4041874-1` DDC:`617.48`
+            - **orthopedic surgery** `Q15218776`
+            - **orthopedics** `Q216685`  LCSH:`sh85095799` GND:`4043924-0` DDC:`616.7`
+            - **thoracic surgery** `Q2964004` **[1]**
+                - **cardiac surgery** `Q235007`  LCSH:`sh85059711` GND:`4024641-3` DDC:`617.412`
+    - **medical biochemistry and metabolomics** `Q113129142`
+    - **Māori biomedical and clinical sciences** `Q110351465`
+    - **nutrition and dietetics** `Q113129166` **[1]**
+        - **Pacific Peoples diet and nutrition** `Q113203972`
+    - **oncology and carcinogenesis** `Q113066539` **[3]**
+        - **molecular targets** `Q113066494`
+        - **predictive and prognostic markers** `Q113066630`
+        - **solid tumour oncology** `Q113135079`
+    - **ophthalmology and optometry** `Q113129180` **[1]**
+        - **vision science** `Q7936208`
+    - **regenerative medicine** `Q1061415`  LCSH:`sh2008001685` GND:`7652075-4`
+    - **thermology** `Q126078571`
+
+- **biometeorology** `Q864590` **[1]** *(structural parent — not itself a discipline)*
+    - **human biometeorology** `Q134926950`
+
+- **biopsy** `Q179991` **[1]** *(structural parent — not itself a discipline)*
+    - **liquid biopsy** `Q22349364`
+
+- **branch of science** `Q2465832` **[1]** *(structural parent — not itself a discipline)*
+    - **huntsmanship** `Q4181964`
+
+- **broadcast engineering** `Q2176252` **[2]** *(structural parent — not itself a discipline)*
+    - **radio engineering** `Q118793198`
+    - **television engineering** `Q120269639`
+
+- **business education** `Q4086500` **[1]** *(structural parent — not itself a discipline)*
+    - **business (subject area)** `Q11418769`
+
+- **calculation** `Q622821` **[1]** *(structural parent — not itself a discipline)*
+    - **encryption** `Q141090`  LCSH:`sh94001524` GND:`4352893-4` DDC:`005.82`
+
+- **care** `Q2421951` **[2]** *(structural parent — not itself a discipline)*
+    - **disability care** `Q110342395`
+    - **health care** `Q31207` **[1]**  LCSH:`sh00005607|sh85082871` DDC:`362.1`
+        - **community health** `Q3473024`
+
+- **Catholic theology** `Q1367940` **[2]** *(structural parent — not itself a discipline)*
+    - **fundamental theology** `Q1004343`  LCSH:`sh85006028` GND:`4018877-2` DDC:`230.01`
+    - **Patristic Theology** `Q136528654`
+
+- **characterization** `Q2165586` **[1]** *(structural parent — not itself a discipline)*
+    - **spectrometry** `Q65306641`
+
+- **cheminformatics** `Q910164` **[1]** *(structural parent — not itself a discipline)*
+    - **virtual screening** `Q4112105`
+
+- **child welfare** `Q66305973` **[1]** *(structural parent — not itself a discipline)*
+    - **child protection** `Q1029430`  LCSH:`sh85023396` GND:`4028935-7`
+
+- **Christian biblical canons** `Q5110307` **[1]** *(structural parent — not itself a discipline)*
+    - **Catholic Bible** `Q591016`
+
+- **Christian theology** `Q216545` **[4]** *(structural parent — not itself a discipline)*
+    - **Christian ethics** `Q2665156`  LCC:`BJ1188.5-BJ1278.5|BV4622-BV4780` GND:`4078249-9`
+    - **church history** `Q1800439` **[1]**  LCSH:`sh85025619` FAST:`860740`
+        - **sindonology** `Q9350323`
+    - **pastoral ministry** `Q107689823`
+    - **practical theology** `Q1383443` **[1]**  LCSH:`sh85134705` LCC:`BV1-BV5099` GND:`4047056-8` DDC:`260`
+        - **catechetics** `Q1735721`  LCSH:`sh85020974` GND:`4208209-2`
+
+- **chromatography** `Q170050` **[1]** *(structural parent — not itself a discipline)*
+    - **Paper Analytical Device** `Q133248639`
+
+- **chronology** `Q130788` **[2]** *(structural parent — not itself a discipline)*
+    - **calendar system** `Q12132`  LCSH:`sh85018823` GND:`4029290-3` DDC:`529.3|741.682`
+    - **geochronology** `Q213891`  GND:`4020199-5`
+
+- **city** `Q515` **[1]** *(structural parent — not itself a discipline)*
+    - **smart city** `Q1231558`  LCSH:`sh2018000509` GND:`1061057097` DDC:`307.1216`
+
+- **civil law** `Q222249` **[2]** *(structural parent — not itself a discipline)*
+    - **civil procedural law** `Q1052890`
+    - **commercial law** `Q219186`  LCSH:`sh85028940` GND:`4023249-9` DDC:`343`
+
+- **civil service** `Q11771944` **[1]** *(structural parent — not itself a discipline)*
+    - **public administration** `Q31728`  LCSH:`sh85108611` FAST:`1081976` DDC:`350`
+
+- **civilization** `Q8432` **[1]** *(structural parent — not itself a discipline)*
+    - **African civilization** `Q109018541`
+
+- **classical antiquity** `Q486761` **[1]** *(structural parent — not itself a discipline)*
+    - **Ancient culture** `Q20072760`
+
+- **classical archaeology** `Q1669589` **[1]** *(structural parent — not itself a discipline)*
+    - **Greek epigraphy** `Q972132`  DDC:`481.1`
+
+- **classical mechanics** `Q11397` **[1]** *(structural parent — not itself a discipline)*
+    - **theoretical mechanics** `Q833065`  GND:`4185100-6`
+
+- **classical studies** `Q439072` **[4]** *(structural parent — not itself a discipline)*
+    - **ancient Near Eastern studies** `Q4752891` **[5]**  GND:`4142081-0`
+        - **Anatolian studies** `Q3615122`
+        - **Assyriology** `Q156859` **[1]**  LCSH:`sh85008834` GND:`4143231-9` DDC:`892.1|492.1`
+            - **Assyriology** `Q121046284`
+        - **Hittitology** `Q491481`  GND:`4201446-3`
+        - **Sumerology** `Q2365225`  GND:`4248719-5`
+        - **Urartology** `Q21212481`
+    - **classics** `Q841090` **[3]**  GND:`4134281-1`
+        - **classical reception studies** `Q18206018`
+        - **Homeric scholarship** `Q5890329`
+        - **papyrology** `Q757248`  GND:`4173236-4` DDC:`091`
+    - **Coptology** `Q1784169`  GND:`4165291-5`
+    - **thracology** `Q3110778`
+
+- **classification scheme** `Q5962346` **[1]** *(structural parent — not itself a discipline)*
+    - **rural economics** `Q1393258`
+
+- **climate action** `Q22661680` **[1]** *(structural parent — not itself a discipline)*
+    - **climate mitigation** `Q83420266`
+
+- **climate education** `Q116004012` **[1]** *(structural parent — not itself a discipline)*
+    - **climate change education** `Q30606503`
+
+- **clinical chemistry** `Q849994` **[2]** *(structural parent — not itself a discipline)*
+    - **amino acids and metabolites in medical biochemistry** `Q113134501`
+    - **proteins and peptides in medical biochemistry** `Q113134526`
+
+- **clinical psychology** `Q199906` **[1]** *(structural parent — not itself a discipline)*
+    - **clinical child psychology** `Q113097664`  LCSH:`sh85027063` LCC:`RJ503.3` FAST:`864344`
+
+- **cloning** `Q120877` **[1]** *(structural parent — not itself a discipline)*
+    - **Livestock cloning** `Q110252205`
+
+- **coenology** `Q900651` **[1]** *(structural parent — not itself a discipline)*
+    - **phytosociology** `Q1138244`  GND:`4174073-7` DDC:`581.7`
+
+- **cognitive process** `Q781413` **[4]** *(structural parent — not itself a discipline)*
+    - **cognition** `Q2200417`  LCSH:`sh85027742` GND:`4031630-0`
+    - **disambiguation** `Q115916384`
+    - **perception** `Q160402` **[2]**  LCSH:`sh85099708` LCC:`QP441-QP445` GND:`4064317-7` FAST:`1057622` DDC:`152|121.34|152.1|153.7|155.911|612.823`
+        - **hearing** `Q160289`  LCSH:`sh85009496` GND:`4125741-8` DDC:`155.422215|152.15`
+        - **perceptual-motor process** `Q106511866` **[1]**  LCSH:`sh85099718` FAST:`1057663`
+            - **sensorimotor integration** `Q1298583`  LCSH:`sh85120056` LCC:`QP454` FAST:`1112603`
+    - **spirituality** `Q168796`  LCSH:`sh85126779` GND:`4116568-8` DDC:`204`
+
+- **collecting** `Q208165` **[1]** *(structural parent — not itself a discipline)*
+    - **velology** `Q7919304`
+
+- **combat mechanic** `Q110113602` **[1]** *(structural parent — not itself a discipline)*
+    - **action table** `Q110797464`
+
+- **combinatorics** `Q76592` **[1]** *(structural parent — not itself a discipline)*
+    - **combinatorial design** `Q5150824` **[1]**
+        - **quantum combinatorial design** `Q113303619`
+
+- **communication** `Q65007508` **[1]**
+    - **communication for social change** `Q5154137`
+
+- **communication** `Q11024` **[17]** *(structural parent — not itself a discipline)*
+    - **audiovisual communication** `Q3755147`
+    - **business communication** `Q4115749`
+    - **conflict resolution** `Q1194317` **[2]**
+        - **dispute resolution** `Q5282696`  LCSH:`sh85038478`
+        - **transitional justice** `Q845562`  LCSH:`sh2008008884` LCC:`K3279` GND:`1069126748`
+    - **counseling** `Q4390239` **[5]**  LCSH:`sh85033421`
+        - **career counseling** `Q741939`  LCSH:`sh85144186` GND:`4005878-5` DDC:`331.702`
+        - **family counseling** `Q19977687`
+        - **genetic counseling** `Q1124169`  LCSH:`sh85053853` LCC:`RB155.7`
+        - **psychological counseling** `Q12183744`
+        - **youth counseling** `Q116255688`  LCSH:`sh2008124379` GND:`4162822-6` FAST:`1183380`
+    - **cultural communication** `Q5193267`
+    - **digital communication** `Q10481248` **[1]**
+        - **digital media** `Q10334763`
+    - **education communication** `Q10298771`
+    - **international communication** `Q6054533`  LCSH:`sh85029042`
+    - **mass communication** `Q853710`  GND:`4037875-5`
+    - **publishing** `Q3972943` **[1]**  LCSH:`sh85108871` GND:`4187925-9` FAST:`1083463` DDC:`002|801.959`
+        - **electronic publishing** `Q1196904`  LCSH:`sh85042368|sh2005006523` LCC:`Z286.E43` GND:`4014363-6` FAST:`907433`
+    - **satellite communications** `Q110093910`
+    - **scientific communication** `Q18244815`
+    - **speech communication** `Q11888975`
+    - **strategic communication** `Q7621829`
+    - **technical communication** `Q1132530`
+    - **visual communication** `Q1899679`  LCSH:`sh85143917` GND:`4131112-7`
+    - **visual journalism** `Q4110914`
+
+- **Communication networks** `Q115862537` **[1]** *(structural parent — not itself a discipline)*
+    - **Web Technologies** `Q115862635`
+
+- **communications media** `Q340169` **[3]** *(structural parent — not itself a discipline)*
+    - **interactive media** `Q1186952`
+    - **Q96463190** `Q96463190`
+    - **social media** `Q202833`  LCSH:`sh2006007023` LCC:`PN4550-PN4590` GND:`4639271-3` FAST:`1741098` DDC:`384.33|006.754|004.693|302.30285`
+
+- **comparison** `Q1720648` **[1]** *(structural parent — not itself a discipline)*
+    - **ontology comparison** `Q108535712`
+
+- **competition** `Q841654` **[1]** *(structural parent — not itself a discipline)*
+    - **computer applications** `Q5157412`
+
+- **computability theory** `Q818930` **[1]** *(structural parent — not itself a discipline)*
+    - **computational complexity theory** `Q205084`  LCSH:`sh85029473` GND:`4120591-1` DDC:`511.3`
+
+- **computation** `Q12525525` **[1]** *(structural parent — not itself a discipline)*
+    - **quantum computing** `Q17995793`  LCSH:`sh2014002839`
+
+- **computational neuroscience** `Q8037925` **[1]** *(structural parent — not itself a discipline)*
+    - **neuromathematics** `Q1981283`
+
+- **computational science** `Q117801` **[1]** *(structural parent — not itself a discipline)*
+    - **computational epidemiology** `Q5157310`
+
+- **computer interface** `Q23808` **[2]** *(structural parent — not itself a discipline)*
+    - **application programming interface** `Q165194`  LCSH:`sh98004527` GND:`4430243-5`
+    - **web user interface** `Q1981057`
+
+- **computing** `Q179310` **[1]** *(structural parent — not itself a discipline)*
+    - **human-centered computing** `Q12812953`
+
+- **computing education** `Q85753733` **[2]** *(structural parent — not itself a discipline)*
+    - **Computer technology** `Q131289096`
+    - **information and communication engineering** `Q64348012`
+
+- **concept** `Q151885` **[1]** *(structural parent — not itself a discipline)*
+    - **explanation** `Q7958`  LCSH:`sh85046453` LCC:`BD237` GND:`4015293-5`
+
+- **conceptualization** `Q17008777` **[1]** *(structural parent — not itself a discipline)*
+    - **ontology development** `Q99196766`
+
+- **condition** `Q813912` **[1]** *(structural parent — not itself a discipline)*
+    - **mobility** `Q23065481`  GND:`4039785-3`
+
+- **Confucianism** `Q9581` **[1]** *(structural parent — not itself a discipline)*
+    - **Chinese Classical Studies** `Q5369632` **[2]**
+        - **I Ching studies** `Q3738441`
+        - **Q10958685** `Q10958685` **[2]**
+            - **analysis of Chinese characters** `Q137186261`
+            - **historical Chinese phonology** `Q904555`
+
+- **conservation and restoration of cultural heritage** `Q46993143` **[1]** *(structural parent — not itself a discipline)*
+    - **conservation and restoration of books, manuscripts, documents and ephemera** `Q17103917`
+
+- **construction** `Q385378` **[4]** *(structural parent — not itself a discipline)*
+    - **Automation in construction** `Q104870168`
+    - **building industry studies** `Q113135108`
+    - **Building information modelling and management** `Q112969975`
+    - **Construction Technology** `Q105664419`
+
+- **content curation** `Q3007618` **[1]** *(structural parent — not itself a discipline)*
+    - **data curation** `Q15088675`  LCSH:`sh2015001855`
+
+- **continuum mechanics** `Q193463` **[1]** *(structural parent — not itself a discipline)*
+    - **fluid mechanics** `Q172145` **[4]**  LCSH:`sh85049383` GND:`4077970-1` FAST:`927999` DDC:`532`
+        - **aeromechanics** `Q6593690`
+        - **biological fluid mechanics** `Q119585104`
+        - **environmental fluid mechanics** `Q18235183`
+        - **magnetohydrodynamics** `Q2549249`  LCSH:`sh85079784` GND:`4130803-7` DDC:`538.6`
+
+- **contributing factor** `Q18603648` **[1]** *(structural parent — not itself a discipline)*
+    - **social influence** `Q1307337`  LCSH:`sh91001924` GND:`4151276-5` DDC:`155.9|303.3|153.852`
+
+- **control** `Q29017603` **[1]** *(structural parent — not itself a discipline)*
+    - **natural resource management** `Q3743137` **[2]**  LCSH:`sh2001000588` FAST:`1034438`
+        - **rangeland management** `Q24965354`  LCSH:`sh85111362` FAST:`1089831`
+        - **Wildlife and habitat management** `Q112980866`
+
+- **control** `Q338754` **[1]** *(structural parent — not itself a discipline)*
+    - **management** `Q2920921` **[23]**  LCSH:`sh85080336` GND:`4037278-9` FAST:`1007141` DDC:`650`
+        - **business management** `Q18564125` **[3]**
+            - **business administration and management** `Q8188423`
+            - **finance** `Q43015` **[3]**  LCSH:`sh85048256` DDC:`332`
+                - **global finance** `Q108375446`
+                - **Māori finance** `Q110391034`
+                - **state finance** `Q1048598`
+            - **management studies** `Q22811962` **[1]**
+                - **lean management** `Q1409192`
+        - **conflict management** `Q1640893`  LCSH:`sh85030958` GND:`4164958-8` DDC:`303.69`
+        - **construction management** `Q811501`
+        - **educational management** `Q861455`
+        - **environmental management** `Q135424760`
+        - **environmental resource management** `Q929380`  LCSH:`sh95010683` GND:`4201709-9`
+        - **evidence-based management** `Q5418329`
+        - **health administration** `Q1137608`  LCSH:`sh85059600`
+        - **health care management** `Q55693901`
+        - **health policy and management** `Q18348859`
+        - **heritage management** `Q64808611`
+        - **hospitality management studies** `Q15816013`
+        - **hotel management** `Q64809639`  LCSH:`sh85062482`
+        - **industrial management** `Q1662013`  LCSH:`sh85065889` GND:`4123423-6`
+        - **information resource management** `Q102314704`
+        - **managerial economics** `Q3297447`  LCSH:`sh85080365`
+        - **media management** `Q1916399`
+        - **Māori management** `Q110393813`
+        - **political management** `Q1773577`
+        - **public management** `Q1519782`
+        - **resource management** `Q14431238`
+        - **sales management** `Q5657855`
+        - **technology management** `Q1417293`
+
+- **control engineering** `Q4917288` **[1]** *(structural parent — not itself a discipline)*
+    - **Machine control** `Q6723706`
+
+- **convention** `Q367293` **[1]** *(structural parent — not itself a discipline)*
+    - **human rights** `Q8458`  LCSH:`sh85026379` LCC:`K3236-K3268.5` GND:`4074725-6` DDC:`323`
+
+- **creative work** `Q17537576` **[1]** *(structural parent — not itself a discipline)*
+    - **art** `Q735` **[4]**  LCC:`N` FAST:`815177` DDC:`700`
+        - **applied arts** `Q207241` **[1]**  GND:`7593577-6`
+            - **decorative art** `Q631931`  LCSH:`sh85036316` DDC:`740`
+        - **digital arts** `Q107392206`
+        - **studio art** `Q7628268`
+        - **visual arts** `Q36649` **[3]**  LCSH:`sh85007461` GND:`4114333-4`
+            - **art of drawing** `Q2921001` **[1]**
+                - **cartooning** `Q112269680`
+            - **lens-based visual arts** `Q113147222`
+            - **Māori visual arts and crafts** `Q110321558`
+
+- **critical sociology** `Q301751` **[3]** *(structural parent — not itself a discipline)*
+    - **Biasology** `Q136466753`
+    - **Critical applied linguistics** `Q5186692`
+    - **Critical ethnography** `Q5186711`
+
+- **criticism** `Q17955` **[3]** *(structural parent — not itself a discipline)*
+    - **arts criticism** `Q4801516`
+    - **music criticism** `Q11748889`  LCSH:`sh85088956` GND:`4139777-0`
+    - **textual criticism** `Q275456` **[1]**  LCSH:`sh85034152|sh99005388` LCC:`P47|PA47` GND:`4059657-6` FAST:`883762` DDC:`801.959`
+        - **ecdotics** `Q3046919`
+
+- **critique** `Q3059502` **[1]** *(structural parent — not itself a discipline)*
+    - **Q12248834** `Q12248834`
+
+- **crop** `Q235352` **[1]** *(structural parent — not itself a discipline)*
+    - **genetically modified crops** `Q1503477`  LCSH:`sh90003137`
+
+- **crowdsourcing** `Q275969` **[1]** *(structural parent — not itself a discipline)*
+    - **citizen science** `Q1093434` **[2]**  GND:`1033909203`
+        - **amateur science** `Q124628259`
+        - **crowdsourced science** `Q124628194`
+
+- **cryobiology** `Q672832` **[1]** *(structural parent — not itself a discipline)*
+    - **cryoenzymology** `Q132583791`
+
+- **cultivation** `Q488798` **[1]** *(structural parent — not itself a discipline)*
+    - **crop and pasture nutrition** `Q111326835`
+
+- **cultural artifact** `Q1791627` **[1]** *(structural parent — not itself a discipline)*
+    - **Pacific Peoples artefacts** `Q110419236`
+
+- **cultural heritage** `Q210272` **[2]** *(structural parent — not itself a discipline)*
+    - **cinematographic heritage** `Q60965006`
+    - **photographic heritage** `Q135926127`
+
+- **cultural history** `Q858517` **[6]** *(structural parent — not itself a discipline)*
+    - **history of education** `Q861408` **[1]**
+        - **history of pedagogy** `Q116698620`
+    - **history of mentalities** `Q1920942`  GND:`4193654-1`
+    - **history of the book** `Q15873402`
+    - **media history** `Q50636` **[2]**  GND:`4114544-6`
+        - **history of cinema** `Q9292847`
+        - **publishing history** `Q86430648`
+    - **Māori cultural history** `Q110252809`
+    - **Pacific Peoples cultural history** `Q110419243`
+
+- **cultural studies** `Q1143546` **[24]** *(structural parent — not itself a discipline)*
+    - **African American studies** `Q383968`  LCSH:`sh85001992`
+    - **area studies** `Q928786` **[13]**  LCSH:`sh85006988`
+        - **African studies** `Q38157` **[6]**  GND:`4122766-9`
+            - **Africanistics** `Q119021657`  GND:`4122766-9`
+            - **Afroasiatic studies** `Q137194923`
+            - **Byzantine studies** `Q648154`  LCSH:`sh85018523` GND:`4147095-3`
+            - **Ethiopian studies** `Q257910`  GND:`4217411-9`
+            - **Mande studies** `Q56219570`
+            - **Semitic studies** `Q2142577` **[3]**  GND:`4180975-0`
+                - **Aramaic  studies** `Q625699`  GND:`7725067-9`
+                - **Maltese studies** `Q55585049`
+                - **Syriac studies** `Q7663197`
+        - **American studies** `Q470125`  GND:`4142196-6` DDC:`427.973|810`
+        - **Asian and African studies** `Q105396037`
+        - **Atlantic Canada studies** `Q98593295`
+        - **Brussels studies** `Q114562193`
+        - **Hungarian studies** `Q855627`
+        - **Iberian studies** `Q35832005`
+        - **Iberoamerican studies** `Q113951766`
+        - **Israel studies** `Q101834434`
+        - **Kurdish studies** `Q851739`  GND:`4522530-8`
+        - **Latin American studies** `Q28617` **[1]**
+            - **Caribbean studies** `Q85710429`
+        - **oriental studies** `Q476294` **[13]**  LCSH:`sh85008624` GND:`4172819-1` DDC:`492.072|892.072`
+            - **Arabic studies** `Q3621186`  GND:`4142845-6` DDC:`892.7|492.7`
+            - **Asian studies** `Q4806809` **[3]**
+                - **Central Asian studies** `Q5060376`
+                - **East Asian studies** `Q162817` **[7]**  GND:`4312428-8`
+                    - **Hong Kong studies** `Q104628254`
+                    - **Japanese studies** `Q875592` **[3]**  GND:`4162713-1` DDC:`306.0952|495.6|895.6|952`
+                        - **Japanese linguistics** `Q11509142`
+                        - **kokugaku** `Q855159` **[1]**  LCSH:`sh85072815`
+                            - **Kōgaku** `Q11581021`
+                        - **Okinawanology** `Q11139382`
+                    - **Korean studies** `Q714838`  GND:`4699753-2`
+                    - **Mongolian studies** `Q1944500`  GND:`4170448-4`
+                    - **sinology** `Q269915` **[3]**  LCSH:`sh85024195` GND:`4137926-3` DDC:`495.1|895.1`
+                        - **Dunhuangology** `Q839477`
+                        - **Jian jia xue pai** `Q10879912`
+                        - **kangaku** `Q5646725`
+                    - **Taiwan studies** `Q17149027`
+                    - **Tibetology** `Q1143760`  GND:`4278702-6`
+                - **Southeast Asian studies** `Q7569309` **[6]**  LCSH:`sh85008635` GND:`4183967-5`
+                    - **Burma studies** `Q4999358`
+                    - **Filipinology** `Q2088309`
+                    - **indonesiology** `Q2623652`
+                    - **Javanology** `Q11723387`
+                    - **Thai studies** `Q174028`
+                    - **Vietnamese studies** `Q1708176`
+            - **Austronesian studies** `Q9162435`
+            - **Bahá'í studies** `Q27779502`
+            - **Islamic studies** `Q843909` **[4]**  LCSH:`sh85068408` GND:`4162468-3` FAST:`979852` DDC:`297|297.071`
+                - **Islamic Jerusalem Studies** `Q6082500`
+                - **Islamic revealed knowledge and heritage** `Q133707398`
+                - **Islamic worldview** `Q136807922`
+                - **science of hadith** `Q2737409`
+            - **Kalmykology** `Q4210217`
+            - **Middle Eastern studies** `Q12211529` **[2]**  LCSH:`sh85090514`
+                - **Armenian studies** `Q513850`
+                - **Iranian studies** `Q1367176` **[1]**  LCSH:`sh85067916` GND:`4162398-8` DDC:`891.5|491.5`
+                    - **Iranian Diaspora Studies** `Q114344316`
+            - **Near Eastern studies** `Q23019185`  LCSH:`sh85090514`
+            - **oriental languages** `Q2030542`
+            - **Palestine studies** `Q125017173`
+            - **South Asia studies** `Q105397778` **[1]**
+                - **Indology** `Q625510` **[3]**  GND:`4161576-1` DDC:`491.1|891.1`
+                    - **Bangla studies** `Q18110384`
+                    - **Dravidian studies** `Q1128227`
+                    - **Tamilology** `Q7681446`
+            - **tungustology** `Q42170949`
+            - **Turkology** `Q8427` **[1]**  LCSH:`sh85138870` GND:`4186473-6` DDC:`494.3|894.3`
+                - **Ottoman studies** `Q623313`  GND:`4745131-2` DDC:`494.35|894.35`
+        - **Palestinian studies** `Q12408688`
+    - **Asian American studies** `Q4806576`
+    - **Australian studies** `Q4825228`
+    - **Black Canadian studies** `Q110955047`
+    - **consumption and everyday life** `Q113208775`
+    - **critical race studies** `Q108352437`
+    - **cultural studies of nation and region** `Q113128260`
+    - **Culture and communication** `Q64869177`
+    - **Culture, representation and identity** `Q113001573`
+    - **deaf studies** `Q5245796`
+    - **disability studies** `Q627208` **[2]**
+        - **Māori and disability** `Q110351391`
+        - **typhlology** `Q3991234`
+    - **ethnic studies** `Q41870` **[4]**
+        - **American ethnic studies** `Q98822785`
+        - **Asian American and Pacific Islander studies** `Q138580916`
+        - **bicultural studies** `Q110715633`
+        - **Romani studies** `Q2037434`  GND:`4205071-6`
+    - **mad studies** `Q55621653`
+    - **migrant cultural studies** `Q113128373`
+    - **migration studies** `Q1932514`
+    - **Māori land, culture and identity** `Q110354861`
+    - **Native American studies** `Q27752` **[2]**
+        - **Pre-Columbian studies** `Q434198`  GND:`7537404-3`
+        - **tupinology** `Q10385492`
+    - **performance studies** `Q7168264`
+    - **screen and media culture** `Q113128544`
+    - **Tea science** `Q10504412`
+    - **uralistics** `Q2499930` **[1]**  GND:`4187152-2`
+        - **Finno-Ugric studies** `Q897219` **[1]**
+            - **Finnish studies** `Q362748`
+    - **Whiteness studies** `Q64711016`  LCSH:`sh2006006976` FAST:`1765882`
+    - **youth studies** `Q1711291` **[1]**  GND:`4194649-2`
+        - **Māori youth and family** `Q110354365`
+
+- **culture** `Q11042` **[4]** *(structural parent — not itself a discipline)*
+    - **animal culture** `Q3007160`
+    - **linguistic standards** `Q1790516`
+    - **material culture** `Q2143054`  GND:`4051157-1`
+    - **visual culture** `Q861716`
+
+- **culture of France** `Q1985804` **[1]** *(structural parent — not itself a discipline)*
+    - **Q3007473** `Q3007473`
+
+- **curriculum** `Q207137` **[1]** *(structural parent — not itself a discipline)*
+    - **liberal arts education** `Q189329`  LCC:`LC1001-LC1024` GND:`4143124-8`
+
+- **cytopathology** `Q1881849` **[1]** *(structural parent — not itself a discipline)*
+    - **exfoliative cytology** `Q128056257`
+
+- **data** `Q42848` **[2]** *(structural parent — not itself a discipline)*
+    - **microdata** `Q1933849`
+    - **sparse data** `Q105518021`
+
+- **data governance** `Q872685` **[2]** *(structural parent — not itself a discipline)*
+    - **data quality management** `Q3016901`
+    - **metadata management** `Q6822246`
+
+- **data management** `Q1149776` **[1]** *(structural parent — not itself a discipline)*
+    - **data fusion** `Q456962`
+
+- **data mining** `Q172491` **[2]** *(structural parent — not itself a discipline)*
+    - **association rule learning** `Q386780`
+    - **knowledge extraction** `Q1582085`
+
+- **data model** `Q1172480` **[1]** *(structural parent — not itself a discipline)*
+    - **information model** `Q1662581`  LCSH:`sh00009202` GND:`4426216-4`
+
+- **data preservation** `Q48797981` **[1]** *(structural parent — not itself a discipline)*
+    - **digital preservation** `Q632897`  LCSH:`sh95004496` FAST:`893721` DDC:`025.84`
+
+- **data processing** `Q6661985` **[1]** *(structural parent — not itself a discipline)*
+    - **extract, transform, load** `Q1276130`
+
+- **data set** `Q1172284` **[2]** *(structural parent — not itself a discipline)*
+    - **census** `Q39825`  LCSH:`sh85021832` GND:`4134368-2` DDC:`304.6021`
+    - **RDF dataset** `Q31388616`
+
+- **database** `Q8513` **[3]** *(structural parent — not itself a discipline)*
+    - **blockchain** `Q20514253`  LCSH:`sh2016002790` FAST:`1981761`
+    - **knowledge base** `Q593744` **[2]**  GND:`4289274-0` DDC:`006.33`
+        - **ontology** `Q324254` **[1]**  LCSH:`sh2005006014` LCC:`Q387.4` GND:`4827894-4` FAST:`1739863` DDC:`006.332`
+            - **lightweight ontology** `Q6546616`
+        - **question-answering dataset** `Q32945468`
+    - **spatial data infrastructure** `Q1502855`  GND:`7566777-0`
+
+- **deaf** `Q1539971` **[1]** *(structural parent — not itself a discipline)*
+    - **deaf and hard of hearing people** `Q124175573`
+
+- **decision making** `Q1331926` **[1]** *(structural parent — not itself a discipline)*
+    - **computational social choice** `Q28134198`
+
+- **demonology** `Q323996` **[1]** *(structural parent — not itself a discipline)*
+    - **demonology in Islam** `Q125470026`  LCSH:`sh85036666` FAST:`1730315`
+
+- **dendrology** `Q192658` **[1]** *(structural parent — not itself a discipline)*
+    - **paleodendrology** `Q134810758`
+
+- **dental research** `Q69963384` **[1]** *(structural parent — not itself a discipline)*
+    - **oral implantology** `Q113096377`
+
+- **design** `Q1519454` **[3]** *(structural parent — not itself a discipline)*
+    - **cartographic design** `Q104642147` **[2]**
+        - **map design** `Q124617861` **[1]**
+            - **web map design** `Q124605925`
+        - **map layout** `Q1734563`
+    - **design** `Q82604` **[23]**  LCSH:`sh85037197` GND:`4011510-0` DDC:`729|745.4`
+        - **architectural design** `Q3922674`  LCSH:`sh85006585` DDC:`729`
+        - **architecture** `Q12271` **[10]**  LCSH:`sh85006611` LCC:`NA1-NA9428` GND:`4002851-3` FAST:`813346` DDC:`720`
+            - **architectonics** `Q55619696`
+            - **architectural computer science** `Q635313`
+            - **architectural heritage and conservation** `Q112939606`
+            - **Architectural history, theory and criticism** `Q112913855`
+            - **health architecture** `Q119465868`
+            - **landscape architecture** `Q47844`  LCSH:`sh85074398` GND:`7700528-4` FAST:`991814` DDC:`712`
+            - **Māori architecture** `Q110373973`
+            - **space architecture** `Q7572564`
+            - **sustainable architecture** `Q185035`  LCSH:`sh00004838` LCC:`NA2542.36` FAST:`1139728` DDC:`720.47`
+            - **Vastu shastra** `Q1120985`
+        - **circular design** `Q137263244`
+        - **concrete mix design** `Q126415892`
+        - **costume design** `Q16331597`  LCSH:`sh85033269` LCC:`PN2067` FAST:`880794`
+        - **digital media design** `Q136073938`
+        - **environmental design** `Q114436249`
+        - **experience design** `Q3508531`
+        - **fashion design** `Q29583`  GND:`7510814-8`
+        - **graphic design** `Q185925` **[1]**  DDC:`760`
+            - **information design** `Q1365082`
+        - **industrial design** `Q243606` **[1]**  LCSH:`sh85037199` GND:`4072788-9` DDC:`745.2`
+            - **industrial design engineering** `Q136683482`
+        - **interaction design** `Q1061656`
+        - **landscape planning** `Q246107`  GND:`4034354-6`
+        - **models and simulations of design** `Q113066767`
+        - **service design** `Q532781`
+        - **social design** `Q2296657`
+        - **sound design** `Q1937950`  GND:`7693207-2`
+        - **Studies of Clothings and Textiles** `Q97338598`
+        - **sustainable design** `Q523256`  LCSH:`sh2007001468` FAST:`1742533`
+        - **theater design** `Q84831181`
+        - **urban design** `Q63100` **[1]**  GND:`4056795-3`
+            - **street design** `Q110406819`  LCSH:`sh2010114838` FAST:`1134798`
+        - **user experience design** `Q11248500`
+        - **visual communication design** `Q64800727`
+    - **human-centered design** `Q19602141`
+
+- **design** `Q12826253` **[1]** *(structural parent — not itself a discipline)*
+    - **scenography** `Q737201`  GND:`4433627-5` DDC:`792.025|791.45025|791.43025|069.5`
+
+- **design management** `Q1064289` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori design practice and management** `Q110377631`
+
+- **determinants of health** `Q3706138` **[2]** *(structural parent — not itself a discipline)*
+    - **Māori cultural determinants of health** `Q110351630`
+    - **Māori social determinants of health** `Q110353935`
+
+- **development** `Q7562091` **[1]** *(structural parent — not itself a discipline)*
+    - **organizational development** `Q110406476`  GND:`4126887-8` DDC:`658.402|658.406|1--0684`
+
+- **developmental biology** `Q213713` **[1]** *(structural parent — not itself a discipline)*
+    - **teratology** `Q631521`  LCSH:`sh94009175` GND:`4184741-6` FAST:`1147803` DDC:`571.976`
+
+- **dictionary** `Q23622` **[2]** *(structural parent — not itself a discipline)*
+    - **lexicon** `Q8096`  DDC:`401.4`
+    - **thesaurus** `Q179797`
+
+- **didactic method** `Q7921` **[10]** *(structural parent — not itself a discipline)*
+    - **cartographic education** `Q124635338`
+    - **didactic method of game** `Q2310131`
+    - **didactics of computer science** `Q98033961`
+    - **Didactics of Religious Education in Schools** `Q136715992`
+    - **didactics of the teaching of French** `Q3026838`
+    - **foreign-language pedagogy** `Q2696615`
+    - **geography education** `Q11424632`
+    - **geospatial education** `Q124635458`
+    - **language pedagogy** `Q520855`
+    - **Learning Design** `Q132857311`
+
+- **dietary products** `Q1231847` **[1]** *(structural parent — not itself a discipline)*
+    - **sports nutrition** `Q908560`
+
+- **digital health** `Q5276090` **[1]** *(structural parent — not itself a discipline)*
+    - **digital health and medical technologies** `Q64945890`
+
+- **digital humanities** `Q1026962` **[2]** *(structural parent — not itself a discipline)*
+    - **digital history** `Q336387`
+    - **digital human sciences** `Q108552786`
+
+- **digital media** `Q1076968` **[1]** *(structural parent — not itself a discipline)*
+    - **World Wide Web** `Q466` **[1]**  LCSH:`sh95000541` GND:`4363898-3` FAST:`1181326` DDC:`025.042`
+        - **Semantic Web** `Q54837` **[2]**  LCSH:`sh2002000569` LCC:`TK5105.88815|ZA4240` GND:`4688372-1` FAST:`1112076` DDC:`025.0427`
+            - **Semantic Geospatial Web** `Q22908625`
+            - **Social Semantic Web** `Q7550843`
+
+- **direction** `Q2137554` **[2]** *(structural parent — not itself a discipline)*
+    - **film direction** `Q12765827`  GND:`4129888-3`
+    - **sound engineering** `Q131399705`
+
+- **discovery** `Q12772819` **[1]** *(structural parent — not itself a discipline)*
+    - **literature-based discovery** `Q6647724`
+
+- **disease** `Q12136` **[4]** *(structural parent — not itself a discipline)*
+    - **allergy** `Q42982`  LCSH:`sh85003662` GND:`4001257-8` DDC:`616.97`
+    - **cardiovascular disease** `Q389735`  LCSH:`sh85020229` GND:`4024666-8` DDC:`616.1`
+    - **infectious disease** `Q18123741`  GND:`4026879-2` DDC:`571.98`
+    - **obesity** `Q12174`  LCSH:`sh85093646` GND:`4016953-4` DDC:`614.59398|616.398|618.92398|636.0896398`
+
+- **disease ecology** `Q60703450` **[1]** *(structural parent — not itself a discipline)*
+    - **human disease ecology** `Q102123539`
+
+- **dispositif** `Q1229245` **[1]** *(structural parent — not itself a discipline)*
+    - **sensorium** `Q7451096`
+
+- **distributed control system** `Q525443` **[1]** *(structural parent — not itself a discipline)*
+    - **building automation** `Q1149653`  LCSH:`sh95005098` GND:`4204356-6`
+
+- **Doctor of Laws** `Q959320` **[1]** *(structural parent — not itself a discipline)*
+    - **Doctor of Both Laws** `Q2754873`
+
+- **drug discovery** `Q1418791` **[1]** *(structural parent — not itself a discipline)*
+    - **ethnopharmacology** `Q1371415`
+
+- **dynamics** `Q128030` **[2]** *(structural parent — not itself a discipline)*
+    - **protein dynamics** `Q17156992`
+    - **rocket dynamics** `Q4389316`
+
+- **e-government** `Q211017` **[1]** *(structural parent — not itself a discipline)*
+    - **Geo-Government** `Q15734393`
+
+- **early childhood education** `Q1472221` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori early childhood education** `Q110321576`
+
+- **East Asian literature** `Q15945785` **[2]** *(structural parent — not itself a discipline)*
+    - **Ainu literature** `Q120407434`  LCSH:`sh91000215`
+    - **Chinese literature** `Q456012`  LCSH:`sh85024323` GND:`7507839-9` DDC:`895.1`
+
+- **East Asian studies scholar** `Q84505214` **[1]** *(structural parent — not itself a discipline)*
+    - **Tibetologist** `Q1864603`  GND:`7635239-0|7635240-7`
+
+- **ecclesiology** `Q223693` **[4]** *(structural parent — not itself a discipline)*
+    - **Aglipayan ecclesiology** `Q120187797`
+    - **Catholic ecclesiology** `Q25109832`
+    - **Protestant ecclesiology** `Q7251632`
+    - **Quaker ecclesiology** `Q1323170`
+
+- **ecocriticism** `Q603739` **[1]** *(structural parent — not itself a discipline)*
+    - **blue humanities** `Q135915149`
+
+- **economic activity** `Q8187769` **[1]** *(structural parent — not itself a discipline)*
+    - **entrepreneurship** `Q3908516` **[1]**  LCC:`HB615` GND:`7588126-3` DDC:`338.04`
+        - **tech entrepreneurship** `Q110495845`
+
+- **economic geography** `Q187097` **[1]** *(structural parent — not itself a discipline)*
+    - **tourism geography** `Q1350203`  GND:`4122150-3`
+
+- **economic production** `Q739302` **[2]** *(structural parent — not itself a discipline)*
+    - **crop production** `Q1283714`  GND:`4045547-6`
+    - **software development** `Q638608`  LCSH:`sh85029535` GND:`4116522-6` DDC:`005.12`
+
+- **economic theory** `Q1401304` **[1]** *(structural parent — not itself a discipline)*
+    - **asset pricing** `Q48967834`
+
+- **economics of war** `Q130222765` **[1]** *(structural parent — not itself a discipline)*
+    - **economics of defense** `Q108717770`  LCC:`HC79.D4`
+
+- **ecosystem management** `Q5333882` **[1]** *(structural parent — not itself a discipline)*
+    - **watershed management** `Q4387041`  LCSH:`sh85145748` LCC:`TC413` FAST:`1172716`
+
+- **edaphology** `Q1151068` **[1]** *(structural parent — not itself a discipline)*
+    - **agricultural soil science** `Q4693974`
+
+- **editing** `Q194105` **[1]** *(structural parent — not itself a discipline)*
+    - **film editing** `Q237893` **[1]**  LCSH:`sh85088098` GND:`4281773-0` DDC:`778.535`
+        - **nuclear montage** `Q111398927`
+
+- **education** `Q8434` **[22]** *(structural parent — not itself a discipline)*
+    - **architectural education** `Q635374`  LCSH:`sh85006635` GND:`4002856-2` FAST:`813524`
+    - **community education** `Q5154949` **[1]**
+        - **Māori technical, further, continuing and community education** `Q110349935`
+    - **curriculum and instruction** `Q157416`
+    - **development of the human body** `Q2347178` **[1]**  LCSH:`sh85062879`
+        - **child development** `Q407784`  LCSH:`sh2001002085` FAST:`854393`
+    - **early childhood education** `Q1472055`
+    - **education policy, sociology and philosophy** `Q113210417` **[1]**
+        - **education policy** `Q452348`  LCSH:`sh85041091` GND:`4006667-8` DDC:`379`
+    - **educational administration and supervision** `Q105695033`
+    - **educommunication** `Q8772471`
+    - **general education** `Q16682237`
+    - **information science education** `Q116699116`
+    - **medical education** `Q126945` **[1]**  LCSH:`sh85083104` GND:`4038291-6`
+        - **nurse education** `Q13378080`  LCSH:`sh85093380` GND:`7512711-8` FAST:`1041634`
+    - **pedagogy** `Q7922` **[28]**  GND:`4044302-4` DDC:`370`
+        - **Aboriginal and Torres Strait Islander education** `Q113211377`
+        - **childhood pedagogy** `Q6067965`
+        - **class room research** `Q138010461`
+        - **comparative and cross-cultural education** `Q113043899`
+        - **curriculum and pedagogy** `Q110542446` **[8]**
+            - **Curriculum and pedagogy theory and development** `Q112976895`
+            - **economics, business and management curriculum and pedagogy** `Q113156817`
+            - **English and literacy curriculum and pedagogy** `Q112977070`
+            - **Environmental education curriculum and pedagogy** `Q112980842`
+            - **humanities and social sciences curriculum and pedagogy** `Q113101884`
+            - **mathematics and numeracy curriculum and pedagogy** `Q113043835`
+            - **medicine, nursing and health curriculum and pedagogy** `Q113156829`
+            - **physical education and development curriculum and pedagogy** `Q113101947`
+        - **discipline of pedagogy** `Q12773591`
+        - **docimology** `Q12279058`
+        - **education theory** `Q5341232`
+        - **English pedagogy** `Q107550344`
+        - **environmental education** `Q948732` **[2]**  LCSH:`sh85044169` GND:`4061627-7` DDC:`333.7071`
+            - **conservation education** `Q105497417`  LCSH:`sh85031260` FAST:`875552`
+            - **marine education** `Q105497504`
+        - **leisure pedagogy** `Q18915555`
+        - **music education** `Q27908` **[3]**  LCSH:`sh85088796` LCC:`MT1-MT999` GND:`4040843-7` FAST:`1030347` DDC:`780.7|780.71|372.87044`
+            - **jazz studies** `Q99691757` **[1]**
+                - **jazz performance** `Q106406187`
+            - **music appreciation** `Q12472341`  LCSH:`sh85088894`
+            - **musical form study** `Q96621382`
+        - **Māori curriculum and pedagogy** `Q110402900`
+        - **Māori education** `Q110321565` **[3]**
+            - **Māori language education** `Q110348169`
+            - **Māori primary education** `Q110348217`
+            - **Māori secondary education** `Q110348306`
+        - **Mātauranga Māori in education** `Q110350108`
+        - **Pacific Peoples education** `Q113203814` **[1]**
+            - **Embedding Pacific Peoples knowledges, histories, culture, country, perspectives and ethics in education** `Q113203792`
+        - **pedagogical anthropology** `Q12332633`
+        - **progressive education** `Q834933`  LCSH:`sh85107319`
+        - **Q1622256** `Q1622256`
+        - **Q3898568** `Q3898568`
+        - **Q51128236** `Q51128236`
+        - **social pedagogy** `Q1572493`  GND:`4055864-2`
+        - **special education** `Q1595434`
+        - **special education** `Q212105`  LCSH:`sh85046212` GND:`4077513-6` DDC:`371|371.9`
+        - **Sylheti/Practical Lessons** `Q129978132`
+        - **teaching methodology** `Q350453`  GND:`4123176-4`
+        - **theater arts education** `Q6031015`
+        - **theatre pedagogy** `Q910179`  GND:`4126991-3`
+    - **pre-medical** `Q7239245`
+    - **Q12021618** `Q12021618`
+    - **Q1908344** `Q1908344`  GND:`4037947-4`
+    - **Q2089440** `Q2089440`  GND:`4045974-3`
+    - **scholarship of teaching and learning** `Q7432063`
+    - **science education** `Q2485457`  LCSH:`sh85118587` FAST:`1108387` DDC:`507.1`
+    - **social science education** `Q7551361`
+    - **specialist studies in education** `Q113104235` **[1]**
+        - **education assessment and evaluation** `Q113104072`
+    - **STEM education** `Q108107660`
+    - **visual art education** `Q1757598` **[2]**  LCSH:`sh85007505` GND:`4033637-2` DDC:`372.5|707.1`
+        - **art appreciation** `Q107616480`
+        - **Q5834144** `Q5834144`
+
+- **effects of climate change** `Q1430548` **[1]** *(structural parent — not itself a discipline)*
+    - **effects of climate change on humans** `Q5347364`
+
+- **electromagnetism** `Q11406` **[1]** *(structural parent — not itself a discipline)*
+    - **micromagnetics** `Q6839648`
+
+- **electronic device** `Q2858615` **[2]** *(structural parent — not itself a discipline)*
+    - **Civionics** `Q5124771`
+    - **smart object** `Q2294986`
+
+- **embedding** `Q980509` **[2]** *(structural parent — not itself a discipline)*
+    - **graph embedding** `Q32081746`
+    - **knowledge graph embedding** `Q33003557` **[1]**
+        - **RDF2Vec** `Q54811283`
+
+- **embryology** `Q131683` **[4]** *(structural parent — not itself a discipline)*
+    - **embryology of plants** `Q3724101`  LCSH:`sh85015986`
+    - **human embryology** `Q4894037`  LCSH:`sh85042728`
+    - **neuroembryology** `Q6041275`
+    - **vertebrate embryology** `Q106099091`
+
+- **empirical research** `Q2155640` **[1]** *(structural parent — not itself a discipline)*
+    - **quantitative research** `Q730675`  LCSH:`sh2007000909`
+
+- **energy** `Q11379` **[1]** *(structural parent — not itself a discipline)*
+    - **sustainable energy** `Q1962383`
+
+- **English** `Q1860` **[1]** *(structural parent — not itself a discipline)*
+    - **English as a second or foreign language** `Q130192`  LCSH:`sh85043710`
+
+- **enterprise** `Q6881511` **[1]** *(structural parent — not itself a discipline)*
+    - **small and medium enterprises** `Q622439`  GND:`4031031-0` DDC:`338.642|658.022|332.67222`
+
+- **entertainment** `Q173799` **[1]** *(structural parent — not itself a discipline)*
+    - **music** `Q638`  LCSH:`sh85088762|sh99001795` GND:`4040802-4` FAST:`1030269` DDC:`780`
+
+- **entity** `Q35120` **[1]** *(structural parent — not itself a discipline)*
+    - **named entity** `Q25047676`
+
+- **entropy coding** `Q1345239` **[1]** *(structural parent — not itself a discipline)*
+    - **Adaptive coding** `Q4680725`
+
+- **environmental management** `Q65246763` **[1]** *(structural parent — not itself a discipline)*
+    - **conservation biology** `Q641498`  LCSH:`sh95000524`
+
+- **epidemiology** `Q133805` **[15]** *(structural parent — not itself a discipline)*
+    - **Behavioural epidemiology** `Q110259463`
+    - **digital epidemiology** `Q105546529`
+    - **ecological epidemiology** `Q112309116`
+    - **environmental epidemiology** `Q5381223`
+    - **epizootiology** `Q4115091`
+    - **forensic epidemiology** `Q25344799`
+    - **infodemiology** `Q17056302`
+    - **Māori epidemiology** `Q110351753`
+    - **nutritional epidemiology** `Q7070522`
+    - **observational epidemiology** `Q135937938`
+    - **oral epidemiology** `Q121363877`
+    - **outbreak science** `Q98959319`
+    - **paleoepidemiology** `Q7126411`
+    - **seroepidemiology** `Q130270551`
+    - **social epidemiology** `Q7551096`
+
+- **epigraphy** `Q181260` **[1]** *(structural parent — not itself a discipline)*
+    - **Chinese epigraphy** `Q30921574`
+
+- **epistemological values** `Q133798571` **[1]** *(structural parent — not itself a discipline)*
+    - **reproducibility** `Q1425625`  LCSH:`sh94003448` GND:`4586094-4`
+
+- **epistemology** `Q9471` **[3]** *(structural parent — not itself a discipline)*
+    - **agnotology** `Q395027`
+    - **Digital Epistemology** `Q136758824`
+    - **Epistemology of the Image** `Q136831181`
+
+- **epistemology of history** `Q109023778` **[1]** *(structural parent — not itself a discipline)*
+    - **historiography** `Q50675` **[3]**  LCSH:`sh85061211|sh00006046` LCC:`D13-D15` GND:`4020531-9` FAST:`958221` DDC:`907.2`
+        - **atthidography** `Q11853325`
+        - **Chinese historiography** `Q133908`  LCSH:`sh2008100544`
+        - **Q2626091** `Q2626091`
+
+- **estimation** `Q791801` **[2]** *(structural parent — not itself a discipline)*
+    - **guesstimate** `Q97161074`
+    - **valuation** `Q4008379`  LCSH:`sh85141927|sh2002006432` LCC:`HG4028.V3` FAST:`1163863`
+
+- **ethnobiology** `Q2375831` **[1]** *(structural parent — not itself a discipline)*
+    - **anthrozoology** `Q650032`
+
+- **evaluation** `Q1379672` **[1]** *(structural parent — not itself a discipline)*
+    - **audit** `Q181487`  LCSH:`sh85009477`
+
+- **evaluation study** `Q58898636` **[1]** *(structural parent — not itself a discipline)*
+    - **ontology evaluation** `Q124413593`
+
+- **event** `Q1656682` **[1]** *(structural parent — not itself a discipline)*
+    - **performance** `Q35140` **[1]**  LCSH:`sh00005755` GND:`4143388-9` DDC:`792|175|790.2|791`
+        - **musical performance** `Q6942562` **[28]**
+            - **accordion performance** `Q107514431`
+            - **bandura performance** `Q136799183`
+            - **baroque flute performance** `Q106148843`
+            - **bassoon performance** `Q106421780`
+            - **cello music performance** `Q105279359`
+            - **clarinet performance** `Q106991653`
+            - **conducting** `Q6989196`  LCSH:`sh85030804` GND:`4012435-6` FAST:`874582` DDC:`781.45`
+            - **contemporary performance** `Q105535151`
+            - **double bass performance** `Q105237946`
+            - **early performance** `Q116845132`
+            - **flute performance** `Q106148879`
+            - **French horn performance** `Q105233699`
+            - **guitar performance** `Q105107179`
+            - **harp performance** `Q106163201`
+            - **harpsichord performance** `Q106293524`
+            - **keyboard instrument performance** `Q115160929` **[1]**
+                - **piano performance** `Q104998020`  LCSH:`sh85101747` FAST:`1063372`
+            - **oboe performance** `Q104853682`
+            - **opera production** `Q107183471`
+            - **organ performance** `Q105339166`
+            - **percussion performance** `Q104985225` **[1]**
+                - **santur performance** `Q135581741`
+            - **saxophone performance** `Q115160941`
+            - **stage direction for opera** `Q107373802`
+            - **steelpan performance** `Q104996128`
+            - **trombone performance** `Q105279810`
+            - **trumpet performance** `Q105280408`
+            - **tuba performance** `Q103964477`
+            - **viola performance** `Q105279242`
+            - **violin performance** `Q104998197`  LCSH:`sh85143555` FAST:`1167365`
+
+- **evolution** `Q1063` **[1]** *(structural parent — not itself a discipline)*
+    - **human evolution** `Q83944`  LCSH:`sh85062868` LCC:`GN281-GN289` FAST:`963030`
+
+- **experience** `Q164359` **[1]** *(structural parent — not itself a discipline)*
+    - **reading experience** `Q109569975`
+
+- **exploitation of natural resources** `Q548599` **[1]** *(structural parent — not itself a discipline)*
+    - **mining** `Q44497`  GND:`4005614-4` DDC:`622`
+
+- **exploration** `Q6502154` **[1]** *(structural parent — not itself a discipline)*
+    - **space exploration** `Q180046`  LCSH:`sh85096159` GND:`4117629-7` DDC:`629.435|500.5|520`
+
+- **expressive therapy** `Q838202` **[1]** *(structural parent — not itself a discipline)*
+    - **art therapy** `Q928865`  LCSH:`sh85008334` GND:`4125709-1`
+
+- **external risk** `Q5422048` **[1]** *(structural parent — not itself a discipline)*
+    - **disaster risk** `Q63645802`
+
+- **faculty** `Q180958` **[1]** *(structural parent — not itself a discipline)*
+    - **Philosophy and Humanities** `Q9306342`
+
+- **farmer** `Q131512` **[1]** *(structural parent — not itself a discipline)*
+    - **marketing** `Q39809` **[7]**  LCSH:`sh85081333` GND:`4037589-4` DDC:`658.8`
+        - **business marketing** `Q350884`
+        - **consumer-oriented product or service development** `Q113093519`
+        - **digital marketing** `Q1323528`
+        - **international marketing** `Q2414885`
+        - **marketing theory** `Q20611050`  GND:`4168911-2`
+        - **Māori marketing** `Q110393815`
+        - **social marketing** `Q17081927`  LCSH:`sh89002650` FAST:`1122635`
+
+- **feedforward neural network** `Q5441227` **[1]** *(structural parent — not itself a discipline)*
+    - **convolutional neural network** `Q17084460`
+
+- **field of study** `Q1047113` **[1]** *(structural parent — not itself a discipline)*
+    - **family and consumer science** `Q7884093`  GND:`4023828-3`
+
+- **field research** `Q1402508` **[2]** *(structural parent — not itself a discipline)*
+    - **paleocetology** `Q125199290`
+    - **paleontology** `Q7205` **[8]**  LCSH:`sh85097123` GND:`4044375-9` FAST:`1051513` DDC:`560`
+        - **palaeohydrology** `Q63571124`
+        - **paleoanthropology** `Q7206` **[1]**  LCSH:`sh2001004516` GND:`4173104-9` DDC:`569.9`
+            - **archeothanatology** `Q2860621`
+        - **paleoichthyology** `Q27808133`
+        - **paleoneurology** `Q1092241`
+        - **paleoparasitology** `Q7127242`
+        - **paleornithology** `Q455928`
+        - **taphonomy** `Q596086`  LCSH:`sh88003783` GND:`4281043-7` DDC:`560.41`
+        - **vertebrate paleontology** `Q3634677`
+
+- **financial accounting** `Q949180` **[1]** *(structural parent — not itself a discipline)*
+    - **Tax accounting** `Q12471333`
+
+- **financial plan** `Q1416547` **[1]** *(structural parent — not itself a discipline)*
+    - **budget** `Q41263`  LCSH:`sh85017602` GND:`7502511-5`
+
+- **financial services** `Q837171` **[1]** *(structural parent — not itself a discipline)*
+    - **banking** `Q3435731`
+
+- **fluid dynamics** `Q216320` **[2]** *(structural parent — not itself a discipline)*
+    - **aerodynamics** `Q8424` **[3]**  LCSH:`sh85001295` GND:`4000589-6` DDC:`533.62|620.1074|629.1323`
+        - **gas kinetics** `Q1144718`  LCSH:`sh85053291` GND:`4019339-1` DDC:`533.2`
+        - **nose cone design** `Q2875693`
+        - **supersonic aerodynamics** `Q17397651`
+    - **biomedical fluid mechanics** `Q110745305`
+
+- **fluidics** `Q185571` **[1]** *(structural parent — not itself a discipline)*
+    - **microfluidics and nanofluidics** `Q110745417`
+
+- **food** `Q2095` **[1]** *(structural parent — not itself a discipline)*
+    - **gastronomy** `Q171141`  LCSH:`sh85053492` GND:`4071601-6` FAST:`938901` DDC:`338.4764795`
+
+- **food chemistry** `Q910172` **[1]** *(structural parent — not itself a discipline)*
+    - **beverage chemistry and beverage sensory science** `Q110297449`
+
+- **food security** `Q1229911` **[1]** *(structural parent — not itself a discipline)*
+    - **food safety** `Q909821`  GND:`4034887-8`
+
+- **foreign policy** `Q181648` **[1]** *(structural parent — not itself a discipline)*
+    - **diplomacy** `Q1889` **[1]**  LCSH:`sh85038179` LCC:`JZ1305-JZ2060` GND:`4012402-2` DDC:`327.2|399|341.33`
+        - **science diplomacy** `Q7433675`
+
+- **forensic linguistics** `Q938318` **[1]** *(structural parent — not itself a discipline)*
+    - **personality computing** `Q58820154`
+
+- **Forest sciences** `Q11790208` **[1]** *(structural parent — not itself a discipline)*
+    - **Q18424298** `Q18424298`
+
+- **formal language** `Q192161` **[3]** *(structural parent — not itself a discipline)*
+    - **description logic** `Q387196`
+    - **elocution** `Q2255221`  LCSH:`sh85042633`
+    - **modeling language** `Q1941921`
+
+- **formal science** `Q816264` **[2]** *(structural parent — not itself a discipline)*
+    - **computer applications** `Q111681249`
+    - **computer science** `Q21198` **[21]**  LCSH:`sh89003285` GND:`4026894-9` FAST:`872451` DDC:`004`
+        - **applied computing** `Q100326522` **[1]**
+            - **computing applications in physical sciences** `Q113127938`
+        - **computational audiology** `Q110852808`
+        - **computational linguistics** `Q182557` **[2]**  LCSH:`sh85077224` GND:`4035843-4` DDC:`006.35`
+            - **argumentation support** `Q110528767`
+            - **computational humor** `Q5157318`
+        - **computational sustainability** `Q5157299`
+        - **computer networking** `Q10336440`
+        - **computer vision and multimedia computation** `Q113212481`
+        - **cybersecurity** `Q17233037`
+        - **cybersecurity and privacy** `Q113208012` **[1]**
+            - **data security and protection** `Q113208079`
+        - **distributed computing** `Q180634` **[1]**  LCSH:`sh85042293` GND:`7545389-7` FAST:`906987` DDC:`004.36`
+            - **distributed social network** `Q5283178`
+        - **genome informatics** `Q96379173`
+        - **geomatics** `Q619798` **[1]**  LCSH:`sh99004272`
+            - **geomatics business** `Q3123503`
+        - **graphics, augmented reality and games** `Q113127945`
+        - **human–computer interaction** `Q207434` **[2]**  LCSH:`sh88003229` LCC:`QA76.9.H85` GND:`4125909-9` FAST:`963494`
+            - **Human-AI Relationality (HAIR)** `Q136334943`
+            - **usable privacy and security** `Q97127105`
+        - **International Media Computing** `Q126481638`
+        - **media informatics** `Q1212747`  GND:`4875411-0`
+        - **Māori computing technology use and design** `Q110402695`
+        - **Platform engineering** `Q130239811`
+        - **privacy-enhancing technologies** `Q7246002`
+        - **software engineering** `Q80993` **[4]**  LCSH:`sh87007398` GND:`4116521-4` FAST:`1124185` DDC:`005.1`
+            - **model-driven engineering** `Q1941909`
+            - **software architecture** `Q846636` **[3]**  GND:`4121677-5`
+                - **enterprise architecture** `Q1048431` **[1]**  GND:`7856257-0`
+                    - **information technology architecture** `Q6030887` **[1]**
+                        - **data architecture** `Q638422`
+                - **inversion of control** `Q666438` **[1]**
+                    - **dependency injection** `Q635336`
+                - **semantic architecture** `Q7449045`
+            - **software construction** `Q3398377`
+            - **software quality engineering** `Q7921330`
+        - **Usable security** `Q125843162`
+        - **web engineering** `Q1196135`
+
+- **formulary** `Q15699657` **[1]** *(structural parent — not itself a discipline)*
+    - **ars dictaminis** `Q704030`
+
+- **functional management** `Q5508836` **[2]** *(structural parent — not itself a discipline)*
+    - **human resource management** `Q1056396`  LCSH:`sh85100143|sh00006939` GND:`4076000-5` DDC:`023`
+    - **operations management** `Q1423657`
+
+- **game theory** `Q44455` **[2]** *(structural parent — not itself a discipline)*
+    - **algorithmic game theory** `Q623221`  GND:`1133091814`
+    - **combinatorial game theory** `Q1320931`  GND:`4164753-1`
+
+- **general relativity** `Q11452` **[1]** *(structural parent — not itself a discipline)*
+    - **mathematics of general relativity** `Q2537157`
+
+- **geoengineering** `Q921851` **[2]** *(structural parent — not itself a discipline)*
+    - **Arctic geoengineering** `Q4787572`
+    - **bio-geoengineering** `Q4914591`
+
+- **geologic time scale** `Q43521` **[1]** *(structural parent — not itself a discipline)*
+    - **lunar geologic timescale** `Q386638`
+
+- **geomatics engineering** `Q1986550` **[1]** *(structural parent — not itself a discipline)*
+    - **geospatial engineering** `Q5548545`
+
+- **geomedia** `Q1503262` **[1]** *(structural parent — not itself a discipline)*
+    - **geographic media** `Q124623991`
+
+- **geometry** `Q8087` **[2]** *(structural parent — not itself a discipline)*
+    - **goniometry** `Q1537205`
+    - **Q111596971** `Q111596971`
+
+- **gerontology** `Q10387` **[3]** *(structural parent — not itself a discipline)*
+    - **Biogerontology** `Q106508917`
+    - **geriatrics** `Q10384`  LCSH:`sh85054315` GND:`4071745-8` DDC:`618.97`
+    - **geromics** `Q103690307`
+
+- **global catastrophic risk** `Q1531622` **[1]** *(structural parent — not itself a discipline)*
+    - **existential risk studies** `Q128507011`
+
+- **government administration** `Q3754526` **[2]** *(structural parent — not itself a discipline)*
+    - **develpoment admistiration** `Q91138683`
+    - **public sector management** `Q107471270`
+
+- **government procurement** `Q20665717` **[1]** *(structural parent — not itself a discipline)*
+    - **government procurement in the European Union** `Q2577882`
+
+- **graph construction** `Q126366658` **[1]** *(structural parent — not itself a discipline)*
+    - **knowledge graph construction** `Q120971305`
+
+- **grounding** `Q25203393` **[1]** *(structural parent — not itself a discipline)*
+    - **grounding in communication** `Q1116097`
+
+- **group** `Q16887380` **[1]** *(structural parent — not itself a discipline)*
+    - **vocabulary** `Q6499736`  LCSH:`sh85144057` GND:`4126555-5` DDC:`401.4|413|418|4--014|4--3|4--81|4--834`
+
+- **health education** `Q60894` **[1]** *(structural parent — not itself a discipline)*
+    - **sport and health education** `Q55714014`
+
+- **health problem** `Q2057971` **[1]** *(structural parent — not itself a discipline)*
+    - **pathology** `Q7208` **[11]**  LCSH:`sh85098685` GND:`4044893-9` DDC:`616.07`
+        - **avian pathology** `Q122951657`
+        - **climatopathology** `Q130109910`
+        - **electropathology** `Q124326537`
+        - **fish pathology** `Q122935277`
+        - **gross pathology** `Q5610516`
+        - **hematopathology** `Q17143415`
+        - **human pathology** `Q16669122`
+        - **invertebrate pathology** `Q122934780`
+        - **micropathology** `Q135471428`
+        - **molecular pathology** `Q1056943` **[1]**  LCSH:`sh85098691` GND:`4170396-0`
+            - **molecular pathological epidemiology** `Q17069638`
+        - **obstetrical pathology** `Q134811457`
+
+- **health promotion** `Q1851928` **[2]** *(structural parent — not itself a discipline)*
+    - **Māori health promotion** `Q110351896`
+    - **Pacific Peoples health promotion** `Q113207946`
+
+- **health service** `Q9353606` **[1]** *(structural parent — not itself a discipline)*
+    - **community health service** `Q67140949`
+
+- **health services research** `Q2518253` **[5]** *(structural parent — not itself a discipline)*
+    - **child and adolescent health care practice** `Q64814361`
+    - **health care administration** `Q113168456`
+    - **health informatics and information systems research** `Q113168608`
+    - **health systems** `Q112939653`
+    - **rural and remote health services** `Q113191892`
+
+- **herpetology** `Q174416` **[4]** *(structural parent — not itself a discipline)*
+    - **amphibiology** `Q127328327`
+    - **batrachology** `Q4869597` **[2]**
+        - **amphibian genetics** `Q111680417`
+        - **bird genetics** `Q111680421`
+    - **paleoherpetology** `Q106099227`
+    - **reptiliology** `Q9307400` **[4]**
+        - **cheloniology** `Q24002214`
+        - **ophiology** `Q577555`
+        - **reptile genetics** `Q111680414`
+        - **saurology** `Q111389636`
+
+- **higher education** `Q136822` **[1]** *(structural parent — not itself a discipline)*
+    - **Q134194705** `Q134194705`
+
+- **Hispanic-American, Puerto Rican, and Mexican-American/Chicano studies** `Q23010571` **[2]** *(structural parent — not itself a discipline)*
+    - **Chicana/o studies** `Q5095927`  LCSH:`sh85084494` FAST:`1019157`
+    - **Latino studies** `Q28075`
+
+- **histology** `Q7168` **[3]** *(structural parent — not itself a discipline)*
+    - **histoenzymology** `Q3136525`
+    - **neurohistology** `Q129093219`
+    - **paleohistology** `Q95989990`  LCSH:`sh2020005789`
+
+- **historical reenactment** `Q657069` **[1]** *(structural parent — not itself a discipline)*
+    - **historically informed performance** `Q1344860`  LCSH:`sh2020008754` GND:`4197967-9`
+
+- **historical science** `Q65928774` **[1]** *(structural parent — not itself a discipline)*
+    - **cliometrics** `Q1433069`  GND:`4459218-8` DDC:`907.2`
+
+- **historiography** `Q30277550` **[1]** *(structural parent — not itself a discipline)*
+    - **medieval Catalan historiography** `Q11925891`
+
+- **history** `Q309` **[31]** *(structural parent — not itself a discipline)*
+    - **applied history** `Q4781600`
+    - **Classical Greek and Roman history** `Q112939719`
+    - **comparative history** `Q2708569`
+    - **contemporary history** `Q186075`
+    - **contemporary history** `Q3137989`
+    - **design history** `Q1200703`
+    - **environmental history** `Q1561862`  GND:`4291560-0`
+    - **Geistesgeschichte** `Q1499017`  GND:`4071653-3`
+    - **geohistory** `Q3123464`
+    - **history and geography** `Q55693919`
+    - **history of costume** `Q2501507`
+    - **History of health care** `Q5867949`
+    - **history of ideas** `Q570018` **[1]**  LCSH:`sh85067166` GND:`4138031-9` DDC:`001.09`
+        - **Soviet and Communist studies** `Q7571745`
+    - **history of science** `Q201486` **[2]**  GND:`7504427-4` DDC:`509`
+        - **history of medicine** `Q380274`  LCSH:`sh85083080` GND:`4169211-1`
+        - **history of statistics** `Q1444687`
+    - **history of slavery** `Q12981973`
+    - **history of textiles** `Q48258816`
+    - **history of the bibliography** `Q86436193`
+    - **library history** `Q856600`  GND:`4306765-7`
+    - **modern period** `Q3281534`  LCSH:`sh85061236` GND:`4171678-4`
+    - **music history** `Q10590700`  GND:`4456406-5`
+    - **newest history** `Q111146040`
+    - **oral history** `Q558929`  LCSH:`sh85095238` GND:`4115456-3`
+    - **oriental history** `Q32151132`
+    - **Protohistory** `Q695827`
+    - **public history** `Q441989`  LCSH:`sh85108672` GND:`7608229-5` DDC:`907.2`
+    - **Q102077247** `Q102077247`
+    - **Q54862900** `Q54862900`
+    - **Reception history** `Q137602917`
+    - **sensory history** `Q96405291`
+    - **social history** `Q908604` **[1]**  LCSH:`sh85123948` GND:`4055772-8` FAST:`1122498` DDC:`306.09`
+        - **co-operative studies** `Q5137484`  GND:`4156647-6`
+    - **urban history** `Q1569011`
+
+- **history of aesthetics** `Q3773025` **[1]** *(structural parent — not itself a discipline)*
+    - **history of design** `Q112108035`
+
+- **history of art** `Q50641` **[1]** *(structural parent — not itself a discipline)*
+    - **history of architecture** `Q8180985`  LCSH:`sh2004006086` GND:`7505196-5`
+
+- **history of Asia** `Q627531` **[1]** *(structural parent — not itself a discipline)*
+    - **history of Saudi Arabia** `Q559915`  LCSH:`sh85117713` DDC:`953.8`
+
+- **history of biology** `Q746656` **[1]** *(structural parent — not itself a discipline)*
+    - **history of physiology** `Q113657678`
+
+- **history of Japan** `Q130436` **[1]** *(structural parent — not itself a discipline)*
+    - **legal history of Japan** `Q11508453`
+
+- **history of philosophy** `Q27654` **[1]** *(structural parent — not itself a discipline)*
+    - **history of political thought** `Q3500207`
+
+- **history of technology** `Q465352` **[1]** *(structural parent — not itself a discipline)*
+    - **history of aviation** `Q471043`
+
+- **history of the Americas** `Q690256` **[1]** *(structural parent — not itself a discipline)*
+    - **history of Latin America** `Q2365406`
+
+- **history of the social sciences** `Q5076869` **[7]** *(structural parent — not itself a discipline)*
+    - **economic history** `Q47398`  LCSH:`sh85040817` GND:`7504419-5` FAST:`901974`
+    - **history of anthropology** `Q3136952`
+    - **history of archaeology** `Q5867387`
+    - **history of geography** `Q911070`  LCSH:`sh85053991`
+    - **history of humanities** `Q113192456`
+    - **history of psychology** `Q261215`
+    - **history of sociology** `Q932233`
+
+- **home economics** `Q425694` **[1]** *(structural parent — not itself a discipline)*
+    - **ecotrophology** `Q296210`  GND:`4224520-5` DDC:`613.2|640`
+
+- **horticulture** `Q48803` **[2]** *(structural parent — not itself a discipline)*
+    - **horticultural crop growth and development** `Q112947514`
+    - **Horticultural production** `Q112914409` **[2]**
+        - **horticultural crop improvement** `Q113042094`
+        - **post-harvest horticultural technologies** `Q113132901`
+
+- **hospital administration** `Q5657858` **[1]** *(structural parent — not itself a discipline)*
+    - **hospital management accounting** `Q1703604`
+
+- **human behavior** `Q3769299` **[3]** *(structural parent — not itself a discipline)*
+    - **health behaviour** `Q19374090`
+    - **information behavior** `Q18418842`
+    - **organizational behavior studies** `Q19483216`  LCSH:`sh85095524` LCC:`HM791`
+
+- **human history** `Q200325` **[5]** *(structural parent — not itself a discipline)*
+    - **history of Africa** `Q149813`  LCSH:`sh85001556` DDC:`960`
+    - **history of Europe** `Q7787` **[9]**  DDC:`940`
+        - **history of France** `Q7778`  LCSH:`sh85051256` DDC:`944`
+        - **history of Germany** `Q122131` **[1]**  LCSH:`sh85054524` DDC:`943`
+            - **history of the Weimar Republic** `Q104731094`  LCSH:`sh85054589` LCC:`DD237`
+        - **history of Greece** `Q7794`  LCSH:`sh85057073` DDC:`949.5`
+        - **history of Italy** `Q7791` **[1]**  LCSH:`sh85068936` DDC:`945`
+            - **history of Rome** `Q646206`  LCSH:`sh85115198`
+        - **history of Poland** `Q199569`  LCSH:`sh85104014`
+        - **history of Portugal** `Q7790`  LCSH:`sh85105246` DDC:`946`
+        - **history of Spain** `Q7781`  LCSH:`sh85126069` DDC:`946`
+        - **modern Europe** `Q15720761`
+        - **Q131199733** `Q131199733`
+    - **history of science and technology** `Q2183341`
+    - **history of the Muslim world** `Q66680978`
+    - **history of the Pacific Islands** `Q622000`
+
+- **human language** `Q20162172` **[1]** *(structural parent — not itself a discipline)*
+    - **natural language** `Q33742`
+
+- **human physiology** `Q2892439` **[1]** *(structural parent — not itself a discipline)*
+    - **work physiology** `Q628843`  LCSH:`sh85148134` GND:`4002757-0`
+
+- **human rights law** `Q113001579` **[1]**
+    - **domestic human rights law** `Q110470951`
+
+- **human settlement** `Q486972` **[1]** *(structural parent — not itself a discipline)*
+    - **built environment** `Q4986688`  LCSH:`sh2021008643`
+
+- **hydrobiology** `Q1130698` **[1]** *(structural parent — not itself a discipline)*
+    - **marine biology** `Q7173` **[6]**  LCSH:`sh85081138` GND:`4169246-9` DDC:`578.77`
+        - **coral reef biology** `Q104376880`  LCSH:`sh85032521` LCC:`QH95.8` FAST:`878839`
+        - **deep-sea biology** `Q50351536`
+        - **marine genomics** `Q106321083`
+        - **marine mammalogy** `Q107267429`  LCSH:`sh98000806` FAST:`1009689`
+        - **marine ornithology** `Q111680382`
+        - **spongiology** `Q18392412`
+
+- **hygiene** `Q162297` **[2]** *(structural parent — not itself a discipline)*
+    - **occupational health and safety** `Q629029`  GND:`4002771-5`
+    - **veterinary hygiene** `Q107428576`  LCSH:`sh85143038`
+
+- **hymenopterology** `Q4138441` **[2]** *(structural parent — not itself a discipline)*
+    - **ichneumonology** `Q131382012`
+    - **vespology** `Q9335841`
+
+- **ichthyology** `Q60242` **[3]** *(structural parent — not itself a discipline)*
+    - **fish genetics** `Q109276098`  LCSH:`sh85048766` FAST:`926487`
+    - **fish physiology** `Q5454658`  LCSH:`sh85048793` LCC:`QL639.1` FAST:`926577`
+    - **fish physiology and genetics** `Q110297482`
+
+- **image segmentation** `Q56933` **[1]** *(structural parent — not itself a discipline)*
+    - **semantic segmentation** `Q120970636`
+
+- **improvisation** `Q214961` **[1]** *(structural parent — not itself a discipline)*
+    - **musical improvisation** `Q1049625`  LCSH:`sh85064678` FAST:`968306` DDC:`781.36`
+
+- **indefinite legal concept** `Q1512368` **[1]** *(structural parent — not itself a discipline)*
+    - **legal institution** `Q1938208`  GND:`4121566-7`
+
+- **Indigenous health in Australia** `Q16150995` **[1]** *(structural parent — not itself a discipline)*
+    - **Aboriginal and Torres Strait Islander men’s health and wellbeing** `Q113192756`
+
+- **industrial archaeology** `Q259209` **[1]** *(structural parent — not itself a discipline)*
+    - **mining history** `Q130384071`
+
+- **industrial engineering** `Q4489420` **[1]** *(structural parent — not itself a discipline)*
+    - **Concrete Industry Management** `Q5159047`
+
+- **industrial manufacturing** `Q187939` **[2]** *(structural parent — not itself a discipline)*
+    - **ceramic engineering** `Q1936199`
+    - **smart manufacturing** `Q25112020`
+
+- **industry** `Q268592` **[1]** *(structural parent — not itself a discipline)*
+    - **hospitality industry** `Q1495452`  LCSH:`sh88004814` GND:`4259231-8` DDC:`338.4764795|338.4764794`
+
+- **informatics** `Q4027615` **[3]** *(structural parent — not itself a discipline)*
+    - **biomedical informatics** `Q1048526`
+    - **crisis informatics** `Q5281349`
+    - **geoinformatics** `Q918779` **[2]**  LCSH:`sh2015002292` GND:`7571300-7` FAST:`1930737`
+        - **computational modelling and simulation in earth sciences** `Q113095709`
+        - **Earth and space science informatics** `Q113098010`
+
+- **information** `Q11028` **[1]** *(structural parent — not itself a discipline)*
+    - **advertising** `Q37038`  LCSH:`sh85001086` GND:`4065541-6` FAST:`797511` DDC:`659.1|658.8`
+
+- **information processing** `Q750843` **[1]** *(structural parent — not itself a discipline)*
+    - **Signal and Information Processing** `Q137939741`
+
+- **information security** `Q189900` **[1]** *(structural parent — not itself a discipline)*
+    - **computer security** `Q3510521`  LCSH:`sh90001862` GND:`4274324-2` FAST:`872484` DDC:`005.8|658.478`
+
+- **information system** `Q121182` **[3]** *(structural parent — not itself a discipline)*
+    - **decision support system** `Q330268`  LCSH:`sh86006549` LCC:`HD30.213|T58.62` GND:`4191815-0` FAST:`889080` DDC:`006.33`
+    - **geographic information system** `Q483130`  LCSH:`sh2003007733|sh90001880` LCC:`G70.212-G70.217` GND:`4261642-6` FAST:`1752691|940423` DDC:`910.285`
+    - **management information system** `Q61905`  LCSH:`sh85080359` GND:`4074518-1`
+
+- **informetrics** `Q355654` **[1]** *(structural parent — not itself a discipline)*
+    - **bibliometrics** `Q603441`  LCSH:`sh85013873` GND:`4145244-6` DDC:`020.727`
+
+- **instrumentation** `Q617028` **[1]** *(structural parent — not itself a discipline)*
+    - **scoring** `Q3367000`
+
+- **intangible asset** `Q427581` **[1]** *(structural parent — not itself a discipline)*
+    - **intellectual property** `Q131257`  LCSH:`sh85067167` GND:`4136832-0` DDC:`346.048`
+
+- **intellectual activity** `Q105606485` **[1]** *(structural parent — not itself a discipline)*
+    - **creative and professional writing** `Q113209507`
+
+- **intentional human activity** `Q451967` **[2]** *(structural parent — not itself a discipline)*
+    - **arts** `Q2018526` **[3]**  LCSH:`sh85008324` GND:`4033422-3` DDC:`700`
+        - **art history, theory and criticism** `Q113209460`
+        - **Contemporary-Traditional Art** `Q30674193`
+        - **screen and digital media arts** `Q113209603`
+    - **wildlife conservation** `Q766328`  LCSH:`sh85146731` FAST:`1175253` DDC:`639`
+
+- **interaction** `Q52948` **[1]** *(structural parent — not itself a discipline)*
+    - **intercultural communication** `Q1205196`  LCSH:`sh85067222` LCC:`HM1211` GND:`4033569-0` DDC:`303.482`
+
+- **interdisciplinary program** `Q84771819` **[1]** *(structural parent — not itself a discipline)*
+    - **semiotics** `Q60195` **[3]**  LCSH:`sh85119950` GND:`4054498-9` DDC:`302.2`
+        - **semiology** `Q957366` **[2]**
+            - **atlas semiotics** `Q124622436`
+            - **carto semiotics** `Q124622318`
+        - **semiology** `Q1545237`
+        - **vexillosemiotics** `Q137764047`
+
+- **interdisciplinary science** `Q1665984` **[1]** *(structural parent — not itself a discipline)*
+    - **civil engineering and teaching** `Q10453611`
+
+- **Internet** `Q75` **[1]** *(structural parent — not itself a discipline)*
+    - **GeoWeb** `Q2396610`
+
+- **Internet of things** `Q251212` **[1]** *(structural parent — not itself a discipline)*
+    - **industrial internet of things** `Q60740481`
+
+- **internship** `Q6500754` **[1]** *(structural parent — not itself a discipline)*
+    - **engineering practice** `Q113210443`
+
+- **invariant** `Q188211` **[1]** *(structural parent — not itself a discipline)*
+    - **eigenvectors and eigenvalues** `Q190524`  LCSH:`sh85041390` GND:`4013802-1`
+
+- **invertebrate anatomy** `Q21170188` **[1]** *(structural parent — not itself a discipline)*
+    - **shellfish anatomy** `Q467230`
+
+- **Islamic sciences** `Q107313311` **[1]** *(structural parent — not itself a discipline)*
+    - **Sharia Sciences** `Q6817915`
+
+- **job activity** `Q192581` **[1]** *(structural parent — not itself a discipline)*
+    - **business development** `Q1017569`
+
+- **journalism** `Q11030` **[3]** *(structural parent — not itself a discipline)*
+    - **indigenous journalism** `Q106136048` **[1]**
+        - **Sámi Journalism from an Indigenous Perspective** `Q121201610`
+    - **investigative journalism** `Q1127717`  LCSH:`sh87001872` FAST:`978154`
+    - **Māori literature, journalism and professional writing** `Q110267078`
+
+- **Kartvelian studies** `Q3647325` **[1]** *(structural parent — not itself a discipline)*
+    - **Georgian studies** `Q107560101` **[1]**
+        - **Georgian literature** `Q3736210`
+
+- **knowledge** `Q9081` **[2]** *(structural parent — not itself a discipline)*
+    - **commonsense knowledge base** `Q1603203`
+    - **science** `Q336` **[50]**  LCSH:`sh85118553|sh00007934` LCC:`Q` GND:`4066562-8` FAST:`1108176` DDC:`001.2`
+        - **Aboriginal and Torres Strait Islander sciences** `Q113212245`
+        - **agricultural, veterinary and food sciences** `Q110231626` **[3]**
+            - **Agriculture, land and farm management** `Q110252240`
+            - **crop and pasture production** `Q110252479` **[3]**
+                - **agricultural ecosystems research** `Q113132894`
+                - **crop and pasture improvement** `Q112940050`
+                - **crop and pasture waste water use** `Q113041955`
+            - **food and nutritional science** `Q123518019`
+        - **animal studies** `Q4764988`
+        - **applied science** `Q28797` **[15]**  GND:`4142447-5`
+            - **aeronautical climatology** `Q130236362`
+            - **applied biomechanics** `Q131148152`
+            - **applied cartography** `Q131148149`
+            - **applied climatology** `Q130217800`
+            - **applied demography** `Q97186107`
+            - **applied electric engineering** `Q131148151`
+            - **applied geometry** `Q12817915`
+            - **applied hydrobiology** `Q112225704`
+            - **applied hydrology** `Q113883996`
+            - **applied hydromechanics** `Q131148154`
+            - **building science** `Q3741966`
+            - **engineering** `Q11023` **[47]**  LCSH:`sh85043176` GND:`4137304-2` DDC:`620`
+                - **aerospace engineering** `Q3798668` **[1]**  LCSH:`sh95007821` FAST:`798623` DDC:`629.1`
+                    - **rocket science** `Q1446961`  GND:`1180403177`
+                - **applied engineering** `Q4781596`
+                - **biomedical engineering** `Q327092` **[1]**  LCSH:`sh85014237` GND:`4074676-8` DDC:`681.761|610.28`
+                    - **immunoengineering** `Q126867967`
+                - **black engineering** `Q133847525`
+                - **chemical and process engineering** `Q65043023`
+                - **chemical engineering** `Q83588` **[2]**  LCSH:`sh85022900` GND:`4349723-8` FAST:`852893` DDC:`660`
+                    - **paper studies** `Q7132695`
+                    - **process control and simulation** `Q113161374`
+                - **civil and environmental engineering** `Q136580777`
+                - **civil engineering** `Q77590` **[5]**  LCSH:`sh85026331` GND:`4004955-3` DDC:`624`
+                    - **energy development** `Q25584060`
+                    - **hydraulic engineering** `Q1130265`  LCSH:`sh85063305` GND:`4064700-6` DDC:`627`
+                    - **irrigation engineering** `Q114778863`  LCSH:`sh85068296` GND:`4145122-3` FAST:`979596`
+                    - **timber engineering** `Q110617528`
+                    - **transportation engineering** `Q775325` **[2]**  LCSH:`sh85137069`
+                        - **bicycle transportation engineering** `Q4903806`
+                        - **railway engineering** `Q4260703`  LCSH:`sh85110872` GND:`4151498-1`
+                - **clinical engineering** `Q3275615`
+                - **computational engineering** `Q362601`
+                - **computer engineering** `Q428691` **[1]**  LCSH:`sh85029495` GND:`4196734-3` DDC:`004|621.39`
+                    - **computer systems engineering** `Q107782168`
+                - **construction engineering** `Q2674423`
+                - **control engineering, mechatronics and robotics** `Q113104535` **[4]**
+                    - **assistive robots and technology** `Q113104586`
+                    - **field robotics** `Q113161523`
+                    - **mechatronics hardware design and architecture** `Q113104621`
+                    - **simulation, modelling, and programming of mechatronics systems** `Q113104673`
+                - **cybersecurity engineering** `Q100326540`
+                - **electrical engineering** `Q43035` **[9]**  LCSH:`sh85041666` GND:`4014390-9` DDC:`621.3`
+                    - **antennas and propagation** `Q110617545`
+                    - **automotive engineering** `Q124192` **[3]**
+                        - **automotive combustion and fuel engineering** `Q113161355`
+                        - **Automotive engineering materials** `Q110259434`
+                        - **automotive safety engineering** `Q110093993`
+                    - **electric power transmission** `Q200928`
+                    - **electrical circuits and systems** `Q113161574`
+                    - **electricity generation** `Q383973`  LCSH:`sh85041913` GND:`4133665-3`
+                    - **electrochemical engineering** `Q2474620`
+                    - **electronic engineering** `Q126095`
+                    - **power engineering** `Q1803786`  GND:`4113411-4` DDC:`621.31`
+                    - **telecommunications engineering** `Q1061219`  GND:`4041066-3`
+                - **engineering mathematics** `Q2235851`
+                - **engineering practice and education** `Q113210442`
+                - **environmental engineering** `Q146326` **[3]**  LCSH:`sh85044170` GND:`4061650-2` FAST:`912934` DDC:`628`
+                    - **environmental engineering and science** `Q59687311`
+                    - **natural resources engineering** `Q55648438`
+                    - **urban environmental engineering** `Q11643670`
+                - **ergonomics** `Q1750812` **[1]**  LCSH:`sh85062867` GND:`4015249-2` DDC:`004.019|005.019|620.82|621.3984`
+                    - **Kansei engineering** `Q1075418`
+                - **fire protection engineering** `Q567716`  LCSH:`sh98003737` FAST:`925515`
+                - **fluid mechanics and thermal engineering** `Q113210559`
+                - **forestry** `Q38112` **[2]**  LCSH:`sh85050707` LCC:`SD1-SD669.5` GND:`4017966-7` DDC:`634.9`
+                    - **agroforestry** `Q397350`  LCSH:`sh85002507`
+                    - **forensic forestry** `Q108570409`  LCSH:`sh2021003625`
+                - **history of engineering** `Q5867819`
+                - **illuminating engineering** `Q122763702`
+                - **industrial and operations engineering** `Q101911126`
+                - **industrial engineering and management** `Q6314146`
+                - **industrial engineering and operations research** `Q6027873`
+                - **informatics engineering** `Q16937537`  LCSH:`sh85042302` GND:`4026896-2`
+                - **Irrigation, drainage and rural engineering** `Q130343258`
+                - **Knowledge Graph Engineering** `Q137766326`
+                - **landscape engineering** `Q6485091`
+                - **life engineering** `Q97175368`
+                - **maritime engineering** `Q64854409`
+                - **materials engineering** `Q1710723` **[4]**
+                    - **compound semiconductors** `Q111327089`
+                    - **elemental semiconductors** `Q111327079`
+                    - **interfacial engineering** `Q122820072`
+                    - **material process engineering** `Q11098568`
+                - **mathematical engineering** `Q135427453`
+                - **metallurgical engineering** `Q5916079`
+                - **mining engineering** `Q1370637`  LCSH:`sh85085712` GND:`4170498-8` FAST:`1022890`
+                - **Māori engineering** `Q110402787`
+                - **naval architecture** `Q1136352`  LCSH:`sh85090355` DDC:`623.81`
+                - **quantum engineering** `Q107646240`
+                - **resilience engineering** `Q30894462`
+                - **sales engineering** `Q7404318`
+                - **social engineering** `Q847808`  LCSH:`sh87001696` GND:`4181997-4`
+                - **sustainable engineering** `Q7649653`
+                - **systems engineering** `Q682496` **[2]**  LCSH:`sh85131750` GND:`4140901-2` DDC:`620.001171`
+                    - **cybernetics** `Q123637`  LCSH:`sh85035046` LCC:`Q300-Q390` GND:`4033888-5` DDC:`003.5`
+                    - **knowledge engineering** `Q1540472`
+                - **thermal engineering** `Q2585592`  GND:`4064206-9` DDC:`621`
+                - **training engineering** `Q109301444`
+            - **forestry science** `Q19924411` **[3]**  LCSH:`sh88003739` GND:`4155069-9`
+                - **Forestry biomass and bioproducts** `Q116547272`
+                - **forestry fire management** `Q110297702`
+                - **Forestry product quality assessment** `Q116547270`
+            - **health sciences** `Q843601` **[14]**  GND:`4249464-3` DDC:`610`
+                - **allied health sciences** `Q136262570`
+                - **dermatology** `Q171171` **[1]**  LCSH:`sh85037090` GND:`4135648-2` DDC:`616.5`
+                    - **trichology** `Q2143237`
+                - **environmental health sciences** `Q113827235`
+                - **gynaecology** `Q1221899`  LCSH:`sh85058092` GND:`4018225-3` FAST:`949684` DDC:`618`
+                - **Indigenous studies health and wellbeing** `Q113127888`
+                - **medicine** `Q11190` **[25]**  LCSH:`sh85083064` GND:`4038243-6` FAST:`1014893` DDC:`610`
+                    - **cardiology** `Q10379`  LCSH:`sh85020214` GND:`4114141-6` DDC:`616.12`
+                    - **clinical medicine** `Q4388032`  LCSH:`sh85083129` GND:`4134748-1` DDC:`616|616.075|618.92|636.0896`
+                    - **dentistry** `Q12128` **[7]**  LCSH:`sh85036953` GND:`4079454-4` DDC:`617.6|617`
+                        - **clinical dentistry** `Q121493590`
+                        - **dental anthropology** `Q5700493`
+                        - **geriatric dentistry** `Q2405851`
+                        - **gnathology** `Q962213`
+                        - **oral rehabilitation** `Q113468875`
+                        - **orthodontics** `Q118301`  LCSH:`sh85095770` GND:`4030473-5` DDC:`617.643`
+                        - **restorative dentistry** `Q7316230`  GND:`4205475-8`
+                    - **emergency medicine** `Q2861470`  LCSH:`sh85042755` GND:`4042676-2` DDC:`616.025`
+                    - **health informatics** `Q870895`  LCSH:`sh89005069` GND:`4038261-8` FAST:`1014175` DDC:`610.285`
+                    - **health management system** `Q5691117`
+                    - **internal medicine** `Q11180` **[3]**  LCSH:`sh85067347` GND:`4027074-9` DDC:`616`
+                        - **nephrology** `Q177635` **[1]**  LCSH:`sh85090860` GND:`4129395-2` DDC:`616.61`
+                            - **clinical nephrology** `Q113533499`
+                        - **pulmonology** `Q203337`  GND:`4122323-8`
+                        - **sports medicine** `Q840545`  LCSH:`sh85126948` LCC:`RC1200-RC1245` GND:`4056405-8` DDC:`617.102  7`
+                    - **medical statistics** `Q1252929`
+                    - **molecular medicine** `Q3523816`
+                    - **Māori medicine and treatments** `Q110352566`
+                    - **neurology** `Q83042` **[2]**  LCSH:`sh85091139` GND:`4041888-1` DDC:`616.8`
+                        - **neurogastroenterology** `Q3338668`
+                        - **veterinary neurology** `Q113884077`
+                    - **nuclear medicine** `Q214963`  LCSH:`sh85093011` GND:`4042770-5` DDC:`616.075  75`
+                    - **nursing** `Q121176` **[1]**  LCSH:`sh85093362` GND:`4032813-2` FAST:`1041731` DDC:`610.73`
+                        - **Māori nursing** `Q110353047`
+                    - **oncology** `Q162555` **[4]**  LCSH:`sh85094724` GND:`4075658-0` DDC:`616.994`
+                        - **cancer genetics** `Q110093561`
+                        - **dermatooncology** `Q112194858`
+                        - **molecular oncology** `Q10881532`
+                        - **oncodiabetology** `Q131742670`
+                    - **ophthalmology** `Q161437`  LCSH:`sh85095071` GND:`4003593-1` DDC:`617.7|617`
+                    - **paramedicine** `Q7135179`
+                    - **pediatrics** `Q123028` **[1]**  LCSH:`sh85099185` GND:`4030594-6` DDC:`618.92`
+                        - **Māori midwifery and paediatrics** `Q110352732`
+                    - **preventive medicine** `Q1773974`  LCSH:`sh85083162` LCC:`RA421-RA790.95` GND:`4047033-7` DDC:`613`
+                    - **Q3332456** `Q3332456`
+                    - **rheumatology** `Q327657`  LCSH:`sh88000877` GND:`4128646-7` DDC:`616.723`
+                    - **stem cell biology** `Q85711371`
+                    - **symptomatology** `Q3510806`  GND:`4078106-9` DDC:`616.0754`
+                    - **transplantology** `Q1049976`
+                    - **veterinary medicine** `Q170201` **[3]**  LCSH:`sh85143046` GND:`4078315-7` DDC:`636.089`
+                        - **exotic animal medicine** `Q115255855`
+                        - **traditional Chinese veterinary medicine** `Q110105899`
+                        - **veterinary public health** `Q7923729`  LCC:`SF740-SF740.2`
+                    - **Western medicine** `Q11629020`
+                - **Māori health and wellbeing** `Q110351323`
+                - **nursing science** `Q3475757` **[1]**  GND:`7603053-2`
+                    - **nursing workforce research** `Q113114993`
+                - **optometry** `Q618211`  LCSH:`sh85095209` DDC:`617.75`
+                - **Pacific Peoples health and wellbeing** `Q113203886`
+                - **psychology** `Q9418` **[24]**  LCSH:`sh85108459` GND:`4047704-6` FAST:`1081447` DDC:`150`
+                    - **applied and developmental psychology** `Q113043917` **[1]**
+                        - **psychology of aging** `Q30904014`
+                    - **applied psychology** `Q538904` **[1]**  LCSH:`sh85108472` GND:`4002028-9` DDC:`158`
+                        - **Fashion psychology** `Q118906198`
+                    - **auto-psychology** `Q130257029`
+                    - **clinical and health psychology** `Q113212893`
+                    - **counseling psychology** `Q12166572`  GND:`4047708-3` DDC:`158.3`
+                    - **cyberpsychology** `Q2905785`
+                    - **ecopsychology** `Q15088481`
+                    - **empirical psychology** `Q5374252`
+                    - **engineering psychology** `Q490354`  GND:`4240884-2`
+                    - **ethnopsychology** `Q12572036`  LCSH:`sh85045425` LCC:`GN502-GN519` GND:`4188478-4` DDC:`155.82`
+                    - **evolutionary psychology** `Q219695`  LCC:`BF698.95` GND:`4636472-9`
+                    - **gender psychology** `Q11830699`
+                    - **Māori psychology** `Q110353125`
+                    - **neuropsychology** `Q3872` **[1]**  LCSH:`sh85091163` LCC:`QP351-QP495` GND:`4135740-1` DDC:`612.8`
+                        - **educational neuroscience** `Q2614722`
+                    - **pathematology** `Q127676320`
+                    - **Personality and Social Psychology** `Q135274831`
+                    - **personology** `Q127675913`
+                    - **psychiatry** `Q7867` **[3]**  LCSH:`sh85108381` GND:`4047667-4` DDC:`616.89`
+                        - **Milan Approach** `Q3857553`
+                        - **neuropsychiatry** `Q2699874`  LCSH:`sh85091161` GND:`4171595-0` DDC:`616.8`
+                        - **psychonosology** `Q129676870`
+                    - **reading psychology** `Q135179633`
+                    - **sexology** `Q170912`  LCSH:`sh90004841` GND:`4077394-2` DDC:`306.7|155.3|612.6`
+                    - **social and personality psychology** `Q113212938`
+                    - **space psychology** `Q25054415`
+                    - **vocational psychology** `Q129260008`
+                    - **zoopsychology** `Q10861331`  LCSH:`sh85005227` LCC:`QL785` FAST:`809349`
+                - **Q109450440** `Q109450440`
+                - **rural health** `Q3473027` **[1]**
+                    - **Māori remote health** `Q110353673`
+                - **traditional, complementary and integrative medicine** `Q113191939`
+            - **safety science** `Q11450377`
+        - **aquatic science** `Q4782809` **[1]**  LCSH:`sh85006246` FAST:`812097`
+            - **limnology** `Q165838` **[4]**  LCSH:`sh85077053` GND:`4035769-7` FAST:`998940` DDC:`551.48`
+                - **freshwater biology** `Q3306816`  LCSH:`sh85051943`
+                - **limnology** `Q840436`
+                - **paleolimnology** `Q1550690`  LCSH:`sh85097105` GND:`4173114-1` FAST:`1051499`
+                - **physical limnology** `Q134891370`
+        - **astronomy** `Q333` **[20]**  LCSH:`sh85009003` LCC:`QB` GND:`4003311-9` DDC:`520`
+            - **archaeoastronomy** `Q463923`  LCSH:`sh85009023` GND:`4142943-6`
+            - **areology** `Q126733835`
+            - **astrobiology** `Q411` **[1]**  LCSH:`sh90004216` GND:`4112608-7` DDC:`576.839`
+                - **astrobotany** `Q30587747`
+            - **astrochemistry** `Q11680018`  LCSH:`sh85033157` GND:`4133733-5` DDC:`523.02`
+            - **astrogeophysics** `Q98072944`
+            - **astrometry** `Q181505`  LCSH:`sh85008942` GND:`4207657-2` DDC:`522`
+            - **astrophysics** `Q37547` **[3]**  LCSH:`sh85009032` GND:`4003326-0` DDC:`523.01`
+                - **astrophysical and planetary sciences** `Q124834963`
+                - **galaxy formation and evolution** `Q1995140`  LCSH:`sh94008658|sh85052765`
+                - **Solar-terrestrial interactions** `Q112031785`
+            - **astrostatistics** `Q4811716`
+            - **cometology** `Q131560888`
+            - **cosmology** `Q338` **[2]**  LCSH:`sh85033169` GND:`4114294-9` FAST:`880600` DDC:`113|523.1`
+                - **cosmochronology** `Q113884132`
+                - **radio cosmology** `Q137669714`
+            - **extragalactic astronomy** `Q502038`
+            - **galactic astronomy** `Q58908`
+            - **heliophysics** `Q2740627`
+            - **historical astronomy** `Q12766879`
+            - **Māori astronomy and cosmology** `Q110402649`
+            - **physical cosmology** `Q18346`
+            - **physics with astronomy** `Q64688755`
+            - **solar energetic particles** `Q6144418`
+            - **space astronomy** `Q10453718`
+            - **stellar astronomy** `Q2295061`
+        - **cosmecology** `Q129261095`
+        - **data science** `Q2374463` **[2]**
+            - **data engineering** `Q104659521`
+            - **data visualisation and computational design** `Q112936830`
+        - **domestic studies** `Q1595873` **[2]**  GND:`4073972-7`
+            - **Eurasian studies** `Q23019171`
+            - **European studies** `Q1377029` **[8]**
+                - **baltistics** `Q463604` **[1]**  GND:`4576777-4`
+                    - **Lithuanian studies** `Q10978135`  GND:`4656569-3`
+                - **Central European studies** `Q23019169`
+                - **Contemporary Mediterranean Studies** `Q55338315`
+                - **Eastern European studies** `Q1413113` **[1]**
+                    - **Slavic studies** `Q156864` **[13]**  GND:`4055287-1` DDC:`491.8`
+                        - **Belarusian studies** `Q816139`
+                        - **Bulgarian studies** `Q4090659`  GND:`4146908-2`
+                        - **Croatian studies** `Q575929`
+                        - **Montenegrin studies** `Q11785348`
+                        - **Russian studies** `Q375470` **[1]**  GND:`4178754-7`
+                            - **Siberian studies** `Q136458097`
+                        - **Serbian studies** `Q2272224`
+                        - **Serbo-Croatian studies** `Q26331146`  LCSH:`sh85120203`
+                        - **Slovene studies** `Q2294725`
+                        - **Soviet studies** `Q76243567` **[1]**
+                            - **Sovietology** `Q11894281`
+                        - **Ukrainian studies** `Q491679` **[1]**
+                            - **Holodomor studies** `Q109505011`
+                        - **West Slavic Studies** `Q16872093` **[5]**  GND:`4830608-3`
+                            - **Czech studies** `Q59068` **[1]**  GND:`4186370-7`
+                                - **comeniology** `Q12029903`
+                            - **Kashubian studies** `Q149678`
+                            - **Polish studies** `Q1463332`  GND:`4175076-7`
+                            - **Slovak studies** `Q4423818`
+                            - **Sorbian studies** `Q149594`  GND:`4201439-6`
+                        - **Yugoslav studies** `Q111597209`
+                        - **Yugoslav studies** `Q111795045`
+                - **Germanic philology** `Q2620112` **[3]**  LCSH:`sh85054442`
+                    - **Dutch studies** `Q1987969` **[1]**  GND:`4283850-2`
+                        - **rangaku** `Q877637`
+                    - **German studies** `Q166153` **[1]**  GND:`4020383-9` DDC:`830|430`
+                        - **German linguistics** `Q133260943`
+                    - **Scandinavian studies** `Q922219`  GND:`4077478-8`
+                - **Hellenic studies** `Q489119`  GND:`7620854-0`
+                - **International and European Studies** `Q96758157`
+                - **Romance studies** `Q1277348` **[7]**  LCSH:`sh85114963` GND:`4050484-0` FAST:`1099881` DDC:`840|440`
+                    - **catalanistics** `Q24260742`
+                    - **French studies** `Q1450761` **[1]**
+                        - **French as a foreign language** `Q17076284`
+                    - **Galician studies** `Q125464837`
+                    - **hispanism** `Q1109432` **[1]**  LCSH:`sh85126190`
+                        - **Spanish studies** `Q94310568`
+                    - **Portuguese studies** `Q1721024` **[1]**  LCSH:`sh85105328` GND:`4168337-7`
+                        - **Brazilian studies** `Q136455925`
+                    - **Q124735654** `Q124735654`
+                    - **Romanian studies** `Q2175941`  GND:`4178692-0`
+        - **educational sciences** `Q861641` **[1]**
+            - **educational geography** `Q861407`
+        - **finance science** `Q24067399` **[1]**
+            - **financial and banking science** `Q12238348`
+        - **food science** `Q1637030` **[3]**  LCSH:`sh2018000786` GND:`4167048-6`
+            - **food hygiene and safety science** `Q136800541`
+            - **food nutrition research** `Q10566261`
+            - **food technology** `Q1039642` **[1]**  GND:`4034901-9` DDC:`664`
+                - **brewing science** `Q135923219`  GND:`4146518-0`
+        - **forensic science** `Q495304` **[1]**  LCSH:`sh90001487` GND:`1199322490` FAST:`932011` DDC:`363.25|614.1`
+            - **forensic microbiology** `Q116874529`
+        - **Geisteswissenschaften** `Q944537` **[3]**  GND:`4019838-8` DDC:`001.3`
+            - **Art studies** `Q12778063`
+            - **dance studies** `Q2393450` **[2]**  GND:`7740243-1` DDC:`792.8`
+                - **ballet studies** `Q4076591`
+                - **history of dance** `Q27730`
+            - **musicology** `Q164204` **[11]**  LCSH:`sh85089048` GND:`4130526-7` DDC:`780.72`
+                - **campanology** `Q168058`
+                - **ecomusicology** `Q17119209`  LCSH:`sh2015001664` FAST:`1923039`
+                - **flamencology** `Q2518760`
+                - **hymnology** `Q1640693`  GND:`4140859-7`
+                - **melodics** `Q444345`
+                - **Music technology and recording** `Q112970980`
+                - **musical archival science** `Q135437722`
+                - **Māori music and performing arts** `Q110267151`
+                - **queer musicology** `Q110257133`  LCSH:`sh2021005718` LCC:`ML3797.4`
+                - **systematic musicology** `Q7663779`
+                - **zoomusicology** `Q2755197`
+        - **geography** `Q1071` **[17]**  LCSH:`sh00005919` GND:`4020216-1` DDC:`372.892|910|372.891`
+            - **art geography** `Q45741429`
+            - **cartography** `Q42515` **[25]**  LCSH:`sh85020515` GND:`4029823-1` DDC:`526`
+                - **atlas cartography** `Q124611981`
+                - **Cartographic Communication** `Q124610402`
+                - **cinematic cartography** `Q124625929`
+                - **Cognitive cartography** `Q124610929`
+                - **collaborative cartography** `Q124608832`
+                - **critical cartography** `Q5186702` **[1]**
+                    - **Hacker Cartography** `Q124645587`
+                - **cybercartography** `Q124703956`
+                - **digital cartography** `Q4115141` **[3]**
+                    - **interactive cartography** `Q124377645`
+                    - **multimedia cartography** `Q6934788`
+                    - **web cartography** `Q124377615` **[2]**
+                        - **3D web cartography** `Q124377625`
+                        - **queer cartography** `Q136186248`
+                - **Ethnocartography** `Q124611847`
+                - **Feminist cartography** `Q124610984`
+                - **historical cartography** `Q12261349`
+                - **Inclusive Cartography** `Q124610312`
+                - **literary cartography** `Q124626015`
+                - **military cartography** `Q112342630`
+                - **modern cartography** `Q124612189`
+                - **narrative cartography** `Q124625941`
+                - **nautical cartography** `Q123654087`  DDC:`623.8922`
+                - **participatory cartography** `Q124608623`
+                - **persuasive cartography** `Q133858062`
+                - **planetary cartography** `Q7201242`
+                - **sculptural cartography** `Q124626036`
+                - **Social Cartography** `Q124704868`
+                - **thematic cartography** `Q124610170` **[2]**
+                    - **tactile cartography** `Q124610260`
+                    - **topographic cartography** `Q115161680`
+                - **theoretical cartography** `Q124568661`
+                - **world cartography** `Q136304713`
+            - **demography** `Q37732` **[6]**  LCSH:`sh85036659` GND:`4011412-0` DDC:`304.6`
+                - **biodemography** `Q4914754`
+                - **biodemography of human longevity** `Q4914752`
+                - **family and household demography** `Q113192647`
+                - **family demography** `Q119003958`
+                - **historical demography** `Q580130`  GND:`7503030-5`
+                - **Māori human geography and demography** `Q110391039`
+            - **ecography** `Q114149090`
+            - **environmental geography** `Q111315052`  LCSH:`sh99004421` GND:`4251568-3`
+            - **environmental studies** `Q5381367`
+            - **geocomputation** `Q5533896`
+            - **geography of anarchism** `Q115690351`
+            - **geospatial science** `Q64811452` **[2]**
+                - **geoinformation science** `Q124468378` **[1]**
+                    - **GIS science** `Q124624042`
+                - **geospatial information science** `Q124471792`
+            - **human geography** `Q12831143` **[2]**  LCSH:`sh85005570` GND:`4133695-1` DDC:`304.2`
+                - **Moral geography** `Q124624869`
+                - **urban studies** `Q23578769` **[1]**
+                    - **urban analysis and development** `Q112947524`
+            - **hydrography** `Q182468`  LCSH:`sh85063443` DDC:`551.46`
+            - **neogeography** `Q1674119`
+            - **physical geography** `Q52107` **[2]**  LCSH:`sh85101552` GND:`4174629-6` DDC:`910.02`
+                - **geomorphology** `Q52109` **[6]**  LCSH:`sh85054165` GND:`4130684-3` FAST:`940955` DDC:`551.41`
+                    - **applied geomorphology** `Q11062967`
+                    - **climatic geomorphology** `Q10372740`
+                    - **dynamical geomorphology** `Q10900967`
+                    - **karstology** `Q1734506`
+                    - **paleogeomorphology** `Q125994414`
+                    - **tectonic geomorphology** `Q7695672`
+                - **topography** `Q134435` **[1]**  LCSH:`sh85136077` GND:`4133697-5` DDC:`910`
+                    - **military topography** `Q21541550`  LCSH:`sh85085307`
+            - **polar exploration** `Q1640995`  GND:`4200347-7`
+            - **Q12112477** `Q12112477`
+            - **Q124032307** `Q124032307`
+            - **queer geography** `Q136190726`
+        - **grassland science** `Q135333433`
+        - **hard science** `Q2522419`
+        - **health metrics sciences** `Q98970243`
+        - **hearing science** `Q103884376`
+        - **historiography of science** `Q2422123`
+        - **hydrology** `Q42250` **[9]**  LCSH:`sh85063460` GND:`4026309-5` DDC:`551`
+            - **catchment hydrology** `Q5051759`
+            - **forest hydrology** `Q105552831`  LCSH:`sh85063461` LCC:`GB842` GND:`4393598-9` FAST:`1715752|965190`
+            - **hydrochemistry** `Q912065`  LCSH:`sh85145539` LCC:`GB855|GB857.3` GND:`4072678-2` FAST:`1171592`
+            - **hydroclimatology** `Q111088929`
+            - **hydrogeomorphology** `Q20638505` **[1]**
+                - **fluvial geomorphology** `Q65235465`
+            - **Isotope hydrology** `Q13416553`
+            - **paleohydrology** `Q85791890`  LCSH:`sh85097104` GND:`4173111-6` FAST:`1051497`
+            - **urban hydrology** `Q111327099`
+            - **watershed hydrology** `Q110968692`  LCSH:`sh2005004309` FAST:`1738283`
+        - **information history** `Q6031108`
+        - **information science** `Q16387` **[10]**  LCSH:`sh85066150` GND:`4128313-2` FAST:`972640` DDC:`000`
+            - **archival science** `Q380313`  LCSH:`sh2007101328` GND:`4142971-0` DDC:`020`
+            - **archival studies** `Q116935765`
+            - **bibliography** `Q134995` **[2]**  LCSH:`sh85013838` GND:`4006432-3` FAST:`831351` DDC:`010`
+                - **bibliography** `Q4086340`
+                - **Q10405762** `Q10405762`
+            - **bibliology** `Q2901245`  GND:`4146819-3` DDC:`002`
+            - **data management and data science** `Q113212528`
+            - **geographic information science** `Q3537694`
+            - **information management** `Q55713999`
+            - **information management** `Q579488` **[1]**  LCSH:`sh85066147` LCC:`ZA3085.5` GND:`4114012-6`
+                - **Māori information and knowledge management systems** `Q110402800`
+            - **library and information science** `Q13420675` **[1]**  LCC:`Z664.2-Z718.85`
+                - **knowledge organization** `Q1929761`  LCSH:`sh99001059` GND:`4205605-6` DDC:`001.01|020`
+            - **library science** `Q199655` **[3]**  LCSH:`sh85076723` GND:`4006465-7` FAST:`997916` DDC:`020`
+                - **digital scholarship** `Q16246050`
+                - **school librarianship** `Q108906969`
+                - **serials librarianship** `Q109523058`  LCSH:`sh98005480` LCC:`Z692.S5` FAST:`1113145`
+        - **interaction science** `Q97008347`
+        - **kinesiology** `Q657632` **[1]**  LCSH:`sh85072383` LCC:`QP303` GND:`4069421-5` DDC:`152.3|796.07|612.76|796.01|613.7`
+            - **oral kinesiology** `Q5362857`
+        - **koniology** `Q287983`
+        - **legal science** `Q382995` **[2]**
+            - **criminal law studies** `Q5366855`
+            - **Q114284672** `Q114284672`
+        - **mathematical, physical and natural sciences** `Q18420401`
+        - **military science** `Q192386` **[4]**  GND:`4169977-4` DDC:`350`
+            - **fortification** `Q324326`
+            - **military art** `Q2560087` **[1]**  LCSH:`sh85085132` DDC:`355`
+                - **gungaku** `Q11637397`
+            - **military terminology** `Q3491429`
+            - **strategic studies** `Q2353818` **[1]**
+                - **national resource strategy** `Q102315485`
+        - **momiology** `Q129265953`
+        - **nanoscience** `Q912169`  LCSH:`sh2002000242` GND:`7734987-8` FAST:`1032629` DDC:`500`
+        - **natural resource science** `Q43400663`
+        - **natural science** `Q7991` **[12]**  GND:`4041421-8` DDC:`500`
+            - **biology** `Q420` **[60]**  LCSH:`sh85014203` GND:`4006851-1` FAST:`832383` DDC:`570`
+                - **aerobiology** `Q381392`
+                - **applied biology** `Q112778530`
+                - **aquatic biology** `Q5728861`  LCSH:`sh85006231` GND:`4026300-9` FAST:`811975`
+                - **behavioural biology** `Q3450906`  GND:`4062862-0`
+                - **bioastronautics** `Q3567622`
+                - **biochemistry** `Q7094` **[10]**  LCSH:`sh85014171` LCC:`QD415-QD436` GND:`4006777-4` FAST:`831961` DDC:`572`
+                    - **biochemorphology** `Q134892016`
+                    - **dynamic biochemistry** `Q25631230`
+                    - **enzymology** `Q2880775`  LCSH:`sh96010093` GND:`4152482-2` FAST:`913635` DDC:`616.0756|572.7`
+                    - **functional biochemistry** `Q20612038`
+                    - **marine biochemistry** `Q117485357` **[1]**
+                        - **marine biogeochemistry** `Q117485353`
+                    - **metabolomics** `Q12149006` **[1]**
+                        - **Exometabolomics** `Q28130303`
+                    - **plant biochemistry** `Q97182622`
+                    - **protein chemistry** `Q105252429`
+                    - **skin biochemistry** `Q125517135`
+                    - **statistical biochemistry** `Q25631227`
+                - **biochemistry and cell biology** `Q113042237` **[2]**
+                    - **cell development, proliferation and death** `Q113042499`
+                    - **cell neurochemistry** `Q113132905`
+                - **biodiversity discovery** `Q136483261`
+                - **biodiversity informatics** `Q864269`
+                - **Bioinformatics and computational biology** `Q110231341` **[3]**
+                    - **proteomics and metabolomics** `Q113132912`
+                    - **Statistical and quantitative genetics** `Q112969953`
+                    - **translational bioinformatics** `Q7834541`
+                - **biological oceanography** `Q18378619`
+                - **biology of colour** `Q105582462`
+                - **biomechatronics** `Q864576`
+                - **bionics** `Q189131`  LCSH:`sh85014250` GND:`4006888-2` DDC:`003.5`
+                - **biostatistics** `Q214746`  LCSH:`sh85014244` GND:`4729990-3`
+                - **biotypology** `Q864896`
+                - **botany** `Q441` **[33]**  LCSH:`sh85015976` GND:`4007842-5` FAST:`836869` DDC:`580`
+                    - **agricultural science** `Q3606845` **[4]**  LCSH:`sh86001792|sh85002415` GND:`4068473-8` FAST:`801593` DDC:`630`
+                        - **agronomy** `Q173113`  LCSH:`sh91006254` GND:`4421347-5` FAST:`801886`
+                        - **Māori agriculture and forestry** `Q110350495`
+                        - **oenology and viticulture** `Q110735073` **[1]**
+                            - **oenology** `Q297672`  GND:`4126172-0` DDC:`663.2001`
+                        - **Q109595305** `Q109595305`
+                    - **batology** `Q20730570`
+                    - **bryology** `Q899719` **[1]**  LCSH:`sh85017378` GND:`4281006-1` DDC:`588.2`
+                        - **sphagnology** `Q134880060`
+                    - **desmidiology** `Q131344606`
+                    - **ethnobotany** `Q841408`  LCSH:`sh85045192` GND:`4250192-1`
+                    - **floral biology** `Q30594891`
+                    - **geobotany** `Q1456948`  GND:`4132141-8` DDC:`581.7`
+                    - **hepaticology** `Q134805772`
+                    - **history of botany** `Q2495041` **[1]**
+                        - **botanical historiography** `Q63368312`
+                    - **orchidology** `Q16911243`
+                    - **paleobotany** `Q192694` **[1]**  LCSH:`sh85097026` GND:`4044361-9` DDC:`561`
+                        - **paleoagrostology** `Q134811116`
+                    - **phytology** `Q133501250`
+                    - **phytophenology** `Q130253639`
+                    - **phytoserology** `Q130253346`
+                    - **phytoteratology** `Q130253279`
+                    - **plant cell and molecular biology** `Q113133333`
+                    - **plant cell biology** `Q107616960`
+                    - **plant ecology** `Q1387972` **[3]**  LCSH:`sh85015985` GND:`4045575-0` FAST:`1065415` DDC:`581.7`
+                        - **lichen ecology** `Q105442202`  LCSH:`sh2003009604` FAST:`998098`
+                        - **plant-fungus relationships** `Q104825414`  LCSH:`sh91003722` FAST:`1065751`
+                        - **vegetation ecology** `Q48061040`
+                    - **plant evolutionary biology** `Q106604818`
+                    - **plant histology** `Q3138337`
+                    - **plant microbiology** `Q116251723`  LCSH:`sh85102865` LCC:`QR351` FAST:`1066055`
+                    - **plant molecular biology** `Q100985929`  LCSH:`sh86001899` LCC:`QK728` FAST:`1065557`
+                    - **plant morphology** `Q655362` **[1]**  LCSH:`sh85015992`
+                        - **flower morphology** `Q107708708`  LCSH:`sh85049342` FAST:`927888`
+                    - **plant neurobiology** `Q131624421`
+                    - **plant physiology** `Q185973` **[2]**  LCSH:`sh85102796` GND:`4045580-4` DDC:`575`
+                        - **plant ecophysiology** `Q100913396`  LCSH:`sh88005635` FAST:`1065426`
+                        - **plant nutrition** `Q8328350`  LCSH:`sh85102868` GND:`4133962-9`
+                    - **pomology** `Q35911`  GND:`4175352-5`
+                    - **pteridology** `Q11830794`
+                    - **Q9178165** `Q9178165`
+                    - **rhodology** `Q9311551`
+                    - **seed science** `Q21702909`
+                    - **taraxacology** `Q104370513`
+                    - **tree nutrition and physiology** `Q110298471`
+                    - **wood science** `Q105596644`
+                - **cancer biology** `Q85709956`
+                - **cecidiology** `Q126368867`
+                - **cell biology** `Q7141` **[5]**  LCC:`QH573-QH671` GND:`4070177-3` DDC:`611`
+                    - **Cancer cell biology** `Q112939624`
+                    - **cell cycle studies** `Q25631226`
+                    - **Cellular interactions** `Q112956335`
+                    - **evolutionary cell biology** `Q133806408`
+                    - **membranology** `Q104712717`
+                - **comparative biology** `Q2904159`
+                - **computational biology** `Q177005` **[2]**
+                    - **biomedical computation** `Q85708797`
+                    - **computational genomics** `Q2091816`
+                - **cytology** `Q3009579` **[1]**  LCSH:`sh85035240`
+                    - **chromosomology** `Q128284215`
+                - **ecology and evolutionary biology** `Q5333289` **[2]**
+                    - **ecology** `Q7150` **[91]**  LCSH:`sh85040752|sh99005735` GND:`4043207-5` DDC:`577`
+                        - **aeroecology** `Q4688251`
+                        - **agroecology** `Q396338`  LCSH:`sh85002307` LCC:`S589.7` GND:`4000769-8` FAST:`800685`
+                        - **animal-plant interactions** `Q107265654` **[1]**  LCSH:`sh90002604` LCC:`QH549.5` FAST:`809464`
+                            - **plant-pollinator interactions** `Q107265641`  LCSH:`sh2020000761` FAST:`2017371`
+                        - **aquatic ecology** `Q104196941` **[3]**  LCSH:`sh85006232` LCC:`QH541.5.W3` GND:`4293663-9` FAST:`811988` DDC:`577.6|577.7`
+                            - **benthic ecology** `Q3578569`  LCSH:`sh2020000915`
+                            - **brackish water ecology** `Q104373884`  LCSH:`sh93007823` LCC:`QH541.5.E8` FAST:`837478`
+                            - **freshwater ecology** `Q20417087` **[1]**  LCSH:`sh85051944` LCC:`QH541.5.F7` FAST:`935020`
+                                - **groundwater ecology** `Q104800843`  LCSH:`sh94002922` LCC:`QH541.5.G76` FAST:`948336`
+                        - **arid regions ecology** `Q105375725`  LCSH:`sh85007145` LCC:`QH541.5.A74` FAST:`814414`
+                        - **avian ecology** `Q104825629`  LCSH:`sh2005020407` LCC:`QL698.95` FAST:`832993`
+                        - **barrier island ecology** `Q105236738`  LCSH:`sh2005020222` FAST:`1737167`
+                        - **biocenology** `Q4086949`
+                        - **bioclimatology** `Q1898366` **[2]**  LCSH:`sh85014127` GND:`4145609-9` FAST:`831991` DDC:`577.22|560.4522`
+                            - **human bioclimatology** `Q134986538`  LCSH:`sh85027048`
+                            - **phytoclimatology** `Q130217803`
+                        - **bioecology** `Q12535586`
+                        - **biospherology** `Q12535564`
+                        - **braided river ecology** `Q108226334`  LCSH:`sh2009007945` FAST:`1748955`
+                        - **canal ecology** `Q107278510`  LCSH:`sh85019430` LCC:`QH541.5.C24` FAST:`845222`
+                        - **cliff ecology** `Q107278364`  LCSH:`sh99000303` LCC:`QH541.5.C62` FAST:`864216`
+                        - **climate change ecology** `Q110477651`
+                        - **coastal ecology** `Q104200509`  LCSH:`sh85027431` FAST:`865723`
+                        - **computational ecology and phylogenetics** `Q112956383`
+                        - **coulee ecology** `Q105375581`  LCSH:`sh85033397` LCC:`QH541.5.C73` FAST:`881177`
+                        - **cultural ecology** `Q1458822`  GND:`4588310-5`
+                        - **cypress swamp ecology** `Q104774297`  LCSH:`sh85035170` LCC:`QH541.5.C95` FAST:`886131`
+                        - **deep-sea ecology** `Q104774372`  LCSH:`sh85036380` LCC:`QH541.5.D35` FAST:`889505`
+                        - **desert ecology** `Q5264064`  LCSH:`sh85037134` LCC:`QH541.5.D4` FAST:`891153`
+                        - **ecohydrology** `Q2363192`  LCSH:`sh00000251` FAST:`901439`
+                        - **ecological informatics** `Q56754593`
+                        - **ecotoxicology** `Q1412144`  GND:`4121813-9`
+                        - **estuarine ecology** `Q104775885`  LCSH:`sh85045034` LCC:`QH541.5.E8` FAST:`915685`
+                        - **ethnoecology** `Q1371429`  LCSH:`sh2001000104`
+                        - **evolutionary ecology** `Q1382557`  GND:`4395809-6`
+                        - **feeding ecology** `Q107556837`
+                        - **fen ecology** `Q104780304`  LCSH:`sh2011004069` FAST:`1893721`
+                        - **fire ecology** `Q1409472`  LCSH:`sh85048479` GND:`4638558-7` FAST:`925297`
+                        - **fjord ecology** `Q104780425`  LCSH:`sh95007651` LCC:`QH541.5.F56` FAST:`926896`
+                        - **floodplain ecology** `Q104780569`  LCSH:`sh85049162` LCC:`QH541.5.V3` FAST:`927542`
+                        - **forest canopy ecology** `Q105427882`  LCSH:`sh94007515` LCC:`QH541.5.F6`
+                        - **forest ecology** `Q2249329` **[1]**  LCSH:`sh85050575` GND:`4017951-5` FAST:`932104` DDC:`577.3`
+                            - **mangrove ecology** `Q104200275`  LCSH:`sh85080528` FAST:`1007671`
+                        - **functional ecology** `Q5508816`
+                        - **fungal ecology** `Q104825374`  LCSH:`sh85052443` LCC:`QK604.2.E26` FAST:`936308`
+                        - **fynbos ecology** `Q104783369`  LCSH:`sh91006264` FAST:`936824`
+                        - **geoecology** `Q1265151`  GND:`4137703-5`
+                        - **grassland ecology** `Q104800105`  LCSH:`sh85056524` LCC:`QH541.5.P7` FAST:`946801`
+                        - **historical ecology** `Q1053639`
+                        - **human ecology** `Q720858`  LCSH:`sh85062856` GND:`4026152-9`
+                        - **hydroecology** `Q3143834`
+                        - **intertidal ecology** `Q6057206`  LCSH:`sh85067534` LCC:`QH541.5.S35` FAST:`977566`
+                        - **invasion ecology** `Q105094378`
+                        - **invertebrate ecology** `Q107556940`  LCSH:`sh2006006862` LCC:`QL364.4` FAST:`978121`
+                        - **kelp forest ecology** `Q109984173`  LCSH:`sh85071895` LCC:`QH541.5.K4` FAST:`986730`
+                        - **lake ecology** `Q104923359` **[1]**  LCSH:`sh85074005` LCC:`QH541.5.L3` FAST:`990855`
+                            - **salt lake ecology** `Q106918389`  LCSH:`sh85116765` LCC:`QH541.5.S22` FAST:`1104276`
+                        - **marine and estuarine ecology** `Q112939592`
+                        - **marine benthic ecology** `Q104258810`  LCSH:`sh2020000914`
+                        - **marine ecology** `Q4530312` **[2]**  LCSH:`sh85081156` GND:`4195671-0` FAST:`1009513`
+                            - **kelp ecology** `Q109871250`
+                            - **reef ecology** `Q104376784` **[1]**  LCSH:`sh91003021` FAST:`1092349`
+                                - **coral reef ecology** `Q104376780`  LCSH:`sh85032522` LCC:`QH541.5.C7` FAST:`878847`
+                        - **matorral ecology** `Q104913705`  LCSH:`sh85082201` FAST:`1012388`
+                        - **meadow ecology** `Q104816272`  LCSH:`sh85082670` LCC:`QH541.5.M4` FAST:`1013112`
+                        - **miombo ecology** `Q104876110`  LCSH:`sh98005403` FAST:`1023526`
+                        - **mudflat ecology** `Q105080727`  LCSH:`sh85088243` FAST:`1028644`
+                        - **noospherology** `Q12134363`
+                        - **ocean bottom ecology** `Q104839637`  LCSH:`sh2008005914` LCC:`QH541.5.O24` FAST:`1746012`
+                        - **oral ecology** `Q7099386`
+                        - **paramo ecology** `Q105541384`
+                        - **peat bog ecology** `Q105098252`  LCSH:`sh87003678` FAST:`1056230`
+                        - **permafrost ecology** `Q104373927`  LCSH:`sh2010007471` FAST:`1762498`
+                        - **pond ecology** `Q104923005`  LCSH:`sh85104781` LCC:`QH541.5.P63` FAST:`1070925`
+                        - **prairie ecology** `Q104825199`  LCSH:`sh85106067` LCC:`QH541.5.P7` FAST:`1074601`
+                        - **rainforest ecology** `Q105441712`  LCSH:`sh85111192` LCC:`QH541.5.R27|QK938.R34` FAST:`1089445`
+                        - **reproductive ecology** `Q11608188`
+                        - **reptilian ecology** `Q104862661`  LCC:`QL669.8`
+                        - **reservoir ecology** `Q104923349`  LCSH:`sh85113070` LCC:`QH541.5.R4` FAST:`1095460`
+                        - **restoration ecology** `Q2428433`  LCSH:`sh87004578`
+                        - **sagebrush steppe ecology** `Q106918412`  LCSH:`sh2006020223` FAST:`1742123`
+                        - **salt marsh ecology** `Q104233266`  LCSH:`sh85135280` LCC:`QH541.5.S24` FAST:`1104280`
+                        - **savanna ecology** `Q104804153`  LCSH:`sh85117744` LCC:`QH541.5.P7` FAST:`1105938`
+                        - **seashore ecology** `Q105081301`  LCSH:`sh85119369` LCC:`QH541.5.S35` FAST:`1110404`
+                        - **seed ecology** `Q107547967`  LCSH:`sh88005748` FAST:`1111129`
+                        - **shrubland ecology** `Q104783371`  LCSH:`sh85122146` LCC:`QH541.5.S55` FAST:`1117863`
+                        - **social ecology** `Q57204579`  LCSH:`sh92004049` GND:`4043208-7`
+                        - **socioecology** `Q2305217`
+                        - **soundscape ecology** `Q7564965`
+                        - **statistical ecology** `Q127740473`
+                        - **steppe ecology** `Q106918414`  LCSH:`sh85127983` FAST:`1133112`
+                        - **stream ecology** `Q104780697`  LCSH:`sh85128566` LCC:`QH541.5.S7` FAST:`1134567`
+                        - **swamp ecology** `Q104200524`  LCSH:`sh85130976` LCC:`QH541.5.S9` FAST:`1139915`
+                        - **temperate rainforest ecology** `Q105441814`  LCSH:`sh2010012572` FAST:`1763243`
+                        - **theoretical ecology** `Q7782365`
+                        - **tidal flat ecology** `Q105081275`  LCSH:`sh85135266` FAST:`1150766`
+                        - **tide pool ecology** `Q105081450`  LCSH:`sh85135274` LCC:`QH541.5.S35` FAST:`1150782`
+                        - **tree island ecology** `Q108304567`  LCSH:`sh2002008688` FAST:`1155944`
+                        - **underground ecology** `Q104800917` **[1]**  LCSH:`sh99013824` LCC:`QH541.5.U55` FAST:`1160934`
+                            - **cave ecology** `Q104416694`  LCSH:`sh85021494` LCC:`QH541.5.C3` FAST:`849889`
+                        - **valley ecology** `Q104780631`  LCSH:`sh85141850` LCC:`QH541.5.V3` FAST:`1163833`
+                        - **vernal pool ecology** `Q107217372`  LCSH:`sh87003044` FAST:`1165416`
+                        - **wetland ecology** `Q104200566` **[3]**  LCSH:`sh85146326` LCC:`QH541.5.M3` FAST:`1174157`
+                            - **marsh ecology** `Q104231397`  LCSH:`sh85081577` LCC:`QH541.5.M3` FAST:`1010755`
+                            - **peatland ecology** `Q104373908` **[1]**  LCSH:`sh87003614` FAST:`1056266`
+                                - **bog ecology** `Q104373905`  LCSH:`sh85015286` LCC:`QH541.5.B63` FAST:`835539`
+                            - **riparian ecology** `Q104233395`  LCSH:`sh85114177` LCC:`QH541.5.R52` FAST:`1098090`
+                        - **xeric ecology** `Q105550293`  LCSH:`sh90004105` LCC:`QH541.5.X45` FAST:`1182028`
+                    - **evolutionary biology** `Q840400` **[2]**  LCSH:`sh90004042` LCC:`QH359-QH425` GND:`4153283-1`
+                        - **Evolutionary impacts of climate change** `Q112939752`
+                        - **speciation and extinction** `Q113042730`
+                - **endocrinology** `Q162606`  LCSH:`sh85043068` GND:`4014663-7` DDC:`573.4`
+                - **evolutionary developmental biology** `Q1044484`  GND:`7663051-1` DDC:`576.8|571.8`
+                - **fisheries biology** `Q8248157`
+                - **forensic biology** `Q1328688` **[1]**  LCSH:`sh2006002547` FAST:`1739926`
+                    - **wildlife forensic science** `Q8001344`  LCSH:`sh2025000867`
+                - **general biology** `Q12041895`
+                - **genetics** `Q7162` **[14]**  LCSH:`sh85053877` GND:`4071711-2` DDC:`576.5`
+                    - **anthropogenetics** `Q114664467`
+                    - **behavioural genetics** `Q1204375`  LCSH:`sh85012896` LCC:`QH457` GND:`4187763-9`
+                    - **developmental genetics** `Q16696200`
+                    - **Gene expression** `Q112947517`
+                    - **genetic epidemiology** `Q5532897`
+                    - **genome structure and regulation** `Q113042868`
+                    - **genomics** `Q222046` **[5]**  LCSH:`sh2002000809`
+                        - **functional genomics** `Q1068690`
+                        - **metagenomics** `Q903778`
+                        - **Māori genomics** `Q110402738`
+                        - **personal genomics** `Q7170583`
+                        - **ribonomics** `Q7322390`
+                    - **Genomics and transcriptomics** `Q112939581`
+                    - **human evolutionary genetics** `Q5937774`
+                    - **invasion genetics** `Q85769822`
+                    - **neurobehavioral genetics** `Q29957723`
+                    - **population genetics** `Q31151` **[1]**  LCSH:`sh85104920` GND:`4046804-5` DDC:`576.58`
+                        - **human population genetics** `Q112073441` **[1]**
+                            - **genetic studies of Jews** `Q3592613`
+                    - **psychiatric genetics** `Q7256235`
+                    - **raciology** `Q65281066`
+                - **global change biology** `Q104180455`
+                - **gnotobiology** `Q124422551`
+                - **immunology** `Q101929` **[3]**  LCSH:`sh86002614` GND:`4026637-0|4072743-9` DDC:`571.96`
+                    - **applied immunology** `Q113043051`
+                    - **immunohematology** `Q113533807`
+                    - **immunoproteomics** `Q6005562`
+                - **infection biology** `Q1523077`
+                - **integrative biology** `Q105898109`
+                - **invasion biology** `Q42985020`
+                - **Medical Biology** `Q3499804`
+                - **membrane biology** `Q16863771`
+                - **microbiology** `Q7193` **[7]**  LCSH:`sh85084783` LCC:`QR1-QR502` GND:`4316357-9` DDC:`579`
+                    - **agricultural microbiology** `Q4693965`
+                    - **food microbiology** `Q1810993`
+                    - **invasion microbiology** `Q111535603`
+                    - **predictive microbiology** `Q114000009`
+                    - **public health microbiology** `Q122751959`
+                    - **serology** `Q502159`  LCSH:`sh85120300` GND:`4054613-5` DDC:`616.0756|616.0795`
+                    - **veterinary microbiology** `Q112114868`
+                - **microbiology and biotechnology** `Q64816579`
+                - **mycology** `Q7175` **[7]**  LCSH:`sh85089188` GND:`4139655-8` FAST:`1031307` DDC:`579.5|616.96901`
+                    - **amateur mycology** `Q134675696`
+                    - **industrial mycology** `Q135896401`
+                    - **molecular mycology** `Q135896422`
+                    - **paleomycology** `Q4342548`
+                    - **soil mycology** `Q135896413`
+                    - **uredinology** `Q127388251`
+                    - **veterinary mycology** `Q111326847`
+                - **Māori biological sciences** `Q110402659`
+                - **necrology** `Q12040626`
+                - **neonatology** `Q898674`  LCSH:`sh85090800` GND:`4171444-1` DDC:`618.9201`
+                - **neurobiology** `Q2728012` **[3]**  LCSH:`sh85091114` GND:`4041871-6` FAST:`1036315`
+                    - **molecular neurobiology** `Q113884091`
+                    - **neurocytology** `Q129092748`
+                    - **synaptology** `Q130216732`
+                - **oral biology** `Q127522898`
+                - **phenology** `Q272737`  LCSH:`sh85102793|sh85100673` GND:`4127856-2` FAST:`1060498` DDC:`578.42|581.43`
+                - **physiology** `Q521` **[13]**  LCSH:`sh85101679|sh99005103` GND:`4045981-0` FAST:`1063177` DDC:`571`
+                    - **blood physiology** `Q130236442`
+                    - **clinical physiology** `Q10546286`
+                    - **Computational physiology** `Q110259460`
+                    - **Crop and pasture biochemistry and physiology** `Q112956198`
+                    - **eccrinology** `Q130111976`
+                    - **ecophysiology** `Q295425`  LCSH:`sh91006274` GND:`4143684-2`
+                    - **fungal physiology** `Q111679581`  LCSH:`sh85052453` LCC:`QK601` FAST:`936333`
+                    - **physiology of reproduction** `Q3382023`
+                    - **Q123460022** `Q123460022`
+                    - **Q4483589** `Q4483589`
+                    - **reproductive physiology** `Q130304869`
+                    - **sensory physiology** `Q136298391`
+                    - **vascular biology** `Q138333181`
+                - **protein science** `Q50490180`
+                - **protistology** `Q2467781`
+                - **psychobiology** `Q2115942`
+                - **radiobiology** `Q690200`  LCSH:`sh85110669` GND:`4057819-7` DDC:`571.45|612.01448`
+                - **reproductive biology** `Q3640158`
+                - **sociobiology** `Q190553`  LCSH:`sh85124192` LCC:`HM628` GND:`4069490-2` DDC:`304.5`
+                - **Spatial biology** `Q130857428`
+                - **structural biology** `Q908902`
+                - **subterranean biology** `Q105989597`
+                - **thermobiology** `Q109676580`  LCSH:`sh85134776` FAST:`1149810`
+                - **wildlife biology** `Q1772875`  GND:`4461757-4` DDC:`591.63|599.163`
+                - **zoology** `Q431` **[18]**  LCSH:`sh85149983` GND:`4067960-3` FAST:`1184696` DDC:`590`
+                    - **Animal cell and molecular biology** `Q112939936`
+                    - **animal cell physiology** `Q113042979`
+                    - **animal developmental and reproductive biology** `Q113043876`
+                    - **animal ecophysiology** `Q111604218`  LCSH:`sh91006269` LCC:`QP82|QP82.2` FAST:`809160`
+                    - **animal genetics** `Q110310405`  LCSH:`sh85005190` FAST:`809196`
+                    - **animal immunology** `Q111327198`
+                    - **animal morphology** `Q16579254`  LCSH:`sh85087348`
+                    - **animal nutrition science** `Q4764962` **[1]**
+                        - **human nutrition** `Q2602563`  GND:`4015332-0`
+                    - **cestodology** `Q128994649`
+                    - **Eathworms study** `Q113732282`
+                    - **ethology** `Q7155`  LCSH:`sh85005162` FAST:`809079`
+                    - **hydrozoology** `Q9295428`
+                    - **invertebrate zoology** `Q12744095` **[5]**
+                        - **arthropodology** `Q3520855` **[2]**
+                            - **entomology** `Q39286` **[12]**  LCSH:`sh85044125` GND:`4152382-9` DDC:`595.7`
+                                - **coccidology** `Q126368892`
+                                - **economic entomology** `Q5333460`
+                                - **hemipterology** `Q25404245` **[1]**
+                                - **insect anatomy** `Q2684571`
+                                - **isopterology** `Q125988923`
+                                - **lepidopterology** `Q2442870`  LCSH:`sh2012002108` GND:`4255711-2` FAST:`1894342`
+                                - **marine entomology** `Q126366439`
+                                - **neuropterology** `Q126364610`
+                                - **orthopterology** `Q4337149` **[1]**
+                                - **paleoentomology** `Q3361737`  LCSH:`sh95005625` FAST:`1051405`
+                                - **siphonapterology** `Q134880037`
+                                - **trichopterology** `Q9361552`
+                            - **isopodology** `Q137392960`
+                        - **ascidiology** `Q134725737`
+                        - **echinology** `Q127420314`
+                        - **nematology** `Q2355208`
+                        - **vermeology** `Q124650805` **[1]**
+                            - **annelidology** `Q118323427` **[1]**
+                                - **oligochaetology** `Q126366484` **[1]**
+                    - **placentology** `Q130253736`
+                    - **rodentology** `Q76749558`
+                    - **soil zoology** `Q7554969`
+                    - **trematodology** `Q128995729`
+                    - **zoology in Armenia** `Q21201317`
+            - **criminalistics** `Q43504`  GND:`4033177-5`
+            - **Earth science** `Q8008` **[14]**  LCSH:`sh85040468` GND:`4020288-4|4131991-6` FAST:`900729` DDC:`550`
+                - **atmospheric sciences** `Q757520` **[1]**  LCSH:`sh2018002590` FAST:`2003481`
+                    - **hygrology** `Q24885798`
+                - **desert science** `Q119175782`
+                - **environmental science** `Q188847` **[6]**  LCSH:`sh92004048` GND:`4137364-9` DDC:`333.7|500`
+                    - **Aboriginal and Torres Strait Islander environmental knowledges and management** `Q113212087`
+                    - **ecological applications** `Q113114755` **[3]**
+                        - **bioavailability and ecotoxicology** `Q113114761`
+                        - **Biosecurity science and invasive species ecology** `Q112933755`
+                        - **ecosystem function** `Q295835`
+                    - **Māori environmental knowledges** `Q110350165` **[1]**
+                        - **Māori marine environment science** `Q110351198`
+                    - **Pacific Peoples environmental knowledges** `Q113212295`
+                    - **pollution and contamination** `Q113043256` **[2]**
+                        - **groundwater quality processes and contaminated land assessment** `Q113114806`
+                        - **surface water quality processes and contaminated sediment assessment** `Q113114824`
+                    - **traditional ecological knowledge** `Q7832334`  LCSH:`sh2003006652` FAST:`1153965`
+                - **geodesy** `Q131089` **[2]**  LCSH:`sh85053969` GND:`4020202-1` DDC:`526.1`
+                    - **applied geodesy** `Q1694247` **[1]**
+                        - **geodetic engineering** `Q13419632`
+                    - **higher geodesy** `Q13405601`
+                - **geophysiology** `Q3123544`
+                - **Marine geoscience** `Q112939736`
+                - **meteorology** `Q25261` **[20]**  LCSH:`sh85084334` GND:`4038953-4` DDC:`551.5`
+                    - **adverse weather events** `Q113093943`
+                    - **agrometeorology** `Q396152`  LCSH:`sh85084356` GND:`4141642-9` FAST:`1018517` DDC:`630.2515`
+                    - **anemology** `Q11015354`
+                    - **applied meteorology** `Q11062968`
+                    - **climatology** `Q52139` **[6]**  LCSH:`sh85027044` GND:`4031178-8` DDC:`551.6`
+                        - **Climate change science** `Q112939747` **[2]**
+                            - **Climate change processes** `Q112939741`
+                            - **greenhouse gas inventories and fluxes** `Q113095615`
+                        - **ecological climatology** `Q130304428`
+                        - **historical climatology** `Q1620858`  GND:`4225827-3`
+                        - **paleotempestology** `Q846535`
+                        - **soil climatology** `Q135013268`
+                        - **synoptic climatology** `Q135207716`
+                    - **correlative meteorology** `Q130304484`
+                    - **descriptive meteorology** `Q130304622`
+                    - **dynamic meteorology** `Q130217834`  LCSH:`sh85040311`
+                    - **experimental meteorology** `Q130262075`
+                    - **industrial meteorology** `Q130304836`
+                    - **marine meteorology** `Q109363650`
+                    - **mesoscale meteorology** `Q2399824`
+                    - **microscale meteorology** `Q338346`  LCSH:`sh85084862` GND:`4315182-6` FAST:`1019897`
+                    - **monsoon meteorology** `Q122933041`
+                    - **ombrology** `Q127220291`
+                    - **physical meteorology** `Q130304842`
+                    - **radio meteorology** `Q25508248` **[1]**
+                        - **radar meteorology** `Q12717855`
+                    - **satellite meteorology** `Q109363651`
+                    - **synoptic meteorology** `Q130221760`
+                    - **tropical meteorology** `Q3333930`
+                - **Māori earth sciences** `Q110350598`
+                - **oceanography** `Q43518` **[1]**  LCSH:`sh85093937` GND:`4074685-9` FAST:`1043671` DDC:`551.46`
+                    - **paleoceanography** `Q2839806`
+                - **oceanology** `Q3349060`
+                - **orography** `Q901704`  DDC:`551.432`
+                - **physical geography and environmental geoscience** `Q113098245` **[1]**
+                    - **regolith and landscape evolution** `Q113098209`
+                - **soil science** `Q9161265` **[4]**  LCSH:`sh85124376` LCC:`S590-S599.9` GND:`4007379-8`
+                    - **agrology** `Q16941540`
+                    - **Land capability and soil productivity** `Q112913817`
+                    - **pedology** `Q215501` **[1]**  DDC:`631.4`
+                        - **micropedology** `Q134810742`
+                    - **pedology and pedometrics** `Q112936679`
+                - **spatial science** `Q1870019` **[1]**
+                    - **spatial informatics** `Q6083625`
+            - **geology** `Q1069` **[19]**  LCSH:`sh85054037` GND:`4020227-6` FAST:`940627` DDC:`551|550`
+                - **aerogeology** `Q127079727`
+                - **cave geology** `Q135189433`
+                - **economic geology** `Q853915`  LCSH:`sh85054085` GND:`4140085-9` FAST:`940720` DDC:`553`
+                - **geological engineering** `Q9707696`
+                - **glaciology** `Q52120` **[1]**  LCSH:`sh85055077` GND:`4205614-7` FAST:`942986` DDC:`551.31`
+                    - **radioglaciology** `Q7281262`
+                - **historical geology** `Q754590`  LCSH:`sh85061190` GND:`4025104-4`
+                - **hydrogeology** `Q179509` **[1]**  LCSH:`sh85063439` GND:`4026307-1` FAST:`965077` DDC:`551.49`
+                    - **Coastal hydrogeology** `Q115827802`
+                - **medical geology** `Q1933330`
+                - **microgeology** `Q135471402`
+                - **mineralogy** `Q83353`  LCSH:`sh85085589` GND:`4039457-8` DDC:`549`
+                - **petrology** `Q163082` **[5]**  LCSH:`sh85100472` LCC:`QE420-QE499` GND:`4020740-7` FAST:`1059885` DDC:`552`
+                    - **experimental petrology** `Q60740628`
+                    - **igneous and metamorphic petrology** `Q112971034`
+                    - **igneous petrology** `Q16000119`
+                    - **lithology** `Q6538759` **[1]**
+                        - **aerolithology** `Q126366418`
+                    - **metamorphic petrology** `Q111968621`
+                - **photogeology** `Q128893816`  LCSH:`sh85001264` LCC:`QE33.2.A3` GND:`4045886-6` FAST:`798096`
+                - **physical geology** `Q128894857` **[1]**  LCSH:`sh85101560` FAST:`1062672`
+                    - **structural geology** `Q334823`  GND:`4225664-1`
+                - **physiographic geology** `Q134912903`
+                - **planetary geology** `Q751439` **[2]**  LCSH:`sh88000316`
+                    - **geology of Mars** `Q2466`  LCSH:`sh85081556`
+                    - **geology of the Moon** `Q1648514`  LCSH:`sh85078856`
+                - **Q125299817** `Q125299817`
+                - **stratigraphy** `Q134783` **[1]**  LCSH:`sh85054086` GND:`4057956-6` DDC:`551.7`
+                    - **chronostratigraphy** `Q973297`
+                - **submarine geology** `Q1050578`  LCSH:`sh85129495` GND:`4038316-7` DDC:`551.468`
+                - **systems geology** `Q7663864`
+            - **hygiene science** `Q136800559`
+            - **life sciences** `Q864928` **[4]**  LCSH:`sh85076841` GND:`4129772-6`
+                - **auditory science** `Q55604472`
+                - **medical sciences** `Q11790210`  LCSH:`sh85083022` FAST:`1014601`
+                - **plasma medicine** `Q2098469`
+                - **veterinary science** `Q110245063`
+            - **materials science** `Q228736` **[7]**  LCSH:`sh85082094` GND:`4079184-1` DDC:`620.11`
+                - **composite and hybrid materials** `Q113114652`
+                - **conservation science** `Q5163001`
+                - **functional materials research** `Q113114739`
+                - **Materiomics** `Q6786613`
+                - **polymer science** `Q3456979`
+                - **textile science** `Q12227706`
+                - **theory and design of materials** `Q110245453`
+            - **mathematics** `Q395` **[6]**  LCSH:`sh85082139` GND:`4037944-9` DDC:`510`
+                - **applied mathematics** `Q33521` **[3]**  LCSH:`sh93002523` GND:`4142443-8` DDC:`519`
+                    - **calculus of variations, systems theory and control theory** `Q113208892`
+                    - **Dynamical systems applications** `Q113208985`
+                    - **mathematical biology** `Q751611`  LCSH:`sh85014235` DDC:`570.151`
+                - **graph theory** `Q131476`  LCSH:`sh85056471` LCC:`QA166-QA166.249` GND:`4113782-6` DDC:`511.5`
+                - **lottery mathematics** `Q6684817`
+                - **Māori mathematics** `Q110402757`
+                - **pure mathematics** `Q837863` **[2]**
+                    - **discrete mathematics** `Q121416`  LCSH:`sh2019000551` GND:`4129143-8` FAST:`2009030` DDC:`511.1`
+                    - **mathematical analysis** `Q7754` **[1]**  LCSH:`sh85082116` GND:`4001865-9` DDC:`515`
+                        - **statistical analysis** `Q120910099`  DDC:`519.53`
+                - **quantitative ecology** `Q7268923` **[1]**
+                    - **numerical ecology** `Q106859820`
+            - **natural history** `Q484591`  LCSH:`sh85090222` GND:`7504678-7` FAST:`1034268` DDC:`508`
+            - **pharmaceutical sciences** `Q7180763`
+            - **physical science** `Q14632398` **[6]**  LCSH:`sh89005705`
+                - **atmospheric physics** `Q5334416`  LCSH:`sh85009289`
+                - **chemistry** `Q2329` **[21]**  LCSH:`sh85022986` GND:`4009816-3` DDC:`540`
+                    - **acid–base chemistry** `Q27964550`
+                    - **actinology** `Q4676968`
+                    - **analytical chemistry** `Q2346` **[6]**  LCSH:`sh85023011` GND:`4129906-1` DDC:`543`
+                        - **analytical spectrometry** `Q110245423`
+                        - **applied analytical chemistry** `Q131148150`
+                        - **bioanalytical chemistry** `Q98247633`  LCSH:`sh92002647`
+                        - **crystallography** `Q160398` **[2]**  LCSH:`sh85034498` GND:`4033217-2` FAST:`884652` DDC:`548`
+                            - **Crystal structure prediction** `Q5191417`
+                            - **protein crystallography** `Q50490353`
+                        - **electroanalytical chemistry** `Q131151532`
+                        - **sensor technology** `Q113071264`
+                    - **chemical ecology** `Q700919` **[1]**  LCSH:`sh91002611` GND:`4123004-8` FAST:`852881`
+                        - **marine chemical ecology** `Q104258221`  LCSH:`sh91005227` FAST:`1009482`
+                    - **chemical reaction network theory** `Q1069192`
+                    - **chemometrics** `Q910067`  LCSH:`sh2005000482` GND:`4299578-4` DDC:`543.015195`
+                    - **geochemistry** `Q161764` **[3]**  LCSH:`sh85053960` GND:`4020198-3` DDC:`551.9`
+                        - **aqueous geochemistry** `Q18352840`
+                        - **exploration geochemistry** `Q113095682`
+                        - **inorganic geochemistry** `Q113077482`
+                    - **industrial chemistry** `Q6745636`  DDC:`660`
+                    - **inorganic chemistry** `Q11165` **[1]**  LCSH:`sh85023017` GND:`4002145-2` DDC:`546`
+                        - **physical inorganic chemistry** `Q13195799`
+                    - **macromolecular and materials chemistry** `Q113135490` **[2]**
+                        - **physical chemistry of materials** `Q113135537`
+                        - **structure and dynamics of materials** `Q113141546`
+                    - **material chemistry** `Q11944354`
+                    - **medical chemistry** `Q11404588`
+                    - **medicinal and biomolecular chemistry** `Q9189409` **[2]**
+                        - **biologically active molecules** `Q113071905`
+                        - **characterisation of biological macromolecules** `Q113077033`
+                    - **molecular chemistry** `Q112805970`
+                    - **Māori chemistry** `Q110402777`
+                    - **organic chemistry** `Q11351` **[2]**  LCSH:`sh85023022` GND:`4043793-0` FAST:`853501` DDC:`547`
+                        - **natural product chemistry** `Q683834`  GND:`4171332-1`
+                        - **organic green chemistry** `Q110259383`
+                    - **organoyttrium chemistry** `Q651935`
+                    - **osphresiology** `Q130239031`
+                    - **physical chemistry** `Q11372` **[3]**  LCSH:`sh85023027` GND:`4045959-7` FAST:`853521` DDC:`541`
+                        - **catalysis and mechanisms of reactions** `Q113141551`
+                        - **excited state chemistry** `Q113207671`  LCSH:`sh85046244` LCC:`QD461.5` FAST:`917720`
+                        - **soil physical chemistry** `Q104666928`  LCSH:`sh85124368` LCC:`S592.53` FAST:`1124534`
+                    - **theoretical and computational chemistry** `Q110245486`
+                    - **tribochemistry** `Q20098721`
+                - **earth and planetary science** `Q107287417`
+                - **medical and biological physics** `Q113212772`
+                - **metrology** `Q394` **[1]**  LCSH:`sh2001008470` GND:`4169749-2` DDC:`389`
+                    - **Q11777885** `Q11777885`
+                - **thermodynamics** `Q11473`  LCSH:`sh85134783` GND:`4059827-5` DDC:`536.7`
+            - **physics** `Q413` **[30]**  LCSH:`sh85101653` GND:`4045956-1` DDC:`530`
+                - **acoustics** `Q82811` **[6]**  LCSH:`sh2002006100` GND:`4000988-9` DDC:`534`
+                    - **architectural acoustics** `Q2305951`  LCSH:`sh85006581` GND:`4255927-3` DDC:`690.2`
+                    - **bioacoustics** `Q864191`  LCSH:`sh85014119` GND:`4125205-6` DDC:`596.1594`
+                    - **magnetoacoustics** `Q121353464`
+                    - **musical acoustics** `Q510293`
+                    - **ultrasonics** `Q24841516`
+                    - **voice synthesis** `Q87189890`
+                - **Atomic, molecular, and optical physics** `Q1151533` **[2]**
+                    - **atomic and molecular physics** `Q113041763`
+                    - **photonics, optoelectronics and optical communications** `Q113041614`
+                - **biophysics** `Q7100` **[3]**  LCSH:`sh85014253` GND:`4006891-2` DDC:`571.4|612.014`
+                    - **Astrobiophysics** `Q4811535`
+                    - **membrane biophysics** `Q1919954`
+                    - **urban biophysics** `Q117304714`
+                - **cluster physics** `Q130798489`
+                - **condensed matter physics** `Q214781` **[3]**  LCSH:`sh85030765` GND:`4132810-3` DDC:`530.41`
+                    - **condensed matter imaging** `Q113209220`
+                    - **structural properties of condensed matter** `Q113128944`
+                    - **surface properties of condensed matter** `Q113128949`
+                - **engineering geophysics** `Q130798465`
+                - **environmental geophysics** `Q130798472`
+                - **experimental physics** `Q18366`  GND:`4132579-5` DDC:`530.078`
+                - **geophysics** `Q46255` **[7]**  LCSH:`sh85054185` GND:`4020252-5` DDC:`550`
+                    - **computational geophysics** `Q5157316`
+                    - **dynamic geology** `Q3630257`  LCSH:`sh85053976` FAST:`940406`
+                    - **exploration geophysics** `Q1202243` **[1]**
+                        - **seismic** `Q352650`
+                    - **geomechanics** `Q2670285`  GND:`4126903-2`
+                    - **magnetism and palaeomagnetism** `Q113098118`
+                    - **marine geophysics** `Q109534974`  LCSH:`sh85081193` FAST:`1009623`
+                    - **Q3123542** `Q3123542`
+                - **high-pressure physics** `Q130798468`
+                - **materials physics** `Q1908242`
+                - **medical physics** `Q1120908`  LCSH:`sh85083001` GND:`4130758-6` DDC:`610.153`
+                - **mining geophysics** `Q130798464`
+                - **Māori physics** `Q110402769`
+                - **ocean physics** `Q130798486`
+                - **physical acoustics** `Q7189583`
+                - **physical knot theory** `Q7189612`
+                - **physical oceanography** `Q1337681` **[1]**  LCSH:`sh2021001476` FAST:`2027046`
+                    - **ocean circulation** `Q108703418`  LCSH:`sh85093882` FAST:`1043477`
+                - **physics historiography** `Q104211852`
+                - **physics of high temperatures** `Q130798463`
+                - **physics of thin films** `Q130798470`
+                - **physics of thin layers** `Q130798467`
+                - **physics with astrophysics** `Q131085450`
+                - **planetary physics** `Q130798466`
+                - **Q132816556** `Q132816556`
+                - **special metaphysics** `Q130798461`
+                - **statistical radiophysics** `Q130798483`
+                - **thermology** `Q126078535`
+                - **tribology** `Q193870` **[1]**  LCSH:`sh85137428` GND:`4060847-5` DDC:`621.89`
+                    - **microtribology** `Q134891362`
+                - **vacuum physics** `Q130798492`
+        - **neuroscience** `Q207011` **[3]**  LCSH:`sh91006099` GND:`7555119-6` DDC:`573.8|612.8`
+            - **auditory neuroscience** `Q107345988`
+            - **neurogenomics** `Q25303637`
+            - **neuroproteomics** `Q7002580`
+        - **nutritional science** `Q17652193` **[3]**  GND:`4152829-3`
+            - **child nutrition sciences** `Q69956337`
+            - **food nutritional balance** `Q110542363`
+            - **Māori diet and nutrition** `Q110351700`
+        - **orismology** `Q7102834`
+        - **Pacific Peoples sciences** `Q113212345`
+        - **pestology** `Q127676088`
+        - **phonetics and speech science** `Q110761784` **[1]**
+            - **speech science** `Q2313389` **[1]**  GND:`4182549-4`
+                - **speech physiology** `Q105549868`
+        - **rehabilitation science** `Q99485422`
+        - **soft science** `Q10296989`
+        - **space sciences** `Q1195766` **[1]**  LCSH:`sh85125953` GND:`4117629-7` FAST:`1127807` DDC:`629.435`
+            - **planetary science** `Q104499` **[10]**  LCSH:`sh85102652` GND:`4233970-4` FAST:`1065123` DDC:`523.4`
+                - **areography** `Q128621`
+                - **cytherology** `Q131626874`
+                - **exoplanetology** `Q3809431`
+                - **hadeology** `Q131627505`
+                - **hermeology** `Q131627345`
+                - **kronology** `Q131626666`
+                - **poseidology** `Q131626776`
+                - **selenography** `Q1409625`  LCSH:`sh2007008620`
+                - **selenology** `Q126181255`
+                - **zenology** `Q131581772`
+        - **sports science** `Q1298380` **[3]**  LCSH:`sh86000064` GND:`4056442-3`
+            - **dance science** `Q5215298`
+            - **Māori sport and physical activity** `Q110354095`
+            - **sabermetrics** `Q1187231`
+        - **surgical science** `Q113468962`
+        - **sustainability science** `Q442321` **[1]**
+            - **renewable energy science** `Q120411401`
+        - **thanatology** `Q620462`  LCSH:`sh86006398` GND:`4184988-7` DDC:`128.5|155.937`
+        - **transport sciences** `Q2516517` **[2]**  GND:`4187847-4`
+            - **air transport sciences** `Q113147148`
+            - **aviation science** `Q12227777`
+        - **universology** `Q637916`
+        - **venomics** `Q108809697`
+        - **watershed science** `Q105277236`
+
+- **knowledge graph development** `Q124614077` **[2]** *(structural parent — not itself a discipline)*
+    - **knowledge graph querying** `Q120970364`
+    - **RDF Streams** `Q120971417`
+
+- **knowledge management** `Q192060` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori knowledge management methods** `Q110402858`
+
+- **knowledge organization system** `Q6423319` **[2]** *(structural parent — not itself a discipline)*
+    - **conceptual model** `Q2623243`
+    - **terminology** `Q1725664`  LCSH:`sh85134029` GND:`4059501-8` DDC:`401.4|4--014|1--014`
+
+- **knowledge system** `Q105948247` **[2]** *(structural parent — not itself a discipline)*
+    - **Māori psychology knowledge systems** `Q110353362`
+    - **philosophy** `Q5891` **[25]**  LCSH:`sh85100849|sh99005065` GND:`4045791-6` FAST:`1060777` DDC:`100|109`
+        - **aesthetics** `Q35986` **[3]**  LCSH:`sh85001441` LCC:`BH1-BH301` GND:`4000626-8` FAST:`798702` DDC:`701.17|801.93|701`
+            - **Computational Aesthetics** `Q136759127`
+            - **Image Theory** `Q136831245`
+            - **neuroesthetics** `Q1195659`
+        - **aesthetics of the theater** `Q130222074`
+        - **Africana philosophy** `Q123050602`
+        - **computational philosophy** `Q105580397`
+        - **ecosophy** `Q295465`  LCSH:`sh85040755`
+        - **ethics** `Q9465` **[8]**  LCSH:`sh85045096` LCC:`BJ1-BJ1725` GND:`4015602-3` DDC:`170`
+            - **bioethics** `Q194294`  LCSH:`sh85014136` LCC:`QH332` GND:`4006791-9` DDC:`174.957|205.64957|241.64957`
+            - **ethics of technology** `Q5403493`
+            - **Māori ethics** `Q110267069`
+            - **Pacific Peoples ethics** `Q110419450`
+            - **planetary health ethics** `Q107966944`
+            - **religious ethics** `Q14254438`  LCSH:`sh85112567` LCC:`BJ47|BJ1188-BJ1295`
+            - **sexual ethics** `Q967177`  LCSH:`sh85120731` GND:`4054682-2` DDC:`176.4|205.66|241.664|306.7`
+            - **software ethics** `Q121141798`
+        - **hermeneutics** `Q102686` **[2]**  LCSH:`sh00006024` GND:`4128972-9` DDC:`121.68`
+            - **biblical hermeneutics** `Q508069` **[1]**  LCSH:`sh85013650`
+                - **New Hermeneutic** `Q21083421`
+            - **hermeneutic phenomenology** `Q119853693`
+        - **history and philosophy of engineering and technology** `Q110468026`
+        - **history and philosophy of law and justice** `Q110468042`
+        - **history and philosophy of medicine** `Q110467974`
+        - **history and philosophy of the humanities** `Q110468055`
+        - **history and philosophy of the social sciences** `Q110468056`
+        - **Indian philosophy** `Q376022` **[1]**  LCSH:`sh85100930` DDC:`181.4`
+            - **Vedic science** `Q29970507`
+        - **intellectual history** `Q1195695` **[1]**
+            - **history of pedagogical thought** `Q57409595`
+        - **logic, computation and methodology** `Q105858118`
+        - **medieval philosophy** `Q192292`  LCSH:`sh85100956` DDC:`180`
+        - **modern philosophy** `Q860746`  LCSH:`sh85100960` LCC:`B790-B5802`
+        - **Māori philosophy** `Q110267163`
+        - **nomology** `Q25048059`
+        - **phenomenology** `Q179235`  LCSH:`sh85100683` LCC:`B829.5.A-B829.5.Z` GND:`4045660-2` DDC:`142.7`
+        - **philosophical anthropology** `Q488059`  LCSH:`sh85100845` GND:`4045798-9` FAST:`1060766` DDC:`128`
+        - **philosophy of gender** `Q113128932`
+        - **philosophy of law** `Q126842`  LCSH:`sh85075139` LCC:`K201-K487` GND:`4048821-4` DDC:`340.1`
+        - **philosophy of science** `Q59115`  LCSH:`sh85118582` LCC:`Q174-Q175.3` GND:`4117665-0|4202787-1|4121935-1` DDC:`501|001.01|121|1--01`
+        - **theoretical psychology** `Q7782373`
+
+- **laboratory** `Q483242` **[1]** *(structural parent — not itself a discipline)*
+    - **medical laboratory** `Q2296168`  LCSH:`sh85082957` GND:`4193766-1` FAST:`10142644` DDC:`616.0756|362.177`
+
+- **land law** `Q7327255` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori land law** `Q110404093`
+
+- **landscape ecology** `Q738011` **[1]** *(structural parent — not itself a discipline)*
+    - **Mediterranean Landscape Ecology** `Q66689386`
+
+- **language acquisition** `Q118500400` **[1]** *(structural parent — not itself a discipline)*
+    - **second-language acquisition** `Q1455178`  LCSH:`sh86005959` GND:`4071461-5`
+
+- **language arts** `Q6486703` **[1]** *(structural parent — not itself a discipline)*
+    - **literary composing** `Q1333743`  LCSH:`sh85029406` GND:`4136011-4` FAST:`871741`
+
+- **language geography** `Q371231` **[1]** *(structural parent — not itself a discipline)*
+    - **Pakistani linguistics** `Q124455513`
+
+- **languages of Asia** `Q2624777` **[2]** *(structural parent — not itself a discipline)*
+    - **South and Southeast Asian languages** `Q118987766`
+    - **South Asian languages** `Q15609389`  LCSH:`sh89003685`
+
+- **languages of the Earth** `Q13192321` **[1]** *(structural parent — not itself a discipline)*
+    - **languages of Africa** `Q207930`  LCSH:`sh85001729|sh85001567` GND:`4120108-5` DDC:`496`
+
+- **languoid** `Q17376908` **[1]** *(structural parent — not itself a discipline)*
+    - **natural language** `Q57159190`  GND:`4041354-8`
+
+- **law and legal studies** `Q110469055` **[1]**
+    - **international and comparative law** `Q113212643`
+
+- **learning** `Q133500` **[1]** *(structural parent — not itself a discipline)*
+    - **meaningful learning** `Q4896466`
+
+- **legal education** `Q865436` **[1]** *(structural parent — not itself a discipline)*
+    - **clinical education** `Q65096488`
+
+- **legislation** `Q49371` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori legislation** `Q110393809`
+
+- **LGBTQ** `Q17884` **[1]** *(structural parent — not itself a discipline)*
+    - **queer studies** `Q98929208` **[1]**  LCSH:`sh95001341` FAST:`939054`
+        - **asexual studies** `Q110512905`
+
+- **librarianship** `Q99231505` **[1]** *(structural parent — not itself a discipline)*
+    - **art librarianship** `Q138562307`
+
+- **librarianship** `Q856625` **[1]** *(structural parent — not itself a discipline)*
+    - **Indigenous librarianship** `Q111956099`
+
+- **linked open data** `Q18692990` **[1]** *(structural parent — not itself a discipline)*
+    - **multilingual linked open data** `Q108478902`
+
+- **literary criticism** `Q58854` **[1]** *(structural parent — not itself a discipline)*
+    - **theatre criticism** `Q2416230`  LCSH:`sh85039340` GND:`4059714-3` DDC:`792.015`
+
+- **literary work** `Q7725634` **[4]** *(structural parent — not itself a discipline)*
+    - **electronic literature** `Q173167`
+    - **poetry** `Q482` **[2]**  LCSH:`sh85103704` LCC:`PN1010-PN1551` FAST:`1067691` DDC:`808.81`
+        - **German-language poetry** `Q15805624`  LCSH:`sh85054413` FAST:`941930` DDC:`831`
+        - **New Zealand poetry** `Q114082643`
+    - **Q136419412** `Q136419412`
+    - **women's writing** `Q17345318`
+
+- **literature** `Q8242` **[14]** *(structural parent — not itself a discipline)*
+    - **Arabic literature** `Q194380` **[2]**  LCSH:`sh85006314` GND:`7507689-5` DDC:`892.7`
+        - **Modern Arabic literature** `Q12183345`
+        - **Q12218851** `Q12218851`
+    - **biographistics** `Q9171867`
+    - **British literature** `Q764912`  GND:`7503210-7`
+    - **Celtic literature** `Q5058556`  DDC:`891`
+    - **children's and young adult literature** `Q11163999` **[2]**  GND:`4303251-5`
+        - **children's literature** `Q131539`  LCSH:`sh85023780|sh85023598` LCC:`PZ4.2-PZ90` GND:`4073409-2` DDC:`808.899  282`
+        - **young adult literature** `Q1233720`  LCSH:`sh85149268` GND:`4028911-4`
+    - **fiction literature** `Q38072107`
+    - **French literature** `Q6689`  LCSH:`sh85051865` GND:`7507697-4` FAST:`934688` DDC:`840`
+    - **Galician-Portuguese literature** `Q61378343`  LCSH:`sh85105350`
+    - **medieval literature** `Q963619`  LCSH:`sh85077548`
+    - **New Zealand literature** `Q936855` **[1]**  LCSH:`sh85091517`
+        - **New Zealand fiction** `Q114082626`
+    - **secondary literature** `Q18891569`
+    - **Slavic literature** `Q7539371`
+    - **Spanish literature** `Q238499` **[1]**  LCSH:`sh85126268` GND:`7507710-3` DDC:`860`
+        - **medieval Spanish literature** `Q134301694`
+    - **Welsh literature** `Q16880640`  LCSH:`sh85146073`
+
+- **liturgics** `Q1244108` **[1]** *(structural parent — not itself a discipline)*
+    - **Q2051672** `Q2051672`
+
+- **Local and Indigenous Knowledge** `Q64866726` **[1]** *(structural parent — not itself a discipline)*
+    - **Pacific people's knowledge** `Q110408066` **[1]**
+        - **Pacific Peoples culture, language and history** `Q110408063` **[2]**
+            - **Pacific Peoples land, culture and identity** `Q112660181`
+            - **Pacific Peoples music and performing arts** `Q113127694`
+
+- **logic** `Q8078` **[3]** *(structural parent — not itself a discipline)*
+    - **combinatory logic** `Q1481571`  LCSH:`sh85028814` GND:`4164750-6` DDC:`511.3`
+    - **erotetics** `Q362327`
+    - **formal logic** `Q1003009`
+
+- **logic programming** `Q275603` **[1]** *(structural parent — not itself a discipline)*
+    - **answer set programming** `Q2852531`
+
+- **lutenist** `Q21166956` **[1]** *(structural parent — not itself a discipline)*
+    - **Q56179507** `Q56179507`
+
+- **machine-readable data** `Q6723621` **[1]** *(structural parent — not itself a discipline)*
+    - **data mapping** `Q2330408`
+
+- **maintenance** `Q1043452` **[1]** *(structural parent — not itself a discipline)*
+    - **predictive maintenance** `Q3182448`
+
+- **make-up** `Q1190910` **[1]** *(structural parent — not itself a discipline)*
+    - **make-up arts** `Q119103977`
+
+- **malacology** `Q190993` **[2]** *(structural parent — not itself a discipline)*
+    - **limacology** `Q11756836`
+    - **paleomalacology** `Q107154480`
+
+- **mammalogy** `Q183904` **[5]** *(structural parent — not itself a discipline)*
+    - **hippology** `Q1157006`
+    - **mammalian ecology** `Q104856238`  LCSH:`sh2010100357` LCC:`QL739.8` FAST:`1006970`
+    - **mammalian genetics** `Q111680424`
+    - **mammalian physiology** `Q111679492`  LCSH:`sh85080270` LCC:`QL739.2|QL739.23` FAST:`1007005`
+    - **paleomammalogy** `Q106139468`
+
+- **management** `Q852740` **[1]** *(structural parent — not itself a discipline)*
+    - **financial management** `Q4738155` **[1]**  LCSH:`sh85018286` GND:`4139075-1`
+        - **corporate finance** `Q1134763`  LCSH:`sh85032938` GND:`4269795-5` DDC:`658.15`
+
+- **manufacture of machinery and equipment** `Q1957908` **[1]** *(structural parent — not itself a discipline)*
+    - **Q620682** `Q620682`
+
+- **manufacturing engineering** `Q11049265` **[2]** *(structural parent — not itself a discipline)*
+    - **manufacturing processes and technologies** `Q113161601`
+    - **manufacturing safety and quality** `Q113161614`
+
+- **manuscriptology** `Q6753211` **[1]** *(structural parent — not itself a discipline)*
+    - **biblical manuscriptology** `Q97174359`
+
+- **marine biotechnology** `Q882463` **[1]**
+    - **Agricultural marine biotechnology** `Q110252149`
+
+- **marine engineering** `Q118291` **[1]** *(structural parent — not itself a discipline)*
+    - **naval architecture and marine engineering** `Q101910631`
+
+- **Markov random field** `Q176827` **[1]** *(structural parent — not itself a discipline)*
+    - **Markov logic network** `Q6771324`
+
+- **maternal health** `Q6786626` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori mothers and babies health and wellbeing** `Q110352847`
+
+- **mathematical finance** `Q335632` **[1]** *(structural parent — not itself a discipline)*
+    - **Stochastic finance** `Q136276928`
+
+- **mathematical logic** `Q1166618` **[1]** *(structural parent — not itself a discipline)*
+    - **proof theory** `Q852732`  LCSH:`sh85107437` LCC:`QA9.54` GND:`4145177-6` DDC:`511.36`
+
+- **mathematical theory** `Q20026918` **[2]** *(structural parent — not itself a discipline)*
+    - **information theory** `Q131222`  LCSH:`sh85066289` LCC:`Q350-Q390` GND:`4026927-9` DDC:`003.54`
+    - **knot theory** `Q849798`  LCSH:`sh85072726` GND:`4164318-5` DDC:`514.2242`
+
+- **means** `Q12774177` **[1]** *(structural parent — not itself a discipline)*
+    - **method** `Q1799072` **[2]**
+        - **data transformation** `Q603944`
+        - **rhetoric** `Q81009` **[3]**  LCSH:`sh85113628|sh00007543` LCC:`P301-P301.5` GND:`4076704-8` FAST:`1096948` DDC:`800`
+            - **cultural rhetorics** `Q136805602`
+            - **homiletics** `Q1038158`  LCSH:`sh85106171` GND:`4122202-7` DDC:`251`
+            - **oratory** `Q107268129`  LCSH:`sh85095299` GND:`4340855-2` FAST:`1047214`
+
+- **measure** `Q192276` **[1]** *(structural parent — not itself a discipline)*
+    - **similarity measure** `Q29017317`
+
+- **measurement** `Q12453` **[6]** *(structural parent — not itself a discipline)*
+    - **distance measures** `Q1344778`
+    - **goniometry** `Q12096833`
+    - **photometry** `Q625648` **[1]**  LCSH:`sh85101383` GND:`4174524-3` DDC:`535.220287`
+        - **photometry** `Q1073340`  LCSH:`sh85101384` GND:`4143255-1` DDC:`522.62`
+    - **physiometry** `Q65193474`
+    - **Q122016408** `Q122016408`
+    - **tensometry** `Q2565799`
+
+- **measurement technique** `Q1924397` **[1]** *(structural parent — not itself a discipline)*
+    - **radiometry** `Q247760`  GND:`4048219-4`
+
+- **mechanical engineering** `Q101333` **[2]** *(structural parent — not itself a discipline)*
+    - **agricultural engineering** `Q12159342`  LCSH:`sh85002313` FAST:`800726` DDC:`630`
+    - **metals theory** `Q365198`  GND:`4169605-0`
+
+- **mechanics** `Q41217` **[2]** *(structural parent — not itself a discipline)*
+    - **granular mechanics** `Q110094650`
+    - **solid mechanics** `Q1080293`  GND:`4129367-8` DDC:`531`
+
+- **mechanics of materials** `Q240553` **[1]** *(structural parent — not itself a discipline)*
+    - **fracture mechanics** `Q957852` **[1]**  LCSH:`sh85051154`
+        - **linearized elastic fracture mechanics** `Q1459219`
+
+- **mechanism design** `Q26090` **[1]** *(structural parent — not itself a discipline)*
+    - **Algorithmic mechanism design** `Q4724367`
+
+- **mechatronics** `Q180165` **[1]** *(structural parent — not itself a discipline)*
+    - **robotics** `Q170978` **[4]**  LCSH:`sh85114628` GND:`4261462-4` DDC:`629.892`
+        - **human–robot interaction** `Q859951`
+        - **Manufacturing robotics** `Q112980803`
+        - **Quantum robotics** `Q122363403`
+        - **soft robotics** `Q24327151`
+
+- **medical diagnosis** `Q177719` **[3]** *(structural parent — not itself a discipline)*
+    - **cancer diagnosis** `Q110324059`
+    - **plethysmography** `Q4364900`
+    - **veterinary diagnosis and diagnostics** `Q110245171`
+
+- **medical ethics** `Q237151` **[1]** *(structural parent — not itself a discipline)*
+    - **stem cell ethics** `Q107637924`
+
+- **medical specialist** `Q3332438` **[1]** *(structural parent — not itself a discipline)*
+    - **medical specialist for people with intellectual disability** `Q2522100`
+
+- **medical specialty** `Q930752` **[1]** *(structural parent — not itself a discipline)*
+    - **urology** `Q105650` **[1]**  LCSH:`sh85141451` GND:`4062158-3` DDC:`616.6`
+        - **veterinary urology** `Q111326845`  LCSH:`sh85143085` FAST:`1166110`
+
+- **medical treatment** `Q179661` **[3]** *(structural parent — not itself a discipline)*
+    - **physiotherapy** `Q186005`  LCSH:`sh85101568` GND:`4045960-3` FAST:`1062771` DDC:`615.82`
+    - **psychotherapy** `Q183257` **[5]**  LCSH:`sh85108516` LCC:`RC475-RC489.2` GND:`4047746-0` DDC:`616.8914`
+        - **bibliotherapy** `Q794611`  LCSH:`sh85013878` LCC:`RC489.B48` GND:`4112754-7` DDC:`616.891662|615.85162`
+        - **body psychotherapy** `Q1416259`  GND:`4223421-9` DDC:`615.851|616.8914`
+        - **Christian counseling** `Q5110315`
+        - **family therapy** `Q870449`  LCSH:`sh85047061` GND:`4016421-4` DDC:`618.9289156|616.89156`
+        - **pastoral counseling** `Q7143049`
+    - **speech-language pathology** `Q33226`  LCSH:`sh85126455` GND:`4074309-3` DDC:`616.85506|618.9285506`
+
+- **Mediology** `Q359146` **[1]**
+    - **Técnicas y Lenguajes de Medias** `Q108398262`
+
+- **memetics** `Q23399` **[1]**
+    - **phylomemetics** `Q113406449`
+
+- **men's studies** `Q12908504` **[1]** *(structural parent — not itself a discipline)*
+    - **male status** `Q110402827`
+
+- **mental health** `Q317309` **[3]** *(structural parent — not itself a discipline)*
+    - **adolescent mental health** `Q113473329`
+    - **community mental health** `Q113468986`
+    - **perinatal mental health** `Q131345396`
+
+- **mental state** `Q3968640` **[1]** *(structural parent — not itself a discipline)*
+    - **uncertainty** `Q13649246`  LCSH:`sh85139563` GND:`4186957-6` DDC:`003.54`
+
+- **metadata** `Q180160` **[1]** *(structural parent — not itself a discipline)*
+    - **annotation** `Q857525`  GND:`4560829-5`
+
+- **metallurgy** `Q11467` **[1]** *(structural parent — not itself a discipline)*
+    - **physical metallurgy** `Q5750455`
+
+- **metaphilosophy** `Q596284` **[2]** *(structural parent — not itself a discipline)*
+    - **metaontology** `Q6822257`
+    - **metaphysics** `Q35277`  LCSH:`sh85084286` GND:`4038936-4` DDC:`110`
+
+- **metascience** `Q30599095` **[2]** *(structural parent — not itself a discipline)*
+    - **journalology** `Q65067163`
+    - **meta-invasion science** `Q124428132`
+
+- **metastability** `Q849516` **[1]** *(structural parent — not itself a discipline)*
+    - **Temporal Systems Research** `Q137184069`
+
+- **methodics** `Q351682` **[1]** *(structural parent — not itself a discipline)*
+    - **biometry** `Q67364833`
+
+- **methodology of pedagogy** `Q13442563` **[1]** *(structural parent — not itself a discipline)*
+    - **learning analytics** `Q2845208`
+
+- **midwifery** `Q20862341` **[1]** *(structural parent — not itself a discipline)*
+    - **clinical midwifery** `Q113077456`
+
+- **military law** `Q28737` **[1]** *(structural parent — not itself a discipline)*
+    - **international military law** `Q130240754`
+
+- **molecular biology** `Q7202` **[3]** *(structural parent — not itself a discipline)*
+    - **molecular parasitology** `Q133806416`  LCSH:`sh93003752` FAST:`1024821`
+    - **molecular pharmacology** `Q113884277` **[1]**  LCSH:`sh86006824` GND:`4170397-2` DDC:`615.1`
+        - **pharmaceutical biology** `Q2085115`  GND:`4045693-6` DDC:`615.321`
+    - **proteogenomics** `Q7251534`
+
+- **molecular biology technique** `Q3516872` **[1]** *(structural parent — not itself a discipline)*
+    - **proteomics** `Q471857` **[3]**  LCSH:`sh2002000814`
+        - **forensic proteomics** `Q105459634`  LCSH:`sh2020000086` LCC:`RA1057.57`
+        - **glycoproteomics** `Q5572649`
+        - **metaproteomics** `Q6823168`
+
+- **monitoring** `Q2143522` **[1]** *(structural parent — not itself a discipline)*
+    - **geomonitoring** `Q135526571`
+
+- **morphology** `Q183252` **[2]** *(structural parent — not itself a discipline)*
+    - **cytomorphology** `Q113884152`
+    - **functional morphology** `Q130453901`
+
+- **musical instrument** `Q34379` **[1]** *(structural parent — not itself a discipline)*
+    - **multimedia** `Q131765`  LCSH:`sh92002381` GND:`4192358-3` FAST:`1028920` DDC:`006.7|384.38`
+
+- **musical work** `Q2188189` **[1]** *(structural parent — not itself a discipline)*
+    - **composed musical work** `Q207628`  GND:`4133320-2` DDC:`781.3`
+
+- **Mātauranga Māori** `Q99547709` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori culture, language and history** `Q110252680`
+
+- **N-Triples** `Q44044` **[1]** *(structural parent — not itself a discipline)*
+    - **Turtle** `Q114409`
+
+- **name resolution** `Q1649725` **[1]** *(structural parent — not itself a discipline)*
+    - **entity linking** `Q17012245`
+
+- **narrative** `Q1318295` **[1]** *(structural parent — not itself a discipline)*
+    - **drama** `Q25372`  LCSH:`sh85039316` DDC:`792.12`
+
+- **national security studies** `Q107155520` **[1]**
+    - **national security and strategic studies** `Q101626226`
+
+- **New Persian** `Q56356571` **[1]** *(structural parent — not itself a discipline)*
+    - **Q9168** `Q9168`  LCSH:`sh85100070` GND:`4065403-5` DDC:`491.55`
+
+- **non-classical logic** `Q239179` **[1]** *(structural parent — not itself a discipline)*
+    - **non-monotonic logic** `Q2488768`
+
+- **nonprofit organization** `Q163740` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori not-for-profit social enterprises** `Q110393824`
+
+- **normative science** `Q1999851` **[1]** *(structural parent — not itself a discipline)*
+    - **postcolonialism** `Q265425` **[1]**  LCSH:`sh97007835` GND:`4566658-1`
+        - **postcolonialism application in Africa** `Q119203271`
+
+- **noticing** `Q107339018` **[1]** *(structural parent — not itself a discipline)*
+    - **observation** `Q193181`
+
+- **nuclear physics** `Q81197` **[1]** *(structural parent — not itself a discipline)*
+    - **reactor physics** `Q113787262`  DDC:`621.039.51`
+
+- **nutrition disorder** `Q1361144` **[1]** *(structural parent — not itself a discipline)*
+    - **malnutrition** `Q12167`  GND:`4138143-9` DDC:`614.5939|618.9239|616.39|362.19639`
+
+- **observational astronomy** `Q818557` **[2]** *(structural parent — not itself a discipline)*
+    - **positron astronomy** `Q26196475`
+    - **Q125399444** `Q125399444`
+
+- **obstetrics and gynaecology** `Q80015` **[1]** *(structural parent — not itself a discipline)*
+    - **reproductive endocrinology and infertility** `Q17145564`
+
+- **online database** `Q7094076` **[1]** *(structural parent — not itself a discipline)*
+    - **linked data** `Q515701` **[2]**  LCSH:`sh2013002090` FAST:`1896555`
+        - **Linked Data Platform** `Q17624049`
+        - **multilingual linked data** `Q108478945`
+
+- **onomastics** `Q175156` **[2]** *(structural parent — not itself a discipline)*
+    - **anthroponymy** `Q1973833`
+    - **patronomatology** `Q127656487`
+
+- **ontology** `Q44325` **[1]**  LCSH:`sh85094833` LCC:`BD300-BD450` GND:`4075660-9` FAST:`1045995` DDC:`111`
+    - **Enterprise ontology** `Q109735643`
+
+- **open data** `Q309901` **[2]** *(structural parent — not itself a discipline)*
+    - **open government data** `Q136996230`
+    - **Open science data** `Q17072965`
+
+- **optics** `Q14620` **[1]** *(structural parent — not itself a discipline)*
+    - **atmospheric optics** `Q1367365`  LCSH:`sh85084325`
+
+- **optimization** `Q24476018` **[1]** *(structural parent — not itself a discipline)*
+    - **mathematical optimization** `Q141495` **[1]**  LCSH:`sh85107312` LCC:`QA402.5-QA402.6` GND:`4043664-0` FAST:`1012099` DDC:`519.6|519.7`
+        - **combinatorial optimization** `Q1333872`
+
+- **organic synthesis** `Q1153832` **[1]** *(structural parent — not itself a discipline)*
+    - **protein chemical synthesis** `Q103928988`
+
+- **organization** `Q43229` **[1]** *(structural parent — not itself a discipline)*
+    - **mass media** `Q11033` **[1]**  LCSH:`sh85081863` GND:`4037877-9` FAST:`1011219` DDC:`302.23`
+        - **new media** `Q683794`  GND:`4196910-8` DDC:`302.231`
+
+- **organization and management** `Q115160933` **[1]** *(structural parent — not itself a discipline)*
+    - **organization and management theory** `Q112970918`
+
+- **organization data** `Q138001724` **[1]** *(structural parent — not itself a discipline)*
+    - **company data** `Q2498397`  GND:`4145038-3`
+
+- **organometallic chemistry** `Q237200` **[2]** *(structural parent — not itself a discipline)*
+    - **organogallium chemistry** `Q2015243`
+    - **organorhodium chemistry** `Q121127032`
+
+- **ornithology** `Q44703` **[3]** *(structural parent — not itself a discipline)*
+    - **bird physiology** `Q111680396`  LCSH:`sh85014325` LCC:`QL698` FAST:`833051`
+    - **neossology** `Q129090673`
+    - **nidology** `Q130238993`
+
+- **Pacific studies** `Q7122791` **[1]** *(structural parent — not itself a discipline)*
+    - **Hawaiian studies** `Q5684622`
+
+- **Pakistan studies** `Q7125797` **[1]** *(structural parent — not itself a discipline)*
+    - **Sindhology** `Q9393074`
+
+- **paleobiogeography** `Q5413464` **[1]** *(structural parent — not itself a discipline)*
+    - **paleozoogeography** `Q131575631`
+
+- **paleozoology** `Q210369` **[1]** *(structural parent — not itself a discipline)*
+    - **invertebrate paleontology** `Q6060491`
+
+- **palynology** `Q212919` **[1]** *(structural parent — not itself a discipline)*
+    - **aeropalynology** `Q6018089`
+
+- **parasitology** `Q180502` **[2]** *(structural parent — not itself a discipline)*
+    - **helminthology** `Q1976068`  LCSH:`sh85060075` GND:`4122195-3` FAST:`954805` DDC:`592.3|616.962|632.623|636.0896962`
+    - **insect-parasite interactions** `Q109676622`
+
+- **parenting** `Q1217379` **[1]** *(structural parent — not itself a discipline)*
+    - **physical education** `Q243253` **[1]**  LCSH:`sh85101517` GND:`4077704-2` DDC:`613.7`
+        - **physical education with biology** `Q64689346`
+
+- **particle physics** `Q18334` **[1]** *(structural parent — not itself a discipline)*
+    - **astroparticle physics and particle cosmology** `Q113209255`
+
+- **pathogenesis** `Q372016` **[1]** *(structural parent — not itself a discipline)*
+    - **carcinogenesis** `Q1637543`  LCSH:`sh85020155`
+
+- **patrology** `Q1503585` **[1]**
+    - **russian patrology** `Q133519694`
+
+- **performing arts** `Q184485` **[4]** *(structural parent — not itself a discipline)*
+    - **drama, theatre and performance studies** `Q113093825`
+    - **musical arts** `Q65096458`
+    - **performing arts of the Pacific Islands** `Q113127685`
+    - **theatre art** `Q11635`  LCSH:`sh85134522` GND:`4059702-7` FAST:`1149217` DDC:`792`
+
+- **pharmacology** `Q128406` **[6]** *(structural parent — not itself a discipline)*
+    - **cochlear pharmacology** `Q134971503`
+    - **pharmacodynamics** `Q725307`  GND:`4174134-1` DDC:`615.7`
+    - **phytopharmacology** `Q7189811`
+    - **Q127693658** `Q127693658`
+    - **Q2242794** `Q2242794`
+    - **veterinary pharmacology** `Q9258064`
+
+- **pharmacy** `Q614304` **[3]** *(structural parent — not itself a discipline)*
+    - **biopharmacy** `Q803860`
+    - **emergency and disaster pharmacy** `Q1000889`
+    - **hospital pharmacy** `Q388618`  LCSH:`sh85062256` GND:`4125604-9` DDC:`362.1782`
+
+- **philosophical logic** `Q491412` **[1]** *(structural parent — not itself a discipline)*
+    - **inductive logic** `Q10535277`  GND:`4161594-3` DDC:`004.015113|160|161|511.3`
+
+- **phycology** `Q188391` **[1]** *(structural parent — not itself a discipline)*
+    - **algal ecology** `Q105208008`  LCSH:`sh2005003172` FAST:`804848`
+
+- **phylogenetics** `Q171184` **[2]** *(structural parent — not itself a discipline)*
+    - **animal phylogeny** `Q115135896`
+    - **molecular phylogenetics** `Q2007033`  LCSH:`sh2003004725`
+
+- **physical examination** `Q835153` **[1]** *(structural parent — not itself a discipline)*
+    - **medical imaging** `Q931309`  LCSH:`sh85037507` GND:`4006617-4` DDC:`616.0754`
+
+- **physiological condition** `Q7189713` **[1]** *(structural parent — not itself a discipline)*
+    - **health** `Q12147` **[3]**  LCSH:`sh85059518` GND:`4020754-7` FAST:`952743` DDC:`610`
+        - **adolescent health** `Q8059302`
+        - **oral health** `Q70359543`
+        - **women's health** `Q8031191`  LCSH:`sh85147301`
+
+- **planned process** `Q104637332` **[1]** *(structural parent — not itself a discipline)*
+    - **material process** `Q104637425` **[1]**
+        - **food processing** `Q627371`
+
+- **planning** `Q309100` **[4]** *(structural parent — not itself a discipline)*
+    - **educational planning** `Q861499`
+    - **financial planning** `Q2120150`  GND:`4017200-4`
+    - **spatial planning** `Q149013` **[2]**  GND:`4048590-0`
+        - **environmental planning** `Q11902944`  GND:`4117283-8`
+        - **urban planning** `Q69883` **[2]**  LCSH:`sh85026282` LCC:`HT165.5-HT169.9|K3534` GND:`4056754-0` FAST:`862177` DDC:`710`
+            - **city and regional planning** `Q105071763`
+            - **neurourbanism** `Q137808024`
+    - **tourism planning** `Q119465881`
+
+- **plant pathology** `Q188956` **[1]** *(structural parent — not itself a discipline)*
+    - **dendropathology** `Q125994057`
+
+- **plate tectonics** `Q7950` **[1]** *(structural parent — not itself a discipline)*
+    - **morphotectonics** `Q3324383`  LCSH:`sh88006193` LCC:`QE511.44` GND:`4442915-0` FAST:`1026468`
+
+- **policy** `Q1156854` **[3]** *(structural parent — not itself a discipline)*
+    - **corporate policy** `Q2498492`
+    - **development policy** `Q61706319`
+    - **public policy** `Q546113` **[5]**  LCSH:`sh85056091` GND:`4182679-6`
+        - **economic policy** `Q582577`  LCSH:`sh85040837|sh99005752` LCC:`HD87-HD87.55` GND:`4066493-4` FAST:`902025` DDC:`338.9`
+        - **environmental policy** `Q919526`  LCSH:`sh85044197` GND:`4078523-3` FAST:`913250` DDC:`333.72`
+        - **foreign relations** `Q610018`  LCSH:`sh85050519` GND:`4272415-6`
+        - **health policy** `Q1519812` **[2]**  LCSH:`sh85083002` GND:`4113743-7`
+            - **health workforce policy** `Q105771305`
+            - **Māori health policy** `Q110351795`
+        - **social policy** `Q828395`  LCSH:`sh85123985` GND:`4055879-4` DDC:`361.25`
+
+- **policy analysis** `Q2101508` **[1]** *(structural parent — not itself a discipline)*
+    - **foreign policy analysis** `Q5468430`
+
+- **political history** `Q1147507` **[1]** *(structural parent — not itself a discipline)*
+    - **history of international relations** `Q55022436` **[1]**  LCSH:`sh2005003436`
+        - **diplomatic history** `Q2177756`  LCSH:`sh99005617|sh2005003436`
+
+- **political philosophy** `Q179805` **[1]** *(structural parent — not itself a discipline)*
+    - **political ethics** `Q2101492`  LCSH:`sh85104354` GND:`4129503-1`
+
+- **political representation** `Q2145286` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori political participation and representation** `Q110393897`
+
+- **postmarketing surveillance** `Q7234359` **[1]** *(structural parent — not itself a discipline)*
+    - **pharmacovigilance** `Q1550789`  GND:`4437717-4`
+
+- **prevention** `Q1717246` **[2]** *(structural parent — not itself a discipline)*
+    - **prevention of gender violence** `Q24960185`
+    - **violence prevention** `Q104733130`  LCSH:`sh2010117922` FAST:`1167240`
+
+- **privacy** `Q188728` **[1]** *(structural parent — not itself a discipline)*
+    - **information privacy** `Q456632`  LCSH:`sh2021005721` LCC:`HD30.3815` GND:`4011134-9` FAST:`2032662`
+
+- **process** `Q3249551` **[6]** *(structural parent — not itself a discipline)*
+    - **bookkeeping** `Q3707847`  LCSH:`sh85015733` GND:`4008619-7`
+    - **cultural management** `Q48785284` **[1]**
+        - **arts administration** `Q3285163`
+    - **decentralization** `Q188961`  GND:`4012005-3`
+    - **innovation** `Q174165` **[1]**  GND:`4027089-0`
+        - **Māori innovation** `Q110402852`
+    - **teaching** `Q352842` **[3]**  GND:`4241291-2|4317063-8` DDC:`370`
+        - **college teaching** `Q119204227`  LCSH:`sh85028395`
+        - **language education** `Q2313213` **[3]**  GND:`4056505-1`
+            - **heritage language teaching** `Q107966857`
+            - **mother tongue teaching** `Q108751080`
+            - **vocabulary instruction** `Q110793597`
+        - **writing instruction** `Q104248068`
+    - **wood processing** `Q1609891` **[1]**  GND:`4025684-4`
+        - **wood fibre processing** `Q110298430`
+
+- **process** `Q10843872` **[2]** *(structural parent — not itself a discipline)*
+    - **building information modeling** `Q842017`  LCSH:`sh2008000827` GND:`7861550-1`
+    - **question generation** `Q98035701` **[1]**
+        - **automated question generation** `Q116680847`
+
+- **processual archaeology** `Q1436152` **[1]** *(structural parent — not itself a discipline)*
+    - **behavioral archaeology** `Q21130725`
+
+- **product design** `Q1043226` **[1]** *(structural parent — not itself a discipline)*
+    - **Design for X** `Q3011219`
+
+- **professional** `Q702269` **[1]** *(structural parent — not itself a discipline)*
+    - **technician** `Q5352191`  GND:`4138289-4|4278765-8`
+
+- **professional development** `Q828812` **[2]** *(structural parent — not itself a discipline)*
+    - **educational personnel training** `Q118135396`
+    - **teacher education** `Q1374230` **[1]**  LCSH:`sh85132999` GND:`4035093-9`
+        - **pre-service teacher education** `Q7239187`
+
+- **program evaluation** `Q1061410` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori social impact and program evaluation** `Q110394106`
+
+- **programming language** `Q9143` **[1]** *(structural parent — not itself a discipline)*
+    - **functional programming language** `Q3839507`
+
+- **property** `Q937228` **[2]** *(structural parent — not itself a discipline)*
+    - **grammatical category** `Q980357`  LCSH:`sh2002006365`
+    - **interoperability** `Q749647` **[1]**  DDC:`004.6`
+        - **interoperability** `Q115999414`
+
+- **property graph** `Q113301322` **[1]** *(structural parent — not itself a discipline)*
+    - **labeled property graph** `Q99510066`
+
+- **property management** `Q1618728` **[1]** *(structural parent — not itself a discipline)*
+    - **real estate management** `Q58081477`  GND:`4113859-4` DDC:`333.5068`
+
+- **protection** `Q2251595` **[2]** *(structural parent — not itself a discipline)*
+    - **environmental protection** `Q832237` **[3]**  LCSH:`sh85044203` GND:`4061644-7` FAST:`913324`
+        - **Aboriginal and Torres Strait Islander environmental conservation** `Q109984809`
+        - **conservation** `Q628403` **[2]**
+            - **marine conservation** `Q1916831`
+            - **nature conservation** `Q20113959` **[2]**  LCSH:`sh85090284` GND:`4115348-0` FAST:`1034632`
+                - **plant conservation** `Q84861608`  LCSH:`sh85102720` FAST:`1065351`
+                - **wetland conservation** `Q7990118`  LCSH:`sh85146325` FAST:`1174133`
+        - **Māori environmental conservation** `Q110350758`
+    - **societal defense** `Q1419660`
+
+- **psycholinguistics** `Q179488` **[1]** *(structural parent — not itself a discipline)*
+    - **psycholinguistics of bilingualism** `Q100937198`
+
+- **psychopathology** `Q624758` **[1]** *(structural parent — not itself a discipline)*
+    - **Q3410122** `Q3410122`
+
+- **public archaeology** `Q61971571` **[1]** *(structural parent — not itself a discipline)*
+    - **community archaeology** `Q3645429`
+
+- **public security** `Q294240` **[1]** *(structural parent — not itself a discipline)*
+    - **emergency management** `Q1460420`  LCSH:`sh91000441` LCC:`HD49-HD49.6` GND:`4029932-6` DDC:`363.348|658.477|628.92`
+
+- **publication** `Q732577` **[1]** *(structural parent — not itself a discipline)*
+    - **data publishing** `Q17051824`
+
+- **quality** `Q1207505` **[1]** *(structural parent — not itself a discipline)*
+    - **expressiveness** `Q11985702`
+
+- **quality** `Q185957` **[1]** *(structural parent — not itself a discipline)*
+    - **data quality** `Q1757694`  GND:`1036653315`
+
+- **quality management** `Q757012` **[1]** *(structural parent — not itself a discipline)*
+    - **risk management** `Q189447`  LCSH:`sh85114200|sh2004006348` GND:`4121590-4` FAST:`1098164`
+
+- **query optimization** `Q2919848` **[1]** *(structural parent — not itself a discipline)*
+    - **SPARQL query optimization** `Q108730964`
+
+- **radiology** `Q77604` **[1]** *(structural parent — not itself a discipline)*
+    - **Q135116545** `Q135116545`
+
+- **rational design** `Q14777816` **[1]**
+    - **protein design** `Q410814`
+
+- **reasoning** `Q1156402` **[1]** *(structural parent — not itself a discipline)*
+    - **diagrammatic reasoning** `Q5270387`
+
+- **recitation** `Q1680700` **[1]** *(structural parent — not itself a discipline)*
+    - **Tajwid** `Q780743`
+
+- **recording** `Q13557414` **[1]** *(structural parent — not itself a discipline)*
+    - **film recording** `Q64807634`
+
+- **regional development** `Q482379` **[2]** *(structural parent — not itself a discipline)*
+    - **Māori community and regional development** `Q110374002`
+    - **Pacific Peoples community and regional development** `Q113207995`
+
+- **regional geography** `Q817121` **[1]** *(structural parent — not itself a discipline)*
+    - **Q2011433** `Q2011433`
+
+- **register of persons** `Q1114135` **[1]** *(structural parent — not itself a discipline)*
+    - **prosopography** `Q783287`  LCSH:`sh86000287` GND:`4127369-2` DDC:`920`
+
+- **regularity** `Q4184950` **[1]** *(structural parent — not itself a discipline)*
+    - **pattern** `Q2083958`
+
+- **regulation** `Q428148` **[1]** *(structural parent — not itself a discipline)*
+    - **governance** `Q1553864` **[3]**
+        - **Community Governance** `Q30693854` **[2]**
+            - **Māori community governance and decision making** `Q110374026`
+            - **Pacific Peoples community governance and decision making** `Q113127789`
+        - **global governance** `Q1524235`
+        - **ocean governance** `Q17162759`  LCSH:`sh85081259` GND:`4248738-9` FAST:`1009892`
+
+- **reification** `Q7310068` **[1]** *(structural parent — not itself a discipline)*
+    - **n-ary relations** `Q29981726`
+
+- **relation** `Q930933` **[2]** *(structural parent — not itself a discipline)*
+    - **Political relations with hypothetical aliens** `Q136488651`
+    - **science and technology** `Q34104` **[1]**
+        - **technology** `Q11016` **[24]**  LCSH:`sh85133147` GND:`4059276-5` DDC:`405.09`
+            - **agricultural technology** `Q4057127`
+            - **architectural technology** `Q4787070`
+            - **biotechnology** `Q7108` **[6]**  LCSH:`sh85014263` GND:`4069491-4` FAST:`832729` DDC:`660.6`
+                - **bioengineering** `Q580689` **[3]**  LCSH:`sh85014134`
+                    - **cell engineering** `Q10472873`
+                    - **molecular engineering** `Q3523861` **[1]**
+                        - **Agricultural molecular engineering of nucleic acids and proteins** `Q110295506`
+                    - **protein engineering** `Q169525`  LCSH:`sh86007375` LCC:`TP248.65.P76` GND:`4346801-9` FAST:`1079685`
+                - **Biomagnetics** `Q107292784`
+                - **biorobotics** `Q3657270`
+                - **green biotechnology** `Q131782974`
+                - **industrial biotechnology** `Q742990` **[1]**
+                    - **industrial biotechnology diagnostics** `Q113042906`
+                - **medical biotechnology** `Q25419089`
+            - **chemical technology** `Q911772` **[1]**  LCSH:`sh85023029` GND:`4078178-1`
+                - **textile chemistry** `Q1718437`  GND:`4184948-6` DDC:`677.02835`
+            - **computer networking** `Q19367558`
+            - **creative technology** `Q16930522` **[1]**
+                - **ceramics technology** `Q137424867`
+            - **educational technology** `Q1068473`
+            - **electrotechnology** `Q4531103`
+            - **explosives technology** `Q130680695`
+            - **food engineering** `Q6631525`
+            - **geomedia technology** `Q124623997`
+            - **geospatial technology** `Q124634732`
+            - **geotechnology** `Q132251395`
+            - **industrial arts** `Q2865882`
+            - **information and communications technology** `Q5268834` **[1]**  LCSH:`sh87002293`
+                - **information technology** `Q11661` **[4]**  GND:`4026926-7`
+                    - **business intelligence** `Q3353185`  GND:`4588307-5`
+                    - **geoinformation technology** `Q124504922`
+                    - **GIS technology** `Q133898182` **[1]**
+                        - **mobile GIS technology** `Q133898263`
+                    - **green information technology** `Q19605512`
+            - **media technology** `Q1916441`
+            - **new technology** `Q118744842`
+            - **pharmaceutics** `Q186249`  LCSH:`sh85100590` GND:`4045699-7` DDC:`615.19`
+            - **powder technology** `Q135437159`
+            - **product technology** `Q135495698`
+            - **propulsion technology** `Q135495835`
+            - **signal processing** `Q208163`  LCSH:`sh85122397` GND:`4054947-1` FAST:`1118281` DDC:`003.54`
+            - **solar technology** `Q12538735`
+            - **terotechnology** `Q3436765`
+
+- **reliability engineering** `Q2193887` **[1]** *(structural parent — not itself a discipline)*
+    - **chaos engineering** `Q57629717`
+
+- **remote communication** `Q1472062` **[1]** *(structural parent — not itself a discipline)*
+    - **telecommunications** `Q418` **[3]**  LCSH:`sh85133270` GND:`4059360-5` FAST:`1145830` DDC:`384|621.382`
+        - **error detection and correction** `Q1062839`  LCSH:`sh85044725`
+        - **telematics** `Q485669`  LCSH:`sh89005491` GND:`7861079-5` DDC:`384`
+        - **wireless communication** `Q249`  LCSH:`sh92006740` FAST:`1176209`
+
+- **reputation management** `Q478594` **[1]** *(structural parent — not itself a discipline)*
+    - **public relations** `Q133080` **[2]**  LCSH:`sh85108753` LCC:`HM1221` GND:`4043188-5` DDC:`659`
+        - **Comunicação Empresarial e Relações Públicas** `Q83370911`
+        - **public affairs** `Q52676286`
+
+- **research** `Q42240` **[12]** *(structural parent — not itself a discipline)*
+    - **cancer research** `Q3421914`  LCSH:`sh85019539`
+    - **clinical research** `Q5133849`  LCSH:`sh85083133`
+    - **design research** `Q5264373` **[5]**
+        - **design for disaster relief** `Q110308446`
+        - **design history, theory and criticism** `Q110307213`
+        - **design theory** `Q1200711`
+        - **fire safety design** `Q110308923`
+        - **industrial and product design studies** `Q106371433`
+    - **disaster research** `Q135108968`
+    - **energy research** `Q1341277`
+    - **futures studies** `Q188867`  LCC:`CB158-CB161` GND:`4155776-1` DDC:`003.2`
+    - **historical research** `Q12075100`  LCSH:`sh85061225`
+    - **Internet studies** `Q6056054`
+    - **Māori research** `Q113213783`
+    - **neuroimaging research** `Q107859286`
+    - **provenance research** `Q1678416`  GND:`7697228-8`
+    - **social research** `Q12336277`  LCSH:`sh85124014` GND:`4014606-6`
+
+- **research topic** `Q120970651` **[1]** *(structural parent — not itself a discipline)*
+    - **language, communication, and cultural studies** `Q113128675` **[1]**
+        - **language studies** `Q64810203` **[2]**
+            - **Middle Eastern language studies** `Q113128598`
+            - **modern languages** `Q136311310`
+
+- **resource** `Q1554231` **[1]** *(structural parent — not itself a discipline)*
+    - **national resource management** `Q102255261`
+
+- **restoration** `Q217102` **[3]** *(structural parent — not itself a discipline)*
+    - **conservation of Māori heritage** `Q110252710`
+    - **Conservation of Pacific Peoples heritage** `Q110408090`
+    - **textile conservation** `Q61433673`
+
+- **rheology** `Q271707` **[3]** *(structural parent — not itself a discipline)*
+    - **electrorheology** `Q113884103`
+    - **hemorheology** `Q5712543`  LCSH:`sh88007874` GND:`4123326-8`
+    - **magnetorheology** `Q113884220`
+
+- **risk assessment** `Q1058438` **[1]** *(structural parent — not itself a discipline)*
+    - **hazard analysis** `Q3614972`
+
+- **rock physics** `Q16721799` **[1]** *(structural parent — not itself a discipline)*
+    - **petrophysics** `Q2080707`  GND:`4173962-0`
+
+- **Romance literature** `Q109607254` **[1]** *(structural parent — not itself a discipline)*
+    - **Q108805509** `Q108805509`
+
+- **rule** `Q1151067` **[2]** *(structural parent — not itself a discipline)*
+    - **law** `Q7748` **[25]**  LCSH:`sh85075119` LCC:`K|K1-K7720.22` GND:`4048737-4` DDC:`340|348`
+        - **American Indian law** `Q106595016`  LCSH:`sh85065315` FAST:`969825`
+        - **Asian law** `Q100709157`  LCSH:`sh91005264` LCC:`KM1-KM999`
+        - **association law** `Q4809578`
+        - **canon law** `Q188462`  LCSH:`sh85019646` GND:`4073199-6` DDC:`262.9`
+        - **construction law** `Q3039678`
+        - **corporate law** `Q2609670`  LCSH:`sh85032912`
+        - **environmental law** `Q328798` **[1]**  LCSH:`sh85044184` GND:`4061643-5`
+            - **Climate change law** `Q110469028`
+        - **international law** `Q4394526` **[3]**  LCSH:`sh85067417` LCC:`KZ` GND:`4063693-8` DDC:`341`
+            - **international economic law** `Q827797`
+            - **international human rights law** `Q1147615`
+            - **public international law** `Q6406743`
+        - **law of Germany** `Q695742`  LCSH:`sh85075162`
+        - **Law of Switzerland** `Q2135371`  LCSH:`sh85075191`
+        - **Law of the Netherlands** `Q2135382`
+        - **litigation** `Q107364261`  LCSH:`sh85029370`
+        - **medical and health law** `Q110470900`
+        - **Mishpat Ivri** `Q2026729`
+        - **Māori law and justice** `Q110393792`
+        - **Māori resource law** `Q110394049`
+        - **natural resources law** `Q11879847`
+        - **natural resources law and international environmental law** `Q55714778`
+        - **Not-for-profit law** `Q110543534`
+        - **public interest law** `Q18345563`  LCSH:`sh85108690`
+        - **public law** `Q207892`  LCSH:`sh85108696` GND:`4043181-2` DDC:`342`
+        - **religious law** `Q670732` **[2]**  GND:`4030746-3`
+            - **Halakha** `Q107427`  LCSH:`sh85070287` GND:`4137294-3` DDC:`296.18|296.1274`
+            - **Usul al-fiqh** `Q2321196`
+        - **sharia** `Q482752` **[1]**  LCSH:`sh85068454` GND:`1151921939` FAST:`979949` DDC:`340.59`
+            - **fiqh** `Q484181`  LCSH:`sh85068454` GND:`4409409-7` FAST:`979949`
+        - **social law** `Q1567259`
+        - **world law** `Q134369650`
+    - **taxation** `Q1964442`  LCSH:`sh99005245`
+
+- **safety** `Q10566551` **[1]** *(structural parent — not itself a discipline)*
+    - **drylands safety** `Q28874013`
+
+- **safety precaution** `Q21010924` **[1]** *(structural parent — not itself a discipline)*
+    - **Child safeguarding** `Q5097921`  GND:`4132262-9`
+
+- **science and technology studies** `Q2445082` **[1]**
+    - **Feminist science and technology studies** `Q111954024`
+
+- **science, technology, engineering, and mathematics** `Q1881523` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori science** `Q18167244` **[2]**
+        - **Māori data sovereignty** `Q110402846`
+        - **Māori mathematical, physical and chemical sciences - excl. astronomy and cosmology** `Q110402751`
+
+- **scientific method** `Q46857` **[1]** *(structural parent — not itself a discipline)*
+    - **social science methodology** `Q1193625` **[1]**  LCSH:`sh85124011`
+        - **econometrics** `Q160039` **[1]**  LCSH:`sh85040763` GND:`4132280-0` DDC:`330.015195`
+            - **spatial econometrics** `Q7574062`
+
+- **scientific modeling** `Q1116876` **[3]** *(structural parent — not itself a discipline)*
+    - **Atmospheric dispersion modeling** `Q778187`  GND:`7508323-1`
+    - **disease modeling** `Q135538160`
+    - **Land change modeling** `Q30693224`
+
+- **scientific theory** `Q3239681` **[1]** *(structural parent — not itself a discipline)*
+    - **theory of language** `Q921767`  LCSH:`sh85074574` GND:`4121708-1`
+
+- **scientometrics** `Q472342` **[2]** *(structural parent — not itself a discipline)*
+    - **altmetrics** `Q14565201`
+    - **growth of scholarly literature** `Q107292942`
+
+- **search** `Q11540953` **[1]** *(structural parent — not itself a discipline)*
+    - **information retrieval** `Q816826` **[2]**  LCSH:`sh85066148` GND:`4072803-1` DDC:`025.04|025.524|005.74`
+        - **data retrieval** `Q4368942`
+        - **faceted search** `Q1519370`
+
+- **search engine** `Q19541` **[1]** *(structural parent — not itself a discipline)*
+    - **semantic search** `Q1891170`
+
+- **second-language education** `Q1455196` **[2]** *(structural parent — not itself a discipline)*
+    - **Portuguese language teaching** `Q116173051`
+    - **teaching English as a second or foreign language** `Q7691272`
+
+- **security engineering** `Q365674` **[1]** *(structural parent — not itself a discipline)*
+    - **cryptography** `Q8789`  LCSH:`sh85034453` DDC:`652.8`
+
+- **seismology** `Q83371` **[4]** *(structural parent — not itself a discipline)*
+    - **microseismology** `Q127467486`
+    - **paleoseismology** `Q1501881`
+    - **Q55694741** `Q55694741`
+    - **rotational seismology** `Q102104711`  LCSH:`sh2020010040`
+
+- **selection** `Q12888920` **[1]** *(structural parent — not itself a discipline)*
+    - **preference** `Q908656`  LCSH:`sh97005465` GND:`4121501-1` FAST:`1075083`
+
+- **semantic publishing** `Q7449080` **[1]** *(structural parent — not itself a discipline)*
+    - **nanopublication** `Q57814310`
+
+- **semantics** `Q39645` **[4]** *(structural parent — not itself a discipline)*
+    - **discourse analysis** `Q1129466`  LCSH:`sh85038362` GND:`4194747-2` FAST:`894932`
+    - **distributional semantics** `Q5283209`
+    - **mechanosemantics** `Q135187791`
+    - **semantics of logic** `Q963731`
+
+- **sensory analysis** `Q218385` **[1]** *(structural parent — not itself a discipline)*
+    - **visual analysis** `Q95832426`
+
+- **sequence** `Q133250` **[1]** *(structural parent — not itself a discipline)*
+    - **list** `Q27948`  LCSH:`sh85077455` GND:`4783888-7`
+
+- **service** `Q7406919` **[2]** *(structural parent — not itself a discipline)*
+    - **commerce, management, tourism and services** `Q113043123` **[6]**
+        - **banking, finance and investment studies** `Q113141571` **[3]**
+            - **environment and climate finance** `Q113141555`
+            - **Financial econometrics** `Q657107`
+            - **Insurance studies** `Q110298626`
+        - **business systems research** `Q113146197`
+        - **commercial services** `Q113209366`
+        - **human resources and industrial relations** `Q110407373` **[2]**
+            - **business and labour history** `Q113077118`
+            - **workplace wellbeing and quality of working life** `Q113077260`
+        - **strategy, management and organisational behaviour** `Q113146439`
+        - **transportation, logistics and supply chains** `Q113043173`
+    - **information services** `Q11492760`  LCSH:`sh85066157` FAST:`972696` DDC:`025.52`
+
+- **silviculture** `Q720362` **[1]** *(structural parent — not itself a discipline)*
+    - **forest management** `Q372561`
+
+- **singing** `Q27939` **[3]** *(structural parent — not itself a discipline)*
+    - **cantus** `Q5396690`
+    - **jazz singing** `Q18822510`  LCSH:`n2004079564`
+    - **vocal performance** `Q105245071`
+
+- **skill** `Q205961` **[3]** *(structural parent — not itself a discipline)*
+    - **computer programming** `Q80006`  LCSH:`sh85107310` GND:`4076370-5` FAST:`872390` DDC:`005`
+    - **literacy** `Q8236` **[2]**  LCSH:`sh85077482` GND:`4068576-7` FAST:`999859` DDC:`374.0124|379.24`
+        - **gender literacy** `Q135682154`
+        - **information literacy** `Q679789`  LCSH:`sh00007046` LCC:`ZA3075-ZA3080` GND:`4614795-0` DDC:`028.7`
+    - **navigation** `Q102066`  LCSH:`sh85090425` GND:`4041457-7` DDC:`629.045`
+
+- **social change** `Q1510761` **[1]** *(structural parent — not itself a discipline)*
+    - **social development** `Q5803805`
+
+- **Social economy** `Q5817147` **[1]** *(structural parent — not itself a discipline)*
+    - **Q2306058** `Q2306058`
+
+- **social innovation** `Q1399209` **[1]** *(structural parent — not itself a discipline)*
+    - **Neya Global Non-Profit Knowledge Architecture (NPKA)** `Q136909470`
+
+- **social movement** `Q49773` **[2]** *(structural parent — not itself a discipline)*
+    - **access to justice** `Q28135689`
+    - **intersectionality** `Q1516555`  LCSH:`sh2017003056` GND:`7729679-5` FAST:`1982537`
+
+- **social psychology** `Q161272` **[1]** *(structural parent — not itself a discipline)*
+    - **adolescent psychology** `Q11943008`  LCSH:`sh85000969` LCC:`BF724` FAST:`797018`
+
+- **social relation** `Q853725` **[1]** *(structural parent — not itself a discipline)*
+    - **labor relationship** `Q10359055`  GND:`4002799-5` DDC:`344.01|331|658.315`
+
+- **social sciences and humanities** `Q33122512` **[6]** *(structural parent — not itself a discipline)*
+    - **behavioral sciences** `Q3919817`
+    - **economic and social sciences** `Q3475802`
+    - **historical sciences** `Q109311746`
+    - **human science** `Q1587903` **[2]**  GND:`4481515-3`
+        - **security science** `Q26710929`  GND:`1112677186`
+        - **social work science** `Q2305240` **[1]**
+            - **Māori social work and social justice** `Q110394161`
+    - **humanities** `Q80083` **[18]**  LCSH:`sh85062913` FAST:`963588` DDC:`001.3`
+        - **administration** `Q5283295` **[4]**  LCSH:`sh85000898|sh2002007910` GND:`4063317-2` FAST:`1351613` DDC:`351`
+            - **archives management** `Q11122383`  LCSH:`sh2007101328` FAST:`814035`
+            - **business administration** `Q2043282` **[2]**  GND:`4069402-1`
+                - **international business research** `Q113801539`  GND:`4257369-5|4257143-1` DDC:`650|658.18`
+                - **Q1147173** `Q1147173` **[1]**  GND:`4120425-6` DDC:`381`
+                    - **Q789784** `Q789784`  GND:`4257143-1` DDC:`381.2|382`
+            - **fisheries management** `Q5454893`  LCSH:`sh85048696`
+            - **office administration** `Q2751907`
+        - **art** `Q55336315`
+        - **art history** `Q50637` **[2]**  LCSH:`sh85007488` GND:`4138803-3` DDC:`709`
+            - **digital art history** `Q17539496`
+            - **iconology** `Q1047900`  GND:`4161251-6`
+        - **art studies** `Q119003028`
+        - **environmental humanities** `Q5333239`
+        - **grammatology** `Q76953` **[1]**
+            - **oracle bone studies** `Q15900470`
+        - **health humanities** `Q5690958`
+        - **history of consciousness** `Q16995529`
+        - **interdisciplinary humanities** `Q105310982`
+        - **martial arts studies** `Q136455984`
+        - **medical humanities** `Q769420`
+        - **Medieval & Renaissance Studies** `Q136471013`
+        - **music** `Q65007448` **[1]**
+            - **music composition** `Q105107008` **[2]**
+                - **film composition** `Q116845672`
+                - **video game composition** `Q131154259`
+        - **public humanities** `Q7257903`
+        - **Q131006663** `Q131006663`
+        - **study of history** `Q1066186` **[29]**  GND:`4020535-6` DDC:`901`
+            - **agrarian history** `Q396077`
+            - **ancient history** `Q435608`  GND:`4131285-5`
+            - **archaeology** `Q23498` **[21]**  LCSH:`sh85006507` GND:`4002827-6` FAST:`812938` DDC:`930.1`
+                - **archaeological sociology** `Q116621804`
+                - **archaeology of childhood** `Q116192812`
+                - **Archaeology of New Guinea and Pacific Islands (excl. New Zealand)** `Q110408083`
+                - **byzantine archaeology** `Q12874773`
+                - **ceramology** `Q3010315`
+                - **Egyptology** `Q145903`  LCSH:`sh85041367` GND:`4141476-7` DDC:`893.1|932|493.1`
+                - **funerary archaeology** `Q107388727`
+                - **glyptology** `Q3109383`
+                - **illyrology** `Q12957521`
+                - **Islamic archaeology** `Q2860612`
+                - **mycenology** `Q26425130`
+                - **Māori archaeology** `Q110252734`
+                - **oriental archaeology** `Q23011509`
+                - **prehistoric archaeology** `Q2415966`
+                - **prehistory and early history** `Q2310752`  GND:`4121886-3`
+                - **rescue archaeology** `Q653838`  GND:`4172069-6`
+                - **settlement archaeology** `Q60748471`  GND:`4181216-5`
+                - **textile archaeology** `Q55227852`
+                - **transgender archaeology** `Q125458750`
+                - **vase science** `Q31157641`
+                - **wetland archaeology** `Q135238310`  LCSH:`sh85145638` FAST:`1172331`
+            - **auxiliary science of history** `Q770723` **[2]**  LCSH:`sh85010480` GND:`4128874-9` DDC:`907.2`
+                - **archontology** `Q776528`
+                - **heraldry** `Q18336` **[2]**  GND:`4072428-1` DDC:`929.6`
+                    - **Polish heraldry** `Q922610`
+                    - **Q9288997** `Q9288997`
+            - **big history** `Q1920418`
+            - **Dress history** `Q119285919`
+            - **figurational theory** `Q2114318`
+            - **historiology** `Q9293033`
+            - **history of astronomy** `Q50056`  LCSH:`sh2008117630`
+            - **History of consumption** `Q138340308`
+            - **history of nobility** `Q138339952`
+            - **history of racism** `Q104628368`
+            - **history of religions** `Q846742` **[1]**  LCSH:`sh85112553`
+                - **history of the Catholic Church** `Q1517265`
+            - **history of the great powers** `Q9062782`
+            - **Imperial history** `Q138340266`
+            - **Latin and South American history** `Q107095915`
+            - **legal history** `Q680004`  LCSH:`sh85075133` GND:`4121564-3` DDC:`340.09`
+            - **medieval history** `Q27992545`
+            - **medieval studies** `Q119190`  LCSH:`sh85085002` GND:`4038217-5`
+            - **men's history** `Q128035327`
+            - **military history** `Q192781` **[2]**  LCSH:`sh85085207|sh00005863` GND:`4169943-9` FAST:`1021222` DDC:`355.009`
+                - **castellology** `Q2941393`
+                - **military history of Portugal** `Q9299550`
+            - **museology** `Q460162` **[7]**  LCSH:`sh85088722|sh2021008605` GND:`4170787-4` FAST:`1030114|2033919` DDC:`069`
+                - **critical museology** `Q97161513`
+                - **heritage collections and interpretations** `Q113115026`
+                - **museography** `Q1054701`
+                - **Māori curatorial, archives and museum studies** `Q110252862`
+                - **new museology** `Q12041274`
+                - **Pacific Peoples curatorial, archives and museum studies** `Q110419434`
+                - **Q124665154** `Q124665154`
+            - **Māori history** `Q85787414`
+            - **numismatics** `Q631286`  LCSH:`sh85093255` GND:`4172175-5` DDC:`737`
+            - **palaeography** `Q179957`  LCSH:`sh85097064` GND:`4173110-4` FAST:`1051420` DDC:`417.7`
+            - **regional history** `Q1802210`  GND:`4166546-6`
+            - **transnational history** `Q2449515`
+            - **women's history** `Q1279400`  LCSH:`sh85147304`
+            - **world history** `Q6457238`  LCSH:`sh85148201` GND:`4079158-0` DDC:`909`
+        - **theatre studies** `Q960543` **[1]**  GND:`4185058-0`
+            - **theatre performance studies** `Q109568007`
+        - **theology** `Q34178` **[12]**  LCSH:`sh2001008984` GND:`4059758-1` DDC:`230`
+            - **apologetics** `Q191776`  GND:`4002449-0` DDC:`239.4`
+            - **biblical studies** `Q794605` **[1]**  GND:`4135590-8`
+                - **Hebrew Bible studies** `Q29980364`
+            - **bibliology** `Q20059765`
+            - **comparative theology** `Q4208496`
+            - **dogmatic theology** `Q938714` **[1]**  GND:`4012624-9`
+                - **Catholic dogmatic theology** `Q5775590`
+            - **Eastern Church Studies** `Q1440799`
+            - **ecotheology** `Q920939`  LCSH:`sh2008002852`
+            - **heresiology** `Q1365310`
+            - **pistology** `Q134892049`
+            - **sacred theology** `Q4411719`
+            - **Theological hermeneutics** `Q7782229`
+            - **theology of food** `Q125145874`
+    - **social science** `Q34749` **[41]**  LCSH:`sh85124003` LCC:`H` GND:`4055916-6` FAST:`1122877` DDC:`300`
+        - **anthropology** `Q23404` **[41]**  LCSH:`sh85005581` GND:`4002230-4` FAST:`810196` DDC:`301|599.9`
+            - **anarchist anthropology** `Q52084073`
+            - **anthropogeny** `Q4773888`
+            - **anthropology of gender and sexuality** `Q97374093`
+            - **anthropology of religion** `Q27890`
+            - **anthropology of the ancient world** `Q108665438`
+            - **anthropology of tourism** `Q10309676`
+            - **applied anthropology** `Q177304`  LCSH:`sh85006167`
+            - **biocultural anthropology** `Q4914735`
+            - **biological anthropology** `Q27172` **[3]**  LCSH:`sh85101512` FAST:`1062357` DDC:`599.9`
+                - **anthropometry** `Q6656244` **[2]**  LCSH:`sh85005588` DDC:`599.94`
+                    - **criminal anthropology** `Q3624786`  LCSH:`sh85034032` DDC:`364.2`
+                    - **somatotypology** `Q135483403`
+                - **ethnic anthropology** `Q4533017`
+                - **human morphology** `Q113884025`
+            - **business anthropology** `Q111843526`
+            - **cognitive anthropology** `Q2853045`  GND:`4164463-3`
+            - **cultural anthropology** `Q28598` **[8]**  GND:`4133903-4` DDC:`305.8`
+                - **anthropology of music** `Q1955092`  LCSH:`sh89003038` GND:`4237722-5` DDC:`299.935`
+                - **ethnology** `Q43455` **[1]**  LCSH:`sh85045198` GND:`4078931-7` FAST:`916106` DDC:`305.8`
+                    - **paleoethnology** `Q108941726`
+                - **folkloristics** `Q132116` **[2]**  LCSH:`sh85050150` GND:`4329183-1` DDC:`398.092`
+                    - **fairyology** `Q3050818`
+                    - **narratology** `Q382451`  LCSH:`sh85038364` GND:`4152975-3`
+                - **Mormon studies** `Q3850041`
+                - **Q17620657** `Q17620657`
+                - **sociocultural anthropology** `Q7552777`
+                - **sports anthropology** `Q1799172`  GND:`4056369-8` DDC:`306.483|599.9|612.044|612.76|796.01`
+                - **theatre anthropology** `Q3620447`  LCSH:`sh99001177` FAST:`1149222`
+            - **demographic anthropology** `Q73941450`
+            - **design anthropology** `Q110299057`
+            - **development anthropology** `Q1345628`
+            - **digital anthropology** `Q601854`
+            - **ecological anthropology** `Q2984315`
+            - **economic anthropology** `Q27841`  LCSH:`sh85040766` LCC:`GN448-GN450.8` GND:`4321994-9` DDC:`306.3`
+            - **educational anthropology** `Q5341272`  LCSH:`sh85041108` GND:`4044308-5`
+            - **environmental anthropology** `Q5381194`
+            - **fecal anthropology** `Q73927923`
+            - **feminist anthropology** `Q5442878`  LCSH:`sh93006951`
+            - **forensic anthropology** `Q28065` **[1]**  LCSH:`sh85050537` DDC:`614.17`
+                - **forensic osteology** `Q5468718`
+            - **historical anthropology** `Q358120`  LCSH:`sh2008009851`
+            - **kinanthropology** `Q12029211`
+            - **legal anthropology** `Q1195662`  LCSH:`sh85075292` GND:`4048754-4` DDC:`340.52|340.115`
+            - **literary anthropology** `Q65325222`
+            - **maritime anthropology** `Q74128869`  LCSH:`sh85081307`
+            - **Marxist anthropology** `Q2853046`  LCSH:`sh85029133`
+            - **mathematical anthropology** `Q74130636`  LCSH:`sh85082119`
+            - **medical anthropology** `Q1779521`  LCSH:`sh85082859` GND:`7503792-0`
+            - **molecular anthropology** `Q3848331`
+            - **Māori anthropology** `Q110373965`
+            - **national character studies** `Q2599565`
+            - **postmodernist anthropology** `Q7234391`
+            - **psychological anthropology** `Q2116028`  GND:`4176225-3` DDC:`155.89|302`
+            - **sexual anthropology** `Q9158025`
+            - **social anthropology** `Q29051` **[5]**  GND:`4129436-1` DDC:`306`
+                - **ethnohistory** `Q2181985`  LCSH:`sh88002742`
+                - **philematology** `Q3744958`
+                - **political anthropology** `Q27778`  LCSH:`sh85104345` GND:`4293325-0` DDC:`320.11`
+                - **socio-anthropology of adolescence** `Q18415368`
+                - **visual anthropology** `Q2746658`  LCSH:`sh93005976` GND:`1028524978` DDC:`305.80208`
+            - **somatology** `Q2299570`  LCSH:`sh85101512`
+            - **urban anthropology** `Q27977`
+            - **wealthology** `Q138447910`
+        - **area, ethnic, cultural, gender, and group studies** `Q23010558`
+        - **civics** `Q837313`  LCSH:`sh85026302` LCC:`LB1139.5.S64`
+        - **communication science** `Q1078351` **[1]**  GND:`4120588-1` DDC:`302.2`
+            - **media science** `Q11881925`
+        - **communication studies** `Q11680831` **[3]**
+            - **communication technology and digital media studies** `Q113208648`
+            - **media industry studies** `Q113128088`
+            - **organisational, interpersonal and intercultural communication** `Q113208700`
+        - **community studies** `Q5155068`
+        - **criminology** `Q161733` **[13]**  LCSH:`sh89002994` LCC:`HV6001-HV7220.5` GND:`4033197-0` DDC:`364`
+            - **computational criminology** `Q5157307`
+            - **correctional theory** `Q113115825`
+            - **crime and social justice** `Q113115836`
+            - **criminological theories** `Q113115842`
+            - **critical criminology** `Q1789506`
+            - **environmental criminology** `Q2020035`
+            - **gender and crime** `Q5530957`
+            - **Māori criminology** `Q110374038`
+            - **police science** `Q37445` **[1]**
+                - **critical policing studies** `Q131295143`
+            - **race and crime** `Q7278933`  LCSH:`sh97006302`
+            - **Sociological studies of crime** `Q113115861`
+            - **victimology** `Q645938` **[1]**  GND:`4078906-8` DDC:`362.88`
+                - **critical victimology** `Q131308761`
+            - **zemiology** `Q4024129`
+        - **development studies** `Q651571` **[4]**  GND:`4014937-7`
+            - **labour, migration and development** `Q113115876`
+            - **political economy and social change** `Q113115885`
+            - **rural community development** `Q7380575`
+            - **urban community development** `Q113115902`
+        - **economic planning** `Q3391448`  DDC:`338.9`
+        - **economics** `Q8134` **[42]**  LCSH:`sh85040850` LCC:`HB1-HB130` GND:`4066528-8` FAST:`902116` DDC:`330`
+            - **agricultural economics** `Q396340`  LCSH:`sh85002427` GND:`4704302-7` DDC:`338.1`
+            - **agricultural economics** `Q132731824`
+            - **applied economics** `Q3296256` **[5]**
+                - **business economics** `Q24208053`  GND:`4507951-1` DDC:`330`
+                - **education economics** `Q861689`  LCSH:`sh85041004` GND:`4006664-2`
+                - **industrial economics** `Q118212941`
+                - **law and economics** `Q295354` **[1]**  LCSH:`sh95009376` GND:`4135492-8`
+                    - **Behavioral law and economics** `Q133878530`
+                - **taxation and revenue in economics** `Q113098404`
+            - **Artificial economics** `Q25305034`
+            - **behavioral economics** `Q647525`  LCSH:`sh85040859` LCC:`HB74.P8` GND:`7751254-6`
+            - **commerce** `Q26643` **[2]**  DDC:`380`
+                - **International Trade** `Q55659899`
+                - **Māori commerce** `Q110373988`
+            - **consumer choice** `Q833495`  LCSH:`sh85031496` GND:`4132976-4` FAST:`876441`
+            - **cultural economics** `Q1041282`
+            - **decision theory** `Q177571`  LCC:`QA279.4-QA279.7` GND:`4138606-1` DDC:`003.56`
+            - **development economics** `Q1127188` **[1]**
+                - **Poverty, inclusivity and wellbeing** `Q112981099`
+            - **digitization economics** `Q18388542`
+            - **economic models and forecasting** `Q112976881`
+            - **economics and management** `Q55693902`
+            - **economics of communications** `Q118930251`
+            - **economics of language** `Q5333591`
+            - **enterprise economy** `Q4530398`
+            - **family economics** `Q623006`  LCSH:`sh95007409` GND:`4123185-5`
+            - **financial economics** `Q2294553` **[1]**  DDC:`332`
+                - **international finance** `Q2048185`
+            - **francology** `Q3082422`
+            - **general economics** `Q10660901` **[1]**  GND:`4078943-3`
+                - **public finance** `Q274490`  LCSH:`sh85048270` GND:`4121273-3` DDC:`336`
+            - **geoeconomics** `Q2469844`
+            - **health economics** `Q31218`  LCSH:`sh85082915` LCC:`RA410-RA410.9` GND:`4130935-2` DDC:`338.473621`
+            - **information economics** `Q1394203`  GND:`4161671-6`
+            - **international economics** `Q47417`  LCSH:`sh85067395` GND:`4003856-7` DDC:`337`
+            - **labour economics** `Q28161`  LCSH:`sh85073687` DDC:`331`
+            - **land economy** `Q6484062`
+            - **library economics** `Q118227618`
+            - **mathematical economics** `Q747534`  LCSH:`sh85040869` GND:`4066472-7` DDC:`330.0151`
+            - **microeconomics** `Q39072`  LCSH:`sh85084819` GND:`4039225-9` DDC:`338.5`
+            - **Māori economics** `Q110391017`
+            - **natural resources** `Q105575840` **[2]**
+                - **fisheries science** `Q1420050` **[2]**  LCSH:`sh2005020061` GND:`4401603-7`
+                    - **Māori fisheries and customary fisheries** `Q110350936`
+                    - **Post-harvest fisheries technologies (incl. transportation)** `Q110297602`
+                - **wildlife resources** `Q105575936`  LCSH:`sh96005596` FAST:`1175429`
+            - **neuroeconomics** `Q1045712`  LCSH:`sh2005008805`
+            - **Non-market economics** `Q111182436`
+            - **Pacific Peoples economics** `Q113208003`
+            - **pharmacoeconomics** `Q1567856`  GND:`4418449-9`
+            - **political arithmetic** `Q137053180`
+            - **positive economics** `Q26110`
+            - **production theory** `Q1080208`
+            - **public health economics** `Q56453016`
+            - **Q12300677** `Q12300677`
+            - **real estate economics** `Q1660119` **[1]**  DDC:`333.33`
+                - **housing economics** `Q137719667`
+            - **Urban and regional economics** `Q112971079`
+        - **ethnography** `Q132151` **[3]**
+            - **etnomusicology** `Q208365` **[1]**  LCSH:`sh85045421` GND:`4127833-1` DDC:`780.89|780|305.8`
+                - **ethnodoxology** `Q5404352`
+            - **salvage ethnography** `Q7406565`
+            - **visual ethnography** `Q57205841`
+        - **European ethnology (Volkskunde)** `Q15075764`  GND:`4078937-8`
+        - **government studies** `Q129254777`
+        - **heritage studies** `Q25101906`
+        - **indigenous studies** `Q108352346` **[4]**
+            - **Aboriginal and Torres Strait Islander culture, language and history** `Q113192749`
+            - **Aboriginal and Torres Strait Islander studies** `Q109984814`
+            - **Indigenous studies culture, language and history** `Q113127851`
+            - **Pacific Peoples society and community** `Q113127725` **[1]**
+                - **Pacific Peoples perspectives** `Q113127812`
+        - **international studies** `Q5654877`
+        - **jurisprudence** `Q4932206` **[5]**  LCSH:`sh85071088` GND:`4076570-2` DDC:`348.04`
+            - **comparative law** `Q741338`  LCSH:`sh85029299` GND:`4115712-6` DDC:`340|340.2`
+            - **Experimental jurisprudence** `Q114024742`
+            - **legal archaeology** `Q19787009`
+            - **Legisprudence** `Q1519115`  GND:`4157102-2`
+            - **Q99976367** `Q99976367`
+        - **leadership studies** `Q2697537`
+        - **Life course research** `Q96387450` **[2]**
+            - **Māori life course** `Q110352377`
+            - **Pacific Peoples life course** `Q113207958`
+        - **linguistics** `Q8162` **[58]**  LCSH:`sh85077222` LCC:`P120.52-P149.22|P121` GND:`4074250-7` FAST:`999202` DDC:`410`
+            - **Ainu linguistics** `Q117268402`
+            - **anthropological linguistics** `Q29407`  LCSH:`sh85005577`
+            - **applied linguistics** `Q321249`  LCSH:`sh85006168` GND:`4127822-7` DDC:`418`
+            - **Arabic Language Studies** `Q85873793`
+            - **astrolinguistics** `Q28130028`
+            - **cognitive science** `Q147638` **[1]**  LCSH:`sh88006179` GND:`4193780-6` DDC:`006.3|612.8233|153`
+                - **cognitive behavioral therapy** `Q1147152`  GND:`4114250-0`
+            - **comparative linguistics** `Q878226`  LCSH:`sh85029301` LCC:`P143-P143.3` GND:`4187739-1` DDC:`410`
+            - **creolistics** `Q13526509`
+            - **demotics** `Q26234216`
+            - **descriptive linguistics** `Q777864`
+            - **dialectology** `Q146893` **[1]**  LCSH:`sh85037526` GND:`4040728-7` DDC:`417.2|417`
+                - **social dialectology** `Q96239348`
+            - **ethnolinguistics** `Q853085`  GND:`4153097-4` DDC:`306.44`
+            - **etruscology** `Q1371704`  LCSH:`sh85045469` GND:`4219655-3` DDC:`937.501`
+            - **feminist linguistics** `Q136723712`
+            - **Finno-Ugric linguistics** `Q133260960`
+            - **foreign language research** `Q123563189`
+            - **general linguistics** `Q14357850`
+            - **grammar** `Q8091` **[1]**  LCSH:`sh85056259` GND:`4021806-5` DDC:`415`
+                - **orthology** `Q13430502`
+            - **graphonomics** `Q5597333` **[1]**
+                - **alphabetology** `Q134725690`
+            - **historical linguistics** `Q190375` **[2]**  LCSH:`sh85061192` LCC:`P140-P143.3` GND:`4127276-6` DDC:`417`
+                - **diachronic comparative linguistics** `Q18384059`
+                - **quantitative comparative linguistics** `Q7268922`
+            - **historical, comparative and typological linguistics** `Q113128713`
+            - **Hungarian linguistics** `Q133260951`
+            - **indigenous linguistics** `Q97377644`
+            - **Indo-European studies** `Q1413128`  LCSH:`sh85065705` GND:`4161557-8`
+            - **Internet linguistics** `Q6056000`
+            - **language and gender** `Q265239`
+            - **lexicology** `Q178433` **[2]**  LCSH:`sh85076359` GND:`4114409-0` DDC:`413`
+                - **lexicography** `Q184524`  LCSH:`sh85076357` LCC:`P327-P327.5` GND:`4035548-2` DDC:`413.028`
+                - **neology** `Q134467910`
+            - **LGBT linguistics** `Q6502543`
+            - **linguistic anthropology** `Q772835`  GND:`4153097-4`
+            - **linguistic palaeontology** `Q11697471`  LCSH:`sh85077220`
+            - **linguistic typology** `Q192625`  LCSH:`sh85139174` GND:`4056503-8` FAST:`1160078` DDC:`410.1`
+            - **metalinguistics** `Q2918137`
+            - **Māori linguistics and languages** `Q110267075`
+            - **normativistics** `Q61951540`
+            - **paradigmatics** `Q12558282`
+            - **particular linguistics** `Q10894548`
+            - **patholinguistics** `Q2056817`  GND:`4075929-5`
+            - **philology** `Q40634` **[26]**  LCSH:`sh85100821` GND:`4174271-0` DDC:`400|800`
+                - **Arabian philology** `Q30082957`
+                - **Catalan philology** `Q1735560`  GND:`4249908-2`
+                - **Celtic studies** `Q27997`  GND:`4163569-3`
+                - **Classical Chinese semantics** `Q8011708`
+                - **classical philology** `Q10913068`
+                - **classical philology** `Q495527` **[3]**  LCSH:`sh85026710` GND:`4164044-5` DDC:`480`
+                    - **Greek philology** `Q64968842`
+                    - **Greek studies** `Q16267481`  LCSH:`sh85057184` GND:`4315324-0` DDC:`880|480`
+                    - **Latin studies** `Q1806979`  GND:`4166851-0`
+                - **comparative philology** `Q5862006`
+                - **computational philology** `Q1122523`
+                - **edition enlaces** `Q1285373`
+                - **English studies** `Q27968` **[2]**  LCSH:`sh85043929` LCC:`PE` GND:`4002046-0` FAST:`912245` DDC:`420|820`
+                    - **Canadian studies** `Q4676302`  GND:`7686561-7` DDC:`427.971|810`
+                    - **Eigaku** `Q11616914`
+                - **French language studies** `Q11333703`  GND:`7503327-6`
+                - **German philology** `Q76996465`  LCSH:`sh85054411`
+                - **Hellenistic philology** `Q5862008`
+                - **Italian philology** `Q3745495`  LCSH:`sh85068840`
+                - **Italian studies** `Q515601`  GND:`4162604-7` DDC:`850|450`
+                - **Latvian studies** `Q9259810`
+                - **literary studies** `Q208217` **[22]**  GND:`4036034-9`
+                    - **Arthurian Studies** `Q119441624`
+                    - **Bulgakov studies** `Q4098870`
+                    - **Bunin studies** `Q113408511`
+                    - **Chekhov studies** `Q48127094`
+                    - **Claudel studies** `Q116457479`
+                    - **Epistemocriticism** `Q137780862`
+                    - **history of literature** `Q6497044`  LCSH:`sh85077519` GND:`7503748-8` DDC:`809`
+                    - **incunabula studies** `Q1663772`
+                    - **kagaku** `Q11545105`
+                    - **Latin and classical Greek literature** `Q113128791`
+                    - **literary theory** `Q459381` **[2]**  LCSH:`sh85077509` GND:`4036031-3` DDC:`801`
+                        - **poetics** `Q835023` **[1]**  LCSH:`sh85103703` GND:`4046449-0` DDC:`801.93|808.1`
+                            - **versology** `Q15401579` **[1]**
+                                - **strophics** `Q12158264`
+                        - **Q124419987** `Q124419987`
+                    - **literature in Spanish and Portuguese** `Q113128824`
+                    - **North American literature** `Q113128838`
+                    - **popular and genre literature studies** `Q113128855`
+                    - **Q105834508** `Q105834508`
+                    - **Q110566862** `Q110566862`
+                    - **Q538734** `Q538734`
+                    - **reception aesthetics** `Q3067311`
+                    - **Shakespeare studies** `Q101243133`
+                    - **Skaryna studies** `Q19862564`
+                    - **study of fairy tales** `Q135655141`  LCSH:`sh2008103479` GND:`4191459-4`
+                    - **Tolstoy studies** `Q16706727`
+                - **Malay studies** `Q1270672`  GND:`4247466-8`
+                - **modern philology** `Q11790583`
+                - **Neo-Latin philology** `Q24952707`
+                - **Portuguese philology** `Q138332594`
+                - **Russian philology** `Q55693890`  LCSH:`sh85116004`
+                - **Spanish philology** `Q3381164`
+                - **standardology** `Q2330376`
+                - **study of chapter and sentence annotations** `Q10913522`
+                - **Sylheti studies** `Q129978142`
+            - **phonetics** `Q35395` **[1]**  LCSH:`sh85101053` GND:`4045830-1` DDC:`414.8`
+                - **historical phonology** `Q47491145`  LCSH:`sh2002006230`
+            - **phonology** `Q40998` **[4]**  LCSH:`sh99005585` GND:`4045836-2` DDC:`414`
+                - **cognitive phonology** `Q5141229`
+                - **segmental phonology** `Q9261228`
+                - **suprasegmental phonology** `Q9261230`
+                - **tonology** `Q3531650`
+            - **phraseology** `Q1126894` **[2]**  LCSH:`sh85101436` GND:`4076108-3` DDC:`418`
+                - **paremiology** `Q1858421`  LCSH:`sh85107841` GND:`4182566-4` DDC:`398.9`
+                - **Q12764583** `Q12764583`
+            - **Q25447165** `Q25447165`
+            - **Romance linguistics** `Q3833033`
+            - **Russian linguistics** `Q4261898`
+            - **Saami linguistics** `Q12718141`
+            - **sociolinguistics** `Q160845` **[2]**  LCSH:`sh85124195` GND:`4077623-2` DDC:`306.44`
+                - **interlinguistics** `Q856574`
+                - **sociocultural linguistics** `Q7552779`
+            - **Spanish linguistics** `Q66565628`
+            - **study of the Hebrew language** `Q739465`  GND:`4159338-8` DDC:`492.4|892.4`
+            - **stylistics** `Q28856`  LCSH:`sh85074540` GND:`4116621-8` DDC:`809`
+            - **systemic functional linguistics** `Q7663820`
+            - **Tangutology** `Q7683174`
+            - **terminology science** `Q4455895`  GND:`4246651-9`
+            - **theoretical linguistics** `Q351625`
+            - **translation studies** `Q501778` **[2]**  GND:`4438228-5`
+                - **interpreting studies** `Q131409194`
+                - **Post-translation studies** `Q119348104`
+            - **typological linguistics** `Q113128717`
+            - **Ukrainian linguistics** `Q4470675`
+            - **Vernacular Language (Tongan and Niuafo'ou)** `Q64800955`
+            - **virolinguistics** `Q118369303`
+        - **media studies** `Q165650` **[7]**  GND:`4169194-5`
+            - **digital media studies** `Q87660742`
+            - **film studies** `Q1660187` **[1]**  GND:`4154385-3`
+                - **film theory** `Q28793`  LCSH:`sh2008108033` GND:`4071216-3`
+            - **journalism studies** `Q1709909`  GND:`4337135-8`
+            - **media culture studies** `Q96583169`
+            - **Māori media, film, animation and photography** `Q110267088`
+            - **Pacific Peoples media, film, animation and photography** `Q113203733`
+            - **television studies** `Q2065951` **[1]**  GND:`4154055-4`
+                - **Buffy studies** `Q2882044`
+        - **mythography** `Q580854` **[2]**
+            - **comparative mythology** `Q640280`  LCSH:`sh2010103037` LCC:`BL300-BL325`
+            - **Japanese mythography** `Q11506048`
+        - **Māori peoples, society and community** `Q110373936` **[2]**
+            - **Māori community-based research** `Q110374014`
+            - **Māori perspectives** `Q110393876`
+        - **policy studies** `Q3179130`  LCSH:`sh85104264`
+        - **political studies** `Q15831440` **[2]**
+            - **political economics** `Q47555` **[1]**  GND:`4115586-5` DDC:`330`
+                - **international political economy** `Q1667430`
+            - **political science** `Q36442` **[19]**  LCSH:`sh85104440` GND:`4076229-4` FAST:`1069781` DDC:`320`
+                - **comparative government and politics** `Q113126650`
+                - **defense studies** `Q11657089`
+                - **international relations** `Q166542` **[2]**  LCSH:`sh85067435` FAST:`977053` DDC:`327`
+                    - **geopolitics** `Q159385` **[2]**  LCSH:`sh85054192` LCC:`JC319` GND:`4156741-9` DDC:`320.12`
+                        - **geopolitical economy** `Q3718726`
+                        - **geostrategy** `Q1991280`
+                    - **security studies** `Q1280151` **[2]**
+                        - **environmental security** `Q1049876`
+                        - **Welsh School** `Q7981983`
+                - **irenology** `Q15141361`  LCSH:`sh85098946` GND:`4155435-8`
+                - **kremlinology** `Q1263075`
+                - **New Zealand political studies** `Q112981121`
+                - **peace and conflict studies** `Q15820293`
+                - **Pekingology** `Q127656899`
+                - **political methodology** `Q7210346`
+                - **political science and international relations** `Q55659900`
+                - **political science of religion** `Q1526011`
+                - **political theory and political philosophy** `Q112981240`
+                - **presidential studies** `Q118720234`
+                - **Putinology** `Q111805508`
+                - **revolutionology** `Q130326139`
+                - **science of public administration** `Q2736989` **[1]**  GND:`4137670-5`
+                    - **public administration theory** `Q55693887`
+                - **sustainability studies** `Q7649562`
+                - **terrorism studies** `Q137660079`
+                - **war studies** `Q1367522`
+        - **premilitary instruction** `Q17634913`
+        - **public health** `Q189603` **[9]**  LCSH:`sh85108638` LCC:`RA|RA421-RA790.95` GND:`4139640-6` FAST:`1082238` DDC:`362.1`
+            - **Arts in health** `Q137303847`
+            - **arts in medicine** `Q137318343`
+            - **environmental health** `Q932068`
+            - **global health** `Q2725393` **[1]**  LCSH:`sh85148199` LCC:`RA441` GND:`1262928265` FAST:`1181338`
+                - **international health** `Q3247219`
+            - **international health** `Q130427619`
+            - **Māori public health and wellbeing** `Q110353571`
+            - **Pacific Peoples public health and wellbeing** `Q113207972`
+            - **population health** `Q3291156`
+            - **public health nutrition** `Q1502288`
+        - **public policy studies** `Q85710967`
+        - **Q56300741** `Q56300741`
+        - **regional science** `Q1781695`  GND:`4177424-3` DDC:`711.3`
+        - **religious studies** `Q34187` **[9]**  LCSH:`sh85112556` GND:`4049426-3`
+            - **Buddhist studies** `Q1000976`  GND:`4755247-5`
+            - **Buddhology** `Q5258544`
+            - **Christian studies** `Q110419499`
+            - **Hindu studies** `Q5766501`
+            - **Jewish studies** `Q42002` **[3]**  LCSH:`sh85070866` GND:`4162796-9`
+                - **Holocaust studies** `Q1568255`
+                - **Jewish communities studies** `Q108823107`
+                - **Talmudic studies** `Q26830783`
+            - **Māori religion and religious studies** `Q110267165`
+            - **Quranic studies** `Q2370897`
+            - **religion and geography** `Q614221`  LCSH:`sh85112568` GND:`4049403-2`
+            - **Shinto studies** `Q114567052`
+        - **rural social sciences** `Q116250315`
+        - **science of journalism** `Q2116549`  GND:`4126878-7`
+        - **shipping law** `Q65555004`
+        - **social and political sciences** `Q97581982`
+        - **social data science** `Q118984366`
+        - **social studies** `Q14565700`  LCSH:`sh85124019` GND:`4055852-6`
+        - **socio-economic geography and spatial management** `Q107640362`
+        - **sociology** `Q21201` **[16]**  LCSH:`sh85124200` GND:`4077624-4` DDC:`301`
+            - **Aboriginal and Torres Strait Islander peoples, society and community** `Q113212205`
+            - **book sociology** `Q135873358`
+            - **croatology** `Q114342310`
+            - **French sociology** `Q90921731`
+            - **gender studies** `Q1662673` **[3]**  GND:`4482930-9`
+                - **Gender and Law** `Q20919947`
+                - **transgender studies** `Q17014367`
+                - **women's studies** `Q35069` **[2]**
+                    - **female status** `Q110402826`
+                    - **women’s and gender studies** `Q137324235`
+            - **marital compatibility** `Q50840417`
+            - **Māori sociological studies** `Q110394226`
+            - **neurosociology** `Q16254353`
+            - **Pacific Peoples sociological studies** `Q113127816`
+            - **public sociology** `Q4353946`  LCSH:`sh98003718`
+            - **social welfare** `Q66306401`
+            - **sociodemography** `Q3487479`
+            - **sociology of change** `Q120200571`
+            - **sociology of work** `Q15783860`  GND:`4138757-0` DDC:`306.36`
+            - **sociotechnology** `Q1380539`  LCSH:`sh85133169` GND:`4131336-7`
+            - **US sociology** `Q3487487`
+        - **theology and religious studies** `Q64687996`
+        - **welfare studies** `Q11594373`
+
+- **social services** `Q11588306` **[1]** *(structural parent — not itself a discipline)*
+    - **community services** `Q104777741`
+
+- **social system** `Q1639378` **[1]** *(structural parent — not itself a discipline)*
+    - **management system** `Q629173` **[1]**
+        - **management control system** `Q899279`  GND:`4070102-5`
+
+- **social work** `Q205398` **[2]** *(structural parent — not itself a discipline)*
+    - **counselling, wellbeing and community services** `Q113192683`
+    - **social program evaluation** `Q113192699`
+
+- **society** `Q8425` **[1]** *(structural parent — not itself a discipline)*
+    - **policy and administration studies** `Q113125740` **[2]**
+        - **economic development policy studies** `Q113125743`
+        - **gender, policy and administration** `Q113126644`
+
+- **socioeconomic development** `Q4810841` **[1]** *(structural parent — not itself a discipline)*
+    - **rural development** `Q3045473`  LCSH:`sh85115899` GND:`4034450-2`
+
+- **sociological theory** `Q1377163` **[1]** *(structural parent — not itself a discipline)*
+    - **social theory** `Q1990987` **[2]**
+        - **culture theory** `Q1791882`  GND:`4120627-7`
+        - **political theory** `Q9357091`  GND:`4046563-9`
+
+- **sociology of culture** `Q1570681` **[1]** *(structural parent — not itself a discipline)*
+    - **software studies** `Q7554370`
+
+- **sociology of education** `Q829367` **[1]** *(structural parent — not itself a discipline)*
+    - **student sociology** `Q120200947`
+
+- **sociology of law** `Q847034` **[2]** *(structural parent — not itself a discipline)*
+    - **Critical legal studies** `Q1140539`  GND:`7587041-1`
+    - **Māori peoples and the law** `Q110393859`
+
+- **sociology of sport** `Q594322` **[1]** *(structural parent — not itself a discipline)*
+    - **Physical cultural studies** `Q13592481`
+
+- **software** `Q7397` **[2]** *(structural parent — not itself a discipline)*
+    - **data hub** `Q1172474`
+    - **instant messaging** `Q58199`  LCSH:`sh2002000576`
+
+- **software development process** `Q2904257` **[1]** *(structural parent — not itself a discipline)*
+    - **Collaborative software development model** `Q5145857`
+
+- **solid-state chemistry** `Q908684` **[1]** *(structural parent — not itself a discipline)*
+    - **macromolecular materials research** `Q110245428`
+
+- **sound** `Q11461` **[1]** *(structural parent — not itself a discipline)*
+    - **speech** `Q52946`  LCSH:`sh85126434` GND:`4116580-9` DDC:`080`
+
+- **sources of law** `Q846882` **[1]** *(structural parent — not itself a discipline)*
+    - **legal practice** `Q4180175`
+
+- **SPARQL query file format** `Q62522500` **[1]** *(structural parent — not itself a discipline)*
+    - **federated SPARQL query** `Q105160122`
+
+- **spatial data analysis** `Q9150413` **[1]** *(structural parent — not itself a discipline)*
+    - **geospatial data analysis** `Q137047124`
+
+- **spatial statistics** `Q117467429` **[1]** *(structural parent — not itself a discipline)*
+    - **spatial analysis** `Q1938983` **[1]**  LCSH:`sh85126347`
+        - **geospatial analysis** `Q121775330` **[2]**
+            - **geoinformation analysis** `Q124623841`
+            - **GIS analysis** `Q124623836`
+
+- **special effects** `Q381243` **[1]** *(structural parent — not itself a discipline)*
+    - **visual effects** `Q8317`
+
+- **special interest journalism** `Q1262864` **[2]** *(structural parent — not itself a discipline)*
+    - **music journalism** `Q1591288`  GND:`1033525375` DDC:`781.17`
+    - **political journalism** `Q855726`
+
+- **specialized database** `Q1391125` **[1]** *(structural parent — not itself a discipline)*
+    - **biological database** `Q4117139`
+
+- **specific developmental disorder** `Q7574983` **[1]** *(structural parent — not itself a discipline)*
+    - **communication disorder** `Q1058691`  LCSH:`sh85029113`
+
+- **spectroscopy** `Q483666` **[2]** *(structural parent — not itself a discipline)*
+    - **nanospectroscopy** `Q136966172`
+    - **time-resolved spectroscopy** `Q7804835`
+
+- **sports training** `Q3055155` **[1]** *(structural parent — not itself a discipline)*
+    - **coaching** `Q106195625`  LCSH:`sh85027299` FAST:`865060`
+
+- **staging** `Q3508687` **[1]** *(structural parent — not itself a discipline)*
+    - **directing** `Q93438884`  LCSH:`sh85134542` FAST:`1149278`
+
+- **statistical model** `Q3284399` **[1]** *(structural parent — not itself a discipline)*
+    - **topic model** `Q3532085`
+
+- **statistics** `Q12483` **[8]** *(structural parent — not itself a discipline)*
+    - **applied statistics** `Q1967088`
+    - **demographic statistics** `Q1965979`
+    - **educational data mining** `Q5341279`
+    - **lexicostatistics** `Q284290`
+    - **parametric statistics** `Q1849855`
+    - **stochastic analysis and modelling** `Q113209107`
+    - **time series analysis** `Q11850042`
+    - **time series and spatial modelling** `Q113209158`
+
+- **stochastic process** `Q176737` **[1]** *(structural parent — not itself a discipline)*
+    - **random walk** `Q856741`  LCSH:`sh85111357` DDC:`519.282`
+
+- **strategy** `Q185451` **[2]** *(structural parent — not itself a discipline)*
+    - **business strategy** `Q17992487`
+    - **national security strategy** `Q101476843`
+
+- **stress** `Q123414` **[1]** *(structural parent — not itself a discipline)*
+    - **plant stress physiology** `Q1795341`
+
+- **structural analysis** `Q1762403` **[1]** *(structural parent — not itself a discipline)*
+    - **structural dynamics** `Q811197`  LCSH:`sh85129197`
+
+- **structure** `Q6671777` **[1]** *(structural parent — not itself a discipline)*
+    - **narrative structure** `Q847829`
+
+- **structure** `Q499525` **[1]** *(structural parent — not itself a discipline)*
+    - **linear structure** `Q16705689`
+
+- **structure prediction** `Q67577480` **[1]** *(structural parent — not itself a discipline)*
+    - **protein structure prediction** `Q899656` **[1]**
+        - **de novo protein structure prediction** `Q5244958`
+
+- **studies** `Q9347372` **[7]** *(structural parent — not itself a discipline)*
+    - **business studies** `Q5001951` **[3]**
+        - **business science** `Q8346141`
+        - **management science** `Q2414942`  LCSH:`sh85080363` FAST:`1007306` DDC:`658`
+        - **Marketing science** `Q6770925` **[1]**
+            - **marketing management** `Q1143466`  LCSH:`sh85081339`
+    - **interdisciplinary studies** `Q69975710` **[1]**
+        - **sports studies** `Q135529961`
+    - **maritime studies** `Q6765895`
+    - **mechanical engineering studies** `Q2358766`
+    - **science studies** `Q1332231` **[1]**  GND:`4129377-0`
+        - **earth science studies** `Q106387954` **[1]**
+            - **studies in cartography** `Q124624035` **[1]**
+                - **Cartography & GIS** `Q124623978`
+    - **tourism studies** `Q976962` **[1]**  GND:`4218983-4`
+        - **Tourist behaviour and visitor experience** `Q112939014`
+    - **water resources engineering and management** `Q106372193`
+
+- **study of complex systems** `Q2995634` **[1]** *(structural parent — not itself a discipline)*
+    - **organizational studies** `Q2029930`
+
+- **stylizing** `Q1752818` **[1]** *(structural parent — not itself a discipline)*
+    - **musical expression** `Q6942545`
+
+- **suggestion** `Q690194` **[1]** *(structural parent — not itself a discipline)*
+    - **hypnosis** `Q8609`  LCSH:`sh85063752` GND:`4026376-9` DDC:`154.7`
+
+- **survey study** `Q3490295` **[1]** *(structural parent — not itself a discipline)*
+    - **survey methodology** `Q814232`  GND:`4005227-8`
+
+- **sustainability and environmental management** `Q17163083` **[1]** *(structural parent — not itself a discipline)*
+    - **waste management** `Q180388`  LCSH:`sh85112316` LCC:`HD4482-HD4485` GND:`4000107-6`
+
+- **sustainable development** `Q131201` **[1]** *(structural parent — not itself a discipline)*
+    - **Sustainable agricultural development** `Q110252355`
+
+- **synthetic chemistry** `Q2963661` **[1]** *(structural parent — not itself a discipline)*
+    - **molecular design** `Q55213915`  GND:`4265444-0`
+
+- **systematic theology** `Q875490` **[2]** *(structural parent — not itself a discipline)*
+    - **ecumenics** `Q11857274`
+    - **moral theology** `Q15195740`  GND:`4074972-1` DDC:`205`
+
+- **systems biology** `Q815297` **[1]** *(structural parent — not itself a discipline)*
+    - **systems immunology** `Q7663865`
+
+- **systems science** `Q2167061` **[1]** *(structural parent — not itself a discipline)*
+    - **operations research** `Q194292`  LCSH:`sh85095020` LCC:`T57.6-T57.97` GND:`4043586-6` DDC:`003|658.4034`
+
+- **Sámi studies** `Q1663942` **[2]** *(structural parent — not itself a discipline)*
+    - **Skolt Saami** `Q116250780`
+    - **Skolt Saami language and culture** `Q116250825`
+
+- **Tahitic** `Q38937` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori** `Q36451`  LCSH:`sh85080812` GND:`4198174-1` FAST:`1008646`
+
+- **taxonomy** `Q7211` **[1]** *(structural parent — not itself a discipline)*
+    - **linguistic taxonomy** `Q1972954`
+
+- **taxonomy of animals** `Q26975748` **[1]** *(structural parent — not itself a discipline)*
+    - **taxonomy of lemurs** `Q3516405`
+
+- **teaching methods** `Q4291937` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori educational methods** `Q110321623`
+
+- **technical process** `Q500669` **[1]** *(structural parent — not itself a discipline)*
+    - **parsing** `Q194152`
+
+- **technique** `Q2695280` **[3]** *(structural parent — not itself a discipline)*
+    - **abstraction** `Q224055`
+    - **electronics** `Q11650` **[3]**  LCSH:`sh85042383` GND:`4014346-6` FAST:`907538` DDC:`537`
+        - **microelectronics** `Q175403`  LCSH:`sh85084822` GND:`4039207-7` DDC:`621.381`
+        - **photonic and electro-optical devices, sensors and systems** `Q113112790`
+        - **physical electronics** `Q12568274`
+    - **surveying** `Q816425` **[2]**  LCSH:`sh85130857` DDC:`333.08`
+        - **construction surveying** `Q811934`
+        - **quantity surveying** `Q110245393`
+
+- **tertiary education** `Q9166713` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori higher education** `Q110321745`
+
+- **text mining** `Q676880` **[1]** *(structural parent — not itself a discipline)*
+    - **relationship extraction** `Q7310755`
+
+- **theological studies** `Q107508911` **[1]**
+    - **deaconess studies** `Q108509507`
+
+- **theory** `Q17737` **[16]** *(structural parent — not itself a discipline)*
+    - **architectural theory** `Q47537`
+    - **circuit theory** `Q2089905`  GND:`4171531-7`
+    - **communication theory** `Q83966`
+    - **dance theory** `Q5215311`  LCSH:`sh2020007994`
+    - **gender theory** `Q118152682`
+    - **international relations theory** `Q1785609`
+    - **legal theory** `Q1331392`  GND:`4126505-1`
+    - **media theory** `Q727650`  GND:`7610872-7`
+    - **music theory** `Q193544`  LCSH:`sh85088826` LCC:`MT5.5-MT7` GND:`4040876-0` FAST:`1030620` DDC:`781`
+    - **network theory** `Q1192971`
+    - **Operational investment theory** `Q25378228`  GND:`4162257-1`
+    - **public choice theory** `Q674530`  GND:`4043214-2`
+    - **Q31842110** `Q31842110`
+    - **social choice theory** `Q1971461`  LCSH:`sh85123920` DDC:`302.13`
+    - **theory of computation** `Q844718`
+    - **theory of history** `Q127374077`
+
+- **Theory of change** `Q17165339` **[2]** *(structural parent — not itself a discipline)*
+    - **Māori theory of change models for health** `Q110354278`
+    - **Pacific Peoples theory of change models for health** `Q113207980`
+
+- **thought** `Q9420` **[1]** *(structural parent — not itself a discipline)*
+    - **thought** `Q56350999`
+
+- **tourism** `Q49389` **[2]** *(structural parent — not itself a discipline)*
+    - **Māori tourism** `Q110394319`
+    - **tourism resource appraisal** `Q113093764`
+
+- **toxicology** `Q7218` **[1]** *(structural parent — not itself a discipline)*
+    - **chemical and environmental toxicology** `Q108366378`
+
+- **tracking** `Q106518118` **[1]** *(structural parent — not itself a discipline)*
+    - **eye tracking** `Q970687`
+
+- **translation** `Q7553` **[2]** *(structural parent — not itself a discipline)*
+    - **literary translation** `Q11828784`
+    - **multimedia translation** `Q6934797`
+
+- **translation by target language** `Q113784815` **[1]** *(structural parent — not itself a discipline)*
+    - **translation into English** `Q113784867`
+
+- **transport** `Q7590` **[1]** *(structural parent — not itself a discipline)*
+    - **vehicular automation** `Q3569610`
+
+- **transport safety** `Q2399986` **[1]** *(structural parent — not itself a discipline)*
+    - **transportation safety administration** `Q125197414`
+
+- **transport service** `Q2806437` **[1]** *(structural parent — not itself a discipline)*
+    - **public transport** `Q178512`  LCSH:`sh85077945` GND:`4172386-7` DDC:`388`
+
+- **typology** `Q27214933` **[1]** *(structural parent — not itself a discipline)*
+    - **taxonomy** `Q8269924`
+
+- **underwater archaeology** `Q765822` **[1]** *(structural parent — not itself a discipline)*
+    - **freshwater underwater archaeology** `Q2860615`
+
+- **university history** `Q1667633` **[1]** *(structural parent — not itself a discipline)*
+    - **students' history** `Q2358261`
+
+- **urban and regional planning** `Q64808211` **[5]**
+    - **housing markets, development and management** `Q113135377`
+    - **Māori urban and regional planning** `Q110394368`
+    - **Public participation and community engagement** `Q112970717`
+    - **regional analysis and development** `Q113066891`
+    - **strategic, metropolitan and regional planning** `Q113071172`
+
+- **urbanism** `Q59950` **[1]** *(structural parent — not itself a discipline)*
+    - **Q1317771** `Q1317771`
+
+- **use** `Q1724915` **[1]** *(structural parent — not itself a discipline)*
+    - **modeling and simulation** `Q6888384`
+
+- **virology** `Q7215` **[5]** *(structural parent — not itself a discipline)*
+    - **arbovirology** `Q136026858`
+    - **marine virology** `Q126364785`
+    - **retrovirology** `Q130326133`
+    - **rickettsiology** `Q110823158`
+    - **zoonotic virology** `Q97200241`
+
+- **visualization** `Q451553` **[1]** *(structural parent — not itself a discipline)*
+    - **data visualization** `Q6504956` **[1]**  LCSH:`sh2002000243` DDC:`001.4226`
+        - **map visualization** `Q21936818`
+
+- **vocational education** `Q6869278` **[1]** *(structural parent — not itself a discipline)*
+    - **industrial education** `Q107094241`
+
+- **water conservation** `Q1462136` **[1]** *(structural parent — not itself a discipline)*
+    - **lake conservation** `Q114570397`  LCSH:`sh95006396` FAST:`990854`
+
+- **water management** `Q1501619` **[2]** *(structural parent — not itself a discipline)*
+    - **Aboriginal and Torres Strait Islander land and water management** `Q109984820`
+    - **Māori land and water management** `Q110351062`
+
+- **web content** `Q3948731` **[1]** *(structural parent — not itself a discipline)*
+    - **user-generated content** `Q579716`  LCSH:`sh2007005697`
+
+- **web framework** `Q1330336` **[1]** *(structural parent — not itself a discipline)*
+    - **Semantic Web Framework** `Q56539593`
+
+- **well-being** `Q7981051` **[1]** *(structural parent — not itself a discipline)*
+    - **Māori social, cultural, emotional and spiritual wellbeing** `Q110353757`
+
+- **West African studies** `Q54255598` **[1]** *(structural parent — not itself a discipline)*
+    - **Gambian studies** `Q115669443`
+
+- **Western literature** `Q116476` **[1]** *(structural parent — not itself a discipline)*
+    - **American literature** `Q233762`  LCSH:`sh85004336` LCC:`PS` FAST:`807113` DDC:`810`
+
+- **Western philosophy** `Q842333` **[1]** *(structural parent — not itself a discipline)*
+    - **contemporary philosophy** `Q943303`  LCC:`B790-B5802`
+
+- **wildlife management** `Q580178` **[1]** *(structural parent — not itself a discipline)*
+    - **wildlife recovery** `Q106151920`  LCSH:`sh2001012329` FAST:`1175385`
+
+- **word embedding** `Q18395344` **[1]** *(structural parent — not itself a discipline)*
+    - **Word2vec** `Q22673982`
+
+- **work** `Q386724` **[3]** *(structural parent — not itself a discipline)*
+    - **collection** `Q2668072` **[1]**  GND:`4128844-0`
+        - **RDF vocabulary** `Q115684393`
+    - **knowledge representation** `Q109642276`
+    - **text corpus** `Q461183`  LCSH:`sh2006006393` GND:`4165338-5` DDC:`410.188`
+
+- **work of art** `Q838948` **[1]** *(structural parent — not itself a discipline)*
+    - **contemporary art** `Q186030`
+
+- **work psychology** `Q6096488` **[1]** *(structural parent — not itself a discipline)*
+    - **human factors** `Q121029188`
+
+- **world view** `Q49447` **[1]** *(structural parent — not itself a discipline)*
+    - **religion** `Q9174` **[2]**  LCSH:`sh85112549|sh2002007663` GND:`4049396-9` FAST:`1093763` DDC:`200`
+        - **Eastern religions** `Q3250393`
+        - **Old Nordic Religion** `Q55584434`
+
+- **writing** `Q37260` **[3]** *(structural parent — not itself a discipline)*
+    - **creative writing** `Q586060` **[1]**  LCSH:`sh85033847` GND:`4165550-3` FAST:`882489` DDC:`808.02|808.3`
+        - **fiction writing** `Q4994861`  LCSH:`sh85048057`
+    - **screenwriting** `Q3429919`  LCSH:`sh85088030`
+    - **writing for children and young adults** `Q113534285`
+
+- **written work** `Q47461344` **[1]** *(structural parent — not itself a discipline)*
+    - **hadith** `Q234343`  LCSH:`sh85058192` LCC:`KBP450` GND:`1153832267` FAST:`950112`
+
+- **yoga** `Q9350` **[1]** *(structural parent — not itself a discipline)*
+    - **Integral yoga** `Q1665395`
+
+- **zoophysiology** `Q2432331` **[2]** *(structural parent — not itself a discipline)*
+    - **digestive physiology** `Q130261998`
+    - **invertebrate physiology** `Q136290941`
+
+## Leaf Disciplines (1572 — no sub-disciplines)
+
+- **A-Level Law** `Q136439567`  
+- **Aboriginal and Torres Strait Islander research methods** `Q116921934`  
+- **Abox abduction** `Q120971468`  
+- **abstractive summarisation** `Q120970741`  
+- **Academic English Studies and Linguistics** `Q65007471`  
+- **academic study of Western esotericism** `Q7988481`  
+- **accidentology** `Q2493125`  
+- **accounting and auditing** `Q55713996`  
+- **accounting and finance** `Q64687797`  
+- **Accounting research** `Q15995649`  
+- **acoustics and audio technology** `Q64853859`  
+- **acquisition management** `Q108737665`  
+- **acupuncture** `Q121713`  LCSH:`sh85000761` LCC:`RM184` GND:`4000986-5` DDC:`615.892`
+- **adaptation** `Q4680662`  
+- **adaptivity** `Q120970687`  
+- **administrative management** `Q115982628`  
+- **advanced management** `Q109554318`  
+- **Advanced Management Program** `Q4686227`  
+- **advanced materials for innovation and sustainability** `Q64853817`  
+- **advertising design** `Q11064553`  
+- **AEC/FM** `Q120970778`  
+- **Aerogeophysics** `Q123172092`  
+- **aeromycology** `Q107637788`  
+- **aeronautical electronics** `Q105870754`  
+- **aeronautical science** `Q102314666`  
+- **aeronautical systems** `Q105771153`  
+- **aeronautics and astronautics** `Q133828043`  
+- **aerospace science** `Q106518613`  
+- **aesthetics of music** `Q1955326`  GND:`4040808-5`
+- **Aesthetics, philosophy and history of art** `Q112898786`  
+- **affective state** `Q120970769`  
+- **African studies** `Q37542`  
+- **ageing research** `Q110477187`  
+- **aggregate** `Q4692240`  
+- **agnoiology** `Q96371551`  
+- **agricultural and resource economics** `Q125476291`  
+- **Agricultural biotechnology diagnostics (incl. biosensors)** `Q110231638`  
+- **agricultural communication** `Q4693953`  LCSH:`sh85029049`
+- **agricultural development** `Q65554733`  
+- **agricultural mechanics** `Q114912685`  
+- **Agricultural production systems simulation** `Q110252314`  
+- **agroclimatology** `Q2827229`  
+- **agronomics** `Q56299227`  GND:`4141641-7`
+- **airpower arts and science** `Q102315094`  
+- **airpower strategy** `Q106512225`  
+- **Aisentica** `Q135984617`  
+- **Al-Farabi studies** `Q25482005`  
+- **Algerian studies** `Q115669282`  
+- **alignment correction** `Q120970693`  
+- **alignment management** `Q120970699`  
+- **ambient intelligence** `Q457396`  
+- **American literature and culture** `Q104203314`  
+- **American political science** `Q16147165`  
+- **Americanism** `Q110164233`  
+- **ampelography** `Q474471`  GND:`4419761-5` DDC:`634.8`
+- **analysis of Linked Data** `Q120971499`  
+- **analytical science** `Q64687079`  
+- **Ancient Cultures** `Q112800417`  
+- **Ancient texts** `Q120970662`  
+- **andragogy** `Q465899`  GND:`4015428-2` DDC:`374`
+- **Angolan studies** `Q115669295`  
+- **Animal neurobiology** `Q111327232`  
+- **annotation schemes** `Q120970728`  
+- **annotator disagreement** `Q120971451`  
+- **answer sets** `Q120971478`  
+- **answers justification** `Q120971506`  
+- **anthropomotorics** `Q20056989`  
+- **antiquarianism** `Q56418598`  
+- **Antisemitism studies** `Q125804035`  
+- **applied drama** `Q4781537`  
+- **applied geophysics** `Q55693916`  
+- **Applied Inter-American Studies** `Q55586011`  
+- **applied language and translation studies** `Q64688421`  
+- **applied linguistics and educational linguistics** `Q112947641`  
+- **applied metrology** `Q55033061`  
+- **applied ontology** `Q4781603`  
+- **aquatic toxicology** `Q4117900`  
+- **architectural analytics** `Q831154`  
+- **Architectural management** `Q4787060`  
+- **architectural studies** `Q108366569`  
+- **archivistics** `Q10855175`  
+- **argumentation rules** `Q120970720`  
+- **Aromanian studies** `Q114029871`  
+- **art of tropes** `Q6406167`  
+- **art practice** `Q62302889`  
+- **artificial psychology** `Q4801095`  
+- **arts** `Q102357321`  
+- **arts and letters** `Q2865876`  
+- **Arts in education** `Q4801532`  
+- **AS Level Law** `Q136439579`  
+- **asthma genetics** `Q125760026`  
+- **astroarchaeology** `Q127608456`  
+- **athletic therapy and training** `Q64689290`  
+- **Atlantic World** `Q4816595`  
+- **atmospherics** `Q4817130`  
+- **attribution research** `Q121842147`  
+- **audience studies** `Q85744100`  
+- **authoring** `Q120970727`  
+- **automata theory** `Q214526`  LCSH:`sh85079341` GND:`4003953-5` FAST:`1004846`
+- **automated reasoning** `Q2555318`  
+- **automation** `Q12526674`  
+- **automation and electrical engineering** `Q64853820`  
+- **automation and information technology** `Q64800641`  
+- **Avestan studies** `Q137918344`  
+- **aviation systems** `Q103450882`  
+- **Bachelor of Letters** `Q24901047`  
+- **backward chaining and query rewriting** `Q120970383`  
+- **bakery and patisserie** `Q64811482`  
+- **bank security** `Q21573880`  
+- **Basic writing** `Q4867057`  
+- **Bayesian network** `Q812540`  GND:`4567228-3` DDC:`519.542`
+- **Bayesian statistics** `Q4874481`  LCC:`QA279.5`
+- **Belief studies** `Q136753014`  
+- **benchmarking data** `Q120970355`  
+- **benchmarking framework** `Q120970772`  
+- **Berestology** `Q2482496`  
+- **bibliographic and authority data** `Q120970770`  
+- **Bibliographic data management** `Q120970409`  
+- **Big Data Integration** `Q120970365`  
+- **Bio-aesthetics** `Q2237912`  
+- **bio-health** `Q120970647`  
+- **biocomplexity** `Q3324096`  LCSH:`sh2005001919`
+- **Biodiscovery** `Q110895422`  
+- **biodiversity data integration** `Q120971497`  
+- **biodiversity science** `Q111325032`  
+- **Biogeography and phylogeography** `Q112969963`  
+- **Biographical evaluation** `Q423731`  
+- **biomass refining** `Q64853831`  
+- **Biomedical** `Q20072145`  
+- **biomedical Big Data** `Q120970640`  
+- **biomolecular engineering** `Q4915151`  
+- **biopharmacology** `Q1521926`  
+- **Black Loch Crannog** `Q47011897`  
+- **bookkeeping studies** `Q11603918`  
+- **brain science** `Q11612278`  
+- **British and Irish literature** `Q112939639`  
+- **British studies** `Q4971458`  
+- **broadcast communication** `Q12962335`  
+- **building topology ontology** `Q120970656`  
+- **built environment and design studies** `Q113129241`  
+- **Burkina Faso studies** `Q115669827`  
+- **business administration and personnel management** `Q101802668`  
+- **business and information technology** `Q64945533`  
+- **business and Irish** `Q64688008`  
+- **business architecture** `Q3643219`  
+- **business finance** `Q104093595`  
+- **business informatics** `Q126552`  GND:`4112736-5`
+- **business knowledge graph** `Q120971457`  
+- **business management for business manager** `Q55659910`  
+- **calceology** `Q5018754`  
+- **cameralism** `Q62689`  GND:`4163148-1`
+- **Cameroon studies** `Q115669332`  
+- **Cancer Chemoprevention** `Q120970712`  
+- **candidate program in history** `Q63455747`  
+- **canopy research** `Q811590`  
+- **capability management** `Q5034471`  
+- **Cape Verde studies** `Q115669342`  
+- **Cartographic Semiology** `Q2690276`  
+- **case-based legal reasoning** `Q120970737`  
+- **Catholic studies** `Q118874912`  
+- **cellular immunology** `Q110495051`  
+- **cellular physiology** `Q75135440`  
+- **chaplaincy studies & pastoral work** `Q64808643`  
+- **chasmology** `Q1726359`  
+- **chemical and pharmaceutical sciences** `Q64689283`  
+- **chemistry and molecular sciences** `Q64809521`  
+- **child and adolescent nursing practice** `Q64814360`  
+- **child health** `Q138315812`  
+- **childhood and youth studies** `Q108352501`  
+- **children's and young adult literature** `Q64814365`  
+- **children's nursing** `Q64804768`  
+- **chinese cataloging** `Q11581610`  
+- **Chinese law** `Q2135373`  LCSH:`sh2008106431`
+- **Chinese lexicology** `Q67312597`  
+- **choral studies** `Q64814371`  
+- **choreology** `Q9190331`  
+- **Christian economic ethics** `Q124399811`  
+- **Christian leadership** `Q104467841`  
+- **chronicle mining** `Q120970379`  
+- **Cinematic Taxonomy** `Q136505556`  
+- **CISE** `Q120970384`  
+- **citizenship and social development** `Q106669844`  
+- **civil engineering studies** `Q106372013`  
+- **claim models** `Q120970404`  
+- **Claims** `Q120969801`  
+- **class teacher** `Q64898986`  
+- **classical studies** `Q102327484`  
+- **classical studies and ancient history** `Q65007494`  
+- **Classics** `Q48550423`  
+- **climate change and cities** `Q102133023`  
+- **Climate change and ecosystems** `Q5133463`  
+- **climate change and human mobility** `Q105974518`  
+- **climate change research** `Q123844550`  
+- **climate change sociology** `Q124053338`  
+- **climate modeling** `Q114602980`  
+- **Clinical knowledge representation** `Q120971492`  
+- **clinical pharmacology** `Q1774688`  LCSH:`sh90000174` GND:`4073517-5`
+- **clinical science** `Q105120394`  
+- **clinomics** `Q5133889`  
+- **cliodynamics** `Q766002`  
+- **clothing studies** `Q11626612`  
+- **codicology** `Q1338164`  LCSH:`sh97008489` GND:`4140704-0` FAST:`866236` DDC:`091`
+- **cold climate engineering** `Q64854398`  
+- **cold-start problem** `Q120970711`  
+- **collaborative and industrial design** `Q64808433`  
+- **collaborative filtering** `Q94702`  GND:`7512839-1`
+- **colonial studies** `Q11540642`  
+- **combustion engineering** `Q24898950`  
+- **commercial sciences** `Q2327751`  
+- **common data model** `Q111588755`  
+- **communication arts** `Q16769609`  
+- **communication design** `Q333657`  
+- **community culture** `Q124473401`  
+- **community planning** `Q1500493`  
+- **comparative librarianship** `Q11126155`  
+- **comparative medicine** `Q22907418`  LCSH:`sh85083134` FAST:`1015232`
+- **comparative philosophy** `Q1284814`  
+- **comparative religion** `Q1075827`  LCSH:`sh85112599` FAST:`1093898`
+- **complex alignment** `Q120970375`  
+- **composition studies** `Q2791145`  
+- **comptrollership** `Q106626993`  
+- **computable measure theory** `Q5157267`  
+- **Computational folkloristics** `Q120969791`  
+- **computational protein engineering** `Q66360528`  
+- **computational transportation science** `Q5157344`  
+- **computational visualistics** `Q1122625`  GND:`7535806-2`
+- **computer and information science** `Q97379428`  
+- **computer information science** `Q107327315`  
+- **computer music** `Q1122550`  LCSH:`sh85029511` GND:`4113239-7`
+- **Computer science at the University of Toronto** `Q137547845`  
+- **computer systems** `Q105981125`  
+- **computer systems and applications** `Q55693885`  
+- **computer vision** `Q844240`  LCSH:`sh85029549`
+- **computer-supported cooperative work** `Q1461602`  LCSH:`sh92006326` GND:`4288972-8`
+- **computers and writing** `Q5157616`  
+- **conceptual clustering trees** `Q120969792`  
+- **conceptual modeling** `Q120910065`  
+- **Conceptual Space Markup Language** `Q120970345`  
+- **conceptual spaces** `Q5158431`  
+- **conditional random fields** `Q120970715`  
+- **conflict analysis & resolution** `Q55659895`  
+- **conflict studies** `Q1781444`  GND:`4073678-7` DDC:`303.66072|327.17072`
+- **Congolese studies (Democratic Republic of Congo)** `Q115669378`  
+- **conjunctive query answering** `Q120970729`  
+- **consciousness studies** `Q19367549`  
+- **conservation behavior** `Q24960282`  
+- **Conservation paleobiology** `Q60416418`  
+- **Conservative extension** `Q864213`  
+- **constitutional economics** `Q1489796`  
+- **constraint** `Q20575568`  
+- **constraints** `Q120910075`  
+- **construction management** `Q811115`  
+- **construction of identity** `Q138338122`  
+- **construction research** `Q110375097`  
+- **Constructive Descriptions and Situations** `Q120971445`  
+- **consumer psychology** `Q105082676`  
+- **contemporary design** `Q64808571`  
+- **contemporary screen industries** `Q64814366`  
+- **contemporary society** `Q64809297`  
+- **context awareness** `Q501688`  
+- **context-aware system** `Q120971523`  
+- **Contextualized query answering** `Q120970419`  
+- **contextualized RDF/OWL knowledge bases** `Q120970732`  
+- **control systems** `Q12778074`  
+- **ConvKB** `Q120970360`  
+- **convolutional-deconvolutional** `Q120970682`  
+- **corporations and associations law** `Q110419534`  
+- **corrosion engineering** `Q3511129`  
+- **cosmetology** `Q2474068`  LCSH:`sh85012726` DDC:`613.488|646.72`
+- **cosmography** `Q631942`  LCSH:`sh85033167`
+- **costume interpretation** `Q59379566`  
+- **couselling studies** `Q67615463`  
+- **creative sustainability** `Q64808704`  
+- **Creative technology** `Q20122804`  
+- **criminal justice** `Q106597211`  
+- **critical autism studies** `Q118875373`  
+- **critical data studies** `Q28455673`  
+- **critical geopolitics** `Q5186720`  
+- **critical race theory** `Q5186753`  
+- **CRMtex** `Q120971446`  
+- **crop science** `Q64822370`  
+- **cross-cultural studies** `Q621368`  LCSH:`sh99002995|sh85034273` GND:`4114328-0` FAST:`884159`
+- **cross-linguistic modeling** `Q120970366`  
+- **CrowdTruth** `Q71823027`  
+- **cryostratigraphy** `Q117613435`  
+- **culinary arts** `Q64811480`  
+- **cultural engineering** `Q3151005`  
+- **Cultural heritage access** `Q120910082`  
+- **Cultural heritage knowledge graph** `Q120970381`  
+- **cultural heritage linked data** `Q120971472`  
+- **cultural institutions studies** `Q997515`  GND:`4309943-9`
+- **cultural mediation** `Q1645704`  
+- **cultural neuroscience** `Q5193391`  
+- **cultural production and landscape studies** `Q63455756`  
+- **Cultural Resources Studies** `Q131544729`  
+- **cultural work** `Q1791621`  
+- **culture and society** `Q115161035`  
+- **culture studies** `Q64899361`  
+- **Curated Databases** `Q18618590`  
+- **curatorial studies** `Q98641248`  
+- **curriculum studies** `Q5195144`  
+- **cyber-physical systems** `Q120910067`  
+- **cynology** `Q465924`  GND:`4139767-8` DDC:`636.7`
+- **cytoarchitecture** `Q3009543`  
+- **Darwin Industry** `Q5225989`  
+- **data access and exploration** `Q120971449`  
+- **data completeness** `Q84761134`  
+- **Data evolution** `Q120971441`  
+- **data exploration** `Q42417149`  
+- **data flows** `Q120970766`  
+- **data hosting** `Q120971516`  
+- **data interlinking** `Q120910074`  
+- **data observatory** `Q120970763`  
+- **data protection and privacy law** `Q64945680`  
+- **data quality survey** `Q120970781`  
+- **Data Web** `Q5227233`  
+- **database management** `Q107643461`  FAST:`888037`
+- **database theory** `Q4809258`  
+- **dataset descriptions** `Q120970430`  
+- **dataset features** `Q120970431`  
+- **dataset generator** `Q120971418`  
+- **dataset profiling vocabularies** `Q120970774`  
+- **decentralized search** `Q120970415`  
+- **decomposition scheme** `Q120971510`  
+- **Defeasible reasoning** `Q840067`  
+- **dementia health care practice** `Q64814343`  
+- **dementia nursing practice** `Q64814341`  
+- **dental technology** `Q64809894`  
+- **DEO** `Q120910095`  
+- **department of environmental engineering** `Q65273671`  
+- **Department of Industrial Management** `Q24833600`  
+- **dermatoglyphics** `Q904206`  
+- **Description logic programs** `Q120910091`  
+- **description logic reasoning systems** `Q120969809`  
+- **descriptive study** `Q120970758`  
+- **design culture** `Q18281409`  
+- **design for performing arts** `Q64808799`  
+- **design studies** `Q41607440`  
+- **design studies department** `Q18456254`  
+- **diabetes education** `Q114770357`  
+- **diagnostics and precision medicine** `Q64814340`  
+- **diaspora studies** `Q5272085`  
+- **difficulty modelling** `Q120970664`  
+- **difficulty prediction** `Q120971450`  
+- **digital systems and design** `Q12308624`  
+- **diplomatic history of the United States** `Q107025633`  
+- **directional statistics** `Q3497519`  
+- **Disability anthropology** `Q104869363`  
+- **discourse connective lexicons** `Q120970406`  
+- **Discourse relations** `Q120910080`  
+- **disjointness learning** `Q120910072`  
+- **distant supervision** `Q120970739`  
+- **distributed dataset** `Q120970376`  
+- **distributed query processing** `Q120970418`  
+- **distributed reasoning** `Q120910068`  
+- **distribution scheme** `Q120971486`  
+- **divinity** `Q17002247`  
+- **Djiboutian studies** `Q115669401`  
+- **DL reasoners** `Q120969808`  
+- **document retrieval** `Q1638872`  
+- **Document similarity** `Q120969788`  
+- **domain knowledge graphs** `Q120970397`  
+- **dynamic curation** `Q120971479`  
+- **dynamic graph** `Q120970686`  
+- **dynamic network analysis** `Q5318996`  
+- **dynamics of machinery** `Q2597879`  LCSH:`sh85079394` GND:`4130692-2`
+- **e-learning system** `Q120970761`  
+- **e-Science** `Q1273268`  
+- **Eagle-i** `Q85758206`  
+- **early childhood** `Q64811977`  
+- **early medieval England** `Q107422155`  
+- **Earth systems engineering and management** `Q3013544`  
+- **earthquake engineering** `Q909789`  LCSH:`sh85040490`
+- **ecogenetics** `Q294896`  
+- **ecogenomics** `Q108757115`  
+- **ecoinformatics** `Q352681`  LCSH:`sh2009103459` GND:`4762396-2`
+- **Ecological agricultural sciences** `Q294985`  
+- **ecological impacts of climate change and ecological adaptation** `Q110745557`  
+- **ecology and environmental protection - eep** `Q55693915`  
+- **econometric and statistical methods** `Q112955551`  
+- **economic and public affairs** `Q5333439`  
+- **economic LOD** `Q120971482`  
+- **economics and politics** `Q115161685`  
+- **economics in France** `Q52894765`  
+- **economics of insurance** `Q58038005`  GND:`4078850-7`
+- **economics of scientific knowledge** `Q5333597`  
+- **economics of the firm** `Q107745061`  
+- **economics, politics and law** `Q64687882`  
+- **Edo studies** `Q11551012`  
+- **education and training management** `Q64814336`  
+- **education leadership and management** `Q104903875`  
+- **education studies** `Q64689270`  
+- **educational change** `Q119459871`  
+- **ego psychology** `Q1656208`  LCSH:`sh85041254` GND:`4123407-8` FAST:`903891`
+- **egocentric reference system** `Q120969820`  
+- **election science** `Q116954296`  
+- **electrical and computer engineering** `Q28950261`  
+- **electrical engineering** `Q12346906`  
+- **electronic and computer engineering** `Q64689319`  
+- **electronic commerce** `Q64800596`  
+- **electronics and nanotechnology** `Q64853901`  
+- **Electronics, Electrical Engineering and Automation** `Q3587639`  
+- **elementary and secondary education** `Q11396551`  
+- **elementary education** `Q112575204`  LCSH:`sh85041059|sh99005762` LCC:`LB1555|LB1602` FAST:`902945`
+- **emergency and disaster management** `Q107123976`  
+- **emerging media** `Q64814347`  
+- **encyclopaedistics** `Q1346207`  
+- **energy and environmental engineering** `Q24963174`  
+- **energy certification** `Q120970722`  
+- **energy informatics** `Q19597073`  
+- **engineering** `Q108375738`  
+- **engineering economics** `Q3234664`  LCSH:`sh85043215`
+- **engineering electronics** `Q106134426`  
+- **Engineering management** `Q138511048`  
+- **engineering operations** `Q103450003`  
+- **engineering studies** `Q24962856`  
+- **English and Comparative Literature** `Q133546019`  
+- **English literature** `Q109587623`  
+- **English Rhetoric & Linguistics** `Q125376696`  
+- **Enrollment management** `Q5379885`  
+- **enterprise computing** `Q64687285`  
+- **enterprise informatics** `Q66086501`  
+- **Entertainment technology** `Q5380492`  
+- **entity classification** `Q120970767`  
+- **entity disambiguation** `Q120971517`  
+- **entity matching** `Q120969779`  
+- **entity relatedness** `Q120971425`  
+- **environmental and food economics** `Q64819271`  
+- **environmental and natural resources** `Q55586156`  
+- **environmental assessment and monitoring** `Q112939514`  
+- **environmental change and global sustainability** `Q64809263`  
+- **environmental design** `Q16000091`  
+- **environmental ecology** `Q65273678`  
+- **environmental geoscience** `Q64822409`  
+- **environmental informatics** `Q4591707`  
+- **Environmental magnetism** `Q5381327`  
+- **Environmental peacebuilding** `Q5381341`  
+- **Environmental rehabilitation** `Q112955700`  
+- **environmental science and technology** `Q64689264`  
+- **environmental social science** `Q5381358`  
+- **environomical pathways for sustainable energy systems** `Q64942987`  
+- **Eritrean studies** `Q115669424`  
+- **Estonian literature** `Q1334834`  LCSH:`sh85044989` DDC:`894.545`
+- **ethnology of religion** `Q1601482`  
+- **ethnopolitics** `Q26237583`  
+- **ethnopsychopharmacology** `Q5404396`  
+- **ETL Constructs** `Q120971458`  
+- **EUCISE2020** `Q120970667`  
+- **European and Nordic studies** `Q64808958`  
+- **European Culture and Economy** `Q1377396`  
+- **European integration** `Q1048268`  GND:`4071013-0`
+- **European integration studies** `Q108371114`  
+- **European Law and Policy** `Q64814369`  
+- **european mining, minerals and environmental program** `Q64943062`  
+- **Europeana Data Model** `Q110672270`  
+- **event extraction** `Q120971508`  
+- **evolution analysis** `Q120971420`  
+- **evolutionary linguistics** `Q2313085`  
+- **Evolving Web data** `Q120970352`  
+- **exercise science and coaching** `Q55714018`  
+- **existential generalization** `Q5420356`  
+- **exopolitics** `Q1384130`  
+- **experience ontology** `Q120970659`  
+- **experimental phonetics** `Q4530574`  
+- **exploratory discovery** `Q120971500`  
+- **exploratory querying** `Q120970745`  
+- **expressive ontology-based query answering** `Q120970703`  
+- **F-logic** `Q1266004`  
+- **Factoid question answering** `Q120969781`  
+- **fan studies** `Q28793139`  
+- **farm management** `Q1407914`  
+- **Farm management, rural management and agribusiness** `Q110252335`  
+- **fashion merchandising** `Q28401159`  
+- **fashion theory** `Q27979858`  
+- **Fault mechanics** `Q5438164`  
+- **FEIII** `Q120971416`  
+- **Feminist institutionalism** `Q30324052`  
+- **fibre and polymer engineering** `Q64853839`  
+- **Financial Transparency System** `Q120969816`  
+- **finite unification sets** `Q120971485`  
+- **Finnish and Finno-Ugrian language and culture** `Q64869210`  
+- **Finnish clinical art** `Q123019616`  
+- **fire protection management** `Q111366250`  
+- **flexible solar cell research** `Q5458994`  
+- **folktale study** `Q115158945`  
+- **food chain and health** `Q64816594`  
+- **food environmental science** `Q65292971`  
+- **food science department** `Q65292961`  
+- **food studies** `Q3232953`  
+- **foods and nutritional sciences department** `Q65292953`  
+- **football economics** `Q134831871`  
+- **foreign area studies** `Q104486725`  
+- **foreign missions** `Q102301676`  
+- **forest meteorology** `Q3333928`  
+- **formal language theory** `Q3984091`  
+- **format migration** `Q112815132`  
+- **formats mapping** `Q120970643`  
+- **foundation engineering** `Q11888449`  
+- **foundational ontologies** `Q120970398`  
+- **foundational ontology** `Q120969775`  
+- **fragmentology** `Q30708491`  
+- **Francophone studies** `Q108366776`  
+- **FRAP** `Q120970710`  
+- **Freebase** `Q1453477`  
+- **French language and civilization** `Q120462065`  
+- **front office operations** `Q64811474`  
+- **Full-Network embedding** `Q120969786`  
+- **function materials** `Q64853847`  
+- **fuzzy measure theory** `Q4455138`  
+- **gaze data processing** `Q120971498`  
+- **gender, culture and society** `Q64869236`  
+- **gendered sexuality** `Q5531026`  
+- **gene research** `Q11860338`  
+- **Gene-disease associations** `Q120970743`  
+- **general and adult education** `Q64869170`  
+- **General Arts** `Q126131200`  
+- **general health care practice** `Q64814350`  
+- **General Information Model** `Q55118400`  
+- **general nursing practice** `Q64814351`  
+- **general studies** `Q1501661`  
+- **genetic studies of Turkic peoples** `Q3656734`  
+- **genetics and cell biology** `Q64689297`  
+- **genetics and molecular biosciences** `Q64808981`  
+- **Genographic Project** `Q585511`  
+- **genology** `Q3508604`  
+- **genre studies** `Q5533546`  
+- **genre theory** `Q86619995`  
+- **geo-engineering department** `Q65256497`  
+- **geodesign** `Q5533986`  
+- **geographic features** `Q120971470`  
+- **Geographical subdivisions** `Q120970707`  
+- **geography and history** `Q47452440`  
+- **geology and exploration of mineral and energy resources - gemer** `Q55693914`  
+- **geology and geophysics** `Q64808978`  
+- **geometric measure theory** `Q3526918`  
+- **geomorphology and regolith and landscape evolution** `Q113098300`  
+- **Geopoetics** `Q56313535`  
+- **geospatial Linked Data** `Q120970392`  
+- **Geospatial semantics** `Q120910086`  
+- **Germplasm management** `Q110252339`  
+- **Ghana studies** `Q115669458`  
+- **global business** `Q64687605`  
+- **global leadership** `Q5570465`  
+- **global management** `Q11300876`  
+- **global politics and communication** `Q64809208`  
+- **global security** `Q121084857`  
+- **glomery** `Q88663570`  
+- **glossography** `Q105809559`  
+- **governance and public policy** `Q64687491`  
+- **Grammatical Framework** `Q5593683`  
+- **graph convolutional auto-encoder** `Q120970681`  
+- **graph measures** `Q120970385`  
+- **graph processing** `Q120971489`  
+- **graph queries** `Q120970698`  
+- **graph topology** `Q120969797`  
+- **graph vector representations** `Q120970394`  
+- **graphemics** `Q1411056`  LCSH:`sh85056473` LCC:`P211.5` GND:`4131535-2` FAST:`946592`
+- **Greenlandic and Arctic Studies** `Q12310624`  
+- **ground truth gathering** `Q120970665`  
+- **grunt science** `Q2033429`  
+- **guidance and counseling** `Q107432112`  
+- **guidance counselling** `Q64802733`  
+- **hagiographic studies** `Q109715408`  
+- **happiness economics** `Q2749409`  
+- **haptics** `Q124004604`  
+- **HDT** `Q56655440`  
+- **health and society** `Q64687430`  
+- **health communication** `Q4353774`  
+- **health services management** `Q64689363`  
+- **heat transfer engineering** `Q11381403`  
+- **hedonology** `Q5697629`  
+- **Hellenic Culture** `Q65048723`  
+- **Heritage Conservation Studies** `Q93439036`  
+- **heritage interpretation** `Q574107`  LCSH:`sh95004992`
+- **heterogeneous agents** `Q120971433`  
+- **Hindi Language and Indian Culture** `Q64688316`  
+- **histoire-géographie** `Q11424633`  
+- **historical biogeography** `Q124153088`  
+- **historical climate change** `Q120970759`  
+- **historical research data interoperability** `Q120969790`  
+- **history and cultural heritage** `Q64869226`  
+- **history and philosophy of science** `Q5774812`  
+- **history and philosophy of specific fields** `Q110467995`  
+- **History of French art** `Q137655696`  
+- **history of historiography** `Q2699662`  
+- **history of medicine** `Q26882826`  
+- **history of scholarship** `Q5868036`  
+- **history of science** `Q3137572`  
+- **history of sports** `Q1517491`  
+- **history of the Ottoman Empire** `Q2564225`  
+- **history, heritage and archaeology** `Q113077601`  
+- **Hohfeldian reasoning** `Q120970738`  
+- **horticultural science** `Q17232155`  
+- **hospitality and hotel management** `Q64811469`  
+- **housing studies** `Q65248698`  
+- **Huarahi Māori** `Q65007547`  
+- **human anatomy** `Q3999`  LCSH:`sh85004839` DDC:`611`
+- **human factors engineering** `Q12964816`  
+- **human relations** `Q10359098`  
+- **human resource development** `Q5366892`  
+- **human resource strategies** `Q64800567`  
+- **Human Resources Development** `Q134564271`  
+- **human rights and social justice** `Q108352534`  
+- **Humanitarian engineering** `Q5939515`  
+- **humor studies** `Q16247567`  
+- **hybrid reasoning** `Q120970368`  
+- **hydrogeography** `Q1640257`  GND:`4127628-0`
+- **Hydrogeophysics** `Q3143746`  
+- **hydrogeothermics** `Q12539163`  
+- **hydroinformatics** `Q5955095`  
+- **Ibora** `Q12823036`  
+- **ICT innovation** `Q64943358`  
+- **IDEA** `Q120970658`  
+- **ifcOWL** `Q120971522`  
+- **image collections** `Q120970764`  
+- **image retrieval** `Q10927554`  
+- **imaging science** `Q6002857`  
+- **imagology** `Q2197035`  
+- **impacts of tourism** `Q28456416`  
+- **implementation theory** `Q6007196`  
+- **incident detection** `Q120971502`  
+- **inclusive education, learning support and special education** `Q64802205`  
+- **inconsistency prevention** `Q120970382`  
+- **inconsistency-tolerant reasoning** `Q120971304`  
+- **incremental maintenance strategy** `Q120970400`  
+- **inductive learning** `Q120970346`  
+- **inductive logical programming** `Q120971454`  
+- **industrial administration** `Q110701979`  
+- **Industrial and Production engineering** `Q18351432`  
+- **industrial energy processes and sustainability** `Q64802419`  
+- **industrial laboratory technology** `Q64812378`  
+- **industrial organization** `Q1411783`  LCSH:`sh85065909` GND:`4133311-1` DDC:`338`
+- **industrial systems analysis** `Q102353949`  
+- **Industry 4.0** `Q1661989`  
+- **Information and communication technologies for development** `Q2219197`  
+- **information and service management** `Q64854319`  
+- **Information governance, policy and ethics** `Q110620325`  
+- **information reconciliation** `Q120970427`  
+- **Information systems planning** `Q109753123`  
+- **information systems studies** `Q64812807`  
+- **information systems technology** `Q107113602`  
+- **Information Technology and E-Business** `Q111325778`  
+- **Informationmanagement** `Q114759856`  
+- **informatology** `Q11712459`  
+- **innovation and entrepreneurship** `Q55714001`  
+- **innovation management** `Q794803`  LCSH:`sh2008112644` GND:`4161817-8`
+- **innovative sustainable energy engineering** `Q64854405`  
+- **institutional economics** `Q1118654`  LCSH:`sh85066745` GND:`4027208-4` DDC:`330.1552|330`
+- **instructional systems** `Q102365760`  
+- **instrumental music course** `Q11419516`  
+- **instrumentation and control engineering** `Q1922526`  
+- **insulation technology** `Q1269649`  
+- **insurance management** `Q12181995`  
+- **insurance theory** `Q58037997`  GND:`4188017-1`
+- **integral theory** `Q275242`  
+- **integrative life science** `Q64897558`  
+- **intellectual disability health care practice** `Q64814355`  
+- **intellectual disability nursing practice** `Q64814358`  
+- **intelligence studies** `Q13125650`  
+- **intelligent user-interfaces** `Q120970634`  
+- **Inter-American Studies** `Q55586010`  
+- **interaction designer** `Q11977439`  
+- **intercultural encounters** `Q64810324`  
+- **intercultural relations** `Q14860443`  
+- **interdisciplinary arts** `Q98608532`  
+- **interior architecture** `Q1329946`  GND:`4072819-5`
+- **interlinking** `Q120971469`  
+- **international accounting and business** `Q64800521`  
+- **international business** `Q3681519`  
+- **International Chinese Education** `Q27567821`  
+- **international development** `Q2477868`  
+- **international development management** `Q108366966`  
+- **International humanitarian and human rights law** `Q113001577`  
+- **international public policy** `Q104777292`  
+- **International Relations** `Q19366771`  
+- **international relations and diplomacy** `Q64689296`  
+- **international security affairs** `Q108252425`  
+- **international security and conflict studies** `Q64945784`  
+- **international security policy** `Q104521998`  
+- **international security studies** `Q107020707`  
+- **international strategic studies** `Q107337955`  
+- **international studies in education** `Q55584926`  
+- **Interreligious studies** `Q10273079`  
+- **interruption science** `Q6056663`  
+- **Intersectionality Studies** `Q135050458`  
+- **intertextuality** `Q667404`  LCSH:`sh88005212` GND:`4114051-5`
+- **inverse open path rule** `Q120970697`  
+- **investment, treasury & banking** `Q64814344`  
+- **Irish studies** `Q123556059`  
+- **Islamic philosophy** `Q193104`  LCSH:`sh85100934` DDC:`181.07`
+- **Islamology** `Q3155376`  LCSH:`sh85068408`
+- **Island studies** `Q120727705`  
+- **item response theory** `Q1207340`  
+- **jazz and contemporary music performance** `Q64688493`  
+- **Jin Yong studies** `Q15900575`  
+- **job safety analysis** `Q17060300`  LCSH:`sh85065884` GND:`4198785-8`
+- **joint campaign planning and strategy** `Q103813239`  
+- **joint strategy and campaign planning** `Q104282485`  
+- **journal archives** `Q120970721`  
+- **journalism and mass communication** `Q107361725`  
+- **journalism research** `Q97379631`  
+- **judicial studies** `Q6768472`  
+- **justice studies** `Q104161822`  
+- **KGlove** `Q120971460`  
+- **Khanty studies** `Q18405225`  
+- **Knowledge Acquisition and Documentation Structuring** `Q3198051`  
+- **knowledge anchors** `Q120971438`  
+- **Knowledge base generation** `Q120969700`  
+- **Knowledge base population** `Q120970421`  
+- **knowledge exploration** `Q120969828`  
+- **knowledge graph embeddings with literals** `Q120971453`  
+- **knowledge graph management system** `Q120970669`  
+- **knowledge graph summarization** `Q120971455`  
+- **knowledge injection** `Q120970359`  
+- **knowledge mining** `Q122200482`  
+- **Knowledge patterns** `Q120969776`  
+- **Knowledge Patterns** `Q120970748`  
+- **knowledge patterns** `Q120971432`  
+- **knowledge utility** `Q120970373`  
+- **knowledge-based learning** `Q120970672`  
+- **knowledge-based machine learning** `Q120970395`  
+- **labor studies** `Q629350`  GND:`4002808-2`
+- **Land change science** `Q106696937`  
+- **land use and environmental planning** `Q112914424`  
+- **Land-use forecasting** `Q6483833`  
+- **landscape architectural studies** `Q11639732`  
+- **landscapes in literature** `Q104203485`  LCSH:`sh95010443`
+- **language and literature** `Q64687382`  
+- **language candidate program** `Q64898092`  
+- **language inventory** `Q120970405`  
+- **language technology** `Q1976109`  
+- **language-specific DBpedia chapters** `Q120970755`  
+- **Langues étrangères appliquées** `Q3217551`  
+- **Latin American and Caribbean Studies** `Q108366652`  
+- **Latin American literature** `Q1147454`  
+- **law and management** `Q16653334`  
+- **law in context** `Q110620200`  
+- **Layer-based Semantic Data Integration** `Q120970678`  
+- **leadership and management** `Q64689271`  
+- **leadership, governance and human rights** `Q64809719`  
+- **learning engineering** `Q101054503`  
+- **learning sciences** `Q98442705`  
+- **learning to rank** `Q4330127`  
+- **Legal knowledge modeling** `Q120969826`  
+- **Legal Linguistics** `Q357196`  
+- **legal management (academic discipline)** `Q6517540`  
+- **legal metrology** `Q55070421`  
+- **Legal Semantic Web** `Q120910097`  
+- **legislative affairs** `Q125874240`  
+- **legislative studies** `Q135728646`  
+- **leisure studies** `Q2397724`  
+- **Lettres** `Q124412326`  
+- **lexical information** `Q120969825`  
+- **lexicon matching** `Q120970683`  
+- **liberal arts and sciences** `Q124366260`  
+- **Liberian studies** `Q115669699`  
+- **Librettology** `Q1115369`  
+- **Libyan studies** `Q115669714`  
+- **life and Earth sciences** `Q3475780`  
+- **life science informatics** `Q64809316`  
+- **life science technologies** `Q64854358`  
+- **Linguistic data** `Q120969814`  
+- **linguistic diversity in the digital age** `Q64809286`  
+- **linguistic linked data** `Q120970387`  
+- **linguistic standards** `Q120970691`  
+- **link discovery** `Q120910053`  
+- **link integrity** `Q120910073`  
+- **link keys** `Q120970668`  
+- **link maintenance** `Q120969793`  
+- **Link prediction** `Q98925312`  
+- **Link prediction and discovery** `Q120910088`  
+- **link semantics** `Q120971493`  
+- **linkage rules** `Q120970646`  
+- **Linked Data assessment** `Q120910101`  
+- **linked data for Africa** `Q120969823`  
+- **linked data protection** `Q120971434`  
+- **linked data quality** `Q120971511`  
+- **Linked Datasets** `Q120970412`  
+- **Linked Date** `Q120970363`  
+- **linked life data** `Q120971473`  
+- **Linked Open Data quality** `Q120971464`  
+- **linked pedigrees** `Q120971494`  
+- **Linked Web APIs** `Q120971515`  
+- **linking discourse relations** `Q120970692`  
+- **lipidomics** `Q6556376`  
+- **literacy professional practice** `Q64801226`  
+- **literacy studies** `Q64869185`  
+- **literature** `Q118281138`  
+- **literature, culture and media** `Q55586009`  
+- **liturgical studies** `Q110155603`  
+- **liturgical theology** `Q115254691`  
+- **LODE ontology** `Q120970735`  
+- **log-linear logics** `Q120971501`  
+- **logical foundation** `Q120970731`  
+- **Lorenz–Mie theory** `Q56297375`  
+- **lymphology** `Q5976737`  
+- **Macedonian literature** `Q3110349`  
+- **machine design** `Q12586619`  LCSH:`sh85079365` FAST:`1004779`
+- **Machine learning in earth sciences** `Q109570989`  
+- **Machine Learning Physics** `Q136306794`  
+- **Madonna studies** `Q972270`  
+- **Maghreb integration** `Q131300104`  
+- **Maghreb studies** `Q115669800`  
+- **magneto-aerodynamics** `Q3277333`  
+- **manpower systems analysis** `Q107340542`  
+- **map technique** `Q1734569`  
+- **mapping languages** `Q120970673`  
+- **mapping translation** `Q120970642`  
+- **mapping visualization** `Q120971509`  
+- **Maqāṣid al-Sharīʿah** `Q12244500`  
+- **MARC standards** `Q722609`  LCSH:`sh85080966` GND:`4168864-8` DDC:`025.316`
+- **marine affairs** `Q106573138`  
+- **marine management** `Q64811378`  
+- **marine systems engineering** `Q107020229`  
+- **marine transportation** `Q107228380`  
+- **marketing, innovation and technology** `Q64689205`  
+- **Markets and Financial Intermediaries** `Q115035920`  
+- **Martinican literature (French)** `Q3256817`  LCSH:`sh85081651`
+- **Masonic studies** `Q3303205`  
+- **mass communication research** `Q6005485`  
+- **Massive data** `Q120969813`  
+- **master program on cultural heritage** `Q63455759`  
+- **masters in management** `Q97577612`  
+- **materials research** `Q64809030`  
+- **materials research and nanoscience** `Q64869241`  
+- **materials science and nanoengineering** `Q55659897`  
+- **maternal-fetal medicine** `Q582071`  LCSH:`sh86003112` GND:`4045170-7` DDC:`618.32`
+- **mathematical and quantitative methods in economics** `Q3578772`  
+- **mathematical logic, set theory, lattices and universal algebra** `Q112955904`  
+- **mathematical statistics** `Q745328`  
+- **mathematics and statistics** `Q64808949`  
+- **Mathetics** `Q1420638`  
+- **Maya studies** `Q12771257`  
+- **MCQ generation** `Q120969831`  
+- **measure assessment** `Q120970670`  
+- **mechanical and manufacturing** `Q64814345`  
+- **mechanical and manufacturing engineering** `Q64689327`  
+- **mechanics and constructive mechanical engineering** `Q110660336`  
+- **media economy** `Q1916458`  
+- **medical affairs** `Q84836722`  
+- **medical life sciences** `Q55584925`  
+- **medicine and music** `Q110316127`  
+- **Medieval Icelandic Studies** `Q55586008`  
+- **Meeting Science** `Q128591289`  
+- **memory and attention** `Q110620109`  
+- **mental health care practice** `Q64814354`  
+- **mental health nursing practice** `Q64814353`  
+- **meontology** `Q6817770`  
+- **merceologia** `Q1496410`  
+- **metadata enrichment** `Q120969804`  
+- **metadata mapping** `Q59163916`  
+- **metadata prediction** `Q120970679`  
+- **metalexicography** `Q120328747`  
+- **metrics** `Q12796440`  
+- **Michael Jackson Studies** `Q106594369`  
+- **Microblogging** `Q65281046`  
+- **Microposts** `Q120970429`  
+- **microposts** `Q120970768`  
+- **microtask crowdsourcing** `Q120971514`  
+- **microtasks** `Q120971512`  
+- **migration research** `Q110930534`  
+- **military airpower arts and science** `Q105083369`  
+- **military history of the United States** `Q1483473`  LCSH:`sh85140338`
+- **military information systems technology** `Q102430691`  
+- **military logistics management** `Q106613150`  
+- **military operational arts and science** `Q103815015`  
+- **military planning** `Q108287063`  
+- **military theater operations** `Q106095662`  
+- **mineral economics** `Q6864354`  
+- **mining software repositories** `Q17103945`  
+- **model-assisted software development** `Q120970350`  
+- **modeling, virtual environments and simulation** `Q21572183`  
+- **modelling methods** `Q120971444`  
+- **Modern Greek Studies** `Q66490562`  
+- **Modern International Studies** `Q110256118`  
+- **modern litterature and language** `Q118541692`  
+- **modern Turkic languages and literatures** `Q6081624`  
+- **molecular biology, genetics, and bioengineering** `Q55659409`  
+- **molecular physiology** `Q75135416`  
+- **molinology** `Q1943500`  
+- **monument study** `Q30970595`  
+- **moral science** `Q55862003`  
+- **morpheme ontology** `Q120970671`  
+- **morpho-syntatic data** `Q120971483`  
+- **mortuary science** `Q6915002`  
+- **mother tongue and literature** `Q64897988`  
+- **motherhood studies** `Q56702245`  
+- **mountain science** `Q1497032`  
+- **movie and tv production** `Q64805516`  
+- **multi-context systems** `Q120971487`  
+- **multi-query optimization** `Q120910077`  
+- **multilingual knowledge bases** `Q120971481`  
+- **multilingual linguistic LOD** `Q120971484`  
+- **multilingual metadata** `Q120970702`  
+- **multilingual system** `Q120971505`  
+- **multilingual web** `Q120969824`  
+- **multimedia computing** `Q31836481`  
+- **multimodal access** `Q120970347`  
+- **Museum in Health** `Q137776711`  
+- **music performance** `Q104450393`  
+- **music therapy** `Q107331442`  
+- **Método MAI** `Q138589578`  
+- **Māori Studies** `Q124774329`  
+- **Nagasaki studies** `Q11652447`  
+- **Namibian studies** `Q115669680`  
+- **nanotribology** `Q921406`  
+- **Narrative Engineering** `Q138057475`  
+- **national affairs** `Q105782689`  
+- **national security affairs** `Q105363160`  
+- **national security policy studies** `Q104761613`  
+- **nationalism studies** `Q4314780`  
+- **Natural Science Tripos** `Q6980606`  
+- **naval construction** `Q133503125`  
+- **naval science** `Q110987467`  
+- **navigational languages** `Q120970639`  
+- **Near-surface geophysics** `Q6984343`  
+- **negotiation theory** `Q6987443`  
+- **nested facet system** `Q120971430`  
+- **network dynamics** `Q9195957`  
+- **network embedding** `Q120971461`  
+- **network metrics** `Q120970380`  
+- **network neuroscience** `Q96395242`  
+- **network science** `Q2434424`  
+- **network-based topic modeling** `Q120970680`  
+- **Neural-symbolic integration** `Q120969787`  
+- **neuroarchitecture** `Q107658548`  
+- **neuroendocrinology** `Q1335366`  LCSH:`sh85091118` LCC:`QP356.4` GND:`4041878-9` FAST:`1036341` DDC:`616.4`
+- **neuroethology** `Q1336265`  LCSH:`sh2021003848`
+- **neurophysics** `Q3621694`  
+- **neuropolitics** `Q7002570`  
+- **Neuroscience of sleep** `Q107407196`  
+- **new communication in business** `Q2524420`  
+- **new media studies** `Q7016459`  
+- **New Philology** `Q7010974`  
+- **new philology** `Q117727634`  
+- **newspaper studies** `Q187084`  GND:`4127685-1`
+- **Nigerian studies** `Q115669647`  
+- **Node-RED** `Q22907329`  
+- **noetics** `Q3125341`  
+- **noise-tolerance** `Q120970637`  
+- **Non-European Cultural Studies** `Q113500362`  
+- **Non-European Cultures** `Q115193792`  
+- **non-parametric statistics** `Q1097688`  LCSH:`sh85092349`
+- **non-standard reasoning** `Q120971302`  
+- **nonlinear structure** `Q120970396`  
+- **nonprofit management** `Q975065`  
+- **nonprofit studies** `Q7049562`  
+- **Noology** `Q114476`  
+- **nordic languages and literature** `Q64869191`  
+- **normative economics** `Q26086`  
+- **nuclear and plasma physics** `Q111326874`  
+- **nucleonics** `Q25615885`  
+- **numeric-based methods** `Q120970372`  
+- **nursing service administration** `Q105749607`  
+- **nutrient management** `Q17142554`  
+- **obesity research** `Q110027976`  
+- **object-ontological mapping** `Q120970644`  
+- **Object-triple mapping** `Q120970374`  
+- **ObjectLogic** `Q120970714`  
+- **objects social networks** `Q120969835`  
+- **Observations** `Q19081056`  
+- **Occitan literature** `Q2305675`  LCSH:`sh85074610` DDC:`849`
+- **Occitan studies** `Q119292336`  
+- **occupational education** `Q111569557`  
+- **occupational health research** `Q110930265`  
+- **occupational hygiene** `Q3143849`  LCSH:`sh85065884`
+- **ocean and coastal law** `Q104176745`  
+- **ocean engineering** `Q26229359`  
+- **odontology** `Q20820380`  
+- **ODP** `Q120970771`  
+- **Olisipography** `Q10340699`  
+- **Ontobroker** `Q120910089`  
+- **ontocity** `Q120971426`  
+- **ontological and spatial reasoning** `Q120970357`  
+- **ontology change detection** `Q108535801`  
+- **ontology design patterns** `Q120910071`  
+- **ontology fragment** `Q120971519`  
+- **ontology learning** `Q3620938`  
+- **ontology mapping** `Q120970423`  
+- **Ontology mining** `Q120969774`  
+- **Ontology reasoning systems** `Q120910083`  
+- **ontology search** `Q120970752`  
+- **Ontology search** `Q120910098`  
+- **ontology testing** `Q120970663`  
+- **Ontology use** `Q120969777`  
+- **OntoPedigree** `Q120970742`  
+- **open hardware standardization** `Q117037923`  
+- **Open Knowledge Extraction** `Q120969827`  
+- **open source framework** `Q120970704`  
+- **operational law** `Q107558246`  
+- **operational oceanography** `Q133884550`  
+- **operations analysis** `Q105725102`  
+- **operations engineering** `Q24964794`  
+- **oral sciences** `Q64897501`  
+- **ordnance engineering** `Q107124783`  
+- **organizational economics** `Q3578710`  
+- **Ornitonimy** `Q97203879`  
+- **Orthopaedic sports medicine** `Q7104851`  
+- **OWL 2 EL** `Q120970408`  
+- **OWL reasoning** `Q120970635`  
+- **OWL2 RL** `Q120969785`  
+- **palaeoclimate reconstruction** `Q116146313`  
+- **parallel parking problem** `Q7135008`  
+- **parallel reasoning** `Q120971422`  
+- **parameterized complexity** `Q1570441`  
+- **Part-Of-Speech and sentence tagging** `Q120970708`  
+- **particle physics and astrophysical sciences** `Q64809185`  
+- **particle statistics** `Q611755`  
+- **pastoral studies** `Q104469512`  
+- **path queries** `Q120970426`  
+- **path sampling** `Q120971474`  
+- **patristics** `Q189380`  GND:`4075933-7` DDC:`270`
+- **pattern mining** `Q120970650`  
+- **pattern-based ontology modelling** `Q120970378`  
+- **Paul within Judaism** `Q123493178`  
+- **pedolinguistics** `Q11815366`  
+- **pedometrics** `Q7159342`  
+- **peer review** `Q120971452`  
+- **penology** `Q818670`  LCC:`HV8301-HV9920.7` GND:`4818929-7` DDC:`364.6`
+- **Performance psychology** `Q7168250`  
+- **personnel counseling** `Q105661746`  
+- **perturbation theory** `Q10886678`  LCSH:`sh85100181`
+- **petroleum engineering** `Q1273174`  LCSH:`sh85100427`
+- **Pharmacology and pharmaceutical sciences** `Q110418873`  
+- **pharmacology of traditional Chinese medical formulae** `Q11084655`  
+- **pharmacometrics** `Q4886683`  
+- **pharology** `Q2946843`  
+- **phenomics** `Q6497275`  
+- **philosophical theology** `Q4356367`  
+- **philosophy and literature** `Q7186228`  LCSH:`sh85101002`
+- **Philosophy and religious studies** `Q110419456`  
+- **philosophy, arts and society** `Q64816565`  
+- **Philosophy, Politics and Economics** `Q2777850`  
+- **phitotechnia** `Q5862364`  
+- **phonemics** `Q8961945`  
+- **photogrammetry and remote sensing** `Q110745442`  
+- **photographic science and instrumentation** `Q111248583`  
+- **photography studies** `Q111143966`  
+- **photon science** `Q75135426`  
+- **phylomythology** `Q137650197`  
+- **physical education with mathematics** `Q64689407`  
+- **physical-chemical mechanics** `Q115250190`  
+- **physics with biomedical sciences** `Q64689646`  
+- **physiology of clothing** `Q815040`  
+- **plant genetic resources** `Q55630097`  
+- **plant genetics** `Q7201518`  LCSH:`sh85102745` DDC:`631.5233`
+- **poetry therapy** `Q137914578`  
+- **policy management** `Q136481337`  
+- **political linguistics** `Q21654591`  
+- **political, societal and regional change** `Q64816572`  
+- **politics and communication** `Q64819398`  
+- **politics in Northern Cyprus** `Q118929282`  
+- **politics of the United States** `Q330963`  LCSH:`sh85140410`
+- **polymer technology** `Q64943186`  
+- **ponerology** `Q17304666`  
+- **popular culture studies** `Q7229751`  
+- **Popular music studies** `Q16269280`  
+- **population genomics** `Q7229807`  
+- **porn studies** `Q97360329`  
+- **positive computing** `Q107286734`  
+- **Post-Soviet studies** `Q115803746`  
+- **postreh** `Q12774262`  
+- **postsocialism** `Q86008805`  
+- **practical ethics** `Q114062450`  
+- **practical music** `Q65088213`  
+- **Pre-Islamic literature** `Q12179231`  
+- **Pre-law** `Q7239242`  
+- **precariousness research** `Q110930459`  
+- **press statistics** `Q2108944`  
+- **prevention science** `Q7242358`  
+- **primary teaching** `Q65007594`  
+- **Primate archaeology** `Q15840974`  
+- **priming** `Q18619`  
+- **probabilistic Description Logics** `Q120970417`  
+- **probabilistic logic programming** `Q120970730`  
+- **Probabilistic numerics** `Q109297617`  
+- **procurement management** `Q108855511`  
+- **Product data** `Q120970777`  
+- **production design** `Q64808885`  
+- **programming model** `Q25312607`  
+- **projecting** `Q1462272`  
+- **Property paths** `Q120969830`  
+- **protocol** `Q120971466`  
+- **provenance** `Q120910093`  
+- **provision relations** `Q120970420`  
+- **Psychiatric epidemiology** `Q7256237`  
+- **psychiatric social work** `Q69886737`  LCSH:`sh85108376`
+- **psychical research** `Q11490637`  
+- **psychohistory** `Q764526`  LCSH:`sh85108430`
+- **psychoinformatics** `Q105720800`  
+- **psychological services** `Q107105866`  
+- **psychology and well-being** `Q64814338`  
+- **psychology, learning and communication** `Q64869242`  
+- **public administrative law** `Q111659099`  
+- **public economics** `Q2248246`  
+- **public engagement** `Q7257735`  
+- **Public finance** `Q24887207`  
+- **public personnel management** `Q106028892`  
+- **public policy management** `Q111203987`  
+- **public policy studies** `Q104707032`  
+- **public relations research** `Q2044536`  
+- **publishing** `Q10896657`  
+- **PWO** `Q120910100`  
+- **Q10308243** `Q10308243`  
+- **Q104673525** `Q104673525`  
+- **Q10476482** `Q10476482`  
+- **Q10479191** `Q10479191`  
+- **Q10579170** `Q10579170`  
+- **Q106290199** `Q106290199`  
+- **Q106484750** `Q106484750`  
+- **Q106545901** `Q106545901`  
+- **Q10877842** `Q10877842`  
+- **Q109364835** `Q109364835`  
+- **Q109674603** `Q109674603`  
+- **Q109806590** `Q109806590`  
+- **Q109888405** `Q109888405`  
+- **Q110799978** `Q110799978`  
+- **Q113296423** `Q113296423`  
+- **Q113476418** `Q113476418`  
+- **Q113547265** `Q113547265`  
+- **Q114284676** `Q114284676`  
+- **Q115160211** `Q115160211`  
+- **Q115171300** `Q115171300`  
+- **Q11533186** `Q11533186`  
+- **Q115800114** `Q115800114`  
+- **Q11615971** `Q11615971`  
+- **Q116201778** `Q116201778`  
+- **Q11790212** `Q11790212`  
+- **Q11903225** `Q11903225`  
+- **Q11906702** `Q11906702`  
+- **Q121267483** `Q121267483`  
+- **Q121791971** `Q121791971`  
+- **Q121791989** `Q121791989`  
+- **Q121791997** `Q121791997`  
+- **Q121792000** `Q121792000`  
+- **Q121792003** `Q121792003`  
+- **Q121792752** `Q121792752`  
+- **Q122046256** `Q122046256`  
+- **Q122046274** `Q122046274`  
+- **Q122046297** `Q122046297`  
+- **Q122046304** `Q122046304`  
+- **Q122046306** `Q122046306`  
+- **Q122046313** `Q122046313`  
+- **Q122046322** `Q122046322`  
+- **Q122046338** `Q122046338`  
+- **Q12230961** `Q12230961`  
+- **Q122382480** `Q122382480`  
+- **Q12292472** `Q12292472`  
+- **Q12293401** `Q12293401`  
+- **Q12293407** `Q12293407`  
+- **Q123412953** `Q123412953`  
+- **Q12341449** `Q12341449`  
+- **Q1234750** `Q1234750`  
+- **Q12366740** `Q12366740`  
+- **Q125548096** `Q125548096`  
+- **Q125745936** `Q125745936`  
+- **Q126207863** `Q126207863`  
+- **Q12628474** `Q12628474`  
+- **Q12712210** `Q12712210`  
+- **Q12765509** `Q12765509`  
+- **Q12823214** `Q12823214`  
+- **Q13138138** `Q13138138`  
+- **Q135263050** `Q135263050`  
+- **Q135265938** `Q135265938`  
+- **Q135493121** `Q135493121`  
+- **Q13649953** `Q13649953`  
+- **Q136556947** `Q136556947`  
+- **Q136556948** `Q136556948`  
+- **Q136556949** `Q136556949`  
+- **Q1413626** `Q1413626`  
+- **Q1481081** `Q1481081`  
+- **Q1503150** `Q1503150`  
+- **Q1521170** `Q1521170`  
+- **Q15895758** `Q15895758`  
+- **Q15896735** `Q15896735`  
+- **Q1702943** `Q1702943`  
+- **Q17174864** `Q17174864`  
+- **Q1749130** `Q1749130`  
+- **Q18088513** `Q18088513`  
+- **Q1815660** `Q1815660`  
+- **Q1923367** `Q1923367`  
+- **Q19709905** `Q19709905`  
+- **Q1982222** `Q1982222`  
+- **Q1998894** `Q1998894`  
+- **Q20098764** `Q20098764`  
+- **Q2051547** `Q2051547`  
+- **Q20825826** `Q20825826`  
+- **Q20871691** `Q20871691`  
+- **Q21002563** `Q21002563`  
+- **Q2104932** `Q2104932`  
+- **Q2151064** `Q2151064`  
+- **Q2190864** `Q2190864`  
+- **Q2199239** `Q2199239`  
+- **Q2200257** `Q2200257`  
+- **Q22341214** `Q22341214`  
+- **Q2236011** `Q2236011`  
+- **Q2251373** `Q2251373`  GND:`4124150-2`
+- **Q23772857** `Q23772857`  
+- **Q2515896** `Q2515896`  
+- **Q25382590** `Q25382590`  
+- **Q25448174** `Q25448174`  
+- **Q25504439** `Q25504439`  
+- **Q2672926** `Q2672926`  
+- **Q2713187** `Q2713187`  
+- **Q30971997** `Q30971997`  
+- **Q31281932** `Q31281932`  
+- **Q31452095** `Q31452095`  
+- **Q31892484** `Q31892484`  
+- **Q31899564** `Q31899564`  
+- **Q3475775** `Q3475775`  
+- **Q3536414** `Q3536414`  
+- **Q4213801** `Q4213801`  
+- **Q4450944** `Q4450944`  
+- **Q4989013** `Q4989013`  
+- **Q5148611** `Q5148611`  
+- **Q56324043** `Q56324043`  
+- **Q56878041** `Q56878041`  
+- **Q5701884** `Q5701884`  
+- **Q5705290** `Q5705290`  
+- **Q6005263** `Q6005263`  
+- **Q60588609** `Q60588609`  
+- **Q60967239** `Q60967239`  
+- **Q61448113** `Q61448113`  
+- **Q62006072** `Q62006072`  
+- **Q65283811** `Q65283811`  
+- **Q65292904** `Q65292904`  
+- **Q67637396** `Q67637396`  
+- **Q829161** `Q829161`  
+- **Q89031952** `Q89031952`  
+- **Q9033886** `Q9033886`  
+- **Q9352339** `Q9352339`  
+- **Q9378283** `Q9378283`  
+- **Q96249413** `Q96249413`  
+- **Q97164575** `Q97164575`  
+- **Qualitative preference** `Q120970688`  
+- **quality metrics** `Q120969783`  
+- **quality model** `Q120970762`  
+- **quantitative biology** `Q48968323`  
+- **Quantum finance** `Q7269047`  
+- **quantum technology** `Q64800769`  
+- **query answering** `Q120910066`  
+- **query approximation** `Q120970753`  
+- **query builder** `Q120970751`  
+- **query completeness** `Q120971439`  
+- **query formulation** `Q120970424`  
+- **query processing** `Q120970402`  
+- **query relaxation** `Q120971504`  
+- **query translation** `Q120970371`  
+- **query-based reasoning** `Q120971429`  
+- **Question Answering over Linked Data** `Q120969829`  
+- **questioned document examination** `Q1755260`  LCSH:`sh85148639` GND:`4180010-2`
+- **R** `Q206904`  LCSH:`sh2002004407` GND:`4705956-4` FAST:`1086207`
+- **R2RML** `Q109734057`  
+- **rabbinic studies** `Q21583222`  
+- **radio and television** `Q80959271`  
+- **radio-frequency engineering** `Q1363977`  
+- **radiochronometry** `Q128303932`  
+- **Random social choice** `Q107646307`  
+- **RDF archiving** `Q120970399`  
+- **RDF Data Cube** `Q120969784`  
+- **RDF dataset profiling** `Q120969834`  
+- **RDF graph profiling** `Q120971456`  
+- **RDF query processing** `Q120971421`  
+- **RDF Schema** `Q1751819`  
+- **RDFS reasoning** `Q120970358`  
+- **reading machine** `Q1237353`  
+- **reality mining** `Q7301272`  
+- **reasoning optimization** `Q120971423`  
+- **reasoning over ontologies** `Q120970407`  
+- **reconfiguration** `Q85796278`  
+- **recursive queries** `Q120969796`  
+- **redology** `Q7306175`  
+- **refinement** `Q3417382`  
+- **refugee integration** `Q64814348`  
+- **Registered Organization Vocabulary** `Q120970725`  
+- **rehabilitation robotics** `Q7309766`  
+- **relatedness-based querying** `Q120970638`  
+- **religion and film studies** `Q111699084`  
+- **Renaissance studies** `Q25111456`  
+- **renewable energy** `Q55585836`  
+- **repeatable open research** `Q120970354`  
+- **replication** `Q120970666`  
+- **requirements ontology** `Q120970717`  
+- **research profiles** `Q120971480`  
+- **research resources** `Q120970724`  
+- **research trends** `Q120971442`  
+- **resolution** `Q1051925`  
+- **Resource Discovery** `Q105698974`  GND:`1092431527`
+- **restaurant management** `Q7316100`  
+- **restaurant operations** `Q64811455`  
+- **retail management** `Q57416364`  
+- **ritual studies** `Q115254931`  
+- **rock magnetism** `Q3505654`  
+- **Romanian literature** `Q2077256`  LCSH:`sh85115040` DDC:`850`
+- **Romî** `Q7040750`  
+- **Royal Command and Staff College** `Q67511251`  
+- **RSP engine** `Q120970649`  
+- **rule mining** `Q120969795`  
+- **rule-based reasoning** `Q120969789`  
+- **rule-driven** `Q120971428`  
+- **Rumi studies** `Q12354722`  
+- **rural education** `Q102508531`  
+- **Russian language** `Q122969414`  
+- **Rwandan studies** `Q115669585`  
+- **Saami language and culture** `Q108905184`  
+- **Saami language and literature** `Q120367159`  
+- **Sahel studies** `Q115669616`  
+- **Sanskrit literature** `Q112107934`  
+- **SAREF** `Q120970652`  
+- **SAREF4INMA** `Q120971443`  
+- **satellite gravity** `Q134882900`  
+- **Scalable reasoning** `Q120910094`  
+- **Scalalogy** `Q2228736`  
+- **scatology** `Q1337766`  
+- **schema matching** `Q1408390`  
+- **school business administration** `Q118482223`  
+- **school, education, society and culture** `Q64869234`  
+- **science** `Q11573530`  
+- **science and health communication** `Q64945598`  
+- **science and technology of physical and sporting activities** `Q3475787`  
+- **science didactics** `Q3026834`  
+- **science of christian orient** `Q90921720`  
+- **science of team science** `Q7433707`  
+- **Scientific Assessment of Ozone Depletion** `Q7433745`  
+- **scientific correspondence** `Q120970660`  
+- **scientific discourse** `Q120970716`  
+- **scientific metrology** `Q55029126`  
+- **scientific workflows** `Q120970377`  
+- **scientonomy** `Q107015976`  
+- **Scottish studies** `Q116196774`  
+- **secretaryship** `Q10369298`  
+- **section number** `Q55279456`  
+- **Secure multi-party computation** `Q2465888`  
+- **securities regulation** `Q136670493`  
+- **security management studies** `Q7445044`  
+- **Security Science** `Q3952331`  
+- **Semantic Abstraction** `Q120970750`  
+- **Semantic browsing** `Q120910084`  
+- **semantic bus** `Q120969778`  
+- **semantic content processing** `Q120971476`  
+- **semantic data** `Q120970356`  
+- **semantic data integration** `Q120970760`  
+- **Semantic Data Versioning** `Q120970685`  
+- **Semantic Data Warehosue** `Q120970390`  
+- **semantic engineering** `Q120970348`  
+- **Semantic entity annotation system** `Q120969832`  
+- **Semantic labeling** `Q120970657`  
+- **Semantic matching** `Q7449072`  
+- **semantic middleware** `Q120969817`  
+- **Semantic modeling** `Q120970645`  
+- **semantic portal** `Q120969798`  
+- **semantic profiles** `Q120910076`  
+- **Semantic publishing models** `Q120910090`  
+- **semantic query answering** `Q120971467`  
+- **semantic reference system** `Q120970718`  
+- **semantic resources** `Q120970754`  
+- **Semantic Sensor Network** `Q120970391`  
+- **Semantic Sensor Network Ontology** `Q62211950`  
+- **Semantic Web and its applications** `Q120971491`  
+- **Semantic Web applications** `Q120970700`  
+- **semantic web formalisms** `Q120970414`  
+- **Semantic Web of Things** `Q120910069`  
+- **Semantic Web Rule Language** `Q3478367`  
+- **Semantic Web technologies** `Q120971431`  
+- **semantic-based user modelling** `Q120970413`  
+- **SeMFIS** `Q120971435`  
+- **semiconductor engineering** `Q56350988`  
+- **Sensor Networks** `Q120970709`  
+- **sentence context ontology** `Q120969819`  
+- **Sentiment lexicon adaptation** `Q120970428`  
+- **Sequential linked data** `Q120970675`  
+- **service process** `Q120970765`  
+- **services** `Q120910081`  
+- **sex work industry studies** `Q126955296`  
+- **SHACL rules** `Q120970648`  
+- **SHACL shape learning** `Q120969807`  
+- **Shevchenko studies** `Q12171528`  
+- **Shinanology** `Q17217481`  
+- **show business** `Q625568`  GND:`4181145-8`
+- **Sierra Leone studies** `Q115672782`  
+- **Sikh Studies** `Q121409207`  
+- **Singularity studies** `Q135005825`  
+- **skeletology** `Q115957183`  
+- **Slavonic palaeography** `Q111109173`  
+- **Small Business Management** `Q112970946`  
+- **smart buildings** `Q120970641`  
+- **smart camera network** `Q120970780`  
+- **smart energy networks** `Q120970370`  
+- **Smart environments** `Q120910102`  
+- **social administration** `Q59307863`  LCSH:`sh85124085` GND:`4055912-9`
+- **social and behavioral sciences** `Q59494941`  
+- **social and community work** `Q64800834`  
+- **social and cultural anthropology** `Q21505779`  
+- **social and health studies and management** `Q64869013`  
+- **social and political philosophy** `Q113001585`  
+- **social economy** `Q1725719`  
+- **social evolution** `Q16255222`  
+- **Social health** `Q137392723`  
+- **social integrator** `Q17629812`  
+- **social management** `Q55693898`  
+- **social media communications** `Q64814368`  
+- **social science teaching** `Q104648323`  
+- **social sciences and cultural innovation** `Q64688552`  
+- **social technology** `Q2622873`  
+- **social web** `Q2724244`  
+- **socio-history** `Q19843738`  
+- **socioeconomics** `Q1643441`  
+- **sociology of scientific ignorance** `Q20669236`  
+- **sociophonetics** `Q60790442`  
+- **software archaeology** `Q7554247`  
+- **software portability** `Q3080428`  LCSH:`sh85124298`
+- **Solap** `Q26792203`  
+- **somnology** `Q1752583`  GND:`4179661-5`
+- **Sonata theory** `Q7560824`  
+- **sound and music computing** `Q2348858`  
+- **South African studies** `Q115669494`  
+- **Soviet politics** `Q111017081`  
+- **space systems engineering** `Q105441472`  
+- **space systems management** `Q111950383`  
+- **SPARQL Benchmark** `Q120971303`  
+- **SPARQL modifiers** `Q120971459`  
+- **SPARQL views of relational databases** `Q120970733`  
+- **spatial and temporal linked data** `Q120970422`  
+- **Spatial OLAP** `Q120971520`  
+- **spatial RDF data cubes** `Q120970388`  
+- **Spatial–temporal reasoning** `Q6584132`  
+- **spatio-temporal datasets** `Q120970713`  
+- **special operations low intensity conflict** `Q107337904`  
+- **specific learning difficulties** `Q64814334`  
+- **SPECTRUM** `Q124525976`  
+- **speculative fiction studies** `Q49840227`  
+- **sport management** `Q48519`  
+- **sport science and health** `Q64689287`  
+- **Sport theory** `Q9357109`  
+- **sports communication** `Q7579398`  
+- **sports economics** `Q5817289`  
+- **Stanford Modern Thought & Literature** `Q85720117`  
+- **statistical regions** `Q120971471`  
+- **storage** `Q120971462`  
+- **storiology** `Q115166304`  
+- **Straintronics** `Q105972375`  
+- **strategic history** `Q107344275`  
+- **strategic policy** `Q105812576`  
+- **stream reasoning** `Q120910070`  
+- **structural engineering** `Q633538`  LCSH:`sh85129198`
+- **structural geology and tectonics** `Q110734964`  
+- **structured machine learning** `Q120969780`  
+- **Studies of Culture and Representation** `Q11626477`  
+- **stylistics and textual analysis** `Q112939999`  
+- **Sudan studies** `Q115669513`  
+- **sustainable energy conversion processes** `Q64803113`  
+- **sustainable energy in buildings and built environment** `Q64803273`  
+- **sustainable energy in buildings and built environment** `Q64853720`  
+- **sustainable energy systems and markets** `Q64803586`  
+- **sustainable metals processing** `Q64853857`  
+- **sustainable use of renewable natural resources** `Q64816625`  
+- **Swedish studies** `Q11698105`  
+- **symbolic systems** `Q7661192`  
+- **syntactics** `Q29864664`  
+- **synthetic genomics** `Q1405450`  
+- **systems technology** `Q107123912`  
+- **table** `Q94100381`  
+- **Taxonomy enrichment** `Q120969800`  
+- **teaching science** `Q105300453`  
+- **team science** `Q64820995`  
+- **technical architecture** `Q2860371`  
+- **Technical Skills** `Q126472910`  
+- **telecommunication operations** `Q107568706`  
+- **telecommunications systems management** `Q7696095`  
+- **temporal** `Q120971440`  
+- **Temporal reference system** `Q120910096`  
+- **tenders** `Q120971490`  
+- **term reuse** `Q120971507`  
+- **terminology enrichment** `Q120969802`  
+- **Terminology generation** `Q120910078`  
+- **Testing, assessment and psychometrics** `Q110246148`  
+- **textile management** `Q85806111`  
+- **textile research** `Q59202023`  
+- **textual criticism of the New Testament** `Q13232341`  LCC:`BS2325`
+- **theater arts** `Q61959057`  
+- **theoretical and computational methods** `Q64808940`  
+- **theory of machines** `Q21698871`  
+- **throat surgery** `Q107040808`  
+- **Thymology** `Q559770`  
+- **time geography** `Q186027`  GND:`4587108-5`
+- **Togolese studies** `Q115669553`  
+- **tools** `Q120969822`  
+- **Topic evolution** `Q120969799`  
+- **topic prediction** `Q120970393`  
+- **topical profiling** `Q120971419`  
+- **topographic data science** `Q120969811`  
+- **tourism and hospitality management** `Q55713991`  
+- **tourism management** `Q15851294`  
+- **tourism ontology** `Q120969815`  
+- **trace-based analysis** `Q120970416`  
+- **Traditional Chinese medicine and pharmacy** `Q10871911`  
+- **transatlantic studies** `Q7833793`  
+- **transdiagnostic process** `Q113561123`  
+- **Transformation design** `Q7834086`  
+- **transgenesis** `Q2305545`  
+- **translation and interpretation** `Q11704681`  
+- **translation technology** `Q64814363`  
+- **transport management** `Q114588918`  
+- **trial advocacy** `Q7839940`  
+- **triple classification** `Q120971427`  
+- **triplification** `Q120970410`  
+- **tropical forest sciences** `Q104019027`  
+- **Trustworthy AI** `Q115805554`  
+- **trusty URIs** `Q120971495`  
+- **Turkish Language and Literature** `Q6098912`  
+- **TV on the Web** `Q120970411`  
+- **Tōhoku studies** `Q11526189`  
+- **Ubiquitous Web** `Q120971415`  
+- **UBY-LMF** `Q17143797`  
+- **unbound-property queries** `Q120971488`  
+- **understandability** `Q120910087`  
+- **Unified Modeling Language** `Q169411`  LCSH:`sh97003561` GND:`4469781-8` FAST:`1160249`
+- **university data** `Q120970734`  
+- **urban affairs** `Q104777744`  
+- **urban economics** `Q385256`  LCSH:`sh85141310` DDC:`330.91732`
+- **urban education** `Q120198045`  
+- **urban hydraulics** `Q3143696`  
+- **urban informatics** `Q28130265`  
+- **urban morphology** `Q1385705`  LCSH:`sh2010117574`
+- **usability study** `Q120970744`  
+- **User Behavior Analytics** `Q22909581`  
+- **user experiment** `Q120969812`  
+- **user interaction** `Q120969818`  
+- **user interface design** `Q135707`  
+- **user involvement** `Q120970749`  
+- **user modeling** `Q818362`  
+- **validated numerics** `Q63307393`  
+- **vector space embeddings** `Q120971521`  
+- **venture management** `Q7920412`  
+- **Veterans studies** `Q117286492`  
+- **Victorian studies** `Q110857459`  
+- **video game research** `Q118489408`  
+- **Viking and Medieval Norse Studies** `Q55586006`  
+- **visual arts and visual communication design** `Q55659407`  
+- **visual language** `Q97379839`  
+- **Visual notation** `Q120971463`  
+- **Visual query formulation** `Q120970773`  
+- **vocabulary catalogue** `Q120971503`  
+- **vocational agriculture** `Q105664001`  
+- **volcanology** `Q102904`  LCSH:`sh85144279` GND:`4188776-1` DDC:`551.21`
+- **VOWL** `Q120970740`  
+- **VOWL: Visual Notation for OWL Ontologies** `Q120970403`  
+- **waste management industry** `Q83283234`  
+- **weapons and systems engineering** `Q106961278`  
+- **Web 2.0** `Q131164`  FAST:`1743925`
+- **Web markup** `Q120970351`  
+- **web of data** `Q120970349`  
+- **Web of Things** `Q2814098`  
+- **web preemption** `Q120970689`  
+- **web resources** `Q120970719`  
+- **Web safeness** `Q120970757`  
+- **Welfare biology** `Q102345996`  
+- **West Nordic Studies: Governance and Sustainable Management** `Q55586091`  
+- **wiki studies** `Q21450407`  
+- **Wissenschaft des Judentums** `Q329170`  LCSH:`sh2008004882`
+- **wood technology** `Q1504881`  
+- **word processing** `Q3307703`  
+- **word similarity** `Q120970362`  
+- **work & organisational psychology** `Q64945944`  
+- **work design** `Q8034614`  
+- **work-integrated learning** `Q96415517`  
+- **workflow description** `Q120970756`  
+- **workforce planning** `Q2072240`  
+- **workforce sciences** `Q8034856`  
+- **Yiddish studies** `Q1688921`  GND:`4162748-9`
+- **Yoruba studies** `Q115675891`  
+- **Zimbabwean studies** `Q115669479`  
+
+## Structural Parents (372 — not disciplines, no children in set)
+
+- absence `Q19829125`
+- adversarial process `Q4686698`
+- agricultural biotechnology `Q19595794`
+- agricultural chemistry `Q397334`
+- agricultural technology `Q194118`
+- agriculture `Q1402889`
+- agriculture and forestry `Q1801887`
+- agrostology `Q2715465`
+- algorithm design `Q2971515`
+- animal care `Q21012419`
+- animal development `Q41805950`
+- applied chemistry `Q11491273`
+- appraisal `Q1663833`
+- architectural engineering `Q150737`
+- arranging `Q36993249`
+- artificial object `Q16686448`
+- artificial reproduction `Q4115658`
+- artificial selection `Q995745`
+- aspect of history `Q17524420`
+- automobile safety `Q2090494`
+- auxiliary science `Q11790198`
+- Balkan studies `Q464974`
+- basic research `Q964754`
+- basic study subject `Q116671462`
+- behavior management `Q4880696`
+- behavior therapy `Q16262180`
+- belief system `Q5390013`
+- bioinformatics `Q128570`
+- biological imaging `Q4914995`
+- biomechanics `Q193378`
+- blood physiological phenomena `Q70680972`
+- branch of biology `Q28598684`
+- branch of ecology `Q104193250`
+- branch of engineering `Q12015335`
+- browser `Q104574429`
+- building material `Q206615`
+- business activity `Q19862406`
+- business software `Q1391080`
+- case law `Q11022655`
+- cellular pharmacology `Q127693772`
+- census `Q4350743`
+- change `Q1150070`
+- chemical biology `Q731154`
+- child psychology `Q3411686`
+- Chinese classics `Q576921`
+- chiropterology `Q2043240`
+- cinematic technique `Q1001378`
+- classical economics `Q271857`
+- clinical biology `Q18500556`
+- clinical pathology `Q499500`
+- clinical sign `Q1441305`
+- communication protocol `Q132364`
+- comparatism `Q17625876`
+- complexity theory `Q2755522`
+- composing `Q116751803`
+- computer industry `Q1067601`
+- computer language `Q629206`
+- computer network protocol `Q15836568`
+- computing platform `Q241317`
+- conceptual framework `Q13600188`
+- conceptual system `Q3622126`
+- contemporary culture `Q119175165`
+- continuum physics `Q21213340`
+- control system `Q959968`
+- coordination `Q1783823`
+- corporate communication `Q1426058`
+- cosmic physics `Q25508843`
+- course `Q600134`
+- creation `Q11398090`
+- crisis management `Q1141276`
+- critical social theory `Q110353090`
+- cryptographic data processing `Q124726263`
+- cultural education `Q29585976`
+- cultural heritage management `Q572824`
+- cultural movement `Q2198855`
+- cultural resources management `Q2916316`
+- culturology `Q1418771`
+- cybermetrics `Q65770356`
+- data aggregation `Q16773055`
+- data infrastructure `Q5227304`
+- data protection `Q23647168`
+- data schema `Q1397073`
+- data structure `Q175263`
+- decentralized social network `Q111381712`
+- developmental psychology `Q175002`
+- diabetology `Q1207969`
+- dietetics `Q1231861`
+- disease of anatomical entity `Q18557436`
+- disease of cellular proliferation `Q18554796`
+- distributed data storage `Q339678`
+- distributed ledger `Q25110971`
+- Doctor of Science `Q2248352`
+- doctorate `Q849697`
+- documentation `Q788790`
+- documentation science `Q1235196`
+- ecodesign `Q795082`
+- economic relation `Q1959714`
+- economic sector `Q3958441`
+- economic sociology `Q610859`
+- educational activity `Q61788126`
+- educational psychology `Q59157`
+- electronic media `Q1209283`
+- encoding `Q5375490`
+- energy industry `Q2151621`
+- energy production `Q3406659`
+- enterprise engineering `Q1040393`
+- environment `Q2249676`
+- environmental ethics `Q875686`
+- environmental regulation by humans `Q110590221`
+- environmental toxicology `Q3995923`
+- evidence-based practice `Q2354820`
+- exact science `Q475023`
+- exercise physiology `Q472094`
+- experimental psychology `Q475042`
+- experimental science `Q5769081`
+- Factual science `Q5769133`
+- family medicine `Q3505712`
+- family science `Q117742678`
+- feature `Q12050496`
+- federated query `Q105159989`
+- few-shot learning `Q110797734`
+- fiction `Q8253`
+- field of work `Q627436`
+- film effect `Q15088947`
+- film production `Q932586`
+- food control `Q119710413`
+- food production `Q130751223`
+- Food sampling `Q3536001`
+- forensic genetics `Q60740595`
+- forestry engineer `Q16021386`
+- gas flow `Q95326007`
+- gastroenterology `Q120569`
+- gathering `Q123751128`
+- gemology `Q243330`
+- gender archaeology `Q637003`
+- genetically modified plant `Q18340432`
+- genocide studies `Q2515819`
+- geography of the Middle East `Q3123438`
+- geospatial information technology `Q136656525`
+- glirology `Q3108896`
+- governmental data `Q136996291`
+- graphic arts `Q911059`
+- green chemistry `Q725361`
+- green technology `Q3516929`
+- group behaviour `Q3482410`
+- helping behavior `Q5710255`
+- hematology `Q103824`
+- hemodynamics `Q1642137`
+- historical sociology `Q1620918`
+- historiographical concept `Q24457356`
+- history of civilization `Q10300571`
+- history of communication `Q3633560`
+- history of construction `Q3512823`
+- history of natural science `Q56296765`
+- history of printing `Q257933`
+- history of transport `Q468305`
+- HTTP client `Q2979024`
+- human communication `Q1066689`
+- human ethology `Q1636628`
+- human genetics `Q265799`
+- human-machine interaction `Q118189170`
+- humanities, arts and social sciences `Q97929320`
+- husbandry `Q17277530`
+- hydromechanics `Q31191973`
+- hypersensitivity `Q5958765`
+- illustration `Q21550668`
+- immunoglobulin mediated immune response `Q14905917`
+- indigenous data sovereignty `Q108871337`
+- infant health `Q70437358`
+- infection associated with diseases `Q42417296`
+- information analysis `Q59162903`
+- information engineering `Q1254373`
+- information protection `Q59157175`
+- information transfer `Q4350200`
+- insect ecology `Q4530315`
+- intelligence agency `Q47913`
+- intensive care medicine `Q679690`
+- interdisciplinarity `Q849359`
+- international cooperation `Q9378718`
+- interpretation `Q855395`
+- invasion science `Q113050263`
+- island ecology `Q6083479`
+- job training `Q16861871`
+- justice `Q5167661`
+- knowledge architecture `Q131372306`
+- land management `Q2001056`
+- landscape `Q107425`
+- language classification `Q20477577`
+- law degree `Q4115013`
+- Law of Norway `Q16915192`
+- legal form `Q10541491`
+- legal relationship `Q1367590`
+- library planning `Q118248041`
+- marine microbiology `Q43528365`
+- marine zoology `Q117769342`
+- masculist theory `Q128035432`
+- mathematical linguistics `Q12553063`
+- mathematical modelling `Q10331368`
+- mathematical physics `Q156495`
+- medical facility `Q4260475`
+- medical genetics `Q1071953`
+- medical jurisprudence `Q454812`
+- medical microbiology `Q598976`
+- medical technology `Q10379048`
+- medical test `Q2671652`
+- medicine of the nerves `Q131850943`
+- message `Q628523`
+- message traffic `Q2554719`
+- metric function `Q865746`
+- microbial ecology `Q3054637`
+- military geography `Q1425296`
+- molecular epidemiology `Q4118435`
+- Mormonism `Q747802`
+- morphology `Q73326083`
+- movement `Q3326454`
+- multicellular organismal process `Q22299433`
+- musical interpretation `Q1668139`
+- musicking `Q136076495`
+- nanochemistry `Q1443081`
+- narrative criticism `Q1965350`
+- national security `Q258307`
+- negotiation `Q202875`
+- nervous system process `Q14912053`
+- neurotechnology `Q3305355`
+- news media `Q1193236`
+- non-rational belief system `Q136485030`
+- normality `Q16681739`
+- nosology `Q845300`
+- Notation3 `Q1424987`
+- nutrition `Q2138622`
+- obstetrics `Q5284418`
+- ology `Q125975922`
+- omics `Q158666`
+- operational risk management `Q18357734`
+- oral media `Q17584038`
+- oration `Q861911`
+- organizational intelligence `Q7102024`
+- osteology `Q819121`
+- outline of academic disciplines `Q221173`
+- overnutrition `Q16956975`
+- palaeogeography `Q52151`
+- paleobiology `Q1578310`
+- paleopathology `Q676092`
+- parallel computing `Q232661`
+- participatory science `Q112666376`
+- particle technology `Q7140504`
+- pastoral care `Q1081988`
+- phenomenology `Q2089603`
+- philosophical theory `Q5389993`
+- philosophy of mind `Q23407`
+- Philosophy of psychiatry `Q27333716`
+- philosophy of technology `Q279438`
+- physical medicine and rehabilitation `Q2678675`
+- physical property `Q4373292`
+- planned production `Q36492844`
+- plasma physics `Q5615097`
+- plastic arts `Q1078913`
+- political sociology `Q745692`
+- polyculture `Q2739133`
+- postgraduate degree `Q23015928`
+- power transmission `Q3242194`
+- practice `Q115673998`
+- preference `Q1416170`
+- primatology `Q219488`
+- probability theory `Q5862903`
+- problem solving `Q730920`
+- procedural law `Q936044`
+- process engineering `Q2144042`
+- professional education `Q7248099`
+- professional writing `Q3953114`
+- property `Q1400881`
+- psychopedagogy `Q2642975`
+- psychotraumatology `Q1742975`
+- public communication `Q122827343`
+- public health informatics `Q7257747`
+- publication by electronic means `Q15938550`
+- Q16527837 `Q16527837`
+- Q2761146 `Q2761146`
+- race and society `Q7278944`
+- radio astronomy `Q4306`
+- reader-response criticism `Q1479773`
+- real estate industry `Q1660132`
+- redundancy `Q1204361`
+- regional planning `Q689022`
+- relational learning `Q32904781`
+- religious identity `Q4392985`
+- removal `Q23009442`
+- representation of data `Q36992151`
+- research ethics `Q1132684`
+- review `Q265158`
+- rights `Q780687`
+- risk source `Q86923152`
+- robustness `Q403605`
+- Roman studies `Q136980874`
+- sales `Q194189`
+- satellite technology `Q2226016`
+- scholarly communication `Q7432048`
+- scholarly method `Q17079481`
+- scientific technique `Q3918374`
+- second signal system `Q4127956`
+- security `Q2526135`
+- selective breeding `Q4023882`
+- Semantic integration `Q7449064`
+- semantic network `Q1045785`
+- sensory perception of mechanical stimulus `Q14908172`
+- service on Internet `Q1668024`
+- show `Q15116915`
+- social action `Q769620`
+- social enterprise `Q1071015`
+- social geography `Q524273`
+- social impact `Q107340055`
+- social philosophy `Q180592`
+- sociological methodology `Q119007932`
+- sociology of consumption `Q1783057`
+- sociology of organisations `Q9339103`
+- sociology of race and ethnic relations `Q7552863`
+- sociology of the body `Q1451466`
+- sociology of the family `Q2290557`
+- software industry `Q880371`
+- soil biology `Q12370533`
+- sound recognition `Q40889874`
+- source of information `Q3523102`
+- space research `Q15706425`
+- spatial information science `Q137918437`
+- specialised journalism `Q1391316`
+- specialized terminology `Q1391494`
+- specification `Q2101564`
+- sport pedagogy `Q17105999`
+- statistical investigation `Q64418432`
+- storing `Q123819222`
+- structured data `Q26813700`
+- study `Q1782301`
+- surgical operation `Q600236`
+- systematics `Q3516404`
+- systematics `Q105769`
+- systems analysis `Q679871`
+- systems architecture `Q477538`
+- taking `Q110458263`
+- technical education `Q19075087`
+- tertiary source `Q1063801`
+- text database `Q59157871`
+- textual scholarship `Q15473066`
+- theoretical biology `Q2419229`
+- theoretical computer science `Q2878974`
+- theoretical physics `Q18362`
+- theory of evolution `Q11640129`
+- tourism industry `Q9323634`
+- traditional Aboriginal and Torres Strait Islander knowledges `Q113211688`
+- traditional Chinese medicine `Q200253`
+- traditional knowledge `Q1428168`
+- traffic engineering `Q1640676`
+- training set `Q3997298`
+- transformation `Q12202238`
+- translation dictionary `Q121010292`
+- transportation planning `Q1034047`
+- undergraduate degree `Q6008527`
+- upbringing `Q2353731`
+- urban ecology `Q1430301`
+- user interface `Q47146`
+- verification and validation `Q2919644`
+- vertebrate zoology `Q18358830`
+- veterinary specialist `Q7923730`
+- vexillology `Q186083`
+- virtual place `Q107307154`
+- visual thinking `Q7328862`
+- web application `Q189210`
+- webometrics `Q1929715`
+- Western culture `Q478958`
+- word list `Q91828006`
+- work studies `Q629107`
+- writing `Q110484020`
+- writing or drawing `Q115654911`

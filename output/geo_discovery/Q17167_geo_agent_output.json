@@ -1,0 +1,448 @@
+{
+  "seed_qid": "Q17167",
+  "candidates": [
+    {
+      "qid": "Q122918768",
+      "label": "Pompey's eastern settlement",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q122918768",
+          "place_qid": "Q210718",
+          "place_label": "Asia",
+          "relation_type": "OCCURRED_AT"
+        },
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q122918768",
+          "place_qid": "Q913382",
+          "place_label": "Bithynia et Pontus",
+          "relation_type": "OCCURRED_AT"
+        },
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q122918768",
+          "place_qid": "Q4819648",
+          "place_label": "Cilicia",
+          "relation_type": "OCCURRED_AT"
+        },
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q122918768",
+          "place_qid": "Q207118",
+          "place_label": "Roman Syria",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524410",
+      "label": "Battle of Italica",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q60524410",
+          "place_qid": "Q658893",
+          "place_label": "Italica",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q9173528",
+      "label": "Battle of Saguntum",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q9173528",
+          "place_qid": "Q47483",
+          "place_label": "Sagunto",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q11948139",
+      "label": "Seleuceia in Cilicia",
+      "classification": "place_core",
+      "deltas": [
+        {
+          "type": "CREATE_OR_ENRICH_PLACE",
+          "place_key": "pleiades_id:648771",
+          "source_qid": "Q11948139",
+          "properties": {
+            "label": "Seleuceia in Cilicia",
+            "qid": "Q11948139",
+            "pleiades_id": "648771",
+            "centroid_lat": 36.3765,
+            "centroid_lng": 33.9165,
+            "base_type_hint": [
+              "ancient city",
+              "archaeological site"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q124988",
+          "place_qid": "Q17167",
+          "place_label": "Roman Republic",
+          "relation_type": "OCCURRED_AT"
+        },
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q124988",
+          "place_qid": "Q2429397",
+          "place_label": "Ancient Carthage",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q54864605",
+      "label": "Siege of Salona",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q54864605",
+          "place_qid": "Q1258998",
+          "place_label": "Salona",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q4872838",
+      "label": "Battle of the Baetis River",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q4872838",
+          "place_qid": "Q14309",
+          "place_label": "Guadalquivir",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524412",
+      "label": "Battle of Lauron",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q60524412",
+          "place_qid": "Q11045304",
+          "place_label": "Lauro",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q9173074",
+      "label": "Battle of Carteia",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q9173074",
+          "place_qid": "Q97616842",
+          "place_label": "Carteia",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q1974201",
+      "label": "Battle of Geronium",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q1974201",
+          "place_qid": "Q3761234",
+          "place_label": "Geronium",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q233402",
+      "label": "Battle of Nola",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q233402",
+          "place_qid": "Q72288",
+          "place_label": "Nola",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q125727661",
+      "label": "March on Rome",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q125727661",
+          "place_qid": "Q220",
+          "place_label": "Rome",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q20102510",
+      "label": "Battle of Cartagena",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q20102510",
+          "place_qid": "Q2727884",
+          "place_label": "Carthago Nova",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q137972719",
+      "label": "Siege of Carthago Nova",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q137972719",
+          "place_qid": "Q2727884",
+          "place_label": "Carthago Nova",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q11688220",
+      "label": "Battle of Petelia",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q11688220",
+          "place_qid": "Q3900811",
+          "place_label": "Petelia",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q3778726",
+      "label": "Sertorian War",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q3778726",
+          "place_qid": "Q186513",
+          "place_label": "Hispania",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "classification": "place_core",
+      "deltas": [
+        {
+          "type": "CREATE_OR_ENRICH_PLACE",
+          "place_key": "qid:Q17167",
+          "source_qid": "Q17167",
+          "properties": {
+            "label": "Roman Republic",
+            "qid": "Q17167",
+            "centroid_lat": 41.9,
+            "centroid_lng": 12.5,
+            "base_type_hint": [
+              "historical period",
+              "form of government",
+              "empire",
+              "historical country"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q104834716",
+      "label": "Battle near Osca",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q104834716",
+          "place_qid": "Q100707898",
+          "place_label": "Osca",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q60524464",
+      "label": "Battle of Valentia",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q60524464",
+          "place_qid": "Q9092331",
+          "place_label": "Valentia Edetanorum",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q137921341",
+      "label": "Siege of Nola",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q137921341",
+          "place_qid": "Q72288",
+          "place_label": "Nola",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q21328960",
+      "label": "122 BC eruption of Mount Etna",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q21328960",
+          "place_qid": "Q16990",
+          "place_label": "Mount Etna",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q7362271",
+      "label": "Roman army mutiny in 342 BC",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q7362271",
+          "place_qid": "Q1438",
+          "place_label": "Campania",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia",
+      "classification": "place_core",
+      "deltas": [
+        {
+          "type": "CREATE_OR_ENRICH_PLACE",
+          "place_key": "pleiades_id:981509",
+          "source_qid": "Q210718",
+          "properties": {
+            "label": "Asia",
+            "qid": "Q210718",
+            "pleiades_id": "981509",
+            "geonames_id": "8378482",
+            "centroid_lat": 38.4,
+            "centroid_lng": 28.3,
+            "base_type_hint": [
+              "Roman province"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q9172749",
+      "label": "Battle of Apamea",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q9172749",
+          "place_qid": "Q617550",
+          "place_label": "Apamea",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q3491975",
+      "label": "Battle of Cremona",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q3491975",
+          "place_qid": "Q6231",
+          "place_label": "Cremona",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    },
+    {
+      "qid": "Q23725",
+      "label": "Byzantium",
+      "classification": "place_core",
+      "deltas": [
+        {
+          "type": "CREATE_OR_ENRICH_PLACE",
+          "place_key": "pleiades_id:520985",
+          "source_qid": "Q23725",
+          "properties": {
+            "label": "Byzantium",
+            "qid": "Q23725",
+            "pleiades_id": "520985",
+            "centroid_lat": 41.013416666666664,
+            "centroid_lng": 28.98363888888889,
+            "base_type_hint": [
+              "ancient city",
+              "polis"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "qid": "Q60524449",
+      "label": "Battle of Sucro",
+      "classification": "event",
+      "deltas": [
+        {
+          "type": "ATTACH_EVENT_TO_PLACE",
+          "event_qid": "Q60524449",
+          "place_qid": "Q14311",
+          "place_label": "Júcar",
+          "relation_type": "OCCURRED_AT"
+        }
+      ]
+    }
+  ]
+}

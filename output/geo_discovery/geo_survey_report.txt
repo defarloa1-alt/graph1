@@ -1,0 +1,127 @@
+Geographic Property Survey — 264 entities from 25 classes
+Date: 2026-03-08 14:18
+
+── CORE GEOGRAPHIC PROPERTIES (>30% of entities) ──
+  P31      instance of                                    264 (100.0%)
+  P17      country                                        243 ( 92.0%)
+  P625     coordinate location                            224 ( 84.8%)
+  P646     Freebase ID                                    198 ( 75.0%) [EXT-ID]
+  P373     Commons category                               194 ( 73.5%)
+  P131     located in the administrative territorial entity  192 ( 72.7%)
+  P18      image                                          187 ( 70.8%)
+  P1566    GeoNames ID                                    140 ( 53.0%) [EXT-ID]
+  P910     topic's main category                          124 ( 47.0%)
+  P214     VIAF cluster ID                                116 ( 43.9%) [EXT-ID]
+  P1343    described by source                             93 ( 35.2%)
+  P8189    National Library of Israel J9U ID               91 ( 34.5%) [EXT-ID]
+  P227     GND ID                                          90 ( 34.1%) [EXT-ID]
+  P2046    area                                            90 ( 34.1%)
+  P421     located in time zone                            87 ( 33.0%)
+  P244     Library of Congress authority ID                86 ( 32.6%) [EXT-ID]
+  P13591   ‎Yale LUX ID                                    85 ( 32.2%) [EXT-ID]
+  P402     OpenStreetMap relation ID                       83 ( 31.4%) [EXT-ID]
+  P242     locator map image                               83 ( 31.4%)
+  P1082    population                                      82 ( 31.1%)
+  P1889    different from                                  80 ( 30.3%)
+
+── GEOGRAPHIC EXTERNAL IDS (sorted by coverage) ──
+  P646     Freebase ID                                    198 ( 75.0%)  e.g. /m/02_286, /m/030qb3t
+  P1566    GeoNames ID                                    140 ( 53.0%)  e.g. 5128581, 5368361
+  P214     VIAF cluster ID                                116 ( 43.9%)  e.g. 266415900, 233013566
+  P8189    National Library of Israel J9U ID               91 ( 34.5%)  e.g. 987007552649105171, 987007554810605171
+  P227     GND ID                                          90 ( 34.1%)  e.g. 4042011-5, 4036361-2
+  P244     Library of Congress authority ID                86 ( 32.6%)  e.g. n79007751, n79021240
+  P13591   ‎Yale LUX ID                                    85 ( 32.2%)  e.g. concept/df43130d-8271-4f4b-ad42-ca2277e73207, concept/3eb9eae1-5044-4670-9eda-86bb2314034f
+  P402     OpenStreetMap relation ID                       83 ( 31.4%)  e.g. 175905, 207359
+  P1417    Encyclopædia Britannica Online ID               76 ( 28.8%)  e.g. place/New-York-City, place/Los-Angeles-California
+  P691     NL CR AUT ID                                    71 ( 26.9%)  e.g. ge130170, ge134331
+  P6766    Who's on First ID                               71 ( 26.9%)  e.g. 85977539, 85923517
+  P3417    Quora topic ID                                  70 ( 26.5%)  e.g. New-York-City, Los-Angeles-CA
+  P9957    museum-digital place ID                         69 ( 26.1%)  e.g. 359, 58619
+  P1296    Gran Enciclopèdia Catalana ID (former scheme)   68 ( 25.8%)  e.g. 0046509, 0038554
+  P2924    Great Russian Encyclopedia Online ID (2017)     68 ( 25.8%)  e.g. 2280838, 5297930
+  P4342    Great Norwegian Encyclopedia ID                 68 ( 25.8%)  e.g. New_York, Los_Angeles
+  P8168    FactGrid item ID                                67 ( 25.4%)  e.g. Q22109, Q22160
+  P7305    Online PWN Encyclopedia ID                      67 ( 25.4%)  e.g. 3948850, 3933806
+  P12385   Gran Enciclopèdia Catalana ID                   66 ( 25.0%)  e.g. nova-york-0, los-angeles-0
+  P8313    Lex ID                                          63 ( 23.9%)  e.g. New_York_City, Los_Angeles
+  P1667    Getty Thesaurus of Geographic Names ID          62 ( 23.5%)  e.g. 7007567, 7023900
+  P10832   WorldCat Entities ID                            59 ( 22.3%)  e.g. E39QbtfRvQh7864Jh4rDGBFDWc, E39PBJfWYmJkDYcpGWYVDfWxDq
+  P2671    Google Knowledge Graph ID                       59 ( 22.3%)  e.g. /g/11bc5zw6fz, /g/121fw6d7
+  P12800   Vikidia article ID                              58 ( 22.0%)  e.g. en:New_York_City, es:Nueva_York
+  P5063    Interlingual Index ID                           53 ( 20.1%)  e.g. i84552, i84250
+  P2163    FAST ID                                         52 ( 19.7%)  e.g. 1204333, 1204540
+  P269     IdRef ID                                        52 ( 19.7%)  e.g. 027311538, 026581019
+  P8814    WordNet 3.1 Synset ID                           52 ( 19.7%)  e.g. 09141944-n, 09086143-n
+  P12749   SNARC ID                                        51 ( 19.3%)  e.g. Q1904, Q2683
+  P2326    GNS Unique Feature ID                           51 ( 19.3%)  e.g. -2601889, 14683712
+  P1225    U.S. National Archives Identifier               50 ( 18.9%)  e.g. 10045276, 10046660
+  P2581    BabelNet ID                                     50 ( 18.9%)  e.g. 00041611n, 00019336n
+  P5019    Brockhaus Enzyklopädie online ID                50 ( 18.9%)  e.g. new-york-20, los-angeles-20
+  P5573    archINFORM location ID                          50 ( 18.9%)  e.g. 1953, 1849
+  P11693   OpenStreetMap node ID                           49 ( 18.6%)  e.g. 61785451, 1738808199
+  P8519    RKD thesaurus ID                                47 ( 17.8%)  e.g. 392, 1173
+  P1617    BBC Things ID                                   47 ( 17.8%)  e.g. 97b1cae0-16a8-49f8-bbe1-605669ea745e, 3cf667b9-0129-49a5-8248-ed949b629e82
+  P268     Bibliothèque nationale de France ID             45 ( 17.0%)  e.g. 11880105b, 11938130m
+  P982     MusicBrainz area ID                             44 ( 16.7%)  e.g. 74e50e58-5deb-4b99-93a2-decbb365c07f, 1f40c6e1-47ba-4e35-996f-fe6ee5840e62
+  P3219    Encyclopædia Universalis ID                     44 ( 16.7%)  e.g. new-york, los-angeles
+
+── TOP INSTANCE_OF CLASSES ──
+  Q1549591     big city                                   21 (  8.0%)
+  Q515         city                                       20 (  7.6%)
+  Q839954      archaeological site                        20 (  7.6%)
+  Q15661340    ancient city                               19 (  7.2%)
+  Q486972      human settlement                           16 (  6.1%)
+  Q3624078     sovereign state                            14 (  5.3%)
+  Q6256        country                                    13 (  4.9%)
+  Q3957        town                                       12 (  4.5%)
+  Q532         village                                    12 (  4.5%)
+  Q3024240     historical country                         12 (  4.5%)
+  Q10864048    first-level administrative division        12 (  4.5%)
+  Q8502        mountain                                   12 (  4.5%)
+  Q23397       lake                                       12 (  4.5%)
+  Q34038       waterfall                                  12 (  4.5%)
+  Q34442       road                                       12 (  4.5%)
+  Q23413       castle                                     12 (  4.5%)
+  Q51929311    largest city                               11 (  4.2%)
+  Q165         sea                                        11 (  4.2%)
+  Q44782       port                                       11 (  4.2%)
+  Q23442       island                                     10 (  3.8%)
+  Q5107        continent                                  10 (  3.8%)
+  Q12280       bridge                                     10 (  3.8%)
+  Q34763       peninsula                                   9 (  3.4%)
+  Q4022        river                                       9 (  3.4%)
+  Q16917       hospital                                    9 (  3.4%)
+  Q13220204    second-level administrative division        8 (  3.0%)
+  Q174844      megacity                                    7 (  2.7%)
+  Q2418896     part of the world                           7 (  2.7%)
+  Q148837      polis                                       6 (  2.3%)
+  Q200250      metropolis                                  5 (  1.9%)
+
+── PROPERTIES BY CATEGORY ──
+  Spatial:
+    P625     coordinate location                      224
+    P2046    area                                     90
+    P242     locator map image                        83
+  Administrative:
+    P17      country                                  243
+    P131     located in the administrative territorial entity 192
+    P421     located in time zone                     87
+
+── SFA ROUTING SIGNALS (external IDs that activate geo SFAs) ──
+  High-value authority IDs for geographic SFA routing:
+  P1566    GeoNames ID                              PRESENT   140 ( 53.0%)
+  P1667    Getty TGN ID                             PRESENT    62 ( 23.5%)
+  P1584    Pleiades ID                              PRESENT    26 (  9.8%)
+  P244     LCNAF/LCSH ID                            PRESENT    86 ( 32.6%)
+  P227     GND ID                                   PRESENT    90 ( 34.1%)
+  P214     VIAF ID                                  PRESENT   116 ( 43.9%)
+  P268     BnF ID                                   PRESENT    45 ( 17.0%)
+  P269     IdRef ID                                 PRESENT    52 ( 19.7%)
+  P402     OpenStreetMap relation ID                PRESENT    83 ( 31.4%)
+  P882     FIPS code                                PRESENT     2 (  0.8%)
+  P590     GNIS ID                                  PRESENT    19 (  7.2%)
+  P3120    TOID (Ordnance Survey)                   PRESENT     5 (  1.9%)
+
+── COORDS COVERAGE ──
+  224/264 entities have P625 coordinates (84.8%)

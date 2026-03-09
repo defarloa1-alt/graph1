@@ -507,7 +507,8 @@ FOREACH (_ IN CASE WHEN $birth_place_qid IS NOT NULL THEN [1] ELSE [] END |
                 pl.pleiades_id = $birth_pleiades,
                 pl.resolved = ($birth_pleiades IS NOT NULL),
                 pl.place_type = CASE WHEN $birth_pleiades IS NULL THEN 'region_stub' ELSE null END
-  ON MATCH SET pl.pleiades_id = coalesce(pl.pleiades_id, $birth_pleiades)
+  ON MATCH SET pl.pleiades_id = coalesce(pl.pleiades_id, $birth_pleiades),
+                pl.label = coalesce(pl.label, $birth_place_label, $birth_place_qid)
   MERGE (p)-[:BORN_IN_PLACE {
     source: 'wikidata_p19',
     place_qid: $birth_place_qid,
@@ -521,7 +522,8 @@ FOREACH (_ IN CASE WHEN $death_place_qid IS NOT NULL THEN [1] ELSE [] END |
                 pl.pleiades_id = $death_pleiades,
                 pl.resolved = ($death_pleiades IS NOT NULL),
                 pl.place_type = CASE WHEN $death_pleiades IS NULL THEN 'region_stub' ELSE null END
-  ON MATCH SET pl.pleiades_id = coalesce(pl.pleiades_id, $death_pleiades)
+  ON MATCH SET pl.pleiades_id = coalesce(pl.pleiades_id, $death_pleiades),
+                pl.label = coalesce(pl.label, $death_place_label, $death_place_qid)
   MERGE (p)-[:DIED_IN_PLACE {
     source: 'wikidata_p20',
     place_qid: $death_place_qid,
@@ -535,7 +537,8 @@ FOREACH (_ IN CASE WHEN $burial_place_qid IS NOT NULL THEN [1] ELSE [] END |
                 pl.pleiades_id = $burial_pleiades,
                 pl.resolved = ($burial_pleiades IS NOT NULL),
                 pl.place_type = CASE WHEN $burial_pleiades IS NULL THEN 'region_stub' ELSE null END
-  ON MATCH SET pl.pleiades_id = coalesce(pl.pleiades_id, $burial_pleiades)
+  ON MATCH SET pl.pleiades_id = coalesce(pl.pleiades_id, $burial_pleiades),
+                pl.label = coalesce(pl.label, $burial_place_label, $burial_place_qid)
   MERGE (p)-[:BURIED_AT {
     source: 'wikidata_p119',
     place_qid: $burial_place_qid,
@@ -558,16 +561,30 @@ SET r.start_year      = $start_year,
     r.enriched_at     = datetime()
 """
 
+def _entity_type_from_item_type(item_type_label: str | None) -> str:
+    """Derive entity_type from item_type_label for backlink stubs."""
+    if not item_type_label:
+        return "STUB"
+    t = item_type_label.lower()
+    if any(k in t for k in ("place", "settlement", "city", "region", "historic place", "archaeological")):
+        return "Place"
+    if any(k in t for k in ("event", "conflict", "war", "battle")):
+        return "EVENT"
+    return "STUB"
+
+
 WRITE_BACKLINK_CANDIDATE = """
 MERGE (candidate:Entity {qid: $item_qid})
-  ON CREATE SET candidate.label          = $item_label,
+  ON CREATE SET candidate.label          = coalesce($item_label, $item_qid),
                 candidate.qid            = $item_qid,
                 candidate.entity_id      = 'entity_' + $item_qid,
-                candidate.entity_type    = 'STUB',
+                candidate.entity_type    = $entity_type,
                 candidate.entity_cipher   = $entity_cipher,
                 candidate.item_type_qid  = $item_type_qid,
                 candidate.item_type_label= $item_type_label,
                 candidate.stub           = true
+  ON MATCH SET candidate.entity_type    = coalesce(candidate.entity_type, $entity_type),
+                candidate.label          = coalesce(candidate.label, $item_label, $item_qid)
 
 WITH candidate
 MATCH (p:Person {qid: $person_qid})
@@ -804,11 +821,13 @@ def harvest_person(
 
     for bl in backlinks:
         try:
+            entity_type = _entity_type_from_item_type(bl.get("item_type_label"))
             session.run(WRITE_BACKLINK_CANDIDATE, {
                 "person_qid":      qid,
                 "item_qid":        bl["item_qid"],
                 "item_label":      bl["item_label"],
-                "entity_cipher":   generate_entity_cipher(bl["item_qid"], "STUB", "wd"),
+                "entity_type":     entity_type,
+                "entity_cipher":   generate_entity_cipher(bl["item_qid"], entity_type, "wd"),
                 "item_type_qid":   bl["item_type_qid"],
                 "item_type_label": bl["item_type_label"],
                 "pred_pid":        bl["pred_pid"],

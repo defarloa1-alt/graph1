@@ -1,0 +1,20 @@
+{
+  "seed_qid": "Q17167",
+  "dispatched_at": "2026-03-07T13:27:00.230007+00:00",
+  "sources": {
+    "classify": "output\\di_classify\\Q17167_di_classify.json",
+    "harvest": "output\\di_harvest\\Q17167_di_harvest.json"
+  },
+  "facets_dispatched": 1,
+  "facet_summary": [
+    {
+      "facet_key": "military",
+      "candidates": 20,
+      "primary": 19,
+      "secondary": 1,
+      "federation_sources": 5,
+      "sfa_status": "evaluated",
+      "sfa_reason": ""
+    }
+  ]
+}

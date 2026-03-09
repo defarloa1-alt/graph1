@@ -1,0 +1,6258 @@
+{
+  "seed": {
+    "qid": "Q17167",
+    "label": "Roman Republic"
+  },
+  "subject_resolution": {
+    "domain_tether": {
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "lcnaf_id": "sh85115114",
+      "type": "lcnaf"
+    },
+    "sub_subjects": [
+      {
+        "qid": "Q1238338",
+        "label": "Caesar's Civil War",
+        "lcnaf_id": "sh85115123",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q124988",
+        "label": "Punic Wars",
+        "lcnaf_id": "sh85109114",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q130614",
+        "label": "Roman Senate",
+        "lcnaf_id": "n79133788",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "lcnaf_id": "sh85001531",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "lcnaf_id": "n79039816",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "lcnaf_id": "sh85115064",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q201038",
+        "label": "Roman Kingdom",
+        "lcnaf_id": "sh85115111",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q202161",
+        "label": "Gallic War",
+        "lcnaf_id": "sh85053541",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "lcnaf_id": "n79018704",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q337547",
+        "label": "ancient Roman religion",
+        "lcnaf_id": "sh96009771",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q397",
+        "label": "Latin",
+        "lcnaf_id": "sh85074944",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "lcnaf_id": "sh85045631",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "lcnaf_id": "sh85008606",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "lcnaf_id": "sh85026450",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "lcnaf_id": "sh85115118",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q952064",
+        "label": "Roman currency",
+        "lcnaf_id": "sh85027857",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q210718",
+        "label": "Asia",
+        "lcnaf_id": "n86104083",
+        "type": "lcnaf"
+      },
+      {
+        "qid": "Q124988",
+        "label": "Punic Wars",
+        "dewey_id": "937.04",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q1307214",
+        "label": "form of government",
+        "dewey_id": "321",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "dewey_id": "2--6",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q206414",
+        "label": "Principate",
+        "dewey_id": "937.06",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "dewey_id": "2--45632",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q337547",
+        "label": "ancient Roman religion",
+        "dewey_id": "292",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q35497",
+        "label": "Ancient Greek",
+        "dewey_id": "480",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q397",
+        "label": "Latin",
+        "dewey_id": "470",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "dewey_id": "2--4",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "dewey_id": "2--5",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q48349",
+        "label": "empire",
+        "dewey_id": "321.03",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q486761",
+        "label": "classical antiquity",
+        "dewey_id": "938",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q596373",
+        "label": "Pyrrhic War",
+        "dewey_id": "937.03",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "dewey_id": "937.05",
+        "type": "dewey"
+      },
+      {
+        "qid": "Q15",
+        "label": "Africa",
+        "fast_id": "1239509",
+        "type": "fast"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "fast_id": "1204885",
+        "type": "fast"
+      },
+      {
+        "qid": "Q1747689",
+        "label": "Ancient Rome",
+        "fast_id": "1754964",
+        "type": "fast"
+      },
+      {
+        "qid": "Q220",
+        "label": "Rome",
+        "fast_id": "1204500",
+        "type": "fast"
+      },
+      {
+        "qid": "Q46",
+        "label": "Europe",
+        "fast_id": "1245064",
+        "type": "fast"
+      },
+      {
+        "qid": "Q48",
+        "label": "Asia",
+        "fast_id": "1240495",
+        "type": "fast"
+      },
+      {
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE",
+        "fast_id": "1354980",
+        "type": "fast"
+      }
+    ],
+    "backbone_summary": {
+      "lcnaf_count": 18,
+      "dewey_count": 14,
+      "fast_count": 7
+    }
+  },
+  "facet_deltas": [
+    {
+      "facet_key": "archaeological",
+      "facet_label": "Archaeological",
+      "facet_definition": "Material cultures, site phases, stratigraphic horizons",
+      "candidate_count": 5,
+      "primary_count": 1,
+      "secondary_count": 4,
+      "candidates": [
+        {
+          "qid": "Q11948139",
+          "label": "Seleuceia in Cilicia",
+          "role": "primary",
+          "score": 15.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q839954",
+              "label": "archaeological site",
+              "role": "anchor",
+              "reason": "instance_of anchor archaeological site (Q839954)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "secondary",
+              "reason": "property Pleiades ID (P1584) secondary"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "648771",
+              "role": "secondary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            }
+          ]
+        },
+        {
+          "qid": "Q220",
+          "label": "Rome",
+          "role": "secondary",
+          "score": 3.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "secondary",
+              "reason": "property Pleiades ID (P1584) secondary"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "423025",
+              "role": "secondary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            }
+          ]
+        },
+        {
+          "qid": "Q48",
+          "label": "Asia",
+          "role": "secondary",
+          "score": 3.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "secondary",
+              "reason": "property Pleiades ID (P1584) secondary"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "915832",
+              "role": "secondary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            }
+          ]
+        },
+        {
+          "qid": "Q210718",
+          "label": "Asia",
+          "role": "secondary",
+          "score": 3.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "secondary",
+              "reason": "property Pleiades ID (P1584) secondary"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "981509",
+              "role": "secondary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            }
+          ]
+        },
+        {
+          "qid": "Q23725",
+          "label": "Byzantium",
+          "role": "secondary",
+          "score": 3.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "secondary",
+              "reason": "property Pleiades ID (P1584) secondary"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "520985",
+              "role": "secondary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "pleiades",
+          "label": "Pleiades",
+          "pid": "P1584",
+          "pid_label": "Pleiades ID"
+        },
+        {
+          "source_id": "geonames",
+          "label": "GeoNames",
+          "pid": "P1566",
+          "pid_label": "GeoNames ID"
+        },
+        {
+          "source_id": "fast",
+          "label": "FAST",
+          "pid": "P2163",
+          "pid_label": "FAST ID"
+        },
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        },
+        {
+          "source_id": "viaf",
+          "label": "VIAF",
+          "pid": "P214",
+          "pid_label": "VIAF ID"
+        },
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        }
+      ],
+      "evidence_summary": "5 candidates (1 primary, 4 secondary); types: archaeological site; federation: Pleiades, GeoNames, FAST, Dewey Decimal, Library of Congress, VIAF, GND",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "artistic",
+      "facet_label": "Artistic",
+      "facet_definition": "Art movements, architectural styles, aesthetic regimes",
+      "candidate_count": 1,
+      "primary_count": 1,
+      "secondary_count": 0,
+      "candidates": [
+        {
+          "qid": "Q780548",
+          "label": "fabula praetexta",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q7777573",
+              "label": "theatrical genre",
+              "role": "primary",
+              "reason": "instance_of theatrical genre (Q7777573)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [],
+      "evidence_summary": "1 candidates (1 primary, 0 secondary); types: theatrical genre",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "biographic",
+      "facet_label": "Biographic",
+      "facet_definition": "Personal history, biography, life events, office-holding careers, genealogy",
+      "candidate_count": 18,
+      "primary_count": 1,
+      "secondary_count": 17,
+      "candidates": [
+        {
+          "qid": "Q220",
+          "label": "Rome",
+          "role": "secondary",
+          "score": 10.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "251380480",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "6280157416838916710001",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "445149106006268490419",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "243431474",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4050471-2",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15",
+          "label": "Africa",
+          "role": "secondary",
+          "score": 6.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "127043766",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "173744536",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4000695-5",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1747689",
+          "label": "Ancient Rome",
+          "role": "secondary",
+          "score": 6.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "244992873",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "145348938",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4076778-4",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q130614",
+          "label": "Roman Senate",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "239895420",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4070408-7",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q46",
+          "label": "Europe",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "170298814",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4015701-5",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q48",
+          "label": "Asia",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "315526119",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4003217-6",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q181733",
+          "label": "Praetorian Guard",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "188516801",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4076781-4",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q210718",
+          "label": "Asia",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "144332473",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4068890-2",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1114821",
+          "label": "citizens' assemblies of the Roman Republic",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4514363-8",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q124988",
+          "label": "Punic Wars",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4176367-1",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1307214",
+          "label": "form of government",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4359546-7",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q35497",
+          "label": "Ancient Greek",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4113791-7",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q397",
+          "label": "Latin",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4114364-4",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q48349",
+          "label": "empire",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4139742-3",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q596373",
+          "label": "Pyrrhic War",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4998009-9",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q677316",
+          "label": "Social War of 91-87 BCE",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4146948-3",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q23725",
+          "label": "Byzantium",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4088772-8",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q476078",
+          "label": "aureus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4873978-9",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        },
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        },
+        {
+          "source_id": "viaf",
+          "label": "VIAF",
+          "pid": "P214",
+          "pid_label": "VIAF ID"
+        },
+        {
+          "source_id": "geonames",
+          "label": "GeoNames",
+          "pid": "P1566",
+          "pid_label": "GeoNames ID"
+        },
+        {
+          "source_id": "fast",
+          "label": "FAST",
+          "pid": "P2163",
+          "pid_label": "FAST ID"
+        },
+        {
+          "source_id": "pleiades",
+          "label": "Pleiades",
+          "pid": "P1584",
+          "pid_label": "Pleiades ID"
+        }
+      ],
+      "evidence_summary": "18 candidates (1 primary, 17 secondary); federation: GND, Dewey Decimal, Library of Congress, VIAF, GeoNames, FAST, Pleiades",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "communication",
+      "facet_label": "Communication",
+      "facet_definition": "Communications, messaging, narratives, propaganda, ceremonies, oral traditions; how claims/events were transmitted and framed",
+      "candidate_count": 1,
+      "primary_count": 0,
+      "secondary_count": 1,
+      "candidates": [
+        {
+          "qid": "Q780548",
+          "label": "fabula praetexta",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q7777573",
+              "label": "theatrical genre",
+              "role": "secondary",
+              "reason": "instance_of theatrical genre (Q7777573)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [],
+      "evidence_summary": "1 candidates (0 primary, 1 secondary); types: theatrical genre",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "cultural",
+      "facet_label": "Cultural",
+      "facet_definition": "Cultural formations, identity regimes, symbolic systems",
+      "candidate_count": 4,
+      "primary_count": 2,
+      "secondary_count": 2,
+      "candidates": [
+        {
+          "qid": "Q1888820",
+          "label": "culture of the Roman Republic",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q19958368",
+              "label": "culture of an area",
+              "role": "primary",
+              "reason": "instance_of culture of an area (Q19958368)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q1200427",
+              "label": "culture of ancient Rome",
+              "role": "primary",
+              "reason": "subclass_of culture of ancient Rome (Q1200427)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3624157",
+          "label": "Roman Republican art",
+          "role": "primary",
+          "score": 12.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q1792644",
+              "label": "art style",
+              "role": "anchor",
+              "reason": "instance_of anchor art style (Q1792644)"
+            }
+          ]
+        },
+        {
+          "qid": "Q337547",
+          "label": "ancient Roman religion",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q337547",
+              "label": "ancient Roman religion",
+              "role": "secondary",
+              "reason": "entity ancient Roman religion (Q337547) directly matched"
+            }
+          ]
+        },
+        {
+          "qid": "Q780548",
+          "label": "fabula praetexta",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q7777573",
+              "label": "theatrical genre",
+              "role": "secondary",
+              "reason": "instance_of theatrical genre (Q7777573)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        }
+      ],
+      "evidence_summary": "4 candidates (2 primary, 2 secondary); types: ancient Roman religion, art style, culture of an area, culture of ancient Rome, theatrical genre; federation: Dewey Decimal, Library of Congress",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "demographic",
+      "facet_label": "Demographic",
+      "facet_definition": "Population structure, migration, urbanization waves",
+      "candidate_count": 1,
+      "primary_count": 1,
+      "secondary_count": 0,
+      "candidates": [
+        {
+          "qid": "Q2022780",
+          "label": "Suci",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q133311",
+              "label": "tribe",
+              "role": "primary",
+              "reason": "instance_of tribe (Q133311)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [],
+      "evidence_summary": "1 candidates (1 primary, 0 secondary); types: tribe",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "economic",
+      "facet_label": "Economic",
+      "facet_definition": "Economic systems, trade regimes, financial structures",
+      "candidate_count": 28,
+      "primary_count": 27,
+      "secondary_count": 1,
+      "candidates": [
+        {
+          "qid": "Q1249076",
+          "label": "quadrans",
+          "role": "primary",
+          "score": 80.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q113813711",
+              "label": "coin type",
+              "role": "primary",
+              "reason": "instance_of coin type (Q113813711)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q41207",
+              "label": "coin",
+              "role": "primary",
+              "reason": "subclass_of coin (Q41207)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15078648",
+          "label": "ancient drachma",
+          "role": "primary",
+          "score": 80.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q113813711",
+              "label": "coin type",
+              "role": "primary",
+              "reason": "instance_of coin type (Q113813711)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q41207",
+              "label": "coin",
+              "role": "primary",
+              "reason": "subclass_of coin (Q41207)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q476078",
+          "label": "aureus",
+          "role": "primary",
+          "score": 80.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q7048891",
+              "label": "non-decimal currency",
+              "role": "primary",
+              "reason": "instance_of non-decimal currency (Q7048891)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q860641",
+              "label": "gold coin",
+              "role": "primary",
+              "reason": "subclass_of gold coin (Q860641)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q106841885",
+          "label": "half-stater",
+          "role": "primary",
+          "score": 64.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q113813711",
+              "label": "coin type",
+              "role": "primary",
+              "reason": "instance_of coin type (Q113813711)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3256634",
+          "label": "litra",
+          "role": "primary",
+          "score": 64.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q113813711",
+              "label": "coin type",
+              "role": "primary",
+              "reason": "instance_of coin type (Q113813711)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q41207",
+              "label": "coin",
+              "role": "primary",
+              "reason": "subclass_of coin (Q41207)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q663270",
+          "label": "Semuncia",
+          "role": "primary",
+          "score": 64.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q113813711",
+              "label": "coin type",
+              "role": "primary",
+              "reason": "instance_of coin type (Q113813711)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q11650194",
+              "label": "bronze coin",
+              "role": "primary",
+              "reason": "subclass_of bronze coin (Q11650194)"
+            }
+          ]
+        },
+        {
+          "qid": "Q829397",
+          "label": "bes",
+          "role": "primary",
+          "score": 64.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q3647172",
+              "label": "unit of mass",
+              "role": "primary",
+              "reason": "instance_of unit of mass (Q3647172)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1249093",
+          "label": "semis",
+          "role": "primary",
+          "score": 48.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571642",
+          "label": "20-As",
+          "role": "primary",
+          "score": 48.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571668",
+          "label": "40-As",
+          "role": "primary",
+          "score": 48.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571682",
+          "label": "60-As",
+          "role": "primary",
+          "score": 48.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q2123159",
+          "label": "half aureus",
+          "role": "primary",
+          "score": 48.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q113813711",
+              "label": "coin type",
+              "role": "primary",
+              "reason": "instance_of coin type (Q113813711)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q548953",
+          "label": "sextans",
+          "role": "primary",
+          "score": 48.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q671292",
+          "label": "quartuncia",
+          "role": "primary",
+          "score": 48.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q3647172",
+              "label": "unit of mass",
+              "role": "primary",
+              "reason": "instance_of unit of mass (Q3647172)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q952064",
+          "label": "Roman currency",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "entity Roman currency (Q952064) directly matched"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "subclass_of currency (Q8142)"
+            }
+          ]
+        },
+        {
+          "qid": "Q11320126",
+          "label": "didrachm",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1228632",
+          "label": "victoriatus",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q8142",
+              "label": "currency",
+              "role": "primary",
+              "reason": "instance_of currency (Q8142)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1234467",
+          "label": "dodrans",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1249059",
+          "label": "triens",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571751",
+          "label": "denarius serratus",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571920",
+          "label": "double-litra",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571942",
+          "label": "double victoriatus",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571969",
+          "label": "half victoriatus",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571980",
+          "label": "half-litra",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q2123190",
+          "label": "quincussis",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q277376",
+          "label": "tressis",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q374658",
+          "label": "Dextans",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q918448",
+              "label": "denomination",
+              "role": "primary",
+              "reason": "instance_of denomination (Q918448)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q952064",
+              "label": "Roman currency",
+              "role": "primary",
+              "reason": "subclass_of Roman currency (Q952064)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1422780",
+          "label": "nexum",
+          "role": "secondary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q93288",
+              "label": "contract",
+              "role": "secondary",
+              "reason": "instance_of contract (Q93288)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q2165988",
+              "label": "debt bondage",
+              "role": "secondary",
+              "reason": "subclass_of debt bondage (Q2165988)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        },
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        }
+      ],
+      "evidence_summary": "28 candidates (27 primary, 1 secondary); types: Roman currency, bronze coin, coin, coin type, contract, currency, debt bondage, denomination, gold coin, non-decimal currency, unit of mass; federation: Library of Congress, GND",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "geographic",
+      "facet_label": "Geographic",
+      "facet_definition": "Spatial regions, cultural-geographic zones, territorial extents",
+      "candidate_count": 91,
+      "primary_count": 29,
+      "secondary_count": 62,
+      "candidates": [
+        {
+          "qid": "Q48",
+          "label": "Asia",
+          "role": "primary",
+          "score": 42.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q82794",
+              "label": "region",
+              "role": "primary",
+              "reason": "instance_of region (Q82794)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q82794",
+              "label": "region",
+              "role": "anchor",
+              "reason": "instance_of anchor region (Q82794)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "primary",
+              "reason": "property Pleiades ID (P1584)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "role": "primary",
+              "reason": "property GeoNames ID (P1566)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "915832",
+              "role": "primary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "value": "6255147",
+              "role": "primary",
+              "reason": "federation GeoNames via GeoNames ID (P1566)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15",
+          "label": "Africa",
+          "role": "primary",
+          "score": 36.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q82794",
+              "label": "region",
+              "role": "primary",
+              "reason": "instance_of region (Q82794)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q82794",
+              "label": "region",
+              "role": "anchor",
+              "reason": "instance_of anchor region (Q82794)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "role": "primary",
+              "reason": "property GeoNames ID (P1566)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "value": "6255146",
+              "role": "primary",
+              "reason": "federation GeoNames via GeoNames ID (P1566)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3024240",
+          "label": "historical country",
+          "role": "secondary",
+          "score": 36.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q3024240",
+              "label": "historical country",
+              "role": "secondary",
+              "reason": "entity historical country (Q3024240) directly matched"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q6256",
+              "label": "country",
+              "role": "primary",
+              "reason": "subclass_of country (Q6256)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q6256",
+              "label": "country",
+              "role": "anchor",
+              "reason": "subclass_of anchor country (Q6256)"
+            }
+          ]
+        },
+        {
+          "qid": "Q46",
+          "label": "Europe",
+          "role": "primary",
+          "score": 36.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q82794",
+              "label": "region",
+              "role": "primary",
+              "reason": "instance_of region (Q82794)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q82794",
+              "label": "region",
+              "role": "anchor",
+              "reason": "instance_of anchor region (Q82794)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "role": "primary",
+              "reason": "property GeoNames ID (P1566)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "value": "6255148",
+              "role": "primary",
+              "reason": "federation GeoNames via GeoNames ID (P1566)"
+            }
+          ]
+        },
+        {
+          "qid": "Q220",
+          "label": "Rome",
+          "role": "primary",
+          "score": 34.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q1549591",
+              "label": "big city",
+              "role": "primary",
+              "reason": "instance_of big city (Q1549591)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "primary",
+              "reason": "property Pleiades ID (P1584)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "role": "primary",
+              "reason": "property GeoNames ID (P1566)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "423025",
+              "role": "primary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "value": "3169070",
+              "role": "primary",
+              "reason": "federation GeoNames via GeoNames ID (P1566)"
+            }
+          ]
+        },
+        {
+          "qid": "Q210718",
+          "label": "Asia",
+          "role": "primary",
+          "score": 34.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q182547",
+              "label": "Roman province",
+              "role": "primary",
+              "reason": "instance_of Roman province (Q182547)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "primary",
+              "reason": "property Pleiades ID (P1584)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "role": "primary",
+              "reason": "property GeoNames ID (P1566)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "981509",
+              "role": "primary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1566",
+              "label": "GeoNames ID",
+              "value": "8378482",
+              "role": "primary",
+              "reason": "federation GeoNames via GeoNames ID (P1566)"
+            }
+          ]
+        },
+        {
+          "qid": "Q11688220",
+          "label": "Battle of Petelia",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q11948139",
+          "label": "Seleuceia in Cilicia",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P131",
+              "label": "located in the administrative territorial entity",
+              "role": "primary",
+              "reason": "property located in the administrative territorial entity (P131)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "primary",
+              "reason": "property Pleiades ID (P1584)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "648771",
+              "role": "primary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1974201",
+          "label": "Battle of Geronium",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q233402",
+          "label": "Battle of Nola",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3491975",
+          "label": "Battle of Cremona",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524410",
+          "label": "Battle of Italica",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524412",
+          "label": "Battle of Lauron",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524449",
+          "label": "Battle of Sucro",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524464",
+          "label": "Battle of Valentia",
+          "role": "secondary",
+          "score": 14.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q104834716",
+          "label": "Battle near Osca",
+          "role": "secondary",
+          "score": 12.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q4872838",
+          "label": "Battle of the Baetis River",
+          "role": "secondary",
+          "score": 12.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q9172749",
+          "label": "Battle of Apamea",
+          "role": "secondary",
+          "score": 12.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q9173528",
+          "label": "Battle of Saguntum",
+          "role": "secondary",
+          "score": 12.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "secondary",
+              "reason": "instance_of battle (Q178561)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1747689",
+          "label": "Ancient Rome",
+          "role": "secondary",
+          "score": 10.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q3024240",
+              "label": "historical country",
+              "role": "secondary",
+              "reason": "instance_of historical country (Q3024240)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            }
+          ]
+        },
+        {
+          "qid": "Q2022780",
+          "label": "Suci",
+          "role": "secondary",
+          "score": 10.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q133311",
+              "label": "tribe",
+              "role": "secondary",
+              "reason": "instance_of tribe (Q133311)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q23725",
+          "label": "Byzantium",
+          "role": "primary",
+          "score": 10.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "role": "primary",
+              "reason": "property Pleiades ID (P1584)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P1584",
+              "label": "Pleiades ID",
+              "value": "520985",
+              "role": "primary",
+              "reason": "federation Pleiades via Pleiades ID (P1584)"
+            }
+          ]
+        },
+        {
+          "qid": "Q48349",
+          "label": "empire",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q3624078",
+              "label": "sovereign state",
+              "role": "secondary",
+              "reason": "subclass_of sovereign state (Q3624078)"
+            }
+          ]
+        },
+        {
+          "qid": "Q20102510",
+          "label": "Battle of Cartagena",
+          "role": "primary",
+          "score": 6.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q54864605",
+          "label": "Siege of Salona",
+          "role": "primary",
+          "score": 6.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3778726",
+          "label": "Sertorian War",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q397",
+          "label": "Latin",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P625",
+              "label": "coordinate location",
+              "role": "primary",
+              "reason": "property coordinate location (P625)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q677316",
+          "label": "Social War of 91-87 BCE",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q122918768",
+          "label": "Pompey's eastern settlement",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q125727661",
+          "label": "March on Rome",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q137921341",
+          "label": "Siege of Nola",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q137972719",
+          "label": "Siege of Carthago Nova",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q21328960",
+          "label": "122 BC eruption of Mount Etna",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q7362271",
+          "label": "Roman army mutiny in 342 BC",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q9173074",
+          "label": "Battle of Carteia",
+          "role": "primary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1114821",
+          "label": "citizens' assemblies of the Roman Republic",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1238338",
+          "label": "Caesar's Civil War",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            }
+          ]
+        },
+        {
+          "qid": "Q124988",
+          "label": "Punic Wars",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            }
+          ]
+        },
+        {
+          "qid": "Q130614",
+          "label": "Roman Senate",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q202161",
+          "label": "Gallic War",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            }
+          ]
+        },
+        {
+          "qid": "Q596373",
+          "label": "Pyrrhic War",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            }
+          ]
+        },
+        {
+          "qid": "Q75813",
+          "label": "Macedonian Wars",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P276",
+              "label": "location",
+              "role": "primary",
+              "reason": "property location (P276)"
+            }
+          ]
+        },
+        {
+          "qid": "Q106841885",
+          "label": "half-stater",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q107013169",
+          "label": "religion in ancient Rome",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q11320126",
+          "label": "didrachm",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q11905280",
+          "label": "Q11905280",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1228632",
+          "label": "victoriatus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1234467",
+          "label": "dodrans",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q124798662",
+          "label": "Q124798662",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1249059",
+          "label": "triens",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1249076",
+          "label": "quadrans",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1249093",
+          "label": "semis",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q12594116",
+          "label": "political violence in the late Roman Republic",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571642",
+          "label": "20-As",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571668",
+          "label": "40-As",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571682",
+          "label": "60-As",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571751",
+          "label": "denarius serratus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571920",
+          "label": "double-litra",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571942",
+          "label": "double victoriatus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571969",
+          "label": "half victoriatus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q129571980",
+          "label": "half-litra",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1422780",
+          "label": "nexum",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15078648",
+          "label": "ancient drachma",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15282014",
+          "label": "Lex Iulia de civitate",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15651483",
+          "label": "First secessio plebis in 494 BC",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1812526",
+          "label": "Constitutional reforms of Lucius Cornelius Sulla",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q181733",
+          "label": "Praetorian Guard",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1888820",
+          "label": "culture of the Roman Republic",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q20108410",
+          "label": "Lex Mamilia de senatoribus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q2123159",
+          "label": "half aureus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q2123190",
+          "label": "quincussis",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q277376",
+          "label": "tressis",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3256634",
+          "label": "litra",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3624157",
+          "label": "Roman Republican art",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q374658",
+          "label": "Dextans",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3924071",
+          "label": "Sulla's proscription",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q476078",
+          "label": "aureus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q4984206",
+          "label": "Buddhism and the Roman world",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q548953",
+          "label": "sextans",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q5763780",
+          "label": "Caesarians",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60792542",
+          "label": "Fimbrian legions",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q6082350",
+          "label": "Pompeians",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q6503456",
+          "label": "Law of majestas",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q663270",
+          "label": "Semuncia",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            },
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q671292",
+          "label": "quartuncia",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q6852241",
+          "label": "military campaigns of Julius Caesar",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q747480",
+          "label": "Conflict of the Orders",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q780548",
+          "label": "fabula praetexta",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q829397",
+          "label": "bes",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q845114",
+          "label": "secessio plebis",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        },
+        {
+          "qid": "Q86009943",
+          "label": "Trial of the Vestal Virgins",
+          "role": "primary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 2,
+              "source": "geo_property",
+              "pid": "P17",
+              "label": "country",
+              "role": "primary",
+              "reason": "property country (P17)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        },
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "viaf",
+          "label": "VIAF",
+          "pid": "P214",
+          "pid_label": "VIAF ID"
+        },
+        {
+          "source_id": "geonames",
+          "label": "GeoNames",
+          "pid": "P1566",
+          "pid_label": "GeoNames ID"
+        },
+        {
+          "source_id": "fast",
+          "label": "FAST",
+          "pid": "P2163",
+          "pid_label": "FAST ID"
+        },
+        {
+          "source_id": "pleiades",
+          "label": "Pleiades",
+          "pid": "P1584",
+          "pid_label": "Pleiades ID"
+        }
+      ],
+      "evidence_summary": "91 candidates (29 primary, 62 secondary); types: Roman province, battle, big city, country, historical country, region, sovereign state, tribe; federation: GND, Library of Congress, Dewey Decimal, VIAF, GeoNames, FAST, Pleiades",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "intellectual",
+      "facet_label": "Intellectual",
+      "facet_definition": "Schools of thought, philosophical or scholarly movements",
+      "candidate_count": 18,
+      "primary_count": 0,
+      "secondary_count": 18,
+      "candidates": [
+        {
+          "qid": "Q220",
+          "label": "Rome",
+          "role": "secondary",
+          "score": 10.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "251380480",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "6280157416838916710001",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "445149106006268490419",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "243431474",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4050471-2",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15",
+          "label": "Africa",
+          "role": "secondary",
+          "score": 6.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "127043766",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "173744536",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4000695-5",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1747689",
+          "label": "Ancient Rome",
+          "role": "secondary",
+          "score": 6.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "244992873",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "145348938",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4076778-4",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q130614",
+          "label": "Roman Senate",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "239895420",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4070408-7",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q46",
+          "label": "Europe",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "170298814",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4015701-5",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q48",
+          "label": "Asia",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "315526119",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4003217-6",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q181733",
+          "label": "Praetorian Guard",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "188516801",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4076781-4",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q210718",
+          "label": "Asia",
+          "role": "secondary",
+          "score": 4.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P214",
+              "label": "VIAF ID",
+              "value": "144332473",
+              "role": "secondary",
+              "reason": "federation VIAF via VIAF ID (P214)"
+            },
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4068890-2",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1114821",
+          "label": "citizens' assemblies of the Roman Republic",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4514363-8",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q124988",
+          "label": "Punic Wars",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4176367-1",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1307214",
+          "label": "form of government",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4359546-7",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q35497",
+          "label": "Ancient Greek",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4113791-7",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q397",
+          "label": "Latin",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4114364-4",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q48349",
+          "label": "empire",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4139742-3",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q596373",
+          "label": "Pyrrhic War",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4998009-9",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q677316",
+          "label": "Social War of 91-87 BCE",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4146948-3",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q23725",
+          "label": "Byzantium",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4088772-8",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        },
+        {
+          "qid": "Q476078",
+          "label": "aureus",
+          "role": "secondary",
+          "score": 2.0,
+          "signals": [
+            {
+              "tier": 3,
+              "source": "external_id",
+              "pid": "P227",
+              "label": "GND ID",
+              "value": "4873978-9",
+              "role": "secondary",
+              "reason": "federation GND via GND ID (P227)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        },
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        },
+        {
+          "source_id": "viaf",
+          "label": "VIAF",
+          "pid": "P214",
+          "pid_label": "VIAF ID"
+        },
+        {
+          "source_id": "geonames",
+          "label": "GeoNames",
+          "pid": "P1566",
+          "pid_label": "GeoNames ID"
+        },
+        {
+          "source_id": "fast",
+          "label": "FAST",
+          "pid": "P2163",
+          "pid_label": "FAST ID"
+        },
+        {
+          "source_id": "pleiades",
+          "label": "Pleiades",
+          "pid": "P1584",
+          "pid_label": "Pleiades ID"
+        }
+      ],
+      "evidence_summary": "18 candidates (0 primary, 18 secondary); federation: GND, Dewey Decimal, Library of Congress, VIAF, GeoNames, FAST, Pleiades",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "linguistic",
+      "facet_label": "Linguistic",
+      "facet_definition": "Language families, linguistic shifts, script traditions",
+      "candidate_count": 2,
+      "primary_count": 2,
+      "secondary_count": 0,
+      "candidates": [
+        {
+          "qid": "Q35497",
+          "label": "Ancient Greek",
+          "role": "primary",
+          "score": 28.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q34770",
+              "label": "language",
+              "role": "primary",
+              "reason": "instance_of language (Q34770)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q34770",
+              "label": "language",
+              "role": "anchor",
+              "reason": "instance_of anchor language (Q34770)"
+            }
+          ]
+        },
+        {
+          "qid": "Q397",
+          "label": "Latin",
+          "role": "primary",
+          "score": 28.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q34770",
+              "label": "language",
+              "role": "primary",
+              "reason": "instance_of language (Q34770)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q34770",
+              "label": "language",
+              "role": "anchor",
+              "reason": "instance_of anchor language (Q34770)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        }
+      ],
+      "evidence_summary": "2 candidates (2 primary, 0 secondary); types: language; federation: Dewey Decimal, GND, Library of Congress",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "military",
+      "facet_label": "Military",
+      "facet_definition": "Warfare, conquests, military systems, strategic eras",
+      "candidate_count": 20,
+      "primary_count": 19,
+      "secondary_count": 1,
+      "candidates": [
+        {
+          "qid": "Q181733",
+          "label": "Praetorian Guard",
+          "role": "primary",
+          "score": 64.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q176799",
+              "label": "military unit",
+              "role": "primary",
+              "reason": "instance_of military unit (Q176799)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q851436",
+              "label": "bodyguard",
+              "role": "primary",
+              "reason": "instance_of bodyguard (Q851436)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q971045",
+              "label": "royal guard",
+              "role": "primary",
+              "reason": "subclass_of royal guard (Q971045)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q11010841",
+              "label": "imperial guard",
+              "role": "primary",
+              "reason": "subclass_of imperial guard (Q11010841)"
+            }
+          ]
+        },
+        {
+          "qid": "Q124988",
+          "label": "Punic Wars",
+          "role": "primary",
+          "score": 28.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q104212151",
+              "label": "series of wars",
+              "role": "primary",
+              "reason": "instance_of series of wars (Q104212151)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q198",
+              "label": "war",
+              "role": "anchor",
+              "reason": "instance_of anchor war (Q198)"
+            }
+          ]
+        },
+        {
+          "qid": "Q596373",
+          "label": "Pyrrhic War",
+          "role": "primary",
+          "score": 28.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q104212151",
+              "label": "series of wars",
+              "role": "primary",
+              "reason": "instance_of series of wars (Q104212151)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q198",
+              "label": "war",
+              "role": "anchor",
+              "reason": "instance_of anchor war (Q198)"
+            }
+          ]
+        },
+        {
+          "qid": "Q75813",
+          "label": "Macedonian Wars",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q104212151",
+              "label": "series of wars",
+              "role": "primary",
+              "reason": "instance_of series of wars (Q104212151)"
+            }
+          ]
+        },
+        {
+          "qid": "Q104834716",
+          "label": "Battle near Osca",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q11688220",
+          "label": "Battle of Petelia",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1974201",
+          "label": "Battle of Geronium",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q233402",
+          "label": "Battle of Nola",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3491975",
+          "label": "Battle of Cremona",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q4872838",
+          "label": "Battle of the Baetis River",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524410",
+          "label": "Battle of Italica",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524412",
+          "label": "Battle of Lauron",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524449",
+          "label": "Battle of Sucro",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60524464",
+          "label": "Battle of Valentia",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60792542",
+          "label": "Fimbrian legions",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q176799",
+              "label": "military unit",
+              "role": "primary",
+              "reason": "instance_of military unit (Q176799)"
+            }
+          ]
+        },
+        {
+          "qid": "Q9172749",
+          "label": "Battle of Apamea",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q9173528",
+          "label": "Battle of Saguntum",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q178561",
+              "label": "battle",
+              "role": "primary",
+              "reason": "instance_of battle (Q178561)"
+            }
+          ]
+        },
+        {
+          "qid": "Q202161",
+          "label": "Gallic War",
+          "role": "primary",
+          "score": 12.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q198",
+              "label": "war",
+              "role": "anchor",
+              "reason": "instance_of anchor war (Q198)"
+            }
+          ]
+        },
+        {
+          "qid": "Q677316",
+          "label": "Social War of 91-87 BCE",
+          "role": "primary",
+          "score": 12.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q198",
+              "label": "war",
+              "role": "anchor",
+              "reason": "instance_of anchor war (Q198)"
+            }
+          ]
+        },
+        {
+          "qid": "Q48349",
+          "label": "empire",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q48349",
+              "label": "empire",
+              "role": "secondary",
+              "reason": "entity empire (Q48349) directly matched"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        },
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        },
+        {
+          "source_id": "fast",
+          "label": "FAST",
+          "pid": "P2163",
+          "pid_label": "FAST ID"
+        },
+        {
+          "source_id": "viaf",
+          "label": "VIAF",
+          "pid": "P214",
+          "pid_label": "VIAF ID"
+        }
+      ],
+      "evidence_summary": "20 candidates (19 primary, 1 secondary); types: battle, bodyguard, empire, imperial guard, military unit, royal guard, series of wars, war; federation: Dewey Decimal, Library of Congress, GND, FAST, VIAF",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "political",
+      "facet_label": "Political",
+      "facet_definition": "States, empires, governance systems, political eras",
+      "candidate_count": 15,
+      "primary_count": 10,
+      "secondary_count": 5,
+      "candidates": [
+        {
+          "qid": "Q48349",
+          "label": "empire",
+          "role": "primary",
+          "score": 44.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q48349",
+              "label": "empire",
+              "role": "primary",
+              "reason": "entity empire (Q48349) directly matched"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q3624078",
+              "label": "sovereign state",
+              "role": "primary",
+              "reason": "subclass_of sovereign state (Q3624078)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q3624078",
+              "label": "sovereign state",
+              "role": "anchor",
+              "reason": "subclass_of anchor sovereign state (Q3624078)"
+            }
+          ]
+        },
+        {
+          "qid": "Q3024240",
+          "label": "historical country",
+          "role": "primary",
+          "score": 36.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q3024240",
+              "label": "historical country",
+              "role": "primary",
+              "reason": "entity historical country (Q3024240) directly matched"
+            },
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q3024240",
+              "label": "historical country",
+              "role": "anchor",
+              "reason": "entity historical country (Q3024240) is facet anchor"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q6256",
+              "label": "country",
+              "role": "secondary",
+              "reason": "subclass_of country (Q6256)"
+            }
+          ]
+        },
+        {
+          "qid": "Q666680",
+          "label": "aristocratic republic",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q666680",
+              "label": "aristocratic republic",
+              "role": "primary",
+              "reason": "entity aristocratic republic (Q666680) directly matched"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q1307214",
+              "label": "form of government",
+              "role": "primary",
+              "reason": "instance_of form of government (Q1307214)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1422780",
+          "label": "nexum",
+          "role": "primary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q93288",
+              "label": "contract",
+              "role": "primary",
+              "reason": "instance_of contract (Q93288)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q2135465",
+              "label": "legal term or legal concept",
+              "role": "primary",
+              "reason": "instance_of legal term or legal concept (Q2135465)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1747689",
+          "label": "Ancient Rome",
+          "role": "primary",
+          "score": 28.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q3024240",
+              "label": "historical country",
+              "role": "primary",
+              "reason": "instance_of historical country (Q3024240)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q3024240",
+              "label": "historical country",
+              "role": "anchor",
+              "reason": "instance_of anchor historical country (Q3024240)"
+            }
+          ]
+        },
+        {
+          "qid": "Q845114",
+          "label": "secessio plebis",
+          "role": "secondary",
+          "score": 24.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q1471594",
+              "label": "collective action",
+              "role": "secondary",
+              "reason": "subclass_of collective action (Q1471594)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q687031",
+              "label": "secession",
+              "role": "primary",
+              "reason": "subclass_of secession (Q687031)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1307214",
+          "label": "form of government",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q1307214",
+              "label": "form of government",
+              "role": "primary",
+              "reason": "entity form of government (Q1307214) directly matched"
+            }
+          ]
+        },
+        {
+          "qid": "Q15282014",
+          "label": "Lex Iulia de civitate",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "primary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1812526",
+          "label": "Constitutional reforms of Lucius Cornelius Sulla",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "primary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        },
+        {
+          "qid": "Q181733",
+          "label": "Praetorian Guard",
+          "role": "secondary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q176799",
+              "label": "military unit",
+              "role": "secondary",
+              "reason": "instance_of military unit (Q176799)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q851436",
+              "label": "bodyguard",
+              "role": "secondary",
+              "reason": "instance_of bodyguard (Q851436)"
+            }
+          ]
+        },
+        {
+          "qid": "Q20108410",
+          "label": "Lex Mamilia de senatoribus",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "primary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        },
+        {
+          "qid": "Q6503456",
+          "label": "Law of majestas",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "primary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        },
+        {
+          "qid": "Q210718",
+          "label": "Asia",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q182547",
+              "label": "Roman province",
+              "role": "secondary",
+              "reason": "instance_of Roman province (Q182547)"
+            }
+          ]
+        },
+        {
+          "qid": "Q60792542",
+          "label": "Fimbrian legions",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q176799",
+              "label": "military unit",
+              "role": "secondary",
+              "reason": "instance_of military unit (Q176799)"
+            }
+          ]
+        },
+        {
+          "qid": "Q747480",
+          "label": "Conflict of the Orders",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q2672648",
+              "label": "social conflict",
+              "role": "secondary",
+              "reason": "instance_of social conflict (Q2672648)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "gnd",
+          "label": "GND",
+          "pid": "P227",
+          "pid_label": "GND ID"
+        },
+        {
+          "source_id": "fast",
+          "label": "FAST",
+          "pid": "P2163",
+          "pid_label": "FAST ID"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        },
+        {
+          "source_id": "viaf",
+          "label": "VIAF",
+          "pid": "P214",
+          "pid_label": "VIAF ID"
+        },
+        {
+          "source_id": "pleiades",
+          "label": "Pleiades",
+          "pid": "P1584",
+          "pid_label": "Pleiades ID"
+        },
+        {
+          "source_id": "geonames",
+          "label": "GeoNames",
+          "pid": "P1566",
+          "pid_label": "GeoNames ID"
+        }
+      ],
+      "evidence_summary": "15 candidates (10 primary, 5 secondary); types: Roman province, aristocratic republic, bodyguard, collective action, contract, country, empire, form of government, historical country, legal term or legal concept, military unit, secession, social conflict, sovereign state, statute; federation: Dewey Decimal, GND, FAST, Library of Congress, VIAF, Pleiades, GeoNames",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "religious",
+      "facet_label": "Religious",
+      "facet_definition": "Religious movements, institutions, doctrinal eras",
+      "candidate_count": 1,
+      "primary_count": 1,
+      "secondary_count": 0,
+      "candidates": [
+        {
+          "qid": "Q337547",
+          "label": "ancient Roman religion",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "self_qid",
+              "qid": "Q337547",
+              "label": "ancient Roman religion",
+              "role": "primary",
+              "reason": "entity ancient Roman religion (Q337547) directly matched"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [
+        {
+          "source_id": "dewey",
+          "label": "Dewey Decimal",
+          "pid": "P1036",
+          "pid_label": "Dewey Decimal Classification"
+        },
+        {
+          "source_id": "loc",
+          "label": "Library of Congress",
+          "pid": "P244",
+          "pid_label": "Library of Congress Authority ID"
+        }
+      ],
+      "evidence_summary": "1 candidates (1 primary, 0 secondary); types: ancient Roman religion; federation: Dewey Decimal, Library of Congress",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "scientific",
+      "facet_label": "Scientific",
+      "facet_definition": "Scientific paradigms, revolutions, epistemic frameworks",
+      "candidate_count": 2,
+      "primary_count": 0,
+      "secondary_count": 2,
+      "candidates": [
+        {
+          "qid": "Q671292",
+          "label": "quartuncia",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q3647172",
+              "label": "unit of mass",
+              "role": "secondary",
+              "reason": "instance_of unit of mass (Q3647172)"
+            }
+          ]
+        },
+        {
+          "qid": "Q829397",
+          "label": "bes",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q3647172",
+              "label": "unit of mass",
+              "role": "secondary",
+              "reason": "instance_of unit of mass (Q3647172)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [],
+      "evidence_summary": "2 candidates (0 primary, 2 secondary); types: unit of mass",
+      "recommended_action": "SFA_EVALUATE"
+    },
+    {
+      "facet_key": "social",
+      "facet_label": "Social",
+      "facet_definition": "Social structures, class systems, kinship regimes",
+      "candidate_count": 8,
+      "primary_count": 2,
+      "secondary_count": 6,
+      "candidates": [
+        {
+          "qid": "Q1422780",
+          "label": "nexum",
+          "role": "secondary",
+          "score": 32.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q93288",
+              "label": "contract",
+              "role": "secondary",
+              "reason": "instance_of contract (Q93288)"
+            },
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q2135465",
+              "label": "legal term or legal concept",
+              "role": "secondary",
+              "reason": "instance_of legal term or legal concept (Q2135465)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q2165988",
+              "label": "debt bondage",
+              "role": "primary",
+              "reason": "subclass_of debt bondage (Q2165988)"
+            }
+          ]
+        },
+        {
+          "qid": "Q845114",
+          "label": "secessio plebis",
+          "role": "primary",
+          "score": 24.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q1471594",
+              "label": "collective action",
+              "role": "primary",
+              "reason": "subclass_of collective action (Q1471594)"
+            },
+            {
+              "tier": 1,
+              "source": "subclass_of",
+              "qid": "Q687031",
+              "label": "secession",
+              "role": "secondary",
+              "reason": "subclass_of secession (Q687031)"
+            }
+          ]
+        },
+        {
+          "qid": "Q747480",
+          "label": "Conflict of the Orders",
+          "role": "primary",
+          "score": 16.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q2672648",
+              "label": "social conflict",
+              "role": "primary",
+              "reason": "instance_of social conflict (Q2672648)"
+            }
+          ]
+        },
+        {
+          "qid": "Q15282014",
+          "label": "Lex Iulia de civitate",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "secondary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        },
+        {
+          "qid": "Q1812526",
+          "label": "Constitutional reforms of Lucius Cornelius Sulla",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "secondary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        },
+        {
+          "qid": "Q20108410",
+          "label": "Lex Mamilia de senatoribus",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "secondary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        },
+        {
+          "qid": "Q2022780",
+          "label": "Suci",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q133311",
+              "label": "tribe",
+              "role": "secondary",
+              "reason": "instance_of tribe (Q133311)"
+            }
+          ]
+        },
+        {
+          "qid": "Q6503456",
+          "label": "Law of majestas",
+          "role": "secondary",
+          "score": 8.0,
+          "signals": [
+            {
+              "tier": 1,
+              "source": "instance_of",
+              "qid": "Q820655",
+              "label": "statute",
+              "role": "secondary",
+              "reason": "instance_of statute (Q820655)"
+            }
+          ]
+        }
+      ],
+      "federation_sources": [],
+      "evidence_summary": "8 candidates (2 primary, 6 secondary); types: collective action, contract, debt bondage, legal term or legal concept, secession, social conflict, statute, tribe",
+      "recommended_action": "SFA_EVALUATE"
+    }
+  ],
+  "temporal_entities": [
+    {
+      "qid": "Q11514315",
+      "label": "historical period"
+    },
+    {
+      "qid": "Q13285410",
+      "label": "Category:People from the Roman Republic"
+    },
+    {
+      "qid": "Q201038",
+      "label": "Roman Kingdom"
+    },
+    {
+      "qid": "Q206414",
+      "label": "Principate"
+    },
+    {
+      "qid": "Q2277",
+      "label": "Roman Empire"
+    },
+    {
+      "qid": "Q2815472",
+      "label": "Late Roman Republic"
+    },
+    {
+      "qid": "Q2839628",
+      "label": "Early Roman Republic"
+    },
+    {
+      "qid": "Q486761",
+      "label": "classical antiquity"
+    },
+    {
+      "qid": "Q6106068",
+      "label": "Middle Roman Republic"
+    },
+    {
+      "qid": "Q6944405",
+      "label": "Category:Roman Republic"
+    },
+    {
+      "qid": "Q97172543",
+      "label": "Q97172543"
+    }
+  ],
+  "unrouted_entities": [
+    {
+      "qid": "Q346629",
+      "label": "Roman Republic"
+    },
+    {
+      "qid": "Q6173448",
+      "label": "Wikipedia:Vital articles/Level/4"
+    }
+  ],
+  "classification_summary": {
+    "total_candidates": 109,
+    "routed": 96,
+    "temporal_skipped": 11,
+    "unrouted": 2,
+    "facets_activated": 15
+  },
+  "recommended_next_steps": [
+    {
+      "action": "SCA_ROUTE",
+      "reason": "15 facet deltas ready for SFA routing",
+      "hint": "SCA reads facet_deltas[], dispatches each to its SFA"
+    }
+  ],
+  "_meta": {
+    "rule": "Never pass PID or QID without label",
+    "harvest_source": "output\\di_harvest\\Q17167_di_harvest.json",
+    "routing_tiers": [
+      "Tier 1: instance_of/subclass_of QID → facet anchor + type extensions",
+      "Tier 2: property PIDs → SYS_PropertyMapping facet",
+      "Tier 3: external ID PIDs → federation source → facet"
+    ]
+  }
+}
