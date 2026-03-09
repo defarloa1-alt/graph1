@@ -633,7 +633,7 @@ export default function DisciplineUniverse_Root() {
         <div>
           <div style={{ fontSize: 9, color: C.dim, marginBottom: 8, fontFamily: "Arial,sans-serif" }}>
             All {data.length} disciplines sorted by authority coverage (most identifiers first).
-            Green border = has LCSH + GND.
+            Green border = has LCSH + LCC.
           </div>
           <div style={{ background: "white", border: `1px solid ${C.rule}`, borderRadius: 6,
             padding: 8, maxHeight: "70vh", overflow: "auto" }}>

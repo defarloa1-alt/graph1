@@ -1050,8 +1050,8 @@ function MetricsTab() {
 const Q_DISCIPLINES = `MATCH (d:Discipline) WHERE d.tier = 'backbone'
 OPTIONAL MATCH (d)-[hf:HAS_FACET]->(f:Facet) WHERE hf.primary = true
 RETURN d.qid AS qid, d.label AS label,
-       d.lcsh_id AS lcsh_id, d.gnd_id AS gnd_id,
-       d.ddc AS ddc, d.aat_id AS aat_id, d.kbpedia_id AS kbpedia_id,
+       d.lcsh_id AS lcsh_id, d.lcc AS lcc, d.gnd_id AS gnd_id,
+       d.fast_id AS fast_id, d.ddc AS ddc, d.aat_id AS aat_id, d.kbpedia_id AS kbpedia_id,
        d.subclass_of_label AS parent_label,
        collect(f.label) AS primary_facets
 ORDER BY d.label LIMIT 200`;
@@ -1059,9 +1059,9 @@ ORDER BY d.label LIMIT 200`;
 const Q_DISC_STATS = `MATCH (d:Discipline) WHERE d.tier = 'backbone'
 RETURN count(d) AS total,
        count(d.lcsh_id) AS has_lcsh,
+       count(d.lcc) AS has_lcc,
        count(d.gnd_id) AS has_gnd,
-       count(d.ddc) AS has_ddc,
-       count(d.aat_id) AS has_aat,
+       count(d.fast_id) AS has_fast,
        count(d.subclass_of) AS has_parent`;
 
 function DisciplineTab() {
@@ -1093,9 +1093,9 @@ function DisciplineTab() {
           {[
             [st.total, "total", C.ink],
             [st.has_lcsh, "LCSH", C.purple],
+            [st.has_lcc, "LCC", C.amber],
             [st.has_gnd, "GND", C.teal],
-            [st.has_ddc, "DDC", C.slate],
-            [st.has_aat, "AAT", C.orange],
+            [st.has_fast, "FAST", C.navy],
             [st.has_parent, "in hierarchy", C.green],
           ].map(([n, l, col]) => (
             <div key={l} style={{ fontSize: 9, color: col }}>
@@ -1114,7 +1114,7 @@ function DisciplineTab() {
 
       <div style={{ maxHeight: 520, overflow: "auto" }}>
         {filtered.map((d) => {
-          const hasAuth = d.lcsh_id || d.gnd_id || d.ddc || d.aat_id;
+          const hasAuth = d.lcsh_id || d.lcc || d.gnd_id || d.fast_id;
           return (
             <div key={d.qid || d.label} style={{
               border: `1px solid ${hasAuth ? C.green : C.rule}`,
@@ -1128,10 +1128,11 @@ function DisciplineTab() {
                 <Tag key={f} label={f} fill={FACET_COLOR[f] || C.slate} s={7} />
               ))}
               {d.lcsh_id && <Mono col={C.purple} s={7.5}>LCSH: {d.lcsh_id.split("|")[0]}</Mono>}
+              {d.lcc    && <Mono col={C.amber}  s={7.5}>LCC: {d.lcc.split("|")[0]}</Mono>}
               {d.gnd_id && <Mono col={C.teal}   s={7.5}>GND: {d.gnd_id}</Mono>}
+              {d.fast_id && <Mono col={C.navy}  s={7.5}>FAST: {d.fast_id}</Mono>}
               {d.ddc    && <Mono col={C.slate}  s={7.5}>DDC: {d.ddc.split("|")[0]}</Mono>}
               {d.aat_id && <Mono col={C.orange} s={7.5}>AAT: {d.aat_id}</Mono>}
-              {d.kbpedia_id && <Mono col={C.cyan} s={7.5}>KBpedia: {d.kbpedia_id}</Mono>}
               {d.parent_label && (
                 <span style={{ fontSize: 7.5, color: C.dim, marginLeft: "auto" }}>
                   ⊂ {d.parent_label.split("|")[0]}

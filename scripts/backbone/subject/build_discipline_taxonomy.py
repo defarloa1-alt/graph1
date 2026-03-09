@@ -2,11 +2,15 @@
 """
 Build academic discipline taxonomy from Wikidata (no LLM).
 
-1. Fetch items that are academic discipline (Q11862829)
-2. Expand via P279 (subclass of) and P527 (has part(s))
-3. Fetch authority IDs: P2163 FAST, P227 GND, P244 LCSH, P1036 DDC, P1014 AAT,
+1. Fetch items where P31=Q11862829 (instance of academic discipline) — no P279 expansion
+2. Fetch authority IDs: P2163 FAST, P227 GND, P244 LCSH, P1036 DDC, P1014 AAT,
    P2581 BabelNet, P8408 KBpedia, P9000 World History, P1149 LCC
-4. Output CSV with tree structure and authority IDs
+3. Output CSV with tree structure (P279 subclass_of, P361 part_of, P527 has_parts)
+   for hierarchy navigation only — not used to expand the seed set
+
+Note: P279 expansion was deliberately removed. It pulled in thousands of narrow
+topics (e.g. "amphibian anatomy") that relate to disciplines but are not themselves
+academic disciplines. Only P31=Q11862829 instances are included.
 
 Usage:
   python scripts/backbone/subject/build_discipline_taxonomy.py
@@ -92,7 +96,6 @@ def extract_claim_value(claim: dict) -> str:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", "-o", type=Path, default=_PROJECT / "output" / "discipline_taxonomy.csv")
-    parser.add_argument("--expand-levels", type=int, default=2, help="Levels to expand P279/P527 (default 2)")
     args = parser.parse_args()
 
     # 1. Seed: items that are academic discipline (Q11862829)
@@ -120,35 +123,8 @@ def main():
     print(f"  Found {len(seed)} seed items")
     all_qids = set(s["qid"] for s in seed)
 
-    # 2. Expand via P279 (subclass of) and P527 (has part(s))
-    # Batch by ~50 items to avoid URL length limits (GET)
-    print("2. Expanding tree via P279 and P527...")
-    BATCH = 50
-    for level in range(args.expand_levels - 1):
-        prev = len(all_qids)
-        items = list(all_qids)
-        for i in range(0, len(items), BATCH):
-            batch_items = items[i : i + BATCH]
-            values = " ".join(f"wd:{q}" for q in batch_items)
-            sparql = f"""
-            SELECT DISTINCT ?expand WHERE {{
-              VALUES ?item {{ {values} }}
-              {{ ?item wdt:P279 ?expand }} UNION {{ ?item wdt:P527 ?expand }}
-            }}
-            """
-            data = query_sparql(sparql)
-            if data:
-                for b in data.get("results", {}).get("bindings", []):
-                    uri = b.get("expand", {}).get("value", "")
-                    if uri and "wikidata.org/entity/" in uri:
-                        all_qids.add(uri.split("/")[-1])
-            time.sleep(0.3)
-        if len(all_qids) == prev:
-            break
-    print(f"  Expanded to {len(all_qids)} items")
-
-    # 3. Fetch labels and authority IDs via API
-    print("3. Fetching labels and authority IDs...")
+    # 2. Fetch labels and authority IDs via API
+    print("2. Fetching labels and authority IDs...")
     entities = fetch_entities_api(list(all_qids))
 
     labels = {}
@@ -245,6 +221,12 @@ def main():
 
     rows = list(rows_by_qid.values())
     print(f"  {len(rows)} items")
+
+    # Filter: must have at least one of LCC, LCSH, FAST, DDC
+    REQUIRED_COLS = ("lcc", "lcsh_id", "fast_id", "ddc")
+    before = len(rows)
+    rows = [r for r in rows if any(r.get(c) for c in REQUIRED_COLS)]
+    print(f"  {len(rows)} after authority filter (dropped {before - len(rows)} with no LCC/LCSH/FAST/DDC)")
 
     # 4. Write CSV
     fieldnames = [
