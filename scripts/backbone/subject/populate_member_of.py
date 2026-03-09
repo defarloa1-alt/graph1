@@ -10,12 +10,12 @@ MEMBER_OF edge properties:
   rank   : 'primary' | 'inferred'
 
 Person routing rules:
-  - sc_rr_constitution  : political magistracies (consul, praetor, quaestor, …)
-  - sc_rr_military      : military commands (tribunus militum, legatus lt., …)
-  - sc_rr_religion      : priesthoods (augur, pontifex, flamen, …)
-  - sc_rr_diplomacy     : diplomatic missions (legatus ambassador/envoy)
-  - sc_rr_economy       : monetalis (mint masters)
-  - ALL in-domain DPRR  : sc_rr_constitution default (rank='inferred')
+  - sc_constitution  : political magistracies (consul, praetor, quaestor, …)
+  - sc_military      : military commands (tribunus militum, legatus lt., …)
+  - sc_religion      : priesthoods (augur, pontifex, flamen, …)
+  - sc_diplomacy     : diplomatic missions (legatus ambassador/envoy)
+  - sc_economy       : monetalis (mint masters)
+  - ALL in-domain DPRR  : sc_constitution default (rank='inferred')
 
 Place routing rules (place_type CONTAINS, multiple SC per place allowed):
   - GEO_SETTLEMENTS       : settlement, villa, station, colony
@@ -39,7 +39,7 @@ BATCH = 500
 # ── Person routing — POSITION_HELD label → SC id ─────────────────────────────
 # Key: SC subject_id | Value: list of exact Position.label strings
 PERSON_ROUTES = {
-    "sc_rr_constitution": [
+    "sc_constitution": [
         "consul", "praetor", "quaestor", "censor",
         "aedilis curulis", "aedilis plebis",
         "tribunus plebis", "dictator", "interrex",
@@ -48,20 +48,20 @@ PERSON_ROUTES = {
         "tribunus militum consulari potestate",
         "repulsa (cos.)", "repulsa (cens.)",
     ],
-    "sc_rr_military": [
+    "sc_military": [
         "tribunus militum", "legatus (lieutenant)",
         "triumphator", "praefectus", "promagistrate",
         "proconsul", "propraetor", "magister equitum",
         "officer (title not preserved)",
     ],
-    "sc_rr_religion": [
+    "sc_religion": [
         "augur", "pontifex", "pontifex maximus",
         "flamen Martialis", "decemvir sacris faciundis",
     ],
-    "sc_rr_diplomacy": [
+    "sc_diplomacy": [
         "legatus (ambassador)", "legatus (envoy)",
     ],
-    "sc_rr_economy": [
+    "sc_economy": [
         "monetalis",
     ],
 }
@@ -118,9 +118,9 @@ def wire_person_position_routes(session):
     return total
 
 def wire_person_default(session):
-    """All in-domain DPRR persons → sc_rr_constitution (dprr_default, inferred)."""
+    """All in-domain DPRR persons → sc_constitution (dprr_default, inferred)."""
     q = """
-    MATCH (sc:SubjectConcept {subject_id: 'sc_rr_constitution'})
+    MATCH (sc:SubjectConcept {subject_id: 'sc_constitution'})
     MATCH (p:Person)
     WHERE p.dprr_id IS NOT NULL
       AND coalesce(p.in_domain, true) <> false
@@ -131,7 +131,7 @@ def wire_person_default(session):
     """
     result = run_with_retry(session, q)
     n = result[0]["n"]
-    print(f"  sc_rr_constitution (default): {n} total person→SC edges")
+    print(f"  sc_constitution (default): {n} total person→SC edges")
     return n
 
 def wire_places(session):
@@ -202,7 +202,7 @@ def main():
         n1 = wire_person_position_routes(session)
         print(f"  Subtotal: {n1}")
 
-        print("\n── Pass 2: Person → sc_rr_constitution (dprr_default) ─────────────────")
+        print("\n── Pass 2: Person → sc_constitution (dprr_default) ─────────────────")
         n2 = wire_person_default(session)
 
         print("\n── Pass 3: Place → Geo SCs via place_type ──────────────────────────────")
