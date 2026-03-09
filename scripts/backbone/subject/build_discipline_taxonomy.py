@@ -40,6 +40,7 @@ AUTHORITY_PROPS = {
     "P8408": "kbpedia_id",
     "P9000": "world_history_id",
     "P1149": "lcc",
+    "P10283": "openalex_id",  # OpenAlex concept ID → gold OA corpus endpoint
 }
 
 

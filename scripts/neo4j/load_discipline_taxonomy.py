@@ -39,7 +39,7 @@ from neo4j import GraphDatabase
 
 BACKBONE_COLS = ("fast_id", "lcsh_id", "ddc", "lcc", "gnd_id", "aat_id")
 AUTHORITY_COLS = ("fast_id", "gnd_id", "lcsh_id", "ddc", "aat_id",
-                  "babelnet_id", "kbpedia_id", "world_history_id", "lcc")
+                  "babelnet_id", "kbpedia_id", "world_history_id", "lcc", "openalex_id")
 BATCH_SIZE = 100
 
 
@@ -109,6 +109,7 @@ def upsert_nodes(session, params: list[dict]) -> int:
                 d.kbpedia_id = row.kbpedia_id,
                 d.world_history_id = row.world_history_id,
                 d.lcc = row.lcc,
+                d.openalex_id = row.openalex_id,
                 d.source = 'wikidata_harvest_2026',
                 d.harvest_date = date()
             RETURN count(d) AS cnt
