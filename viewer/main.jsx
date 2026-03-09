@@ -5,10 +5,19 @@ import { createRoot } from "react-dom/client";
 import ChrystallumSystemMap from "../Key Files/chrystallum_system_map.jsx";
 import ChrystallumArchitecture from "../Key Files/chrystallum_architecture.jsx";
 import DisciplineUniverse from "../Key Files/chrystallum_discipline_universe.jsx";
+import BiographicConstitution from "../Key Files/chrystallum_biographic_constitution.jsx";
+import DisciplineConstitution from "../Key Files/chrystallum_discipline_constitution.jsx";
+import DIConstitution from "../Key Files/chrystallum_di_constitution.jsx";
+import GeographicConstitution from "../Key Files/chrystallum_geographic_constitution.jsx";
+
 const APPS = [
-  ["systemmap", "System Map (live)", ChrystallumSystemMap],
+  ["systemmap", "System Map", ChrystallumSystemMap],
   ["architecture", "Architecture", ChrystallumArchitecture],
   ["discipline", "Discipline Universe", DisciplineUniverse],
+  ["bio-constitution", "Bio Constitution", BiographicConstitution],
+  ["discipline-constitution", "Discipline Constitution", DisciplineConstitution],
+  ["di-constitution", "DI Constitution", DIConstitution],
+  ["geo-constitution", "Geo Constitution", GeographicConstitution],
 ];
 
 function App() {
