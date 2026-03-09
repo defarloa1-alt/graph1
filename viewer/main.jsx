@@ -9,6 +9,7 @@ import BiographicConstitution from "../Key Files/chrystallum_biographic_constitu
 import DisciplineConstitution from "../Key Files/chrystallum_discipline_constitution.jsx";
 import DIConstitution from "../Key Files/chrystallum_di_constitution.jsx";
 import GeographicConstitution from "../Key Files/chrystallum_geographic_constitution.jsx";
+import SubjectConstitution from "../Key Files/chrystallum_subject_constitution.jsx";
 
 const APPS = [
   ["systemmap", "System Map", ChrystallumSystemMap],
@@ -18,6 +19,7 @@ const APPS = [
   ["discipline-constitution", "Discipline Constitution", DisciplineConstitution],
   ["di-constitution", "DI Constitution", DIConstitution],
   ["geo-constitution", "Geo Constitution", GeographicConstitution],
+  ["subject-constitution", "Subject Backbone", SubjectConstitution],
 ];
 
 function App() {
