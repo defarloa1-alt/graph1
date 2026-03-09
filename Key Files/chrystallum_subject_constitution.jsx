@@ -20,7 +20,7 @@ const C = {
 };
 
 // ══════════════════════════════════════════════════════════════════════════════
-// BACKBONE STATISTICS — ground truth as of 2026-03-09
+// BACKBONE STATISTICS — live as of 2026-03-09 (post scripts 18a–18i)
 // ══════════════════════════════════════════════════════════════════════════════
 const STATS = {
   subject: {
@@ -30,7 +30,7 @@ const STATS = {
     total_scs: 22,
     lcc_anchor_edges: 52,
     facet_edges: 62,
-    total_member_of: 67969,  // persons + places across all SCs (incl. multi-SC)
+    total_member_of: 58091,
     status: "scaffold — DI batch_train pending",
   },
   temporal: {
@@ -45,7 +45,8 @@ const STATS = {
     total_places: 44193,
     in_period: 32565,
     geo_scs: 7,
-    scoped_to_disciplines: 2,  // archaeology + topography
+    scoped_to_disciplines: 2,  // archaeology + topography (archaeology → classical archaeology pending)
+    born_in_edges: 1635,       // Person → Place (QID-resolved via qid_resolver.py)
     status: "operational",
   },
 };
@@ -106,10 +107,10 @@ const BLOCKS = [
       { name:"governed_by",     type:"String",  mult:"1",    example:"ADR-020" },
     ],
     relations: [
-      { rel:"OCCURS_DURING",      target:"Period",     mult:"1",    dir:"out" },
-      { rel:"ALIGNED_WITH_LCC",   target:"LCC_Class",  mult:"1..*", dir:"out" },
+      { rel:"OCCURS_DURING",      target:"Period",         mult:"1",    dir:"out" },
+      { rel:"ALIGNED_WITH_LCC",   target:"LCC_Class",      mult:"1..*", dir:"out" },
       { rel:"HAS_SUBJECT_CONCEPT",target:"SubjectConcept", mult:"1..*", dir:"out" },
-      { rel:"COVERS_DOMAIN",      target:"Discipline", mult:"1..*", dir:"in" },
+      { rel:"COVERS_DOMAIN",      target:"Discipline",     mult:"1..*", dir:"in" },
     ],
   },
   {
@@ -124,31 +125,37 @@ const BLOCKS = [
       { name:"lcc_primary",   type:"String",  mult:"1",    example:"DG89" },
       { name:"lcsh_id",       type:"String",  mult:"0..1", example:"sh85115171" },
       { name:"source",        type:"String",  mult:"1",    example:"ccs_bootstrap" },
-      { name:"domain",        type:"String",  mult:"1",    example:"roman_republic" },
+      { name:"entity_count",  type:"Integer", mult:"1",    example:"4863" },
       { name:"cross_class",   type:"Boolean", mult:"0..1", example:"true (sc_law, sc_literature)" },
     ],
     relations: [
-      { rel:"HAS_FACET {weight,is_primary}", target:"Facet",    mult:"2..*", dir:"out" },
-      { rel:"ANCHORS",                       target:"LCC_Class", mult:"1..*", dir:"out" },
-      { rel:"MEMBER_OF",                     target:"SubjectConcept", mult:"0..*", dir:"in", note:"from Person/Place" },
+      { rel:"HAS_FACET {weight,is_primary}",                             target:"Facet",         mult:"2..*", dir:"out" },
+      { rel:"ANCHORS",                                                    target:"LCC_Class",     mult:"1..*", dir:"out" },
+      { rel:"MEMBER_OF {source,rank,earliest_year,latest_year,position_count}", target:"SubjectConcept", mult:"0..*", dir:"in", note:"from Person or Place" },
     ],
   },
   {
-    name: "Period",
+    name: "Person",
     color: C.temporal,
     backbone: "Temporal",
-    count: "1 (Q17167 Roman Republic)",
-    desc: "Temporal identity anchor. Persons and Places point INTO it via IN_PERIOD. Property names are start/end (integer), not start_year/end_year.",
+    count: "5,248 (4,863 DPRR in-domain)",
+    desc: "Historical person node. DPRR persons carry floruit and career bounds from POSITION_HELD. career_start/career_end are derived from min/max POSITION_HELD year_start/year_end.",
     attributes: [
-      { name:"qid",    type:"String",  mult:"1",    example:"Q17167" },
-      { name:"label",  type:"String",  mult:"1",    example:"Roman Republic" },
-      { name:"start",  type:"Integer", mult:"1",    example:"-509" },
-      { name:"end",    type:"Integer", mult:"1",    example:"-27" },
+      { name:"entity_id",     type:"String",  mult:"1",    example:"person_q483783" },
+      { name:"dprr_id",       type:"String",  mult:"0..1", example:"DPRR1234" },
+      { name:"label",         type:"String",  mult:"1",    example:"L. Cornelius Sulla Felix" },
+      { name:"floruit_start", type:"Integer", mult:"0..1", example:"-100" },
+      { name:"floruit_end",   type:"Integer", mult:"0..1", example:"-78" },
+      { name:"career_start",  type:"Integer", mult:"0..1", example:"-107  (from POSITION_HELD)" },
+      { name:"career_end",    type:"Integer", mult:"0..1", example:"-78   (from POSITION_HELD)" },
+      { name:"in_domain",     type:"Boolean", mult:"0..1", example:"true" },
     ],
     relations: [
-      { rel:"IN_PERIOD",      target:"Person",  mult:"0..*", dir:"in", note:"3,447 persons" },
-      { rel:"IN_PERIOD",      target:"Place",   mult:"0..*", dir:"in", note:"32,565 places" },
-      { rel:"OCCURS_DURING",  target:"SubjectDomain", mult:"0..*", dir:"in" },
+      { rel:"IN_PERIOD",      target:"Period",         mult:"0..1", dir:"out", note:"3,447 wired" },
+      { rel:"SCOPED_TO",      target:"Discipline",     mult:"2",    dir:"out", note:"prosopography + history of Rome" },
+      { rel:"POSITION_HELD",  target:"Position",       mult:"0..*", dir:"out", note:"source of career_start/end + MEMBER_OF routing" },
+      { rel:"MEMBER_OF {earliest_year,latest_year,position_count}", target:"SubjectConcept", mult:"0..*", dir:"out" },
+      { rel:"BORN_IN {source,redirected_from}", target:"Place", mult:"0..1", dir:"out", note:"1,635 wired; QID-resolved via qid_resolver.py" },
     ],
   },
   {
@@ -156,18 +163,20 @@ const BLOCKS = [
     color: C.geo,
     backbone: "Geographic",
     count: "44,193 (Pleiades)",
-    desc: "Historical geographic identity anchor. Pleiades provides identity + temporal bounds. GeoNames provides modern containment hierarchy. 32,565 are in the Roman Republic period.",
+    desc: "Historical geographic identity anchor. Pleiades provides identity + temporal bounds (min_date/max_date). BORN_IN edges from Persons resolve through qid_resolver.py to ensure canonical Pleiades-backed targets.",
     attributes: [
-      { name:"pleiades_id",  type:"String",  mult:"0..1", example:"423025" },
-      { name:"label",        type:"String",  mult:"1",    example:"Roma" },
-      { name:"place_type",   type:"String",  mult:"0..1", example:"settlement" },
-      { name:"min_date",     type:"Integer", mult:"0..1", example:"-753" },
-      { name:"max_date",     type:"Integer", mult:"0..1", example:"640" },
+      { name:"pleiades_id",      type:"String",  mult:"0..1", example:"423025" },
+      { name:"label",            type:"String",  mult:"1",    example:"Roma" },
+      { name:"place_type",       type:"String",  mult:"0..1", example:"urban, settlement" },
+      { name:"min_date",         type:"Integer", mult:"0..1", example:"-750" },
+      { name:"max_date",         type:"Integer", mult:"0..1", example:"2100" },
+      { name:"needs_resolution", type:"Boolean", mult:"0..1", example:"true — stub QID, no Pleiades backing" },
     ],
     relations: [
-      { rel:"IN_PERIOD",    target:"Period",     mult:"0..1", dir:"out", note:"32,565 wired" },
-      { rel:"SCOPED_TO",    target:"Discipline", mult:"2",    dir:"out", note:"archaeology + topography" },
-      { rel:"MEMBER_OF",    target:"SubjectConcept", mult:"0..*", dir:"out", note:"→ geo SCs" },
+      { rel:"IN_PERIOD",  target:"Period",         mult:"0..1", dir:"out", note:"32,565 wired" },
+      { rel:"SCOPED_TO",  target:"Discipline",     mult:"2",    dir:"out", note:"archaeology + topography" },
+      { rel:"MEMBER_OF {earliest_year=min_date,latest_year=max_date}", target:"SubjectConcept", mult:"0..*", dir:"out", note:"→ geo SCs" },
+      { rel:"BORN_IN",    target:"Place",          mult:"0..*", dir:"in",  note:"← from Person (1,635)" },
     ],
   },
   {
@@ -204,32 +213,34 @@ const BLOCKS = [
 
 // ══════════════════════════════════════════════════════════════════════════════
 // SUBJECT CONCEPT GALLERY — all 22 SCs
+// timed_pct: % of MEMBER_OF edges that carry earliest_year (live 2026-03-09)
+// timed_note: explanation when not 100%
 // ══════════════════════════════════════════════════════════════════════════════
 const SC_GALLERY = [
-  // ccs_bootstrap — thematic  (members = MEMBER_OF count as of 2026-03-09)
-  { id:"sc_constitution",    label:"Republican Constitution & Political Institutions", primary:"POLITICAL",    secondary:["ECONOMIC","SOCIAL"],             lcc:"DG89",       source:"ccs_bootstrap", members:4863 },
-  { id:"sc_military",        label:"Roman Army & Military Campaigns",                  primary:"MILITARY",     secondary:["GEOGRAPHIC","ECONOMIC","SOCIAL"], lcc:"DG105",      source:"ccs_bootstrap", members:1322 },
-  { id:"sc_religion",        label:"Roman Religion, Cults & Priesthoods",              primary:"RELIGIOUS",    secondary:["SOCIAL","POLITICAL"],            lcc:"DG171",      source:"ccs_bootstrap", members:248 },
-  { id:"sc_diplomacy",       label:"Roman Diplomacy & Foreign Relations",              primary:"DIPLOMATIC",   secondary:["MILITARY","GEOGRAPHIC","POLITICAL"],lcc:"DG21-190", source:"ccs_bootstrap", members:368 },
-  { id:"sc_economy",         label:"Roman Economy, Finance & Trade",                   primary:"ECONOMIC",     secondary:["SOCIAL","GEOGRAPHIC"],           lcc:"DG113",      source:"ccs_bootstrap", members:293 },
-  { id:"sc_late_republic",   label:"Late Republic (133–27 BC)",                        primary:"POLITICAL",    secondary:["MILITARY","SOCIAL"],             lcc:"DG261-269",  source:"ccs_bootstrap", members:1855 },
-  { id:"sc_middle_republic", label:"Middle Republic (264–133 BC)",                     primary:"MILITARY",     secondary:["POLITICAL","GEOGRAPHIC"],        lcc:"DG241-259",  source:"ccs_bootstrap", members:971 },
-  { id:"sc_early_republic",  label:"Early Republic (509–264 BC)",                      primary:"POLITICAL",    secondary:["MILITARY","SOCIAL"],             lcc:"DG221-239",  source:"ccs_bootstrap", members:683 },
-  { id:"sc_law",             label:"Roman Law & Legal Institutions",                   primary:"INTELLECTUAL", secondary:["POLITICAL","SOCIAL","BIOGRAPHIC"],lcc:"KJA2-3660",  source:"ccs_bootstrap", members:0,   cross:true },
-  { id:"sc_topography",      label:"Roman Topography & Urban Space",                   primary:"GEOGRAPHIC",   secondary:["ARCHAEOLOGICAL","ARTISTIC"],     lcc:"DG41",       source:"ccs_bootstrap", members:0 },
-  { id:"sc_society",         label:"Roman Society — Classes, Slavery & Family",        primary:"SOCIAL",       secondary:["POLITICAL","DEMOGRAPHIC"],        lcc:"DG59",       source:"ccs_bootstrap", members:0 },
-  { id:"sc_historiography",  label:"Roman Historiography & Primary Sources",           primary:"INTELLECTUAL", secondary:["ARCHAEOLOGICAL"],                lcc:"DG35",       source:"ccs_bootstrap", members:0 },
-  { id:"sc_material_culture",label:"Roman Material Culture, Art & Inscriptions",       primary:"ARCHAEOLOGICAL",secondary:["ARTISTIC","LINGUISTIC"],         lcc:"DG37",       source:"ccs_bootstrap", members:0 },
-  { id:"sc_literature",      label:"Roman Literature, Philosophy & Intellectual Life", primary:"INTELLECTUAL", secondary:["BIOGRAPHIC","LINGUISTIC"],        lcc:"PA6000-6971",source:"ccs_bootstrap", members:0,   cross:true },
-  { id:"sc_science",         label:"Roman Science, Technology & Medicine",             primary:"SCIENTIFIC",   secondary:["INTELLECTUAL"],                  lcc:"DG135",      source:"ccs_bootstrap", members:0 },
+  // ccs_bootstrap — thematic
+  { id:"sc_constitution",    label:"Republican Constitution & Political Institutions", primary:"POLITICAL",     secondary:["ECONOMIC","SOCIAL"],              lcc:"DG89",        source:"ccs_bootstrap", members:4863,  timed_pct:49,  timed_note:"49% position_held (dated); 51% dprr_default (catch-all, no date by design)" },
+  { id:"sc_military",        label:"Roman Army & Military Campaigns",                  primary:"MILITARY",      secondary:["GEOGRAPHIC","ECONOMIC","SOCIAL"],  lcc:"DG105",       source:"ccs_bootstrap", members:1322,  timed_pct:100 },
+  { id:"sc_religion",        label:"Roman Religion, Cults & Priesthoods",              primary:"RELIGIOUS",     secondary:["SOCIAL","POLITICAL"],             lcc:"DG171",       source:"ccs_bootstrap", members:248,   timed_pct:100 },
+  { id:"sc_diplomacy",       label:"Roman Diplomacy & Foreign Relations",              primary:"DIPLOMATIC",    secondary:["MILITARY","GEOGRAPHIC","POLITICAL"],lcc:"DG21-190",   source:"ccs_bootstrap", members:368,   timed_pct:100 },
+  { id:"sc_economy",         label:"Roman Economy, Finance & Trade",                   primary:"ECONOMIC",      secondary:["SOCIAL","GEOGRAPHIC"],            lcc:"DG113",       source:"ccs_bootstrap", members:366,   timed_pct:100 },
+  { id:"sc_late_republic",   label:"Late Republic (133–27 BC)",                        primary:"POLITICAL",     secondary:["MILITARY","SOCIAL"],              lcc:"DG261-269",   source:"ccs_bootstrap", members:1906,  timed_pct:0,   timed_note:"career_bounds source — temporal lives on p.career_start/career_end, not edge" },
+  { id:"sc_middle_republic", label:"Middle Republic (264–133 BC)",                     primary:"MILITARY",      secondary:["POLITICAL","GEOGRAPHIC"],         lcc:"DG241-259",   source:"ccs_bootstrap", members:1010,  timed_pct:0,   timed_note:"career_bounds source — temporal lives on p.career_start/career_end, not edge" },
+  { id:"sc_early_republic",  label:"Early Republic (509–264 BC)",                      primary:"POLITICAL",     secondary:["MILITARY","SOCIAL"],              lcc:"DG221-239",   source:"ccs_bootstrap", members:684,   timed_pct:0,   timed_note:"career_bounds source — temporal lives on p.career_start/career_end, not edge" },
+  { id:"sc_law",             label:"Roman Law & Legal Institutions",                   primary:"INTELLECTUAL",  secondary:["POLITICAL","SOCIAL","BIOGRAPHIC"], lcc:"KJA2-3660",   source:"ccs_bootstrap", members:0,     timed_pct:null, cross:true },
+  { id:"sc_topography",      label:"Roman Topography & Urban Space",                   primary:"GEOGRAPHIC",    secondary:["ARCHAEOLOGICAL","ARTISTIC"],       lcc:"DG41",        source:"ccs_bootstrap", members:0,     timed_pct:null },
+  { id:"sc_society",         label:"Roman Society — Classes, Slavery & Family",        primary:"SOCIAL",        secondary:["POLITICAL","DEMOGRAPHIC"],         lcc:"DG59",        source:"ccs_bootstrap", members:0,     timed_pct:null },
+  { id:"sc_historiography",  label:"Roman Historiography & Primary Sources",           primary:"INTELLECTUAL",  secondary:["ARCHAEOLOGICAL"],                 lcc:"DG35",        source:"ccs_bootstrap", members:0,     timed_pct:null },
+  { id:"sc_material_culture",label:"Roman Material Culture, Art & Inscriptions",       primary:"ARCHAEOLOGICAL",secondary:["ARTISTIC","LINGUISTIC"],           lcc:"DG37",        source:"ccs_bootstrap", members:0,     timed_pct:null },
+  { id:"sc_literature",      label:"Roman Literature, Philosophy & Intellectual Life", primary:"INTELLECTUAL",  secondary:["BIOGRAPHIC","LINGUISTIC"],         lcc:"PA6000-6971", source:"ccs_bootstrap", members:0,     timed_pct:null, cross:true },
+  { id:"sc_science",         label:"Roman Science, Technology & Medicine",             primary:"SCIENTIFIC",    secondary:["INTELLECTUAL"],                   lcc:"DG135",       source:"ccs_bootstrap", members:0,     timed_pct:null },
   // geo_bootstrap — spatial
-  { id:"GEO_SETTLEMENTS",       label:"Settlements & Urban Places",                       primary:"GEOGRAPHIC",   secondary:["SOCIAL","ARCHAEOLOGICAL"],       lcc:"—",          source:"geo_bootstrap",  members:17521 },
-  { id:"GEO_HIST_PLACES",       label:"Historical Places & Archaeological Sites",         primary:"ARCHAEOLOGICAL",secondary:["GEOGRAPHIC"],                    lcc:"—",          source:"geo_bootstrap",  members:11390 },
-  { id:"GEO_GENERAL",           label:"General Geographic Places",                        primary:"GEOGRAPHIC",   secondary:["CULTURAL"],                      lcc:"—",          source:"geo_bootstrap",  members:11360 },
-  { id:"GEO_PHYS_FEATURES",     label:"Physical Geography & Landforms",                   primary:"GEOGRAPHIC",   secondary:["ENVIRONMENTAL"],                 lcc:"—",          source:"geo_bootstrap",  members:2216 },
-  { id:"GEO_HYDROGRAPHY",       label:"Hydrography & Water Bodies",                       primary:"GEOGRAPHIC",   secondary:["ENVIRONMENTAL"],                 lcc:"—",          source:"geo_bootstrap",  members:2115 },
-  { id:"GEO_POLITICAL_ENTITIES",label:"States, Empires & Political Entities",             primary:"POLITICAL",    secondary:["GEOGRAPHIC","MILITARY"],          lcc:"—",          source:"geo_bootstrap",  members:1596 },
-  { id:"GEO_ADMIN_DIVISIONS",   label:"Administrative & Political Divisions",             primary:"GEOGRAPHIC",   secondary:["POLITICAL","SOCIAL"],            lcc:"—",          source:"geo_bootstrap",  members:1126 },
+  { id:"GEO_SETTLEMENTS",        label:"Settlements & Urban Places",               primary:"GEOGRAPHIC",    secondary:["SOCIAL","ARCHAEOLOGICAL"],    lcc:"—", source:"geo_bootstrap", members:17521, timed_pct:93 },
+  { id:"GEO_HIST_PLACES",        label:"Historical Places & Archaeological Sites", primary:"ARCHAEOLOGICAL", secondary:["GEOGRAPHIC"],                 lcc:"—", source:"geo_bootstrap", members:11390, timed_pct:93 },
+  { id:"GEO_GENERAL",            label:"General Geographic Places",                primary:"GEOGRAPHIC",    secondary:["CULTURAL"],                   lcc:"—", source:"geo_bootstrap", members:11360, timed_pct:74,  timed_note:"26% are stubs without Pleiades min_date — flagged needs_resolution" },
+  { id:"GEO_PHYS_FEATURES",      label:"Physical Geography & Landforms",           primary:"GEOGRAPHIC",    secondary:["ENVIRONMENTAL"],              lcc:"—", source:"geo_bootstrap", members:2216,  timed_pct:89 },
+  { id:"GEO_HYDROGRAPHY",        label:"Hydrography & Water Bodies",               primary:"GEOGRAPHIC",    secondary:["ENVIRONMENTAL"],              lcc:"—", source:"geo_bootstrap", members:2115,  timed_pct:81 },
+  { id:"GEO_POLITICAL_ENTITIES", label:"States, Empires & Political Entities",     primary:"POLITICAL",     secondary:["GEOGRAPHIC","MILITARY"],      lcc:"—", source:"geo_bootstrap", members:1596,  timed_pct:89 },
+  { id:"GEO_ADMIN_DIVISIONS",    label:"Administrative & Political Divisions",     primary:"GEOGRAPHIC",    secondary:["POLITICAL","SOCIAL"],         lcc:"—", source:"geo_bootstrap", members:1126,  timed_pct:48,  timed_note:"52% admin divisions lack Pleiades min_date — Roman provinces often undated" },
 ];
 
 const FACET_COLORS = {
@@ -248,7 +259,6 @@ function SysMLBlock({ block }) {
   const [open, setOpen] = useState(false);
   return (
     <div style={{ border:`1px solid ${block.color}`, borderRadius:6, marginBottom:12, overflow:"hidden" }}>
-      {/* Header — «block» stereotype + name */}
       <div
         onClick={() => setOpen(o => !o)}
         style={{ background:block.color+"22", borderBottom:`1px solid ${block.color}44`,
@@ -263,13 +273,11 @@ function SysMLBlock({ block }) {
         </span>
         <span style={{ color:C.dim, fontSize:12 }}>{open ? "▲" : "▼"}</span>
       </div>
-      {/* Description */}
       <div style={{ padding:"6px 12px", color:C.dim, fontSize:12, borderBottom:`1px solid ${C.border}` }}>
         {block.desc}
       </div>
       {open && (
         <>
-          {/* Attributes compartment */}
           <div style={{ padding:"8px 12px", borderBottom:`1px solid ${C.border}` }}>
             <div style={{ color:C.dim, fontSize:10, fontStyle:"italic", marginBottom:4 }}>attributes</div>
             {block.attributes.map(a => (
@@ -280,7 +288,6 @@ function SysMLBlock({ block }) {
               </div>
             ))}
           </div>
-          {/* Relations compartment */}
           <div style={{ padding:"8px 12px" }}>
             <div style={{ color:C.dim, fontSize:10, fontStyle:"italic", marginBottom:4 }}>connections</div>
             {block.relations.map((r, i) => (
@@ -309,6 +316,25 @@ function FacetPill({ facet, weight }) {
   );
 }
 
+function TemporalBadge({ pct, note }) {
+  if (pct === null) return null;
+
+  // period SCs: 0% by design — temporal on node, not edge
+  const byDesign = pct === 0 && note && note.includes("career_bounds");
+  const col = byDesign ? C.dim : pct === 100 ? C.pass : pct >= 80 ? C.warn : C.fail;
+  const label = byDesign ? "temporal on node" : `${pct}% timed`;
+
+  return (
+    <span
+      title={note || `${pct}% of MEMBER_OF edges carry earliest_year/latest_year`}
+      style={{ background:col+"22", color:col, border:`1px solid ${col}44`,
+        fontSize:10, padding:"1px 6px", borderRadius:10, whiteSpace:"nowrap", cursor:"help" }}
+    >
+      ⏱ {label}
+    </span>
+  );
+}
+
 function SCCard({ sc }) {
   const isCcs = sc.source === "ccs_bootstrap";
   return (
@@ -328,12 +354,15 @@ function SCCard({ sc }) {
           <div style={{ color:C.dim, fontSize:9 }}>members</div>
         </div>
       </div>
-      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:4 }}>
         <div style={{ display:"flex", flexWrap:"wrap", gap:3 }}>
           <FacetPill facet={sc.primary} weight="★" />
           {sc.secondary.map(f => <FacetPill key={f} facet={f} />)}
         </div>
-        <span style={{ color:C.lcc, fontSize:10, fontFamily:"monospace", marginLeft:8 }}>{sc.lcc}</span>
+        <div style={{ display:"flex", gap:4, alignItems:"center" }}>
+          <TemporalBadge pct={sc.timed_pct} note={sc.timed_note} />
+          <span style={{ color:C.lcc, fontSize:10, fontFamily:"monospace" }}>{sc.lcc}</span>
+        </div>
       </div>
       <div style={{ color:C.dim, fontSize:10, marginTop:4, fontFamily:"monospace" }}>{sc.id}</div>
     </div>
@@ -372,7 +401,7 @@ function BackboneIBD() {
       </div>
 
       {/* Row 1: Temporal + Subject + Geo */}
-      <div style={{ display:"flex", alignItems:"center", gap:0, flexWrap:"wrap", gap:8, marginBottom:12 }}>
+      <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:8, marginBottom:12 }}>
         {box("«block» Period", C.temporal, [
           ["Q17167 Roman Republic", C.bright],
           "start = -509 | end = -27",
@@ -426,23 +455,26 @@ function BackboneIBD() {
       <div style={{ display:"flex", alignItems:"center", gap:8, flexWrap:"wrap" }}>
         {box("«block» Person ×5,248", C.temporal, [
           ["4,863 DPRR (in-domain)", C.bright],
-          "385 QID-only (out-of-domain)",
+          "career_start/end from POSITION_HELD",
           "→ IN_PERIOD (3,447)",
+          "→ BORN_IN → Place (1,635)",
           "→ SCOPED_TO disciplines",
         ])}
-        {arrow("MEMBER_OF →", C.subject)}
+        {arrow("MEMBER_OF {earliest_year, latest_year} →", C.subject)}
         {box("«block» SubjectConcept", C.subject, [
-          "← population source",
-          "MEMBER_OF from persons",
-          "MEMBER_OF from places",
+          "← 58,091 MEMBER_OF edges",
+          "edge carries: source, rank,",
+          "  earliest_year, latest_year,",
+          "  position_count",
           "entity_count tracked",
         ])}
-        {arrow("← MEMBER_OF", C.subject)}
+        {arrow("← MEMBER_OF {earliest_year, latest_year}", C.subject)}
         {box("«block» Place ×44,193", C.geo, [
-          ["42,065 Pleiades", C.bright],
+          ["42,065 Pleiades (pleiades_id)", C.bright],
           "32,565 IN_PERIOD (RR)",
-          "→ SCOPED_TO: archaeology",
-          "→ SCOPED_TO: topography",
+          "min_date / max_date → edge bounds",
+          "← BORN_IN from Person",
+          "needs_resolution flag on stubs",
         ])}
       </div>
     </div>
@@ -479,6 +511,7 @@ export default function SubjectConstitution() {
             ["LCC ANCHORS", STATS.subject.lcc_anchor_edges, C.lcc],
             ["Persons in Period", STATS.temporal.persons_in_period.toLocaleString(), C.temporal],
             ["Places in Period", STATS.temporal.places_in_period.toLocaleString(), C.geo],
+            ["BORN_IN edges", STATS.geo.born_in_edges.toLocaleString(), C.geo],
           ].map(([k, v, col]) => (
             <div key={k} style={{ textAlign:"center" }}>
               <div style={{ fontSize:20, fontWeight:"bold", color:col }}>{v}</div>
@@ -504,7 +537,6 @@ export default function SubjectConstitution() {
         {tab === "ibd" && (
           <div>
             <BackboneIBD />
-            {/* Validity rules */}
             <div style={{ background:C.panel, borderRadius:8, padding:16 }}>
               <div style={{ color:C.subject, fontWeight:"bold", marginBottom:10 }}>CCS Validity Rules (ADR-020)</div>
               {CCS_RULES.map(r => (
@@ -579,15 +611,23 @@ export default function SubjectConstitution() {
         {tab === "gallery" && (
           <div>
             <div style={{ display:"flex", gap:8, marginBottom:12, flexWrap:"wrap", alignItems:"center" }}>
-              <span style={{ color:C.dim, fontSize:12 }}>22 SubjectConcepts — ★ = primary facet |</span>
+              <span style={{ color:C.dim, fontSize:12 }}>22 SubjectConcepts — ★ = primary facet | ⏱ = % of MEMBER_OF edges carrying temporal bounds</span>
+            </div>
+            <div style={{ display:"flex", gap:8, marginBottom:12, flexWrap:"wrap" }}>
               <span style={{ background:C.subject+"22", color:C.subject, padding:"2px 8px", borderRadius:10, fontSize:11 }}>
                 ● ccs_bootstrap (thematic, LCC-anchored)
               </span>
               <span style={{ background:C.geo+"22", color:C.geo, padding:"2px 8px", borderRadius:10, fontSize:11 }}>
                 ● geo_bootstrap (spatial, Pleiades-populated)
               </span>
+              <span style={{ background:C.pass+"22", color:C.pass, padding:"2px 8px", borderRadius:10, fontSize:11 }}>
+                ⏱ 100% = all edges time-bounded
+              </span>
+              <span style={{ background:C.dim+"22", color:C.dim, padding:"2px 8px", borderRadius:10, fontSize:11 }}>
+                ⏱ temporal on node = career_bounds (by design)
+              </span>
             </div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(340px, 1fr))", gap:4 }}>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(360px, 1fr))", gap:4 }}>
               {SC_GALLERY.map(sc => <SCCard key={sc.id} sc={sc} />)}
             </div>
           </div>
