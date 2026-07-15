@@ -16,13 +16,25 @@ Date: February 14, 2026
 import hashlib
 import json
 import re
+import sys
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, Any, Optional, List
 from neo4j import Driver, Session
+
+_ROOT = Path(__file__).resolve().parents[2]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
 try:
     from historian_logic_engine import HistorianLogicEngine
 except ModuleNotFoundError:  # pragma: no cover
     from .historian_logic_engine import HistorianLogicEngine
+
+try:
+    from scripts.methodology.fischer import sca_lint_claim
+except ImportError:  # pragma: no cover
+    sca_lint_claim = None  # type: ignore[assignment,misc]
 
 
 class QIDResolver:
@@ -580,6 +592,7 @@ class ClaimIngestionPipeline:
         confidence: float,
         label: str,
         subject_qid: Optional[str] = None,
+        description: Optional[str] = None,
         retrieval_source: str = "agent_extraction",
         reasoning_notes: str = "",
         facet: Optional[str] = None,
@@ -633,6 +646,7 @@ class ClaimIngestionPipeline:
                 raise ValueError("claim_signature is required for deterministic claim_id")
             signature_text = self._normalize_claim_signature(claim_signature, subject_qid)
             authority_source = authority_source.strip() if authority_source else ""
+            authority_ids_input = authority_ids
             authority_ids = self._normalize_authority_ids(authority_ids)
             # 1. Validate inputs
             self._validate_claim_data(
@@ -641,8 +655,60 @@ class ClaimIngestionPipeline:
             
             # 2. Generate identifiers
             claim_id = self._generate_claim_id(subject_qid, signature_text)
-            cipher = self._calculate_cipher(claim_id, label, confidence, source_agent)
+            object_qid = subject_qid
+            if isinstance(authority_ids_input, dict):
+                for key in ("candidate_qid", "object_qid", "target_qid"):
+                    if authority_ids_input.get(key):
+                        object_qid = str(authority_ids_input[key])
+                        break
+            elif isinstance(claim_signature, dict):
+                values = claim_signature.get("values") or {}
+                if isinstance(values, dict):
+                    for val in values.values():
+                        if val and str(val) != subject_qid:
+                            object_qid = str(val)
+                            break
+            cipher = self._calculate_cipher(
+                subject_node_id=subject_qid,
+                property_path_id=relationship_type,
+                object_node_id=object_qid,
+                facet_id=facet,
+                temporal_scope="",
+                source_document_id=authority_source or retrieval_source or "unknown",
+                passage_locator="",
+            )
+
+            lint_text = f"{label} {reasoning_notes}".strip()
+            fischer_hits: list[dict[str, Any]] = []
+            fischer_status = "skipped"
+            if sca_lint_claim is not None:
+                lint_result = sca_lint_claim(
+                    {
+                        "id": claim_id,
+                        "text": lint_text,
+                        "claim_type": claim_type,
+                        "relationship_type": relationship_type,
+                        "metadata": {"confidence": confidence},
+                    },
+                    driver=self.driver,
+                )
+                fischer_status = lint_result.get("status", "skipped")
+                fischer_hits = lint_result.get("fallacy_hits") or []
+                if fischer_status == "flagged":
+                    flagged_meta = (lint_result.get("claim") or {}).get("metadata") or {}
+                    confidence = float(flagged_meta.get("confidence", confidence))
+
             reasoning_eval = self.reasoning_engine.evaluate(label, reasoning_notes, confidence)
+            if fischer_hits:
+                fischer_ids = [h.get("fallacy_id") for h in fischer_hits if h.get("fallacy_id")]
+                merged = list(dict.fromkeys((reasoning_eval.get("fallacies_detected") or []) + fischer_ids))
+                reasoning_eval["fallacies_detected"] = merged
+                reasoning_eval["fischer_hits"] = fischer_hits
+                reasoning_eval["fischer_status"] = fischer_status
+                if fischer_status == "flagged":
+                    reasoning_eval["fallacy_penalty"] = max(
+                        float(reasoning_eval.get("fallacy_penalty") or 0.0), 0.25
+                    )
             
             # 3. Create claim and intermediaries
             self._create_claim_node(
@@ -650,6 +716,7 @@ class ClaimIngestionPipeline:
                 cipher=cipher,
                 label=label,
                 text=label,
+                description=description or reasoning_notes or label,
                 claim_type=claim_type,
                 source_agent=source_agent,
                 confidence=confidence,
@@ -707,6 +774,8 @@ class ClaimIngestionPipeline:
                 "posterior_probability": reasoning_eval["posterior_probability"],
                 "fallacies_detected": reasoning_eval["fallacies_detected"],
                 "critical_fallacy": reasoning_eval["critical_fallacy"],
+                "fischer_hits": reasoning_eval.get("fischer_hits", []),
+                "fischer_status": reasoning_eval.get("fischer_status", "skipped"),
                 "error": None
             }
             
@@ -851,16 +920,14 @@ class ClaimIngestionPipeline:
         return value
 
     def _normalize_authority_ids(self, authority_ids: Optional[Any]) -> Optional[Any]:
-        """Normalize authority identifiers for storage"""
+        """Normalize authority identifiers for Neo4j storage (primitive or JSON string)."""
         if authority_ids is None:
             return None
         if isinstance(authority_ids, str):
             value = authority_ids.strip()
-            if not value:
-                return None
-            return {"value": value}
+            return value or None
         if isinstance(authority_ids, (dict, list)):
-            return authority_ids
+            return json.dumps(authority_ids, sort_keys=True, separators=(",", ":"))
         raise ValueError("authority_ids must be a string, dict, list, or None")
 
     def _generate_claim_id(self, subject_qid: str, signature_text: str) -> str:
@@ -934,6 +1001,7 @@ class ClaimIngestionPipeline:
         cipher: str,
         label: str,
         text: str,
+        description: str,
         claim_type: str,
         source_agent: str,
         confidence: float,
@@ -945,13 +1013,14 @@ class ClaimIngestionPipeline:
     ) -> None:
         """Create Claim node with required properties"""
         with self.driver.session(database=self.database) as session:
-            session.run(
+            result = session.run(
                 """
                 CREATE (c:Claim {
                     claim_id: $claim_id,
                     cipher: $cipher,
                     label: $label,
                     text: $text,
+                    description: $description,
                     claim_type: $claim_type,
                     source_agent: $source_agent,
                     timestamp: $timestamp,
@@ -969,7 +1038,8 @@ class ClaimIngestionPipeline:
                     evidence_score: $evidence_score,
                     fallacies_detected: $fallacies_detected,
                     fallacy_penalty: $fallacy_penalty,
-                    critical_fallacy: $critical_fallacy
+                    critical_fallacy: $critical_fallacy,
+                    fischer_status: $fischer_status
                 })
                 RETURN c
                 """,
@@ -978,6 +1048,7 @@ class ClaimIngestionPipeline:
                     "cipher": cipher,
                     "label": label,
                     "text": text,
+                    "description": description,
                     "claim_type": claim_type,
                     "source_agent": source_agent,
                     "timestamp": datetime.utcnow().isoformat(),
@@ -993,8 +1064,10 @@ class ClaimIngestionPipeline:
                     "fallacies_detected": reasoning_eval["fallacies_detected"],
                     "fallacy_penalty": reasoning_eval["fallacy_penalty"],
                     "critical_fallacy": reasoning_eval["critical_fallacy"],
+                    "fischer_status": reasoning_eval.get("fischer_status", "skipped"),
                 }
             )
+            result.consume()
 
     def _create_retrieval_context(
         self, claim_id: str, source: str, agent_id: str, authority_source: str, authority_ids: Optional[Any]

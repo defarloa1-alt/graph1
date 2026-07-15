@@ -2,6 +2,8 @@
 
 **Purpose:** Explain what the harvesting process does, which scripts run it, and how they fit into the pipeline.
 
+**Biographic claims (backlink → Claim):** see **[BIOGRAPHIC_CLAIM_PIPELINE.md](BIOGRAPHIC_CLAIM_PIPELINE.md)** — this guide covers DI/SubjectConcept harvest layers; the claims track is separate.
+
 ---
 
 ## 1. Overview

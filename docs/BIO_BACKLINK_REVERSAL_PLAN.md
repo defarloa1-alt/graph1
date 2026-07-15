@@ -1,5 +1,7 @@
 # Biographic Backlink Reversal Plan
 
+**Status: IMPLEMENTED (2026-03+)** — see `docs/BIOGRAPHIC_CLAIM_PIPELINE.md` for current pipeline.
+
 After `--all` completes, we want to **reverse** the backlink approach: instead of fetching backlinks inline during person harvest (which causes SPARQL timeouts on heavy persons), run backlinks as a **separate pass** using existing traversal code.
 
 ## Current State

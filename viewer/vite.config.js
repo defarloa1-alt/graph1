@@ -14,11 +14,13 @@ export default defineConfig({
       allow: [path.resolve(__dirname, "..")],
     },
     proxy: {
-      "/neo4j-api": {
-        target: "https://ac63a8e5.databases.neo4j.io",
+      "/api/review": {
+        target: "http://127.0.0.1:8765",
         changeOrigin: true,
-        secure: true,
-        rewrite: (p) => p.replace(/^\/neo4j-api/, ""),
+      },
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
       },
     },
   },

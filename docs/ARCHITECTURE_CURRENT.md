@@ -1,9 +1,9 @@
 # Chrystallum — Current Architecture
 
-**Last updated: 2026-07-14 | Supersedes all prior architecture docs**
+**Last updated: 2026-07-15 | Supersedes all prior architecture docs**
 
 **Root: `docs/EPISTEMIC_MODEL.md` → this file → agent constitutions**  
-**Navigation hub: `Key Files/ARCHITECTURE.md`**
+**Navigation hub: `docs/README.md`** (doc index; `Key Files/ARCHITECTURE.md` for viewer constitutions)
 
 
 
@@ -32,6 +32,22 @@ via a rules-in-graph pipeline.
 **The core design principle:** the graph is the source of truth for rules, thresholds,
 
 routing logic, and domain definitions. Nothing domain-specific is hardcoded in Python.
+
+
+
+### Three tracks (do not conflate)
+
+
+
+| Track | Purpose | Human review |
+|-------|---------|--------------|
+| **SubjectConcept** | Thematic decomposition (DI proposals under facet umbrellas) | Review Queue tab |
+| **Canonical graph** | Facts written directly (DPRR, forward bio harvest) | Policy + reconciliation |
+| **Claims** | Staged Wikidata backlink assertions | Bio Claims tab |
+
+
+
+Biographic claims pipeline: **`docs/BIOGRAPHIC_CLAIM_PIPELINE.md`**. Claims are not yet routed to SubjectConcepts in Neo4j despite the long-term design intent below.
 
 
 
@@ -382,7 +398,11 @@ Review artifact: `output/di_proposals/Q17167_proposals_enriched.json`
 Baseline snapshot: `output/baseline/Q17167_facet_hierarchy_baseline.json`  
 Browser query: `scripts/neo4j/view_roman_republic_facet_tree.cypher`
 
-**Not yet in graph:** factual Wikidata claims (`Q17167_validated_claims_v2.json`)
+**Not yet in graph:** bulk promotion of non-familial biographic claims to canonical edges (~595 unreconciled). SubjectConcept ↔ Claim routing remains design-only.
+
+
+
+**Biographic claims (in graph):** 5,666 `Claim` nodes (`sfa_biographic`) — see `docs/BIOGRAPHIC_CLAIM_PIPELINE.md`. Run `enrich_claims.py` before human review.
 
 
 
@@ -461,6 +481,8 @@ Each agent constitution has a **pre-flight protocol**: read graph state, then de
 ### Do NOT give
 
 
+
+- `Archive/docs-2026-07/` — Jul 2026 doc cleanup (handoffs, Feb discovery analyses)
 
 - `Key Files/ARCHITECTURE_{CORE,ONTOLOGY,IMPLEMENTATION,GOVERNANCE}.md` — archived stubs; use this file
 

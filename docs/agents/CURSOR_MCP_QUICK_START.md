@@ -1,5 +1,7 @@
 # Quick Start: Neo4j MCP in Cursor
 
+**Canonical MCP setup doc** — duplicates archived under `Archive/docs-2026-07/`.
+
 ## ✅ Status: MCP Server is Built and Ready!
 
 The Neo4j MCP server has been successfully compiled and is ready to use.

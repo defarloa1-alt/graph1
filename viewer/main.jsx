@@ -10,21 +10,35 @@ import DisciplineConstitution from "../Key Files/chrystallum_discipline_constitu
 import DIConstitution from "../Key Files/chrystallum_di_constitution.jsx";
 import GeographicConstitution from "../Key Files/chrystallum_geographic_constitution.jsx";
 import SubjectConstitution from "../Key Files/chrystallum_subject_constitution.jsx";
+import SCAConstitution from "../Key Files/chrystallum_sca_constitution.jsx";
+import SFAConstitution from "../Key Files/chrystallum_sfa_constitution.jsx";
+import SchemaBackbone from "../Key Files/chrystallum_schema_backbone.jsx";
+import ProposalsRadial from "../Key Files/chrystallum_proposals_radial.jsx";
+import ProposalReview from "../Key Files/chrystallum_proposal_review.jsx";
+import ClaimReview from "../Key Files/chrystallum_claim_review.jsx";
+import Neo4jExplorer from "./components/Neo4jExplorer.jsx";
 
 const APPS = [
+  ["neo4j", "Neo4j Explorer", Neo4jExplorer],
+  ["review", "Review Queue", ProposalReview],
+  ["claims", "Bio Claims", ClaimReview],
+  ["proposals", "SC Proposals", ProposalsRadial],
+  ["schema", "Schema Backbone", SchemaBackbone],
   ["systemmap", "System Map", ChrystallumSystemMap],
+  ["di-constitution", "DI", DIConstitution],
+  ["sca-constitution", "SCA", SCAConstitution],
+  ["sfa-constitution", "SFA", SFAConstitution],
+  ["subject-constitution", "Subject Backbone", SubjectConstitution],
   ["architecture", "Architecture", ChrystallumArchitecture],
   ["discipline", "Discipline Universe", DisciplineUniverse],
   ["bio-constitution", "Bio Constitution", BiographicConstitution],
   ["discipline-constitution", "Discipline Constitution", DisciplineConstitution],
-  ["di-constitution", "DI Constitution", DIConstitution],
   ["geo-constitution", "Geo Constitution", GeographicConstitution],
-  ["subject-constitution", "Subject Backbone", SubjectConstitution],
 ];
 
 function App() {
-  const [active, setActive] = useState("systemmap");
-  const Current = APPS.find(([k]) => k === active)?.[2] || DisciplineUniverse;
+  const [active, setActive] = useState("neo4j");
+  const Current = APPS.find(([k]) => k === active)?.[2] || Neo4jExplorer;
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", minHeight: "100vh" }}>
