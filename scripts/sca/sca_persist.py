@@ -22,6 +22,21 @@ from pathlib import Path
 
 _root = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(_root))
+sys.path.insert(0, str(_root / "scripts" / "sca"))
+
+
+def domain_types_for_persist(types_list: list[dict]) -> list[dict]:
+    """Only seed-asserted types become SubjectDomain USES_TYPE edges."""
+    filtered = [
+        t for t in types_list
+        if t.get("from_seed") or t.get("source") in ("P31", "P279")
+    ]
+    if filtered:
+        return filtered
+    return [
+        t for t in types_list
+        if t.get("depth", 99) <= 1 and t.get("source") in ("P31", "P279")
+    ]
 
 
 def get_driver(uri: str | None = None, user: str = "neo4j", password: str | None = None):
@@ -54,7 +69,7 @@ def persist(data: dict, driver) -> None:
     seed_qid = data["seed_qid"]
     ts = data.get("timestamp", "")
     summary = data.get("summary", {})
-    types_list = data.get("types", [])
+    types_list = domain_types_for_persist(data.get("types", []))
     structural = data.get("structural_props", {})
     training_qids = data.get("training_qids", [])
 
@@ -72,13 +87,22 @@ def persist(data: dict, driver) -> None:
             """,
             seed_qid=seed_qid,
             ts=ts,
-            types_count=summary.get("types_discovered", 0),
+            types_count=len(types_list),
             backlinks_total=summary.get("backlinks_total", 0),
             training_qids_count=summary.get("training_qids_count", 0),
             structural_props=json.dumps(structural),
         )
 
-        # 2. WikidataType nodes
+        # Replace stale USES_TYPE edges before re-linking seed types
+        session.run(
+            """
+            MATCH (d:SubjectDomain {seed_qid: $seed_qid})-[r:USES_TYPE]->(:WikidataType)
+            DELETE r
+            """,
+            seed_qid=seed_qid,
+        )
+
+        # 2. WikidataType nodes + 3. SubjectDomain -[:USES_TYPE]-> WikidataType
         for t in types_list:
             qid = t.get("qid", "")
             label = t.get("label", "")
@@ -95,6 +119,9 @@ def persist(data: dict, driver) -> None:
                     w.backlink_count = $backlink_count,
                     w.traversal_boundary = $boundary,
                     w.updated_by = 'sca_persist'
+                WITH w
+                MATCH (d:SubjectDomain {seed_qid: $seed_qid})
+                MERGE (d)-[:USES_TYPE]->(w)
                 """,
                 qid=qid,
                 label=label,
@@ -102,21 +129,8 @@ def persist(data: dict, driver) -> None:
                 depth=depth,
                 backlink_count=backlink_count,
                 boundary=boundary,
+                seed_qid=seed_qid,
             )
-
-        # 3. SubjectDomain -[:USES_TYPE]-> WikidataType
-        for t in types_list:
-            qid = t.get("qid", "")
-            if qid:
-                session.run(
-                    """
-                    MATCH (d:SubjectDomain {seed_qid: $seed_qid})
-                    MATCH (w:WikidataType {qid: $type_qid})
-                    MERGE (d)-[:USES_TYPE]->(w)
-                    """,
-                    seed_qid=seed_qid,
-                    type_qid=qid,
-                )
 
         # 4. Link SubjectConcept to SubjectDomain (if SubjectConcept exists)
         session.run(
@@ -164,7 +178,7 @@ def main() -> int:
 
     try:
         persist(data, driver)
-        print(f"Persisted {data['seed_qid']} to Neo4j: {data['summary']['types_discovered']} types, {data['summary']['training_qids_count']} training QIDs")
+        print(f"Persisted {data['seed_qid']} to Neo4j: {len(types_list)} domain types, {data['summary']['training_qids_count']} training QIDs")
     finally:
         driver.close()
 

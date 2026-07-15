@@ -1,0 +1,256 @@
+{
+  "captured": "2026-07-15",
+  "database": "neo4j",
+  "uri_host": "neo4j+s://ac63a8e5.databases.neo4j.io",
+  "subject_domain": {
+    "domain_id": "domain_roman_republic",
+    "label": "Roman Republic · Subject Domain",
+    "seed_qid": "Q17167",
+    "eid": "4:2ce681c2-5f2e-4f55-8da3-856508f132d1:53442"
+  },
+  "period": {
+    "qid": "Q17167",
+    "label": "Roman Republic",
+    "eid": "4:2ce681c2-5f2e-4f55-8da3-856508f132d1:49849"
+  },
+  "facet_umbrellas": [
+    {
+      "subject_id": "sc_q17167_facet_archaeological",
+      "label": "Facet — Archaeological",
+      "facet": "archaeological",
+      "decompositions": 8
+    },
+    {
+      "subject_id": "sc_q17167_facet_artistic",
+      "label": "Facet — Artistic",
+      "facet": "artistic",
+      "decompositions": 7
+    },
+    {
+      "subject_id": "sc_q17167_facet_biographic",
+      "label": "Facet — Biographic",
+      "facet": "biographic",
+      "decompositions": 7
+    },
+    {
+      "subject_id": "sc_q17167_facet_communication",
+      "label": "Facet — Communication",
+      "facet": "communication",
+      "decompositions": 8
+    },
+    {
+      "subject_id": "sc_q17167_facet_cultural",
+      "label": "Facet — Cultural",
+      "facet": "cultural",
+      "decompositions": 0
+    },
+    {
+      "subject_id": "sc_q17167_facet_demographic",
+      "label": "Facet — Demographic",
+      "facet": "demographic",
+      "decompositions": 0
+    },
+    {
+      "subject_id": "sc_q17167_facet_economic",
+      "label": "Facet — Economic",
+      "facet": "economic",
+      "decompositions": 0
+    },
+    {
+      "subject_id": "sc_q17167_facet_geographic",
+      "label": "Facet — Geographic",
+      "facet": "geographic",
+      "decompositions": 6
+    },
+    {
+      "subject_id": "sc_q17167_facet_intellectual",
+      "label": "Facet — Intellectual",
+      "facet": "intellectual",
+      "decompositions": 0
+    },
+    {
+      "subject_id": "sc_q17167_facet_linguistic",
+      "label": "Facet — Linguistic",
+      "facet": "linguistic",
+      "decompositions": 0
+    },
+    {
+      "subject_id": "sc_q17167_facet_military",
+      "label": "Facet — Military",
+      "facet": "military",
+      "decompositions": 8
+    },
+    {
+      "subject_id": "sc_q17167_facet_political",
+      "label": "Facet — Political",
+      "facet": "political",
+      "decompositions": 7
+    },
+    {
+      "subject_id": "sc_q17167_facet_religious",
+      "label": "Facet — Religious",
+      "facet": "religious",
+      "decompositions": 4
+    },
+    {
+      "subject_id": "sc_q17167_facet_scientific",
+      "label": "Facet — Scientific",
+      "facet": "scientific",
+      "decompositions": 0
+    },
+    {
+      "subject_id": "sc_q17167_facet_social",
+      "label": "Facet — Social",
+      "facet": "social",
+      "decompositions": 8
+    }
+  ],
+  "domain_edges": [
+    {
+      "rel": "ALIGNED_WITH_LCC",
+      "target": "LCC_Class",
+      "key": "DG1-365",
+      "cnt": 1
+    },
+    {
+      "rel": "ALIGNED_WITH_LCC",
+      "target": "LCC_Class",
+      "key": "DG21-190",
+      "cnt": 1
+    },
+    {
+      "rel": "ALIGNED_WITH_LCC",
+      "target": "LCC_Class",
+      "key": "KJA190-2152",
+      "cnt": 1
+    },
+    {
+      "rel": "ALIGNED_WITH_LCC",
+      "target": "LCC_Class",
+      "key": "KJA2-3660",
+      "cnt": 1
+    },
+    {
+      "rel": "ALIGNED_WITH_LCC",
+      "target": "LCC_Class",
+      "key": "PA6000-6971",
+      "cnt": 1
+    },
+    {
+      "rel": "HAS_SUBJECT_CONCEPT",
+      "target": "SubjectConcept",
+      "key": "di_facet_umbrella",
+      "cnt": 15
+    },
+    {
+      "rel": "OCCURS_DURING",
+      "target": "Period",
+      "key": "Q17167",
+      "cnt": 1
+    },
+    {
+      "rel": "USES_TYPE",
+      "target": "WikidataType",
+      "key": "Q11514315",
+      "cnt": 1
+    },
+    {
+      "rel": "USES_TYPE",
+      "target": "WikidataType",
+      "key": "Q3024240",
+      "cnt": 1
+    }
+  ],
+  "domain_incoming_sc": 0,
+  "di_proposals": {
+    "total": 63,
+    "part_of_umbrella": 63,
+    "scoped_to_domain": 0
+  },
+  "sfa_training": [
+    {
+      "facet": "ARCHAEOLOGICAL",
+      "run_id": "train_Q17167_ARCHAEOLOGICAL_20260309T213536",
+      "umbrella": "sc_q17167_facet_archaeological"
+    },
+    {
+      "facet": "ARCHAEOLOGICAL",
+      "run_id": "train_Q17167_ARCHAEOLOGICAL_20260310T093605",
+      "umbrella": "sc_q17167_facet_archaeological"
+    },
+    {
+      "facet": "CULTURAL",
+      "run_id": "train_Q17167_CULTURAL_20260310T080637",
+      "umbrella": "sc_q17167_facet_cultural"
+    },
+    {
+      "facet": "DEMOGRAPHIC",
+      "run_id": "train_Q17167_DEMOGRAPHIC_20260310T082623",
+      "umbrella": "sc_q17167_facet_demographic"
+    },
+    {
+      "facet": "ECONOMIC",
+      "run_id": "train_Q17167_ECONOMIC_20260310T084627",
+      "umbrella": "sc_q17167_facet_economic"
+    },
+    {
+      "facet": "INTELLECTUAL",
+      "run_id": "train_Q17167_INTELLECTUAL_20260310T090504",
+      "umbrella": "sc_q17167_facet_intellectual"
+    },
+    {
+      "facet": "LINGUISTIC",
+      "run_id": "train_Q17167_LINGUISTIC_20260310T090926",
+      "umbrella": "sc_q17167_facet_linguistic"
+    },
+    {
+      "facet": "MILITARY",
+      "run_id": "train_Q17167_MILITARY_20260310T090623",
+      "umbrella": "sc_q17167_facet_military"
+    },
+    {
+      "facet": "MILITARY",
+      "run_id": "train_Q17167_MILITARY_20260310T091549",
+      "umbrella": "sc_q17167_facet_military"
+    },
+    {
+      "facet": "MILITARY",
+      "run_id": "train_Q17167_MILITARY_20260310T092613",
+      "umbrella": "sc_q17167_facet_military"
+    },
+    {
+      "facet": "POLITICAL",
+      "run_id": "train_Q17167_POLITICAL_20260310T091326",
+      "umbrella": "sc_q17167_facet_political"
+    },
+    {
+      "facet": "RELIGIOUS",
+      "run_id": "train_Q17167_RELIGIOUS_20260310T091706",
+      "umbrella": "sc_q17167_facet_religious"
+    },
+    {
+      "facet": "SCIENTIFIC",
+      "run_id": "train_Q17167_SCIENTIFIC_20260310T092310",
+      "umbrella": "sc_q17167_facet_scientific"
+    },
+    {
+      "facet": "SOCIAL",
+      "run_id": "train_Q17167_SOCIAL_20260310T092733",
+      "umbrella": "sc_q17167_facet_social"
+    }
+  ],
+  "bootstrap_orphans": {
+    "ccs_bootstrap": 15,
+    "on_domain": 0
+  },
+  "uses_type": [
+    {
+      "qid": "Q3024240",
+      "label": "historical country"
+    },
+    {
+      "qid": "Q11514315",
+      "label": "historical period"
+    }
+  ]
+}

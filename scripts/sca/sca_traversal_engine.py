@@ -246,7 +246,13 @@ def traverse(
 
     for qid, lab in p31 + p279:
         if qid not in all_types:
-            all_types[qid] = {"qid": qid, "label": lab, "depth": 1, "source": "P31" if (qid, lab) in p31 else "P279"}
+            all_types[qid] = {
+                "qid": qid,
+                "label": lab,
+                "depth": 1,
+                "source": "P31" if (qid, lab) in p31 else "P279",
+                "from_seed": True,
+            }
             type_queue.append((qid, lab, 1, None))
 
     # 2. Recursive expansion
@@ -296,7 +302,13 @@ def traverse(
             for child_type, items in by_type.items():
                 if child_type not in all_types and expanded < max_types_to_expand:
                     child_label = items[0].get("type_label", child_type) if items else child_type
-                    all_types[child_type] = {"qid": child_type, "label": child_label, "depth": depth + 1}
+                    all_types[child_type] = {
+                        "qid": child_type,
+                        "label": child_label,
+                        "depth": depth + 1,
+                        "from_seed": False,
+                        "source": "backlink_expansion",
+                    }
                     type_queue.append((child_type, child_label, depth + 1, type_qid))
                     expanded += 1
         if expanded >= max_types_to_expand:
@@ -320,16 +332,27 @@ def traverse(
         for q in sorted(training_qids)
     ]
 
+    domain_types = [
+        t for t in all_types.values()
+        if t.get("from_seed") or t.get("source") in ("P31", "P279")
+    ]
+    encountered_types = [
+        t for t in all_types.values()
+        if not (t.get("from_seed") or t.get("source") in ("P31", "P279"))
+    ]
+
     return {
         "seed_qid": seed_qid,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "max_depth": max_depth,
         "summary": {
-            "types_discovered": len(all_types),
+            "types_discovered": len(domain_types),
+            "types_encountered": len(encountered_types),
             "backlinks_total": len(all_backlinks),
             "training_qids_count": len(training_qids),
         },
-        "types": list(all_types.values()),
+        "types": domain_types,
+        "encountered_types": encountered_types,
         "structural_props": {k: v for k, v in structural.items()},
         "training_qids": training_qids_with_labels,
     }
