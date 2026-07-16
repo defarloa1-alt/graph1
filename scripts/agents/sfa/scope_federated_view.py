@@ -8,6 +8,8 @@ _root = Path(__file__).resolve().parents[3]
 if str(_root) not in sys.path:
     sys.path.insert(0, str(_root))
 
+from scripts.agents.republic_graph_context import append_republic_graph_context
+
 def _get_api_key():
     import os
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -72,6 +74,7 @@ def scope(facet, seed_qid="Q17167", input_path=None, reports_dir=None, model="cl
     federated = load_federated(input_path, reports_dir)
     context = build_context(federated)
     system = SYSTEM_PROMPT.format(facet=facet, seed_qid=seed_qid)
+    system = append_republic_graph_context(system, seed_qid)
     user = f"Scope for {facet} facet.\n\n{context}"
     print(f"SFA_{facet}: scoping for {seed_qid}")
     raw = call_claude(system, user, model=model)

@@ -720,33 +720,73 @@ def supporting_works_for_facet(training: dict | None) -> list[str]:
     return works
 
 
+def work_id_from_item(item: dict[str, Any]) -> str:
+    wid = (item.get("work_id") or "").strip()
+    if wid:
+        return wid
+    uri = (item.get("work") or "").strip()
+    if not uri:
+        return ""
+    tail = uri.rstrip("/").split("/")[-1]
+    if "wikidata.org" in uri:
+        return f"wd:{tail}"
+    if "openalex.org" in uri:
+        return f"openalex:{tail}"
+    return tail
+
+
+def _looks_like_work_id(value: str) -> bool:
+    return bool(
+        value.startswith(("openalex:", "ia:", "oapen:", "domain_src:", "wd:Q"))
+        or (value.startswith("Q") and len(value) > 1 and value[1:].isdigit())
+    )
+
+
+def title_quality(title: str, work_id: str) -> int:
+    if not title or title.strip() == work_id:
+        return 0
+    if _looks_like_work_id(title):
+        return 0
+    return len(title)
+
+
+def corpus_work_title(item: dict[str, Any], work_id: str) -> str:
+    """Resolve display title; map legacy label/workLabel into title."""
+    for key in ("title", "workLabel", "label"):
+        val = (item.get(key) or "").strip()
+        if val and val != work_id and not _looks_like_work_id(val):
+            return val
+    return work_id
+
+
+def normalize_corpus_work(raw: dict[str, Any]) -> dict[str, Any]:
+    """Canonical bibliographic entry for CorpusWork / supporting_works (always uses title)."""
+    work_id = work_id_from_item(raw)
+    if not work_id:
+        return {}
+    return {
+        "work_id": work_id,
+        "title": corpus_work_title(raw, work_id),
+        "authors": raw.get("authors") or "",
+        "year": raw.get("year"),
+        "source": raw.get("source") or "",
+        "source_url": raw.get("source_url") or raw.get("oa_url") or "",
+        "doi": raw.get("doi") or "",
+        "citation_count": raw.get("citation_count"),
+    }
+
+
 def build_work_index(training_dir: Path, seed: str) -> dict[str, dict[str, Any]]:
     """Index work_id -> bibliographic metadata from corpus + training files."""
     index: dict[str, dict[str, Any]] = {}
 
-    def _title_quality(title: str, wid: str) -> int:
-        if not title or title.strip() == wid:
-            return 0
-        if title.startswith(("openalex:", "ia:", "oapen:", "domain_src:")):
-            return 0
-        return len(title)
-
     def _ingest(item: dict, source_hint: str = "") -> None:
-        wid = item.get("work_id")
+        incoming = normalize_corpus_work({**item, "source": item.get("source") or source_hint})
+        wid = incoming.get("work_id")
         if not wid:
             return
-        incoming = {
-            "work_id": wid,
-            "title": item.get("title") or wid,
-            "authors": item.get("authors") or "",
-            "year": item.get("year"),
-            "source": item.get("source") or source_hint,
-            "source_url": item.get("source_url") or item.get("oa_url") or "",
-            "doi": item.get("doi") or "",
-            "citation_count": item.get("citation_count"),
-        }
         existing = index.get(wid)
-        if existing and _title_quality(existing.get("title", ""), wid) >= _title_quality(
+        if existing and title_quality(existing.get("title", ""), wid) >= title_quality(
             incoming.get("title", ""), wid
         ):
             return
@@ -850,27 +890,33 @@ def label_supporting_works(
     *,
     fetch_missing: bool = True,
 ) -> list[dict[str, Any]]:
-    """Resolve supporting work IDs to labeled bibliography entries."""
+    """Resolve supporting work IDs to titled bibliography entries (title, not label)."""
     labeled: list[dict[str, Any]] = []
     for wid in work_ids:
         if wid in work_index:
-            labeled.append(dict(work_index[wid]))
+            entry = dict(work_index[wid])
+            if fetch_missing and title_quality(entry.get("title", ""), wid) == 0:
+                meta = fetch_openalex_work_meta(wid) or fetch_internet_archive_meta(wid)
+                if meta and title_quality(meta.get("title", ""), wid) > 0:
+                    entry = normalize_corpus_work({**entry, **meta})
+                    work_index[wid] = entry
+            labeled.append(normalize_corpus_work(entry))
             continue
         if fetch_missing:
             meta = fetch_openalex_work_meta(wid) or fetch_internet_archive_meta(wid)
             if meta:
-                work_index[wid] = meta
-                labeled.append(dict(meta))
+                row = normalize_corpus_work(meta)
+                work_index[wid] = row
+                labeled.append(dict(row))
                 continue
-        labeled.append({
-            "work_id": wid,
-            "title": wid,
-            "authors": "",
-            "year": None,
-            "source": wid.split(":", 1)[0] if ":" in wid else "unknown",
-            "source_url": "",
-            "doi": "",
-        })
+        labeled.append(
+            normalize_corpus_work(
+                {
+                    "work_id": wid,
+                    "source": wid.split(":", 1)[0] if ":" in wid else "unknown",
+                }
+            )
+        )
     return labeled
 
 

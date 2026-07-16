@@ -1,0 +1,228 @@
+{
+  "qid": "Q11908712",
+  "label": "Batlle of Emporion",
+  "description": "195 BCE battle",
+  "statement_count": 10,
+  "property_count": 8,
+  "claims": {
+    "P625": [
+      {
+        "statement_id": "Q11908712$D6825690-645D-461E-8D15-623FF56B591E",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 42.13333333,
+            "longitude": 3.11666667,
+            "precision": 1e-05,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        },
+        "references": [
+          {
+            "hash": "b3fd5e254143d8b52cd96cff43af9af5e3a82358",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q199693"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q11908712$B659C746-E238-4F1B-805C-F26586EF0BF9",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q11908712$C3C6EB05-7C84-4D41-8E44-4E55EF9DC4CC",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q11945466"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q11908712$8fffbbff-418f-b883-538b-d2ddd9e00981",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0195-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q11908712$924F5D1E-3257-4975-B6C0-2D9DA290249E",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1229367"
+        }
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q11908712$A50B05B1-D6F7-4F99-84E4-698CE420DECE",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q186513"
+        },
+        "qualifiers": {
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q139783048"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P3831"
+        ]
+      },
+      {
+        "statement_id": "Q11908712$370E52F7-6D68-483E-8973-F2827EA1EA92",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q29"
+        },
+        "qualifiers": {
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q140068185"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P3831"
+        ]
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q11908712$E513D770-E376-4B14-B226-0E1C6AB82C75",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/120mbs_q"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q11908712$2230f46f-438f-5f01-50db-dd044e3cc0f8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q180081"
+            }
+          ],
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q18560095"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791",
+          "P3831"
+        ]
+      },
+      {
+        "statement_id": "Q11908712$af36e785-4b25-36ed-6cd2-3b487115f147",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q190992"
+        }
+      }
+    ]
+  }
+}

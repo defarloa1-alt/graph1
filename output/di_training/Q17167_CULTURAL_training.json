@@ -1,0 +1,714 @@
+{
+  "training_summary": "The cultural facet of the Roman Republic encompasses the complex interplay between memory, identity, and political spectacle that defined Republican society. The seed corpus reveals how cultural practices like festivals, religious rituals, and public spectacles served as mechanisms for political legitimacy and social cohesion.",
+  "key_works": [
+    {
+      "work_id": "openalex:W625887749",
+      "relevance": "high",
+      "facet_contribution": "Demonstrates how Republican memory was deliberately constructed and manipulated under the Empire, revealing cultural continuities and ruptures"
+    },
+    {
+      "work_id": "openalex:W1671198255",
+      "relevance": "high",
+      "facet_contribution": "Explores the tension between Republican nostalgia and imperial reality, showing how cultural identity persisted through political transformation"
+    },
+    {
+      "work_id": "openalex:W4237818837",
+      "relevance": "high",
+      "facet_contribution": "Analyzes how spectacles functioned as political communication tools and identity markers in Republican culture"
+    },
+    {
+      "work_id": "openalex:W2002101873",
+      "relevance": "high",
+      "facet_contribution": "Provides systematic analysis of Republican festivals and ceremonies as cultural institutions"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q2725634",
+      "label": "Roman Republican spectacle as political communication",
+      "confidence": 0.87,
+      "evidence": "Flower's works on spectacle demonstrate how ludi and public ceremonies functioned as deliberate political messaging systems",
+      "target_facet": null,
+      "reasoning": "Spectacles were not mere entertainment but sophisticated cultural mechanisms for transmitting political values and legitimacy",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.2,
+        "biographic": 0.0,
+        "communication": 0.3,
+        "cultural": 0.9,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.7,
+        "religious": 0.4,
+        "scientific": 0.0,
+        "social": 0.5,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_PROCESSION_DEMONSTRATION"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": null,
+      "label": "Cultural memory as political legitimation",
+      "confidence": 0.85,
+      "evidence": "Gallia and Empire/Memory corpus show how cultural practices legitimated political authority",
+      "target_facet": "political",
+      "reasoning": "Republican cultural forms were deeply intertwined with political legitimacy and power structures",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.1,
+        "biographic": 0.2,
+        "communication": 0.2,
+        "cultural": 0.9,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.3,
+        "linguistic": 0.1,
+        "military": 0.0,
+        "political": 0.8,
+        "religious": 0.2,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_EXPERT_MEDIATED_KNOWLEDGE"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": null,
+      "label": "Local cultural adaptation under Roman expansion",
+      "confidence": 0.82,
+      "evidence": "van Dommelen's work on articulating local cultures shows how Republican expansion involved cultural negotiation rather than simple imposition",
+      "target_facet": null,
+      "reasoning": "Republican cultural hegemony operated through adaptation and incorporation of local practices",
+      "facet_weights": {
+        "archaeological": 0.3,
+        "artistic": 0.2,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.9,
+        "demographic": 0.2,
+        "diplomatic": 0.4,
+        "economic": 0.2,
+        "environmental": 0.0,
+        "geographic": 0.5,
+        "intellectual": 0.1,
+        "linguistic": 0.3,
+        "military": 0.1,
+        "political": 0.3,
+        "religious": 0.3,
+        "scientific": 0.0,
+        "social": 0.4,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "descriptive"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q1888820",
+      "label": "culture of the Roman Republic",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Primary candidate directly matches corpus focus on Republican cultural practices, memory, and identity formation"
+    },
+    {
+      "qid": "Q3624157",
+      "label": "Roman Republican art",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Corpus demonstrates art's role in cultural communication and political messaging during Republic"
+    },
+    {
+      "qid": "Q337547",
+      "label": "ancient Roman religion",
+      "verdict": "reroute",
+      "reroute_to": "religious",
+      "evidence": "While culturally significant, religious practices constitute a distinct specialized domain better handled by religious facet"
+    },
+    {
+      "qid": "Q780548",
+      "label": "fabula praetexta",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Theatrical genre represents cultural practice specific to Republican period with political dimensions"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "ia:companiontoroman0000unse_f6m6",
+      "title": "A companion to the Roman Republic",
+      "authors": "Multiple contributors",
+      "year": 2006,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/companiontoroman0000unse_f6m6",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Comprehensive overview of Republican institutions including cultural practices"
+    },
+    {
+      "work_id": "ia:romanpresencesre00unse",
+      "title": "Roman presences : receptions of Rome in European culture, 1789-1945",
+      "authors": "Multiple contributors",
+      "year": 1999,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/romanpresencesre00unse",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Shows how Republican culture was later received and interpreted"
+    },
+    {
+      "work_id": "ia:romanantiquitie00danagoog",
+      "title": "Roman antiquities = or, An account of the manners and customs of the Romans",
+      "authors": "Adam, Alexander",
+      "year": 1814,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/romanantiquitie00danagoog",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Systematic account of Roman cultural practices and social customs"
+    },
+    {
+      "work_id": "ia:fromgoodgoddesst0000stap",
+      "title": "From Good Goddess to vestal virgins : sex and category in Roman religion",
+      "authors": "Staples, Ariadne",
+      "year": 1998,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/fromgoodgoddesst0000stap",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Examines intersection of religious and cultural categories in Roman society"
+    },
+    {
+      "work_id": "ia:romanlife100bcto0000clar",
+      "title": "Roman life : 100 B.C. to A.D. 200",
+      "authors": "Clarke, John R.",
+      "year": 2007,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/romanlife100bcto0000clar",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Covers daily cultural practices during late Republican and early Imperial periods"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "Cultural facet covers manageable sub-domains: spectacle/festivals, memory/identity, local adaptation, religious culture, artistic expression, and social customs - approximately 6 major areas within threshold",
+    "sub_domain_count": 6,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 8,
+    "sub_scopes": [],
+    "manageable_as_single": true
+  },
+  "corpus_gaps": [
+    "Limited access to primary sources (Perseus unavailable)",
+    "Insufficient coverage of material culture and archaeological evidence",
+    "Need more works on Republican cultural practices vs Imperial representations",
+    "Limited coverage of regional cultural variations within Roman Republic"
+  ],
+  "facet_confidence": 0.88,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "ESSENCE_FALLACY",
+        "status": "checked",
+        "applies_to": "Roman cultural identity insights",
+        "note": "Avoided essentialist language about 'Roman spirit' by focusing on observable cultural practices and their political functions"
+      },
+      {
+        "fallacy_id": "OVERGENERALIZATION",
+        "status": "checked",
+        "applies_to": "Local cultural adaptation patterns",
+        "note": "Qualified claims about cultural adaptation with specific evidence from corpus rather than broad generalizations"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "OCR_AND_METADATA_SKEPTICISM",
+        "status": "applied",
+        "note": "Recognized limitations in accessing full text content from Internet Archive sources and metadata-only searches"
+      },
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Acknowledged that search results favor English-language scholarship and may under-represent international perspectives on Roman culture"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_PROCESSION_DEMONSTRATION",
+        "pattern_label": "Procession or demonstration",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_FRAME_ALIGNMENT"
+        ],
+        "evidence": "Flower's spectacle works show how Republican processions functioned as political demonstrations",
+        "confidence": 0.85
+      },
+      {
+        "pattern_id": "RP_CENTER_PERIPHERY_EXTRACTION",
+        "pattern_label": "Center-periphery extraction",
+        "status": "existing",
+        "candidate_qids": [
+          "Q1888820"
+        ],
+        "mechanisms": [
+          "M_ESCALATION"
+        ],
+        "evidence": "van Dommelen's work demonstrates how Roman cultural expansion involved extracting local practices into imperial framework",
+        "confidence": 0.82
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "sc_material_culture",
+      "sc_religion",
+      "sc_literature",
+      "sc_society"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "All corpus works focus on this period as defined by constitutional boundaries"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Central locus of cultural practices and identity formation throughout corpus"
+      },
+      {
+        "place_label": "Italian Peninsula",
+        "place_qid": "Q145694",
+        "role": "secondary",
+        "evidence": "Regional cultural adaptation documented in van Dommelen's expansion studies"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Republican spectacles functioned as deliberate political communication systems that transmitted values and legitimacy through cultural performance.",
+        "subject_concepts": [
+          "sc_material_culture"
+        ],
+        "facet_weights": {
+          "archaeological": 0.1,
+          "artistic": 0.2,
+          "biographic": 0.0,
+          "communication": 0.3,
+          "cultural": 0.9,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.1,
+          "environmental": 0.0,
+          "geographic": 0.1,
+          "intellectual": 0.1,
+          "linguistic": 0.0,
+          "military": 0.0,
+          "political": 0.7,
+          "religious": 0.4,
+          "scientific": 0.0,
+          "social": 0.5,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_PROCESSION_DEMONSTRATION"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "openalex:W4237818837"
+        ],
+        "confidence": 0.87
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman cultural expansion operated through adaptation and incorporation of local practices rather than simple cultural imposition.",
+        "subject_concepts": [
+          "sc_society"
+        ],
+        "facet_weights": {
+          "archaeological": 0.3,
+          "artistic": 0.2,
+          "biographic": 0.0,
+          "communication": 0.1,
+          "cultural": 0.9,
+          "demographic": 0.2,
+          "diplomatic": 0.4,
+          "economic": 0.2,
+          "environmental": 0.0,
+          "geographic": 0.5,
+          "intellectual": 0.1,
+          "linguistic": 0.3,
+          "military": 0.1,
+          "political": 0.3,
+          "religious": 0.3,
+          "scientific": 0.0,
+          "social": 0.4,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_EXTRACTION"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W649224265"
+        ],
+        "confidence": 0.82
+      },
+      "edge": null
+    },
+    {
+      "op_type": "ADJUST_EDGE",
+      "claim": null,
+      "edge": {
+        "from_label": "sc_material_culture",
+        "to_label": "sc_religion",
+        "relation_type": "RELATED_TO",
+        "weight_delta": 0.2,
+        "justification": "Cultural and religious practices were deeply intertwined in Republican society, as demonstrated by festival and spectacle corpus evidence"
+      }
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 36,
+    "tool_calls": [
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS \"Roman\" OR sc.label CONTAINS \"Republic\" RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[{\"sc.label\": \"Republican Constitution & Political Institutions\", \"sc.subject_id\": \"sc_constitution\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican culture social customs festivals art",
+          "source": "oapen",
+          "limit": 15
+        },
+        "output_preview": "{\"error\": \"OAPEN search error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic cultural practices spectacle festivals religion art",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman culture society memory identity",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W2291241024\", \"title\": \"The written and the world in early medieval Iberia\", \"authors\": \"Graham David Barrett\", \"year\": 2015, \"citations\": 4, \"doi\": \"https://doi.org/10.5287/ora"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic culture religion festivals art social life",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:biographies_european_creators_stefano_dorian_franco\", \"title\": \"European AI cultural creators : Stefano Dorian Franco\", \"authors\": \"European society of independent AI cultural creator"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman religion festivals culture spectacle",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh ?fast WHERE {\n  ?work wdt:P921 wd:Q1200427 .\n  OPTIONAL { ?work wdt:P244 ?lcsh } \n  OPTIONAL { ?work wdt:P2163 ?fast }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 20
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q19198571\", \"workLabel\": \"Gefangene Germaninnen\"}, {\"work\": \"http://www.wikidata.org/entity/Q105303231\", \"workLabel\": \"Nos ancêtres les Romains\"}, {\"work\": \"h"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh ?fast WHERE {\n  ?work wdt:P921 wd:Q1888820 .\n  OPTIONAL { ?work wdt:P244 ?lcsh } \n  OPTIONAL { ?work wdt:P2163 ?fast }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 20
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?qid WHERE {\n  ?work wdt:P921 wd:Q17167 .\n  ?work wdt:P31/wdt:P279* wd:Q7725634 .\n  BIND(SUBSTR(STR(?work), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 20
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q122861593\", \"qid\": \"Q122861593\", \"workLabel\": \"Carsten Hjort Lange: From Hannibal to Sulla: The Birth of Civil War in Republican Rome. Berlin: De Gruyter 202"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.5860/choice.44-0484",
+          "max_chars": 3000
+        },
+        "output_preview": "Choice Reviews | Login ☰ &times; My Account Login Reviews Most Recent Reviews Last 7 days Last 1 month Last 3 months Recent Issues April 2026 March 2026 February 2026 Humanities Reference Science &amp"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman spectacle\" festivals culture political",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman memory\" empire identity cultural",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (rp:RepertoirePattern) WHERE rp.label CONTAINS \"cultural\" OR rp.label CONTAINS \"identity\" OR rp.label CONTAINS \"memory\" RETURN rp.label, rp.pattern_id LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (rp:RepertoirePattern) RETURN rp.label, rp.pattern_id LIMIT 20"
+        },
+        "output_preview": "[{\"rp.label\": \"Contentious assembly\", \"rp.pattern_id\": null}, {\"rp.label\": \"Urban riot\", \"rp.pattern_id\": null}, {\"rp.label\": \"Mushroom strike\", \"rp.pattern_id\": null}, {\"rp.label\": \"General strike\", "
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman republic\" culture",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:all-about-history-book-of-henry-viii-2nd-ed-2019\", \"title\": \"All About History Magazine Books\", \"authors\": \"\", \"year\": \"\", \"downloads\": 10142, \"source_url\": \"https://archive.org/detai"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/ahistoryancient00chadgoog",
+          "max_chars": 4000
+        },
+        "output_preview": "A history of the ancient world : Goodspeed, George Stephen, 1860-1905 : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ bo"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://perseus.tufts.edu/hopper/collection?collection=Perseus%3Acollection%3AGreco-Roman",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='perseus.tufts.edu', port=443): Max retries exceeded with url: /hopper/collection?collection=Perseus%3Acollection%3AGreco-Roman (Caused by NameResoluti"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman festivals ludi spectacle political culture",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman Republic\" identity memory",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "ancient Rome culture society religion",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4408429154\", \"title\": \"Trans-Eurasia Exchange and Silk Road Civilization Development\", \"authors\": \"Fahu Chen; Michael E. Meadows; Jürg Luterbacher\", \"year\": 2025, \"citations\": "
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (f:Facet) RETURN f.label ORDER BY f.label"
+        },
+        "output_preview": "[{\"f.label\": \"Archaeological\"}, {\"f.label\": \"Artistic\"}, {\"f.label\": \"Biographic\"}, {\"f.label\": \"Communication\"}, {\"f.label\": \"Cultural\"}, {\"f.label\": \"Demographic\"}, {\"f.label\": \"Diplomatic\"}, {\"f.la"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman memory culture identity imperial",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:ExtrasensoryPerceptionResearchFinding\", \"title\": \"Notes on the Paranormal\", \"authors\": \"Ben Steigmann\", \"year\": \"\", \"downloads\": 33181, \"source_url\": \"https://archive.org/details/Extr"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/companiontoroman0000unse_f6m6",
+          "max_chars": 4000
+        },
+        "output_preview": "A companion to the Roman Republic : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon An icon used to "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/romanpresencesre00unse",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman presences : receptions of Rome in European culture, 1789-1945 : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ book"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D8"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Routes a SubjectConcept to one of the 18 canonical facets. Certain facets are excluded by policy (Temporal, Classification, Genealogical, Patronage). Assignments below confi"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman cultural\" practices institutions social",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman social practices festivals customs",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:judaismpracticeb0000sand_i5n5\", \"title\": \"Judaism : practice and belief, 63 BCE-66 CE\", \"authors\": \"Sanders, E. P\", \"year\": \"1992\", \"downloads\": 415, \"source_url\": \"https://archive.or"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman antiquities customs religion social life",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:romanantiquitie00danagoog\", \"title\": \"Roman antiquities = or, An account of the manners and customs of the Romans : designed chiefly to illustrate the Latin classics, by explaining wo"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/romanantiquitie00danagoog",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman antiquities = or, An account of the manners and customs of the Romans : designed chiefly to illustrate the Latin classics, by explaining words and phrases, from the rites and customs to which th"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/fromgoodgoddesst0000stap",
+          "max_chars": 4000
+        },
+        "output_preview": "From Good Goddess to vestal virgins : sex and category in Roman religion : Staples, Ariadne, 1963- : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/romanlife100bcto0000clar",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman life : 100 B.C. to A.D. 200 : Clarke, John R., 1945- : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hambur"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman cultural identity values customs social practices",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:cia-readingroom-document-cia-rdp79-01055a000200050001-3\", \"title\": \"CIA Reading Room cia-rdp79-01055a000200050001-3: NATIONAL INTELLIGENCE SURVEY STANDARD INSTRUCTIONS NATURE, PURPOSE"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Cicero Pliny Roman customs letters",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:loeb.315.ammianusmarcellinus.romanhistory.ii.books2026\", \"title\": \"Loeb. 315. Ammianus Marcellinus. Roman History. II. Books 20 26\", \"authors\": \"Loeb Harvard University Press Classica"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (p:Place) WHERE p.label CONTAINS \"Rom\" RETURN p.label, p.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[{\"p.label\": \"Aegyptus (Roman imperial province)\", \"p.wikidata_qid\": null}, {\"p.label\": \"Africa Proconsularis (Roman province)\", \"p.wikidata_qid\": null}, {\"p.label\": \"Africa Proconsularis (late Roman "
+      }
+    ],
+    "usage": {
+      "input_tokens": 633543,
+      "output_tokens": 7864
+    },
+    "raw_response_length": 13576
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 1,
+    "rejected": [
+      {
+        "qid": "Q2725634",
+        "reason": "label_off_scope",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

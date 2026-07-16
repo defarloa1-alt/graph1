@@ -1,0 +1,489 @@
+{
+  "qid": "Q75813",
+  "label": "Macedonian Wars",
+  "description": "series of conflicts between the Roman Empire and various Greek kingdoms",
+  "statement_count": 20,
+  "property_count": 16,
+  "claims": {
+    "P527": [
+      {
+        "statement_id": "Q75813$6c11e60d-4e6a-8431-bb21-6128711f4861",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q75626"
+        }
+      },
+      {
+        "statement_id": "Q75813$362e7d22-46f2-4b90-14ce-2e91a5bb4458",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q75665"
+        }
+      },
+      {
+        "statement_id": "Q75813$acbc111f-461f-54a1-d88b-7694f276e24c",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q76118"
+        }
+      },
+      {
+        "statement_id": "Q75813$bac10135-4501-12a1-c4c3-48fee67221cd",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q552373"
+        }
+      }
+    ],
+    "P373": [
+      {
+        "statement_id": "Q75813$c673accf-4f21-7a06-317b-4630a19a36b6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P373",
+          "snaktype": "value",
+          "datatype": "string",
+          "value_type": "string",
+          "value": "Roman–Macedonian Wars"
+        }
+      }
+    ],
+    "P508": [
+      {
+        "statement_id": "q75813$1A69AFE7-0D60-4FB6-845C-FBFD14316788",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P508",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "29333"
+        },
+        "references": [
+          {
+            "hash": "ff65511d37e885bcf005b99c2241192548c3f03a",
+            "snaks_order": [
+              "P248"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q16583225"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P910": [
+      {
+        "statement_id": "Q75813$A8483A7D-39C5-48FD-B123-760ACA4340D7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P910",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q8592033"
+        }
+      }
+    ],
+    "P646": [
+      {
+        "statement_id": "Q75813$2C6BD546-DF52-4130-B9CD-77E35C3A13CD",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/0271kq1"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P1417": [
+      {
+        "statement_id": "Q75813$DF7AC15B-7249-4044-8BF9-BE34739DBBB4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1417",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "topic/Macedonian-Wars"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Macedonian Wars"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q75813$898044b9-4578-7c87-6674-0d5afd5d91a6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q104212151"
+        }
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "Q75813$E040F6A4-9493-4DBE-AF00-4DB95DE1C8E4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q4114391"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q25395736"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q75813$249e5873-4296-fd0e-6f56-685db6d44f63",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q602358"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q24462486"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q75813$8A96D976-C22A-46CA-A7D6-92657814A691",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q83958"
+        },
+        "references": [
+          {
+            "hash": "1728f7a14fba74e8837867c5320d63ba6e924d37",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://it.wikipedia.org/w/index.php?title=Guerre_macedoniche&oldid=101226317"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P691": [
+      {
+        "statement_id": "Q75813$C9B0E8EE-DE36-4E96-AEDD-CEB0A3F06E3D",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P691",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "ph779412"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "makedonské války (215-168 př. Kr.)"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P5063": [
+      {
+        "statement_id": "Q75813$E4558D1E-1C97-4254-B482-04809EAB80A8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P5063",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "i42132"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q75813$55BC8817-FAD9-403B-AE40-2E458229C695",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1747689"
+        }
+      }
+    ],
+    "P443": [
+      {
+        "statement_id": "Q75813$23c086b4-5ba2-422d-9d85-6657f0fd2dc9",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P443",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "LL-Q150 (fra)-Xenophôn-guerres de Macédoine.wav"
+        },
+        "qualifiers": {
+          "P407": [
+            {
+              "property": "P407",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q150"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P407"
+        ],
+        "references": [
+          {
+            "hash": "1db60c6469812cb9db47fce1f3fc0bf03cf79405",
+            "snaks_order": [
+              "P854"
+            ],
+            "snaks": {
+              "P854": [
+                {
+                  "property": "P854",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://lingualibre.org/wiki/Q524159"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P5008": [
+      {
+        "statement_id": "Q75813$414C627B-E12C-48CB-AD56-88166D292868",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P5008",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6173448"
+        },
+        "qualifiers": {
+          "P585": [
+            {
+              "property": "P585",
+              "snaktype": "value",
+              "datatype": "time",
+              "value_type": "time",
+              "value": {
+                "time": "+2022-10-31T00:00:00Z",
+                "precision": 11,
+                "timezone": 0,
+                "before": 0,
+                "after": 0,
+                "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+              }
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P585"
+        ]
+      }
+    ],
+    "P580": [
+      {
+        "statement_id": "Q75813$a8adeace-4f61-ebcc-3fc5-cf2ce1388af4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P580",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0214-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P582": [
+      {
+        "statement_id": "Q75813$b6323424-4670-0401-c7d0-1ea9386b85f0",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P582",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0148-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1364 @@
+{
+  "qid": "Q335604",
+  "label": "Mago",
+  "description": "Barcid Carthaginian who played an important role in the Second Punic War",
+  "statement_count": 40,
+  "property_count": 32,
+  "claims": {
+    "P21": [
+      {
+        "statement_id": "q335604$7569E81E-396F-4E16-AF96-0C0A4108CAD5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        },
+        "references": [
+          {
+            "hash": "bd49d3e4f67bc460ce7a06b6ac3027347cf5ee55",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q169514"
+                }
+              ]
+            }
+          },
+          {
+            "hash": "d5847b9b6032aa8b13dae3c2dfd9ed5d114d21b3",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P570": [
+      {
+        "statement_id": "q335604$B536A859-2BFD-44C7-A6C0-20FD733DC791",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P570",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0203-01-01T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+          }
+        },
+        "qualifiers": {
+          "P31": [
+            {
+              "property": "P31",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q26961029"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P31"
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q335604$CE91B92C-D8DC-4159-AF3D-6488787342EA",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        },
+        "references": [
+          {
+            "hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q206855"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P22": [
+      {
+        "statement_id": "Q335604$31ae5352-4ade-e396-9d13-183e0a0d9a0a",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P22",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q185101"
+        },
+        "references": [
+          {
+            "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P646": [
+      {
+        "statement_id": "Q335604$394DA452-7A6A-408C-A4F4-0D77AFD1B335",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/01x97l"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P106": [
+      {
+        "statement_id": "Q335604$3F87BD11-787D-4E62-9685-AC2F1D1B916C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P106",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1402561"
+        },
+        "references": [
+          {
+            "hash": "d5847b9b6032aa8b13dae3c2dfd9ed5d114d21b3",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P569": [
+      {
+        "statement_id": "Q335604$FA01EAEF-32F0-4ABE-93D9-8E81512732F9",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P569",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0243-01-01T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "references": [
+          {
+            "hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q206855"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P607": [
+      {
+        "statement_id": "Q335604$6E2CB5B4-8F4A-4DF4-8DC4-7CADDD3A191E",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P607",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6271"
+        },
+        "qualifiers": {
+          "P1012": [
+            {
+              "property": "P1012",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q378957"
+            },
+            {
+              "property": "P1012",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q271873"
+            },
+            {
+              "property": "P1012",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q207250"
+            },
+            {
+              "property": "P1012",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q179591"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1012"
+        ],
+        "references": [
+          {
+            "hash": "d4bd87b862b12d99d26e86472d44f26858dee639",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q8447"
+                }
+              ]
+            }
+          },
+          {
+            "hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q206855"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P3373": [
+      {
+        "statement_id": "Q335604$C47FFFD1-EFE8-4739-A99A-A77960C30742",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3373",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q19348839"
+        }
+      },
+      {
+        "statement_id": "Q335604$F3EFD4D3-19AB-46A7-B457-72ECBD208CEF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3373",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q311702"
+        },
+        "references": [
+          {
+            "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "statement_id": "Q335604$343012E5-4315-49D7-BD2C-A86D6D261AD7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3373",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q36456"
+        },
+        "references": [
+          {
+            "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "statement_id": "Q335604$ced037c5-4462-c384-805c-062ee2c60b3c",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3373",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q111490494"
+        }
+      },
+      {
+        "statement_id": "Q335604$5e6c018a-4790-9e8b-d166-e38fe258a0bb",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3373",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q111490547"
+        }
+      }
+    ],
+    "P20": [
+      {
+        "statement_id": "Q335604$63571D9D-6B1A-4FEA-A024-A3241E4542F6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P20",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q4918"
+        },
+        "references": [
+          {
+            "hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q206855"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P19": [
+      {
+        "statement_id": "Q335604$7086dea7-4b1a-e22f-acc9-9c06631ab1bf",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P19",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6343"
+        },
+        "qualifiers": {
+          "P17": [
+            {
+              "property": "P17",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q2429397"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P17"
+        ],
+        "references": [
+          {
+            "hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q206855"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P4223": [
+      {
+        "statement_id": "Q335604$B89E2BE3-8E6C-4BFC-BCB9-6C0621D7517A",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P4223",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "magone"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "MAGONE"
+            }
+          ],
+          "P2093": [
+            {
+              "property": "P2093",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Gaetano De Sanctis."
+            }
+          ],
+          "P577": [
+            {
+              "property": "P577",
+              "snaktype": "value",
+              "datatype": "time",
+              "value_type": "time",
+              "value": {
+                "time": "+1934-01-01T00:00:00Z",
+                "precision": 9,
+                "timezone": 0,
+                "before": 0,
+                "after": 0,
+                "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+              }
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810",
+          "P2093",
+          "P577"
+        ],
+        "references": [
+          {
+            "hash": "49a3ecf9626ffa4ab72cc03e6451cd554edb34a2",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://it.wikipedia.org/w/index.php?title=Magone_Barca&oldid=88754129"
+                }
+              ]
+            }
+          },
+          {
+            "hash": "c5f967bbed5bc08ce922d57cb1f061438fc49f7b",
+            "snaks_order": [
+              "P248",
+              "P813"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q731361"
+                }
+              ],
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2022-03-27T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P3365": [
+      {
+        "statement_id": "Q335604$E182D00A-8551-4803-8B97-73EBECA2B5B6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3365",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "magone"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Magóne"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ],
+        "references": [
+          {
+            "hash": "49a3ecf9626ffa4ab72cc03e6451cd554edb34a2",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://it.wikipedia.org/w/index.php?title=Magone_Barca&oldid=88754129"
+                }
+              ]
+            }
+          },
+          {
+            "hash": "6c86914b15e3ae886f3c6896078ef8551a6f7d7c",
+            "snaks_order": [
+              "P248",
+              "P813"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q65921422"
+                }
+              ],
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2022-03-27T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P27": [
+      {
+        "statement_id": "Q335604$8BF5F9B0-9768-44B4-B85A-837ED9525EE3",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P27",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        },
+        "references": [
+          {
+            "hash": "d5847b9b6032aa8b13dae3c2dfd9ed5d114d21b3",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P410": [
+      {
+        "statement_id": "Q335604$25754240-FB33-4BBD-A0C5-B371880677F2",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P410",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q11247470"
+        },
+        "references": [
+          {
+            "hash": "49a3ecf9626ffa4ab72cc03e6451cd554edb34a2",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://it.wikipedia.org/w/index.php?title=Magone_Barca&oldid=88754129"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "Q335604$097be62f-4b0d-f3f4-89e2-109934df27fe",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q602358"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q24461823"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q335604$b79536c7-462c-36be-0f3b-dfa0a6f52730",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q30059240"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q45183498"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q335604$553645BE-5B0F-4049-90B2-7F87E501E6B6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q20078554"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q111191726"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q335604$FFE5755B-2A98-4C44-B1B7-D39DAE1C89A3",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q19219752"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q123337093"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "q335604$6a81a1e6-4d15-8c2a-ee75-8cd00137e9ec",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1138524"
+        },
+        "qualifiers": {
+          "P958": [
+            {
+              "property": "P958",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Mago 6"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P958"
+        ]
+      }
+    ],
+    "P6404": [
+      {
+        "statement_id": "Q335604$F34835BC-6A20-43B5-8E80-6AA75520C3BF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P6404",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "magone-ii"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Magone II"
+            }
+          ],
+          "P577": [
+            {
+              "property": "P577",
+              "snaktype": "value",
+              "datatype": "time",
+              "value_type": "time",
+              "value": {
+                "time": "+2010-01-01T00:00:00Z",
+                "precision": 9,
+                "timezone": 0,
+                "before": 0,
+                "after": 0,
+                "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+              }
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810",
+          "P577"
+        ]
+      }
+    ],
+    "P241": [
+      {
+        "statement_id": "Q335604$278DD76E-2C20-4389-86D2-827E86734D09",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P241",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1899302"
+        },
+        "references": [
+          {
+            "hash": "e3a234d83b24d43ab6b4fd4bffbb921fed55b4db",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://it.wikipedia.org/w/index.php?title=Magone_Barca&oldid=109399089"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P509": [
+      {
+        "statement_id": "Q335604$7f5a37f6-4aee-8508-22db-b8d8429c7732",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P509",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q16861372"
+        },
+        "references": [
+          {
+            "hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q206855"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P214": [
+      {
+        "statement_id": "Q335604$8508125f-4913-e686-8fe7-2bf38dfa340b",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P214",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "193891575"
+        }
+      }
+    ],
+    "P269": [
+      {
+        "statement_id": "q335604$c8975cdc-4728-23d1-c309-4c95d96d767b",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P269",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "082954062"
+        },
+        "references": [
+          {
+            "hash": "4c546e5c91a569c9b82560e28185ffdde6e638d4",
+            "snaks_order": [
+              "P248",
+              "P214",
+              "P813"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q54919"
+                }
+              ],
+              "P214": [
+                {
+                  "property": "P214",
+                  "snaktype": "value",
+                  "datatype": "external-id",
+                  "value_type": "string",
+                  "value": "193891575"
+                }
+              ],
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2020-10-08T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P6706": [
+      {
+        "statement_id": "Q335604$BB1A4782-CD3A-46A5-9E5D-1BDA0B1554E3",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P6706",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "Magóne+(generale+cartaginese,+m.+203+a.+C.)"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Magóne (generale cartaginese, m. 203 a. C.)"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P10242": [
+      {
+        "statement_id": "Q335604$F459354F-A6D1-40DC-87EC-92381E3E0E13",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P10242",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "03973/eu_m_0185/m0185"
+        },
+        "qualifiers": {
+          "P1932": [
+            {
+              "property": "P1932",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Magon"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1932"
+        ]
+      }
+    ],
+    "P1185": [
+      {
+        "statement_id": "Q335604$8eebf4ba-ce2e-40ea-af9e-190ab1cef4a5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1185",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "566491"
+        }
+      }
+    ],
+    "P3222": [
+      {
+        "statement_id": "Q335604$5C79F125-E25A-4F83-8F11-1BBE80CA1F36",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3222",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "mago-(d-203-fkr)"
+        }
+      }
+    ],
+    "P12582": [
+      {
+        "statement_id": "Q335604$62897045-AB1E-436F-AD3F-67F14A0D54B9",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P12582",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "20110803100126244"
+        }
+      }
+    ],
+    "P734": [
+      {
+        "statement_id": "Q335604$25075c59-44d9-cc76-ce2b-797e3fa30117",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P734",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q37443423"
+        }
+      }
+    ],
+    "P1559": [
+      {
+        "statement_id": "Q335604$e729c3f1-47e9-aff3-996b-5ba5f7530b34",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1559",
+          "snaktype": "value",
+          "datatype": "monolingualtext",
+          "value_type": "monolingualtext",
+          "value": {
+            "text": "𐤌𐤂‬𐤍 𐤁𐤓𐤒",
+            "language": "xpu"
+          }
+        },
+        "references": [
+          {
+            "hash": "14d2400e3b1d36332748dc330276f099eeaa8800",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q1551807"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P945": [
+      {
+        "statement_id": "Q335604$b1ea84f7-42e5-1841-fefc-014c67ebf674",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P945",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        }
+      }
+    ],
+    "P7666": [
+      {
+        "statement_id": "Q335604$05d9e490-41fa-a24d-3f5e-c369e9804ba5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P7666",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "magonas"
+        }
+      }
+    ],
+    "P8313": [
+      {
+        "statement_id": "Q335604$5022628b-46d4-ef8d-7cdd-d3971944849f",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P8313",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "Mago_Barkas"
+        }
+      }
+    ],
+    "P9106": [
+      {
+        "statement_id": "Q335604$9D5A12E1-B402-4226-AF3A-0A5E3D38623A",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P9106",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "3885"
+        }
+      }
+    ]
+  }
+}

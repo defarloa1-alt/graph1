@@ -1,0 +1,230 @@
+{
+  "qid": "Q11914149",
+  "label": "Cloelius Gracchus",
+  "description": "military oponent of Lucius Quinctius Cincinnatus",
+  "statement_count": 14,
+  "property_count": 13,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q11914149$F94CE877-B1DE-4261-B540-4F1A20093080",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        }
+      }
+    ],
+    "P21": [
+      {
+        "statement_id": "Q11914149$A96EDE97-D5C4-45C1-A8DF-DF462D45D92C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        }
+      }
+    ],
+    "P106": [
+      {
+        "statement_id": "Q11914149$edfe04e3-4364-c3e4-9f35-4fb82752656e",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P106",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q47064"
+        }
+      }
+    ],
+    "P2348": [
+      {
+        "statement_id": "Q11914149$4E2DF368-FE56-41CA-A3F4-F7F666469CBA",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2348",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2839628"
+        }
+      }
+    ],
+    "P1559": [
+      {
+        "statement_id": "Q11914149$E1788715-8BE4-40A0-AFE9-F878967572C4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1559",
+          "snaktype": "value",
+          "datatype": "monolingualtext",
+          "value_type": "monolingualtext",
+          "value": {
+            "text": "Cloelius Gracchus",
+            "language": "la"
+          }
+        }
+      }
+    ],
+    "P2358": [
+      {
+        "statement_id": "Q11914149$c4f52404-4eb1-dc91-d16e-b36edf8be08a",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2358",
+          "snaktype": "somevalue",
+          "datatype": "wikibase-item"
+        }
+      }
+    ],
+    "P2359": [
+      {
+        "statement_id": "Q11914149$5b245017-4de0-ba4c-c198-1a807f81fa96",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2359",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q29652214"
+        }
+      }
+    ],
+    "P5025": [
+      {
+        "statement_id": "Q11914149$3c02bd9d-4dc7-0ef4-ba4b-36f87c9aae3c",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P5025",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2979537"
+        }
+      }
+    ],
+    "P2365": [
+      {
+        "statement_id": "Q11914149$d1b4711c-498f-474e-151f-9725c54bdeed",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2365",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1541122"
+        }
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q11914149$BAE799C2-DE9D-4278-989D-480ACB52D227",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/1226s982"
+        }
+      }
+    ],
+    "P27": [
+      {
+        "statement_id": "Q11914149$eaa79e3e-4e9b-5647-a963-81ea1d6e83c1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P27",
+          "snaktype": "novalue",
+          "datatype": "wikibase-item"
+        }
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "Q11914149$6a49386b-4d8c-cb98-bc67-b95ce3ebf5b0",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q30059240"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q45175729"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "q11914149$1d6a236c-40b5-df5b-e301-9a005a68e0da",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1138524"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q19250693"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      }
+    ],
+    "P1412": [
+      {
+        "statement_id": "q11914149$cc1a5983-46d9-853b-312e-4304a6fa5d43",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1412",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q397"
+        }
+      }
+    ]
+  }
+}

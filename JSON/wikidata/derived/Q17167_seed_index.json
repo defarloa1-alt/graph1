@@ -1,0 +1,2779 @@
+{
+  "generated_at": "2026-07-14T19:40:02.242630+00:00",
+  "seed": {
+    "qid": "Q17167",
+    "label": "Roman Republic",
+    "description": "period of ancient Roman civilization (509 BC–27 BC)",
+    "statement_count": 80
+  },
+  "sources": {
+    "statements": "JSON/wikidata/statements/Q17167_statements_full.json",
+    "backlink_report": "JSON/wikidata/backlinks/Q17167_backlink_harvest_report.json"
+  },
+  "period": {
+    "start_year": -509,
+    "end_year": -27,
+    "source_property": "P31",
+    "source_rank": "preferred",
+    "type_qid": "Q11514315"
+  },
+  "authority_ids": {
+    "P244": "sh85115114",
+    "P646": "/m/06frc"
+  },
+  "structural_links": {
+    "P31": [
+      {
+        "property": "P31",
+        "rank": "preferred",
+        "statement_id": "Q17167$9c973d65-471e-3e4c-ce90-45eebac6c285",
+        "qid": "Q11514315",
+        "qualifiers": {
+          "P580": [
+            {
+              "property": "P580",
+              "snaktype": "value",
+              "datatype": "time",
+              "value_type": "time",
+              "value": {
+                "time": "-0509-00-00T00:00:00Z",
+                "precision": 9,
+                "timezone": 0,
+                "before": 0,
+                "after": 0,
+                "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+              }
+            }
+          ],
+          "P582": [
+            {
+              "property": "P582",
+              "snaktype": "value",
+              "datatype": "time",
+              "value_type": "time",
+              "value": {
+                "time": "-0027-00-00T00:00:00Z",
+                "precision": 9,
+                "timezone": 0,
+                "before": 0,
+                "after": 0,
+                "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+              }
+            }
+          ],
+          "P921": [
+            {
+              "property": "P921",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q1747689"
+            }
+          ]
+        },
+        "label": "historical period"
+      },
+      {
+        "property": "P31",
+        "rank": "normal",
+        "statement_id": "Q17167$b92406b0-47d1-6816-6351-b2eaaef31fc3",
+        "qid": "Q1307214",
+        "label": "form of government"
+      },
+      {
+        "property": "P31",
+        "rank": "normal",
+        "statement_id": "Q17167$ed5b8e35-440d-310f-7fdd-273497770c91",
+        "qid": "Q48349",
+        "label": "empire"
+      },
+      {
+        "property": "P31",
+        "rank": "preferred",
+        "statement_id": "Q17167$d9ce8508-4d86-ba4c-f970-64d6c3876487",
+        "qid": "Q3024240",
+        "label": "historical country"
+      }
+    ],
+    "P527": [
+      {
+        "property": "P527",
+        "rank": "normal",
+        "statement_id": "Q17167$0a5ccd6b-49fc-dd86-af74-3eca32009ac8",
+        "qid": "Q2839628",
+        "label": "Early Roman Republic"
+      },
+      {
+        "property": "P527",
+        "rank": "normal",
+        "statement_id": "Q17167$6c744f7c-4562-be64-062a-04b1394bf2ad",
+        "qid": "Q6106068",
+        "label": "Middle Roman Republic"
+      },
+      {
+        "property": "P527",
+        "rank": "normal",
+        "statement_id": "Q17167$6051f9a1-43bc-d3dc-fcdf-6dd16d82c735",
+        "qid": "Q2815472",
+        "label": "Late Roman Republic"
+      }
+    ],
+    "P361": [
+      {
+        "property": "P361",
+        "rank": "normal",
+        "statement_id": "Q17167$9a87cb78-4e27-fe4f-9899-b0b46eac2c8d",
+        "qid": "Q1747689",
+        "label": "Ancient Rome"
+      }
+    ],
+    "P194": [
+      {
+        "property": "P194",
+        "rank": "normal",
+        "statement_id": "Q17167$C256084B-87F6-47DD-B3CD-0254760E7728",
+        "qid": "Q130614",
+        "label": "Roman Senate"
+      },
+      {
+        "property": "P194",
+        "rank": "normal",
+        "statement_id": "Q17167$ae175bad-4e73-7102-5791-8ba7c0fc8719",
+        "qid": "Q1114821",
+        "label": "citizens' assemblies of the Roman Republic"
+      }
+    ],
+    "P793": [
+      {
+        "property": "P793",
+        "rank": "normal",
+        "statement_id": "Q17167$33ccfd47-4261-8b2d-eda7-8e31655a44a8",
+        "qid": "Q124988",
+        "label": "Punic Wars"
+      },
+      {
+        "property": "P793",
+        "rank": "normal",
+        "statement_id": "Q17167$7a2d4abd-49ad-1968-1dff-448ad62d3e86",
+        "qid": "Q3778726",
+        "label": "Sertorian War"
+      },
+      {
+        "property": "P793",
+        "rank": "normal",
+        "statement_id": "Q17167$a2c8608c-4cd1-2f07-3432-8cda047f40c2",
+        "qid": "Q75813",
+        "label": "Macedonian Wars"
+      },
+      {
+        "property": "P793",
+        "rank": "normal",
+        "statement_id": "Q17167$93c017a1-4e1e-fb71-5e8a-d9ca1356dc4f",
+        "qid": "Q202161",
+        "label": "Gallic War"
+      },
+      {
+        "property": "P793",
+        "rank": "normal",
+        "statement_id": "Q17167$869c0b36-4b10-4411-b24d-30c598bf6da4",
+        "qid": "Q596373",
+        "label": "Pyrrhic War"
+      },
+      {
+        "property": "P793",
+        "rank": "normal",
+        "statement_id": "Q17167$56ce044a-4bc2-6824-804f-f2c52e86812f",
+        "qid": "Q1238338",
+        "label": "Caesar's Civil War"
+      },
+      {
+        "property": "P793",
+        "rank": "normal",
+        "statement_id": "Q17167$a25a8a68-4132-7e0f-4011-254d60b50d6c",
+        "qid": "Q677316",
+        "label": "Social War of 91-87 BCE"
+      }
+    ],
+    "P1366": [
+      {
+        "property": "P1366",
+        "rank": "normal",
+        "statement_id": "Q17167$692d1b2b-4e07-76be-35db-3567173f6a91",
+        "qid": "Q2277",
+        "label": "Roman Empire"
+      },
+      {
+        "property": "P1366",
+        "rank": "normal",
+        "statement_id": "Q17167$05cd0c69-4fd8-9d8c-1283-68358a33c38c",
+        "qid": "Q206414",
+        "label": "Principate"
+      }
+    ],
+    "P1365": [
+      {
+        "property": "P1365",
+        "rank": "normal",
+        "statement_id": "Q17167$d62e1845-4e4e-2b0e-d6d5-5052fc3b92e3",
+        "qid": "Q201038",
+        "label": "Roman Kingdom"
+      }
+    ],
+    "P155": [
+      {
+        "property": "P155",
+        "rank": "normal",
+        "statement_id": "Q17167$C813A7DC-3A24-411D-B841-32E16AC34F2E",
+        "qid": "Q201038",
+        "label": "Roman Kingdom"
+      }
+    ],
+    "P156": [
+      {
+        "property": "P156",
+        "rank": "normal",
+        "statement_id": "Q17167$6980e7c7-4288-f765-04cc-e4732624a8b0",
+        "qid": "Q2277",
+        "label": "Roman Empire"
+      },
+      {
+        "property": "P156",
+        "rank": "normal",
+        "statement_id": "Q17167$b6ec2745-4f29-9bfc-7222-a1b784e4e386",
+        "qid": "Q206414",
+        "label": "Principate"
+      }
+    ],
+    "P38": [
+      {
+        "property": "P38",
+        "rank": "normal",
+        "statement_id": "Q17167$81B5D868-FA30-418D-8A7E-2092E44B2786",
+        "qid": "Q952064",
+        "label": "Roman currency"
+      }
+    ],
+    "P36": [
+      {
+        "property": "P36",
+        "rank": "normal",
+        "statement_id": "Q17167$6691a65d-450e-8364-b300-8e6965a168ae",
+        "qid": "Q220",
+        "label": "Rome"
+      }
+    ],
+    "P30": [
+      {
+        "property": "P30",
+        "rank": "preferred",
+        "statement_id": "Q17167$6ef15cb1-4290-8b99-157e-84db687033b8",
+        "qid": "Q46",
+        "label": "Europe"
+      },
+      {
+        "property": "P30",
+        "rank": "normal",
+        "statement_id": "Q17167$9c743103-4034-1ae5-493d-c6d1004b1f03",
+        "qid": "Q48",
+        "label": "Asia"
+      },
+      {
+        "property": "P30",
+        "rank": "normal",
+        "statement_id": "Q17167$4b485169-4bef-9a8f-d21a-bee6e2f42816",
+        "qid": "Q15",
+        "label": "Africa"
+      }
+    ],
+    "P910": [
+      {
+        "property": "P910",
+        "rank": "normal",
+        "statement_id": "Q17167$B300293D-8569-4521-9296-A036C1D4D268",
+        "qid": "Q6944405",
+        "label": "Category:Roman Republic"
+      }
+    ]
+  },
+  "events": [
+    {
+      "property": "P793",
+      "rank": "normal",
+      "statement_id": "Q17167$33ccfd47-4261-8b2d-eda7-8e31655a44a8",
+      "qid": "Q124988",
+      "label": "Punic Wars"
+    },
+    {
+      "property": "P793",
+      "rank": "normal",
+      "statement_id": "Q17167$7a2d4abd-49ad-1968-1dff-448ad62d3e86",
+      "qid": "Q3778726",
+      "label": "Sertorian War"
+    },
+    {
+      "property": "P793",
+      "rank": "normal",
+      "statement_id": "Q17167$a2c8608c-4cd1-2f07-3432-8cda047f40c2",
+      "qid": "Q75813",
+      "label": "Macedonian Wars"
+    },
+    {
+      "property": "P793",
+      "rank": "normal",
+      "statement_id": "Q17167$93c017a1-4e1e-fb71-5e8a-d9ca1356dc4f",
+      "qid": "Q202161",
+      "label": "Gallic War"
+    },
+    {
+      "property": "P793",
+      "rank": "normal",
+      "statement_id": "Q17167$869c0b36-4b10-4411-b24d-30c598bf6da4",
+      "qid": "Q596373",
+      "label": "Pyrrhic War"
+    },
+    {
+      "property": "P793",
+      "rank": "normal",
+      "statement_id": "Q17167$56ce044a-4bc2-6824-804f-f2c52e86812f",
+      "qid": "Q1238338",
+      "label": "Caesar's Civil War"
+    },
+    {
+      "property": "P793",
+      "rank": "normal",
+      "statement_id": "Q17167$a25a8a68-4132-7e0f-4011-254d60b50d6c",
+      "qid": "Q677316",
+      "label": "Social War of 91-87 BCE"
+    }
+  ],
+  "parts": [
+    {
+      "property": "P527",
+      "rank": "normal",
+      "statement_id": "Q17167$0a5ccd6b-49fc-dd86-af74-3eca32009ac8",
+      "qid": "Q2839628",
+      "label": "Early Roman Republic"
+    },
+    {
+      "property": "P527",
+      "rank": "normal",
+      "statement_id": "Q17167$6c744f7c-4562-be64-062a-04b1394bf2ad",
+      "qid": "Q6106068",
+      "label": "Middle Roman Republic"
+    },
+    {
+      "property": "P527",
+      "rank": "normal",
+      "statement_id": "Q17167$6051f9a1-43bc-d3dc-fcdf-6dd16d82c735",
+      "qid": "Q2815472",
+      "label": "Late Roman Republic"
+    }
+  ],
+  "legislative_bodies": [
+    {
+      "property": "P194",
+      "rank": "normal",
+      "statement_id": "Q17167$C256084B-87F6-47DD-B3CD-0254760E7728",
+      "qid": "Q130614",
+      "label": "Roman Senate"
+    },
+    {
+      "property": "P194",
+      "rank": "normal",
+      "statement_id": "Q17167$ae175bad-4e73-7102-5791-8ba7c0fc8719",
+      "qid": "Q1114821",
+      "label": "citizens' assemblies of the Roman Republic"
+    }
+  ],
+  "successors": [
+    {
+      "property": "P1366",
+      "rank": "normal",
+      "statement_id": "Q17167$692d1b2b-4e07-76be-35db-3567173f6a91",
+      "qid": "Q2277",
+      "label": "Roman Empire"
+    },
+    {
+      "property": "P1366",
+      "rank": "normal",
+      "statement_id": "Q17167$05cd0c69-4fd8-9d8c-1283-68358a33c38c",
+      "qid": "Q206414",
+      "label": "Principate"
+    }
+  ],
+  "accepted_neighbors": [
+    {
+      "qid": "Q106113087",
+      "label": "Master of Arts in Ancient Greek and Roman Studies (Brandeis University)",
+      "link_properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q180958",
+        "Q43229",
+        "Q84771819",
+        "Q98323635"
+      ],
+      "backlink_hits": 4
+    },
+    {
+      "qid": "Q122746922",
+      "label": "Monarchische Herrschaft im Altertum",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1238720",
+        "Q1711593",
+        "Q3331189",
+        "Q47461344"
+      ],
+      "backlink_hits": 4
+    },
+    {
+      "qid": "Q15078648",
+      "label": "ancient drachma",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q13400856",
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 4
+    },
+    {
+      "qid": "Q106841885",
+      "label": "half-stater",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 3
+    },
+    {
+      "qid": "Q122861593",
+      "label": "Carsten Hjort Lange: From Hannibal to Sulla: The Birth of Civil War in Republican Rome. Berlin: De Gruyter 2024",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q193495",
+        "Q3331189",
+        "Q571"
+      ],
+      "backlink_hits": 3
+    },
+    {
+      "qid": "Q1249076",
+      "label": "quadrans",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 3
+    },
+    {
+      "qid": "Q476078",
+      "label": "aureus",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q7048891",
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 3
+    },
+    {
+      "qid": "Q829397",
+      "label": "bes",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q3647172",
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 3
+    },
+    {
+      "qid": "Q137921341",
+      "label": "Siege of Nola",
+      "link_properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q20102510",
+      "label": "Battle of Cartagena",
+      "link_properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q233402",
+      "label": "Battle of Nola",
+      "link_properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q2815472",
+      "label": "Late Roman Republic",
+      "link_properties": [
+        "P17",
+        "P361"
+      ],
+      "p31": [
+        "Q11514315"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q2839628",
+      "label": "Early Roman Republic",
+      "link_properties": [
+        "P17",
+        "P361"
+      ],
+      "p31": [
+        "Q11514315"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q6106068",
+      "label": "Middle Roman Republic",
+      "link_properties": [
+        "P17",
+        "P361"
+      ],
+      "p31": [
+        "Q11514315"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q6503456",
+      "label": "Law of majestas",
+      "link_properties": [
+        "P1001",
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q9172749",
+      "label": "Battle of Apamea",
+      "link_properties": [
+        "P17",
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q11948139",
+      "label": "Seleuceia in Cilicia",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q15661340",
+        "Q839954"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q122732170",
+      "label": "stasis.hypotheses.org",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q30849",
+        "Q472328"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q122746681",
+      "label": "Civil War in Ancient Greece and Rome: Contexts of Disintegration and Reintegration, ed. Henning Börm, Marco Mattheis, Johannes Wienand. Stuttgart: Steiner 2016",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1711593",
+        "Q47461344"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1228632",
+      "label": "victoriatus",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q123039428",
+      "label": "Les històries romanes",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q125309905",
+        "Q7725634"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q123039445",
+      "label": "Livre de Tytus Livius de hystoire roumaine",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q125309905",
+        "Q7725634"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1249093",
+      "label": "semis",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q129571642",
+      "label": "20-As",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q129571668",
+      "label": "40-As",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q129571682",
+      "label": "60-As",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q130343589",
+      "label": "Res Publica",
+      "link_properties": [
+        "P138"
+      ],
+      "p31": [
+        "Q11688446",
+        "Q207174"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q137219487",
+      "label": "Falling Sky: The Gallic Revolt Against Caesar",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q131436",
+        "Q1501543"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q1422780",
+      "label": "nexum",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q2135465",
+        "Q93288"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q181733",
+      "label": "Praetorian Guard",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q176799",
+        "Q851436"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q188322",
+      "label": "Ebro Treaty",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q131569",
+        "Q4157074"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q201038",
+      "label": "Roman Kingdom",
+      "link_properties": [
+        "P1366"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q3024240"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q2123159",
+      "label": "half aureus",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q2334699",
+      "label": "Antony's Parthian War",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198",
+        "Q831663"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q3256634",
+      "label": "litra",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q486761",
+      "label": "classical antiquity",
+      "link_properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q11514315",
+        "Q1292119"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q548953",
+      "label": "sextans",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q8142",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q663270",
+      "label": "Semuncia",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q113813711",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q671292",
+      "label": "quartuncia",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q3647172",
+        "Q918448"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q815183",
+      "label": "Siege of Numantia",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055",
+        "Q3817498"
+      ],
+      "backlink_hits": 2
+    },
+    {
+      "qid": "Q104834716",
+      "label": "Battle near Osca",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1055755",
+      "label": "Battle of Ilipa",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q107013169",
+      "label": "religion in ancient Rome",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q66374263"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q107342906",
+      "label": "Roman conquest of Gallaecia",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q107468361",
+      "label": "Alyson Maureen Roy",
+      "link_properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q109377210",
+      "label": "Siege of Antioch",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q110572348",
+      "label": "Cicero And The Fall Of The Roman Republic",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q111666120",
+      "label": "Extra: Dr. Emma Southon on murder in ancient Rome",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q61855877"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q111666121",
+      "label": "Der Senat, der über Leichen ging",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q61855877"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q112998934",
+      "label": "Template:Country data Roman Republic",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q108783631"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11320126",
+      "label": "didrachm",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q113842043",
+      "label": "Thibaud Lanfranchi",
+      "link_properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11688220",
+      "label": "Battle of Petelia",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1184835",
+      "label": "Battle of Numistro",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11905280",
+      "label": "Q11905280",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q213283"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11908712",
+      "label": "Batlle of Emporion",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11908765",
+      "label": "Battle of Rhode",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q11945466",
+      "label": "Iberian revolt",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q6107280"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q120241324",
+      "label": "Changes that accompany the political transition in the ancient Greek polis: from non-citizens to citizens",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1202928",
+      "label": "Lusitanian War",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q104212151"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1223584",
+      "label": "Gaius Marcius Censorinus",
+      "link_properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12253460",
+      "label": "Battle of Andagoste",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1227220",
+      "label": "Titus Quinctius Crispinus Sulpicianus",
+      "link_properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q122751016",
+      "label": "Stefan Rebenich, Johannes Wienand: Monarchische Herrschaft im Altertum. Zugänge und Perspektiven, in: Monarchische Herrschaft im Altertum, ed. S. Rebenich in cooperation with J. Wienand, Berlin: De Gruyter 2017, 1-41",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q21481766"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q122764589",
+      "label": "Internal War. Society: Social Order and Political Conflict in Antiquity",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1298668"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q122865066",
+      "label": "Johannes Wienand: Stasis. An Academic Blog on Ancient Civil War, in: Stasis – Avenues to Ancient Civil War, October 9, 2023, doi: 10.59350/377m7-vkt78",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q17928402"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q122918768",
+      "label": "Pompey's eastern settlement",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q2520735"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q123002123",
+      "label": "Carsten Hjort Lange: Civil War Seen Through the Lens of Ancient History, in: Stasis – Avenues to Ancient Civil War, October 10, 2023, doi: 10.59350/5b9hv-1xz57",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q17928402"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q123116313",
+      "label": "History program for Italian primary school",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q123157468",
+      "label": "History program for Italian junior high school",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q600134"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q123245395",
+      "label": "Imperatores victi",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q123310379",
+      "label": "Siege of Bassania",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1234467",
+      "label": "dodrans",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12356285",
+      "label": "Latin War",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q124714225",
+      "label": "Battle of Placentia",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q124798662",
+      "label": "Q124798662",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q56061"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1249059",
+      "label": "triens",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q104212151"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q125727661",
+      "label": "March on Rome",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q45382"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q12594116",
+      "label": "political violence in the late Roman Republic",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q115857096"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1260622",
+      "label": "Battle of the Axona",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q127525629",
+      "label": "Romerrikets historie - republikkens vekst og fall",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q1238720"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q127606735",
+      "label": "Conquest of Conistorgis",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q129059100",
+      "label": "The scene of the Apennine Peninsula in the Pyrrhic War",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q129571751",
+      "label": "denarius serratus",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q129571920",
+      "label": "double-litra",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q129571942",
+      "label": "double victoriatus",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q129571969",
+      "label": "half victoriatus",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q129571980",
+      "label": "half-litra",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q130318424",
+      "label": "Conquest of Oxthracae",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q130329121",
+      "label": "Siege of Ocile",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q130329781",
+      "label": "Siege of Pallantia",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q130329807",
+      "label": "Siege of the Blastophoenicians",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q130348963",
+      "label": "Raid of Carpetania",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q476807"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q130534948",
+      "label": "Siege of Acerra",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q130857859",
+      "label": "Battle of Delos",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q131686739",
+      "label": "Battle of the Tagus",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q132452152",
+      "label": "Siege of Aiginion",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q132795814",
+      "label": "Marianne Coudry",
+      "link_properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q133480177",
+      "label": "Battle of Uskana",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1337302",
+      "label": "Hannibal's crossing of the Alps",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q645883"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q133737719",
+      "label": "Michel Humm",
+      "link_properties": [
+        "P101"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q134836736",
+      "label": "Roman invasion of Africa",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q467011"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q134878258",
+      "label": "Q134878258",
+      "link_properties": [
+        "P19"
+      ],
+      "p31": [
+        "Q5"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q136716728",
+      "label": "Demetrius's Winter offensive in Southern Illyria",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q2001676"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q137217360",
+      "label": "Bellum Dardanicum",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q137719648",
+      "label": "Roman–Dardanian wars",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q104212151"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q137972719",
+      "label": "Siege of Carthago Nova",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1500211",
+      "label": "Battle of Cissa",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1503611",
+      "label": "Numantine War",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q15282014",
+      "label": "Lex Iulia de civitate",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q15651483",
+      "label": "First secessio plebis in 494 BC",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q845114"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1591145",
+      "label": "Battle of New Carthage",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1660324",
+      "label": "Imperium",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q47461344"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q16683525",
+      "label": "Siege of Mytistraton",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q17277303",
+      "label": "Battle of Halys",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "link_properties": [
+        "P527"
+      ],
+      "p31": [
+        "Q3024240"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1812526",
+      "label": "Constitutional reforms of Lucius Cornelius Sulla",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q18408280",
+      "label": "Pontic War",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q198"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q18649467",
+      "label": "Battle of Orongis",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q18649505",
+      "label": "Battle of Munda",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q18667552",
+      "label": "Battle of Campi Veteres",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1888820",
+      "label": "culture of the Roman Republic",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q19958368"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1974201",
+      "label": "Battle of Geronium",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q1975400",
+      "label": "Battle of the Nile",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20008151",
+      "label": "Siege of Arpi",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q188055"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20008414",
+      "label": "Parthian campaigns of Publius Ventidius",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q20108410",
+      "label": "Lex Mamilia de senatoribus",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q820655"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2022780",
+      "label": "Suci",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q133311"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q182547"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q21162234",
+      "label": "Dictator",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q7725634"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2123190",
+      "label": "quincussis",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q21234831",
+      "label": "Battle of Sapriportis",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q21328960",
+      "label": "122 BC eruption of Mount Etna",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q7692360"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2331925",
+      "label": "Battle of Chalcedon",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q24045885",
+      "label": "Battle of Petilia",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2505574",
+      "label": "Ambiorix's revolt",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q25414978",
+      "label": "Battle of Chaeronea",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q25421066",
+      "label": "Battle of the Douro",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2617894",
+      "label": "Battle of Pydna",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2705449",
+      "label": "Battle of Mount Algidus",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2707112",
+      "label": "Battle of the Lycus",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q277376",
+      "label": "tressis",
+      "link_properties": [
+        "P17"
+      ],
+      "p31": [
+        "Q918448"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q28665781",
+      "label": "Battle of the Granicus",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q28668107",
+      "label": "Hannibal's crossing of the Apennines",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q645883"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q28670084",
+      "label": "Roman conquest of Hispania during the Second Punic War",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1361229"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2890429",
+      "label": "Battle of Zama",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q178561"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2890613",
+      "label": "Battle of the Point of Italy",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q1261499"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q2935356",
+      "label": "Octavian's military campaigns in Illyricum",
+      "link_properties": [
+        "P710"
+      ],
+      "p31": [
+        "Q831663"
+      ],
+      "backlink_hits": 1
+    },
+    {
+      "qid": "Q30557111",
+      "label": "Geschichte Roms in seinem Übergange vor der republikanischen zur monarchischen Verfassung oder Pompeius, Caesar, Cicero und ihre Zeitgenossen",
+      "link_properties": [
+        "P921"
+      ],
+      "p31": [
+        "Q3331189"
+      ],
+      "backlink_hits": 1
+    }
+  ],
+  "facet_signals": {
+    "property_counts": {
+      "P710": 65,
+      "P17": 54,
+      "P921": 23,
+      "P101": 5,
+      "P361": 3,
+      "P19": 3,
+      "P527": 2,
+      "P1001": 1,
+      "P138": 1,
+      "P1366": 1
+    },
+    "facet_counts": {
+      "military": 65,
+      "geographic": 60,
+      "economic": 54,
+      "intellectual": 28,
+      "cultural": 24,
+      "communication": 23,
+      "political": 6
+    },
+    "facet_sample_qids": {
+      "intellectual": [
+        "Q106113087",
+        "Q122746922",
+        "Q122861593",
+        "Q122732170",
+        "Q122746681",
+        "Q123039428",
+        "Q123039445",
+        "Q137219487",
+        "Q107468361",
+        "Q110572348",
+        "Q111666120",
+        "Q111666121"
+      ],
+      "communication": [
+        "Q122746922",
+        "Q122861593",
+        "Q122732170",
+        "Q122746681",
+        "Q123039428",
+        "Q123039445",
+        "Q137219487",
+        "Q110572348",
+        "Q111666120",
+        "Q111666121",
+        "Q112998934",
+        "Q120241324"
+      ],
+      "cultural": [
+        "Q122746922",
+        "Q122861593",
+        "Q122732170",
+        "Q122746681",
+        "Q123039428",
+        "Q123039445",
+        "Q130343589",
+        "Q137219487",
+        "Q110572348",
+        "Q111666120",
+        "Q111666121",
+        "Q112998934"
+      ],
+      "geographic": [
+        "Q15078648",
+        "Q106841885",
+        "Q1249076",
+        "Q476078",
+        "Q829397",
+        "Q137921341",
+        "Q20102510",
+        "Q233402",
+        "Q2815472",
+        "Q2815472",
+        "Q2839628",
+        "Q2839628"
+      ],
+      "economic": [
+        "Q15078648",
+        "Q106841885",
+        "Q1249076",
+        "Q476078",
+        "Q829397",
+        "Q137921341",
+        "Q20102510",
+        "Q233402",
+        "Q2815472",
+        "Q2839628",
+        "Q6106068",
+        "Q6503456"
+      ],
+      "military": [
+        "Q137921341",
+        "Q20102510",
+        "Q233402",
+        "Q9172749",
+        "Q188322",
+        "Q2334699",
+        "Q815183",
+        "Q1055755",
+        "Q107342906",
+        "Q109377210",
+        "Q1184835",
+        "Q11908712"
+      ],
+      "political": [
+        "Q2815472",
+        "Q2839628",
+        "Q6106068",
+        "Q6503456",
+        "Q486761",
+        "Q1747689"
+      ]
+    }
+  },
+  "allowed_candidate_qids": {
+    "seed_qid": "Q17167",
+    "direct_statement_targets": [
+      "Q1114821",
+      "Q11514315",
+      "Q1238338",
+      "Q124988",
+      "Q130614",
+      "Q1307214",
+      "Q13285410",
+      "Q15",
+      "Q1747689",
+      "Q201038",
+      "Q202161",
+      "Q206414",
+      "Q220",
+      "Q2277",
+      "Q2815472",
+      "Q2839628",
+      "Q3024240",
+      "Q337547",
+      "Q346629",
+      "Q35497",
+      "Q3778726",
+      "Q397",
+      "Q46",
+      "Q48",
+      "Q48349",
+      "Q486761",
+      "Q596373",
+      "Q6106068",
+      "Q6173448",
+      "Q666680",
+      "Q677316",
+      "Q6944405",
+      "Q75813",
+      "Q952064",
+      "Q995825"
+    ],
+    "accepted_neighbors": [
+      "Q104834716",
+      "Q1055755",
+      "Q106113087",
+      "Q106841885",
+      "Q107013169",
+      "Q107342906",
+      "Q107468361",
+      "Q109377210",
+      "Q110572348",
+      "Q111666120",
+      "Q111666121",
+      "Q112998934",
+      "Q11320126",
+      "Q113842043",
+      "Q11688220",
+      "Q1184835",
+      "Q11905280",
+      "Q11908712",
+      "Q11908765",
+      "Q11945466",
+      "Q11948139",
+      "Q120241324",
+      "Q1202928",
+      "Q1223584",
+      "Q12253460",
+      "Q1227220",
+      "Q122732170",
+      "Q122746681",
+      "Q122746922",
+      "Q122751016",
+      "Q122764589",
+      "Q122861593",
+      "Q1228632",
+      "Q122865066",
+      "Q122918768",
+      "Q123002123",
+      "Q123039428",
+      "Q123039445",
+      "Q123116313",
+      "Q123157468",
+      "Q123245395",
+      "Q123310379",
+      "Q1234467",
+      "Q12356285",
+      "Q124714225",
+      "Q124798662",
+      "Q1249059",
+      "Q1249076",
+      "Q1249093",
+      "Q124988",
+      "Q125727661",
+      "Q12594116",
+      "Q1260622",
+      "Q127525629",
+      "Q127606735",
+      "Q129059100",
+      "Q129571642",
+      "Q129571668",
+      "Q129571682",
+      "Q129571751",
+      "Q129571920",
+      "Q129571942",
+      "Q129571969",
+      "Q129571980",
+      "Q130318424",
+      "Q130329121",
+      "Q130329781",
+      "Q130329807",
+      "Q130343589",
+      "Q130348963",
+      "Q130534948",
+      "Q130857859",
+      "Q131686739",
+      "Q132452152",
+      "Q132795814",
+      "Q133480177",
+      "Q1337302",
+      "Q133737719",
+      "Q134836736",
+      "Q134878258",
+      "Q136716728",
+      "Q137217360",
+      "Q137219487",
+      "Q137719648",
+      "Q137921341",
+      "Q137972719",
+      "Q1422780",
+      "Q1500211",
+      "Q1503611",
+      "Q15078648",
+      "Q15282014",
+      "Q15651483",
+      "Q1591145",
+      "Q1660324",
+      "Q16683525",
+      "Q17277303",
+      "Q1747689",
+      "Q1812526",
+      "Q181733",
+      "Q18408280",
+      "Q18649467",
+      "Q18649505",
+      "Q18667552",
+      "Q188322",
+      "Q1888820",
+      "Q1974201",
+      "Q1975400",
+      "Q20008151",
+      "Q20008414",
+      "Q20102510",
+      "Q201038",
+      "Q20108410",
+      "Q2022780",
+      "Q210718",
+      "Q21162234",
+      "Q2123159",
+      "Q2123190",
+      "Q21234831",
+      "Q21328960",
+      "Q2331925",
+      "Q233402",
+      "Q2334699",
+      "Q24045885",
+      "Q2505574",
+      "Q25414978",
+      "Q25421066",
+      "Q2617894",
+      "Q2705449",
+      "Q2707112",
+      "Q277376",
+      "Q2815472",
+      "Q2839628",
+      "Q28665781",
+      "Q28668107",
+      "Q28670084",
+      "Q2890429",
+      "Q2890613",
+      "Q2935356",
+      "Q30557111",
+      "Q3256634",
+      "Q476078",
+      "Q486761",
+      "Q548953",
+      "Q6106068",
+      "Q6503456",
+      "Q663270",
+      "Q671292",
+      "Q815183",
+      "Q829397",
+      "Q9172749"
+    ],
+    "union": [
+      "Q104834716",
+      "Q1055755",
+      "Q106113087",
+      "Q106841885",
+      "Q107013169",
+      "Q107342906",
+      "Q107468361",
+      "Q109377210",
+      "Q110572348",
+      "Q1114821",
+      "Q111666120",
+      "Q111666121",
+      "Q112998934",
+      "Q11320126",
+      "Q113842043",
+      "Q11514315",
+      "Q11688220",
+      "Q1184835",
+      "Q11905280",
+      "Q11908712",
+      "Q11908765",
+      "Q11945466",
+      "Q11948139",
+      "Q120241324",
+      "Q1202928",
+      "Q1223584",
+      "Q12253460",
+      "Q1227220",
+      "Q122732170",
+      "Q122746681",
+      "Q122746922",
+      "Q122751016",
+      "Q122764589",
+      "Q122861593",
+      "Q1228632",
+      "Q122865066",
+      "Q122918768",
+      "Q123002123",
+      "Q123039428",
+      "Q123039445",
+      "Q123116313",
+      "Q123157468",
+      "Q123245395",
+      "Q123310379",
+      "Q1234467",
+      "Q12356285",
+      "Q1238338",
+      "Q124714225",
+      "Q124798662",
+      "Q1249059",
+      "Q1249076",
+      "Q1249093",
+      "Q124988",
+      "Q125727661",
+      "Q12594116",
+      "Q1260622",
+      "Q127525629",
+      "Q127606735",
+      "Q129059100",
+      "Q129571642",
+      "Q129571668",
+      "Q129571682",
+      "Q129571751",
+      "Q129571920",
+      "Q129571942",
+      "Q129571969",
+      "Q129571980",
+      "Q130318424",
+      "Q130329121",
+      "Q130329781",
+      "Q130329807",
+      "Q130343589",
+      "Q130348963",
+      "Q130534948",
+      "Q130614",
+      "Q1307214",
+      "Q130857859",
+      "Q131686739",
+      "Q132452152",
+      "Q132795814",
+      "Q13285410",
+      "Q133480177",
+      "Q1337302",
+      "Q133737719",
+      "Q134836736",
+      "Q134878258",
+      "Q136716728",
+      "Q137217360",
+      "Q137219487",
+      "Q137719648",
+      "Q137921341",
+      "Q137972719",
+      "Q1422780",
+      "Q15",
+      "Q1500211",
+      "Q1503611",
+      "Q15078648",
+      "Q15282014",
+      "Q15651483",
+      "Q1591145",
+      "Q1660324",
+      "Q16683525",
+      "Q17167",
+      "Q17277303",
+      "Q1747689",
+      "Q1812526",
+      "Q181733",
+      "Q18408280",
+      "Q18649467",
+      "Q18649505",
+      "Q18667552",
+      "Q188322",
+      "Q1888820",
+      "Q1974201",
+      "Q1975400",
+      "Q20008151",
+      "Q20008414",
+      "Q20102510",
+      "Q201038",
+      "Q20108410",
+      "Q202161",
+      "Q2022780",
+      "Q206414",
+      "Q210718",
+      "Q21162234",
+      "Q2123159",
+      "Q2123190",
+      "Q21234831",
+      "Q21328960",
+      "Q220",
+      "Q2277",
+      "Q2331925",
+      "Q233402",
+      "Q2334699",
+      "Q24045885",
+      "Q2505574",
+      "Q25414978",
+      "Q25421066",
+      "Q2617894",
+      "Q2705449",
+      "Q2707112",
+      "Q277376",
+      "Q2815472",
+      "Q2839628",
+      "Q28665781",
+      "Q28668107",
+      "Q28670084",
+      "Q2890429",
+      "Q2890613",
+      "Q2935356",
+      "Q3024240",
+      "Q30557111",
+      "Q3256634",
+      "Q337547",
+      "Q346629",
+      "Q35497",
+      "Q3778726",
+      "Q397",
+      "Q46",
+      "Q476078",
+      "Q48",
+      "Q48349",
+      "Q486761",
+      "Q548953",
+      "Q596373",
+      "Q6106068",
+      "Q6173448",
+      "Q6503456",
+      "Q663270",
+      "Q666680",
+      "Q671292",
+      "Q677316",
+      "Q6944405",
+      "Q75813",
+      "Q815183",
+      "Q829397",
+      "Q9172749",
+      "Q952064",
+      "Q995825"
+    ],
+    "count": 179
+  },
+  "labels": {
+    "Q106113087": "Master of Arts in Ancient Greek and Roman Studies (Brandeis University)",
+    "Q122746922": "Monarchische Herrschaft im Altertum",
+    "Q15078648": "ancient drachma",
+    "Q106841885": "half-stater",
+    "Q122861593": "Carsten Hjort Lange: From Hannibal to Sulla: The Birth of Civil War in Republican Rome. Berlin: De Gruyter 2024",
+    "Q1249076": "quadrans",
+    "Q476078": "aureus",
+    "Q829397": "bes",
+    "Q137921341": "Siege of Nola",
+    "Q20102510": "Battle of Cartagena",
+    "Q233402": "Battle of Nola",
+    "Q2815472": "Late Roman Republic",
+    "Q2839628": "Early Roman Republic",
+    "Q6106068": "Middle Roman Republic",
+    "Q6503456": "Law of majestas",
+    "Q9172749": "Battle of Apamea",
+    "Q11948139": "Seleuceia in Cilicia",
+    "Q122732170": "stasis.hypotheses.org",
+    "Q122746681": "Civil War in Ancient Greece and Rome: Contexts of Disintegration and Reintegration, ed. Henning Börm, Marco Mattheis, Johannes Wienand. Stuttgart: Steiner 2016",
+    "Q1228632": "victoriatus",
+    "Q123039428": "Les històries romanes",
+    "Q123039445": "Livre de Tytus Livius de hystoire roumaine",
+    "Q1249093": "semis",
+    "Q129571642": "20-As",
+    "Q129571668": "40-As",
+    "Q129571682": "60-As",
+    "Q130343589": "Res Publica",
+    "Q137219487": "Falling Sky: The Gallic Revolt Against Caesar",
+    "Q1422780": "nexum",
+    "Q181733": "Praetorian Guard",
+    "Q188322": "Ebro Treaty",
+    "Q201038": "Roman Kingdom",
+    "Q2123159": "half aureus",
+    "Q2334699": "Antony's Parthian War",
+    "Q3256634": "litra",
+    "Q486761": "classical antiquity",
+    "Q548953": "sextans",
+    "Q663270": "Semuncia",
+    "Q671292": "quartuncia",
+    "Q815183": "Siege of Numantia",
+    "Q104834716": "Battle near Osca",
+    "Q1055755": "Battle of Ilipa",
+    "Q107013169": "religion in ancient Rome",
+    "Q107342906": "Roman conquest of Gallaecia",
+    "Q107468361": "Alyson Maureen Roy",
+    "Q109377210": "Siege of Antioch",
+    "Q110572348": "Cicero And The Fall Of The Roman Republic",
+    "Q111666120": "Extra: Dr. Emma Southon on murder in ancient Rome",
+    "Q111666121": "Der Senat, der über Leichen ging",
+    "Q112998934": "Template:Country data Roman Republic",
+    "Q11320126": "didrachm",
+    "Q113842043": "Thibaud Lanfranchi",
+    "Q11688220": "Battle of Petelia",
+    "Q1184835": "Battle of Numistro",
+    "Q11905280": "Q11905280",
+    "Q11908712": "Batlle of Emporion",
+    "Q11908765": "Battle of Rhode",
+    "Q11945466": "Iberian revolt",
+    "Q120241324": "Changes that accompany the political transition in the ancient Greek polis: from non-citizens to citizens",
+    "Q1202928": "Lusitanian War",
+    "Q1223584": "Gaius Marcius Censorinus",
+    "Q12253460": "Battle of Andagoste",
+    "Q1227220": "Titus Quinctius Crispinus Sulpicianus",
+    "Q122751016": "Stefan Rebenich, Johannes Wienand: Monarchische Herrschaft im Altertum. Zugänge und Perspektiven, in: Monarchische Herrschaft im Altertum, ed. S. Rebenich in cooperation with J. Wienand, Berlin: De Gruyter 2017, 1-41",
+    "Q122764589": "Internal War. Society: Social Order and Political Conflict in Antiquity",
+    "Q122865066": "Johannes Wienand: Stasis. An Academic Blog on Ancient Civil War, in: Stasis – Avenues to Ancient Civil War, October 9, 2023, doi: 10.59350/377m7-vkt78",
+    "Q122918768": "Pompey's eastern settlement",
+    "Q123002123": "Carsten Hjort Lange: Civil War Seen Through the Lens of Ancient History, in: Stasis – Avenues to Ancient Civil War, October 10, 2023, doi: 10.59350/5b9hv-1xz57",
+    "Q123116313": "History program for Italian primary school",
+    "Q123157468": "History program for Italian junior high school",
+    "Q123245395": "Imperatores victi",
+    "Q123310379": "Siege of Bassania",
+    "Q1234467": "dodrans",
+    "Q12356285": "Latin War",
+    "Q124714225": "Battle of Placentia",
+    "Q124798662": "Q124798662",
+    "Q1249059": "triens",
+    "Q124988": "Punic Wars",
+    "Q125727661": "March on Rome",
+    "Q12594116": "political violence in the late Roman Republic",
+    "Q1260622": "Battle of the Axona",
+    "Q127525629": "Romerrikets historie - republikkens vekst og fall",
+    "Q127606735": "Conquest of Conistorgis",
+    "Q129059100": "The scene of the Apennine Peninsula in the Pyrrhic War",
+    "Q129571751": "denarius serratus",
+    "Q129571920": "double-litra",
+    "Q129571942": "double victoriatus",
+    "Q129571969": "half victoriatus",
+    "Q129571980": "half-litra",
+    "Q130318424": "Conquest of Oxthracae",
+    "Q130329121": "Siege of Ocile",
+    "Q130329781": "Siege of Pallantia",
+    "Q130329807": "Siege of the Blastophoenicians",
+    "Q130348963": "Raid of Carpetania",
+    "Q130534948": "Siege of Acerra",
+    "Q130857859": "Battle of Delos",
+    "Q131686739": "Battle of the Tagus",
+    "Q132452152": "Siege of Aiginion",
+    "Q132795814": "Marianne Coudry",
+    "Q133480177": "Battle of Uskana",
+    "Q1337302": "Hannibal's crossing of the Alps",
+    "Q133737719": "Michel Humm",
+    "Q134836736": "Roman invasion of Africa",
+    "Q134878258": "Q134878258",
+    "Q136716728": "Demetrius's Winter offensive in Southern Illyria",
+    "Q137217360": "Bellum Dardanicum",
+    "Q137719648": "Roman–Dardanian wars",
+    "Q137972719": "Siege of Carthago Nova",
+    "Q1500211": "Battle of Cissa",
+    "Q1503611": "Numantine War",
+    "Q15282014": "Lex Iulia de civitate",
+    "Q15651483": "First secessio plebis in 494 BC",
+    "Q1591145": "Battle of New Carthage",
+    "Q1660324": "Imperium",
+    "Q16683525": "Siege of Mytistraton",
+    "Q17277303": "Battle of Halys",
+    "Q1747689": "Ancient Rome",
+    "Q1812526": "Constitutional reforms of Lucius Cornelius Sulla",
+    "Q18408280": "Pontic War",
+    "Q18649467": "Battle of Orongis",
+    "Q18649505": "Battle of Munda",
+    "Q18667552": "Battle of Campi Veteres",
+    "Q1888820": "culture of the Roman Republic",
+    "Q1974201": "Battle of Geronium",
+    "Q1975400": "Battle of the Nile",
+    "Q20008151": "Siege of Arpi",
+    "Q20008414": "Parthian campaigns of Publius Ventidius",
+    "Q20108410": "Lex Mamilia de senatoribus",
+    "Q2022780": "Suci",
+    "Q210718": "Asia",
+    "Q21162234": "Dictator",
+    "Q2123190": "quincussis",
+    "Q21234831": "Battle of Sapriportis",
+    "Q21328960": "122 BC eruption of Mount Etna",
+    "Q2331925": "Battle of Chalcedon",
+    "Q24045885": "Battle of Petilia",
+    "Q2505574": "Ambiorix's revolt",
+    "Q25414978": "Battle of Chaeronea",
+    "Q25421066": "Battle of the Douro",
+    "Q2617894": "Battle of Pydna",
+    "Q2705449": "Battle of Mount Algidus",
+    "Q2707112": "Battle of the Lycus",
+    "Q277376": "tressis",
+    "Q28665781": "Battle of the Granicus",
+    "Q28668107": "Hannibal's crossing of the Apennines",
+    "Q28670084": "Roman conquest of Hispania during the Second Punic War",
+    "Q2890429": "Battle of Zama",
+    "Q2890613": "Battle of the Point of Italy",
+    "Q2935356": "Octavian's military campaigns in Illyricum",
+    "Q30557111": "Geschichte Roms in seinem Übergange vor der republikanischen zur monarchischen Verfassung oder Pompeius, Caesar, Cicero und ihre Zeitgenossen",
+    "Q1114821": "citizens' assemblies of the Roman Republic",
+    "Q11514315": "historical period",
+    "Q1238338": "Caesar's Civil War",
+    "Q130614": "Roman Senate",
+    "Q1307214": "form of government",
+    "Q13285410": "Category:People from the Roman Republic",
+    "Q15": "Africa",
+    "Q17167": "Roman Republic",
+    "Q202161": "Gallic War",
+    "Q206414": "Principate",
+    "Q220": "Rome",
+    "Q2277": "Roman Empire",
+    "Q3024240": "historical country",
+    "Q337547": "ancient Roman religion",
+    "Q346629": "Roman Republic",
+    "Q35497": "Ancient Greek",
+    "Q3778726": "Sertorian War",
+    "Q397": "Latin",
+    "Q46": "Europe",
+    "Q48": "Asia",
+    "Q48349": "empire",
+    "Q596373": "Pyrrhic War",
+    "Q6173448": "Wikipedia:Vital articles/Level/4",
+    "Q666680": "aristocratic republic",
+    "Q677316": "Social War of 91-87 BCE",
+    "Q6944405": "Category:Roman Republic",
+    "Q75813": "Macedonian Wars",
+    "Q952064": "Roman currency",
+    "Q995825": "Monasterevin Abbey"
+  }
+}

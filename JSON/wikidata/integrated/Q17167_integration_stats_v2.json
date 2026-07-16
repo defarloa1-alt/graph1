@@ -1,0 +1,266 @@
+{
+  "generated_at": "2026-07-14T22:30:23.193288Z",
+  "seed": {
+    "qid": "Q17167",
+    "label": "Roman Republic",
+    "description": "period of ancient Roman civilization (509 BC–27 BC)"
+  },
+  "extraction_path": "JSON\\wikidata\\proposals\\Q17167_claim_subgraph_proposal_v2.json",
+  "extraction_summary": {
+    "node_count": 607,
+    "relationship_claim_count": 1144,
+    "attribute_claim_count": 384,
+    "timeline_entry_count": 355,
+    "claims_by_source_mode": [
+      {
+        "key": "second_hop_person",
+        "count": 1005
+      },
+      {
+        "key": "expanded_battle",
+        "count": 249
+      },
+      {
+        "key": "expanded_event",
+        "count": 208
+      },
+      {
+        "key": "direct",
+        "count": 66
+      }
+    ],
+    "top_predicates": [
+      {
+        "key": "P39",
+        "count": 164
+      },
+      {
+        "key": "P106",
+        "count": 130
+      },
+      {
+        "key": "P710",
+        "count": 117
+      },
+      {
+        "key": "P31",
+        "count": 112
+      },
+      {
+        "key": "P40",
+        "count": 89
+      },
+      {
+        "key": "P569",
+        "count": 79
+      },
+      {
+        "key": "P570",
+        "count": 71
+      },
+      {
+        "key": "P27",
+        "count": 58
+      },
+      {
+        "key": "P1412",
+        "count": 53
+      },
+      {
+        "key": "P22",
+        "count": 51
+      },
+      {
+        "key": "P20",
+        "count": 47
+      },
+      {
+        "key": "P26",
+        "count": 44
+      },
+      {
+        "key": "P19",
+        "count": 44
+      },
+      {
+        "key": "P276",
+        "count": 43
+      },
+      {
+        "key": "P527",
+        "count": 40
+      },
+      {
+        "key": "P1559",
+        "count": 39
+      },
+      {
+        "key": "P793",
+        "count": 38
+      },
+      {
+        "key": "P361",
+        "count": 33
+      },
+      {
+        "key": "P585",
+        "count": 28
+      },
+      {
+        "key": "P17",
+        "count": 26
+      },
+      {
+        "key": "P607",
+        "count": 26
+      },
+      {
+        "key": "P625",
+        "count": 21
+      },
+      {
+        "key": "P735",
+        "count": 11
+      },
+      {
+        "key": "P2671",
+        "count": 11
+      },
+      {
+        "key": "P580",
+        "count": 9
+      }
+    ],
+    "top_canonical_relationship_types": [
+      {
+        "key": "APPOINTED",
+        "count": 164
+      },
+      {
+        "key": "APPOINTED_BY",
+        "count": 164
+      },
+      {
+        "key": "APPOINTED_TO",
+        "count": 164
+      },
+      {
+        "key": "HELD_PRIESTHOOD",
+        "count": 164
+      },
+      {
+        "key": "OFFICE_HELD_BY",
+        "count": 164
+      },
+      {
+        "key": "POSITION_HELD",
+        "count": 164
+      },
+      {
+        "key": "OCCUPATION_OF",
+        "count": 130
+      },
+      {
+        "key": "HAD_PARTICIPANT",
+        "count": 117
+      },
+      {
+        "key": "PARTICIPATED_IN",
+        "count": 117
+      },
+      {
+        "key": "INSTANCE_OF",
+        "count": 112
+      },
+      {
+        "key": "FATHER_OF",
+        "count": 88
+      },
+      {
+        "key": "MOTHER_OF",
+        "count": 88
+      },
+      {
+        "key": "PARENT_OF",
+        "count": 88
+      },
+      {
+        "key": "CITIZEN_OF",
+        "count": 56
+      },
+      {
+        "key": "LANGUAGE_OF",
+        "count": 53
+      },
+      {
+        "key": "SPOKE_LANGUAGE",
+        "count": 53
+      },
+      {
+        "key": "LOCATION_OF_EVENT",
+        "count": 43
+      },
+      {
+        "key": "BIRTHPLACE_OF",
+        "count": 41
+      },
+      {
+        "key": "BORN_IN",
+        "count": 41
+      },
+      {
+        "key": "CONTAINS_PERIOD",
+        "count": 40
+      },
+      {
+        "key": "HAS_PART",
+        "count": 40
+      },
+      {
+        "key": "MARRIED_INTO",
+        "count": 36
+      },
+      {
+        "key": "SPOUSE_OF",
+        "count": 36
+      },
+      {
+        "key": "PART_OF",
+        "count": 33
+      },
+      {
+        "key": "SUB_PERIOD_OF",
+        "count": 33
+      }
+    ]
+  },
+  "integration_stats": {
+    "relationship_claims_processed": 1144,
+    "relationship_claims_validated": 1027,
+    "relationship_claims_failed": 0,
+    "attribute_claims_processed": 0,
+    "unique_assertion_ciphers": 1007,
+    "claims_with_multiple_perspectives": 12,
+    "v1_kernel_mappings": 1027,
+    "unmapped_predicates": 117,
+    "skipped_bare_labels": 0,
+    "validation_errors": 0
+  },
+  "unmapped_by_pid": {
+    "P22": 41,
+    "P793": 38,
+    "P735": 11,
+    "P910": 8,
+    "P734": 3,
+    "P156": 3,
+    "P2348": 3,
+    "P155": 2,
+    "P194": 2,
+    "P3075": 1,
+    "P36": 1,
+    "P38": 1,
+    "P1792": 1,
+    "P460": 1,
+    "P7867": 1
+  }
+}

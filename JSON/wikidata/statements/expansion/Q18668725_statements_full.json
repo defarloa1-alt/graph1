@@ -1,0 +1,200 @@
+{
+  "qid": "Q18668725",
+  "label": "Mago the Samnite",
+  "description": null,
+  "statement_count": 6,
+  "property_count": 6,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q18668725$2E6CDD04-9C69-4C27-85B2-04C93870655F",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        },
+        "references": [
+          {
+            "hash": "d5847b9b6032aa8b13dae3c2dfd9ed5d114d21b3",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P21": [
+      {
+        "statement_id": "Q18668725$269D9F33-D511-4E6B-8D30-0843BD24B18C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        },
+        "references": [
+          {
+            "hash": "d5847b9b6032aa8b13dae3c2dfd9ed5d114d21b3",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P106": [
+      {
+        "statement_id": "Q18668725$10ff5347-3de7-4a11-8460-cd51839fcea0",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P106",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q47064"
+        },
+        "references": [
+          {
+            "hash": "b3fd5e254143d8b52cd96cff43af9af5e3a82358",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q199693"
+                }
+              ]
+            }
+          },
+          {
+            "hash": "c456dc5cd2117249948c288206ff3f8b1bf574f0",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q8449"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P410": [
+      {
+        "statement_id": "Q18668725$65d9be6d-913e-4327-870f-8ca4cec431f4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P410",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q83460"
+        },
+        "references": [
+          {
+            "hash": "d5847b9b6032aa8b13dae3c2dfd9ed5d114d21b3",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11920"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q18668725$8169F217-F105-49C3-931D-E488DF7CE841",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/1217cc28"
+        }
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "q18668725$626a1b1f-4cf1-5617-fb87-fcf917f95fb4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1138524"
+        },
+        "qualifiers": {
+          "P958": [
+            {
+              "property": "P958",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Mago 9"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P958"
+        ]
+      }
+    ]
+  }
+}

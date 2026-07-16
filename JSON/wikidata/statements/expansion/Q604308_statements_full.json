@@ -1,0 +1,669 @@
+{
+  "qid": "Q604308",
+  "label": "Indibilis",
+  "description": "chief of the Ilergetes",
+  "statement_count": 21,
+  "property_count": 21,
+  "claims": {
+    "P21": [
+      {
+        "statement_id": "q604308$2D187D40-5A4A-4187-8031-8964B4FFDA84",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        }
+      }
+    ],
+    "P646": [
+      {
+        "statement_id": "Q604308$6DB3C31C-0F73-4669-96BE-AE5C28E0B47D",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/0h64_vk"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q604308$DCC75356-FB3C-4C57-ADB9-B978FA331DEE",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Lleida-6-1 indibil i mandoni.jpg"
+        },
+        "qualifiers": {
+          "P2096": [
+            {
+              "property": "P2096",
+              "snaktype": "value",
+              "datatype": "monolingualtext",
+              "value_type": "monolingualtext",
+              "value": {
+                "text": "Monument a Indíbil (a l'esq.) i Mandoni a Lleida",
+                "language": "ca"
+              }
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P2096"
+        ],
+        "references": [
+          {
+            "hash": "d4bd87b862b12d99d26e86472d44f26858dee639",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q8447"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P570": [
+      {
+        "statement_id": "Q604308$188E6A6E-0E84-49C3-88DE-5D82A1B69980",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P570",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0205-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "references": [
+          {
+            "hash": "0566f5af4ab8bcf5c33ea7e24c54672253dd5eae",
+            "snaks_order": [
+              "P248",
+              "P4459",
+              "P813"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q41705771"
+                }
+              ],
+              "P4459": [
+                {
+                  "property": "P4459",
+                  "snaktype": "value",
+                  "datatype": "external-id",
+                  "value_type": "string",
+                  "value": "12784/indibil"
+                }
+              ],
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2021-06-09T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q604308$B0A96F6D-56B1-4347-9CA7-21AC4DA04A69",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q604308$249bb7cc-410a-2dbb-8458-52d275196d8d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q11945458"
+        }
+      }
+    ],
+    "P569": [
+      {
+        "statement_id": "Q604308$83171A59-999B-4887-A15C-951F97DE0FFF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P569",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0300-00-00T00:00:00Z",
+            "precision": 7,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "references": [
+          {
+            "hash": "0566f5af4ab8bcf5c33ea7e24c54672253dd5eae",
+            "snaks_order": [
+              "P248",
+              "P4459",
+              "P813"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q41705771"
+                }
+              ],
+              "P4459": [
+                {
+                  "property": "P4459",
+                  "snaktype": "value",
+                  "datatype": "external-id",
+                  "value_type": "string",
+                  "value": "12784/indibil"
+                }
+              ],
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2021-06-09T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P373": [
+      {
+        "statement_id": "Q604308$B08FE804-6AA3-40DD-A5C4-3282F74C4404",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P373",
+          "snaktype": "value",
+          "datatype": "string",
+          "value_type": "string",
+          "value": "Indibilis"
+        }
+      }
+    ],
+    "P106": [
+      {
+        "statement_id": "Q604308$97402B83-DBC3-481B-A082-968079C89118",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P106",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1259323"
+        },
+        "references": [
+          {
+            "hash": "732ec1c90a6f0694c7db9a71bf09fe7f2b674172",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q10000"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P39": [
+      {
+        "statement_id": "Q604308$5dddd9ba-a960-48dd-a67c-aad3bbb6e109",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P39",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q12097"
+        },
+        "references": [
+          {
+            "hash": "732ec1c90a6f0694c7db9a71bf09fe7f2b674172",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q10000"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P1296": [
+      {
+        "statement_id": "Q604308$EF3A9A9D-B96E-4323-9008-4351FFC13090",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1296",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "0033580"
+        }
+      }
+    ],
+    "P1807": [
+      {
+        "statement_id": "Q604308$48FCE0A2-5205-4F09-8773-6DF164968312",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1807",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "7077"
+        }
+      }
+    ],
+    "P4459": [
+      {
+        "statement_id": "Q604308$7D6ADE8A-F729-4CAD-8716-6D61CCFDE7AF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P4459",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "12784/indibil"
+        }
+      }
+    ],
+    "P6706": [
+      {
+        "statement_id": "Q604308$9740B39C-60B2-4BB1-89B9-C9FF06DC23A7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P6706",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "Indìbile"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Indìbile"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P3373": [
+      {
+        "statement_id": "Q604308$FE681289-C837-4043-B890-648AB52EDCA2",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3373",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1981450"
+        },
+        "references": [
+          {
+            "hash": "0566f5af4ab8bcf5c33ea7e24c54672253dd5eae",
+            "snaks_order": [
+              "P248",
+              "P4459",
+              "P813"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q41705771"
+                }
+              ],
+              "P4459": [
+                {
+                  "property": "P4459",
+                  "snaktype": "value",
+                  "datatype": "external-id",
+                  "value_type": "string",
+                  "value": "12784/indibil"
+                }
+              ],
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2021-06-09T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P1327": [
+      {
+        "statement_id": "Q604308$e6ca5948-1153-43f3-b79a-915be4f265f4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1327",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1981450"
+        },
+        "qualifiers": {
+          "P1416": [
+            {
+              "property": "P1416",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q11945458"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1416"
+        ]
+      }
+    ],
+    "P12385": [
+      {
+        "statement_id": "Q604308$6d92a83d-c7cc-43f2-a257-45ed05607de6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P12385",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "indibil"
+        }
+      }
+    ],
+    "P13371": [
+      {
+        "statement_id": "Q604308$64AD395D-70BA-4BCE-87DE-F92103E8300C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P13371",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "biografias/23957"
+        }
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "Q604308$2D5CE05B-AC9E-4715-8462-83496AECB4E4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1138524"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q34401002"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ],
+        "references": [
+          {
+            "hash": "feaed3df9aed096470de45373941c5cd7e8790da",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15522295"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P8069": [
+      {
+        "statement_id": "Q604308$237F5F1A-BA1E-4FBD-A4B6-D7F7B3A2EAE8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P8069",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "23267"
+        }
+      }
+    ],
+    "P7153": [
+      {
+        "statement_id": "Q604308$22863957-399E-4322-B318-E00711863B05",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P7153",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q11913408"
+        },
+        "qualifiers": {
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q279239"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P3831"
+        ],
+        "references": [
+          {
+            "hash": "161d60dfffd3ca9bb14b9eb8f9ac6ef3d345c927",
+            "snaks_order": [
+              "P248",
+              "P958"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q672803"
+                }
+              ],
+              "P958": [
+                {
+                  "property": "P958",
+                  "snaktype": "value",
+                  "datatype": "string",
+                  "value_type": "string",
+                  "value": "26.22.1"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

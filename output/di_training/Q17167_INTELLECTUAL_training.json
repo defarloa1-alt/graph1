@@ -1,0 +1,596 @@
+{
+  "training_summary": "The seed corpus reveals that the intellectual facet of the Roman Republic centers on the intersection of Greek philosophy with Roman political culture, primarily through figures like Cicero who synthesized theoretical knowledge with practical statesmanship. The late Republican period (133-27 BC) emerges as a creative intellectual flowering where law, philosophy, and rhetoric converged to address constitutional crises.",
+  "key_works": [
+    {
+      "work_id": "openalex:W3211570661",
+      "relevance": "high",
+      "facet_contribution": "Demonstrates how Roman elites created a 'republic of letters' that integrated scholarly discourse with political action, particularly through Cicero's philosophical works"
+    },
+    {
+      "work_id": "openalex:W3158210360",
+      "relevance": "high",
+      "facet_contribution": "Shows the creative interaction between Roman legal thought and Greek philosophy from 150-50 BCE, a crucial period of intellectual synthesis"
+    },
+    {
+      "work_id": "openalex:W627409443",
+      "relevance": "high",
+      "facet_contribution": "Traces Cicero's intellectual development from advocate to philosopher of law, bridging citizens' practical law with theoretical jurisprudence"
+    },
+    {
+      "work_id": "openalex:W142471799",
+      "relevance": "medium",
+      "facet_contribution": "Reveals how Cicero used historical examples strategically in his philosophical works, demonstrating the didactic function of historical knowledge"
+    },
+    {
+      "work_id": "openalex:W883287154",
+      "relevance": "medium",
+      "facet_contribution": "Examines Roman educational traditions and their Greek influences, showing how intellectual culture was transmitted across generations"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q180072",
+      "label": "Hellenistic Philosophy in Rome",
+      "confidence": 0.87,
+      "evidence": "Multiple works (W3158210360, W4302764334) document the systematic reception of Stoic, Epicurean, and Academic philosophy in Rome, transforming both traditions",
+      "target_facet": null,
+      "reasoning": "The corpus shows Hellenistic philosophy wasn't merely imported but creatively adapted to Roman political and legal contexts",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.1,
+        "communication": 0.2,
+        "cultural": 0.3,
+        "demographic": 0.0,
+        "diplomatic": 0.1,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.9,
+        "linguistic": 0.2,
+        "military": 0.0,
+        "political": 0.3,
+        "religious": 0.1,
+        "scientific": 0.1,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_EXPERT_MEDIATED_KNOWLEDGE"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": null,
+      "label": "Rhetoric as Political Weapon",
+      "confidence": 0.85,
+      "evidence": "Works W2503708994 and W2007544708 show how oratorical training became essential for political competition and public persuasion",
+      "target_facet": "Political",
+      "reasoning": "Republican rhetoric cannot be separated from political practice - oratorical skill was prerequisite for political success",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.1,
+        "biographic": 0.2,
+        "communication": 0.8,
+        "cultural": 0.3,
+        "demographic": 0.0,
+        "diplomatic": 0.2,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.7,
+        "linguistic": 0.4,
+        "military": 0.0,
+        "political": 0.9,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CONTENTIOUS_ASSEMBLY"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q2257532",
+      "label": "Roman Educational System",
+      "confidence": 0.78,
+      "evidence": "Works W883287154 and W2159048436 document the evolution from traditional Roman education based on mos maiorum to Hellenistic models emphasizing rhetorical training",
+      "target_facet": null,
+      "reasoning": "Education transformed from practical apprenticeship to formal Greek-influenced curriculum, creating new intellectual elite",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.1,
+        "biographic": 0.2,
+        "communication": 0.3,
+        "cultural": 0.4,
+        "demographic": 0.1,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.9,
+        "linguistic": 0.3,
+        "military": 0.0,
+        "political": 0.2,
+        "religious": 0.1,
+        "scientific": 0.1,
+        "social": 0.6,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q220",
+      "label": "Rome",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Central geographic anchor for all intellectual activity documented in corpus - the city as center of legal, philosophical, and rhetorical culture"
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Broader temporal-cultural framework encompassing Republican intellectual developments documented in multiple works"
+    },
+    {
+      "qid": "Q130614",
+      "label": "Roman Senate",
+      "verdict": "reroute",
+      "reroute_to": "Political",
+      "evidence": "While senators were educated elites, the Senate as institution belongs primarily to political rather than intellectual facet"
+    },
+    {
+      "qid": "Q124988",
+      "label": "Punic Wars",
+      "verdict": "reroute",
+      "reroute_to": "Military",
+      "evidence": "Primarily military conflicts, though they had intellectual consequences through contact with Greek culture"
+    },
+    {
+      "qid": "Q677316",
+      "label": "Social War of 91-87 BCE",
+      "verdict": "reroute",
+      "reroute_to": "Political",
+      "evidence": "Primarily a political-military conflict over citizenship, not an intellectual development"
+    },
+    {
+      "qid": "Q35497",
+      "label": "Ancient Greek",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Multiple works document Greek as the language of philosophical education and high culture among Roman elites"
+    },
+    {
+      "qid": "Q397",
+      "label": "Latin",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Language of Roman oratory, law, and original literary/philosophical expression as documented throughout corpus"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "ia:tenorationsofcic00cice_202507",
+      "title": "Ten Orations and Selected Letters of Cicero: Statesmanship, Rhetoric, and Republican Ideals",
+      "authors": "Marcus Tullius Cicero; edited by William R. Harper and Frank A. Gallup",
+      "year": 1898,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/tenorationsofcic00cice_202507",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Primary source collection showing Cicero's synthesis of rhetorical skill with Republican political ideals"
+    },
+    {
+      "work_id": "ia:selectorationsof01cice_202507",
+      "title": "Selected Orations of Cicero: Statesmanship, Republic, and Rhetoric",
+      "authors": "Marcus Tullius Cicero",
+      "year": 1886,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/selectorationsof01cice_202507",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Primary source demonstrating Cicero's oratorical techniques and political philosophy in action"
+    },
+    {
+      "work_id": "ia:historyphilosoph0000ebyf",
+      "title": "The history and philosophy of education, ancient and medieval",
+      "authors": "Eby, Frederick, 1874-1968",
+      "year": 1940,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/historyphilosoph0000ebyf",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Contextualizes Roman educational practices within broader ancient intellectual traditions"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "The intellectual facet encompasses approximately 8 major sub-domains (philosophy, rhetoric, education, law, literature, Greek reception, letter-writing, historiography) which falls well below the threshold of 12. Each sub-domain is manageable and interconnected.",
+    "sub_domain_count": 8,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 35,
+    "sub_scopes": [],
+    "manageable_as_single": true
+  },
+  "corpus_gaps": [
+    "Limited coverage of mathematical and scientific intellectual activity",
+    "Insufficient treatment of non-elite intellectual culture",
+    "Sparse coverage of intellectual networks beyond Rome",
+    "Limited primary source access to philosophical texts in translation"
+  ],
+  "facet_confidence": 0.85,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "training_summary description of 'creative intellectual flowering'",
+        "note": "Avoided claiming to represent 'the whole' of Republican intellectual life - focused on documented patterns from corpus"
+      },
+      {
+        "fallacy_id": "ESSENCE_FALLACY",
+        "status": "checked",
+        "applies_to": "Hellenistic Philosophy insight",
+        "note": "Described observable adaptation patterns rather than claiming essential nature of philosophical transfer"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Acknowledged that OpenAlex searches returned no results, indicating possible platform limitations rather than absence of scholarship"
+      },
+      {
+        "principle_id": "OCR_AND_METADATA_SKEPTICISM",
+        "status": "applied",
+        "note": "Internet Archive materials from 1886-1940 likely have OCR issues - relied on titles and context rather than attempting full-text analysis"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_EXPERT_MEDIATED_KNOWLEDGE",
+        "pattern_label": "Expert-mediated knowledge",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_BROKERAGE",
+          "M_FRAME_ALIGNMENT"
+        ],
+        "evidence": "Greek philosophical experts (like Panaetius, Posidonius) mediated Hellenistic philosophy to Roman elites through personal relationships and adapted teachings",
+        "confidence": 0.82
+      },
+      {
+        "pattern_id": "RP_CONTENTIOUS_ASSEMBLY",
+        "pattern_label": "Contentious assembly",
+        "status": "existing",
+        "candidate_qids": [
+          "Q1114821"
+        ],
+        "mechanisms": [
+          "M_BROKERAGE",
+          "M_FRAME_ALIGNMENT"
+        ],
+        "evidence": "Roman popular assemblies and Senate debates used rhetorical training as competitive tool for political persuasion and factional mobilization",
+        "confidence": 0.79
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Literature, Philosophy & Intellectual Life"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -150,
+        "year_end": -50,
+        "label": "Creative period of Roman philosophy-law synthesis",
+        "evidence": "Multiple works identify mid-2nd to mid-1st century BCE as peak period of intellectual creativity documented in corpus"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "All major intellectual developments documented occurred in or were centered on the city of Rome as cultural hub"
+      },
+      {
+        "place_label": "Athens",
+        "place_qid": "Q1524",
+        "role": "secondary",
+        "evidence": "Source of philosophical traditions (Stoic, Academic, Peripatetic) that were adapted and transmitted to Rome"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The late Roman Republic (150-50 BCE) witnessed a creative synthesis of Greek philosophical traditions with Roman legal and political thought, primarily mediated through educated elites like Cicero.",
+        "subject_concepts": [
+          "Roman Literature, Philosophy & Intellectual Life"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.1,
+          "biographic": 0.2,
+          "communication": 0.3,
+          "cultural": 0.4,
+          "demographic": 0.0,
+          "diplomatic": 0.1,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.1,
+          "intellectual": 0.9,
+          "linguistic": 0.2,
+          "military": 0.0,
+          "political": 0.3,
+          "religious": 0.1,
+          "scientific": 0.1,
+          "social": 0.2,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_EXPERT_MEDIATED_KNOWLEDGE"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W3211570661",
+          "openalex:W3158210360"
+        ],
+        "confidence": 0.87
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman rhetorical education transformed from traditional mos maiorum instruction to formal Greek-influenced curriculum emphasizing oratorical competition and philosophical grounding.",
+        "subject_concepts": [
+          "Roman Literature, Philosophy & Intellectual Life"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.1,
+          "biographic": 0.1,
+          "communication": 0.4,
+          "cultural": 0.5,
+          "demographic": 0.1,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.8,
+          "linguistic": 0.3,
+          "military": 0.0,
+          "political": 0.2,
+          "religious": 0.1,
+          "scientific": 0.0,
+          "social": 0.6,
+          "technological": 0.0
+        },
+        "pattern_tags": [],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W883287154",
+          "openalex:W2159048436"
+        ],
+        "confidence": 0.78
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 24,
+    "tool_calls": [
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel ?qid WHERE {\n  VALUES ?qid { \n    wd:Q1125 wd:Q17167 wd:Q1541 wd:Q10261 wd:Q1394 wd:Q170154 wd:Q7063 \n    wd:Q1394963 wd:Q1235 wd:Q82955 wd:Q5891 wd:Q483353 wd:Q159810 \n    wd:Q2251120 wd:Q2291991 wd:Q2033855\n  }\n  BIND(?qid as ?item)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}"
+        },
+        "output_preview": "[{\"qid\": \"http://www.wikidata.org/entity/Q2033855\", \"item\": \"http://www.wikidata.org/entity/Q2033855\", \"itemLabel\": \"Aspidiphorus lareyniei\"}, {\"qid\": \"http://www.wikidata.org/entity/Q2291991\", \"item\""
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?author ?authorLabel ?lcsh ?fast WHERE {\n  ?work wdt:P921 wd:Q17167 .\n  ?work wdt:P31/wdt:P279* wd:Q571 .\n  OPTIONAL { ?work wdt:P50 ?author }\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  OPTIONAL { ?work wdt:P2163 ?fast }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 20"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q122746681\", \"author\": \"http://www.wikidata.org/entity/Q95652\", \"workLabel\": \"Civil War in Ancient Greece and Rome: Contexts of Disintegration and Reintegrati"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept)-[:ASSOCIATED_WITH_FACET]-(f:Facet {label: \"Intellectual\"})\nRETURN sc.label, sc.subject_id, sc.wikidata_qid, sc.lcsh_id\nLIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept)\nRETURN sc.label, sc.subject_id, sc.wikidata_qid, sc.seed_qid\nLIMIT 20"
+        },
+        "output_preview": "[{\"sc.label\": \"Administrative & Political Divisions\", \"sc.subject_id\": \"GEO_ADMIN_DIVISIONS\", \"sc.wikidata_qid\": null, \"sc.seed_qid\": null}, {\"sc.label\": \"Hydrography & Water Bodies\", \"sc.subject_id\":"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic philosophy intellectual life Cicero rhetoric",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican philosophy Stoicism Cicero intellectual",
+          "source": "oapen",
+          "limit": 15
+        },
+        "output_preview": "{\"error\": \"OAPEN search error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic intellectual culture philosophy Cicero letters",
+          "source": "internet_archive",
+          "limit": 12
+        },
+        "output_preview": "[{\"work_id\": \"ia:ExtrasensoryPerceptionResearchFinding\", \"title\": \"Notes on the Paranormal\", \"authors\": \"Ben Steigmann\", \"year\": \"\", \"downloads\": 33181, \"source_url\": \"https://archive.org/details/Extr"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh ?fast ?oclc WHERE {\n  VALUES ?topic { wd:Q1541 wd:Q5891 wd:Q180072 wd:Q84160 wd:Q17167 }\n  ?work wdt:P921 ?topic .\n  ?work wdt:P31/wdt:P279* wd:Q571 .\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  OPTIONAL { ?work wdt:P2163 ?fast }\n  OPTIONAL { ?work wdt:P243 ?oclc }\n  FILTER(BOUND(?lcsh) || BOUND(?fast) || BOUND(?oclc))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 15"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q3020428\", \"workLabel\": \"Of Grammatology\", \"oclc\": \"247335562\"}, {\"work\": \"http://www.wikidata.org/entity/Q3562114\", \"workLabel\": \"The Poetics of Space\", \"ocl"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?work ?workLabel ?author ?authorLabel ?lcsh WHERE {\n  VALUES ?cicero { wd:Q1541 }\n  ?work wdt:P921 ?cicero .\n  ?work wdt:P31/wdt:P279* wd:Q571 .\n  OPTIONAL { ?work wdt:P50 ?author }\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/tenorationsofcic00cice_202507",
+          "max_chars": 3000
+        },
+        "output_preview": "Ten Orations and Selected Letters of Cicero: Statesmanship, Rhetoric, and Republican Ideals : Marcus Tullius Cicero; edited by William R. Harper and Frank A. Gallup : Free Download, Borrow, and Stream"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1515/9780691224343",
+          "max_chars": 4000
+        },
+        "output_preview": "The Roman Republic of Letters The Roman Republic of Letters Record type Edited book Published 31 December 2021 Authors Katharina Volk DOI https://doi.org/10.1515/9780691224343 The publisher of this wo"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.degruyter.com/document/doi/10.1515/9780691224343/html",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Domain not in allowlist: www.degruyter.com. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, jstor.org"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "http://www.jstor.org/stable/10.2307/j.ctv1mgmdd8",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://www.jstor.org/stable/10.2307/j.ctv1mgmdd8\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0010%3Abook%3D1%3Achapter%3D1",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='perseus.tufts.edu', port=443): Max retries exceeded with url: /hopper/text?doc=Perseus%3Atext%3A1999.02.0010%3Abook%3D1%3Achapter%3D1 (Caused by NameR"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Cicero rhetoric Roman Republican philosophy Stoicism letters",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman Republic\" intellectual culture philosophy education",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (w:Work) WHERE w.work_id STARTS WITH \"openalex:\"\nRETURN w.work_id, w.title, w.facet_contribution LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/selectorationsof01cice_202507",
+          "max_chars": 5000
+        },
+        "output_preview": "Selected Orations of Cicero: Statesmanship, Republic, and Rhetoric : Marcus Tullius Cicero : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore "
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (f:Facet)\nRETURN f.label ORDER BY f.label"
+        },
+        "output_preview": "[{\"f.label\": \"Archaeological\"}, {\"f.label\": \"Artistic\"}, {\"f.label\": \"Biographic\"}, {\"f.label\": \"Communication\"}, {\"f.label\": \"Cultural\"}, {\"f.label\": \"Demographic\"}, {\"f.label\": \"Diplomatic\"}, {\"f.la"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman education philosophy Greek culture Hellenistic",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:historyofchristi0000fish\", \"title\": \"History of Christian doctrine\", \"authors\": \"Fisher, George Park, 1827-1909\", \"year\": \"1896\", \"downloads\": 1846, \"source_url\": \"https://archive.org"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Stoicism Roman Republican epistles rhetoric education",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/historyphilosoph0000ebyf",
+          "max_chars": 3000
+        },
+        "output_preview": "The history and philosophy of education, ancient and medieval : Eby, Frederick, 1874-1968 : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore a"
+      }
+    ],
+    "usage": {
+      "input_tokens": 433351,
+      "output_tokens": 7278
+    },
+    "raw_response_length": 14466
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 1,
+    "rejected": [
+      {
+        "qid": "Q180072",
+        "reason": "label_off_scope",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

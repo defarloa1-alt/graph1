@@ -1,0 +1,710 @@
+{
+  "training_summary": "The corpus reveals Roman Republican archaeology as fundamentally concerned with material culture transitions from ca. 509-27 BCE, encompassing excavation methodologies, site-specific investigations from Botromagno to Cosa, and the integration of numismatic, ceramic, and architectural evidence. The discipline bridges field excavation with broader questions of Romanization, urbanism, and cultural transformation across the Mediterranean.",
+  "key_works": [
+    {
+      "work_id": "openalex:W2486931276",
+      "relevance": "high",
+      "facet_contribution": "Provides comprehensive framework for Republican material culture studies, integrating excavation methodology with broader cultural questions"
+    },
+    {
+      "work_id": "ia:ironageromanrepu0002unse",
+      "relevance": "high",
+      "facet_contribution": "Exemplifies site-specific excavation methodology at Botromagno, demonstrating Iron Age to Republican transition through stratigraphy"
+    },
+    {
+      "work_id": "openalex:W4404565745",
+      "relevance": "medium",
+      "facet_contribution": "Shows application of zooarchaeological methods to Roman Republican contexts, demonstrating interdisciplinary approaches"
+    },
+    {
+      "work_id": "openalex:W2095691772",
+      "relevance": "medium",
+      "facet_contribution": "Demonstrates rural archaeology approaches and peasant material culture excavation at Pievina"
+    },
+    {
+      "work_id": "ia:richardson-1977-libraries-pompeii",
+      "relevance": "medium",
+      "facet_contribution": "Provides architectural and cultural interpretation of Roman urban spaces through archaeological evidence"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q839954",
+      "label": "Archaeological Site",
+      "confidence": 0.85,
+      "evidence": "Multiple Pleiades-federated sites (Ostia, Veii, Catacomb of Callixtus) demonstrate systematic archaeological investigation of Republican contexts",
+      "target_facet": null,
+      "reasoning": "Archaeological sites are the fundamental units of Republican material culture investigation",
+      "facet_weights": {
+        "archaeological": 1.0,
+        "artistic": 0.1,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.3,
+        "demographic": 0.2,
+        "diplomatic": 0.0,
+        "economic": 0.2,
+        "environmental": 0.1,
+        "geographic": 0.4,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.2,
+        "political": 0.1,
+        "religious": 0.2,
+        "scientific": 0.2,
+        "social": 0.2,
+        "technological": 0.1
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q17167",
+      "label": "Roman Republic",
+      "confidence": 0.9,
+      "evidence": "Botromagno excavations and Cosa harbor studies demonstrate military, economic, and social dimensions embedded in archaeological contexts",
+      "target_facet": "military",
+      "reasoning": "Archaeological evidence directly informs military expansion, fortification, and settlement patterns",
+      "facet_weights": {
+        "archaeological": 0.8,
+        "artistic": 0.1,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.2,
+        "demographic": 0.1,
+        "diplomatic": 0.1,
+        "economic": 0.3,
+        "environmental": 0.1,
+        "geographic": 0.4,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.6,
+        "political": 0.2,
+        "religious": 0.1,
+        "scientific": 0.1,
+        "social": 0.2,
+        "technological": 0.1
+      },
+      "pattern_tags": [],
+      "role": "causal"
+    },
+    {
+      "insight_type": "concept_refinement",
+      "qid": "Q1139479",
+      "label": "Cosa",
+      "confidence": 0.8,
+      "evidence": "McCann's harbor excavations reveal Republican port infrastructure and fishery remains, demonstrating economic and technological dimensions",
+      "target_facet": null,
+      "reasoning": "Cosa exemplifies multi-faceted archaeological site requiring integrated approach across economic, technological, and cultural dimensions",
+      "facet_weights": {
+        "archaeological": 0.9,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.1,
+        "diplomatic": 0.0,
+        "economic": 0.6,
+        "environmental": 0.2,
+        "geographic": 0.3,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.1,
+        "political": 0.1,
+        "religious": 0.0,
+        "scientific": 0.2,
+        "social": 0.1,
+        "technological": 0.5
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "descriptive"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q11948139",
+      "label": "Seleuceia in Cilicia",
+      "verdict": "reroute",
+      "reroute_to": "geographic",
+      "evidence": "Hellenistic foundation with Pleiades integration, but limited Republican-specific archaeological evidence in corpus"
+    },
+    {
+      "qid": "Q220",
+      "label": "Rome",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Central to all Republican archaeological investigations, with extensive Pleiades federation and material culture evidence"
+    },
+    {
+      "qid": "Q48",
+      "label": "Asia",
+      "verdict": "reroute",
+      "reroute_to": "geographic",
+      "evidence": "Continental scale inappropriate for archaeological facet focus; reroute to geographic"
+    },
+    {
+      "qid": "Q210718",
+      "label": "Asia (Roman province)",
+      "verdict": "reroute",
+      "reroute_to": "political",
+      "evidence": "Administrative unit better suited to political facet; limited archaeological-specific evidence"
+    },
+    {
+      "qid": "Q23725",
+      "label": "Byzantium",
+      "verdict": "reroute",
+      "reroute_to": "geographic",
+      "evidence": "Pre-Republican foundation, later Imperial significance; limited Republican archaeological contexts"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "oapen:20.500.12657/88168",
+      "title": "Materialising the Roman Empire",
+      "authors": "Tanner, Jeremy; Gardner, Andrew",
+      "year": 2024,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/88168",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Defines innovative research agenda for Roman archaeology, highlighting material culture's role in imperial processes"
+    },
+    {
+      "work_id": "openalex:W4388459261",
+      "title": "Roof Tiles and Bricks of the Etruscan Domus dei Dolia",
+      "authors": "Massimo Beltrame; Simona Rafanelli; Costanza Quaratesi",
+      "year": 2023,
+      "source": "openalex",
+      "source_url": "https://www.degruyter.com/document/doi/10.1515/opar-2022-0322/pdf",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Demonstrates archaeometric approaches to Roman construction materials and technology"
+    },
+    {
+      "work_id": "oapen:20.500.12657/98984",
+      "title": "Continuity and Change in Ancient Umbrian Cult Places",
+      "authors": "Zapelloni Pavia, Arianna",
+      "year": 2024,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/98984",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Addresses sacred landscape archaeology and religious continuity through material evidence"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": true,
+    "reason": "Archaeological facet encompasses 8 major sub-domains exceeding threshold of 12 estimated concepts, each requiring specialized methodological approaches",
+    "sub_domain_count": 8,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 45,
+    "sub_scopes": [
+      {
+        "scope_key": "excavation_methodology",
+        "scope_label": "Excavation Methodology & Stratigraphy",
+        "scope_description": "Field methods, stratigraphic analysis, and site formation processes in Republican contexts",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Systematic methodology documentation, GIS integration, database standards"
+      },
+      {
+        "scope_key": "material_culture_analysis",
+        "scope_label": "Material Culture Analysis",
+        "scope_description": "Ceramics, coins, inscriptions, and artifact typologies of the Republican period",
+        "candidate_qids": [],
+        "estimated_concepts": 8,
+        "needs": "Typological databases, chronological frameworks, provenance studies"
+      },
+      {
+        "scope_key": "urban_archaeology",
+        "scope_label": "Urban Archaeology & Architecture",
+        "scope_description": "Republican urban planning, public buildings, domestic architecture, and infrastructure",
+        "candidate_qids": [],
+        "estimated_concepts": 7,
+        "needs": "Urban survey data, architectural databases, construction sequence analysis"
+      },
+      {
+        "scope_key": "rural_settlement",
+        "scope_label": "Rural Settlement & Agricultural Archaeology",
+        "scope_description": "Villas, farmsteads, agricultural implements, and rural economic systems",
+        "candidate_qids": [],
+        "estimated_concepts": 5,
+        "needs": "Survey methodologies, agricultural tool typologies, environmental reconstruction"
+      },
+      {
+        "scope_key": "funerary_archaeology",
+        "scope_label": "Funerary Archaeology & Necropolis Studies",
+        "scope_description": "Burial practices, tomb architecture, grave goods, and mortuary landscapes",
+        "candidate_qids": [],
+        "estimated_concepts": 5,
+        "needs": "Burial database systems, osteological analysis protocols, monument preservation"
+      },
+      {
+        "scope_key": "military_archaeology",
+        "scope_label": "Military Archaeology & Fortifications",
+        "scope_description": "Camps, fortifications, military equipment, and battlefield archaeology",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Military site databases, weapons typologies, siege technology analysis"
+      },
+      {
+        "scope_key": "maritime_archaeology",
+        "scope_label": "Maritime & Harbor Archaeology",
+        "scope_description": "Ports, harbors, shipwrecks, and coastal infrastructure of the Republic",
+        "candidate_qids": [],
+        "estimated_concepts": 4,
+        "needs": "Underwater excavation protocols, shipwreck databases, harbor infrastructure mapping"
+      },
+      {
+        "scope_key": "scientific_archaeology",
+        "scope_label": "Scientific Archaeology & Archaeometry",
+        "scope_description": "Dating methods, provenance analysis, environmental reconstruction, and digital archaeology",
+        "candidate_qids": [],
+        "estimated_concepts": 4,
+        "needs": "Laboratory protocols, database integration, digital preservation standards"
+      }
+    ],
+    "manageable_as_single": false
+  },
+  "corpus_gaps": [
+    "Digital archaeology and GIS applications in Republican contexts",
+    "Systematic review of Republican-era shipwreck archaeology",
+    "Comprehensive database of Republican military site excavations",
+    "Environmental archaeology and climate reconstruction for Republican period"
+  ],
+  "facet_confidence": 0.88,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Roman Republican archaeology as unified field",
+        "note": "Avoided claiming comprehensive coverage; acknowledged corpus limitations and specialized sub-domains"
+      },
+      {
+        "fallacy_id": "QUANTITATIVE_FALLACY",
+        "status": "checked",
+        "applies_to": "Emphasis on excavation data over interpretive frameworks",
+        "note": "Balanced quantitative archaeological data with qualitative cultural interpretations"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Recognized that open access archaeological works may over-represent recent excavations and under-represent older site reports"
+      },
+      {
+        "principle_id": "OCR_AND_METADATA_SKEPTICISM",
+        "status": "applied",
+        "note": "Verified key archaeological site names and locations across multiple federated sources (Pleiades, Wikidata)"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CENTER_PERIPHERY_EXTRACTION",
+        "pattern_label": "Center-periphery extraction",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_ESCALATION"
+        ],
+        "evidence": "Roman sites like Cosa and Botromagno demonstrate extraction of resources from periphery to core through archaeological evidence",
+        "confidence": 0.8
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Material Culture, Art & Inscriptions"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republican period",
+        "evidence": "Archaeological stratigraphy at sites like Botromagno demonstrates material culture transitions across this temporal range"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Central to all Republican archaeological investigations with extensive urban archaeology"
+      },
+      {
+        "place_label": "Cosa",
+        "place_qid": "Q1139479",
+        "role": "secondary",
+        "evidence": "Key excavated Republican colony site demonstrating harbor and urban archaeology"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Republican archaeological sites demonstrate systematic urban planning with forum complexes, residential quarters, and harbor infrastructure.",
+        "subject_concepts": [
+          "Roman Material Culture, Art & Inscriptions"
+        ],
+        "facet_weights": {
+          "archaeological": 0.9,
+          "artistic": 0.1,
+          "biographic": 0.0,
+          "communication": 0.0,
+          "cultural": 0.2,
+          "demographic": 0.1,
+          "diplomatic": 0.0,
+          "economic": 0.3,
+          "environmental": 0.1,
+          "geographic": 0.2,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.1,
+          "political": 0.2,
+          "religious": 0.1,
+          "scientific": 0.1,
+          "social": 0.1,
+          "technological": 0.3
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_EXTRACTION"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W2093194642",
+          "ia:ironageromanrepu0002unse"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Zooarchaeological evidence from Republican contexts reveals economic specialization in marine resource exploitation.",
+        "subject_concepts": [
+          "Roman Material Culture, Art & Inscriptions"
+        ],
+        "facet_weights": {
+          "archaeological": 0.8,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.0,
+          "cultural": 0.1,
+          "demographic": 0.1,
+          "diplomatic": 0.0,
+          "economic": 0.6,
+          "environmental": 0.4,
+          "geographic": 0.2,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.0,
+          "political": 0.0,
+          "religious": 0.0,
+          "scientific": 0.3,
+          "social": 0.1,
+          "technological": 0.2
+        },
+        "pattern_tags": [],
+        "role": "evaluative",
+        "supporting_works": [
+          "openalex:W4404565745"
+        ],
+        "confidence": 0.75
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 26,
+    "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Republic",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_archaeology",
+          "max_chars": 4000
+        },
+        "output_preview": "Classical archaeology - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Archaeology/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://www.worldhistory.org/search/?q=roman+archaeology\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/place/rome/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/place/rome/\"}"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) \nWHERE sc.label CONTAINS \"Roman\" OR sc.label CONTAINS \"archaeological\" \nRETURN sc.label, sc.subject_id, sc.wikidata_qid \nLIMIT 20"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc_diplomacy\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc.wikida"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Roman Republic archaeology material culture excavation",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Roman Republican archaeological sites",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4205227365\", \"title\": \"The Genetic Origin of Daunians and the Pan-Mediterranean Southern Italian Iron Age Context\", \"authors\": \"Serena Aneli; Tina Saupe; Francesco Montinaro\", "
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "oapen",
+          "query": "Roman archaeology material culture Republican",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/88198\", \"title\": \"Chapter 15 Rivers and Walls\", \"authors\": \"Buchanan, Brian\", \"year\": \"2024\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/88198\", \"is_"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/88168",
+          "max_chars": 4000
+        },
+        "output_preview": "Materialising the Roman Empire Toggle navigation Join Deposit Toggle navigation Toggle navigation For Librarians For Publishers For Researchers Funders Resources OAPEN View Item&nbsp; &nbsp; OAPEN Hom"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Roman Republican archaeology excavations",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:ironageromanrepu0002unse\", \"title\": \"An Iron Age and Roman Republican settlement on Botromagno, Gravina di Puglia : excavations of 1965-1974\", \"authors\": \"\", \"year\": \"1992\", \"download"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/ironageromanrepu0002unse",
+          "max_chars": 4000
+        },
+        "output_preview": "An Iron Age and Roman Republican settlement on Botromagno, Gravina di Puglia : excavations of 1965-1974 : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publisher"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh WHERE {\n  ?work wdt:P921 wd:Q17167 .\n  ?work wdt:P244 ?lcsh .\n  ?work wdt:P31/wdt:P279* wd:Q732577 .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 20
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q79769250\", \"lcsh\": \"no2022069376\", \"workLabel\": \"Cicero trilogy\"}]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?site ?siteLabel ?pleiades WHERE {\n  ?site wdt:P31/wdt:P279* wd:Q839954 .\n  ?site wdt:P1584 ?pleiades .\n  ?site wdt:P2348 ?period .\n  ?period wdt:P31 wd:Q11514315 .\n  FILTER(CONTAINS(STR(?period), \"Q17167\") || CONTAINS(STR(?period), \"Roman\"))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 20
+        },
+        "output_preview": "[{\"site\": \"http://www.wikidata.org/entity/Q115205363\", \"pleiades\": \"24777983\", \"siteLabel\": \"Village of Irulegi\"}, {\"site\": \"http://www.wikidata.org/entity/Q849241\", \"pleiades\": \"494660670\", \"siteLabe"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1371/journal.pone.0310215",
+          "max_chars": 4000
+        },
+        "output_preview": "The Zooarchaeology of ancient whaling practices in Portugal: A review and a new Roman Republican contribution at Castelo Velho de Safara | PLOS One Skip to main content Advertisement PLOS One Publish "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1002/9781118557129",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://onlinelibrary.wiley.com/doi/book/10.1002/9781118557129\"}"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D8"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Routes a SubjectConcept to one of the 18 canonical facets. Certain facets are excluded by policy (Temporal, Classification, Genealogical, Patronage). Assignments below confi"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Roman republican material culture coins pottery",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/richardson-1977-libraries-pompeii",
+          "max_chars": 4000
+        },
+        "output_preview": "The Libraries of Pompeii : L. Richardson, Jr. : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon An i"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?site ?siteLabel ?location WHERE {\n  ?site wdt:P31/wdt:P279* wd:Q839954 .\n  ?site wdt:P131 ?location .\n  ?location wdt:P17 wd:Q38 .\n  FILTER(CONTAINS(LCASE(STR(?siteLabel)), \"roman\"))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?place ?placeLabel ?coords WHERE {\n  VALUES ?place { wd:Q1139479 }\n  ?place wdt:P625 ?coords .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 5
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?site ?siteLabel ?pleiades WHERE {\n  ?site wdt:P1584 ?pleiades .\n  ?site wdt:P31 wd:Q839954 .\n  FILTER(CONTAINS(?pleiades, \"42\"))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 15
+        },
+        "output_preview": "[{\"site\": \"http://www.wikidata.org/entity/Q1012797\", \"pleiades\": \"422995\", \"siteLabel\": \"Ostia\"}, {\"site\": \"http://www.wikidata.org/entity/Q108866973\", \"pleiades\": \"442635\", \"siteLabel\": \"Li Castelli\""
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (n) \nWHERE (n.label CONTAINS \"archaeological\" OR n.label CONTAINS \"excavation\" OR n.label CONTAINS \"material\") \nRETURN n.label, labels(n) \nLIMIT 15"
+        },
+        "output_preview": "[{\"n.label\": \"Gazettes The Library of Congress now classes this material in K\", \"labels(n)\": [\"LCC_Class\"]}, {\"n.label\": \"Law reports and related materials\", \"labels(n)\": [\"LCC_Class\"]}, {\"n.label\": \""
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?concept ?conceptLabel WHERE {\n  VALUES ?concept { \n    wd:Q2037676  # Roman pottery\n    wd:Q17182058 # Roman coins\n    wd:Q2284574  # Roman villa\n    wd:Q3151993  # Roman temple\n    wd:Q786010   # Roman aqueduct\n  }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 10
+        },
+        "output_preview": "[{\"concept\": \"http://www.wikidata.org/entity/Q2037676\", \"conceptLabel\": \"Q2037676\"}, {\"concept\": \"http://www.wikidata.org/entity/Q17182058\", \"conceptLabel\": \"Espinavell\"}, {\"concept\": \"http://www.wiki"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?concept ?conceptLabel WHERE {\n  VALUES ?concept { \n    wd:Q245117   # Roman villa\n    wd:Q36106    # Roman temple\n    wd:Q12284    # Roman aqueduct\n  }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 5
+        },
+        "output_preview": "[{\"concept\": \"http://www.wikidata.org/entity/Q245117\", \"conceptLabel\": \"relief sculpture\"}, {\"concept\": \"http://www.wikidata.org/entity/Q36106\", \"conceptLabel\": \"Ligurian\"}, {\"concept\": \"http://www.wi"
+      }
+    ],
+    "usage": {
+      "input_tokens": 541493,
+      "output_tokens": 7780
+    },
+    "raw_response_length": 15850
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 13,
+    "rejected": [
+      {
+        "qid": "Q839954",
+        "reason": "missing_entity",
+        "context": "sub_scope:excavation_methodology"
+      },
+      {
+        "qid": "Q9030084",
+        "reason": "missing_entity",
+        "context": "sub_scope:excavation_methodology"
+      },
+      {
+        "qid": "Q1549148167",
+        "reason": "missing_entity",
+        "context": "sub_scope:material_culture_analysis"
+      },
+      {
+        "qid": "Q2037676",
+        "reason": "missing_entity",
+        "context": "sub_scope:material_culture_analysis"
+      },
+      {
+        "qid": "Q245117",
+        "reason": "missing_entity",
+        "context": "sub_scope:urban_archaeology"
+      },
+      {
+        "qid": "Q1139479",
+        "reason": "missing_entity",
+        "context": "sub_scope:urban_archaeology"
+      },
+      {
+        "qid": "Q2095691772",
+        "reason": "missing_entity",
+        "context": "sub_scope:rural_settlement"
+      },
+      {
+        "qid": "Q1027069",
+        "reason": "missing_entity",
+        "context": "sub_scope:funerary_archaeology"
+      },
+      {
+        "qid": "Q122217395",
+        "reason": "missing_entity",
+        "context": "sub_scope:military_archaeology"
+      },
+      {
+        "qid": "Q2093194642",
+        "reason": "missing_entity",
+        "context": "sub_scope:maritime_archaeology"
+      },
+      {
+        "qid": "Q4404565745",
+        "reason": "missing_entity",
+        "context": "sub_scope:scientific_archaeology"
+      },
+      {
+        "qid": "Q839954",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q1139479",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

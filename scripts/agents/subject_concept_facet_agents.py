@@ -26,6 +26,17 @@ from neo4j import GraphDatabase
 import requests
 
 try:
+    from pathlib import Path as _Path
+    _GRAPH_ROOT = _Path(__file__).resolve().parents[2]
+    import sys as _sys
+    if str(_GRAPH_ROOT) not in _sys.path:
+        _sys.path.insert(0, str(_GRAPH_ROOT))
+    from scripts.agents.republic_graph_context import append_republic_graph_context
+except ImportError:
+    def append_republic_graph_context(system_prompt, seed_qid, *, driver=None):  # type: ignore[misc]
+        return system_prompt
+
+try:
     import anthropic
 except ImportError:
     anthropic = None
@@ -237,6 +248,8 @@ class SubjectConceptFacetAgent:
                     f"in the prompt — focus on evaluating them, not re-discovering the graph. "
                     f"Return structured JSON."
                 )
+                seed_qid = str(seed.get("qid", "Q17167")).strip().upper()
+                system = append_republic_graph_context(system, seed_qid, driver=self.driver)
                 evaluation = self._run_claude_agent(system, prompt)
             except Exception as e:
                 evaluation = {"error": str(e)}
@@ -329,6 +342,8 @@ Provide structured JSON with keys: relevant_candidates, misrouted, proposed_addi
             f"historian analyzing subjects for the Chrystallum knowledge graph. "
             f"You have tools to query the live Neo4j graph."
         )
+        seed_qid = str(sc.get("seed_qid", "Q17167")).strip().upper()
+        system = append_republic_graph_context(system, seed_qid, driver=self.driver)
         analysis = self._run_claude_agent(system, prompt)
         
         return {

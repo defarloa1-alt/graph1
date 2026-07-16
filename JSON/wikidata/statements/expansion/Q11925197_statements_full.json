@@ -1,0 +1,79 @@
+{
+  "qid": "Q11925197",
+  "label": "Hanno",
+  "description": "Carthaginian military man, active in Hispania in 218–215 BCE",
+  "statement_count": 4,
+  "property_count": 4,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q11925197$440D6EB2-1720-4B1A-88B1-6971BA478F20",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        }
+      }
+    ],
+    "P21": [
+      {
+        "statement_id": "Q11925197$EF05669D-0707-46BC-AA72-356C2DEE5751",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        }
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q11925197$F5C1CF73-721A-4355-A9FD-B8F2014A3F37",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/120vb5gw"
+        }
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "q11925197$b034a3e2-4982-6698-9188-8e673bead846",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1138524"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q20643466"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      }
+    ]
+  }
+}

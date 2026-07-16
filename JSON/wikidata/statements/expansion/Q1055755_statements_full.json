@@ -1,0 +1,416 @@
+{
+  "qid": "Q1055755",
+  "label": "Battle of Ilipa",
+  "description": "Scipio Africanus’s most brilliant victory in his military career during the Second Punic War",
+  "statement_count": 15,
+  "property_count": 13,
+  "claims": {
+    "P646": [
+      {
+        "statement_id": "Q1055755$8E332C0E-2213-4039-89C8-EA236BB01160",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/06k1_w"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q1055755$1374DB20-BB6F-4DDB-A2EB-62A0F910C039",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q1055755$24c4a91e-4e90-92f4-1cf2-c46a698217e5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6271"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q1055755$8597e776-4dd7-1f85-2613-96d65e6d8a55",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0206-11-30T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "qualifiers": {
+          "P4241": [
+            {
+              "property": "P4241",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q1312"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4241"
+        ]
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q1055755$378540c1-4a83-9028-0f76-105d7a379222",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5998362"
+        },
+        "qualifiers": {
+          "P1480": [
+            {
+              "property": "P1480",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q21818619"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1480"
+        ]
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q1055755$6536C532-0762-4521-9659-407B54AF20FE",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q2253"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q5759209"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q1528929"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q706305"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q1055755$0280B4C1-7D66-4125-8698-98D84515986C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q452048"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q335604"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q314685"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ],
+    "P373": [
+      {
+        "statement_id": "Q1055755$BFC5DB37-24C7-4E80-A6B4-237E7AF95188",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P373",
+          "snaktype": "value",
+          "datatype": "string",
+          "value_type": "string",
+          "value": "Battle of Ilipa"
+        }
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "Q1055755$cdd85a9e-4167-e917-0b09-ab90c18ea2da",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q4114391"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q25376879"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      }
+    ],
+    "P1417": [
+      {
+        "statement_id": "Q1055755$5B138F6F-E6C7-4EF9-9605-FC882C5F9A66",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1417",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "event/Battle-of-Ilipa"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Battle of Ilipa"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P3219": [
+      {
+        "statement_id": "Q1055755$C5EC5118-309F-46CF-88CA-70745FF1EA25",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P3219",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "bataille-d-ilipa"
+        }
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q1055755$3DD3120C-0BCB-401C-BEC7-CF57B1476DD1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q29"
+        }
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q1055755$5CA3C082-231C-435F-B230-BDC619F11A86",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Ilipa2.svg"
+        },
+        "references": [
+          {
+            "hash": "f3fcd925e1d4486a813b97cd5a8443a8a70bcb3a",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://en.wikipedia.org/w/index.php?title=Battle_of_Ilipa&oldid=854523465"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q1055755$dab863cc-4a0e-4306-ab49-eed93be79d69",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 37.548825,
+            "longitude": -5.936332,
+            "precision": 1e-05,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      },
+      {
+        "statement_id": "Q1055755$2bee21bc-4f2d-18ab-9e4b-8d0394d69ebf",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 37.518333333333,
+            "longitude": -5.9783333333333,
+            "precision": 0.00027777777777778,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      }
+    ]
+  }
+}

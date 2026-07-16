@@ -1,0 +1,1198 @@
+{
+  "training_summary": "The Geographic facet of the Roman Republic encompasses the territorial expansion of Rome from a city-state into a Mediterranean empire, the provincial system that administered conquered territories, the role of colonies and roads in connecting and Romanizing subject peoples, and the physical landscape of Italy and the wider Roman world. The seed corpus provides strong coverage of Roman Italy, provinces, and the Pleiades gazetteer, supplemented by Kiepert's ancient geography, Magie's Asia Minor study, and Steel's overview of the late Republic. Key sub-domains include Italy itself, the Republican provincial system (Sicily, Sardinia, Spain, Africa, Macedonia, Asia, Gaul), colonization and land survey, roads and infrastructure, and the geography of individual theaters of war.",
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "Six natural sub-domains are identifiable, which equals the level2_child_overload threshold of 12 only if they proliferate further; at six sub-scopes the domain is manageable as a single SFA with well-defined internal structure. Each sub-scope can be represented as a SubjectConcept without spawning a child SFA agent.",
+    "sub_domain_count": 6,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 48,
+    "sub_scopes": [
+      {
+        "scope_key": "roman_italy_geography",
+        "scope_label": "Roman Italy — Physical and Political Geography",
+        "scope_description": "The Italian peninsula as the core territorial base of the Republic: regions (Latium, Etruria, Campania, Samnium, Cisalpine Gaul, Magna Graecia), physical features (Apennines, Po Valley, Tiber), and the political geography of allies, municipia, and coloniae.",
+        "candidate_qids": [
+          "Q220",
+          "Q1747689"
+        ],
+        "estimated_concepts": 12,
+        "needs": "Regional mapping of socii and Latin allies, Pleiades place IDs for major towns, connection to demographic and social facets"
+      },
+      {
+        "scope_key": "roman_provinces_republican",
+        "scope_label": "Republican Provincial System",
+        "scope_description": "The formal structure of provinciae from the first overseas possessions (Sicily 241 BC, Sardinia/Corsica 238 BC) through Spain, Africa, Macedonia, Asia, Gallia Narbonensis, Bithynia, Cyrene, and Crete to the eve of Augustus. Includes governor assignment, taxation geography, and the lex provinciae.",
+        "candidate_qids": [
+          "Q210718"
+        ],
+        "estimated_concepts": 14,
+        "needs": "Temporal sequencing of province creation, LCSH authority anchoring, cross-link to political and economic facets"
+      },
+      {
+        "scope_key": "roman_colonization_land",
+        "scope_label": "Colonization, Land Distribution & Centuriation",
+        "scope_description": "Roman and Latin colonies as instruments of territorial control; the ager publicus and Gracchan land reforms; centuriation as a geographic imprint on the landscape; veteran settlement under late-Republican commanders.",
+        "candidate_qids": [],
+        "estimated_concepts": 8,
+        "needs": "GeoNames/Pleiades IDs for colony sites, connection to demographic and social facets, Gracchan reform link"
+      },
+      {
+        "scope_key": "roman_roads_infrastructure",
+        "scope_label": "Roman Roads & Communication Infrastructure",
+        "scope_description": "The Republican road network (Via Appia, Via Flaminia, Via Aurelia, Via Aemilia, etc.) as geographic and military connective tissue; milestones, itineraries, and the spatial logic of road construction for military and commercial purposes.",
+        "candidate_qids": [],
+        "estimated_concepts": 7,
+        "needs": "Pleiades road IDs, Peutinger Table as primary source, link to military and economic facets"
+      },
+      {
+        "scope_key": "roman_territorial_expansion",
+        "scope_label": "Territorial Expansion & Conquest Geography",
+        "scope_description": "The spatial trajectory of Roman conquest: Latium and central Italy (5th–4th c. BC), the Italian unification (343–264 BC), the Punic War theaters (Sicily, North Africa, Spain, Greece), the Hellenistic East (Asia Minor, Syria), and Gallic conquest (58–50 BC). Includes battle-site geography and frontier dynamics.",
+        "candidate_qids": [
+          "Q48",
+          "Q15",
+          "Q46",
+          "Q210718"
+        ],
+        "estimated_concepts": 10,
+        "needs": "Battle-site Pleiades IDs, temporal staging of expansion, center-periphery pattern tagging"
+      },
+      {
+        "scope_key": "roman_geographic_knowledge",
+        "scope_label": "Roman Geographic Knowledge & Cartography",
+        "scope_description": "Roman perceptions and representations of space: the writings of Strabo, Polybius, Pliny, and Pomponius Mela; the Tabula Peutingeriana; itineraries; the concept of the oikoumene; and the role of geography in imperial ideology.",
+        "candidate_qids": [],
+        "estimated_concepts": 7,
+        "needs": "Perseus/Internet Archive primary source links, Pleiades integration, intellectual facet cross-link"
+      }
+    ],
+    "manageable_as_single": true
+  },
+  "key_works": [
+    {
+      "work_id": "ia:KiepertManualAG",
+      "relevance": "high",
+      "facet_contribution": "Kiepert's Manual of Ancient Geography (1881) provides the foundational cartographic and regional framework for Republican Italy and the Mediterranean provinces, mapping rivers, mountains, roads, and administrative regions essential to the geographic facet."
+    },
+    {
+      "work_id": "ia:RRAM01Magie1950",
+      "relevance": "high",
+      "facet_contribution": "Magie's Roman Rule in Asia Minor documents the provincial geography of Rome's eastern expansion, covering the establishment of the province of Asia (133 BC) and subsequent Anatolian territorial control."
+    },
+    {
+      "work_id": "domain_src:0c28ac5a351a",
+      "relevance": "high",
+      "facet_contribution": "The Wikipedia Roman Province article enumerates all Republican provinces with dates of creation, governors, and geographic scope, providing the canonical list of territorial units for this facet."
+    },
+    {
+      "work_id": "domain_src:58419a40c9eb",
+      "relevance": "high",
+      "facet_contribution": "Roman Italy article covers the geographic and administrative divisions of the peninsula during the Republic, including the Augustan reorganization that reflects earlier Republican territorial logic."
+    },
+    {
+      "work_id": "domain_src:e8931e1c6a9a",
+      "relevance": "high",
+      "facet_contribution": "Pleiades gazetteer provides stable, citable URI-based place identifiers for every named location in the Republican world, forming the geographic backbone for any knowledge graph of this period."
+    },
+    {
+      "work_id": "openalex:W2737069758",
+      "relevance": "high",
+      "facet_contribution": "Steel's End of the Roman Republic (146–44 BC) traces the geographic scope of late-Republican imperialism, noting that the destruction of Carthage created the province of Africa while Roman control extended from Iberia to Anatolia."
+    },
+    {
+      "work_id": "ia:broughton-magistrates-roman-republic",
+      "relevance": "medium",
+      "facet_contribution": "Broughton's Magistrates of the Roman Republic records provincial assignments year by year, enabling temporal-geographic mapping of who governed which territory and when."
+    },
+    {
+      "work_id": "openalex:W652148073",
+      "relevance": "medium",
+      "facet_contribution": "De Neeve's study of farm tenancy in Republican Italy illuminates the geographic distribution of agricultural land-use patterns across different Italian regions under Republican control."
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q182547",
+      "label": "Roman Provincial System as Geographic-Administrative Framework",
+      "confidence": 0.92,
+      "evidence": "Domain source domain_src:0c28ac5a351a enumerates Republican provinces from Sicily (241 BC) through the late Republic; Wikidata query confirms QIDs for Sicilia (Q691321), Corsica and Sardinia (Q281345), Hispania Citerior (Q1126678), Hispania Ulterior (Q747040), Africa (Q181238), Macedonia (Q207497), Asia (Q210718), Gallia Narbonensis (Q26897), Bithynia et Pontus (Q913382), Achaea (Q204772). Steel (openalex:W2737069758) confirms the 146 BC terminus as critical geographic watershed.",
+      "target_facet": null,
+      "reasoning": "The Republican provincial system is the primary geographic-administrative unit of the Republic outside Italy and must be represented as a cluster of SubjectConcepts anchored to Wikidata QIDs and Pleiades IDs.",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.2,
+        "demographic": 0.1,
+        "diplomatic": 0.2,
+        "economic": 0.3,
+        "environmental": 0.0,
+        "geographic": 0.9,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.3,
+        "political": 0.5,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.1,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q217599",
+      "label": "Roman Colonization as Geographic Instrument of Territorial Control",
+      "confidence": 0.88,
+      "evidence": "Wikipedia Colonia article confirms two-tier system (Roman maritime colonies ~300 settlers; Latin colonies with large land grants up to 35 ha). Centuriation article shows colonies in Po Valley from Ariminum (268 BC) onward imposed a geometric grid on the landscape. De Neeve (openalex:W652148073) documents farm tenancy patterns rooted in colonial land allocations.",
+      "target_facet": null,
+      "reasoning": "Colonization is one of the most geographically transformative processes of the Republic, reshaping landscapes from Latium to Cisalpine Gaul and leaving lasting imprints studied via centuriation, landscape archaeology, and Pleiades.",
+      "facet_weights": {
+        "archaeological": 0.3,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.3,
+        "demographic": 0.4,
+        "diplomatic": 0.1,
+        "economic": 0.3,
+        "environmental": 0.2,
+        "geographic": 0.9,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.3,
+        "political": 0.4,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.4,
+        "technological": 0.1
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q210718",
+      "label": "Province of Asia — Geographic-Economic Node",
+      "confidence": 0.87,
+      "evidence": "Magie (ia:RRAM01Magie1950) demonstrates that the province of Asia (established 129 BC after Attalid bequest) was the wealthiest Roman province, generating tribute income that reshaped the Republican economy. Steel (openalex:W2737069758) notes Asia as central to late-Republican political conflicts over tax-farming contracts (publicani). Wikidata confirms Q210718 with LCSH n86104083.",
+      "target_facet": "economic",
+      "reasoning": "The geographic location of Asia as Rome's easternmost Mediterranean territory directly drove economic extraction patterns and political conflicts over publicani contracts, making it a critical cross-facet node.",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.2,
+        "demographic": 0.1,
+        "diplomatic": 0.3,
+        "economic": 0.7,
+        "environmental": 0.0,
+        "geographic": 0.9,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.2,
+        "political": 0.5,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.1,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q134737",
+      "label": "Roman Road Network as Geographic Infrastructure",
+      "confidence": 0.85,
+      "evidence": "Wikipedia Roman roads article documents the Republican road system (Via Appia from 312 BC; Via Flaminia 220 BC; Via Aemilia 187 BC), their military origin and commercial function, with the Peutinger Table as primary cartographic source. Kiepert (ia:KiepertManualAG) maps the road network in relation to Republican territory.",
+      "target_facet": null,
+      "reasoning": "Roads were the spatial skeleton of Roman territorial control and should be represented as a geographic SubjectConcept linked via Pleiades IDs to specific routes and milestones.",
+      "facet_weights": {
+        "archaeological": 0.3,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.4,
+        "cultural": 0.1,
+        "demographic": 0.1,
+        "diplomatic": 0.1,
+        "economic": 0.4,
+        "environmental": 0.1,
+        "geographic": 0.9,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.5,
+        "political": 0.2,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.1,
+        "technological": 0.5
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q220",
+      "label": "Rome as Urban Geographic Center of the Republic",
+      "confidence": 0.93,
+      "evidence": "Roman Italy article (domain_src:58419a40c9eb) confirms Rome as capital with estimated 1 million inhabitants by AD 1; Republican period geography flows outward from the city. World History Encyclopedia overview (domain_src:d02b19663930) frames the entire Republic geographically around Rome as the center from which expansion radiated. Hin (openalex:W4233924132) uses demographic-geographic modeling anchored on Rome.",
+      "target_facet": "demographic",
+      "reasoning": "Rome (Q220) functions as the primary geographic anchor node for the entire Republican knowledge graph, linking urban topography to demographic, political, and military facets.",
+      "facet_weights": {
+        "archaeological": 0.4,
+        "artistic": 0.2,
+        "biographic": 0.1,
+        "communication": 0.2,
+        "cultural": 0.3,
+        "demographic": 0.6,
+        "diplomatic": 0.2,
+        "economic": 0.3,
+        "environmental": 0.1,
+        "geographic": 0.95,
+        "intellectual": 0.1,
+        "linguistic": 0.1,
+        "military": 0.2,
+        "political": 0.5,
+        "religious": 0.3,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.2
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q9435",
+      "label": "Pleiades Gazetteer as Digital Geographic Authority for Republican Places",
+      "confidence": 0.9,
+      "evidence": "Domain source domain_src:e8931e1c6a9a confirms Pleiades as the canonical open-access gazetteer for ancient places with stable URIs used by classicists and digital humanists. The graph already contains thousands of Place nodes with pleiades_id attributes (confirmed by query_graph). Federation source confirms GeoNames (P1566) and Pleiades (P1584) as active PIDs.",
+      "target_facet": null,
+      "reasoning": "Pleiades serves as the geographic backbone authority and all place-based SubjectConcepts in this facet should be linked to Pleiades IDs; this insight flags the infrastructure dependency that shapes geographic coverage.",
+      "facet_weights": {
+        "archaeological": 0.2,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.0,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.95,
+        "intellectual": 0.3,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.0,
+        "religious": 0.0,
+        "scientific": 0.2,
+        "social": 0.0,
+        "technological": 0.3
+      },
+      "pattern_tags": [],
+      "role": "evaluative"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q48",
+      "label": "Asia (continent)",
+      "verdict": "reroute",
+      "reroute_to": "geographic",
+      "evidence": "Q48 is the modern continent of Asia, too broad for a Republican concept; the correct entity is Q210718 (Roman province of Asia). The candidate scored high due to geographic region matching but is the wrong granularity for the graph."
+    },
+    {
+      "qid": "Q15",
+      "label": "Africa (continent)",
+      "verdict": "reroute",
+      "reroute_to": "geographic",
+      "evidence": "Q15 is the modern continent; the relevant Republican entity is Q181238 (Roman province of Africa, established 146 BC). Should be replaced by Q181238 in the geographic sub-scope for provinces."
+    },
+    {
+      "qid": "Q46",
+      "label": "Europe (continent)",
+      "verdict": "reroute",
+      "reroute_to": "geographic",
+      "evidence": "Q46 is too broad; relevant Republican sub-entities include Hispania (Q747040, Q1126678), Macedonia (Q207497), and Gallia Narbonensis (Q26897). Europe as continent is not a meaningful SubjectConcept for the Republican geographic facet."
+    },
+    {
+      "qid": "Q220",
+      "label": "Rome",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Rome (Q220) is the primary geographic anchor of the Roman Republic. Confirmed by all seed corpus sources. LCSH n79018704 available. Should be the root geographic node."
+    },
+    {
+      "qid": "Q210718",
+      "label": "Province of Asia (Roman)",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Q210718 confirmed as the correct QID for the Roman province of Asia established 129 BC. LCSH n86104083. Magie (ia:RRAM01Magie1950) is the definitive scholarly source. High geographic and economic relevance."
+    },
+    {
+      "qid": "Q3024240",
+      "label": "historical country",
+      "verdict": "reject",
+      "reroute_to": null,
+      "evidence": "This is an abstract Wikidata class, not a substantive geographic concept for the Republican facet. No specific geographic content."
+    },
+    {
+      "qid": "Q1747689",
+      "label": "Ancient Rome",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Q1747689 as historical country with geographic extent is a valid higher-level geographic anchor linking Republican territory across all periods. Confirmed by seed corpus."
+    },
+    {
+      "qid": "Q23725",
+      "label": "Byzantium",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Byzantium (Q23725) is a relevant geographic node as a Greek city that Rome encountered during eastern expansion; Pleiades ID confirmed. Secondary role as a port and strategic location in the Republican eastern theater."
+    },
+    {
+      "qid": "Q48349",
+      "label": "empire",
+      "verdict": "reject",
+      "reroute_to": null,
+      "evidence": "Abstract political concept, not a geographic entity. Too broad and category-level for SubjectConcept creation."
+    },
+    {
+      "qid": "Q26897",
+      "label": "Gallia Narbonensis",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Gallia Narbonensis (Q26897) was the first Roman province in Gaul (c. 121 BC), geographically confirmed by Wikidata. Critical for the geographic sub-scope of Republican provinces."
+    },
+    {
+      "qid": "Q691321",
+      "label": "Sicilia (Roman province)",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Sicily was Rome's first overseas province (241 BC after First Punic War). Q691321 confirmed by Wikidata. Essential geographic anchor for the Republican provincial sub-scope."
+    },
+    {
+      "qid": "Q2022780",
+      "label": "Suci (tribe)",
+      "verdict": "reject",
+      "reroute_to": null,
+      "evidence": "Minor Iberian tribe of limited geographic significance at the SubjectConcept level. Relevant only as a very granular ethnographic detail within the Hispania sub-scope, not a standalone concept."
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "oapen:20.500.12657/87157",
+      "title": "Roman Urbanism in Italy",
+      "authors": "Various",
+      "year": 2024,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/87157",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Covers urban geography and city development across Republican and Imperial Italy, directly relevant to the geographic sub-scope of Roman Italy."
+    },
+    {
+      "work_id": "oapen:20.500.12657/100042",
+      "title": "The Changing Landscapes of Rome's Northern Hinterland",
+      "authors": "Patterson, Helen",
+      "year": 2020,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/100042",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Archaeological and geographic study of Rome's northern hinterland, providing landscape-level evidence for Republican-era territorial geography and land use in central Italy."
+    },
+    {
+      "work_id": "oapen:20.500.12657/34558",
+      "title": "Regional Pathways to Complexity",
+      "authors": "Attema, Peter",
+      "year": 2010,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/34558",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Regional archaeological study relevant to the geographic complexity of pre-Roman and Republican Italy, including settlement patterns and territorial organization."
+    },
+    {
+      "work_id": "oapen:20.500.12657/34581",
+      "title": "Cult Places and Cultural Change in Republican Italy",
+      "authors": "Stek, Tesse",
+      "year": 2009,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/34581",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Examines the geographic distribution of cult places in Republican Italy as indicators of territorial integration and cultural Romanization, providing geographic-religious cross-facet evidence."
+    },
+    {
+      "work_id": "oapen:20.500.12657/88168",
+      "title": "Materialising the Roman Empire",
+      "authors": "Various",
+      "year": 2024,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/88168",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Material culture study with geographic dimensions covering provincial landscapes, helping map the spatial extent of Roman material influence during and after the Republican period."
+    },
+    {
+      "work_id": "ia:RRAM02Magie1950",
+      "title": "Roman Rule in Asia Minor vol. 2",
+      "authors": "David Magie",
+      "year": 1950,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/RRAM02Magie1950",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Notes and appendices including lists of Roman provincial governors and geographic boundaries of Anatolian provinces, essential for mapping the eastern Republican provincial system."
+    },
+    {
+      "work_id": "oapen:20.500.12657/103789",
+      "title": "Augustus and the Provincial Landscapes",
+      "authors": "España-Chamorro, Sergio",
+      "year": 2025,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/103789",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Analyzes provincial landscapes under Augustus, providing geographic context that bridges the late Republican provincial system and the Principate reorganization."
+    },
+    {
+      "work_id": "domain_src:83f5bf750a0b",
+      "title": "Geography of Italy (Wikipedia)",
+      "authors": "",
+      "year": 2024,
+      "source": "internet_archive",
+      "source_url": "https://en.wikipedia.org/wiki/Geography_of_Italy",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Provides physical geographic baseline for the Italian peninsula including the Apennine spine, Po Valley, river systems, and coastal geography that shaped Republican expansion and settlement."
+    }
+  ],
+  "corpus_gaps": [
+    "No dedicated open-access scholarly work on Republican-era centuriation and land survey geography was retrievable; OAPEN and OpenAlex returned no direct hits.",
+    "The geographic knowledge and cartography sub-scope (Strabo, Pomponius Mela, Tabula Peutingeriana) is underrepresented in the seed corpus relative to its scholarly importance.",
+    "Specific provincial studies for Hispania, Macedonia, and Africa during the Republican period are absent from the corpus despite being active areas of scholarship.",
+    "The Gallic War geographic theater (Caesar's campaigns 58–50 BC) lacks a dedicated geographic study in the corpus.",
+    "Digital gazetteer integration between Pleiades place data and the Chrystallum graph's existing Place nodes is not yet documented."
+  ],
+  "facet_confidence": 0.84,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "OVERGENERALIZATION",
+        "status": "checked",
+        "applies_to": "Roman Provincial System as Geographic-Administrative Framework",
+        "note": "The claim that provinces were universally administered by former consuls or praetors was flagged as potentially over-general; the Wikipedia source itself notes 'better source needed' and the system varied by period. The insight was kept descriptive rather than universal."
+      },
+      {
+        "fallacy_id": "MONOCAUSAL_EXPLANATION",
+        "status": "checked",
+        "applies_to": "Province of Asia — Geographic-Economic Node",
+        "note": "The claim that Asia's geographic location drove economic extraction was checked for monocausality; the insight retains both geographic and political factors (publicani, Senate policy) as co-causes rather than reducing to geography alone."
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "OpenAlex and Internet Archive searches returned few results for specific Republican geographic queries; this likely reflects indexing gaps for classical geography rather than absence of scholarship. Key works (Kiepert, Magie) were in the seed corpus, confirming that pre-1928 geographic scholarship is better represented in Internet Archive than in OpenAlex."
+      },
+      {
+        "principle_id": "PLATFORM_DEPENDENCE_TRANSPARENCY",
+        "status": "applied",
+        "note": "OAPEN returned a strong set of relevant OA books but 403 errors prevented fetching full content from several; content judgments for those titles rely on title/abstract metadata only. Pleiades is identified as a critical geographic platform whose API availability directly shapes the geographic facet's data completeness."
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CENTER_PERIPHERY_EXTRACTION",
+        "pattern_label": "Center-Periphery Extraction",
+        "status": "existing",
+        "candidate_qids": [
+          "Q210718"
+        ],
+        "mechanisms": [
+          "M_ESCALATION"
+        ],
+        "evidence": "Magie (ia:RRAM01Magie1950) and Steel (openalex:W2737069758) both document systematic extraction of tax revenues and resources from provinces (Asia, Africa, Sicily) to Rome, matching the center-periphery extraction pattern.",
+        "confidence": 0.88
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Topography & Urban Space",
+      "Roman Economy, Finance & Trade",
+      "Roman Army & Military Campaigns",
+      "Roman Diplomacy & Foreign Relations",
+      "Roman Society — Classes, Slavery & Family"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "The Republic's conventional dates (509–27 BC) encompass the full temporal range of this geographic facet, from the city-state's earliest territorial organization to the eve of Augustus."
+      },
+      {
+        "year_start": -241,
+        "year_end": -27,
+        "label": "Republican provincial system",
+        "evidence": "The first overseas province (Sicily, 241 BC after First Punic War) marks the start of the provincial geographic system; confirmed by domain_src:0c28ac5a351a."
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Rome is the geographic center from which all Republican territorial expansion radiated; confirmed as primary anchor by all seed corpus sources."
+      },
+      {
+        "place_label": "Italy",
+        "place_qid": "Q38",
+        "role": "primary",
+        "evidence": "The Italian peninsula is the core territorial base of the Republic; confirmed by domain_src:58419a40c9eb and the Geography of Italy Wikipedia article."
+      },
+      {
+        "place_label": "Province of Asia",
+        "place_qid": "Q210718",
+        "role": "secondary",
+        "evidence": "Rome's wealthiest and most strategically important eastern province, established 129 BC; documented by Magie (ia:RRAM01Magie1950) as central to Republican eastern geography."
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The Roman Republic's first overseas province, Sicily (241 BC), established the geographic template for all subsequent Republican provincial administration: a separate territory outside Italy governed by a magistrate with imperium, subject to Roman taxation and law.",
+        "subject_concepts": [
+          "Roman Topography & Urban Space",
+          "Roman Economy, Finance & Trade"
+        ],
+        "facet_weights": {
+          "archaeological": 0.1,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.1,
+          "cultural": 0.2,
+          "demographic": 0.1,
+          "diplomatic": 0.2,
+          "economic": 0.4,
+          "environmental": 0.0,
+          "geographic": 0.9,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.3,
+          "political": 0.5,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.1,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_EXTRACTION"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "domain_src:0c28ac5a351a",
+          "openalex:W2737069758"
+        ],
+        "confidence": 0.9
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman colonization of Italy used two geographic instruments: small maritime colonies of ~300 citizens near coastlines for military garrison purposes, and larger Latin colonies with estates up to 35 hectares in the interior, which imposed Roman centuriation grids on conquered landscapes from the 4th century BC onward.",
+        "subject_concepts": [
+          "Roman Society — Classes, Slavery & Family",
+          "Roman Army & Military Campaigns"
+        ],
+        "facet_weights": {
+          "archaeological": 0.3,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.1,
+          "cultural": 0.3,
+          "demographic": 0.4,
+          "diplomatic": 0.1,
+          "economic": 0.3,
+          "environmental": 0.2,
+          "geographic": 0.9,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.3,
+          "political": 0.4,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.4,
+          "technological": 0.2
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_EXTRACTION"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "domain_src:58419a40c9eb",
+          "openalex:W652148073"
+        ],
+        "confidence": 0.87
+      },
+      "edge": null
+    },
+    {
+      "op_type": "ADJUST_EDGE",
+      "claim": null,
+      "edge": {
+        "from_label": "Roman Topography & Urban Space",
+        "to_label": "Roman Economy, Finance & Trade",
+        "relation_type": "RELATED_TO",
+        "weight_delta": 0.15,
+        "justification": "The geographic distribution of provinces (especially Asia and Africa) is directly causally linked to the economic structure of the late Republic through publicani tax-farming; Magie and Steel both demonstrate this cross-facet relationship warranting a stronger edge."
+      }
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-6",
+    "turns": 24,
+    "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_province",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman province - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Republic",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/concept/province/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/concept/province/\"}"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS 'Roman' OR sc.label CONTAINS 'province' OR sc.label CONTAINS 'Italy' OR sc.label CONTAINS 'geographic' RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 30"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc_diplomacy\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc.wikida"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/concept/provinciae/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/concept/provinciae/\"}"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (p:Place) RETURN p.label, p.wikidata_qid, p.pleiades_id LIMIT 30"
+        },
+        "output_preview": "[{\"p.label\": \"\\\"Basilica\\\" of San Vitale\", \"p.wikidata_qid\": null, \"p.pleiades_id\": \"73180225\"}, {\"p.label\": \"\\\"Ponte Sanguinario\\\" at Spoletium\", \"p.wikidata_qid\": null, \"p.pleiades_id\": \"91511819\"},"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_expansion_in_Italy",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman expansion in Italy - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lea"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel ?lcsh WHERE { ?item wdt:P31 wd:Q182547 . ?item wdt:P17 wd:Q2277 . OPTIONAL { ?item wdt:P244 ?lcsh . } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 30"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q5412023\", \"itemLabel\": \"Europa\"}, {\"item\": \"http://www.wikidata.org/entity/Q6645669\", \"itemLabel\": \"Pannonia Prima\"}, {\"item\": \"http://www.wikidata.org/entit"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican provinces geography territorial expansion",
+          "source": "oapen",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/103789\", \"title\": \"Chapter Introduction Augustus and the Provincial Landscapes\", \"authors\": \"España-Chamorro, Sergio\", \"year\": \"2025\", \"source_url\": \"https://library.o"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?lcsh WHERE { VALUES ?item { wd:Q2277 wd:Q182547 wd:Q211741 wd:Q220161 wd:Q206907 wd:Q220 wd:Q38 wd:Q48 wd:Q15 wd:Q46 wd:Q210718 wd:Q39364 wd:Q41055 wd:Q622442 wd:Q153510 wd:Q41421 wd:Q579263 wd:Q854290 wd:Q207784 wd:Q179179 } OPTIONAL { ?item wdt:P244 ?lcsh . } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } }"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q622442\", \"itemLabel\": \"Q622442\"}, {\"item\": \"http://www.wikidata.org/entity/Q854290\", \"itemLabel\": \"Q854290\"}, {\"item\": \"http://www.wikidata.org/entity/Q17917"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic territorial expansion colonization Italy provinces",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman colonization Latin colony geography Italy Republic",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman province administration governor Republic territory",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:connection-of-the-old-and-new-testaments-vol1\", \"title\": \"Connection Of The Old And New Testaments vol 1\", \"authors\": \"HUMPHREY PRIDEAUX, D.D.\", \"year\": \"1858\", \"downloads\": 154, \"sou"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_province#Republican_period",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman province - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "ancient Roman geography roads cities map Italy Republic",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Kiepert ancient geography Rome Italy",
+          "source": "internet_archive",
+          "limit": 5
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_roads",
+          "max_chars": 3000
+        },
+        "output_preview": "Roman roads - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Co"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_colonization",
+          "max_chars": 4000
+        },
+        "output_preview": "Romanization (cultural) - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lear"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?qid WHERE { VALUES ?item { wd:Q182547 wd:Q2277 wd:Q17167 wd:Q183429 wd:Q206906 wd:Q855697 wd:Q192848 wd:Q154016 wd:Q165044 wd:Q220 wd:Q38 wd:Q48 wd:Q15 wd:Q46 wd:Q210718 wd:Q170184 wd:Q34820 wd:Q1028181 } BIND(?item AS ?qid) SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 30"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q1028181\", \"qid\": \"http://www.wikidata.org/entity/Q1028181\", \"itemLabel\": \"painter\"}, {\"item\": \"http://www.wikidata.org/entity/Q183429\", \"qid\": \"http://www.wi"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { ?item wdt:P31 wd:Q182547 . ?item wdt:P571 ?inception . FILTER(?inception < \"0000-01-01T00:00:00Z\"^^xsd:dateTime) SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 30"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q6088742\", \"itemLabel\": \"Transduriana\"}, {\"item\": \"http://www.wikidata.org/entity/Q26897\", \"itemLabel\": \"Gallia Narbonensis\"}, {\"item\": \"http://www.wikidata.o"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Republic#Cities,_towns_and_villas",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/KiepertManualAG",
+          "max_chars": 3000
+        },
+        "output_preview": "A Manual of Ancient Geography : Heinrich Kiepert : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Keep the news in the Wayback Machine. Sign Fight for the Future's letter"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican colonies Latin allies Italy geography",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic Mediterranean expansion Spain Gaul province geography",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Italy",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Italy - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Co"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Province/",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Province (Disambiguation) - World History Encyclopedia --> Facebook Membership No ads &#x276F; History AI Encyclopedia Index Timeline Maps Our Books Book Reviews Translations Magazine Education "
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh WHERE { ?work wdt:P921 wd:Q17167 . ?work wdt:P31 wd:Q571 . OPTIONAL { ?work wdt:P244 ?lcsh . } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 20"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q122861593\", \"workLabel\": \"Carsten Hjort Lange: From Hannibal to Sulla: The Birth of Civil War in Republican Rome. Berlin: De Gruyter 2024\"}]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Expansion/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://www.worldhistory.org/search/?q=roman+expansion\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican Sicily Sardinia province governors territorial control",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_conquest_of_the_Iberian_Peninsula",
+          "max_chars": 3000
+        },
+        "output_preview": "Roman conquest of the Iberian Peninsula - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Cont"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman provincial administration Republic Senate proconsul governor",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Republic#Punic_Wars_and_expansion_in_the_Mediterranean",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D12"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Detects when a SubjectConcept node is overloaded (too many children at level 2, or cross-link ratio indicates mixed semantics) and should be split into more specific concept"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_geography",
+          "max_chars": 4000
+        },
+        "output_preview": "History of geography - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn t"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Polybius geography Rome Mediterranean empire expansion",
+          "source": "openalex",
+          "limit": 8
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_cartography",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Roman_cartography\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman land division centuriation survey ager publicus",
+          "source": "openalex",
+          "limit": 8
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_centuriation",
+          "max_chars": 3000
+        },
+        "output_preview": "Centuriation - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit C"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican ager publicus land Italy colonization geographic",
+          "source": "oapen",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/62575\", \"title\": \"Romans at War\", \"authors\": \"\", \"year\": \"2020\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/62575\", \"is_oa\": true}, {\"work_id\": \"oape"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/87157",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://library.oapen.org/handle/20.500.12657/87157\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/100042",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://library.oapen.org/handle/20.500.12657/100042\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/34581",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://library.oapen.org/handle/20.500.12657/34581\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "ancient Rome Republican geography Strabo Pliny physical landscape rivers",
+          "source": "internet_archive",
+          "limit": 8
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_colonies",
+          "max_chars": 4000
+        },
+        "output_preview": "Colonia (Roman) - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edi"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { VALUES ?item { wd:Q9158 wd:Q207497 wd:Q691321 wd:Q26897 wd:Q747040 wd:Q1126678 wd:Q181238 wd:Q281345 wd:Q210718 wd:Q913382 wd:Q1249412 wd:Q1028181 wd:Q204772 wd:Q207118 wd:Q617533 wd:Q215536 wd:Q221656 wd:Q154916 wd:Q9435 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } }"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q9158\", \"itemLabel\": \"email\"}, {\"item\": \"http://www.wikidata.org/entity/Q207497\", \"itemLabel\": \"Macedonia\"}, {\"item\": \"http://www.wikidata.org/entity/Q691321\""
+      }
+    ],
+    "usage": {
+      "input_tokens": 799859,
+      "output_tokens": 13716
+    },
+    "raw_response_length": 0,
+    "json_continuations": 0,
+    "compact_synthesis_retry": true
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 27,
+    "rejected": [
+      {
+        "qid": "Q38",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_italy_geography"
+      },
+      {
+        "qid": "Q183429",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_italy_geography"
+      },
+      {
+        "qid": "Q182547",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q691321",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q281345",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q747040",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q1126678",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q181238",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q207497",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q26897",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q913382",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q204772",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q207118",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_provinces_republican"
+      },
+      {
+        "qid": "Q217599",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_colonization_land"
+      },
+      {
+        "qid": "Q2113624",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_colonization_land"
+      },
+      {
+        "qid": "Q1137233",
+        "reason": "missing_label",
+        "context": "sub_scope:roman_colonization_land"
+      },
+      {
+        "qid": "Q134737",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_roads_infrastructure"
+      },
+      {
+        "qid": "Q386839",
+        "reason": "blocked_instance_type:Q4167410",
+        "context": "sub_scope:roman_roads_infrastructure"
+      },
+      {
+        "qid": "Q850521",
+        "reason": "missing_label",
+        "context": "sub_scope:roman_roads_infrastructure"
+      },
+      {
+        "qid": "Q23725",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_territorial_expansion"
+      },
+      {
+        "qid": "Q220161",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_territorial_expansion"
+      },
+      {
+        "qid": "Q130874",
+        "reason": "missing_label",
+        "context": "sub_scope:roman_geographic_knowledge"
+      },
+      {
+        "qid": "Q82778",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_geographic_knowledge"
+      },
+      {
+        "qid": "Q82828",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:roman_geographic_knowledge"
+      },
+      {
+        "qid": "Q181238",
+        "reason": "not_seed_connected",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q691321",
+        "reason": "not_seed_connected",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q207497",
+        "reason": "not_seed_connected",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

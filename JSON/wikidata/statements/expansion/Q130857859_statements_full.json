@@ -1,0 +1,112 @@
+{
+  "qid": "Q130857859",
+  "label": "Battle of Delos",
+  "description": "88 BCE battle of the First Mithridatic War",
+  "statement_count": 6,
+  "property_count": 5,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q130857859$0ac373a1-4eb1-7985-a9af-3e8094f7c93c",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q130857859$49de82ad-4913-ea5d-f640-499e85ca4736",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1647768"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q130857859$4e64d816-4b25-2821-54a2-5e2abdc1f439",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0088-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q130857859$4987003d-401c-ad88-0e5f-7e8ef5ec9207",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q173148"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q130857859$8673b7eb-4af1-a121-1a43-3a82c759c6fb",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q844930"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q9158420"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q130857859$fa2a3153-4d35-d2c1-c25c-56e9457f8716",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        }
+      }
+    ]
+  }
+}

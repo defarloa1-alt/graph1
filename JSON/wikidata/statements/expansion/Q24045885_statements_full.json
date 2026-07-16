@@ -1,0 +1,126 @@
+{
+  "qid": "Q24045885",
+  "label": "Battle of Petilia",
+  "description": "71 BCE battle",
+  "statement_count": 7,
+  "property_count": 6,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q24045885$ed939d83-410f-7fa8-169f-dbfc46f3f85b",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q24045885$f42885b9-4cc0-8d7d-d36c-882fde10093b",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q194378"
+        }
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q24045885$425E77C0-3B2D-4124-9CAF-806301599A17",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/11bxfw_vfq"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q24045885$5f18c56a-46ee-c4f1-1f6c-2b8ccb6027bc",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0071-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q24045885$50dcca1b-4005-402f-fde5-5ad8e8178f1d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1458"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q24045885$6ef6c7fa-46c7-1a63-0b10-0d4debb19d34",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        }
+      },
+      {
+        "statement_id": "Q24045885$95443ab5-4582-ab9b-19ef-7473bca4b3e6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q12773225"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q83406"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ]
+  }
+}

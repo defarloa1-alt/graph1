@@ -26,12 +26,12 @@ const STATS = {
   subject: {
     domains: 1,
     ccs_bootstrap: 15,
-    geo_bootstrap: 7,
-    total_scs: 22,
+    geo_bootstrap: 4,
+    total_scs: 19,
     lcc_anchor_edges: 52,
-    facet_edges: 62,
-    total_member_of: 58091,
-    status: "scaffold — DI batch_train pending",
+    facet_edges: 50,
+    total_member_of: 17820,
+    status: "scaffold — DI batch_train pending (3 invalid geo_bootstrap deleted)",
   },
   temporal: {
     period_nodes: 1,        // Q17167 Roman Republic (-509 to -27)
@@ -85,7 +85,7 @@ const CCS_RULES = [
   { id:"CCS-1", name:"Authority tether", desc:"≥1 external authority ID: QID, LCSH (sh…), FAST (fst…), LCC code, or domain-specific (Nomisma, PACTOLS, EAGLE, Pleiades, BnF)", pass:"All 22 SCs", fail:"0" },
   { id:"CCS-2", name:"Multidimensional", desc:"≥2 HAS_FACET edges with {weight: float, is_primary: bool}", pass:"All 22 SCs", fail:"0 (GEO_GENERAL fixed: +CULTURAL)" },
   { id:"CCS-3", name:"Populatable", desc:"≥1 SYS_FederationSource can supply MEMBER_OF members for this SC", pass:"15 thematic + 7 geo", fail:"0 (Pleiades covers geo; DPRR covers thematic)" },
-  { id:"CCS-4", name:"Topic-grounded", desc:"Named historical/scholarly topic, NOT an entity type. 'Roman Army' valid. 'Military Figures' not.", pass:"All 22 SCs", fail:"7 bio_bootstrap deleted" },
+  { id:"CCS-4", name:"Topic-grounded", desc:"Named historical/scholarly topic, NOT an entity type. 'Roman Army' valid. 'Military Figures' not.", pass:"All 19 SCs", fail:"7 bio_bootstrap + 3 geo_bootstrap deleted (Settlements, Historical Places, General Geographic — Pleiades feature-type buckets)" },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -117,7 +117,7 @@ const BLOCKS = [
     name: "SubjectConcept",
     color: C.subject,
     backbone: "Subject",
-    count: "22 (15 ccs_bootstrap + 7 geo_bootstrap)",
+    count: "19 (15 ccs_bootstrap + 4 geo_bootstrap)",
     desc: "CCS-valid thematic anchor. Aggregates cross-class LCC scatter into one addressable node with a weighted 18-dimensional facet vector.",
     attributes: [
       { name:"subject_id",    type:"String",  mult:"1",    example:"sc_constitution" },
@@ -212,9 +212,10 @@ const BLOCKS = [
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SUBJECT CONCEPT GALLERY — all 22 SCs
+// SUBJECT CONCEPT GALLERY — 19 SCs (post-script-18l cleanup 2026-03-09)
 // timed_pct: % of MEMBER_OF edges that carry earliest_year (live 2026-03-09)
 // timed_note: explanation when not 100%
+// DELETED (invalid geo_bootstrap): Settlements & Urban Places, Historical Places & Archaeological Sites, General Geographic Places
 // ══════════════════════════════════════════════════════════════════════════════
 const SC_GALLERY = [
   // ccs_bootstrap — thematic
@@ -233,10 +234,7 @@ const SC_GALLERY = [
   { id:"sc_material_culture",label:"Roman Material Culture, Art & Inscriptions",       primary:"ARCHAEOLOGICAL",secondary:["ARTISTIC","LINGUISTIC"],           lcc:"DG37",        source:"ccs_bootstrap", members:0,     timed_pct:null },
   { id:"sc_literature",      label:"Roman Literature, Philosophy & Intellectual Life", primary:"INTELLECTUAL",  secondary:["BIOGRAPHIC","LINGUISTIC"],         lcc:"PA6000-6971", source:"ccs_bootstrap", members:0,     timed_pct:null, cross:true },
   { id:"sc_science",         label:"Roman Science, Technology & Medicine",             primary:"SCIENTIFIC",    secondary:["INTELLECTUAL"],                   lcc:"DG135",       source:"ccs_bootstrap", members:0,     timed_pct:null },
-  // geo_bootstrap — spatial
-  { id:"GEO_SETTLEMENTS",        label:"Settlements & Urban Places",               primary:"GEOGRAPHIC",    secondary:["SOCIAL","ARCHAEOLOGICAL"],    lcc:"—", source:"geo_bootstrap", members:17521, timed_pct:93 },
-  { id:"GEO_HIST_PLACES",        label:"Historical Places & Archaeological Sites", primary:"ARCHAEOLOGICAL", secondary:["GEOGRAPHIC"],                 lcc:"—", source:"geo_bootstrap", members:11390, timed_pct:93 },
-  { id:"GEO_GENERAL",            label:"General Geographic Places",                primary:"GEOGRAPHIC",    secondary:["CULTURAL"],                   lcc:"—", source:"geo_bootstrap", members:11360, timed_pct:74,  timed_note:"26% are stubs without Pleiades min_date — flagged needs_resolution" },
+  // geo_bootstrap — spatial (4 valid; 3 deleted by script 18l as Pleiades feature-type buckets)
   { id:"GEO_PHYS_FEATURES",      label:"Physical Geography & Landforms",           primary:"GEOGRAPHIC",    secondary:["ENVIRONMENTAL"],              lcc:"—", source:"geo_bootstrap", members:2216,  timed_pct:89 },
   { id:"GEO_HYDROGRAPHY",        label:"Hydrography & Water Bodies",               primary:"GEOGRAPHIC",    secondary:["ENVIRONMENTAL"],              lcc:"—", source:"geo_bootstrap", members:2115,  timed_pct:81 },
   { id:"GEO_POLITICAL_ENTITIES", label:"States, Empires & Political Entities",     primary:"POLITICAL",     secondary:["GEOGRAPHIC","MILITARY"],      lcc:"—", source:"geo_bootstrap", members:1596,  timed_pct:89 },
@@ -427,9 +425,9 @@ function BackboneIBD() {
 
       {/* Row 2: SubjectConcepts */}
       <div style={{ display:"flex", alignItems:"center", gap:8, flexWrap:"wrap", marginBottom:12 }}>
-        {box("«block» SubjectConcept ×22", C.subject, [
+        {box("«block» SubjectConcept ×19", C.subject, [
           ["15 ccs_bootstrap (thematic)", C.subject],
-          ["7 geo_bootstrap (spatial)", C.geo],
+          ["4 geo_bootstrap (spatial)", C.geo],
           "all: ≥2 HAS_FACET edges",
           "all: ≥1 ANCHORS → LCC_Class",
           "source of truth: ADR-020",
@@ -504,8 +502,8 @@ export default function SubjectConstitution() {
         <div style={{ display:"flex", gap:20, marginTop:10, flexWrap:"wrap" }}>
           {[
             ["SubjectConcepts", STATS.subject.total_scs, C.subject],
-            ["ccs_bootstrap", STATS.subject.ccs_bootstrap, C.subject],
-            ["geo_bootstrap", STATS.subject.geo_bootstrap, C.geo],
+            ["thematic SCs", STATS.subject.ccs_bootstrap, C.subject],
+            ["geo SCs", STATS.subject.geo_bootstrap, C.geo],
             ["MEMBER_OF edges", STATS.subject.total_member_of.toLocaleString(), C.pass],
             ["HAS_FACET edges", STATS.subject.facet_edges, C.facet],
             ["LCC ANCHORS", STATS.subject.lcc_anchor_edges, C.lcc],
@@ -611,7 +609,7 @@ export default function SubjectConstitution() {
         {tab === "gallery" && (
           <div>
             <div style={{ display:"flex", gap:8, marginBottom:12, flexWrap:"wrap", alignItems:"center" }}>
-              <span style={{ color:C.dim, fontSize:12 }}>22 SubjectConcepts — ★ = primary facet | ⏱ = % of MEMBER_OF edges carrying temporal bounds</span>
+              <span style={{ color:C.dim, fontSize:12 }}>19 SubjectConcepts — ★ = primary facet | ⏱ = % of MEMBER_OF edges carrying temporal bounds</span>
             </div>
             <div style={{ display:"flex", gap:8, marginBottom:12, flexWrap:"wrap" }}>
               <span style={{ background:C.subject+"22", color:C.subject, padding:"2px 8px", borderRadius:10, fontSize:11 }}>

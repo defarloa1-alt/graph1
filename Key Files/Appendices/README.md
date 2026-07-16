@@ -2,19 +2,21 @@
 
 **Version:** 3.2 Decomposed  
 **Date:** February 19, 2026  
-**Status:** Current
+**Status:** Reference appendices — main architecture is [docs/ARCHITECTURE_CURRENT.md](../../docs/ARCHITECTURE_CURRENT.md)
 
 ---
 
 ## Overview
 
-This directory contains 26 detailed appendices from the Chrystallum Architecture Specification, organized into 6 thematic clusters for easier navigation and maintenance.
+This directory contains detailed reference appendices (ontology detail, authority integration,
+implementation patterns, ADRs). **Do not start here for system architecture.**
 
-**Main Architecture Documents:**
-- [ARCHITECTURE_CORE.md](../ARCHITECTURE_CORE.md) - Executive summary & overview
-- [ARCHITECTURE_ONTOLOGY.md](../ARCHITECTURE_ONTOLOGY.md) - Core ontology layers
-- [ARCHITECTURE_IMPLEMENTATION.md](../ARCHITECTURE_IMPLEMENTATION.md) - Technology & workflows
-- [ARCHITECTURE_GOVERNANCE.md](../ARCHITECTURE_GOVERNANCE.md) - QA & governance
+**Start here:** [docs/ARCHITECTURE_CURRENT.md](../../docs/ARCHITECTURE_CURRENT.md)  
+**Navigation hub:** [Key Files/ARCHITECTURE.md](../ARCHITECTURE.md)
+
+**Archived decomposed spec (2026-02-19):** [Archive/Key Files/Architecture_Decomposed_2026-02/](../../Archive/Key%20Files/Architecture_Decomposed_2026-02/)
+
+**ADRs (binding decisions):** [05_Architecture_Decisions/](05_Architecture_Decisions/) — especially ADR-020 (CCS)
 
 ---
 

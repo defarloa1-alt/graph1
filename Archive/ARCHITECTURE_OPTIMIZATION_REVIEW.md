@@ -1,5 +1,8 @@
 # Chrystallum: Architecture Optimization Review for External Stakeholders
 
+> **ARCHIVED — Feb 2026 stakeholder review.** Not current architecture.  
+> Use [docs/ARCHITECTURE_CURRENT.md](../docs/ARCHITECTURE_CURRENT.md) and [Key Files/ARCHITECTURE.md](../Key%20Files/ARCHITECTURE.md).
+
 **Date:** February 14, 2026  
 **Version:** Phase 1 Complete + Optimization Analysis  
 **Author:** Chrystallum Architecture Team  

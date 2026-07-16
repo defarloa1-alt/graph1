@@ -1,0 +1,627 @@
+{
+  "training_summary": "The corpus reveals Roman demographic studies focus on population estimates, census mechanisms, and the relationship between demographic trends and political/military crises. Key debates center on interpreting census figures and understanding population changes during the late Republic.",
+  "key_works": [
+    {
+      "work_id": "openalex:W4233924132",
+      "relevance": "high",
+      "facet_contribution": "Provides comprehensive multidisciplinary analysis of Italian population dynamics during the late Republic using diverse source types"
+    },
+    {
+      "work_id": "openalex:W618628938",
+      "relevance": "high",
+      "facet_contribution": "Challenges orthodox views on rural population decline, offering alternative demographic interpretations for Republican Italy"
+    },
+    {
+      "work_id": "openalex:W2315823714",
+      "relevance": "high",
+      "facet_contribution": "Examines critical questions about late-republican census procedures and the reliability of population counts"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": null,
+      "label": "Census as demographic-political nexus",
+      "confidence": 0.85,
+      "evidence": "Multiple works (Wiseman, Marco Simón) demonstrate census was both demographic tool and political ritual defining citizenship boundaries",
+      "target_facet": null,
+      "reasoning": "Census procedures were fundamental to both population measurement and political identity in the Republic",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.2,
+        "demographic": 0.8,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.3,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": null,
+      "label": "Population pressure and military recruitment",
+      "confidence": 0.8,
+      "evidence": "Brunt and de Ligt works show demographic trends directly affected military manpower availability",
+      "target_facet": "military",
+      "reasoning": "Demographic changes fundamentally shaped military capacity and recruitment patterns",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.0,
+        "demographic": 0.7,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.6,
+        "political": 0.2,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": null,
+      "label": "Demographic crisis debate",
+      "confidence": 0.75,
+      "evidence": "State Crisis Theory works and Morley studies document ongoing scholarly debate about population decline in 2nd century BCE",
+      "target_facet": null,
+      "reasoning": "Competing interpretations of demographic evidence represent core methodological challenge in the field",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.0,
+        "demographic": 0.9,
+        "diplomatic": 0.0,
+        "economic": 0.3,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.2,
+        "linguistic": 0.0,
+        "military": 0.2,
+        "political": 0.1,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.4,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "evaluative"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q2022780",
+      "label": "Suci",
+      "verdict": "reject",
+      "reroute_to": "social",
+      "evidence": "A specific Gallic tribe has limited demographic significance for Roman Republican population studies; better fits social/ethnic contexts"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "ia:demographygraeco0000unse",
+      "title": "Demography and the Graeco-Roman world : new insights and approaches",
+      "authors": "",
+      "year": 2011,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/demographygraeco0000unse",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Provides methodological frameworks for demographic analysis in classical antiquity"
+    },
+    {
+      "work_id": "openalex:W365584561",
+      "title": "Some thoughts on the nature of the demographic 'crisis' of the second century B.C",
+      "authors": "Luuk de Ligt",
+      "year": 2007,
+      "source": "openalex",
+      "source_url": "https://doi.org/10.1163/ej.9789004160507.i-448.37",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Direct analysis of demographic crisis debates in Republican period"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "The domain covers approximately 6-8 distinct sub-areas (census procedures, population estimates, migration patterns, demographic crises, rural-urban dynamics, citizenship expansion, mortality patterns, and methodological debates), well within the manageable threshold",
+    "sub_domain_count": 8,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 35,
+    "sub_scopes": [],
+    "manageable_as_single": true
+  },
+  "corpus_gaps": [
+    "Detailed analysis of specific census procedures and their reliability",
+    "Comparative demographic data from other Mediterranean societies",
+    "Regional variation in Italian population patterns",
+    "Impact of disease and mortality crises",
+    "Demographic consequences of Social War and citizenship extension"
+  ],
+  "facet_confidence": 0.8,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "QUANTITATIVE_FALLACY",
+        "status": "checked",
+        "applies_to": "demographic crisis debate insight",
+        "note": "Avoided privileging census numbers over qualitative evidence about population changes"
+      },
+      {
+        "fallacy_id": "MONOCAUSAL_EXPLANATION",
+        "status": "checked",
+        "applies_to": "population pressure insight",
+        "note": "Recognized multiple factors beyond demographics affecting military recruitment"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Acknowledged limited success in finding OA sources may not reflect actual scholarly landscape"
+      },
+      {
+        "principle_id": "SCALE_REFLEXIVITY",
+        "status": "applied",
+        "note": "Recognized small sample of accessible works limits generalizability of findings"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CENTER_PERIPHERY_EXTRACTION",
+        "pattern_label": "Center-periphery extraction",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_ESCALATION"
+        ],
+        "evidence": "Demographic crisis narrative often frames Rome extracting resources from Italian periphery leading to population decline",
+        "confidence": 0.7
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Society — Classes, Slavery & Family",
+      "Roman Economy, Finance & Trade"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "All demographic studies focus on this constitutional period ending with Augustus"
+      },
+      {
+        "year_start": -200,
+        "year_end": -100,
+        "label": "Late Republican demographic crisis period",
+        "evidence": "Multiple works identify this century as critical for population changes and debates"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Italy",
+        "place_qid": "Q38",
+        "role": "primary",
+        "evidence": "All major demographic studies focus on Italian peninsula as primary geographic scope"
+      },
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Census procedures and citizen registration centered on Rome"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman census procedures combined demographic measurement with political ritual, defining citizenship boundaries and collective identity.",
+        "subject_concepts": [
+          "Roman Society — Classes, Slavery & Family"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.0,
+          "cultural": 0.2,
+          "demographic": 0.8,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.0,
+          "political": 0.4,
+          "religious": 0.2,
+          "scientific": 0.0,
+          "social": 0.3,
+          "technological": 0.0
+        },
+        "pattern_tags": [],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W2242941032",
+          "openalex:W2315823714"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Second-century BCE demographic crisis debates reflect methodological challenges in interpreting ancient population data.",
+        "subject_concepts": [
+          "Roman Society — Classes, Slavery & Family"
+        ],
+        "facet_weights": {
+          "archaeological": 0.1,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.0,
+          "cultural": 0.0,
+          "demographic": 0.9,
+          "diplomatic": 0.0,
+          "economic": 0.2,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.3,
+          "linguistic": 0.0,
+          "military": 0.1,
+          "political": 0.1,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.2,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_EXTRACTION"
+        ],
+        "role": "evaluative",
+        "supporting_works": [
+          "openalex:W365584561",
+          "openalex:W7106243111"
+        ],
+        "confidence": 0.8
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 36,
+    "tool_calls": [
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) \nWHERE sc.label CONTAINS \"Roman\" OR sc.label CONTAINS \"demographic\" OR sc.label CONTAINS \"population\" OR sc.label CONTAINS \"census\"\nRETURN sc.label, sc.subject_id, sc.wikidata_qid\nLIMIT 10"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc_diplomacy\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc.wikida"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept)\nWHERE sc.subject_id = \"sc_society\" OR sc.subject_id = \"sc_economy\"\nRETURN sc.label, sc.subject_id, sc.concept_cipher\nLIMIT 5"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Society — Classes, Slavery & Family\", \"sc.subject_id\": \"sc_society\", \"sc.concept_cipher\": null}, {\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc."
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic population demographics census",
+          "source": "oapen",
+          "limit": 15
+        },
+        "output_preview": "{\"error\": \"OAPEN search error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic demographics population census Italy",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W2246010909\", \"title\": \"On Projecting the Distribution of Private Households by Size\", \"authors\": \"Dalkhat M. Ediev\", \"year\": 2021, \"citations\": 12, \"doi\": \"https://doi.org/10.1"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman Republic\" demographics \"ancient Rome\" population",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman population census demographics ancient",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"ancient Rome\" population Italy demography",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Saskia Hin Roman Italy population",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh ?fast WHERE {\n  ?work wdt:P921 wd:Q17167 .  # main subject: Roman Republic\n  ?work wdt:P31/wdt:P279* wd:Q732577 .  # instance of publication\n  OPTIONAL { ?work wdt:P244 ?lcsh }  # LCSH ID\n  OPTIONAL { ?work wdt:P2163 ?fast }  # FAST ID\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}\nLIMIT 20"
+        },
+        "output_preview": "{\"error\": \"Wikidata SPARQL error: HTTPSConnectionPool(host='query.wikidata.org', port=443): Read timed out. (read timeout=30)\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel WHERE {\n  ?work wdt:P921 wd:Q17167 .\n  ?work wdt:P31 wd:Q732577 .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}\nLIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1017/cbo9780511782305",
+          "max_chars": 4000
+        },
+        "output_preview": "The Demography of Roman Italy Skip to main content Accessibility help Login Alert Cancel Log in × &#215; Discover Content Products and Services Register Log In (0) Cart Logo for Cambridge Core from Ca"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Saskia Hin demography Roman",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:demographygraeco0000unse\", \"title\": \"Demography and the Graeco-Roman world : new insights and approaches\", \"authors\": \"\", \"year\": \"2011\", \"downloads\": 68, \"source_url\": \"https://archi"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/demographygraeco0000unse",
+          "max_chars": 4000
+        },
+        "output_preview": "Demography and the Graeco-Roman world : new insights and approaches : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ book"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman census\" population statistics",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"ancient demography\" Rome",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman Italy\" population",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W2395226481\", \"title\": \"Greeks, Romans, and Others : problems of colonialism and ethnicity in southern Italy\", \"authors\": \"Kathryn Lomas\", \"year\": 1996, \"citations\": 21, \"doi\": "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "http://hdl.handle.net/2381/28442",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Domain not in allowlist: hdl.handle.net. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, jstor.org, l"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "ancient population demographics Italy",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W2007540540\", \"title\": \"Genealogical Relationships between Early Medieval and Modern Inhabitants of Piedmont\", \"authors\": \"Stefania Vai; Silvia Ghirotto; Elena Pilli\", \"year\": 2"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://brill.com/downloadpdf/display/book/edcoll/9789047420903/Bej.9789004160507.i-448_014.pdf",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Domain not in allowlist: brill.com. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, jstor.org, librar"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1163/ej.9789004160507.i-448.37",
+          "max_chars": 4000
+        },
+        "output_preview": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page."
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman census population figures",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4403844983\", \"title\": \"ARMS-MBON 18S rRNA and COI gene metabarcoding: scanning for non-indigenous species v1\", \"authors\": \"Nauras Daraghmeh\", \"year\": 2023, \"citations\": 1, \"doi"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic citizen population census figures",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman Republic\" history",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:AncientHistory-WorksInPublicDomainPublishedBefore1923PartTwo\", \"title\": \"Ancient History - Works In Public Domain (Published Before 1923) Part Two\", \"authors\": \"AncientHistoryWorks\", "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/cambridgeancient03buryuoft",
+          "max_chars": 4000
+        },
+        "output_preview": "The Cambridge ancient history : Bury, J. B. (John Bagnell), 1861-1927 : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ bo"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?author WHERE {\n  ?work wdt:P921 ?subject .\n  ?subject wdt:P279* wd:Q17167 .\n  ?work wdt:P50 ?author .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}\nLIMIT 10"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q378975\", \"author\": \"http://www.wikidata.org/entity/Q313981\", \"workLabel\": \"Lustrum\"}, {\"work\": \"http://www.wikidata.org/entity/Q1660324\", \"author\": \"http://w"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "census Roman Republic Livy",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Luuk de Ligt\" Roman population",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Peter Brunt\" Roman population",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Italian manpower\" Roman Republic",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "census lustrum Roman republic ritual",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://perseus.tufts.edu",
+          "max_chars": 2000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='perseus.tufts.edu', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\\\"<urllib3.connection.HTTPSConnection object at 0x00000"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "ancient demography Roman census figures",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4212961163\", \"title\": \"Die Demographie des Alten Ägypten\", \"authors\": \"Jürgen Kraus\", \"year\": 2004, \"citations\": 0, \"doi\": \"https://doi.org/10.53846/goediss-1239\", \"is_oa\": tru"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman manpower ancient Italy",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4410134664\", \"title\": \"The View from the Periphery: Local Elites, Roman Elites, and the Western Provinces during Rome’s Crisis of the 80s BCE\", \"authors\": \"Nicholas George\", \"y"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.degruyterbrill.com/document/doi/10.1515/9783111705446-009/pdf",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Domain not in allowlist: www.degruyterbrill.com. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, jsto"
+      }
+    ],
+    "usage": {
+      "input_tokens": 593192,
+      "output_tokens": 7036
+    },
+    "raw_response_length": 10414
+  }
+}

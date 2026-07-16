@@ -17,6 +17,7 @@ if str(_root) not in sys.path:
     sys.path.insert(0, str(_root))
 
 from scripts.config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
+from scripts.agents.republic_graph_context import append_republic_graph_context
 
 
 def _get_api_key() -> str:
@@ -358,6 +359,7 @@ def propose(facet: str, seed_qid: str = "Q17167",
     system_prompt = SYSTEM_PROMPT_TEMPLATE.format(
         facet=facet, seed_qid=seed_qid, seed_label=seed_label
     )
+    system_prompt = append_republic_graph_context(system_prompt, seed_qid)
     user_message = build_user_message(facet, seed_qid, seed_label, evidence)
 
     print(f"  Calling Claude ({model})...")

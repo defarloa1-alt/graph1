@@ -86,16 +86,13 @@
       "facet_class": "BiographicFacet",
       "label": "Biographic",
       "definition": "Personal history, biography, life events, office-holding careers, genealogy",
-      "anchor_count": 5,
-      "quality_flags": [],
+      "anchor_count": 4,
+      "quality_flags": ["Q5_removed_2026-03-10"],
       "source_priority": "latest",
       "lifecycle_status": "active",
+      "di_trainable": false,
+      "facet_type": "method",
       "anchors": [
-        {
-          "qid": "Q5",
-          "label": "human",
-          "source": "latest"
-        },
         {
           "qid": "Q101352",
           "label": "biography",

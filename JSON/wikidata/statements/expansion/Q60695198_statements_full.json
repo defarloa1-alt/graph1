@@ -1,0 +1,146 @@
+{
+  "qid": "Q60695198",
+  "label": "Caesarus",
+  "description": "Lusitanian chief during the Lusitanian war",
+  "statement_count": 5,
+  "property_count": 5,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q60695198$a0a941fe-ec18-4bfe-8607-d84b21308a78",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        },
+        "references": [
+          {
+            "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P21": [
+      {
+        "statement_id": "Q60695198$3831858c-c2ba-47d2-9f47-64a49021afae",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        },
+        "references": [
+          {
+            "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P19": [
+      {
+        "statement_id": "Q60695198$F765B604-F502-466C-98E7-3D198565B7ED",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P19",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q188650"
+        },
+        "references": [
+          {
+            "hash": "d2d0edca69d6c54df7bfdc611f012e3e0129c8ba",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://en.wikipedia.org/w/index.php?title=Caesarus&oldid=880682125"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q60695198$1198566F-2EB5-4308-8B0E-2E6DAA798C51",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/11fjq_g009"
+        }
+      }
+    ],
+    "P8069": [
+      {
+        "statement_id": "Q60695198$06C1E7DD-DE0D-46C7-9C2F-5FD3FDC2AF18",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P8069",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "23254"
+        }
+      }
+    ]
+  }
+}

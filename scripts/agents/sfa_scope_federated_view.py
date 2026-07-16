@@ -24,6 +24,8 @@ from pathlib import Path
 _root = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(_root))
 
+from scripts.agents.republic_graph_context import append_republic_graph_context
+
 
 def _get_api_key() -> str:
     import os
@@ -148,6 +150,7 @@ def scope(facet: str, seed_qid: str = "Q17167", input_path: Path | None = None,
     context = build_context(federated)
 
     system = SYSTEM_PROMPT.format(facet=facet, seed_qid=seed_qid)
+    system = append_republic_graph_context(system, seed_qid)
     user = f"Scope the federated view for the {facet} facet of Roman Republic.\n\n{context}"
 
     print(f"SFA_{facet}: scoping federated view for {seed_qid}")

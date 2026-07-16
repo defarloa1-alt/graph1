@@ -1,0 +1,140 @@
+{
+  "qid": "Q18667552",
+  "label": "Battle of Campi Veteres",
+  "description": "212 BCE battle",
+  "statement_count": 7,
+  "property_count": 6,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q18667552$90BD67C6-DF94-499B-A7E5-A4A8D6F0B62B",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q18667552$B5531B3E-251F-4A33-B191-7A49AA284C8F",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/11b6rph2by"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q18667552$ef1d70b2-47f7-6311-3c44-a22a09df88e6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6271"
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q18667552$7a7c4658-42cb-2bdb-76b2-1a40b35705f5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q11911076"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q18667552$81abd65b-4fa7-f002-c6fc-c78cdd54fcd3",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0212-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q18667552$254d87a4-4540-1d88-96a4-5caddd880ca3",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q18668725"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q18667552$e9b8e915-4e41-e2d7-d9ad-308fdac31396",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q561677"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,765 @@
+{
+  "training_summary": "Roman Republican social aspects encompass fundamental class conflicts (Conflict of the Orders), institutionalized patronage systems (clientela), slavery and manumission patterns, and collective political action. The seed corpus provides strong coverage of late Republican civil conflicts and institutional analysis but requires supplementation with foundational social structure scholarship.",
+  "key_works": [
+    {
+      "work_id": "openalex:W4296005687",
+      "relevance": "high",
+      "facet_contribution": "D'Arms' analysis of commerce and social standing provides crucial insight into how trade challenged traditional Roman social hierarchies"
+    },
+    {
+      "work_id": "openalex:W2146051958",
+      "relevance": "high",
+      "facet_contribution": "Brunt's examination of army-land relationships reveals how military service connected to social mobility and rural-urban tensions"
+    },
+    {
+      "work_id": "wd:Q122861593",
+      "relevance": "medium",
+      "facet_contribution": "Lange's civil war analysis illuminates how social conflicts evolved into systematic violence in the late Republic"
+    },
+    {
+      "work_id": "ia:tenorationsofcic00cice_202507",
+      "relevance": "high",
+      "facet_contribution": "Cicero's orations provide primary source evidence of elite attitudes toward social order and political participation"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q2097986",
+      "label": "Manumission practices and freedmen integration",
+      "confidence": 0.85,
+      "evidence": "D'Arms and Cicero materials reveal systematic patterns of slave manumission creating intermediate social classes",
+      "reasoning": "Manumission was a key mechanism for social mobility and created complex patron-client relationships that structured Roman society",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.2,
+        "communication": 0.0,
+        "cultural": 0.2,
+        "demographic": 0.2,
+        "diplomatic": 0.0,
+        "economic": 0.3,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.0,
+        "linguistic": 0.1,
+        "military": 0.1,
+        "political": 0.2,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 1.0,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CLIENT_PATRON_DEPENDENCE"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q845114",
+      "label": "Secessio plebis as political collective action",
+      "confidence": 0.9,
+      "evidence": "Wikipedia canonical sources show secessio plebis combined social grievance with political strategy",
+      "target_facet": "political",
+      "reasoning": "Plebeian secessions were fundamentally political acts that used social solidarity as a weapon",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.1,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.2,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.1,
+        "political": 0.8,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.9,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CONTENTIOUS_ASSEMBLY",
+        "RP_CONCESSION_AFTER_THRESHOLD_CONFLICT"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q1422780",
+      "label": "Nexum debt bondage system",
+      "confidence": 0.8,
+      "evidence": "Conflict of the Orders sources reveal nexum as a key driver of social tension between classes",
+      "reasoning": "Debt bondage created quasi-slavery relationships between citizens, fundamentally challenging Republican equality ideals",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.0,
+        "demographic": 0.1,
+        "diplomatic": 0.0,
+        "economic": 0.6,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.0,
+        "linguistic": 0.1,
+        "military": 0.0,
+        "political": 0.3,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 1.0,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "causal"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q1422780",
+      "label": "nexum",
+      "verdict": "confirm",
+      "evidence": "Debt bondage was a fundamental social institution driving early Republican class conflict"
+    },
+    {
+      "qid": "Q845114",
+      "label": "secessio plebis",
+      "verdict": "confirm",
+      "evidence": "Mass withdrawal of plebeians was a key collective action strategy in Roman social conflicts"
+    },
+    {
+      "qid": "Q747480",
+      "label": "Conflict of the Orders",
+      "verdict": "confirm",
+      "evidence": "The foundational social conflict between patricians and plebeians from 494-287 BCE"
+    },
+    {
+      "qid": "Q15282014",
+      "label": "Lex Iulia de civitate",
+      "verdict": "reroute",
+      "reroute_to": "political",
+      "evidence": "Citizenship law is primarily a political/legal mechanism rather than social structure"
+    },
+    {
+      "qid": "Q1812526",
+      "label": "Constitutional reforms of Lucius Cornelius Sulla",
+      "verdict": "reroute",
+      "reroute_to": "political",
+      "evidence": "Constitutional reforms are political institutional changes rather than social structures"
+    },
+    {
+      "qid": "Q20108410",
+      "label": "Lex Mamilia de senatoribus",
+      "verdict": "reroute",
+      "reroute_to": "political",
+      "evidence": "Senatorial legislation is political rather than social institutional change"
+    },
+    {
+      "qid": "Q2022780",
+      "label": "Suci",
+      "verdict": "reject",
+      "evidence": "Gallic tribe has no clear connection to Roman Republican social structures"
+    },
+    {
+      "qid": "Q6503456",
+      "label": "Law of majestas",
+      "verdict": "reroute",
+      "reroute_to": "political",
+      "evidence": "Treason law is a political/legal concept rather than social structure"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "oapen:20.500.12657/30774",
+      "title": "The Roman Empire",
+      "authors": "Morley, Neville",
+      "year": 2010,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/30774",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Provides broader context for Republican social patterns in transition to Empire"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": true,
+    "reason": "Roman Republican social aspects encompass 8 distinct sub-domains with approximately 35-40 concepts total, exceeding the threshold of 12",
+    "sub_domain_count": 8,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 38,
+    "sub_scopes": [
+      {
+        "scope_key": "class_conflict",
+        "scope_label": "Class Conflict & Orders",
+        "scope_description": "Patrician-plebeian conflicts, Conflict of the Orders, social mobility mechanisms",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Chronological mapping of specific conflicts, legal outcomes of class struggles"
+      },
+      {
+        "scope_key": "patronage_clientela",
+        "scope_label": "Patronage & Clientela System",
+        "scope_description": "Patron-client relationships, social networks, reciprocal obligations",
+        "candidate_qids": [],
+        "estimated_concepts": 5,
+        "needs": "Regional variations, evolution across Republican periods"
+      },
+      {
+        "scope_key": "slavery_manumission",
+        "scope_label": "Slavery & Manumission",
+        "scope_description": "Slave systems, manumission practices, freedmen integration, debt bondage",
+        "candidate_qids": [],
+        "estimated_concepts": 7,
+        "needs": "Quantitative data on manumission rates, regional slave economies"
+      },
+      {
+        "scope_key": "social_mobility",
+        "scope_label": "Social Mobility & Status",
+        "scope_description": "Mechanisms of status change, novus homo phenomenon, equestrian class emergence",
+        "candidate_qids": [],
+        "estimated_concepts": 4,
+        "needs": "Prosopographical analysis of social climbers, military vs commercial mobility"
+      },
+      {
+        "scope_key": "collective_action",
+        "scope_label": "Collective Action & Popular Movements",
+        "scope_description": "Mass assemblies, riots, popular tribunate, crowd politics",
+        "candidate_qids": [],
+        "estimated_concepts": 5,
+        "needs": "Urban vs rural collective action patterns, temporal distribution"
+      },
+      {
+        "scope_key": "marriage_family",
+        "scope_label": "Marriage, Family & Gender",
+        "scope_description": "Marriage politics, family structures, women's roles, inheritance patterns",
+        "candidate_qids": [],
+        "estimated_concepts": 4,
+        "needs": "Legal vs social aspects of marriage, regional family patterns"
+      },
+      {
+        "scope_key": "urban_rural",
+        "scope_label": "Urban-Rural Social Relations",
+        "scope_description": "City-countryside tensions, agricultural labor, urbanization impacts",
+        "candidate_qids": [],
+        "estimated_concepts": 4,
+        "needs": "Demographic data, regional agricultural systems, migration patterns"
+      },
+      {
+        "scope_key": "cultural_integration",
+        "scope_label": "Cultural Integration & Identity",
+        "scope_description": "Romanization processes, Italian integration, cultural assimilation mechanisms",
+        "candidate_qids": [],
+        "estimated_concepts": 3,
+        "needs": "Archaeological evidence of cultural change, linguistic evidence"
+      }
+    ],
+    "manageable_as_single": false
+  },
+  "corpus_gaps": [
+    "Quantitative studies of social mobility rates",
+    "Regional variations in clientela systems",
+    "Archaeological evidence of rural-urban social differences",
+    "Women's roles in Republican social structures",
+    "Demographic analysis of slave populations and manumission"
+  ],
+  "facet_confidence": 0.88,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "decomposition assessment",
+        "note": "Avoided claiming to present 'the whole' of Roman social aspects; acknowledged corpus gaps and limited perspective"
+      },
+      {
+        "fallacy_id": "MONOCAUSAL_EXPLANATION",
+        "status": "checked",
+        "applies_to": "conflict of orders insight",
+        "note": "Acknowledged multiple causes of social conflict rather than reducing to single driver"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Acknowledged that search results may not represent full scholarly corpus on Roman social history"
+      },
+      {
+        "principle_id": "SCALE_REFLEXIVITY",
+        "status": "applied",
+        "note": "Recognized limitations of seed corpus size and need for expanded source base"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CONTENTIOUS_ASSEMBLY",
+        "pattern_label": "Contentious Assembly",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_BROKERAGE",
+          "M_FRAME_ALIGNMENT"
+        ],
+        "evidence": "Secessio plebis involved organized withdrawal and assembly for political demands",
+        "confidence": 0.9
+      },
+      {
+        "pattern_id": "RP_CLIENT_PATRON_DEPENDENCE",
+        "pattern_label": "Client-patron dependence",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_BROKERAGE"
+        ],
+        "evidence": "Roman clientela system institutionalized hierarchical dependence relationships",
+        "confidence": 0.95
+      }
+    ],
+    "proposed_patterns": [
+      {
+        "proposed_label": "Debt Bondage Extraction",
+        "scope_description": "Economic extraction through debt relationships creating quasi-slavery",
+        "analogous_to": "RP_CENTER_PERIPHERY_EXTRACTION",
+        "mechanisms": [
+          "M_ESCALATION"
+        ],
+        "candidate_qids": [],
+        "evidence": "Nexum system created extractive relationships between social classes that drove major conflicts"
+      }
+    ]
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Republican Constitution & Political Institutions",
+      "Early Republic (509–264 BC)",
+      "Late Republic (133–27 BC)"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -494,
+        "year_end": -287,
+        "label": "Conflict of the Orders period",
+        "evidence": "Major patrician-plebeian struggles occurred within this timeframe based on canonical sources"
+      },
+      {
+        "year_start": -133,
+        "year_end": -27,
+        "label": "Late Republican social crisis period",
+        "evidence": "Seed corpus works by Lange focus on this period of intensified social conflict and civil war"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Urban center where most documented social conflicts occurred"
+      },
+      {
+        "place_label": "Italian Peninsula",
+        "place_qid": "Q1816",
+        "role": "secondary",
+        "evidence": "Regional integration and Social War involved broader Italian social structures"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The Conflict of the Orders represented systematic class struggle between patricians and plebeians from 494-287 BCE.",
+        "subject_concepts": [
+          "Early Republic (509–264 BC)"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.1,
+          "communication": 0.0,
+          "cultural": 0.1,
+          "demographic": 0.2,
+          "diplomatic": 0.0,
+          "economic": 0.3,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.1,
+          "political": 0.7,
+          "religious": 0.1,
+          "scientific": 0.0,
+          "social": 1.0,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CONTENTIOUS_ASSEMBLY",
+          "RP_CONCESSION_AFTER_THRESHOLD_CONFLICT"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "Wikipedia Conflict of the Orders"
+        ],
+        "confidence": 0.9
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Secessio plebis functioned as collective withdrawal strategy comparable to general strike tactics.",
+        "subject_concepts": [
+          "Early Republic (509–264 BC)"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.1,
+          "cultural": 0.1,
+          "demographic": 0.3,
+          "diplomatic": 0.0,
+          "economic": 0.4,
+          "environmental": 0.0,
+          "geographic": 0.1,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.0,
+          "political": 0.6,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.9,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CONTENTIOUS_ASSEMBLY"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "Wikipedia Secessio plebis"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "ADJUST_EDGE",
+      "claim": null,
+      "edge": {
+        "from_label": "Republican Constitution & Political Institutions",
+        "to_label": "Early Republic (509–264 BC)",
+        "relation_type": "CAUSALLY_LINKED",
+        "weight_delta": 0.2,
+        "justification": "Social conflicts directly shaped constitutional development during early Republican period"
+      }
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 32,
+    "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Republic",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Social_structure_of_the_Roman_Republic",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Social_structure_of_the_Roman_Republic\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_society",
+          "max_chars": 4000
+        },
+        "output_preview": "Culture of ancient Rome - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lear"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Social_Class/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://www.worldhistory.org/search/?q=roman+social+class\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Conflict_of_the_Orders/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://www.worldhistory.org/search/?q=conflict+of+the+orders\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/concept/conflict-of-the-orders/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/concept/conflict-of-the-orders/\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/sources/content/appian/appian-civil-wars/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/sources/content/appian/appian-civil-wars/\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Conflict_of_the_Orders",
+          "max_chars": 4000
+        },
+        "output_preview": "Conflict of the Orders - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Secessio_plebis",
+          "max_chars": 3000
+        },
+        "output_preview": "Secessio plebis - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edi"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Patronage_in_ancient_Rome",
+          "max_chars": 3000
+        },
+        "output_preview": "Patronage in ancient Rome - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Le"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Slavery_in_ancient_Rome",
+          "max_chars": 3000
+        },
+        "output_preview": "Slavery in ancient Rome - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lear"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) \nWHERE sc.label CONTAINS \"Roman\" OR sc.label CONTAINS \"Republic\"\nRETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[{\"sc.label\": \"Republican Constitution & Political Institutions\", \"sc.subject_id\": \"sc_constitution\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) \nWHERE sc.label CONTAINS \"Social\" OR sc.label CONTAINS \"society\" OR sc.label CONTAINS \"class\"\nRETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh ?fast WHERE {\n  ?work wdt:P921 wd:Q17167 .  # main subject: Roman Republic\n  ?work wdt:P921 ?socialTopic .\n  ?socialTopic wdt:P31*/wdt:P279* wd:Q8054 .  # instance/subclass of social issue\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  OPTIONAL { ?work wdt:P2163 ?fast }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 20
+        },
+        "output_preview": "{\"error\": \"Wikidata SPARQL error: HTTPSConnectionPool(host='query.wikidata.org', port=443): Read timed out. (read timeout=30)\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel WHERE {\n  ?work wdt:P921 wd:Q747480 .  # Conflict of the Orders\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel WHERE {\n  ?work wdt:P921 wd:Q845114 .  # secessio plebis\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 15
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q23854411\", \"workLabel\": \"Q23854411\"}, {\"work\": \"http://www.wikidata.org/entity/Q45255388\", \"workLabel\": \"Q45255388\"}, {\"work\": \"http://www.wikidata.org/entit"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic social class patronage slavery freedmen",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman Republic\" social structure society clientela",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman social history plebeian patrician conflict",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic social structure society",
+          "source": "oapen",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/30774\", \"title\": \"The Roman Empire\", \"authors\": \"Morley, Neville\", \"year\": \"2010\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/30774\", \"is_oa\": true},"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/105629",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman Republic\" social class plebeian patrician conflict orders",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman social history slavery freedmen patronage",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://openalex.org/W4296005687",
+          "max_chars": 3000
+        },
+        "output_preview": "OpenAlex We're sorry but ourresearch-website-2 doesn't work properly without JavaScript enabled. Please enable it to continue."
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/40SalmedinMesihovicAristonikIDrzavaSuncaIDio",
+          "max_chars": 4000
+        },
+        "output_preview": "40 Salmedin Mesihovic Aristonik I Drzava Sunca I Dio : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger ic"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/stream/40SalmedinMesihovicAristonikIDrzavaSuncaIDio/40%20Salmedin%20Mesihovic%20Aristonik%20i%20Drzava%20Sunca%20I%20dio_djvu.txt",
+          "max_chars": 4000
+        },
+        "output_preview": "40 Salmedin Mesihovic Aristonik I Drzava Sunca I Dio : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger ic"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/tenorationsofcic00cice_202507",
+          "max_chars": 4000
+        },
+        "output_preview": "Ten Orations and Selected Letters of Cicero: Statesmanship, Rhetoric, and Republican Ideals : Marcus Tullius Cicero; edited by William R. Harper and Frank A. Gallup : Free Download, Borrow, and Stream"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://perseus.tufts.edu/hopper/collection?collection=Perseus:collection:Greco-Roman",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='perseus.tufts.edu', port=443): Max retries exceeded with url: /hopper/collection?collection=Perseus:collection:Greco-Roman (Caused by NameResolutionEr"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE {\n  ?item wdt:P31 wd:Q47461344 .  # written work\n  ?item wdt:P921 wd:Q17167 .    # main subject: Roman Republic\n  ?item rdfs:label ?label .\n  FILTER(LANG(?label) = \"en\")\n  FILTER(CONTAINS(LCASE(?label), \"social\") || CONTAINS(LCASE(?label), \"class\") || CONTAINS(LCASE(?label), \"plebeian\"))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D12"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Detects when a SubjectConcept node is overloaded (too many children at level 2, or cross-link ratio indicates mixed semantics) and should be split into more specific concept"
+      }
+    ],
+    "usage": {
+      "input_tokens": 645536,
+      "output_tokens": 8495
+    },
+    "raw_response_length": 16769
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 7,
+    "rejected": [
+      {
+        "qid": "Q747480",
+        "reason": "missing_entity",
+        "context": "sub_scope:class_conflict"
+      },
+      {
+        "qid": "Q845114",
+        "reason": "missing_entity",
+        "context": "sub_scope:class_conflict"
+      },
+      {
+        "qid": "Q1422780",
+        "reason": "missing_entity",
+        "context": "sub_scope:slavery_manumission"
+      },
+      {
+        "qid": "Q845114",
+        "reason": "missing_entity",
+        "context": "sub_scope:collective_action"
+      },
+      {
+        "qid": "Q845114",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q2097986",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q1422780",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

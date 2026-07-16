@@ -1,0 +1,641 @@
+{
+  "training_summary": "The seed corpus reveals Roman Republican economics as a complex system integrating monetary innovation, commercial law development, and social stratification. Key themes include the tension between senatorial commerce prohibitions and actual elite trade engagement, the role of slavery in economic production, and the development of sophisticated legal frameworks for maritime commerce.",
+  "key_works": [
+    {
+      "work_id": "openalex:W4296005687",
+      "relevance": "high",
+      "facet_contribution": "Demonstrates how Roman social hierarchies interacted with commercial activities, showing that despite legal prohibitions, elites actively participated in trade through intermediaries"
+    },
+    {
+      "work_id": "openalex:W1583257858",
+      "relevance": "high",
+      "facet_contribution": "Provides crucial evidence for understanding slavery as an economic institution in the Roman Republic, including sources of slaves and their role in production"
+    },
+    {
+      "work_id": "openalex:W3092149350",
+      "relevance": "high",
+      "facet_contribution": "Shows parallel development of Roman commercial law and maritime trade during Late Republic/Early Principate, demonstrating institutional adaptation to economic growth"
+    },
+    {
+      "work_id": "openalex:W1596019104",
+      "relevance": "high",
+      "facet_contribution": "Argues for viewing the Roman economy as a functioning market economy, challenging primitivist interpretations and providing comparative framework"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q2277",
+      "label": "Roman Economy as Market System",
+      "confidence": 0.82,
+      "evidence": "Temin's 'Roman Market Economy' (2012) and Candy's work on parallel law/trade development provide evidence for sophisticated market mechanisms",
+      "target_facet": null,
+      "reasoning": "The corpus supports viewing the Roman economy as more than subsistence-level, with evidence for market integration and commercial legal development",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.1,
+        "diplomatic": 0.1,
+        "economic": 0.9,
+        "environmental": 0.0,
+        "geographic": 0.2,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.2,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.1
+      },
+      "pattern_tags": [],
+      "role": "evaluative"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q124988",
+      "label": "Economic Drivers of Roman Expansion",
+      "confidence": 0.78,
+      "evidence": "Multiple works (D'Arms, Frederiksen on Capua, Atlantic façade study) show economic motives underlying territorial expansion",
+      "target_facet": "military",
+      "reasoning": "Roman military campaigns often had economic objectives (tribute, slaves, markets) that shaped strategic decisions",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.1,
+        "diplomatic": 0.2,
+        "economic": 0.8,
+        "environmental": 0.0,
+        "geographic": 0.3,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.7,
+        "political": 0.4,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": null,
+      "label": "Commercial Law and Social Status Integration",
+      "confidence": 0.85,
+      "evidence": "D'Arms' work shows how commercial prohibitions for senators created complex social-legal-economic interactions",
+      "target_facet": "social",
+      "reasoning": "Economic activities were deeply embedded in Roman social hierarchies, creating tensions that required legal and social accommodation",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.2,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.8,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.3,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.7,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM"
+      ],
+      "role": "descriptive"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q476078",
+      "label": "aureus",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Multiple works in corpus (Verboven, Coinage works) demonstrate aureus was central to Roman monetary system"
+    },
+    {
+      "qid": "Q1249076",
+      "label": "quadrans",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Part of systematic Roman denominational structure documented in monetary studies"
+    },
+    {
+      "qid": "Q952064",
+      "label": "Roman currency",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Corpus extensively documents Roman monetary systems as fundamental to economic organization"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "oapen:20.500.12657/30774",
+      "title": "The Roman Empire",
+      "authors": "Morley, Neville",
+      "year": 2010,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/30774",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Provides broader imperial context for understanding Republican economic foundations"
+    },
+    {
+      "work_id": "oapen:20.500.12657/52327",
+      "title": "Handbook of Ancient Afro-Eurasian Economies",
+      "authors": "Reden, Sitta (editor)",
+      "year": 2021,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/52327",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Comparative framework for understanding Roman economy within broader ancient economic systems"
+    },
+    {
+      "work_id": "ia:ancientromanecon0000zumb",
+      "title": "The ancient Roman economy",
+      "authors": "Zumbusch, Amelie von",
+      "year": 2014,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/ancientromanecon0000zumb",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "General overview of Roman economic structures and organization"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "Domain encompasses 8-9 major sub-areas (monetary systems, trade, slavery, law, taxation, regional economies, social aspects, imperial extraction, technological aspects) which is below the threshold of 12",
+    "sub_domain_count": 9,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 35,
+    "sub_scopes": [],
+    "manageable_as_single": true
+  },
+  "corpus_gaps": [
+    "Detailed studies of Roman taxation mechanisms and publicani system",
+    "Quantitative analysis of trade volumes and economic growth",
+    "Regional variation in economic systems across provinces",
+    "Role of freedmen in commercial networks"
+  ],
+  "facet_confidence": 0.87,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "OVERGENERALIZATION",
+        "status": "checked",
+        "applies_to": "Roman Economy as Market System insight",
+        "note": "Checked against treating limited evidence as applying to 'all' Roman economic activity; maintained appropriate scope limitations"
+      },
+      {
+        "fallacy_id": "MONOCAUSAL_EXPLANATION",
+        "status": "checked",
+        "applies_to": "Economic Drivers of Roman Expansion",
+        "note": "Ensured insight acknowledges economic motives alongside political and strategic factors"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Recognized that search results favored more recent digitized works over older scholarship on Roman economics"
+      },
+      {
+        "principle_id": "SCALE_REFLEXIVITY",
+        "status": "applied",
+        "note": "Acknowledged that seed corpus of 15 works provides foundation but limited coverage of full economic domain"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CENTER_PERIPHERY_EXTRACTION",
+        "pattern_label": "Center-periphery extraction",
+        "status": "existing",
+        "candidate_qids": [
+          "Q124988"
+        ],
+        "mechanisms": [
+          "M_ESCALATION"
+        ],
+        "evidence": "Multiple works document Roman extraction of tribute, slaves, and resources from conquered territories",
+        "confidence": 0.82
+      },
+      {
+        "pattern_id": "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM",
+        "pattern_label": "Status-quo defense against reform",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_POLICING_RESPONSE",
+          "M_FRAME_ALIGNMENT"
+        ],
+        "evidence": "D'Arms demonstrates how senatorial class maintained social restrictions on commerce while finding workarounds",
+        "confidence": 0.78
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Economy, Finance & Trade"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "Corpus works focus on Republican economic development from founding to Augustus"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Center of Roman economic system and monetary authority"
+      },
+      {
+        "place_label": "Mediterranean Sea",
+        "place_qid": "Q4918",
+        "role": "primary",
+        "evidence": "Core geographic space for Roman trade networks documented in Atlantic façade and maritime commerce works"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman senators were prohibited by law from direct participation in seaborne commerce, yet large fortunes were amassed through indirect trade participation.",
+        "subject_concepts": [
+          "Roman Economy, Finance & Trade"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.1,
+          "communication": 0.0,
+          "cultural": 0.1,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.8,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.1,
+          "linguistic": 0.0,
+          "military": 0.0,
+          "political": 0.3,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.7,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W4296005687"
+        ],
+        "confidence": 0.87
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The development of Roman commercial law paralleled the expansion of maritime trade during the Late Republic and Early Principate.",
+        "subject_concepts": [
+          "Roman Economy, Finance & Trade"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.0,
+          "cultural": 0.1,
+          "demographic": 0.0,
+          "diplomatic": 0.1,
+          "economic": 0.8,
+          "environmental": 0.0,
+          "geographic": 0.2,
+          "intellectual": 0.3,
+          "linguistic": 0.0,
+          "military": 0.0,
+          "political": 0.4,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.1,
+          "technological": 0.1
+        },
+        "pattern_tags": [],
+        "role": "causal",
+        "supporting_works": [
+          "openalex:W3092149350"
+        ],
+        "confidence": 0.83
+      },
+      "edge": null
+    },
+    {
+      "op_type": "ADJUST_EDGE",
+      "claim": null,
+      "edge": {
+        "from_label": "Roman Economy, Finance & Trade",
+        "to_label": "Roman Society — Classes, Slavery & Family",
+        "relation_type": "CAUSALLY_LINKED",
+        "weight_delta": 0.3,
+        "justification": "Corpus evidence shows economic activities were deeply embedded in social hierarchies, with slavery fundamental to production and commerce restricted by social status"
+      }
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 33,
+    "tool_calls": [
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept)-[:HAS_FACET]->(f:Facet {label: \"Economic\"}) RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc.wikidata_qid\": null}]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept {subject_id: \"sc_economy\"}) RETURN sc.label, sc.wikidata_qid, sc.seed_qid"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.wikidata_qid\": null, \"sc.seed_qid\": null}]"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic economy trade finance banking",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican economy commercial law",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman economic history monetary system",
+          "source": "oapen",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/102628\", \"title\": \"Regional Monetary Policy\", \"authors\": \"Rodriguez Fuentes, Carlos Javier\", \"year\": \"2005\", \"source_url\": \"https://library.oapen.org/handle/20.500.126"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/30774",
+          "max_chars": 4000
+        },
+        "output_preview": "The Roman Empire Toggle navigation Join Deposit Toggle navigation Toggle navigation For Librarians For Publishers For Researchers Funders Resources OAPEN View Item&nbsp; &nbsp; OAPEN Home View Item &n"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/52327",
+          "max_chars": 4000
+        },
+        "output_preview": "Handbook of Ancient Afro-Eurasian Economies Toggle navigation Join Deposit Toggle navigation Toggle navigation For Librarians For Publishers For Researchers Funders Resources OAPEN View Item&nbsp; &nb"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic taxation publicani equites financial",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman commerce trade Mediterranean Republican",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:marcus-eli-ravage-cenutry-magazine-february-1928-commissary-to-the-gentiles\", \"title\": \"Commissary To The Gentiles Marcus Eli Ravage\", \"authors\": \"Marcus Eli Ravage\", \"year\": \"1928\", "
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh ?fast ?year WHERE {\n  ?work wdt:P921 ?subject .\n  ?subject wdt:P279* wd:Q17167 .\n  VALUES ?economic_concept { wd:Q8134 wd:Q39809 wd:Q184574 wd:Q4406 wd:Q39072 }\n  ?work wdt:P921 ?economic_concept .\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  OPTIONAL { ?work wdt:P2163 ?fast }\n  OPTIONAL { ?work wdt:P577 ?pub_date . BIND(YEAR(?pub_date) AS ?year) }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?author ?authorLabel ?year WHERE {\n  VALUES ?economic { wd:Q8134 wd:Q39809 wd:Q184574 }\n  VALUES ?roman { wd:Q17167 wd:Q2277 wd:Q1747689 }\n  ?work wdt:P921 ?economic .\n  ?work wdt:P921 ?roman .\n  OPTIONAL { ?work wdt:P50 ?author }\n  OPTIONAL { ?work wdt:P577 ?pub_date . BIND(YEAR(?pub_date) AS ?year) }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 15"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1017/s1047759420000914",
+          "max_chars": 4000
+        },
+        "output_preview": "Parallel developments in Roman law and maritime trade during the Late Republic and Early Principate | Journal of Roman Archaeology | Cambridge Core Skip to main content Accessibility help Login Alert "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.30861/9781407307060",
+          "max_chars": 4000
+        },
+        "output_preview": "The Western Roman Atlantic Façade: A Study of the Economy and Trade in the Mar Exterior from the Republic to the Principate 4. manifest.json links should probably be edited to \"\\/assets\\/favicon\\/pres"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1515/9781400845422",
+          "max_chars": 4000
+        },
+        "output_preview": "The Roman Market Economy The Roman Market Economy Record type Edited book Published 31 December 2012 Authors Peter Temin DOI https://doi.org/10.1515/9781400845422 The publisher of this work supports c"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.4159/harvard.9780674331198",
+          "max_chars": 4000
+        },
+        "output_preview": "Commerce and Social Standing in Ancient Rome Skip to main content For Authors For Book Authors Submit A Book Proposal Review and Production Publication and Promotion Open Access for Book Authors For J"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican publicani tax farming",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman equites business class merchants",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?author ?authorLabel WHERE {\n  VALUES ?subject { wd:Q17167 wd:Q1747689 }\n  ?work wdt:P921 ?subject .\n  ?work wdt:P244 ?lcsh .\n  ?author wdt:P50 ?work .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman coinage denarius monetary system Republic",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "ancient Roman trade Mediterranean commerce economic",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4391565665\", \"title\": \"Editor's evaluation: Unprecedented yet gradual nature of first millennium CE intercontinental crop plant dispersal revealed in ancient Negev desert refus"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican amphora trade pottery economic archaeology",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman finance banking credit loans ancient economy",
+          "source": "oapen",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/96098\", \"title\": \"The Nexus Between Legal Pluralism and Inclusive Finance\", \"authors\": \"Yimer, Gebreyesus\", \"year\": \"2025\", \"source_url\": \"https://library.oapen.org/ha"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/61936",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman slavery manumission freedmen economic role",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D8"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Routes a SubjectConcept to one of the 18 canonical facets. Certain facets are excluded by policy (Temporal, Classification, Genealogical, Patronage). Assignments below confi"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS \"Roman\" RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc_diplomacy\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc.wikida"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman equites business trade merchants Republican",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "ancient economy Roman trade markets",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:nolies\", \"title\": \"The Lying Media\", \"authors\": \"\", \"year\": \"2017\", \"downloads\": 9187, \"source_url\": \"https://archive.org/details/nolies\", \"is_oa\": true}, {\"work_id\": \"ia:encyclopedia"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/ancientromanecon0000zumb",
+          "max_chars": 4000
+        },
+        "output_preview": "The ancient Roman economy : Zumbusch, Amelie von : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon A"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman taxation publicani tribute provinces",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (rp:RepertoirePattern) RETURN rp.label, rp.pattern_id LIMIT 20"
+        },
+        "output_preview": "[{\"rp.label\": \"Contentious assembly\", \"rp.pattern_id\": null}, {\"rp.label\": \"Urban riot\", \"rp.pattern_id\": null}, {\"rp.label\": \"Mushroom strike\", \"rp.pattern_id\": null}, {\"rp.label\": \"General strike\", "
+      }
+    ],
+    "usage": {
+      "input_tokens": 596301,
+      "output_tokens": 7619
+    },
+    "raw_response_length": 13519
+  }
+}

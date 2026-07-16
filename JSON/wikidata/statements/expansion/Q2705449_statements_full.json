@@ -1,0 +1,295 @@
+{
+  "qid": "Q2705449",
+  "label": "Battle of Mount Algidus",
+  "description": "458 BCE battle between the Roman Republic and the Aequi",
+  "statement_count": 10,
+  "property_count": 9,
+  "claims": {
+    "P646": [
+      {
+        "statement_id": "Q2705449$84E0C1DD-1A55-45D2-BE3C-3A33FE0796E7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/0800c3"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q2705449$5BB998CF-F240-4892-BA8B-8F5CEA771C7C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q2705449$7F40A4E5-532C-4434-8F68-D1F152074CB2",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q38"
+        }
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q2705449$D2F1E0BA-E4B4-4E2D-ADF0-08B5C49E0EB6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Rom Tusculum.jpg"
+        },
+        "qualifiers": {
+          "P2096": [
+            {
+              "property": "P2096",
+              "snaktype": "value",
+              "datatype": "monolingualtext",
+              "value_type": "monolingualtext",
+              "value": {
+                "text": "Mapa de los alrededores de Roma en la Antigüedad en el que se ha señalado la presencia de Tusculum, próximo al monte Álgido",
+                "language": "es"
+              }
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P2096"
+        ],
+        "references": [
+          {
+            "hash": "9424852ca7d9d48269148c57acbefacca1899882",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11921"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q2705449$AA711EB4-FEE4-4CE2-B96D-0CFEBA376F9E",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q309637"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q1248143"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q2705449$c00e6dea-4549-9c4f-c91a-6f6c44845fc7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q381053"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q11914149"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q2705449$76ABFBD3-1E8F-490D-8FCA-D97BF4094637",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0458-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q2705449$213CD579-13DB-4123-A173-01E5FBDF5205",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q989650"
+        },
+        "references": [
+          {
+            "hash": "887bc8dd8c5a6892723a709a996637ac62f7fe6a",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://en.wikipedia.org/w/index.php?title=Battle_of_Mount_Algidus&oldid=841145465"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q2705449$C69BA6D2-1FAF-4545-81F8-5ED33B9AFCFE",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 41.723056,
+            "longitude": 12.769444,
+            "precision": 1e-06,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q2705449$39fceb91-42e9-ffdb-bbf8-1f53d80816f7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q7362293"
+        }
+      }
+    ]
+  }
+}

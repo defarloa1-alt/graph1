@@ -1,0 +1,201 @@
+{
+  "qid": "Q9172749",
+  "label": "Battle of Apamea",
+  "description": "battle during the Pompeian–Parthian invasion of 40 BCE",
+  "statement_count": 8,
+  "property_count": 7,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q9172749$65CCCC94-BAF3-499D-9497-BDF0A99DE01A",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q9172749$366FA05C-278D-43EC-9231-BA5F164357CB",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Map Parthian Empire-fr.png"
+        },
+        "references": [
+          {
+            "hash": "14d2400e3b1d36332748dc330276f099eeaa8800",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q1551807"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q9172749$30d77f22-4906-8ef8-2b01-8007edfad788",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0040-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q9172749$6c630241-4b20-9352-0de6-ca4d581f85db",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q617550"
+        },
+        "qualifiers": {
+          "P1480": [
+            {
+              "property": "P1480",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q21818619"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1480"
+        ]
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q9172749$de51b788-4052-057c-3ff8-fc85c036f8c8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q55630237"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q9172749$e38da7dc-42bd-f4bd-d502-540a82475ed0",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q1289301"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q9172749$95771b01-4d54-5873-c162-c1d072d0673d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1986139"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q551516"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q9172749$83bd313c-44de-ea57-4b3e-dd65d72bd2a6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q139783048"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P3831"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "qid": "Q18649505",
+  "label": "Battle of Munda",
+  "description": "214 BCE battle",
+  "statement_count": 9,
+  "property_count": 8,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q18649505$9a927e2f-49c2-5376-61dc-ced8325119bf",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q18649505$07E02B8F-598F-4775-BFB8-7A06D0461BDB",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Iberia 218-211BC-it.png"
+        },
+        "references": [
+          {
+            "hash": "9424852ca7d9d48269148c57acbefacca1899882",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q11921"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q18649505$E5411DAD-132B-4739-8A8A-C7FD6FF4CF0C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 37.35,
+            "longitude": -5.2167,
+            "precision": 1e-06,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q18649505$0561A484-9FF7-4F8E-A48A-5B5681706282",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/11b6nn_86z"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q18649505$4e893adc-4916-a1aa-495f-8ef56f202eac",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6271"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q18649505$06b728d1-4b43-0c54-c73f-50bf52e3db1d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0214-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "qualifiers": {
+          "P4241": [
+            {
+              "property": "P4241",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q40719766"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4241"
+        ]
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q18649505$fdc49273-44a1-f17f-f60d-dadec71185d1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q20089083"
+        },
+        "qualifiers": {
+          "P1480": [
+            {
+              "property": "P1480",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q21818619"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1480"
+        ]
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q18649505$c95c51e3-4c1a-9ae8-be2e-ffff9a35e772",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q3293507"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q316475"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q18649505$39000136-4ce0-4f35-9ea1-b3782dfa32b7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q311702"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q452048"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q335604"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ]
+  }
+}

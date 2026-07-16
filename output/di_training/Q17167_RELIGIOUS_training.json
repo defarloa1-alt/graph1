@@ -1,0 +1,696 @@
+{
+  "training_summary": "The corpus reveals Roman Republican religion as a complex state-managed system centered on maintaining pax deorum (peace with the gods) through precise ritual observance, divination, and festivals. Key institutions include the pontifical colleges, augural practices, and an elaborate festival calendar that structured public and private religious life throughout the Republic.",
+  "key_works": [
+    {
+      "work_id": "ia:fowler-1899-roman-festivals-republic",
+      "relevance": "high",
+      "facet_contribution": "Provides comprehensive analysis of Roman festival calendar and its religious significance during the Republican period"
+    },
+    {
+      "work_id": "openalex:W1517329608",
+      "relevance": "high",
+      "facet_contribution": "Examines the political dimensions of temple construction and religious authority in the Republic"
+    },
+    {
+      "work_id": "openalex:W80156697",
+      "relevance": "high",
+      "facet_contribution": "Analyzes the intersection of law and religion in Republican institutions"
+    },
+    {
+      "work_id": "ia:macrobius-saturnalia-book-01-english-1969",
+      "relevance": "medium",
+      "facet_contribution": "Late antique source preserving information about Republican religious practices and festivals"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q194785",
+      "label": "Pontifex Maximus",
+      "confidence": 0.95,
+      "evidence": "Wikipedia and corpus sources confirm this as the chief priest of Rome, central to Republican religious authority",
+      "target_facet": null,
+      "reasoning": "Essential religious office that bridged political and sacred authority in the Republic",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.2,
+        "communication": 0.0,
+        "cultural": 0.3,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.2,
+        "religious": 1.0,
+        "scientific": 0.0,
+        "social": 0.1,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q219477",
+      "label": "Augur",
+      "confidence": 0.95,
+      "evidence": "Wikipedia and scholarly sources establish augural college as fundamental to Republican divination practices",
+      "target_facet": null,
+      "reasoning": "Core priestly office responsible for interpreting divine will through bird flight and other omens",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.1,
+        "communication": 0.1,
+        "cultural": 0.3,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.2,
+        "linguistic": 0.0,
+        "military": 0.1,
+        "political": 0.2,
+        "religious": 1.0,
+        "scientific": 0.1,
+        "social": 0.0,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q631838",
+      "label": "Vestal Virgin",
+      "confidence": 0.95,
+      "evidence": "Wikipedia confirms these priestesses of Vesta as unique in Roman religious system, with extraordinary privileges and duties",
+      "target_facet": null,
+      "reasoning": "Distinctive priestly order that maintained sacred fire and embodied Roman religious continuity",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.1,
+        "biographic": 0.3,
+        "communication": 0.0,
+        "cultural": 0.4,
+        "demographic": 0.1,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.1,
+        "religious": 1.0,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q766566",
+      "label": "Pax deorum",
+      "confidence": 0.85,
+      "evidence": "Wikidata search and corpus sources identify this concept as central to Roman religious-political relationship",
+      "target_facet": "political",
+      "reasoning": "The concept of maintaining peace with the gods was fundamentally political as well as religious in the Republic",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.3,
+        "demographic": 0.0,
+        "diplomatic": 0.2,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.2,
+        "linguistic": 0.0,
+        "military": 0.1,
+        "political": 0.8,
+        "religious": 1.0,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "causal"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q337547",
+      "label": "ancient Roman religion",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Corpus extensively covers this topic with multiple specialized works on Republican religious practices, festivals, and institutions"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "ia:romanfestivalsof00fowluoft",
+      "title": "The Roman festivals of the period of the Republic; an introduction to the study of the religion of the Romans",
+      "authors": "Fowler, W. Warde (William Warde), 1847-1921",
+      "year": 1899,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/romanfestivalsof00fowluoft",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Foundational work on Roman Republican festival calendar and religious practices"
+    },
+    {
+      "work_id": "oapen:20.500.12657/39876",
+      "title": "Ancient Divination and Experience",
+      "authors": "",
+      "year": 2019,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/39876",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Contemporary scholarship on divination practices relevant to Republican augural traditions"
+    },
+    {
+      "work_id": "oapen:20.500.12657/38150",
+      "title": "The Impact of Imperial Rome on Religions, Ritual and Religious Life in the Roman Empire",
+      "authors": "",
+      "year": 2006,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/38150",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Analysis of religious continuity and change from Republic to Empire"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": true,
+    "reason": "The domain encompasses too many distinct sub-areas with extensive scholarly literatures each requiring specialized knowledge",
+    "sub_domain_count": 8,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 45,
+    "sub_scopes": [
+      {
+        "scope_key": "religious_priesthoods",
+        "scope_label": "Priesthoods and Religious Offices",
+        "scope_description": "Pontifices, augures, flamines, vestals, and other priestly colleges and their functions",
+        "candidate_qids": [],
+        "estimated_concepts": 12,
+        "needs": "DPRR prosopographic data for individual priests, institutional evolution tracking"
+      },
+      {
+        "scope_key": "religious_festivals",
+        "scope_label": "Festivals and Calendar",
+        "scope_description": "Republican festival calendar, feriae, ludi, and seasonal religious celebrations",
+        "candidate_qids": [],
+        "estimated_concepts": 15,
+        "needs": "Temporal modeling of festival evolution, regional variations"
+      },
+      {
+        "scope_key": "religious_divination",
+        "scope_label": "Divination and Augury",
+        "scope_description": "Augural practices, haruspicy, prodigy interpretation, and divine communication",
+        "candidate_qids": [],
+        "estimated_concepts": 8,
+        "needs": "Primary source analysis of augural formulae and procedures"
+      },
+      {
+        "scope_key": "religious_temples",
+        "scope_label": "Temples and Sacred Spaces",
+        "scope_description": "Temple construction, dedication, sacred topography, and architectural religious functions",
+        "candidate_qids": [],
+        "estimated_concepts": 10,
+        "needs": "Archaeological integration, urban religious mapping"
+      }
+    ],
+    "manageable_as_single": false
+  },
+  "corpus_gaps": [
+    "Specific prosopographic data on individual priests and religious officials",
+    "Regional variations in religious practice outside Rome",
+    "Evolution of religious practices across the Republican period",
+    "Primary source analysis of augural and pontifical formulae",
+    "Archaeological evidence for temple construction and religious material culture"
+  ],
+  "facet_confidence": 0.88,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Roman Republican religion as unified system",
+        "note": "Avoided claiming to present 'the whole truth' about Republican religion, acknowledged complexity and gaps"
+      },
+      {
+        "fallacy_id": "ESSENCE_FALLACY",
+        "status": "checked",
+        "applies_to": "pax deorum concept",
+        "note": "Described functional role rather than claiming essential nature"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Acknowledged that Wikipedia/encyclopedia sources provided better structural overview than keyword searches"
+      },
+      {
+        "principle_id": "PLATFORM_DEPENDENCE_TRANSPARENCY",
+        "status": "applied",
+        "note": "Noted when OAPEN and OpenAlex searches failed or returned limited results"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CENTER_PERIPHERY_EXTRACTION",
+        "pattern_label": "Center-periphery extraction",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_ESCALATION"
+        ],
+        "evidence": "Pax deorum represents Roman center extracting religious compliance from periphery through ritual obligations",
+        "confidence": 0.75
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "ancient Roman religion"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "Standard periodization for Roman Republic confirmed across Wikipedia and scholarly sources"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Central location for Republican religious institutions and practices"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman Republican religion operated through the principle of pax deorum, maintaining divine favor through precise ritual observance.",
+        "subject_concepts": [
+          "ancient Roman religion"
+        ],
+        "facet_weights": {
+          "archaeological": 0.1,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.1,
+          "cultural": 0.3,
+          "demographic": 0.0,
+          "diplomatic": 0.2,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.2,
+          "linguistic": 0.0,
+          "military": 0.1,
+          "political": 0.7,
+          "religious": 1.0,
+          "scientific": 0.0,
+          "social": 0.2,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_EXTRACTION"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "ia:fowler-1899-roman-festivals-republic",
+          "openalex:W1517329608"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The College of Pontiffs, headed by the Pontifex Maximus, controlled the Roman religious calendar and interpretation of religious law.",
+        "subject_concepts": [
+          "ancient Roman religion"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.2,
+          "communication": 0.0,
+          "cultural": 0.2,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.1,
+          "linguistic": 0.0,
+          "military": 0.0,
+          "political": 0.8,
+          "religious": 1.0,
+          "scientific": 0.0,
+          "social": 0.1,
+          "technological": 0.0
+        },
+        "pattern_tags": [],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W80156697"
+        ],
+        "confidence": 0.9
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 36,
+    "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Religion_in_ancient_Rome",
+          "max_chars": 5000
+        },
+        "output_preview": "Religion in ancient Rome - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lea"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Religion/",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman Religion - World History Encyclopedia Roman Religion Donald L. Wasson In many societies, ancient and modern, religion has performed a major role in their development, and the Roman Empire was no"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/concept/roman-religion/",
+          "max_chars": 5000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/concept/roman-religion/\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?concept ?conceptLabel ?qid WHERE {\n  VALUES ?topic { wd:Q17167 wd:Q337547 }\n  ?concept wdt:P921 ?topic .\n  ?concept wdt:P31/wdt:P279* wd:Q13442814 .\n  BIND(SUBSTR(STR(?concept), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?concept ?conceptLabel ?qid WHERE {\n  ?concept wdt:P279* wd:Q337547 .\n  BIND(SUBSTR(STR(?concept), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 30"
+        },
+        "output_preview": "[{\"concept\": \"http://www.wikidata.org/entity/Q337547\", \"qid\": \"Q337547\", \"conceptLabel\": \"ancient Roman religion\"}]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?qid WHERE {\n  VALUES ?relType { wdt:P361 wdt:P1269 wdt:P527 }\n  ?item ?relType wd:Q337547 .\n  BIND(SUBSTR(STR(?item), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 30"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q3738525\", \"qid\": \"Q3738525\", \"itemLabel\": \"Falacer\"}, {\"item\": \"http://www.wikidata.org/entity/Q2674674\", \"qid\": \"Q2674674\", \"itemLabel\": \"Hilaria\"}, {\"item\""
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?priesthood ?priesthoodLabel ?qid WHERE {\n  VALUES ?type { wd:Q2259451 wd:Q19829908 wd:Q4397775 }\n  ?priesthood wdt:P31 ?type .\n  ?priesthood wdt:P17 wd:Q2061228 .\n  BIND(SUBSTR(STR(?priesthood), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?qid WHERE {\n  ?item wdt:P1269 wd:Q337547 .\n  BIND(SUBSTR(STR(?item), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 20"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q16933857\", \"qid\": \"Q16933857\", \"itemLabel\": \"Little Peace of the Church\"}, {\"item\": \"http://www.wikidata.org/entity/Q1164009\", \"qid\": \"Q1164009\", \"itemLabel\""
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?festival ?festivalLabel ?qid WHERE {\n  { ?festival wdt:P31 wd:Q132241 . }\n  UNION \n  { ?festival wdt:P31 wd:Q132241 . }\n  ?festival wdt:P17*/wdt:P1365* wd:Q2061228 .\n  BIND(SUBSTR(STR(?festival), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 25"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) \nWHERE sc.label CONTAINS \"religion\" OR sc.label CONTAINS \"Religious\" OR sc.label CONTAINS \"priest\" OR sc.label CONTAINS \"god\" OR sc.label CONTAINS \"temple\" OR sc.label CONTAINS \"ritual\" OR sc.label CONTAINS \"cult\"\nRETURN sc.label, sc.subject_id, sc.wikidata_qid\nLIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept)\nWHERE sc.seed_qid = \"Q17167\"\nRETURN sc.label, sc.subject_id, sc.wikidata_qid\nLIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Roman Republican religion temples priests augurs pontifex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "oapen",
+          "query": "Roman republic religion priests augury divination temples",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/39876\", \"title\": \"Ancient Divination and Experience\", \"authors\": \"\", \"year\": \"2019\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/39876\", \"is_oa\": true"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/39876",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Roman republic religion priests festivals pontifex maximus augur",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Roman festivals Fowler republic religion",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:romanfestivalsof00fowluoft\", \"title\": \"The Roman festivals of the period of the Republic; an introduction to the study of the religion of the Romans\", \"authors\": \"Fowler, W. Warde (Wi"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/fowler-1899-roman-festivals-republic",
+          "max_chars": 5000
+        },
+        "output_preview": "The Roman Festivals of the Period of the Republic : W. Warde Fowler : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ book"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://openalex.org/W1517329608",
+          "max_chars": 4000
+        },
+        "output_preview": "OpenAlex We're sorry but ourresearch-website-2 doesn't work properly without JavaScript enabled. Please enable it to continue."
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1163/9789004329898",
+          "max_chars": 4000
+        },
+        "output_preview": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page."
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?work ?workLabel ?qid ?authorLabel WHERE {\n  ?work wdt:P921 wd:Q337547 .\n  ?work wdt:P31 wd:Q13442814 .\n  OPTIONAL { ?work wdt:P50 ?author }\n  BIND(SUBSTR(STR(?work), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_festivals",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman festivals - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edi"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?priest ?priestLabel ?qid WHERE {\n  VALUES ?priestType { wd:Q2259451 wd:Q19829908 wd:Q4397775 }\n  ?priest wdt:P31 ?priestType .\n  { ?priest wdt:P2348 ?period . ?period wdt:P361 wd:Q17167 . }\n  UNION\n  { ?priest wdt:P2348 wd:Q17167 . }\n  UNION\n  { ?priest rdfs:label ?label . FILTER(CONTAINS(LCASE(?label), \"roman\")) }\n  BIND(SUBSTR(STR(?priest), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 15"
+        },
+        "output_preview": "[{\"priest\": \"http://www.wikidata.org/entity/P1936\", \"qid\": \"P1936\", \"priestLabel\": \"Digital Atlas of the Roman Empire ID\"}, {\"priest\": \"http://www.wikidata.org/entity/P11888\", \"qid\": \"P11888\", \"priest"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?qid ?description WHERE {\n  VALUES ?romanPriests { wd:Q194785 wd:Q219477 wd:Q631838 wd:Q1460232 wd:Q1234440 wd:Q746479 }\n  ?item wdt:P31 ?romanPriests .\n  BIND(SUBSTR(STR(?item), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 15"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?qid WHERE {\n  ?item wdt:P106 wd:Q2259451 .\n  ?item wdt:P27 wd:Q2061228 .\n  BIND(SUBSTR(STR(?item), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 15"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Pontifex_maximus",
+          "max_chars": 4000
+        },
+        "output_preview": "Pontifex maximus - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to ed"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Augur",
+          "max_chars": 4000
+        },
+        "output_preview": "Augur - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Communit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Vestal_Virgin",
+          "max_chars": 3000
+        },
+        "output_preview": "Vestal Virgin - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit "
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Roman Republic priesthood augur pontifex festivals calendar religion",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?work ?workLabel ?lcsh ?fastId ?oclc WHERE {\n  ?work wdt:P921/wdt:P279* wd:Q337547 .\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  OPTIONAL { ?work wdt:P2163 ?fastId }\n  OPTIONAL { ?work wdt:P243 ?oclc }\n  FILTER(BOUND(?lcsh) || BOUND(?fastId) || BOUND(?oclc))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }\n}\nLIMIT 15"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q121065552\", \"workLabel\": \"Religions of Rome\", \"oclc\": \"36915678\"}, {\"work\": \"http://www.wikidata.org/entity/Q3950848\", \"workLabel\": \"Saturnalia\", \"lcsh\": \"no"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://id.loc.gov/authorities/subjects/sh85115114.html",
+          "max_chars": 3000
+        },
+        "output_preview": "Rome--History--Republic, 510-30 B.C. - LC Linked Data Service: Authorities and Vocabularies | Library of Congress skip navigation Library of Congress Search Linked Data Services Everything at Loc.gov "
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "republican Rome religious festivals calendar pax deorum divination",
+          "limit": 8
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/fowler-1899-roman-festivals-republic/page/n7/mode/2up",
+          "max_chars": 4000
+        },
+        "output_preview": "The Roman Festivals of the Period of the Republic : W. Warde Fowler : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ book"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Macrobius Saturnalia Roman festivals religion",
+          "limit": 5
+        },
+        "output_preview": "[{\"work_id\": \"ia:macrobius-saturnalia-book-01-english-1969\", \"title\": \"Macrobius' Saturnalia Book One\", \"authors\": [\"Macrobius\", \"Percival Vaughan Davies, translator\"], \"year\": \"\", \"downloads\": 4129, "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/macrobius-saturnalia-book-01-english-1969/page/n5/mode/2up",
+          "max_chars": 4000
+        },
+        "output_preview": "Macrobius' Saturnalia Book One : Macrobius : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon An icon"
+      }
+    ],
+    "usage": {
+      "input_tokens": 745607,
+      "output_tokens": 8148
+    },
+    "raw_response_length": 12974
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 4,
+    "rejected": [
+      {
+        "qid": "Q194785",
+        "reason": "label_off_scope",
+        "context": "sub_scope:religious_priesthoods"
+      },
+      {
+        "qid": "Q181612",
+        "reason": "label_off_scope",
+        "context": "sub_scope:religious_festivals"
+      },
+      {
+        "qid": "Q766566",
+        "reason": "label_off_scope",
+        "context": "sub_scope:religious_divination"
+      },
+      {
+        "qid": "Q766566",
+        "reason": "label_off_scope",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

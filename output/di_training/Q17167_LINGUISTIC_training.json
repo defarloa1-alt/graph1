@@ -1,0 +1,698 @@
+{
+  "training_summary": "The corpus reveals that linguistic aspects of the Roman Republic center on literary translation practices from Greek to Latin, the development of dramatic literature, and rhetorical traditions. The seed corpus emphasizes translation theory and practice, particularly how Latin authors adapted Greek literary forms, alongside the evolution of Latin prose style and dramatic language.",
+  "key_works": [
+    {
+      "work_id": "openalex:W2525696445",
+      "relevance": "high",
+      "facet_contribution": "Demonstrates sophisticated translation techniques from Greek to Latin, showing how Republican-era authors like Catulus, Cicero, and Catullus developed innovative approaches to literary appropriation"
+    },
+    {
+      "work_id": "openalex:W1516940593",
+      "relevance": "high",
+      "facet_contribution": "Analyzes Roman language policies and multilingual practices across the Republic and early Empire periods"
+    },
+    {
+      "work_id": "openalex:W1607688580",
+      "relevance": "high",
+      "facet_contribution": "Provides comprehensive coverage of Latin language development from Indo-European origins through standardization during the Republic"
+    },
+    {
+      "work_id": "openalex:W623911921",
+      "relevance": "medium",
+      "facet_contribution": "Examines the social performance aspects of language use by Cicero and Catullus, showing how linguistic choices reflected and shaped elite identity"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q193058",
+      "label": "Livius Andronicus",
+      "confidence": 0.85,
+      "evidence": "Polt's dissertation identifies Livius Andronicus' Odusia as the foundational work of Latin literature, establishing translation as a core literary practice",
+      "target_facet": null,
+      "reasoning": "This figure represents the beginning of Latin literary translation and should be included as a core linguistic concept",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.1,
+        "biographic": 0.2,
+        "communication": 0.1,
+        "cultural": 0.2,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.3,
+        "linguistic": 0.9,
+        "military": 0.0,
+        "political": 0.1,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.1,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_EXPERT_MEDIATED_KNOWLEDGE"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q1541",
+      "label": "Cicero's rhetorical practices",
+      "confidence": 0.9,
+      "evidence": "Multiple works in the corpus demonstrate Cicero's central role in developing Latin prose style and oratorical techniques",
+      "target_facet": "political",
+      "reasoning": "Cicero's linguistic innovations were inseparable from his political activities and should link strongly to political facet",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.1,
+        "biographic": 0.3,
+        "communication": 0.3,
+        "cultural": 0.2,
+        "demographic": 0.0,
+        "diplomatic": 0.1,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.4,
+        "linguistic": 0.8,
+        "military": 0.0,
+        "political": 0.7,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_EXPERT_MEDIATED_KNOWLEDGE",
+        "RP_CONTENTIOUS_ASSEMBLY"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "concept_refinement",
+      "qid": "Q397",
+      "label": "Latin language standardization",
+      "confidence": 0.8,
+      "evidence": "The Blackwell History demonstrates that Latin standardization occurred during the Republican period (c.400-150 BC), not earlier",
+      "target_facet": null,
+      "reasoning": "Refines our understanding of when Latin became standardized, emphasizing Republican-era developments",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.1,
+        "biographic": 0.0,
+        "communication": 0.4,
+        "cultural": 0.3,
+        "demographic": 0.1,
+        "diplomatic": 0.1,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.2,
+        "intellectual": 0.3,
+        "linguistic": 1.0,
+        "military": 0.0,
+        "political": 0.3,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "causal"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q35497",
+      "label": "Ancient Greek",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "The corpus consistently shows Ancient Greek as the source language for Roman literary translation practices, making it essential to understanding Republican linguistic development"
+    },
+    {
+      "qid": "Q397",
+      "label": "Latin",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Latin is the primary focus of the linguistic facet, with multiple works examining its development, standardization, and literary applications during the Republic"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "ia:romantheatre0000moor",
+      "title": "Roman theatre",
+      "authors": "Timothy J. Moore",
+      "year": 2012,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/romantheatre0000moor",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Provides comprehensive analysis of Roman theatrical language and dramatic conventions during the Republic"
+    },
+    {
+      "work_id": "ia:comedyriseofrome00matt",
+      "title": "Comedy and the rise of Rome",
+      "authors": "Matthew Leigh",
+      "year": 2004,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/comedyriseofrome00matt",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Examines the linguistic and literary development of Roman comedy in its political context"
+    },
+    {
+      "work_id": "ia:communitycommuni0000orat",
+      "title": "Community and communication: oratory and politics in republican Rome",
+      "authors": "Various (Oxford conference proceedings)",
+      "year": 2013,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/communitycommuni0000orat",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Connects oratorical practices with political communication during the Republic"
+    },
+    {
+      "work_id": "ia:latinliteratureh0000cont",
+      "title": "Latin literature: a history",
+      "authors": "Gian Biagio Conte",
+      "year": 1994,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/latinliteratureh0000cont",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Comprehensive survey of Latin literary development including Republican period innovations"
+    },
+    {
+      "work_id": "ia:romanstonecutter0000susi",
+      "title": "The Roman stonecutter: an introduction to Latin epigraphy",
+      "authors": "Gian Carlo Susini",
+      "year": 1973,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/romanstonecutter0000susi",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Covers inscriptional evidence for Latin language use in daily life during the Republic"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "The linguistic facet covers 6 main sub-domains (literary translation, drama, oratory/rhetoric, language standardization, epigraphy, bilingualism) with approximately 8-10 concepts each, totaling around 50-60 concepts, which is manageable under the threshold of 12 major sub-domains",
+    "sub_domain_count": 6,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 55,
+    "sub_scopes": [],
+    "manageable_as_single": true
+  },
+  "corpus_gaps": [
+    "Archaic Latin inscriptional evidence from early Republic (6th-4th centuries BCE)",
+    "Technical linguistic analysis of phonological and morphological changes",
+    "Bilingual practices in Roman administration and law",
+    "Regional variation in Latin across Republican territories",
+    "Interaction between Latin and other Italic languages"
+  ],
+  "facet_confidence": 0.85,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Latin language standardization insight",
+        "note": "Avoided claiming to present 'the complete picture' of Latin development, instead focusing on specific Republican period evidence"
+      },
+      {
+        "fallacy_id": "OVERGENERALIZATION",
+        "status": "checked",
+        "applies_to": "Translation practices insight",
+        "note": "Limited claims to evidence from specific authors rather than generalizing about 'all Roman translators'"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Acknowledged that Internet Archive prioritizes pre-1928 works, potentially underrepresenting recent scholarship on Republican linguistics"
+      },
+      {
+        "principle_id": "OCR_AND_METADATA_SKEPTICISM",
+        "status": "applied",
+        "note": "Relied primarily on work metadata and abstracts rather than assuming full-text OCR accuracy for detailed linguistic claims"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_EXPERT_MEDIATED_KNOWLEDGE",
+        "pattern_label": "Expert-mediated knowledge",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_BROKERAGE",
+          "M_FRAME_ALIGNMENT"
+        ],
+        "evidence": "Both Livius Andronicus and Cicero served as linguistic intermediaries, translating and adapting Greek cultural knowledge for Roman audiences",
+        "confidence": 0.85
+      }
+    ],
+    "proposed_patterns": [
+      {
+        "proposed_label": "Literary Appropriation",
+        "scope_description": "Systematic adaptation of foreign literary forms to create new cultural expressions",
+        "analogous_to": "RP_EXPERT_MEDIATED_KNOWLEDGE",
+        "mechanisms": [
+          "M_BROKERAGE",
+          "M_FRAME_ALIGNMENT"
+        ],
+        "candidate_qids": [],
+        "evidence": "Polt's dissertation shows how Roman translators developed innovative techniques for appropriating Greek poetry while creating distinctly Roman literature"
+      }
+    ]
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Latin language",
+      "Roman literature",
+      "Classical rhetoric"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "All corpus works focus on linguistic developments during the traditional Republican period"
+      },
+      {
+        "year_start": -400,
+        "year_end": -150,
+        "label": "Latin standardization period",
+        "evidence": "Blackwell History identifies this as the key period for Latin language standardization"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Central location for Latin literary and oratorical development"
+      },
+      {
+        "place_label": "Italy",
+        "place_qid": "Q38",
+        "role": "secondary",
+        "evidence": "Broader geographic context for Latin language spread and regional variation"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Latin literary translation developed sophisticated techniques during the late Republic, with translators like Catulus, Cicero, and Catullus creating innovative appropriations rather than literal renderings.",
+        "subject_concepts": [
+          "Latin literature",
+          "Roman Republic"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.2,
+          "biographic": 0.1,
+          "communication": 0.2,
+          "cultural": 0.3,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.4,
+          "linguistic": 0.9,
+          "military": 0.0,
+          "political": 0.1,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.1,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_EXPERT_MEDIATED_KNOWLEDGE"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W2525696445"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman dramatic language evolved from Greek models but developed distinctively Roman characteristics through the works of Plautus and Terence.",
+        "subject_concepts": [
+          "Roman theatre",
+          "Latin literature"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.4,
+          "biographic": 0.0,
+          "communication": 0.1,
+          "cultural": 0.3,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.2,
+          "linguistic": 0.8,
+          "military": 0.0,
+          "political": 0.0,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.2,
+          "technological": 0.0
+        },
+        "pattern_tags": [],
+        "role": "causal",
+        "supporting_works": [
+          "ia:romantheatre0000moor",
+          "ia:comedyriseofrome00matt"
+        ],
+        "confidence": 0.8
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 36,
+    "tool_calls": [
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS 'Latin' OR sc.label CONTAINS 'language' OR sc.label CONTAINS 'linguistic' RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE {\n  VALUES ?topic { wd:Q397 wd:Q35497 wd:Q1747689 wd:Q2277 wd:Q186132 }\n  ?item wdt:P31/wdt:P279* wd:Q34770 .\n  ?item wdt:P31 wd:Q34770 .\n  FILTER(?item IN (?topic))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q397\", \"itemLabel\": \"Latin\"}, {\"item\": \"http://www.wikidata.org/entity/Q397\", \"itemLabel\": \"Latin\"}, {\"item\": \"http://www.wikidata.org/entity/Q35497\", \"itemLa"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?subject ?subjectLabel WHERE {\n  ?work wdt:P921 ?subject .\n  ?subject wdt:P31*/wdt:P279* wd:Q34770 .\n  ?work wdt:P921 wd:Q17167 .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 20"
+        },
+        "output_preview": "{\"error\": \"Wikidata SPARQL error: HTTPSConnectionPool(host='query.wikidata.org', port=443): Read timed out. (read timeout=30)\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE {\n  VALUES ?item { wd:Q1541 wd:Q193163 wd:Q193136 wd:Q182264 wd:Q1747689 }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q1541\", \"itemLabel\": \"Cicero\"}, {\"item\": \"http://www.wikidata.org/entity/Q193163\", \"itemLabel\": \"Temple Mount\"}, {\"item\": \"http://www.wikidata.org/entity/Q193"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE {\n  VALUES ?item { wd:Q271049 wd:Q193020 wd:Q185068 wd:Q44409 }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q271049\", \"itemLabel\": \"Peter Benenson\"}, {\"item\": \"http://www.wikidata.org/entity/Q193020\", \"itemLabel\": \"Tim Duncan\"}, {\"item\": \"http://www.wikidata.org/ent"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?author ?authorLabel WHERE {\n  ?author wdt:P31 wd:Q5 .\n  ?author wdt:P106 wd:Q36180 .\n  ?author wdt:P27 wd:Q1747689 .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 15"
+        },
+        "output_preview": "[{\"author\": \"http://www.wikidata.org/entity/Q193058\", \"authorLabel\": \"Livius Andronicus\"}, {\"author\": \"http://www.wikidata.org/entity/Q193506\", \"authorLabel\": \"Cato the Younger\"}, {\"author\": \"http://w"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Latin language Roman Republic linguistic development",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic Latin literature language",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W1587268449\", \"title\": \"Notes and Further Reading\", \"authors\": \"Alastair Blanshard; Bremmer; Benjamin Acosta -Hughes\", \"year\": 2010, \"citations\": 1, \"doi\": \"https://doi.org/10.1"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Latin philology Roman Republic",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Latin language Roman",
+          "source": "oapen",
+          "limit": 15
+        },
+        "output_preview": "{\"error\": \"OAPEN search error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic Latin drama",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:ExtrasensoryPerceptionResearchFinding\", \"title\": \"Notes on the Paranormal\", \"authors\": \"Ben Steigmann\", \"year\": \"\", \"downloads\": 33181, \"source_url\": \"https://archive.org/details/Extr"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/57e78b54-1a77-4f57-8179-87034682ee9e",
+          "max_chars": 3000
+        },
+        "output_preview": "Epidicus by Plautus: An Annotated Latin Text, with a Prose Translation : Catherine Tracy : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore ac"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/companiontoroman0000unse_f6m6",
+          "max_chars": 3000
+        },
+        "output_preview": "A companion to the Roman Republic : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon An icon used to "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/cambridgecompani0000unse_w8p5",
+          "max_chars": 4000
+        },
+        "output_preview": "The Cambridge companion to ancient rhetoric : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon An ico"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.17615/82pe-7f59",
+          "max_chars": 4000
+        },
+        "output_preview": "Dissertation or Thesis | Latin literary translation in the late Roman Republic | ID: x346d4475 | Carolina Digital Repository Skip to Content Carolina Digital Repository University Library Carolina Dig"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1002/9781444343397.ch30",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://onlinelibrary.wiley.com/doi/10.1002/9781444343397.ch30\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Latin literature\" \"Roman Republic\" \"language development\"",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Cicero rhetoric Latin prose style",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W60875512\", \"title\": \"Reseña del libro de Jakob Wisse—Michael Winterbottom—Elaine Fantham, M. Tullius Cicero, De oratore Libri III. A Commentary on Book III, 96-230\", \"authors\":"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "http://hdl.handle.net/10272/10058",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Domain not in allowlist: hdl.handle.net. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, jstor.org, l"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh WHERE {\n  VALUES ?subject { wd:Q397 wd:Q1747689 wd:Q17167 }\n  ?work wdt:P921 ?subject .\n  ?work wdt:P244 ?lcsh .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 15"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q643983\", \"lcsh\": \"no98061818\", \"workLabel\": \"Nyon Roman Museum\"}, {\"work\": \"http://www.wikidata.org/entity/Q816528\", \"lcsh\": \"no98041219\", \"workLabel\": \"Ben-"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D12"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Detects when a SubjectConcept node is overloaded (too many children at level 2, or cross-link ratio indicates mixed semantics) and should be split into more specific concept"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.17615/82pe-7f59",
+          "max_chars": 5000
+        },
+        "output_preview": "Dissertation or Thesis | Latin literary translation in the late Roman Republic | ID: x346d4475 | Carolina Digital Repository Skip to Content Carolina Digital Repository University Library Carolina Dig"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Plautus Terence Roman comedy",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:loeb.315.ammianusmarcellinus.romanhistory.ii.books2026\", \"title\": \"Loeb. 315. Ammianus Marcellinus. Roman History. II. Books 20 26\", \"authors\": \"Loeb Harvard University Press Classica"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/romantheatre0000moor",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman theatre : Moore, Timothy J., 1959- : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon An icon u"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/comedyriseofrome00matt",
+          "max_chars": 4000
+        },
+        "output_preview": "Comedy and the rise of Rome [electronic resource] : Leigh, Matthew : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Cicero oratory Roman Republic rhetoric",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:ExtrasensoryPerceptionResearchFinding\", \"title\": \"Notes on the Paranormal\", \"authors\": \"Ben Steigmann\", \"year\": \"\", \"downloads\": 33181, \"source_url\": \"https://archive.org/details/Extr"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/communitycommuni0000orat",
+          "max_chars": 4000
+        },
+        "output_preview": "Community and communication : oratory and politics in republican Rome : Oratory and politics in the Roman Republic (2010 : University of Oxford) : Free Download, Borrow, and Streaming : Internet Archi"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/latinliteratureh0000cont",
+          "max_chars": 4000
+        },
+        "output_preview": "Latin literature : a history : Conte, Gian Biagio, 1941- : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburge"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (n) WHERE n.label CONTAINS 'Cicero' OR n.label CONTAINS 'rhetoric' OR n.label CONTAINS 'Plautus' OR n.label CONTAINS 'Latin' RETURN DISTINCT labels(n)[0] AS node_type, n.label, n.subject_id LIMIT 20"
+        },
+        "output_preview": "[{\"node_type\": \"LCC_Class\", \"n.label\": \"Latin America.  Spanish America\", \"n.subject_id\": null}, {\"node_type\": \"LCC_Class\", \"n.label\": \"Latin America (General)\", \"n.subject_id\": null}, {\"node_type\": \""
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Ennius Annals Roman epic",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:loeb.315.ammianusmarcellinus.romanhistory.ii.books2026\", \"title\": \"Loeb. 315. Ammianus Marcellinus. Roman History. II. Books 20 26\", \"authors\": \"Loeb Harvard University Press Classica"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Latin inscriptions Roman epigraphy",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:christianepigrap00maruuoft\", \"title\": \"Christian epigraphy; an elementary treatise, with a collection of ancient Christian inscriptions mainly of Roman origin\", \"authors\": \"Marucchi, "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/romanstonecutter0000susi",
+          "max_chars": 4000
+        },
+        "output_preview": "The Roman stonecutter; an introduction to Latin epigraphy; : Susini, G. C. (Gian Carlo) : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore acc"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"archaic Latin\" \"early Latin literature\"",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Livius Andronicus Odusia",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      }
+    ],
+    "usage": {
+      "input_tokens": 684544,
+      "output_tokens": 8089
+    },
+    "raw_response_length": 13498
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 3,
+    "rejected": [
+      {
+        "qid": "Q193058",
+        "reason": "human_off_topic",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q1541",
+        "reason": "human_off_topic",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q193058",
+        "reason": "human_off_topic",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

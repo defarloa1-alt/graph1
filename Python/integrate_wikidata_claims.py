@@ -13,21 +13,26 @@ Integrates Wikidata extraction (e.g., Q17167 Roman Republic) into validated Clai
 Part of Priority 10: Enrichment Pipeline Integration
 """
 
+import argparse
+import csv
 import json
 import sys
 import io
 from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Any, Optional, Tuple
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 # Set UTF-8 output encoding
 if sys.stdout.encoding != 'utf-8':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
-# Add models directory to path
+ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(Path(__file__).parent / "models"))
+
+from scripts.agents.domain_initiator.proposal_backbone import FACET_BOOTSTRAP_PARENT
 
 from validation_models import (
     Claim,
@@ -79,6 +84,8 @@ class WikidataClaimIntegrator:
         
         self.default_facet = default_facet
         self.default_agent = default_agent
+        self._rel_type_labels = self._load_relationship_labels(relationship_registry_path)
+        self._seed: Dict[str, str] = {}
         
         # Stats tracking
         self.stats = {
@@ -89,8 +96,56 @@ class WikidataClaimIntegrator:
             "unique_assertion_ciphers": 0,
             "claims_with_multiple_perspectives": 0,
             "v1_kernel_mappings": 0,
-            "unmapped_predicates": 0
+            "unmapped_predicates": 0,
+            "skipped_bare_labels": 0,
+            "validation_errors": 0,
         }
+        self._quiet = False
+        self._unmapped_by_pid: Counter[str] = Counter()
+
+    @staticmethod
+    def _load_relationship_labels(registry_path: Path) -> Dict[str, str]:
+        labels: Dict[str, str] = {}
+        if not registry_path.exists():
+            return labels
+        with registry_path.open("r", encoding="utf-8-sig", newline="") as handle:
+            for row in csv.DictReader(handle):
+                rel_type = (row.get("relationship_type") or "").strip()
+                if not rel_type:
+                    continue
+                labels[rel_type] = (
+                    (row.get("wikidata_label") or "").strip()
+                    or (row.get("description") or "").strip()
+                    or rel_type
+                )
+        return labels
+
+    @staticmethod
+    def _labeled_endpoint(qid: str, label: str) -> Dict[str, str]:
+        return {"qid": qid, "label": label}
+
+    def _backbone_block(self, facet: str) -> Dict[str, Any]:
+        seed = self._seed or {}
+        parent = FACET_BOOTSTRAP_PARENT.get(facet, {})
+        block: Dict[str, Any] = {
+            "seed": {
+                "qid": seed.get("qid", ""),
+                "label": seed.get("label", ""),
+            },
+            "facet_hint": facet,
+            "subject_concept_routing": "deferred",
+            "routing_note": (
+                "Federation bootstrap claims anchor to the seed period. "
+                "Facet→bootstrap parent is a review hint only until DI SubjectConcepts "
+                "are approved and routing edges (ABOUT / MEMBER_OF) are written."
+            ),
+        }
+        if parent.get("subject_id"):
+            block["bootstrap_parent_hint"] = {
+                "subject_id": parent.get("subject_id"),
+                "label": parent.get("label"),
+            }
+        return block
         
     def load_wikidata_extraction(self, filepath: Path) -> Dict[str, Any]:
         """Load Wikidata extraction JSON (e.g., Q17167_claim_subgraph_proposal.json)."""
@@ -125,6 +180,81 @@ class WikidataClaimIntegrator:
         
         # Default to historical for Roman Republic context
         return "historical"
+
+    def _pick_rel_type(
+        self,
+        *,
+        predicate_pid: str,
+        canonical_types: List[str],
+        proposal: Dict[str, Any],
+    ) -> Optional[str]:
+        types = list(canonical_types)
+        if not types:
+            if predicate_pid in self.PREDICATE_MAPPINGS:
+                types = list(self.PREDICATE_MAPPINGS[predicate_pid])
+            else:
+                return None
+
+        if len(types) == 1:
+            return types[0]
+
+        source_mode = (proposal.get("source_mode") or "").lower()
+        inverse_pairs = {
+            frozenset({"HAD_PARTICIPANT", "PARTICIPATED_IN"}),
+            frozenset({"CAUSED", "CAUSED_BY"}),
+            frozenset({"CONTROLLED", "CONTROLLED_BY"}),
+            frozenset({"LOCATED_IN", "LOCATION_OF"}),
+            frozenset({"PART_OF", "HAS_PART"}),
+            frozenset({"APPOINTED", "APPOINTED_BY"}),
+            frozenset({"POSITION_HELD", "OFFICE_HELD_BY"}),
+        }
+        if frozenset(types) in inverse_pairs:
+            if source_mode.startswith("expanded_event") or source_mode.startswith("expanded_battle"):
+                for preferred in ("HAD_PARTICIPANT", "CAUSED", "HAS_PART", "LOCATION_OF", "OFFICE_HELD_BY"):
+                    if preferred in types:
+                        return preferred
+            if source_mode == "second_hop_person":
+                for preferred in ("PARTICIPATED_IN", "CAUSED_BY", "PART_OF", "LOCATED_IN", "POSITION_HELD"):
+                    if preferred in types:
+                        return preferred
+        return types[0]
+
+    @staticmethod
+    def _format_relationship_content(
+        rel_type: str,
+        subject_label: str,
+        object_label: str,
+    ) -> str:
+        """Natural-language assertion for the directed relationship edge."""
+        templates = {
+            "HAD_PARTICIPANT": "{subject} had participant {object}",
+            "PARTICIPATED_IN": "{subject} participated in {object}",
+            "BATTLED_IN": "{subject} fought in {object}",
+            "BATTLE_PARTICIPANT": "{subject} fought in {object}",
+            "FOUGHT_IN": "{subject} fought in {object}",
+            "CAUSED": "{subject} was caused by {object}",
+            "CAUSED_BY": "{subject} caused {object}",
+            "POSITION_HELD": "{subject} held position {object}",
+            "APPOINTED": "{subject} held office {object}",
+            "OFFICE_HELD_BY": "{object} was held by {subject}",
+            "LOCATED_IN": "{subject} is located in {object}",
+            "BIRTHPLACE_OF": "{object} is birthplace of {subject}",
+            "PLACE_OF_BIRTH": "{subject} was born in {object}",
+            "PART_OF": "{subject} is part of {object}",
+            "HAS_PART": "{subject} has part {object}",
+            "INSTANCE_OF": "{subject} is instance of {object}",
+            "CONTROLLED": "{subject} was under country {object}",
+            "CONTROLLED_BY": "{object} controlled {subject}",
+            "SPOUSE_OF": "{subject} is spouse of {object}",
+            "FATHER_OF": "{subject} is parent of {object}",
+            "PARENT_OF": "{subject} is parent of {object}",
+            "CHILD_OF": "{subject} is child of {object}",
+            "CITIZEN_OF": "{subject} is citizen of {object}",
+        }
+        template = templates.get(rel_type)
+        if template:
+            return template.format(subject=subject_label, object=object_label)
+        return f"{subject_label} —[{rel_type}]→ {object_label}"
     
     def create_claim_from_relationship_proposal(
         self,
@@ -150,52 +280,42 @@ class WikidataClaimIntegrator:
             predicate_label = proposal["predicate_label"]
             object_qid = proposal["object_qid"]
             object_label = proposal["object_label"]
+            if (
+                subject_qid == object_qid
+                or not subject_label
+                or not object_label
+                or subject_label.strip().upper() == subject_qid.strip().upper()
+                or object_label.strip().upper() == object_qid.strip().upper()
+            ):
+                self.stats["skipped_bare_labels"] += 1
+                return None
             confidence = proposal.get("confidence", 0.5)
             canonical_types = proposal.get("canonical_relationship_types", [])
-            source_p31 = proposal.get("source_p31", [])
-            
-            # Build claim content (natural language assertion)
-            content = f"{subject_label} {predicate_label} {object_label}"
-            
-            # Map to facet (heuristic)
-            facet = self.map_confidence_to_facet(predicate_pid, source_p31)
-            
-            # Create relationship assertions
-            relationships = []
-            if canonical_types:
-                # Use first canonical type (we have bidirectional pairs like CONTROLLED/CONTROLLED_BY)
-                rel_type = canonical_types[0]
-                relationships.append(
-                    RelationshipAssertion(
-                        rel_type=rel_type,
-                        subject_id=subject_qid,
-                        object_id=object_qid,
-                        confidence=confidence,
-                        source_id=f"wikidata:{predicate_pid}"
-                    )
-                )
-                self.stats["v1_kernel_mappings"] += 1
-            elif predicate_pid in self.PREDICATE_MAPPINGS:
-                # Fallback: Use predicate mapping if available (Priority 10 expansion)
-                canonical_types = self.PREDICATE_MAPPINGS[predicate_pid]
-                rel_type = canonical_types[0]
-                relationships.append(
-                    RelationshipAssertion(
-                        rel_type=rel_type,
-                        subject_id=subject_qid,
-                        object_id=object_qid,
-                        confidence=confidence,
-                        source_id=f"wikidata:{predicate_pid}"
-                    )
-                )
-                self.stats["v1_kernel_mappings"] += 1
-                print(f"  [MAPPED] {claim_id}: Applied fallback mapping {predicate_pid} → {rel_type}")
-            else:
-                # No canonical mapping - track but skip
+
+            rel_type = self._pick_rel_type(
+                predicate_pid=predicate_pid,
+                canonical_types=canonical_types,
+                proposal=proposal,
+            )
+            if not rel_type:
                 self.stats["unmapped_predicates"] += 1
-                print(f"  [SKIP] {claim_id}: No canonical mapping for {predicate_pid}")
+                self._unmapped_by_pid[predicate_pid] += 1
+                if not self._quiet:
+                    print(f"  [SKIP] {claim_id}: No canonical mapping for {predicate_pid}")
                 return None
-            
+
+            content = self._format_relationship_content(rel_type, subject_label, object_label)
+            relationships = [
+                RelationshipAssertion(
+                    rel_type=rel_type,
+                    subject_id=subject_qid,
+                    object_id=object_qid,
+                    confidence=confidence,
+                    source_id=f"wikidata:{predicate_pid}",
+                )
+            ]
+            self.stats["v1_kernel_mappings"] += 1
+
             # Create Claim with AssertionCipher (facet-agnostic)
             claim = Claim.create_with_cipher(
                 claim_id=claim_id,
@@ -212,14 +332,19 @@ class WikidataClaimIntegrator:
             return claim
             
         except Exception as e:
-            print(f"  [FAIL] Failed to create claim from {proposal.get('claim_id', 'unknown')}: {e}")
+            if not self._quiet:
+                print(f"  [FAIL] Failed to create claim from {proposal.get('claim_id', 'unknown')}: {e}")
+            self.stats["validation_errors"] += 1
             self.stats["relationship_claims_failed"] += 1
             return None
     
     def process_extraction(
         self,
         extraction_path: Path,
-        output_dir: Path
+        output_dir: Path,
+        *,
+        output_suffix: str = "",
+        quiet: bool = True,
     ) -> Dict[str, Any]:
         """
         Process complete Wikidata extraction.
@@ -233,15 +358,18 @@ class WikidataClaimIntegrator:
         """
         print("="*70)
         print("WIKIDATA CLAIM INTEGRATION PIPELINE")
-        print("Priority 10: Enrichment Pipeline Integration")
         print("="*70)
         print()
+        
+        self._quiet = quiet
+        suffix = f"_{output_suffix}" if output_suffix else ""
         
         # Load extraction
         print(f"Loading extraction: {extraction_path.name}")
         extraction = self.load_wikidata_extraction(extraction_path)
         
         seed = extraction["seed"]
+        self._seed = seed
         print(f"Seed entity: {seed['qid']} - {seed['label']}")
         print(f"Description: {seed['description']}")
         print()
@@ -258,17 +386,24 @@ class WikidataClaimIntegrator:
         relationship_proposals = extraction.get("relationship_claim_proposals", [])
         
         claims: List[Claim] = []
+        proposal_by_id: Dict[str, Dict[str, Any]] = {}
         for proposal in relationship_proposals:
             self.stats["relationship_claims_processed"] += 1
             claim = self.create_claim_from_relationship_proposal(proposal, seed["qid"])
             if claim:
                 claims.append(claim)
+                proposal_by_id[claim.claim_id] = proposal
         
         print(f"  Processed: {self.stats['relationship_claims_processed']}")
         print(f"  Validated: {self.stats['relationship_claims_validated']}")
         print(f"  Failed: {self.stats['relationship_claims_failed']}")
-        print(f"  V1 kernel mappings: {self.stats['v1_kernel_mappings']}")
+        print(f"  Skipped (bare labels): {self.stats['skipped_bare_labels']}")
+        print(f"  Validation errors: {self.stats['validation_errors']}")
         print(f"  Unmapped predicates: {self.stats['unmapped_predicates']}")
+        if self._unmapped_by_pid:
+            print("  Top unmapped PIDs:")
+            for pid, count in self._unmapped_by_pid.most_common(10):
+                print(f"    {pid}: {count}")
         print()
         
         # Group by AssertionCipher for deduplication
@@ -291,23 +426,20 @@ class WikidataClaimIntegrator:
         output_dir.mkdir(parents=True, exist_ok=True)
         
         # 1. Export validated claims as JSON
-        claims_output = output_dir / f"{seed['qid']}_validated_claims.json"
-        self.export_claims_json(claims, claims_output)
+        claims_output = output_dir / f"{seed['qid']}_validated_claims{suffix}.json"
+        self.export_claims_json(claims, claims_output, proposal_by_id=proposal_by_id)
         print(f"  [OK] Validated claims: {claims_output.name}")
         
-        # 2. Export cipher groups for consensus tracking
-        consensus_output = output_dir / f"{seed['qid']}_cipher_groups.json"
+        consensus_output = output_dir / f"{seed['qid']}_cipher_groups{suffix}.json"
         self.export_cipher_groups(cipher_groups, consensus_output)
         print(f"  [OK] Cipher groups: {consensus_output.name}")
         
-        # 3. Export Cypher statements for Neo4j
-        cypher_output = output_dir / f"{seed['qid']}_neo4j_import.cypher"
+        cypher_output = output_dir / f"{seed['qid']}_neo4j_import{suffix}.cypher"
         self.export_cypher_statements(claims, cipher_groups, cypher_output, seed)
         print(f"  [OK] Neo4j Cypher: {cypher_output.name}")
         
-        # 4. Export processing stats
-        stats_output = output_dir / f"{seed['qid']}_integration_stats.json"
-        self.export_stats(stats_output, seed, extraction)
+        stats_output = output_dir / f"{seed['qid']}_integration_stats{suffix}.json"
+        self.export_stats(stats_output, seed, extraction, extraction_path=str(extraction_path))
         print(f"  [OK] Stats: {stats_output.name}")
         
         print()
@@ -321,30 +453,82 @@ class WikidataClaimIntegrator:
             "cipher_groups": cipher_groups
         }
     
-    def export_claims_json(self, claims: List[Claim], output_path: Path):
+    def export_claims_json(
+        self,
+        claims: List[Claim],
+        output_path: Path,
+        *,
+        proposal_by_id: Optional[Dict[str, Dict[str, Any]]] = None,
+    ):
         """Export validated claims as JSON."""
-        claims_data = [
-            {
-                "claim_id": c.claim_id,
-                "cipher": c.cipher,
-                "content": c.content,
-                "source_id": c.source_id,
-                "confidence": c.confidence,
-                "created_by": c.created_by,
-                "relationships": [
+        claims_data = []
+        for c in claims:
+            proposal = (proposal_by_id or {}).get(c.claim_id) or {}
+            subject_qid = proposal.get("subject_qid") or (
+                c.relationships[0].subject_id if c.relationships else ""
+            )
+            object_qid = proposal.get("object_qid") or (
+                c.relationships[0].object_id if c.relationships else ""
+            )
+            subject_label = proposal.get("subject_label") or ""
+            object_label = proposal.get("object_label") or ""
+            predicate_pid = proposal.get("predicate_pid") or ""
+            predicate_label = proposal.get("predicate_label") or predicate_pid
+            facet = self.map_confidence_to_facet(
+                predicate_pid,
+                proposal.get("source_p31") or [],
+            )
+
+            rel_rows = []
+            for r in c.relationships:
+                rel_label = self._rel_type_labels.get(r.rel_type, r.rel_type)
+                prop_label = predicate_label
+                if r.source_id and r.source_id.startswith("wikidata:"):
+                    prop_label = predicate_label or r.source_id.replace("wikidata:", "")
+                rel_rows.append(
                     {
                         "rel_type": r.rel_type,
-                        "subject_id": r.subject_id,
-                        "object_id": r.object_id,
+                        "rel_type_label": rel_label,
+                        "subject": self._labeled_endpoint(r.subject_id, subject_label),
+                        "object": self._labeled_endpoint(r.object_id, object_label),
                         "confidence": r.confidence,
-                        "source_id": r.source_id
+                        "source": {
+                            "system": "wikidata",
+                            "property": {
+                                "pid": predicate_pid,
+                                "label": prop_label,
+                            },
+                        },
                     }
-                    for r in c.relationships
-                ],
-                "created_at": c.created_at.isoformat()
+                )
+
+            row: Dict[str, Any] = {
+                "claim_id": c.claim_id,
+                "cipher": c.cipher,
+                "claim_type": "RELATIONSHIP",
+                "content": c.content,
+                "confidence": c.confidence,
+                "status": "proposed",
+                "created_by": c.created_by,
+                "created_at": c.created_at.isoformat(),
+                "endpoints": {
+                    "subject": self._labeled_endpoint(subject_qid, subject_label),
+                    "object": self._labeled_endpoint(object_qid, object_label),
+                },
+                "predicate": {
+                    "pid": predicate_pid,
+                    "label": predicate_label,
+                },
+                "relationships": rel_rows,
+                "provenance": {
+                    "source_id": c.source_id,
+                    "wikidata_statement_id": proposal.get("statement_id"),
+                    "source_mode": proposal.get("source_mode"),
+                    "federation_source": c.created_by,
+                },
+                "backbone": self._backbone_block(facet),
             }
-            for c in claims
-        ]
+            claims_data.append(row)
         
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(claims_data, f, indent=2, ensure_ascii=False)
@@ -416,13 +600,22 @@ class WikidataClaimIntegrator:
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(statements))
     
-    def export_stats(self, output_path: Path, seed: Dict[str, str], extraction: Dict[str, Any]):
+    def export_stats(
+        self,
+        output_path: Path,
+        seed: Dict[str, str],
+        extraction: Dict[str, Any],
+        *,
+        extraction_path: str = "",
+    ):
         """Export processing statistics."""
         stats_data = {
             "generated_at": datetime.utcnow().isoformat() + "Z",
             "seed": seed,
+            "extraction_path": extraction_path,
             "extraction_summary": extraction["summary"],
-            "integration_stats": self.stats
+            "integration_stats": self.stats,
+            "unmapped_by_pid": dict(self._unmapped_by_pid.most_common(30)),
         }
         
         with open(output_path, 'w', encoding='utf-8') as f:
@@ -430,15 +623,35 @@ class WikidataClaimIntegrator:
 
 
 def main():
-    """Run integration pipeline on Q17167 Roman Republic extraction."""
-    # Paths
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--input",
+        help="Claim subgraph proposal JSON (default: JSON/wikidata/proposals/Q17167_claim_subgraph_proposal.json)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        help="Output directory (default: JSON/wikidata/integrated)",
+    )
+    parser.add_argument(
+        "--output-suffix",
+        default="",
+        help="Suffix for output files, e.g. v2 -> Q17167_validated_claims_v2.json",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Print per-claim skip/map messages",
+    )
+    args = parser.parse_args()
+
     root = Path(__file__).parent.parent
     facet_registry = root / "Facets" / "facet_registry_master.json"
     relationship_registry = root / "Relationships" / "relationship_types_registry_master.csv"
-    extraction_file = root / "JSON" / "wikidata" / "proposals" / "Q17167_claim_subgraph_proposal.json"
-    output_dir = root / "JSON" / "wikidata" / "integrated"
+    extraction_file = Path(args.input) if args.input else (
+        root / "JSON" / "wikidata" / "proposals" / "Q17167_claim_subgraph_proposal.json"
+    )
+    output_dir = Path(args.output_dir) if args.output_dir else (root / "JSON" / "wikidata" / "integrated")
     
-    # Validate paths
     if not facet_registry.exists():
         print(f"Error: Facet registry not found: {facet_registry}")
         return 1
@@ -449,26 +662,24 @@ def main():
         print(f"Error: Extraction file not found: {extraction_file}")
         return 1
     
-    # Create integrator
     integrator = WikidataClaimIntegrator(
         facet_registry_path=facet_registry,
         relationship_registry_path=relationship_registry,
         default_facet="historical",
-        default_agent="wikidata_harvester_001"
+        default_agent="wikidata_harvester_001",
     )
     
-    # Process extraction
     results = integrator.process_extraction(
         extraction_path=extraction_file,
-        output_dir=output_dir
+        output_dir=output_dir,
+        output_suffix=args.output_suffix,
+        quiet=not args.verbose,
     )
     
-    # Print summary
     print()
     print("Integration Summary:")
     print(f"  Validated claims: {results['stats']['relationship_claims_validated']}")
     print(f"  Unique assertions: {results['stats']['unique_assertion_ciphers']}")
-    print(f"  V1 kernel mappings: {results['stats']['v1_kernel_mappings']}")
     print(f"  Output directory: {output_dir}")
     
     return 0

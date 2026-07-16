@@ -1,0 +1,180 @@
+{
+  "qid": "Q109377210",
+  "label": "Siege of Antioch",
+  "description": "51 BCE battle between Roman and Parthian armies",
+  "statement_count": 9,
+  "property_count": 8,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q109377210$4e7c80f3-49e3-112b-22a4-e1d322c5a42d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q109377210$d5d9f106-4395-9816-a4d1-19e4b5176ef2",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0051-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q109377210$6aeaf8a6-4d89-67cc-632a-72aafd64d9a7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q207370"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q109377210$7e9a31b5-49c7-0185-b4ee-335fb0d012e7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1986139"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q358097"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q110930029"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q109377210$d06c73f8-4ccd-25fb-0ce2-c3183fd03360",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1192043"
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q109377210$c19512d7-48b3-e053-3355-20c249cb5537",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2853228"
+        }
+      }
+    ],
+    "P2348": [
+      {
+        "statement_id": "Q109377210$7ef047c5-48dc-e3ef-b3d1-ab2f6daa28b2",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2348",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2815472"
+        }
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q109377210$b97ca1db-a18c-4da4-b82d-2f9a60c9a07d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 36.2045,
+            "longitude": 36.1813,
+            "precision": 0.0001,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q109377210$6C0D3EA8-987F-4B20-820B-FFD3FE9E9F78",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q43"
+        }
+      }
+    ]
+  }
+}

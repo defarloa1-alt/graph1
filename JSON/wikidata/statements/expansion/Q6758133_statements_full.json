@@ -1,0 +1,251 @@
+{
+  "qid": "Q6758133",
+  "label": "Marcus Domitius Calvinus",
+  "description": "praetor in 80 BC",
+  "statement_count": 14,
+  "property_count": 14,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q6758133$5270ACF4-AFAF-4AD7-A785-320C679A13B5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        }
+      }
+    ],
+    "P21": [
+      {
+        "statement_id": "Q6758133$6FEA359C-E452-46AE-9273-053E71221EDF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        }
+      }
+    ],
+    "P2358": [
+      {
+        "statement_id": "Q6758133$59124C21-A3C2-4329-B2E2-D79D9A1FD9DF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2358",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6757977"
+        }
+      }
+    ],
+    "P569": [
+      {
+        "statement_id": "Q6758133$82ADBC37-D2C8-4761-9FB3-F045C7229B44",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P569",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0121-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P570": [
+      {
+        "statement_id": "Q6758133$95A007B9-BC78-4AB7-B8FF-D323BD555088",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P570",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0080-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P27": [
+      {
+        "statement_id": "Q6758133$3BA535F6-A91C-4660-B17E-F5214A470B30",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P27",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1747689"
+        }
+      }
+    ],
+    "P646": [
+      {
+        "statement_id": "Q6758133$56FEDEF9-975D-4399-A667-9C73A8A439AF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/0479kps"
+        }
+      }
+    ],
+    "P5025": [
+      {
+        "statement_id": "Q6758133$646c36ae-49ed-5e69-07d5-c18c75a6f78a",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P5025",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q908366"
+        }
+      }
+    ],
+    "P2359": [
+      {
+        "statement_id": "Q6758133$5beee859-4010-6a90-b6ca-abe429fb44de",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2359",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q32979086"
+        }
+      }
+    ],
+    "P2365": [
+      {
+        "statement_id": "Q6758133$d48d77e4-4df1-5fc7-101f-eb20da8fed4c",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2365",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q11910938"
+        }
+      }
+    ],
+    "P2348": [
+      {
+        "statement_id": "Q6758133$75e1d196-41e2-66ed-4de4-e1ad3ff342b6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2348",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2815472"
+        }
+      }
+    ],
+    "P53": [
+      {
+        "statement_id": "Q6758133$efdc4657-47be-87c4-a1c9-325125937a39",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P53",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q101815582"
+        }
+      }
+    ],
+    "P40": [
+      {
+        "statement_id": "Q6758133$f490372c-4747-690d-ba2c-e198478bd245",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P40",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q383846"
+        }
+      }
+    ],
+    "P1559": [
+      {
+        "statement_id": "Q6758133$59b76f5c-4af9-7ca5-24be-1007180cb557",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1559",
+          "snaktype": "value",
+          "datatype": "monolingualtext",
+          "value_type": "monolingualtext",
+          "value": {
+            "text": "Marcus Domitius Calvinus",
+            "language": "la"
+          }
+        },
+        "references": [
+          {
+            "hash": "5f970ca482b8d3db558a981aaac11ac948f9406a",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q206855"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://ru.wikipedia.org/?oldid=121451810"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

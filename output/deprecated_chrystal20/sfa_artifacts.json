@@ -1,0 +1,403 @@
+[
+  {
+    "label": "SFA_TrainingInsight",
+    "p": {
+      "insight_type": "within_facet_addition",
+      "evidence": "Wikipedia articles and Republican art overview demonstrate triumphal paintings as distinct Republican genre celebrating military victories",
+      "confidence": 0.85,
+      "reasoning": "Triumphal paintings represent a uniquely Roman artistic innovation that served both commemorative and propagandistic functions",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "seed_qid": "Q17167",
+      "label": "Roman triumphal painting tradition",
+      "source": "sfa_training",
+      "qid": "Q2413079",
+      "insight_id": "14eae09c16f319ec",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_TrainingInsight",
+    "p": {
+      "evidence": "Gem engraving study shows intimate connection between artistic production and political messaging, extending to sculpture and painting",
+      "confidence": 0.88,
+      "reasoning": "Artistic works functioned as vehicles for political communication and status display throughout the Republican period",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "label": "Art as political propaganda in Republican context",
+      "source": "sfa_training",
+      "qid": "Q838948",
+      "insight_id": "560e3aa523a1db83",
+      "insight_type": "cross_facet_link",
+      "seed_qid": "Q17167",
+      "target_facet": "political",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_TrainingInsight",
+    "p": {
+      "insight_type": "within_facet_addition",
+      "evidence": "Roman sculpture overview and Republican art articles establish veristic style as distinctly Roman contribution emphasizing realistic representation",
+      "confidence": 0.82,
+      "reasoning": "Veristic portraiture represents the Roman innovation of hyper-realistic representation, contrasting with idealized Greek traditions",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "seed_qid": "Q17167",
+      "label": "Veristic portraiture tradition",
+      "source": "sfa_training",
+      "qid": "Q3344524",
+      "insight_id": "6fe499efe6e1e459",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Chronological development, technical analysis, social contexts of commissioning",
+      "scope_key": "sculpture_portraiture",
+      "scope_description": "Three-dimensional artworks including veristic portraits, public monuments, and relief sculpture",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "estimated_concepts": 8,
+      "seed_qid": "Q17167",
+      "scope_label": "Sculpture & Portraiture",
+      "candidate_qids": "[\"Q2038848\", \"Q3344524\"]",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Style periodization, surviving examples analysis, literary source integration",
+      "scope_key": "painting_frescoes",
+      "scope_description": "Wall paintings, triumphal paintings, and decorative painting traditions",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "estimated_concepts": 6,
+      "seed_qid": "Q17167",
+      "scope_label": "Painting & Frescoes",
+      "candidate_qids": "[\"Q2413079\", \"Q1139665\"]",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Material studies, workshop organization, patronage networks",
+      "scope_key": "decorative_arts",
+      "scope_description": "Gems, metalwork, pottery, mosaics, and luxury objects",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "estimated_concepts": 7,
+      "seed_qid": "Q17167",
+      "scope_label": "Decorative Arts",
+      "candidate_qids": "[]",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Urban planning integration, construction techniques, political contexts",
+      "scope_key": "architecture_public",
+      "scope_description": "Temples, forums, basilicas, and monumental architecture",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "estimated_concepts": 8,
+      "seed_qid": "Q17167",
+      "scope_label": "Architecture & Public Monuments",
+      "candidate_qids": "[]",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Literary analysis, staging practices, audience sociology",
+      "scope_key": "theatrical_arts",
+      "scope_description": "Drama, spectacle, and performance traditions including fabula praetexta",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "estimated_concepts": 5,
+      "seed_qid": "Q17167",
+      "scope_label": "Theatrical & Performance Arts",
+      "candidate_qids": "[\"Q780548\"]",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Political context analysis, iconographic studies, reception analysis",
+      "scope_key": "propaganda_commemoration",
+      "scope_description": "Art serving political messaging, triumphal displays, and historical commemoration",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "estimated_concepts": 6,
+      "seed_qid": "Q17167",
+      "scope_label": "Propaganda & Commemoration",
+      "candidate_qids": "[]",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Technical studies, archaeological evidence, comparative analysis",
+      "scope_key": "materials_techniques",
+      "scope_description": "Artistic materials, workshop practices, and technical innovations",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "estimated_concepts": 4,
+      "seed_qid": "Q17167",
+      "scope_label": "Materials & Techniques",
+      "candidate_qids": "[]",
+      "facet_key": "ARTISTIC",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_Claim",
+    "p": {
+      "role": "causal",
+      "pattern_tags": "[\"RP_CENTER_PERIPHERY_EXTRACTION\"]",
+      "supporting_works": "[\"wikipedia:Roman_Republican_art\"]",
+      "confidence": 0.85,
+      "claim_id": "train_Q17167_ARTISTIC_20260314T135810_claim_000",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "text": "Roman triumphal paintings served as both commemorative art and political propaganda, depicting military victories in public processions.",
+      "facet_weights": "{\"archaeological\": 0.1, \"artistic\": 0.9, \"biographic\": 0.2, \"communication\": 0.4, \"cultural\": 0.4, \"demographic\": 0.0, \"diplomatic\": 0.1, \"economic\": 0.1, \"environmental\": 0.0, \"geographic\": 0.2, \"intellectual\": 0.2, \"linguistic\": 0.0, \"military\": 0.7, \"political\": 0.8, \"religious\": 0.1, \"scientific\": 0.0, \"social\": 0.3, \"technological\": 0.1}",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_Claim",
+    "p": {
+      "role": "descriptive",
+      "pattern_tags": "[]",
+      "supporting_works": "[\"wikipedia:Roman_sculpture\"]",
+      "confidence": 0.82,
+      "claim_id": "train_Q17167_ARTISTIC_20260314T135810_claim_001",
+      "created_at": "2026-03-14T13:58:10.852759+00:00",
+      "text": "Veristic portraiture emerged as a distinctly Roman artistic innovation emphasizing realistic representation over Greek idealization.",
+      "facet_weights": "{\"archaeological\": 0.2, \"artistic\": 0.95, \"biographic\": 0.6, \"communication\": 0.3, \"cultural\": 0.5, \"demographic\": 0.2, \"diplomatic\": 0.1, \"economic\": 0.1, \"environmental\": 0.0, \"geographic\": 0.1, \"intellectual\": 0.3, \"linguistic\": 0.0, \"military\": 0.1, \"political\": 0.4, \"religious\": 0.1, \"scientific\": 0.0, \"social\": 0.6, \"technological\": 0.2}",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_TrainingInsight",
+    "p": {
+      "insight_type": "within_facet_addition",
+      "evidence": "Multiple works in corpus center on Cicero's speeches and rhetorical theory, establishing him as the canonical figure for Roman Republican communication",
+      "confidence": 0.9,
+      "reasoning": "Cicero represents the pinnacle of Republican oratory and serves as the primary source for understanding Roman rhetorical practice",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "seed_qid": "Q17167",
+      "label": "Cicero as archetypal Republican orator",
+      "source": "sfa_training",
+      "qid": "Q1541",
+      "insight_id": "ae77de4aff7d2a95",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_TrainingInsight",
+    "p": {
+      "evidence": "Forum served as site of public speeches, trials, and political discourse according to multiple sources",
+      "confidence": 0.85,
+      "reasoning": "Physical spaces were integral to Republican communication practices, creating geographic-communication intersection",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "label": "Roman Forum as communication nexus",
+      "source": "sfa_training",
+      "qid": "Q2090",
+      "insight_id": "b86c57d1252973da",
+      "insight_type": "cross_facet_link",
+      "seed_qid": "Q17167",
+      "target_facet": "geographic",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_TrainingInsight",
+    "p": {
+      "insight_type": "within_facet_addition",
+      "evidence": "Senate functioned as primary venue for elite political discourse and debate throughout Republican period",
+      "confidence": 0.88,
+      "reasoning": "Senatorial debate represents formal institutional communication distinct from popular oratory",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "seed_qid": "Q17167",
+      "label": "Roman Senate as deliberative communication institution",
+      "source": "sfa_training",
+      "qid": "Q47694",
+      "insight_id": "831ea41510dccbb6",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_TrainingInsight",
+    "p": {
+      "insight_type": "concept_refinement",
+      "evidence": "Morstein-Marx work demonstrates how popular assemblies used oratory to engage citizenry in political decision-making",
+      "confidence": 0.8,
+      "reasoning": "Republican communication served democratic functions beyond elite discourse, enabling popular participation",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "seed_qid": "Q17167",
+      "label": "Mass oratory as democratic participation mechanism",
+      "source": "sfa_training",
+      "insight_id": "ecbddbbbc7018f6f",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Ciceronian corpus analysis, rhetorical school traditions, delivery techniques",
+      "scope_key": "oratory_rhetoric",
+      "scope_description": "Public speaking, rhetorical training, eloquentia, and oratorical performance in political and legal contexts",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 12,
+      "seed_qid": "Q17167",
+      "scope_label": "Oratory & Rhetorical Theory",
+      "candidate_qids": "[\"Q1541\", \"Q205697\", \"Q2306\"]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Epistolary analysis, material culture of writing, documentary practices",
+      "scope_key": "written_correspondence",
+      "scope_description": "Letters, documents, inscriptions, wax tablets, and administrative writing practices",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 8,
+      "seed_qid": "Q17167",
+      "scope_label": "Written Communication Systems",
+      "candidate_qids": "[\"Q133492\", \"Q131734\"]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Court procedure analysis, forensic speech study, legal argument structures",
+      "scope_key": "legal_forensic",
+      "scope_description": "Court proceedings, legal rhetoric, advocacy, and judicial discourse",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 10,
+      "seed_qid": "Q17167",
+      "scope_label": "Legal & Forensic Communication",
+      "candidate_qids": "[\"Q2264924\", \"Q7993\"]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Assembly procedures, senatorial debate patterns, popular participation mechanisms",
+      "scope_key": "political_assemblies",
+      "scope_description": "Senate debates, popular assemblies, contiones, and institutional discourse",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 9,
+      "seed_qid": "Q17167",
+      "scope_label": "Political Assembly Communication",
+      "candidate_qids": "[\"Q47694\", \"Q2135\", \"Q1747689\"]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Ritual communication study, ceremonial discourse analysis, performance contexts",
+      "scope_key": "public_performance",
+      "scope_description": "Triumphs, funeral orations, theatrical performances, and ceremonial communication",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 7,
+      "seed_qid": "Q17167",
+      "scope_label": "Public Performance & Spectacle",
+      "candidate_qids": "[\"Q156657\", \"Q780548\", \"Q389346\"]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Network analysis, information flow studies, communication infrastructure",
+      "scope_key": "information_networks",
+      "scope_description": "News circulation, rumor, messaging systems, and information dissemination",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 6,
+      "seed_qid": "Q17167",
+      "scope_label": "Information Networks & Transmission",
+      "candidate_qids": "[]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Intellectual history, philosophical dialogue study, educational practices",
+      "scope_key": "literary_intellectual",
+      "scope_description": "Philosophical dialogue, historical writing, educational discourse, and intellectual exchange",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 8,
+      "seed_qid": "Q17167",
+      "scope_label": "Literary & Intellectual Communication",
+      "candidate_qids": "[\"Q35736\", \"Q41683\"]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_SubScope",
+    "p": {
+      "needs": "Diplomatic protocol analysis, embassy study, international relations discourse",
+      "scope_key": "diplomatic_international",
+      "scope_description": "Embassy practices, treaty negotiation, foreign relations discourse, and inter-state communication",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "estimated_concepts": 5,
+      "seed_qid": "Q17167",
+      "scope_label": "Diplomatic & International Communication",
+      "candidate_qids": "[\"Q913707\", \"Q131656\"]",
+      "facet_key": "COMMUNICATION",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_Claim",
+    "p": {
+      "role": "evaluative",
+      "pattern_tags": "[\"RP_CONTENTIOUS_ASSEMBLY\"]",
+      "supporting_works": "[\"ia:massoratorypolit0000mors\"]",
+      "confidence": 0.85,
+      "claim_id": "train_Q17167_COMMUNICATION_20260314T140240_claim_000",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "text": "Roman Republican oratory functioned as both democratic participation mechanism and elite status competition.",
+      "facet_weights": "{\"archaeological\": 0.0, \"artistic\": 0.1, \"biographic\": 0.2, \"communication\": 0.9, \"cultural\": 0.3, \"demographic\": 0.2, \"diplomatic\": 0.0, \"economic\": 0.0, \"environmental\": 0.0, \"geographic\": 0.1, \"intellectual\": 0.3, \"linguistic\": 0.2, \"military\": 0.0, \"political\": 0.8, \"religious\": 0.0, \"scientific\": 0.0, \"social\": 0.4, \"technological\": 0.0}",
+      "status": "proposed"
+    }
+  },
+  {
+    "label": "SFA_Claim",
+    "p": {
+      "role": "descriptive",
+      "pattern_tags": "[\"RP_CENTER_PERIPHERY_EXTRACTION\"]",
+      "supporting_works": "[\"ia:communitycommuni0000orat\"]",
+      "confidence": 0.8,
+      "claim_id": "train_Q17167_COMMUNICATION_20260314T140240_claim_001",
+      "created_at": "2026-03-14T14:02:40.306999+00:00",
+      "text": "The Roman Forum served as the primary spatial nexus for Republican political communication.",
+      "facet_weights": "{\"archaeological\": 0.3, \"artistic\": 0.0, \"biographic\": 0.0, \"communication\": 0.8, \"cultural\": 0.2, \"demographic\": 0.1, \"diplomatic\": 0.0, \"economic\": 0.0, \"environmental\": 0.0, \"geographic\": 0.7, \"intellectual\": 0.0, \"linguistic\": 0.0, \"military\": 0.0, \"political\": 0.6, \"religious\": 0.1, \"scientific\": 0.0, \"social\": 0.3, \"technological\": 0.0}",
+      "status": "proposed"
+    }
+  }
+]

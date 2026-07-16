@@ -1,0 +1,188 @@
+{
+  "qid": "Q12253460",
+  "label": "Battle of Andagoste",
+  "description": "battle during the Cantabrian Wars",
+  "statement_count": 11,
+  "property_count": 8,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q12253460$f480a868-4016-6f03-699a-037d27429b64",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P580": [
+      {
+        "statement_id": "Q12253460$fdf2d6d5-4f9c-a589-b18c-3e798cb0b127",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P580",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0038-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q12253460$f9502e11-4607-7c1b-73f8-206ca4a57b70",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 42.884722222222,
+            "longitude": -2.9080555555556,
+            "precision": 0.00027777777777778,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        },
+        "references": [
+          {
+            "hash": "b11cd49a05f684051f01eda20a694f24f539181d",
+            "snaks_order": [
+              "P854"
+            ],
+            "snaks": {
+              "P854": [
+                {
+                  "property": "P854",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://geohack.toolforge.org/geohack.php?params=42.884722222222_N_-2.9080555555556_E_globe:earth&language=en"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q12253460$d652f6e0-4ceb-0ff5-b38b-39f580a585ef",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1368846"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q12253460$becc0230-4496-e13d-1697-3e57c56d0f78",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2422375"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q12253460$498da1aa-4c52-1024-b585-29e7b2432b18",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        }
+      },
+      {
+        "statement_id": "Q12253460$f0d42b4c-4870-4060-c3aa-58ac869be8ca",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q855140"
+        }
+      },
+      {
+        "statement_id": "Q12253460$fc3446df-4a6a-1711-447d-e4c714c805b8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q789372"
+        }
+      },
+      {
+        "statement_id": "Q12253460$b0e5a9ed-44c9-1b2b-c553-b1bf61bb97d8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2938858"
+        }
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q12253460$9253AC91-1444-4257-AA3D-F4CED0A04A4A",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/11b419_hl"
+        }
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q12253460$090645BC-C75F-4D2F-9E5A-B644B6FE5E9F",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q29"
+        }
+      }
+    ]
+  }
+}

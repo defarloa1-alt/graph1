@@ -1,0 +1,409 @@
+{
+  "qid": "Q1260622",
+  "label": "Battle of the Axona",
+  "description": "battle between the Roman army of Gaius Julius Caesar and the Belgae",
+  "statement_count": 15,
+  "property_count": 12,
+  "claims": {
+    "P373": [
+      {
+        "statement_id": "q1260622$BFBC360B-3E8B-4B26-AFAB-B66AD933FE4B",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P373",
+          "snaktype": "value",
+          "datatype": "string",
+          "value_type": "string",
+          "value": "Battle of Aisne"
+        }
+      }
+    ],
+    "P646": [
+      {
+        "statement_id": "Q1260622$04C3495A-EA50-416A-B3A7-7F2E72D625C9",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/08wz9y"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q1260622$2D2CDB6C-9342-4A6F-9A38-61DE919350A5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        },
+        "references": [
+          {
+            "hash": "d4bd87b862b12d99d26e86472d44f26858dee639",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q8447"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q1260622$763E142B-A5F9-4515-8DAB-B1B94AF37EA9",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q202161"
+        },
+        "references": [
+          {
+            "hash": "d4bd87b862b12d99d26e86472d44f26858dee639",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q8447"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q1260622$C91C9323-0BF7-45B1-BB1C-626F5B94863D",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Bataille l'Aisne -57.png"
+        }
+      },
+      {
+        "statement_id": "Q1260622$ACD70BC1-164B-46AF-8CB7-F7E3DFD346E7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Battaglia Aisne Cesare png.png"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q1260622$750a0b55-43cb-b09c-9bbc-835e513c73ec",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0057-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "references": [
+          {
+            "hash": "e99bd4996f395862bc8704f24dae472573c45f94",
+            "snaks_order": [
+              "P813",
+              "P143"
+            ],
+            "snaks": {
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2015-07-07T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ],
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q1260622$358da7b9-4b63-10a2-a3be-543766aec9ef",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q3093"
+        },
+        "references": [
+          {
+            "hash": "e99bd4996f395862bc8704f24dae472573c45f94",
+            "snaks_order": [
+              "P813",
+              "P143"
+            ],
+            "snaks": {
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2015-07-07T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ],
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q1260622$F657291E-7DC7-4012-83F3-E011D952E428",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q18560095"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P3831"
+        ],
+        "references": [
+          {
+            "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "statement_id": "Q1260622$8f1a4b9c-4dea-a166-0b05-58df32466ca8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q337104"
+        }
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q1260622$0D2551F8-10E7-49C8-933B-8B4DFEE1CF10",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 49.433611,
+            "longitude": 2.846944,
+            "precision": 1e-06,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      },
+      {
+        "statement_id": "Q1260622$8F367A14-C476-4E43-8A07-E0759DAA7460",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 49.4045,
+            "longitude": 3.8459,
+            "precision": 1e-06,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q1260622$3872EAD3-7D6A-4550-BA12-F13483EB608B",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q142"
+        }
+      }
+    ],
+    "P155": [
+      {
+        "statement_id": "Q1260622$63294f58-490e-18f1-62c1-30a52ae5a6e0",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P155",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1267513"
+        }
+      }
+    ],
+    "P156": [
+      {
+        "statement_id": "Q1260622$95999044-4126-43be-b408-1521ab570954",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P156",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1268733"
+        }
+      }
+    ]
+  }
+}

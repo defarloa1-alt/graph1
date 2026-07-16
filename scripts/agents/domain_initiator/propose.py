@@ -68,6 +68,30 @@ from facet_umbrella import (
     fetch_training_facet_keys,
     wire_facet_hierarchy,
 )
+from proposal_provenance import write_proposal_provenance
+
+
+def _resolution_action(proposal: dict) -> str:
+    resolution = proposal.get("resolution") or {}
+    return str(resolution.get("action") or "novel").lower()
+
+
+def _write_target_subject_id(proposal: dict) -> str:
+    resolution = proposal.get("resolution") or {}
+    merge_target = resolution.get("merge_target")
+    if merge_target and _resolution_action(proposal) in ("merge", "additive"):
+        return str(merge_target)
+    return str(proposal.get("subject_id") or "")
+
+
+def _should_write_subject_node(proposal: dict) -> bool:
+    action = _resolution_action(proposal)
+    return action in ("novel",)  # merge/additive skip SC MERGE
+
+
+def _should_write_provenance(proposal: dict) -> bool:
+    action = _resolution_action(proposal)
+    return action in ("novel", "merge", "additive")
 
 CANONICAL_FACETS = [
     "archaeological", "artistic", "biographic", "communication",
@@ -289,8 +313,10 @@ def write_proposals_to_graph(
 ) -> dict:
     """Write approved SubjectConcept proposals to Neo4j.
 
-    supporting_works / scholarly_overview stay in the review JSON only —
-    they are DI training material until an SFA promotes works via claims.
+    Also persists review artifacts on approve-write:
+      - Agent provenance (proposed_by, PROPOSED_BY edge)
+      - scholarly_overview on SubjectConcept
+      - HAS_BIBLIO edges to CorpusWork from supporting_works
     """
     approved = [
         normalize_proposal_for_write(p)
@@ -308,6 +334,10 @@ def write_proposals_to_graph(
         "has_facet": 0,
         "anchors": 0,
         "member_of": 0,
+        "proposed_by": 0,
+        "has_biblio": 0,
+        "resolution_skipped": 0,
+        "resolution_additive": 0,
         "facet_hierarchy": {},
     }
 
@@ -358,9 +388,32 @@ def write_proposals_to_graph(
 
             for p in approved:
                 subject_id = p.get("subject_id")
-                if not subject_id:
+                action = _resolution_action(p)
+                if action in ("skip", "hold", "conflict"):
+                    stats["resolution_skipped"] += 1
+                    print(f"  SKIP resolution={action}: {p.get('label')} ({subject_id})")
+                    continue
+
+                write_target = _write_target_subject_id(p)
+                if not subject_id and not write_target:
                     stats["missing_subject_id"] += 1
                     print(f"  SKIP (no subject_id): {p.get('label')}")
+                    continue
+
+                if action in ("merge", "additive"):
+                    stats["resolution_additive"] += 1
+                    if dry_run:
+                        stats["written"] += 1
+                        stats["proposed_by"] += 1
+                        stats["has_biblio"] += len(p.get("supporting_works") or [])
+                        continue
+                    prov = dict(p)
+                    prov["subject_id"] = write_target
+                    write_proposal_provenance(session, prov, seed_qid=seed_qid, stats=stats)
+                    stats["written"] += 1
+                    continue
+
+                if not _should_write_subject_node(p):
                     continue
 
                 parent_id = facet_umbrella_subject_id(
@@ -382,6 +435,8 @@ def write_proposals_to_graph(
                         1 for code in (p.get("lcc_codes") or []) if _authority_code(code)
                     )
                     stats["member_of"] += len(_candidate_qids(p))
+                    stats["proposed_by"] += 1
+                    stats["has_biblio"] += len(p.get("supporting_works") or [])
                     continue
 
                 cipher = p.get("concept_cipher", "")
@@ -461,6 +516,8 @@ def write_proposals_to_graph(
                     if result.single():
                         stats["member_of"] += 1
 
+                write_proposal_provenance(session, p, seed_qid=seed_qid, stats=stats)
+
                 stats["written"] += 1
 
             stats["facet_hierarchy"] = wire_facet_hierarchy(
@@ -489,7 +546,10 @@ def write_proposals_to_graph(
     print(
         f"  SCOPED_TO={stats['scoped_to']}  PART_OF={stats['part_of']}  "
         f"HAS_FACET={stats['has_facet']}  ANCHORS={stats['anchors']}  "
-        f"MEMBER_OF={stats['member_of']}"
+        f"MEMBER_OF={stats['member_of']}  PROPOSED_BY={stats.get('proposed_by', 0)}  "
+        f"HAS_BIBLIO={stats.get('has_biblio', 0)}  "
+        f"RES_SKIP={stats.get('resolution_skipped', 0)}  "
+        f"RES_ADDITIVE={stats.get('resolution_additive', 0)}"
     )
     return stats
 

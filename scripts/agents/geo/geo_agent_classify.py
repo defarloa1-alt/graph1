@@ -30,6 +30,8 @@ try:
 except ImportError:
     anthropic = None
 
+from scripts.agents.republic_graph_context import append_republic_graph_context
+
 DEFAULT_INPUT = _root / "output" / "geo_discovery" / "Q17167_geo_candidates.json"
 DEFAULT_OUTPUT_DIR = _root / "output" / "geo_discovery"
 
@@ -154,8 +156,10 @@ def run(input_path: Path, output_path: Path, model: str) -> int:
     print(f"Geo Agent: {len(candidates)} candidates, seed={seed_qid}")
     print("Calling LLM...")
 
+    system = append_republic_graph_context(SYSTEM_PROMPT, seed_qid)
+
     try:
-        raw = _call_claude(SYSTEM_PROMPT, user_msg, model=model)
+        raw = _call_claude(system, user_msg, model=model)
     except Exception as e:
         print(f"LLM error: {e}", file=sys.stderr)
         return 1

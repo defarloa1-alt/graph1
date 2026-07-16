@@ -1,0 +1,1169 @@
+{
+  "qid": "Q1238338",
+  "label": "Caesar's Civil War",
+  "description": "one of the last politico-military conflicts in the Roman Republic before the establishment of the Roman Empire",
+  "statement_count": 58,
+  "property_count": 23,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q1238338$c855b596-49fb-cbb2-b8f8-16c3e876d50e",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q8465"
+        }
+      }
+    ],
+    "P373": [
+      {
+        "statement_id": "q1238338$256599A9-A968-491B-B36E-A9E5A419A340",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P373",
+          "snaktype": "value",
+          "datatype": "string",
+          "value_type": "string",
+          "value": "Caesar's Civil War"
+        }
+      }
+    ],
+    "P646": [
+      {
+        "statement_id": "Q1238338$06459A8A-F018-4288-BD23-A03116207204",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/08w4qg"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P580": [
+      {
+        "statement_id": "Q1238338$32be071e-450d-5ba1-7b6c-a99df16ae635",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P580",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0049-01-10T00:00:00Z",
+            "precision": 11,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "references": [
+          {
+            "hash": "47f96224ef006660a6dbfd3bbff3075a2ef8ba4a",
+            "snaks_order": [
+              "P813",
+              "P143"
+            ],
+            "snaks": {
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2015-07-21T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ],
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P582": [
+      {
+        "statement_id": "Q1238338$7301f489-4a88-f0b4-d3b3-2b220eda098a",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P582",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0045-03-17T00:00:00Z",
+            "precision": 11,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "references": [
+          {
+            "hash": "47f96224ef006660a6dbfd3bbff3075a2ef8ba4a",
+            "snaks_order": [
+              "P813",
+              "P143"
+            ],
+            "snaks": {
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2015-07-21T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ],
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "Q1238338$490484D8-0F0E-4F92-84D2-7E1DDFAD8F46",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q4114391"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q25398084"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q1238338$db76dd58-4ed3-d94e-e58c-9388151a8654",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q4114391"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q25376399"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q1238338$46569f7c-4de8-7633-3637-a1c814b4008e",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q4114391"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q25377617"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q1238338$4ec82045-4094-7ae3-0d81-60d42cd512fc",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q19180675"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q24730882"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      },
+      {
+        "statement_id": "Q1238338$a076922b-19e6-42f7-b9a8-9274a660549d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q123560817"
+        },
+        "qualifiers": {
+          "P304": [
+            {
+              "property": "P304",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "158"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P304"
+        ]
+      },
+      {
+        "statement_id": "Q1238338$7B411172-45E5-4BB8-8436-DBA50F6E7A03",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q19219752"
+        },
+        "qualifiers": {
+          "P805": [
+            {
+              "property": "P805",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q112754341"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P805"
+        ]
+      }
+    ],
+    "P527": [
+      {
+        "statement_id": "Q1238338$3b0050d7-4590-716c-1cb7-df82ccb69518",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q516760"
+        }
+      },
+      {
+        "statement_id": "Q1238338$bebcacfb-4608-9a50-78ee-ae4a46a598b7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q849653"
+        }
+      },
+      {
+        "statement_id": "Q1238338$841990ff-45f0-5792-e9a9-c7200279bd2e",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q203681"
+        }
+      },
+      {
+        "statement_id": "Q1238338$9cb72eb5-4c45-336b-f550-9ccbb8357bf1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q28531438"
+        }
+      },
+      {
+        "statement_id": "Q1238338$b503a2fc-48dd-2288-efb9-24db17838bf1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q525325"
+        }
+      },
+      {
+        "statement_id": "Q1238338$c60f1264-4764-6a25-3951-f7c75fc93743",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1975400"
+        }
+      },
+      {
+        "statement_id": "Q1238338$08334ecd-4326-6ab3-cf62-7295b2a645ba",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q971507"
+        }
+      },
+      {
+        "statement_id": "Q1238338$2154c48b-4f81-f69f-c320-c1007a52ff89",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q9352344"
+        }
+      },
+      {
+        "statement_id": "Q1238338$18d15c7f-4a76-a3ce-19a9-fa1787e4603f",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q54864961"
+        }
+      },
+      {
+        "statement_id": "Q1238338$09408ce5-410b-5b9b-0dd7-df8556a2a641",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q28662986"
+        }
+      },
+      {
+        "statement_id": "Q1238338$a829c038-4e5b-7c4f-f5b0-658815b7df39",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q18001862"
+        }
+      },
+      {
+        "statement_id": "Q1238338$356efcac-48ea-cb15-5122-789a24c892e5",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q25444447"
+        }
+      },
+      {
+        "statement_id": "Q1238338$95efc043-4961-26f4-4bde-aeedfcedc827",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q107304813"
+        }
+      },
+      {
+        "statement_id": "Q1238338$c2097236-404b-564d-83f3-e3e15b8e6ed1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2127400"
+        }
+      },
+      {
+        "statement_id": "Q1238338$bca13b6b-4d76-edff-b179-4b1b9c6e3248",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2291971"
+        }
+      },
+      {
+        "statement_id": "Q1238338$e91eb04a-4943-d875-86b3-610ab64003e1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2416094"
+        }
+      },
+      {
+        "statement_id": "Q1238338$2c593fe7-44f2-282f-84e4-ea1861e56fa6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q619030"
+        }
+      },
+      {
+        "statement_id": "Q1238338$ff44ebbb-47c9-e096-8ce5-2f17a3672c4a",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q54864605"
+        }
+      },
+      {
+        "statement_id": "Q1238338$dde57d55-4d01-f98a-7512-d0ae259f6aa4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q54864606"
+        }
+      },
+      {
+        "statement_id": "Q1238338$b9a5a0f9-4e7e-0b88-32ef-1e76816a7c96",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q16208146"
+        }
+      },
+      {
+        "statement_id": "Q1238338$870f3115-416e-0dd0-ff01-ba36e61c051e",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2889520"
+        }
+      },
+      {
+        "statement_id": "Q1238338$62653d69-44d0-cd8b-ca1e-a924944dd03b",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q11688130"
+        }
+      },
+      {
+        "statement_id": "Q1238338$ba351fd0-4151-17c0-4159-a5e533c704c4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q762458"
+        }
+      },
+      {
+        "statement_id": "Q1238338$e2d652a2-4da6-b506-681b-0fd6211c67c2",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q9173074"
+        }
+      },
+      {
+        "statement_id": "Q1238338$182dfa91-4728-2f1a-efe7-4db1c15d828b",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q29513472"
+        }
+      },
+      {
+        "statement_id": "Q1238338$92af1644-4262-6639-acab-d0fd90d547ad",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P527",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q28662992"
+        }
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q1238338$F29CC524-7326-4D89-93DE-C85C5067E583",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Caesar campaigns from Rome to Zela-fr.svg"
+        },
+        "references": [
+          {
+            "hash": "19212c27723f1f32ef5911f166c1c1005c7ebedb",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q200386"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P910": [
+      {
+        "statement_id": "Q1238338$0769d0b1-44f8-d780-0fa1-6ea8c1d8219d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P910",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q9811318"
+        }
+      }
+    ],
+    "P2581": [
+      {
+        "statement_id": "Q1238338$40CE231C-7A18-42B6-BCF5-7692319E2CA1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2581",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "02512350n"
+        },
+        "references": [
+          {
+            "hash": "248ac337a217a5f5eed7139a82a4e60931611af0",
+            "snaks_order": [
+              "P248"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q4837690"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P2924": [
+      {
+        "statement_id": "Q1238338$029EB616-DC9E-418E-92FD-F2163B83DF16",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2924",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "1811016"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "АЛЕКСАНДРИЙСКАЯ ВОЙНА"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P1417": [
+      {
+        "statement_id": "Q1238338$97F702CB-FBE7-45AD-A928-8A404C5F8B58",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1417",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "event/Roman-Civil-War"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Roman Civil War"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P244": [
+      {
+        "statement_id": "Q1238338$cfe9a001-4352-5232-661c-2bb4347f1ed0",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P244",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "sh85115123"
+        },
+        "qualifiers": {
+          "P4390": [
+            {
+              "property": "P4390",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q39893449"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4390"
+        ]
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q1238338$1305B0D0-31CC-429D-A929-FA46DF529936",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q186513"
+        },
+        "references": [
+          {
+            "hash": "f1ed59a7c8d3909a9c97007a65d01cb1375863e7",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://en.wikipedia.org/w/index.php?title=Caesar's_Civil_War&oldid=853783845"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "statement_id": "Q1238338$54b10450-4d91-8e84-ca19-11c2500ee875",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q23522"
+        }
+      },
+      {
+        "statement_id": "Q1238338$9dd81a2e-4a74-7c7f-6d61-75fc3cca6b1e",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q15"
+        }
+      },
+      {
+        "statement_id": "Q1238338$eeda4ea7-4351-f4dc-658e-cc1b3e609c40",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q32047"
+        }
+      },
+      {
+        "statement_id": "Q1238338$9e8ceb0b-47df-c02b-d110-5b6cb567acdd",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q202311"
+        }
+      },
+      {
+        "statement_id": "Q1238338$a64f1189-4063-da08-b108-a68f48745790",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q145694"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q1238338$7D61406E-8AC7-4A64-81A2-229A17DB7CBC",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1747183"
+        },
+        "references": [
+          {
+            "hash": "f1ed59a7c8d3909a9c97007a65d01cb1375863e7",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://en.wikipedia.org/w/index.php?title=Caesar's_Civil_War&oldid=853783845"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P691": [
+      {
+        "statement_id": "Q1238338$3F28D4EE-1954-4946-A64D-2ABFB45C3543",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P691",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "ph615999"
+        },
+        "qualifiers": {
+          "P1810": [
+            {
+              "property": "P1810",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "římská občanská válka (49-45 př. Kr.)"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P1810"
+        ]
+      }
+    ],
+    "P7867": [
+      {
+        "statement_id": "Q1238338$7208228d-1c5d-4d3d-a712-c5002f3e1846",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P7867",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q84061055"
+        }
+      }
+    ],
+    "P828": [
+      {
+        "statement_id": "Q1238338$693f4f50-4d88-dfa8-9fd9-2808ddcaee6d",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P828",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q25238182"
+        }
+      }
+    ],
+    "P8189": [
+      {
+        "statement_id": "Q1238338$B2E4307F-4403-42A8-BAC7-2F1D6545D4A7",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P8189",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "987007543887505171"
+        },
+        "qualifiers": {
+          "P14457": [
+            {
+              "property": "P14457",
+              "snaktype": "value",
+              "datatype": "monolingualtext",
+              "value_type": "monolingualtext",
+              "value": {
+                "text": "Rome History Civil War, 49-45 B.C.",
+                "language": "en"
+              }
+            },
+            {
+              "property": "P14457",
+              "snaktype": "value",
+              "datatype": "monolingualtext",
+              "value_type": "monolingualtext",
+              "value": {
+                "text": "רומי היסטוריה מלחמת האזרחים, 49-45 לפני הספירה",
+                "language": "he"
+              }
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P14457"
+        ],
+        "references": [
+          {
+            "hash": "c8a47202c92936005b390eb36ddd267921b51f43",
+            "snaks_order": [
+              "P248"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q188915"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P12086": [
+      {
+        "statement_id": "Q1238338$78515FC9-5F97-4AFD-B028-AEDEB9B8F5EF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P12086",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "Burgeroorlog_tussen_Pompeius_en_Caesar"
+        },
+        "qualifiers": {
+          "P9675": [
+            {
+              "property": "P9675",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "92578"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P9675"
+        ]
+      }
+    ],
+    "P8885": [
+      {
+        "statement_id": "Q1238338$00ccfa7c-4dac-d466-584a-50bfc55c4b1f",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P8885",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "카이사르의 내전"
+        }
+      }
+    ],
+    "P13591": [
+      {
+        "statement_id": "Q1238338$5710EEB6-ADD5-4B75-846C-1A736DD4EAD0",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P13591",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "activity/ca4f2e9b-c9a7-4eaf-b624-4db36e32f588"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q1238338$31b0ce05-4f3b-44d3-46a1-7eaeea9882b1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1048"
+        }
+      }
+    ]
+  }
+}

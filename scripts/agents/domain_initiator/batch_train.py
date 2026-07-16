@@ -29,6 +29,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 
+# Facets that should NOT be trained by default:
+# - biographic: prosopography is a METHOD, not a subject domain (user confirmed)
+# - geographic: covered by geo_bootstrap (7 SCs, 50k+ members already populated)
+# - cultural: epistemic DIMENSION, too cross-cutting to produce coherent SCs
+DEFAULT_SKIP_FACETS = {"biographic", "geographic", "cultural"}
+
 
 def find_packs(route_dir: Path, seed: str) -> list[Path]:
     """Find all facet pack files for a seed."""
@@ -77,7 +83,7 @@ def run_train(pack_path: Path, output_dir: Path, fetch_only: bool = False) -> bo
     print(f"{'='*60}")
 
     try:
-        result = subprocess.run(cmd, cwd=str(ROOT), timeout=300)
+        result = subprocess.run(cmd, cwd=str(ROOT), timeout=3600)
         return result.returncode == 0
     except subprocess.TimeoutExpired:
         print(f"  TIMEOUT: {pack_path.name}")
@@ -95,7 +101,9 @@ def main():
     parser.add_argument("--fetch-only", action="store_true",
                         help="Corpus fetch only (no Claude API calls)")
     parser.add_argument("--facets", type=str, default=None,
-                        help="Comma-separated facets to train (default: all untrained)")
+                        help="Comma-separated facets to train (default: all trainable, skipping non-subject-domains)")
+    parser.add_argument("--include-skipped", action="store_true",
+                        help=f"Include default-skip facets: {', '.join(sorted(DEFAULT_SKIP_FACETS))}")
     parser.add_argument("--force", action="store_true",
                         help="Re-train already-trained facets")
     args = parser.parse_args()
@@ -109,6 +117,13 @@ def main():
     if args.facets:
         requested = {f.strip().lower() for f in args.facets.split(",")}
         packs = [p for p in packs if facet_from_pack(p) in requested]
+    elif not args.include_skipped:
+        # Apply default skip list (method-facets and dimension-facets)
+        skipped = [facet_from_pack(p) for p in packs if facet_from_pack(p) in DEFAULT_SKIP_FACETS]
+        if skipped:
+            print(f"  Skipping non-subject-domain facets: {', '.join(skipped)}")
+            print(f"  (use --include-skipped to override)")
+        packs = [p for p in packs if facet_from_pack(p) not in DEFAULT_SKIP_FACETS]
 
     # Skip already-trained unless --force
     if not args.force:

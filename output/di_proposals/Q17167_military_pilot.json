@@ -1,0 +1,523 @@
+{
+  "seed_qid": "Q17167",
+  "seed_label": "Roman Republic",
+  "pilot_facet": "military",
+  "parent_bootstrap": "sc_rr_military",
+  "generated": "2026-07-14T16:32:32.266665+00:00",
+  "proposal_count": 8,
+  "proposals": [
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_wars_campaigns",
+      "label": "Wars & Military Campaigns",
+      "description": "Major military conflicts including Punic, Macedonian, Social, Gallic, and Civil Wars with their battles, strategies, and commanders",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [
+        "Q124988",
+        "Q596373",
+        "Q75813",
+        "Q677316",
+        "Q202161"
+      ],
+      "estimated_concepts": 15,
+      "needs": "Temporal sequencing of conflicts, PROSOPOGRAPHIA integration for commanders, geographic theater mapping",
+      "concept_cipher": "eef457fe3e8bce0b",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_military_wars_campaigns",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG241-253",
+      "lcc_codes": [
+        "DG241-253",
+        "DG242-249.4",
+        "DG253.5-269"
+      ],
+      "lcc_rationale": "Republic conquest and war periods (264 BCE–27 BCE), not DG105 institutional army",
+      "authority": {
+        "lcsh_id": "sh85109114",
+        "lcsh_label": null,
+        "fast_id": null,
+        "lcc_primary": "DG241-253",
+        "lcc_codes": [
+          "DG241-253",
+          "DG242-249.4",
+          "DG253.5-269"
+        ],
+        "topic_qid": "Q124988",
+        "topic_qid_label": "Punic Wars",
+        "topic_lcsh_id": "sh85109114",
+        "tether_source": "harvest_qid"
+      },
+      "lcsh_id": "sh85109114",
+      "lcsh_label": "Punic Wars",
+      "display_label": "Wars & Military Campaigns",
+      "authority_label": "Wars & Military Campaigns",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_organization_structure",
+      "label": "Military Organization & Structure",
+      "description": "Evolution from phalanx through manipular system to cohort-based legions, including ranks, units, and command hierarchy",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [
+        "Q1114493",
+        "Q185443",
+        "Q1128324"
+      ],
+      "estimated_concepts": 12,
+      "needs": "Detailed organizational charts, equipment specifications, tactical formation analysis",
+      "concept_cipher": "1c2825d484039072",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_military_organization_structure",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG105",
+      "lcc_codes": [
+        "DG105",
+        "DG241-269"
+      ],
+      "lcc_rationale": "Roman army as institution; cross-anchor Republic period",
+      "authority": {
+        "lcsh_id": "sh85115090",
+        "lcsh_label": null,
+        "fast_id": null,
+        "lcc_primary": "DG105",
+        "lcc_codes": [
+          "DG105",
+          "DG241-269"
+        ],
+        "topic_qid": "Q1114493",
+        "topic_qid_label": "Roman army",
+        "topic_lcsh_id": "sh85115090",
+        "tether_source": "wikidata_qid"
+      },
+      "lcsh_id": "sh85115090",
+      "lcsh_label": "Roman army",
+      "display_label": "Military Organization & Structure",
+      "authority_label": "Military Organization & Structure",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_reforms",
+      "label": "Military Reforms & Innovations",
+      "description": "Servian constitution, Camillus reforms, Marian reforms, and tactical/technological innovations",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [
+        "Q319985"
+      ],
+      "estimated_concepts": 8,
+      "needs": "Chronological reform sequence, social impact analysis, technological diffusion patterns",
+      "concept_cipher": "601094b3b1771b57",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_military_reforms",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG105",
+      "lcc_codes": [
+        "DG105",
+        "DG241-269"
+      ],
+      "lcc_rationale": "Army reforms (Servian, Marian) — institutional shelf",
+      "authority": {
+        "lcsh_id": "sh85115130",
+        "lcsh_label": "Rome--History, Military",
+        "fast_id": null,
+        "lcc_primary": "DG105",
+        "lcc_codes": [
+          "DG105",
+          "DG241-269"
+        ],
+        "topic_qid": null,
+        "topic_qid_label": null,
+        "topic_lcsh_id": null,
+        "tether_source": "curated"
+      },
+      "lcsh_id": "sh85115130",
+      "lcsh_label": "Rome--History, Military",
+      "display_label": "Military Reforms & Innovations",
+      "authority_label": "Rome--History, Military",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "recruitment_service",
+      "label": "Recruitment & Military Service",
+      "description": "Property classes, census requirements, length of service, veteran settlement, and professionalization",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [],
+      "estimated_concepts": 7,
+      "needs": "Demographic analysis, property qualification evolution, veteran land distribution patterns",
+      "concept_cipher": "0614da88bc2a209e",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_recruitment_service",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG105",
+      "lcc_codes": [
+        "DG105"
+      ],
+      "lcc_rationale": "Recruitment and service — army institution",
+      "authority": {
+        "lcsh_id": "sh85085289",
+        "lcsh_label": "Military service, Compulsory",
+        "fast_id": null,
+        "lcc_primary": "DG105",
+        "lcc_codes": [
+          "DG105"
+        ],
+        "topic_qid": null,
+        "topic_qid_label": null,
+        "topic_lcsh_id": null,
+        "tether_source": "curated"
+      },
+      "lcsh_id": "sh85085289",
+      "lcsh_label": "Military service, Compulsory",
+      "display_label": "Recruitment & Military Service",
+      "authority_label": "Military service, Compulsory",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "siege_engineering",
+      "label": "Siege Warfare & Military Engineering",
+      "description": "Siege techniques, fortification, camp construction (castra), and military technology",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [],
+      "estimated_concepts": 6,
+      "needs": "Archaeological evidence integration, technical specification details, geographic distribution of techniques",
+      "concept_cipher": "277ca017f5b579b5",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_siege_engineering",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG105",
+      "lcc_codes": [
+        "DG105"
+      ],
+      "lcc_rationale": "Military engineering under army",
+      "authority": {
+        "lcsh_id": "sh85009382",
+        "lcsh_label": "Sieges",
+        "fast_id": null,
+        "lcc_primary": "DG105",
+        "lcc_codes": [
+          "DG105"
+        ],
+        "topic_qid": null,
+        "topic_qid_label": null,
+        "topic_lcsh_id": null,
+        "tether_source": "curated"
+      },
+      "lcsh_id": "sh85009382",
+      "lcsh_label": "Sieges",
+      "display_label": "Siege Warfare & Military Engineering",
+      "authority_label": "Sieges",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "naval_warfare",
+      "label": "Naval Warfare & Maritime Operations",
+      "description": "Development of Roman navy, naval battles, amphibious operations, and maritime strategy",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [],
+      "estimated_concepts": 5,
+      "needs": "Fleet organization details, harbor infrastructure, ship technology evolution",
+      "concept_cipher": "227e7bcd7340285b",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_naval_warfare",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG109",
+      "lcc_codes": [
+        "DG109",
+        "DG242-249.4"
+      ],
+      "lcc_rationale": "Roman navy; Punic War naval campaigns on period shelf",
+      "authority": {
+        "lcsh_id": "sh85090384",
+        "lcsh_label": "Naval history",
+        "fast_id": null,
+        "lcc_primary": "DG109",
+        "lcc_codes": [
+          "DG109",
+          "DG242-249.4"
+        ],
+        "topic_qid": null,
+        "topic_qid_label": null,
+        "topic_lcsh_id": null,
+        "tether_source": "curated"
+      },
+      "lcsh_id": "sh85090384",
+      "lcsh_label": "Naval history",
+      "display_label": "Naval Warfare & Maritime Operations",
+      "authority_label": "Naval history",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "auxiliary_forces",
+      "label": "Allied Forces & Auxiliaries",
+      "description": "Italian socii, foreign auxiliaries (Numidian, Balearic, Cretan), and specialized units",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [],
+      "estimated_concepts": 6,
+      "needs": "Treaty obligations analysis, ethnic unit specializations, integration patterns",
+      "concept_cipher": "4d63aff99213ca83",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_auxiliary_forces",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG105",
+      "lcc_codes": [
+        "DG105"
+      ],
+      "lcc_rationale": "Auxiliary troops — army institution",
+      "authority": {
+        "lcsh_id": "sh85083749",
+        "lcsh_label": "Auxiliary troops",
+        "fast_id": null,
+        "lcc_primary": "DG105",
+        "lcc_codes": [
+          "DG105"
+        ],
+        "topic_qid": null,
+        "topic_qid_label": null,
+        "topic_lcsh_id": null,
+        "tether_source": "curated"
+      },
+      "lcsh_id": "sh85083749",
+      "lcsh_label": "Auxiliary troops",
+      "display_label": "Allied Forces & Auxiliaries",
+      "authority_label": "Auxiliary troops",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    },
+    {
+      "proposal_type": "decomposition",
+      "source_facet": "military",
+      "scope_key": "military_politics",
+      "label": "Military-Political Integration",
+      "description": "Command structure, triumph ceremonies, veteran politics, and military's role in constitutional crisis",
+      "seed_qid": "Q17167",
+      "seed_label": "Roman Republic",
+      "candidate_qids": [],
+      "estimated_concepts": 6,
+      "needs": "Prosopographical data on commanders, constitutional law analysis, ceremonial protocol documentation",
+      "concept_cipher": "5748d4de74578511",
+      "facet_weights": {
+        "military": 0.95,
+        "political": 0.55,
+        "geographic": 0.45,
+        "biographic": 0.4
+      },
+      "confidence": 0.91,
+      "threshold_used": "level2_child_overload=12",
+      "subject_id": "sc_q17167_military_politics",
+      "source": "di_proposal",
+      "parent_subject_id": "sc_rr_military",
+      "parent_label": "Roman Army & Military Campaigns",
+      "lcc_primary": "DG253.5-269",
+      "lcc_codes": [
+        "DG253.5-269",
+        "DG105"
+      ],
+      "lcc_rationale": "Army and constitutional crisis — fall of Republic period",
+      "authority": {
+        "lcsh_id": "sh85026352",
+        "lcsh_label": "Civil-military relations",
+        "fast_id": null,
+        "lcc_primary": "DG253.5-269",
+        "lcc_codes": [
+          "DG253.5-269",
+          "DG105"
+        ],
+        "topic_qid": null,
+        "topic_qid_label": null,
+        "topic_lcsh_id": null,
+        "tether_source": "curated"
+      },
+      "lcsh_id": "sh85026352",
+      "lcsh_label": "Civil-military relations",
+      "display_label": "Military-Political Integration",
+      "authority_label": "Civil-military relations",
+      "supporting_works": [
+        "domain_src:6d5744d604a1",
+        "domain_src:b1a08c4a6364",
+        "openalex:W425149563",
+        "openalex:W2050716912",
+        "wd:Q122861593",
+        "oapen:20.500.12657/38152",
+        "oapen:20.500.12657/100000"
+      ],
+      "validation": {
+        "ccs_pass": true,
+        "failures": []
+      },
+      "status": "proposed"
+    }
+  ],
+  "review_notes": "Pilot batch with backbone fields. Set status=approved on each proposal then run: propose.py --seed Q17167 --write"
+}

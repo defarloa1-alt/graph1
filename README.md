@@ -153,12 +153,11 @@ python scripts/phase_2_5_discovery_runner.py
 
 | Document | Purpose | Read Time |
 |----------|---------|-----------|
-| **[ARCHITECTURE_CORE.md](Key%20Files/ARCHITECTURE_CORE.md)** | **PRIMARY ARCHITECTURE OVERVIEW (v3.2)** | **15 min** |
-| [ARCHITECTURE_ONTOLOGY.md](Key%20Files/ARCHITECTURE_ONTOLOGY.md) | Core ontology layers (Sections 3-7) | 30 min |
-| [ARCHITECTURE_IMPLEMENTATION.md](Key%20Files/ARCHITECTURE_IMPLEMENTATION.md) | Technology & workflows (Sections 8-9) | 15 min |
-| [ARCHITECTURE_GOVERNANCE.md](Key%20Files/ARCHITECTURE_GOVERNANCE.md) | QA & governance (Sections 10-12) | 10 min |
-| [Appendices/](Key%20Files/Appendices/) | 23 detailed appendices in 6 clusters | Variable |
-| [ARCHITECTURE_IMPLEMENTATION_INDEX.md](md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md) | Maps architecture → implementation files | 5 min |
+| **[docs/ARCHITECTURE_CURRENT.md](docs/ARCHITECTURE_CURRENT.md)** | **Current system architecture (single doc)** | **10 min** |
+| [docs/EPISTEMIC_MODEL.md](docs/EPISTEMIC_MODEL.md) | Epistemic root (Phase 1 vs 2) | 5 min |
+| [Key Files/ARCHITECTURE.md](Key%20Files/ARCHITECTURE.md) | Architecture doc navigation hub | 2 min |
+| [Key Files/Appendices/](Key%20Files/Appendices/) | ADRs + deep reference appendices | Variable |
+| [Key Files/chrystallum_*_constitution.jsx](Key%20Files/) | Agent operational guides (viewer) | Variable |
 | [AI_CONTEXT.md](AI_CONTEXT.md) | Project status & agent progress (Steps 1-4) | 15 min |
 | [AGENT_SESSION_QUICK_REFERENCE.md](md/Reference/AGENT_SESSION_QUICK_REFERENCE.md) | 28 agent methods quick reference | 10 min |
 | [SETUP_GUIDE.md](md/Guides/SETUP_GUIDE.md) | Complete setup instructions | 10 min |
@@ -316,7 +315,7 @@ Graph1/
 
 ## 🤝 Contributing
 
-See [ARCHITECTURE_IMPLEMENTATION_INDEX.md](md/Architecture/ARCHITECTURE_IMPLEMENTATION_INDEX.md) for development guidelines.
+See [Key Files/ARCHITECTURE.md](Key%20Files/ARCHITECTURE.md) and [docs/ARCHITECTURE_CURRENT.md](docs/ARCHITECTURE_CURRENT.md) for development guidelines.
 
 **Key principles:**
 - Facet agents are independent (no cross-domain interference)

@@ -2511,6 +2511,286 @@ function GovernanceTab() {
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
+// TAB 13: ROUTING RULES — SYS_RoutingRule nodes (rules-in-graph)
+// ══════════════════════════════════════════════════════════════════════════════
+const Q_ROUTING_RULES = `MATCH (r:SYS_RoutingRule)
+RETURN r.rule_id AS rule_id, r.domain AS domain, r.source_type AS source_type,
+       r.sc_id AS sc_id, r.match_value AS match_value, r.match_mode AS match_mode,
+       r.rank AS rank, r.priority AS priority
+ORDER BY r.source_type, r.match_mode, r.priority, r.match_value`;
+
+const Q_ROUTING_SUMMARY = `MATCH (r:SYS_RoutingRule)
+RETURN r.match_mode AS match_mode, r.source_type AS source_type, count(r) AS cnt
+ORDER BY r.source_type, r.match_mode`;
+
+const MODE_COL = {
+  exact: "#1A7A6E", contains: "#B45309", catch_all: "#8B1A1A", domain_default: "#5B2D8E",
+};
+
+function RoutingRulesTab() {
+  const rules = useCypher(Q_ROUTING_RULES);
+  const summary = useCypher(Q_ROUTING_SUMMARY);
+  const [filter, setFilter] = useState("all");
+  const [sourceFilter, setSourceFilter] = useState("all");
+
+  if (rules.loading || summary.loading) return <Loader msg="Loading routing rules from Neo4j..." />;
+  if (rules.error) return <Err msg={rules.error} />;
+
+  const allRules = rules.data || [];
+  const modes = [...new Set(allRules.map(r => r.match_mode))].filter(Boolean);
+  const sources = [...new Set(allRules.map(r => r.source_type))].filter(Boolean);
+
+  const filtered = allRules.filter(r =>
+    (filter === "all" || r.match_mode === filter) &&
+    (sourceFilter === "all" || r.source_type === sourceFilter)
+  );
+
+  // Group by source_type + match_mode for display
+  const grouped = {};
+  filtered.forEach(r => {
+    const k = `${r.source_type}::${r.match_mode}`;
+    if (!grouped[k]) grouped[k] = { source_type: r.source_type, match_mode: r.match_mode, rules: [] };
+    grouped[k].rules.push(r);
+  });
+
+  return (
+    <div>
+      {/* Summary header */}
+      <div style={{ background: "white", border: `1px solid ${C.rule}`, borderRadius: 6,
+        padding: "10px 14px", marginBottom: 12 }}>
+        <div style={{ fontWeight: "bold", fontSize: 11, color: C.navy, marginBottom: 8 }}>
+          SYS_RoutingRule — {allRules.length} rules across {modes.length} match modes
+        </div>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
+          {(summary.data || []).map(s => (
+            <div key={`${s.source_type}-${s.match_mode}`} style={{
+              border: `1px solid ${MODE_COL[s.match_mode] || C.slate}`,
+              borderRadius: 4, padding: "4px 10px", fontSize: 9,
+              background: (MODE_COL[s.match_mode] || C.slate) + "10" }}>
+              <span style={{ color: MODE_COL[s.match_mode] || C.slate, fontWeight: "bold" }}>
+                {s.match_mode}
+              </span>
+              <span style={{ color: C.slate }}> · {s.source_type} · {s.cnt}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 8.5, color: C.dim, fontStyle: "italic" }}>
+          Python reads these at runtime — no routing logic is hardcoded. Add/change rules in Neo4j, re-run populate_member_of.py.
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap", alignItems: "center" }}>
+        <span style={{ fontSize: 9, color: C.dim }}>mode:</span>
+        {["all", ...modes].map(m => (
+          <button key={m} onClick={() => setFilter(m)} style={{
+            border: `1px solid ${filter === m ? (MODE_COL[m] || C.navy) : C.rule}`,
+            borderRadius: 3, padding: "2px 8px", fontSize: 8.5, cursor: "pointer",
+            background: filter === m ? (MODE_COL[m] || C.navy) + "18" : "white",
+            color: filter === m ? (MODE_COL[m] || C.navy) : C.slate, fontWeight: filter === m ? "bold" : "normal",
+          }}>{m}</button>
+        ))}
+        <span style={{ fontSize: 9, color: C.dim, marginLeft: 8 }}>source:</span>
+        {["all", ...sources].map(s => (
+          <button key={s} onClick={() => setSourceFilter(s)} style={{
+            border: `1px solid ${sourceFilter === s ? C.teal : C.rule}`,
+            borderRadius: 3, padding: "2px 8px", fontSize: 8.5, cursor: "pointer",
+            background: sourceFilter === s ? C.teal + "18" : "white",
+            color: sourceFilter === s ? C.teal : C.slate, fontWeight: sourceFilter === s ? "bold" : "normal",
+          }}>{s}</button>
+        ))}
+        <span style={{ marginLeft: "auto", fontSize: 8.5, color: C.dim }}>{filtered.length} shown</span>
+      </div>
+
+      {/* Rule groups */}
+      {Object.values(grouped).map(({ source_type, match_mode, rules: grpRules }) => {
+        const col = MODE_COL[match_mode] || C.slate;
+        return (
+          <div key={`${source_type}-${match_mode}`} style={{ marginBottom: 12 }}>
+            <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 4 }}>
+              <Tag label={match_mode} fill={col} />
+              <span style={{ fontSize: 9, color: C.slate }}>source_type: {source_type}</span>
+              <span style={{ fontSize: 8.5, color: C.dim }}>({grpRules.length} rules)</span>
+            </div>
+            <div style={{ border: `1px solid ${col}30`, borderRadius: 4, overflow: "hidden" }}>
+              {/* header row */}
+              <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                background: col + "12", padding: "3px 8px", fontSize: 8, color: C.dim,
+                fontWeight: "bold", gap: 4 }}>
+                <span>match_value</span><span>→ sc_id</span><span>rank</span><span>priority</span>
+              </div>
+              {grpRules.map((r, i) => (
+                <div key={r.rule_id || i} style={{
+                  display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                  padding: "3px 8px", fontSize: 8.5, gap: 4,
+                  borderTop: i > 0 ? `1px solid ${C.rule}` : "none",
+                  background: i % 2 === 0 ? "white" : "#FAFAF8" }}>
+                  <Mono col={col} s={8}>{r.match_value || "*"}</Mono>
+                  <Mono col={C.teal} s={8}>{r.sc_id}</Mono>
+                  <span style={{ color: r.rank === "primary" ? C.green : C.amber, fontSize: 8 }}>{r.rank}</span>
+                  <span style={{ color: C.dim, fontSize: 8 }}>{r.priority}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+
+      <CypherBlock query={Q_ROUTING_RULES} label="ROUTING RULES QUERY" />
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 14: SUBJECTS — SubjectConcept backbone live counts + temporal coverage
+// ══════════════════════════════════════════════════════════════════════════════
+const Q_SUBJECT_CONCEPTS = `MATCH (sc:SubjectConcept)
+OPTIONAL MATCH (sc)<-[m:MEMBER_OF]-(e)
+WITH sc,
+     count(m) AS members,
+     sum(CASE WHEN m.earliest_year IS NOT NULL THEN 1 ELSE 0 END) AS timed_count
+OPTIONAL MATCH (sc)-[:HAS_FACET {is_primary: true}]->(f:Facet)
+RETURN sc.subject_id AS sc_id, sc.label AS label, sc.source AS source,
+       sc.lcc_primary AS lcc_primary,
+       sc.period_start AS period_start, sc.period_end AS period_end,
+       members, timed_count,
+       CASE WHEN members > 0 THEN round(100.0 * timed_count / members) ELSE null END AS timed_pct,
+       f.key AS primary_facet
+ORDER BY members DESC`;
+
+const Q_SC_SUMMARY = `MATCH (sc:SubjectConcept)
+OPTIONAL MATCH (sc)<-[:MEMBER_OF]-(e)
+RETURN sc.source AS source, count(sc) AS sc_count, sum(count { (sc)<-[:MEMBER_OF]-() }) AS total_members
+ORDER BY source`;
+
+const FACET_COL_SM = {
+  POLITICAL: "#1A3A5C", MILITARY: "#8B1A1A", ECONOMIC: "#B5860D", SOCIAL: "#1A7A6E",
+  RELIGIOUS: "#C9A227", INTELLECTUAL: "#0E7490", GEOGRAPHIC: "#3D6B21",
+  ARCHAEOLOGICAL: "#B45309", ARTISTIC: "#9B2335", LINGUISTIC: "#1A7A6E",
+  DIPLOMATIC: "#0E7490", SCIENTIFIC: "#4A5568", BIOGRAPHIC: "#9B2335",
+  DEMOGRAPHIC: "#1E6B3C", ENVIRONMENTAL: "#3D6B21", CULTURAL: "#5B2D8E",
+};
+
+function SubjectsTab() {
+  const scs = useCypher(Q_SUBJECT_CONCEPTS);
+  const smry = useCypher(Q_SC_SUMMARY);
+  const [sourceFilter, setSourceFilter] = useState("all");
+
+  if (scs.loading || smry.loading) return <Loader msg="Loading SubjectConcepts from Neo4j..." />;
+  if (scs.error) return <Err msg={scs.error} />;
+
+  const allSCs = scs.data || [];
+  const filtered = sourceFilter === "all" ? allSCs : allSCs.filter(s => s.source === sourceFilter);
+  const sources = [...new Set(allSCs.map(s => s.source))].filter(Boolean);
+  const totalMembers = allSCs.reduce((a, s) => a + (s.members || 0), 0);
+  const zeroCount = allSCs.filter(s => !s.members || s.members === 0).length;
+
+  return (
+    <div>
+      {/* Summary */}
+      <div style={{ background: "white", border: `1px solid ${C.rule}`, borderRadius: 6,
+        padding: "10px 14px", marginBottom: 12 }}>
+        <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginBottom: 8 }}>
+          {[
+            [allSCs.length, "SubjectConcepts", C.navy],
+            [totalMembers.toLocaleString(), "total MEMBER_OF", C.teal],
+            [zeroCount, "zero members (needs SFA)", C.crimson],
+          ].map(([v, l, col]) => (
+            <div key={l} style={{ textAlign: "center" }}>
+              <div style={{ fontSize: 18, fontWeight: "bold", color: col }}>{v}</div>
+              <div style={{ fontSize: 8, color: C.dim }}>{l}</div>
+            </div>
+          ))}
+          {(smry.data || []).map(s => (
+            <div key={s.source} style={{ textAlign: "center" }}>
+              <div style={{ fontSize: 14, fontWeight: "bold", color: s.source === "ccs_bootstrap" ? C.amber : C.green }}>
+                {s.sc_count}
+              </div>
+              <div style={{ fontSize: 8, color: C.dim }}>{s.source}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 8.5, color: C.dim, fontStyle: "italic" }}>
+          ⏱ timed = % of MEMBER_OF edges carrying earliest_year/latest_year. Zero members = scaffold awaiting DI proposals.
+        </div>
+      </div>
+
+      {/* Source filter */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 10, alignItems: "center" }}>
+        <span style={{ fontSize: 9, color: C.dim }}>source:</span>
+        {["all", ...sources].map(s => (
+          <button key={s} onClick={() => setSourceFilter(s)} style={{
+            border: `1px solid ${sourceFilter === s ? C.teal : C.rule}`,
+            borderRadius: 3, padding: "2px 8px", fontSize: 8.5, cursor: "pointer",
+            background: sourceFilter === s ? C.teal + "18" : "white",
+            color: sourceFilter === s ? C.teal : C.slate, fontWeight: sourceFilter === s ? "bold" : "normal",
+          }}>{s}</button>
+        ))}
+      </div>
+
+      {/* SC rows */}
+      <div style={{ border: `1px solid ${C.rule}`, borderRadius: 4, overflow: "hidden" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 90px 70px 70px 80px 60px",
+          background: C.bg2, padding: "4px 8px", fontSize: 8, color: C.dim,
+          fontWeight: "bold", gap: 4 }}>
+          <span>label</span><span>source</span><span style={{textAlign:"right"}}>members</span>
+          <span style={{textAlign:"right"}}>timed %</span><span>primary facet</span><span>lcc</span>
+        </div>
+        {filtered.map((sc, i) => {
+          const timedPct = sc.timed_pct;
+          const timedCol = timedPct === null ? C.dim
+            : timedPct === 0 && sc.period_start != null ? C.slate
+            : timedPct === 100 ? C.green : timedPct >= 80 ? C.amber : C.crimson;
+          const facetCol = FACET_COL_SM[sc.primary_facet] || C.dim;
+          return (
+            <div key={sc.sc_id} style={{
+              display: "grid", gridTemplateColumns: "2fr 90px 70px 70px 80px 60px",
+              padding: "4px 8px", gap: 4, fontSize: 8.5,
+              borderTop: `1px solid ${C.rule}`,
+              background: !sc.members || sc.members === 0
+                ? C.crimson + "06" : i % 2 === 0 ? "white" : "#FAFAF8" }}>
+              <div>
+                <div style={{ fontWeight: "bold", color: C.ink, fontSize: 8.5 }}>{sc.label}</div>
+                <div style={{ color: C.dim, fontSize: 7.5, fontFamily: "monospace" }}>{sc.sc_id}</div>
+                {sc.period_start != null && (
+                  <span style={{ fontSize: 7, color: C.purple }}>
+                    {sc.period_start} → {sc.period_end}
+                  </span>
+                )}
+              </div>
+              <Tag label={sc.source || "—"} fill={sc.source === "ccs_bootstrap" ? C.amber : C.green} />
+              <div style={{ textAlign: "right", fontWeight: "bold",
+                color: !sc.members || sc.members === 0 ? C.crimson : C.teal }}>
+                {(sc.members || 0).toLocaleString()}
+              </div>
+              <div style={{ textAlign: "right", color: timedCol, fontWeight: "bold" }}>
+                {timedPct === null ? "—"
+                  : timedPct === 0 && sc.period_start != null ? "node"
+                  : `${timedPct}%`}
+              </div>
+              <div>
+                {sc.primary_facet && (
+                  <span style={{ background: facetCol + "18", color: facetCol,
+                    border: `1px solid ${facetCol}44`, borderRadius: 8,
+                    padding: "1px 5px", fontSize: 7.5, fontWeight: "bold" }}>
+                    {sc.primary_facet}
+                  </span>
+                )}
+              </div>
+              <Mono col={C.orange} s={7.5}>{sc.lcc_primary || "—"}</Mono>
+            </div>
+          );
+        })}
+      </div>
+
+      <div style={{ marginTop: 12 }}>
+        <CypherBlock query={Q_SUBJECT_CONCEPTS} label="SUBJECT CONCEPTS QUERY" />
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
 // ROOT APP
 // ══════════════════════════════════════════════════════════════════════════════
 const TABS = [
@@ -2525,6 +2805,8 @@ const TABS = [
   ["pipeline", "Pipeline"],
   ["contract", "Contract"],
   ["training", "Training"],
+  ["routing", "Routing Rules"],
+  ["subjects", "Subjects"],
   ["metrics", "Metrics"],
 ];
 
@@ -2573,6 +2855,8 @@ export default function ChrystallumSystemMap() {
       {tab === "pipeline" && <PipelineTab />}
       {tab === "contract" && <ContractTab />}
       {tab === "training" && <TrainingTab />}
+      {tab === "routing" && <RoutingRulesTab />}
+      {tab === "subjects" && <SubjectsTab />}
       {tab === "metrics" && <MetricsTab />}
     </div>
   );

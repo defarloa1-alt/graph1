@@ -1,0 +1,422 @@
+{
+  "qid": "Q1591145",
+  "label": "Battle of New Carthage",
+  "description": "209 BCE successful Roman assault on the Carthaginian stronghold New Carthage (Cartagena) in Iberia",
+  "statement_count": 15,
+  "property_count": 11,
+  "claims": {
+    "P646": [
+      {
+        "statement_id": "Q1591145$D3DD86DF-BE32-4B54-9EA3-1BB422F03A82",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/03nrknf"
+        },
+        "references": [
+          {
+            "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+            "snaks_order": [
+              "P248",
+              "P577"
+            ],
+            "snaks": {
+              "P248": [
+                {
+                  "property": "P248",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q15241312"
+                }
+              ],
+              "P577": [
+                {
+                  "property": "P577",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2013-10-28T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P31": [
+      {
+        "statement_id": "Q1591145$C14F9583-55D2-4834-A251-78CADA955C26",
+        "type": "statement",
+        "rank": "preferred",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        },
+        "references": [
+          {
+            "hash": "d4bd87b862b12d99d26e86472d44f26858dee639",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q8447"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "statement_id": "Q1591145$AC2CD68B-D260-4F70-B1C5-44B681F2BB9A",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q188055"
+        }
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q1591145$4B6D88E5-3881-4E39-8F2F-9D2AA297FF54",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q3412434"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q1591145$e4ba4693-4c41-9f4c-709a-a9ffe48caaec",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6271"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q1591145$aa93c049-4c44-0f20-75c1-6317fe47c7c4",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0209-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        },
+        "qualifiers": {
+          "P4241": [
+            {
+              "property": "P4241",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q40719727"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4241"
+        ]
+      }
+    ],
+    "P373": [
+      {
+        "statement_id": "Q1591145$F7FA8CCC-6060-4188-BF73-4E89B141827F",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P373",
+          "snaktype": "value",
+          "datatype": "string",
+          "value_type": "string",
+          "value": "Battle of Cartagena (209 BC)"
+        }
+      }
+    ],
+    "P18": [
+      {
+        "statement_id": "Q1591145$DE997DF9-CB8E-4A33-A644-F2654E9ADD88",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P18",
+          "snaktype": "value",
+          "datatype": "commonsMedia",
+          "value_type": "string",
+          "value": "Siege of Cartagena 209 BC.svg"
+        },
+        "references": [
+          {
+            "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+            "snaks_order": [
+              "P143"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P17": [
+      {
+        "statement_id": "Q1591145$AED5ADAA-1322-4877-98BD-384DBC2E0538",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        },
+        "qualifiers": {
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q139783048"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P3831"
+        ]
+      },
+      {
+        "statement_id": "Q1591145$E81D9AB5-E831-49B1-B40E-7BFEDECA35B8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P17",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q29"
+        },
+        "qualifiers": {
+          "P3831": [
+            {
+              "property": "P3831",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q140068185"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P3831"
+        ]
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q1591145$d1089463-4ada-3c46-9461-5ca8efc94d63",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q5393550"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      },
+      {
+        "statement_id": "Q1591145$f889afa0-4e5e-98e2-e720-936e1e7770bd",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        },
+        "qualifiers": {
+          "P4791": [
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q2253"
+            },
+            {
+              "property": "P4791",
+              "snaktype": "value",
+              "datatype": "wikibase-item",
+              "value_type": "wikibase-entityid",
+              "value": "Q706305"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P4791"
+        ]
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "Q1591145$692f3bde-4865-f51c-29c8-e371c4184dc6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q250816"
+        },
+        "qualifiers": {
+          "P478": [
+            {
+              "property": "P478",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "X"
+            }
+          ],
+          "P958": [
+            {
+              "property": "P958",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "7-20"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P478",
+          "P958"
+        ]
+      },
+      {
+        "statement_id": "Q1591145$bfb238b4-49f2-06d2-d26d-bd420bf3ac97",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1155892"
+        },
+        "qualifiers": {
+          "P478": [
+            {
+              "property": "P478",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "XXVI"
+            }
+          ],
+          "P958": [
+            {
+              "property": "P958",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "42-51"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P478",
+          "P958"
+        ]
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q1591145$99CA88CC-F1E4-45AB-8C3F-562256C1F25C",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 37.6,
+            "longitude": -0.9825,
+            "precision": 0.0002777777777777778,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      }
+    ]
+  }
+}

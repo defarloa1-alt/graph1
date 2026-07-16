@@ -1,0 +1,204 @@
+{
+  "facet_key": "military",
+  "facet_label": "Military",
+  "canonical_topics": [
+    {
+      "topic_key": "military_strategy_theory",
+      "topic_label": "Military Strategy and Theory",
+      "description": "Scholars study the principles, doctrines, and theoretical frameworks that guide the planning and conduct of warfare at the strategic level.",
+      "example_questions": [
+        "How did Clausewitz's concept of friction shape 20th-century operational planning?",
+        "In what ways does Sun Tzu's strategic thought remain applicable to modern asymmetric warfare?"
+      ]
+    },
+    {
+      "topic_key": "battles_campaigns",
+      "topic_label": "Battles, Campaigns, and Operational History",
+      "description": "Scholars examine specific military engagements and extended campaigns to understand tactics, command decisions, logistics, and their outcomes.",
+      "example_questions": [
+        "What tactical innovations determined the outcome of the Battle of Cannae?",
+        "How did Allied logistics planning shape the success of Operation Overlord?"
+      ]
+    },
+    {
+      "topic_key": "military_technology_innovation",
+      "topic_label": "Military Technology and Innovation",
+      "description": "Scholars investigate how weapons, platforms, communications, and other technologies are developed, adopted, and used to transform warfare.",
+      "example_questions": [
+        "How did the introduction of gunpowder alter siege warfare in early modern Europe?",
+        "What are the strategic implications of autonomous weapons systems in contemporary conflict?"
+      ]
+    },
+    {
+      "topic_key": "civil_military_relations",
+      "topic_label": "Civil-Military Relations and Military Institutions",
+      "description": "Scholars analyze the relationship between armed forces and civilian political authority, including military organization, professionalism, and institutional culture.",
+      "example_questions": [
+        "What factors explain successful civilian control of the military in democratic states?",
+        "How has the all-volunteer force changed the social composition and culture of the U.S. Army?"
+      ]
+    },
+    {
+      "topic_key": "war_society_culture",
+      "topic_label": "War, Society, and Culture",
+      "description": "Scholars explore how warfare shapes and is shaped by social structures, gender, race, class, memory, and cultural representations across different societies.",
+      "example_questions": [
+        "How did World War I transform gender roles in Britain and France?",
+        "In what ways do war memorials construct and contest national memory?"
+      ]
+    },
+    {
+      "topic_key": "military_logistics_economics",
+      "topic_label": "Military Logistics and War Economics",
+      "description": "Scholars study the mobilization of resources, supply chains, financing, and industrial capacity that sustain armed forces in war and peace.",
+      "example_questions": [
+        "How did the Union's superior industrial mobilization contribute to victory in the American Civil War?",
+        "What role did Lend-Lease logistics play in shaping Allied strategy in World War II?"
+      ]
+    },
+    {
+      "topic_key": "laws_of_war_ethics",
+      "topic_label": "Laws of War, Ethics, and Just War Theory",
+      "description": "Scholars examine the moral, legal, and philosophical frameworks governing the justification for war and the conduct of combatants within it.",
+      "example_questions": [
+        "How has the Geneva Convention framework adapted to non-state armed actors?",
+        "Does drone warfare satisfy the just war criteria of discrimination and proportionality?"
+      ]
+    },
+    {
+      "topic_key": "irregular_warfare_counterinsurgency",
+      "topic_label": "Irregular Warfare, Insurgency, and Counterinsurgency",
+      "description": "Scholars analyze guerrilla warfare, terrorism, insurgency, and the doctrines and practices developed by states and non-state actors to wage or suppress them.",
+      "example_questions": [
+        "What conditions enable or undermine successful counterinsurgency campaigns?",
+        "How did Mao Zedong's theory of protracted people's war influence later revolutionary movements?"
+      ]
+    },
+    {
+      "topic_key": "grand_strategy_geopolitics",
+      "topic_label": "Grand Strategy, Geopolitics, and National Security",
+      "description": "Scholars investigate how states integrate military, diplomatic, economic, and ideological instruments to achieve long-term security objectives in an international context.",
+      "example_questions": [
+        "How has containment theory evolved from Kennan's original formulation to post-Cold War practice?",
+        "What grand strategic options are available to rising powers seeking to revise the international order?"
+      ]
+    },
+    {
+      "topic_key": "military_leadership_command",
+      "topic_label": "Military Leadership and Command",
+      "description": "Scholars study the qualities, decision-making processes, and organizational contexts of military commanders at all levels of war.",
+      "example_questions": [
+        "What leadership qualities distinguished effective corps commanders on the Western Front in 1918?",
+        "How do mission command principles affect unit performance in complex urban operations?"
+      ]
+    }
+  ],
+  "discipline_sources": [
+    {
+      "label": "Internet History Sourcebooks Project – Modern History Sourcebook (War & Society)",
+      "url": "https://sourcebooks.fordham.edu/mod/modsbook40.asp",
+      "type": "archive",
+      "description": "Fordham University's freely digitized collection of primary source documents covering major wars, treaties, and military thought from the early modern period through the 20th century; essential for primary-source research.",
+      "is_free": true
+    },
+    {
+      "label": "Avalon Project – Yale Law School (Laws of War Documents)",
+      "url": "https://avalon.law.yale.edu/subject_menus/lawwar.asp",
+      "type": "archive",
+      "description": "Comprehensive free digital archive of international law documents including Hague Conventions, Geneva Conventions, war crimes tribunals, and related treaties; indispensable for the laws of war and war crimes topics.",
+      "is_free": true
+    },
+    {
+      "label": "JSTOR Open Access (Military History & Strategy)",
+      "url": "https://www.jstor.org/open/",
+      "type": "journal",
+      "description": "JSTOR's open-access portal provides free full-text articles from dozens of peer-reviewed journals including the Journal of Military History and War in History, covering all canonical military studies topics.",
+      "is_free": true
+    },
+    {
+      "label": "Journal of Military History (Project MUSE Open Access back issues)",
+      "url": "https://muse.jhu.edu/journal/304",
+      "type": "journal",
+      "description": "The flagship academic journal of the Society for Military History; older issues are freely accessible via Project MUSE and represent the discipline's core peer-reviewed scholarship.",
+      "is_free": true
+    },
+    {
+      "label": "Small Wars Journal",
+      "url": "https://smallwarsjournal.com/",
+      "type": "journal",
+      "description": "Fully free, peer-reviewed online journal focused on irregular warfare, counterinsurgency, and contemporary security; widely cited by both practitioners and academics.",
+      "is_free": true
+    },
+    {
+      "label": "U.S. Army War College Press – Strategic Studies Institute (Free Publications)",
+      "url": "https://press.armywarcollege.edu/",
+      "type": "archive",
+      "description": "Provides free full-text monographs, reports, and journal issues (including Parameters) on strategy, national security, civil-military relations, and operational art; authoritative practitioner-academic source.",
+      "is_free": true
+    },
+    {
+      "label": "Naval War College Review (Open Archive)",
+      "url": "https://digital-commons.usnwc.edu/nwc-review/",
+      "type": "journal",
+      "description": "Fully free digital archive of all issues of the Naval War College Review covering naval strategy, maritime history, grand strategy, and international security affairs.",
+      "is_free": true
+    },
+    {
+      "label": "Library of Congress – Veterans History Project & Military Collections",
+      "url": "https://www.loc.gov/collections/?fa=subject%3Amilitary+%26+war",
+      "type": "archive",
+      "description": "Vast digitized primary source collections including photographs, maps, manuscripts, oral histories, and government documents spanning American military history from the Revolutionary War to recent conflicts.",
+      "is_free": true
+    },
+    {
+      "label": "National Archives (U.S.) – Military Records Online",
+      "url": "https://www.archives.gov/research/military",
+      "type": "archive",
+      "description": "Free access to digitized military service records, unit histories, after-action reports, and declassified documents; essential for American military history research.",
+      "is_free": true
+    },
+    {
+      "label": "Imperial War Museums – Online Collections & Learning Resources",
+      "url": "https://www.iwm.org.uk/collections/search",
+      "type": "archive",
+      "description": "Searchable online collection of over 11 million objects including photographs, film, sound recordings, documents, and personal accounts primarily covering the World Wars and British military history.",
+      "is_free": true
+    },
+    {
+      "label": "MIT OpenCourseWare – Political Science / Security Studies",
+      "url": "https://ocw.mit.edu/search/?q=security+war+military",
+      "type": "ocw",
+      "description": "Free syllabi, lecture notes, and readings from MIT courses on international security, strategy, civil-military relations, and military history; useful for structured self-study.",
+      "is_free": true
+    },
+    {
+      "label": "Clausewitz Homepage (Trinity College, Connecticut)",
+      "url": "https://www.clausewitz.com/",
+      "type": "encyclopedia",
+      "description": "Scholarly reference site with free full texts of Clausewitz's On War and related works, plus extensive secondary commentary; the authoritative free resource for classical military theory.",
+      "is_free": true
+    },
+    {
+      "label": "Encyclopedia Britannica – Military History Articles (Free Tier)",
+      "url": "https://www.britannica.com/topic/military-history",
+      "type": "encyclopedia",
+      "description": "Academically reviewed overview articles on major wars, commanders, weapons, and military concepts; useful as a starting point for unfamiliar topics.",
+      "is_free": true
+    },
+    {
+      "label": "Project Gutenberg – Military Classics (Sun Tzu, Clausewitz, Jomini, Vegetius)",
+      "url": "https://www.gutenberg.org/ebooks/search/?query=military&submit_search=Go%21",
+      "type": "archive",
+      "description": "Free plain-text and epub editions of foundational military texts including The Art of War, On War, and The Art of War by Jomini; essential for military theory and doctrine topics.",
+      "is_free": true
+    },
+    {
+      "label": "RAND Corporation – Free Research (Military & Defense)",
+      "url": "https://www.rand.org/topics/military-and-defense.html",
+      "type": "database",
+      "description": "Freely downloadable reports, monographs, and peer-reviewed studies on military strategy, technology, operations, logistics, and national security policy from one of the world's leading defense think tanks.",
+      "is_free": true
+    }
+  ],
+  "discipline_note": "Military history has undergone a significant broadening since the 1970s, moving from a traditional focus on battles, commanders, and grand strategy toward social, cultural, and 'new military history' approaches that incorporate gender, race, memory, and the experience of ordinary soldiers. Current debates center on how to integrate these bottom-up social perspectives with rigorous operational and strategic analysis, and on the discipline's relationship to policy — particularly whether proximity to defense establishments compromises scholarly independence."
+}

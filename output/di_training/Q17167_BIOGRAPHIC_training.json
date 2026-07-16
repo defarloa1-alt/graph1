@@ -1,0 +1,1151 @@
+{
+  "training_summary": "The Biographic facet of the Roman Republic covers the lives, careers, and individual identities of Roman citizens from the founding of the Republic (509 BCE) to its fall (27 BCE). Primary ancient sources include Plutarch's Parallel Lives, Suetonius's works, Cornelius Nepos, and Cicero's letters; modern scholarship centers on prosopography, onomastics, and the cursus honorum as frameworks for reconstructing individual careers. The facet encompasses senatorial families, military commanders, populist politicians, women, freedmen, and non-elite Romans whose biographies illuminate the social and political fabric of the Republic.",
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "The Biographic facet for the Roman Republic has 7 natural sub-domains, which is below the D12 level2_child_overload threshold of 12. The facet is coherent enough to be managed as a single SFA with clearly enumerated sub-scopes that map to SubjectConcept proposals without spawning child agents.",
+    "sub_domain_count": 7,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 58,
+    "sub_scopes": [
+      {
+        "scope_key": "senatorial_elite_careers",
+        "scope_label": "Senatorial Elite & Magistrates",
+        "scope_description": "Biographies and career trajectories of senators, consuls, praetors, and other magistrates progressing through the cursus honorum; includes noble families such as Scipiones, Caecilii Metelli, and Cornelii.",
+        "candidate_qids": [],
+        "estimated_concepts": 18,
+        "needs": "DPRR prosopographic data integration, cursus honorum sequencing, fasti consulares cross-reference"
+      },
+      {
+        "scope_key": "populist_political_figures",
+        "scope_label": "Populist Politicians & Tribunes",
+        "scope_description": "Individual careers of tribunes of the plebs and populares leaders who championed reform, including the Gracchi, Clodius Pulcher, and Saturninus; intersection with political contention patterns.",
+        "candidate_qids": [],
+        "estimated_concepts": 8,
+        "needs": "Alignment with political facet on legislative careers, contention repertoire pattern mapping"
+      },
+      {
+        "scope_key": "military_commanders",
+        "scope_label": "Military Commanders & Generals",
+        "scope_description": "Biographies of Roman military leaders from Camillus to Pompey and Caesar, covering their commands, triumphs, and post-command political roles.",
+        "candidate_qids": [],
+        "estimated_concepts": 12,
+        "needs": "Cross-link to Military SFA for campaign data; triumph records from Fasti Triumphales"
+      },
+      {
+        "scope_key": "late_republic_leaders",
+        "scope_label": "Late Republic Power Figures",
+        "scope_description": "Prosopographic coverage of the dominant individuals of the late Republic: Marius, Sulla, Crassus, Pompey, Caesar, Cicero, and Mark Antony whose careers shaped the transition to Empire.",
+        "candidate_qids": [],
+        "estimated_concepts": 10,
+        "needs": "Plutarch's Lives as primary source; cross-links to Military and Political SFAs"
+      },
+      {
+        "scope_key": "women_and_non_elite",
+        "scope_label": "Women, Freedmen & Non-Elite Romans",
+        "scope_description": "Individual lives of Roman women (e.g., Cornelia, Clodia, Fulvia), freedmen, slaves, and equestrian businessmen who appear in the biographical record, often through indirect sources.",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Prosopographic inference methods; use of epigraphic and papyrological sources beyond literary biography"
+      },
+      {
+        "scope_key": "onomastics_nomenclature",
+        "scope_label": "Roman Names & Onomastics",
+        "scope_description": "The tria nomina system, cognomina, nomenclature conventions, and how Roman naming practices function as biographic and genealogical markers for tracking individuals and families.",
+        "candidate_qids": [],
+        "estimated_concepts": 5,
+        "needs": "Linguistics SFA cross-link; onomastic databases (LGPN-style for Rome)"
+      },
+      {
+        "scope_key": "ancient_biographical_sources",
+        "scope_label": "Ancient Biographical Sources & Methodology",
+        "scope_description": "The ancient literary tradition of biography itself: Plutarch, Suetonius, Cornelius Nepos, Cicero's letters and speeches as biographical sources, and modern prosopographic methodology (MRR, DPRR, RE).",
+        "candidate_qids": [],
+        "estimated_concepts": 9,
+        "needs": "Intellectual SFA cross-link for ancient historiography; source criticism framework"
+      }
+    ],
+    "manageable_as_single": true
+  },
+  "key_works": [
+    {
+      "work_id": "ia:fallofromanrepub00plut",
+      "relevance": "high",
+      "facet_contribution": "Plutarch's six lives of Marius, Sulla, Crassus, Pompey, Caesar, and Cicero provide the foundational ancient biographical narrative for the late Republic's dominant individuals."
+    },
+    {
+      "work_id": "ia:plutarchslivesr00langgoog",
+      "relevance": "high",
+      "facet_contribution": "Plutarch's Parallel Lives offer comparative biography of Roman and Greek statesmen, covering major Republican figures from Romulus through Brutus, establishing the canon of Roman biographical subjects."
+    },
+    {
+      "work_id": "ia:1thecompleteworksofsuetonius",
+      "relevance": "high",
+      "facet_contribution": "Suetonius provides detailed anecdotal biography of Julius Caesar and Augustus, linking the late Republic to the early Empire through individual life narratives."
+    },
+    {
+      "work_id": "oapen:20.500.12657/38146",
+      "relevance": "high",
+      "facet_contribution": "Covers prosopography and appointment policies in the Roman world, providing methodological grounding for using prosopographic databases to reconstruct individual careers."
+    },
+    {
+      "work_id": "oapen:20.500.12657/25105",
+      "relevance": "medium",
+      "facet_contribution": "Examines what biography as a genre can reveal about national and group identities, applicable to how Roman biographic tradition constructed Republican identity."
+    },
+    {
+      "work_id": "openalex:W3173192381",
+      "relevance": "medium",
+      "facet_contribution": "Traces how Bruni used Cicero's life and republican thought as a manifesto, illustrating the long reception history of Republican biography and its political instrumentalization."
+    },
+    {
+      "work_id": "ia:liveslegacies0000unse",
+      "relevance": "medium",
+      "facet_contribution": "Comparative survey of biographical tradition in western civilization, contextualizing Roman biography within broader historiographic development."
+    },
+    {
+      "work_id": "oapen:20.500.12657/33855",
+      "relevance": "medium",
+      "facet_contribution": "Covers dangers to the Republic, providing context for understanding how individual biographies of late-Republic figures intersect with systemic political crisis."
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q41155",
+      "label": "Plutarch's Parallel Lives as foundational biographic corpus for the Roman Republic",
+      "confidence": 0.92,
+      "evidence": "ia:fallofromanrepub00plut and ia:plutarchslivesr00langgoog confirm that Plutarch's Lives (covering Marius, Sulla, Crassus, Pompey, Caesar, Cicero, Romulus, Camillus, Fabius, and others) constitute the single largest surviving ancient biographic source for the Roman Republic.",
+      "target_facet": null,
+      "reasoning": "Establishing Plutarch as the primary ancient biographic source is foundational for the Biographic SubjectConcept cluster; every prosopographic or biographical study of Republican figures must engage with his Lives as both source and interpretive framework.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.95,
+        "communication": 0.1,
+        "cultural": 0.2,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.4,
+        "linguistic": 0.1,
+        "military": 0.2,
+        "political": 0.3,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.15,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q193513",
+      "label": "Cursus honorum as biographic and political career structure",
+      "confidence": 0.88,
+      "evidence": "oapen:20.500.12657/38146 (Administration, Prosopography and Appointment Policies) demonstrates that individual careers in Rome were structured by a sequence of offices constituting the cursus honorum, which functions simultaneously as a political institution and a biographic template.",
+      "target_facet": "political",
+      "reasoning": "The cursus honorum links biographic research (tracking individual careers) directly to the political facet (constitutional office-holding sequence); any biographic claim about a magistrate necessarily encodes political data.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.85,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.05,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.1,
+        "political": 0.8,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q1371724",
+      "label": "Roman tria nomina system as biographic identification framework",
+      "confidence": 0.85,
+      "evidence": "The onomastic conventions of praenomen, nomen gentilicium, and cognomen (tria nomina) are referenced across prosopographic studies including oapen:20.500.12657/38146 and underlie all modern prosopographic databases (MRR, DPRR, RE) as the primary identification method for Republican individuals.",
+      "target_facet": null,
+      "reasoning": "The naming system is the technical backbone of Roman prosopography; without understanding onomastics, biographic identification of individuals across fragmentary sources is impossible.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.9,
+        "communication": 0.1,
+        "cultural": 0.2,
+        "demographic": 0.15,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.2,
+        "linguistic": 0.7,
+        "military": 0.0,
+        "political": 0.1,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q1420",
+      "label": "Julius Caesar: biographic intersection of military command and political biography",
+      "confidence": 0.9,
+      "evidence": "ia:fallofromanrepub00plut (Plutarch's Caesar) and ia:1thecompleteworksofsuetonius (Suetonius's Divus Iulius) together provide both military campaign narrative and personal biographical detail, illustrating how Caesar's biography is inseparable from the Military and Political SFA domains.",
+      "target_facet": "military",
+      "reasoning": "Caesar exemplifies the cross-facet nature of Roman Republican biography: his individual life cannot be understood without military (Gallic Wars, civil war), political (dictatorship), and biographic dimensions all simultaneously active.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.85,
+        "communication": 0.1,
+        "cultural": 0.15,
+        "demographic": 0.0,
+        "diplomatic": 0.15,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.8,
+        "political": 0.75,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.1,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q233401",
+      "label": "Cornelia (mother of the Gracchi) as exemplar of elite Roman women in the biographic record",
+      "confidence": 0.78,
+      "evidence": "oapen:20.500.12657/25105 and prosopographic scholarship note that elite Roman women like Cornelia appear in the biographic record primarily through male relatives' lives (Plutarch's Tiberius and Gaius Gracchus), illustrating the indirect and gendered nature of female biography in the Republic.",
+      "target_facet": null,
+      "reasoning": "Including women in the biographic sub-scope is essential for a complete mapping of Republican individuals; their absence from prosopographic databases reflects source bias, not historical invisibility.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.82,
+        "communication": 0.0,
+        "cultural": 0.3,
+        "demographic": 0.2,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.1,
+        "linguistic": 0.0,
+        "military": 0.0,
+        "political": 0.2,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.7,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "evaluative"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q82817",
+      "label": "Cicero's reception biography bridging Republican political thought and intellectual history",
+      "confidence": 0.82,
+      "evidence": "openalex:W3173192381 (Bruni, Cicero, and their Manifesto for Republicanism) demonstrates that Cicero's biography was actively instrumentalized in Renaissance republican thought, showing how individual Republican lives function in both biographic and intellectual history facets.",
+      "target_facet": "intellectual",
+      "reasoning": "Cicero's life spans oratory, philosophy, law, and politics; his biography is a node connecting the Biographic facet to Intellectual, Political, and Communication facets — illustrating the necessity of cross-facet edges in the knowledge graph.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.85,
+        "communication": 0.5,
+        "cultural": 0.3,
+        "demographic": 0.0,
+        "diplomatic": 0.1,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.0,
+        "intellectual": 0.8,
+        "linguistic": 0.3,
+        "military": 0.0,
+        "political": 0.7,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.15,
+        "technological": 0.0
+      },
+      "pattern_tags": [],
+      "role": "evaluative"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q41155",
+      "label": "Plutarch",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Central biographic source for the Roman Republic; ia:fallofromanrepub00plut and ia:plutarchslivesr00langgoog confirm his Lives as the primary ancient biographic corpus covering major Republican figures."
+    },
+    {
+      "qid": "Q49768",
+      "label": "Suetonius",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "ia:1thecompleteworksofsuetonius confirms Suetonius as a key biographic source for Julius Caesar and the transition from Republic to Empire."
+    },
+    {
+      "qid": "Q82817",
+      "label": "Cicero",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Appears as subject in openalex:W3173192381 and ia:fallofromanrepub00plut; central figure in Republican biographic tradition covering political, oratorical, and philosophical dimensions."
+    },
+    {
+      "qid": "Q1420",
+      "label": "Julius Caesar",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Covered extensively in ia:fallofromanrepub00plut and ia:1thecompleteworksofsuetonius; his biography spans military, political, and personal dimensions central to the Biographic facet."
+    },
+    {
+      "qid": "Q1444",
+      "label": "Pompey",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "One of Plutarch's six late-Republican Lives in ia:fallofromanrepub00plut; central figure in senatorial elite and military commander sub-scopes."
+    },
+    {
+      "qid": "Q1346",
+      "label": "Marius",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "First of Plutarch's six lives in ia:fallofromanrepub00plut; career bridges military reforms and populist political biography."
+    },
+    {
+      "qid": "Q1493",
+      "label": "Sulla",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Covered in ia:fallofromanrepub00plut; his proscriptions and dictatorship make his biography central to understanding late Republican political crisis through individual agency."
+    },
+    {
+      "qid": "Q183060",
+      "label": "Tiberius Gracchus",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Tribune and reformer whose biography is documented in Plutarch; key figure in populist political figures sub-scope and represents the biographic-political interface."
+    },
+    {
+      "qid": "Q182804",
+      "label": "Gaius Gracchus",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Brother of Tiberius, covered in Plutarch's Parallel Lives; together the Gracchi represent the paradigmatic case of populist reform biography in the Republic."
+    },
+    {
+      "qid": "Q174783",
+      "label": "Cornelius Nepos",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Ancient biographer contemporary with the late Republic; his De Viris Illustribus (especially Atticus) is a primary source for non-military elite biography."
+    },
+    {
+      "qid": "Q233401",
+      "label": "Cornelia (mother of the Gracchi)",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Exemplary case of elite Roman woman in the biographic record; appears in Plutarch's Gracchi lives and represents the women and non-elite sub-scope."
+    },
+    {
+      "qid": "Q314240",
+      "label": "Clodius Pulcher",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Tribune and populist agitator whose biography intersects with Cicero's; represents the populist political figures sub-scope and political contention patterns."
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "ia:fallofromanrepub00plut",
+      "title": "Fall of the Roman Republic: six lives — Marius, Sulla, Crassus, Pompey, Caesar, Cicero",
+      "authors": "Plutarch (trans. Rex Warner)",
+      "year": 1958,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/fallofromanrepub00plut",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Primary ancient biographic source for the six dominant individuals of the late Republic; essential for the late_republic_leaders and military_commanders sub-scopes."
+    },
+    {
+      "work_id": "ia:plutarchslivesr00langgoog",
+      "title": "Plutarch's Lives of Romulus, Lycurgus, Solon, Pericles, Cato, Pompey, Alexander, Caesar, Demosthenes, Cicero, Mark Antony, Brutus",
+      "authors": "Plutarch (trans. J. Langhorne)",
+      "year": 1900,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/plutarchslivesr00langgoog",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Broadest single ancient biographic corpus covering Republican figures from founding myths through the end of the Republic."
+    },
+    {
+      "work_id": "ia:1thecompleteworksofsuetonius",
+      "title": "The Complete Works of Suetonius",
+      "authors": "Suetonius (trans. J.C. Rolfe)",
+      "year": 1914,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/1thecompleteworksofsuetonius",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Provides anecdotal biography of Julius Caesar and the transition-period emperors; essential cross-reference for late Republic individuals."
+    },
+    {
+      "work_id": "oapen:20.500.12657/38146",
+      "title": "Administration, Prosopography and Appointment Policies in the Roman Empire",
+      "authors": "Multiple editors",
+      "year": 2002,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/38146",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Provides methodological grounding for prosopographic research on Roman careers; applicable to Republican period appointment and office-holding patterns."
+    },
+    {
+      "work_id": "openalex:W3173192381",
+      "title": "Bruni, Cicero, and their Manifesto for Republicanism",
+      "authors": "L.M.A.A. Jansen",
+      "year": 2020,
+      "source": "openalex",
+      "source_url": "https://doi.org/10.1515/9783110716313-011",
+      "is_oa": false,
+      "relevance": "medium",
+      "facet_contribution": "Traces the reception of Cicero's biography in Renaissance republicanism, illustrating the long biographic and intellectual afterlife of Republican figures."
+    },
+    {
+      "work_id": "oapen:20.500.12657/25105",
+      "title": "True Biographies of Nations?",
+      "authors": "Multiple editors",
+      "year": 2019,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/25105",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Theoretical framework for biography as a genre and its relationship to collective identity construction, applicable to how Roman biographic tradition shaped Republican identity."
+    },
+    {
+      "work_id": "ia:liveslegacies0000unse",
+      "title": "Lives and Legacies: Biographies in Western Civilization, Volume One",
+      "authors": "Jonathan Scott Perry",
+      "year": 2004,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/liveslegacies0000unse",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Comparative biographic survey including Roman figures; contextualizes Republican biography within the western biographical tradition."
+    },
+    {
+      "work_id": "oapen:20.500.12657/33855",
+      "title": "The Republic in Danger",
+      "authors": "Multiple editors",
+      "year": 2019,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/33855",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Contextualizes how individual biographic decisions by late-Republic leaders contributed to systemic political crisis; bridges Biographic and Political facets."
+    }
+  ],
+  "corpus_gaps": [
+    "No open-access prosopographic database (DPRR, MRR, Broughton's Magistrates) coverage found through available tools; these are the core scholarly resources for Republican biographic research",
+    "Non-elite and slave biographies are almost entirely absent from discoverable open-access scholarship; the biographic record for freedmen and non-citizens remains underrepresented",
+    "Women's biography in the Republic lacks dedicated OA monographs in the discovered corpus; Cornelia, Clodia, and Fulvia are only accessible through secondary references in male-centered Lives",
+    "Epigraphic sources (CIL inscriptions with individual names and careers) not yet integrated; these are critical for non-literary prosopography",
+    "Pre-2nd century BCE individuals (early Republic, regal period figures like Cincinnatus, Camillus) poorly covered in OA scholarly literature vs. late Republic figures",
+    "Equestrian class biographies and businessmen (negotiatores, publicani) have minimal OA scholarly coverage despite their economic and social importance"
+  ],
+  "facet_confidence": 0.82,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Plutarch's Lives as foundational biographic corpus",
+        "note": "Checked whether claiming Plutarch's Lives are 'the' biographic source overstates completeness; revised phrasing to 'single largest surviving ancient biographic source' to acknowledge that Livy, Cicero's letters, and epigraphic sources also contribute biographic data."
+      },
+      {
+        "fallacy_id": "PRESENTISM_FALLACY",
+        "status": "checked",
+        "applies_to": "Women and non-elite in the biographic record insight",
+        "note": "Checked whether applying modern categories (gender, class) anachronistically distorts the Roman biographic record; retained the insight but framed it as source-critical observation about what ancient authors chose to record, not as modern identity politics projected backward."
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "DP_SOURCE_REPRESENTATIVENESS",
+        "status": "applied",
+        "note": "Recognized that Internet Archive and OAPEN searches heavily favor late-Republic figures (Caesar, Cicero, Pompey) over early and mid-Republic individuals; this reflects digitization priorities, not historical importance. The corpus_gaps section explicitly flags this bias."
+      },
+      {
+        "principle_id": "DP_PLATFORM_BIAS",
+        "status": "applied",
+        "note": "OpenAlex searches returned zero results for Roman prosopography, likely due to subject-indexing gaps rather than absence of scholarship; OAPEN and Internet Archive proved more productive for this humanities domain. Tool selection adapted accordingly."
+      }
+    ],
+    "repertoire_patterns": [],
+    "proposed_patterns": [
+      {
+        "proposed_label": "Cursus Honorum Career Progression",
+        "scope_description": "The structured sequential career path through Roman magistracies (quaestor, aedile, praetor, consul) that shaped individual biographies and constrained political ambition within institutional norms.",
+        "analogous_to": "RP_CLIENT_PATRON_NETWORK",
+        "mechanisms": [
+          "M_INSTITUTIONALIZATION",
+          "M_SEQUENTIAL_OFFICE"
+        ],
+        "candidate_qids": [],
+        "evidence": "oapen:20.500.12657/38146 demonstrates that appointment policies and office sequences structured individual careers; Plutarch's Lives consistently frame biographies around magistracy sequences, making this a reusable pattern across all senatorial biographies."
+      }
+    ]
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Republican Constitution & Political Institutions",
+      "Roman Diplomacy & Foreign Relations"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "Standard scholarly periodization confirmed by Year nodes in graph (-509 to -27); Plutarch's Lives and all prosopographic databases use this range as the biographic scope for Republican figures."
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Ancient Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Rome is the primary locus of senatorial careers, magistracy, and biographic events; confirmed as existing Place node in graph query."
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Plutarch's Parallel Lives constitutes the largest surviving ancient biographic corpus for Roman Republican figures, covering individuals from Romulus through Brutus and providing the primary narrative framework for modern scholarship on Republican individual lives.",
+        "subject_concepts": [
+          "Ancient Biographical Sources & Methodology",
+          "Late Republic Power Figures"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.95,
+          "communication": 0.1,
+          "cultural": 0.2,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.4,
+          "linguistic": 0.1,
+          "military": 0.2,
+          "political": 0.3,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.15,
+          "technological": 0.0
+        },
+        "pattern_tags": [],
+        "role": "descriptive",
+        "supporting_works": [
+          "ia:fallofromanrepub00plut",
+          "ia:plutarchslivesr00langgoog"
+        ],
+        "confidence": 0.92
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The Roman tria nomina system (praenomen, nomen gentilicium, cognomen) served as the primary biographic identification framework for Republican individuals, enabling prosopographic reconstruction of careers across fragmentary literary and epigraphic sources.",
+        "subject_concepts": [
+          "Roman Names & Onomastics",
+          "Senatorial Elite & Magistrates"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.9,
+          "communication": 0.1,
+          "cultural": 0.2,
+          "demographic": 0.15,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.0,
+          "intellectual": 0.2,
+          "linguistic": 0.7,
+          "military": 0.0,
+          "political": 0.1,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.3,
+          "technological": 0.0
+        },
+        "pattern_tags": [],
+        "role": "descriptive",
+        "supporting_works": [
+          "oapen:20.500.12657/38146"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "ADJUST_EDGE",
+      "claim": null,
+      "edge": {
+        "from_label": "Biographic Facet — Senatorial Elite & Magistrates",
+        "to_label": "Republican Constitution & Political Institutions",
+        "relation_type": "CAUSALLY_LINKED",
+        "weight_delta": 0.3,
+        "justification": "The cursus honorum structurally links individual senatorial biographies to constitutional office-holding sequences; biographic data about magistrates is inseparable from political institutional data, warranting a strong causal edge between the Biographic and Political facet subject concepts as evidenced by oapen:20.500.12657/38146."
+      }
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-6",
+    "turns": 0,
+    "tool_calls": [
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS \"Roman\" OR sc.label CONTAINS \"Republic\" OR sc.label CONTAINS \"biography\" OR sc.label CONTAINS \"prosopography\" RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[{\"sc.label\": \"Republican Constitution & Political Institutions\", \"sc.subject_id\": \"sc_constitution\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS \"biograph\" OR sc.label CONTAINS \"prosopograph\" OR sc.label CONTAINS \"individual\" OR sc.label CONTAINS \"person\" RETURN sc.label, sc.subject_id, sc.wikidata_qid"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D8"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Routes a SubjectConcept to one of the 18 canonical facets. Certain facets are excluded by policy (Temporal, Classification, Genealogical, Patronage). Assignments below confi"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic biography prosopography individual lives",
+          "source": "oapen",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/25105\", \"title\": \"True Biographies of Nations?\", \"authors\": \"\", \"year\": \"2019\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/25105\", \"is_oa\": true}, {\""
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/38146",
+          "max_chars": 4000
+        },
+        "output_preview": "Administration, Prosopography and Appointment Policies in the Roman Empire Toggle navigation Join Deposit Toggle navigation Toggle navigation For Librarians For Publishers For Researchers Funders Reso"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1163/9789004401617",
+          "max_chars": 4000
+        },
+        "output_preview": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page."
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/33855",
+          "max_chars": 4000
+        },
+        "output_preview": "The Republic in Danger Toggle navigation Join Deposit Toggle navigation Toggle navigation For Librarians For Publishers For Researchers Funders Resources OAPEN View Item&nbsp; &nbsp; OAPEN Home View I"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic prosopography biography individual politicians senators",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman prosopography biography",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4386698778\", \"title\": \"Lesbian and Gay Liberation in Canada: Representing the Dyke Dynamo\", \"authors\": \"Michelle Schwartz; Constance Crompton\", \"year\": 2023, \"citations\": 0, \"d"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman names onomastics nomenclature Republic",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic biography prosopography lives senators",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic biography individual lives",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:ExtrasensoryPerceptionResearchFinding\", \"title\": \"Notes on the Paranormal\", \"authors\": \"Ben Steigmann\", \"year\": \"\", \"downloads\": 33105, \"source_url\": \"https://archive.org/details/Extr"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/liveslegacies0000unse",
+          "max_chars": 4000
+        },
+        "output_preview": "Lives and Legacies : Biographies in Western Civilization. Volume One : Perry, Jonathan Scott, author : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers t"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?author ?authorLabel ?lcsh ?fast WHERE {\n  ?work wdt:P31/wdt:P279* wd:Q732577 . # scholarly article or subclass\n  ?work wdt:P921 ?subject .\n  ?subject (wdt:P31|wdt:P106)* wd:Q5 . # subject is human or has occupation relating to human\n  ?subject wdt:P27* wd:Q1747689 . # from Ancient Rome\n  ?work wdt:P244 ?lcsh . # has LCSH identifier\n  OPTIONAL { ?work wdt:P2163 ?fast } # FAST identifier\n  OPTIONAL { ?work wdt:P50 ?author } # author\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 20
+        },
+        "output_preview": "{\"error\": \"Wikidata SPARQL error: HTTPSConnectionPool(host='query.wikidata.org', port=443): Read timed out. (read timeout=30)\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?subject ?subjectLabel WHERE {\n  ?work wdt:P921 ?subject .\n  ?subject wdt:P31 wd:Q5 . # human\n  ?subject wdt:P27 wd:Q1747689 . # from Ancient Rome\n  ?work wdt:P31 wd:Q13442814 . # scholarly article\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh WHERE {\n  ?work wdt:P921 wd:Q17167 . # main subject: Roman Republic\n  ?work wdt:P244 ?lcsh . # has LCSH identifier\n  ?work wdt:P31 ?type .\n  FILTER(?type = wd:Q13442814 || ?type = wd:Q571 || ?type = wd:Q7725634) # article, book, or literary work\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 15
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q3950848\", \"lcsh\": \"no2004102229\", \"workLabel\": \"Saturnalia\"}]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?subject ?subjectLabel WHERE {\n  ?work wdt:P921 ?subject .\n  ?subject wdt:P361* wd:Q17167 . # subject is part of Roman Republic\n  ?work wdt:P31 wd:Q13442814 . # scholarly article\n  FILTER(CONTAINS(LCASE(?workLabel), \"biography\") || CONTAINS(LCASE(?workLabel), \"prosopography\"))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.2307/300873",
+          "max_chars": 4000
+        },
+        "output_preview": "What's in a Name? A Survey of Roman Onomastic Practice from c. 700 B.C. to A.D. 700* | The Journal of Roman Studies | Cambridge Core Skip to main content Accessibility help Login Alert Cancel Log in ×"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "http://www.perseus.tufts.edu",
+          "max_chars": 3000
+        },
+        "output_preview": "Perseus Digital Library (\"Agamemnon\", \"Hom. Od. 9.1\", \"denarius\") All Search Options [ view abbreviations ] Home Collections/Texts Perseus Catalog Research Grants Open Source About Help Welcome to Per"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Plutarch Lives Cicero Caesar Pompey biography",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"ia:plutarchslivesr00langgoog\", \"title\": \"Plutarch's lives of Romulus, Lycurgus, Solon, Pericles, Cato, Pompey, Alexander the Great, Julius Caesar, Demosthenes, Cicero, Mark Antony, Brutu"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/fallofromanrepub00plut",
+          "max_chars": 4000
+        },
+        "output_preview": "Fall of the Roman Republic; six lives: Marius, Sulla, Crassus, Pompey, Caesar [and] Cicero : Plutarch : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers "
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Suetonius twelve caesars biography",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"ia:TheRomanHistoryWithNotesHistoricalGeographicalAndCriticalVol1\", \"title\": \"Ancient History - Works In Public Domain (Published Before 1900)\", \"authors\": \"AncientHistoryWorks\", \"year\": "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/1thecompleteworksofsuetonius",
+          "max_chars": 4000
+        },
+        "output_preview": "The Complete Works Of Suetonius : Suetonius : Free Download, Borrow, and Streaming : Internet Archive Skip to main content Ask the publishers to restore access to 500,000+ books. Hamburger icon An ico"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Cornelius Nepos Atticus biography",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman prosopography\" republic",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman magistrates names onomastic republic",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (n:RepertoirePattern) WHERE n.pattern_label CONTAINS \"CLIENT\" OR n.pattern_label CONTAINS \"PATRON\" OR n.pattern_label CONTAINS \"CENTER\" OR n.pattern_label CONTAINS \"PERIPHERY\" RETURN n.pattern_label, n.scope_description LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (n) WHERE n.label CONTAINS \"CLIENT\" OR n.label CONTAINS \"PATRON\" RETURN labels(n), n.label LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman political career cursus honorum individual",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Cicero biography political career",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W3173192381\", \"title\": \"Bruni, Cicero, and their Manifesto for Republicanism\", \"authors\": \"L.M.A.A. Jansen\", \"year\": 2020, \"citations\": 0, \"doi\": \"https://doi.org/10.1515/978311"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.degruyter.com/document/doi/10.1515/9783110716313-011/pdf",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Domain not in allowlist: www.degruyter.com. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, jstor.org"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1163/9789004712966_017",
+          "max_chars": 4000
+        },
+        "output_preview": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page."
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://api.openalex.org/works/W3173192381",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"id\": \"https://openalex.org/W3173192381\", \"doi\": \"https://doi.org/10.1515/9783110716313-011\", \"title\": \"Bruni, Cicero, and their Manifesto for Republicanism\", \"display_name\": \"Bruni, Cicero, and thei"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "onomastic Roman names nomenclature",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Clodius Pulcher political career biography",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic individual politicians careers",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (p:Place) RETURN p.label, p.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[{\"p.label\": \"\\\"Basilica\\\" of San Vitale\", \"p.wikidata_qid\": null}, {\"p.label\": \"\\\"Ponte Sanguinario\\\" at Spoletium\", \"p.wikidata_qid\": null}, {\"p.label\": \"\\\"The Great Basilica\\\" at Butrint\", \"p.wikid"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (p:Place) WHERE p.label CONTAINS \"Rome\" OR p.wikidata_qid = \"Q220\" RETURN p.label, p.wikidata_qid"
+        },
+        "output_preview": "[{\"p.label\": \"Ancient Rome\", \"p.wikidata_qid\": null}, {\"p.label\": \"Athenaeum of Hadrian (Rome)\", \"p.wikidata_qid\": null}, {\"p.label\": \"Flaminio Obelisk (Rome)\", \"p.wikidata_qid\": null}, {\"p.label\": \"F"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (y:Year) WHERE y.year >= -509 AND y.year <= -27 RETURN y.year ORDER BY y.year LIMIT 10"
+        },
+        "output_preview": "[{\"y.year\": -509}, {\"y.year\": -508}, {\"y.year\": -507}, {\"y.year\": -506}, {\"y.year\": -505}, {\"y.year\": -504}, {\"y.year\": -503}, {\"y.year\": -502}, {\"y.year\": -501}, {\"y.year\": -500}]"
+      }
+    ],
+    "usage": {
+      "input_tokens": 8584,
+      "output_tokens": 8823
+    },
+    "raw_response_length": 30399,
+    "repaired_from": "output\\di_training\\Q17167_BIOGRAPHIC_training.json",
+    "framework_section_used": true
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 34,
+    "rejected": [
+      {
+        "qid": "Q181659",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:senatorial_elite_careers"
+      },
+      {
+        "qid": "Q193513",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:senatorial_elite_careers"
+      },
+      {
+        "qid": "Q310483",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:senatorial_elite_careers"
+      },
+      {
+        "qid": "Q28604",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:senatorial_elite_careers"
+      },
+      {
+        "qid": "Q172455",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:senatorial_elite_careers"
+      },
+      {
+        "qid": "Q183060",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:populist_political_figures"
+      },
+      {
+        "qid": "Q182804",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:populist_political_figures"
+      },
+      {
+        "qid": "Q314240",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:populist_political_figures"
+      },
+      {
+        "qid": "Q355758",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:populist_political_figures"
+      },
+      {
+        "qid": "Q1346",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:military_commanders"
+      },
+      {
+        "qid": "Q1444",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:military_commanders"
+      },
+      {
+        "qid": "Q1420",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:military_commanders"
+      },
+      {
+        "qid": "Q172455",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:military_commanders"
+      },
+      {
+        "qid": "Q206606",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:military_commanders"
+      },
+      {
+        "qid": "Q1346",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:late_republic_leaders"
+      },
+      {
+        "qid": "Q1420",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:late_republic_leaders"
+      },
+      {
+        "qid": "Q1493",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:late_republic_leaders"
+      },
+      {
+        "qid": "Q172455",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:late_republic_leaders"
+      },
+      {
+        "qid": "Q1444",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:late_republic_leaders"
+      },
+      {
+        "qid": "Q1547",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:late_republic_leaders"
+      },
+      {
+        "qid": "Q82817",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:late_republic_leaders"
+      },
+      {
+        "qid": "Q233401",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:women_and_non_elite"
+      },
+      {
+        "qid": "Q270684",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:women_and_non_elite"
+      },
+      {
+        "qid": "Q236765",
+        "reason": "blocked_instance_type:Q4167410",
+        "context": "sub_scope:women_and_non_elite"
+      },
+      {
+        "qid": "Q1371724",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:onomastics_nomenclature"
+      },
+      {
+        "qid": "Q3771104",
+        "reason": "missing_label",
+        "context": "sub_scope:onomastics_nomenclature"
+      },
+      {
+        "qid": "Q41155",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:ancient_biographical_sources"
+      },
+      {
+        "qid": "Q49768",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:ancient_biographical_sources"
+      },
+      {
+        "qid": "Q174783",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:ancient_biographical_sources"
+      },
+      {
+        "qid": "Q82817",
+        "reason": "not_seed_connected",
+        "context": "sub_scope:ancient_biographical_sources"
+      },
+      {
+        "qid": "Q193513",
+        "reason": "not_seed_connected",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q82817",
+        "reason": "not_seed_connected",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q1444",
+        "reason": "not_seed_connected",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q1420",
+        "reason": "not_seed_connected",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

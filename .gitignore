@@ -107,4 +107,13 @@ ontologies/*.json
 # Obsidian
 .obsidian/cache/
 .obsidian/plugins/
+.obsidian/workspace.json
+
+# Node dependencies (install locally)
+viewer/node_modules/
+viewer/server/node_modules/
+
+# Deprecated instance credentials (archive locally only)
+Archive/Neo4j-*.txt
+
 claude/files (2).zip

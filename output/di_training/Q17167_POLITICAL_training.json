@@ -1,0 +1,1367 @@
+{
+  "training_summary": "The Political facet of the Roman Republic (509–27 BC) encompasses constitutional institutions, the magistracy and cursus honorum, senatorial authority, popular assemblies and the tribunate, the patrician-plebeian Conflict of the Orders, the late republican crisis from the Gracchi through the Triumvirates, and the citizenship/enfranchisement politics culminating in the Social War settlement. The research digest reveals seven coherent sub-domains supported by Broughton's prosopographical record, Lange's civil war analysis, Coudry's senatorial authority study, and canonical Wikipedia/Livius.org overviews. Systematic gaps remain in popular assemblies, tribunician legislation, and municipal political integration.",
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "Seven sub-domains identified, which is below the level2_child_overload threshold of 12. The Political facet is internally coherent and manageable as a single SFA with clearly delineated sub_scopes that will generate SubjectConcept nodes without requiring child agent spawning.",
+    "sub_domain_count": 7,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 68,
+    "sub_scopes": [
+      {
+        "scope_key": "constitutional_institutions",
+        "scope_label": "Constitutional Institutions & Mixed Government",
+        "scope_description": "The formal constitutional structure of the Roman Republic including the Polybian mixed constitution, separation of powers, the concept of imperium, and the role of mos maiorum as unwritten constitutional norm",
+        "candidate_qids": [
+          "Q666680",
+          "Q2576746",
+          "Q361916",
+          "Q499146",
+          "Q1887031"
+        ],
+        "estimated_concepts": 12,
+        "needs": "Polybius text analysis, constitutional law scholarship, connection to Intellectual SFA for political theory"
+      },
+      {
+        "scope_key": "magistracy_cursus_honorum",
+        "scope_label": "Magistracy & Cursus Honorum",
+        "scope_description": "The system of Roman magistrates — consuls, praetors, quaestors, censors, aediles, dictators — their powers, election procedures, collegiality, annual rotation, and the cursus honorum career ladder. Includes extraordinary commands (proconsulates, propraetorates).",
+        "candidate_qids": [
+          "Q27518",
+          "Q40779",
+          "Q20778343",
+          "Q21597597"
+        ],
+        "estimated_concepts": 18,
+        "needs": "Broughton Magistrates of the Roman Republic (openalex:W2007091163), DPRR prosopographical database, Fasti Capitolini"
+      },
+      {
+        "scope_key": "senatorial_politics",
+        "scope_label": "Senate & Senatorial Authority",
+        "scope_description": "The Roman Senate's composition, powers, auctoritas, the Senatus Consultum Ultimum, senatorial foreign policy control, criminal jurisdiction (quaestiones), and the political culture of the nobiles and optimates",
+        "candidate_qids": [
+          "Q20108410",
+          "Q130614",
+          "Q131306"
+        ],
+        "estimated_concepts": 10,
+        "needs": "Ruoff-Väänänen criminal jurisdiction study (openalex:W52767253), Coudry on Dio (openalex:W3141577512), Senate auctoritas scholarship"
+      },
+      {
+        "scope_key": "popular_politics_assemblies",
+        "scope_label": "Popular Assemblies, Tribunate & Popular Politics",
+        "scope_description": "The comitia centuriata, comitia tributa, concilium plebis, the tribunes of the plebs and their legislative and veto powers, popular contio gatherings, and the dynamic between populares and optimates factions",
+        "candidate_qids": [
+          "Q623086",
+          "Q1114852"
+        ],
+        "estimated_concepts": 10,
+        "needs": "Roman assembly scholarship, Mouritsen on plebs and politics, Millar on the crowd in late Republic — significant corpus gap here"
+      },
+      {
+        "scope_key": "conflict_orders_early_republic",
+        "scope_label": "Conflict of the Orders & Early Republican Politics",
+        "scope_description": "The patrician-plebeian Conflict of the Orders (494–287 BC), the secessiones plebis, the Twelve Tables, the Licinian-Sextian laws, the Hortensian law, and the political settlement that ended the struggle through full plebeian access to all magistracies",
+        "candidate_qids": [
+          "Q747480",
+          "Q845114"
+        ],
+        "estimated_concepts": 10,
+        "needs": "Early Republic source criticism, Cornell's Beginnings of Rome, connection to Social SFA for class conflict dimensions"
+      },
+      {
+        "scope_key": "late_republican_crisis",
+        "scope_label": "Late Republican Crisis (Gracchi through Triumvirates)",
+        "scope_description": "The political crisis period 133–27 BC: Gracchan reforms, Marian-Sullan civil wars, Sullan constitutional reforms, the First and Second Triumvirates, Caesar's dictatorship, and the Augustan political settlement that ended the Republic",
+        "candidate_qids": [
+          "Q1812526",
+          "Q215411",
+          "Q715380"
+        ],
+        "estimated_concepts": 15,
+        "needs": "Lange civil war study (wd:Q122861593), Appian's Civil Wars (primary source), OAPEN How Republics Die"
+      },
+      {
+        "scope_key": "citizenship_enfranchisement",
+        "scope_label": "Citizenship, Enfranchisement & Political Integration",
+        "scope_description": "Roman citizenship (civitas) as a political status, the extension of citizenship to Latins and Italians, the Social War (91–87 BC) and its political resolution through the Lex Iulia de Civitate (90 BC), municipal political integration, and freedman political participation",
+        "candidate_qids": [
+          "Q15282014",
+          "Q1422780",
+          "Q213810"
+        ],
+        "estimated_concepts": 8,
+        "needs": "Mouritsen on Italian unification, Sherwin-White on Roman citizenship, Coles on freedman magistrates (openalex:W2618805323), connection to Demographic and Social SFAs"
+      }
+    ],
+    "manageable_as_single": true
+  },
+  "key_works": [
+    {
+      "work_id": "openalex:W2007091163",
+      "relevance": "high",
+      "facet_contribution": "Broughton's Magistrates of the Roman Republic vol. 1 (1952) provides the foundational prosopographical record of every Roman magistrate, indispensable for tracking constitutional evolution and political careers across the entire Republican period."
+    },
+    {
+      "work_id": "openalex:W4229771767",
+      "relevance": "high",
+      "facet_contribution": "Broughton vol. 2 extends the magistrate record into the late Republic, documenting the breakdown of regular magistracy through extraordinary commands, Sullan reforms, and the Triumvirates."
+    },
+    {
+      "work_id": "openalex:W52767253",
+      "relevance": "high",
+      "facet_contribution": "Ruoff-Väänänen's study of the Senate's criminal jurisdiction illuminates the Senate's legal-political authority and contested terrain between senatorial and popular legal processes."
+    },
+    {
+      "work_id": "openalex:W3141577512",
+      "relevance": "high",
+      "facet_contribution": "Coudry's study of electoral bribery in Dio's Books 36–40 directly addresses political corruption, the Senate's authority, and contention over electoral norms in the late Republic."
+    },
+    {
+      "work_id": "openalex:W2522261393",
+      "relevance": "high",
+      "facet_contribution": "Broughton's 1972 prosopographical methodology essay establishes how Fasti are used to reconstruct political history, including family networks, cursus honorum patterns, and senatorial lineages."
+    },
+    {
+      "work_id": "openalex:W2255139928",
+      "relevance": "medium",
+      "facet_contribution": "Smith's study of early Roman magistrates addresses the contested historicity of early Republican magistracy and source reliability for the Fasti."
+    },
+    {
+      "work_id": "openalex:W2618805323",
+      "relevance": "medium",
+      "facet_contribution": "Coles (2017) on freedman magistrates reveals political integration of freedmen into local governance structures, connecting to citizenship enfranchisement politics of the late Republic."
+    },
+    {
+      "work_id": "wd:Q122861593",
+      "relevance": "high",
+      "facet_contribution": "Lange's From Hannibal to Sulla traces the conceptualization and birth of civil war as a political category in Republican Rome, providing theoretical grounding for understanding political breakdown."
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q747480",
+      "label": "Conflict of the Orders",
+      "confidence": 0.95,
+      "evidence": "Wikipedia's Conflict of the Orders article and Constitution of the Roman Republic article both confirm: patrician-plebeian conflict 494–287 BC generated the tribunate, Twelve Tables, Licinian-Sextian laws (367 BC), and Hortensian law (287 BC). This is the foundational political struggle of the early Republic.",
+      "target_facet": null,
+      "reasoning": "The Conflict of the Orders is the defining political process of the early Republic, generating all major institutional innovations. It maps directly to the RP_CONCESSION_AFTER_THRESHOLD_CONFLICT and RP_CENTER_PERIPHERY_ENFRANCHISEMENT patterns and is essential for the conflict_orders_early_republic sub-scope.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.05,
+        "communication": 0.05,
+        "cultural": 0.15,
+        "demographic": 0.1,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.05,
+        "intellectual": 0.1,
+        "linguistic": 0.05,
+        "military": 0.1,
+        "political": 0.95,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.5,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CONCESSION_AFTER_THRESHOLD_CONFLICT",
+        "RP_CENTER_PERIPHERY_ENFRANCHISEMENT",
+        "RP_CONTENTIOUS_ASSEMBLY"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q183105",
+      "label": "Senatus Consultum Ultimum",
+      "confidence": 0.88,
+      "evidence": "Wikipedia's Senate and SCU articles confirm this emergency political instrument was deployed from 121 BC against the Gracchi, Saturninus, Lepidus, Catiline, and Caesar. Coudry's study (openalex:W3141577512) on Dio's portrayal of senatorial authority directly addresses how the SCU challenged normal constitutional norms.",
+      "target_facet": null,
+      "reasoning": "The SCU is the most consequential emergency constitutional mechanism of the late Republic, granting consuls quasi-dictatorial powers by bypassing normal legal protections. It is central to understanding the political crisis as a constitutional and legitimacy crisis.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.05,
+        "communication": 0.1,
+        "cultural": 0.1,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.05,
+        "intellectual": 0.15,
+        "linguistic": 0.05,
+        "military": 0.2,
+        "political": 0.95,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.15,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM",
+        "RP_MILITARIZED_POLITICS_CONTROL"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q845114",
+      "label": "Secessio Plebis",
+      "confidence": 0.92,
+      "evidence": "Wikipedia's secessio plebis article documents five secessions 494–287 BC as collective withdrawal of the plebs, analogous to a general strike. This is the primary political leverage mechanism of the plebs before institutionalization through the tribunate.",
+      "target_facet": null,
+      "reasoning": "The secessio plebis directly instantiates the RP_GENERAL_STRIKE pattern in an ancient context and is the political precondition for the Conflict of the Orders settlement. It demonstrates that collective action repertoires existed in the Roman Republic.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.1,
+        "cultural": 0.1,
+        "demographic": 0.1,
+        "diplomatic": 0.0,
+        "economic": 0.15,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.05,
+        "linguistic": 0.0,
+        "military": 0.1,
+        "political": 0.9,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.6,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_GENERAL_STRIKE",
+        "RP_CONCESSION_AFTER_THRESHOLD_CONFLICT"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q1812526",
+      "label": "Constitutional Reforms of Sulla",
+      "confidence": 0.93,
+      "evidence": "Wikipedia's Sulla reform article confirms: doubling the Senate to 600, restricting tribunician power, systematizing the cursus honorum, creating permanent quaestiones, and abolishing direct election to the Senate (82–80 BC). Lange's civil war work (wd:Q122861593) contextualizes this as the culmination of the birth of civil war politics.",
+      "target_facet": null,
+      "reasoning": "Sulla's reforms represent the most comprehensive constitutional restructuring in Republican history before Augustus, demonstrating how military force was used to impose political solutions — a key pattern in the late_republican_crisis sub-scope.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.15,
+        "communication": 0.05,
+        "cultural": 0.1,
+        "demographic": 0.05,
+        "diplomatic": 0.05,
+        "economic": 0.05,
+        "environmental": 0.0,
+        "geographic": 0.05,
+        "intellectual": 0.15,
+        "linguistic": 0.0,
+        "military": 0.3,
+        "political": 0.95,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM",
+        "RP_MILITARIZED_POLITICS_CONTROL"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q15282014",
+      "label": "Lex Iulia de Civitate (90 BC)",
+      "confidence": 0.88,
+      "evidence": "Wikipedia's Social War article confirms that the Lex Iulia de Civitate (90 BC) granted Roman citizenship to allied Italians who had not revolted, representing a massive enfranchisement driven by military pressure. Coles (openalex:W2618805323) provides context for post-enfranchisement political integration.",
+      "target_facet": null,
+      "reasoning": "The Lex Iulia de Civitate is the most consequential single enfranchisement act in Republican history, transforming the political composition of the citizen body and directly triggering the crisis over new citizen registration — central to the citizenship_enfranchisement sub-scope.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.05,
+        "communication": 0.05,
+        "cultural": 0.1,
+        "demographic": 0.3,
+        "diplomatic": 0.1,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.15,
+        "intellectual": 0.05,
+        "linguistic": 0.05,
+        "military": 0.2,
+        "political": 0.9,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.4,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_ENFRANCHISEMENT",
+        "RP_CONCESSION_AFTER_THRESHOLD_CONFLICT"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q6503456",
+      "label": "Law of Maiestas (Treason Law)",
+      "confidence": 0.82,
+      "evidence": "Wikipedia's Law of Maiestas article documents the Republican origins of this treason law and its evolution from military offenses (perduellio) to broader political crimes. Ruoff-Väänänen's study of Senate criminal jurisdiction (openalex:W52767253) is directly relevant to its political deployment.",
+      "target_facet": "legal",
+      "reasoning": "Maiestas prosecutions sit at the intersection of Political and Legal facets. The political use of maiestas trials against opponents makes this a key political weapon, but its primary technical home is the legal domain — an important cross-facet link to establish.",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.1,
+        "communication": 0.1,
+        "cultural": 0.1,
+        "demographic": 0.0,
+        "diplomatic": 0.05,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.05,
+        "intellectual": 0.15,
+        "linguistic": 0.1,
+        "military": 0.1,
+        "political": 0.75,
+        "religious": 0.05,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM"
+      ],
+      "role": "descriptive"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q747480",
+      "label": "Conflict of the Orders",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "The Conflict of the Orders (494–287 BC) is the foundational political conflict of the Roman Republic, generating the tribunate, Twelve Tables, and Hortensian law. Core Political SFA concept for the conflict_orders_early_republic sub-scope, confirmed at 0.95."
+    },
+    {
+      "qid": "Q845114",
+      "label": "Secessio Plebis",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Five documented secessions 494–287 BC represent the plebs' primary political leverage mechanism before institutional settlement. Directly instantiates RP_GENERAL_STRIKE pattern. Core Political SFA concept confirmed at 0.92."
+    },
+    {
+      "qid": "Q1812526",
+      "label": "Constitutional reforms of Lucius Cornelius Sulla",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Sulla's reforms (82–80 BC) are among the most important political restructuring events of the late Republic, documented in Wikipedia and Lange's civil war work. Confirmed at 0.93 for the late_republican_crisis sub-scope."
+    },
+    {
+      "qid": "Q15282014",
+      "label": "Lex Iulia de Civitate",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "The Lex Iulia de Civitate (90 BC) is the most consequential enfranchisement act in Republican history. Wikipedia's Social War article confirms its political significance. Confirmed at 0.88 for citizenship_enfranchisement sub-scope."
+    },
+    {
+      "qid": "Q183105",
+      "label": "Senatus Consultum Ultimum",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "The SCU is the key emergency constitutional instrument of the late Republic, deployed from 121 BC through 49 BC. Coudry's study (openalex:W3141577512) directly addresses senatorial authority. Confirmed at 0.88 for senatorial_politics sub-scope."
+    },
+    {
+      "qid": "Q666680",
+      "label": "Aristocratic republic",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Aristocratic republic is the canonical political science description of the Roman Republican system per Polybius and confirmed by Livius.org Senate article. Core Political SFA concept for constitutional_institutions sub-scope."
+    },
+    {
+      "qid": "Q6503456",
+      "label": "Law of majestas",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Maiestas law was a political-legal instrument used throughout the Republic for prosecutions of opponents. Ruoff-Väänänen (openalex:W52767253) directly addresses Senate criminal jurisdiction. Confirmed with cross-facet link to legal domain."
+    },
+    {
+      "qid": "Q20108410",
+      "label": "Lex Mamilia de senatoribus",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "This statute regulating senatorial membership belongs squarely in the senatorial_politics sub-scope. Connects to Broughton's prosopographical work on senatorial composition. Confirmed at medium confidence."
+    },
+    {
+      "qid": "Q1422780",
+      "label": "Nexum",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Nexum (debt bondage) abolition was a key political concession during the Conflict of the Orders. Its role as a political grievance makes it properly Political with strong cross-facet weight to Social SFA. Confirmed at 0.72."
+    },
+    {
+      "qid": "Q181733",
+      "label": "Praetorian Guard",
+      "verdict": "reroute",
+      "reroute_to": "military",
+      "evidence": "The Praetorian Guard is fundamentally a military institution. In the Republican context, praetorian cohorts attached to generals belong in the Military SFA. Its political implications are a secondary cross-facet link, not a primary Political classification."
+    },
+    {
+      "qid": "Q3024240",
+      "label": "Historical country",
+      "verdict": "reroute",
+      "reroute_to": "geographic",
+      "evidence": "Historical country as a generic classification term belongs to the geographic or administrative facet. The Roman Republic as a historical country is the seed entity itself. This generic category should route to Geographic SFA."
+    },
+    {
+      "qid": "Q1307214",
+      "label": "Form of government",
+      "verdict": "reroute",
+      "reroute_to": "intellectual",
+      "evidence": "Form of government as a generic concept belongs to political theory and intellectual history rather than the specific political history of the Roman Republic. Route to Intellectual SFA for political philosophy concepts."
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "oapen:20.500.12657/51763",
+      "title": "Lucius Cornelius Sulla in der antiken Erinnerung",
+      "authors": "Eckert, Alexandra",
+      "year": 2016,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/51763",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Examines ancient memory of Sulla including his constitutional reforms and dictatorship, central to the late_republican_crisis sub-scope."
+    },
+    {
+      "work_id": "oapen:20.500.12657/105629",
+      "title": "How Republics Die",
+      "authors": "Various",
+      "year": 2025,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/105629",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Comparative analysis of republican failure directly relevant to why the Roman Republic collapsed and transitioned to autocracy."
+    },
+    {
+      "work_id": "oapen:20.500.12657/33855",
+      "title": "The Republic in Danger",
+      "authors": "Pettinger, Andrew",
+      "year": 2012,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/33855",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Study of the political crisis of the late Republic, focusing on how republican institutions were challenged and ultimately undermined."
+    },
+    {
+      "work_id": "oapen:20.500.12657/30326",
+      "title": "Cicero, On Pompey's Command (De Imperio), 27-49",
+      "authors": "Gildenhard, Ingo",
+      "year": 2014,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/30326",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Text and commentary on Cicero's speech supporting Pompey's extraordinary command, documenting political debates over extraordinary magistracy in the late Republic."
+    },
+    {
+      "work_id": "openalex:W2618805323",
+      "title": "Freedman Magistrates in Latin Colonies",
+      "authors": "Coles",
+      "year": 2017,
+      "source": "openalex",
+      "source_url": "https://openalex.org/W2618805323",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Documents political integration of freedmen into local governance structures, connecting to citizenship_enfranchisement sub-scope and municipal political administration."
+    },
+    {
+      "work_id": "openalex:W3141577512",
+      "title": "Electoral Bribery and Senatorial Authority in Dio Books 36-40",
+      "authors": "Coudry",
+      "year": 2019,
+      "source": "openalex",
+      "source_url": "https://openalex.org/W3141577512",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Documents political corruption, senatorial authority, and contention over electoral norms in the late Republic — core evidence for senatorial_politics and late_republican_crisis sub-scopes."
+    },
+    {
+      "work_id": "openalex:W52767253",
+      "title": "Senate Criminal Jurisdiction in the Roman Republic",
+      "authors": "Ruoff-Väänänen",
+      "year": 1979,
+      "source": "openalex",
+      "source_url": "https://openalex.org/W52767253",
+      "is_oa": false,
+      "relevance": "high",
+      "facet_contribution": "Illuminates the Senate's legal-political authority and contested terrain between senatorial and popular legal processes, foundational for senatorial_politics sub-scope."
+    },
+    {
+      "work_id": "openalex:W2255139928",
+      "title": "Early Roman Magistrates and the Historicity of the Fasti",
+      "authors": "Smith",
+      "year": 2011,
+      "source": "openalex",
+      "source_url": "https://openalex.org/W2255139928",
+      "is_oa": false,
+      "relevance": "medium",
+      "facet_contribution": "Addresses source reliability for early Republican magistrate lists, critical for the magistracy_cursus_honorum sub-scope's foundational evidentiary basis."
+    }
+  ],
+  "corpus_gaps": [
+    "Popular assemblies (comitia centuriata, comitia tributa, concilium plebis) — no dedicated scholarly work in corpus; Mouritsen and Millar scholarship absent",
+    "Tribunician legislation — the specific content and political impact of individual tribunician laws across the Republic is undercovered",
+    "Municipal political integration — how newly enfranchised Italian communities were absorbed into the Roman political system post-90 BC",
+    "Populares vs. optimates factional dynamics — no focused study in corpus beyond incidental mentions in late Republic crisis works",
+    "Roman electoral procedures — the mechanics of the comitia, voting order, tribal organization, and their political implications",
+    "Censorship as a political institution — the censor's role in senatorial lectio and citizen registration is not covered in the corpus"
+  ],
+  "facet_confidence": 0.87,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Conflict of the Orders insight",
+        "note": "Checked whether the insight makes a sweeping claim about the entire Conflict of the Orders as a unified event. The insight correctly attributes specific institutional outcomes (tribunate, Twelve Tables, Hortensian law) rather than claiming a holistic narrative — clean."
+      },
+      {
+        "fallacy_id": "ESSENTIALIST_FALLACY",
+        "status": "revised",
+        "applies_to": "Aristocratic republic characterization",
+        "note": "Initial phrasing 'Rome was essentially an aristocratic republic' triggered the essentialist fallacy. Revised to: 'the Roman Republic was classically understood as an aristocratic republic in which senatorial authority dominated through informal norms' — attributing the characterization to Polybius and scholarly consensus rather than asserting an essence."
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "DP_SOURCE_REPRESENTATIVENESS",
+        "status": "applied",
+        "note": "Noted that the OpenAlex corpus over-represents late Republican prosopography (Broughton) and civil war studies (Lange) relative to early Republican and popular politics scholarship. This bias shaped the corpus_gaps identification — popular assemblies and tribunician legislation are under-represented because digitized OA scholarship on these topics is sparse."
+      },
+      {
+        "principle_id": "DP_PLATFORM_BIAS",
+        "status": "applied",
+        "note": "Wikipedia was used as a canonical enumeration source for sub-domain identification, with awareness that its coverage of Roman political history is strong for major events (Conflict of Orders, Sulla, Social War) but thinner for procedural and institutional mechanics. Livius.org and Penelope/Perseus were identified as depth sources for institutional details."
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CONTENTIOUS_ASSEMBLY",
+        "pattern_label": "Contentious Assembly",
+        "status": "existing",
+        "candidate_qids": [
+          "Q845114"
+        ],
+        "mechanisms": [
+          "M_ESCALATION",
+          "M_MOBILIZATION"
+        ],
+        "evidence": "The secessio plebis and popular assembly (concilium plebis) episodes map directly to the Contentious Assembly pattern — collective political action through assembly mobilization that produced institutional concessions.",
+        "confidence": 0.88
+      }
+    ],
+    "proposed_patterns": [
+      {
+        "proposed_label": "Senatorial Emergency Override",
+        "scope_description": "The use of emergency decrees (Senatus Consultum Ultimum) and extraordinary commands to bypass normal constitutional constraints during political crises, concentrating power in the executive while suspending legal protections",
+        "analogous_to": "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM",
+        "mechanisms": [
+          "M_ESCALATION",
+          "M_COERCION"
+        ],
+        "candidate_qids": [
+          "Q1812526"
+        ],
+        "evidence": "The SCU's deployment against the Gracchi (121 BC), Saturninus (100 BC), Lepidus (77 BC), Catiline (63 BC), and Caesar (49 BC) reveals a consistent pattern of senatorial emergency power invocation as a tool of political exclusion — distinct enough from generic status quo defense to warrant its own pattern node."
+      }
+    ]
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Republic (Q17167)",
+      "Roman Senate",
+      "Cursus honorum",
+      "Conflict of the Orders",
+      "Tribunate of the plebs",
+      "Comitia centuriata",
+      "Roman citizenship"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "509 BC (traditional date of foundation, expulsion of Tarquins per Wikipedia Republic article) to 27 BC (Battle of Actium / Augustus receives title, per Crisis of the Roman Republic article)"
+      },
+      {
+        "year_start": -494,
+        "year_end": -287,
+        "label": "Conflict of the Orders",
+        "evidence": "494 BC (First Secession of the Plebs) to 287 BC (Lex Hortensia, per Wikipedia Conflict of the Orders article)"
+      },
+      {
+        "year_start": -133,
+        "year_end": -27,
+        "label": "Late Republican Crisis",
+        "evidence": "133 BC (assassination of Tiberius Gracchus) to 27 BC (Augustan settlement), per Lange's civil war study and Crisis of the Roman Republic Wikipedia article"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Rome (Q220) is the primary locus of all Republican political institutions — Senate, assemblies, magistrates — confirmed across all corpus sources"
+      },
+      {
+        "place_label": "Roman Forum",
+        "place_qid": "Q46239",
+        "role": "secondary",
+        "evidence": "The Roman Forum was the physical site of political assemblies (comitia), contiones, and the Rostra — the spatial center of Republican popular politics"
+      },
+      {
+        "place_label": "Capitoline Hill",
+        "place_qid": "Q13766",
+        "role": "secondary",
+        "evidence": "The Capitoline Hill hosted the Temple of Jupiter Optimus Maximus where senatorial meetings and triumph ceremonies occurred, and was the destination of secessio-era political demonstrations"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The Conflict of the Orders (494–287 BC) generated the tribunate of the plebs, the Twelve Tables, the Licinian-Sextian laws opening consulship to plebeians (367 BC), and the Hortensian law making plebiscites binding on all Romans (287 BC), constituting the foundational political settlement of the Roman Republic.",
+        "subject_concepts": [
+          "Conflict of the Orders",
+          "Roman Republic",
+          "Tribunate of the plebs"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.05,
+          "communication": 0.05,
+          "cultural": 0.15,
+          "demographic": 0.1,
+          "diplomatic": 0.0,
+          "economic": 0.1,
+          "environmental": 0.0,
+          "geographic": 0.05,
+          "intellectual": 0.1,
+          "linguistic": 0.05,
+          "military": 0.1,
+          "political": 0.95,
+          "religious": 0.1,
+          "scientific": 0.0,
+          "social": 0.5,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CONCESSION_AFTER_THRESHOLD_CONFLICT",
+          "RP_CENTER_PERIPHERY_ENFRANCHISEMENT"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "openalex:W2255139928",
+          "openalex:W2007091163"
+        ],
+        "confidence": 0.95
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Sulla's constitutional reforms (82–80 BC) doubled the Senate to 600 members, restricted tribunician legislative power, systematized the cursus honorum with minimum age requirements, and created permanent criminal courts (quaestiones perpetuae), representing the most comprehensive Republican constitutional restructuring before Augustus.",
+        "subject_concepts": [
+          "Constitutional reforms of Sulla",
+          "Roman Senate",
+          "Cursus honorum"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.15,
+          "communication": 0.05,
+          "cultural": 0.1,
+          "demographic": 0.05,
+          "diplomatic": 0.05,
+          "economic": 0.05,
+          "environmental": 0.0,
+          "geographic": 0.05,
+          "intellectual": 0.15,
+          "linguistic": 0.0,
+          "military": 0.3,
+          "political": 0.95,
+          "religious": 0.05,
+          "scientific": 0.0,
+          "social": 0.2,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_STATUS_QUO_DEFENSE_AGAINST_REFORM",
+          "RP_MILITARIZED_POLITICS_CONTROL"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "wd:Q122861593",
+          "openalex:W3141577512"
+        ],
+        "confidence": 0.93
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The Lex Iulia de Civitate (90 BC), passed during the Social War, extended Roman citizenship to all Italian allies who had not revolted, transforming the Roman political citizen body from a city-centered population to a peninsula-wide constituency and triggering political crisis over how to register new citizens in the tribal voting system.",
+        "subject_concepts": [
+          "Lex Iulia de Civitate",
+          "Roman citizenship",
+          "Social War"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.05,
+          "communication": 0.05,
+          "cultural": 0.1,
+          "demographic": 0.3,
+          "diplomatic": 0.1,
+          "economic": 0.1,
+          "environmental": 0.0,
+          "geographic": 0.15,
+          "intellectual": 0.05,
+          "linguistic": 0.05,
+          "military": 0.2,
+          "political": 0.9,
+          "religious": 0.05,
+          "scientific": 0.0,
+          "social": 0.4,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_ENFRANCHISEMENT",
+          "RP_CONCESSION_AFTER_THRESHOLD_CONFLICT"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "openalex:W2618805323",
+          "wd:Q122861593"
+        ],
+        "confidence": 0.88
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-6",
+    "turns": 0,
+    "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Republic",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Republic/",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Republic - World History Encyclopedia Roman Republic Donald L. Wasson In the late 6th century BCE, the small city-state of Rome overthrew the shackles of monarchy and created a republican govern"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS 'Roman' OR sc.label CONTAINS 'Republic' OR sc.label CONTAINS 'Senate' OR sc.label CONTAINS 'consul' RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 30"
+        },
+        "output_preview": "[{\"sc.label\": \"Republican Constitution & Political Institutions\", \"sc.subject_id\": \"sc_constitution\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Constitution_of_the_Roman_Republic",
+          "max_chars": 5000
+        },
+        "output_preview": "Constitution of the Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribut"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic constitution Senate magistrates political institutions",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Senate_of_the_Roman_Republic",
+          "max_chars": 4000
+        },
+        "output_preview": "Senate of the Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic political system constitution Conflict Orders patrician plebeian",
+          "source": "oapen",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/107650\", \"title\": \"Comparative Studies on Chinese and Western Civilizations\", \"authors\": \"Yue, PAN\", \"year\": \"2026\", \"source_url\": \"https://library.oapen.org/handle/20"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?lcsh WHERE { ?work wdt:P921 wd:Q17167 . OPTIONAL { ?work wdt:P244 ?lcsh } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 30",
+          "limit": 30
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q378975\", \"workLabel\": \"Lustrum\"}, {\"work\": \"http://www.wikidata.org/entity/Q1660324\", \"workLabel\": \"Imperium\"}, {\"work\": \"http://www.wikidata.org/entity/Q395"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Conflict_of_the_Orders",
+          "max_chars": 4000
+        },
+        "output_preview": "Conflict of the Orders - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic tribunate popular assemblies popular politics",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic Gracchi reforms land redistribution populares optimates",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Gracchi land reform Roman Republic late republican crisis",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel WHERE { ?work wdt:P921 wd:Q183757 . SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 20",
+          "limit": 20
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/concept/senate/",
+          "max_chars": 4000
+        },
+        "output_preview": "Senate - Livius Livius.org Articles on ancient history &nbsp; Senate Senate (Latin Senatus ): supreme deliberative body in the Roman republic. Genius of the Senate According to the official fiction th"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Tribunate_of_the_plebs",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Tribunate_of_the_plebs\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel WHERE { ?work wdt:P921 wd:Q339825 . SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 20",
+          "limit": 20
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman civil war Sulla Marius Gracchi populares senatorial aristocracy late republic",
+          "source": "oapen",
+          "limit": 12
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/105629\", \"title\": \"How Republics Die\", \"authors\": \"\", \"year\": \"2025\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/105629\", \"is_oa\": true}, {\"work_id\":"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/105629",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://library.oapen.org/handle/20.500.12657/105629\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/33855",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://library.oapen.org/handle/20.500.12657/33855\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel WHERE { ?work wdt:P921 wd:Q183757 . SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 20",
+          "limit": 20
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { ?item wdt:P31 wd:Q7187 . ?item wdt:P361 wd:Q17167 . SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 20",
+          "limit": 20
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Cursus_honorum",
+          "max_chars": 3000
+        },
+        "output_preview": "Cursus honorum - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic Sulla constitutional reforms dictatorship Senate",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Populares",
+          "max_chars": 3000
+        },
+        "output_preview": "Optimates and populares - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lear"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Secessio_plebis",
+          "max_chars": 3000
+        },
+        "output_preview": "Secessio plebis - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edi"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { VALUES ?item { wd:Q747480 wd:Q1812526 wd:Q845114 wd:Q1422780 wd:Q666680 wd:Q15282014 wd:Q6503456 wd:Q20108410 wd:Q181733 wd:Q48349 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 15",
+          "limit": 15
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q747480\", \"itemLabel\": \"Conflict of the Orders\"}, {\"item\": \"http://www.wikidata.org/entity/Q1812526\", \"itemLabel\": \"Constitutional reforms of Lucius Cornelius"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Constitutional_reforms_of_Sulla",
+          "max_chars": 3500
+        },
+        "output_preview": "Constitutional reforms of Sulla - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute H"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Lex_Iulia_de_civitate_Latina",
+          "max_chars": 2500
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Lex_Iulia_de_civitate_Latina\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel ?desc WHERE { VALUES ?item { wd:Q339825 wd:Q183757 wd:Q221377 wd:Q215366 wd:Q170494 wd:Q202765 wd:Q18545 wd:Q46303 wd:Q105105 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' . ?item schema:description ?desc } } LIMIT 15",
+          "limit": 15
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q339825\", \"desc\": \"municipality in Bavaria state, Germany\"}, {\"item\": \"http://www.wikidata.org/entity/Q183757\", \"desc\": \"former coal mine in Duisburg, Germany"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { VALUES ?item { wd:Q188463 wd:Q211606 wd:Q130649 wd:Q3361059 wd:Q177895 wd:Q1540978 wd:Q3516404 wd:Q209158 wd:Q6031 wd:Q173065 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 15",
+          "limit": 15
+        },
+        "output_preview": "{\"error\": \"Wikidata SPARQL error: 429 Client Error: Too Many Requests for url: https://query.wikidata.org/sparql?query=SELECT+%3Fitem+%3FitemLabel+WHERE+%7B+VALUES+%3Fitem+%7B+wd%3AQ188463+wd%3AQ21160"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_consul",
+          "max_chars": 2500
+        },
+        "output_preview": "Roman consul - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit C"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic elections comitia centuriata voting assemblies democracy",
+          "source": "openalex",
+          "limit": 12
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Lex_Iulia_de_civitate",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Lex_Iulia_de_civitate\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Social_War_(91%E2%80%9387_BC)",
+          "max_chars": 3500
+        },
+        "output_preview": "Social War (91–87 BC) - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Nexum",
+          "max_chars": 3000
+        },
+        "output_preview": "Nexum - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Communit"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (f:Facet) RETURN f.label, f.facet_id LIMIT 25"
+        },
+        "output_preview": "[{\"f.label\": \"Communication\", \"f.facet_id\": null}, {\"f.label\": \"Archaeological\", \"f.facet_id\": null}, {\"f.label\": \"Artistic\", \"f.facet_id\": null}, {\"f.label\": \"Biographic\", \"f.facet_id\": null}, {\"f.la"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (n:SYS_DecisionTable) RETURN n.table_id, n.label LIMIT 20"
+        },
+        "output_preview": "[{\"n.table_id\": \"D16_SCORE_place_federation\", \"n.label\": \"Score Place Federation Completeness\"}, {\"n.table_id\": \"D15_DETERMINE_federation_state\", \"n.label\": \"Determine Federation State from Score\"}, {"
+      },
+      {
+        "tool": "get_decision_table",
+        "input": {
+          "table_id": "D8"
+        },
+        "output_preview": "{\"table\": {\"description\": \"Routes a SubjectConcept to one of the 18 canonical facets. Certain facets are excluded by policy (Temporal, Classification, Genealogical, Patronage). Assignments below confi"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic political history Senate magistrates elections assemblies",
+          "source": "internet_archive",
+          "limit": 12
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic history political institutions governance",
+          "source": "internet_archive",
+          "limit": 12
+        },
+        "output_preview": "[{\"work_id\": \"ia:StoddardRacialRealitiesInEurope\", \"title\": \"Racial Realities In Europe - Lothrop Stoddard (1924)\", \"authors\": \"Stoddard, Theodore Lothrop\", \"year\": \"1924\", \"downloads\": 10858, \"source"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Tribunate_of_the_plebs_(Roman_Republic)",
+          "max_chars": 2500
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Tribunate_of_the_plebs_(Roman_Republic)\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org/details/tenorationsofcic00cice_202507",
+          "max_chars": 2000
+        },
+        "output_preview": "Ten Orations and Selected Letters of Cicero: Statesmanship, Rhetoric, and Republican Ideals : Marcus Tullius Cicero; edited by William R. Harper and Frank A. Gallup : Free Download, Borrow, and Stream"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Tribune_of_the_plebs",
+          "max_chars": 3000
+        },
+        "output_preview": "Tribune of the plebs - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn t"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { VALUES ?item { wd:Q186361 wd:Q183757 wd:Q130853 wd:Q192788 wd:Q173565 wd:Q209158 wd:Q1540978 wd:Q47089 wd:Q215221 wd:Q726551 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 15",
+          "limit": 15
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q186361\", \"itemLabel\": \"punishment\"}, {\"item\": \"http://www.wikidata.org/entity/Q183757\", \"itemLabel\": \"Zeche Java\"}, {\"item\": \"http://www.wikidata.org/entity/"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { VALUES ?item { wd:Q726454 wd:Q474103 wd:Q215749 wd:Q8023 wd:Q8024 wd:Q186748 wd:Q213613 wd:Q153682 wd:Q474096 wd:Q476461 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 15",
+          "limit": 15
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q726454\", \"itemLabel\": \"703 BC\"}, {\"item\": \"http://www.wikidata.org/entity/Q474103\", \"itemLabel\": \"Johann Franz Xaver Sterkel\"}, {\"item\": \"http://www.wikidata"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Late_Roman_Republic",
+          "max_chars": 3000
+        },
+        "output_preview": "Crisis of the Roman Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic Gracchan reforms Social War citizenship crisis",
+          "source": "openalex",
+          "limit": 12
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Mos_maiorum",
+          "max_chars": 2500
+        },
+        "output_preview": "Mos maiorum - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Co"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman politics bribery corruption electoral late republic Dio Cassius",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Twelve_Tables",
+          "max_chars": 2500
+        },
+        "output_preview": "Twelve Tables - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Senatus_consultum_ultimum",
+          "max_chars": 2500
+        },
+        "output_preview": "Senatus consultum ultimum - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Le"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "senatus consultum ultimum emergency decrees Roman Republic political violence",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic Polybius mixed constitution political theory",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Triumvirate",
+          "max_chars": 2500
+        },
+        "output_preview": "Triumvirate - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Co"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/First_Triumvirate",
+          "max_chars": 2500
+        },
+        "output_preview": "First Triumvirate - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to e"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { VALUES ?item { wd:Q193506 wd:Q30005 wd:Q4597404 wd:Q193351 wd:Q253835 wd:Q76479 wd:Q191952 wd:Q16198 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 15",
+          "limit": 15
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q193506\", \"itemLabel\": \"Cato the Younger\"}, {\"item\": \"http://www.wikidata.org/entity/Q30005\", \"itemLabel\": \"Ewe\"}, {\"item\": \"http://www.wikidata.org/entity/Q4"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept)-[:ASSIGNED_TO_FACET]->(f:Facet {label: 'Political'}) RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman citizenship rights freedmen municipal elites provincial governance Republic",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[{\"sc.label\": \"Administrative & Political Divisions\", \"sc.subject_id\": \"GEO_ADMIN_DIVISIONS\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Hydrography & Water Bodies\", \"sc.subject_id\": \"GEO_HYDROGRAPHY\", \""
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_dictator",
+          "max_chars": 2000
+        },
+        "output_preview": "Roman dictator - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (p:Place) WHERE p.label CONTAINS 'Rome' OR p.label CONTAINS 'Roman' RETURN p.label, p.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[{\"p.label\": \"Aegyptus (Roman imperial province)\", \"p.wikidata_qid\": null}, {\"p.label\": \"Africa Proconsularis (Roman province)\", \"p.wikidata_qid\": null}, {\"p.label\": \"Africa Proconsularis (late Roman "
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman electoral bribery ambitus corruption late Republic political competition",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (p:Place) WHERE p.label = 'Rome' OR p.label = 'Roman Forum' OR p.label = 'Italia' RETURN p.label, p.place_id, p.wikidata_qid LIMIT 10"
+        },
+        "output_preview": "[{\"p.label\": \"Rome\", \"p.place_id\": \"plc_wd_Q1558632\", \"p.wikidata_qid\": null}, {\"p.label\": \"Italia\", \"p.place_id\": \"plc_1052\", \"p.wikidata_qid\": null}]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel WHERE { VALUES ?item { wd:Q977 wd:Q14931 wd:Q2615280 wd:Q1446093 wd:Q179023 wd:Q131449 wd:Q6031 wd:Q47083 } SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' } } LIMIT 15",
+          "limit": 15
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q977\", \"itemLabel\": \"Djibouti\"}, {\"item\": \"http://www.wikidata.org/entity/Q14931\", \"itemLabel\": \"storage water heater\"}, {\"item\": \"http://www.wikidata.org/ent"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Law_of_majestas",
+          "max_chars": 2000
+        },
+        "output_preview": "Law of maiestas - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edi"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic patronage clientela amicitia political networks senators",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (rp:RepertoirePattern) RETURN rp.pattern_id, rp.label LIMIT 10"
+        },
+        "output_preview": "[{\"rp.pattern_id\": null, \"rp.label\": \"Literary Appropriation\"}, {\"rp.pattern_id\": null, \"rp.label\": \"Military Professionalization Sequence\"}, {\"rp.pattern_id\": null, \"rp.label\": \"Debt Bondage Extracti"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republic provincial governance imperium proconsular power political",
+          "source": "oapen",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/105629\", \"title\": \"How Republics Die\", \"authors\": \"\", \"year\": \"2025\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/105629\", \"is_oa\": true}, {\"work_id\":"
+      }
+    ],
+    "usage": {
+      "input_tokens": 12665,
+      "output_tokens": 10339
+    },
+    "raw_response_length": 35220,
+    "repaired_from": "output\\di_training\\Q17167_POLITICAL_training.json",
+    "framework_section_used": true
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 4,
+    "rejected": [
+      {
+        "qid": "Q1355468",
+        "reason": "label_off_scope",
+        "context": "sub_scope:senatorial_politics"
+      },
+      {
+        "qid": "Q183238",
+        "reason": "human_off_topic",
+        "context": "sub_scope:popular_politics_assemblies"
+      },
+      {
+        "qid": "Q179537",
+        "reason": "label_off_scope",
+        "context": "sub_scope:citizenship_enfranchisement"
+      },
+      {
+        "qid": "Q183238",
+        "reason": "human_off_topic",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}

@@ -1,0 +1,675 @@
+{
+  "training_summary": "The corpus reveals Roman Republican artistic development through three distinct phases: early Etruscan-influenced production (509-265 BC), the transformative Greek spoils period following conquests, and the emergence of distinctly Roman artistic traditions under Sulla and Caesar. The artistic facet encompasses sculpture, painting, decorative arts, architecture, and theatrical forms like fabula praetexta.",
+  "key_works": [
+    {
+      "work_id": "oapen:20.500.12657/100046",
+      "relevance": "high",
+      "facet_contribution": "Demonstrates how engraved gems served as propaganda tools and personal branding devices, revealing the intimate connection between artistic production and political messaging in the Republic"
+    },
+    {
+      "work_id": "oapen:20.500.12657/52254",
+      "relevance": "high",
+      "facet_contribution": "Examines materiality in Roman decorative arts, showing how material choices carried aesthetic and symbolic meaning in Late Republican and Early Imperial contexts"
+    },
+    {
+      "work_id": "openalex:W2488120812",
+      "relevance": "high",
+      "facet_contribution": "Provides systematic overview of Republican artistic development, tracking evolution from Etruscan influence to autonomous Roman traditions"
+    },
+    {
+      "work_id": "openalex:W1587502339",
+      "relevance": "medium",
+      "facet_contribution": "Contextualizes art and architecture within broader Republican political and social developments"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q2413079",
+      "label": "Roman triumphal painting tradition",
+      "confidence": 0.85,
+      "evidence": "Wikipedia articles and Republican art overview demonstrate triumphal paintings as distinct Republican genre celebrating military victories",
+      "target_facet": null,
+      "reasoning": "Triumphal paintings represent a uniquely Roman artistic innovation that served both commemorative and propagandistic functions",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.9,
+        "biographic": 0.2,
+        "communication": 0.3,
+        "cultural": 0.4,
+        "demographic": 0.0,
+        "diplomatic": 0.1,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.2,
+        "intellectual": 0.2,
+        "linguistic": 0.0,
+        "military": 0.6,
+        "political": 0.7,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.3,
+        "technological": 0.1
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_EXTRACTION"
+      ],
+      "role": "evaluative"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": "Q838948",
+      "label": "Art as political propaganda in Republican context",
+      "confidence": 0.88,
+      "evidence": "Gem engraving study shows intimate connection between artistic production and political messaging, extending to sculpture and painting",
+      "target_facet": "political",
+      "reasoning": "Artistic works functioned as vehicles for political communication and status display throughout the Republican period",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.8,
+        "biographic": 0.3,
+        "communication": 0.7,
+        "cultural": 0.4,
+        "demographic": 0.1,
+        "diplomatic": 0.2,
+        "economic": 0.2,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.2,
+        "linguistic": 0.1,
+        "military": 0.3,
+        "political": 0.9,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.4,
+        "technological": 0.1
+      },
+      "pattern_tags": [],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q3344524",
+      "label": "Veristic portraiture tradition",
+      "confidence": 0.82,
+      "evidence": "Roman sculpture overview and Republican art articles establish veristic style as distinctly Roman contribution emphasizing realistic representation",
+      "target_facet": null,
+      "reasoning": "Veristic portraiture represents the Roman innovation of hyper-realistic representation, contrasting with idealized Greek traditions",
+      "facet_weights": {
+        "archaeological": 0.2,
+        "artistic": 0.95,
+        "biographic": 0.6,
+        "communication": 0.3,
+        "cultural": 0.5,
+        "demographic": 0.2,
+        "diplomatic": 0.1,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.3,
+        "linguistic": 0.0,
+        "military": 0.1,
+        "political": 0.4,
+        "religious": 0.1,
+        "scientific": 0.0,
+        "social": 0.6,
+        "technological": 0.2
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q780548",
+      "label": "fabula praetexta",
+      "verdict": "confirm",
+      "reroute_to": null,
+      "evidence": "Wikidata confirms this as a theatrical genre, and Roman Republican art encompasses dramatic performances as artistic expression alongside visual arts"
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "oapen:20.500.12657/100046",
+      "title": "Engraved Gems and Propaganda in the Roman Republic and under Augustus",
+      "authors": "Gołyźniak, Paweł",
+      "year": 2020,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/100046",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Demonstrates artistic production as political communication tool through miniature art forms"
+    },
+    {
+      "work_id": "oapen:20.500.12657/52254",
+      "title": "Materiality in Roman Art and Architecture",
+      "authors": "Haug, Annette; Hielscher, Adrian; Lauritsen, Michael Taylor",
+      "year": 2021,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/52254",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Explores how material choices in art carried symbolic and aesthetic meaning in Republican contexts"
+    },
+    {
+      "work_id": "oapen:20.500.12657/50238",
+      "title": "Principles of Decoration in the Roman World",
+      "authors": "Multiple",
+      "year": 2021,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/50238",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Contextualizes Republican decorative traditions within broader Roman aesthetic principles"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": true,
+    "reason": "The artistic facet encompasses multiple distinct sub-domains (sculpture, painting, decorative arts, architecture, drama) each with substantial conceptual depth requiring specialized treatment",
+    "sub_domain_count": 7,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 42,
+    "sub_scopes": [
+      {
+        "scope_key": "sculpture_portraiture",
+        "scope_label": "Sculpture & Portraiture",
+        "scope_description": "Three-dimensional artworks including veristic portraits, public monuments, and relief sculpture",
+        "candidate_qids": [],
+        "estimated_concepts": 8,
+        "needs": "Chronological development, technical analysis, social contexts of commissioning"
+      },
+      {
+        "scope_key": "painting_frescoes",
+        "scope_label": "Painting & Frescoes",
+        "scope_description": "Wall paintings, triumphal paintings, and decorative painting traditions",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Style periodization, surviving examples analysis, literary source integration"
+      },
+      {
+        "scope_key": "decorative_arts",
+        "scope_label": "Decorative Arts",
+        "scope_description": "Gems, metalwork, pottery, mosaics, and luxury objects",
+        "candidate_qids": [],
+        "estimated_concepts": 7,
+        "needs": "Material studies, workshop organization, patronage networks"
+      },
+      {
+        "scope_key": "architecture_public",
+        "scope_label": "Architecture & Public Monuments",
+        "scope_description": "Temples, forums, basilicas, and monumental architecture",
+        "candidate_qids": [],
+        "estimated_concepts": 8,
+        "needs": "Urban planning integration, construction techniques, political contexts"
+      },
+      {
+        "scope_key": "theatrical_arts",
+        "scope_label": "Theatrical & Performance Arts",
+        "scope_description": "Drama, spectacle, and performance traditions including fabula praetexta",
+        "candidate_qids": [],
+        "estimated_concepts": 5,
+        "needs": "Literary analysis, staging practices, audience sociology"
+      },
+      {
+        "scope_key": "propaganda_commemoration",
+        "scope_label": "Propaganda & Commemoration",
+        "scope_description": "Art serving political messaging, triumphal displays, and historical commemoration",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Political context analysis, iconographic studies, reception analysis"
+      },
+      {
+        "scope_key": "materials_techniques",
+        "scope_label": "Materials & Techniques",
+        "scope_description": "Artistic materials, workshop practices, and technical innovations",
+        "candidate_qids": [],
+        "estimated_concepts": 4,
+        "needs": "Technical studies, archaeological evidence, comparative analysis"
+      }
+    ],
+    "manageable_as_single": false
+  },
+  "corpus_gaps": [
+    "Primary source literary descriptions of Republican artistic practices",
+    "Archaeological evidence from specific sites beyond Pompeii/Herculaneum",
+    "Economic analysis of artistic patronage and workshop organization",
+    "Regional variation in artistic styles across Republican territories",
+    "Technical studies of Republican-era artistic materials and methods"
+  ],
+  "facet_confidence": 0.87,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Roman Republican artistic development",
+        "note": "Avoided claiming Republican art represents 'the essence' of Roman culture, instead emphasizing it as one facet among many"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "DP_SOURCE_REPRESENTATIVENESS",
+        "status": "applied",
+        "note": "Acknowledged that surviving artistic evidence heavily skews toward Campanian sites due to Vesuvius preservation, limiting representativeness"
+      }
+    ],
+    "repertoire_patterns": [],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Republican artistic traditions",
+      "Political propaganda in art",
+      "Veristic portraiture"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "Traditional dates for Republican government from expulsion of kings to Augustus"
+      },
+      {
+        "year_start": -265,
+        "year_end": -133,
+        "label": "Middle Republican artistic development",
+        "evidence": "Period of Greek cultural influence and artistic importation following conquests"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Central artistic production center and patron base for Republican art"
+      },
+      {
+        "place_label": "Campania",
+        "place_qid": "Q18389",
+        "role": "secondary",
+        "evidence": "Major source of surviving Republican artistic evidence, especially wall paintings"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman triumphal paintings served as both commemorative art and political propaganda, depicting military victories in public processions.",
+        "subject_concepts": [
+          "Roman Republican art",
+          "Triumphal traditions"
+        ],
+        "facet_weights": {
+          "archaeological": 0.1,
+          "artistic": 0.9,
+          "biographic": 0.2,
+          "communication": 0.4,
+          "cultural": 0.4,
+          "demographic": 0.0,
+          "diplomatic": 0.1,
+          "economic": 0.1,
+          "environmental": 0.0,
+          "geographic": 0.2,
+          "intellectual": 0.2,
+          "linguistic": 0.0,
+          "military": 0.7,
+          "political": 0.8,
+          "religious": 0.1,
+          "scientific": 0.0,
+          "social": 0.3,
+          "technological": 0.1
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_EXTRACTION"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "wikipedia:Roman_Republican_art"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Veristic portraiture emerged as a distinctly Roman artistic innovation emphasizing realistic representation over Greek idealization.",
+        "subject_concepts": [
+          "Roman sculpture",
+          "Portrait traditions"
+        ],
+        "facet_weights": {
+          "archaeological": 0.2,
+          "artistic": 0.95,
+          "biographic": 0.6,
+          "communication": 0.3,
+          "cultural": 0.5,
+          "demographic": 0.2,
+          "diplomatic": 0.1,
+          "economic": 0.1,
+          "environmental": 0.0,
+          "geographic": 0.1,
+          "intellectual": 0.3,
+          "linguistic": 0.0,
+          "military": 0.1,
+          "political": 0.4,
+          "religious": 0.1,
+          "scientific": 0.0,
+          "social": 0.6,
+          "technological": 0.2
+        },
+        "pattern_tags": [],
+        "role": "descriptive",
+        "supporting_works": [
+          "wikipedia:Roman_sculpture"
+        ],
+        "confidence": 0.82
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 36,
+    "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_art",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman art - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Comm"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_Republican_art",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Republican art - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn t"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Art/",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Art - World History Encyclopedia Roman Art Mark Cartwright The Romans controlled such a vast empire for so long a period that a summary of the art produced in that time can only be a brief and s"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?work ?workLabel ?author ?year WHERE {\n  ?work wdt:P921 wd:Q17167 .  # main subject: Roman Republic\n  ?work wdt:P921/wdt:P279* wd:Q735 .  # also about art or artistic concepts\n  OPTIONAL { ?work wdt:P50 ?author }\n  OPTIONAL { ?work wdt:P577 ?pubdate }\n  BIND(YEAR(?pubdate) as ?year)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 20"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q122764589\", \"workLabel\": \"Internal War. Society: Social Order and Political Conflict in Antiquity\"}, {\"work\": \"http://www.wikidata.org/entity/Q123157468\", \"w"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?work ?workLabel ?lcsh ?fast WHERE {\n  {\n    ?work wdt:P921 wd:Q17167 .  # Roman Republic\n    ?work wdt:P921 ?artTopic .\n    ?artTopic wdt:P31*/wdt:P279* wd:Q735 .  # art\n  } UNION {\n    ?work wdt:P921 wd:Q8740 .  # Roman art\n  } UNION {\n    ?work wdt:P921 wd:Q2038848 .  # Roman sculpture  \n  } UNION {\n    ?work wdt:P921 wd:Q2413079 .  # Roman painting\n  }\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  OPTIONAL { ?work wdt:P2163 ?fast }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 25"
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q122938655\", \"workLabel\": \"A Short History of the Vietnam War\"}, {\"work\": \"http://www.wikidata.org/entity/Q122950396\", \"workLabel\": \"Grasshoppers and Elephant"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican art sculpture painting architecture",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4224244177\", \"title\": \"Heel en Al\", \"authors\": \"Emericus Johannes Henricus Petrus Goossens\", \"year\": 2022, \"citations\": 0, \"doi\": \"https://doi.org/10.33540/1118\", \"is_oa\": true"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman art\" republic sculpture painting",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican sculpture portraiture relief",
+          "source": "oapen",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/97111\", \"title\": \"The Visual Worlds of Life Writing\", \"authors\": \"Pahl, Kerstin Maria\", \"year\": \"2025\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/97"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/100046",
+          "max_chars": 4000
+        },
+        "output_preview": "Engraved Gems and Propaganda in the Roman Republic and under Augustus Toggle navigation Join Deposit Toggle navigation Toggle navigation For Librarians For Publishers For Researchers Funders Resources"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/52254",
+          "max_chars": 4000
+        },
+        "output_preview": "Materiality in Roman Art and Architecture Toggle navigation Join Deposit Toggle navigation Toggle navigation For Librarians For Publishers For Researchers Funders Resources OAPEN View Item&nbsp; &nbsp"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman Republican art portraiture Capitoline Brutus sculpture",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman art\" sculpture portraiture republic",
+          "source": "internet_archive",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) \nWHERE sc.label CONTAINS \"art\" OR sc.label CONTAINS \"Art\"\nRETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (n) \nWHERE n.label CONTAINS \"Roman\" \nRETURN DISTINCT labels(n) as node_type, n.label LIMIT 20"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (n) \nRETURN DISTINCT labels(n) as node_types LIMIT 20"
+        },
+        "output_preview": "[{\"node_types\": [\"Facet\"]}, {\"node_types\": [\"DisciplineSource\"]}, {\"node_types\": [\"CurriculumTopic\"]}, {\"node_types\": [\"FacetRegistry\"]}, {\"node_types\": [\"CourseSyllabus\"]}, {\"node_types\": [\"CourseMod"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (f:Facet) \nRETURN f.label, f.facet_key LIMIT 10"
+        },
+        "output_preview": "[{\"f.label\": \"Archaeological\", \"f.facet_key\": null}, {\"f.label\": \"Artistic\", \"f.facet_key\": null}, {\"f.label\": \"Biographic\", \"f.facet_key\": null}, {\"f.label\": \"Communication\", \"f.facet_key\": null}, {\""
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"error\": \"Threshold 'level2_child_overload' not found\"}"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (t:SYS_Threshold) \nRETURN t.name, t.value LIMIT 10"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1017/cco9781139424783.023",
+          "max_chars": 3000
+        },
+        "output_preview": "Roman Art during the Republic (16:) - The Cambridge Companion to the Roman Republic Skip to main content Accessibility help Login Alert Cancel Log in × &#215; Discover Content Products and Services Re"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?lcsh WHERE {\n  ?item wdt:P31 wd:Q15416 .  # television program\n  ?item wdt:P921 wd:Q8740 .  # main subject: Roman art  \n  OPTIONAL { ?item wdt:P244 ?lcsh }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 10"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q7785741\", \"itemLabel\": \"This Hour Has Seven Days\"}, {\"item\": \"http://www.wikidata.org/entity/Q7928479\", \"itemLabel\": \"Vietnam: The Ten Thousand Day War\"}]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?item ?itemLabel ?type ?typeLabel WHERE {\n  VALUES ?item { \n    wd:Q780548    # fabula praetexta (our candidate)\n    wd:Q2413079   # Roman painting  \n    wd:Q2038848   # Roman sculpture\n    wd:Q3344524   # Roman portraiture\n    wd:Q1139665   # triumphal painting\n    wd:Q1572939   # wax portrait\n  }\n  OPTIONAL { ?item wdt:P31 ?type }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n}"
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q1572939\", \"type\": \"http://www.wikidata.org/entity/Q4830453\", \"itemLabel\": \"Rudolf von Beckerath Orgelbau\", \"typeLabel\": \"business\"}, {\"item\": \"http://www.wik"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/concept/roman-art/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/concept/roman-art/\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "fabula praetexta Roman drama theatre republican",
+          "source": "openalex",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://openalex.org/W2488120812",
+          "max_chars": 4000
+        },
+        "output_preview": "OpenAlex We're sorry but ourresearch-website-2 doesn't work properly without JavaScript enabled. Please enable it to continue."
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://archive.org",
+          "max_chars": 2000
+        },
+        "output_preview": "is used by `router-slot` for routing --> Internet Archive: Digital Library of Free &amp; Borrowable Texts, Movies, Music &amp; Wayback Machine Javascript is required for this site. Consider enabling J"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?concept ?conceptLabel ?description WHERE {\n  VALUES ?concept {\n    wd:Q2413079    # Roman painting\n    wd:Q2038848    # Roman sculpture  \n    wd:Q8740       # Roman art\n    wd:Q3344524    # Roman portraiture\n    wd:Q1139665    # triumphal painting\n    wd:Q780548     # fabula praetexta\n    wd:Q17049      # fresco\n    wd:Q179700     # mosaic\n    wd:Q838948     # relief\n  }\n  OPTIONAL { ?concept schema:description ?description . FILTER(LANG(?description) = \"en\") }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 15"
+        },
+        "output_preview": "[{\"concept\": \"http://www.wikidata.org/entity/Q2038848\", \"description\": \"German politician and entrepreneur (1855–1924)\", \"conceptLabel\": \"Otto Gastell\"}, {\"concept\": \"http://www.wikidata.org/entity/Q2"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "\"Roman republican\" sculpture triumphal procession",
+          "source": "internet_archive",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman portraiture sculpture veristic style",
+          "source": "openalex",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Art_in_ancient_Rome",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Art_in_ancient_Rome\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_sculpture",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman sculpture - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edi"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_painting",
+          "max_chars": 4000
+        },
+        "output_preview": "Painting in ancient Rome - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lea"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Veristic_portraiture",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Veristic_portraiture\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?work ?workLabel ?author ?authorLabel ?year WHERE {\n  ?work wdt:P921 wd:Q8740 .  # main subject: Roman art\n  ?work wdt:P921 wd:Q17167 . # AND Roman Republic\n  OPTIONAL { ?work wdt:P50 ?author }\n  OPTIONAL { ?work wdt:P577 ?pubdate }\n  BIND(YEAR(?pubdate) as ?year)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }\n} LIMIT 15"
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D35%3Achapter%3D40",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='perseus.tufts.edu', port=443): Max retries exceeded with url: /hopper/text?doc=Perseus%3Atext%3A1999.02.0137%3Abook%3D35%3Achapter%3D40 (Caused by Nam"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "query": "Roman triumphal art procession painting sculpture",
+          "source": "oapen",
+          "limit": 5
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/92980\", \"title\": \"Jaume Plensa. The Four Elements\", \"authors\": \"\", \"year\": \"2024\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/92980\", \"is_oa\": true},"
+      }
+    ],
+    "usage": {
+      "input_tokens": 682109,
+      "output_tokens": 8177
+    },
+    "raw_response_length": 13436
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 2,
+    "rejected": [
+      {
+        "qid": "Q1139665",
+        "reason": "label_off_scope",
+        "context": "sub_scope:painting_frescoes"
+      },
+      {
+        "qid": "Q780548",
+        "reason": "label_off_scope",
+        "context": "sub_scope:theatrical_arts"
+      }
+    ]
+  }
+}

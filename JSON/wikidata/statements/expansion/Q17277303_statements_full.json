@@ -1,0 +1,196 @@
+{
+  "qid": "Q17277303",
+  "label": "Battle of Halys",
+  "description": "battle between the Roman Republic and the Kingdom of Pontus, 82 BCE",
+  "statement_count": 8,
+  "property_count": 7,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q17277303$3692441E-715B-4E83-9F90-844A42E50AB8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q178561"
+        }
+      }
+    ],
+    "P710": [
+      {
+        "statement_id": "Q17277303$DAA58C43-955C-4F91-A3AF-AA2CE73056C8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q17167"
+        }
+      },
+      {
+        "statement_id": "Q17277303$aa97a195-4c67-3c28-65c2-25b0bee97f5a",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P710",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q7380487"
+        }
+      }
+    ],
+    "P585": [
+      {
+        "statement_id": "Q17277303$D4937240-6019-4B97-B1B6-B2D14E0D1773",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P585",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0082-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+          }
+        },
+        "references": [
+          {
+            "hash": "2dd6e365d8c85cc87447775f5f0ccbd2647567e5",
+            "snaks_order": [
+              "P143",
+              "P813"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ],
+              "P813": [
+                {
+                  "property": "P813",
+                  "snaktype": "value",
+                  "datatype": "time",
+                  "value_type": "time",
+                  "value": {
+                    "time": "+2018-03-23T00:00:00Z",
+                    "precision": 11,
+                    "timezone": 0,
+                    "before": 0,
+                    "after": 0,
+                    "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P276": [
+      {
+        "statement_id": "Q17277303$B4753A0B-C210-4270-9319-5D39A1A6EACD",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P276",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q257785"
+        },
+        "references": [
+          {
+            "hash": "7234386cd28502d1f7e02a3d6375ca1243840aa5",
+            "snaks_order": [
+              "P143",
+              "P4656"
+            ],
+            "snaks": {
+              "P143": [
+                {
+                  "property": "P143",
+                  "snaktype": "value",
+                  "datatype": "wikibase-item",
+                  "value_type": "wikibase-entityid",
+                  "value": "Q328"
+                }
+              ],
+              "P4656": [
+                {
+                  "property": "P4656",
+                  "snaktype": "value",
+                  "datatype": "url",
+                  "value_type": "string",
+                  "value": "https://en.wikipedia.org/w/index.php?title=Battle_of_Halys&oldid=808362529"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "P625": [
+      {
+        "statement_id": "Q17277303$112FCAE7-9BDD-4DE2-88B4-209E0A8D327B",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P625",
+          "snaktype": "value",
+          "datatype": "globe-coordinate",
+          "value_type": "globecoordinate",
+          "value": {
+            "latitude": 41.734444,
+            "longitude": 35.956389,
+            "precision": 1e-06,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          }
+        }
+      }
+    ],
+    "P646": [
+      {
+        "statement_id": "Q17277303$6C5FB806-31E6-472D-9256-60A747531D23",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P646",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/m/010pgpv2"
+        }
+      }
+    ],
+    "P361": [
+      {
+        "statement_id": "Q17277303$69147c8c-4b6e-2a83-b7ac-10ba0fc8a3f8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P361",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1991765"
+        }
+      }
+    ]
+  }
+}

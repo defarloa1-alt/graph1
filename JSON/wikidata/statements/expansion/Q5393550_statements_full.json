@@ -1,0 +1,170 @@
+{
+  "qid": "Q5393550",
+  "label": "Mago",
+  "description": null,
+  "statement_count": 10,
+  "property_count": 10,
+  "claims": {
+    "P31": [
+      {
+        "statement_id": "Q5393550$8D9ED980-BF16-4ADE-B87B-638F4C2C35F1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P31",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q5"
+        }
+      }
+    ],
+    "P21": [
+      {
+        "statement_id": "Q5393550$5E91A4DD-A53A-42FF-A497-6FF0A444E0AF",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P21",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q6581097"
+        }
+      }
+    ],
+    "P1317": [
+      {
+        "statement_id": "Q5393550$e1f6f1c9-4f4c-4715-3784-b767fd79346a",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1317",
+          "snaktype": "value",
+          "datatype": "time",
+          "value_type": "time",
+          "value": {
+            "time": "-0209-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          }
+        }
+      }
+    ],
+    "P27": [
+      {
+        "statement_id": "Q5393550$244974c2-4fb7-d0ac-20a2-a250d9861df1",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P27",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q2429397"
+        }
+      }
+    ],
+    "P2671": [
+      {
+        "statement_id": "Q5393550$FD6688D8-571D-4A8D-BF8E-3EEB8F0A98D8",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P2671",
+          "snaktype": "value",
+          "datatype": "external-id",
+          "value_type": "string",
+          "value": "/g/1214fxfq"
+        }
+      }
+    ],
+    "P1343": [
+      {
+        "statement_id": "q5393550$5f69922e-409e-0908-5dbe-7bb3dd5d0fd6",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1343",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1138524"
+        },
+        "qualifiers": {
+          "P958": [
+            {
+              "property": "P958",
+              "snaktype": "value",
+              "datatype": "string",
+              "value_type": "string",
+              "value": "Mago 10"
+            }
+          ]
+        },
+        "qualifiers_order": [
+          "P958"
+        ]
+      }
+    ],
+    "P106": [
+      {
+        "statement_id": "Q5393550$b310c924-41da-d23b-54c0-b9889aa68dad",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P106",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q47064"
+        }
+      }
+    ],
+    "P1412": [
+      {
+        "statement_id": "Q5393550$0ad82b09-473a-6bb1-ddbd-ef3dcdd0df08",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P1412",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q535958"
+        }
+      }
+    ],
+    "P241": [
+      {
+        "statement_id": "Q5393550$7207acfe-4071-c2c0-4ffc-8f84ebf411ae",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P241",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1899302"
+        }
+      }
+    ],
+    "P607": [
+      {
+        "statement_id": "Q5393550$58f81ec3-40bc-8611-e43e-63a92da86991",
+        "type": "statement",
+        "rank": "normal",
+        "mainsnak": {
+          "property": "P607",
+          "snaktype": "value",
+          "datatype": "wikibase-item",
+          "value_type": "wikibase-entityid",
+          "value": "Q1591145"
+        }
+      }
+    ]
+  }
+}

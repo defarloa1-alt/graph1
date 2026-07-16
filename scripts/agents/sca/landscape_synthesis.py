@@ -33,6 +33,8 @@ try:
 except ImportError:
     anthropic = None
 
+from scripts.agents.republic_graph_context import append_republic_graph_context
+
 try:
     from neo4j import GraphDatabase
 except ImportError:
@@ -301,10 +303,11 @@ def synthesize(seed_qid: str, taxonomy_path: str, lateral_path: str,
         raise ValueError("ANTHROPIC_API_KEY not found in environment or .env")
 
     client = anthropic.Anthropic(api_key=api_key)
+    system_prompt = append_republic_graph_context(SYSTEM_PROMPT, seed_qid)
     message = client.messages.create(
         model=model,
         max_tokens=16000,
-        system=SYSTEM_PROMPT,
+        system=system_prompt,
         messages=[{"role": "user", "content": user_message}],
     )
 

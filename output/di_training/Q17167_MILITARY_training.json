@@ -1,242 +1,509 @@
 {
-  "training_summary": "The corpus reveals limited direct military focus, with most works addressing broader classical and cultural topics. Key military insights come from Polybius commentary (#23), works on civil wars (#26, #32, #33), and general political/social context that frames military developments. The candidates represent core Republican military concepts spanning wars, battles, units, and command structures.",
+  "training_summary": "The Roman Republican military represents a complex evolution from citizen militia to professional army spanning 500+ years. The corpus reveals the fundamental transformation from early phalanx-based formations through the manipular system described by Polybius to the cohort-based legions following Marian reforms, encompassing major wars (Punic, Social, Gallic), tactical innovations, and socio-political changes that shaped the transition from Republic to Empire.",
   "key_works": [
     {
-      "work_id": "openalex:W1582660960",
+      "work_id": "domain_src:6d5744d604a1",
       "relevance": "high",
-      "facet_contribution": "Walbank's Polybius commentary provides detailed analysis of Roman military organization, tactics, and campaigns during the Middle Republic period"
+      "facet_contribution": "Provides detailed analysis of equites (cavalry class) and their evolution throughout Republican period, showing intersection of military service with social stratification"
+    },
+    {
+      "work_id": "domain_src:b1a08c4a6364",
+      "relevance": "high",
+      "facet_contribution": "Primary source - Polybius Book 6 contains the most detailed contemporary account of manipular legion organization, tactics, and recruitment ca. 150 BCE"
+    },
+    {
+      "work_id": "openalex:W425149563",
+      "relevance": "high",
+      "facet_contribution": "Archaeological and textual analysis of 2nd century BCE armies at Numantia, bridging literary sources with material evidence of Roman military camps and organization"
+    },
+    {
+      "work_id": "openalex:W2050716912",
+      "relevance": "medium",
+      "facet_contribution": "Systematic study of military mutinies during Republican period, revealing tensions between citizen-soldiers and state demands"
     },
     {
       "work_id": "wd:Q122861593",
       "relevance": "high",
-      "facet_contribution": "Lange's work on Hannibal to Sulla traces the militarization process and birth of civil war, showing how military conflicts transformed Republican institutions"
-    },
-    {
-      "work_id": "wd:Q123002123",
-      "relevance": "medium",
-      "facet_contribution": "Academic blog post examining civil war through ancient historical lens, providing modern scholarly perspective on Republican military conflicts"
-    },
-    {
-      "work_id": "openalex:W2140476994",
-      "relevance": "medium",
-      "facet_contribution": "Hopkins' economic analysis includes military costs, taxation for wars, and economic impacts of conquest during Republican expansion"
+      "facet_contribution": "Recent scholarship on transformation from external conquest to internal civil war, connecting military evolution to constitutional breakdown"
     }
   ],
   "insights": [
     {
       "insight_type": "within_facet_addition",
-      "qid": "Q208175",
-      "label": "Roman legion",
+      "qid": "Q1128324",
+      "label": "Manipular System",
       "confidence": 0.9,
-      "evidence": "Polybius commentary discusses legion organization extensively; candidates include Fimbrian legions (Q60792542) showing specific legion types were significant",
+      "evidence": "Polybius 6 describes the manipular legion (ca. 300-130 BCE) as Rome's tactical response to phalanx limitations, organized in maniples of 120-160 men arranged in triplex acies formation",
       "target_facet": null,
-      "reasoning": "Core military unit missing from candidates but fundamental to all Republican warfare and military organization"
-    },
-    {
-      "insight_type": "within_facet_addition",
-      "qid": "Q2054565",
-      "label": "Marian reforms",
-      "confidence": 0.85,
-      "evidence": "Lange's work on militarization discusses major military reforms; civil war context shows importance of professional army transformation",
-      "target_facet": null,
-      "reasoning": "Critical transformation in Republican military history that professionalized the army and contributed to civil wars"
+      "reasoning": "The manipular system is the defining military innovation of the mid-Republic, essential for understanding Roman tactical superiority",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.0,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.8,
+        "political": 0.1,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.1,
+        "technological": 0.2
+      },
+      "pattern_tags": [],
+      "role": "descriptive"
     },
     {
       "insight_type": "cross_facet_link",
-      "qid": "Q596373",
-      "label": "Pyrrhic War",
-      "confidence": 0.8,
-      "evidence": "This war demonstrates Roman military adaptation against Hellenistic warfare tactics and represents early Republican expansion",
-      "target_facet": "Diplomatic",
-      "reasoning": "Wars necessarily involve diplomatic aspects - alliances, treaties, negotiations with Greek states"
+      "qid": "Q677316",
+      "label": "Social War citizenship-military nexus",
+      "confidence": 0.85,
+      "evidence": "Wikipedia Social War article shows Italian allies' military service created expectations of citizenship, leading to 91-87 BCE conflict resolved by granting citizenship, fundamentally expanding recruitment base",
+      "target_facet": "social",
+      "reasoning": "The Social War demonstrates how military service created social and political demands that transformed Roman citizenship and society",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.1,
+        "communication": 0.0,
+        "cultural": 0.0,
+        "demographic": 0.2,
+        "diplomatic": 0.1,
+        "economic": 0.0,
+        "environmental": 0.0,
+        "geographic": 0.1,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.4,
+        "political": 0.3,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.5,
+        "technological": 0.0
+      },
+      "pattern_tags": [
+        "RP_CENTER_PERIPHERY_ENFRANCHISEMENT"
+      ],
+      "role": "causal"
     },
     {
       "insight_type": "concept_refinement",
-      "qid": "Q181733",
-      "label": "Praetorian Guard",
-      "confidence": 0.75,
-      "evidence": "Listed as Republican candidate but Praetorian Guard was primarily Imperial institution; Republican equivalents were different bodyguard arrangements",
+      "qid": "Q124988",
+      "label": "Punic Wars as military transformation catalyst",
+      "confidence": 0.88,
+      "evidence": "Multiple sources show Second Punic War (218-201 BCE) necessitated prolonged overseas campaigns, professional specialization, and integration of non-Italian auxiliaries (Numidian cavalry, Balearic slingers)",
       "target_facet": null,
-      "reasoning": "Need to clarify Republican vs Imperial military institutions to avoid anachronistic concepts"
+      "reasoning": "The Punic Wars mark the transition from seasonal citizen levies to sustained professional military operations requiring systematic logistical and organizational innovations",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.1,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.1,
+        "diplomatic": 0.2,
+        "economic": 0.2,
+        "environmental": 0.0,
+        "geographic": 0.3,
+        "intellectual": 0.0,
+        "linguistic": 0.0,
+        "military": 0.7,
+        "political": 0.3,
+        "religious": 0.0,
+        "scientific": 0.0,
+        "social": 0.2,
+        "technological": 0.1
+      },
+      "pattern_tags": [],
+      "role": "causal"
     }
   ],
   "candidate_assessments": [
+    {
+      "qid": "Q181733",
+      "label": "Praetorian Guard",
+      "verdict": "reject",
+      "reroute_to": null,
+      "evidence": "Praetorian Guard was an Imperial institution established by Augustus, postdating the Republican period (509-27 BCE) that defines this facet's scope"
+    },
     {
       "qid": "Q124988",
       "label": "Punic Wars",
       "verdict": "confirm",
       "reroute_to": null,
-      "evidence": "Core Republican military conflicts extensively referenced in Polybius commentary and civil war contexts"
+      "evidence": "The Punic Wars (264-146 BCE) were defining military conflicts of the Republic, driving tactical, organizational, and strategic innovations documented throughout the corpus"
     },
     {
       "qid": "Q596373",
       "label": "Pyrrhic War",
       "verdict": "confirm",
       "reroute_to": null,
-      "evidence": "Important early Republican military engagement showing adaptation to new warfare styles"
+      "evidence": "The Pyrrhic War (280-275 BCE) represents early Republican military engagement with Hellenistic powers, contributing to tactical evolution from phalanx to manipular system"
     },
     {
       "qid": "Q75813",
       "label": "Macedonian Wars",
       "verdict": "confirm",
       "reroute_to": null,
-      "evidence": "Key Republican expansion wars in Eastern Mediterranean, well-documented in classical sources"
+      "evidence": "The Macedonian Wars (214-148 BCE) demonstrate Roman manipular tactics' superiority over phalanx formations, as specifically noted in Polybius 18.29-30"
     },
     {
       "qid": "Q677316",
       "label": "Social War of 91-87 BCE",
       "verdict": "confirm",
       "reroute_to": null,
-      "evidence": "Critical military conflict that preceded civil wars and demonstrated military recruitment issues"
+      "evidence": "The Social War resolved manpower crisis by expanding citizenship to Italian allies, fundamentally transforming military recruitment and Roman identity"
     },
     {
       "qid": "Q202161",
       "label": "Gallic War",
       "verdict": "confirm",
       "reroute_to": null,
-      "evidence": "Major Republican conquest campaign with extensive documentation and military significance"
-    },
-    {
-      "qid": "Q181733",
-      "label": "Praetorian Guard",
-      "verdict": "reject",
-      "reroute_to": null,
-      "evidence": "Primarily Imperial institution; Republican bodyguard arrangements were different and less formalized"
-    },
-    {
-      "qid": "Q60792542",
-      "label": "Fimbrian legions",
-      "verdict": "confirm",
-      "reroute_to": null,
-      "evidence": "Specific Republican military units involved in civil wars, showing evolution of professional army"
-    },
-    {
-      "qid": "Q48349",
-      "label": "empire",
-      "verdict": "reroute",
-      "reroute_to": "Political",
-      "evidence": "Too broad and conceptual for Military facet; belongs in Political discussions of Republican expansion and governance"
+      "evidence": "Caesar's Gallic Wars (58-50 BCE) exemplify late Republican military professionalization and represent the transition toward imperial expansion under individual commanders"
     }
   ],
   "discovered_works": [
     {
-      "work_id": "openalex:W623795952",
-      "title": "The Complete Roman Army",
-      "authors": "Adrián Goldsworthy",
-      "year": 2003,
-      "source": "openalex",
-      "source_url": "https://openalex.org/W623795952",
-      "is_oa": false,
+      "work_id": "oapen:20.500.12657/38152",
+      "title": "The Impact of the Roman Army (200 B.C. – A.D. 476): Economic, Social, Political, Religious and Cultural Aspects",
+      "authors": "Multiple contributors",
+      "year": 2007,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/38152",
+      "is_oa": true,
       "relevance": "high",
-      "facet_contribution": "Comprehensive overview of Roman military organization including Republican period"
+      "facet_contribution": "Comprehensive analysis of Roman army's broader impact across multiple facets of society during the critical transition period"
     },
     {
-      "work_id": "openalex:W361406639",
-      "title": "Infantry Combat in Livy's Battle Narratives",
-      "authors": "Sam Koon",
-      "year": 2010,
-      "source": "openalex",
-      "source_url": "https://openalex.org/W361406639",
-      "is_oa": false,
-      "relevance": "high",
-      "facet_contribution": "Detailed analysis of Republican infantry tactics and combat based on primary source narratives"
-    },
-    {
-      "work_id": "openalex:W3197116872",
-      "title": "Religion and Classical Warfare: The Roman Republic",
-      "authors": "Matthew Dillon; Christopher Matthew",
-      "year": 2020,
-      "source": "openalex",
-      "source_url": "https://openalex.org/W3197116872",
-      "is_oa": false,
+      "work_id": "oapen:20.500.12657/100000",
+      "title": "Roman Military Tribunes (First Century BC to Third Century AD)",
+      "authors": "Łuć, Ireneusz",
+      "year": 2024,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/100000",
+      "is_oa": true,
       "relevance": "medium",
-      "facet_contribution": "Examines religious aspects of Republican military practices and rituals"
+      "facet_contribution": "Recent scholarship on military command structure during the transition from Republic to Empire"
     }
   ],
   "decomposition_assessment": {
     "should_decompose": true,
-    "reason": "Military facet covers distinct sub-domains each with substantial scholarly literature and concepts: wars/campaigns, organization/units, tactics/technology, command/strategy, civil conflicts, and naval warfare",
-    "sub_domain_count": 6,
+    "reason": "Roman Republican military encompasses 8 major sub-domains with distinct chronological, institutional, and thematic boundaries, exceeding the threshold of 12 potential concepts per domain",
+    "sub_domain_count": 8,
     "threshold_used": "level2_child_overload=12",
-    "total_concepts_estimated": 85,
+    "total_concepts_estimated": 65,
     "sub_scopes": [
       {
-        "scope_key": "military_wars",
-        "scope_label": "Wars & Campaigns",
-        "scope_description": "Major wars, battles, and military campaigns of the Republic including Punic, Macedonian, Gallic, and Social Wars",
+        "scope_key": "military_wars_campaigns",
+        "scope_label": "Wars & Military Campaigns",
+        "scope_description": "Major military conflicts including Punic, Macedonian, Social, Gallic, and Civil Wars with their battles, strategies, and commanders",
         "candidate_qids": [
           "Q124988",
-          "Q596373",
           "Q75813",
-          "Q202161",
-          "Q677316"
-        ],
-        "estimated_concepts": 25,
-        "needs": "Chronological sequencing, battle geography, commander prosopography, casualty analysis"
-      },
-      {
-        "scope_key": "military_organization",
-        "scope_label": "Military Organization & Units",
-        "scope_description": "Legion structure, unit types, recruitment, and military reforms throughout Republican period",
-        "candidate_qids": [
-          "Q60792542"
-        ],
-        "estimated_concepts": 20,
-        "needs": "Unit hierarchies, equipment catalogs, recruitment demographics, reform timelines"
-      },
-      {
-        "scope_key": "military_civil_wars",
-        "scope_label": "Civil Wars & Internal Conflicts",
-        "scope_description": "Internal military conflicts from Gracchi through Augustus including Sulla, Marius, Caesar",
-        "candidate_qids": [],
-        "estimated_concepts": 15,
-        "needs": "Factional analysis, veteran settlement patterns, constitutional impacts"
-      },
-      {
-        "scope_key": "military_battles",
-        "scope_label": "Individual Battles & Engagements",
-        "scope_description": "Specific battles and military engagements with tactical and strategic significance",
-        "candidate_qids": [
-          "Q104834716",
-          "Q11688220",
-          "Q1974201",
-          "Q233402",
-          "Q3491975",
-          "Q4872838",
-          "Q60524410",
-          "Q60524412",
-          "Q60524449",
-          "Q60524464",
-          "Q9172749",
-          "Q9173528"
+          "Q677316",
+          "Q202161"
         ],
         "estimated_concepts": 15,
-        "needs": "Tactical analysis, terrain studies, casualty records, source criticism"
+        "needs": "Temporal sequencing of conflicts, PROSOPOGRAPHIA integration for commanders, geographic theater mapping"
       },
       {
-        "scope_key": "military_command",
-        "scope_label": "Command & Strategy",
-        "scope_description": "Military leadership, command structures, strategic planning, and general competency",
+        "scope_key": "military_organization_structure",
+        "scope_label": "Military Organization & Structure",
+        "scope_description": "Evolution from phalanx through manipular system to cohort-based legions, including ranks, units, and command hierarchy",
+        "candidate_qids": [
+          "Q1114493"
+        ],
+        "estimated_concepts": 12,
+        "needs": "Detailed organizational charts, equipment specifications, tactical formation analysis"
+      },
+      {
+        "scope_key": "military_reforms",
+        "scope_label": "Military Reforms & Innovations",
+        "scope_description": "Servian constitution, Camillus reforms, Marian reforms, and tactical/technological innovations",
         "candidate_qids": [],
-        "estimated_concepts": 10,
-        "needs": "Prosopographical data, command hierarchies, strategic doctrines, leadership analysis"
+        "estimated_concepts": 8,
+        "needs": "Chronological reform sequence, social impact analysis, technological diffusion patterns"
+      },
+      {
+        "scope_key": "recruitment_service",
+        "scope_label": "Recruitment & Military Service",
+        "scope_description": "Property classes, census requirements, length of service, veteran settlement, and professionalization",
+        "candidate_qids": [],
+        "estimated_concepts": 7,
+        "needs": "Demographic analysis, property qualification evolution, veteran land distribution patterns"
+      },
+      {
+        "scope_key": "siege_engineering",
+        "scope_label": "Siege Warfare & Military Engineering",
+        "scope_description": "Siege techniques, fortification, camp construction (castra), and military technology",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Archaeological evidence integration, technical specification details, geographic distribution of techniques"
+      },
+      {
+        "scope_key": "naval_warfare",
+        "scope_label": "Naval Warfare & Maritime Operations",
+        "scope_description": "Development of Roman navy, naval battles, amphibious operations, and maritime strategy",
+        "candidate_qids": [],
+        "estimated_concepts": 5,
+        "needs": "Fleet organization details, harbor infrastructure, ship technology evolution"
+      },
+      {
+        "scope_key": "auxiliary_forces",
+        "scope_label": "Allied Forces & Auxiliaries",
+        "scope_description": "Italian socii, foreign auxiliaries (Numidian, Balearic, Cretan), and specialized units",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Treaty obligations analysis, ethnic unit specializations, integration patterns"
+      },
+      {
+        "scope_key": "military_politics",
+        "scope_label": "Military-Political Integration",
+        "scope_description": "Command structure, triumph ceremonies, veteran politics, and military's role in constitutional crisis",
+        "candidate_qids": [],
+        "estimated_concepts": 6,
+        "needs": "Prosopographical data on commanders, constitutional law analysis, ceremonial protocol documentation"
       }
     ],
     "manageable_as_single": false
   },
   "corpus_gaps": [
-    "Naval warfare and maritime strategy",
-    "Military engineering and siege warfare",
-    "Logistics and supply chain management",
-    "Military recruitment and social aspects",
-    "Weapons and armor technology",
-    "Foreign military influences and adaptation"
+    "Limited coverage of naval warfare and amphibious operations",
+    "Insufficient detail on military engineering and siege technology",
+    "Gaps in auxiliary force integration and specialized ethnic units",
+    "Underrepresented archaeological evidence from military sites",
+    "Limited coverage of military medicine and logistics"
   ],
-  "facet_confidence": 0.82,
+  "facet_confidence": 0.91,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Roman Republican military as comprehensive system",
+        "note": "Avoided claiming to present 'the complete picture' - acknowledged corpus gaps and focused on documented patterns rather than totalizing claims"
+      },
+      {
+        "fallacy_id": "MONOCAUSAL_EXPLANATION",
+        "status": "checked",
+        "applies_to": "Military transformation causes",
+        "note": "Avoided attributing complex military evolution to single causes like 'Marian reforms' - emphasized multiple interacting factors"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Recognized that digital searches privilege certain types of sources and temporal periods - supplemented with systematic overview reading"
+      },
+      {
+        "principle_id": "SCALE_REFLEXIVITY",
+        "status": "applied",
+        "note": "Acknowledged limitations of 41-work seed corpus for 500+ year military evolution - identified specific gaps requiring additional research"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_CENTER_PERIPHERY_ENFRANCHISEMENT",
+        "pattern_label": "Center-periphery enfranchisement",
+        "status": "existing",
+        "candidate_qids": [
+          "Q677316"
+        ],
+        "mechanisms": [
+          "M_ESCALATION",
+          "M_BROKERAGE"
+        ],
+        "evidence": "Social War (91-87 BCE) exemplifies peripheral Italian allies using military service to demand citizenship rights from Roman center",
+        "confidence": 0.85
+      }
+    ],
+    "proposed_patterns": [
+      {
+        "proposed_label": "Military Professionalization Sequence",
+        "scope_description": "Evolution from citizen militia through semi-professional service to career military under individual commanders",
+        "analogous_to": "RP_RESOURCE_CONVERSION_CHAIN",
+        "mechanisms": [
+          "M_ESCALATION",
+          "M_BROKERAGE"
+        ],
+        "candidate_qids": [
+          "Q124988",
+          "Q677316",
+          "Q202161"
+        ],
+        "evidence": "Corpus shows systematic progression from Punic Wars necessitating extended service through Social War expanding recruitment to Gallic Wars creating personal loyalties"
+      }
+    ]
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Army & Military Campaigns"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "All military developments occurred within Republican constitutional framework from expulsion of kings to Augustan principate"
+      },
+      {
+        "year_start": -264,
+        "year_end": -146,
+        "label": "Punic Wars period",
+        "evidence": "Defining military conflicts that transformed Roman army from regional to Mediterranean force"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Center of recruitment, command, and military administration throughout Republican period"
+      },
+      {
+        "place_label": "Italy",
+        "place_qid": "Q38",
+        "role": "primary",
+        "evidence": "Source of both Roman citizens and allied forces (socii) providing manpower for legions and auxiliary units"
+      },
+      {
+        "place_label": "Mediterranean Basin",
+        "place_qid": "Q4918",
+        "role": "secondary",
+        "evidence": "Theater of operations for major Republican military campaigns and conflicts"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The manipular system replaced the phalanx formation around 300 BCE during the Samnite Wars, organizing legions into flexible tactical units of 120-160 men arranged in triplex acies formation.",
+        "subject_concepts": [
+          "Roman Army & Military Campaigns"
+        ],
+        "facet_weights": {
+          "archaeological": 0.1,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.0,
+          "cultural": 0.0,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.0,
+          "environmental": 0.0,
+          "geographic": 0.1,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.9,
+          "political": 0.0,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.0,
+          "technological": 0.1
+        },
+        "pattern_tags": [],
+        "role": "descriptive",
+        "supporting_works": [
+          "domain_src:413d132a7d38",
+          "domain_src:b1a08c4a6364"
+        ],
+        "confidence": 0.9
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "The Social War (91-87 BCE) resolved the manpower crisis by granting Roman citizenship to Italian allies, fundamentally expanding the military recruitment base and eliminating the dual Roman/allied army structure.",
+        "subject_concepts": [
+          "Roman Army & Military Campaigns"
+        ],
+        "facet_weights": {
+          "archaeological": 0.0,
+          "artistic": 0.0,
+          "biographic": 0.1,
+          "communication": 0.0,
+          "cultural": 0.0,
+          "demographic": 0.2,
+          "diplomatic": 0.1,
+          "economic": 0.1,
+          "environmental": 0.0,
+          "geographic": 0.1,
+          "intellectual": 0.0,
+          "linguistic": 0.0,
+          "military": 0.6,
+          "political": 0.4,
+          "religious": 0.0,
+          "scientific": 0.0,
+          "social": 0.4,
+          "technological": 0.0
+        },
+        "pattern_tags": [
+          "RP_CENTER_PERIPHERY_ENFRANCHISEMENT"
+        ],
+        "role": "causal",
+        "supporting_works": [
+          "domain_src:5e8af6255705"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "ADJUST_EDGE",
+      "claim": null,
+      "edge": {
+        "from_label": "Punic Wars",
+        "to_label": "Roman Army & Military Campaigns",
+        "relation_type": "CAUSALLY_LINKED",
+        "weight_delta": 0.3,
+        "justification": "Punic Wars drove the fundamental transformation from citizen militia to professional military organization through prolonged overseas campaigns"
+      }
+    }
+  ],
   "_meta": {
     "model": "claude-sonnet-4-20250514",
-    "turns": 18,
+    "turns": 27,
     "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Army/",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman Army - World History Encyclopedia Roman Army James Lloyd The Roman army, famed for its discipline, organisation, and innovation in both weapons and tactics, allowed Rome to build and defend a hu"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://imperiumromanum.pl/en/roman-army/roman-army-of-republic-period/",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman army of republic period « IMPERIUM ROMANUM This page cannot be viewed in frames Go to page Menu Constitution Kingdom Republic Empire Diplomacy Law Salute Titles Triumph Close Society Begging Clo"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_army_of_the_mid-Republic",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman army of the mid-Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute He"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS \"Roman\" OR sc.label CONTAINS \"military\" OR sc.label CONTAINS \"army\" OR sc.label CONTAINS \"legion\" RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc_diplomacy\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc.wikida"
+      },
       {
         "tool": "get_threshold",
         "input": {
@@ -245,61 +512,20 @@
         "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
       },
       {
-        "tool": "query_graph",
-        "input": {
-          "cypher": "MATCH (f:Facet {label: \"Military\"})-[:CONTAINS]->(sc:SubjectConcept) RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
-        },
-        "output_preview": "[]"
-      },
-      {
-        "tool": "query_graph",
-        "input": {
-          "cypher": "MATCH (f:Facet) RETURN f.label, f.facet_key"
-        },
-        "output_preview": "[{\"f.label\": \"Communication\", \"f.facet_key\": null}, {\"f.label\": \"Archaeological\", \"f.facet_key\": null}, {\"f.label\": \"Artistic\", \"f.facet_key\": null}, {\"f.label\": \"Biographic\", \"f.facet_key\": null}, {\""
-      },
-      {
         "tool": "search_scholarly",
         "input": {
-          "query": "Roman Republican army manipular legion organization",
           "source": "openalex",
-          "limit": 10
-        },
-        "output_preview": "[{\"work_id\": \"openalex:W4409934764\", \"title\": \"Cynoscephalae 197 BC\", \"authors\": \"Mark van der Enden\", \"year\": 2025, \"citations\": 0, \"doi\": \"https://doi.org/10.5040/9781472865410\", \"is_oa\": false, \"oa"
-      },
-      {
-        "tool": "search_scholarly",
-        "input": {
-          "query": "Roman Republican warfare Punic Wars military tactics",
-          "source": "openalex",
-          "limit": 10
-        },
-        "output_preview": "[{\"work_id\": \"openalex:W4388511345\", \"title\": \"Great-power success in protracted warfare: key drivers and core components\", \"authors\": \"Iskander Rehman\", \"year\": 2022, \"citations\": 0, \"doi\": \"https://"
-      },
-      {
-        "tool": "search_scholarly",
-        "input": {
-          "query": "Roman legion cohort military reform Marian reforms",
-          "source": "openalex",
-          "limit": 10
+          "query": "Roman Republican army legion maniples cohorts military organization",
+          "limit": 20
         },
         "output_preview": "[]"
       },
       {
         "tool": "search_scholarly",
         "input": {
-          "query": "Polybius Roman military organization Republican army",
-          "source": "openalex",
-          "limit": 10
-        },
-        "output_preview": "[{\"work_id\": \"openalex:W4320163189\", \"title\": \"Generalship and Knowledge in the Middle Roman Republic\", \"authors\": \"Michael J. Taylor\", \"year\": 2020, \"citations\": 0, \"doi\": \"https://doi.org/10.3366/ed"
-      },
-      {
-        "tool": "search_scholarly",
-        "input": {
-          "query": "Roman army military history Republican warfare",
           "source": "oapen",
-          "limit": 10
+          "query": "Roman Republic military warfare legion",
+          "limit": 15
         },
         "output_preview": "[{\"work_id\": \"oapen:20.500.12657/62575\", \"title\": \"Romans at War\", \"authors\": \"\", \"year\": \"2020\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/62575\", \"is_oa\": true}, {\"work_id\": \"oape"
       },
@@ -307,85 +533,186 @@
         "tool": "fetch_url",
         "input": {
           "url": "https://library.oapen.org/handle/20.500.12657/62575",
-          "max_chars": 3000
+          "max_chars": 5000
         },
         "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
       },
       {
-        "tool": "search_scholarly",
+        "tool": "search_wikidata",
         "input": {
-          "query": "Roman Republican military history Livy",
-          "source": "internet_archive",
-          "limit": 10
+          "sparql": "SELECT ?work ?workLabel ?lcsh WHERE {\n  ?work wdt:P921 wd:Q17167 .\n  ?work wdt:P921 ?military_subject .\n  ?military_subject wdt:P279* wd:Q178561 .\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 25
         },
-        "output_preview": "[{\"work_id\": \"ia:aberpa.websterd.1837.marcellus\", \"title\": \"Letter from Marcellus to Daniel Webster\", \"authors\": \"Marcellus\", \"year\": \"1837\", \"downloads\": 313, \"source_url\": \"https://archive.org/detai"
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?subject ?subjectLabel ?lcsh WHERE {\n  ?work wdt:P921 ?subject .\n  ?subject wdt:P279* wd:Q8473 .\n  ?work wdt:P921 wd:Q17167 .\n  OPTIONAL { ?work wdt:P244 ?lcsh }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 20
+        },
+        "output_preview": "[{\"work\": \"http://www.wikidata.org/entity/Q123116313\", \"subject\": \"http://www.wikidata.org/entity/Q1114493\", \"workLabel\": \"History program for Italian primary school\", \"subjectLabel\": \"Roman army\"}, {"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?war ?warLabel ?lcsh WHERE {\n  ?war wdt:P361 wd:Q17167 .\n  ?war wdt:P31/wdt:P279* wd:Q198 .\n  OPTIONAL { ?war wdt:P244 ?lcsh }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 20
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT DISTINCT ?battle ?battleLabel ?war ?warLabel ?lcsh WHERE {\n  ?battle wdt:P31 wd:Q178561 .\n  ?battle wdt:P361* ?war .\n  ?war wdt:P276*/wdt:P17 wd:Q220 .\n  ?battle wdt:P585 ?date .\n  FILTER(YEAR(?date) < 27 && YEAR(?date) > -509)\n  OPTIONAL { ?battle wdt:P244 ?lcsh }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 25
+        },
+        "output_preview": "[]"
       },
       {
         "tool": "search_scholarly",
         "input": {
-          "query": "Polybius Roman army book six",
           "source": "internet_archive",
+          "query": "Roman army republic Polybius military organization legion",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Polybius Histories Roman military",
           "limit": 10
         },
         "output_preview": "[{\"work_id\": \"ia:TheRomanHistoryWithNotesHistoricalGeographicalAndCriticalVol1\", \"title\": \"Ancient History - Works In Public Domain (Published Before 1900)\", \"authors\": \"AncientHistoryWorks\", \"year\": "
       },
       {
-        "tool": "search_scholarly",
+        "tool": "fetch_url",
         "input": {
-          "query": "Roman Republican civil war Sulla Marius military",
-          "source": "openalex",
-          "limit": 10
+          "url": "https://livius.org/articles/person/polybius/",
+          "max_chars": 4000
         },
-        "output_preview": "[{\"work_id\": \"openalex:W7108221100\", \"title\": \"The Republican Crucible: Civil Strife, State Transformation, and the Genesis of Imperial Rome\", \"authors\": \"Revista, Zen; HISTORY, 10\", \"year\": 2025, \"ci"
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/person/polybius/\"}"
       },
       {
         "tool": "fetch_url",
         "input": {
-          "url": "https://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=7654&context=open_access_etds",
-          "max_chars": 3000
+          "url": "https://livius.org/sources/content/polybius/polybius-roman-army/",
+          "max_chars": 4000
         },
-        "output_preview": "{\"error\": \"Domain not in allowlist: pdxscholar.library.pdx.edu. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, "
-      },
-      {
-        "tool": "search_scholarly",
-        "input": {
-          "query": "Roman Republican warfare battles",
-          "source": "openalex",
-          "limit": 15
-        },
-        "output_preview": "[{\"work_id\": \"openalex:W623795952\", \"title\": \"The Complete Roman Army\", \"authors\": \"Adrián Goldsworthy\", \"year\": 2003, \"citations\": 50, \"doi\": null, \"is_oa\": false, \"oa_url\": null}, {\"work_id\": \"opena"
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/sources/content/polybius/polybius-roman-army/\"}"
       },
       {
         "tool": "fetch_url",
         "input": {
-          "url": "https://digital.library.unt.edu/ark:/67531/metadc1987146/m2/1/high_res_d/STAMPHER-DISSERTATION-2022.pdf",
+          "url": "https://en.wikipedia.org/wiki/Roman_army_of_the_late_Republic",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman army of the late Republic - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute H"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Punic_Wars",
+          "max_chars": 4000
+        },
+        "output_preview": "Punic Wars - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Com"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Social_War_(91%E2%80%9387_BC)",
+          "max_chars": 4000
+        },
+        "output_preview": "Social War (91–87 BC) - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn "
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Marian_reforms",
+          "max_chars": 4000
+        },
+        "output_preview": "Marian reforms - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.2307/1867244",
           "max_chars": 3000
         },
-        "output_preview": "{\"error\": \"Domain not in allowlist: digital.library.unt.edu. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ia600, ia800, id.loc.gov, jst"
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://www.jstor.org/stable/10.2307/1867244?origin=crossref\"}"
       },
       {
-        "tool": "search_scholarly",
+        "tool": "fetch_url",
         "input": {
-          "query": "Roman Republican commanders generals consulship military command",
-          "source": "openalex",
-          "limit": 10
+          "url": "https://penelope.uchicago.edu/Thayer/e/roman/texts/polybius/6*.html",
+          "max_chars": 5000
         },
-        "output_preview": "[{\"work_id\": \"openalex:W2528230859\", \"title\": \"Fred K. Drogula.<i>Commanders and Command in the Roman Republic and Early Empire</i>.Frederik J. Vervaet.<i>The High Command in the Roman Republic: The P"
+        "output_preview": "--> Polybius â¢ Histories â BookÂ 6 Short URL for this page: bit.ly/Polybius6E mail: Bill Thayer Help Up Home previous: BookÂ V This webpage reproduces a Book of The Histories of Polybius published"
       },
       {
-        "tool": "search_scholarly",
+        "tool": "search_wikidata",
         "input": {
-          "query": "Praetorian Guard origin Republican bodyguard military unit",
-          "source": "openalex",
-          "limit": 10
+          "sparql": "SELECT ?legion ?legionLabel ?battle ?battleLabel WHERE {\n  ?legion wdt:P31 wd:Q176799 .\n  ?legion wdt:P17 wd:Q220 .\n  ?legion rdfs:label ?legionName .\n  FILTER(CONTAINS(?legionName, \"Legion\") || CONTAINS(?legionName, \"Legio\"))\n  OPTIONAL { \n    ?battle wdt:P710 ?legion .\n    ?battle wdt:P31 wd:Q178561 \n  }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 20
         },
         "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?concept ?conceptLabel ?lcsh WHERE {\n  VALUES ?concept { \n    wd:Q1114493 wd:Q185443 wd:Q319985 wd:Q1128324 wd:Q5503963 \n    wd:Q124988 wd:Q596373 wd:Q75813 wd:Q677316 wd:Q202161\n  }\n  OPTIONAL { ?concept wdt:P244 ?lcsh }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language 'en' }\n}",
+          "limit": 15
+        },
+        "output_preview": "[{\"concept\": \"http://www.wikidata.org/entity/Q75813\", \"conceptLabel\": \"Macedonian Wars\"}, {\"concept\": \"http://www.wikidata.org/entity/Q124988\", \"conceptLabel\": \"Punic Wars\", \"lcsh\": \"sh85109114\"}, {\"c"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Legion",
+          "max_chars": 4000
+        },
+        "output_preview": "Legion - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit Communi"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_legion",
+          "max_chars": 5000
+        },
+        "output_preview": "Roman legion - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Learn to edit C"
       }
     ],
     "usage": {
-      "input_tokens": 191409,
-      "output_tokens": 4394
+      "input_tokens": 586467,
+      "output_tokens": 8463
     },
-    "raw_response_length": 9704
+    "raw_response_length": 18555
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 4,
+    "rejected": [
+      {
+        "qid": "Q596373",
+        "reason": "label_off_scope",
+        "context": "sub_scope:military_wars_campaigns"
+      },
+      {
+        "qid": "Q185443",
+        "reason": "label_off_scope",
+        "context": "sub_scope:military_organization_structure"
+      },
+      {
+        "qid": "Q1128324",
+        "reason": "label_off_scope",
+        "context": "sub_scope:military_organization_structure"
+      },
+      {
+        "qid": "Q319985",
+        "reason": "blocked_instance_type:Q4167410",
+        "context": "sub_scope:military_reforms"
+      }
+    ]
   }
 }

@@ -61,6 +61,8 @@ try:
 except ImportError:
     anthropic = None
 
+from scripts.agents.republic_graph_context import append_republic_graph_context
+
 
 # ---------------------------------------------------------------------------
 # Facet keyword map — domain-specific search terms per facet
@@ -76,7 +78,10 @@ FACET_KEYWORDS: Dict[str, List[str]] = {
     "diplomatic": ["diplomacy", "treaty", "alliance", "embassy", "foreign relations"],
     "economic": ["trade", "commerce", "currency", "denarius", "taxation", "economy"],
     "environmental": ["climate", "agriculture", "landscape", "deforestation", "environment"],
-    "geographic": ["territory", "province", "colony", "geography", "boundaries"],
+    "geographic": [
+        "Roman province", "Roman Italy", "historical geography",
+        "territory", "colony", "boundaries", "Pleiades",
+    ],
     "intellectual": ["philosophy", "rhetoric", "education", "Stoicism", "literature"],
     "linguistic": ["Latin", "language", "inscription", "epigraphy", "philology"],
     "military": ["army", "legion", "warfare", "battle", "military reform", "strategy"],
@@ -86,6 +91,64 @@ FACET_KEYWORDS: Dict[str, List[str]] = {
     "social": ["social class", "patrician", "plebeian", "slavery", "patronage", "family"],
     "technological": ["construction", "engineering", "concrete", "metallurgy", "technology"],
 }
+
+# Curated overview URLs when facet packs lack domain_sources (see military_pack.json).
+FACET_DOMAIN_SOURCES: Dict[str, List[str]] = {
+    "biographic": [
+        "https://en.wikipedia.org/wiki/Prosopography_of_ancient_Rome",
+        "https://en.wikipedia.org/wiki/Prosopography",
+        "https://en.wikipedia.org/wiki/Cursus_honorum",
+        "https://www.worldhistory.org/Roman_Republic/",
+        "https://romanrepublic.ac.uk/",
+        "https://livius.org/articles/concept/senator/",
+    ],
+    "geographic": [
+        "https://en.wikipedia.org/wiki/Roman_province",
+        "https://en.wikipedia.org/wiki/Roman_Italy",
+        "https://en.wikipedia.org/wiki/Geography_of_Italy",
+        "https://www.worldhistory.org/geography-of-ancient-rome/",
+        "https://www.worldhistory.org/Roman_Republic/",
+        "https://pleiades.stoa.org/",
+    ],
+}
+
+
+def _merge_domain_sources(pack: Dict) -> List[str]:
+    """Pack domain_sources first, then facet defaults (deduped, order preserved)."""
+    facet_key = pack.get("facet_key", "").lower()
+    merged: List[str] = []
+    seen: set[str] = set()
+    for url in list(pack.get("domain_sources") or []) + FACET_DOMAIN_SOURCES.get(facet_key, []):
+        if url and url not in seen:
+            seen.add(url)
+            merged.append(url)
+    return merged
+
+
+def _compute_max_turns(pack: Dict, cli_max_turns: int) -> int:
+    """Scale turn budget for large facet deltas (e.g. geographic 90+ candidates)."""
+    candidate_count = pack.get("facet_delta", {}).get("candidate_count", 0)
+    scaled = cli_max_turns + max(0, (candidate_count - 25) // 5)
+    return min(scaled, 70)
+
+
+def _build_research_digest(broken: Dict, *, max_chars: int = 45000) -> str:
+    """Build synthesis digest from tool-call log or prior raw response."""
+    prior_meta = broken.get("_meta", {})
+    tool_calls = prior_meta.get("tool_calls") or []
+    if tool_calls:
+        parts: List[str] = []
+        for i, tc in enumerate(tool_calls, 1):
+            parts.append(
+                f"--- Tool call {i}: {tc.get('tool', '?')} ---\n"
+                f"Input: {json.dumps(tc.get('input', {}), ensure_ascii=False)[:1200]}\n"
+                f"Output: {tc.get('output_preview', '')[:800]}"
+            )
+        digest = "Prior tool research (do not call tools again):\n\n" + "\n\n".join(parts)
+        return digest[:max_chars]
+
+    raw = broken.get("raw_response") or json.dumps(broken, ensure_ascii=False)
+    return raw[:max_chars]
 
 
 # ===========================================================================
@@ -332,20 +395,71 @@ def fetch_wikidata_p921(
     return works
 
 
+def fetch_domain_sources(domain_sources: List[str]) -> List[Dict]:
+    """Fetch curated domain-specific URLs listed in the pack.
+
+    These are authoritative overview resources (encyclopaedias, open-access
+    book chapters, specialist databases) that the pack author has pre-identified
+    as the best free starting points for this facet. They are fetched first so
+    the agent begins with structured, canonical content rather than keyword hits.
+    """
+    headers = {"User-Agent": "Chrystallum/1.0 (research project)"}
+    results = []
+    for url in domain_sources[:8]:  # cap at 8 to avoid excessive pre-fetch
+        try:
+            resp = requests.get(url, headers=headers, timeout=20, allow_redirects=True)
+            resp.raise_for_status()
+            import re
+            content_type = resp.headers.get("Content-Type", "")
+            if "html" in content_type:
+                text = re.sub(r'<script[^>]*>.*?</script>', '', resp.text, flags=re.DOTALL)
+                text = re.sub(r'<style[^>]*>.*?</style>', '', text, flags=re.DOTALL)
+                text = re.sub(r'<[^>]+>', ' ', text)
+                text = re.sub(r'\s+', ' ', text).strip()
+                abstract = text[:600]
+            else:
+                abstract = resp.text[:600]
+            results.append({
+                "work_id": f"domain_src:{hashlib.sha256(url.encode()).hexdigest()[:12]}",
+                "title": url.split("/")[-1] or url,
+                "authors": "",
+                "year": None,
+                "citation_count": 0,
+                "abstract": abstract,
+                "doi": "",
+                "source": "domain_source",
+                "source_url": url,
+                "is_oa": True,
+                "oa_url": url,
+            })
+            print(f"  [DomainSource] Fetched: {url[:80]}")
+        except Exception as e:
+            print(f"  [DomainSource] Error fetching {url}: {e}")
+    return results
+
+
 def fetch_corpus_for_facet(
     pack: Dict,
     extra_keywords: Optional[List[str]] = None,
 ) -> List[Dict]:
-    """Seed corpus: quick OpenAlex relevance search for orientation.
+    """Multi-source seed corpus for SFA orientation.
 
-    This is intentionally thin — the SFA has research tools (search_scholarly,
-    search_wikidata, fetch_url) and the full federation/corpus context from
-    the pack. The LLM decides what to research, not the pre-fetch.
+    Priority order:
+      1. Curated domain_sources from pack (encyclopaedias, OA book chapters,
+         specialist databases — pre-identified best free resources)
+      2. Wikidata P921 — authority-anchored scholarly works with LCSH/FAST/OCLC IDs
+      3. Internet Archive — digitised primary and secondary texts
+      4. OpenAlex — recent OA papers (supplementary, not primary)
+
+    OpenAlex is supplementary. The agent has research tools and will go deeper;
+    the pre-fetch just ensures it starts with canonical overview content, not
+    whatever keyword hits happen to surface first.
     """
     facet_key = pack["facet_key"].lower()
     domain = pack.get("domain_context", {})
     seed = domain.get("seed", {})
     seed_label = seed.get("label", "")
+    seed_qid = seed.get("qid", "")
 
     # Build facet-specific keywords
     keywords = list(FACET_KEYWORDS.get(facet_key, [facet_key]))
@@ -360,15 +474,37 @@ def fetch_corpus_for_facet(
     print(f"\nFetching seed corpus for {facet_key.upper()} (seed: {seed_label})")
     print(f"  Keywords: {', '.join(keywords[:6])}")
 
-    # Extract OpenAlex topic_id from pack corpus_endpoints if available
+    all_works: List[Dict] = []
+
+    # 1. Curated domain sources (pack + facet defaults)
+    domain_sources = _merge_domain_sources(pack)
+    if domain_sources:
+        print(f"  [Layer2] Fetching {len(domain_sources)} curated domain sources (priority)")
+        all_works.extend(fetch_domain_sources(domain_sources))
+
+    # 2. Wikidata P921 — authority-anchored scholarly works
+    discipline_qids = [
+        d.get("qid", "") for d in pack.get("domain_context", {}).get("disciplines", [])
+        if d.get("qid")
+    ]
+    if seed_qid:
+        wd_works = fetch_wikidata_p921(seed_qid, discipline_qids, limit=15)
+        all_works.extend(wd_works)
+
+    # 3. Internet Archive — digitised texts
+    ia_works = fetch_internet_archive(seed_label, keywords, limit=10)
+    all_works.extend(ia_works)
+
+    # 4. OpenAlex — supplementary OA papers
     oa_endpoint = pack.get("corpus_endpoints", {}).get("endpoints", {}).get("open_alex", {})
     topic_id = oa_endpoint.get("topic_id")
+    oa_works = fetch_openalex(seed_label, keywords, topic_id=topic_id, limit=10)
+    all_works.extend(oa_works)
 
-    # OpenAlex relevance search — just enough to orient the SFA
-    works = fetch_openalex(seed_label, keywords, topic_id=topic_id, limit=15)
-
-    print(f"  Seed corpus: {len(works)} works (SFA will research further)")
-    return works
+    print(f"  Seed corpus: {len(all_works)} works total "
+          f"({len(domain_sources)} curated + {len(wd_works) if seed_qid else 0} wikidata + "
+          f"{len(ia_works)} IA + {len(oa_works)} OpenAlex)")
+    return all_works
 
 
 # ===========================================================================
@@ -389,42 +525,61 @@ GRAPH TOOLS (read the live Neo4j knowledge graph):
 RESEARCH TOOLS (discover and read scholarly sources):
 - search_scholarly: Search OpenAlex (gold OA academic papers), OAPEN (open-access books), or Internet Archive (digitized primary sources). Use targeted facet-specific queries.
 - search_wikidata: Run SPARQL queries against Wikidata. Find scholarly works by subject (P921), find items with authority IDs (LCSH, FAST, OCLC), explore related entities.
-- fetch_url: Read content from scholarly URLs — OA full texts, metadata pages, Perseus texts. Allowed domains: openalex, archive.org, oapen, doi.org, arxiv, jstor, perseus.tufts.edu, id.loc.gov, wikidata, openlibrary, hathitrust.
+- fetch_url: Read content from any of: encyclopaedic overviews (en.wikipedia.org, worldhistory.org, livius.org, imperiumromanum.pl, penelope.uchicago.edu), OA sources (openalex.org, archive.org, oapen.org, doi.org, arxiv.org, jstor.org, openlibrary.org, hathitrust.org), primary source platforms (perseus.tufts.edu), and authority registries (id.loc.gov, wikidata.org). FETCH A WIKIPEDIA OR WORLDHISTORY.ORG OVERVIEW FIRST — these give you a canonical enumeration of sub-topics before you drill into scholarly literature.
 
 RESEARCH STRATEGY:
-1. Review the seed corpus and your federation context (sources, authority keys, endpoints).
-2. Ask: "What are the best open-access sources for {facet_label} aspects of {seed_label}?"
-3. Use your tools to find them:
+1. OVERVIEW FIRST: fetch_url a Wikipedia or worldhistory.org article for your facet + seed.
+   e.g. "https://en.wikipedia.org/wiki/Roman_army" or "https://www.worldhistory.org/Roman_Army/"
+   This gives you a canonical outline of sub-topics — the structure every scholar knows.
+   Then check livius.org and imperiumromanum.pl for specialist depth on key concepts.
+
+2. ENUMERATE from that overview: list the sub-domains, key institutions, events, and figures.
+   Use search_wikidata to resolve each to a QID. This is your ground truth, not keyword hits.
+
+3. REVIEW the seed corpus above. The curated domain_sources were pre-fetched as your starting
+   corpus — check them. OpenAlex papers supplement; they do NOT replace overview knowledge.
+
+4. DEEPEN: find the best scholarly sources:
    - search_scholarly with OAPEN for open-access books on your facet
-   - search_scholarly with OpenAlex for gold OA papers (these have full text)
+   - search_scholarly with OpenAlex for gold OA papers (use these for citations and claims)
    - search_scholarly with Internet Archive for digitized primary sources
    - search_wikidata to find works with LCSH/FAST/OCLC authority IDs about your topic
    - fetch_url to read Perseus texts, OA articles, archive.org primary sources
-4. Use query_graph to check what already exists in the Chrystallum graph.
-5. Build your insights from what you actually read, not just metadata.
+
+5. Use query_graph to check what already exists in the Chrystallum graph.
+6. Build your insights from the combination of overview knowledge + scholarly verification.
 
 DECOMPOSITION ASSESSMENT (CRITICAL):
-After absorbing the corpus, you MUST ask yourself: "Is my domain manageable or does it need to decompose into smaller sub-agents?"
+After absorbing the corpus, you MUST enumerate ALL natural sub-domains of your facet as sub_scopes.
+Sub-scopes are ALWAYS required — they map the internal structure of your domain for SubjectConcept
+creation. Every coherent sub-topic that could stand alone as a knowledge cluster is a sub-scope.
 
-To answer this, check D12 threshold (use get_threshold for 'level2_child_overload' — currently 12).
-Count the distinct conceptual sub-domains you've identified. If your facet covers more than
-the threshold number of distinct sub-domains, you MUST propose a decomposition.
+For example, the Military SFA MUST enumerate sub-scopes such as:
+  - wars_campaigns: Wars & Campaigns (Punic, Social, Gallic, Civil wars)
+  - military_organization: Military Organization (legions, manipular system, cohorts, centuries)
+  - military_reforms: Military Reforms (Servian constitution, Marian reforms, professionalization)
+  - siege_engineering: Siege & Military Engineering
+  - naval_warfare: Naval Warfare (First Punic War fleet, rostra)
+  - recruitment_social: Recruitment & Social Aspects (property classes, veterans)
+  → Each sub-scope becomes a SubjectConcept proposal regardless of decomposition verdict.
 
-For example, a Military SFA might find it covers:
-  - Wars & campaigns (Punic, Social, Gallic, Civil)
-  - Military organization (legions, manipular system, cohorts)
-  - Military reform (Marian reforms, professionalization)
-  - Siege & engineering
-  - Naval warfare
-  - Recruitment & social aspects
-  → 6 sub-domains, each with its own scholarly literature = manageable.
-  → But if each sub-domain has 10+ concepts = total > 60, needs decomposition.
+The `should_decompose` flag controls whether child SFA agents are spawned (true = spawn children).
+Check D12 threshold (get_threshold 'level2_child_overload') to decide should_decompose.
+But sub_scopes are ALWAYS populated — even if should_decompose is false.
+
+OUTPUT SIZE LIMITS (CRITICAL — incomplete JSON is rejected):
+- Put decomposition_assessment immediately after training_summary (first keys in JSON).
+- Maximum 6 insights (highest confidence only); one-sentence evidence each.
+- Maximum 8 key_works, 12 candidate_assessments, 8 discovered_works.
+- On insights, set only the primary facet and up to 3 secondary non-zero weights.
+- methodology_reflection: max 2 fischer_checks, 2 digital_principles; omit proposed_patterns if tight.
+- graph_deltas: max 3 entries.
 
 Your decomposition_assessment must include:
-  - Whether to decompose (yes/no)
-  - What sub-scopes you'd create (each with a label, scope description, and which candidates belong)
-  - What threshold triggered it (or why it's manageable)
-  - What each sub-agent would need that you don't have
+  - Whether to decompose (yes/no) — based on D12 threshold vs sub-domain count
+  - sub_scopes: ALL natural sub-domains, ALWAYS populated (minimum 3, no maximum)
+  - What threshold was checked
+  - estimated_concepts per sub-scope
 
 GRAPH SCHEMA HINTS:
 - SubjectConcept: label, subject_id, wikidata_qid, lcsh_id, seed_qid, concept_cipher
@@ -433,10 +588,28 @@ GRAPH SCHEMA HINTS:
 - SYS_Threshold: name, value
 - SYS_FederationSource: source_id, label, phase
 
-YOUR OUTPUT must be a JSON object with these exact keys:
+YOUR OUTPUT must be a JSON object with these exact keys (decomposition_assessment FIRST after summary):
 
 {{
   "training_summary": "2-3 sentence summary of what the corpus reveals about this facet",
+  "decomposition_assessment": {{
+    "should_decompose": true,
+    "reason": "Why this facet should or should not split",
+    "sub_domain_count": 6,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 45,
+    "sub_scopes": [
+      {{
+        "scope_key": "military_wars",
+        "scope_label": "Wars & Campaigns",
+        "scope_description": "Major wars, battles, and military campaigns of the Republic",
+        "candidate_qids": ["Q124988", "Q596373", "Q75813"],
+        "estimated_concepts": 15,
+        "needs": "Temporal sequencing, DPRR commander positions, geographic theater mapping"
+      }}
+    ],
+    "manageable_as_single": false
+  }},
   "key_works": [
     {{
       "work_id": "openalex:W...",
@@ -487,24 +660,6 @@ YOUR OUTPUT must be a JSON object with these exact keys:
       "facet_contribution": "What this work teaches"
     }}
   ],
-  "decomposition_assessment": {{
-    "should_decompose": true,
-    "reason": "Why this facet should or should not split",
-    "sub_domain_count": 6,
-    "threshold_used": "level2_child_overload=12",
-    "total_concepts_estimated": 45,
-    "sub_scopes": [
-      {{
-        "scope_key": "military_wars",
-        "scope_label": "Wars & Campaigns",
-        "scope_description": "Major wars, battles, and military campaigns of the Republic",
-        "candidate_qids": ["Q124988", "Q596373", "Q75813"],
-        "estimated_concepts": 15,
-        "needs": "Temporal sequencing, DPRR commander positions, geographic theater mapping"
-      }}
-    ],
-    "manageable_as_single": false
-  }},
   "corpus_gaps": ["Topics still not well covered even after active research"],
   "facet_confidence": 0.92,
   "methodology_reflection": {{
@@ -682,15 +837,34 @@ Corpus endpoints available (use search_scholarly and search_wikidata to query th
 
 You are SFA_{facet_key}. Your job is to RESEARCH, not just read.
 
-1. START by reviewing the seed corpus and your federation context above.
-2. RESEARCH: Use your tools to find the best sources for {facet_label} aspects of {seed_label}:
+1. OVERVIEW FIRST — fetch a canonical overview before doing anything else.
+   Use fetch_url on one or two encyclopaedic sources:
+     • https://en.wikipedia.org/wiki/{seed_label}_{facet_label}  (adjust as needed)
+     • https://www.worldhistory.org/  (search for your topic)
+     • https://livius.org/  (excellent for Roman/ancient topics)
+   Read the structure: what sub-topics, events, institutions does every scholar of this
+   facet know? This is your canonical enumeration — grounded in established knowledge,
+   not in whatever keyword searches happen to surface.
+
+2. ENUMERATE from that overview — list the canonical sub-domains, key events, institutions,
+   figures, and concepts. Use search_wikidata to resolve each to a QID.
+   This is your ground truth candidate list.
+
+3. REVIEW the seed corpus above. The curated domain_sources were pre-fetched as your
+   starting corpus. Do they match your enumeration? Note gaps and confirm coverage.
+   OpenAlex papers in the corpus are supplementary — they add citations, not the frame.
+
+4. DEEPEN: use your tools to find the best scholarly sources:
    - What open-access books exist? (search OAPEN)
-   - What gold OA papers are available? (search OpenAlex)
+   - What gold OA papers are available? (search OpenAlex — use for claims and citations)
    - What primary sources are digitized? (search Internet Archive, fetch Perseus)
    - What authority-anchored works exist in Wikidata? (search_wikidata for P921 + LCSH/FAST)
    - What does the Chrystallum graph already know? (query_graph)
-3. READ what you find — use fetch_url on OA articles, archive.org texts, Perseus primary sources.
-4. PRODUCE structured training output — insights, candidate assessments, gaps, decomposition.
+
+5. READ what you find — use fetch_url on OA articles, archive.org texts, Perseus primary sources.
+
+6. PRODUCE structured training output — insights, candidate assessments, gaps, decomposition.
+   Your candidate_assessments MUST cover the entities from step 2, not just what the corpus mentioned.
 
 Include ALL works you discovered via your research tools in discovered_works.
 
@@ -911,6 +1085,7 @@ def _tool_fetch_url(url: str, max_chars: int) -> str:
     from urllib.parse import urlparse
     parsed = urlparse(url)
     allowed_domains = {
+        # Bibliographic / OA paper sources
         "openalex.org", "api.openalex.org",
         "archive.org", "ia800", "ia600",
         "library.oapen.org", "oapen.org",
@@ -918,12 +1093,24 @@ def _tool_fetch_url(url: str, max_chars: int) -> str:
         "academia.edu",
         "arxiv.org",
         "jstor.org",
-        "perseus.tufts.edu",
         "scirp.org",
-        "id.loc.gov",
-        "wikidata.org", "query.wikidata.org",
         "openlibrary.org",
         "catalog.hathitrust.org",
+        # Primary source platforms
+        "perseus.tufts.edu",
+        # Authority / identifier registries
+        "id.loc.gov",
+        "wikidata.org", "query.wikidata.org",
+        # Encyclopaedic overview sources (canonical starting points)
+        "en.wikipedia.org",
+        "worldhistory.org",
+        "livius.org",
+        "imperiumromanum.pl",
+        "penelope.uchicago.edu",   # LacusCurtius — Roman primary sources
+        "ebsco.com",               # EBSCO research starters
+        "library.oapen.org",
+        "romanrepublic.ac.uk",     # DPRR prosopography
+        "pleiades.stoa.org",       # ancient geography gazetteer
     }
     domain = parsed.hostname or ""
     if not any(domain.endswith(d) for d in allowed_domains):
@@ -1051,11 +1238,16 @@ TRAINING_TOOLS = [
     {
         "name": "fetch_url",
         "description": (
-            "Fetch content from a URL. Only scholarly/known-safe domains are allowed: "
-            "openalex.org, archive.org, oapen.org, doi.org, arxiv.org, jstor.org, "
-            "perseus.tufts.edu, id.loc.gov, wikidata.org, openlibrary.org, hathitrust.org, "
-            "academia.edu, scirp.org. Returns text content truncated to max_chars. "
-            "Use this to read abstracts, OA full texts, or metadata pages."
+            "Fetch content from a URL. Allowed domains include encyclopaedic overview sources "
+            "(en.wikipedia.org, worldhistory.org, livius.org, imperiumromanum.pl, "
+            "penelope.uchicago.edu), OA paper/book sources (openalex.org, archive.org, "
+            "oapen.org, doi.org, arxiv.org, jstor.org, openlibrary.org, hathitrust.org, "
+            "academia.edu), primary source platforms (perseus.tufts.edu), and authority "
+            "registries (id.loc.gov, wikidata.org). "
+            "Returns text content truncated to max_chars. "
+            "PREFERRED STRATEGY: fetch a Wikipedia or worldhistory.org overview article "
+            "first to get canonical enumeration of sub-topics, then drill into specific OA "
+            "sources for scholarly depth."
         ),
         "input_schema": {
             "type": "object",
@@ -1131,12 +1323,43 @@ def _fetch_framework_context(driver) -> str:
     return "\n\n".join(sections)
 
 
+SYNTHESIS_DEADLINE_MESSAGE = """SYNTHESIS DEADLINE — no more tool calls.
+
+You have reached the synthesis phase. STOP researching. Produce your complete JSON output NOW.
+Do not call any tools. Your next response must be the JSON object described in the system prompt.
+Use what you have already learned. Incomplete research is acceptable — the corpus_gaps field
+is exactly where you document what's missing.
+
+CRITICAL: Output decomposition_assessment with populated sub_scopes FIRST (after training_summary).
+Respect output size limits. Output valid JSON only — no preamble."""
+
+JSON_CONTINUATION_MESSAGE = """Your JSON output was truncated before completion.
+
+Continue EXACTLY where you left off — do not repeat any content already output.
+Output ONLY the remaining characters needed to finish valid JSON and close all open structures.
+No preamble, no markdown fence."""
+
+COMPACT_SYNTHESIS_MESSAGE = """Your prior JSON synthesis failed to parse or is missing decomposition_assessment.sub_scopes.
+
+Produce a COMPLETE valid JSON object following the system prompt schema.
+MANDATORY: decomposition_assessment with should_decompose and at least 6 populated sub_scopes.
+Respect all output size limits. Output JSON only — no markdown fence, no preamble.
+
+Research digest from your prior session (use this; do not call tools):
+{research_digest}"""
+
+SYNTHESIS_MAX_TOKENS = 16384
+RESEARCH_MAX_TOKENS = 8192
+MAX_JSON_CONTINUATIONS = 2
+
+
 def run_training_session(
     pack: Dict,
     corpus_works: List[Dict],
     driver,
-    model: str = "claude-sonnet-4-20250514",
+    model: str = "claude-sonnet-4-6",
     max_turns: int = 40,
+    synthesis_reserve: int = 5,
 ) -> Dict:
     """Run Claude multi-turn training over corpus + candidates.
 
@@ -1215,6 +1438,8 @@ def run_training_session(
         candidate_count=len(candidates),
         max_turns=max_turns,
     )
+    seed_qid = str(seed.get("qid", "Q17167")).strip().upper()
+    system = append_republic_graph_context(system, seed_qid, driver=driver)
 
     user_prompt = TRAINING_USER_PROMPT.format(
         facet_key=facet_key.upper(),
@@ -1239,15 +1464,22 @@ def run_training_session(
     tool_log = []
     total_input = 0
     total_output = 0
+    synthesis_text = ""
+    continuations = 0
+    tool_budget = max(22, max_turns - synthesis_reserve - 8)
 
     for turn in range(max_turns):
-        response = client.messages.create(
+        # After deadline (or tool budget), disable tools so agent must synthesize
+        in_synthesis = turn >= max_turns - synthesis_reserve or len(tool_log) >= tool_budget
+        create_kwargs = dict(
             model=model,
-            max_tokens=8192,
+            max_tokens=SYNTHESIS_MAX_TOKENS if in_synthesis else RESEARCH_MAX_TOKENS,
             system=system,
-            tools=TRAINING_TOOLS,
             messages=messages,
         )
+        if not in_synthesis:
+            create_kwargs["tools"] = TRAINING_TOOLS
+        response = client.messages.create(**create_kwargs)
         total_input += response.usage.input_tokens
         total_output += response.usage.output_tokens
 
@@ -1270,30 +1502,44 @@ def run_training_session(
                     })
             messages.append({"role": "assistant", "content": assistant_content})
             messages.append({"role": "user", "content": tool_results})
+            # Inject synthesis deadline before the last synthesis_reserve turns
+            if turn == max_turns - synthesis_reserve - 1:
+                messages.append({"role": "user", "content": SYNTHESIS_DEADLINE_MESSAGE})
         else:
-            # Final response — extract text
+            # Final or continuation response — extract text
             text = ""
             for block in response.content:
                 if hasattr(block, "text"):
                     text += block.text
+            synthesis_text += text
+
+            if response.stop_reason == "max_tokens" and continuations < MAX_JSON_CONTINUATIONS:
+                continuations += 1
+                print(f"  JSON truncated at turn {turn+1}, requesting continuation ({continuations}/{MAX_JSON_CONTINUATIONS})...")
+                messages.append({"role": "assistant", "content": response.content})
+                messages.append({"role": "user", "content": JSON_CONTINUATION_MESSAGE})
+                continue
 
             print(f"  Training complete: {turn+1} turns, {total_input} in / {total_output} out tokens")
 
-            # Parse JSON from response
-            training_output = _extract_json(text)
-            training_output["_meta"] = {
-                "model": model,
-                "turns": turn + 1,
-                "tool_calls": tool_log,
-                "usage": {"input_tokens": total_input, "output_tokens": total_output},
-                "raw_response_length": len(text),
-            }
+            training_output = _finalize_training_output(
+                client=client,
+                model=model,
+                system=system,
+                messages=messages,
+                synthesis_text=synthesis_text,
+                tool_log=tool_log,
+                total_input=total_input,
+                total_output=total_output,
+                turns=turn + 1,
+                continuations=continuations,
+            )
             return training_output
 
-    # max turns exceeded
-    print(f"  WARNING: max turns ({max_turns}) exceeded")
-    return {
-        "error": "max_turns_exceeded",
+    # max turns exceeded — salvage research via compact synthesis
+    print(f"  WARNING: max turns ({max_turns}) exceeded after {len(tool_log)} tool calls")
+    print("  Attempting compact synthesis from tool-call digest...")
+    broken = {
         "_meta": {
             "model": model,
             "turns": max_turns,
@@ -1301,6 +1547,189 @@ def run_training_session(
             "usage": {"input_tokens": total_input, "output_tokens": total_output},
         },
     }
+    client = _get_anthropic_client()
+    digest = _build_research_digest(broken)
+    response = client.messages.create(
+        model=model,
+        max_tokens=SYNTHESIS_MAX_TOKENS,
+        system=system,
+        messages=[{
+            "role": "user",
+            "content": COMPACT_SYNTHESIS_MESSAGE.format(research_digest=digest),
+        }],
+    )
+    total_input += response.usage.input_tokens
+    total_output += response.usage.output_tokens
+    text = ""
+    for block in response.content:
+        if hasattr(block, "text"):
+            text += block.text
+    training_output = _extract_json(text)
+    training_output["_meta"] = {
+        "model": model,
+        "turns": max_turns,
+        "tool_calls": tool_log,
+        "usage": {"input_tokens": total_input, "output_tokens": total_output},
+        "raw_response_length": len(text),
+        "repaired_from": "max_turns_exceeded",
+        "tool_budget": tool_budget,
+    }
+    if not _training_output_valid(training_output):
+        training_output.setdefault("raw_response", text)
+        training_output.setdefault("parse_error", "Could not extract JSON after max_turns salvage")
+        training_output["error"] = "max_turns_exceeded"
+    return training_output
+
+
+def _training_output_valid(training_output: Dict) -> bool:
+    if training_output.get("parse_error"):
+        return False
+    decomp = training_output.get("decomposition_assessment") or {}
+    sub_scopes = decomp.get("sub_scopes") or []
+    return isinstance(sub_scopes, list) and len(sub_scopes) >= 3
+
+
+def _finalize_training_output(
+    *,
+    client,
+    model: str,
+    system: str,
+    messages: List[Dict],
+    synthesis_text: str,
+    tool_log: List[Dict],
+    total_input: int,
+    total_output: int,
+    turns: int,
+    continuations: int,
+) -> Dict:
+    training_output = _extract_json(synthesis_text)
+    if not _training_output_valid(training_output):
+        print("  Synthesis JSON incomplete — running compact synthesis retry...")
+        retry_output, retry_usage = _run_compact_synthesis_retry(
+            client, model, system, messages, synthesis_text
+        )
+        total_input += retry_usage.get("input_tokens", 0)
+        total_output += retry_usage.get("output_tokens", 0)
+        if _training_output_valid(retry_output):
+            training_output = retry_output
+            training_output["_meta"] = {
+                "model": model,
+                "turns": turns,
+                "tool_calls": tool_log,
+                "usage": {"input_tokens": total_input, "output_tokens": total_output},
+                "raw_response_length": len(synthesis_text),
+                "json_continuations": continuations,
+                "compact_synthesis_retry": True,
+            }
+            return training_output
+
+    training_output["_meta"] = {
+        "model": model,
+        "turns": turns,
+        "tool_calls": tool_log,
+        "usage": {"input_tokens": total_input, "output_tokens": total_output},
+        "raw_response_length": len(synthesis_text),
+        "json_continuations": continuations,
+    }
+    if not _training_output_valid(training_output):
+        training_output.setdefault("raw_response", synthesis_text)
+        training_output.setdefault("parse_error", "Could not extract JSON")
+    return training_output
+
+
+def _run_compact_synthesis_retry(
+    client,
+    model: str,
+    system: str,
+    messages: List[Dict],
+    synthesis_text: str,
+) -> tuple[Dict, Dict]:
+    """One-shot compact synthesis when primary output fails to parse."""
+    digest = synthesis_text[:24000]
+    retry_messages = list(messages)
+    retry_messages.append({
+        "role": "user",
+        "content": COMPACT_SYNTHESIS_MESSAGE.format(research_digest=digest),
+    })
+    response = client.messages.create(
+        model=model,
+        max_tokens=SYNTHESIS_MAX_TOKENS,
+        system=system,
+        messages=retry_messages,
+    )
+    text = ""
+    for block in response.content:
+        if hasattr(block, "text"):
+            text += block.text
+    usage = {
+        "input_tokens": response.usage.input_tokens,
+        "output_tokens": response.usage.output_tokens,
+    }
+    return _extract_json(text), usage
+
+
+def repair_training_output(
+    broken_path: Path,
+    pack: Dict,
+    driver,
+    model: str = "claude-sonnet-4-6",
+) -> Dict:
+    """Re-synthesize JSON from a prior training file that failed to parse."""
+    with open(broken_path, encoding="utf-8") as f:
+        broken = json.load(f)
+
+    facet_key = pack["facet_key"]
+    domain = pack.get("domain_context", {})
+    seed = domain.get("seed", {})
+    framework_section = _fetch_framework_context(driver)
+
+    system = TRAINING_SYSTEM_PROMPT.format(
+        facet_key=facet_key.upper(),
+        facet_label=facet_key.capitalize(),
+        seed_label=seed.get("label", "?"),
+        seed_qid=seed.get("qid", "?"),
+        works_count=0,
+        candidate_count=0,
+        max_turns=0,
+    )
+    seed_qid = str(seed.get("qid", "Q17167")).strip().upper()
+    system = append_republic_graph_context(system, seed_qid, driver=driver)
+
+    prior_meta = broken.get("_meta", {})
+    digest = _build_research_digest(broken)
+
+    client = _get_anthropic_client()
+    response = client.messages.create(
+        model=model,
+        max_tokens=SYNTHESIS_MAX_TOKENS,
+        system=system,
+        messages=[{
+            "role": "user",
+            "content": COMPACT_SYNTHESIS_MESSAGE.format(research_digest=digest),
+        }],
+    )
+    text = ""
+    for block in response.content:
+        if hasattr(block, "text"):
+            text += block.text
+
+    training_output = _extract_json(text)
+    training_output["_meta"] = {
+        "model": model,
+        "turns": 0,
+        "tool_calls": prior_meta.get("tool_calls", []),
+        "usage": {
+            "input_tokens": response.usage.input_tokens,
+            "output_tokens": response.usage.output_tokens,
+        },
+        "raw_response_length": len(text),
+        "repaired_from": str(broken_path),
+        "framework_section_used": bool(framework_section),
+    }
+    if not _training_output_valid(training_output):
+        training_output.setdefault("raw_response", text)
+        training_output.setdefault("parse_error", "Could not extract JSON")
+    return training_output
 
 
 def _extract_json(text: str) -> Dict:
@@ -1329,8 +1758,43 @@ def _extract_json(text: str) -> Dict:
         except json.JSONDecodeError:
             pass
 
+    # Try repairing truncated JSON by closing open structures
+    if start >= 0:
+        repaired = _repair_truncated_json(text[start:])
+        if repaired is not None:
+            return repaired
+
     # Return raw text as fallback
     return {"raw_response": text, "parse_error": "Could not extract JSON"}
+
+
+def _repair_truncated_json(fragment: str) -> Optional[Dict]:
+    """Best-effort close for JSON truncated mid-output."""
+    trimmed = fragment.rstrip()
+    if trimmed.endswith(","):
+        trimmed = trimmed[:-1]
+
+    closers = (
+        '"}]}',
+        '"}]}]}',
+        '"}]}]}]}',
+        '"}]}]}]}]}',
+        '"}]}]}]}]}]}',
+        '"]}',
+        '"]]}',
+        '"]]}]}',
+        '"}',
+        '"}]}',
+        '}',
+        ']}',
+        ']}]}',
+    )
+    for suffix in closers:
+        try:
+            return json.loads(trimmed + suffix)
+        except json.JSONDecodeError:
+            continue
+    return None
 
 
 # ===========================================================================
@@ -1418,6 +1882,7 @@ def persist_training_to_graph(
                         cw.source_url = $source_url,
                         cw.doi = $doi,
                         cw.seed_qid = $seed_qid,
+                        cw.facet_key = $facet_key,
                         cw.facet_relevance = $relevance,
                         cw.facet_contribution = $contribution
                     WITH cw
@@ -1437,6 +1902,7 @@ def persist_training_to_graph(
                     source_url=w.get("source_url", ""),
                     doi=w.get("doi", ""),
                     seed_qid=seed_qid,
+                    facet_key=facet_key,
                     run_id=run_id,
                     facet_label=facet_key.capitalize(),
                     relevance=kw_info.get("relevance", ""),
@@ -1462,6 +1928,7 @@ def persist_training_to_graph(
                         cw.source = $source,
                         cw.source_url = $source_url,
                         cw.seed_qid = $seed_qid,
+                        cw.facet_key = $facet_key,
                         cw.is_oa = $is_oa,
                         cw.facet_relevance = $relevance,
                         cw.facet_contribution = $contribution,
@@ -1480,6 +1947,7 @@ def persist_training_to_graph(
                     source=dw.get("source", ""),
                     source_url=dw.get("source_url", ""),
                     seed_qid=seed_qid,
+                    facet_key=facet_key,
                     is_oa=dw.get("is_oa", False),
                     relevance=dw.get("relevance", ""),
                     contribution=dw.get("facet_contribution", ""),
@@ -1880,8 +2348,14 @@ def main():
     parser.add_argument("--fetch-only", action="store_true", help="Fetch corpus only, no reasoning or graph write")
     parser.add_argument("--corpus", default=None, help="Path to cached corpus JSON (skip fetch)")
     parser.add_argument("--output", default=None, help="Output directory for corpus/training files")
-    parser.add_argument("--model", default="claude-sonnet-4-20250514", help="Claude model for training")
+    parser.add_argument("--model", default="claude-sonnet-4-6", help="Claude model for training")
+    parser.add_argument("--max-turns", type=int, default=45, help="Max tool-call turns before synthesis")
     parser.add_argument("--no-graph", action="store_true", help="Skip graph write (output JSON only)")
+    parser.add_argument(
+        "--repair-training",
+        default=None,
+        help="Path to broken training JSON; re-synthesize output without re-researching",
+    )
     args = parser.parse_args()
 
     pack_path = Path(args.pack)
@@ -1905,37 +2379,63 @@ def main():
     print(f"SFA TRAINING: {facet_key} | Seed: {seed_qid}")
     print("=" * 70)
 
-    # --- Step 1: Corpus Fetch ---
-    if args.corpus:
-        corpus_path = Path(args.corpus)
-        print(f"\nLoading cached corpus from {corpus_path}")
-        with open(corpus_path, encoding="utf-8") as f:
-            corpus_works = json.load(f)
-        print(f"  Loaded {len(corpus_works)} works")
-    else:
-        corpus_works = fetch_corpus_for_facet(pack, extra_keywords)
-
-        # Save corpus to file
-        corpus_file = output_dir / f"{seed_qid}_{facet_key}_corpus.json"
-        with open(corpus_file, "w", encoding="utf-8") as f:
-            json.dump(corpus_works, f, indent=2, ensure_ascii=False)
-        print(f"\nCorpus saved: {corpus_file}")
-
-    if args.fetch_only:
-        print("\n--fetch-only: stopping after corpus fetch.")
-        return
-
-    # --- Step 2: Connect to Neo4j ---
     from scripts.config_loader import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
     from neo4j import GraphDatabase
 
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD or ""))
 
     try:
-        # --- Step 3: Claude Training Reasoning ---
-        training_output = run_training_session(
-            pack, corpus_works, driver, model=args.model, max_turns=40
-        )
+        if args.repair_training:
+            repair_path = Path(args.repair_training)
+            if not repair_path.exists():
+                print(f"ERROR: repair file not found: {repair_path}")
+                sys.exit(1)
+            print(f"\nRepairing training output from {repair_path}")
+            training_output = repair_training_output(repair_path, pack, driver, model=args.model)
+        else:
+            # --- Step 1: Corpus Fetch ---
+            if args.corpus:
+                corpus_path = Path(args.corpus)
+                print(f"\nLoading cached corpus from {corpus_path}")
+                with open(corpus_path, encoding="utf-8") as f:
+                    corpus_works = json.load(f)
+                print(f"  Loaded {len(corpus_works)} works")
+            else:
+                corpus_works = fetch_corpus_for_facet(pack, extra_keywords)
+
+                # Save corpus to file
+                corpus_file = output_dir / f"{seed_qid}_{facet_key}_corpus.json"
+                with open(corpus_file, "w", encoding="utf-8") as f:
+                    json.dump(corpus_works, f, indent=2, ensure_ascii=False)
+                print(f"\nCorpus saved: {corpus_file}")
+
+            if args.fetch_only:
+                print("\n--fetch-only: stopping after corpus fetch.")
+                return
+
+            # --- Step 3: Claude Training Reasoning ---
+            effective_max_turns = _compute_max_turns(pack, args.max_turns)
+            if effective_max_turns != args.max_turns:
+                print(f"  Scaled max turns: {args.max_turns} -> {effective_max_turns} "
+                      f"(candidates={pack.get('facet_delta', {}).get('candidate_count', 0)})")
+            training_output = run_training_session(
+                pack, corpus_works, driver, model=args.model, max_turns=effective_max_turns
+            )
+
+        # Sanitize hallucinated / off-scope candidate QIDs before persisting
+        if "error" not in training_output:
+            from scripts.agents.domain_initiator.candidate_qids import sanitize_training_output
+
+            training_output = sanitize_training_output(
+                training_output,
+                seed_qid=seed_qid,
+                source_facet=facet_key,
+            )
+            rejected = (training_output.get("candidate_qids_sanitized") or {}).get(
+                "rejected_count", 0
+            )
+            if rejected:
+                print(f"  Sanitized candidate QIDs: rejected {rejected} items")
 
         # Save training output to file
         training_file = output_dir / f"{seed_qid}_{facet_key}_training.json"

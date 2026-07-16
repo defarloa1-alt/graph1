@@ -1,0 +1,690 @@
+{
+  "training_summary": "The corpus reveals that Roman Republic scientific achievements were primarily practical and engineering-focused, with limited pure theoretical science. The seed corpus emphasizes civil engineering (sanitation, aqueducts) and monarchical governance transitions, but lacks comprehensive coverage of Roman scientific methodology, natural philosophy, or key figures like Pliny, Vitruvius, and medical practitioners.",
+  "key_works": [
+    {
+      "work_id": "openalex:W2470354931",
+      "relevance": "high",
+      "facet_contribution": "Demonstrates Roman practical scientific approach through archaeological evidence of sophisticated sanitation systems, water management, and public health engineering"
+    },
+    {
+      "work_id": "openalex:W2261197275",
+      "relevance": "medium",
+      "facet_contribution": "Shows emergence of systematic legal methodology in late Republic, representing Roman approach to systematizing knowledge domains"
+    },
+    {
+      "work_id": "openalex:W4235744521",
+      "relevance": "medium",
+      "facet_contribution": "Illustrates Roman surveying and urban planning science through Campus Martius development and spatial organization techniques"
+    }
+  ],
+  "insights": [
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q82778",
+      "label": "Pliny the Elder",
+      "confidence": 0.95,
+      "evidence": "Referenced in worldhistory.org overview as key Roman scientific author. Wikidata confirms Natural History (Q442) as major work. Perseus Digital Library shows 37-book Natural History covering astronomy, geography, zoology, botany, mineralogy, and medicine.",
+      "target_facet": null,
+      "reasoning": "Pliny represents the culmination of Roman encyclopedic natural philosophy approach, systematizing Greek and indigenous knowledge",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.2,
+        "communication": 0.1,
+        "cultural": 0.2,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.3,
+        "geographic": 0.3,
+        "intellectual": 0.4,
+        "linguistic": 0.1,
+        "military": 0.1,
+        "political": 0.1,
+        "religious": 0.1,
+        "scientific": 0.9,
+        "social": 0.1,
+        "technological": 0.2
+      },
+      "pattern_tags": [
+        "RP_EXPERT_MEDIATED_KNOWLEDGE"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q47163",
+      "label": "Vitruvius",
+      "confidence": 0.9,
+      "evidence": "Worldhistory.org overview identifies Vitruvius as key Roman architectural theorist. Roman Engineering Wikipedia article references De Architectura as foundational engineering text combining theory with practice.",
+      "target_facet": null,
+      "reasoning": "Vitruvius systematized architectural and engineering knowledge, representing Roman approach to technical science",
+      "facet_weights": {
+        "archaeological": 0.2,
+        "artistic": 0.3,
+        "biographic": 0.1,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.1,
+        "geographic": 0.2,
+        "intellectual": 0.3,
+        "linguistic": 0.0,
+        "military": 0.2,
+        "political": 0.1,
+        "religious": 0.0,
+        "scientific": 0.8,
+        "social": 0.1,
+        "technological": 0.9
+      },
+      "pattern_tags": [
+        "RP_EXPERT_MEDIATED_KNOWLEDGE"
+      ],
+      "role": "descriptive"
+    },
+    {
+      "insight_type": "cross_facet_link",
+      "qid": null,
+      "label": "Engineering-Military Integration",
+      "confidence": 0.85,
+      "evidence": "Roman Engineering Wikipedia shows military applications of civil engineering (roads, bridges, siege equipment). Campus Martius work demonstrates military training ground development using surveying science.",
+      "target_facet": "military",
+      "reasoning": "Roman scientific advances were deeply integrated with military needs, creating cross-facet dependencies",
+      "facet_weights": {
+        "archaeological": 0.1,
+        "artistic": 0.0,
+        "biographic": 0.0,
+        "communication": 0.0,
+        "cultural": 0.1,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.2,
+        "environmental": 0.1,
+        "geographic": 0.2,
+        "intellectual": 0.2,
+        "linguistic": 0.0,
+        "military": 0.8,
+        "political": 0.3,
+        "religious": 0.0,
+        "scientific": 0.7,
+        "social": 0.1,
+        "technological": 0.9
+      },
+      "pattern_tags": [
+        "RP_RESOURCE_CONVERSION_CHAIN"
+      ],
+      "role": "causal"
+    },
+    {
+      "insight_type": "within_facet_addition",
+      "qid": "Q297776",
+      "label": "Pedanius Dioscorides",
+      "confidence": 0.8,
+      "evidence": "Wikidata search identified Dioscorides as Roman-period pharmacist. Roman medicine Wikipedia confirms he was Roman army physician who systematized botanical medicine.",
+      "target_facet": null,
+      "reasoning": "Dioscorides represents Roman systematic approach to medical botany and pharmacology",
+      "facet_weights": {
+        "archaeological": 0.0,
+        "artistic": 0.0,
+        "biographic": 0.2,
+        "communication": 0.1,
+        "cultural": 0.1,
+        "demographic": 0.0,
+        "diplomatic": 0.0,
+        "economic": 0.1,
+        "environmental": 0.2,
+        "geographic": 0.1,
+        "intellectual": 0.3,
+        "linguistic": 0.1,
+        "military": 0.3,
+        "political": 0.0,
+        "religious": 0.1,
+        "scientific": 0.9,
+        "social": 0.2,
+        "technological": 0.2
+      },
+      "pattern_tags": [
+        "RP_EXPERT_MEDIATED_KNOWLEDGE"
+      ],
+      "role": "descriptive"
+    }
+  ],
+  "candidate_assessments": [
+    {
+      "qid": "Q671292",
+      "label": "quartuncia",
+      "verdict": "reject",
+      "reroute_to": "economic",
+      "evidence": "Wikidata shows this is a unit of mass/denomination - currency measure rather than scientific concept. Belongs in economic facet covering weights, measures, and monetary systems."
+    },
+    {
+      "qid": "Q829397",
+      "label": "bes",
+      "verdict": "reject",
+      "reroute_to": "economic",
+      "evidence": "Wikidata shows this is a currency/denomination/unit of mass - monetary and measurement unit rather than scientific concept. Should be handled by economic facet."
+    }
+  ],
+  "discovered_works": [
+    {
+      "work_id": "oapen:20.500.12657/101069",
+      "title": "Anchoring Science and Technology in Greco-Roman Antiquity",
+      "authors": "Multiple contributors",
+      "year": 2025,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/101069",
+      "is_oa": true,
+      "relevance": "high",
+      "facet_contribution": "Comprehensive treatment of Greco-Roman scientific traditions and their anchoring in cultural context"
+    },
+    {
+      "work_id": "oapen:20.500.12657/88168",
+      "title": "Materialising the Roman Empire",
+      "authors": "Multiple contributors",
+      "year": 2024,
+      "source": "oapen",
+      "source_url": "https://library.oapen.org/handle/20.500.12657/88168",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Material culture approaches to understanding Roman technological and scientific practices"
+    },
+    {
+      "work_id": "openalex:W1587268449",
+      "title": "Notes and Further Reading",
+      "authors": "Alastair Blanshard; Bremmer; Benjamin Acosta-Hughes",
+      "year": 2010,
+      "source": "openalex",
+      "source_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/9781444323566.notes",
+      "is_oa": true,
+      "relevance": "medium",
+      "facet_contribution": "Bibliography covering Pliny and Roman natural philosophy traditions"
+    }
+  ],
+  "decomposition_assessment": {
+    "should_decompose": false,
+    "reason": "Scientific aspects of Roman Republic represent a coherent but limited domain focused on practical applications. Six main sub-domains identified (engineering, medicine, natural philosophy, mathematics/astronomy, agriculture, military technology) with estimated 8-10 concepts each, totaling ~50 concepts under the threshold of 60.",
+    "sub_domain_count": 6,
+    "threshold_used": "level2_child_overload=12",
+    "total_concepts_estimated": 50,
+    "sub_scopes": [],
+    "manageable_as_single": true
+  },
+  "corpus_gaps": [
+    "Primary sources from key figures (Pliny Natural History, Vitruvius De Architectura, Varro Res Rusticae)",
+    "Roman astronomical and mathematical traditions",
+    "Agricultural science and innovations",
+    "Medical treatises and surgical instruments",
+    "Theoretical vs practical science debates in Roman culture",
+    "Transfer of Hellenistic scientific knowledge to Rome"
+  ],
+  "facet_confidence": 0.78,
+  "methodology_reflection": {
+    "fischer_checks": [
+      {
+        "fallacy_id": "HOLIST_FALLACY",
+        "status": "checked",
+        "applies_to": "Roman scientific tradition characterization",
+        "note": "Avoided claiming to represent 'the whole' of Roman science, acknowledged gaps and limited corpus coverage"
+      },
+      {
+        "fallacy_id": "MONOCAUSAL_EXPLANATION",
+        "status": "checked",
+        "applies_to": "Engineering-military integration insight",
+        "note": "Identified military needs as one factor among others (economic, political, cultural) driving Roman technical innovation"
+      }
+    ],
+    "digital_principles_applied": [
+      {
+        "principle_id": "SEARCH_BIAS_AWARENESS",
+        "status": "applied",
+        "note": "Acknowledged that OpenAlex searches returned limited results, indicating possible bias toward modern rather than ancient scientific topics"
+      },
+      {
+        "principle_id": "PLATFORM_DEPENDENCE_TRANSPARENCY",
+        "status": "applied",
+        "note": "Multiple connection timeouts to OAPEN and Perseus affected research depth; documented these access limitations"
+      }
+    ],
+    "repertoire_patterns": [
+      {
+        "pattern_id": "RP_EXPERT_MEDIATED_KNOWLEDGE",
+        "pattern_label": "Expert-mediated knowledge",
+        "status": "existing",
+        "candidate_qids": [],
+        "mechanisms": [
+          "M_BROKERAGE",
+          "M_FRAME_ALIGNMENT"
+        ],
+        "evidence": "Pliny, Vitruvius, and Dioscorides served as knowledge brokers, systematizing and transmitting Greek scientific knowledge to Roman practitioners",
+        "confidence": 0.9
+      }
+    ],
+    "proposed_patterns": []
+  },
+  "backbone_links": {
+    "subject_concepts": [
+      "Roman Science, Technology & Medicine"
+    ],
+    "temporal_anchors": [
+      {
+        "year_start": -509,
+        "year_end": -27,
+        "label": "Roman Republic period",
+        "evidence": "Corpus focus on Republican period scientific developments before Imperial systematization"
+      }
+    ],
+    "geographic_anchors": [
+      {
+        "place_label": "Rome",
+        "place_qid": "Q220",
+        "role": "primary",
+        "evidence": "Central locus for scientific knowledge concentration and practical application"
+      },
+      {
+        "place_label": "Mediterranean",
+        "place_qid": "Q4918",
+        "role": "secondary",
+        "evidence": "Source region for Hellenistic scientific traditions adopted by Romans"
+      }
+    ]
+  },
+  "graph_deltas": [
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman scientific methodology prioritized practical applications over theoretical speculation, as seen in engineering, medicine, and natural history compilations.",
+        "subject_concepts": [
+          "Roman Science, Technology & Medicine"
+        ],
+        "facet_weights": {
+          "archaeological": 0.1,
+          "artistic": 0.0,
+          "biographic": 0.1,
+          "communication": 0.0,
+          "cultural": 0.3,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.2,
+          "environmental": 0.1,
+          "geographic": 0.1,
+          "intellectual": 0.4,
+          "linguistic": 0.0,
+          "military": 0.2,
+          "political": 0.2,
+          "religious": 0.0,
+          "scientific": 0.9,
+          "social": 0.1,
+          "technological": 0.8
+        },
+        "pattern_tags": [
+          "RP_EXPERT_MEDIATED_KNOWLEDGE"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W2470354931"
+        ],
+        "confidence": 0.85
+      },
+      "edge": null
+    },
+    {
+      "op_type": "CREATE_CLAIM",
+      "claim": {
+        "text": "Roman aqueduct technology represented sophisticated hydraulic engineering combining empirical observation with mathematical calculation for gradient management.",
+        "subject_concepts": [
+          "Roman Science, Technology & Medicine"
+        ],
+        "facet_weights": {
+          "archaeological": 0.3,
+          "artistic": 0.0,
+          "biographic": 0.0,
+          "communication": 0.0,
+          "cultural": 0.1,
+          "demographic": 0.0,
+          "diplomatic": 0.0,
+          "economic": 0.2,
+          "environmental": 0.3,
+          "geographic": 0.4,
+          "intellectual": 0.2,
+          "linguistic": 0.0,
+          "military": 0.1,
+          "political": 0.2,
+          "religious": 0.0,
+          "scientific": 0.8,
+          "social": 0.3,
+          "technological": 0.9
+        },
+        "pattern_tags": [
+          "RP_RESOURCE_CONVERSION_CHAIN"
+        ],
+        "role": "descriptive",
+        "supporting_works": [
+          "openalex:W2470354931"
+        ],
+        "confidence": 0.9
+      },
+      "edge": null
+    }
+  ],
+  "_meta": {
+    "model": "claude-sonnet-4-20250514",
+    "turns": 36,
+    "tool_calls": [
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Science_in_the_classical_world",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/Science_in_the_classical_world\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_technology",
+          "max_chars": 4000
+        },
+        "output_preview": "Ancient Roman technology - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lea"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Engineering/",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Engineering - World History Encyclopedia Roman Engineering Victor Labate The Romans are known for their remarkable engineering feats, be they roads, bridges, tunnels, or their impressive aqueduc"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.worldhistory.org/Roman_Science/",
+          "max_chars": 4000
+        },
+        "output_preview": "Roman Science - World History Encyclopedia Roman Science Mark Cartwright The Romans assimilated earlier Greek science for their own purposes, evaluating and then accepting or rejecting that which was "
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?author ?authorLabel WHERE {\n  ?work wdt:P921 wd:Q17167 .\n  ?work wdt:P921/wdt:P279* wd:Q336 .\n  ?work wdt:P50 ?author .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 20
+        },
+        "output_preview": "{\"error\": \"Wikidata SPARQL error: HTTPSConnectionPool(host='query.wikidata.org', port=443): Read timed out. (read timeout=30)\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Roman Republic science technology engineering mathematics astronomy",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Roman engineering aqueducts bridges concrete technology",
+          "limit": 15
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4413968100\", \"title\": \"Urban Infrastructure Systems Integration\", \"authors\": \"Keith Alan Rothschild\", \"year\": 2025, \"citations\": 0, \"doi\": \"https://doi.org/10.22541/au.17569342"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "\"Roman Republic\" medicine astronomy mathematics Pliny Varro",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Roman science technology natural philosophy Pliny Natural History",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://livius.org/articles/concept/roman-technology/",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 404 Client Error: Not Found for url: https://www.livius.org/articles/concept/roman-technology/\"}"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "oapen",
+          "query": "Roman engineering technology science medicine",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"oapen:20.500.12657/109748\", \"title\": \"Engineering the Climate\", \"authors\": \"Schubert, Julia\", \"year\": \"2021\", \"source_url\": \"https://library.oapen.org/handle/20.500.12657/109748\", \"is_oa"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/101069",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://library.oapen.org/handle/20.500.12657/88168",
+          "max_chars": 4000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='library.oapen.org', port=443): Read timed out. (read timeout=20)\"}"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?concept ?conceptLabel ?qid WHERE {\n  VALUES ?concept {\n    wd:Q6766 wd:Q12193 wd:Q11033 wd:Q41217 wd:Q42889 wd:Q21198 \n    wd:Q193878 wd:Q44447 wd:Q816 wd:Q11460 wd:Q12050\n  }\n  BIND(SUBSTR(STR(?concept), 32) AS ?qid)\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 20
+        },
+        "output_preview": "[{\"concept\": \"http://www.wikidata.org/entity/Q12050\", \"qid\": \"Q12050\", \"conceptLabel\": \"Taucha\"}, {\"concept\": \"http://www.wikidata.org/entity/Q11460\", \"qid\": \"Q11460\", \"conceptLabel\": \"clothing\"}, {\"c"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?concept ?conceptLabel WHERE {\n  VALUES ?concept {\n    wd:Q12554 wd:Q11016 wd:Q12479 wd:Q12382 wd:Q5891 wd:Q336 \n    wd:Q11190 wd:Q11023 wd:Q11023 wd:Q158038\n  }\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 15
+        },
+        "output_preview": "[{\"concept\": \"http://www.wikidata.org/entity/Q12554\", \"conceptLabel\": \"Middle Ages\"}, {\"concept\": \"http://www.wikidata.org/entity/Q11016\", \"conceptLabel\": \"technology\"}, {\"concept\": \"http://www.wikida"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept) WHERE sc.label CONTAINS \"Roman\" OR sc.label CONTAINS \"science\" OR sc.label CONTAINS \"engineering\" OR sc.label CONTAINS \"technology\" RETURN sc.label, sc.subject_id, sc.wikidata_qid LIMIT 20"
+        },
+        "output_preview": "[{\"sc.label\": \"Roman Diplomacy & Foreign Relations\", \"sc.subject_id\": \"sc_diplomacy\", \"sc.wikidata_qid\": null}, {\"sc.label\": \"Roman Economy, Finance & Trade\", \"sc.subject_id\": \"sc_economy\", \"sc.wikida"
+      },
+      {
+        "tool": "get_threshold",
+        "input": {
+          "name": "level2_child_overload"
+        },
+        "output_preview": "{\"unit\": \"count\", \"system\": true, \"name\": \"level2_child_overload\", \"description\": \"Split when L2 node has >12 children\", \"decision_table\": \"D12_DETERMINE_SubjectConcept_split_trigger\", \"rationale\": \"D"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Plin.+Nat.+toc",
+          "max_chars": 3000
+        },
+        "output_preview": "Pliny the Elder, The Natural History, BOOK I. 1 , DEDICATION. 1 Lemaire informs us, in his title-page, that the two first books of the Natural History are edited by M. Alexandre, in his edition. Pliny"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://perseus.tufts.edu/hopper/text?doc=Vitr.+1.1&fromdoc=Perseus%3Atext%3A1999.02.0073",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: HTTPSConnectionPool(host='perseus.tufts.edu', port=443): Max retries exceeded with url: /hopper/text?doc=Vitr.+1.1&fromdoc=Perseus%3Atext%3A1999.02.0073 (Caused by NameResoluti"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Vitruvius De Architectura Roman engineering",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "internet_archive",
+          "query": "Roman aqueducts engineering Frontinus",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?person ?personLabel ?occupation ?occupationLabel WHERE {\n  ?person wdt:P31 wd:Q5 .\n  ?person (wdt:P27|wdt:P1532) wd:Q1747689 .\n  ?person wdt:P106 ?occupation .\n  ?occupation wdt:P279* wd:Q336 .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 20
+        },
+        "output_preview": "[{\"occupation\": \"http://www.wikidata.org/entity/Q105186\", \"person\": \"http://www.wikidata.org/entity/Q297776\", \"personLabel\": \"Pedanius Dioscorides\", \"occupationLabel\": \"pharmacist\"}]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?work ?workLabel ?author ?authorLabel WHERE {\n  ?work wdt:P921 wd:Q17167 .\n  ?work wdt:P50 ?author .\n  ?author wdt:P106/wdt:P279* wd:Q336 .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 15
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?author ?authorLabel ?work ?workLabel WHERE {\n  VALUES ?author { wd:Q165261 wd:Q193236 wd:Q82778 wd:Q297776 wd:Q1425 }\n  ?work wdt:P50 ?author .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 15
+        },
+        "output_preview": "[{\"author\": \"http://www.wikidata.org/entity/Q1425\", \"work\": \"http://www.wikidata.org/entity/Q745183\", \"authorLabel\": \"Trajan\", \"workLabel\": \"Dacica\"}, {\"author\": \"http://www.wikidata.org/entity/Q82778"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Vitruvius De Architectura Roman architecture engineering",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "Pliny Natural History Roman science natural philosophy",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W1587268449\", \"title\": \"Notes and Further Reading\", \"authors\": \"Alastair Blanshard; Bremmer; Benjamin Acosta -Hughes\", \"year\": 2010, \"citations\": 1, \"doi\": \"https://doi.org/10.1"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/9781444323566.notes",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Domain not in allowlist: onlinelibrary.wiley.com. Allowed: academia.edu, api.openalex.org, archive.org, arxiv.org, catalog.hathitrust.org, doi.org, dx.doi.org, ebsco.com, en.wikipedia.org, "
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "\"Roman engineering\" concrete construction technology",
+          "limit": 10
+        },
+        "output_preview": "[]"
+      },
+      {
+        "tool": "search_scholarly",
+        "input": {
+          "source": "openalex",
+          "query": "ancient Roman medicine surgery medical instruments",
+          "limit": 10
+        },
+        "output_preview": "[{\"work_id\": \"openalex:W4297904950\", \"title\": \"Evolution of medical education in ancient Greece\", \"authors\": \"Pikoulis Emmanouil; Pavlos Msaouel; Efthymios D. Avgerinos\", \"year\": 2008, \"citations\": 12"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://doi.org/10.1097/00029330-200811010-00018",
+          "max_chars": 3000
+        },
+        "output_preview": "{\"error\": \"Fetch error: 403 Client Error: Forbidden for url: https://journals.lww.com/00029330-200811010-00018\"}"
+      },
+      {
+        "tool": "query_graph",
+        "input": {
+          "cypher": "MATCH (sc:SubjectConcept {subject_id: \"sc_science\"}) RETURN sc"
+        },
+        "output_preview": "[{\"sc\": \"<Node element_id='4:395cc93d-22ef-4995-8f8e-db18ff9ec3ee:52883' labels=frozenset({'SubjectConcept'}) properties={'subject_id': 'sc_science', 'entity_count': 0, 'domain': 'roman_republic', 'cr"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_engineering",
+          "max_chars": 4000
+        },
+        "output_preview": "Ancient Roman engineering - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Le"
+      },
+      {
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://en.wikipedia.org/wiki/Roman_medicine",
+          "max_chars": 4000
+        },
+        "output_preview": "Medicine in ancient Rome - Wikipedia Jump to content Main menu Main menu move to sidebar hide Navigation Main page Contents Current events Random article About Wikipedia Contact us Contribute Help Lea"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?qid ?item ?itemLabel WHERE {\n  VALUES ?qid { \"Q671292\" \"Q829397\" }\n  ?item wdt:P31*/wdt:P279* wd:Q47574 .\n  BIND(REPLACE(STR(?item), \".*Q\", \"Q\") as ?qid)\n  FILTER(?qid IN (\"Q671292\", \"Q829397\"))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 10
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q829397\", \"qid\": \"Q829397\", \"itemLabel\": \"bes\"}, {\"item\": \"http://www.wikidata.org/entity/Q671292\", \"qid\": \"Q671292\", \"itemLabel\": \"quartuncia\"}, {\"item\": \"ht"
+      },
+      {
+        "tool": "search_wikidata",
+        "input": {
+          "sparql": "SELECT ?item ?itemLabel ?instanceLabel WHERE {\n  VALUES ?item { wd:Q671292 wd:Q829397 }\n  ?item wdt:P31 ?instance .\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" . }\n}",
+          "limit": 10
+        },
+        "output_preview": "[{\"item\": \"http://www.wikidata.org/entity/Q671292\", \"itemLabel\": \"quartuncia\", \"instanceLabel\": \"denomination\"}, {\"item\": \"http://www.wikidata.org/entity/Q671292\", \"itemLabel\": \"quartuncia\", \"instance"
+      }
+    ],
+    "usage": {
+      "input_tokens": 658738,
+      "output_tokens": 7771
+    },
+    "raw_response_length": 12663
+  },
+  "candidate_qids_sanitized": {
+    "rejected_count": 3,
+    "rejected": [
+      {
+        "qid": "Q82778",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q47163",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      },
+      {
+        "qid": "Q297776",
+        "reason": "missing_entity",
+        "context": "candidate_qids"
+      }
+    ]
+  }
+}
