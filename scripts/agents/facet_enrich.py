@@ -41,6 +41,8 @@ try:
 except ImportError:
     anthropic = None
 
+from scripts.agents.republic_graph_context import append_republic_graph_context
+
 CANONICAL_FACETS = [
     "archaeological", "artistic", "biographic", "communication",
     "cultural", "demographic", "diplomatic", "economic",
@@ -112,9 +114,16 @@ def enrich_facet(facet_key: str, client) -> dict:
         facet_label=facet_label,
     )
 
+    system = append_republic_graph_context(
+        f"You are a curriculum designer for {facet_label} studies in the Chrystallum knowledge graph.",
+        "Q17167",
+        facet=facet_key,
+    )
+
     msg = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=4096,
+        system=system,
         messages=[{"role": "user", "content": prompt}],
     )
 

@@ -54,10 +54,103 @@ function ReconBadge({ status }) {
   );
 }
 
+function IgarPanel({ igar, predicateStatus, researchNotes, claimLayer }) {
+  const hasIgar = Boolean(
+    igar?.input || igar?.goal || igar?.action || igar?.result || igar?.complete
+  );
+  const isInterpretation = claimLayer === "interpretation" || claimLayer === "igar";
+  if (!hasIgar && predicateStatus !== "tbd" && !researchNotes && !isInterpretation) {
+    return (
+      <section
+        style={{
+          marginTop: 12,
+          padding: 12,
+          background: "#f7f7f8",
+          border: "1px solid #ddd",
+          borderRadius: 6,
+          fontSize: 12,
+          color: "#666",
+        }}
+      >
+        <strong>IGAR</strong> — not attached (optional interpretation; atomic Q–P–Q stands alone)
+      </section>
+    );
+  }
+  const steps = [
+    ["Input", igar?.input, igar?.input_year],
+    ["Goal", igar?.goal, null],
+    ["Action", igar?.action, igar?.action_year],
+    ["Result", igar?.result, igar?.result_year],
+  ];
+  return (
+    <section
+      style={{
+        marginTop: 12,
+        padding: 12,
+        background: "#f3eefc",
+        border: "1px solid #b39ddb",
+        borderRadius: 6,
+        fontSize: 13,
+      }}
+    >
+      <h3 style={{ fontSize: 14, margin: "0 0 8px" }}>
+        IGAR interpretation (optional)
+        {hasIgar && !igar?.complete && (
+          <span style={{ marginLeft: 8, color: "#7a5a12", fontSize: 12 }}>incomplete</span>
+        )}
+        {!hasIgar && (
+          <span style={{ marginLeft: 8, color: "#7a5a12", fontSize: 12 }}>not attached</span>
+        )}
+      </h3>
+      {hasIgar ? (
+        <div style={{ display: "grid", gap: 8 }}>
+          {steps.map(([label, text, year]) => (
+            <div key={label} style={{ display: "grid", gridTemplateColumns: "70px 1fr", gap: 8 }}>
+              <div style={{ fontWeight: 700, color: "#555" }}>{label}</div>
+              <div>
+                <div>{text || "—"}</div>
+                {year != null && (
+                  <div style={{ fontSize: 11, color: "#888", fontFamily: "monospace" }}>
+                    year {year}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div style={{ fontSize: 12, color: "#666" }}>
+          Atomic participation does not need IGAR. Attach only after source-backed
+          actor-decision research (Input = trigger, not biography).
+        </div>
+      )}
+      {predicateStatus === "tbd" && (
+        <div
+          style={{
+            marginTop: 10,
+            padding: 8,
+            background: "#fff3e0",
+            border: "1px solid #ffb74d",
+            borderRadius: 4,
+            fontSize: 12,
+          }}
+        >
+          <strong>Predicate TBD</strong> — do not Validate until research settles the type.
+          {researchNotes && <div style={{ marginTop: 6 }}>{researchNotes}</div>}
+        </div>
+      )}
+      {predicateStatus !== "tbd" && researchNotes && (
+        <div style={{ marginTop: 8, fontSize: 12, color: "#555" }}>{researchNotes}</div>
+      )}
+    </section>
+  );
+}
+
 function ApprovalContext({ ctx }) {
   if (!ctx) return null;
   const rows = [
     ["Person anchor", ctx.person?.label, ctx.person?.lifespan, ctx.person?.qid],
+    ["SubjectConcept scope", ctx.scope?.label, ctx.scope?.routing_score != null ? `score ${ctx.scope.routing_score}` : null, ctx.scope?.subject_id],
     ["Target / other", ctx.target?.label, ctx.target?.when, ctx.target?.qid],
     [
       "Relationship",
@@ -137,6 +230,33 @@ function ApprovalContext({ ctx }) {
           </ul>
         </div>
       )}
+      {ctx.geo_gaps?.length > 0 && (
+        <div
+          style={{
+            marginTop: 10,
+            padding: 8,
+            background: "#fce4ec",
+            border: "1px solid #f48fb1",
+            borderRadius: 4,
+            fontSize: 12,
+          }}
+        >
+          <strong>Geo gaps</strong> — Validate blocked until Event has a Place with lat/long
+          <ul style={{ margin: "6px 0 0", paddingLeft: 18 }}>
+            {ctx.geo_gaps.map((w) => (
+              <li key={w}>{w}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {ctx.target?.location && (
+        <div style={{ marginTop: 8, fontSize: 12, color: "#555" }}>
+          <strong>Location:</strong> {ctx.target.location.label || "Place"}{" "}
+          <span style={{ fontFamily: "monospace" }}>({ctx.target.location.qid})</span>
+          {" · "}
+          {Number(ctx.target.location.lat).toFixed(4)}, {Number(ctx.target.location.long).toFixed(4)}
+        </div>
+      )}
       {ctx.other_gaps?.length > 0 && (
         <div
           style={{
@@ -156,7 +276,10 @@ function ApprovalContext({ ctx }) {
           </ul>
         </div>
       )}
-      {!ctx.date_gaps?.length && !ctx.other_gaps?.length && ctx.warnings?.length > 0 && (
+      {!ctx.date_gaps?.length &&
+        !ctx.geo_gaps?.length &&
+        !ctx.other_gaps?.length &&
+        ctx.warnings?.length > 0 && (
         <div
           style={{
             marginTop: 10,
@@ -186,10 +309,13 @@ export default function ClaimReview() {
   const [selectedId, setSelectedId] = useState(null);
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
-  const [statusFilter, setStatusFilter] = useState("proposed");
+  const [statusFilter, setStatusFilter] = useState("held");
   const [reconFilter, setReconFilter] = useState("all");
+  const [agentFilter, setAgentFilter] = useState(
+    "SFA_sc_q17167_military_wars_campaigns_MILITARY"
+  );
   const [search, setSearch] = useState("");
-  const [proposedOnly, setProposedOnly] = useState(true);
+  const [proposedOnly, setProposedOnly] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -199,6 +325,7 @@ export default function ClaimReview() {
       if (statusFilter !== "all") params.set("status", statusFilter);
       if (reconFilter === "unreconciled") params.set("reconciliation", "unreconciled");
       else if (reconFilter !== "all") params.set("reconciliation", reconFilter);
+      if (agentFilter) params.set("source_agent", agentFilter);
 
       const res = await fetch(`${API}/claims?${params}`);
       if (!res.ok) {
@@ -207,7 +334,10 @@ export default function ClaimReview() {
       }
       const data = await res.json();
       setDoc(data);
-      setSelectedId((prev) => prev || data.claims?.[0]?.claim_id || null);
+      const ids = new Set((data.claims || []).map((c) => c.claim_id));
+      setSelectedId((prev) =>
+        prev && ids.has(prev) ? prev : data.claims?.[0]?.claim_id || null
+      );
     } catch (err) {
       setError(
         err.message +
@@ -216,25 +346,48 @@ export default function ClaimReview() {
     } finally {
       setLoading(false);
     }
-  }, [statusFilter, reconFilter]);
+  }, [statusFilter, reconFilter, agentFilter]);
 
   useEffect(() => {
     load();
   }, [load]);
 
+  // Hold/Validated/Rejected are explicit — do not also force "proposed".
+  useEffect(() => {
+    if (statusFilter !== "all" && statusFilter !== "proposed" && proposedOnly) {
+      setProposedOnly(false);
+    }
+  }, [statusFilter, proposedOnly]);
+
   const claims = doc?.claims || [];
+  const activeAgent = doc?.source_agent || agentFilter;
 
   const filtered = useMemo(() => {
     return claims.filter((c) => {
-      if (proposedOnly && c.status !== "proposed" && !c.promoted) return false;
+      if (
+        agentFilter &&
+        agentFilter !== "all" &&
+        c.source_agent &&
+        c.source_agent !== agentFilter
+      ) {
+        return false;
+      }
+      if (
+        proposedOnly &&
+        (statusFilter === "all" || statusFilter === "proposed") &&
+        c.status !== "proposed" &&
+        !c.promoted
+      ) {
+        return false;
+      }
       if (search) {
         const q = search.toLowerCase();
-        const hay = `${c.label} ${c.claim_id} ${c.subject_qid} ${c.relationship_type}`.toLowerCase();
+        const hay = `${c.label} ${c.claim_id} ${c.subject_qid} ${c.relationship_type} ${c.wd_statement || ""}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [claims, proposedOnly, search]);
+  }, [claims, proposedOnly, search, agentFilter, statusFilter]);
 
   const selected = claims.find((c) => c.claim_id === selectedId) || null;
 
@@ -247,6 +400,37 @@ export default function ClaimReview() {
 
     const ctx = selected.approval_context;
     const dateGaps = ctx?.date_gaps || [];
+    const geoGaps = ctx?.geo_gaps || [];
+    const predicateTbd =
+      (selected.predicate_status || ctx?.predicate_status) === "tbd";
+    const claimLayer =
+      selected.claim_layer || ctx?.claim_layer || "atomic_participation";
+    const igarIncomplete =
+      (claimLayer === "interpretation" || claimLayer === "igar") &&
+      !(selected.igar?.complete || ctx?.igar?.complete);
+    if (status === "validated" && predicateTbd) {
+      window.alert(
+        "Predicate is TBD. Keep on Hold until research settles the relationship type."
+      );
+      return;
+    }
+    if (status === "validated" && igarIncomplete) {
+      window.alert(
+        "This is an interpretation claim and IGAR is incomplete. Keep on Hold."
+      );
+      return;
+    }
+    if (status === "validated" && geoGaps.length > 0) {
+      window.alert(
+        [
+          "Geo required: Event must link to a Place with Wikidata lat/long.",
+          ...geoGaps.map((g) => `• ${g}`),
+          "",
+          "Keep on Hold. Run: python scripts/system/ensure_event_place_geo.py --event-qid <QID>",
+        ].join("\n")
+      );
+      return;
+    }
     if (status === "validated" && dateGaps.length > 0) {
       const noteOk = notes.trim().length >= 8;
       const msg = [
@@ -323,14 +507,17 @@ export default function ClaimReview() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <div>
-            <div style={{ fontWeight: 700, fontSize: 16 }}>Biographic Claims</div>
+            <div style={{ fontWeight: 700, fontSize: 16 }}>Claims review</div>
             <div style={{ fontSize: 12, color: "#aaa" }}>
-              Neo4j · sfa_biographic · {stats.total ?? 0} total
+              Neo4j · {activeAgent} · {stats.total ?? 0} total · showing {filtered.length}
             </div>
           </div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginLeft: "auto" }}>
             <span style={{ fontSize: 11, color: "#ccc" }}>
               Proposed: <strong style={{ color: "#fff" }}>{stats.proposed ?? 0}</strong>
+            </span>
+            <span style={{ fontSize: 11, color: "#ccc" }}>
+              Held: <strong style={{ color: "#fff" }}>{stats.held ?? 0}</strong>
             </span>
             <span style={{ fontSize: 11, color: "#ccc" }}>
               Validated: <strong style={{ color: "#fff" }}>{stats.validated ?? 0}</strong>
@@ -381,6 +568,13 @@ export default function ClaimReview() {
           borderBottom: "1px solid #ddd",
         }}
       >
+        <select value={agentFilter} onChange={(e) => setAgentFilter(e.target.value)}>
+          <option value="SFA_sc_q17167_military_wars_campaigns_MILITARY">
+            Military pilot
+          </option>
+          <option value="sfa_biographic">Biographic</option>
+          <option value="all">All agents</option>
+        </select>
         <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
           <option value="all">All statuses</option>
           <option value="proposed">Proposed</option>
@@ -471,6 +665,24 @@ export default function ClaimReview() {
                 {selected.candidate_qid && ` · candidate ${selected.candidate_qid}`}
                 {selected.pred_pid && ` · ${selected.pred_pid}`}
               </div>
+              {selected.wd_statement && (
+                <div
+                  style={{
+                    marginTop: 8,
+                    padding: "8px 10px",
+                    background: "#111827",
+                    color: "#e5e7eb",
+                    borderRadius: 4,
+                    fontFamily: "monospace",
+                    fontSize: 13,
+                  }}
+                >
+                  {selected.wd_statement}
+                  <div style={{ fontSize: 10, color: "#9ca3af", marginTop: 4 }}>
+                    language-neutral Wikidata statement
+                  </div>
+                </div>
+              )}
 
               {selected.description && (
                 <section
@@ -489,6 +701,44 @@ export default function ClaimReview() {
                 </section>
               )}
 
+              {(selected.routed_subject_label || selected.routed_subject_id) && (
+                <section
+                  style={{
+                    marginTop: 12,
+                    padding: 12,
+                    background: "#f3e5f5",
+                    border: "1px solid #ce93d8",
+                    borderRadius: 6,
+                    fontSize: 13,
+                  }}
+                >
+                  <h3 style={{ fontSize: 14, margin: "0 0 8px" }}>SubjectConcept scope</h3>
+                  <div style={{ fontWeight: 600 }}>{selected.routed_subject_label || selected.routed_subject_id}</div>
+                  {selected.scope_description && (
+                    <p style={{ margin: "6px 0 0", color: "#555" }}>{selected.scope_description}</p>
+                  )}
+                  <div style={{ marginTop: 6, color: "#777", fontSize: 11, fontFamily: "monospace" }}>
+                    {selected.routed_subject_id}
+                    {selected.routing_score != null &&
+                      ` · routing ${Number(selected.routing_score).toFixed(2)} (${selected.routing_method || "?"})`}
+                  </div>
+                </section>
+              )}
+
+              <IgarPanel
+                igar={selected.igar || selected.approval_context?.igar}
+                predicateStatus={
+                  selected.predicate_status || selected.approval_context?.predicate_status
+                }
+                researchNotes={
+                  selected.research_notes || selected.approval_context?.research_notes
+                }
+                claimLayer={
+                  selected.claim_layer ||
+                  selected.approval_context?.claim_layer ||
+                  'atomic_participation'
+                }
+              />
               <ApprovalContext ctx={selected.approval_context} />
 
               {(selected.from_qid || selected.to_qid) && (
@@ -524,12 +774,14 @@ export default function ClaimReview() {
               >
                 {[
                   ["Type", selected.claim_type],
+                  ["SubjectConcept", selected.routed_subject_label],
                   ["Relationship", selected.relationship_type],
                   ["Person lifespan", selected.person_lifespan],
                   ["Target when", selected.target_when],
                   ["Relation when", selected.relation_when],
                   ["Date completeness", selected.date_completeness],
                   ["Enrichment", selected.enrichment_status],
+                  ["Registry", selected.registry_status],
                   ["Wikidata PID", selected.pred_pid],
                   ["Item type", selected.item_type_label],
                   ["Harvested", selected.harvested_at],
@@ -598,6 +850,11 @@ export default function ClaimReview() {
                     {label}
                   </button>
                 ))}
+                {selected.approval_context?.geo_gaps?.length > 0 && (
+                  <span style={{ fontSize: 12, color: "#ad1457" }}>
+                    Geo gaps — Validate blocked until Place has lat/long
+                  </span>
+                )}
                 {selected.approval_context?.date_gaps?.length > 0 && (
                   <span style={{ fontSize: 12, color: "#b45309" }}>
                     Date gaps — Hold recommended, or validate with notes

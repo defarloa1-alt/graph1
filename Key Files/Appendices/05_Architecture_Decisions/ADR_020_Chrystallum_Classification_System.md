@@ -138,3 +138,4 @@ The geo_bootstrap SCs (Settlements, Water Bodies, Historical Places, etc.) are s
 - ADR-004: Canonical 18-Facet System — defines the facet vector CCS populates
 - ADR-001: Claim Identity Ciphers — QID-based identity used as CCS anchor entry point
 - ADR-006: Bootstrap Scaffold Contract — CCS governs what qualifies as a valid scaffold node
+- ADR-021: SubjectConcept Agent Scope and Primary Corpus — operational unit for agents; claim IN_SCOPE routing

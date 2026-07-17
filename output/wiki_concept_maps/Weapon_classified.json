@@ -1,0 +1,861 @@
+{
+  "page": "Weapon",
+  "page_name": "Weapon",
+  "root_qid": "Q728",
+  "classified": [
+    {
+      "name": ":Category:Anti-ship weapons",
+      "qid": "Q8255865",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": ":Category:Infantry support weapons",
+      "qid": "Q8548545",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": ":Category:Naval weapons",
+      "qid": "Q6751797",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Air gun laws",
+      "qid": "Q4698332",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Amarillo, Texas",
+      "qid": "Q51691",
+      "predicate": "DROP"
+    },
+    {
+      "name": "American Civil War",
+      "qid": "Q8676",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Anti-personnel weapon",
+      "qid": "Q4272823",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Anti-radiation missile",
+      "qid": "Q745545",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Anti-satellite weapon",
+      "qid": "Q5385916",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Anti-submarine weapon",
+      "qid": "Q3490799",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Anti-tank weapon",
+      "qid": "Q122258727",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Antimatter weapon",
+      "qid": "Q4774931",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Archery",
+      "qid": "Q108429",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Arms control",
+      "qid": "Q364056",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Arms trafficking",
+      "qid": "Q2431020",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Artillery",
+      "qid": "Q64418",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Autonomous weapon",
+      "qid": "Q4826867",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Biological weapon",
+      "qid": "Q170907",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Blaster (Star Wars)",
+      "qid": "Q2481679",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Blunt instrument",
+      "qid": "Q339828",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Bow (weapon)",
+      "qid": "Q46311",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Bronze Age",
+      "qid": "Q11761",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Bronze Age sword",
+      "qid": "Q3965852",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Cavalry",
+      "qid": "Q47315",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chemical weapon",
+      "qid": "Q3639228",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Cold War",
+      "qid": "Q8683",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Death",
+      "qid": "Q4",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Demining",
+      "qid": "Q1345044",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Directed-energy weapon",
+      "qid": "Q1341528",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Edged and bladed weapons",
+      "qid": "Q11897048",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Explosive weapon",
+      "qid": "Q1384616",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Firearm",
+      "qid": "Q12796",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "First Punic War",
+      "qid": "Q6286",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Geneva Protocol",
+      "qid": "Q605626",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Gun",
+      "qid": "Q110155210",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "History",
+      "qid": "Q309",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Hunting weapon",
+      "qid": "Q1678432",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Improvised weapon",
+      "qid": "Q2862130",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Industry (economics)",
+      "qid": "Q268592",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Iron Age sword",
+      "qid": "Q3965849",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Knife legislation",
+      "qid": "Q16908649",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "List of aircraft weapons",
+      "qid": "Q841157",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "List of fictional doomsday devices",
+      "qid": "Q6633998",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Lock (firearm)",
+      "qid": "Q1134386",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Loiter (aeronautics)",
+      "qid": "Q6668442",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Loitering munition",
+      "qid": "Q15832656",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Magnetic weapon",
+      "qid": "Q6731624",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Maxim gun",
+      "qid": "Q282352",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Missile",
+      "qid": "Q974850",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Mountain gun",
+      "qid": "Q1497061",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Neolithic",
+      "qid": "Q36422",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Non-lethal weapon",
+      "qid": "Q911881",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Nuclear terrorism",
+      "qid": "Q2005754",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Nuclear weapon",
+      "qid": "Q12802",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Protocol Against the Illicit Manufacturing of and Trafficking in Firearms",
+      "qid": "Q15991240",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Renaissance",
+      "qid": "Q4692",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Rocket (weapon)",
+      "qid": "Q2037215",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Schneider-Creusot",
+      "qid": "Q7431877",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Schöningen spears",
+      "qid": "Q320796",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Sidearm (weapon)",
+      "qid": "Q46944",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Siege engine",
+      "qid": "Q655697",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Soviet Union",
+      "qid": "Q15180",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Space weapon",
+      "qid": "Q392212",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Star Trek",
+      "qid": "Q1092",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Star Wars",
+      "qid": "Q462",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Suicide weapon",
+      "qid": "Q7635414",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Technology during World War I",
+      "qid": "Q2915151",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Texas",
+      "qid": "Q1439",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Washington Post",
+      "qid": "Q166032",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Tower of London",
+      "qid": "Q62378",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Unexploded ordnance",
+      "qid": "Q2302880",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "United Nations",
+      "qid": "Q1065",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Vickers",
+      "qid": "Q13220673",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Weapon",
+      "qid": "Q728",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Weapons in Star Trek",
+      "qid": "Q2518402",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Wikipedia:External links",
+      "qid": "Q4657623",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Wikipedia:Spam",
+      "qid": "Q8915865",
+      "predicate": "DROP"
+    },
+    {
+      "name": "World War I",
+      "qid": "Q361",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "aircraft",
+      "qid": "Q11436",
+      "predicate": "DROP"
+    },
+    {
+      "name": "aircraft carrier",
+      "qid": "Q17205",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ammunition",
+      "qid": "Q185785",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "antimatter",
+      "qid": "Q83197",
+      "predicate": "DROP"
+    },
+    {
+      "name": "arms race",
+      "qid": "Q322348",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "arquebus",
+      "qid": "Q168289",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "artillery",
+      "qid": "Q64418",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "axe",
+      "qid": "Q39397",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "battering ram",
+      "qid": "Q208129",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "biological agent",
+      "qid": "Q2742406",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biological warfare",
+      "qid": "Q8242560",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "bottle",
+      "qid": "Q80228",
+      "predicate": "DROP"
+    },
+    {
+      "name": "bracelet",
+      "qid": "Q201664",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cannon",
+      "qid": "Q81103",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "cataphract",
+      "qid": "Q204766",
+      "predicate": "DROP"
+    },
+    {
+      "name": "central government",
+      "qid": "Q1320217",
+      "predicate": "DROP"
+    },
+    {
+      "name": "chariot",
+      "qid": "Q203788",
+      "predicate": "DROP"
+    },
+    {
+      "name": "chemical weapon",
+      "qid": "Q3639228",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "chisel",
+      "qid": "Q474188",
+      "predicate": "DROP"
+    },
+    {
+      "name": "club (weapon)",
+      "qid": "Q392326",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "combat vehicle",
+      "qid": "Q4009273",
+      "predicate": "DROP"
+    },
+    {
+      "name": "commerce",
+      "qid": "Q26643",
+      "predicate": "DROP"
+    },
+    {
+      "name": "concussion",
+      "qid": "Q326921",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "copper",
+      "qid": "Q753",
+      "predicate": "DROP"
+    },
+    {
+      "name": "crime",
+      "qid": "Q83267",
+      "predicate": "DROP"
+    },
+    {
+      "name": "crush injury",
+      "qid": "Q4388656",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "disarmament",
+      "qid": "Q331662",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "domestication of the horse",
+      "qid": "Q468739",
+      "predicate": "DROP"
+    },
+    {
+      "name": "engineering",
+      "qid": "Q11023",
+      "predicate": "DROP"
+    },
+    {
+      "name": "firearm",
+      "qid": "Q12796",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "fortification",
+      "qid": "Q57821",
+      "predicate": "DROP"
+    },
+    {
+      "name": "fossil fuel",
+      "qid": "Q12748",
+      "predicate": "DROP"
+    },
+    {
+      "name": "gun",
+      "qid": "Q110155210",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "gunpowder",
+      "qid": "Q12861",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "helicopter",
+      "qid": "Q34486",
+      "predicate": "DROP"
+    },
+    {
+      "name": "howitzer",
+      "qid": "Q180126",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "hunting",
+      "qid": "Q36963",
+      "predicate": "DROP"
+    },
+    {
+      "name": "improvised weapon",
+      "qid": "Q2862130",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "infantry",
+      "qid": "Q29171",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ironclad warship",
+      "qid": "Q1410980",
+      "predicate": "DROP"
+    },
+    {
+      "name": "jet aircraft",
+      "qid": "Q206592",
+      "predicate": "DROP"
+    },
+    {
+      "name": "knife",
+      "qid": "Q32489",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "laser weapon",
+      "qid": "Q2074906",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "law enforcement",
+      "qid": "Q44554",
+      "predicate": "DROP"
+    },
+    {
+      "name": "lightsaber",
+      "qid": "Q19873",
+      "predicate": "DROP"
+    },
+    {
+      "name": "limited war",
+      "qid": "Q2247326",
+      "predicate": "DROP"
+    },
+    {
+      "name": "local government",
+      "qid": "Q6501447",
+      "predicate": "DROP"
+    },
+    {
+      "name": "machine gun",
+      "qid": "Q12800",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "maneuver warfare",
+      "qid": "Q1283371",
+      "predicate": "DROP"
+    },
+    {
+      "name": "military",
+      "qid": "Q8473",
+      "predicate": "DROP"
+    },
+    {
+      "name": "military technology",
+      "qid": "Q329864",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "military–industrial complex",
+      "qid": "Q744593",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "missile",
+      "qid": "Q974850",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "murder",
+      "qid": "Q132821",
+      "predicate": "DROP"
+    },
+    {
+      "name": "nuclear arms race",
+      "qid": "Q550452",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nuclear fission",
+      "qid": "Q11429",
+      "predicate": "DROP"
+    },
+    {
+      "name": "nuclear fusion",
+      "qid": "Q13082",
+      "predicate": "DROP"
+    },
+    {
+      "name": "obsidian",
+      "qid": "Q53754",
+      "predicate": "DROP"
+    },
+    {
+      "name": "pike (weapon)",
+      "qid": "Q220016",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "polearm",
+      "qid": "Q649107",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "post-classical history",
+      "qid": "Q7234117",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "projectile",
+      "qid": "Q49393",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "propellant",
+      "qid": "Q1364934",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "radar",
+      "qid": "Q47528",
+      "predicate": "DROP"
+    },
+    {
+      "name": "research and development",
+      "qid": "Q276099",
+      "predicate": "DROP"
+    },
+    {
+      "name": "revolution in military affairs",
+      "qid": "Q690689",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "right of self-defense",
+      "qid": "Q157479",
+      "predicate": "DROP"
+    },
+    {
+      "name": "riot police",
+      "qid": "Q1825410",
+      "predicate": "DROP"
+    },
+    {
+      "name": "rock (geology)",
+      "qid": "Q8063",
+      "predicate": "DROP"
+    },
+    {
+      "name": "rocket (weapon)",
+      "qid": "Q2037215",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "sail",
+      "qid": "Q25999",
+      "predicate": "DROP"
+    },
+    {
+      "name": "science fiction",
+      "qid": "Q24925",
+      "predicate": "DROP"
+    },
+    {
+      "name": "self-defense",
+      "qid": "Q40283",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ship",
+      "qid": "Q11446",
+      "predicate": "DROP"
+    },
+    {
+      "name": "small arms",
+      "qid": "Q1058629",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "spear",
+      "qid": "Q44475",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "spoke",
+      "qid": "Q845671",
+      "predicate": "DROP"
+    },
+    {
+      "name": "stasis field",
+      "qid": "Q4967741",
+      "predicate": "DROP"
+    },
+    {
+      "name": "steam engine",
+      "qid": "Q12760",
+      "predicate": "DROP"
+    },
+    {
+      "name": "submarine",
+      "qid": "Q2811",
+      "predicate": "DROP"
+    },
+    {
+      "name": "suicide",
+      "qid": "Q10737",
+      "predicate": "DROP"
+    },
+    {
+      "name": "sword",
+      "qid": "Q12791",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "tank",
+      "qid": "Q12876",
+      "predicate": "DROP"
+    },
+    {
+      "name": "technological escalation",
+      "qid": "Q7692524",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "total war",
+      "qid": "Q154605",
+      "predicate": "DROP"
+    },
+    {
+      "name": "trebuchet",
+      "qid": "Q19776",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "trireme",
+      "qid": "Q208420",
+      "predicate": "DROP"
+    },
+    {
+      "name": "war",
+      "qid": "Q198",
+      "predicate": "DROP"
+    },
+    {
+      "name": "warship",
+      "qid": "Q2031121",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Škoda Works",
+      "qid": "Q391795",
+      "predicate": "HAS_INSTITUTION"
+    }
+  ],
+  "stats": {
+    "total": 168,
+    "kept": 101,
+    "dropped": 67,
+    "by_predicate": {
+      "HAS_SUBTYPE": 60,
+      "HAS_INSTRUMENT": 6,
+      "DROP": 67,
+      "HAS_CONTEXT": 10,
+      "HAS_COMPONENT": 20,
+      "HAS_PUBLICATION": 1,
+      "HAS_INSTITUTION": 4
+    }
+  }
+}

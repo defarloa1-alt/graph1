@@ -1,0 +1,934 @@
+{
+  "page": "Cartography",
+  "page_name": "Cartography",
+  "root_qid": "Q42515",
+  "classified": [
+    {
+      "name": "Abraham Ortelius",
+      "qid": "Q232916",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Africa",
+      "qid": "Q15",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Age of Discovery",
+      "qid": "Q133641",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Age of Enlightenment",
+      "qid": "Q12539",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "American Institute of Graphic Arts",
+      "qid": "Q3622004",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Anatolian Studies",
+      "qid": "Q15749144",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Anaximander",
+      "qid": "Q42458",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Applied aesthetics",
+      "qid": "Q4781591",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Assyria",
+      "qid": "Q41137",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Babylon",
+      "qid": "Q5684",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Babylonia",
+      "qid": "Q47690",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Basic Books",
+      "qid": "Q4034881",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Battista Agnese",
+      "qid": "Q612967",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Berlin Conference",
+      "qid": "Q13582",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bonne projection",
+      "qid": "Q2630681",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Boulder County, Colorado",
+      "qid": "Q113029",
+      "predicate": "DROP"
+    },
+    {
+      "name": "British Cartographic Society",
+      "qid": "Q4969604",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Canadian Cartographic Association",
+      "qid": "Q30293258",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Cartographic generalization",
+      "qid": "Q1501867",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Cartographic propaganda",
+      "qid": "Q5047378",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Cartographica",
+      "qid": "Q29043720",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Cartography",
+      "qid": "Q42515",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cartography and Geographic Information Science",
+      "qid": "Q15761205",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Cartography and Geographic Information Society",
+      "qid": "Q25238599",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Cartouche (cartography)",
+      "qid": "Q2374398",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "China",
+      "qid": "Q148",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Choropleth map",
+      "qid": "Q261468",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Climate",
+      "qid": "Q7937",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Computer cartography",
+      "qid": "Q4115141",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Computer hardware",
+      "qid": "Q3966",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Computer-aided design",
+      "qid": "Q184793",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cosmographia (Sebastian Münster)",
+      "qid": "Q1136161",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Diogo Ribeiro (cartographer)",
+      "qid": "Q1220565",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Duchy of Brabant",
+      "qid": "Q159856",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Earth",
+      "qid": "Q2",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Easter egg (media)",
+      "qid": "Q330574",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ecumene",
+      "qid": "Q838988",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Eighteenth-Century Studies",
+      "qid": "Q5349065",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Euphrates",
+      "qid": "Q34589",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Europe",
+      "qid": "Q46",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Far East",
+      "qid": "Q42225",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fortunate Isles",
+      "qid": "Q2336662",
+      "predicate": "DROP"
+    },
+    {
+      "name": "GIScience & Remote Sensing",
+      "qid": "Q27724028",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Geocarto International",
+      "qid": "Q15752174",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Geographic coordinate system",
+      "qid": "Q22664",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Geographic information system",
+      "qid": "Q483130",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Geographical Review",
+      "qid": "Q3278607",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Geography (Ptolemy)",
+      "qid": "Q1194350",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Gerardus Mercator",
+      "qid": "Q6353",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Gestalt psychology",
+      "qid": "Q272021",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Gillis Hooftman",
+      "qid": "Q21004350",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Global Positioning System",
+      "qid": "Q18822",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Google Earth",
+      "qid": "Q42274",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Harry Beck",
+      "qid": "Q1375468",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hartmann Schedel",
+      "qid": "Q58768",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Herman Moll",
+      "qid": "Q1610319",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Holism",
+      "qid": "Q192891",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Imago Mundi",
+      "qid": "Q4041305",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Indian Ocean",
+      "qid": "Q1239",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indiana",
+      "qid": "Q1415",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Intaglio (printmaking)",
+      "qid": "Q194177",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "International Cartographic Association",
+      "qid": "Q349113",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "International Journal of Applied Earth Observation and Geoinformation",
+      "qid": "Q97192310",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "International Journal of Digital Earth",
+      "qid": "Q15756449",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Internet",
+      "qid": "Q75",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Italic script",
+      "qid": "Q6093538",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Italy",
+      "qid": "Q38",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Johannes Werner",
+      "qid": "Q76161",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John II of Portugal",
+      "qid": "Q217637",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Journal of Maps",
+      "qid": "Q15758299",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Journal of Photogrammetry, Remote Sensing and Geoinformation Science",
+      "qid": "Q96328375",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Journal of Spatial Science",
+      "qid": "Q15746443",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Journal of World History",
+      "qid": "Q6296065",
+      "predicate": "DROP"
+    },
+    {
+      "name": "KU Leuven",
+      "qid": "Q833670",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Kassites",
+      "qid": "Q243312",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Library of Congress",
+      "qid": "Q131454",
+      "predicate": "DROP"
+    },
+    {
+      "name": "List of Graeco-Roman geographers",
+      "qid": "Q3508736",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Louis Hennepin",
+      "qid": "Q635242",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Map symbol",
+      "qid": "Q1752004",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Mappa mundi",
+      "qid": "Q312083",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Martin Behaim",
+      "qid": "Q44838",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Martin Waldseemüller",
+      "qid": "Q57197",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Mercator 1569 world map",
+      "qid": "Q6818052",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Mercator projection",
+      "qid": "Q309372",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Minoan civilization",
+      "qid": "Q134178",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Muhammad al-Idrisi",
+      "qid": "Q173441",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nicolas de Fer",
+      "qid": "Q1648130",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nippur",
+      "qid": "Q188395",
+      "predicate": "DROP"
+    },
+    {
+      "name": "North American Cartographic Information Society",
+      "qid": "Q17091085",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Oceanus",
+      "qid": "Q161419",
+      "predicate": "DROP"
+    },
+    {
+      "name": "OpenStreetMap",
+      "qid": "Q936",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ordnance Survey",
+      "qid": "Q548721",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Penguin Books",
+      "qid": "Q1336200",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pennsylvania State University",
+      "qid": "Q739627",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Phantom settlement",
+      "qid": "Q7180622",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Portugal",
+      "qid": "Q45",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Princeton University Press",
+      "qid": "Q1708210",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ptolemy",
+      "qid": "Q34943",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ptolemy's world map",
+      "qid": "Q1241342",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Public Health (journal)",
+      "qid": "Q15761423",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Qin (state)",
+      "qid": "Q34756",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Renaissance",
+      "qid": "Q4692",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "River Thames",
+      "qid": "Q19686",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Rocky Mountains",
+      "qid": "Q5463",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Roger II of Sicily",
+      "qid": "Q193901",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Roman Empire",
+      "qid": "Q2277",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Roman roads",
+      "qid": "Q194029",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Rugged computer",
+      "qid": "Q10885285",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sandy Island, New Caledonia",
+      "qid": "Q80326",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sebastian Münster",
+      "qid": "Q61073",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Selden Map",
+      "qid": "Q17018443",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Su Song",
+      "qid": "Q1265657",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Tabula Peutingeriana",
+      "qid": "Q12767",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Tabula Rogeriana",
+      "qid": "Q1089336",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Terrae Incognitae",
+      "qid": "Q7703209",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Terrain",
+      "qid": "Q186131",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Cartographic Journal",
+      "qid": "Q15767237",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Theatrum Orbis Terrarum",
+      "qid": "Q1368633",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Thematic map",
+      "qid": "Q1502030",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Tube map",
+      "qid": "Q2014543",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Typography (cartography)",
+      "qid": "Q6466900",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "United States Geological Survey",
+      "qid": "Q193755",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "University of Chicago Press",
+      "qid": "Q1814982",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Urartu",
+      "qid": "Q185068",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Val Camonica",
+      "qid": "Q734317",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Warring States period",
+      "qid": "Q185063",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Web mapping",
+      "qid": "Q649186",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Werner projection",
+      "qid": "Q2328498",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "aerial photography",
+      "qid": "Q191839",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "aesthetics",
+      "qid": "Q35986",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ancient China",
+      "qid": "Q630276",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cartography of India",
+      "qid": "Q5047385",
+      "predicate": "DROP"
+    },
+    {
+      "name": "compass",
+      "qid": "Q34735",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "continental divide",
+      "qid": "Q604673",
+      "predicate": "DROP"
+    },
+    {
+      "name": "contour line",
+      "qid": "Q6653802",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "database",
+      "qid": "Q8513",
+      "predicate": "DROP"
+    },
+    {
+      "name": "deconstruction",
+      "qid": "Q180348",
+      "predicate": "DROP"
+    },
+    {
+      "name": "design",
+      "qid": "Q82604",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "digital elevation model",
+      "qid": "Q640492",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "digital raster graphic",
+      "qid": "Q5276145",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "epistemology",
+      "qid": "Q9471",
+      "predicate": "DROP"
+    },
+    {
+      "name": "equator",
+      "qid": "Q23538",
+      "predicate": "DROP"
+    },
+    {
+      "name": "fictitious entry",
+      "qid": "Q1417174",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "geographic information science",
+      "qid": "Q3537694",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "geographic information system",
+      "qid": "Q483130",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "graphic design",
+      "qid": "Q185925",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "graphics software",
+      "qid": "Q868410",
+      "predicate": "DROP"
+    },
+    {
+      "name": "itinerarium",
+      "qid": "Q1675302",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "laser rangefinder",
+      "qid": "Q1426632",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "latitude",
+      "qid": "Q34027",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "learned society",
+      "qid": "Q955824",
+      "predicate": "DROP"
+    },
+    {
+      "name": "lithography",
+      "qid": "Q133036",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "magnetic storage",
+      "qid": "Q1364527",
+      "predicate": "DROP"
+    },
+    {
+      "name": "map",
+      "qid": "Q4006",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "map projection",
+      "qid": "Q186386",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "marmot",
+      "qid": "Q131567",
+      "predicate": "DROP"
+    },
+    {
+      "name": "photography",
+      "qid": "Q11633",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "pole star",
+      "qid": "Q662656",
+      "predicate": "DROP"
+    },
+    {
+      "name": "printing",
+      "qid": "Q11034",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "printing press",
+      "qid": "Q144334",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "quadrant (instrument)",
+      "qid": "Q841280",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "remote sensing",
+      "qid": "Q199687",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "satellite imagery",
+      "qid": "Q725252",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "science",
+      "qid": "Q336",
+      "predicate": "DROP"
+    },
+    {
+      "name": "sextant",
+      "qid": "Q179430",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sinusoidal projection",
+      "qid": "Q773174",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "software",
+      "qid": "Q7397",
+      "predicate": "DROP"
+    },
+    {
+      "name": "surveying",
+      "qid": "Q816425",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "symbol",
+      "qid": "Q80071",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "telescope",
+      "qid": "Q4213",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "thematic map",
+      "qid": "Q1502030",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "topographic map",
+      "qid": "Q216526",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "topography",
+      "qid": "Q134435",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "topological map",
+      "qid": "Q573980",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "treatise",
+      "qid": "Q384515",
+      "predicate": "DROP"
+    },
+    {
+      "name": "typography",
+      "qid": "Q159964",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "vernier scale",
+      "qid": "Q14946576",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "visual hierarchy",
+      "qid": "Q7936602",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "visual variable",
+      "qid": "Q104847741",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "watermark",
+      "qid": "Q43065",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "woodcut",
+      "qid": "Q173242",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Çatalhöyük",
+      "qid": "Q192522",
+      "predicate": "DROP"
+    }
+  ],
+  "stats": {
+    "total": 182,
+    "kept": 109,
+    "dropped": 73,
+    "by_predicate": {
+      "HAS_FIGURE": 18,
+      "DROP": 73,
+      "HAS_CONTEXT": 12,
+      "HAS_INSTITUTION": 8,
+      "HAS_COMPONENT": 27,
+      "HAS_METHOD": 10,
+      "HAS_SUBTYPE": 11,
+      "HAS_PUBLICATION": 21,
+      "HAS_THEORY": 1,
+      "DRIVEN_BY": 1
+    }
+  }
+}

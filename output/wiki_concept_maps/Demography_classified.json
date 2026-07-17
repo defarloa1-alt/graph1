@@ -1,0 +1,739 @@
+{
+  "page": "Demography",
+  "page_name": "Demography",
+  "root_qid": "Q37732",
+  "classified": [
+    {
+      "name": "-graphy",
+      "qid": "Q158635",
+      "predicate": "DROP"
+    },
+    {
+      "name": "1970 British Cohort Study",
+      "qid": "Q4573936",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "ABC News (Australia)",
+      "qid": "Q4650197",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Alfred J. Lotka",
+      "qid": "Q470674",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "American Journal of Sociology",
+      "qid": "Q465376",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "American Philosophical Society",
+      "qid": "Q466089",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Ancient Greece",
+      "qid": "Q11772",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ancient Rome",
+      "qid": "Q1747689",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Andrey Korotayev",
+      "qid": "Q189172",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ansley J. Coale",
+      "qid": "Q166631",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Approximation",
+      "qid": "Q27058",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Aristotle",
+      "qid": "Q868",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Augustus De Morgan",
+      "qid": "Q208448",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Austria",
+      "qid": "Q40",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Belgium",
+      "qid": "Q31",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Benjamin Franklin",
+      "qid": "Q34969",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Benjamin Gompertz",
+      "qid": "Q686232",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Cahiers québécois de démographie",
+      "qid": "Q592183",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Canada",
+      "qid": "Q16",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cato the Elder",
+      "qid": "Q180081",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "China",
+      "qid": "Q148",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Christians",
+      "qid": "Q106039",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cicero",
+      "qid": "Q1541",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Civil registration",
+      "qid": "Q83708009",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Committee for International Cooperation in National Research in Demography",
+      "qid": "Q5119474",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Cultural assimilation",
+      "qid": "Q193579",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Current Population Survey",
+      "qid": "Q5195069",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Decrement table",
+      "qid": "Q5249677",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Demographic and Health Surveys",
+      "qid": "Q81886",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Demography",
+      "qid": "Q37732",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Demography (journal)",
+      "qid": "Q15716714",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Developed country",
+      "qid": "Q132453",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Edmond Halley",
+      "qid": "Q47434",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Epictetus",
+      "qid": "Q183144",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Epicurus",
+      "qid": "Q43216",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "European Social Survey",
+      "qid": "Q1376959",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "General Social Survey",
+      "qid": "Q4118918",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "German General Social Survey",
+      "qid": "Q506335",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Global Social Change Research Project",
+      "qid": "Q5570640",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Herodotus",
+      "qid": "Q26825",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hippocrates",
+      "qid": "Q5264",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Human migration",
+      "qid": "Q177626",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Human overpopulation",
+      "qid": "Q331439",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Ibn Khaldun",
+      "qid": "Q9294",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "India",
+      "qid": "Q668",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Institut national d'études démographiques",
+      "qid": "Q3152388",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "International Institute for Applied Systems Analysis",
+      "qid": "Q212102",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "International Union for the Scientific Study of Population",
+      "qid": "Q6157032",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "John Bongaarts",
+      "qid": "Q26251284",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Graunt",
+      "qid": "Q454938",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lee–Carter model",
+      "qid": "Q6516604",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Leonhard Euler",
+      "qid": "Q7604",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Leslie matrix",
+      "qid": "Q943800",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "London",
+      "qid": "Q84",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Malthusian catastrophe",
+      "qid": "Q1784386",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Marcus Aurelius",
+      "qid": "Q1430",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Max Planck Institute for Demographic Research",
+      "qid": "Q871732",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Middle Ages",
+      "qid": "Q12554",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Millennium Cohort Study (United Kingdom)",
+      "qid": "Q6858818",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Multiple Indicator Cluster Surveys",
+      "qid": "Q6934891",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Muslims",
+      "qid": "Q47740",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Nathan Keyfitz",
+      "qid": "Q6969175",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "National Child Development Study",
+      "qid": "Q6971462",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "National Survey of Health & Development",
+      "qid": "Q6978783",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Net migration rate",
+      "qid": "Q1932516",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Net reproduction rate",
+      "qid": "Q1978761",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Observations Concerning the Increase of Mankind, Peopling of Countries, etc.",
+      "qid": "Q7075440",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Office of Population Research",
+      "qid": "Q7079287",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Panel Study of Income Dynamics",
+      "qid": "Q7130814",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Pierre François Verhulst",
+      "qid": "Q425539",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Plato",
+      "qid": "Q859",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pliny the Elder",
+      "qid": "Q82778",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Polus",
+      "qid": "Q372798",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Population Association of America",
+      "qid": "Q17075668",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Population Council",
+      "qid": "Q7229776",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Population Studies Center at the University of Michigan",
+      "qid": "Q7229789",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Population and Development Review",
+      "qid": "Q15716427",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Population dynamics",
+      "qid": "Q904564",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Proceedings of the American Philosophical Society",
+      "qid": "Q6087079",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Protagoras",
+      "qid": "Q169243",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Public liability",
+      "qid": "Q4147581",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Public records",
+      "qid": "Q7257959",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Richard Price",
+      "qid": "Q561101",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Seneca the Younger",
+      "qid": "Q2054",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Socio-Economic Panel",
+      "qid": "Q1559216",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Statistical significance",
+      "qid": "Q425265",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Thomas Robert Malthus",
+      "qid": "Q13526",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Thucydides",
+      "qid": "Q41683",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "United Nations",
+      "qid": "Q1065",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United States Census Bureau",
+      "qid": "Q637413",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Vienna Institute of Demography",
+      "qid": "Q23678530",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "William of Conches",
+      "qid": "Q615260",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "William of Pagula",
+      "qid": "Q8020898",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Wittgenstein Centre for Demography and Global Human Capital",
+      "qid": "Q21124396",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "World Health Organization",
+      "qid": "Q7817",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "World Values Survey",
+      "qid": "Q1316242",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "anthropology",
+      "qid": "Q23404",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "birth rate",
+      "qid": "Q203516",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "blood type",
+      "qid": "Q47657",
+      "predicate": "DROP"
+    },
+    {
+      "name": "census",
+      "qid": "Q39825",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "data collection",
+      "qid": "Q4929239",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "death",
+      "qid": "Q4",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "economics",
+      "qid": "Q8134",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "education",
+      "qid": "Q8434",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "environmental factor",
+      "qid": "Q2142347",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "epidemiology",
+      "qid": "Q133805",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ethnicity",
+      "qid": "Q5404323",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "exponential growth",
+      "qid": "Q582659",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "fecundity",
+      "qid": "Q2587899",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "fertility",
+      "qid": "Q964401",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "gender",
+      "qid": "Q48277",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "geography",
+      "qid": "Q1071",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "gross reproduction rate",
+      "qid": "Q5610522",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "historical demography",
+      "qid": "Q580130",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "history",
+      "qid": "Q309",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "human",
+      "qid": "Q5",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "institution",
+      "qid": "Q178706",
+      "predicate": "DROP"
+    },
+    {
+      "name": "labor force",
+      "qid": "Q837543",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "life expectancy",
+      "qid": "Q188419",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "life table",
+      "qid": "Q632184",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "loan officer",
+      "qid": "Q6663463",
+      "predicate": "DROP"
+    },
+    {
+      "name": "marital status",
+      "qid": "Q11920938",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mortality rate",
+      "qid": "Q58702",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nation",
+      "qid": "Q6266",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nationality",
+      "qid": "Q231002",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "parity progression ratios",
+      "qid": "Q7137540",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "percentage",
+      "qid": "Q11229",
+      "predicate": "DROP"
+    },
+    {
+      "name": "population",
+      "qid": "Q2625603",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "population ageing",
+      "qid": "Q439112",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "population ecology",
+      "qid": "Q1049866",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "population growth",
+      "qid": "Q386191",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "population momentum",
+      "qid": "Q7229810",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "population pyramid",
+      "qid": "Q329823",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "population size",
+      "qid": "Q1613416",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "religion",
+      "qid": "Q9174",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sex ratio",
+      "qid": "Q1068155",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social dynamics",
+      "qid": "Q304922",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sociology",
+      "qid": "Q21201",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "standardization",
+      "qid": "Q369577",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "statistics",
+      "qid": "Q12483",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "total fertility rate",
+      "qid": "Q285897",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "urban area",
+      "qid": "Q702492",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "world population",
+      "qid": "Q11188",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 143,
+    "kept": 124,
+    "dropped": 19,
+    "by_predicate": {
+      "DROP": 19,
+      "HAS_PUBLICATION": 20,
+      "HAS_FIGURE": 31,
+      "HAS_INSTITUTION": 15,
+      "HAS_CONTEXT": 11,
+      "HAS_METHOD": 9,
+      "HAS_COMPONENT": 34,
+      "HAS_THEORY": 2,
+      "DRIVEN_BY": 1,
+      "HAS_SUBTYPE": 1
+    }
+  }
+}

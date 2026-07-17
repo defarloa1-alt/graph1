@@ -1,0 +1,43 @@
+---
+description: Align entities and predicates to CIDOC-CRM 7.1 and CRMinf when proposing graph structure or claims
+alwaysApply: false
+globs: scripts/agents/**,scripts/tools/cidoc_context.py,CIDOC/**,Relationships/**
+---
+
+# CIDOC-CRM / CRMinf alignment
+
+Chrystallum uses CIDOC as an **interop alignment layer**, not native storage.
+
+## Sources (consult before proposing)
+
+1. `CIDOC/cidoc_wikidata_mapping_validated.csv` — Wikidata QID/PID → CRM class/property
+2. `Relationships/relationship_types_registry_master.csv` — `cidoc_crm_code`, `crminf_applicable`
+3. Neo4j `SYS_RelationshipType.cidoc_crm_code` (synced from CSV)
+
+## Entity typing defaults
+
+| Chrystallum | CIDOC |
+|-------------|-------|
+| Person | E21_Person |
+| Event | E5_Event |
+| Place | E53_Place |
+| Claim | I2_Belief / E13_Attribute_Assignment |
+| CorpusWork | E31_Document / I10_Provenance_Statement |
+| SubjectConcept | E28_Conceptual_Object / E55_Type |
+
+## CRMinf claim chain
+
+```
+CorpusWork (evidence) → Inference (Fischer / agent) → Claim (I2_Belief) → canonical edge (adopted belief)
+```
+
+- Confidence lives on **Claim**, not promoted edges
+- Human validation ≈ I7_Belief_Adoption
+
+## Rules
+
+- Prefer relationship types that have `cidoc_crm_code` in the registry
+- Do not invent CRM properties when a registry type already maps the Wikidata PID
+- If no CIDOC mapping exists, note the gap — do not force a wrong class
+
+Prompt injection: `scripts/tools/cidoc_context.py` via `append_republic_graph_context()`.

@@ -1,0 +1,26 @@
+---
+description: Relationship types must come from the canonical registry before claims or edges are proposed
+alwaysApply: false
+globs: scripts/agents/**,scripts/tools/claim_ingestion_pipeline.py,scripts/tools/sys_registry.py,Relationships/**
+---
+
+# Relationship type registry (mandatory)
+
+Before proposing or ingesting a relationship predicate:
+
+1. **Consult** `Relationships/relationship_types_registry_master.csv` (canonical) or query Neo4j `SYS_RelationshipType`.
+2. **Prefer** rows with `lifecycle_status=implemented`.
+3. **Backlink harvest** edge types must match `SYS_Policy` BacklinkRouting **and** the CSV.
+4. **Do not invent** relationship types — add a CSV row with `lifecycle_status=candidate` first.
+
+Validation tools:
+
+```powershell
+python -m scripts.tools.validate_sys_registry
+```
+
+Pipeline: `claim_ingestion_pipeline.py` and `claim_proposer.py` call `scripts/tools/sys_registry.py`.
+
+Agent prompts: `republic_graph_context.py` and SFA system prompts include a registry block via `append_relationship_registry_context()`.
+
+If `registry_status` is `routing_only` or `candidate`, prefer **Hold** until the type is implemented or human review documents the gap.

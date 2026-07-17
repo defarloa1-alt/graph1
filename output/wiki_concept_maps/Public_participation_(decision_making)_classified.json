@@ -1,0 +1,225 @@
+{
+  "page": "Public participation (decision making)",
+  "page_name": "Public_participation_(decision_making)",
+  "root_qid": "Q1773152",
+  "classified": [
+    {
+      "name": "Archon Fung",
+      "qid": "Q4787329",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "CRISPR gene editing",
+      "qid": "Q17310682",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Citizens' assembly",
+      "qid": "Q1021509",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Committee",
+      "qid": "Q865588",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Culture",
+      "qid": "Q11042",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Economy",
+      "qid": "Q159810",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Family",
+      "qid": "Q8436",
+      "predicate": "DROP"
+    },
+    {
+      "name": "GLAM (cultural heritage)",
+      "qid": "Q1030034",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indigenous peoples of the Americas",
+      "qid": "Q36747",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Jeremy Bentham",
+      "qid": "Q60887",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Opinion poll",
+      "qid": "Q49958",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Participatory budgeting",
+      "qid": "Q1021120",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Participatory design",
+      "qid": "Q1038171",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Politics",
+      "qid": "Q7163",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Protest",
+      "qid": "Q273120",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Public consultation",
+      "qid": "Q2991722",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Public opinion",
+      "qid": "Q17946",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Public participation (decision making)",
+      "qid": "Q1773152",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Referendum",
+      "qid": "Q43109",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Sherry Arnstein",
+      "qid": "Q24170911",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Tokenism",
+      "qid": "Q492145",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Town hall meeting",
+      "qid": "Q1459915",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Transcribe Bentham",
+      "qid": "Q7833913",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Translation",
+      "qid": "Q7553",
+      "predicate": "DROP"
+    },
+    {
+      "name": "amateur",
+      "qid": "Q455595",
+      "predicate": "DROP"
+    },
+    {
+      "name": "copyright",
+      "qid": "Q1297822",
+      "predicate": "DROP"
+    },
+    {
+      "name": "crowdsourcing",
+      "qid": "Q275969",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "feminism",
+      "qid": "Q7252",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "genetically modified crops",
+      "qid": "Q1503477",
+      "predicate": "DROP"
+    },
+    {
+      "name": "management",
+      "qid": "Q2920921",
+      "predicate": "DROP"
+    },
+    {
+      "name": "open data",
+      "qid": "Q309901",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "orphan work",
+      "qid": "Q1546053",
+      "predicate": "DROP"
+    },
+    {
+      "name": "participatory budgeting",
+      "qid": "Q1021120",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "participatory democracy",
+      "qid": "Q310988",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "participatory economics",
+      "qid": "Q650953",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "participatory management",
+      "qid": "Q7140451",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "polyculturalism",
+      "qid": "Q3907285",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "radical transparency",
+      "qid": "Q3537758",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "service-learning",
+      "qid": "Q1597965",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "social science",
+      "qid": "Q34749",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "socioeconomic status",
+      "qid": "Q1515895",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 41,
+    "kept": 27,
+    "dropped": 14,
+    "by_predicate": {
+      "HAS_FIGURE": 3,
+      "DROP": 14,
+      "HAS_SUBTYPE": 12,
+      "HAS_METHOD": 3,
+      "HAS_CONTEXT": 4,
+      "HAS_COMPONENT": 5
+    }
+  }
+}

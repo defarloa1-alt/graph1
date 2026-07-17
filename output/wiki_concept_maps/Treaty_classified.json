@@ -1,0 +1,647 @@
+{
+  "page": "Treaty",
+  "page_name": "Treaty",
+  "root_qid": "Q131569",
+  "classified": [
+    {
+      "name": "Aboriginal Victorians",
+      "qid": "Q7927181",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Act of Congress",
+      "qid": "Q476068",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Anglo-Irish Treaty",
+      "qid": "Q541191",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Anishinaabe",
+      "qid": "Q1956640",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Article Two of the United States Constitution",
+      "qid": "Q48423",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Articles of Confederation",
+      "qid": "Q493620",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Bilateral treaty",
+      "qid": "Q9557810",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Bricker Amendment",
+      "qid": "Q2842728",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Charter of the United Nations",
+      "qid": "Q171328",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Codification (law)",
+      "qid": "Q214214",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Commerce",
+      "qid": "Q26643",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Constitution of the United States",
+      "qid": "Q11698",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Customs",
+      "qid": "Q182290",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Department of Foreign Affairs and Trade (Australia)",
+      "qid": "Q3055310",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Dish With One Spoon",
+      "qid": "Q39048751",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Dispute settlement in the World Trade Organization",
+      "qid": "Q3019624",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Early modern period",
+      "qid": "Q5308718",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ethiopia",
+      "qid": "Q115",
+      "predicate": "DROP"
+    },
+    {
+      "name": "European Court of Justice",
+      "qid": "Q1518827",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "European Union",
+      "qid": "Q458",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Excellency",
+      "qid": "Q1067610",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "First Nations in Canada",
+      "qid": "Q392316",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fur trade",
+      "qid": "Q878138",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Good faith (law)",
+      "qid": "Q694059",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Government of Canada",
+      "qid": "Q422404",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Head Money Cases",
+      "qid": "Q5689177",
+      "predicate": "DROP"
+    },
+    {
+      "name": "High and low politics",
+      "qid": "Q5757650",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Holm Arno Leonhardt",
+      "qid": "Q67222889",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hudson's Bay Company",
+      "qid": "Q76039",
+      "predicate": "DROP"
+    },
+    {
+      "name": "India",
+      "qid": "Q668",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indian Appropriations Act",
+      "qid": "Q6019827",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indigenous Australians",
+      "qid": "Q170355",
+      "predicate": "DROP"
+    },
+    {
+      "name": "International Court of Justice",
+      "qid": "Q7801",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "International Covenant on Civil and Political Rights",
+      "qid": "Q392119",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Iroquois",
+      "qid": "Q68518",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Kyoto Protocol",
+      "qid": "Q47359",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Letters Patent establishing the Province of South Australia",
+      "qid": "Q6533704",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mail",
+      "qid": "Q49845",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Majesty",
+      "qid": "Q669458",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Manitoba",
+      "qid": "Q1948",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Melbourne",
+      "qid": "Q3141",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Missouri v. Holland",
+      "qid": "Q6879914",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Māori people",
+      "qid": "Q6122670",
+      "predicate": "DROP"
+    },
+    {
+      "name": "North Korea",
+      "qid": "Q423",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Numbered Treaties",
+      "qid": "Q837144",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ontario",
+      "qid": "Q1904",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Organization of American States",
+      "qid": "Q123759",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Parliament of Australia",
+      "qid": "Q382118",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Parliament of India",
+      "qid": "Q695252",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Parliament of Victoria",
+      "qid": "Q1848835",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Peremptory norm",
+      "qid": "Q855317",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Plenipotentiary",
+      "qid": "Q15217354",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Qing dynasty",
+      "qid": "Q8733",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Reid v. Covert",
+      "qid": "Q7310001",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Rider (legislation)",
+      "qid": "Q1058801",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Royal Proclamation of 1763",
+      "qid": "Q209573",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Single Convention on Narcotic Drugs",
+      "qid": "Q1273678",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sources of international law",
+      "qid": "Q2635077",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "State (polity)",
+      "qid": "Q7275",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sunset provision",
+      "qid": "Q779351",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Supremacy Clause",
+      "qid": "Q7644794",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Supreme Federal Court",
+      "qid": "Q519138",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Switzerland",
+      "qid": "Q39",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Toronto Purchase",
+      "qid": "Q4378927",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Treaty",
+      "qid": "Q131569",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Treaty Clause",
+      "qid": "Q7836935",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "United Nations Framework Convention on Climate Change",
+      "qid": "Q208645",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United Nations Office of Legal Affairs",
+      "qid": "Q638357",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United States Department of State",
+      "qid": "Q789915",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Victorian Legislative Council",
+      "qid": "Q9302011",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Vienna Convention on the Law of Treaties",
+      "qid": "Q239768",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Ware v. Hylton",
+      "qid": "Q17112897",
+      "predicate": "DROP"
+    },
+    {
+      "name": "World Trade Organization",
+      "qid": "Q7825",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "apartheid",
+      "qid": "Q11409",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "arrest",
+      "qid": "Q1403016",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "belligerent",
+      "qid": "Q2363432",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "boilerplate clause",
+      "qid": "Q28136905",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "border",
+      "qid": "Q133346",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "cartel (ship)",
+      "qid": "Q5047077",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "coin",
+      "qid": "Q41207",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "colonization",
+      "qid": "Q815962",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "communication",
+      "qid": "Q11024",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "constitution of Australia",
+      "qid": "Q1144614",
+      "predicate": "DROP"
+    },
+    {
+      "name": "constitution of Brazil",
+      "qid": "Q2386422",
+      "predicate": "DROP"
+    },
+    {
+      "name": "constitutional amendment",
+      "qid": "Q53463",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "courier",
+      "qid": "Q848466",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "crimes against humanity",
+      "qid": "Q173462",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "criminal",
+      "qid": "Q2159907",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "customary international law",
+      "qid": "Q1194894",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "entry into force",
+      "qid": "Q490812",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "eschatocol",
+      "qid": "Q302719",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "genocide",
+      "qid": "Q41397",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "gentlemen's agreement",
+      "qid": "Q1046626",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "gerund",
+      "qid": "Q1923028",
+      "predicate": "DROP"
+    },
+    {
+      "name": "greenhouse gas emissions",
+      "qid": "Q106358009",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "head of government",
+      "qid": "Q2285706",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "head of state",
+      "qid": "Q48352",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "international law",
+      "qid": "Q4394526",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "international organization",
+      "qid": "Q484652",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "international trade",
+      "qid": "Q178803",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "interstate compact",
+      "qid": "Q16848268",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "judicial review",
+      "qid": "Q898871",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "multilateral treaty",
+      "qid": "Q6934728",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "native title in Australia",
+      "qid": "Q1969638",
+      "predicate": "DROP"
+    },
+    {
+      "name": "nuclear proliferation",
+      "qid": "Q1364891",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "pacta sunt servanda",
+      "qid": "Q328671",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "peace treaty",
+      "qid": "Q625298",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "peremptory norm",
+      "qid": "Q855317",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "piracy",
+      "qid": "Q45393",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "preamble",
+      "qid": "Q1129448",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "president of Brazil",
+      "qid": "Q5176750",
+      "predicate": "DROP"
+    },
+    {
+      "name": "procès-verbal",
+      "qid": "Q2431906",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "racial discrimination",
+      "qid": "Q12332701",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ratification",
+      "qid": "Q193170",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "secret treaty",
+      "qid": "Q1498487",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "serf",
+      "qid": "Q85000195",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "settler",
+      "qid": "Q1818899",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "slavery",
+      "qid": "Q8463",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "smuggler",
+      "qid": "Q17176618",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "sovereign state",
+      "qid": "Q3624078",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sovereignty",
+      "qid": "Q42008",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "states of Brazil",
+      "qid": "Q20617590",
+      "predicate": "DROP"
+    },
+    {
+      "name": "terra nullius",
+      "qid": "Q312461",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "torture",
+      "qid": "Q132781",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "transport",
+      "qid": "Q7590",
+      "predicate": "HAS_CONTEXT"
+    }
+  ],
+  "stats": {
+    "total": 125,
+    "kept": 82,
+    "dropped": 43,
+    "by_predicate": {
+      "DROP": 43,
+      "HAS_INSTRUMENT": 8,
+      "HAS_SUBTYPE": 6,
+      "HAS_METHOD": 3,
+      "HAS_CONTEXT": 29,
+      "HAS_INSTITUTION": 9,
+      "HAS_COMPONENT": 26,
+      "HAS_FIGURE": 1
+    }
+  }
+}

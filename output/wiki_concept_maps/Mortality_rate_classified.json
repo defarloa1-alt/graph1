@@ -1,0 +1,284 @@
+{
+  "page": "Mortality rate",
+  "page_name": "Mortality_rate",
+  "root_qid": "Q58702",
+  "classified": [
+    {
+      "name": "Alzheimer's disease",
+      "qid": "Q11081",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Amartya Sen",
+      "qid": "Q132489",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Biodemography",
+      "qid": "Q4914754",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Case fatality rate",
+      "qid": "Q92307203",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Censoring (statistics)",
+      "qid": "Q189813",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Centers for Disease Control and Prevention",
+      "qid": "Q583725",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Central Intelligence Agency",
+      "qid": "Q37230",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Child mortality",
+      "qid": "Q61559",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Chronic obstructive pulmonary disease",
+      "qid": "Q199804",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Cluster sampling",
+      "qid": "Q1776598",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Compensation law of mortality",
+      "qid": "Q5156264",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Demography",
+      "qid": "Q37732",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Gompertz–Makeham law of mortality",
+      "qid": "Q2734378",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Health Affairs",
+      "qid": "Q260110",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Incidence (epidemiology)",
+      "qid": "Q217690",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Infant mortality",
+      "qid": "Q835884",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Jean Ziegler",
+      "qid": "Q123706",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Life table",
+      "qid": "Q632184",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "List of causes of death by rate",
+      "qid": "Q16879561",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "List of countries by birth rate",
+      "qid": "Q863995",
+      "predicate": "DROP"
+    },
+    {
+      "name": "List of countries by life expectancy",
+      "qid": "Q842790",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Lung cancer",
+      "qid": "Q47912",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Maximum life span",
+      "qid": "Q13419831",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Medical statistics",
+      "qid": "Q1252929",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Micromort",
+      "qid": "Q1390401",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Mortality rate",
+      "qid": "Q58702",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Perinatal mortality",
+      "qid": "Q2781245",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Proportionality (mathematics)",
+      "qid": "Q51379",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Risk adjusted mortality rate",
+      "qid": "Q7336253",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Standardized mortality ratio",
+      "qid": "Q7598403",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Statistical population",
+      "qid": "Q49918",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Stroke",
+      "qid": "Q12202",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Tuberculosis",
+      "qid": "Q12204",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "United Nations",
+      "qid": "Q1065",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United States Department of Health and Human Services",
+      "qid": "Q942326",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Vital statistics (government records)",
+      "qid": "Q1131372",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Weekend effect",
+      "qid": "Q18394758",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "World Health Organization",
+      "qid": "Q7817",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "World population",
+      "qid": "Q11188",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "adult mortality",
+      "qid": "Q136564655",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "cause of death",
+      "qid": "Q1931388",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "death",
+      "qid": "Q4",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "disease",
+      "qid": "Q12136",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "food prices",
+      "qid": "Q24886253",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "list of causes of death by rate",
+      "qid": "Q16879561",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "malnutrition",
+      "qid": "Q12167",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "missing data",
+      "qid": "Q6878417",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "morbidity",
+      "qid": "Q1367554",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "multistage sampling",
+      "qid": "Q3652044",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "prevalence",
+      "qid": "Q719602",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sampling error",
+      "qid": "Q3306280",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "sisterhood method",
+      "qid": "Q17012192",
+      "predicate": "HAS_METHOD"
+    }
+  ],
+  "stats": {
+    "total": 52,
+    "kept": 48,
+    "dropped": 4,
+    "by_predicate": {
+      "DRIVEN_BY": 8,
+      "HAS_FIGURE": 2,
+      "HAS_CONTEXT": 4,
+      "HAS_SUBTYPE": 7,
+      "HAS_METHOD": 7,
+      "HAS_INSTITUTION": 5,
+      "HAS_THEORY": 2,
+      "HAS_PUBLICATION": 3,
+      "HAS_COMPONENT": 10,
+      "DROP": 4
+    }
+  }
+}

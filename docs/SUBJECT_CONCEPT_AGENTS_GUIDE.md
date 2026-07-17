@@ -210,7 +210,7 @@ selected_analysis = analyzer.analyze_subject_selected_facets(
 
 ## Cypher Operations
 
-### File: `Cypher/subject_concept_operations.cypher`
+### File: `Cypher/operations/subject_concept_operations.cypher`
 
 Comprehensive Cypher queries for:
 - Creating SubjectConcepts
@@ -358,7 +358,7 @@ Run the Cypher bootstrap script:
 
 ```bash
 # In Neo4j Browser or via neo4j-admin
-# Execute: Cypher/bootstrap_subject_concept_agents.cypher
+# Execute: Cypher/bootstrap/bootstrap_subject_concept_agents.cypher
 ```
 
 This creates:

@@ -27,6 +27,11 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 try:
+    from scripts.tools.cidoc_context import cidoc_for_relationship
+except ImportError:
+    cidoc_for_relationship = None  # type: ignore[misc, assignment]
+
+try:
     from historian_logic_engine import HistorianLogicEngine
 except ModuleNotFoundError:  # pragma: no cover
     from .historian_logic_engine import HistorianLogicEngine
@@ -35,6 +40,19 @@ try:
     from scripts.methodology.fischer import sca_lint_claim
 except ImportError:  # pragma: no cover
     sca_lint_claim = None  # type: ignore[assignment,misc]
+
+try:
+    from scripts.tools.sys_registry import (
+        RelationshipValidation,
+        fetch_backlink_edge_types,
+        fetch_graph_relationship_types,
+        validate_relationship_type,
+    )
+except ImportError:  # pragma: no cover
+    RelationshipValidation = None  # type: ignore[assignment,misc]
+    fetch_backlink_edge_types = None  # type: ignore[assignment,misc]
+    fetch_graph_relationship_types = None  # type: ignore[assignment,misc]
+    validate_relationship_type = None  # type: ignore[assignment,misc]
 
 
 class QIDResolver:
@@ -533,6 +551,46 @@ class ClaimIngestionPipeline:
         self.database = database
         self.reasoning_engine = HistorianLogicEngine()
         self._promotion_config: Optional[Dict[str, Any]] = None
+        self._graph_rel_types: Optional[set[str]] = None
+        self._backlink_edge_types: Optional[set[str]] = None
+        self.strict_registry: bool = False
+
+    def _load_registry_context(self) -> tuple[set[str], set[str]]:
+        if self._graph_rel_types is not None and self._backlink_edge_types is not None:
+            return self._graph_rel_types, self._backlink_edge_types
+        graph_types: set[str] = set()
+        backlink: set[str] = set()
+        if fetch_graph_relationship_types is None:
+            self._graph_rel_types = graph_types
+            self._backlink_edge_types = backlink
+            return graph_types, backlink
+        try:
+            with self.driver.session(database=self.database) as session:
+                graph_types = fetch_graph_relationship_types(session)
+                backlink = fetch_backlink_edge_types(session)
+        except Exception:
+            pass
+        self._graph_rel_types = graph_types
+        self._backlink_edge_types = backlink
+        return graph_types, backlink
+
+    def validate_relationship_registry(
+        self,
+        relationship_type: str,
+        *,
+        pred_pid: str | None = None,
+        strict: bool | None = None,
+    ) -> RelationshipValidation:
+        if validate_relationship_type is None:
+            raise RuntimeError("sys_registry module unavailable")
+        graph_types, backlink = self._load_registry_context()
+        return validate_relationship_type(
+            relationship_type,
+            pred_pid=pred_pid,
+            graph_rel_types=graph_types,
+            backlink_edge_types=backlink,
+            strict=strict if strict is not None else self.strict_registry,
+        )
 
     def _load_promotion_config(self) -> Dict[str, Any]:
         """
@@ -600,7 +658,14 @@ class ClaimIngestionPipeline:
         authority_source: Optional[str] = None,
         authority_ids: Optional[Any] = None,
         claim_type: str = "relational",
-        source_agent: str = "agent_claim_ingestion_pipeline"
+        source_agent: str = "agent_claim_ingestion_pipeline",
+        pred_pid: Optional[str] = None,
+        strict_registry: Optional[bool] = None,
+        igar: Optional[Dict[str, Any]] = None,
+        predicate_status: str = "confirmed",
+        research_notes: str = "",
+        initial_status: Optional[str] = None,
+        require_igar: bool = False,
     ) -> Dict[str, Any]:
         """
         Complete claim ingestion workflow
@@ -620,6 +685,11 @@ class ClaimIngestionPipeline:
             authority_ids: Authority identifiers map or list
             claim_type: Claim type label (e.g., relational, factual, temporal)
             source_agent: Agent identifier used for claim provenance
+            igar: Optional Input→Goal→Action→Result metadata (actor-centric Events)
+            predicate_status: confirmed | tbd (tbd forces Hold + research_notes)
+            research_notes: Why predicate/IGAR needs further work
+            initial_status: Override Claim.status (proposed|held)
+            require_igar: If True, refuse incomplete IGAR
             
         Returns:
             {
@@ -635,23 +705,68 @@ class ClaimIngestionPipeline:
             }
         """
         try:
+            from scripts.agents.military.igar import (
+                igar_flat_props,
+                normalize_igar,
+                validate_igar,
+            )
+
             facet = facet.strip().lower() if facet else ""
             claim_type = claim_type.strip().lower() if claim_type else "relational"
             source_agent = source_agent.strip() if source_agent else "agent_claim_ingestion_pipeline"
+            predicate_status = (predicate_status or "confirmed").strip().lower()
+            if predicate_status not in {"confirmed", "tbd"}:
+                raise ValueError("predicate_status must be 'confirmed' or 'tbd'")
+            research_notes = (research_notes or "").strip()
             if not facet:
                 raise ValueError("facet is required (lowercase registry key)")
             if not subject_qid:
                 raise ValueError("subject_qid is required for claim_id signature")
             if claim_signature is None:
                 raise ValueError("claim_signature is required for deterministic claim_id")
+            if predicate_status == "tbd" and len(research_notes) < 8:
+                raise ValueError(
+                    "predicate_status=tbd requires research_notes (≥8 chars) "
+                    "describing what further research is needed"
+                )
             signature_text = self._normalize_claim_signature(claim_signature, subject_qid)
             authority_source = authority_source.strip() if authority_source else ""
             authority_ids_input = authority_ids
             authority_ids = self._normalize_authority_ids(authority_ids)
-            # 1. Validate inputs
-            self._validate_claim_data(
-                entity_id, relationship_type, target_id, confidence, label
+            # 1. Validate inputs + relationship registry
+            # TBD predicates may use a provisional registry type (best guess) with Hold.
+            registry_check = self.validate_relationship_registry(
+                relationship_type,
+                pred_pid=pred_pid,
+                strict=False if predicate_status == "tbd" else strict_registry,
             )
+            if not registry_check.valid:
+                raise ValueError(registry_check.message)
+            self._validate_claim_data(
+                entity_id, registry_check.normalized, target_id, confidence, label
+            )
+            relationship_type = registry_check.normalized
+            cidoc_meta = (
+                cidoc_for_relationship(relationship_type) if cidoc_for_relationship else None
+            )
+            cidoc_crm_code = (cidoc_meta or {}).get("cidoc_crm_code") or ""
+
+            normalized_igar = normalize_igar(igar)
+            igar_problems = validate_igar(
+                normalized_igar, require_complete=require_igar
+            )
+            if igar_problems:
+                raise ValueError("; ".join(igar_problems))
+            igar_props = igar_flat_props(normalized_igar)
+
+            # TBD or incomplete IGAR on actor-centric training → Hold
+            status = (initial_status or "proposed").strip().lower()
+            if predicate_status == "tbd":
+                status = "held"
+            if require_igar and not igar_props.get("igar_complete"):
+                status = "held"
+            if status not in {"proposed", "held"}:
+                raise ValueError("initial_status must be proposed or held")
             
             # 2. Generate identifiers
             claim_id = self._generate_claim_id(subject_qid, signature_text)
@@ -668,6 +783,19 @@ class ClaimIngestionPipeline:
                         if val and str(val) != subject_qid:
                             object_qid = str(val)
                             break
+            resolved_pred_pid = (pred_pid or "").strip().upper() or None
+            if not resolved_pred_pid and isinstance(authority_ids_input, dict):
+                raw_pid = authority_ids_input.get("pred_pid")
+                if raw_pid:
+                    resolved_pred_pid = str(raw_pid).strip().upper()
+            if not resolved_pred_pid and isinstance(claim_signature, dict):
+                pvalues = claim_signature.get("pvalues") or []
+                if pvalues:
+                    resolved_pred_pid = str(pvalues[0]).strip().upper()
+            wd_statement = self.format_wd_statement(
+                subject_qid, resolved_pred_pid, object_qid
+            )
+
             cipher = self._calculate_cipher(
                 subject_node_id=subject_qid,
                 property_path_id=relationship_type,
@@ -724,7 +852,18 @@ class ClaimIngestionPipeline:
                 facet=facet,
                 reasoning_eval=reasoning_eval,
                 authority_source=authority_source,
-                authority_ids=authority_ids
+                authority_ids=authority_ids,
+                registry_status=registry_check.registry_status,
+                registry_validated=registry_check.valid,
+                registry_message=registry_check.message,
+                cidoc_crm_code=cidoc_crm_code,
+                status=status,
+                predicate_status=predicate_status,
+                research_notes=research_notes,
+                igar_props=igar_props,
+                object_qid=object_qid if object_qid != subject_qid else object_qid,
+                pred_pid=resolved_pred_pid,
+                wd_statement=wd_statement,
             )
             
             # 4. Create context and analysis nodes
@@ -930,6 +1069,26 @@ class ClaimIngestionPipeline:
             return json.dumps(authority_ids, sort_keys=True, separators=(",", ":"))
         raise ValueError("authority_ids must be a string, dict, list, or None")
 
+    @staticmethod
+    def format_wd_statement(
+        subject_qid: str | None,
+        pred_pid: str | None,
+        object_qid: str | None,
+    ) -> str | None:
+        """
+        Language-neutral Wikidata statement key: Q36456-P607-Q179591.
+
+        Prefer this over natural-language labels for multilingual persistence.
+        """
+        if not subject_qid or not pred_pid or not object_qid:
+            return None
+        subj = str(subject_qid).strip().upper()
+        pred = str(pred_pid).strip().upper()
+        obj = str(object_qid).strip().upper()
+        if not (subj.startswith("Q") and pred.startswith("P") and obj.startswith("Q")):
+            return None
+        return f"{subj}-{pred}-{obj}"
+
     def _generate_claim_id(self, subject_qid: str, signature_text: str) -> str:
         """Generate deterministic claim ID from QID + full statement signature"""
         base = f"{subject_qid}|{signature_text}"
@@ -1009,38 +1168,108 @@ class ClaimIngestionPipeline:
         facet: str,
         reasoning_eval: Dict[str, Any],
         authority_source: str,
-        authority_ids: Optional[Any]
+        authority_ids: Optional[Any],
+        registry_status: str = "unknown",
+        registry_validated: bool = True,
+        registry_message: str = "",
+        cidoc_crm_code: str = "",
+        status: str = "proposed",
+        predicate_status: str = "confirmed",
+        research_notes: str = "",
+        igar_props: Optional[Dict[str, Any]] = None,
+        object_qid: Optional[str] = None,
+        pred_pid: Optional[str] = None,
+        wd_statement: Optional[str] = None,
     ) -> None:
         """Create Claim node with required properties"""
+        igar_props = igar_props or {}
         with self.driver.session(database=self.database) as session:
             result = session.run(
                 """
-                CREATE (c:Claim {
-                    claim_id: $claim_id,
-                    cipher: $cipher,
-                    label: $label,
-                    text: $text,
-                    description: $description,
-                    claim_type: $claim_type,
-                    source_agent: $source_agent,
-                    timestamp: $timestamp,
-                    confidence: $confidence,
-                    status: 'proposed',
-                    promoted: false,
-                    subject_qid: $subject_qid,
-                    facet: $facet,
-                    authority_source: $authority_source,
-                    authority_ids: $authority_ids,
-                    prior_probability: $prior_probability,
-                    likelihood: $likelihood,
-                    posterior_probability: $posterior_probability,
-                    bayesian_score: $posterior_probability,
-                    evidence_score: $evidence_score,
-                    fallacies_detected: $fallacies_detected,
-                    fallacy_penalty: $fallacy_penalty,
-                    critical_fallacy: $critical_fallacy,
-                    fischer_status: $fischer_status
-                })
+                MERGE (c:Claim {claim_id: $claim_id})
+                ON CREATE SET
+                    c.cipher = $cipher,
+                    c.label = $label,
+                    c.text = $text,
+                    c.description = $description,
+                    c.claim_type = $claim_type,
+                    c.source_agent = $source_agent,
+                    c.timestamp = $timestamp,
+                    c.confidence = $confidence,
+                    c.status = $status,
+                    c.promoted = false,
+                    c.subject_qid = $subject_qid,
+                    c.facet = $facet,
+                    c.authority_source = $authority_source,
+                    c.authority_ids = $authority_ids,
+                    c.registry_status = $registry_status,
+                    c.registry_validated = $registry_validated,
+                    c.registry_message = $registry_message,
+                    c.cidoc_crm_code = $cidoc_crm_code,
+                    c.prior_probability = $prior_probability,
+                    c.likelihood = $likelihood,
+                    c.posterior_probability = $posterior_probability,
+                    c.bayesian_score = $posterior_probability,
+                    c.evidence_score = $evidence_score,
+                    c.fallacies_detected = $fallacies_detected,
+                    c.fallacy_penalty = $fallacy_penalty,
+                    c.critical_fallacy = $critical_fallacy,
+                    c.fischer_status = $fischer_status,
+                    c.predicate_status = $predicate_status,
+                    c.research_notes = $research_notes,
+                    c.igar_json = $igar_json,
+                    c.igar_input = $igar_input,
+                    c.igar_goal = $igar_goal,
+                    c.igar_action = $igar_action,
+                    c.igar_result = $igar_result,
+                    c.igar_input_year = $igar_input_year,
+                    c.igar_action_year = $igar_action_year,
+                    c.igar_result_year = $igar_result_year,
+                    c.igar_complete = $igar_complete,
+                    c.object_qid = $object_qid,
+                    c.pred_pid = $pred_pid,
+                    c.wd_statement = $wd_statement
+                ON MATCH SET
+                    c.cipher = $cipher,
+                    c.label = $label,
+                    c.text = $text,
+                    c.description = $description,
+                    c.claim_type = $claim_type,
+                    c.source_agent = $source_agent,
+                    c.confidence = $confidence,
+                    c.status = $status,
+                    c.subject_qid = $subject_qid,
+                    c.facet = $facet,
+                    c.authority_source = $authority_source,
+                    c.authority_ids = $authority_ids,
+                    c.registry_status = $registry_status,
+                    c.registry_validated = $registry_validated,
+                    c.registry_message = $registry_message,
+                    c.cidoc_crm_code = $cidoc_crm_code,
+                    c.prior_probability = $prior_probability,
+                    c.likelihood = $likelihood,
+                    c.posterior_probability = $posterior_probability,
+                    c.bayesian_score = $posterior_probability,
+                    c.evidence_score = $evidence_score,
+                    c.fallacies_detected = $fallacies_detected,
+                    c.fallacy_penalty = $fallacy_penalty,
+                    c.critical_fallacy = $critical_fallacy,
+                    c.fischer_status = $fischer_status,
+                    c.predicate_status = $predicate_status,
+                    c.research_notes = $research_notes,
+                    c.igar_json = $igar_json,
+                    c.igar_input = $igar_input,
+                    c.igar_goal = $igar_goal,
+                    c.igar_action = $igar_action,
+                    c.igar_result = $igar_result,
+                    c.igar_input_year = $igar_input_year,
+                    c.igar_action_year = $igar_action_year,
+                    c.igar_result_year = $igar_result_year,
+                    c.igar_complete = $igar_complete,
+                    c.object_qid = $object_qid,
+                    c.pred_pid = $pred_pid,
+                    c.wd_statement = $wd_statement,
+                    c.updated_at = $timestamp
                 RETURN c
                 """,
                 {
@@ -1053,10 +1282,18 @@ class ClaimIngestionPipeline:
                     "source_agent": source_agent,
                     "timestamp": datetime.utcnow().isoformat(),
                     "confidence": confidence,
+                    "status": status,
                     "subject_qid": subject_qid,
                     "facet": facet,
                     "authority_source": authority_source or None,
                     "authority_ids": authority_ids,
+                    "object_qid": object_qid,
+                    "pred_pid": pred_pid,
+                    "wd_statement": wd_statement,
+                    "registry_status": registry_status,
+                    "registry_validated": registry_validated,
+                    "registry_message": registry_message,
+                    "cidoc_crm_code": cidoc_crm_code or None,
                     "prior_probability": reasoning_eval["prior_probability"],
                     "likelihood": reasoning_eval["likelihood"],
                     "posterior_probability": reasoning_eval["posterior_probability"],
@@ -1065,6 +1302,17 @@ class ClaimIngestionPipeline:
                     "fallacy_penalty": reasoning_eval["fallacy_penalty"],
                     "critical_fallacy": reasoning_eval["critical_fallacy"],
                     "fischer_status": reasoning_eval.get("fischer_status", "skipped"),
+                    "predicate_status": predicate_status,
+                    "research_notes": research_notes or None,
+                    "igar_json": igar_props.get("igar_json"),
+                    "igar_input": igar_props.get("igar_input"),
+                    "igar_goal": igar_props.get("igar_goal"),
+                    "igar_action": igar_props.get("igar_action"),
+                    "igar_result": igar_props.get("igar_result"),
+                    "igar_input_year": igar_props.get("igar_input_year"),
+                    "igar_action_year": igar_props.get("igar_action_year"),
+                    "igar_result_year": igar_props.get("igar_result_year"),
+                    "igar_complete": bool(igar_props.get("igar_complete")),
                 }
             )
             result.consume()

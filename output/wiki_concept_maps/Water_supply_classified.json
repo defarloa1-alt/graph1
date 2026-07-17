@@ -1,0 +1,658 @@
+{
+  "page": "Water supply",
+  "page_name": "Water_supply",
+  "root_qid": "Q1061108",
+  "classified": [
+    {
+      "name": "1854 Broad Street cholera outbreak",
+      "qid": "Q2035019",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Benchmarking",
+      "qid": "Q816754",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Bond (finance)",
+      "qid": "Q11693",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Brazil",
+      "qid": "Q155",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Canada",
+      "qid": "Q16",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Casablanca",
+      "qid": "Q7903",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chelsea Waterworks Company",
+      "qid": "Q2962238",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Chile",
+      "qid": "Q298",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Developing country",
+      "qid": "Q177323",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "District of Columbia Water and Sewer Authority",
+      "qid": "Q5283435",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Drinking water",
+      "qid": "Q7892",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "England",
+      "qid": "Q21",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fixed investment",
+      "qid": "Q5456372",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "France",
+      "qid": "Q142",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Frankfurt",
+      "qid": "Q1794",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Gabon",
+      "qid": "Q1000",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Germany",
+      "qid": "Q183",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Haiti",
+      "qid": "Q790",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Intermittent water supply",
+      "qid": "Q116275672",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "James Simpson (engineer)",
+      "qid": "Q6143209",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Jordan",
+      "qid": "Q810",
+      "predicate": "DROP"
+    },
+    {
+      "name": "List of desalination plants in Australia",
+      "qid": "Q6616080",
+      "predicate": "DROP"
+    },
+    {
+      "name": "London water supply infrastructure",
+      "qid": "Q6671161",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Maryland",
+      "qid": "Q1391",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Medellín",
+      "qid": "Q48278",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mexico",
+      "qid": "Q96",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Millennium Development Goals",
+      "qid": "Q81737",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Morocco",
+      "qid": "Q1028",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Non-revenue water",
+      "qid": "Q7049015",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "OECD",
+      "qid": "Q41550",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Pressure regulator",
+      "qid": "Q1260990",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Roman Empire",
+      "qid": "Q2277",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Roman aqueduct",
+      "qid": "Q13218676",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Rotherham",
+      "qid": "Q217039",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ryutaro Hashimoto",
+      "qid": "Q309374",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Sanitation",
+      "qid": "Q949149",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Shanty town",
+      "qid": "Q1294703",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Spain",
+      "qid": "Q29",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Suez (company, 2015)",
+      "qid": "Q177814",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Supranational union",
+      "qid": "Q1335818",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Tap (valve)",
+      "qid": "Q656656",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Tap water",
+      "qid": "Q506004",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Thames Water",
+      "qid": "Q2408951",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Tunisia",
+      "qid": "Q948",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Uganda",
+      "qid": "Q1036",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ukraine",
+      "qid": "Q212",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United Kingdom",
+      "qid": "Q145",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United States",
+      "qid": "Q30",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United States Environmental Protection Agency",
+      "qid": "Q460173",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Uruguay",
+      "qid": "Q77",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Wales",
+      "qid": "Q25",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water chlorination",
+      "qid": "Q1075344",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Water pipe",
+      "qid": "Q16628076",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Water pollution",
+      "qid": "Q183129",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Water privatization",
+      "qid": "Q917568",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Water purification",
+      "qid": "Q1463025",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Water supply",
+      "qid": "Q1061108",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Bolivia",
+      "qid": "Q7973778",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Colombia",
+      "qid": "Q2858934",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Ecuador",
+      "qid": "Q7973787",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Honduras",
+      "qid": "Q7973794",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Iran",
+      "qid": "Q7973800",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Mexico",
+      "qid": "Q7973811",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Panama",
+      "qid": "Q7973819",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in Uruguay",
+      "qid": "Q3819058",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water supply and sanitation in the United States",
+      "qid": "Q4976799",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water treatment",
+      "qid": "Q1058719",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "World Bank",
+      "qid": "Q7164",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "agriculture",
+      "qid": "Q11451",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "aquifer",
+      "qid": "Q208791",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "attic",
+      "qid": "Q244490",
+      "predicate": "DROP"
+    },
+    {
+      "name": "automatic meter reading",
+      "qid": "Q3503672",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "bathtub",
+      "qid": "Q152095",
+      "predicate": "DROP"
+    },
+    {
+      "name": "benchmarking",
+      "qid": "Q816754",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "booster pump",
+      "qid": "Q4943803",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "borehole",
+      "qid": "Q502102",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cholera",
+      "qid": "Q12090",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "concession (contract)",
+      "qid": "Q327209",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "desalination",
+      "qid": "Q190873",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "dishwasher",
+      "qid": "Q186263",
+      "predicate": "DROP"
+    },
+    {
+      "name": "drinking water",
+      "qid": "Q7892",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "economies of scale",
+      "qid": "Q5970087",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "groundwater",
+      "qid": "Q161598",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hydrostatic pressure",
+      "qid": "Q1149672",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "irrigation",
+      "qid": "Q11453",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "lake",
+      "qid": "Q23397",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "landscaping",
+      "qid": "Q8070591",
+      "predicate": "DROP"
+    },
+    {
+      "name": "leak",
+      "qid": "Q1349983",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "lease",
+      "qid": "Q716894",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "limescale",
+      "qid": "Q747404",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "management contract",
+      "qid": "Q6746687",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mean",
+      "qid": "Q2796622",
+      "predicate": "DROP"
+    },
+    {
+      "name": "municipality",
+      "qid": "Q15284",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "natural monopoly",
+      "qid": "Q648510",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "non-revenue water",
+      "qid": "Q7049015",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "privatization",
+      "qid": "Q161500",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "public utility",
+      "qid": "Q1951366",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "qanat",
+      "qid": "Q459297",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "rainwater harvesting",
+      "qid": "Q2137507",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "remunicipalization",
+      "qid": "Q2142358",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "residential water use in the U.S. and Canada",
+      "qid": "Q30592807",
+      "predicate": "DROP"
+    },
+    {
+      "name": "river",
+      "qid": "Q4022",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sand filter",
+      "qid": "Q1527878",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sanitary sewer",
+      "qid": "Q1805497",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sanitation",
+      "qid": "Q949149",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "service quality",
+      "qid": "Q1221081",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sewage",
+      "qid": "Q10966166",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sewage treatment",
+      "qid": "Q221275",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "shower",
+      "qid": "Q7863",
+      "predicate": "DROP"
+    },
+    {
+      "name": "standardization",
+      "qid": "Q369577",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "stormwater harvesting",
+      "qid": "Q7620280",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "surface water",
+      "qid": "Q752112",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ultraviolet",
+      "qid": "Q11391",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "washing machine",
+      "qid": "Q124441",
+      "predicate": "DROP"
+    },
+    {
+      "name": "wastewater",
+      "qid": "Q336191",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "wastewater treatment",
+      "qid": "Q20127660",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "water",
+      "qid": "Q283",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "water industry",
+      "qid": "Q474883",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "water quality",
+      "qid": "Q625376",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "water resources",
+      "qid": "Q1049799",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "water scarcity",
+      "qid": "Q5376358",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "water service contract",
+      "qid": "Q7973739",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "water supply and sanitation in Uruguay",
+      "qid": "Q3819058",
+      "predicate": "DROP"
+    },
+    {
+      "name": "water supply network",
+      "qid": "Q625083",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "water tower",
+      "qid": "Q274153",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "water treatment",
+      "qid": "Q1058719",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "website",
+      "qid": "Q35127",
+      "predicate": "DROP"
+    }
+  ],
+  "stats": {
+    "total": 127,
+    "kept": 81,
+    "dropped": 46,
+    "by_predicate": {
+      "HAS_CONTEXT": 9,
+      "HAS_METHOD": 14,
+      "HAS_COMPONENT": 43,
+      "DROP": 46,
+      "HAS_INSTITUTION": 7,
+      "HAS_SUBTYPE": 4,
+      "HAS_FIGURE": 2,
+      "HAS_INSTRUMENT": 1,
+      "DRIVEN_BY": 1
+    }
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "page": "Landscape ecology",
+  "page_name": "Landscape_ecology",
+  "root_qid": "Q738011",
+  "classified": [
+    {
+      "name": "Analytic induction",
+      "qid": "Q4751131",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Biodiversity",
+      "qid": "Q47041",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Carl Troll",
+      "qid": "Q65302",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Climate change",
+      "qid": "Q125928",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Ernst Neef",
+      "qid": "Q100611",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Europe",
+      "qid": "Q46",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Geographic information science",
+      "qid": "Q3537694",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Geomorphology",
+      "qid": "Q52109",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Gradient analysis",
+      "qid": "Q5591905",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Integrated geography",
+      "qid": "Q2634092",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Janet Franklin",
+      "qid": "Q57147860",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Land change modeling",
+      "qid": "Q30693224",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Landscape connectivity",
+      "qid": "Q2993449",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Landscape ecology",
+      "qid": "Q738011",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Multivariate analysis",
+      "qid": "Q3331475",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Natural environment",
+      "qid": "Q43619",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "North America",
+      "qid": "Q49",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Patch",
+      "qid": "Q340744",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Scale (geography)",
+      "qid": "Q24833355",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Seascape ecology",
+      "qid": "Q48791947",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Shore",
+      "qid": "Q468756",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Socioeconomics",
+      "qid": "Q1643441",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "The Theory of Island Biogeography",
+      "qid": "Q7768659",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Urbanization",
+      "qid": "Q161078",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "agriculture",
+      "qid": "Q11451",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "anthropocentrism",
+      "qid": "Q191624",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biodiversity",
+      "qid": "Q47041",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biodiversity loss",
+      "qid": "Q18466271",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "biology",
+      "qid": "Q420",
+      "predicate": "DROP"
+    },
+    {
+      "name": "canonical correspondence analysis",
+      "qid": "Q16851643",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "carbon cycle",
+      "qid": "Q167751",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cluster analysis",
+      "qid": "Q622825",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "computer simulation",
+      "qid": "Q925667",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "conservation biology",
+      "qid": "Q641498",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "deforestation",
+      "qid": "Q169940",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "detrended correspondence analysis",
+      "qid": "Q5265809",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "drainage basin",
+      "qid": "Q166620",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ecology",
+      "qid": "Q7150",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ecosystem",
+      "qid": "Q37813",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "epidemic",
+      "qid": "Q44512",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "extinction",
+      "qid": "Q123509",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "fishery",
+      "qid": "Q180538",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "forest",
+      "qid": "Q4421",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "forestry",
+      "qid": "Q38112",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "geodiversity",
+      "qid": "Q4351849",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "geographer",
+      "qid": "Q901402",
+      "predicate": "DROP"
+    },
+    {
+      "name": "geographic information system",
+      "qid": "Q483130",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "geography",
+      "qid": "Q1071",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "grassland",
+      "qid": "Q1006733",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "habitat fragmentation",
+      "qid": "Q913302",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hydrology",
+      "qid": "Q42250",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "integrated landscape management",
+      "qid": "Q25067858",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "invasive species",
+      "qid": "Q183368",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land change science",
+      "qid": "Q106696937",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "land use",
+      "qid": "Q1165944",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "landscape",
+      "qid": "Q107425",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "landscape limnology",
+      "qid": "Q6485103",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "lifeworld",
+      "qid": "Q1502991",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "metapopulation",
+      "qid": "Q954495",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "population",
+      "qid": "Q2625603",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "population genetics",
+      "qid": "Q31151",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "regeneration (ecology)",
+      "qid": "Q1771018",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "remote sensing",
+      "qid": "Q199687",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "riparian zone",
+      "qid": "Q13360049",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "road",
+      "qid": "Q34442",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "scale (geography)",
+      "qid": "Q24833355",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "soil",
+      "qid": "Q36133",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "species",
+      "qid": "Q7432",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "stochastic",
+      "qid": "Q1071239",
+      "predicate": "DROP"
+    },
+    {
+      "name": "sustainability",
+      "qid": "Q219416",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "systems science",
+      "qid": "Q2167061",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "total human ecosystem",
+      "qid": "Q93340282",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "urban planning",
+      "qid": "Q69883",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "vegetation",
+      "qid": "Q187997",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "wetland",
+      "qid": "Q170321",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 75,
+    "kept": 69,
+    "dropped": 6,
+    "by_predicate": {
+      "HAS_METHOD": 10,
+      "HAS_COMPONENT": 34,
+      "HAS_FIGURE": 3,
+      "DRIVEN_BY": 4,
+      "DROP": 6,
+      "HAS_CONTEXT": 13,
+      "HAS_SUBTYPE": 3,
+      "HAS_THEORY": 2
+    }
+  }
+}

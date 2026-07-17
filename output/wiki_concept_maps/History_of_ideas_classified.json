@@ -1,0 +1,26 @@
+{
+  "page": "History of ideas",
+  "page_name": "History_of_ideas",
+  "root_qid": "Q570018",
+  "classified": [
+    {
+      "name": "History of ideas",
+      "qid": "Q570018",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Intellectual history",
+      "qid": "Q1195695",
+      "predicate": "HAS_SUBTYPE"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "kept": 1,
+    "dropped": 1,
+    "by_predicate": {
+      "DROP": 1,
+      "HAS_SUBTYPE": 1
+    }
+  }
+}

@@ -600,22 +600,6 @@ SET r.edge_type        = $edge_type,
     r.harvested_at     = datetime()
 """
 
-WRITE_EVENT_PARTICIPATION = """
-MERGE (evt:Event {qid: $event_qid})
-  ON CREATE SET evt.label       = $event_label,
-                evt.event_type  = $event_type,
-                evt.entity_type = 'EVENT',
-                evt.entity_id   = 'evt_' + $event_qid,
-                evt.start_date  = $start_date,
-                evt.qid         = $event_qid
-  ON MATCH SET evt.label = coalesce(evt.label, $event_label)
-MERGE (p:Person {qid: $person_qid})
-MERGE (p)-[r:PARTICIPATED_IN]->(evt)
-SET r.source = 'wikidata_' + $prop_id,
-    r.harvested_at = datetime()
-"""
-
-
 # ── Core harvest ──────────────────────────────────────────────────────────────
 
 def harvest_person(
@@ -781,43 +765,16 @@ def harvest_person(
         except Exception as e:
             print(f"    WARN marriage write failed for {m['spouse_qid']}: {e}")
 
-    def _event_start_date(evt_qid: str, evt_label: str, birth_yr, death_yr) -> str | None:
-        """Derive start_date for Event (schema requires it). Use person's dates as proxy."""
-        yr = death_yr or birth_yr
-        if yr is None:
-            return None
-        return f"{yr:+05d}-01-01".replace("+", "")
-
-    for evt in conflicts:
-        start_date = _event_start_date(evt["qid"], evt.get("label"), birth_year, death_year)
-        if not start_date:
-            continue
-        try:
-            session.run(WRITE_EVENT_PARTICIPATION, {
-                "person_qid":  qid,
-                "event_qid":   evt["qid"],
-                "event_label": evt.get("label") or evt["qid"],
-                "event_type":  "conflict",
-                "prop_id":     "p607",
-                "start_date":  start_date,
-            })
-        except Exception as e:
-            print(f"    WARN event write failed for {evt['qid']}: {e}")
-    for evt in events:
-        start_date = _event_start_date(evt["qid"], evt.get("label"), birth_year, death_year)
-        if not start_date:
-            continue
-        try:
-            session.run(WRITE_EVENT_PARTICIPATION, {
-                "person_qid":  qid,
-                "event_qid":   evt["qid"],
-                "event_label": evt.get("label") or evt["qid"],
-                "event_type":  "significant_event",
-                "prop_id":     "p793_p1344",
-                "start_date":  start_date,
-            })
-        except Exception as e:
-            print(f"    WARN event write failed for {evt['qid']}: {e}")
+    # Event associations are discovery evidence only. Biographic harvesting must
+    # not create canonical Event nodes or PARTICIPATED_IN relationships: doing so
+    # previously fabricated event dates from a person's birth/death year. Route
+    # these observations through ClaimRegistry only after resolving an existing,
+    # correctly typed Event whose date has independent source provenance.
+    if conflicts or events:
+        print(
+            "    event associations retained as discovery only; "
+            "no Event or PARTICIPATED_IN writes"
+        )
 
     for bl in backlinks:
         try:

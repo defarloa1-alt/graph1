@@ -8,12 +8,13 @@ globs: scripts/agents/biographic/**,scripts/ui/proposal_review_api.py,Key Files/
 
 Before a biographic claim can be validated, the review UI and API must surface:
 
-1. **Who** — person anchor label + QID + lifespan (birth/death or floruit from Person node)
-2. **What** — proposed edge direction, relationship type, Wikidata PID, human description
-3. **When** — event `start_date` for participation/founding claims; relation `start_year`/`end_year` when a canonical edge exists (e.g. SPOUSE_OF from forward harvest); flag gaps explicitly
-4. **Provenance** — authority source, harvest timestamp, whether direction was corrected
-5. **Reconciliation** — status vs DPRR/canonical edges; warn if unreconciled
-6. **Fischer** — skipped/flagged status and fallacy list
+1. **Scope** — routed `di_proposal` SubjectConcept (ADR-021): label, subject_id, routing score; run `route_claims_to_sc.py` if missing
+2. **Who** — person anchor label + QID + lifespan (birth/death or floruit from Person node)
+3. **What** — proposed edge direction, relationship type, Wikidata PID, human description
+4. **When** — event `start_date` for participation/founding claims; relation `start_year`/`end_year` when a canonical edge exists (e.g. SPOUSE_OF from forward harvest); flag gaps explicitly
+5. **Provenance** — authority source, harvest timestamp, whether direction was corrected
+6. **Reconciliation** — status vs DPRR/canonical edges; warn if unreconciled
+7. **Fischer** — skipped/flagged status and fallacy list
 
 Temporal qualifiers on Wikidata backlink statements (P580/P582) are harvested by `enrich_claims.py` before review when possible. Date gaps are advisory — validate only with review notes explaining the gap.
 

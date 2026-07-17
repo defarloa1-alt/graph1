@@ -1,0 +1,186 @@
+{
+  "page": "Philosophy of archaeology",
+  "page_name": "Philosophy_of_archaeology",
+  "root_qid": "Q17080775",
+  "classified": [
+    {
+      "name": "Ahnenerbe",
+      "qid": "Q160394",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Alison Wylie",
+      "qid": "Q4727229",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ancient Egypt",
+      "qid": "Q11768",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ancient Persia",
+      "qid": "Q99545681",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Arche",
+      "qid": "Q196638",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Babylon",
+      "qid": "Q5684",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chaos (cosmogony)",
+      "qid": "Q17508277",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Charles Darwin",
+      "qid": "Q1035",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Elgin Marbles",
+      "qid": "Q606662",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Empiricism",
+      "qid": "Q83368",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Hesiod",
+      "qid": "Q44233",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lucretius",
+      "qid": "Q47154",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Miletus",
+      "qid": "Q169460",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Parmenides",
+      "qid": "Q125551",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Philosophy of archaeology",
+      "qid": "Q17080775",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pre-Socratic philosophy",
+      "qid": "Q178540",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Relativism",
+      "qid": "Q83188",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Strong inference",
+      "qid": "Q17144559",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Sumer",
+      "qid": "Q35355",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Third Reich",
+      "qid": "Q518617",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Time (magazine)",
+      "qid": "Q43297",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Typology (archaeology)",
+      "qid": "Q917904",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "archaeology",
+      "qid": "Q23498",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "epistemology",
+      "qid": "Q9471",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ethics",
+      "qid": "Q9465",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mythology",
+      "qid": "Q9134",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "natural selection",
+      "qid": "Q43478",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ontology",
+      "qid": "Q44325",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "philosophical methodology",
+      "qid": "Q7186193",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "philosophy of science",
+      "qid": "Q59115",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "principle of sufficient reason",
+      "qid": "Q636778",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "theory",
+      "qid": "Q17737",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "uniformitarianism",
+      "qid": "Q208650",
+      "predicate": "HAS_THEORY"
+    }
+  ],
+  "stats": {
+    "total": 33,
+    "kept": 23,
+    "dropped": 10,
+    "by_predicate": {
+      "HAS_INSTITUTION": 1,
+      "HAS_FIGURE": 5,
+      "DROP": 10,
+      "HAS_COMPONENT": 7,
+      "HAS_THEORY": 3,
+      "HAS_CONTEXT": 4,
+      "HAS_METHOD": 3
+    }
+  }
+}

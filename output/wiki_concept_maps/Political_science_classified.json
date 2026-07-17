@@ -1,0 +1,529 @@
+{
+  "page": "Political science",
+  "page_name": "Political_science",
+  "root_qid": "Q36442",
+  "classified": [
+    {
+      "name": "Age of Enlightenment",
+      "qid": "Q12539",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "American Political Science Association",
+      "qid": "Q433211",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "American Political Science Review",
+      "qid": "Q4744701",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Behavioralism",
+      "qid": "Q814451",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Bernard Berelson",
+      "qid": "Q4598174",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Cambridge School (intellectual history)",
+      "qid": "Q17082535",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Cognitive bias",
+      "qid": "Q1127759",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Comparative politics",
+      "qid": "Q32492",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Conceptual model",
+      "qid": "Q2623243",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Crisis",
+      "qid": "Q381072",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Domestic policy",
+      "qid": "Q1573035",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Economic stability",
+      "qid": "Q2995667",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Gabriel Almond",
+      "qid": "Q729543",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Greece",
+      "qid": "Q41",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Higher education in the United States",
+      "qid": "Q2887889",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Historiography",
+      "qid": "Q50675",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "International relations",
+      "qid": "Q166542",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Leo Strauss",
+      "qid": "Q77144",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Library of Congress",
+      "qid": "Q131454",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Lisa Wedeen",
+      "qid": "Q6558486",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Munroe Smith",
+      "qid": "Q6936847",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "National Endowment for the Humanities",
+      "qid": "Q478050",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "National Science Foundation",
+      "qid": "Q304878",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Normativity",
+      "qid": "Q288156",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "North America",
+      "qid": "Q49",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Paul Lazarsfeld",
+      "qid": "Q94037",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Philip Converse",
+      "qid": "Q2086156",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pi Alpha Alpha",
+      "qid": "Q7189938",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Pi Sigma Alpha",
+      "qid": "Q7189976",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Political Science Quarterly",
+      "qid": "Q7210236",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Political economy",
+      "qid": "Q47555",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Political methodology",
+      "qid": "Q7210346",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Political science",
+      "qid": "Q36442",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Power (social and political)",
+      "qid": "Q25107",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Princeton University",
+      "qid": "Q21578",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Public administration",
+      "qid": "Q31728",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Public policy",
+      "qid": "Q546113",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Quantitative research",
+      "qid": "Q730675",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Research university",
+      "qid": "Q15936437",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Robert Dahl",
+      "qid": "Q83907",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Samuel P. Huntington",
+      "qid": "Q19074",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "San Jose, California",
+      "qid": "Q16553",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sidney Verba",
+      "qid": "Q1355609",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Social norm",
+      "qid": "Q205665",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Social science",
+      "qid": "Q34749",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Survey sampling",
+      "qid": "Q10744315",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Syracuse University",
+      "qid": "Q617433",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Texas A&M University",
+      "qid": "Q49212",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Theory",
+      "qid": "Q17737",
+      "predicate": "DROP"
+    },
+    {
+      "name": "University of Michigan",
+      "qid": "Q230492",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "University of Rochester",
+      "qid": "Q149990",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "William H. Riker",
+      "qid": "Q326238",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "academic major",
+      "qid": "Q4671286",
+      "predicate": "DROP"
+    },
+    {
+      "name": "astronomy",
+      "qid": "Q333",
+      "predicate": "DROP"
+    },
+    {
+      "name": "biology",
+      "qid": "Q420",
+      "predicate": "DROP"
+    },
+    {
+      "name": "chemistry",
+      "qid": "Q2329",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cognitive bias",
+      "qid": "Q1127759",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "constitution",
+      "qid": "Q7755",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "corporation",
+      "qid": "Q167037",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "economic crisis",
+      "qid": "Q290178",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "empirical evidence",
+      "qid": "Q83021",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "empiricism",
+      "qid": "Q83368",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "evolutionary psychology",
+      "qid": "Q219695",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "experiment",
+      "qid": "Q101965",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "experimental political science",
+      "qid": "Q5421166",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "feminist political theory",
+      "qid": "Q5442884",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "foreign policy",
+      "qid": "Q181648",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "game theory",
+      "qid": "Q44455",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "governance",
+      "qid": "Q1553864",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "human behavior",
+      "qid": "Q3769299",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "humanities",
+      "qid": "Q80083",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "international relations",
+      "qid": "Q166542",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "justice",
+      "qid": "Q13189320",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "law",
+      "qid": "Q7748",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "liberal arts college",
+      "qid": "Q1377182",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "methodology",
+      "qid": "Q185698",
+      "predicate": "DROP"
+    },
+    {
+      "name": "modernity",
+      "qid": "Q11084414",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "nation state",
+      "qid": "Q179671",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "peace",
+      "qid": "Q454",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "philosophy",
+      "qid": "Q5891",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "physics",
+      "qid": "Q413",
+      "predicate": "DROP"
+    },
+    {
+      "name": "political philosophy",
+      "qid": "Q179805",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "political theology",
+      "qid": "Q781421",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "politics",
+      "qid": "Q7163",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "politics of China",
+      "qid": "Q904852",
+      "predicate": "DROP"
+    },
+    {
+      "name": "politics of the United States",
+      "qid": "Q330963",
+      "predicate": "DROP"
+    },
+    {
+      "name": "positivism",
+      "qid": "Q131015",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "professional degree",
+      "qid": "Q3273292",
+      "predicate": "DROP"
+    },
+    {
+      "name": "public administration",
+      "qid": "Q31728",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "public health",
+      "qid": "Q189603",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "public opinion",
+      "qid": "Q17946",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "public policy",
+      "qid": "Q546113",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "public policy school",
+      "qid": "Q11391922",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "public relations",
+      "qid": "Q133080",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "research question",
+      "qid": "Q1438033",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "scientific method",
+      "qid": "Q46857",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "social research",
+      "qid": "Q12336277",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "structure and agency",
+      "qid": "Q12056630",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "think tank",
+      "qid": "Q155271",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "unitary state",
+      "qid": "Q179164",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "variance",
+      "qid": "Q175199",
+      "predicate": "DROP"
+    }
+  ],
+  "stats": {
+    "total": 101,
+    "kept": 86,
+    "dropped": 15,
+    "by_predicate": {
+      "HAS_CONTEXT": 10,
+      "HAS_INSTITUTION": 15,
+      "HAS_PUBLICATION": 2,
+      "HAS_THEORY": 6,
+      "HAS_FIGURE": 11,
+      "HAS_COMPONENT": 19,
+      "HAS_SUBTYPE": 11,
+      "HAS_METHOD": 11,
+      "DROP": 15,
+      "HAS_INSTRUMENT": 1
+    }
+  }
+}

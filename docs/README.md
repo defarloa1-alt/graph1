@@ -5,8 +5,9 @@
 ## Read order
 
 1. [EPISTEMIC_MODEL.md](EPISTEMIC_MODEL.md) — claims, confidence, lifecycle
-2. [ARCHITECTURE_CURRENT.md](ARCHITECTURE_CURRENT.md) — system architecture (supersedes older docs)
-3. [AGENTS.md](AGENTS.md) — agent constraints
+2. [FACET_TRAINING_CONTRACT.md](FACET_TRAINING_CONTRACT.md) — binding rules for all facet SFA training
+3. [ARCHITECTURE_CURRENT.md](ARCHITECTURE_CURRENT.md) — system architecture (supersedes older docs)
+4. [AGENTS.md](AGENTS.md) — agent constraints
 
 ## Three tracks (do not conflate)
 
@@ -30,6 +31,11 @@ Biographic factual work: [BIOGRAPHIC_CLAIM_PIPELINE.md](BIOGRAPHIC_CLAIM_PIPELIN
 ### Domain & baseline
 - [BASELINE_Q17167_FACET_HIERARCHY_2026-07-15.md](BASELINE_Q17167_FACET_HIERARCHY_2026-07-15.md)
 - [DOMAIN_INITIATOR.md](DOMAIN_INITIATOR.md)
+- [DOMAIN_MANAGEMENT_GUIDE.md](DOMAIN_MANAGEMENT_GUIDE.md)
+- [DOMAIN_QUICK_REFERENCE.md](DOMAIN_QUICK_REFERENCE.md)
+- [VERSION_MANAGEMENT_GUIDE.md](VERSION_MANAGEMENT_GUIDE.md)
+- [VERSION_CLI_REFERENCE.md](VERSION_CLI_REFERENCE.md)
+- [SFA_DOMAIN_INTEGRATION.md](SFA_DOMAIN_INTEGRATION.md)
 - [SCA_ACTIVATION_CHECKLIST.md](SCA_ACTIVATION_CHECKLIST.md)
 - [SCA_SFA_CONTRACT.md](SCA_SFA_CONTRACT.md)
 - [SUBJECT_DOMAIN_CONCEPTUAL_MODEL.md](SUBJECT_DOMAIN_CONCEPTUAL_MODEL.md)
@@ -54,10 +60,12 @@ Biographic factual work: [BIOGRAPHIC_CLAIM_PIPELINE.md](BIOGRAPHIC_CLAIM_PIPELIN
 - [federations/](federations/) — import and property mapping guides
 
 ### Agents & ops
+- [FACET_TRAINING_CONTRACT.md](FACET_TRAINING_CONTRACT.md) — **start here before any facet training writes**
 - [agents/](agents/) — SCA instructions, harvest schema, MCP quick start
 - [setup/DEV_AGENT_SCHEMA_EXECUTION_GUIDE.md](setup/DEV_AGENT_SCHEMA_EXECUTION_GUIDE.md)
 - [API_KEYS_AND_USAGE.md](API_KEYS_AND_USAGE.md)
 - [process/QID_TO_RICH_DATA_FLOW.md](process/QID_TO_RICH_DATA_FLOW.md)
+- Neo4j scripts: [`Cypher/README.md`](../Cypher/README.md) (`schema/`, `bootstrap/`, `operations/`, `queries/`)
 
 ### Architecture specs (active)
 - [architecture/BACKLINKS_EXTRACTION_GUIDE.md](architecture/BACKLINKS_EXTRACTION_GUIDE.md)
@@ -71,8 +79,21 @@ Biographic factual work: [BIOGRAPHIC_CLAIM_PIPELINE.md](BIOGRAPHIC_CLAIM_PIPELIN
 
 ## Archive
 
-Superseded handoffs, Feb 2026 discovery analyses, PM plans, and duplicates:
+Superseded handoffs, phase completion reports, root session dumps, and duplicates (cleaned 2026-07-16):
 
 `Archive/docs-2026-07/`
 
-Do not use archived docs for current design without verifying against `ARCHITECTURE_CURRENT.md`.
+| Folder | Contents |
+|--------|----------|
+| `handoffs/` | Session handoffs (non-authoritative) |
+| `sessions/` | Phase reports, military/diplomatic drafts, transcripts |
+| `project-management/` | Roadmaps and status snapshots |
+| `architecture-discovery/` | Multi-agent / IGAR early notes |
+| `agents/` | Superseded SFA prompt/quick-ref drafts |
+| `security/` | Security audit reports (may contain credential strings) |
+| `misc/` | Empty stubs and one-offs |
+
+Do not use archived docs for current design without verifying against `ARCHITECTURE_CURRENT.md` and `FACET_TRAINING_CONTRACT.md`.
+
+**Full map:** [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)  
+**Root keepers only:** `README.md`, `REQUIREMENTS.md`, `DECISIONS.md`

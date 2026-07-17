@@ -1,0 +1,26 @@
+{
+  "page": "Human population",
+  "page_name": "Human_population",
+  "root_qid": "Q33829",
+  "classified": [
+    {
+      "name": "Human population",
+      "qid": "Q33829",
+      "predicate": "DROP"
+    },
+    {
+      "name": "World population",
+      "qid": "Q11188",
+      "predicate": "HAS_SUBTYPE"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "kept": 1,
+    "dropped": 1,
+    "by_predicate": {
+      "DROP": 1,
+      "HAS_SUBTYPE": 1
+    }
+  }
+}

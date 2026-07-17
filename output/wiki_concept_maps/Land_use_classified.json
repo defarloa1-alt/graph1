@@ -1,0 +1,467 @@
+{
+  "page": "Land use",
+  "page_name": "Land_use",
+  "root_qid": "Q1165944",
+  "classified": [
+    {
+      "name": "Agricultural land",
+      "qid": "Q3395383",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Amazon rainforest",
+      "qid": "Q177567",
+      "predicate": "DROP"
+    },
+    {
+      "name": "American Political Science Review",
+      "qid": "Q4744701",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Aral Sea",
+      "qid": "Q35883",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bloomberg News",
+      "qid": "Q14270642",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Carbon capture and storage",
+      "qid": "Q41491",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Central America",
+      "qid": "Q27611",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Climate change adaptation",
+      "qid": "Q260607",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Contiguous United States",
+      "qid": "Q578170",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Deforestation",
+      "qid": "Q169940",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Disturbance (ecology)",
+      "qid": "Q966490",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Earth",
+      "qid": "Q2",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Earth system science",
+      "qid": "Q3046459",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Export",
+      "qid": "Q182722",
+      "predicate": "DROP"
+    },
+    {
+      "name": "External debt",
+      "qid": "Q461319",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Food and Agriculture Organization",
+      "qid": "Q82151",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Forest",
+      "qid": "Q4421",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Global Ecology and Biogeography",
+      "qid": "Q5570246",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Global Environmental Change",
+      "qid": "Q15761501",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Human impact on the environment",
+      "qid": "Q574376",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Human settlement",
+      "qid": "Q486972",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Industrial Revolution",
+      "qid": "Q2269",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Intergovernmental Panel on Climate Change",
+      "qid": "Q171183",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Kazakhstan",
+      "qid": "Q232",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Land change science",
+      "qid": "Q106696937",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Land cover",
+      "qid": "Q3001793",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Land use",
+      "qid": "Q1165944",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Moderate Resolution Imaging Spectroradiometer",
+      "qid": "Q676840",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "NASA",
+      "qid": "Q23548",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "National Environmental Policy Act",
+      "qid": "Q6972479",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "New York City",
+      "qid": "Q60",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pasture",
+      "qid": "Q30121",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Planetary health diet",
+      "qid": "Q63950371",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Portland, Oregon",
+      "qid": "Q6106",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Qualitative research",
+      "qid": "Q839486",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Quantitative research",
+      "qid": "Q730675",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Rangeland",
+      "qid": "Q3364870",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Remote sensing",
+      "qid": "Q199687",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Science (journal)",
+      "qid": "Q192864",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Soil salinity",
+      "qid": "Q754836",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Soviet Union",
+      "qid": "Q15180",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Special Report on Climate Change and Land",
+      "qid": "Q66310618",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Turkmenistan",
+      "qid": "Q874",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United Nations",
+      "qid": "Q1065",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United Nations Convention to Combat Desertification",
+      "qid": "Q331520",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Urban area",
+      "qid": "Q702492",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Urban heat island",
+      "qid": "Q215712",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Uzbekistan",
+      "qid": "Q265",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Vulnerability assessment",
+      "qid": "Q1400839",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Wetland",
+      "qid": "Q170321",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "World Bank",
+      "qid": "Q7164",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "agricultural land",
+      "qid": "Q3395383",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "agriculture",
+      "qid": "Q11451",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "animal",
+      "qid": "Q729",
+      "predicate": "DROP"
+    },
+    {
+      "name": "arable land",
+      "qid": "Q843920",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "biodiversity",
+      "qid": "Q47041",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "climate change",
+      "qid": "Q125928",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "climate change mitigation",
+      "qid": "Q898653",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "deforestation",
+      "qid": "Q169940",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "desertification",
+      "qid": "Q183481",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ecological footprint",
+      "qid": "Q234173",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "fossil fuel",
+      "qid": "Q12748",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "goods and services",
+      "qid": "Q2897903",
+      "predicate": "DROP"
+    },
+    {
+      "name": "grassland",
+      "qid": "Q1006733",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "greenhouse gas",
+      "qid": "Q167336",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "greenhouse gas emissions",
+      "qid": "Q106358009",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "irrigation",
+      "qid": "Q11453",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "jurisdiction",
+      "qid": "Q471855",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land",
+      "qid": "Q11081619",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land change modeling",
+      "qid": "Q30693224",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "land cover",
+      "qid": "Q3001793",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land degradation",
+      "qid": "Q3497778",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land development",
+      "qid": "Q6484056",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land management",
+      "qid": "Q2001056",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land-use conflict",
+      "qid": "Q6483832",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "land-use planning",
+      "qid": "Q60738778",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nutrient",
+      "qid": "Q181394",
+      "predicate": "DROP"
+    },
+    {
+      "name": "old-growth forest",
+      "qid": "Q208478",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "plant",
+      "qid": "Q756",
+      "predicate": "DROP"
+    },
+    {
+      "name": "risk assessment",
+      "qid": "Q1058438",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "satellite imagery",
+      "qid": "Q725252",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "soil",
+      "qid": "Q36133",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "soil erosion",
+      "qid": "Q889503",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "statutory law",
+      "qid": "Q7766927",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "urban growth boundary",
+      "qid": "Q7900123",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "urban sprawl",
+      "qid": "Q192042",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "urbanization",
+      "qid": "Q161078",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "water",
+      "qid": "Q283",
+      "predicate": "DROP"
+    },
+    {
+      "name": "zoning",
+      "qid": "Q702232",
+      "predicate": "HAS_INSTRUMENT"
+    }
+  ],
+  "stats": {
+    "total": 89,
+    "kept": 69,
+    "dropped": 20,
+    "by_predicate": {
+      "HAS_SUBTYPE": 11,
+      "DROP": 20,
+      "HAS_PUBLICATION": 5,
+      "HAS_CONTEXT": 9,
+      "HAS_COMPONENT": 26,
+      "HAS_INSTITUTION": 5,
+      "HAS_METHOD": 8,
+      "HAS_INSTRUMENT": 5
+    }
+  }
+}

@@ -684,6 +684,6 @@ Policy subgraph for decision rules. See `Neo4j/schema/17_policy_decision_subgrap
 - **Bootstrap full system:** `python scripts/neo4j/bootstrap_system_subgraph.py`
 - **View full subgraph:** `scripts/federation/view_full_system_subgraph.cypher` (run in Neo4j Browser)
 - **Schema reference:** `md/Reference/SCHEMA_REFERENCE.md` (core entities, relationships, facets)
-- **Subject concept:** `Cypher/subject_concept_operations.cypher`, `docs/architecture/SUBJECT_CONCEPT_CREATION_AND_AUTHORITY.md`
+- **Subject concept:** `Cypher/operations/subject_concept_operations.cypher`, `docs/architecture/SUBJECT_CONCEPT_CREATION_AND_AUTHORITY.md`
 - **Federation node schema:** `scripts/federation_node_schema.py` (alignment fields, dimensions)
 - **Constraints:** `Cypher/schema/constraints_chrystallum_generated.cypher`

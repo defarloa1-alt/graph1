@@ -52,6 +52,7 @@ def main():
     parser.add_argument("--all",  action="store_true", help="All DPRR persons with QIDs (dprr_id IS NOT NULL)")
     parser.add_argument("--limit", type=int, default=None, help="Max persons to harvest (for incremental runs)")
     parser.add_argument("--dry",  action="store_true", help="Dry run — no writes")
+    parser.add_argument("--yes", "-y", action="store_true", help="Skip interactive write confirmation")
     parser.add_argument("--backlinks", action="store_true", help="Include backlinks inline (default: skip; run backlink_harvest separately)")
     args = parser.parse_args()
 
@@ -77,7 +78,7 @@ def main():
             return
 
     print(f"Persons to harvest: {len(records)}")
-    if not args.dry:
+    if not args.dry and not args.yes:
         confirm = input("Proceed with writes? [y/N] ").strip().lower()
         if confirm != "y":
             print("Aborted.")

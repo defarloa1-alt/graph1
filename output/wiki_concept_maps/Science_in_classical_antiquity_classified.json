@@ -1,0 +1,939 @@
+{
+  "page": "Science in classical antiquity",
+  "page_name": "Science_in_classical_antiquity",
+  "root_qid": "Q1317376",
+  "classified": [
+    {
+      "name": "Aether (classical element)",
+      "qid": "Q381913",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Air (classical element)",
+      "qid": "Q2637489",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Alexander the Great",
+      "qid": "Q8409",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Alexandria",
+      "qid": "Q87",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Almagest",
+      "qid": "Q155952",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Anatolia",
+      "qid": "Q51614",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Anaximander",
+      "qid": "Q42458",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Anaximenes of Miletus",
+      "qid": "Q80612",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ancient Egypt",
+      "qid": "Q11768",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ancient Greece",
+      "qid": "Q11772",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ancient Greek astronomy",
+      "qid": "Q2390452",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Ancient Greek calendars",
+      "qid": "Q2738499",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Ancient Greek medicine",
+      "qid": "Q440317",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Ancient Near East",
+      "qid": "Q269678",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Antikythera mechanism",
+      "qid": "Q182324",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Apollonius of Perga",
+      "qid": "Q180109",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Archaic Greece",
+      "qid": "Q271834",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Archimedes",
+      "qid": "Q8739",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Aristarchus of Samos",
+      "qid": "Q140188",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Aristotle",
+      "qid": "Q868",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Aristotle's biology",
+      "qid": "Q27997172",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Artery",
+      "qid": "Q9655",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Asclepius",
+      "qid": "Q83223",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Astrology and science",
+      "qid": "Q3592582",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Barbary macaque",
+      "qid": "Q199962",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Boethius",
+      "qid": "Q102851",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Byzantine Empire",
+      "qid": "Q12544",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Byzantine science",
+      "qid": "Q5004715",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Classical antiquity",
+      "qid": "Q486761",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Classical planet",
+      "qid": "Q1135397",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Colophon (city)",
+      "qid": "Q1142488",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Corinth",
+      "qid": "Q103011",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Dark Ages (historiography)",
+      "qid": "Q217192",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Demetrius of Phalerum",
+      "qid": "Q313286",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Democritus",
+      "qid": "Q41980",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Diadochi",
+      "qid": "Q201546",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Earth",
+      "qid": "Q2",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Earth (classical element)",
+      "qid": "Q2488752",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Empedocles",
+      "qid": "Q83375",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Episteme",
+      "qid": "Q1164521",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Erasistratus",
+      "qid": "Q377781",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Eratosthenes",
+      "qid": "Q43182",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Euclid",
+      "qid": "Q8747",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Euclid's Elements",
+      "qid": "Q172891",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Eudemus of Rhodes",
+      "qid": "Q358482",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "European science in the Middle Ages",
+      "qid": "Q2653879",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Farnese Atlas",
+      "qid": "Q2555479",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Figure of the Earth",
+      "qid": "Q437882",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Fire (classical element)",
+      "qid": "Q2723512",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Galen",
+      "qid": "Q8778",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Geography (Ptolemy)",
+      "qid": "Q1194350",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Greek language",
+      "qid": "Q9129",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Harmonia Macrocosmica",
+      "qid": "Q3086554",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Harmonic series (music)",
+      "qid": "Q263961",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Harvard University Press",
+      "qid": "Q1587900",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Heliocentrism",
+      "qid": "Q103983",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Heraclitus",
+      "qid": "Q41155",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hero of Alexandria",
+      "qid": "Q161853",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Herophilos",
+      "qid": "Q312500",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hesiod",
+      "qid": "Q44233",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hipparchus",
+      "qid": "Q159905",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hippocrates",
+      "qid": "Q5264",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hippocratic Corpus",
+      "qid": "Q1135155",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "History of astronomy",
+      "qid": "Q50056",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "History of science and technology in China",
+      "qid": "Q747986",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "History of the Mediterranean region",
+      "qid": "Q446185",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Humorism",
+      "qid": "Q5782572",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Indus River",
+      "qid": "Q7348",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Islamic Golden Age",
+      "qid": "Q745799",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Latin",
+      "qid": "Q397",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Lesbos",
+      "qid": "Q128087",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Leucippus",
+      "qid": "Q165589",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Library of Alexandria",
+      "qid": "Q435",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Library of Antioch",
+      "qid": "Q23640759",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Library of Pergamum",
+      "qid": "Q856590",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Lost literary work",
+      "qid": "Q1585442",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Lucio Russo",
+      "qid": "Q1873524",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Lyceum (classical)",
+      "qid": "Q1160664",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Measurement of a Circle",
+      "qid": "Q511915",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Middle Ages",
+      "qid": "Q12554",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Natural History (Pliny)",
+      "qid": "Q442",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Natural philosophy",
+      "qid": "Q269323",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Nicolaus Copernicus",
+      "qid": "Q619",
+      "predicate": "DROP"
+    },
+    {
+      "name": "On the Sacred Disease",
+      "qid": "Q7091533",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Optics (Ptolemy)",
+      "qid": "Q48995887",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Pergamon",
+      "qid": "Q18986",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Peripatetic school",
+      "qid": "Q194414",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Persian Empire",
+      "qid": "Q83311",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Philolaus",
+      "qid": "Q212338",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Physics (Aristotle)",
+      "qid": "Q1051198",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Plato",
+      "qid": "Q859",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Platonic Academy",
+      "qid": "Q193093",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Platonic idealism",
+      "qid": "Q7202432",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Pliny the Elder",
+      "qid": "Q82778",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Polis",
+      "qid": "Q148837",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Pompeii",
+      "qid": "Q43332",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ptolemaic dynasty",
+      "qid": "Q131976",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ptolemy",
+      "qid": "Q34943",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ptolemy I Soter",
+      "qid": "Q168261",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ptolemy II Philadelphus",
+      "qid": "Q39576",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pythagoras",
+      "qid": "Q10261",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Renaissance",
+      "qid": "Q4692",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Roman Empire",
+      "qid": "Q2277",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Science in classical antiquity",
+      "qid": "Q1317376",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Science in the medieval Islamic world",
+      "qid": "Q785426",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Scientific Revolution",
+      "qid": "Q214078",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Sensory nervous system",
+      "qid": "Q11101",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Smyrna",
+      "qid": "Q1379299",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Spain",
+      "qid": "Q29",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Strato of Lampsacus",
+      "qid": "Q316353",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Sun",
+      "qid": "Q525",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Syracusia",
+      "qid": "Q2464366",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Sand Reckoner",
+      "qid": "Q1364277",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Theophrastus",
+      "qid": "Q160362",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Theoretical astronomy",
+      "qid": "Q3635271",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Turkey",
+      "qid": "Q43",
+      "predicate": "DROP"
+    },
+    {
+      "name": "University of St Andrews",
+      "qid": "Q216273",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Visualization (graphics)",
+      "qid": "Q451553",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Water (classical element)",
+      "qid": "Q2637515",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Western culture",
+      "qid": "Q478958",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "William Harvey",
+      "qid": "Q93128",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Witness",
+      "qid": "Q196939",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Xenophanes",
+      "qid": "Q131671",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "al-Biruni",
+      "qid": "Q11826",
+      "predicate": "DROP"
+    },
+    {
+      "name": "amber",
+      "qid": "Q25381",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "anatomy",
+      "qid": "Q514",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "angle of incidence (optics)",
+      "qid": "Q1196575",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "astrolabe",
+      "qid": "Q164992",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "astronomer",
+      "qid": "Q11063",
+      "predicate": "DROP"
+    },
+    {
+      "name": "astronomy",
+      "qid": "Q333",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "atomism",
+      "qid": "Q178668",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "biology",
+      "qid": "Q420",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "botany",
+      "qid": "Q441",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "brain",
+      "qid": "Q1073",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cadaver",
+      "qid": "Q48422",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cartography",
+      "qid": "Q42515",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "cerebellum",
+      "qid": "Q130983",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cerebrum",
+      "qid": "Q75855",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "classical element",
+      "qid": "Q188520",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "conic section",
+      "qid": "Q124255",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "constellation",
+      "qid": "Q8928",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cosmology",
+      "qid": "Q338",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "cosmos",
+      "qid": "Q1059081",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "dissection",
+      "qid": "Q116646",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "fossil",
+      "qid": "Q40614",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "four causes",
+      "qid": "Q3140529",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "friction",
+      "qid": "Q82580",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "geology",
+      "qid": "Q1069",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "gold mining",
+      "qid": "Q1071389",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "history of engineering",
+      "qid": "Q5867819",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "history of science",
+      "qid": "Q201486",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "history of technology",
+      "qid": "Q465352",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "logic",
+      "qid": "Q8078",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "map",
+      "qid": "Q4006",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mathematical model",
+      "qid": "Q486902",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "mathematician",
+      "qid": "Q170790",
+      "predicate": "DROP"
+    },
+    {
+      "name": "mathematics",
+      "qid": "Q395",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "medicine",
+      "qid": "Q11190",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "meteorology",
+      "qid": "Q25261",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "mineral",
+      "qid": "Q7946",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mineralogy",
+      "qid": "Q83353",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "motor nerve",
+      "qid": "Q2422765",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "natural philosophy",
+      "qid": "Q269323",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nervous system",
+      "qid": "Q9404",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "optics",
+      "qid": "Q14620",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "ox",
+      "qid": "Q473194",
+      "predicate": "DROP"
+    },
+    {
+      "name": "paleontology",
+      "qid": "Q7205",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "physics",
+      "qid": "Q413",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "physiology",
+      "qid": "Q521",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "pig",
+      "qid": "Q787",
+      "predicate": "DROP"
+    },
+    {
+      "name": "planet",
+      "qid": "Q634",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "precession",
+      "qid": "Q104225",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "prognosis",
+      "qid": "Q592442",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "psychology",
+      "qid": "Q9418",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "pyroelectricity",
+      "qid": "Q858318",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "research program",
+      "qid": "Q7315176",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "science in the ancient world",
+      "qid": "Q2465649",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "star",
+      "qid": "Q523",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "tourmaline",
+      "qid": "Q179911",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "vacuum",
+      "qid": "Q11475",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "vein",
+      "qid": "Q9609",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "vivisection",
+      "qid": "Q259567",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "zoology",
+      "qid": "Q431",
+      "predicate": "HAS_SUBTYPE"
+    }
+  ],
+  "stats": {
+    "total": 183,
+    "kept": 156,
+    "dropped": 27,
+    "by_predicate": {
+      "HAS_COMPONENT": 40,
+      "HAS_FIGURE": 34,
+      "DROP": 27,
+      "HAS_PUBLICATION": 11,
+      "HAS_CONTEXT": 30,
+      "HAS_SUBTYPE": 22,
+      "HAS_INSTRUMENT": 3,
+      "HAS_THEORY": 6,
+      "HAS_INSTITUTION": 6,
+      "HAS_METHOD": 4
+    }
+  }
+}

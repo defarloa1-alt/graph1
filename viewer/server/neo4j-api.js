@@ -34,6 +34,55 @@ try {
   console.error("Error initializing Neo4j driver:", error);
 }
 
+// Helper to convert Neo4j types to plain JavaScript
+function convertNeo4jValue(value) {
+  if (value === null || value === undefined) {
+    return value;
+  }
+  
+  // Handle Neo4j Integer
+  if (value && typeof value === 'object' && value.constructor && value.constructor.name === 'Integer') {
+    return value.toNumber();
+  }
+  
+  // Handle Neo4j Node
+  if (value && value.properties) {
+    const converted = {};
+    Object.keys(value.properties).forEach(key => {
+      converted[key] = convertNeo4jValue(value.properties[key]);
+    });
+    if (value.labels) converted.labels = value.labels;
+    if (value.identity) converted.identity = value.identity.toString();
+    return converted;
+  }
+  
+  // Handle Neo4j Relationship
+  if (value && value.type) {
+    return {
+      type: value.type,
+      properties: value.properties ? convertNeo4jValue(value.properties) : {},
+      start: value.start ? value.start.toString() : null,
+      end: value.end ? value.end.toString() : null,
+    };
+  }
+  
+  // Handle objects recursively
+  if (typeof value === 'object' && !Array.isArray(value)) {
+    const converted = {};
+    Object.keys(value).forEach(key => {
+      converted[key] = convertNeo4jValue(value[key]);
+    });
+    return converted;
+  }
+  
+  // Handle arrays recursively
+  if (Array.isArray(value)) {
+    return value.map(convertNeo4jValue);
+  }
+  
+  return value;
+}
+
 // Helper to execute Cypher query
 async function executeQuery(cypher, params = {}) {
   const session = driver.session();
@@ -44,32 +93,7 @@ async function executeQuery(cypher, params = {}) {
     const records = result.records.map(record => {
       const obj = {};
       record.keys.forEach(key => {
-        const value = record.get(key);
-        
-        // Handle Neo4j node objects
-        if (value && value.properties) {
-          obj[key] = {
-            ...value.properties,
-            labels: value.labels,
-            identity: value.identity ? value.identity.toString() : null,
-          };
-        } 
-        // Handle relationships
-        else if (value && value.type) {
-          obj[key] = {
-            type: value.type,
-            properties: value.properties,
-            start: value.start ? value.start.toString() : null,
-            end: value.end ? value.end.toString() : null,
-          };
-        }
-        // Handle regular values
-        else if (value && typeof value === 'object' && value.constructor.name === 'Integer') {
-          obj[key] = value.toNumber();
-        }
-        else {
-          obj[key] = value;
-        }
+        obj[key] = convertNeo4jValue(record.get(key));
       });
       return obj;
     });

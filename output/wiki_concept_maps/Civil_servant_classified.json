@@ -1,0 +1,26 @@
+{
+  "page": "Civil servant",
+  "page_name": "Civil_servant",
+  "root_qid": "Q212238",
+  "classified": [
+    {
+      "name": "Civil servant",
+      "qid": "Q212238",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Civil service",
+      "qid": "Q11771944",
+      "predicate": "HAS_CONTEXT"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "kept": 1,
+    "dropped": 1,
+    "by_predicate": {
+      "DROP": 1,
+      "HAS_CONTEXT": 1
+    }
+  }
+}

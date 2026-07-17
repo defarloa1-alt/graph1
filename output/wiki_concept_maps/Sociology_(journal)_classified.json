@@ -1,0 +1,138 @@
+{
+  "page": "Sociology (journal)",
+  "page_name": "Sociology_(journal)",
+  "root_qid": "Q1759367",
+  "classified": [
+    {
+      "name": "A. H. Halsey",
+      "qid": "Q278696",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "British Sociological Association",
+      "qid": "Q920176",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Butskellism",
+      "qid": "Q5002748",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "David Morgan (sociologist)",
+      "qid": "Q5237716",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Google Scholar",
+      "qid": "Q494817",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Jennifer Platt",
+      "qid": "Q6178720",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Goldthorpe",
+      "qid": "Q713699",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Scott (sociologist)",
+      "qid": "Q6257096",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Journal Citation Reports",
+      "qid": "Q2701229",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Martin Albrow",
+      "qid": "Q1903321",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Michael Banton",
+      "qid": "Q6828409",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nikolai Genov",
+      "qid": "Q629072",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Peer review",
+      "qid": "Q215028",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Scopus",
+      "qid": "Q371467",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Social Sciences Citation Index",
+      "qid": "Q1090953",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Sociology",
+      "qid": "Q21201",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Sociology (journal)",
+      "qid": "Q1759367",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sylvia Walby",
+      "qid": "Q7661023",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "The Sociological Review",
+      "qid": "Q7552813",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Thomson Reuters",
+      "qid": "Q1141267",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Web of Science",
+      "qid": "Q1201886",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "academic journal",
+      "qid": "Q737498",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "impact factor",
+      "qid": "Q5330",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 23,
+    "kept": 22,
+    "dropped": 1,
+    "by_predicate": {
+      "HAS_FIGURE": 9,
+      "HAS_INSTITUTION": 2,
+      "HAS_CONTEXT": 2,
+      "HAS_INSTRUMENT": 5,
+      "HAS_METHOD": 1,
+      "DROP": 1,
+      "HAS_PUBLICATION": 1,
+      "HAS_SUBTYPE": 1,
+      "HAS_COMPONENT": 1
+    }
+  }
+}

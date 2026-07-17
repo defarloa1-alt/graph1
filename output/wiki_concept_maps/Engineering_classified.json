@@ -1,0 +1,1799 @@
+{
+  "page": "Engineering",
+  "page_name": "Engineering",
+  "root_qid": "Q11023",
+  "classified": [
+    {
+      "name": ":Category:Engineering companies by country",
+      "qid": "Q9511600",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Academic specialization",
+      "qid": "Q4671303",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Acropolis of Athens",
+      "qid": "Q131013",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Aerospace engineering",
+      "qid": "Q3798668",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Agricultural engineering",
+      "qid": "Q12159342",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Alessandro Volta",
+      "qid": "Q680",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Alexander Graham Bell",
+      "qid": "Q34286",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "American Engineers' Council for Professional Development",
+      "qid": "Q4743684",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Ancient Greece",
+      "qid": "Q11772",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Antikythera mechanism",
+      "qid": "Q182324",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Archimedes",
+      "qid": "Q8739",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Arizona State University",
+      "qid": "Q670897",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Art Institute of Chicago",
+      "qid": "Q239303",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Automotive engineering",
+      "qid": "Q124192",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Bessemer process",
+      "qid": "Q334055",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Biological engineering",
+      "qid": "Q580689",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Biomedical engineering",
+      "qid": "Q327092",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Book of Ingenious Devices",
+      "qid": "Q4116191",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Boston",
+      "qid": "Q100",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Brill Publishers",
+      "qid": "Q917031",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Business engineering",
+      "qid": "Q623100",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Canal",
+      "qid": "Q12284",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Chemical engineering",
+      "qid": "Q83588",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Cicero",
+      "qid": "Q1541",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Citadel of Lille",
+      "qid": "Q206252",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Civil engineering",
+      "qid": "Q77590",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Colosseum",
+      "qid": "Q10285",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Computer engineering",
+      "qid": "Q428691",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Computer simulation",
+      "qid": "Q925667",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Computer-aided design",
+      "qid": "Q184793",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Computer-aided engineering",
+      "qid": "Q1050567",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Computer-aided manufacturing",
+      "qid": "Q660192",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Corporate social responsibility",
+      "qid": "Q218600",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Crane (machine)",
+      "qid": "Q178692",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "De re metallica",
+      "qid": "Q3193676",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Denis Papin",
+      "qid": "Q106208",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Differential (mechanical device)",
+      "qid": "Q193137",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Djoser",
+      "qid": "Q174367",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Earth systems engineering and management",
+      "qid": "Q3013544",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Eddystone Lighthouse",
+      "qid": "Q546122",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Edward Somerset, 2nd Marquess of Worcester",
+      "qid": "Q1439372",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Egyptian pyramids",
+      "qid": "Q175582",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Eisenbrauns",
+      "qid": "Q5349903",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Electrical engineering",
+      "qid": "Q43035",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Electronic design automation",
+      "qid": "Q1194864",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Engineering",
+      "qid": "Q11023",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Engineering Council",
+      "qid": "Q5377821",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Engineering for Change",
+      "qid": "Q5377887",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Engineering management",
+      "qid": "Q6314146",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Engineers Against Poverty",
+      "qid": "Q5377911",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Engineers Without Borders",
+      "qid": "Q955753",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Engineers for a Sustainable World",
+      "qid": "Q5377930",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Environmental engineering",
+      "qid": "Q146326",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "European Engineer",
+      "qid": "Q847238",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Evangelista Torricelli",
+      "qid": "Q102490",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Faculty (division)",
+      "qid": "Q180958",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fatigue (material)",
+      "qid": "Q507234",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Federal Aviation Administration",
+      "qid": "Q335357",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Finite element method",
+      "qid": "Q220184",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "France",
+      "qid": "Q142",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fuel oil",
+      "qid": "Q214199",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Function (engineering)",
+      "qid": "Q2528683",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Geological engineering",
+      "qid": "Q9707696",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Georg Ohm",
+      "qid": "Q1585",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "George Stephenson",
+      "qid": "Q133614",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Great Pyramid of Giza",
+      "qid": "Q37200",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Hanging Gardens of Babylon",
+      "qid": "Q41931",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Heinrich Hertz",
+      "qid": "Q41257",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Henry Cort",
+      "qid": "Q373022",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hot blast",
+      "qid": "Q5910687",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Hull (watercraft)",
+      "qid": "Q6750281",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Huns",
+      "qid": "Q45813",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Imhotep",
+      "qid": "Q131171",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Industrial Revolution",
+      "qid": "Q2269",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Industrial engineering",
+      "qid": "Q4489420",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "International Association of Engineers",
+      "qid": "Q6048466",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Iron Ring",
+      "qid": "Q579593",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Isambard Kingdom Brunel",
+      "qid": "Q207380",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Islamic Golden Age",
+      "qid": "Q745799",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Islamic world",
+      "qid": "Q779924",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Issues in Science and Technology",
+      "qid": "Q15710055",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "James Beaumont Neilson",
+      "qid": "Q1355479",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "James Clerk Maxwell",
+      "qid": "Q9095",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Smeaton",
+      "qid": "Q460922",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Wilkinson (industrialist)",
+      "qid": "Q1204884",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Josiah Willard Gibbs",
+      "qid": "Q153243",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Kingdom of Kush",
+      "qid": "Q241790",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Kismet (robot)",
+      "qid": "Q912212",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Latin",
+      "qid": "Q397",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Leiden",
+      "qid": "Q43631",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Leonardo da Vinci",
+      "qid": "Q762",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Magdeburg hemispheres",
+      "qid": "Q23361",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Marine engineering",
+      "qid": "Q118291",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Marketing engineering",
+      "qid": "Q28135118",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Mass production",
+      "qid": "Q215768",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Maxwell's equations",
+      "qid": "Q51501",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mechanical engineering",
+      "qid": "Q101333",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Medicine",
+      "qid": "Q11190",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mesopotamia",
+      "qid": "Q11767",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Michael Faraday",
+      "qid": "Q8750",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Millennium Development Goals",
+      "qid": "Q81737",
+      "predicate": "DROP"
+    },
+    {
+      "name": "NASA",
+      "qid": "Q23548",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "National Academies of Sciences, Engineering, and Medicine",
+      "qid": "Q3233780",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "National Science Foundation",
+      "qid": "Q304878",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "National Society of Professional Engineers",
+      "qid": "Q15995344",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Navier–Stokes equations",
+      "qid": "Q201321",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Near East",
+      "qid": "Q48214",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Nicolaus Otto",
+      "qid": "Q75782",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nikola Tesla",
+      "qid": "Q9036",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nuclear engineering",
+      "qid": "Q83504",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Optimization problem",
+      "qid": "Q984063",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Organised Sound",
+      "qid": "Q7101911",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Otto von Guericke",
+      "qid": "Q60095",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ottoman Egypt",
+      "qid": "Q491507",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Parthenon",
+      "qid": "Q10288",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Persian Empire",
+      "qid": "Q83311",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pharaoh",
+      "qid": "Q37110",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Philo of Byzantium",
+      "qid": "Q334570",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Planer (metalworking)",
+      "qid": "Q929470",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Portland cement",
+      "qid": "Q844123",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Problem solving",
+      "qid": "Q730920",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Product testing",
+      "qid": "Q7247798",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Program (machine)",
+      "qid": "Q4303335",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pyramid of Djoser",
+      "qid": "Q192418",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pyrénées-Orientales",
+      "qid": "Q12709",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Renaissance",
+      "qid": "Q4692",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Robert Maillart",
+      "qid": "Q123673",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Roman aqueduct",
+      "qid": "Q13218676",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Safety",
+      "qid": "Q10566551",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Safety engineering",
+      "qid": "Q6496962",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Samuel Morland",
+      "qid": "Q950850",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Saqqara",
+      "qid": "Q192134",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Scientific Revolution",
+      "qid": "Q214078",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Serviceability (computer)",
+      "qid": "Q7455825",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Seven Wonders of the Ancient World",
+      "qid": "Q489772",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Social engineering (political science)",
+      "qid": "Q847808",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Software engineering",
+      "qid": "Q80993",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Space Race",
+      "qid": "Q1932",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Stress (mechanics)",
+      "qid": "Q206175",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Systems engineering",
+      "qid": "Q682496",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Technical University of Madrid",
+      "qid": "Q25864",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Textile manufacturing",
+      "qid": "Q1505660",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Thanjavur",
+      "qid": "Q41496",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Theodore von Kármán",
+      "qid": "Q164384",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Thomas Newcomen",
+      "qid": "Q193042",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Thomas Savery",
+      "qid": "Q310720",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Three Gorges Dam",
+      "qid": "Q12514",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Uluburun shipwreck",
+      "qid": "Q573852",
+      "predicate": "DROP"
+    },
+    {
+      "name": "University of Aleppo",
+      "qid": "Q2302663",
+      "predicate": "DROP"
+    },
+    {
+      "name": "University of Sheffield",
+      "qid": "Q823917",
+      "predicate": "DROP"
+    },
+    {
+      "name": "University of South Florida",
+      "qid": "Q500606",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Wagonway",
+      "qid": "Q7959671",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Well-being",
+      "qid": "Q7981051",
+      "predicate": "DROP"
+    },
+    {
+      "name": "What Engineers Know and How They Know It",
+      "qid": "Q7991092",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Wikibooks",
+      "qid": "Q367",
+      "predicate": "DROP"
+    },
+    {
+      "name": "World War I",
+      "qid": "Q361",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Wright brothers",
+      "qid": "Q35820",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Yale University",
+      "qid": "Q49112",
+      "predicate": "DROP"
+    },
+    {
+      "name": "academic discipline",
+      "qid": "Q11862829",
+      "predicate": "DROP"
+    },
+    {
+      "name": "acoustical engineering",
+      "qid": "Q859044",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "aerospace engineering",
+      "qid": "Q3798668",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "aircraft design process",
+      "qid": "Q4698540",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "alloy",
+      "qid": "Q37756",
+      "predicate": "DROP"
+    },
+    {
+      "name": "analog computer",
+      "qid": "Q63759",
+      "predicate": "DROP"
+    },
+    {
+      "name": "analytic element method",
+      "qid": "Q4751128",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "ancient Egypt",
+      "qid": "Q11768",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ancient Egyptian technology",
+      "qid": "Q3823319",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ancient Greece",
+      "qid": "Q11772",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ancient Near East",
+      "qid": "Q269678",
+      "predicate": "DROP"
+    },
+    {
+      "name": "application software",
+      "qid": "Q166142",
+      "predicate": "DROP"
+    },
+    {
+      "name": "applied mathematics",
+      "qid": "Q33521",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "applied physics",
+      "qid": "Q373065",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "applied science",
+      "qid": "Q28797",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "architectural engineering",
+      "qid": "Q150737",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "architecture",
+      "qid": "Q12271",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "arms industry",
+      "qid": "Q392933",
+      "predicate": "DROP"
+    },
+    {
+      "name": "artificial intelligence",
+      "qid": "Q11660",
+      "predicate": "DROP"
+    },
+    {
+      "name": "artillery",
+      "qid": "Q64418",
+      "predicate": "DROP"
+    },
+    {
+      "name": "automaton",
+      "qid": "Q787116",
+      "predicate": "DROP"
+    },
+    {
+      "name": "automotive engineering",
+      "qid": "Q124192",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "ballista",
+      "qid": "Q219433",
+      "predicate": "DROP"
+    },
+    {
+      "name": "barometer",
+      "qid": "Q79757",
+      "predicate": "DROP"
+    },
+    {
+      "name": "beam engine",
+      "qid": "Q4876183",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biology",
+      "qid": "Q420",
+      "predicate": "DROP"
+    },
+    {
+      "name": "biomaterial",
+      "qid": "Q865663",
+      "predicate": "DROP"
+    },
+    {
+      "name": "biomedical engineering",
+      "qid": "Q327092",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "bionics",
+      "qid": "Q189131",
+      "predicate": "DROP"
+    },
+    {
+      "name": "blast furnace",
+      "qid": "Q181485",
+      "predicate": "DROP"
+    },
+    {
+      "name": "brain implant",
+      "qid": "Q555840",
+      "predicate": "DROP"
+    },
+    {
+      "name": "bridge",
+      "qid": "Q12280",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "business process management",
+      "qid": "Q7007379",
+      "predicate": "DROP"
+    },
+    {
+      "name": "business transformation",
+      "qid": "Q5001958",
+      "predicate": "DROP"
+    },
+    {
+      "name": "canal",
+      "qid": "Q12284",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "carbon",
+      "qid": "Q623",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cast iron",
+      "qid": "Q483269",
+      "predicate": "DROP"
+    },
+    {
+      "name": "catapult",
+      "qid": "Q184393",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cement",
+      "qid": "Q45190",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ceramic",
+      "qid": "Q45621",
+      "predicate": "DROP"
+    },
+    {
+      "name": "certified management consultant",
+      "qid": "Q5065270",
+      "predicate": "DROP"
+    },
+    {
+      "name": "change management",
+      "qid": "Q116348",
+      "predicate": "DROP"
+    },
+    {
+      "name": "chemical engineering",
+      "qid": "Q83588",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "chemistry",
+      "qid": "Q2329",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "civil engineering",
+      "qid": "Q77590",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "classical mechanics",
+      "qid": "Q11397",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "clockmaker",
+      "qid": "Q2700922",
+      "predicate": "DROP"
+    },
+    {
+      "name": "coffee percolator",
+      "qid": "Q2342885",
+      "predicate": "DROP"
+    },
+    {
+      "name": "coke (fuel)",
+      "qid": "Q192795",
+      "predicate": "DROP"
+    },
+    {
+      "name": "compromise",
+      "qid": "Q726686",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "computer engineering",
+      "qid": "Q428691",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "computer-aided design",
+      "qid": "Q184793",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "computer-aided manufacturing",
+      "qid": "Q660192",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "computer-aided technologies",
+      "qid": "Q1022947",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "corrosion",
+      "qid": "Q137056",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "corrosion engineering",
+      "qid": "Q3511129",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "cotton gin",
+      "qid": "Q1136790",
+      "predicate": "DROP"
+    },
+    {
+      "name": "decade",
+      "qid": "Q39911",
+      "predicate": "DROP"
+    },
+    {
+      "name": "design",
+      "qid": "Q82604",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "design choice",
+      "qid": "Q5264322",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "design tool",
+      "qid": "Q17008971",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "destructive testing",
+      "qid": "Q2011881",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "digital mockup",
+      "qid": "Q1224766",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "drum machine",
+      "qid": "Q831698",
+      "predicate": "DROP"
+    },
+    {
+      "name": "economics",
+      "qid": "Q8134",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "efficiency",
+      "qid": "Q1034411",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "electric motor",
+      "qid": "Q72313",
+      "predicate": "DROP"
+    },
+    {
+      "name": "electrical engineering",
+      "qid": "Q43035",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "electronics",
+      "qid": "Q11650",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "energy system",
+      "qid": "Q4531977",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "engineer",
+      "qid": "Q81096",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "engineering design process",
+      "qid": "Q2920267",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "engineering ethics",
+      "qid": "Q1133029",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "engineering physics",
+      "qid": "Q770766",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "engineering studies",
+      "qid": "Q24962856",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "environmental science",
+      "qid": "Q188847",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "epicyclic gearing",
+      "qid": "Q82412",
+      "predicate": "DROP"
+    },
+    {
+      "name": "factor of safety",
+      "qid": "Q2034862",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "financial engineering",
+      "qid": "Q5449714",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "finite element method",
+      "qid": "Q220184",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "flute",
+      "qid": "Q11405",
+      "predicate": "DROP"
+    },
+    {
+      "name": "forensic engineering",
+      "qid": "Q3151013",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "fuzzy logic",
+      "qid": "Q224821",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "gear train",
+      "qid": "Q2644088",
+      "predicate": "DROP"
+    },
+    {
+      "name": "glossary of engineering",
+      "qid": "Q5571805",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "harbor",
+      "qid": "Q283202",
+      "predicate": "DROP"
+    },
+    {
+      "name": "heat equation",
+      "qid": "Q6510488",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "human anatomy",
+      "qid": "Q3999",
+      "predicate": "DROP"
+    },
+    {
+      "name": "human body",
+      "qid": "Q23852",
+      "predicate": "DROP"
+    },
+    {
+      "name": "humans",
+      "qid": "Q16334295",
+      "predicate": "DROP"
+    },
+    {
+      "name": "hydraulic lime",
+      "qid": "Q2602656",
+      "predicate": "DROP"
+    },
+    {
+      "name": "inclined plane",
+      "qid": "Q161462",
+      "predicate": "DROP"
+    },
+    {
+      "name": "industrial and organizational psychology",
+      "qid": "Q2045692",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "industrial design",
+      "qid": "Q243606",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "industrial engineering",
+      "qid": "Q4489420",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "information engineering",
+      "qid": "Q1254373",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "infrastructure",
+      "qid": "Q121359",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "interchangeable parts",
+      "qid": "Q871913",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "internal combustion engine",
+      "qid": "Q12757",
+      "predicate": "DROP"
+    },
+    {
+      "name": "landscape architecture",
+      "qid": "Q47844",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "level of invention",
+      "qid": "Q6535079",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "lever",
+      "qid": "Q40164",
+      "predicate": "DROP"
+    },
+    {
+      "name": "lidar",
+      "qid": "Q504027",
+      "predicate": "DROP"
+    },
+    {
+      "name": "lighthouse",
+      "qid": "Q39715",
+      "predicate": "DROP"
+    },
+    {
+      "name": "logic",
+      "qid": "Q8078",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "machine tool",
+      "qid": "Q19768",
+      "predicate": "DROP"
+    },
+    {
+      "name": "management",
+      "qid": "Q2920921",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "management consulting",
+      "qid": "Q130286",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "manufacturing",
+      "qid": "Q187939",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "manufacturing engineering",
+      "qid": "Q11049265",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "manufacturing process management",
+      "qid": "Q462877",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "mathematical model",
+      "qid": "Q486902",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "mathematics",
+      "qid": "Q395",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "mechanical engineer",
+      "qid": "Q1906857",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "mechanical engineering",
+      "qid": "Q101333",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "mechanics",
+      "qid": "Q41217",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "metallurgy",
+      "qid": "Q11467",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "military engineering",
+      "qid": "Q158797",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "milling machine",
+      "qid": "Q623106",
+      "predicate": "DROP"
+    },
+    {
+      "name": "millwright",
+      "qid": "Q1958442",
+      "predicate": "DROP"
+    },
+    {
+      "name": "mining",
+      "qid": "Q44497",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "mining engineering",
+      "qid": "Q1370637",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "mortar (masonry)",
+      "qid": "Q189566",
+      "predicate": "DROP"
+    },
+    {
+      "name": "music sequencer",
+      "qid": "Q646683",
+      "predicate": "DROP"
+    },
+    {
+      "name": "musical instrument",
+      "qid": "Q34379",
+      "predicate": "DROP"
+    },
+    {
+      "name": "natural science",
+      "qid": "Q7991",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "nondestructive testing",
+      "qid": "Q626700",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "nuclear engineering",
+      "qid": "Q83504",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "nuclear power",
+      "qid": "Q12739",
+      "predicate": "DROP"
+    },
+    {
+      "name": "nuclear weapon",
+      "qid": "Q12802",
+      "predicate": "DROP"
+    },
+    {
+      "name": "numerical method",
+      "qid": "Q24262840",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "obstacle avoidance",
+      "qid": "Q7075535",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "patent",
+      "qid": "Q253623",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "petroleum engineering",
+      "qid": "Q1273174",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "philosophy of engineering",
+      "qid": "Q7186261",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "physicist",
+      "qid": "Q169470",
+      "predicate": "DROP"
+    },
+    {
+      "name": "physics",
+      "qid": "Q413",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "physiology",
+      "qid": "Q521",
+      "predicate": "DROP"
+    },
+    {
+      "name": "piston",
+      "qid": "Q45227",
+      "predicate": "DROP"
+    },
+    {
+      "name": "plastic",
+      "qid": "Q11474",
+      "predicate": "DROP"
+    },
+    {
+      "name": "political engineering",
+      "qid": "Q7210299",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "political science",
+      "qid": "Q36442",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "political structure",
+      "qid": "Q7225121",
+      "predicate": "DROP"
+    },
+    {
+      "name": "printed circuit board",
+      "qid": "Q173350",
+      "predicate": "DROP"
+    },
+    {
+      "name": "pro bono",
+      "qid": "Q127537",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "product data management",
+      "qid": "Q377960",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "product lifecycle management",
+      "qid": "Q1054011",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "production engineering",
+      "qid": "Q353396",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "productivity",
+      "qid": "Q2111958",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "profession",
+      "qid": "Q28640",
+      "predicate": "DROP"
+    },
+    {
+      "name": "prototype",
+      "qid": "Q207977",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "pulley",
+      "qid": "Q48378",
+      "predicate": "DROP"
+    },
+    {
+      "name": "pump",
+      "qid": "Q134574",
+      "predicate": "DROP"
+    },
+    {
+      "name": "pyramid",
+      "qid": "Q12516",
+      "predicate": "DROP"
+    },
+    {
+      "name": "reservoir",
+      "qid": "Q131681",
+      "predicate": "DROP"
+    },
+    {
+      "name": "robot",
+      "qid": "Q11012",
+      "predicate": "DROP"
+    },
+    {
+      "name": "robotics",
+      "qid": "Q170978",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "rubber",
+      "qid": "Q18113858",
+      "predicate": "DROP"
+    },
+    {
+      "name": "safety",
+      "qid": "Q10566551",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "salus populi suprema lex esto",
+      "qid": "Q867050",
+      "predicate": "DROP"
+    },
+    {
+      "name": "scale model",
+      "qid": "Q6498959",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "schematic",
+      "qid": "Q4514647",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "science",
+      "qid": "Q336",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "semiconductor",
+      "qid": "Q11456",
+      "predicate": "DROP"
+    },
+    {
+      "name": "shadoof",
+      "qid": "Q837176",
+      "predicate": "DROP"
+    },
+    {
+      "name": "siege engine",
+      "qid": "Q655697",
+      "predicate": "DROP"
+    },
+    {
+      "name": "simple machine",
+      "qid": "Q186713",
+      "predicate": "DROP"
+    },
+    {
+      "name": "simulation",
+      "qid": "Q45045",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "social structure",
+      "qid": "Q211606",
+      "predicate": "DROP"
+    },
+    {
+      "name": "software",
+      "qid": "Q7397",
+      "predicate": "DROP"
+    },
+    {
+      "name": "software engineering",
+      "qid": "Q80993",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "spacecraft",
+      "qid": "Q40218",
+      "predicate": "DROP"
+    },
+    {
+      "name": "spinning jenny",
+      "qid": "Q49015",
+      "predicate": "DROP"
+    },
+    {
+      "name": "spinning wheel",
+      "qid": "Q58966",
+      "predicate": "DROP"
+    },
+    {
+      "name": "stator",
+      "qid": "Q190312",
+      "predicate": "DROP"
+    },
+    {
+      "name": "steam engine",
+      "qid": "Q12760",
+      "predicate": "DROP"
+    },
+    {
+      "name": "steam turbine",
+      "qid": "Q189859",
+      "predicate": "DROP"
+    },
+    {
+      "name": "stress testing",
+      "qid": "Q117230974",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "systems biology",
+      "qid": "Q815297",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "systems engineering",
+      "qid": "Q682496",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "tacit knowledge",
+      "qid": "Q743861",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "technology",
+      "qid": "Q11016",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "telephone",
+      "qid": "Q11035",
+      "predicate": "DROP"
+    },
+    {
+      "name": "theoretical physics",
+      "qid": "Q18362",
+      "predicate": "DROP"
+    },
+    {
+      "name": "transistor",
+      "qid": "Q5339",
+      "predicate": "DROP"
+    },
+    {
+      "name": "trebuchet",
+      "qid": "Q19776",
+      "predicate": "DROP"
+    },
+    {
+      "name": "trireme",
+      "qid": "Q208420",
+      "predicate": "DROP"
+    },
+    {
+      "name": "turbine blade",
+      "qid": "Q829511",
+      "predicate": "DROP"
+    },
+    {
+      "name": "turret lathe",
+      "qid": "Q3775400",
+      "predicate": "DROP"
+    },
+    {
+      "name": "vacuum tube",
+      "qid": "Q3574371",
+      "predicate": "DROP"
+    },
+    {
+      "name": "water wheel",
+      "qid": "Q146728",
+      "predicate": "DROP"
+    },
+    {
+      "name": "watermill",
+      "qid": "Q185187",
+      "predicate": "DROP"
+    },
+    {
+      "name": "wedge",
+      "qid": "Q131408",
+      "predicate": "DROP"
+    },
+    {
+      "name": "wheel",
+      "qid": "Q446",
+      "predicate": "DROP"
+    },
+    {
+      "name": "wheel and axle",
+      "qid": "Q592289",
+      "predicate": "DROP"
+    },
+    {
+      "name": "windmill",
+      "qid": "Q38720",
+      "predicate": "DROP"
+    },
+    {
+      "name": "wrought iron",
+      "qid": "Q860451",
+      "predicate": "DROP"
+    }
+  ],
+  "stats": {
+    "total": 355,
+    "kept": 196,
+    "dropped": 159,
+    "by_predicate": {
+      "DROP": 159,
+      "HAS_SUBTYPE": 48,
+      "HAS_FIGURE": 31,
+      "HAS_INSTITUTION": 11,
+      "HAS_METHOD": 32,
+      "HAS_PUBLICATION": 5,
+      "HAS_COMPONENT": 33,
+      "HAS_INSTRUMENT": 3,
+      "HAS_CONTEXT": 32,
+      "HAS_THEORY": 1
+    }
+  }
+}

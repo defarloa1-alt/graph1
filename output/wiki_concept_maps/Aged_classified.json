@@ -1,0 +1,26 @@
+{
+  "page": "Aged",
+  "page_name": "Aged",
+  "root_qid": "Q185836",
+  "classified": [
+    {
+      "name": "Aged",
+      "qid": "Q185836",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ageing",
+      "qid": "Q332154",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "kept": 1,
+    "dropped": 1,
+    "by_predicate": {
+      "DROP": 1,
+      "HAS_COMPONENT": 1
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "seed_qid": "Q17167",
+  "description": "Canonical primary ancient sources for Roman Republic facet-scoped agent training (ADR-021). Passage-level Perseus URNs to be added in Phase D.",
+  "works": [
+    {
+      "work_id": "wd:Q36303",
+      "title": "Plutarch — Parallel Lives",
+      "authors": "Plutarch",
+      "year": 100,
+      "source": "wikidata",
+      "source_url": "https://www.wikidata.org/wiki/Q36303",
+      "corpus_tier": "primary",
+      "source_era": "near_contemporary",
+      "perseus_author": "Plut.",
+      "scope_keys": [
+        "senatorial_elite_careers",
+        "military_commanders",
+        "late_republic_leaders",
+        "women_and_non_elite",
+        "ancient_biographical_sources"
+      ]
+    },
+    {
+      "work_id": "ia:fallofromanrepub00plut",
+      "title": "Fall of the Roman Republic: six lives — Marius, Sulla, Crassus, Pompey, Caesar, Cicero",
+      "authors": "Plutarch (trans. Rex Warner)",
+      "year": 1958,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/fallofromanrepub00plut",
+      "corpus_tier": "primary",
+      "source_era": "near_contemporary",
+      "scope_keys": ["late_republic_leaders", "military_commanders", "senatorial_elite_careers"]
+    },
+    {
+      "work_id": "ia:1thecompleteworksofsuetonius",
+      "title": "The Complete Works of Suetonius",
+      "authors": "Suetonius (trans. J.C. Rolfe)",
+      "year": 1914,
+      "source": "internet_archive",
+      "source_url": "https://archive.org/details/1thecompleteworksofsuetonius",
+      "corpus_tier": "primary",
+      "source_era": "near_contemporary",
+      "scope_keys": ["late_republic_leaders", "senatorial_elite_careers", "ancient_biographical_sources"]
+    },
+    {
+      "work_id": "wd:Q82817",
+      "title": "Cicero — Letters and Speeches",
+      "authors": "Cicero",
+      "year": -50,
+      "source": "wikidata",
+      "source_url": "https://www.wikidata.org/wiki/Q82817",
+      "corpus_tier": "primary",
+      "source_era": "contemporary",
+      "scope_keys": ["senatorial_elite_careers", "populist_political_figures", "late_republic_leaders"]
+    },
+    {
+      "work_id": "wd:Q1048",
+      "title": "Commentarii de Bello Gallico",
+      "authors": "Julius Caesar",
+      "year": -50,
+      "source": "wikidata",
+      "source_url": "https://www.wikidata.org/wiki/Q1048",
+      "corpus_tier": "primary",
+      "source_era": "contemporary",
+      "perseus_author": "Caes.",
+      "scope_keys": ["military_commanders", "late_republic_leaders"]
+    },
+    {
+      "work_id": "wd:Q174783",
+      "title": "Cornelius Nepos — De Viris Illustribus",
+      "authors": "Cornelius Nepos",
+      "year": -25,
+      "source": "wikidata",
+      "source_url": "https://www.wikidata.org/wiki/Q174783",
+      "corpus_tier": "primary",
+      "source_era": "near_contemporary",
+      "scope_keys": ["senatorial_elite_careers", "ancient_biographical_sources"]
+    },
+    {
+      "work_id": "wd:Q193291",
+      "title": "Appian — Roman History (Civil Wars)",
+      "authors": "Appian",
+      "year": 150,
+      "source": "wikidata",
+      "source_url": "https://www.wikidata.org/wiki/Q193291",
+      "corpus_tier": "primary",
+      "source_era": "near_contemporary",
+      "scope_keys": ["late_republic_leaders", "military_commanders", "populist_political_figures"]
+    },
+    {
+      "work_id": "wd:Q1049",
+      "title": "Ab Urbe Condita (Livy)",
+      "authors": "Livy",
+      "year": -20,
+      "source": "wikidata",
+      "source_url": "https://www.wikidata.org/wiki/Q1049",
+      "corpus_tier": "primary",
+      "source_era": "near_contemporary",
+      "perseus_author": "Liv.",
+      "scope_keys": ["senatorial_elite_careers", "military_commanders", "populist_political_figures"]
+    }
+  ]
+}

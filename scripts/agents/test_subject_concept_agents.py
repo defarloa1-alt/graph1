@@ -116,7 +116,7 @@ def test_chrystallum_structure(driver):
             record = result.single()
             if not record or not record['sys']:
                 print("Chrystallum root node not found")
-                print("Run: Cypher/bootstrap_subject_concept_agents.cypher")
+                print("Run: Cypher/bootstrap/bootstrap_subject_concept_agents.cypher")
                 return False
             
             print(f"✓ Chrystallum root exists")
@@ -148,7 +148,7 @@ def test_facets_exist(driver):
             missing = set(CANONICAL_FACETS) - set(facet_keys)
             if missing:
                 print(f"\nMissing facets: {missing}")
-                print("Run: Cypher/bootstrap_subject_concept_agents.cypher")
+                print("Run: Cypher/bootstrap/bootstrap_subject_concept_agents.cypher")
                 return False
             
             return len(facet_keys) == 18
@@ -179,7 +179,7 @@ def test_subject_concepts_exist(driver):
                     print(f"  {i+1}. {label} ({sid})")
             else:
                 print("No SubjectConcepts found")
-                print("Run: Cypher/bootstrap_subject_concept_agents.cypher")
+                print("Run: Cypher/bootstrap/bootstrap_subject_concept_agents.cypher")
             
             return total > 0
     except Exception as e:

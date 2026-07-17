@@ -101,6 +101,14 @@ Thumbs.db
 *.backup
 temp/
 
+# Temporary scripts (may contain hardcoded credentials)
+tmp/*.py
+scripts/legacy/*.py
+
+# Security
+SECURITY_AUDIT_REPORT.md
+scripts/security/
+
 # Ontologies output
 ontologies/*.json
 
@@ -117,3 +125,7 @@ viewer/server/node_modules/
 Archive/Neo4j-*.txt
 
 claude/files (2).zip
+
+# Raw session transcripts (may contain API keys) - keep local only
+Archive/docs-2026-07/sessions/Transcript.md
+Archive/docs-2026-07/sessions/Transcript of dev chat.md

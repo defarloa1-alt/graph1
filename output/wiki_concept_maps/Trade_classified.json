@@ -1,0 +1,1158 @@
+{
+  "page": "Trade",
+  "page_name": "Trade",
+  "root_qid": "Q601401",
+  "classified": [
+    {
+      "name": "1973 oil crisis",
+      "qid": "Q316817",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Adam Smith",
+      "qid": "Q9381",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Africa",
+      "qid": "Q15",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Age of Discovery",
+      "qid": "Q133641",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Amber Road",
+      "qid": "Q239574",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Arabian Peninsula",
+      "qid": "Q31945",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Armenia",
+      "qid": "Q399",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Asia-Pacific Economic Cooperation",
+      "qid": "Q170481",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Atlantic slave trade",
+      "qid": "Q10701282",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Austronesian peoples",
+      "qid": "Q861225",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Aztec Empire",
+      "qid": "Q2608489",
+      "predicate": "DROP"
+    },
+    {
+      "name": "BBC",
+      "qid": "Q9531",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Baltic region",
+      "qid": "Q579938",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bamber Gascoigne",
+      "qid": "Q4853351",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Batanes",
+      "qid": "Q13740",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Before Present",
+      "qid": "Q503142",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bengal Sultanate",
+      "qid": "Q4083686",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bosporan Kingdom",
+      "qid": "Q321371",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bristol",
+      "qid": "Q23154",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Brunei",
+      "qid": "Q921",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cambodia",
+      "qid": "Q424",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cape of Good Hope",
+      "qid": "Q4092",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Capital (economics)",
+      "qid": "Q8137",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Christians",
+      "qid": "Q106039",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cog (ship)",
+      "qid": "Q164057",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Commerce",
+      "qid": "Q26643",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Corporation",
+      "qid": "Q167037",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Cuba",
+      "qid": "Q241",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Currency",
+      "qid": "Q8142",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Dark Ages (historiography)",
+      "qid": "Q217192",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "David Ricardo",
+      "qid": "Q160270",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Doha",
+      "qid": "Q3861",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Douglas Harper",
+      "qid": "Q19668528",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Dutch East India Company",
+      "qid": "Q159766",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Dutch Republic",
+      "qid": "Q170072",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Earnings",
+      "qid": "Q5326940",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "East Africa",
+      "qid": "Q27407",
+      "predicate": "DROP"
+    },
+    {
+      "name": "East Indies",
+      "qid": "Q213137",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ebla",
+      "qid": "Q5743",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Economic history of Africa",
+      "qid": "Q5333467",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ethnic groups in Indonesia",
+      "qid": "Q83828",
+      "predicate": "DROP"
+    },
+    {
+      "name": "European Union",
+      "qid": "Q458",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Financial transaction",
+      "qid": "Q1166072",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "First World",
+      "qid": "Q876830",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Foreign Agricultural Service",
+      "qid": "Q5468218",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "G20",
+      "qid": "Q19771",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "General Agreement on Tariffs and Trade",
+      "qid": "Q194284",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Great Depression",
+      "qid": "Q8698",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Hanseatic League",
+      "qid": "Q42908",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Henry Thomas Riley",
+      "qid": "Q5729156",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hermes",
+      "qid": "Q41484",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Hermitage Museum",
+      "qid": "Q132783",
+      "predicate": "DROP"
+    },
+    {
+      "name": "History of ancient numeral systems",
+      "qid": "Q12702745",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "History of money",
+      "qid": "Q167328",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "History of writing",
+      "qid": "Q1340267",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Hulk (medieval ship type)",
+      "qid": "Q707786",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Import quota",
+      "qid": "Q1307364",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Indian Ocean",
+      "qid": "Q1239",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indonesia",
+      "qid": "Q252",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indus River",
+      "qid": "Q7348",
+      "predicate": "DROP"
+    },
+    {
+      "name": "International Monetary Fund",
+      "qid": "Q7804",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "International trade",
+      "qid": "Q178803",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "James Mill",
+      "qid": "Q271666",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Bostock (physician)",
+      "qid": "Q6222522",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Stuart Mill",
+      "qid": "Q50020",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Kassites",
+      "qid": "Q243312",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Kievan Rus'",
+      "qid": "Q1108445",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Kingdom of Kongo",
+      "qid": "Q796583",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Late Middle Ages",
+      "qid": "Q212976",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Latin",
+      "qid": "Q397",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Lipari",
+      "qid": "Q496389",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Luzon",
+      "qid": "Q125384",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Madagascar",
+      "qid": "Q1019",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Malaysia",
+      "qid": "Q833",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Manual labour",
+      "qid": "Q3485549",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Maritime Silk Road",
+      "qid": "Q11149509",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Market (economics)",
+      "qid": "Q37654",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Mediterranean Sea",
+      "qid": "Q4918",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mercantilism",
+      "qid": "Q162527",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Mercury (mythology)",
+      "qid": "Q1150",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mesoamerica",
+      "qid": "Q13703",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mesopotamia",
+      "qid": "Q11767",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Middle Ages",
+      "qid": "Q12554",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Milton Friedman",
+      "qid": "Q47426",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Moctezuma II",
+      "qid": "Q141791",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Multilateral treaty",
+      "qid": "Q6934728",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Muslims",
+      "qid": "Q47740",
+      "predicate": "DROP"
+    },
+    {
+      "name": "New Guinea",
+      "qid": "Q40285",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Non-governmental organization",
+      "qid": "Q79913",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "North American Free Trade Agreement",
+      "qid": "Q181574",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Northern Europe",
+      "qid": "Q27479",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Numismatist",
+      "qid": "Q2004963",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Oasisamerica",
+      "qid": "Q2885121",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Old English",
+      "qid": "Q42365",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Palawan",
+      "qid": "Q13869",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pax Romana",
+      "qid": "Q75207",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Phanagoria",
+      "qid": "Q1344411",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Philippines",
+      "qid": "Q928",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Phoenicians",
+      "qid": "Q1048468",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pliny the Elder",
+      "qid": "Q82778",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Prehistoric Britain",
+      "qid": "Q435405",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Product (business)",
+      "qid": "Q2424752",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Proto-Germanic language",
+      "qid": "Q669623",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Radhanite",
+      "qid": "Q677126",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Reciprocity (international relations)",
+      "qid": "Q1460386",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Republic of Genoa",
+      "qid": "Q174306",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Republic of Pisa",
+      "qid": "Q1365493",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Republic of Venice",
+      "qid": "Q4948",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Retail",
+      "qid": "Q126793",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Robert Carr Bosanquet",
+      "qid": "Q7342781",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Robert Torrens (economist)",
+      "qid": "Q1346375",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Roman Empire",
+      "qid": "Q2277",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Roman commerce",
+      "qid": "Q2008214",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Route from the Varangians to the Greeks",
+      "qid": "Q378346",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Saint Petersburg",
+      "qid": "Q656",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sar-i Sang",
+      "qid": "Q941919",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Second World",
+      "qid": "Q233472",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Service (economics)",
+      "qid": "Q7406919",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Seventeen Provinces",
+      "qid": "Q330533",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Silk Road",
+      "qid": "Q36288",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Singapore",
+      "qid": "Q334",
+      "predicate": "DROP"
+    },
+    {
+      "name": "South Korea",
+      "qid": "Q884",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Southern Russia",
+      "qid": "Q14324291",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Spanish Empire",
+      "qid": "Q80702",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sri Lanka",
+      "qid": "Q854",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Stone Age",
+      "qid": "Q11759",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Sumer",
+      "qid": "Q35355",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Suyab",
+      "qid": "Q413452",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Taiwan",
+      "qid": "Q865",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Taiwanese indigenous peoples",
+      "qid": "Q216839",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Takahito, Prince Mikasa",
+      "qid": "Q280229",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Talasea",
+      "qid": "Q7678925",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Taman Peninsula",
+      "qid": "Q216664",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Taraz",
+      "qid": "Q486545",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Thailand",
+      "qid": "Q869",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Theobroma cacao",
+      "qid": "Q42385",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Third World",
+      "qid": "Q180194",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Timbuktu",
+      "qid": "Q9427",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Toby Green",
+      "qid": "Q53583075",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Trade",
+      "qid": "Q601401",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Trans-Saharan trade",
+      "qid": "Q465279",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "United Kingdom",
+      "qid": "Q145",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United States embargo against Cuba",
+      "qid": "Q1334972",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Varangians",
+      "qid": "Q48343",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Vasco da Gama",
+      "qid": "Q7328",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Vietnam",
+      "qid": "Q881",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Westerlies",
+      "qid": "Q12343832",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Western Europe",
+      "qid": "Q27496",
+      "predicate": "DROP"
+    },
+    {
+      "name": "World Trade Organization",
+      "qid": "Q7825",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "World War II",
+      "qid": "Q362",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "banana",
+      "qid": "Q503",
+      "predicate": "DROP"
+    },
+    {
+      "name": "barter",
+      "qid": "Q484830",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "bilateral trade",
+      "qid": "Q256330",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "bronze",
+      "qid": "Q34095",
+      "predicate": "DROP"
+    },
+    {
+      "name": "business",
+      "qid": "Q4830453",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "catamaran",
+      "qid": "Q190403",
+      "predicate": "DROP"
+    },
+    {
+      "name": "centrally planned economy",
+      "qid": "Q135184682",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "chert",
+      "qid": "Q1070438",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cinnamon",
+      "qid": "Q28165",
+      "predicate": "DROP"
+    },
+    {
+      "name": "civilization",
+      "qid": "Q8432",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cloth",
+      "qid": "Q5849500",
+      "predicate": "DROP"
+    },
+    {
+      "name": "coconut",
+      "qid": "Q13187",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cognitive skill",
+      "qid": "Q5141241",
+      "predicate": "DROP"
+    },
+    {
+      "name": "colony",
+      "qid": "Q133156",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "commercial law",
+      "qid": "Q219186",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "commodity money",
+      "qid": "Q1470163",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "comparative advantage",
+      "qid": "Q215551",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "complaint tablet to Ea-nāṣir",
+      "qid": "Q21585351",
+      "predicate": "DROP"
+    },
+    {
+      "name": "consumption (economics)",
+      "qid": "Q192270",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cultigen",
+      "qid": "Q1362373",
+      "predicate": "DROP"
+    },
+    {
+      "name": "demand",
+      "qid": "Q4402708",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "digital currency",
+      "qid": "Q10836209",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "division of labour",
+      "qid": "Q207449",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "e-commerce",
+      "qid": "Q484847",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "economic surplus",
+      "qid": "Q268617",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "economics",
+      "qid": "Q8134",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "embargo",
+      "qid": "Q989265",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "environmental movement",
+      "qid": "Q8189417",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "export",
+      "qid": "Q182722",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "export-oriented industrialization",
+      "qid": "Q495274",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "fair trade",
+      "qid": "Q188485",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "flint",
+      "qid": "Q83087",
+      "predicate": "DROP"
+    },
+    {
+      "name": "free trade",
+      "qid": "Q200435",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "gift economy",
+      "qid": "Q2233575",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "globalization",
+      "qid": "Q7181",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "gold",
+      "qid": "Q897",
+      "predicate": "DROP"
+    },
+    {
+      "name": "goods and services",
+      "qid": "Q2897903",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "grain trade",
+      "qid": "Q5593509",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "history of communication",
+      "qid": "Q3633560",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "infant industry",
+      "qid": "Q1052551",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "international political economy",
+      "qid": "Q1667430",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "international trade",
+      "qid": "Q178803",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "iron",
+      "qid": "Q677",
+      "predicate": "DROP"
+    },
+    {
+      "name": "lapis lazuli",
+      "qid": "Q216798",
+      "predicate": "DROP"
+    },
+    {
+      "name": "luxury goods",
+      "qid": "Q949715",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mail order",
+      "qid": "Q425779",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "maritime republics",
+      "qid": "Q62825",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "market (economics)",
+      "qid": "Q37654",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "market price",
+      "qid": "Q180107",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mass production",
+      "qid": "Q215768",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "money",
+      "qid": "Q1368",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "monopoly",
+      "qid": "Q43637",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "multinational corporation",
+      "qid": "Q161726",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "obsidian",
+      "qid": "Q53754",
+      "predicate": "DROP"
+    },
+    {
+      "name": "outrigger boat",
+      "qid": "Q639140",
+      "predicate": "DROP"
+    },
+    {
+      "name": "outsourcing",
+      "qid": "Q61515",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "paper money",
+      "qid": "Q131938946",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "piracy",
+      "qid": "Q45393",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "precious metal",
+      "qid": "Q271449",
+      "predicate": "DROP"
+    },
+    {
+      "name": "price",
+      "qid": "Q160151",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "price support",
+      "qid": "Q1670749",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "protectionism",
+      "qid": "Q179073",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "reform and opening up",
+      "qid": "Q1205521",
+      "predicate": "DROP"
+    },
+    {
+      "name": "sales",
+      "qid": "Q194189",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sandalwood",
+      "qid": "Q11122366",
+      "predicate": "DROP"
+    },
+    {
+      "name": "spice",
+      "qid": "Q42527",
+      "predicate": "DROP"
+    },
+    {
+      "name": "spice trade",
+      "qid": "Q1778604",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "sugarcane",
+      "qid": "Q36940",
+      "predicate": "DROP"
+    },
+    {
+      "name": "system",
+      "qid": "Q58778",
+      "predicate": "DROP"
+    },
+    {
+      "name": "tariff",
+      "qid": "Q52389",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "terms of trade",
+      "qid": "Q1570293",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "tin",
+      "qid": "Q1096",
+      "predicate": "DROP"
+    },
+    {
+      "name": "trade barrier",
+      "qid": "Q377302",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "trade facilitation",
+      "qid": "Q7832041",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "trade route",
+      "qid": "Q405155",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "trading nation",
+      "qid": "Q7832242",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "triangular trade",
+      "qid": "Q647110",
+      "predicate": "HAS_SUBTYPE"
+    }
+  ],
+  "stats": {
+    "total": 227,
+    "kept": 114,
+    "dropped": 113,
+    "by_predicate": {
+      "HAS_CONTEXT": 20,
+      "HAS_FIGURE": 14,
+      "DROP": 113,
+      "HAS_SUBTYPE": 20,
+      "HAS_INSTITUTION": 10,
+      "HAS_COMPONENT": 36,
+      "HAS_INSTRUMENT": 9,
+      "HAS_THEORY": 3,
+      "DRIVEN_BY": 2
+    }
+  }
+}

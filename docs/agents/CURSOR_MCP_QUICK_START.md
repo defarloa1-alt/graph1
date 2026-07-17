@@ -179,7 +179,7 @@ With MCP configured, you can:
 - `mcp/neo4j-server/` - The MCP server (already built)
 - `CURSOR_MCP_SETUP.md` - Detailed setup guide
 - `CURSOR_MCP_QUICK_START.md` - This file
-- `mcp-config.json` - Example configuration
+- `mcp/mcp-config.example.json` - Example MCP configuration (no secrets; copy and set env)
 - `test_mcp_connection.bat` - Connection test script
 
 ---

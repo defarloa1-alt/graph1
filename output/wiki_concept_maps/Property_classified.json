@@ -1,0 +1,959 @@
+{
+  "page": "Property",
+  "page_name": "Property",
+  "root_qid": "Q1400881",
+  "classified": [
+    {
+      "name": "2nd millennium",
+      "qid": "Q25860",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Adam Smith",
+      "qid": "Q9381",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Andrew Joseph Galambos",
+      "qid": "Q4757546",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Antarctica",
+      "qid": "Q51",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Aristotle",
+      "qid": "Q868",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Benjamin Tucker",
+      "qid": "Q505871",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Bible",
+      "qid": "Q1845",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Bond (finance)",
+      "qid": "Q11693",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Bourbon Restoration in France",
+      "qid": "Q207162",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Call sign",
+      "qid": "Q353659",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Canada",
+      "qid": "Q16",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Capitalism",
+      "qid": "Q6206",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Charles Comte",
+      "qid": "Q2958772",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Charles I of England",
+      "qid": "Q81506",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Cicero",
+      "qid": "Q1541",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Classical liberalism",
+      "qid": "Q794394",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Communalism (Bookchin)",
+      "qid": "Q2705134",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Communism",
+      "qid": "Q6186",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Conservatism",
+      "qid": "Q7169",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Convention (norm)",
+      "qid": "Q367293",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Copyright",
+      "qid": "Q1297822",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Currency",
+      "qid": "Q8142",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "David Hume",
+      "qid": "Q37160",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Decretum Gratiani",
+      "qid": "Q1182119",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Design",
+      "qid": "Q82604",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Edward Coke",
+      "qid": "Q332435",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Edward Craig (philosopher)",
+      "qid": "Q5342442",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "England",
+      "qid": "Q21",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Europe",
+      "qid": "Q46",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Face value",
+      "qid": "Q931754",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "First English Civil War",
+      "qid": "Q3142505",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Frédéric Bastiat",
+      "qid": "Q13515",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "God",
+      "qid": "Q190",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Harold Demsetz",
+      "qid": "Q1585807",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "House of Stuart",
+      "qid": "Q179840",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Inheritance",
+      "qid": "Q200303",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Institutes of the Lawes of England",
+      "qid": "Q15222479",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Intellectual property",
+      "qid": "Q131257",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Israelites",
+      "qid": "Q51669",
+      "predicate": "DROP"
+    },
+    {
+      "name": "James Harrington (author)",
+      "qid": "Q969183",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Adams",
+      "qid": "Q11806",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Locke",
+      "qid": "Q9353",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Karl Marx",
+      "qid": "Q9061",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lagash",
+      "qid": "Q207330",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Law of the United States",
+      "qid": "Q692218",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Legal tender",
+      "qid": "Q1643989",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Leviathan",
+      "qid": "Q192677",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Lockean proviso",
+      "qid": "Q2978617",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Manufacturing",
+      "qid": "Q187939",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mikhail Bakunin",
+      "qid": "Q27645",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nonpossessory interest in land",
+      "qid": "Q7049554",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Oliver Wendell Holmes Jr.",
+      "qid": "Q360574",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Paris",
+      "qid": "Q90",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Parliament",
+      "qid": "Q35749",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Pauline Peters",
+      "qid": "Q7155074",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Personal property",
+      "qid": "Q499094",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Pope Leo XIII",
+      "qid": "Q43922",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Positive law",
+      "qid": "Q914661",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Post-scarcity",
+      "qid": "Q2975790",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Primitive accumulation of capital",
+      "qid": "Q1848870",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Property",
+      "qid": "Q1400881",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Property is theft!",
+      "qid": "Q7250239",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Property rights (economics)",
+      "qid": "Q8799101",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Recorder of deeds",
+      "qid": "Q2630069",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Renaissance",
+      "qid": "Q4692",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Rerum novarum",
+      "qid": "Q335987",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Restatements of the Law",
+      "qid": "Q841917",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Richard Pipes",
+      "qid": "Q449064",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Rights",
+      "qid": "Q780687",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Robert Filmer",
+      "qid": "Q707787",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Robinson Crusoe",
+      "qid": "Q483034",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Roman law",
+      "qid": "Q162314",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Russell Kirk",
+      "qid": "Q158997",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Samuel Noah Kramer",
+      "qid": "Q362308",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Seneca the Younger",
+      "qid": "Q2054",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Social class",
+      "qid": "Q187588",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Socialism",
+      "qid": "Q7272",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Statism",
+      "qid": "Q322294",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Sumer",
+      "qid": "Q35355",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Communist Manifesto",
+      "qid": "Q40591",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "The Wealth of Nations",
+      "qid": "Q233562",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Thomas Hobbes",
+      "qid": "Q37621",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Two Treatises of Government",
+      "qid": "Q231949",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "United Nations Convention on the Law of the Sea",
+      "qid": "Q216996",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "United States",
+      "qid": "Q30",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United States v. Willow River Power Co.",
+      "qid": "Q7893522",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Urukagina",
+      "qid": "Q315698",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "William Harold Hutt",
+      "qid": "Q4020038",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "William Pitt, 1st Earl of Chatham",
+      "qid": "Q208663",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "abortion",
+      "qid": "Q8452",
+      "predicate": "DROP"
+    },
+    {
+      "name": "age of majority",
+      "qid": "Q18000",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "air rights",
+      "qid": "Q4698374",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "airspace",
+      "qid": "Q272730",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "anarchism",
+      "qid": "Q6199",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "anthropology",
+      "qid": "Q23404",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "avarice",
+      "qid": "Q193543",
+      "predicate": "DROP"
+    },
+    {
+      "name": "capital (economics)",
+      "qid": "Q8137",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "clothing",
+      "qid": "Q11460",
+      "predicate": "DROP"
+    },
+    {
+      "name": "common law",
+      "qid": "Q30216",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "common ownership",
+      "qid": "Q1117368",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "commons",
+      "qid": "Q9828451",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "communication channel",
+      "qid": "Q733553",
+      "predicate": "DROP"
+    },
+    {
+      "name": "communist society",
+      "qid": "Q5154552",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "conscription",
+      "qid": "Q580750",
+      "predicate": "DROP"
+    },
+    {
+      "name": "constitution",
+      "qid": "Q7755",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "contract",
+      "qid": "Q93288",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "copyright",
+      "qid": "Q1297822",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "domain name",
+      "qid": "Q32635",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "easement",
+      "qid": "Q448405",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "economic growth",
+      "qid": "Q189833",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "economics",
+      "qid": "Q8134",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "emissions trading",
+      "qid": "Q8348417",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "empiricism",
+      "qid": "Q83368",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "encumbrance",
+      "qid": "Q4329865",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "epistemology",
+      "qid": "Q9471",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "estate in land",
+      "qid": "Q975783",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "euthanasia",
+      "qid": "Q100159",
+      "predicate": "DROP"
+    },
+    {
+      "name": "exegesis",
+      "qid": "Q244783",
+      "predicate": "DROP"
+    },
+    {
+      "name": "factors of production",
+      "qid": "Q210947",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "financial asset",
+      "qid": "Q2823610",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "first possession theory of property",
+      "qid": "Q5454237",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "fungibility",
+      "qid": "Q1474273",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "goods",
+      "qid": "Q28877",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "government",
+      "qid": "Q7188",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "homestead principle",
+      "qid": "Q28129898",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "human body",
+      "qid": "Q23852",
+      "predicate": "DROP"
+    },
+    {
+      "name": "human rights",
+      "qid": "Q8458",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "idea",
+      "qid": "Q131841",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "identifier",
+      "qid": "Q853614",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "immovable property",
+      "qid": "Q5439688",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "intangible property",
+      "qid": "Q6042535",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "intellectual property",
+      "qid": "Q131257",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "interest",
+      "qid": "Q170924",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "judiciary",
+      "qid": "Q105985",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "labor theory of property",
+      "qid": "Q3533081",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "law",
+      "qid": "Q7748",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "law and economics",
+      "qid": "Q295354",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "lease",
+      "qid": "Q716894",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "legal guardian",
+      "qid": "Q157509",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "legal system",
+      "qid": "Q858700",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "liberty",
+      "qid": "Q2979",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "license",
+      "qid": "Q79719",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "marriage",
+      "qid": "Q8445",
+      "predicate": "DROP"
+    },
+    {
+      "name": "means of production",
+      "qid": "Q260747",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mineral rights",
+      "qid": "Q818909",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "monarchy",
+      "qid": "Q7269",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "morality",
+      "qid": "Q48324",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "mortal sin",
+      "qid": "Q2321540",
+      "predicate": "DROP"
+    },
+    {
+      "name": "natural law",
+      "qid": "Q29524",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "natural rights",
+      "qid": "Q20859012",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "network address",
+      "qid": "Q4418000",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "no-fly zone",
+      "qid": "Q822530",
+      "predicate": "DROP"
+    },
+    {
+      "name": "organ donation",
+      "qid": "Q849032",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ownership",
+      "qid": "Q6498684",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "patent",
+      "qid": "Q253623",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "personal property",
+      "qid": "Q499094",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "philosophical skepticism",
+      "qid": "Q1998646",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "political economy",
+      "qid": "Q47555",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "primitive communism",
+      "qid": "Q1129401",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "private property",
+      "qid": "Q555911",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "proletariat",
+      "qid": "Q132603",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "prostitution",
+      "qid": "Q36633",
+      "predicate": "DROP"
+    },
+    {
+      "name": "public domain",
+      "qid": "Q19652",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "public property",
+      "qid": "Q702627",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "real estate",
+      "qid": "Q684740",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "real property",
+      "qid": "Q10494269",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "religion",
+      "qid": "Q9174",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "religious pluralism",
+      "qid": "Q2002426",
+      "predicate": "DROP"
+    },
+    {
+      "name": "rights",
+      "qid": "Q780687",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "scarcity",
+      "qid": "Q815758",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "seawater",
+      "qid": "Q184395",
+      "predicate": "DROP"
+    },
+    {
+      "name": "security interest",
+      "qid": "Q13579421",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "slavery",
+      "qid": "Q8463",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "social contract",
+      "qid": "Q1326430",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "sociology",
+      "qid": "Q21201",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "sovereign immunity",
+      "qid": "Q2457196",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sovereignty",
+      "qid": "Q42008",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "spiritual body",
+      "qid": "Q16932526",
+      "predicate": "DROP"
+    },
+    {
+      "name": "state of nature",
+      "qid": "Q1130390",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "tangible property",
+      "qid": "Q7682959",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "temple",
+      "qid": "Q44539",
+      "predicate": "DROP"
+    },
+    {
+      "name": "title (property)",
+      "qid": "Q5393493",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "trademark",
+      "qid": "Q167270",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "tragedy of the commons",
+      "qid": "Q334622",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "usufruct",
+      "qid": "Q160474",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "usury",
+      "qid": "Q157188",
+      "predicate": "DROP"
+    },
+    {
+      "name": "wealth",
+      "qid": "Q200535",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 187,
+    "kept": 155,
+    "dropped": 32,
+    "by_predicate": {
+      "HAS_CONTEXT": 36,
+      "HAS_FIGURE": 29,
+      "DROP": 32,
+      "HAS_PUBLICATION": 9,
+      "HAS_SUBTYPE": 34,
+      "HAS_THEORY": 12,
+      "HAS_COMPONENT": 26,
+      "HAS_INSTRUMENT": 4,
+      "HAS_INSTITUTION": 3,
+      "DRIVEN_BY": 2
+    }
+  }
+}

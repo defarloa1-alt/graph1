@@ -1,0 +1,303 @@
+{
+  "timestamp": "2026-07-16T14:51:35.423585",
+  "investigations": {
+    "empty_types": {
+      "count": 16,
+      "types": [
+        "Activity",
+        "Dynasty",
+        "FacetCategory",
+        "FacetClaim",
+        "FacetedEntity",
+        "Geometry",
+        "Human",
+        "Institution",
+        "LegalRestriction",
+        "Location",
+        "Organization",
+        "PlaceVersion",
+        "PropertyMapping",
+        "PropertyType",
+        "TemporalAnchor",
+        "Work"
+      ]
+    },
+    "proposed_edge": {
+      "total_count": 5667,
+      "claim_count": 5667,
+      "counts_match": true,
+      "orphaned_count": 0,
+      "samples": [
+        {
+          "id": null,
+          "labels": [
+            "ProposedEdge"
+          ],
+          "properties": [
+            "claim_id",
+            "confidence",
+            "status",
+            "created_at",
+            "edge_id",
+            "relationship_type",
+            "source_agent",
+            "facet",
+            "updated_at",
+            "source_entity_id",
+            "target_entity_id",
+            "claim_label"
+          ]
+        },
+        {
+          "id": null,
+          "labels": [
+            "ProposedEdge"
+          ],
+          "properties": [
+            "claim_id",
+            "confidence",
+            "status",
+            "created_at",
+            "edge_id",
+            "relationship_type",
+            "source_agent",
+            "facet",
+            "updated_at",
+            "source_entity_id",
+            "target_entity_id",
+            "claim_label"
+          ]
+        },
+        {
+          "id": null,
+          "labels": [
+            "ProposedEdge"
+          ],
+          "properties": [
+            "claim_id",
+            "confidence",
+            "status",
+            "created_at",
+            "edge_id",
+            "relationship_type",
+            "source_agent",
+            "facet",
+            "updated_at",
+            "source_entity_id",
+            "target_entity_id",
+            "claim_label"
+          ]
+        },
+        {
+          "id": null,
+          "labels": [
+            "ProposedEdge"
+          ],
+          "properties": [
+            "claim_id",
+            "confidence",
+            "status",
+            "created_at",
+            "edge_id",
+            "relationship_type",
+            "source_agent",
+            "facet",
+            "updated_at",
+            "source_entity_id",
+            "target_entity_id",
+            "claim_label"
+          ]
+        },
+        {
+          "id": null,
+          "labels": [
+            "ProposedEdge"
+          ],
+          "properties": [
+            "claim_id",
+            "confidence",
+            "status",
+            "created_at",
+            "edge_id",
+            "relationship_type",
+            "source_agent",
+            "facet",
+            "updated_at",
+            "source_entity_id",
+            "target_entity_id",
+            "claim_label"
+          ]
+        }
+      ],
+      "relationship_patterns": {
+        "sample_outgoing": [
+          [
+            "FROM",
+            "TO"
+          ],
+          [
+            "EVIDENCED_BY"
+          ],
+          [
+            "FROM"
+          ],
+          [
+            "TO"
+          ]
+        ],
+        "sample_incoming": [
+          [
+            "ASSERTS_EDGE"
+          ],
+          []
+        ]
+      },
+      "overlapping_claim_ids": 0,
+      "timestamps": {
+        "earliest": "2026-07-15T18:10:25.874571",
+        "latest": "2026-07-15T19:08:07.856512",
+        "unique_count": 5665
+      }
+    },
+    "duplicates": {
+      "PERSON": {
+        "count": 2,
+        "nodes": [
+          {
+            "out_rels": 0,
+            "in_rels": 3,
+            "id": null,
+            "properties": [
+              "qid",
+              "entity_type",
+              "label",
+              "entity_cipher",
+              "created_at"
+            ],
+            "labels": [
+              "PERSON"
+            ]
+          },
+          {
+            "out_rels": 0,
+            "in_rels": 9,
+            "id": null,
+            "properties": [
+              "qid",
+              "entity_type",
+              "label",
+              "description",
+              "entity_cipher",
+              "created_at"
+            ],
+            "labels": [
+              "PERSON"
+            ]
+          }
+        ]
+      },
+      "Person": {
+        "count": 5630
+      },
+      "PERSON_with_both_labels": 0,
+      "EVENT": {
+        "count": 6,
+        "nodes": [
+          {
+            "out_rels": 0,
+            "in_rels": 0,
+            "id": null,
+            "properties": [
+              "entity_type",
+              "label",
+              "entity_cipher",
+              "created_at"
+            ],
+            "labels": [
+              "EVENT"
+            ]
+          },
+          {
+            "out_rels": 0,
+            "in_rels": 4,
+            "id": null,
+            "properties": [
+              "qid",
+              "entity_type",
+              "label",
+              "entity_cipher",
+              "created_at"
+            ],
+            "labels": [
+              "EVENT"
+            ]
+          },
+          {
+            "out_rels": 0,
+            "in_rels": 1,
+            "id": null,
+            "properties": [
+              "qid",
+              "entity_type",
+              "label",
+              "entity_cipher",
+              "created_at"
+            ],
+            "labels": [
+              "EVENT"
+            ]
+          },
+          {
+            "out_rels": 0,
+            "in_rels": 1,
+            "id": null,
+            "properties": [
+              "qid",
+              "entity_type",
+              "label",
+              "entity_cipher",
+              "created_at"
+            ],
+            "labels": [
+              "EVENT"
+            ]
+          },
+          {
+            "out_rels": 0,
+            "in_rels": 2,
+            "id": null,
+            "properties": [
+              "qid",
+              "entity_type",
+              "label",
+              "entity_cipher",
+              "created_at"
+            ],
+            "labels": [
+              "EVENT"
+            ]
+          },
+          {
+            "out_rels": 0,
+            "in_rels": 2,
+            "id": null,
+            "properties": [
+              "qid",
+              "label",
+              "entity_cipher",
+              "date",
+              "subject"
+            ],
+            "labels": [
+              "EVENT"
+            ]
+          }
+        ]
+      },
+      "Event": {
+        "count": 71
+      },
+      "EVENT_with_both_labels": 0
+    }
+  }
+}

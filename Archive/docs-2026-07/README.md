@@ -1,20 +1,30 @@
-# Archived documentation (2026-07-15 cleanup)
+# Archived documentation (2026-07 cleanup)
 
-Moved from `docs/` during documentation restructure. **Do not use for current design** without verifying against:
+**Do not use for current design** without verifying against:
 
 - `docs/ARCHITECTURE_CURRENT.md`
 - `docs/EPISTEMIC_MODEL.md`
+- `docs/FACET_TRAINING_CONTRACT.md`
 - `docs/README.md`
 
-## Contents
+Live Neo4j Aura is authoritative for counts and schema state.
+
+## Folders
 
 | Folder | What |
 |--------|------|
-| `handoffs/` | Advisor and agent handoff snapshots (Feb–Mar 2026) |
-| `sessions/` | Session notes, D036 claim pattern, bayesian formal model |
-| `project-management/` | Feb 2026 PM/QA plans |
-| `architecture-discovery/` | Pre-baseline taxonomy hops, period charts, property routing exploration |
-| `agents/` | Duplicate MCP setup docs, superseded agent quick refs |
+| `handoffs/` | Advisor and agent handoff snapshots |
+| `sessions/` | Phase completion reports, military/diplomatic drafts, node cleanup, transcripts |
+| `project-management/` | Roadmaps, SFA status snapshots, documentation completion notes |
+| `architecture-discovery/` | Pre-baseline exploration; multi-agent / IGAR early notes (`multiagent_proposal.md`) |
+| `agents/` | Superseded SFA prompt and quick-ref drafts |
 | `setup/` | Duplicate Cursor MCP setup |
-| `tasks/` | Phase 3 cleanup spec |
-| `misc/` | Superseded federation design, file org plans, UI plans, discussions |
+| `tasks/` | Phase cleanup specs |
+| `security/` | Security audit reports (may embed credential strings — rotate if still live) |
+| `misc/` | Stubs and one-offs |
+
+## Root cleanup (2026-07-16 evening)
+
+Session dumps and superseded guides were moved out of the repository root. Active docs live under `docs/`. Military source directories live under `scripts/agents/military/corpus/`. Root keepers: `README.md`, `REQUIREMENTS.md`, `DECISIONS.md`.
+
+One-off Python/JSON/Cypher from the July 16 node cleanup live under `Archive/scripts-2026-07/node-cleanup/`. Root `mcp-config.json` (had embedded credentials) → `Archive/docs-2026-07/security/`; use `mcp/mcp-config.example.json` instead.

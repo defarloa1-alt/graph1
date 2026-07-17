@@ -1,0 +1,1280 @@
+{
+  "page": "State (polity)",
+  "page_name": "State_(polity)",
+  "root_qid": "Q7275",
+  "classified": [
+    {
+      "name": "Absolute monarchy",
+      "qid": "Q184558",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Adam Smith",
+      "qid": "Q9381",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Adom Getachew",
+      "qid": "Q106778124",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Agriculture",
+      "qid": "Q11451",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Amazon rainforest",
+      "qid": "Q177567",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Anarchism",
+      "qid": "Q6199",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Anarcho-capitalism",
+      "qid": "Q192424",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Ancient Rome",
+      "qid": "Q1747689",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Andean civilizations",
+      "qid": "Q3122657",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Antonio Gramsci",
+      "qid": "Q83003",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Athenian democracy",
+      "qid": "Q223767",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Athens",
+      "qid": "Q1524",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Authoritarianism",
+      "qid": "Q6229",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Bremen (state)",
+      "qid": "Q1209",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Canal",
+      "qid": "Q12284",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Carthage",
+      "qid": "Q6343",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Centralisation",
+      "qid": "Q190632",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Cereal",
+      "qid": "Q12117",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ceuta",
+      "qid": "Q5823",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Charles Tilly",
+      "qid": "Q717635",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Christian Church",
+      "qid": "Q34651",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Cicero",
+      "qid": "Q1541",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "City-state",
+      "qid": "Q133442",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Civil authority",
+      "qid": "Q5124640",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Competition (economics)",
+      "qid": "Q319676",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Confederation",
+      "qid": "Q170156",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Corporate statism",
+      "qid": "Q872760",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Criticism of capitalism",
+      "qid": "Q1728574",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Dairy product",
+      "qid": "Q185217",
+      "predicate": "DROP"
+    },
+    {
+      "name": "David Samuels (political scientist)",
+      "qid": "Q5239451",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Declaration on the Granting of Independence to Colonial Countries and Peoples",
+      "qid": "Q2629473",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Democracy",
+      "qid": "Q7174",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Divine right of kings",
+      "qid": "Q839452",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Earth",
+      "qid": "Q2",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Economic history of the world",
+      "qid": "Q3054625",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Edmund Burke",
+      "qid": "Q165792",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Egypt",
+      "qid": "Q79",
+      "predicate": "DROP"
+    },
+    {
+      "name": "English Civil War",
+      "qid": "Q80330",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ethnic and religious composition of Austria-Hungary",
+      "qid": "Q16205640",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fascism",
+      "qid": "Q6223",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Frederick Cooper (historian)",
+      "qid": "Q867620",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Free City of Danzig",
+      "qid": "Q216173",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Free City of Frankfurt",
+      "qid": "Q704300",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Free City of Lübeck",
+      "qid": "Q950240",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Free State of Fiume",
+      "qid": "Q548114",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Genealogy (philosophy)",
+      "qid": "Q2265584",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Gibraltar",
+      "qid": "Q1410",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Government",
+      "qid": "Q7188",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Hendrik Spruyt",
+      "qid": "Q11336696",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "History of China",
+      "qid": "Q82972",
+      "predicate": "DROP"
+    },
+    {
+      "name": "History of Hamburg",
+      "qid": "Q314618",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Hong Kong",
+      "qid": "Q8646",
+      "predicate": "DROP"
+    },
+    {
+      "name": "House of Habsburg",
+      "qid": "Q65968",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ideology and Ideological State Apparatuses",
+      "qid": "Q94940168",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Industrial Revolution",
+      "qid": "Q2269",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Jacques Ellul",
+      "qid": "Q322922",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Jane Burbank",
+      "qid": "Q112445493",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Jean Bodin",
+      "qid": "Q190944",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Joel S. Migdal",
+      "qid": "Q16107049",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Josep Colomer",
+      "qid": "Q5936809",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Jürgen Habermas",
+      "qid": "Q76357",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Karl Marx",
+      "qid": "Q9061",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Languages of Europe",
+      "qid": "Q48366",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Leviathan (Hobbes book)",
+      "qid": "Q193034",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "London independence",
+      "qid": "Q24885001",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Louis Althusser",
+      "qid": "Q184169",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Louis XIV",
+      "qid": "Q7742",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Maize",
+      "qid": "Q11575",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Marx/Engels Collected Works",
+      "qid": "Q6778594",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Marxism",
+      "qid": "Q7264",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Marxist",
+      "qid": "Q12716775",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Max Weber",
+      "qid": "Q9387",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Mesoamerica",
+      "qid": "Q13703",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mesopotamia",
+      "qid": "Q11767",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Michael Hechter",
+      "qid": "Q86425444",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Michael Mann (sociologist)",
+      "qid": "Q1425193",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Michel Foucault",
+      "qid": "Q44272",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Middle English",
+      "qid": "Q36395",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Military Revolution",
+      "qid": "Q1051564",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Monaco",
+      "qid": "Q235",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Monopoly on violence",
+      "qid": "Q1508788",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Montevideo Convention",
+      "qid": "Q210862",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Murray Rothbard",
+      "qid": "Q297079",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Natural rights and legal rights",
+      "qid": "Q29677",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Neolithic",
+      "qid": "Q36422",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Nicos Poulantzas",
+      "qid": "Q505296",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nile",
+      "qid": "Q3392",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Novgorod Republic",
+      "qid": "Q151536",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Old French",
+      "qid": "Q35222",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pierre Clastres",
+      "qid": "Q463151",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pluralism (political theory)",
+      "qid": "Q14850164",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Polish–Lithuanian Commonwealth",
+      "qid": "Q172107",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Political philosophy",
+      "qid": "Q179805",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Power and Market",
+      "qid": "Q3431336",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Privatization",
+      "qid": "Q161500",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pskov Republic",
+      "qid": "Q317078",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pyramid of Capitalist System",
+      "qid": "Q16933984",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ralph Miliband",
+      "qid": "Q2036385",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Rational-legal authority",
+      "qid": "Q3422344",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Region",
+      "qid": "Q82794",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Republic of Florence",
+      "qid": "Q148540",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Republic of Genoa",
+      "qid": "Q174306",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Republic of Pisa",
+      "qid": "Q1365493",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Republic of Ragusa",
+      "qid": "Q208169",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Republic of Venice",
+      "qid": "Q4948",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Robert Dahl",
+      "qid": "Q83907",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Robert Filmer",
+      "qid": "Q707787",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Robert Nozick",
+      "qid": "Q205927",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Roman law",
+      "qid": "Q162314",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Rzeczpospolita",
+      "qid": "Q5153902",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Satellite state",
+      "qid": "Q325261",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Scientific racism",
+      "qid": "Q1772910",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Singapore",
+      "qid": "Q334",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Social contract",
+      "qid": "Q1326430",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Social stratification",
+      "qid": "Q841628",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sovereign state",
+      "qid": "Q3624078",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Soviet Union",
+      "qid": "Q15180",
+      "predicate": "DROP"
+    },
+    {
+      "name": "State (polity)",
+      "qid": "Q7275",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Stateless society",
+      "qid": "Q1708603",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "The Beast (Revelation)",
+      "qid": "Q1191044",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Prince",
+      "qid": "Q131719",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Theda Skocpol",
+      "qid": "Q130064",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Thomas Hobbes",
+      "qid": "Q37621",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Tim Ingold",
+      "qid": "Q2073266",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "United Nations",
+      "qid": "Q1065",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United States Declaration of Independence",
+      "qid": "Q127912",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "University of Minnesota Press",
+      "qid": "Q7895804",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Urbanization",
+      "qid": "Q161078",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Vatican City",
+      "qid": "Q237",
+      "predicate": "DROP"
+    },
+    {
+      "name": "William I. Brustein",
+      "qid": "Q8012762",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Withering away of the state",
+      "qid": "Q8028151",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "administrative division",
+      "qid": "Q56061",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "agriculture",
+      "qid": "Q11451",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "anarchy",
+      "qid": "Q31895",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "ancient Egypt",
+      "qid": "Q11768",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ancient Greece",
+      "qid": "Q11772",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "architecture",
+      "qid": "Q12271",
+      "predicate": "DROP"
+    },
+    {
+      "name": "art",
+      "qid": "Q735",
+      "predicate": "DROP"
+    },
+    {
+      "name": "autocracy",
+      "qid": "Q173424",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "barley",
+      "qid": "Q11577",
+      "predicate": "DROP"
+    },
+    {
+      "name": "base and superstructure",
+      "qid": "Q335833",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "biopolitics",
+      "qid": "Q2904237",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "biopower",
+      "qid": "Q864171",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "body politic",
+      "qid": "Q4936955",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "bourgeoisie",
+      "qid": "Q52090",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "bureaucracy",
+      "qid": "Q72468",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cameral science",
+      "qid": "Q62689",
+      "predicate": "DROP"
+    },
+    {
+      "name": "capital (economics)",
+      "qid": "Q8137",
+      "predicate": "DROP"
+    },
+    {
+      "name": "capitalism",
+      "qid": "Q6206",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "city-state",
+      "qid": "Q133442",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "civil society",
+      "qid": "Q181865",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "civilization",
+      "qid": "Q8432",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "civitas",
+      "qid": "Q1094545",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "classical antiquity",
+      "qid": "Q486761",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "classless society",
+      "qid": "Q1571775",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "complex society",
+      "qid": "Q5156603",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "constitution",
+      "qid": "Q7755",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "country",
+      "qid": "Q6256",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "crop",
+      "qid": "Q235352",
+      "predicate": "DROP"
+    },
+    {
+      "name": "de facto",
+      "qid": "Q712144",
+      "predicate": "DROP"
+    },
+    {
+      "name": "democratization",
+      "qid": "Q1064441",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "diplomatic recognition",
+      "qid": "Q1058726",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "direct democracy",
+      "qid": "Q171174",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "divine right of kings",
+      "qid": "Q839452",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "domestication",
+      "qid": "Q11395",
+      "predicate": "DROP"
+    },
+    {
+      "name": "economy",
+      "qid": "Q159810",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "estates of the realm",
+      "qid": "Q657326",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "extra Ecclesiam nulla salus",
+      "qid": "Q971965",
+      "predicate": "DROP"
+    },
+    {
+      "name": "failed state",
+      "qid": "Q392160",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "false consciousness",
+      "qid": "Q2581738",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "family",
+      "qid": "Q8436",
+      "predicate": "DROP"
+    },
+    {
+      "name": "federated state",
+      "qid": "Q107390",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "federation",
+      "qid": "Q43702",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "feudalism",
+      "qid": "Q37739",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "flood",
+      "qid": "Q8068",
+      "predicate": "DROP"
+    },
+    {
+      "name": "government",
+      "qid": "Q7188",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "governmentality",
+      "qid": "Q1523191",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "grain",
+      "qid": "Q2995529",
+      "predicate": "DROP"
+    },
+    {
+      "name": "hegemony",
+      "qid": "Q182034",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "herding",
+      "qid": "Q1484503",
+      "predicate": "DROP"
+    },
+    {
+      "name": "human history",
+      "qid": "Q200325",
+      "predicate": "DROP"
+    },
+    {
+      "name": "hunter-gatherer",
+      "qid": "Q27443",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ideology",
+      "qid": "Q7257",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "in-group and out-group",
+      "qid": "Q375181",
+      "predicate": "DROP"
+    },
+    {
+      "name": "institution",
+      "qid": "Q178706",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "interlocking directorate",
+      "qid": "Q6047158",
+      "predicate": "DROP"
+    },
+    {
+      "name": "international law",
+      "qid": "Q4394526",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "jus gentium",
+      "qid": "Q160085",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "kinship",
+      "qid": "Q171318",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "list of states with limited recognition",
+      "qid": "Q199683",
+      "predicate": "DROP"
+    },
+    {
+      "name": "lord",
+      "qid": "Q12552047",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mathematical statistics",
+      "qid": "Q745328",
+      "predicate": "DROP"
+    },
+    {
+      "name": "mathematics",
+      "qid": "Q395",
+      "predicate": "DROP"
+    },
+    {
+      "name": "monarch",
+      "qid": "Q116",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "monopoly on violence",
+      "qid": "Q1508788",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "monument",
+      "qid": "Q4989906",
+      "predicate": "DROP"
+    },
+    {
+      "name": "multinational state",
+      "qid": "Q1641089",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "nation",
+      "qid": "Q6266",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nation state",
+      "qid": "Q179671",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "national anthem",
+      "qid": "Q23691",
+      "predicate": "DROP"
+    },
+    {
+      "name": "national emblem",
+      "qid": "Q1079693",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "national flag",
+      "qid": "Q186516",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nationalization",
+      "qid": "Q178564",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "natural monopoly",
+      "qid": "Q648510",
+      "predicate": "DROP"
+    },
+    {
+      "name": "neo-Marxism",
+      "qid": "Q1058263",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "nomad",
+      "qid": "Q128393",
+      "predicate": "DROP"
+    },
+    {
+      "name": "plenitudo potestatis",
+      "qid": "Q2099283",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "police",
+      "qid": "Q35535",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "political philosophy",
+      "qid": "Q179805",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "political power",
+      "qid": "Q2101636",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "politics",
+      "qid": "Q7163",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "polity",
+      "qid": "Q1063239",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "polyarchy",
+      "qid": "Q836853",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "population",
+      "qid": "Q2625603",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "prehistory",
+      "qid": "Q11756",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "privatization",
+      "qid": "Q161500",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "province",
+      "qid": "Q34876",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "public sphere",
+      "qid": "Q17945",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "quipu",
+      "qid": "Q185292",
+      "predicate": "DROP"
+    },
+    {
+      "name": "refrigeration",
+      "qid": "Q747713",
+      "predicate": "DROP"
+    },
+    {
+      "name": "regulation",
+      "qid": "Q428148",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "republic",
+      "qid": "Q7270",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "res publica",
+      "qid": "Q1994847",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "rice",
+      "qid": "Q5090",
+      "predicate": "DROP"
+    },
+    {
+      "name": "school",
+      "qid": "Q3914",
+      "predicate": "DROP"
+    },
+    {
+      "name": "science",
+      "qid": "Q336",
+      "predicate": "DROP"
+    },
+    {
+      "name": "seal (emblem)",
+      "qid": "Q162919",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social class",
+      "qid": "Q187588",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social contract",
+      "qid": "Q1326430",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "social inequality",
+      "qid": "Q5431887",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social stratification",
+      "qid": "Q841628",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "society",
+      "qid": "Q8425",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "sovereign state",
+      "qid": "Q3624078",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "sovereignty",
+      "qid": "Q42008",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "state capacity",
+      "qid": "Q105984610",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "state formation",
+      "qid": "Q4455079",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "state of nature",
+      "qid": "Q1130390",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "stateless society",
+      "qid": "Q1708603",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "structural functionalism",
+      "qid": "Q831725",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "structuralism",
+      "qid": "Q179168",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "tax",
+      "qid": "Q8161",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "territory",
+      "qid": "Q183366",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "trade",
+      "qid": "Q601401",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "translatio imperii",
+      "qid": "Q693981",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "unitary state",
+      "qid": "Q179164",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "urban secession",
+      "qid": "Q7900163",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "utopian socialism",
+      "qid": "Q192447",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "vassal",
+      "qid": "Q223266",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "welfare state",
+      "qid": "Q192451",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "wheat",
+      "qid": "Q15645384",
+      "predicate": "DROP"
+    },
+    {
+      "name": "writing",
+      "qid": "Q37260",
+      "predicate": "DROP"
+    }
+  ],
+  "stats": {
+    "total": 251,
+    "kept": 168,
+    "dropped": 83,
+    "by_predicate": {
+      "HAS_SUBTYPE": 23,
+      "HAS_FIGURE": 33,
+      "DRIVEN_BY": 3,
+      "DROP": 83,
+      "HAS_THEORY": 22,
+      "HAS_CONTEXT": 19,
+      "HAS_COMPONENT": 54,
+      "HAS_INSTITUTION": 2,
+      "HAS_INSTRUMENT": 6,
+      "HAS_METHOD": 1,
+      "HAS_PUBLICATION": 5
+    }
+  }
+}

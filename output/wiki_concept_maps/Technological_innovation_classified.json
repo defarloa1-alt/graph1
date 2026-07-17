@@ -1,0 +1,90 @@
+{
+  "page": "Technological innovation",
+  "page_name": "Technological_innovation",
+  "root_qid": "Q3798991",
+  "classified": [
+    {
+      "name": "Innovation management",
+      "qid": "Q794803",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Laudato si'",
+      "qid": "Q20064904",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Pope Francis",
+      "qid": "Q450675",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Technological innovation",
+      "qid": "Q3798991",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Technology",
+      "qid": "Q11016",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "business failure",
+      "qid": "Q5001874",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "business model",
+      "qid": "Q815823",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "business value",
+      "qid": "Q556441",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "critical success factor",
+      "qid": "Q223210",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "disruptive innovation",
+      "qid": "Q1192297",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "innovation",
+      "qid": "Q174165",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "startup company",
+      "qid": "Q129238",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "technology",
+      "qid": "Q11016",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "think tank",
+      "qid": "Q155271",
+      "predicate": "HAS_INSTITUTION"
+    }
+  ],
+  "stats": {
+    "total": 14,
+    "kept": 13,
+    "dropped": 1,
+    "by_predicate": {
+      "HAS_SUBTYPE": 2,
+      "HAS_PUBLICATION": 1,
+      "HAS_FIGURE": 1,
+      "DROP": 1,
+      "HAS_COMPONENT": 8,
+      "HAS_INSTITUTION": 1
+    }
+  }
+}

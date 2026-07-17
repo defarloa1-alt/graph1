@@ -241,15 +241,19 @@ class SubjectConceptFacetAgent:
                     f"- SYS_DecisionTable: table_id (e.g. 'D8'), label, description\n"
                     f"- SYS_Threshold: name, value, unit, description\n"
                     f"- SYS_FederationSource: source_id, label, phase\n"
-                    f"- SYS_RelationshipType: rel_type, domain\n"
+                    f"- SYS_RelationshipType: rel_type, name, wikidata_property (query before proposing edges)\n"
                     f"- Entity: label, qid, dprr_id\n"
                     f"- Place: label, pleiades_id, geonames_id\n\n"
+                    f"RELATIONSHIP REGISTRY: All predicates must exist in "
+                    f"relationship_types_registry_master.csv / SYS_RelationshipType. "
+                    f"Query the graph or consult the CSV before proposing a relationship type. "
+                    f"Do not invent types.\n\n"
                     f"IMPORTANT: Keep graph queries minimal. You already have the candidates "
                     f"in the prompt — focus on evaluating them, not re-discovering the graph. "
                     f"Return structured JSON."
                 )
                 seed_qid = str(seed.get("qid", "Q17167")).strip().upper()
-                system = append_republic_graph_context(system, seed_qid, driver=self.driver)
+                system = append_republic_graph_context(system, seed_qid, driver=self.driver, facet=self.facet_key)
                 evaluation = self._run_claude_agent(system, prompt)
             except Exception as e:
                 evaluation = {"error": str(e)}
@@ -343,7 +347,7 @@ Provide structured JSON with keys: relevant_candidates, misrouted, proposed_addi
             f"You have tools to query the live Neo4j graph."
         )
         seed_qid = str(sc.get("seed_qid", "Q17167")).strip().upper()
-        system = append_republic_graph_context(system, seed_qid, driver=self.driver)
+        system = append_republic_graph_context(system, seed_qid, driver=self.driver, facet=self.facet_key)
         analysis = self._run_claude_agent(system, prompt)
         
         return {

@@ -1,0 +1,26 @@
+{
+  "page": "Oral communication",
+  "page_name": "Oral_communication",
+  "root_qid": "Q3689704",
+  "classified": [
+    {
+      "name": "Conversation",
+      "qid": "Q52943",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Oral communication",
+      "qid": "Q3689704",
+      "predicate": "DROP"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "kept": 1,
+    "dropped": 1,
+    "by_predicate": {
+      "HAS_SUBTYPE": 1,
+      "DROP": 1
+    }
+  }
+}

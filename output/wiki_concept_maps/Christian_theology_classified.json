@@ -1,0 +1,2794 @@
+{
+  "page": "Christian theology",
+  "page_name": "Christian_theology",
+  "root_qid": "Q216545",
+  "classified": [
+    {
+      "name": "-logy",
+      "qid": "Q158653",
+      "predicate": "DROP"
+    },
+    {
+      "name": "2 Esdras",
+      "qid": "Q230150",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "4 Maccabees",
+      "qid": "Q230255",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "A History of God",
+      "qid": "Q4118932",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Acts of the Apostles",
+      "qid": "Q40309",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Adam and Eve",
+      "qid": "Q58701",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Agape",
+      "qid": "Q210143",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Agape feast",
+      "qid": "Q2670127",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Alexander Duff (missionary)",
+      "qid": "Q2758864",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Allegorical interpretation of the Bible",
+      "qid": "Q2667282",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Alvin Plantinga",
+      "qid": "Q355201",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ambrose",
+      "qid": "Q43689",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ancient Greek",
+      "qid": "Q35497",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Angel",
+      "qid": "Q235113",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Angel of the Lord",
+      "qid": "Q2619342",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Anglicanism",
+      "qid": "Q6423963",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Annunciation",
+      "qid": "Q154326",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Antinomianism",
+      "qid": "Q578905",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Apocalyptic literature",
+      "qid": "Q3199667",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Apollinaris of Laodicea",
+      "qid": "Q367946",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Apologist",
+      "qid": "Q619553",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Apostolic succession",
+      "qid": "Q49482",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Arianism",
+      "qid": "Q83922",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Arius",
+      "qid": "Q106026",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ark of the Covenant",
+      "qid": "Q131316",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Armenian Apostolic Church",
+      "qid": "Q683724",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Arminianism",
+      "qid": "Q13446873",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Aseity",
+      "qid": "Q723555",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Assyrian Church of the East",
+      "qid": "Q203179",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Athanasius of Alexandria",
+      "qid": "Q44024",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Athenagoras of Athens",
+      "qid": "Q309772",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Atonement in Christianity",
+      "qid": "Q28893",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Augsburg Confession",
+      "qid": "Q154483",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Augustine of Hippo",
+      "qid": "Q8018",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Babai the Great",
+      "qid": "Q797562",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Baptism",
+      "qid": "Q35856",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Baptism with the Holy Spirit",
+      "qid": "Q976547",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Bart D. Ehrman",
+      "qid": "Q127876",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Beatrice Portinari",
+      "qid": "Q232913",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Believer's baptism",
+      "qid": "Q1532651",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Bible",
+      "qid": "Q1845",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Biblical canon",
+      "qid": "Q51623",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Biblical inerrancy",
+      "qid": "Q158857",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Biblical infallibility",
+      "qid": "Q3235794",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Biblical inspiration",
+      "qid": "Q870945",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Bishop",
+      "qid": "Q29182",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Book of Common Prayer",
+      "qid": "Q784710",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Book of Concord",
+      "qid": "Q1297994",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Book of Genesis",
+      "qid": "Q9184",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Book of Isaiah",
+      "qid": "Q131458",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Book of Job",
+      "qid": "Q4577",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Book of Joshua",
+      "qid": "Q47680",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Book of Revelation",
+      "qid": "Q42040",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "C. H. Dodd",
+      "qid": "Q1064759",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "C. S. Lewis",
+      "qid": "Q9204",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Cappadocian Fathers",
+      "qid": "Q1990922",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Catholic",
+      "qid": "Q17549077",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Catholic Bible",
+      "qid": "Q591016",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Catholic Church",
+      "qid": "Q9592",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Catholic Mariology",
+      "qid": "Q7361856",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Catholicism",
+      "qid": "Q1841",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Chicago Statement on Biblical Inerrancy",
+      "qid": "Q1071810",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Christadelphians",
+      "qid": "Q27827",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Christendom",
+      "qid": "Q641707",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Christian apologetics",
+      "qid": "Q1377898",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Christian conditionalism",
+      "qid": "Q17001644",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Christian cross",
+      "qid": "Q392371",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Christian denomination",
+      "qid": "Q879146",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Christian liturgy",
+      "qid": "Q2285545",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Christian philosophy",
+      "qid": "Q854807",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Christian symbolism",
+      "qid": "Q467420",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Christian theology",
+      "qid": "Q216545",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Christian tradition",
+      "qid": "Q5110396",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Christian universalism",
+      "qid": "Q3360416",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Christian views on sin",
+      "qid": "Q2790386",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Christianity",
+      "qid": "Q5043",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Christianity in the 3rd century",
+      "qid": "Q5110600",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Christianity in the 4th century",
+      "qid": "Q5110601",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Christianity in the 5th century",
+      "qid": "Q5110603",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Christians",
+      "qid": "Q106039",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Christmas",
+      "qid": "Q19809",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Christology",
+      "qid": "Q187900",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Christus Victor",
+      "qid": "Q4251378",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Church Fathers",
+      "qid": "Q182603",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Church of England",
+      "qid": "Q82708",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Church of the East",
+      "qid": "Q989799",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Civil law (legal system)",
+      "qid": "Q5950118",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Clark Pinnock",
+      "qid": "Q2560995",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Clergy",
+      "qid": "Q177826",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Communicatio idiomatum",
+      "qid": "Q1120425",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Consistory (Protestantism)",
+      "qid": "Q1381335",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Council of Chalcedon",
+      "qid": "Q170531",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Crime",
+      "qid": "Q83267",
+      "predicate": "DROP"
+    },
+    {
+      "name": "D. A. Carson",
+      "qid": "Q5203466",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Daniel B. Wallace",
+      "qid": "Q5216469",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "David Bosch",
+      "qid": "Q1173784",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Development of the Hebrew Bible canon",
+      "qid": "Q5266769",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Didache",
+      "qid": "Q210752",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Disciple (Christianity)",
+      "qid": "Q11241519",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Divine Comedy",
+      "qid": "Q40185",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Divine Liturgy",
+      "qid": "Q1076567",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Divine law",
+      "qid": "Q1559849",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Divine providence",
+      "qid": "Q866338",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Divine simplicity",
+      "qid": "Q3484782",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Divinity",
+      "qid": "Q1379405",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Divinization (Christian)",
+      "qid": "Q60738771",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Docetism",
+      "qid": "Q207674",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Donald Macleod (theologian)",
+      "qid": "Q16105408",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Douay–Rheims Bible",
+      "qid": "Q1240869",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Early Christianity",
+      "qid": "Q51644",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Eastern Catholic Churches",
+      "qid": "Q49376",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Eastern Christianity",
+      "qid": "Q245177",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Eastern Orthodox Church",
+      "qid": "Q35032",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Eastern Orthodoxy",
+      "qid": "Q3333484",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Ebionites",
+      "qid": "Q208171",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ecclesiastes",
+      "qid": "Q131072",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Ecclesiology",
+      "qid": "Q223693",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Edward Fudge",
+      "qid": "Q5343021",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Elder (Christianity)",
+      "qid": "Q1155908",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Enchiridion symbolorum, definitionum et declarationum de rebus fidei et morum",
+      "qid": "Q969258",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "English Standard Version",
+      "qid": "Q1572685",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Epistle to Titus",
+      "qid": "Q131493",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Epistle to the Colossians",
+      "qid": "Q131095",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Epistle to the Hebrews",
+      "qid": "Q128608",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Epistle to the Romans",
+      "qid": "Q48203",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Ernest Gordon Rupp",
+      "qid": "Q5393145",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Eschatology",
+      "qid": "Q170337",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Eternal life (Christianity)",
+      "qid": "Q509071",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Eternity",
+      "qid": "Q138045",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Ethiopian Orthodox Tewahedo Church",
+      "qid": "Q179829",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Eucharist",
+      "qid": "Q66086",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Eudaimonia",
+      "qid": "Q1771260",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Eusebius",
+      "qid": "Q142999",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Eutyches",
+      "qid": "Q372763",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Eutychianism",
+      "qid": "Q4590543",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Evangelical Alliance",
+      "qid": "Q16931133",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Evolution",
+      "qid": "Q1063",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fall of man",
+      "qid": "Q1135949",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Filioque",
+      "qid": "Q204085",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "First Council of Constantinople",
+      "qid": "Q179826",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "First Council of Nicaea",
+      "qid": "Q133331",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "First Epistle to the Corinthians",
+      "qid": "Q80355",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "First seven ecumenical councils",
+      "qid": "Q3543393",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Forbidden fruit",
+      "qid": "Q1192941",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Fruit of the Holy Spirit",
+      "qid": "Q1934057",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Gehenna",
+      "qid": "Q558093",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "General Convention of the Episcopal Church in the United States of America",
+      "qid": "Q4135339",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Gentile da Fabriano",
+      "qid": "Q312393",
+      "predicate": "DROP"
+    },
+    {
+      "name": "George MacDonald",
+      "qid": "Q368519",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Georgian Orthodox Church",
+      "qid": "Q192173",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Gnosticism",
+      "qid": "Q48420",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "God",
+      "qid": "Q190",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "God in Christianity",
+      "qid": "Q825",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "God the Father",
+      "qid": "Q186350",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "God the Son",
+      "qid": "Q1141210",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Gospel",
+      "qid": "Q34274",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Gospel of John",
+      "qid": "Q36766",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Gospel of Matthew",
+      "qid": "Q392302",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Gospel of the Hebrews",
+      "qid": "Q1231372",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Great Commandment",
+      "qid": "Q51641",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Great Commission",
+      "qid": "Q51642",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Greek language",
+      "qid": "Q9129",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Gustav Warneck",
+      "qid": "Q1417981",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Gustave Doré",
+      "qid": "Q6682",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Heaven",
+      "qid": "Q4489450",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Hebrew Bible",
+      "qid": "Q732870",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Hebrew language",
+      "qid": "Q9288",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Heidelberg Catechism",
+      "qid": "Q327152",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Heinrich Bullinger",
+      "qid": "Q123839",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hell",
+      "qid": "Q564",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Herman Bavinck",
+      "qid": "Q1404648",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Herod the Great",
+      "qid": "Q51672",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Holy Spirit",
+      "qid": "Q37302",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Holy Synod",
+      "qid": "Q911924",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Human body",
+      "qid": "Q23852",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Human nature",
+      "qid": "Q742609",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Human sexual activity",
+      "qid": "Q608",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Hypostatic union",
+      "qid": "Q2452745",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Idealism (Christian eschatology)",
+      "qid": "Q3564633",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Ignatius of Antioch",
+      "qid": "Q44170",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Image of God",
+      "qid": "Q1538955",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Immaculate Conception",
+      "qid": "Q185606",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Immanence",
+      "qid": "Q552130",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Immutability (theology)",
+      "qid": "Q3942906",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Impassibility",
+      "qid": "Q6006093",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Impeccability",
+      "qid": "Q6006204",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Incarnation",
+      "qid": "Q41374",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Incarnation (Christianity)",
+      "qid": "Q616175",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Incorporeality",
+      "qid": "Q3385109",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Infant baptism",
+      "qid": "Q1741926",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Inter-Varsity Press",
+      "qid": "Q16994983",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "InterVarsity Press",
+      "qid": "Q10855591",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Intermediate state (Christianity)",
+      "qid": "Q86901",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Intertestamental period",
+      "qid": "Q3117285",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Irenaeus",
+      "qid": "Q182123",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Islam",
+      "qid": "Q432",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Israel",
+      "qid": "Q801",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Jacobus Arminius",
+      "qid": "Q313070",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "James B. Jordan",
+      "qid": "Q6129124",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "James Nichols (printer)",
+      "qid": "Q6140352",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Jansenism",
+      "qid": "Q1287",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Jehovah's Witnesses",
+      "qid": "Q35269",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Jerome",
+      "qid": "Q44248",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Jerusalem in Christianity",
+      "qid": "Q6185216",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Jesus",
+      "qid": "Q302",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Jews",
+      "qid": "Q7325",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "John 1",
+      "qid": "Q4207657",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "John Calvin",
+      "qid": "Q37577",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Hick",
+      "qid": "Q531931",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Stott",
+      "qid": "Q447638",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Wenham",
+      "qid": "Q6263489",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Wesley",
+      "qid": "Q213393",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John the Baptist",
+      "qid": "Q40662",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John the Evangelist",
+      "qid": "Q328804",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Journal of the Evangelical Theological Society",
+      "qid": "Q6296139",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Judaism",
+      "qid": "Q9268",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Judas Iscariot",
+      "qid": "Q81018",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Julian of Eclanum",
+      "qid": "Q1662957",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Justification (theology)",
+      "qid": "Q653345",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Jürgen Moltmann",
+      "qid": "Q60278",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Karl Barth",
+      "qid": "Q107473",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Keith DeRose",
+      "qid": "Q15459004",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "King James Version",
+      "qid": "Q623398",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Koine Greek",
+      "qid": "Q107358",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Laity",
+      "qid": "Q15407657",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Last Judgment",
+      "qid": "Q1821239",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Last Supper",
+      "qid": "Q51633",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Latin",
+      "qid": "Q397",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Latin Church",
+      "qid": "Q597526",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Logos",
+      "qid": "Q180832",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Logos (Christianity)",
+      "qid": "Q766575",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Love",
+      "qid": "Q316",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Love of God",
+      "qid": "Q967441",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Loyalty",
+      "qid": "Q1132131",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Lucifer",
+      "qid": "Q185498",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Lutheranism",
+      "qid": "Q75809",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Martin Luther",
+      "qid": "Q9554",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Massacre of the Innocents",
+      "qid": "Q643474",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Messiah",
+      "qid": "Q51626",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Metaphysics",
+      "qid": "Q35277",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Methodism",
+      "qid": "Q33203",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Metropolitan bishop",
+      "qid": "Q189854",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Miaphysitism",
+      "qid": "Q1764554",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Michael Tooley",
+      "qid": "Q14949641",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Michelangelo",
+      "qid": "Q5592",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Millard Erickson",
+      "qid": "Q847240",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Millennialism",
+      "qid": "Q3567687",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Ministry of Jesus",
+      "qid": "Q749771",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Miracles of Jesus",
+      "qid": "Q51631",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Monoenergism",
+      "qid": "Q951372",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Monophysitism",
+      "qid": "Q183091",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Monotheism",
+      "qid": "Q9159",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Monothelitism",
+      "qid": "Q238459",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Mormonism",
+      "qid": "Q747802",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Moses",
+      "qid": "Q9077",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Mother of the Church",
+      "qid": "Q305502",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Muslims",
+      "qid": "Q47740",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "N. T. Wright",
+      "qid": "Q335125",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Nativity of Jesus",
+      "qid": "Q51628",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Nazareth",
+      "qid": "Q430776",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Neoplatonism",
+      "qid": "Q162145",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Nestorianism",
+      "qid": "Q168414",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Nestorius",
+      "qid": "Q185073",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "New Covenant",
+      "qid": "Q2672123",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "New English Bible",
+      "qid": "Q7007452",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "New Jerusalem",
+      "qid": "Q567888",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "New Jerusalem Bible",
+      "qid": "Q9261747",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "New Revised Standard Version",
+      "qid": "Q3248900",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "New Testament",
+      "qid": "Q18813",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Nicene Creed",
+      "qid": "Q207937",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Old Believers",
+      "qid": "Q223710",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Old Catholic Church",
+      "qid": "Q5169816",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Old Earth creationism",
+      "qid": "Q1203436",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Old Testament",
+      "qid": "Q19786",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Omnibenevolence",
+      "qid": "Q6050649",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Omnipotence",
+      "qid": "Q1141803",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Omnipresence",
+      "qid": "Q1062803",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Omniscience",
+      "qid": "Q1424662",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Oneness Pentecostalism",
+      "qid": "Q2466181",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Ordination",
+      "qid": "Q7519600",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Origen",
+      "qid": "Q170472",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Other (philosophy)",
+      "qid": "Q1433373",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ousia",
+      "qid": "Q1411075",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Papal legate",
+      "qid": "Q740369",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Paraclete",
+      "qid": "Q864658",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Paradise Lost",
+      "qid": "Q28754",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Pastor",
+      "qid": "Q152002",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Paul the Apostle",
+      "qid": "Q9200",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Penal substitution",
+      "qid": "Q10278707",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Pentecost",
+      "qid": "Q39864",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Pentecostalism",
+      "qid": "Q483978",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Plato",
+      "qid": "Q859",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pope",
+      "qid": "Q19546",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Pope Sylvester I",
+      "qid": "Q47149",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Presbyterianism",
+      "qid": "Q178169",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Preterism",
+      "qid": "Q691393",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Priest",
+      "qid": "Q42603",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Priesthood of all believers",
+      "qid": "Q1156551",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Prophet",
+      "qid": "Q42857",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Protestant Bible",
+      "qid": "Q7251597",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Protestantism",
+      "qid": "Q23540",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Psychology",
+      "qid": "Q9418",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Punishment",
+      "qid": "Q186361",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Purgatory",
+      "qid": "Q566",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Puritans",
+      "qid": "Q137073",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Raphael (archangel)",
+      "qid": "Q56951",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Rapture",
+      "qid": "Q870109",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Regeneration (theology)",
+      "qid": "Q3935731",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Reginald H. Fuller",
+      "qid": "Q7308720",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Reincarnation",
+      "qid": "Q128593",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Religious cosmology",
+      "qid": "Q2998321",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Repentance",
+      "qid": "Q497263",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Restitution (theology)",
+      "qid": "Q7316129",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Resurrection of Jesus",
+      "qid": "Q51624",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Resurrection of the dead",
+      "qid": "Q2997437",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Revelation",
+      "qid": "Q192906",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Revised English Bible",
+      "qid": "Q7318424",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Richard Swinburne",
+      "qid": "Q712709",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Righteousness",
+      "qid": "Q1144825",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Rite (Christianity)",
+      "qid": "Q111944691",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Roman Empire",
+      "qid": "Q2277",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Sacrament",
+      "qid": "Q49703",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sacred mysteries",
+      "qid": "Q17016426",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Salvation",
+      "qid": "Q192054",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sanctus",
+      "qid": "Q215174",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Satan",
+      "qid": "Q35230",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Satisfaction theory of atonement",
+      "qid": "Q488772",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Second Coming",
+      "qid": "Q51639",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Second Epistle of Peter",
+      "qid": "Q131178",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Seminary",
+      "qid": "Q233324",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Septuagint",
+      "qid": "Q29334",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Seventh-day Adventist Church",
+      "qid": "Q104319",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Sheol",
+      "qid": "Q31780",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sola fide",
+      "qid": "Q310355",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sola gratia",
+      "qid": "Q310428",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Solus Christus",
+      "qid": "Q311242",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Son of God",
+      "qid": "Q472768",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Soul",
+      "qid": "Q9165",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sovereignty",
+      "qid": "Q42008",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Substitutionary atonement",
+      "qid": "Q7632147",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Summum bonum",
+      "qid": "Q1643259",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Synod of Hippo",
+      "qid": "Q2745306",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Synoptic Gospels",
+      "qid": "Q106046",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Syriac Orthodox Church",
+      "qid": "Q210540",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Tanakh",
+      "qid": "Q83367",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Tartarus",
+      "qid": "Q101322",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Ted Honderich",
+      "qid": "Q710767",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ten Commandments",
+      "qid": "Q34623",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Tertullian",
+      "qid": "Q174929",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "The Garden of Earthly Delights",
+      "qid": "Q321303",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Problem of Pain",
+      "qid": "Q4179147",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Theodicy",
+      "qid": "Q276183",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Theodore of Mopsuestia",
+      "qid": "Q355664",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Theotokos",
+      "qid": "Q208542",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Third Council of Constantinople",
+      "qid": "Q208037",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Thomas Aquinas",
+      "qid": "Q9438",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Thomas Talbott",
+      "qid": "Q16981682",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Torah",
+      "qid": "Q34990",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Transcendence (religion)",
+      "qid": "Q3493282",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Transubstantiation",
+      "qid": "Q214500",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Trinitarianism",
+      "qid": "Q16360083",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Trinity",
+      "qid": "Q37090",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Unconsciousness",
+      "qid": "Q12829165",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Unitarian Universalism",
+      "qid": "Q1622507",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Unitarianism",
+      "qid": "Q106687",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Universe",
+      "qid": "Q1",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Valle Romita Polyptych",
+      "qid": "Q3907532",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Veracity (ethics)",
+      "qid": "Q116821954",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Vision (spirituality)",
+      "qid": "Q1682108",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Vulgate",
+      "qid": "Q131175",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "War in Heaven",
+      "qid": "Q9385130",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Western Christianity",
+      "qid": "Q842798",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Westminster Confession of Faith",
+      "qid": "Q815013",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Westminster Larger Catechism",
+      "qid": "Q7989177",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Westminster Shorter Catechism",
+      "qid": "Q3269943",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "William A. Dembski",
+      "qid": "Q560878",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Wisdom",
+      "qid": "Q799",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "World Council of Churches",
+      "qid": "Q283639",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Yahweh",
+      "qid": "Q766677",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Young Earth creationism",
+      "qid": "Q1074821",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Zondervan",
+      "qid": "Q8073886",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "adoptionism",
+      "qid": "Q366287",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "afterlife",
+      "qid": "Q623282",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ancestral sin",
+      "qid": "Q4752573",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "angel",
+      "qid": "Q235113",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "annihilationism",
+      "qid": "Q567076",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "anointing",
+      "qid": "Q641922",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "anthropology",
+      "qid": "Q23404",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "antinomianism",
+      "qid": "Q578905",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "archbishop",
+      "qid": "Q49476",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "assumption of Mary",
+      "qid": "Q162691",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "atmosphere",
+      "qid": "Q8104",
+      "predicate": "DROP"
+    },
+    {
+      "name": "authority",
+      "qid": "Q174834",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "autonomy",
+      "qid": "Q484105",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "baptism",
+      "qid": "Q35856",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "beatific vision",
+      "qid": "Q2463224",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biblical apocrypha",
+      "qid": "Q170207",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "bishop",
+      "qid": "Q29182",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "blasphemy",
+      "qid": "Q200481",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "blessing",
+      "qid": "Q626510",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "blood",
+      "qid": "Q7873",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "bread",
+      "qid": "Q7802",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "bride of Christ",
+      "qid": "Q1004401",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cessationism",
+      "qid": "Q2947058",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "charism",
+      "qid": "Q1093967",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "chastity",
+      "qid": "Q207894",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "church (building)",
+      "qid": "Q16970",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "clergy",
+      "qid": "Q177826",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "code of conduct",
+      "qid": "Q2119819",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "collective salvation",
+      "qid": "Q5146184",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "communal meal",
+      "qid": "Q11955723",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "communicatio idiomatum",
+      "qid": "Q1120425",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "comparative religion",
+      "qid": "Q1075827",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "conciliarity",
+      "qid": "Q5158699",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "confirmation",
+      "qid": "Q188613",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "conscience",
+      "qid": "Q193526",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "corporation",
+      "qid": "Q167037",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cosmos",
+      "qid": "Q1059081",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "creatio ex nihilo",
+      "qid": "Q1139338",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "creed",
+      "qid": "Q247179",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "crucifixion",
+      "qid": "Q3235597",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "death",
+      "qid": "Q4",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "demon",
+      "qid": "Q177413",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "deuterocanonical books",
+      "qid": "Q201410",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "diocese",
+      "qid": "Q665487",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "divine simplicity",
+      "qid": "Q3484782",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "divinity",
+      "qid": "Q1379405",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "doctrine",
+      "qid": "Q117850",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ecumenical council",
+      "qid": "Q51645",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "epistemology",
+      "qid": "Q9471",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "eschatology",
+      "qid": "Q170337",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "eternity",
+      "qid": "Q138045",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "evangelism",
+      "qid": "Q373069",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "evil",
+      "qid": "Q15292",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "evolution",
+      "qid": "Q1063",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "exegesis",
+      "qid": "Q244783",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "exile",
+      "qid": "Q188863",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "fall of man",
+      "qid": "Q1135949",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "federal headship",
+      "qid": "Q5440533",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "food",
+      "qid": "Q2095",
+      "predicate": "DROP"
+    },
+    {
+      "name": "forgiveness",
+      "qid": "Q537963",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "general judgment",
+      "qid": "Q5532357",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "general revelation",
+      "qid": "Q3273549",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "generosity",
+      "qid": "Q1549811",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "gentleness",
+      "qid": "Q5533755",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "gospel",
+      "qid": "Q34274",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "grape juice",
+      "qid": "Q1209756",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "guilt (emotion)",
+      "qid": "Q628939",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hades",
+      "qid": "Q41410",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hamartia",
+      "qid": "Q1511686",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "heaven",
+      "qid": "Q4489450",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hell",
+      "qid": "Q564",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "heresy",
+      "qid": "Q160598",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "holy anointing oil",
+      "qid": "Q385777",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "human nature",
+      "qid": "Q742609",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hypostatic union",
+      "qid": "Q2452745",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "incarnation",
+      "qid": "Q41374",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "inculturation",
+      "qid": "Q1663771",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "infidelity",
+      "qid": "Q2914621",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "infinity",
+      "qid": "Q205",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "institution",
+      "qid": "Q178706",
+      "predicate": "DROP"
+    },
+    {
+      "name": "integrity",
+      "qid": "Q1329012",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "interior locution",
+      "qid": "Q6046738",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "irresistible grace",
+      "qid": "Q2719777",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "justice",
+      "qid": "Q13189320",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "kindness",
+      "qid": "Q488085",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "language",
+      "qid": "Q315",
+      "predicate": "DROP"
+    },
+    {
+      "name": "memorialism",
+      "qid": "Q17009979",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "metaphysics",
+      "qid": "Q35277",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "modesty",
+      "qid": "Q11199149",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "monism",
+      "qid": "Q178801",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "monotheism",
+      "qid": "Q9159",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mortal sin",
+      "qid": "Q2321540",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nephesh",
+      "qid": "Q2038839",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "norm (philosophy)",
+      "qid": "Q3878446",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "nous",
+      "qid": "Q835041",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "open theism",
+      "qid": "Q7096453",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "ordination",
+      "qid": "Q7519600",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "original sin",
+      "qid": "Q184186",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ousia",
+      "qid": "Q1411075",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "paradise",
+      "qid": "Q3363340",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "particular judgment",
+      "qid": "Q595273",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "patience",
+      "qid": "Q12846123",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "patriarch",
+      "qid": "Q171692",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "peace",
+      "qid": "Q454",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "perichoresis",
+      "qid": "Q2031438",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "perpetual virginity of Mary",
+      "qid": "Q46953",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "perseverance of the saints",
+      "qid": "Q2632580",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "philanthropy",
+      "qid": "Q185733",
+      "predicate": "DROP"
+    },
+    {
+      "name": "philosophy",
+      "qid": "Q5891",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "play (activity)",
+      "qid": "Q1150958",
+      "predicate": "DROP"
+    },
+    {
+      "name": "polytheism",
+      "qid": "Q9163",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "pope",
+      "qid": "Q19546",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "prayer for the dead",
+      "qid": "Q2445643",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "presbyter",
+      "qid": "Q831474",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "prevenient grace",
+      "qid": "Q3268825",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "priest",
+      "qid": "Q42603",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "priesthood of all believers",
+      "qid": "Q1156551",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "prophecy",
+      "qid": "Q214267",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "prophet",
+      "qid": "Q42857",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "psychological egoism",
+      "qid": "Q1362786",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "punishment",
+      "qid": "Q186361",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "purgatory",
+      "qid": "Q566",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "rationality",
+      "qid": "Q938185",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "religion",
+      "qid": "Q9174",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "religious denomination",
+      "qid": "Q13414953",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "religious persecution",
+      "qid": "Q301585",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "religious symbol",
+      "qid": "Q60469796",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "resurrection of Jesus",
+      "qid": "Q51624",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "resurrection of the dead",
+      "qid": "Q2997437",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "revelation",
+      "qid": "Q192906",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sacerdotalism",
+      "qid": "Q390714",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "sacrament",
+      "qid": "Q49703",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sacramental union",
+      "qid": "Q7396945",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "saint",
+      "qid": "Q43115",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "salvation",
+      "qid": "Q192054",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "scholastic Lutheran Christology",
+      "qid": "Q7432070",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "sect",
+      "qid": "Q19097",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "secularism",
+      "qid": "Q216920",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "self-control",
+      "qid": "Q1405524",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "shame",
+      "qid": "Q152282",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sheol",
+      "qid": "Q31780",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sin",
+      "qid": "Q60227",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social science",
+      "qid": "Q34749",
+      "predicate": "DROP"
+    },
+    {
+      "name": "sola fide",
+      "qid": "Q310355",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sola scriptura",
+      "qid": "Q310430",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "soteriology",
+      "qid": "Q326255",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "special revelation",
+      "qid": "Q3273555",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "spiritual formation",
+      "qid": "Q7578126",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "spiritual gift",
+      "qid": "Q1464584",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "spirituality",
+      "qid": "Q168796",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "state (polity)",
+      "qid": "Q7275",
+      "predicate": "DROP"
+    },
+    {
+      "name": "supernatural",
+      "qid": "Q80837",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "surname",
+      "qid": "Q101352",
+      "predicate": "DROP"
+    },
+    {
+      "name": "synod",
+      "qid": "Q111161",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "systematic theology",
+      "qid": "Q875490",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "tabula rasa",
+      "qid": "Q223802",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "theistic evolution",
+      "qid": "Q498382",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "theology",
+      "qid": "Q34178",
+      "predicate": "DROP"
+    },
+    {
+      "name": "time",
+      "qid": "Q11471",
+      "predicate": "DROP"
+    },
+    {
+      "name": "title",
+      "qid": "Q216353",
+      "predicate": "DROP"
+    },
+    {
+      "name": "total depravity",
+      "qid": "Q2478791",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "transcendence (religion)",
+      "qid": "Q3493282",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "transliteration",
+      "qid": "Q134550",
+      "predicate": "DROP"
+    },
+    {
+      "name": "trinity",
+      "qid": "Q37090",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "triptych",
+      "qid": "Q79218",
+      "predicate": "DROP"
+    },
+    {
+      "name": "tritheism",
+      "qid": "Q1575559",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "underworld",
+      "qid": "Q154365",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "universalism",
+      "qid": "Q19001724",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "universe",
+      "qid": "Q1",
+      "predicate": "DROP"
+    },
+    {
+      "name": "venial sin",
+      "qid": "Q1754656",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "will (philosophy)",
+      "qid": "Q364340",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "wine",
+      "qid": "Q282",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "worship",
+      "qid": "Q2514663",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 554,
+    "kept": 520,
+    "dropped": 34,
+    "by_predicate": {
+      "DROP": 34,
+      "HAS_PUBLICATION": 52,
+      "HAS_COMPONENT": 260,
+      "HAS_FIGURE": 69,
+      "HAS_METHOD": 2,
+      "HAS_CONTEXT": 43,
+      "HAS_SUBTYPE": 39,
+      "HAS_THEORY": 26,
+      "HAS_INSTITUTION": 24,
+      "HAS_INSTRUMENT": 5
+    }
+  }
+}

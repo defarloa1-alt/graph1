@@ -70,7 +70,7 @@ Claim {
 The claim_id is a cipher: `Hash(subject + predicate + object + facet + temporal + source + passage)`.
 Same assertion from same source = same ID. Different source = different claim.
 
-**Biographic backlink claims:** temporal fields may come from Wikidata qualifiers (P580/P582/P585) via agent enrichment (`scripts/agents/biographic/enrich_claims.py`) before human approval. Missing dates on date-sensitive relationship types should default to Hold; human validation with documented rationale is permitted (soft gate). See `docs/BIOGRAPHIC_CLAIM_PIPELINE.md`.
+**Biographic backlink claims:** temporal fields may come from Wikidata qualifiers (P580/P582/P585) via agent enrichment (`scripts/agents/biographic/enrich_claims.py`) before human approval. Missing dates on date-sensitive relationship types should default to Hold; human validation with documented rationale is permitted (soft gate). Claims route to a decomposed SubjectConcept scope via `(Claim)-[:IN_SCOPE]->(SubjectConcept)` (ADR-021). See `docs/BIOGRAPHIC_CLAIM_PIPELINE.md`.
 
 ---
 
@@ -91,16 +91,35 @@ should be removed or explicitly justified as an exception.
 
 ---
 
-## 6. The Two Phases
+## 6. Domain Organization (2026-07-16, corrected)
+
+**One Chrystallum graph.** Domains are versioned **scopes of work**, not separate products.
+
+In scope now:
+- **`roman_republic`** — historical subgraph (SubjectConcepts under Domain)
+- **`military_theory`** — theory endpoints when historical claims need them (may be empty)
+
+Geography is backbone (Places / geo SubjectConcepts), not a peer training domain.  
+SubjectConcepts are organizational lenses inside a Domain — agents activate at SubjectConcept (ADR-021).
+
+The product is navigable **relationship paths** (claims), not encyclopedia articles.
+
+Training rules: **`docs/FACET_TRAINING_CONTRACT.md`**.
+
+---
+
+## 7. The Two Phases
 
 **Phase 1 — Subject/Object identification (DI pipeline)**
 Harvest → Classify → Route → Train → Propose.
 Output: SubjectConcept candidates with authority tethers and facet vectors.
+SubjectConcepts organized under Domains (`roman_republic`, `military_theory`).
 No predicates. No inter-SC relationships. Only nodes.
 
 **Phase 2 — Predicate assignment (SCA/SFA + federation)**
 Claim extraction from sources (SFA_INDEX_READER, DPRR, Pleiades…).
-Each claim types the relationship: ALLIED_WITH, POSITION_HELD, OWNED, PARTICIPATED_IN…
+SFAs train under `docs/FACET_TRAINING_CONTRACT.md` — registry predicates only.
+Each claim types the relationship from `SYS_RelationshipType` / the CSV registry.
 Confidence computed from D15–D18 scoring rules.
 Corroboration and contradiction tracked as first-class states.
 
@@ -109,7 +128,7 @@ a sourced, typed, confidence-scored Claim that links them.
 
 ---
 
-## 7. What This Rules Out
+## 8. What This Rules Out
 
 | Prohibited | Why |
 |---|---|

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import GraphView from "./GraphView.jsx";
 
 const Neo4jExplorer = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +10,7 @@ const Neo4jExplorer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [stats, setStats] = useState({ totalEntities: 0, entityTypes: {} });
+  const [viewMode, setViewMode] = useState("details"); // details or graph
   const [filters, setFilters] = useState({
     entityType: "all",
     minFederationScore: 0,
@@ -112,8 +114,11 @@ const Neo4jExplorer = () => {
     }
 
     const result = await executeQuery(cypher, params);
+    console.log("Search result:", result);
     if (result && result.records) {
-      setEntities(result.records.map(r => r.n));
+      const entities = result.records.map(r => r.n);
+      console.log("Entities:", entities);
+      setEntities(entities);
     }
   };
 
@@ -136,21 +141,25 @@ const Neo4jExplorer = () => {
   };
 
   const loadEntityDetails = async (entity) => {
+    console.log("Loading entity details:", entity);
     setSelectedEntity(entity);
 
-    // Load relationships
+    // Load relationships - handle both entity_cipher and qid
     const cypher = `
       MATCH (n)-[r]-(m)
-      WHERE n.entity_cipher = $cipher
+      WHERE n.entity_cipher = $cipher OR n.qid = $qid
       RETURN type(r) as relType, r, m
       LIMIT 100
     `;
 
     const result = await executeQuery(cypher, {
-      cipher: entity.entity_cipher,
+      cipher: entity.entity_cipher || null,
+      qid: entity.qid || null,
     });
 
+    console.log("Relationships result:", result);
     if (result && result.records) {
+      console.log("Setting relationships:", result.records.length);
       setRelationships(result.records);
     }
   };
@@ -384,24 +393,77 @@ const Neo4jExplorer = () => {
         </div>
       </div>
 
-      {/* Main Content - Entity Details */}
-      <div style={{ flex: 1, overflow: "auto", background: "#fff" }}>
-        {!selectedEntity ? (
+      {/* Main Content - Entity Details or Graph */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#fff" }}>
+        {/* View Mode Toggle */}
+        {selectedEntity && (
           <div
             style={{
-              height: "100%",
+              padding: 12,
+              borderBottom: "1px solid #eee",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#999",
-              fontSize: 16,
+              gap: 8,
             }}
           >
-            Select an entity to view details
+            <button
+              onClick={() => setViewMode("details")}
+              style={{
+                padding: "8px 16px",
+                background: viewMode === "details" ? "#4361ee" : "#f5f5f5",
+                color: viewMode === "details" ? "#fff" : "#333",
+                border: "none",
+                borderRadius: 4,
+                cursor: "pointer",
+                fontSize: 13,
+                fontWeight: 500,
+              }}
+            >
+              Details View
+            </button>
+            <button
+              onClick={() => setViewMode("graph")}
+              style={{
+                padding: "8px 16px",
+                background: viewMode === "graph" ? "#4361ee" : "#f5f5f5",
+                color: viewMode === "graph" ? "#fff" : "#333",
+                border: "none",
+                borderRadius: 4,
+                cursor: "pointer",
+                fontSize: 13,
+                fontWeight: 500,
+              }}
+            >
+              Graph View
+            </button>
           </div>
-        ) : (
-          <div style={{ padding: 32 }}>
-            {/* Entity Header */}
+        )}
+
+        {/* Content Area */}
+        <div style={{ flex: 1, overflow: "auto" }}>
+          {!selectedEntity ? (
+            <div
+              style={{
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#999",
+                fontSize: 16,
+              }}
+            >
+              Select an entity to view details
+            </div>
+          ) : viewMode === "graph" ? (
+            <GraphView
+              entity={selectedEntity}
+              onNodeClick={(node) => {
+                // Load the clicked node as the selected entity
+                loadEntityDetails(node);
+              }}
+            />
+          ) : (
+            <div style={{ padding: 32 }}>
+              {/* Entity Header */}
             <div style={{ marginBottom: 32 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
                 <h1 style={{ margin: 0, fontSize: 32, fontWeight: 600 }}>
@@ -574,8 +636,9 @@ const Neo4jExplorer = () => {
                 )}
               </div>
             </div>
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

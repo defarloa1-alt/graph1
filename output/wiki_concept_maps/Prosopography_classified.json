@@ -1,0 +1,139 @@
+{
+  "page": "Prosopography",
+  "page_name": "Prosopography",
+  "root_qid": "Q783287",
+  "classified": [
+    {
+      "name": "An Economic Interpretation of the Constitution of the United States",
+      "qid": "Q482417",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Charles A. Beard",
+      "qid": "Q719860",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Emmanuel Le Roy Ladurie",
+      "qid": "Q314148",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Factoid Model",
+      "qid": "Q120970661",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Founding Fathers of the United States",
+      "qid": "Q186539",
+      "predicate": "DROP"
+    },
+    {
+      "name": "House of Commons of Great Britain",
+      "qid": "Q5914852",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Katharine Keats-Rohan",
+      "qid": "Q528722",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lawrence Stone",
+      "qid": "Q968540",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lewis Namier",
+      "qid": "Q978376",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Montaillou (book)",
+      "qid": "Q667002",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Occitania",
+      "qid": "Q104285",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Principate",
+      "qid": "Q206414",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Prosopographia Imperii Romani",
+      "qid": "Q879753",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Prosopography",
+      "qid": "Q783287",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Quintilian",
+      "qid": "Q193769",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Statistical significance",
+      "qid": "Q425265",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Structure of Politics at the Accession of George III",
+      "qid": "Q115819341",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "auxiliary sciences of history",
+      "qid": "Q770723",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "biography",
+      "qid": "Q36279",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "genealogy",
+      "qid": "Q47307",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "microhistory",
+      "qid": "Q1140541",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "quantitative history",
+      "qid": "Q369848",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "rhetoric",
+      "qid": "Q81009",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "social science",
+      "qid": "Q34749",
+      "predicate": "HAS_CONTEXT"
+    }
+  ],
+  "stats": {
+    "total": 24,
+    "kept": 18,
+    "dropped": 6,
+    "by_predicate": {
+      "HAS_PUBLICATION": 4,
+      "HAS_FIGURE": 6,
+      "HAS_METHOD": 1,
+      "DROP": 6,
+      "HAS_CONTEXT": 7
+    }
+  }
+}

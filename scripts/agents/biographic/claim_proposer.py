@@ -32,6 +32,7 @@ from scripts.agents.biographic.claim_direction import (  # noqa: E402
     build_claim_label,
     resolve_claim_endpoints,
 )
+from scripts.tools.sys_registry import validate_relationship_type  # noqa: E402
 
 EDGE_TO_REL: dict[str, str] = {
     "PARENT_OF": "PARENT_OF",
@@ -91,6 +92,16 @@ def propose_one(
     source = row.get("source") or "wikidata_backlink"
 
     endpoints = resolve_claim_endpoints(row, rel, normalize_entity_id=_normalize_entity_id)
+    reg = validate_relationship_type(rel, pred_pid=pred_pid)
+    if not reg.valid:
+        return {
+            "status": "registry_rejected",
+            "error": reg.message,
+            "relationship_type": rel,
+            "person_qid": endpoints["person_qid"],
+            "candidate_qid": endpoints["candidate_qid"],
+        }
+    rel = reg.normalized
     label = build_claim_label(
         person_label,
         candidate_label,
@@ -144,7 +155,9 @@ def propose_one(
             "candidate_qid": endpoints["candidate_qid"],
             "pred_pid": pred_pid,
         },
+        pred_pid=pred_pid,
     )
+    result["registry_status"] = reg.registry_status
     result["label"] = label
     result["description"] = description
     result["person_qid"] = endpoints["person_qid"]

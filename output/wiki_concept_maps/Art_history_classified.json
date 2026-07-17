@@ -1,0 +1,688 @@
+{
+  "page": "Art history",
+  "page_name": "Art_history",
+  "root_qid": "Q50637",
+  "classified": [
+    {
+      "name": "ARTnews",
+      "qid": "Q705816",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Aby Warburg",
+      "qid": "Q60185",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Affect theory",
+      "qid": "Q4688873",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "African art",
+      "qid": "Q386302",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Albrecht Dürer",
+      "qid": "Q5580",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Alois Riegl",
+      "qid": "Q692100",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ancient Greece",
+      "qid": "Q11772",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ancient Greek art",
+      "qid": "Q1747618",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Ancient art",
+      "qid": "Q2277510",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Apelles",
+      "qid": "Q216822",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Art History (journal)",
+      "qid": "Q4796870",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Art gallery",
+      "qid": "Q1007870",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Art history",
+      "qid": "Q50637",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Art of Europe",
+      "qid": "Q16243117",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Asian art",
+      "qid": "Q149444",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Baroque",
+      "qid": "Q37853",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Carol Duncan",
+      "qid": "Q42564192",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "College Art Association",
+      "qid": "Q5146323",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Conservation and restoration of cultural property",
+      "qid": "Q46993143",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Contemporary art",
+      "qid": "Q186030",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Critique of Judgment",
+      "qid": "Q1056332",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Culture",
+      "qid": "Q11042",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Culture of Germany",
+      "qid": "Q1979615",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ernst Gombrich",
+      "qid": "Q78504",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Erwin Panofsky",
+      "qid": "Q57656",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Eurocentrism",
+      "qid": "Q376717",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Feminist art movement",
+      "qid": "Q17089653",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Feminist theory",
+      "qid": "Q4810748",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Fine art",
+      "qid": "Q219625",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Formalism (art)",
+      "qid": "Q3363772",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Frankfurt School",
+      "qid": "Q151843",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Franz Theodor Kugler",
+      "qid": "Q64509",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Franz Wickhoff",
+      "qid": "Q85595",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Friedrich Engels",
+      "qid": "Q34787",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Friedrich Schiller",
+      "qid": "Q22670",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Fritz Saxl",
+      "qid": "Q78900",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Georg Wilhelm Friedrich Hegel",
+      "qid": "Q9235",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Georgi Plekhanov",
+      "qid": "Q182905",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "German art",
+      "qid": "Q3322735",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Gertrud Bing",
+      "qid": "Q66462",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Giorgio Vasari",
+      "qid": "Q128027",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Gotthold Ephraim Lessing",
+      "qid": "Q34628",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Griselda Pollock",
+      "qid": "Q3108719",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hamburg",
+      "qid": "Q1055",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Hans Sedlmayr",
+      "qid": "Q79084",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Heinrich Wölfflin",
+      "qid": "Q123466",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "History Today",
+      "qid": "Q3138561",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "History of art",
+      "qid": "Q50641",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Idealism",
+      "qid": "Q33442",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Immanuel Kant",
+      "qid": "Q9312",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Institute for Advanced Study",
+      "qid": "Q635642",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Interdisciplinarity",
+      "qid": "Q849359",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Italian art",
+      "qid": "Q938616",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Johann Joachim Winckelmann",
+      "qid": "Q57280",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Johann Wolfgang von Goethe",
+      "qid": "Q5879",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Josef Strzygowski",
+      "qid": "Q113809",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Julius von Schlosser",
+      "qid": "Q84564",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Karl Schnaase",
+      "qid": "Q90230",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lectures on Aesthetics",
+      "qid": "Q1045336",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Les Demoiselles d'Avignon",
+      "qid": "Q910199",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Linda Nochlin",
+      "qid": "Q434478",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lives of the Most Excellent Painters, Sculptors, and Architects",
+      "qid": "Q1645493",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Marxism",
+      "qid": "Q7264",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Mary Garrard",
+      "qid": "Q19546794",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Max Dvořák",
+      "qid": "Q112173",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Medieval art",
+      "qid": "Q3624153",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Methodology",
+      "qid": "Q185698",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Michelangelo",
+      "qid": "Q5592",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Modern art",
+      "qid": "Q38166",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Moritz Thausing",
+      "qid": "Q87202",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Motif (visual arts)",
+      "qid": "Q1229071",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Natural History (Pliny)",
+      "qid": "Q442",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Neoclassicism",
+      "qid": "Q14378",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Norma Broude",
+      "qid": "Q18221521",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Periods in Western art history",
+      "qid": "Q1774292",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Philemon Holland",
+      "qid": "Q5659344",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pliny the Elder",
+      "qid": "Q82778",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pop art",
+      "qid": "Q134147",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Prehistoric art",
+      "qid": "Q1842924",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Queer art",
+      "qid": "Q10356072",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Realism (art movement)",
+      "qid": "Q2642826",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Renaissance",
+      "qid": "Q4692",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Renaissance art",
+      "qid": "Q1133779",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Representation (arts)",
+      "qid": "Q2145270",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Rococo",
+      "qid": "Q122960",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Romanticism",
+      "qid": "Q37068",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Second-wave feminism",
+      "qid": "Q1977453",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Six principles of Chinese painting",
+      "qid": "Q2560529",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Social class",
+      "qid": "Q187588",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Society",
+      "qid": "Q8425",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Style (visual arts)",
+      "qid": "Q1792644",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "The Work of Art in the Age of Mechanical Reproduction",
+      "qid": "Q1169425",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "The arts and politics",
+      "qid": "Q7776936",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Thesis",
+      "qid": "Q1266946",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Three-dimensional space",
+      "qid": "Q34929",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "University of Hamburg",
+      "qid": "Q156725",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "University of Vienna",
+      "qid": "Q165980",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Victor H. Mair",
+      "qid": "Q7925964",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Visual arts of the Indigenous peoples of the Americas",
+      "qid": "Q7936583",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Walter Benjamin",
+      "qid": "Q61078",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Warburg Institute",
+      "qid": "Q683095",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Why Have There Been No Great Women Artists?",
+      "qid": "Q17016608",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Wilhelm Wundt",
+      "qid": "Q75814",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Work of art",
+      "qid": "Q838948",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Xenokrates of Sicyon",
+      "qid": "Q1811393",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "abstraction",
+      "qid": "Q673661",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "academic discipline",
+      "qid": "Q11862829",
+      "predicate": "DROP"
+    },
+    {
+      "name": "aesthetics",
+      "qid": "Q35986",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "architecture",
+      "qid": "Q12271",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "archive",
+      "qid": "Q166118",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "art criticism",
+      "qid": "Q1143847",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "art movement",
+      "qid": "Q968159",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "chemistry",
+      "qid": "Q2329",
+      "predicate": "DROP"
+    },
+    {
+      "name": "color",
+      "qid": "Q1075",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "critical theory",
+      "qid": "Q301751",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "decorative arts",
+      "qid": "Q631931",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "design history",
+      "qid": "Q1200703",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "drawing",
+      "qid": "Q93184",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "façade",
+      "qid": "Q183061",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "feminist art movement",
+      "qid": "Q17089653",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "historical materialism",
+      "qid": "Q190004",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "historical method",
+      "qid": "Q1196545",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "history of art",
+      "qid": "Q50641",
+      "predicate": "DROP"
+    },
+    {
+      "name": "human history",
+      "qid": "Q200325",
+      "predicate": "DROP"
+    },
+    {
+      "name": "iconography",
+      "qid": "Q208145",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "late antiquity",
+      "qid": "Q217050",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "methodology",
+      "qid": "Q185698",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "museum",
+      "qid": "Q33506",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "painting",
+      "qid": "Q11629",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sculpture",
+      "qid": "Q11634",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "shape",
+      "qid": "Q207961",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "symbol",
+      "qid": "Q80071",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "visual culture",
+      "qid": "Q861716",
+      "predicate": "HAS_CONTEXT"
+    }
+  ],
+  "stats": {
+    "total": 133,
+    "kept": 122,
+    "dropped": 11,
+    "by_predicate": {
+      "HAS_PUBLICATION": 9,
+      "HAS_FIGURE": 38,
+      "HAS_THEORY": 10,
+      "HAS_SUBTYPE": 14,
+      "DROP": 11,
+      "HAS_INSTITUTION": 8,
+      "HAS_CONTEXT": 17,
+      "HAS_COMPONENT": 21,
+      "HAS_METHOD": 5
+    }
+  }
+}

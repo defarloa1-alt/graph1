@@ -77,7 +77,7 @@ def main():
         ("2. Facets cluster", "scripts/federation/create_facets_cluster.cypher", run_cypher),
         ("3. FacetRoot bridge", "scripts/federation/bridge_facet_root.cypher", run_cypher),
         ("4. Federation registry", "scripts/neo4j/rebuild_federation_registry.py", run_python),
-        ("5. Subject concept agents", "Cypher/bootstrap_subject_concept_agents.cypher", run_cypher),
+        ("5. Subject concept agents", "Cypher/bootstrap/bootstrap_subject_concept_agents.cypher", run_cypher),
         ("6. Wire bibliography", "scripts/federation/wire_bibliography.cypher", run_cypher),
     ]
 

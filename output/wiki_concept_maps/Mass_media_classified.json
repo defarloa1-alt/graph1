@@ -1,0 +1,790 @@
+{
+  "page": "Mass media",
+  "page_name": "Mass_media",
+  "root_qid": "Q11033",
+  "classified": [
+    {
+      "name": "AOL",
+      "qid": "Q27585",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Broadcast law",
+      "qid": "Q4972108",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Broadcast programming",
+      "qid": "Q374638",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Broadcasting",
+      "qid": "Q15078788",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Cassette tape",
+      "qid": "Q149757",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Columbian press",
+      "qid": "Q5149949",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Computer file",
+      "qid": "Q82753",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "DAB ensemble",
+      "qid": "Q5204199",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "DVD",
+      "qid": "Q5294",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Diamond Sutra",
+      "qid": "Q494235",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Digital radio",
+      "qid": "Q1257510",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Event marketing",
+      "qid": "Q11896409",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Film",
+      "qid": "Q11424",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Game controller",
+      "qid": "Q865422",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Glossary of broadcasting terms",
+      "qid": "Q6608306",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Gutenberg Bible",
+      "qid": "Q158075",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Internet",
+      "qid": "Q75",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Internet Protocol",
+      "qid": "Q8795",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Japan",
+      "qid": "Q17",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Joey Skaggs",
+      "qid": "Q4160493",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Johannes Gutenberg",
+      "qid": "Q8958",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Thompson (sociologist)",
+      "qid": "Q2245233",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Journalism",
+      "qid": "Q11030",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Mass media",
+      "qid": "Q11033",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Media bias",
+      "qid": "Q11118951",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Median voter theorem",
+      "qid": "Q648511",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Microblogging",
+      "qid": "Q92438",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Mobile phone",
+      "qid": "Q17517",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "News",
+      "qid": "Q38926",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Periodical literature",
+      "qid": "Q1002697",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Phonograph record",
+      "qid": "Q16629185",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Printing",
+      "qid": "Q11034",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Public relations",
+      "qid": "Q133080",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Publishing",
+      "qid": "Q3972943",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "RSS",
+      "qid": "Q45432",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Radio",
+      "qid": "Q872",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Radio broadcasting",
+      "qid": "Q273623",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Relation aller Fürnemmen und gedenckwürdigen Historien",
+      "qid": "Q9306087",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "September 11 attacks",
+      "qid": "Q10806",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Social media",
+      "qid": "Q202833",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Sound recording and reproduction",
+      "qid": "Q20077126",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Stereo-Pak",
+      "qid": "Q7611194",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Television",
+      "qid": "Q289",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "The Lonely Crowd",
+      "qid": "Q6122903",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "The Times",
+      "qid": "Q50008",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "URL",
+      "qid": "Q42253",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Walkman",
+      "qid": "Q622493",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "WarnerMedia",
+      "qid": "Q191715",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Washington, D.C.",
+      "qid": "Q61",
+      "predicate": "DROP"
+    },
+    {
+      "name": "World Wide Web",
+      "qid": "Q466",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "advanced capitalism",
+      "qid": "Q17003647",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "advertising",
+      "qid": "Q37038",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "advocacy",
+      "qid": "Q2509280",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "alternative media",
+      "qid": "Q192855",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "animation",
+      "qid": "Q11425",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "anthropology",
+      "qid": "Q23404",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "art",
+      "qid": "Q735",
+      "predicate": "DROP"
+    },
+    {
+      "name": "audio equipment",
+      "qid": "Q15190726",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "augmented reality",
+      "qid": "Q254183",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "beta movement",
+      "qid": "Q3306492",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "bimonthly",
+      "qid": "Q6307419",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biweekly",
+      "qid": "Q4919272",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "blog",
+      "qid": "Q30849",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "book",
+      "qid": "Q571",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "bookbinding",
+      "qid": "Q240471",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cable converter box",
+      "qid": "Q5015673",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cable television",
+      "qid": "Q184452",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "camera",
+      "qid": "Q15328",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "coated paper",
+      "qid": "Q1197545",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "commodification",
+      "qid": "Q1780322",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "compact disc",
+      "qid": "Q34467",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "computer network",
+      "qid": "Q1301371",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "computing",
+      "qid": "Q179310",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "concentration of media ownership",
+      "qid": "Q1309976",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "copper",
+      "qid": "Q753",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "data compression",
+      "qid": "Q2493",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "digital media",
+      "qid": "Q1076968",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "digital recording",
+      "qid": "Q2473736",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "digital television",
+      "qid": "Q202255",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "drama",
+      "qid": "Q25372",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "economics",
+      "qid": "Q8134",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "email",
+      "qid": "Q9158",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "entertainment",
+      "qid": "Q173799",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "file sharing",
+      "qid": "Q22666",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "film stock",
+      "qid": "Q1745370",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "history",
+      "qid": "Q309",
+      "predicate": "DROP"
+    },
+    {
+      "name": "hyperlink",
+      "qid": "Q102014",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "influence of mass media",
+      "qid": "Q30066819",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "information",
+      "qid": "Q11028",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "information and communications technology",
+      "qid": "Q5268834",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "input device",
+      "qid": "Q864114",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "interactive media",
+      "qid": "Q1186952",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "interpersonal communication",
+      "qid": "Q3685487",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "journalism",
+      "qid": "Q11030",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "law",
+      "qid": "Q7748",
+      "predicate": "DROP"
+    },
+    {
+      "name": "literature",
+      "qid": "Q8242",
+      "predicate": "DROP"
+    },
+    {
+      "name": "magazine",
+      "qid": "Q41298",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "magnetic tape",
+      "qid": "Q193663",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mainstream media",
+      "qid": "Q5292797",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "marketing",
+      "qid": "Q39809",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mass communication",
+      "qid": "Q853710",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mass production",
+      "qid": "Q215768",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "mass society",
+      "qid": "Q2451552",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "media (communication)",
+      "qid": "Q340169",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "media capture",
+      "qid": "Q79222413",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "media conglomerate",
+      "qid": "Q1916382",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "month",
+      "qid": "Q5151",
+      "predicate": "DROP"
+    },
+    {
+      "name": "movable type",
+      "qid": "Q426853",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "multiplexing",
+      "qid": "Q222903",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "music",
+      "qid": "Q638",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "news",
+      "qid": "Q38926",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "news media",
+      "qid": "Q1193236",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "newspaper",
+      "qid": "Q11032",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "newsprint",
+      "qid": "Q187046",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "online chat",
+      "qid": "Q287198",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "packet switching",
+      "qid": "Q193446",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "pay-per-view",
+      "qid": "Q851440",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "persistence of vision",
+      "qid": "Q508993",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "philosophy",
+      "qid": "Q5891",
+      "predicate": "DROP"
+    },
+    {
+      "name": "phonograph",
+      "qid": "Q116434",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "photographic film",
+      "qid": "Q6293",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "podcast",
+      "qid": "Q20899",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "political communication",
+      "qid": "Q1660049",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "printing",
+      "qid": "Q11034",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "printing press",
+      "qid": "Q144334",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "propaganda",
+      "qid": "Q7281",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "psychology",
+      "qid": "Q9418",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "public relations",
+      "qid": "Q133080",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "public service announcement",
+      "qid": "Q1196567",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "publication",
+      "qid": "Q732577",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "publishing",
+      "qid": "Q3972943",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "radio",
+      "qid": "Q872",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "recording medium",
+      "qid": "Q193395",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "search engine",
+      "qid": "Q4182287",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "shareware",
+      "qid": "Q185534",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social media",
+      "qid": "Q202833",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "sociology",
+      "qid": "Q21201",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "software developer",
+      "qid": "Q183888",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "software industry",
+      "qid": "Q880371",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "software publisher",
+      "qid": "Q7554349",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "sound",
+      "qid": "Q11461",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "special effect",
+      "qid": "Q381243",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "stereotype",
+      "qid": "Q167172",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "streaming media",
+      "qid": "Q220499",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "tablet computer",
+      "qid": "Q155972",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "tape recorder",
+      "qid": "Q213777",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "technology",
+      "qid": "Q11016",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "television",
+      "qid": "Q289",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "web page",
+      "qid": "Q36774",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "webcast",
+      "qid": "Q1109638",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "website",
+      "qid": "Q35127",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "week",
+      "qid": "Q23387",
+      "predicate": "DROP"
+    },
+    {
+      "name": "wireless",
+      "qid": "Q249",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 153,
+    "kept": 142,
+    "dropped": 11,
+    "by_predicate": {
+      "HAS_INSTITUTION": 4,
+      "HAS_INSTRUMENT": 1,
+      "HAS_COMPONENT": 77,
+      "HAS_SUBTYPE": 38,
+      "HAS_PUBLICATION": 6,
+      "HAS_METHOD": 1,
+      "DROP": 11,
+      "HAS_FIGURE": 3,
+      "HAS_THEORY": 1,
+      "HAS_CONTEXT": 9,
+      "DRIVEN_BY": 2
+    }
+  }
+}

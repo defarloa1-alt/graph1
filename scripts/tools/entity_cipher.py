@@ -12,13 +12,27 @@ Usage:
       generate_faceted_cipher,
       generate_all_faceted_ciphers,
       resolve_entity_id,
-      vertex_jump
+      vertex_jump,
+      construct_cipher_from_text,  # LLM-friendly interface
+      construct_vertex_jump
   )
+
+LLM-Friendly Natural Language Interface:
+  # Direct cipher construction from text
+  result = construct_cipher_from_text(
+      "Julius Caesar",
+      facet_hint="political",
+      subjectconcept_id="Q17167"
+  )
+  # Returns ready-to-use Cypher query for vertex jumping
 """
 
 import hashlib
 import requests
+import logging
 from typing import Dict, List, Optional, Tuple
+
+logger = logging.getLogger(__name__)
 
 
 # ──────────────────────────────────────────────────────
@@ -70,32 +84,121 @@ CIPHER_ELIGIBLE_QUALIFIERS = {
     "P1545",  # series ordinal
 }
 
+# Canonical properties for content-hash generation (ADR 023)
+CANONICAL_PROPERTIES = {
+    "PERSON": ['name', 'birth_date', 'birth_place'],
+    "PLACE": ['name', 'latitude', 'longitude', 'feature_type'],
+    "EVENT": ['name', 'date', 'location', 'participants'],
+    "PERIOD": ['name', 'start_date', 'end_date', 'geographic_scope'],
+    "CONCEPT": ['label', 'definition', 'domain'],
+    "WORK": ['title', 'author', 'date', 'work_type'],
+    "SUBJECTCONCEPT": ['label', 'definition', 'domain'],
+    "ORGANIZATION": ['name', 'founded_date', 'location'],
+    "MATERIAL": ['name', 'composition', 'source'],
+    "OBJECT": ['name', 'type', 'provenance'],
+}
+
+
+# ──────────────────────────────────────────────────────
+# DATE NORMALIZATION (Year-level precision, ADR 023)
+# ──────────────────────────────────────────────────────
+
+def normalize_year(date_str: Optional[str]) -> str:
+    """
+    Normalize date to year-level precision for IGAR temporal validation.
+    
+    Format: ISO year with BCE as negative, circa with ~
+    
+    Args:
+        date_str: Date string (various formats)
+    
+    Returns:
+        Normalized year string
+        
+    Examples:
+        >>> normalize_year("-49-01-10")
+        '-49'
+        >>> normalize_year("49 BCE")
+        '-49'
+        >>> normalize_year("circa 100 CE")
+        '~100'
+        >>> normalize_year(None)
+        ''
+    """
+    if not date_str:
+        return ""
+    
+    date_str = str(date_str).strip().lower()
+    
+    # Already in year format
+    if date_str.startswith('-') and date_str[1:].replace('~','').isdigit():
+        return date_str.split('-')[0] + '-' + date_str.split('-')[1][:len(date_str.split('-')[1].split('-')[0])]
+    
+    # Circa handling
+    if 'circa' in date_str or date_str.startswith('~'):
+        year = ''.join(c for c in date_str if c.isdigit())
+        if year:
+            return f"~{year}" if 'bce' in date_str or 'bc' in date_str else f"~{year}"
+    
+    # BCE/BC handling
+    if 'bce' in date_str or 'bc' in date_str:
+        year = ''.join(c for c in date_str if c.isdigit())
+        if year:
+            return f"-{year}"
+    
+    # Extract year from ISO date
+    if '-' in date_str:
+        parts = date_str.split('-')
+        if len(parts) >= 2 and parts[1].isdigit():
+            return f"-{parts[1]}"  # BCE
+        elif parts[0].isdigit():
+            return parts[0]  # CE
+    
+    # Plain year
+    if date_str.isdigit():
+        return date_str
+    
+    return ""
+
 
 # ──────────────────────────────────────────────────────
 # TIER 1: ENTITY CIPHER
 # ──────────────────────────────────────────────────────
 
 def generate_entity_cipher(
-    resolved_id: str,
     entity_type: str,
+    qid: Optional[str] = None,
+    canonical_properties: Optional[Dict] = None,
     namespace: str = "wd"
 ) -> str:
     """
     Generate Tier 1 entity cipher — cross-subgraph join key.
+    
+    Priority:
+    1. If qid provided: ent_{type_prefix}_{qid}
+    2. If canonical_properties provided: ent_{type_prefix}_{content_hash}
+    3. Otherwise: raise ValueError
 
     Args:
-        resolved_id: QID, BabelNet synset, or Chrystallum ID
         entity_type: Canonical type (PERSON, EVENT, PLACE, etc.)
+        qid: Wikidata QID if available
+        canonical_properties: Dict of identifying properties for content hash
         namespace: Authority source ("wd", "bn", "crys")
 
     Returns:
-        Entity cipher string (e.g., "ent_per_Q1048")
+        Entity cipher string (e.g., "ent_per_Q1048" or "ent_evt_a4f8c2d1...")
         
     Examples:
-        >>> generate_entity_cipher("Q1048", "PERSON", "wd")
+        >>> # With QID
+        >>> generate_entity_cipher("PERSON", qid="Q1048")
         'ent_per_Q1048'
-        >>> generate_entity_cipher("bn:14792761n", "PERSON", "bn")
-        'ent_per_bn:14792761n'
+        
+        >>> # Without QID, content hash
+        >>> props = {'name': 'Caesar crossing Rubicon', 'date': '-49-01-10', 
+        ...          'location': 'Rubicon River', 'participants': 'Caesar'}
+        >>> cipher = generate_entity_cipher("EVENT", canonical_properties=props)
+        >>> cipher.startswith('ent_evt_')
+        True
     """
     entity_type_upper = entity_type.upper()
     if entity_type_upper not in ENTITY_TYPE_PREFIXES:
@@ -105,7 +208,60 @@ def generate_entity_cipher(
         )
 
     prefix = ENTITY_TYPE_PREFIXES[entity_type_upper]
-    return f"ent_{prefix}_{resolved_id}"
+    
+    # Priority 1: QID
+    if qid:
+        return f"ent_{prefix}_{qid}"
+    
+    # Priority 2: Content hash
+    if canonical_properties:
+        hash_id = generate_content_hash(entity_type_upper, canonical_properties)
+        return f"ent_{prefix}_{hash_id}"
+    
+    raise ValueError("Must provide either qid or canonical_properties")
+
+
+def generate_content_hash(entity_type: str, canonical_properties: Dict) -> str:
+    """
+    Generate content-based hash for entities without QIDs.
+    
+    Uses SHA256 hash of canonical properties (sorted for determinism).
+    
+    Args:
+        entity_type: Entity type (PERSON, EVENT, etc.)
+        canonical_properties: Dict of identifying properties
+    
+    Returns:
+        First 16 characters of SHA256 hash
+        
+    Example:
+        >>> props = {'name': 'Caesar crossing Rubicon', 'date': '-49', 
+        ...          'location': 'Rubicon', 'participants': 'Caesar'}
+        >>> hash_id = generate_content_hash('EVENT', props)
+        >>> len(hash_id)
+        16
+        >>> hash_id == generate_content_hash('EVENT', props)
+        True
+    """
+    if entity_type not in CANONICAL_PROPERTIES:
+        raise ValueError(f"No canonical properties defined for {entity_type}")
+    
+    keys = CANONICAL_PROPERTIES[entity_type]
+    
+    # Extract values in sorted key order for determinism
+    values = []
+    for key in sorted(keys):
+        value = canonical_properties.get(key, '')
+        # Normalize dates if present
+        if 'date' in key.lower() and value:
+            value = normalize_year(value)
+        values.append(str(value))
+    
+    # Generate hash
+    content = '|'.join(values).encode('utf-8')
+    hash_digest = hashlib.sha256(content).hexdigest()[:16]
+    
+    return hash_digest
 
 
 # ──────────────────────────────────────────────────────
@@ -348,6 +504,306 @@ def enrich_entity_with_ciphers(
     )
 
     return entity_data
+
+
+# ──────────────────────────────────────────────────────
+# CIPHER CONSTRUCTOR (LLM-Friendly Natural Language Interface)
+# ──────────────────────────────────────────────────────
+
+def construct_cipher_from_text(
+    entity_name: str,
+    facet_hint: Optional[str] = None,
+    subjectconcept_id: Optional[str] = None,
+    entity_type_hint: Optional[str] = None
+) -> Dict:
+    """
+    Construct cipher from natural language description.
+    
+    This is the LLM-friendly interface for vertex jumping.
+    Enables: "Caesar political Roman Republic" → direct cipher → direct query
+    
+    Args:
+        entity_name: Natural language entity name (e.g., "Julius Caesar")
+        facet_hint: Optional facet keyword (e.g., "political", "military")
+        subjectconcept_id: Optional SubjectConcept QID (e.g., "Q17167")
+        entity_type_hint: Optional type hint (e.g., "person", "event")
+    
+    Returns:
+        Dict with cipher info and ready-to-use Cypher query
+        
+    Examples:
+        >>> # Simple entity lookup
+        >>> result = construct_cipher_from_text("Julius Caesar")
+        >>> result['entity_cipher']
+        'ent_per_Q1048'
+        
+        >>> # Faceted lookup
+        >>> result = construct_cipher_from_text(
+        ...     "Julius Caesar",
+        ...     facet_hint="political",
+        ...     subjectconcept_id="Q17167"
+        ... )
+        >>> result['faceted_cipher']
+        'fent_pol_Q1048_Q17167'
+        >>> result['cypher_query']
+        'MATCH (n {faceted_cipher: "fent_pol_Q1048_Q17167"}) RETURN n'
+    """
+    # Step 1: Resolve entity to QID
+    qid = _resolve_entity_name_to_qid(entity_name)
+    
+    if not qid:
+        return {
+            'success': False,
+            'error': f'Could not resolve entity: {entity_name}',
+            'entity_name': entity_name
+        }
+    
+    # Step 2: Determine entity type
+    entity_type = entity_type_hint or _infer_entity_type_from_qid(qid)
+    
+    # Step 3: Generate Tier 1 cipher
+    entity_cipher = generate_entity_cipher(entity_type, qid=qid)
+    
+    result = {
+        'success': True,
+        'entity_name': entity_name,
+        'qid': qid,
+        'entity_type': entity_type,
+        'entity_cipher': entity_cipher,
+        'tier1_cypher': f'MATCH (n {{entity_cipher: "{entity_cipher}"}}) RETURN n'
+    }
+    
+    # Step 4: Generate Tier 2 cipher (if context provided)
+    if facet_hint and subjectconcept_id:
+        facet = _normalize_facet_hint(facet_hint)
+        if facet:
+            faceted_cipher = generate_faceted_cipher(
+                entity_cipher, 
+                facet, 
+                subjectconcept_id
+            )
+            result.update({
+                'facet': facet,
+                'subjectconcept_id': subjectconcept_id,
+                'faceted_cipher': faceted_cipher,
+                'tier2_cypher': f'MATCH (n {{faceted_cipher: "{faceted_cipher}"}}) RETURN n',
+                'recommended_query': f'MATCH (n {{faceted_cipher: "{faceted_cipher}"}}) RETURN n'
+            })
+        else:
+            result['facet_warning'] = f'Could not normalize facet hint: {facet_hint}'
+    
+    # If no faceted context, recommend Tier 1 query
+    if 'recommended_query' not in result:
+        result['recommended_query'] = result['tier1_cypher']
+    
+    return result
+
+
+def construct_vertex_jump(
+    from_entity: str,
+    to_entity: str,
+    via_facet: str,
+    subjectconcept_id: str
+) -> Dict:
+    """
+    Construct a cross-entity vertex jump within a facet.
+    
+    Args:
+        from_entity: Source entity name (e.g., "Julius Caesar")
+        to_entity: Target entity name (e.g., "Pompey")
+        via_facet: Facet to jump through (e.g., "political")
+        subjectconcept_id: SubjectConcept context
+    
+    Returns:
+        Dict with both ciphers and jump query
+        
+    Example:
+        >>> jump = construct_vertex_jump(
+        ...     "Julius Caesar",
+        ...     "Pompey",
+        ...     "political",
+        ...     "Q17167"
+        ... )
+        >>> jump['cypher_query']
+        'MATCH (from {faceted_cipher: "fent_pol_Q1048_Q17167"})-[r]-(to {faceted_cipher: "fent_pol_Q168811_Q17167"}) RETURN from, r, to'
+    """
+    # Resolve both entities
+    from_result = construct_cipher_from_text(from_entity, via_facet, subjectconcept_id)
+    to_result = construct_cipher_from_text(to_entity, via_facet, subjectconcept_id)
+    
+    if not from_result['success'] or not to_result['success']:
+        return {
+            'success': False,
+            'error': 'Could not resolve entities',
+            'from_result': from_result,
+            'to_result': to_result
+        }
+    
+    # Build jump query
+    from_cipher = from_result.get('faceted_cipher', from_result['entity_cipher'])
+    to_cipher = to_result.get('faceted_cipher', to_result['entity_cipher'])
+    
+    return {
+        'success': True,
+        'from_entity': from_entity,
+        'to_entity': to_entity,
+        'from_cipher': from_cipher,
+        'to_cipher': to_cipher,
+        'facet': _normalize_facet_hint(via_facet),
+        'subjectconcept_id': subjectconcept_id,
+        'cypher_query': (
+            f'MATCH (from {{faceted_cipher: "{from_cipher}"}})'
+            f'-[r]-(to {{faceted_cipher: "{to_cipher}"}}) '
+            f'RETURN from, r, to'
+        )
+    }
+
+
+def _resolve_entity_name_to_qid(entity_name: str) -> Optional[str]:
+    """
+    Resolve natural language entity name to Wikidata QID.
+    
+    Uses Wikidata search API.
+    
+    Args:
+        entity_name: Natural language name (e.g., "Julius Caesar")
+    
+    Returns:
+        QID if found, None otherwise
+    """
+    try:
+        # Wikidata search API
+        url = "https://www.wikidata.org/w/api.php"
+        params = {
+            'action': 'wbsearchentities',
+            'search': entity_name,
+            'language': 'en',
+            'format': 'json',
+            'limit': 1
+        }
+        
+        response = requests.get(url, params=params, timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('search'):
+                return data['search'][0]['id']
+    except Exception as e:
+        logger.warning(f"Wikidata search failed for '{entity_name}': {e}")
+    
+    return None
+
+
+def _infer_entity_type_from_qid(qid: str) -> str:
+    """
+    Infer entity type from Wikidata QID by querying P31 (instance of).
+    
+    Args:
+        qid: Wikidata QID
+    
+    Returns:
+        Entity type (PERSON, PLACE, EVENT, etc.)
+    """
+    try:
+        # Wikidata SPARQL query for P31
+        url = "https://query.wikidata.org/sparql"
+        query = f"""
+        SELECT ?type WHERE {{
+          wd:{qid} wdt:P31 ?type .
+        }}
+        LIMIT 5
+        """
+        
+        response = requests.get(
+            url,
+            params={'query': query, 'format': 'json'},
+            timeout=5,
+            headers={'User-Agent': 'Chrystallum/1.0'}
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            p31_values = [
+                item['type']['value'].split('/')[-1] 
+                for item in data['results']['bindings']
+            ]
+            return classify_entity_type(p31_values)
+    except Exception as e:
+        logger.warning(f"Entity type inference failed for {qid}: {e}")
+    
+    # Default fallback
+    return 'CONCEPT'
+
+
+def _normalize_facet_hint(facet_hint: str) -> Optional[str]:
+    """
+    Normalize natural language facet hint to canonical facet ID.
+    
+    Args:
+        facet_hint: Natural language facet (e.g., "political", "military affairs")
+    
+    Returns:
+        Canonical facet ID or None
+        
+    Examples:
+        >>> _normalize_facet_hint("political")
+        'POLITICAL'
+        >>> _normalize_facet_hint("military affairs")
+        'MILITARY'
+        >>> _normalize_facet_hint("archaeology")
+        'ARCHAEOLOGICAL'
+    """
+    hint_lower = facet_hint.lower().strip()
+    
+    # Direct matches
+    FACET_KEYWORDS = {
+        'archaeological': 'ARCHAEOLOGICAL',
+        'archaeology': 'ARCHAEOLOGICAL',
+        'artistic': 'ARTISTIC',
+        'art': 'ARTISTIC',
+        'biographic': 'BIOGRAPHIC',
+        'biographical': 'BIOGRAPHIC',
+        'biography': 'BIOGRAPHIC',
+        'bio': 'BIOGRAPHIC',
+        'communication': 'COMMUNICATION',
+        'communications': 'COMMUNICATION',
+        'cultural': 'CULTURAL',
+        'culture': 'CULTURAL',
+        'demographic': 'DEMOGRAPHIC',
+        'demographics': 'DEMOGRAPHIC',
+        'population': 'DEMOGRAPHIC',
+        'diplomatic': 'DIPLOMATIC',
+        'diplomacy': 'DIPLOMATIC',
+        'economic': 'ECONOMIC',
+        'economics': 'ECONOMIC',
+        'economy': 'ECONOMIC',
+        'environmental': 'ENVIRONMENTAL',
+        'environment': 'ENVIRONMENTAL',
+        'geographic': 'GEOGRAPHIC',
+        'geographical': 'GEOGRAPHIC',
+        'geography': 'GEOGRAPHIC',
+        'geo': 'GEOGRAPHIC',
+        'intellectual': 'INTELLECTUAL',
+        'ideas': 'INTELLECTUAL',
+        'linguistic': 'LINGUISTIC',
+        'language': 'LINGUISTIC',
+        'languages': 'LINGUISTIC',
+        'military': 'MILITARY',
+        'warfare': 'MILITARY',
+        'war': 'MILITARY',
+        'political': 'POLITICAL',
+        'politics': 'POLITICAL',
+        'religious': 'RELIGIOUS',
+        'religion': 'RELIGIOUS',
+        'scientific': 'SCIENTIFIC',
+        'science': 'SCIENTIFIC',
+        'social': 'SOCIAL',
+        'society': 'SOCIAL',
+        'technological': 'TECHNOLOGICAL',
+        'technology': 'TECHNOLOGICAL',
+        'tech': 'TECHNOLOGICAL',
+    }
+    
+    return FACET_KEYWORDS.get(hint_lower)
 
 
 # ──────────────────────────────────────────────────────

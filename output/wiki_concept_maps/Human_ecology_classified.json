@@ -1,0 +1,442 @@
+{
+  "page": "Human ecology",
+  "page_name": "Human_ecology",
+  "root_qid": "Q720858",
+  "classified": [
+    {
+      "name": "Anthropocene",
+      "qid": "Q26841",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "BioScience",
+      "qid": "Q1092250",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Carl Linnaeus",
+      "qid": "Q1043",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Charles Darwin",
+      "qid": "Q1035",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Chicago school (sociology)",
+      "qid": "Q1072063",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "College of the Atlantic",
+      "qid": "Q5146880",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Colorado Springs, Colorado",
+      "qid": "Q49258",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Common-pool resource",
+      "qid": "Q12055115",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Daniel Bates",
+      "qid": "Q5216509",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ecological economics",
+      "qid": "Q1049066",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Ecological resilience",
+      "qid": "Q4105196",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Ecology and Society",
+      "qid": "Q1282052",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Ellen Swallow Richards",
+      "qid": "Q7273",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ernst Haeckel",
+      "qid": "Q48246",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "G8",
+      "qid": "Q37143",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "George Perkins Marsh",
+      "qid": "Q748127",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Gerald L. Young",
+      "qid": "Q5549317",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Greeks",
+      "qid": "Q539051",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Herbert Spencer",
+      "qid": "Q144535",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Human Ecology (journal)",
+      "qid": "Q15716300",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Human ecology",
+      "qid": "Q720858",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ian McHarg",
+      "qid": "Q3089963",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "James Howard Kunstler",
+      "qid": "Q962004",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ken Robinson (educationalist)",
+      "qid": "Q718012",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Kenneth E. Boulding",
+      "qid": "Q505520",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Man and Nature",
+      "qid": "Q17047193",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Millennium Ecosystem Assessment",
+      "qid": "Q767869",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Novel ecosystem",
+      "qid": "Q7064541",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Paul Sears",
+      "qid": "Q4113675",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Paul Shepard",
+      "qid": "Q7153570",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Pollination",
+      "qid": "Q134624",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Robert E. Park",
+      "qid": "Q919081",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Roderick D. McKenzie",
+      "qid": "Q16739506",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Social environment",
+      "qid": "Q1571836",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "The Economics of Ecosystems and Biodiversity",
+      "qid": "Q1573374",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "anthropology",
+      "qid": "Q23404",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "architecture",
+      "qid": "Q12271",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "balance of nature",
+      "qid": "Q2246744",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biodiversity loss",
+      "qid": "Q18466271",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "biology",
+      "qid": "Q420",
+      "predicate": "DROP"
+    },
+    {
+      "name": "biophilia hypothesis",
+      "qid": "Q864663",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "botany",
+      "qid": "Q441",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "built environment",
+      "qid": "Q4986688",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "climate change",
+      "qid": "Q125928",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "conservation biology",
+      "qid": "Q641498",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "cultural ecology",
+      "qid": "Q1458822",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "cultural evolution",
+      "qid": "Q12031891",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cultural history",
+      "qid": "Q858517",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ecological debt",
+      "qid": "Q3024803",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ecological economics",
+      "qid": "Q1049066",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ecological footprint",
+      "qid": "Q234173",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ecology",
+      "qid": "Q7150",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "economics",
+      "qid": "Q8134",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "ecosystem service",
+      "qid": "Q295865",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "environmental policy",
+      "qid": "Q919526",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "environmental sociology",
+      "qid": "Q2167019",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "epidemiology",
+      "qid": "Q133805",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "geography",
+      "qid": "Q1071",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "geology",
+      "qid": "Q1069",
+      "predicate": "DROP"
+    },
+    {
+      "name": "green infrastructure",
+      "qid": "Q3427027",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "landscape architecture",
+      "qid": "Q47844",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "landscape urbanism",
+      "qid": "Q4086938",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "natural capital",
+      "qid": "Q1540268",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "natural environment",
+      "qid": "Q43619",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "natural history",
+      "qid": "Q484591",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "niche construction",
+      "qid": "Q1139192",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nitrogen cycle",
+      "qid": "Q82551",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "planning",
+      "qid": "Q309100",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "political geography",
+      "qid": "Q191320",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "primate",
+      "qid": "Q7380",
+      "predicate": "DROP"
+    },
+    {
+      "name": "psychology",
+      "qid": "Q9418",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "public health",
+      "qid": "Q189603",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "reductionism",
+      "qid": "Q206829",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "resource management",
+      "qid": "Q14431238",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social science",
+      "qid": "Q34749",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "society",
+      "qid": "Q8425",
+      "predicate": "DROP"
+    },
+    {
+      "name": "sociology",
+      "qid": "Q21201",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "suburb",
+      "qid": "Q188509",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "survival of the fittest",
+      "qid": "Q721322",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "terminology",
+      "qid": "Q1725664",
+      "predicate": "DROP"
+    },
+    {
+      "name": "tract housing",
+      "qid": "Q2140144",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "urban ecology",
+      "qid": "Q1430301",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "urban planning",
+      "qid": "Q69883",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "water footprint",
+      "qid": "Q26534",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 84,
+    "kept": 76,
+    "dropped": 8,
+    "by_predicate": {
+      "HAS_CONTEXT": 21,
+      "HAS_PUBLICATION": 6,
+      "HAS_FIGURE": 16,
+      "HAS_THEORY": 4,
+      "HAS_INSTITUTION": 2,
+      "DROP": 8,
+      "HAS_COMPONENT": 23,
+      "HAS_SUBTYPE": 4
+    }
+  }
+}

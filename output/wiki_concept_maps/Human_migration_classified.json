@@ -1,0 +1,829 @@
+{
+  "page": "Human migration",
+  "page_name": "Human_migration",
+  "root_qid": "Q177626",
+  "classified": [
+    {
+      "name": "Afghanistan",
+      "qid": "Q889",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Afghans in Iran",
+      "qid": "Q4689221",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Afghans in Pakistan",
+      "qid": "Q4689219",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Albert O. Hirschman",
+      "qid": "Q215949",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Altai Mountains",
+      "qid": "Q5955",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Anatolia",
+      "qid": "Q51614",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Anomie",
+      "qid": "Q17930",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Armenia",
+      "qid": "Q399",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Asia",
+      "qid": "Q48",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Australia",
+      "qid": "Q408",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bangladesh",
+      "qid": "Q902",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bangladeshis in India",
+      "qid": "Q4855432",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Blythe, California",
+      "qid": "Q886915",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Buffer theory",
+      "qid": "Q4985956",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Canada",
+      "qid": "Q16",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Center for Global Development",
+      "qid": "Q3355598",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "China",
+      "qid": "Q148",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chinatown, Manhattan",
+      "qid": "Q866332",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chinatowns in Queens",
+      "qid": "Q5100136",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chinese Americans",
+      "qid": "Q1146100",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Colonialism",
+      "qid": "Q7167",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Convention Relating to the Status of Refugees",
+      "qid": "Q60433",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Crime statistics",
+      "qid": "Q330344",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ernst Georg Ravenstein",
+      "qid": "Q64757",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ethnic group",
+      "qid": "Q41710",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Explorations in Economic History",
+      "qid": "Q5421342",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Federal Reserve Bank of Chicago",
+      "qid": "Q965251",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Federal Reserve Bank of Minneapolis",
+      "qid": "Q2503528",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Filipino Americans",
+      "qid": "Q1413685",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Forced Migration Review",
+      "qid": "Q5467514",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "France",
+      "qid": "Q142",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Geographic mobility",
+      "qid": "Q204671",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Germany",
+      "qid": "Q183",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Global Compact for Migration",
+      "qid": "Q55612707",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Gravity model of migration",
+      "qid": "Q2248439",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Gross world product",
+      "qid": "Q3050722",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Guest worker program",
+      "qid": "Q5615130",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "History of Filipino Americans",
+      "qid": "Q5776116",
+      "predicate": "DROP"
+    },
+    {
+      "name": "History of human migration",
+      "qid": "Q19720661",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Human migration",
+      "qid": "Q177626",
+      "predicate": "DROP"
+    },
+    {
+      "name": "India",
+      "qid": "Q668",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indian Americans",
+      "qid": "Q2643509",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Indians in the United Arab Emirates",
+      "qid": "Q6024174",
+      "predicate": "DROP"
+    },
+    {
+      "name": "International Covenant on Civil and Political Rights",
+      "qid": "Q392119",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "International Migration Review",
+      "qid": "Q13375921",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "International Organization for Migration",
+      "qid": "Q472311",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "International Political Science Review",
+      "qid": "Q6052506",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "International security",
+      "qid": "Q3312693",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Journal of Economic Perspectives",
+      "qid": "Q918465",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Journal of Ethnic and Migration Studies",
+      "qid": "Q6295172",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Journal of Refugee Studies",
+      "qid": "Q15753491",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Kazakhs in Russia",
+      "qid": "Q4208073",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Koreans in Japan",
+      "qid": "Q533312",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Long Island",
+      "qid": "Q18438",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Manifest destiny",
+      "qid": "Q474184",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Mass migration",
+      "qid": "Q6784066",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Mesopotamia",
+      "qid": "Q11767",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Metropole",
+      "qid": "Q21855250",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Mexican Americans",
+      "qid": "Q581921",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mexico",
+      "qid": "Q96",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Migrant worker",
+      "qid": "Q15320003",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Mongolia",
+      "qid": "Q711",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Moroccans in France",
+      "qid": "Q17507448",
+      "predicate": "DROP"
+    },
+    {
+      "name": "New York (state)",
+      "qid": "Q1384",
+      "predicate": "DROP"
+    },
+    {
+      "name": "New York metropolitan area",
+      "qid": "Q683705",
+      "predicate": "DROP"
+    },
+    {
+      "name": "New immigrants in Hong Kong",
+      "qid": "Q17032163",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Nomad",
+      "qid": "Q128393",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Non-Resident Indians in Saudi Arabia",
+      "qid": "Q10977099",
+      "predicate": "DROP"
+    },
+    {
+      "name": "OECD",
+      "qid": "Q41550",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Oklahoma",
+      "qid": "Q1649",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pakistan",
+      "qid": "Q843",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Palestinians in Jordan",
+      "qid": "Q7127438",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Peggy Levitt",
+      "qid": "Q7160681",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Philippines",
+      "qid": "Q928",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Population Research and Policy Review",
+      "qid": "Q15765519",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Power (social and political)",
+      "qid": "Q25107",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Quality of life",
+      "qid": "Q13100823",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Radiation law for human mobility",
+      "qid": "Q17148738",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Refugee",
+      "qid": "Q131572",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Remittance",
+      "qid": "Q1351807",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Repatriation",
+      "qid": "Q1331684",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Russians in Kazakhstan",
+      "qid": "Q1976251",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Russians in Ukraine",
+      "qid": "Q311762",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Saudi Arabia",
+      "qid": "Q851",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Seasonal human migration",
+      "qid": "Q4354288",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Settler colonialism",
+      "qid": "Q716815",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Social integration",
+      "qid": "Q370735",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sociology",
+      "qid": "Q21201",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "South–South cooperation",
+      "qid": "Q210519",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Spain",
+      "qid": "Q29",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sustainable Development Goal 10",
+      "qid": "Q53581222",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Ukraine",
+      "qid": "Q212",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ukrainians in Russia",
+      "qid": "Q1977290",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United Arab Emirates",
+      "qid": "Q878",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United Kingdom",
+      "qid": "Q145",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United Nations General Assembly",
+      "qid": "Q47423",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United Nations High Commissioner for Refugees",
+      "qid": "Q132551",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United Nations Population Fund",
+      "qid": "Q623036",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United Nations Statistics Division",
+      "qid": "Q2265585",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "United States",
+      "qid": "Q30",
+      "predicate": "DROP"
+    },
+    {
+      "name": "United States Census Bureau",
+      "qid": "Q637413",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "World Bank",
+      "qid": "Q7164",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "World Development (journal)",
+      "qid": "Q8035641",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "World Migration Report",
+      "qid": "Q84850635",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "World-systems theory",
+      "qid": "Q1061896",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Zelinsky Model",
+      "qid": "Q8068776",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Zipf's law",
+      "qid": "Q205472",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "activism",
+      "qid": "Q203764",
+      "predicate": "DROP"
+    },
+    {
+      "name": "asylum seeker",
+      "qid": "Q564811",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "citizenship",
+      "qid": "Q42138",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "colonization",
+      "qid": "Q815962",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "colony",
+      "qid": "Q133156",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "conquest",
+      "qid": "Q1361229",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "country",
+      "qid": "Q6256",
+      "predicate": "DROP"
+    },
+    {
+      "name": "decolonization",
+      "qid": "Q230533",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "diaspora",
+      "qid": "Q133004",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "economic inequality",
+      "qid": "Q5055020",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "economic migrant",
+      "qid": "Q5333524",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "emigration",
+      "qid": "Q187668",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "ethnic cleansing",
+      "qid": "Q154278",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "ethnic enclave",
+      "qid": "Q3610510",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ethnic nationalism",
+      "qid": "Q637251",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "forced displacement",
+      "qid": "Q837556",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "foreign worker",
+      "qid": "Q10512400",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "friction of distance",
+      "qid": "Q5503430",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "genocide",
+      "qid": "Q41397",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "globalization",
+      "qid": "Q7181",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "history of human migration",
+      "qid": "Q19720661",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "human capital",
+      "qid": "Q165687",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "immigration",
+      "qid": "Q131288",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "indentured servitude",
+      "qid": "Q1122364",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "indigenous peoples",
+      "qid": "Q103817",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "internal migration",
+      "qid": "Q863941",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "internally displaced person",
+      "qid": "Q1145466",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "international migration",
+      "qid": "Q11936732",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "international relations",
+      "qid": "Q166542",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "international trade",
+      "qid": "Q178803",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "invasion",
+      "qid": "Q467011",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "labour economics",
+      "qid": "Q28161",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "metropole",
+      "qid": "Q21855250",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "natural disaster",
+      "qid": "Q8065",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "osmosis",
+      "qid": "Q54237",
+      "predicate": "DROP"
+    },
+    {
+      "name": "osmotic pressure",
+      "qid": "Q193135",
+      "predicate": "DROP"
+    },
+    {
+      "name": "refugee",
+      "qid": "Q131572",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "resource",
+      "qid": "Q1554231",
+      "predicate": "DROP"
+    },
+    {
+      "name": "seasonal human migration",
+      "qid": "Q4354288",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "settler",
+      "qid": "Q1818899",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "slavery",
+      "qid": "Q8463",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "social conflict theory",
+      "qid": "Q4455170",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "social network",
+      "qid": "Q2715623",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "social structure",
+      "qid": "Q211606",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "soft power",
+      "qid": "Q1143951",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "step migration",
+      "qid": "Q65067863",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "structural functionalism",
+      "qid": "Q831725",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "symbolic interactionism",
+      "qid": "Q1163216",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "theory of intervening opportunities",
+      "qid": "Q7782447",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "transnationalism",
+      "qid": "Q1568324",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "voting",
+      "qid": "Q189760",
+      "predicate": "DROP"
+    },
+    {
+      "name": "world economy",
+      "qid": "Q473750",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "world population",
+      "qid": "Q11188",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Émile Durkheim",
+      "qid": "Q15948",
+      "predicate": "HAS_FIGURE"
+    }
+  ],
+  "stats": {
+    "total": 161,
+    "kept": 104,
+    "dropped": 57,
+    "by_predicate": {
+      "DROP": 57,
+      "HAS_FIGURE": 4,
+      "HAS_COMPONENT": 31,
+      "HAS_THEORY": 10,
+      "HAS_INSTITUTION": 11,
+      "DRIVEN_BY": 19,
+      "HAS_INSTRUMENT": 4,
+      "HAS_PUBLICATION": 10,
+      "HAS_CONTEXT": 6,
+      "HAS_SUBTYPE": 9
+    }
+  }
+}

@@ -21,7 +21,7 @@ import Neo4jExplorer from "./components/Neo4jExplorer.jsx";
 const APPS = [
   ["neo4j", "Neo4j Explorer", Neo4jExplorer],
   ["review", "Review Queue", ProposalReview],
-  ["claims", "Bio Claims", ClaimReview],
+  ["claims", "Claims", ClaimReview],
   ["proposals", "SC Proposals", ProposalsRadial],
   ["schema", "Schema Backbone", SchemaBackbone],
   ["systemmap", "System Map", ChrystallumSystemMap],

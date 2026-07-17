@@ -1439,7 +1439,7 @@ def run_training_session(
         max_turns=max_turns,
     )
     seed_qid = str(seed.get("qid", "Q17167")).strip().upper()
-    system = append_republic_graph_context(system, seed_qid, driver=driver)
+    system = append_republic_graph_context(system, seed_qid, driver=driver, facet=facet_key)
 
     user_prompt = TRAINING_USER_PROMPT.format(
         facet_key=facet_key.upper(),
@@ -1693,7 +1693,7 @@ def repair_training_output(
         max_turns=0,
     )
     seed_qid = str(seed.get("qid", "Q17167")).strip().upper()
-    system = append_republic_graph_context(system, seed_qid, driver=driver)
+    system = append_republic_graph_context(system, seed_qid, driver=driver, facet=facet_key)
 
     prior_meta = broken.get("_meta", {})
     digest = _build_research_digest(broken)

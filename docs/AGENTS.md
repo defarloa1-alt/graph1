@@ -27,6 +27,7 @@
 | File | When |
 |------|------|
 | `AGENTS.md` (this file) | Always — constraints and process |
+| `docs/FACET_TRAINING_CONTRACT.md` | Before any facet SFA training / claim writes |
 | `DECISIONS.md` | Always — why decisions were made, topical index |
 | `docs/AGENT_HANDOFF_2026-03-06.md` | New session — current state, to-do list, key docs |
 | `sysml/BLOCK_CATALOG_RECONCILED.md` | Before touching any block — structural truth |

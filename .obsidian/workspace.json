@@ -34,9 +34,49 @@
               "icon": "lucide-file",
               "title": "discipline_taxonomy_tree"
             }
+          },
+          {
+            "id": "d94bd2b310e8f8ed",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CIDOC/cidoc wiki mapping.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "cidoc wiki mapping"
+            }
+          },
+          {
+            "id": "913e7ba4ddc04ad3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Transcript.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Transcript"
+            }
+          },
+          {
+            "id": "c7a721bf13159ca4",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.12.7"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.12.7"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -198,44 +238,46 @@
       "bases:Create new base": false
     }
   },
-  "active": "bfb0410ff00f38aa",
+  "active": "c7a721bf13159ca4",
   "lastOpenFiles": [
-    "docs/ARCHITECTURE_CURRENT.md",
-    "claude/extracted/18k_graph_rules_complete.cypher",
-    "packages/domain/__pycache__/__init__.cpython-313.pyc",
-    "packages/domain/__pycache__/routing_rules.cpython-313.pyc",
-    "packages/domain/__pycache__",
-    "packages/__pycache__/__init__.cpython-313.pyc",
-    "packages/__pycache__",
-    "packages/domain/routing_rules.py",
-    "packages/domain/__init__.py",
-    "packages/domain",
-    "packages/__init__.py",
-    "Key Files/Appendices/05_Architecture_Decisions/ADR_020_Chrystallum_Classification_System.md",
-    "docs/Chrystallum_UI_Implementation_Plan_Notion.md",
-    "docs/PERSON_LOGICAL_MODEL.md",
-    "docs/DISCIPLINE_LOGICAL_MODEL.md",
-    "Clippings/Warfare in the Ancient World.md",
-    "output/discipline_taxonomy_tree.md",
-    "viewer/node_modules/rollup/README.md",
-    "viewer/node_modules/picocolors/README.md",
-    "viewer/node_modules/@babel/helpers/README.md",
-    "viewer/node_modules/semver/README.md",
-    "viewer/node_modules/@babel/helper-validator-identifier/README.md",
-    "viewer/node_modules/@babel/helper-validator-option/README.md",
-    "viewer/node_modules/loose-envify/README.md",
-    "viewer/node_modules/@babel/plugin-transform-react-jsx-self/README.md",
-    "viewer/node_modules/@babel/plugin-transform-react-jsx-source/README.md",
-    "viewer/node_modules/browserslist/README.md",
-    "Geographic/LOGICAL_MODEL.md",
-    "claude/how would my sfa agents learn from this PREFACE na.md",
-    "docs/AGENT_HANDOFF_2026-03-07.md",
-    "claude/cursor_agent_handoff_document_discussio.md",
-    "scripts/agents/domain_initiator/README.md",
-    "docs/DOMAIN_INITIATOR.md",
-    "viewer/node_modules/caniuse-lite/README.md",
-    "viewer/node_modules/@babel/template/README.md",
-    "viewer/node_modules/nanoid/README.md",
+    "Archive/cypher-2026-07/README.md",
+    "Cypher/README.md",
+    "Cypher/schema/subject_concept_schema.cypher",
+    "Cypher/schema/phase1_multi_agent_schema.cypher",
+    "Archive/cypher-2026-07/one-offs/cleanup_duplicates.cypher",
+    "Archive/cypher-2026-07/one-offs/update_subject_cipher_q17167.cypher",
+    "Archive/cypher-2026-07/one-offs/schema_ddl_to_execute.cypher",
+    "Archive/cypher-2026-07/one-offs/property_mapping_test_queries.cypher",
+    "Archive/cypher-2026-07/one-offs/property_mapping_queries_validated.md",
+    "Archive/cypher-2026-07/one-offs/execute_ddl.cypher",
+    "Archive/cypher-2026-07/one-offs/complete_ddl.cypher",
+    "Archive/cypher-2026-07/explore/view_periods_simple.cypher",
+    "Archive/cypher-2026-07/imports/1-15-26-periods_import.cypher",
+    "Archive/scripts-2026-07/README.md",
+    "scripts/agents/military/corpus/README.md",
+    "Transcript of dev chat.md",
+    "Archive/docs-2026-07/misc/03-03-26_Chrystallum_Consolidated.md",
+    "Archive/docs-2026-07/architecture-discovery/multiagent_proposal.md",
+    "Archive/docs-2026-07/architecture-discovery/IGAR_MULTIAGENT_INTEGRATION.md",
+    "Archive/docs-2026-07/agents/SFA_QUICK_REFERENCE.md",
+    "Archive/docs-2026-07/agents/SFA_PROMPTS_AND_PROCEDURES.md",
+    "Archive/docs-2026-07/project-management/SFA_STATUS_UPDATE.md",
+    "Archive/docs-2026-07/project-management/SFA_STATUS_SUMMARY.md",
+    "Archive/docs-2026-07/project-management/MULTI_AGENT_IMPLEMENTATION_ROADMAP.md",
+    "Archive/docs-2026-07/project-management/DOCUMENTATION_COMPLETION_SUMMARY.md",
+    "Archive/docs-2026-07/project-management/VERSIONING_SYSTEM_SUMMARY.md",
+    "Archive/docs-2026-07/sessions/SFA_TRAINING_WORKBOOK.md",
+    "Archive/docs-2026-07/sessions/SFA_TRAINING_GUIDE.md",
+    "Archive/docs-2026-07/sessions/DIPLOMATIC_SFA_IMPLEMENTATION.md",
+    "Archive/docs-2026-07/sessions/MILITARY_THEORY_SUBJECTCONCEPT.md",
+    "Archive/docs-2026-07/sessions/MILITARY_SFA_ENHANCEMENT_SUMMARY.md",
+    "Archive/docs-2026-07/sessions/MILITARY_SFA_ENHANCED.md",
+    "Archive/docs-2026-07/sessions/MILITARY_SFA_IMPLEMENTATION.md",
+    "Archive/docs-2026-07/sessions/SUBGRAPH_VERSIONING_COMPLETE.md",
+    "Archive/docs-2026-07/sessions/SUBGRAPH_VERSIONING_SYSTEM.md",
+    "Archive/docs-2026-07/sessions/DOMAIN_ARCHITECTURE_FINAL.md",
+    "viewer/node_modules/date-fns/docs/logotype.svg",
+    "viewer/node_modules/date-fns/docs/logo.svg",
     "Chrystallum Query Executor - Capabilities Overview_files/80ad787d-3879-452c-8291-67b9df21e81b.png",
     "Chrystallum Query Executor - Capabilities Overview_files/51440a0b-ecb6-4bea-bd08-af795e05a2f0.png",
     "Chrystallum Query Executor - Capabilities Overview_files/0c016ee8-0565-4df6-94ca-81418d52d70b.png",
@@ -243,8 +285,6 @@
     "Chrystallum Query Executor - Capabilities Overview_files/visualisation.png",
     "Chrystallum Query Executor - Capabilities Overview_files/8820e88c-fb82-48ee-a64c-18567c07b3fd.png",
     "Chrystallum Query Executor - Capabilities Overview_files/0f7a5070-b75b-4275-9f5f-d7df3f8f9175.png",
-    "Chrystallum Query Executor - Capabilities Overview_files/d891802d-3af0-49bb-9614-6b2c521b6c8e.png",
-    "visualisation.png",
-    "Key Files/Diagrams/cypher_patterns.png"
+    "Chrystallum Query Executor - Capabilities Overview_files/d891802d-3af0-49bb-9614-6b2c521b6c8e.png"
   ]
 }

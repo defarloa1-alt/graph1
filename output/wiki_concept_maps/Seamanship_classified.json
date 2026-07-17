@@ -1,0 +1,432 @@
+{
+  "page": "Seamanship",
+  "page_name": "Seamanship",
+  "root_qid": "Q351363",
+  "classified": [
+    {
+      "name": "Anchor",
+      "qid": "Q168432",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Bowditch's American Practical Navigator",
+      "qid": "Q1759883",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Cardinal mark",
+      "qid": "Q2089890",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Cargo ship",
+      "qid": "Q105999",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Celestial navigation",
+      "qid": "Q1063512",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Crane (machine)",
+      "qid": "Q178692",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Drogue",
+      "qid": "Q15138390",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Dry dock",
+      "qid": "Q811177",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ducted propeller",
+      "qid": "Q1755997",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Global Maritime Distress and Safety System",
+      "qid": "Q1363338",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Hawsehole",
+      "qid": "Q609847",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Heaving to",
+      "qid": "Q814663",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Hoist (device)",
+      "qid": "Q1411613",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Hydrodynamics",
+      "qid": "Q12016129",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Ice navigation",
+      "qid": "Q28456040",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "International Convention on Load Lines",
+      "qid": "Q1473305",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "International Maritime Organization",
+      "qid": "Q201054",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "International Regulations for Preventing Collisions at Sea",
+      "qid": "Q584586",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Isolated danger mark",
+      "qid": "Q1310021",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Lashing (ropework)",
+      "qid": "Q16032761",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Lateral mark",
+      "qid": "Q1309079",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Lexico",
+      "qid": "Q4807054",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Loran-C",
+      "qid": "Q16931213",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Man overboard rescue turn",
+      "qid": "Q1639743",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Maritime pilot",
+      "qid": "Q475604",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Merchant Navy Training Board",
+      "qid": "Q25327096",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Mooring",
+      "qid": "Q138218756",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Morse code",
+      "qid": "Q79897",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Nautical chart",
+      "qid": "Q728502",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Naval Institute Press",
+      "qid": "Q90415538",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Oxford Dictionary of English",
+      "qid": "Q7115311",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Panama Canal",
+      "qid": "Q7350",
+      "predicate": "DROP"
+    },
+    {
+      "name": "SOLAS Convention",
+      "qid": "Q523582",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "STCW Convention",
+      "qid": "Q1545599",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Safe water mark",
+      "qid": "Q241157",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Sailing ship",
+      "qid": "Q170483",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Seakeeping",
+      "qid": "Q1760485",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Seamanship",
+      "qid": "Q351363",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Ship stability",
+      "qid": "Q592473",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Ship-to-ship cargo transfer",
+      "qid": "Q7497911",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Special mark",
+      "qid": "Q1370911",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Turtling (sailing)",
+      "qid": "Q7856482",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "United Kingdom",
+      "qid": "Q145",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Whipping knot",
+      "qid": "Q1930493",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Witherby Publishing Group",
+      "qid": "Q8028146",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "air navigation",
+      "qid": "Q1427822",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "bulk carrier",
+      "qid": "Q15276",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "buoy",
+      "qid": "Q30026",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "canvas",
+      "qid": "Q4259259",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "capsizing",
+      "qid": "Q1522772",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cargo ship",
+      "qid": "Q105999",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "communication",
+      "qid": "Q11024",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "competence (human resources)",
+      "qid": "Q2015382",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "container ship",
+      "qid": "Q17210",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "cruise ship",
+      "qid": "Q39804",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "gas carrier",
+      "qid": "Q3758612",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "housekeeping",
+      "qid": "Q708514",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "knowledge",
+      "qid": "Q9081",
+      "predicate": "DROP"
+    },
+    {
+      "name": "merchant navy",
+      "qid": "Q865132",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "meteorology",
+      "qid": "Q25261",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "nautical almanac",
+      "qid": "Q752001",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nautical mile",
+      "qid": "Q93318",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "naval architecture",
+      "qid": "Q1136352",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "navigation",
+      "qid": "Q102066",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "oil tanker",
+      "qid": "Q14928",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "piloting",
+      "qid": "Q1443672",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "platform supply vessel",
+      "qid": "Q1201871",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "propeller",
+      "qid": "Q205451",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "propeller walk",
+      "qid": "Q2094301",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "rope splicing",
+      "qid": "Q1515065",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "ropework",
+      "qid": "Q2256059",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sailing",
+      "qid": "Q192520",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sailor",
+      "qid": "Q45199",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "sea ice",
+      "qid": "Q213926",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "search and rescue",
+      "qid": "Q741964",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "sextant",
+      "qid": "Q179430",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "ship",
+      "qid": "Q11446",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "skill",
+      "qid": "Q205961",
+      "predicate": "DROP"
+    },
+    {
+      "name": "tide",
+      "qid": "Q23384",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "watchkeeping",
+      "qid": "Q1694456",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "weather",
+      "qid": "Q11663",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "wind",
+      "qid": "Q8094",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 82,
+    "kept": 77,
+    "dropped": 5,
+    "by_predicate": {
+      "HAS_COMPONENT": 38,
+      "HAS_PUBLICATION": 5,
+      "HAS_CONTEXT": 17,
+      "HAS_SUBTYPE": 3,
+      "HAS_INSTRUMENT": 5,
+      "HAS_METHOD": 7,
+      "HAS_INSTITUTION": 2,
+      "DROP": 5
+    }
+  }
+}

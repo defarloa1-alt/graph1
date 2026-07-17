@@ -1,0 +1,37 @@
+{
+  "page": "Military order (instruction)",
+  "page_name": "Military_order_(instruction)",
+  "root_qid": "Q355813",
+  "classified": [
+    {
+      "name": "General order",
+      "qid": "Q5532380",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "George B. Davis",
+      "qid": "Q50314062",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Military order (instruction)",
+      "qid": "Q355813",
+      "predicate": "DROP"
+    },
+    {
+      "name": "operations order",
+      "qid": "Q30891609",
+      "predicate": "HAS_SUBTYPE"
+    }
+  ],
+  "stats": {
+    "total": 4,
+    "kept": 3,
+    "dropped": 1,
+    "by_predicate": {
+      "HAS_SUBTYPE": 2,
+      "HAS_FIGURE": 1,
+      "DROP": 1
+    }
+  }
+}

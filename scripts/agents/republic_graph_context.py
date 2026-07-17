@@ -387,6 +387,9 @@ def format_republic_graph_context_markdown(ctx: dict[str, Any]) -> str:
             "- Propose only against this scaffold; use `query_graph` to verify before adding nodes.",
             "- New decompositions must `PART_OF` a facet umbrella — never attach directly to SubjectDomain.",
             "- Do not confuse SubjectDomain with Period Q17167 when navigating.",
+            "- All relationship predicates must come from `relationship_types_registry_master.csv` / `SYS_RelationshipType`.",
+            "- Align entities and predicates to CIDOC-CRM / CRMinf (see appended governance blocks).",
+            "- Run `python -m scripts.tools.validate_sys_registry` when registry alignment is uncertain.",
         ]
     )
     return "\n".join(lines)
@@ -412,12 +415,27 @@ def append_republic_graph_context(
     seed_qid: str,
     *,
     driver: Any | None = None,
+    facet: str | None = None,
 ) -> str:
-    """Append graph context block to an existing system prompt."""
+    """Append graph context + relationship registry + CIDOC alignment to system prompt."""
     block = get_republic_graph_context_prompt_block(seed_qid, driver=driver)
     if block.strip() in system_prompt:
-        return system_prompt
-    return f"{system_prompt.rstrip()}\n\n{block}"
+        out = system_prompt
+    else:
+        out = f"{system_prompt.rstrip()}\n\n{block}"
+    try:
+        from scripts.tools.sys_registry import append_relationship_registry_context
+
+        out = append_relationship_registry_context(out, facet=facet)
+    except ImportError:
+        pass
+    try:
+        from scripts.tools.cidoc_context import append_cidoc_context
+
+        out = append_cidoc_context(out, facet=facet)
+    except ImportError:
+        pass
+    return out
 
 
 def main() -> int:

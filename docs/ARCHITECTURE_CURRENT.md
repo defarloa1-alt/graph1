@@ -157,7 +157,40 @@ Place only:
 
 
 
-## 4. SubjectConcept Backbone
+## 4. Domain Architecture (Versioned Subgraphs)
+
+**New as of 2026-07-16:** Chrystallum operates as **"GitHub for knowledge subgraphs"** with versioned domains.
+
+### Domain Structure
+
+```
+SubjectConceptRegistry
+├── TRACKS_DOMAIN → Domain:ROMAN_REPUBLIC (v0.1.0)
+│   ├── CONTAINS → 93 SubjectConcepts (sc_military, sc_diplomacy, etc.)
+│   └── DEPENDS_ON → MILITARY_THEORY @ ^1.0.0
+│
+├── TRACKS_DOMAIN → Domain:MILITARY_THEORY (v1.1.0)
+│   └── CONTAINS → 32 theory nodes (Boyd, Clausewitz)
+│
+└── TRACKS_DOMAIN → Domain:GEOGRAPHY (v1.0.0)
+    └── CONTAINS → 4 geo SubjectConcepts
+```
+
+**Key changes:**
+- **Versioning at domain level** (not SubjectConcept level)
+- SubjectConcepts organized under Domains via `:CONTAINS`
+- Dependencies between domains with semantic version specs
+- Version history tracked per domain
+
+See: `docs/DOMAIN_MANAGEMENT_GUIDE.md`, `docs/VERSION_MANAGEMENT_GUIDE.md`
+
+
+
+---
+
+
+
+## 5. SubjectConcept Backbone
 
 
 
@@ -177,17 +210,21 @@ Governed by **ADR-020** (CCS — Chrystallum Classification System).
 
 
 
-**Scaffold layer (hand-defined, awaiting DI replacement):**
+**SubjectConcepts now organized under Domains:**
 
-- **Thematic (`ccs_bootstrap`):** sc_constitution, sc_early/middle/late_republic, sc_military,
-
+**ROMAN_REPUBLIC domain (93 SubjectConcepts):**
+- **Thematic:** sc_constitution, sc_early/middle/late_republic, sc_military,
   sc_diplomacy, sc_economy, sc_religion, sc_law, sc_topography, sc_society, sc_historiography,
-
   sc_material_culture, sc_literature, sc_science
+- **Facet-specific:** sc_q17167_facet_military, sc_q17167_facet_political, etc. (15 facets)
 
-- **Geo (`geo_bootstrap`):** GEO_SETTLEMENTS, GEO_HIST_PLACES, GEO_GENERAL, GEO_PHYS_FEATURES,
+**MILITARY_THEORY domain (32 theory nodes):**
+- Boyd OODA principles, Clausewitz friction and trinity
+- SPO structure (Concept, Mechanism, Effect, Condition, Process, Target)
 
-  GEO_HYDROGRAPHY, GEO_POLITICAL_ENTITIES, GEO_ADMIN_DIVISIONS
+**GEOGRAPHY domain (4 SubjectConcepts):**
+- GEO_PHYS_FEATURES (2,282 Places), GEO_HYDROGRAPHY (2,155 Places)
+- GEO_ADMIN_DIVISIONS (1,137 Places), GEO_POLITICAL_ENTITIES (1,604 Places)
 
 
 
@@ -197,15 +234,15 @@ sc_early_republic (-509 to -264), sc_middle_republic (-264 to -133), sc_late_rep
 
 
 
-**Current state (structural, not inventory):**
+**Current state:**
 
-- Scaffolds are placeholders — DI `propose.py` will produce evidence-derived replacements.
+- DI-generated SubjectConcepts under ROMAN_REPUBLIC domain
 
-- Geo backbone is **incomplete**: three geo SCs (GEO_SETTLEMENTS, GEO_GENERAL, GEO_HIST_PLACES)
+- Geographic SubjectConcepts organized under GEOGRAPHY domain
 
-  are absent from the graph while routing rules may still reference them; most Places lack
+- MILITARY_THEORY domain contains universal military principles
 
-  `MEMBER_OF`. See `docs/GEO_BACKBONE_MAPPING_STATUS.md`.
+- Versioning operational via `DomainVersionManager` and `version_cli.py`
 
 
 
@@ -213,7 +250,7 @@ sc_early_republic (-509 to -264), sc_middle_republic (-264 to -133), sc_late_rep
 
 
 
-## 5. Rules-in-Graph (not in code)
+## 6. Rules-in-Graph (not in code)
 
 
 
@@ -259,7 +296,7 @@ No date constants in scripts.
 
 
 
-## 6. Federation Sources
+## 7. Federation Sources
 
 
 
@@ -293,7 +330,7 @@ See also: `docs/FEDERATION_ARCHITECTURE.md`
 
 
 
-## 7. Package Structure
+## 8. Package Structure
 
 
 
@@ -355,7 +392,7 @@ claude/extracted/              ← Cypher migration history (18a–18k); not act
 
 
 
-## 8. DI Pipeline (Discipline Intelligence)
+## 9. DI Pipeline (Discipline Intelligence)
 
 
 
@@ -398,7 +435,9 @@ Review artifact: `output/di_proposals/Q17167_proposals_enriched.json`
 Baseline snapshot: `output/baseline/Q17167_facet_hierarchy_baseline.json`  
 Browser query: `scripts/neo4j/view_roman_republic_facet_tree.cypher`
 
-**Not yet in graph:** bulk promotion of non-familial biographic claims to canonical edges (~595 unreconciled). SubjectConcept ↔ Claim routing remains design-only.
+**Not yet in graph:** bulk promotion of non-familial biographic claims to canonical edges (~595 unreconciled).
+
+**Claims → SubjectConcept routing (ADR-021):** `route_claims_to_sc.py` writes `(Claim)-[:IN_SCOPE]->(di_proposal SubjectConcept)`. Run after claim_proposer, before human review.
 
 
 
@@ -420,7 +459,7 @@ Chrystal 2.0 exported proposals (if needed): `output/deprecated_chrystal20/propo
 
 
 
-## 9. Decision Tables
+## 10. Decision Tables
 
 
 
@@ -446,7 +485,7 @@ Threshold values live in `SYS_Threshold` nodes — query via MCP `get_threshold`
 
 
 
-## 10. What to Give an Agent
+## 11. What to Give an Agent
 
 
 
@@ -514,7 +553,7 @@ Each agent constitution has a **pre-flight protocol**: read graph state, then de
 
 
 
-## 11. Key Architectural Decisions
+## 12. Key Architectural Decisions
 
 
 

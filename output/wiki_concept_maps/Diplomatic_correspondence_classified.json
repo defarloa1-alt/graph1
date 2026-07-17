@@ -1,0 +1,205 @@
+{
+  "page": "Diplomatic correspondence",
+  "page_name": "Diplomatic_correspondence",
+  "root_qid": "Q4893413",
+  "classified": [
+    {
+      "name": "China",
+      "qid": "Q148",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chinese Eastern Railway",
+      "qid": "Q39158",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Convention (norm)",
+      "qid": "Q367293",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Demise of the Crown",
+      "qid": "Q842994",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Diplomatic correspondence",
+      "qid": "Q4893413",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Emperor of Austria",
+      "qid": "Q166877",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Formality",
+      "qid": "Q1757948",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Grand Duke of Luxembourg",
+      "qid": "Q3276071",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Illeism",
+      "qid": "Q1658762",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Klemens von Metternich",
+      "qid": "Q45662",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Latin",
+      "qid": "Q397",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Letter (message)",
+      "qid": "Q133492",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Lingua franca",
+      "qid": "Q80839",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Monarch",
+      "qid": "Q116",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Pierre Chaplais",
+      "qid": "Q55624414",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Plausible deniability",
+      "qid": "Q51367",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Proposals for concerted operation among the powers at war with the Pyratical states of Barbary",
+      "qid": "Q25830851",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Queen Victoria",
+      "qid": "Q9439",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Quentin Bryce",
+      "qid": "Q229300",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Soviet Union",
+      "qid": "Q15180",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Thomas Jefferson",
+      "qid": "Q11812",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "United States",
+      "qid": "Q30",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Viennese German",
+      "qid": "Q56474",
+      "predicate": "DROP"
+    },
+    {
+      "name": "World War I",
+      "qid": "Q361",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Writing style",
+      "qid": "Q2243831",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "aide-mémoire",
+      "qid": "Q916598",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "color book",
+      "qid": "Q2900462",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "diplomatic recognition",
+      "qid": "Q1058726",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "démarche",
+      "qid": "Q592753",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "head of state",
+      "qid": "Q48352",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "letters patent",
+      "qid": "Q1511010",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "lingua franca",
+      "qid": "Q80839",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "republic",
+      "qid": "Q7270",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "salutation",
+      "qid": "Q516766",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "seal (emblem)",
+      "qid": "Q162919",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "treaty",
+      "qid": "Q131569",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "valediction",
+      "qid": "Q15076965",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 37,
+    "kept": 28,
+    "dropped": 9,
+    "by_predicate": {
+      "DROP": 9,
+      "HAS_INSTRUMENT": 2,
+      "HAS_CONTEXT": 2,
+      "HAS_COMPONENT": 14,
+      "HAS_FIGURE": 5,
+      "HAS_SUBTYPE": 5
+    }
+  }
+}

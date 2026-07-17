@@ -1,0 +1,326 @@
+{
+  "page": "Epidemic",
+  "page_name": "Epidemic",
+  "root_qid": "Q44512",
+  "classified": [
+    {
+      "name": "1854 Broad Street cholera outbreak",
+      "qid": "Q2035019",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Airborne transmission",
+      "qid": "Q381481",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Ancient Greek",
+      "qid": "Q35497",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Antibody",
+      "qid": "Q79460",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Antigenic variation",
+      "qid": "Q4774739",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Antimicrobial resistance",
+      "qid": "Q21698220",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Bathing the dead",
+      "qid": "Q1813951",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "Centers for Disease Control and Prevention",
+      "qid": "Q583725",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Coinfection",
+      "qid": "Q1243018",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Cross-species transmission",
+      "qid": "Q16000070",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Disease vector",
+      "qid": "Q107994",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Endemic (epidemiology)",
+      "qid": "Q506680",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Epidemic",
+      "qid": "Q44512",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Fecal–oral route",
+      "qid": "Q2272069",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "HIV",
+      "qid": "Q15787",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "HIV/AIDS",
+      "qid": "Q12199",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Hippocrates",
+      "qid": "Q5264",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Homer",
+      "qid": "Q6691",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Host (biology)",
+      "qid": "Q221673",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Immunity (medicine)",
+      "qid": "Q182581",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Influenza A virus subtype H1N1",
+      "qid": "Q161393",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Influenza A virus subtype H5N1",
+      "qid": "Q160122",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Monsoon",
+      "qid": "Q42967",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "NATO",
+      "qid": "Q7184",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Odyssey",
+      "qid": "Q35160",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pathogen transmission",
+      "qid": "Q525512",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Plague of Athens",
+      "qid": "Q758173",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "SARS-CoV-2",
+      "qid": "Q82069695",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "Sexually transmitted infection",
+      "qid": "Q12198",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Tanzania",
+      "qid": "Q924",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Washington Post",
+      "qid": "Q166032",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Thucydides",
+      "qid": "Q41683",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Virus",
+      "qid": "Q808",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "antibiotic",
+      "qid": "Q12187",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "antigen",
+      "qid": "Q103537",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "antigenic drift",
+      "qid": "Q575258",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "antigenic shift",
+      "qid": "Q575314",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "attack rate",
+      "qid": "Q3955915",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "bacteria",
+      "qid": "Q10876",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "cholera",
+      "qid": "Q12090",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "common cold",
+      "qid": "Q12125",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "contagious disease",
+      "qid": "Q2995419",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "disease",
+      "qid": "Q12136",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "epidemiology",
+      "qid": "Q133805",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "epizootic",
+      "qid": "Q1126331",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "herd immunity",
+      "qid": "Q736798",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "horizontal gene transfer",
+      "qid": "Q83185",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "incidence (epidemiology)",
+      "qid": "Q217690",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "infectious disease",
+      "qid": "Q18123741",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "influenza",
+      "qid": "Q2840",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "malaria",
+      "qid": "Q12156",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "mutation",
+      "qid": "Q42918",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "pandemic",
+      "qid": "Q12184",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "pathogen",
+      "qid": "Q170065",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "protein",
+      "qid": "Q8054",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "refugee camp",
+      "qid": "Q622499",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "salmonellosis",
+      "qid": "Q326648",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "seasonality",
+      "qid": "Q2111082",
+      "predicate": "DRIVEN_BY"
+    },
+    {
+      "name": "tuberculosis",
+      "qid": "Q12204",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "virus",
+      "qid": "Q808",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "zoonosis",
+      "qid": "Q182672",
+      "predicate": "HAS_COMPONENT"
+    }
+  ],
+  "stats": {
+    "total": 61,
+    "kept": 55,
+    "dropped": 6,
+    "by_predicate": {
+      "HAS_CONTEXT": 3,
+      "HAS_COMPONENT": 31,
+      "DROP": 6,
+      "DRIVEN_BY": 6,
+      "HAS_INSTITUTION": 1,
+      "HAS_SUBTYPE": 11,
+      "HAS_FIGURE": 3
+    }
+  }
+}

@@ -759,11 +759,82 @@ def corpus_work_title(item: dict[str, Any], work_id: str) -> str:
     return work_id
 
 
+_PRIMARY_AUTHOR_HINTS = (
+    "plutarch",
+    "suetonius",
+    "livy",
+    "appian",
+    "cicero",
+    "caesar",
+    "nepos",
+    "polybius",
+    "sallust",
+    "diodorus",
+    "dionysius",
+)
+
+_REFERENCE_SOURCE_HINTS = (
+    "stanford encyclopedia",
+    "khan academy",
+    "openculture",
+    "coursera",
+    "ocw",
+    "course_index",
+    "mooc_index",
+    "primer",
+)
+
+
+def infer_corpus_tier(raw: dict[str, Any]) -> str:
+    """ADR-021: primary | secondary | reference."""
+    explicit = (raw.get("corpus_tier") or "").strip().lower()
+    if explicit in {"primary", "secondary", "reference"}:
+        return explicit
+
+    work_type = (raw.get("type") or "").strip().lower()
+    source = (raw.get("source") or "").strip().lower()
+    hay = " ".join(
+        str(raw.get(k) or "")
+        for k in ("title", "authors", "abstract", "source_url")
+    ).lower()
+
+    if work_type == "primary_source" or "primary_source" in source:
+        return "primary"
+    if any(h in hay for h in _PRIMARY_AUTHOR_HINTS):
+        return "primary"
+    if any(h in hay or h in work_type for h in _REFERENCE_SOURCE_HINTS):
+        return "reference"
+    return "secondary"
+
+
+def infer_source_era(raw: dict[str, Any], *, corpus_tier: str | None = None) -> str:
+    """ADR-021: contemporary | near_contemporary | antiquarian | modern_scholarly."""
+    explicit = (raw.get("source_era") or "").strip().lower()
+    if explicit in {"contemporary", "near_contemporary", "antiquarian", "modern_scholarly"}:
+        return explicit
+
+    tier = corpus_tier or infer_corpus_tier(raw)
+    if tier != "primary":
+        return "modern_scholarly"
+
+    try:
+        year = int(raw.get("year"))
+    except (TypeError, ValueError):
+        year = None
+
+    if year is not None and year < 400:
+        if year < -27:
+            return "contemporary"
+        return "near_contemporary"
+    return "near_contemporary"
+
+
 def normalize_corpus_work(raw: dict[str, Any]) -> dict[str, Any]:
     """Canonical bibliographic entry for CorpusWork / supporting_works (always uses title)."""
     work_id = work_id_from_item(raw)
     if not work_id:
         return {}
+    corpus_tier = infer_corpus_tier(raw)
     return {
         "work_id": work_id,
         "title": corpus_work_title(raw, work_id),
@@ -773,6 +844,8 @@ def normalize_corpus_work(raw: dict[str, Any]) -> dict[str, Any]:
         "source_url": raw.get("source_url") or raw.get("oa_url") or "",
         "doi": raw.get("doi") or "",
         "citation_count": raw.get("citation_count"),
+        "corpus_tier": corpus_tier,
+        "source_era": infer_source_era(raw, corpus_tier=corpus_tier),
     }
 
 

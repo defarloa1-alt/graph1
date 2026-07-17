@@ -1,0 +1,2039 @@
+{
+  "page": "Scientific method",
+  "page_name": "Scientific_method",
+  "root_qid": "Q46857",
+  "classified": [
+    {
+      "name": ":Category:Lists of unsolved problems",
+      "qid": "Q8598647",
+      "predicate": "DROP"
+    },
+    {
+      "name": "A priori and a posteriori",
+      "qid": "Q178161",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Academic journal",
+      "qid": "Q737498",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Academic publishing",
+      "qid": "Q5246046",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Acta Crystallographica",
+      "qid": "Q343155",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Against Method",
+      "qid": "Q4691050",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Al-Biruni",
+      "qid": "Q11826",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Alan Cook (physicist)",
+      "qid": "Q4706405",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Albert Einstein",
+      "qid": "Q937",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Alexander Bird",
+      "qid": "Q58726652",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Alistair Cameron Crombie",
+      "qid": "Q1375992",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "All models are wrong",
+      "qid": "Q19570783",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Almagest",
+      "qid": "Q155952",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Analysis",
+      "qid": "Q217602",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Analysis Situs (paper)",
+      "qid": "Q4751094",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Andreas Vesalius",
+      "qid": "Q170267",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Appeal to novelty",
+      "qid": "Q2861102",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Apsidal precession",
+      "qid": "Q622176",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Arabs",
+      "qid": "Q35323",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Archive for History of Exact Sciences",
+      "qid": "Q4787264",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Aristotle",
+      "qid": "Q868",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Arthur Eddington",
+      "qid": "Q215022",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Avery–MacLeod–McCarty experiment",
+      "qid": "Q782907",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Bayes' theorem",
+      "qid": "Q182505",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Bayesian inference",
+      "qid": "Q812535",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Benjamin Franklin",
+      "qid": "Q34969",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Big data",
+      "qid": "Q858810",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Biodiversity",
+      "qid": "Q47041",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Book of Optics",
+      "qid": "Q264562",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Branches of science",
+      "qid": "Q2465832",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Brazil",
+      "qid": "Q155",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Bruno Latour",
+      "qid": "Q355237",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Carl Friedrich Gauss",
+      "qid": "Q6722",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Carl Sagan",
+      "qid": "Q410",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Cartesian doubt",
+      "qid": "Q976088",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Chaldea",
+      "qid": "Q200969",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Chargaff's rules",
+      "qid": "Q568213",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Charles M. Falco",
+      "qid": "Q5080452",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Charles Sanders Peirce",
+      "qid": "Q187520",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Charles Sanders Peirce bibliography",
+      "qid": "Q490299",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Cynthia Wolberger",
+      "qid": "Q30069608",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "D. C. Heath and Company",
+      "qid": "Q5203526",
+      "predicate": "DROP"
+    },
+    {
+      "name": "DNA",
+      "qid": "Q7430",
+      "predicate": "DROP"
+    },
+    {
+      "name": "DNA replication",
+      "qid": "Q130996",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Data sharing",
+      "qid": "Q5227350",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "David Deutsch",
+      "qid": "Q543682",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "David Hockney",
+      "qid": "Q159907",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "David Hume",
+      "qid": "Q37160",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Deductive reasoning",
+      "qid": "Q484284",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Demarcation problem",
+      "qid": "Q316757",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Donald A. Gillies",
+      "qid": "Q5293928",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Drug design",
+      "qid": "Q2991682",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Eadweard Muybridge",
+      "qid": "Q190568",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Earth",
+      "qid": "Q2",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Eddington experiment",
+      "qid": "Q65041294",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Einstein's thought experiments",
+      "qid": "Q55610614",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Elegance",
+      "qid": "Q1207152",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Emission theory (vision)",
+      "qid": "Q5372632",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Empirical evidence",
+      "qid": "Q83021",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Epicurus",
+      "qid": "Q43216",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ernst Cassirer",
+      "qid": "Q57188",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ethnic groups in Europe",
+      "qid": "Q1464982",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Euclid",
+      "qid": "Q8747",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Euclid's Optics",
+      "qid": "Q16000458",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Eugene Wigner",
+      "qid": "Q155790",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Euler characteristic",
+      "qid": "Q852973",
+      "predicate": "DROP"
+    },
+    {
+      "name": "European Southern Observatory",
+      "qid": "Q151991",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Expression (mathematics)",
+      "qid": "Q6498784",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Extended evolutionary synthesis",
+      "qid": "Q15808610",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Factor analysis",
+      "qid": "Q726474",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Falsifiability",
+      "qid": "Q220888",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Francis Bacon",
+      "qid": "Q37388",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Francis Crick",
+      "qid": "Q123280",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Francisco Sanches",
+      "qid": "Q973196",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Frank Popper",
+      "qid": "Q3082774",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Galileo Galilei",
+      "qid": "Q307",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Generalization",
+      "qid": "Q170084",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Georg Wilhelm Richmann",
+      "qid": "Q63217",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "George Berkeley",
+      "qid": "Q82049",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "George Pólya",
+      "qid": "Q296259",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Giambattista della Porta",
+      "qid": "Q334154",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Golgi apparatus",
+      "qid": "Q83181",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Greece",
+      "qid": "Q41",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Gregor Mendel",
+      "qid": "Q37970",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Gregory Chaitin",
+      "qid": "Q930837",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Henri Poincaré",
+      "qid": "Q81082",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Hipparchus",
+      "qid": "Q159905",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "History of Iran",
+      "qid": "Q28926",
+      "predicate": "DROP"
+    },
+    {
+      "name": "History of science",
+      "qid": "Q201486",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "History of scientific method",
+      "qid": "Q3137275",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "House of Elzevir",
+      "qid": "Q602323",
+      "predicate": "DROP"
+    },
+    {
+      "name": "How We Think",
+      "qid": "Q5918221",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "How to Solve It",
+      "qid": "Q4119391",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Hypothesis",
+      "qid": "Q41719",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "I. Bernard Cohen",
+      "qid": "Q1347036",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ian Shelton",
+      "qid": "Q5982881",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ibn Mu'adh al-Jayyani",
+      "qid": "Q2987645",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ignaz Semmelweis",
+      "qid": "Q59736",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Imre Lakatos",
+      "qid": "Q296249",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "India",
+      "qid": "Q668",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Inductive reasoning",
+      "qid": "Q484511",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Inquiry",
+      "qid": "Q21004260",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Inquiry-based learning",
+      "qid": "Q3623716",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "International Space Station",
+      "qid": "Q25271",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Intersubjectivity",
+      "qid": "Q583467",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Isaac Newton",
+      "qid": "Q935",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Jacques Herbrand",
+      "qid": "Q448086",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "James Webb Space Telescope",
+      "qid": "Q186447",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Jerry Donohue",
+      "qid": "Q6148474",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Johannes Kepler",
+      "qid": "Q8963",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John D. Norton",
+      "qid": "Q52409712",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Ioannidis",
+      "qid": "Q6251482",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Locke",
+      "qid": "Q9353",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "John Stuart Mill",
+      "qid": "Q50020",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Kamāl al-Dīn al-Fārisī",
+      "qid": "Q426523",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Karin Knorr Cetina",
+      "qid": "Q87092",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Karl Popper",
+      "qid": "Q81244",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "King's College London",
+      "qid": "Q245247",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "LIGO",
+      "qid": "Q255371",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Large Hadron Collider",
+      "qid": "Q40605",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Latin translations of the 12th century",
+      "qid": "Q2052959",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Lawrence Sklar",
+      "qid": "Q1809260",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Lee Smolin",
+      "qid": "Q437263",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Leiden",
+      "qid": "Q43631",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Linus Pauling",
+      "qid": "Q48983",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Loeb Classical Library",
+      "qid": "Q645948",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Logical positivism",
+      "qid": "Q193627",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Louis Pasteur",
+      "qid": "Q529",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Ludwik Fleck",
+      "qid": "Q523087",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Luis de la Peña",
+      "qid": "Q5984580",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Margaret Morrison (philosopher)",
+      "qid": "Q104817291",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Mathematical modelling",
+      "qid": "Q10331368",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Mathematical proof",
+      "qid": "Q11538",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Maurice Wilkins",
+      "qid": "Q184659",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Max Born",
+      "qid": "Q58978",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "McGill–Queen's University Press",
+      "qid": "Q6801272",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Mercury (planet)",
+      "qid": "Q308",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Michael Friedman (philosopher)",
+      "qid": "Q6830429",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Michael Polanyi",
+      "qid": "Q163087",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Monte Carlo method",
+      "qid": "Q232207",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Nassim Nicholas Taleb",
+      "qid": "Q333521",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "National Ignition Facility",
+      "qid": "Q1431014",
+      "predicate": "DROP"
+    },
+    {
+      "name": "National Science Education Standards",
+      "qid": "Q6978274",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "National Science Foundation",
+      "qid": "Q304878",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Neurath's boat",
+      "qid": "Q7002086",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "New York City",
+      "qid": "Q60",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Newton's laws of motion",
+      "qid": "Q38433",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Next Generation Science Standards",
+      "qid": "Q7021028",
+      "predicate": "HAS_INSTRUMENT"
+    },
+    {
+      "name": "Nicholas Maxwell",
+      "qid": "Q7025862",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Norwood Russell Hanson",
+      "qid": "Q553796",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Novum Organum",
+      "qid": "Q585046",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Observational error",
+      "qid": "Q196372",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Occam's razor",
+      "qid": "Q131012",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Olivier Costa de Beauregard",
+      "qid": "Q3350939",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "PLOS Medicine",
+      "qid": "Q1686921",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Pappus of Alexandria",
+      "qid": "Q211783",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Paris",
+      "qid": "Q90",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Particle physics",
+      "qid": "Q18334",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Paul Dirac",
+      "qid": "Q47480",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Paul Feyerabend",
+      "qid": "Q78497",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Paul Krugman",
+      "qid": "Q131112",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Peer review",
+      "qid": "Q215028",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Perception",
+      "qid": "Q160402",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Perihelion and aphelion",
+      "qid": "Q35660603",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Peter L. Berger",
+      "qid": "Q84486",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Philosophical realism",
+      "qid": "Q735590",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Philosophiæ Naturalis Principia Mathematica",
+      "qid": "Q205921",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Philosophy of science",
+      "qid": "Q59115",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Poincaré conjecture",
+      "qid": "Q203586",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Pragmatism",
+      "qid": "Q126692",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Predicate variable",
+      "qid": "Q10531432",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Predictability",
+      "qid": "Q2534066",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Prior Analytics",
+      "qid": "Q485217",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Problem solving",
+      "qid": "Q730920",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Proofs and Refutations",
+      "qid": "Q2032593",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Pseudoscience",
+      "qid": "Q483677",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Qutb al-Din al-Shirazi",
+      "qid": "Q729903",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Raymond Gosling",
+      "qid": "Q425771",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Relativity of simultaneity",
+      "qid": "Q837505",
+      "predicate": "DROP"
+    },
+    {
+      "name": "René Descartes",
+      "qid": "Q9191",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Reproducibility",
+      "qid": "Q1425625",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Research data archiving",
+      "qid": "Q17155735",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Research ethics",
+      "qid": "Q1132684",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Research question",
+      "qid": "Q1438033",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Review",
+      "qid": "Q265158",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Ricci flow",
+      "qid": "Q1361396",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Richard Feynman",
+      "qid": "Q39246",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Robert Hooke",
+      "qid": "Q46830",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Robert Nola",
+      "qid": "Q105243708",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Robert Nozick",
+      "qid": "Q205927",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Roger Bacon",
+      "qid": "Q171677",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Rosalind Franklin",
+      "qid": "Q7474",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Royal Astronomical Society",
+      "qid": "Q753299",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "S2 (star)",
+      "qid": "Q1514814",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Sagittarius A*",
+      "qid": "Q237284",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Scientific Revolution",
+      "qid": "Q214078",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Scientific community",
+      "qid": "Q240305",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "Scientific control",
+      "qid": "Q367359",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Scientific method",
+      "qid": "Q46857",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Shmuel Sambursky",
+      "qid": "Q48688470",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Situated cognition",
+      "qid": "Q7532125",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "Sobral, Ceará",
+      "qid": "Q1815899",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Special relativity",
+      "qid": "Q11455",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Spectrometer",
+      "qid": "Q188463",
+      "predicate": "DROP"
+    },
+    {
+      "name": "St. Elmo's fire",
+      "qid": "Q120688",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Standard Model",
+      "qid": "Q18338",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Statistical model validation",
+      "qid": "Q65089264",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Stephen Hawking",
+      "qid": "Q17714",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Steve Woolgar",
+      "qid": "Q521895",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Steven Weinberg",
+      "qid": "Q179282",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Stillman Drake",
+      "qid": "Q2349689",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Tautology (logic)",
+      "qid": "Q209555",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Terence Tao",
+      "qid": "Q295981",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Tests of general relativity",
+      "qid": "Q2297564",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Assayer",
+      "qid": "Q2566559",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "The New York Review of Books",
+      "qid": "Q1426223",
+      "predicate": "DROP"
+    },
+    {
+      "name": "The Social Construction of Reality",
+      "qid": "Q1218405",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "The Unreasonable Effectiveness of Mathematics in the Natural Sciences",
+      "qid": "Q3349460",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Theory of relativity",
+      "qid": "Q43514",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Thomas Kuhn",
+      "qid": "Q184980",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Thomas Luckmann",
+      "qid": "Q60412",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Thought collective",
+      "qid": "Q12123576",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Théodore Géricault",
+      "qid": "Q184212",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Tim Maudlin",
+      "qid": "Q75377",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Tobacco mosaic virus",
+      "qid": "Q332874",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Trial and error",
+      "qid": "Q2219080",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "Two New Sciences",
+      "qid": "Q575461",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Tycho Brahe",
+      "qid": "Q36620",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Understanding",
+      "qid": "Q46744",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "Unification (computer science)",
+      "qid": "Q609057",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Unification of theories in physics",
+      "qid": "Q85812005",
+      "predicate": "DROP"
+    },
+    {
+      "name": "University of Cambridge",
+      "qid": "Q35794",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "Urbain Le Verrier",
+      "qid": "Q104154",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Where Mathematics Comes From",
+      "qid": "Q3700692",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "Why Most Published Research Findings Are False",
+      "qid": "Q21092395",
+      "predicate": "HAS_PUBLICATION"
+    },
+    {
+      "name": "William Whewell",
+      "qid": "Q333922",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "William of Ockham",
+      "qid": "Q43936",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "Witness (mathematics)",
+      "qid": "Q8028383",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Wolfgang Pauli",
+      "qid": "Q65989",
+      "predicate": "HAS_FIGURE"
+    },
+    {
+      "name": "World Data Center",
+      "qid": "Q4119633",
+      "predicate": "HAS_INSTITUTION"
+    },
+    {
+      "name": "X-ray",
+      "qid": "Q34777",
+      "predicate": "DROP"
+    },
+    {
+      "name": "Zeitschrift der Deutschen Morgenländischen Gesellschaft",
+      "qid": "Q4115333",
+      "predicate": "DROP"
+    },
+    {
+      "name": "abductive reasoning",
+      "qid": "Q308495",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "accuracy and precision",
+      "qid": "Q272035",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "adenine",
+      "qid": "Q15277",
+      "predicate": "DROP"
+    },
+    {
+      "name": "aerodynamics",
+      "qid": "Q8424",
+      "predicate": "DROP"
+    },
+    {
+      "name": "affirming the consequent",
+      "qid": "Q2000864",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "air",
+      "qid": "Q7391292",
+      "predicate": "DROP"
+    },
+    {
+      "name": "analogy",
+      "qid": "Q185816",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "apsidal precession",
+      "qid": "Q622176",
+      "predicate": "DROP"
+    },
+    {
+      "name": "atmospheric refraction",
+      "qid": "Q254634",
+      "predicate": "DROP"
+    },
+    {
+      "name": "awareness",
+      "qid": "Q4338318",
+      "predicate": "DROP"
+    },
+    {
+      "name": "ball lightning",
+      "qid": "Q192962",
+      "predicate": "DROP"
+    },
+    {
+      "name": "beauty",
+      "qid": "Q7242",
+      "predicate": "DROP"
+    },
+    {
+      "name": "big science",
+      "qid": "Q1196009",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "biochemistry",
+      "qid": "Q7094",
+      "predicate": "DROP"
+    },
+    {
+      "name": "boy or girl paradox",
+      "qid": "Q2271174",
+      "predicate": "DROP"
+    },
+    {
+      "name": "camera obscura",
+      "qid": "Q183998",
+      "predicate": "DROP"
+    },
+    {
+      "name": "codon",
+      "qid": "Q165052",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cognitive bias",
+      "qid": "Q1127759",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "confirmation bias",
+      "qid": "Q431498",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "conjecture",
+      "qid": "Q319141",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "consciousness",
+      "qid": "Q7087",
+      "predicate": "DROP"
+    },
+    {
+      "name": "control theory",
+      "qid": "Q6501221",
+      "predicate": "DROP"
+    },
+    {
+      "name": "correlation",
+      "qid": "Q186290",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "counterexample",
+      "qid": "Q596077",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "crystal",
+      "qid": "Q43533",
+      "predicate": "DROP"
+    },
+    {
+      "name": "cytosine",
+      "qid": "Q178425",
+      "predicate": "DROP"
+    },
+    {
+      "name": "deductive reasoning",
+      "qid": "Q484284",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "diffraction",
+      "qid": "Q133900",
+      "predicate": "DROP"
+    },
+    {
+      "name": "discovery of Neptune",
+      "qid": "Q1356165",
+      "predicate": "DROP"
+    },
+    {
+      "name": "dogma",
+      "qid": "Q620749",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "double helix",
+      "qid": "Q15063088",
+      "predicate": "DROP"
+    },
+    {
+      "name": "education",
+      "qid": "Q8434",
+      "predicate": "DROP"
+    },
+    {
+      "name": "empirical research",
+      "qid": "Q2155640",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "empiricism",
+      "qid": "Q83368",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "encryption software",
+      "qid": "Q5375622",
+      "predicate": "DROP"
+    },
+    {
+      "name": "epistemic cultures",
+      "qid": "Q60666266",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "epistemology",
+      "qid": "Q9471",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "evolution",
+      "qid": "Q1063",
+      "predicate": "DROP"
+    },
+    {
+      "name": "existential quantification",
+      "qid": "Q773483",
+      "predicate": "DROP"
+    },
+    {
+      "name": "experiment",
+      "qid": "Q101965",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "experimental science",
+      "qid": "Q5769081",
+      "predicate": "HAS_SUBTYPE"
+    },
+    {
+      "name": "falsifiability",
+      "qid": "Q220888",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "field research",
+      "qid": "Q1402508",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "free will",
+      "qid": "Q9476",
+      "predicate": "DROP"
+    },
+    {
+      "name": "general relativity",
+      "qid": "Q11452",
+      "predicate": "DROP"
+    },
+    {
+      "name": "genetic code",
+      "qid": "Q180618",
+      "predicate": "DROP"
+    },
+    {
+      "name": "genetics",
+      "qid": "Q7162",
+      "predicate": "DROP"
+    },
+    {
+      "name": "gestalt psychology",
+      "qid": "Q272021",
+      "predicate": "DROP"
+    },
+    {
+      "name": "gravitational field",
+      "qid": "Q558066",
+      "predicate": "DROP"
+    },
+    {
+      "name": "gravity",
+      "qid": "Q11412",
+      "predicate": "DROP"
+    },
+    {
+      "name": "guanine",
+      "qid": "Q169313",
+      "predicate": "DROP"
+    },
+    {
+      "name": "gynaecologist",
+      "qid": "Q2640827",
+      "predicate": "DROP"
+    },
+    {
+      "name": "heuristic",
+      "qid": "Q201413",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "history of gravitational theory",
+      "qid": "Q3137239",
+      "predicate": "DROP"
+    },
+    {
+      "name": "history of science",
+      "qid": "Q201486",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "homological algebra",
+      "qid": "Q579978",
+      "predicate": "DROP"
+    },
+    {
+      "name": "homology (mathematics)",
+      "qid": "Q1144780",
+      "predicate": "DROP"
+    },
+    {
+      "name": "homology sphere",
+      "qid": "Q1502277",
+      "predicate": "DROP"
+    },
+    {
+      "name": "human error",
+      "qid": "Q5937752",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hydrogen bond",
+      "qid": "Q169324",
+      "predicate": "DROP"
+    },
+    {
+      "name": "hypothesis",
+      "qid": "Q41719",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "hypothetico-deductive model",
+      "qid": "Q1143445",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "inductive reasoning",
+      "qid": "Q484511",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "inductivism",
+      "qid": "Q265590",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "inference",
+      "qid": "Q408386",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "informal mathematics",
+      "qid": "Q6030572",
+      "predicate": "DROP"
+    },
+    {
+      "name": "inquiry",
+      "qid": "Q21004260",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "intersubjectivity",
+      "qid": "Q583467",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "knowledge",
+      "qid": "Q9081",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "length",
+      "qid": "Q36253",
+      "predicate": "DROP"
+    },
+    {
+      "name": "light",
+      "qid": "Q9128",
+      "predicate": "DROP"
+    },
+    {
+      "name": "literature review",
+      "qid": "Q2412849",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "logic",
+      "qid": "Q8078",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "logical consequence",
+      "qid": "Q374182",
+      "predicate": "DROP"
+    },
+    {
+      "name": "logical positivism",
+      "qid": "Q193627",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "logical truth",
+      "qid": "Q3311695",
+      "predicate": "DROP"
+    },
+    {
+      "name": "mass",
+      "qid": "Q11423",
+      "predicate": "DROP"
+    },
+    {
+      "name": "mathematical model",
+      "qid": "Q486902",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "mechanics",
+      "qid": "Q41217",
+      "predicate": "DROP"
+    },
+    {
+      "name": "metaphysics",
+      "qid": "Q35277",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "metascience",
+      "qid": "Q30599095",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "methodology",
+      "qid": "Q185698",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "misuse of p-values",
+      "qid": "Q25304808",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "model-dependent realism",
+      "qid": "Q6888139",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "molecular biology",
+      "qid": "Q7202",
+      "predicate": "DROP"
+    },
+    {
+      "name": "molecule",
+      "qid": "Q11369",
+      "predicate": "DROP"
+    },
+    {
+      "name": "mutual information",
+      "qid": "Q252973",
+      "predicate": "DROP"
+    },
+    {
+      "name": "natural language",
+      "qid": "Q33742",
+      "predicate": "DROP"
+    },
+    {
+      "name": "naturalism (philosophy)",
+      "qid": "Q56000",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "nature",
+      "qid": "Q7860",
+      "predicate": "DROP"
+    },
+    {
+      "name": "neutrino",
+      "qid": "Q2126",
+      "predicate": "DROP"
+    },
+    {
+      "name": "normal science",
+      "qid": "Q1210340",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "not even wrong",
+      "qid": "Q1225402",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "nucleotide",
+      "qid": "Q28745",
+      "predicate": "DROP"
+    },
+    {
+      "name": "null hypothesis",
+      "qid": "Q628374",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "observable",
+      "qid": "Q845789",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "observation",
+      "qid": "Q193181",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "outer space",
+      "qid": "Q4169",
+      "predicate": "DROP"
+    },
+    {
+      "name": "particle accelerator",
+      "qid": "Q130825",
+      "predicate": "DROP"
+    },
+    {
+      "name": "pattern",
+      "qid": "Q2083958",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "peer review",
+      "qid": "Q215028",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "philosophy of science",
+      "qid": "Q59115",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "photo 51",
+      "qid": "Q901530",
+      "predicate": "DROP"
+    },
+    {
+      "name": "positron",
+      "qid": "Q3229",
+      "predicate": "DROP"
+    },
+    {
+      "name": "postmodernism",
+      "qid": "Q47783",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "prediction",
+      "qid": "Q748250",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "predictive analytics",
+      "qid": "Q1053367",
+      "predicate": "DROP"
+    },
+    {
+      "name": "prime number",
+      "qid": "Q49008",
+      "predicate": "DROP"
+    },
+    {
+      "name": "problem solving",
+      "qid": "Q730920",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "rainbow",
+      "qid": "Q1052",
+      "predicate": "DROP"
+    },
+    {
+      "name": "random variable",
+      "qid": "Q176623",
+      "predicate": "DROP"
+    },
+    {
+      "name": "rationalism",
+      "qid": "Q483024",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "rationalist",
+      "qid": "Q135908423",
+      "predicate": "DROP"
+    },
+    {
+      "name": "reasoning",
+      "qid": "Q1156402",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "reductionism",
+      "qid": "Q206829",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "reflective equilibrium",
+      "qid": "Q900929",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "refraction",
+      "qid": "Q72277",
+      "predicate": "DROP"
+    },
+    {
+      "name": "regression analysis",
+      "qid": "Q208042",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "reproducibility",
+      "qid": "Q1425625",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "research question",
+      "qid": "Q1438033",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "revelation",
+      "qid": "Q192906",
+      "predicate": "DROP"
+    },
+    {
+      "name": "salt",
+      "qid": "Q11254",
+      "predicate": "DROP"
+    },
+    {
+      "name": "science",
+      "qid": "Q336",
+      "predicate": "DROP"
+    },
+    {
+      "name": "science education",
+      "qid": "Q2485457",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "science wars",
+      "qid": "Q2916060",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "scientific community",
+      "qid": "Q240305",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "scientific instrument",
+      "qid": "Q3099911",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "scientific modelling",
+      "qid": "Q1116876",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "scientific realism",
+      "qid": "Q431354",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "situated cognition",
+      "qid": "Q7532125",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "skepticism",
+      "qid": "Q1395219",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "social science",
+      "qid": "Q34749",
+      "predicate": "DROP"
+    },
+    {
+      "name": "spacetime",
+      "qid": "Q133327",
+      "predicate": "DROP"
+    },
+    {
+      "name": "special sciences",
+      "qid": "Q3622788",
+      "predicate": "DROP"
+    },
+    {
+      "name": "statistical mechanics",
+      "qid": "Q188715",
+      "predicate": "DROP"
+    },
+    {
+      "name": "strong inference",
+      "qid": "Q17144559",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "strong programme",
+      "qid": "Q1132740",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "survey methodology",
+      "qid": "Q814232",
+      "predicate": "DROP"
+    },
+    {
+      "name": "symmetry (physics)",
+      "qid": "Q1455736",
+      "predicate": "DROP"
+    },
+    {
+      "name": "system",
+      "qid": "Q58778",
+      "predicate": "DROP"
+    },
+    {
+      "name": "systems theory",
+      "qid": "Q269699",
+      "predicate": "DROP"
+    },
+    {
+      "name": "testability",
+      "qid": "Q2149495",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "theorem",
+      "qid": "Q65943",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "theory",
+      "qid": "Q17737",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "theory of relativity",
+      "qid": "Q43514",
+      "predicate": "DROP"
+    },
+    {
+      "name": "thermometer",
+      "qid": "Q646",
+      "predicate": "DROP"
+    },
+    {
+      "name": "thought experiment",
+      "qid": "Q147027",
+      "predicate": "HAS_METHOD"
+    },
+    {
+      "name": "thymine",
+      "qid": "Q171973",
+      "predicate": "DROP"
+    },
+    {
+      "name": "time",
+      "qid": "Q11471",
+      "predicate": "DROP"
+    },
+    {
+      "name": "time in physics",
+      "qid": "Q3517751",
+      "predicate": "DROP"
+    },
+    {
+      "name": "transdisciplinarity",
+      "qid": "Q249542",
+      "predicate": "HAS_CONTEXT"
+    },
+    {
+      "name": "triple helix",
+      "qid": "Q7843514",
+      "predicate": "DROP"
+    },
+    {
+      "name": "truth",
+      "qid": "Q7949",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "twilight",
+      "qid": "Q164160",
+      "predicate": "DROP"
+    },
+    {
+      "name": "uncertainty",
+      "qid": "Q13649246",
+      "predicate": "HAS_COMPONENT"
+    },
+    {
+      "name": "unity of science",
+      "qid": "Q7893840",
+      "predicate": "HAS_THEORY"
+    },
+    {
+      "name": "universal quantification",
+      "qid": "Q126695",
+      "predicate": "DROP"
+    },
+    {
+      "name": "vacuum",
+      "qid": "Q11475",
+      "predicate": "DROP"
+    },
+    {
+      "name": "visual system",
+      "qid": "Q558363",
+      "predicate": "DROP"
+    },
+    {
+      "name": "voltmeter",
+      "qid": "Q179741",
+      "predicate": "DROP"
+    },
+    {
+      "name": "weight",
+      "qid": "Q25288",
+      "predicate": "DROP"
+    }
+  ],
+  "stats": {
+    "total": 403,
+    "kept": 254,
+    "dropped": 149,
+    "by_predicate": {
+      "DROP": 149,
+      "HAS_COMPONENT": 69,
+      "HAS_CONTEXT": 18,
+      "HAS_PUBLICATION": 20,
+      "HAS_FIGURE": 95,
+      "HAS_METHOD": 24,
+      "HAS_INSTITUTION": 6,
+      "HAS_THEORY": 19,
+      "HAS_INSTRUMENT": 2,
+      "HAS_SUBTYPE": 1
+    }
+  }
+}

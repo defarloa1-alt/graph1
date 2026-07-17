@@ -218,17 +218,30 @@ def _neo4j_driver():
     return GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
 
 
-def _claim_stats(session: Any) -> dict[str, Any]:
-    rows = session.run(
-        """
-        MATCH (cl:Claim {source_agent: 'sfa_biographic'})
-        RETURN cl.status AS status,
-               cl.promoted AS promoted,
-               cl.reconciliation_status AS reconciliation_status,
-               cl.fischer_status AS fischer_status,
-               count(*) AS n
-        """
-    ).data()
+def _claim_stats(session: Any, source_agent: str | None = "sfa_biographic") -> dict[str, Any]:
+    if source_agent and source_agent != "all":
+        rows = session.run(
+            """
+            MATCH (cl:Claim {source_agent: $source_agent})
+            RETURN cl.status AS status,
+                   cl.promoted AS promoted,
+                   cl.reconciliation_status AS reconciliation_status,
+                   cl.fischer_status AS fischer_status,
+                   count(*) AS n
+            """,
+            source_agent=source_agent,
+        ).data()
+    else:
+        rows = session.run(
+            """
+            MATCH (cl:Claim)
+            RETURN cl.status AS status,
+                   cl.promoted AS promoted,
+                   cl.reconciliation_status AS reconciliation_status,
+                   cl.fischer_status AS fischer_status,
+                   count(*) AS n
+            """
+        ).data()
     stats: dict[str, Any] = {
         "total": 0,
         "proposed": 0,
@@ -372,14 +385,42 @@ def _build_approval_context(
         relationship_when = point_year
 
     date_gaps: list[str] = []
+    geo_gaps: list[str] = []
     other_gaps: list[str] = []
     rel_type = (row.get("relationship_type") or "").upper()
     enrichment_status = row.get("enrichment_status") or "pending"
 
     if not person_lifespan:
         other_gaps.append("Person anchor has no birth/death/floruit dates")
-    if rel_type in {"PARTICIPATED_IN", "ORGANIZED", "FOUNDED"} and not target_when:
+    if rel_type in {"PARTICIPATED_IN", "FOUGHT_IN", "ORGANIZED", "FOUNDED"} and not target_when:
         date_gaps.append("Event/target has no start date")
+    # Place geodata gate: battle/event claims need Event -> Place with lat/long (normally WD P625).
+    if rel_type in {"PARTICIPATED_IN", "FOUGHT_IN", "ORGANIZED", "FOUNDED", "LOCATION_OF_EVENT"}:
+        place_qid = row.get("location_place_qid")
+        place_lat = row.get("location_place_lat")
+        place_long = row.get("location_place_long")
+        if not place_qid:
+            geo_gaps.append(
+                "Event has no LOCATION_OF_EVENT Place — enrich from Wikidata P276/P625 "
+                "(scripts/system/ensure_event_place_geo.py)"
+            )
+        elif place_lat is None or place_long is None:
+            geo_gaps.append(
+                f"Place {place_qid} missing lat/long — enrich from Wikidata P625"
+            )
+    if row.get("predicate_status") == "tbd":
+        other_gaps.append(
+            "Predicate status TBD — further research required before Validate"
+        )
+    # IGAR is optional interpretation for participation (FOUGHT_IN / P607).
+    # Only warn when a claim_layer marks itself as interpretation and IGAR is missing.
+    claim_layer = (row.get("claim_layer") or "atomic_participation").lower()
+    if claim_layer in {"interpretation", "igar", "actor_decision"} and not row.get(
+        "igar_complete"
+    ):
+        other_gaps.append(
+            "Interpretation claim missing IGAR (Input → Goal → Action → Result)"
+        )
     if rel_type in {
         "SPOUSE_OF",
         "POSITION_HELD",
@@ -395,12 +436,39 @@ def _build_approval_context(
     elif enrichment_status == "missing":
         date_gaps.append("Wikidata statement not located for re-enrichment")
 
+    reg_status = row.get("registry_status")
+    if reg_status in (None, "unknown"):
+        other_gaps.append("Relationship type not registry-validated — check SYS_RelationshipType / CSV")
+    elif reg_status == "routing_only":
+        other_gaps.append("Relationship type in BacklinkRouting but not implemented in CSV — Hold recommended")
+    elif reg_status == "candidate":
+        other_gaps.append("Relationship type is candidate in CSV — verify before promotion")
+    elif reg_status == "unregistered":
+        other_gaps.append("Relationship type not in relationship_types_registry_master.csv")
+
+    rel_type = (row.get("relationship_type") or "").upper()
+    if rel_type and not row.get("cidoc_crm_code"):
+        try:
+            from scripts.tools.cidoc_context import cidoc_for_relationship
+
+            cidoc = cidoc_for_relationship(rel_type)
+            if cidoc and cidoc.get("cidoc_crm_code"):
+                row = {**row, "cidoc_crm_code": cidoc["cidoc_crm_code"]}
+            elif rel_type:
+                other_gaps.append(f"No CIDOC-CRM code mapped for relationship {rel_type}")
+        except ImportError:
+            pass
+
     recon = row.get("reconciliation_status")
     if recon in (None, "unreconciled"):
         other_gaps.append("Not yet reconciled against DPRR/canonical edges")
 
+    scope_id = row.get("routed_subject_id") or row.get("scope_subject_id")
+    if not scope_id:
+        other_gaps.append("Not routed to SubjectConcept — run route_claims_to_sc.py")
+
     date_completeness = "not_applicable"
-    if rel_type in {"PARTICIPATED_IN", "ORGANIZED", "FOUNDED"}:
+    if rel_type in {"PARTICIPATED_IN", "FOUGHT_IN", "ORGANIZED", "FOUNDED"}:
         date_completeness = "complete" if target_when else "missing"
     elif rel_type in {
         "SPOUSE_OF",
@@ -418,7 +486,16 @@ def _build_approval_context(
     elif not date_gaps:
         date_completeness = "complete"
 
-    warnings = date_gaps + other_gaps
+    warnings = date_gaps + geo_gaps + other_gaps
+
+    location_when = None
+    if row.get("location_place_qid") and row.get("location_place_lat") is not None:
+        location_when = {
+            "qid": row.get("location_place_qid"),
+            "label": row.get("location_place_label"),
+            "lat": row.get("location_place_lat"),
+            "long": row.get("location_place_long"),
+        }
 
     return {
         "person": {
@@ -426,12 +503,20 @@ def _build_approval_context(
             "label": row.get("person_label"),
             "lifespan": person_lifespan,
         },
+        "scope": {
+            "subject_id": scope_id,
+            "label": row.get("routed_subject_label") or row.get("scope_label"),
+            "description": row.get("scope_description"),
+            "routing_score": row.get("routing_score") or row.get("scope_routing_score"),
+            "routing_method": row.get("routing_method") or row.get("scope_routing_method"),
+        },
         "target": {
             "qid": candidate_qid,
             "label": row.get("target_label") or row.get("to_label") or row.get("from_label"),
             "entity_type": row.get("target_entity_type"),
             "event_type": row.get("target_event_type"),
             "when": target_when,
+            "location": location_when,
         },
         "relationship": {
             "type": row.get("relationship_type"),
@@ -449,8 +534,21 @@ def _build_approval_context(
             "enrichment_notes": row.get("enrichment_notes"),
             "enriched_at": _json_value(row.get("enriched_at")),
         },
+        "igar": {
+            "complete": bool(row.get("igar_complete")),
+            "input": row.get("igar_input"),
+            "goal": row.get("igar_goal"),
+            "action": row.get("igar_action"),
+            "result": row.get("igar_result"),
+            "input_year": row.get("igar_input_year"),
+            "action_year": row.get("igar_action_year"),
+            "result_year": row.get("igar_result_year"),
+        },
+        "predicate_status": row.get("predicate_status") or "confirmed",
+        "research_notes": row.get("research_notes") or "",
         "date_completeness": date_completeness,
         "date_gaps": date_gaps,
+        "geo_gaps": geo_gaps,
         "other_gaps": other_gaps,
         "warnings": warnings,
     }
@@ -464,6 +562,7 @@ _CLAIM_RETURN_FIELDS = """
            cl.status AS status,
            cl.promoted AS promoted,
            cl.claim_type AS claim_type,
+           cl.source_agent AS source_agent,
            cl.facet AS facet,
            cl.subject_qid AS subject_qid,
            cl.confidence AS confidence,
@@ -479,10 +578,36 @@ _CLAIM_RETURN_FIELDS = """
            cl.direction_corrected AS direction_corrected,
            cl.start_year AS claim_start_year,
            cl.end_year AS claim_end_year,
-           cl.point_year AS claim_point_year,
+           null AS claim_point_year,
            cl.enrichment_status AS enrichment_status,
            cl.enrichment_notes AS enrichment_notes,
            cl.enriched_at AS enriched_at,
+           cl.routed_subject_id AS routed_subject_id,
+           cl.routed_subject_label AS routed_subject_label,
+           cl.routing_score AS routing_score,
+           cl.routing_method AS routing_method,
+           cl.registry_status AS registry_status,
+           cl.registry_message AS registry_message,
+           cl.predicate_status AS predicate_status,
+           cl.research_notes AS research_notes,
+           cl.igar_complete AS igar_complete,
+           cl.igar_input AS igar_input,
+           cl.igar_goal AS igar_goal,
+           cl.igar_action AS igar_action,
+           cl.igar_result AS igar_result,
+           cl.igar_input_year AS igar_input_year,
+           cl.igar_action_year AS igar_action_year,
+           cl.igar_result_year AS igar_result_year,
+           cl.cidoc_crm_code AS cidoc_crm_code,
+           cl.object_qid AS object_qid,
+           cl.pred_pid AS claim_pred_pid,
+           cl.wd_statement AS wd_statement,
+           cl.claim_layer AS claim_layer,
+           scope.subject_id AS scope_subject_id,
+           scope.label AS scope_label,
+           scope.description AS scope_description,
+           scope_r.routing_score AS scope_routing_score,
+           scope_r.routing_method AS scope_routing_method,
            pe.relationship_type AS relationship_type,
            src.qid AS from_qid,
            coalesce(src.label, src.qid) AS from_label,
@@ -504,6 +629,10 @@ _CLAIM_RETURN_FIELDS = """
            endpoint.event_type AS target_event_type,
            endpoint.birth_year AS target_birth_year,
            endpoint.death_year AS target_death_year,
+           locPlace.qid AS location_place_qid,
+           locPlace.label AS location_place_label,
+           locPlace.lat AS location_place_lat,
+           locPlace.long AS location_place_long,
            type(canon) AS canonical_rel_type,
            canon.start_year AS relation_start_year,
            canon.end_year AS relation_end_year,
@@ -511,8 +640,9 @@ _CLAIM_RETURN_FIELDS = """
 """
 
 _CLAIM_CONTEXT_MATCH = """
+    OPTIONAL MATCH (cl)-[scope_r:IN_SCOPE]->(scope:SubjectConcept)
     OPTIONAL MATCH (anchor:Person {qid: cl.subject_qid})
-    WITH cl, pe, src, tgt, ar, bc, anchor,
+    WITH cl, pe, src, tgt, ar, bc, anchor, scope, scope_r,
          CASE
            WHEN coalesce(src.qid, '') = cl.subject_qid THEN tgt
            WHEN coalesce(tgt.qid, '') = cl.subject_qid THEN src
@@ -526,7 +656,10 @@ _CLAIM_CONTEXT_MATCH = """
            AND type(canon) IN ['CHILD_OF', 'FATHER_OF', 'MOTHER_OF', 'PARENT_OF'])
        OR (pe.relationship_type = 'SPOUSE_OF' AND type(canon) = 'SPOUSE_OF')
        OR (pe.relationship_type = 'PARTICIPATED_IN' AND type(canon) = 'PARTICIPATED_IN')
-    WITH cl, pe, src, tgt, ar, bc, anchor, endpoint, head(collect(canon)) AS canon
+    WITH cl, pe, src, tgt, ar, bc, anchor, scope, scope_r, endpoint, head(collect(canon)) AS canon
+    OPTIONAL MATCH (endpoint)-[:LOCATION_OF_EVENT]->(locCand:Place)
+    WITH cl, pe, src, tgt, ar, bc, anchor, scope, scope_r, endpoint, canon,
+         head([p IN collect(locCand) WHERE p.lat IS NOT NULL AND p.long IS NOT NULL | p]) AS locPlace
 """
 
 
@@ -536,18 +669,19 @@ def _serialize_claim(row: dict[str, Any]) -> dict[str, Any]:
         fallacies = [fallacies] if fallacies else []
     auth = _parse_authority_ids(row.get("authority_ids"))
     person_qid = auth.get("person_qid") or row.get("subject_qid")
-    candidate_qid = auth.get("candidate_qid")
+    candidate_qid = auth.get("candidate_qid") or row.get("object_qid")
     if not candidate_qid:
         if row.get("from_qid") == person_qid:
             candidate_qid = row.get("to_qid")
         elif row.get("to_qid") == person_qid:
             candidate_qid = row.get("from_qid")
+    pred_pid = row.get("claim_pred_pid") or auth.get("pred_pid")
     description = row.get("description") or row.get("reasoning") or ""
     approval_context = _build_approval_context(
         row,
         person_qid=person_qid,
         candidate_qid=candidate_qid,
-        pred_pid=auth.get("pred_pid"),
+        pred_pid=pred_pid,
     )
     return {
         "claim_id": row.get("claim_id"),
@@ -557,11 +691,12 @@ def _serialize_claim(row: dict[str, Any]) -> dict[str, Any]:
         "status": (row.get("status") or "proposed").lower(),
         "promoted": bool(row.get("promoted")),
         "claim_type": row.get("claim_type"),
+        "source_agent": row.get("source_agent"),
         "facet": row.get("facet"),
         "subject_qid": row.get("subject_qid"),
         "person_qid": person_qid,
         "candidate_qid": candidate_qid,
-        "pred_pid": auth.get("pred_pid"),
+        "pred_pid": pred_pid,
         "from_qid": row.get("from_qid"),
         "from_label": row.get("from_label"),
         "to_qid": row.get("to_qid"),
@@ -600,6 +735,21 @@ def _serialize_claim(row: dict[str, Any]) -> dict[str, Any]:
         "enrichment_status": row.get("enrichment_status") or "pending",
         "enrichment_notes": row.get("enrichment_notes"),
         "enriched_at": _json_value(row.get("enriched_at")),
+        "routed_subject_id": row.get("routed_subject_id") or row.get("scope_subject_id"),
+        "routed_subject_label": row.get("routed_subject_label") or row.get("scope_label"),
+        "routing_score": row.get("routing_score") or row.get("scope_routing_score"),
+        "routing_method": row.get("routing_method") or row.get("scope_routing_method"),
+        "registry_status": row.get("registry_status"),
+        "registry_message": row.get("registry_message"),
+        "predicate_status": row.get("predicate_status") or "confirmed",
+        "research_notes": row.get("research_notes") or "",
+        "igar": approval_context.get("igar"),
+        "igar_complete": bool(row.get("igar_complete")),
+        "cidoc_crm_code": row.get("cidoc_crm_code"),
+        "object_qid": row.get("object_qid") or candidate_qid,
+        "wd_statement": row.get("wd_statement"),
+        "claim_layer": row.get("claim_layer") or "atomic_participation",
+        "scope_description": row.get("scope_description"),
         "date_completeness": approval_context["date_completeness"],
         "approval_context": approval_context,
     }
@@ -683,13 +833,18 @@ def create_app(*, seed: str = "Q17167") -> FastAPI:
         status: str | None = None,
         promoted: bool | None = None,
         reconciliation: str | None = None,
+        source_agent: str | None = "sfa_biographic",
         limit: int = 500,
         offset: int = 0,
     ) -> dict[str, Any]:
         limit = max(1, min(limit, 2000))
         offset = max(0, offset)
-        where = ["cl.source_agent = 'sfa_biographic'"]
+        where: list[str] = []
         params: dict[str, Any] = {"limit": limit, "offset": offset}
+        agent = (source_agent or "sfa_biographic").strip()
+        if agent and agent != "all":
+            where.append("cl.source_agent = $source_agent")
+            params["source_agent"] = agent
         if status:
             where.append("toLower(cl.status) = $status")
             params["status"] = status.strip().lower()
@@ -702,12 +857,12 @@ def create_app(*, seed: str = "Q17167") -> FastAPI:
             else:
                 where.append("cl.reconciliation_status = $reconciliation")
                 params["reconciliation"] = reconciliation
-        where_clause = " AND ".join(where)
+        where_clause = " AND ".join(where) if where else "true"
 
         driver = _neo4j_driver()
         try:
             with driver.session(database=NEO4J_DATABASE or "neo4j") as session:
-                stats = _claim_stats(session)
+                stats = _claim_stats(session, source_agent=agent)
                 rows = session.run(
                     f"""
                     MATCH (cl:Claim)
@@ -729,6 +884,7 @@ def create_app(*, seed: str = "Q17167") -> FastAPI:
                 claims = [_serialize_claim(dict(r)) for r in rows]
                 return {
                     "source": "neo4j",
+                    "source_agent": agent,
                     "stats": stats,
                     "limit": limit,
                     "offset": offset,

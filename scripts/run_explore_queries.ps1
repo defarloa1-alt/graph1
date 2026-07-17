@@ -1,17 +1,20 @@
 # PowerShell script to run explore queries against Neo4j
 # Usage: .\scripts\run_explore_queries.ps1
+# Credentials: set NEO4J_URI / NEO4J_USERNAME / NEO4J_PASSWORD in environment or .env — never hardcode.
 Set-Location (Join-Path $PSScriptRoot "..")
 
-$NEO4J_URI = "neo4j+s://f7b612a3.databases.neo4j.io"
-$NEO4J_USER = "neo4j"
-$NEO4J_PASSWORD = "K2sHUx9dFYhEOurYzNjlBuNb8AV9-Xlw-KJcQ85QBHM"
+$NEO4J_URI = $env:NEO4J_URI
+$NEO4J_USER = if ($env:NEO4J_USERNAME) { $env:NEO4J_USERNAME } else { $env:NEO4J_USER }
+$NEO4J_PASSWORD = $env:NEO4J_PASSWORD
 
-# Read the Cypher file
-$queries = Get-Content "Cypher/explore_imported_entities.cypher" -Raw
+if (-not $NEO4J_URI -or -not $NEO4J_PASSWORD) {
+  Write-Host "Set NEO4J_URI and NEO4J_PASSWORD (and NEO4J_USERNAME) before running." -ForegroundColor Red
+  exit 1
+}
 
-# Split by semicolons (each query ends with ;)
+$queries = Get-Content "Cypher/queries/explore_imported_entities.cypher" -Raw
 $queryList = $queries -split ";"
 
 Write-Host "Found $($queryList.Count) queries to execute" -ForegroundColor Green
 Write-Host "Note: Run these manually in Neo4j Browser or use Python driver" -ForegroundColor Yellow
-Write-Host "`nNeo4j Browser URL: https://f7b612a3.databases.neo4j.io:7473/browser/" -ForegroundColor Cyan
+Write-Host "`nURI: $NEO4J_URI" -ForegroundColor Cyan

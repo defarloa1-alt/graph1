@@ -39,3 +39,25 @@ They are treated as claims, not ground truth. The same epistemics that apply to 
 ## The Loop
 
 The self-describing system completes its loop when SFA proposals flow back into the graph and SCA re-scores with those additions. Neither can do the other's job.
+
+---
+
+## Operational scope (ADR-021)
+
+**Agents activate at SubjectConcept, not FacetUmbrella.**
+
+| Layer | Agent? |
+|-------|--------|
+| SubjectDomain (Q17167) | No |
+| FacetUmbrella (Military, Biographic, …) | No — index only |
+| SubjectConcept (`di_proposal`) | **Yes** — SFA workspace |
+| Person / Event / Place | Endpoints only |
+
+Revised agent ID: `SFA_{subject_concept_id}_{primary_facet}`  
+Example: `SFA_sc_q17167_senatorial_elite_careers_BIOGRAPHIC`
+
+Claims produced or reviewed by SFAs route to scope via `(Claim)-[:IN_SCOPE]->(SubjectConcept)`.
+
+**Corpus tiers:** `CorpusWork.corpus_tier` = `primary` | `secondary` | `reference`. Primary ancient texts (Plutarch, Suetonius, Cicero, …) are read facet-scoped during training on each SC; runtime claims cite passage-level evidence when grounded in primary works.
+
+See `Key Files/Appendices/05_Architecture_Decisions/ADR_021_SubjectConcept_Agent_Scope_and_Primary_Corpus.md`.
