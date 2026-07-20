@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "mode": "domain_bootstrap_llm",
+    "domain_id": "roman_republic",
+    "seed_qid": "Q17167",
+    "writes_neo": false,
+    "generated_at": "2026-07-19T19:06:58Z",
+    "model": "claude-sonnet-4-5",
+    "grounding": [
+      "pack_library",
+      "schema_proposal",
+      "neo_snapshot",
+      "federation_cards",
+      "tool_results"
+    ]
+  },
+  "notes": "Multi-aboutness: chrono + gov-form strands. LCSH sh85115114 already tethered (via WD P244). FAST fst01204885 w/ chrono facet already linked. LCC DG221-269 slices already soft-aligned. PeriodO pack bounds (p06c6g3p3g3) already stamped on Domain. PeriodO sub-periods (Early/Middle/Late) already enriched. Pleiades 423025 on Q220 Rome already applied. Gov-form strand LCSH sh85115062 candidate needs confirmation (not in tool_results). Noop on duplicates.",
+  "actions": [
+    {
+      "action": "noop",
+      "entity": "SubjectDomain:roman_republic",
+      "rationale": "LCSH sh85115114 already tethered via wd_p244 in neo_snapshot; no re-write needed"
+    },
+    {
+      "action": "noop",
+      "entity": "SubjectDomain:roman_republic → FAST fst01204885",
+      "rationale": "FAST fst01204885 w/ chrono_facet 'Roman Republic--510-30 B.C.' already in neo_snapshot.fast; no duplicate tether"
+    },
+    {
+      "action": "noop",
+      "entity": "SubjectDomain:roman_republic → LCC DG221-269",
+      "rationale": "LCC classes DG221-239 (Early), DG241-259 (Middle), DG261-269 (Late) already soft-aligned in neo_snapshot.lcc"
+    },
+    {
+      "action": "noop",
+      "entity": "SubjectDomain:roman_republic PeriodO p06c6g3p3g3",
+      "rationale": "Domain-level PeriodO id p06c6g3p3g3 already stamped in neo_snapshot.periodo_id; pack bounds (-509 to -27) already set"
+    },
+    {
+      "action": "noop",
+      "entity": "Period:Q2839628 (Early Roman Republic) PeriodO p06c6g36mkq",
+      "rationale": "PeriodO id p06c6g36mkq already on Q2839628 in neo_snapshot.periods; authority_status periodo_enriched_soft; no duplicate enrich"
+    },
+    {
+      "action": "noop",
+      "entity": "Period:Q6106068 (Middle Roman Republic) PeriodO p06c6g3hb99",
+      "rationale": "PeriodO id p06c6g3hb99 already on Q6106068 in neo_snapshot.periods; soft multi-variant 265-30 already applied"
+    },
+    {
+      "action": "noop",
+      "entity": "Period:Q2815472 (Late Roman Republic) PeriodO p0jrrjbchh2",
+      "rationale": "PeriodO id p0jrrjbchh2 already on Q2815472 in neo_snapshot.periods; spatial Q38 (Italy) soft enrichment already done"
+    },
+    {
+      "action": "noop",
+      "entity": "Place:Q220 (Rome) Pleiades 423025",
+      "rationale": "Pleiades id 423025 + coords (41.89, 12.49) already on Q220 in neo_snapshot.places via CAPITAL; no re-stamp needed"
+    }
+  ]
+}

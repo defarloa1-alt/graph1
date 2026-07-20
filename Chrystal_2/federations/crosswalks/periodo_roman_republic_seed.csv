@@ -1,0 +1,5 @@
+periodo_id,label,start_year,end_year,spatial_qid,spatial_coverage_description,authority_id,uri,domain_id,pack_qid,role,confidence,soft,note,source_path
+p06c6g3p3g3,"Republic, 510-30 B.C",-509,-29,Q17167,Rome,p06c6g3,https://n2t.net/ark:/99152/p06c6g3p3g3,roman_republic,Q17167,chrono_full_republic_lcsh,high,false,LCSH-derived full Republic 510-30; aligns with Domain LCSH chrono strand,CSV/periodo_roman_republic_clean2.csv
+p06c6g3hb99,"Republic, 265-30 B.C",-264,-29,Q17167,Rome,p06c6g3,https://n2t.net/ark:/99152/p06c6g3hb99,roman_republic,Q17167,chrono_middle_late_lcsh,high,true,LCSH 265-30 variant; multi-aboutness sibling of 510-30 — keep both,CSV/periodo_roman_republic_clean2.csv
+p06c6g36mkq,"Republic, 510-265 B.C",-509,-264,Q17167,Rome,p06c6g3,https://n2t.net/ark:/99152/p06c6g36mkq,roman_republic,Q17167,chrono_early_lcsh,high,true,LCSH 510-265 Early Republic slice,CSV/periodo_roman_republic_clean2.csv
+p0jrrjbchh2,Late Roman Republic,-145,-26,Q38,Rome,p0jrrjb,https://n2t.net/ark:/99152/p0jrrjbchh2,roman_republic,Q17167,chrono_late_roman_republic,medium,true,Late Roman Republic; spatial Q38 in dump — soft enrichment only,CSV/periodo_roman_republic_clean2.csv

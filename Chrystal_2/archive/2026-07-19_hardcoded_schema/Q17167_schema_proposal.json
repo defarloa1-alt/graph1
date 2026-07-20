@@ -1,0 +1,1128 @@
+{
+  "_meta": {
+    "rule": "Never pass PID or QID without label",
+    "generated_at": "2026-07-19T11:59:58Z",
+    "contract": "chrystal_2/harvest/PACK_LIBRARY_CONTRACT.md",
+    "mode": "deterministic_first_pass",
+    "writes_neo": false,
+    "seed_qid": "Q17167",
+    "pack_library": true
+  },
+  "seed": {
+    "qid": "Q17167",
+    "label": "Roman Republic",
+    "description": "period of ancient Roman civilization (509 BC–27 BC)"
+  },
+  "decision_counts": {
+    "first_class_node": 12,
+    "subject_domain_property": 10,
+    "ignore": 9,
+    "first_class_relationship": 7,
+    "identity_tether": 24,
+    "defer": 1
+  },
+  "neighborhood_notes": {
+    "forward_links": 38,
+    "backlinks_accepted": 150,
+    "external_ids": 29,
+    "next": "Review first_class_* rows; mint nodes only for approved relationship_types in SYS_RelationshipType. identity_tether → Librarian + FederationCards. Do not expand backlink full statements in this pass."
+  },
+  "proposals": [
+    {
+      "pid": "P30",
+      "property_label": "continent",
+      "datatype": "wikibase-item",
+      "statement_count": 3,
+      "decision": "first_class_node",
+      "node_label": "Place",
+      "relationship_type": "LOCATED_IN",
+      "note": "continent",
+      "samples": [
+        {
+          "value": "Q46",
+          "value_label": "Europe",
+          "rank": "preferred"
+        },
+        {
+          "value": "Q48",
+          "value_label": "Asia",
+          "rank": "normal"
+        },
+        {
+          "value": "Q15",
+          "value_label": "Africa",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P31",
+      "property_label": "instance of",
+      "datatype": "wikibase-item",
+      "statement_count": 4,
+      "decision": "subject_domain_property",
+      "property": "wd_instance_of",
+      "note": "Labels on SubjectDomain; do not mint Period for pack bounds",
+      "samples": [
+        {
+          "value": "Q11514315",
+          "value_label": "historical period",
+          "rank": "preferred"
+        },
+        {
+          "value": "Q1307214",
+          "value_label": "form of government",
+          "rank": "normal"
+        },
+        {
+          "value": "Q48349",
+          "value_label": "empire",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P36",
+      "property_label": "capital",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_node",
+      "node_label": "Place",
+      "relationship_type": "HAS_CAPITAL",
+      "note": "capital",
+      "samples": [
+        {
+          "value": "Q220",
+          "value_label": "Rome",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P37",
+      "property_label": "official language",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_node",
+      "node_label": "Language",
+      "note": "official language — defer node type if unset",
+      "samples": [
+        {
+          "value": "Q397",
+          "value_label": "Latin",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P38",
+      "property_label": "currency",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_node",
+      "node_label": "Currency",
+      "note": "defer if Currency not in ship set",
+      "samples": [
+        {
+          "value": "Q952064",
+          "value_label": "Roman currency",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P41",
+      "property_label": "flag image",
+      "datatype": "commonsMedia",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "flag image",
+      "samples": [
+        {
+          "value": null,
+          "value_label": null,
+          "rank": "deprecated"
+        }
+      ]
+    },
+    {
+      "pid": "P94",
+      "property_label": "coat of arms image",
+      "datatype": "commonsMedia",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "coat of arms",
+      "samples": [
+        {
+          "value": null,
+          "value_label": null,
+          "rank": "deprecated"
+        }
+      ]
+    },
+    {
+      "pid": "P122",
+      "property_label": "basic form of government",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "property": "form_of_government_label",
+      "samples": [
+        {
+          "value": "Q666680",
+          "value_label": "aristocratic republic",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P140",
+      "property_label": "religion or worldview",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_relationship",
+      "relationship_type": "HAS_RELIGION",
+      "target_hint": "Religion",
+      "samples": [
+        {
+          "value": "Q337547",
+          "value_label": "ancient Roman religion",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P155",
+      "property_label": "follows",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_relationship",
+      "relationship_type": "FOLLOWS",
+      "target_hint": "entity",
+      "samples": [
+        {
+          "value": "Q201038",
+          "value_label": "Roman Kingdom",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P156",
+      "property_label": "followed by",
+      "datatype": "wikibase-item",
+      "statement_count": 2,
+      "decision": "first_class_relationship",
+      "relationship_type": "FOLLOWED_BY",
+      "target_hint": "entity",
+      "samples": [
+        {
+          "value": "Q2277",
+          "value_label": "Roman Empire",
+          "rank": "normal"
+        },
+        {
+          "value": "Q206414",
+          "value_label": "Principate",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P194",
+      "property_label": "legislative body",
+      "datatype": "wikibase-item",
+      "statement_count": 2,
+      "decision": "first_class_node",
+      "node_label": "Institution",
+      "relationship_type": "HAS_LEGISLATIVE_BODY",
+      "note": "legislative body",
+      "samples": [
+        {
+          "value": "Q130614",
+          "value_label": "Roman Senate",
+          "rank": "normal"
+        },
+        {
+          "value": "Q1114821",
+          "value_label": "citizens' assemblies of the Roman Republic",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P242",
+      "property_label": "locator map image",
+      "datatype": "commonsMedia",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "locator map",
+      "samples": [
+        {
+          "value": "Republica Romana.svg",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P244",
+      "property_label": "Library of Congress Authorities ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "federation": "lcsh_fast_lcc",
+      "note": "LC Authorities / LCSH for Librarian",
+      "samples": [
+        {
+          "value": "sh85115114",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P268",
+      "property_label": "Bibliothèque nationale de France ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "11951115f",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P361",
+      "property_label": "part of",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_relationship",
+      "relationship_type": "PART_OF",
+      "target_hint": "Place_or_polity",
+      "note": "part of Ancient Rome",
+      "samples": [
+        {
+          "value": "Q1747689",
+          "value_label": "Ancient Rome",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P373",
+      "property_label": "Commons category",
+      "datatype": "string",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "Commons category",
+      "samples": [
+        {
+          "value": "Roman Republic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P527",
+      "property_label": "has part(s)",
+      "datatype": "wikibase-item",
+      "statement_count": 3,
+      "decision": "first_class_node",
+      "node_label": "Entity",
+      "relationship_type": "HAS_PART",
+      "note": "has part(s)",
+      "samples": [
+        {
+          "value": "Q2839628",
+          "value_label": "Early Roman Republic",
+          "rank": "normal"
+        },
+        {
+          "value": "Q6106068",
+          "value_label": "Middle Roman Republic",
+          "rank": "normal"
+        },
+        {
+          "value": "Q2815472",
+          "value_label": "Late Roman Republic",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P571",
+      "property_label": "inception",
+      "datatype": "time",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "property": "start_year",
+      "note": "Inception → start_year",
+      "samples": [
+        {
+          "value": {
+            "time": "-0509-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          },
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P576",
+      "property_label": "dissolved, abolished or demolished date",
+      "datatype": "time",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "property": "end_year",
+      "note": "Dissolved → end_year",
+      "samples": [
+        {
+          "value": {
+            "time": "-0027-01-16T00:00:00Z",
+            "precision": 11,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          },
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P580",
+      "property_label": "start time",
+      "datatype": "time",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "property": "start_year",
+      "note": "Prefer P571 when both present",
+      "samples": [
+        {
+          "value": {
+            "time": "-0509-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          },
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P582",
+      "property_label": "end time",
+      "datatype": "time",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "property": "end_year",
+      "note": "Prefer P576 when both present",
+      "samples": [
+        {
+          "value": {
+            "time": "-0027-00-00T00:00:00Z",
+            "precision": 9,
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+          },
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P625",
+      "property_label": "coordinate location",
+      "datatype": "globe-coordinate",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "property": "coordinate_location",
+      "note": "or geo Place later",
+      "samples": [
+        {
+          "value": {
+            "latitude": 41.9,
+            "longitude": 12.5,
+            "precision": 12.069076298334622,
+            "globe": "http://www.wikidata.org/entity/Q2"
+          },
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P646",
+      "property_label": "Freebase ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "Freebase — low priority",
+      "samples": [
+        {
+          "value": "/m/06frc",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P793",
+      "property_label": "significant event",
+      "datatype": "wikibase-item",
+      "statement_count": 7,
+      "decision": "first_class_node",
+      "node_label": "Event",
+      "relationship_type": "SIGNIFICANT_EVENT",
+      "samples": [
+        {
+          "value": "Q124988",
+          "value_label": "Punic Wars",
+          "rank": "normal"
+        },
+        {
+          "value": "Q3778726",
+          "value_label": "Sertorian War",
+          "rank": "normal"
+        },
+        {
+          "value": "Q75813",
+          "value_label": "Macedonian Wars",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P910",
+      "property_label": "topic's main category",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "topic main category",
+      "samples": [
+        {
+          "value": "Q6944405",
+          "value_label": "Category:Roman Republic",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1245",
+      "property_label": "OmegaWiki Defined Meaning",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "913399",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1282",
+      "property_label": "OpenStreetMap tag",
+      "datatype": "string",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "note": "default for datatype=string",
+      "samples": [
+        {
+          "value": "historic:period=roman_republic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1344",
+      "property_label": "participant in",
+      "datatype": "wikibase-item",
+      "statement_count": 2,
+      "decision": "first_class_node",
+      "node_label": "Event",
+      "relationship_type": "PARTICIPATED_IN",
+      "samples": [
+        {
+          "value": "Q16640436",
+          "value_label": "Roman-Etruscan War",
+          "rank": "normal"
+        },
+        {
+          "value": "Q3778702",
+          "value_label": "Pompey's Jewish War",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1365",
+      "property_label": "replaces",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_relationship",
+      "relationship_type": "FOLLOWS",
+      "target_hint": "polity",
+      "note": "replaces",
+      "samples": [
+        {
+          "value": "Q201038",
+          "value_label": "Roman Kingdom",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1366",
+      "property_label": "replaced by",
+      "datatype": "wikibase-item",
+      "statement_count": 2,
+      "decision": "first_class_relationship",
+      "relationship_type": "FOLLOWED_BY",
+      "target_hint": "polity",
+      "note": "replaced by",
+      "samples": [
+        {
+          "value": "Q2277",
+          "value_label": "Roman Empire",
+          "rank": "normal"
+        },
+        {
+          "value": "Q206414",
+          "value_label": "Principate",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1417",
+      "property_label": "Encyclopædia Britannica Online ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "Britannica mirror",
+      "samples": [
+        {
+          "value": "place/Roman-Republic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1448",
+      "property_label": "official name",
+      "datatype": "monolingualtext",
+      "statement_count": 1,
+      "decision": "subject_domain_property",
+      "note": "default for datatype=monolingualtext",
+      "samples": [
+        {
+          "value": {
+            "text": "Res publica Romana",
+            "language": "la"
+          },
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1617",
+      "property_label": "BBC Things ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "59b8efc7-928f-480b-aa65-17f685d42638",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1792",
+      "property_label": "category of associated people",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_node",
+      "note": "default for datatype=wikibase-item",
+      "samples": [
+        {
+          "value": "Q13285410",
+          "value_label": "Category:People from the Roman Republic",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1889",
+      "property_label": "different from",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_node",
+      "note": "default for datatype=wikibase-item",
+      "samples": [
+        {
+          "value": "Q346629",
+          "value_label": "Roman Republic",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P1900",
+      "property_label": "EAGLE id",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "dates/lod/69",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P2046",
+      "property_label": "area",
+      "datatype": "quantity",
+      "statement_count": 2,
+      "decision": "subject_domain_property",
+      "property": "area",
+      "samples": [
+        {
+          "value": {
+            "amount": "+10000",
+            "unit": "http://www.wikidata.org/entity/Q712226",
+            "lowerBound": null,
+            "upperBound": null
+          },
+          "value_label": null,
+          "rank": "normal"
+        },
+        {
+          "value": {
+            "amount": "+1950000",
+            "unit": "http://www.wikidata.org/entity/Q712226",
+            "lowerBound": null,
+            "upperBound": null
+          },
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P2348",
+      "property_label": "time period",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "defer",
+      "note": "time period — pack already is the period frame",
+      "samples": [
+        {
+          "value": "Q486761",
+          "value_label": "classical antiquity",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P2581",
+      "property_label": "BabelNet ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "00068190n",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P2936",
+      "property_label": "language used",
+      "datatype": "wikibase-item",
+      "statement_count": 2,
+      "decision": "first_class_node",
+      "node_label": "Language",
+      "note": "language used",
+      "samples": [
+        {
+          "value": "Q397",
+          "value_label": "Latin",
+          "rank": "normal"
+        },
+        {
+          "value": "Q35497",
+          "value_label": "Ancient Greek",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P2950",
+      "property_label": "Nomisma ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "roman_republic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P3075",
+      "property_label": "official religion",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_relationship",
+      "relationship_type": "HAS_RELIGION",
+      "target_hint": "Religion",
+      "samples": [
+        {
+          "value": "Q337547",
+          "value_label": "ancient Roman religion",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P3219",
+      "property_label": "Encyclopædia Universalis ID",
+      "datatype": "external-id",
+      "statement_count": 2,
+      "decision": "ignore",
+      "note": "Universalis mirror",
+      "samples": [
+        {
+          "value": "rome-et-empire-romain-la-republique",
+          "value_label": null,
+          "rank": "normal"
+        },
+        {
+          "value": "instauration-de-la-republique-romaine",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P3222",
+      "property_label": "NE.se ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "romerska-republiken",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P3417",
+      "property_label": "Quora topic ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "Quora",
+      "samples": [
+        {
+          "value": "Roman-Republic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P3553",
+      "property_label": "Zhihu topic ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "20018539",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P4212",
+      "property_label": "PACTOLS thesaurus ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "pcrtoNSSGgIkbX",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P4839",
+      "property_label": "Wolfram Language entity code",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "Entity[\"HistoricalCountry\", \"RomanRepublic\"]",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P5008",
+      "property_label": "on focus list of Wikimedia project",
+      "datatype": "wikibase-item",
+      "statement_count": 1,
+      "decision": "first_class_node",
+      "note": "default for datatype=wikibase-item",
+      "samples": [
+        {
+          "value": "Q6173448",
+          "value_label": "Wikipedia:Vital articles/Level/4",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P5063",
+      "property_label": "Interlingual Index ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "i83100",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P6366",
+      "property_label": "Microsoft Academic ID (discontinued)",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "2775878175",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P6839",
+      "property_label": "TV Tropes ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "UsefulNotes/TheRomanRepublic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P8168",
+      "property_label": "FactGrid item ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "Q995825",
+          "value_label": "Monasterevin Abbey",
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P8189",
+      "property_label": "J9U entity ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "987007543885005171",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P8424",
+      "property_label": "OpenHistoricalMap relation ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "2849156",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P8814",
+      "property_label": "WordNet 3.1 Synset ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "08817810-n",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P8895",
+      "property_label": "All the Tropes article ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "The_Roman_Republic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P9000",
+      "property_label": "World History Encyclopedia ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "ignore",
+      "note": "World History Encyclopedia",
+      "samples": [
+        {
+          "value": "Roman_Republic",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P9957",
+      "property_label": "museum-digital place ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "93573",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P11835",
+      "property_label": "Numista ruling authority ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "6001",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P12800",
+      "property_label": "Vikidia article ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "fr:République_romaine",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    },
+    {
+      "pid": "P13591",
+      "property_label": "‎Yale LUX ID",
+      "datatype": "external-id",
+      "statement_count": 1,
+      "decision": "identity_tether",
+      "note": "default for datatype=external-id",
+      "samples": [
+        {
+          "value": "place/c82952da-e51c-474c-91ff-98de477d4fa1",
+          "value_label": null,
+          "rank": "normal"
+        }
+      ]
+    }
+  ]
+}

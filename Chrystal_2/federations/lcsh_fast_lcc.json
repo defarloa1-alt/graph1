@@ -1,0 +1,64 @@
+{
+  "source_id": "lcsh_fast_lcc",
+  "label": "LCSH / FAST / LCC",
+  "scope": "global",
+  "access_pattern": "rest+linked_data",
+  "endpoint": "https://id.loc.gov/",
+  "auth": "none",
+  "license": "LoC / OCLC terms",
+  "status": "operational",
+  "entity_types": ["LCSH_Heading", "FAST_Heading", "LCC_Class"],
+  "maps_to_chrystallum": ["LCSH_Heading", "FAST_Heading", "LCC_Class"],
+  "id_properties": [
+    { "name": "lcsh_id", "wikidata_pid": "P244", "note": "also LCNAF when sh vs n" },
+    { "name": "fast_id", "wikidata_pid": "P2163" },
+    { "name": "lcc", "wikidata_pid": "P1149" }
+  ],
+  "query_capabilities": [
+    "heading_by_id",
+    "broader_narrower",
+    "lcc_schedule_lookup"
+  ],
+  "tool_names": [
+    "loc_fetch_heading",
+    "fast_suggest",
+    "librarian_resolve_aboutness",
+    "lcc_lookup_class"
+  ],
+  "relationship_vocabulary": [
+    { "native": "aboutness_fast", "registry_type": "HAS_FAST_AUTHORITY", "target": "FAST_Heading" },
+    { "native": "aboutness_lcsh", "registry_type": "HAS_LCSH_AUTHORITY", "target": "LCSH_Heading" },
+    { "native": "aligned_lcc", "registry_type": "ALIGNED_WITH_LCC", "target": "LCC_Class" }
+  ],
+  "data_model": {
+    "entities": [
+      {
+        "native_type": "LCSH_Heading",
+        "maps_to": "LCSH_Heading",
+        "keys": [{ "name": "lcsh_id" }],
+        "fields": [
+          { "name": "heading", "datatype": "string", "required": true },
+          { "name": "uri", "datatype": "uri" }
+        ]
+      },
+      {
+        "native_type": "FAST_Heading",
+        "maps_to": "FAST_Heading",
+        "keys": [{ "name": "fast_id" }],
+        "fields": [
+          { "name": "heading", "datatype": "string", "required": true }
+        ]
+      },
+      {
+        "native_type": "LCC_Class",
+        "maps_to": "LCC_Class",
+        "keys": [{ "name": "class_number" }],
+        "fields": [
+          { "name": "label", "datatype": "string" },
+          { "name": "uri", "datatype": "uri" }
+        ]
+      }
+    ]
+  },
+  "notes": "Librarian primary federation for Domain biblio placement. Aboutness ≠ Person identity helix."
+}

@@ -1,0 +1,52 @@
+{
+  "source_id": "periodo",
+  "label": "PeriodO",
+  "scope": "global",
+  "access_pattern": "dump+local_csv",
+  "endpoint": "https://n2t.net/ark:/99152/p0dataset.json",
+  "dump_uri": "Temporal/periodo-dataset.csv",
+  "auth": "none",
+  "license": "CC0",
+  "status": "operational",
+  "entity_types": ["Period"],
+  "maps_to_chrystallum": ["Period"],
+  "id_properties": [
+    { "name": "periodo_id", "note": "native PeriodO id e.g. p06c6g3p3g3" }
+  ],
+  "query_capabilities": [
+    "period_by_id",
+    "periods_by_spatial_qid",
+    "periods_overlapping_span"
+  ],
+  "tool_names": [
+    "periodo_resolve_id",
+    "periodo_lookup_seed",
+    "periodo_refresh_dump"
+  ],
+  "relationship_vocabulary": [
+    { "native": "occurs_during", "registry_type": "OCCURS_DURING", "target": "Period" },
+    { "native": "in_period", "registry_type": "IN_PERIOD", "target": "Period" },
+    { "native": "part_of_period", "registry_type": "PART_OF", "target": "Period" }
+  ],
+  "data_model": {
+    "entities": [
+      {
+        "native_type": "PeriodDefinition",
+        "maps_to": "Period",
+        "keys": [{ "name": "periodo_id" }],
+        "fields": [
+          { "name": "label", "datatype": "string", "required": true },
+          { "name": "start_year", "datatype": "integer", "note": "proleptic astronomical; negative BCE" },
+          { "name": "end_year", "datatype": "integer" },
+          { "name": "spatial_qid", "datatype": "string", "required": false },
+          { "name": "authority_id", "datatype": "string", "note": "PeriodO authority collection id" },
+          { "name": "uri", "datatype": "uri" }
+        ]
+      }
+    ]
+  },
+  "local_seeds": [
+    "chrystal_2/federations/crosswalks/periodo_roman_republic_seed.csv"
+  ],
+  "notes": "Domain-owned temporal authority at apply. Local CSV/dump first; HTTP only to refresh. Pack bounds stay on SubjectDomain — PeriodO enriches/validates named Period nominations (soft multi-variant OK: 510-30 vs 265-30). Do not bulk-load RR survey CSV (time-overlap noise)."
+}

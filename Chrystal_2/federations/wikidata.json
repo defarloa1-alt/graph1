@@ -1,0 +1,54 @@
+{
+  "source_id": "wikidata",
+  "label": "Wikidata",
+  "scope": "global",
+  "access_pattern": "rest+sparql",
+  "endpoint": "https://www.wikidata.org/w/api.php",
+  "sparql_endpoint": "https://query.wikidata.org/sparql",
+  "auth": "none",
+  "license": "CC0",
+  "status": "operational",
+  "entity_types": ["Item", "Property", "Statement"],
+  "maps_to_chrystallum": ["Person", "Place", "Period", "Event", "Position", "SubjectDomain"],
+  "id_properties": [],
+  "query_capabilities": [
+    "entity_by_qid",
+    "statements_full",
+    "backlinks",
+    "forward_links",
+    "labels_batch"
+  ],
+  "tool_names": [
+    "wikidata_fetch_entity",
+    "wikidata_fetch_statements",
+    "wikidata_fetch_backlinks",
+    "wikidata_resolve_labels"
+  ],
+  "not_supported": ["write_to_wikidata"],
+  "data_model": {
+    "entities": [
+      {
+        "native_type": "Item",
+        "maps_to": "depends_on_P31",
+        "keys": [{ "name": "qid", "pattern": "Q[0-9]+" }],
+        "fields": [
+          { "name": "label", "datatype": "string", "required": true },
+          { "name": "description", "datatype": "string" },
+          { "name": "claims", "datatype": "map<pid, statement[]>", "required": true }
+        ],
+        "statement": {
+          "fields": [
+            { "name": "property", "datatype": "pid", "required": true, "requires_label": true },
+            { "name": "property_label", "datatype": "string", "required": true },
+            { "name": "value", "datatype": "any", "required": false },
+            { "name": "value_label", "datatype": "string", "when": "value is QID" },
+            { "name": "qualifiers", "datatype": "map" },
+            { "name": "references", "datatype": "list" },
+            { "name": "rank", "datatype": "enum", "values": ["preferred", "normal", "deprecated"] }
+          ]
+        }
+      }
+    ]
+  },
+  "notes": "Federation hub for discovery/crosswalks — not a truth authority. Candidates only; Domain apply validates and may enrich or replace WD values via other federations. No PID/QID without label. Pack library = statements + external_ids + forward_links + backlinks."
+}

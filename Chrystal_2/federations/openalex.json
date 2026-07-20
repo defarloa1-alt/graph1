@@ -1,0 +1,40 @@
+{
+  "source_id": "openalex",
+  "label": "OpenAlex",
+  "scope": "global",
+  "access_pattern": "rest",
+  "endpoint": "https://api.openalex.org",
+  "auth": "none",
+  "license": "CC0",
+  "status": "operational",
+  "entity_types": ["Work", "Author", "Concept", "Source"],
+  "maps_to_chrystallum": ["CorpusWork"],
+  "id_properties": [
+    { "name": "openalex_id", "pattern": "https://openalex.org/W*" },
+    { "name": "doi", "wikidata_pid": "P356" }
+  ],
+  "query_capabilities": [
+    "search_works",
+    "work_by_id",
+    "works_by_concept",
+    "cited_by"
+  ],
+  "tool_names": ["openalex_search_works", "openalex_get_work"],
+  "data_model": {
+    "entities": [
+      {
+        "native_type": "Work",
+        "maps_to": "CorpusWork",
+        "keys": [{ "name": "id" }, { "name": "doi" }],
+        "fields": [
+          { "name": "title", "datatype": "string", "required": true },
+          { "name": "publication_year", "datatype": "integer" },
+          { "name": "open_access", "datatype": "object" },
+          { "name": "cited_by_count", "datatype": "integer" },
+          { "name": "topics", "datatype": "list" }
+        ]
+      }
+    ]
+  },
+  "notes": "Secondary scholarship / global-discipline grounding. Pack filters applied by Domain or SFA tools."
+}

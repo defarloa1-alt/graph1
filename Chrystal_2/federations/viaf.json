@@ -1,0 +1,32 @@
+{
+  "source_id": "viaf",
+  "label": "VIAF",
+  "scope": "global",
+  "access_pattern": "rest",
+  "endpoint": "https://viaf.org/viaf/",
+  "auth": "none",
+  "license": "OCLC / VIAF terms",
+  "status": "operational",
+  "entity_types": ["AuthorityCluster"],
+  "maps_to_chrystallum": ["Person"],
+  "id_properties": [{ "name": "viaf_id", "wikidata_pid": "P214" }],
+  "query_capabilities": ["cluster_by_viaf_id", "same_as_national_files"],
+  "tool_names": ["viaf_fetch_cluster", "viaf_link_same_as"],
+  "relationship_vocabulary": [
+    { "native": "sameAs", "registry_type": "SAME_AS", "target": "AuthorityNode" }
+  ],
+  "data_model": {
+    "entities": [
+      {
+        "native_type": "AuthorityCluster",
+        "maps_to": "VIAF_node_or_Person.HAS_VIAF",
+        "keys": [{ "name": "viaf_id", "wikidata_pid": "P214" }],
+        "fields": [
+          { "name": "mainHeading", "datatype": "string" },
+          { "name": "nationalIds", "datatype": "list<{scheme,id}>" }
+        ]
+      }
+    ]
+  },
+  "notes": "Identity helix corroboration; not aboutness. Prefer LCNAF when present for LoC national file."
+}

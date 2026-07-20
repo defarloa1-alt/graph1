@@ -1,0 +1,51 @@
+{
+  "source_id": "pleiades",
+  "label": "Pleiades",
+  "scope": "global",
+  "access_pattern": "dump+local_csv",
+  "endpoint": "https://pleiades.stoa.org/",
+  "dump_uri": "Geographic/pleiades_places.csv",
+  "auth": "none",
+  "license": "CC-BY",
+  "status": "operational",
+  "entity_types": ["Place"],
+  "maps_to_chrystallum": ["Place"],
+  "id_properties": [
+    { "name": "pleiades_id", "wikidata_pid": "P1584", "note": "e.g. 423025" }
+  ],
+  "query_capabilities": [
+    "place_by_id",
+    "place_by_wd_qid",
+    "coords_by_id"
+  ],
+  "tool_names": [
+    "pleiades_resolve_id",
+    "pleiades_resolve_qid",
+    "pleiades_lookup_seed"
+  ],
+  "relationship_vocabulary": [
+    { "native": "capital", "registry_type": "CAPITAL", "target": "Place" },
+    { "native": "located_in", "registry_type": "LOCATED_IN", "target": "Place" }
+  ],
+  "data_model": {
+    "entities": [
+      {
+        "native_type": "PleiadesPlace",
+        "maps_to": "Place",
+        "keys": [{ "name": "pleiades_id" }],
+        "fields": [
+          { "name": "label", "datatype": "string", "required": true },
+          { "name": "lat", "datatype": "float" },
+          { "name": "long", "datatype": "float" },
+          { "name": "place_type", "datatype": "string" },
+          { "name": "uri", "datatype": "uri" },
+          { "name": "wd_qid", "datatype": "string", "required": false }
+        ]
+      }
+    ]
+  },
+  "local_seeds": [
+    "chrystal_2/federations/crosswalks/pleiades_roman_republic_seed.csv"
+  ],
+  "notes": "Domain-owned geo authority enrich at apply. Local dump/seed first; HTTP only to refresh. WD Place shells stay identity; Pleiades cites coords/type (soft). Do not bulk-load CSV/pleiades_roman_republic.csv."
+}
