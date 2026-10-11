@@ -162,14 +162,26 @@ accepted, rejected: terminal
 
 Acceptance requires passing through `validating`. Repeating the current status
 is an idempotent no-op that preserves the original `decidedAt`, `decidedBy`,
-and `decisionBasis`. Accepting sets the Assertion to `accepted` (with
-`acceptedAt`) and requires it to be `proposed`. Rejecting sets a `proposed`
-Assertion to `rejected` but leaves an Assertion that another Proposal already
-accepted untouched.
+and `decisionBasis`.
 
-An `addEvidence` Proposal offers new evidence for an existing Assertion. Its
-evidence waits on `PROPOSES_EVIDENCE` and is attached as `SUPPORTED_BY` only on
-acceptance; its decisions never change the Assertion's status.
+Every Proposal carries its evidence as pending (`PROPOSES_EVIDENCE`), which is
+attached to the Assertion as `SUPPORTED_BY` only when the Proposal is
+accepted. Evidence and claim are decided separately:
+
+- **accept**: the evidence is attached; a `proposed` Assertion becomes
+  `accepted` (with `acceptedAt`).
+- **reject** (default): the Proposal's evidence is rejected and the claim
+  stays open for better evidence.
+- **reject the claim** (`rejectClaim`): the Assertion, which must still be
+  `proposed`, becomes `rejected`. An accepted claim cannot be rejected through
+  a Proposal.
+- **reopen**: an explicit, recorded curator act returns a `rejected`
+  Assertion to `proposed` (`reopenedAt`, `reopenedBy`, `reopenBasis`), so new
+  evidence can be proposed for it.
+
+An `addEvidence` Proposal offers new evidence for an existing Assertion.
+Accepting it for a still-`proposed` Assertion also accepts the claim: a claim
+whose first evidence was rejected can be carried by stronger evidence.
 
 A stored Proposal also records its provenance: `createdBy`, `rationale`,
 `draftSchemaVersion`, `predicateRegistryVersion`, `promptVersion`, and

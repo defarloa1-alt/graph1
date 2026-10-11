@@ -75,7 +75,7 @@ class Neo4jReader:
             MATCH (assertion:Assertion {id: $id})
             OPTIONAL MATCH (assertion)-[:SUPPORTED_BY]->(observation:SourceObservation)
             WITH assertion, collect(observation.id) AS observationIds
-            OPTIONAL MATCH (open:Proposal {operation: "addEvidence"})-[:PROPOSES]->(assertion)
+            OPTIONAL MATCH (open:Proposal)-[:PROPOSES]->(assertion)
             WHERE open.status IN ["submitted", "validating", "deferred"]
             OPTIONAL MATCH (open)-[:PROPOSES_EVIDENCE]->(pending:SourceObservation)
             RETURN assertion {.id, .status, .predicate} AS assertion, observationIds,
@@ -106,10 +106,11 @@ def submit(
 ) -> SubmissionResult:
     """Validate a draft and store what it validly proposes.
 
-    `valid` stores a proposed Assertion with its evidence and a submitted
-    `create` Proposal. `adds_evidence` stores a submitted `addEvidence`
-    Proposal whose evidence waits until acceptance. Anything else stores
-    nothing. Re-submitting an already stored proposal writes nothing.
+    `valid` stores a proposed Assertion and a submitted `create` Proposal;
+    `adds_evidence` stores a submitted `addEvidence` Proposal. Either way the
+    evidence waits on the Proposal and is attached to the Assertion only on
+    acceptance. Anything else stores nothing. Re-submitting an already stored
+    proposal writes nothing.
     """
     result = validate(draft, Neo4jReader(tx), registry)
     if result.outcome not in (Outcome.VALID, Outcome.ADDS_EVIDENCE):
@@ -158,12 +159,6 @@ def submit(
         "subjectId": result.draft.subject_id,
         "objectId": result.draft.object_id,
     })
-    for observation_id in result.draft.observation_ids:
-        run_write(tx, operations, "link_support", {
-            "assertionId": result.assertion_id,
-            "observationId": observation_id,
-            "quotation": quotations.get(observation_id),
-        })
     run_write(tx, operations, "upsert_proposal", {
         "id": result.proposal_id,
         "assertionId": result.assertion_id,
@@ -172,6 +167,12 @@ def submit(
         "operation": "create",
         **provenance,
     })
+    for observation_id in result.draft.observation_ids:
+        run_write(tx, operations, "link_pending_evidence", {
+            "proposalId": result.proposal_id,
+            "observationId": observation_id,
+            "quotation": quotations.get(observation_id),
+        })
     return SubmissionResult(result, stored=True)
 
 
@@ -195,7 +196,7 @@ def list_proposals(tx: Any, status: str | None = None) -> list[dict[str, Any]]:
         RETURN proposal.id AS id, proposal.status AS status, proposal.operation AS operation,
                assertion.label AS assertion, proposal.createdBy AS createdBy,
                proposal.rationale AS rationale, proposal.ambiguities AS ambiguities,
-               CASE WHEN proposal.operation = "addEvidence" THEN pendingEvidence ELSE support END AS evidence
+               CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
         ORDER BY id
         """,
         status=status,
@@ -213,7 +214,8 @@ def accept(
     operations: dict[str, str],
 ) -> dict[str, Any]:
     """Re-validate a Proposal's evidence, move it through validating to accepted,
-    and for an addEvidence Proposal attach the evidence."""
+    and attach its evidence. Accepting evidence for a proposed Assertion
+    accepts the Assertion."""
     stored = _stored_proposal(tx, proposal_id)
     if stored["status"] not in ("submitted", "validating", "deferred"):
         raise ReviewError(f"{proposal_id} is {stored['status']}; only open proposals can be accepted")
@@ -236,12 +238,13 @@ def accept(
     result = validate(draft, Neo4jReader(tx), registry, existing_assertion_ok=True)
     if result.outcome is not Outcome.VALID:
         raise ReviewError(f"{proposal_id} failed re-validation ({result.outcome.value}): {list(result.reasons)}")
-    decision = {"decidedAt": decided_at, "decidedBy": decided_by, "decisionBasis": decision_basis}
+    if stored["assertionStatus"] not in ("proposed", "accepted"):
+        raise ReviewError(f"its claim is {stored['assertionStatus']}; reopen the claim first")
+    decision = {"decidedAt": decided_at, "decidedBy": decided_by, "decisionBasis": decision_basis, "rejectClaim": False}
     if stored["status"] != "validating":
         run_write(tx, operations, "decide_proposal", {"proposalId": proposal_id, "proposalStatus": "validating", **decision})
     decided = run_write(tx, operations, "decide_proposal", {"proposalId": proposal_id, "proposalStatus": "accepted", **decision})[0]
-    if stored["operation"] == "addEvidence":
-        run_write(tx, operations, "apply_accepted_evidence", {"proposalId": proposal_id})
+    run_write(tx, operations, "apply_accepted_evidence", {"proposalId": proposal_id})
     return decided
 
 
@@ -253,22 +256,50 @@ def reject(
     decision_basis: str,
     decided_at: str,
     operations: dict[str, str],
+    reject_claim: bool = False,
 ) -> dict[str, Any]:
+    """Reject a Proposal's evidence, leaving its claim open; with
+    `reject_claim`, also reject the claim, which must still be proposed."""
     stored = _stored_proposal(tx, proposal_id)
     if stored["status"] not in ("submitted", "validating", "deferred", "rejected"):
         raise ReviewError(f"{proposal_id} is {stored['status']}; it cannot be rejected")
+    if reject_claim and stored["status"] != "rejected" and stored["assertionStatus"] != "proposed":
+        raise ReviewError(f"its claim is {stored['assertionStatus']}; only a proposed claim can be rejected")
     return run_write(tx, operations, "decide_proposal", {
         "proposalId": proposal_id,
         "proposalStatus": "rejected",
         "decidedAt": decided_at,
         "decidedBy": decided_by,
         "decisionBasis": decision_basis,
+        "rejectClaim": reject_claim,
     })[0]
 
 
+def reopen(
+    tx: Any,
+    assertion_id: str,
+    *,
+    decided_by: str,
+    decision_basis: str,
+    decided_at: str,
+    operations: dict[str, str],
+) -> dict[str, Any]:
+    """Reopen a rejected claim so new evidence can be proposed for it."""
+    rows = tx.run(operations["reopen_assertion"], {
+        "assertionId": assertion_id,
+        "decidedAt": decided_at,
+        "decidedBy": decided_by,
+        "decisionBasis": decision_basis,
+    }).data()
+    if not rows:
+        raise ReviewError(f"{assertion_id} is not a rejected claim")
+    return rows[0]
+
+
 def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
-    """A stored Proposal with the evidence it puts forward: its pending evidence
-    for addEvidence, the Assertion's evidence otherwise."""
+    """A stored Proposal with the evidence it puts forward: its pending
+    evidence, or the Assertion's evidence for a Proposal stored before
+    evidence became pending."""
     record = tx.run(
         """
         MATCH (proposal:Proposal {id: $id})-[:PROPOSES]->(assertion:Assertion)
@@ -276,14 +307,16 @@ def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
         MATCH (assertion)-[:ASSERTION_OBJECT]->(object)
         OPTIONAL MATCH (proposal)-[pending:PROPOSES_EVIDENCE]->(pendingObservation:SourceObservation)
         WITH proposal, assertion, subject, object,
-             collect({observationId: pendingObservation.id, quotation: pending.quotation}) AS pendingEvidence
+             [item IN collect({observationId: pendingObservation.id, quotation: pending.quotation})
+              WHERE item.observationId IS NOT NULL] AS pendingEvidence
         OPTIONAL MATCH (assertion)-[support:SUPPORTED_BY]->(observation:SourceObservation)
         WITH proposal, assertion, subject, object, pendingEvidence,
              collect({observationId: observation.id, quotation: support.quotation}) AS support
         RETURN proposal.status AS status, proposal.operation AS operation,
                proposal.rationale AS rationale, proposal.createdBy AS createdBy,
+               assertion.status AS assertionStatus,
                assertion.predicate AS predicate, subject.id AS subjectId, object.id AS objectId,
-               CASE WHEN proposal.operation = "addEvidence" THEN pendingEvidence ELSE support END AS evidence
+               CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
         """,
         id=proposal_id,
     ).single()

@@ -370,3 +370,18 @@ commanded Actium (the predicate cannot say which side was commanded).
 grounded only in a source text (Plutarch 65.1, 66.5, 67.2), with no Wikidata
 statement. Graph: 4,075 nodes, 4,089 relationships.
 
+## 15. Separating evidence decisions from claim decisions (2026-10-11)
+
+The open design issue from section 14 is resolved. Every Proposal, including
+`create`, now holds its evidence on `PROPOSES_EVIDENCE` until acceptance.
+`reject` rejects the evidence and leaves the claim open; `reject --claim`
+rejects the claim; `reopen` returns a rejected claim to `proposed` with a
+recorded basis. Accepting stronger evidence for an open claim accepts it.
+
+[Migration 001](migrations/001-pending-evidence-for-open-proposals.cypher)
+moved the evidence of the two open create Proposals (Augustus commanded, 65.5;
+Cleopatra participatedIn, 66.3) from `SUPPORTED_BY` to `PROPOSES_EVIDENCE`.
+Node and relationship counts were unchanged (4,075 / 4,089); a rerun moved
+nothing. Two operations were added (`link_pending_evidence`,
+`reopen_assertion`), for 20 in total. The suite has 60 tests.
+

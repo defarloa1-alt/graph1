@@ -278,7 +278,7 @@ RETURN proposal, assertion;
 
 // Create or reuse an addEvidence Proposal: new evidence for an existing
 // Assertion. The evidence waits on PROPOSES_EVIDENCE and becomes SUPPORTED_BY
-// only after acceptance (see the last operation). A retry naming another
+// only after acceptance. A retry naming another
 // Assertion is refused.
 MATCH (assertion:Assertion {id: $assertionId})
 MATCH (observation:SourceObservation {id: $observationId})
@@ -307,6 +307,14 @@ MERGE (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation)
 ON CREATE SET evidence.quotation = $quotation
 RETURN proposal, assertion, observation;
 
+// Attach pending evidence to a submitted Proposal. Evidence on a Proposal is
+// attached to the Assertion only when the Proposal is accepted.
+MATCH (proposal:Proposal {id: $proposalId, status: "submitted"})-[:PROPOSES]->(:Assertion)
+MATCH (observation:SourceObservation {id: $observationId})
+MERGE (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation)
+ON CREATE SET evidence.quotation = $quotation
+RETURN proposal, observation;
+
 // Move a Proposal through its lifecycle and, on a decision, synchronize its
 // Assertion.
 //
@@ -315,11 +323,11 @@ RETURN proposal, assertion, observation;
 //   deferred   -> validating | rejected
 //   accepted, rejected: terminal
 //
-// Repeating the current status is an idempotent no-op that preserves the
-// original decision metadata. Accepting a `create` Proposal requires a
-// `proposed` Assertion; rejecting leaves an Assertion that another Proposal
-// already accepted untouched. An `addEvidence` decision never changes the
-// Assertion's status.
+// Accepting requires a `proposed` or `accepted` Assertion and accepts a
+// `proposed` one. Rejecting rejects the Proposal's evidence and leaves the
+// Assertion open, unless `rejectClaim` is true: then the Assertion, which must
+// still be `proposed`, is rejected as well. Repeating the current status is an
+// idempotent no-op that preserves the original decision metadata.
 MATCH (proposal:Proposal {id: $proposalId})-[:PROPOSES]->(assertion:Assertion)
 WITH proposal, assertion,
      proposal.status = $proposalStatus AS isRetry,
@@ -330,43 +338,53 @@ WITH proposal, assertion,
      } AS allowedTransitions
 WHERE isRetry
    OR $proposalStatus IN coalesce(allowedTransitions[proposal.status], [])
-WITH proposal, assertion, isRetry
+WITH proposal, assertion, isRetry,
+     NOT isRetry AND $proposalStatus IN ["accepted", "rejected"] AS isDecision
 WHERE isRetry
    OR $proposalStatus <> "accepted"
+   OR assertion.status IN ["proposed", "accepted"]
+WITH proposal, assertion, isRetry, isDecision
+WHERE isRetry
+   OR NOT ($proposalStatus = "rejected" AND $rejectClaim)
    OR assertion.status = "proposed"
-   OR (proposal.operation = "addEvidence" AND assertion.status = "accepted")
 SET
   proposal.status = $proposalStatus,
-  proposal.decidedAt = CASE
-    WHEN NOT isRetry AND $proposalStatus IN ["accepted", "rejected"] THEN $decidedAt
-    ELSE proposal.decidedAt
-  END,
-  proposal.decidedBy = CASE
-    WHEN NOT isRetry AND $proposalStatus IN ["accepted", "rejected"] THEN $decidedBy
-    ELSE proposal.decidedBy
-  END,
-  proposal.decisionBasis = CASE
-    WHEN NOT isRetry AND $proposalStatus IN ["accepted", "rejected"] THEN $decisionBasis
-    ELSE proposal.decisionBasis
+  proposal.decidedAt = CASE WHEN isDecision THEN $decidedAt ELSE proposal.decidedAt END,
+  proposal.decidedBy = CASE WHEN isDecision THEN $decidedBy ELSE proposal.decidedBy END,
+  proposal.decisionBasis = CASE WHEN isDecision THEN $decisionBasis ELSE proposal.decisionBasis END,
+  proposal.rejectedClaim = CASE
+    WHEN isDecision AND $proposalStatus = "rejected" THEN $rejectClaim
+    ELSE proposal.rejectedClaim
   END,
   assertion.acceptedAt = CASE
-    WHEN NOT isRetry AND $proposalStatus = "accepted" AND proposal.operation <> "addEvidence"
-      THEN $decidedAt
+    WHEN isDecision AND $proposalStatus = "accepted" AND assertion.status = "proposed" THEN $decidedAt
     ELSE assertion.acceptedAt
   END,
   assertion.status = CASE
-    WHEN isRetry OR proposal.operation = "addEvidence" THEN assertion.status
+    WHEN NOT isDecision THEN assertion.status
     WHEN $proposalStatus = "accepted" THEN "accepted"
-    WHEN $proposalStatus = "rejected" AND assertion.status = "proposed" THEN "rejected"
+    WHEN $proposalStatus = "rejected" AND $rejectClaim THEN "rejected"
     ELSE assertion.status
   END
 RETURN proposal, assertion;
 
-// Attach the evidence of an accepted addEvidence Proposal to its Assertion.
-// Idempotent; refused unless the Proposal is accepted.
-MATCH (proposal:Proposal {id: $proposalId, operation: "addEvidence", status: "accepted"})
-      -[:PROPOSES]->(assertion:Assertion)
-MATCH (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation:SourceObservation)
-MERGE (assertion)-[support:SUPPORTED_BY]->(observation)
-ON CREATE SET support.quotation = evidence.quotation, support.addedByProposal = proposal.id
+// Attach the pending evidence of an accepted Proposal to its Assertion.
+// Idempotent; refused unless the Proposal is accepted. A Proposal stored
+// before evidence became pending has none to attach and returns an empty list.
+MATCH (proposal:Proposal {id: $proposalId, status: "accepted"})-[:PROPOSES]->(assertion:Assertion)
+OPTIONAL MATCH (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation:SourceObservation)
+FOREACH (_ IN CASE WHEN observation IS NULL THEN [] ELSE [1] END |
+  MERGE (assertion)-[support:SUPPORTED_BY]->(observation)
+  ON CREATE SET support.quotation = evidence.quotation, support.addedByProposal = proposal.id
+)
 RETURN assertion, collect(observation.id) AS observationIds;
+
+// Reopen a rejected Assertion so new evidence can be proposed for it. An
+// explicit, recorded curator act; refused unless the Assertion is rejected.
+MATCH (assertion:Assertion {id: $assertionId, status: "rejected"})
+SET
+  assertion.status = "proposed",
+  assertion.reopenedAt = $decidedAt,
+  assertion.reopenedBy = $decidedBy,
+  assertion.reopenBasis = $decisionBasis
+RETURN assertion;

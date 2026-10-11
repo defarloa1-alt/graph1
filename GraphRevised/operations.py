@@ -25,8 +25,10 @@ OPERATION_NAMES = (
     "link_support",
     "upsert_proposal",
     "upsert_evidence_proposal",
+    "link_pending_evidence",
     "decide_proposal",
     "apply_accepted_evidence",
+    "reopen_assertion",
 )
 
 

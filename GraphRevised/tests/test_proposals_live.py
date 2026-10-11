@@ -15,7 +15,7 @@ from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.passage_reader import load_inquiry
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
-from GraphRevised.proposals.store import Neo4jReader, ReviewError, accept, list_proposals, reject, submit
+from GraphRevised.proposals.store import Neo4jReader, ReviewError, accept, list_proposals, reject, reopen, submit
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 
@@ -193,11 +193,65 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         with self.assertRaises(ReviewError):
             reject(self.tx, proposal_id, operations=self.operations, **DECISION)
 
-    def test_rejection_marks_assertion_rejected(self):
+    def test_new_claim_evidence_waits_for_acceptance(self):
+        submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
+        assertion_id = submission.validation.assertion_id
+        self.assertEqual(self.support_count(assertion_id), 0)
+        accept(self.tx, submission.validation.proposal_id, registry=self.registry, operations=self.operations, **DECISION)
+        self.assertEqual(self.support_count(assertion_id), 1)
+
+    def test_rejecting_evidence_leaves_the_claim_open(self):
         submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
         decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION)
         self.assertEqual(decided["proposal"]["status"], "rejected")
+        self.assertEqual(decided["assertion"]["status"], "proposed")
+        self.assertEqual(self.support_count(submission.validation.assertion_id), 0)
+
+    def test_rejecting_the_claim(self):
+        submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
+        decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations,
+                         reject_claim=True, **DECISION)
         self.assertEqual(decided["assertion"]["status"], "rejected")
+        self.assertTrue(decided["proposal"]["rejectedClaim"])
+
+    def test_accepted_claim_cannot_be_rejected_through_a_proposal(self):
+        assertion_id = self.accepted_leader_claim()
+        self.add_passage()
+        submission = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
+        with self.assertRaises(ReviewError):
+            reject(self.tx, submission.validation.proposal_id, operations=self.operations, reject_claim=True, **DECISION)
+        self.assertEqual(self.reader.assertion(assertion_id)["status"], "accepted")
+
+    def test_better_evidence_accepts_an_open_claim(self):
+        """Weak evidence rejected, stronger evidence accepted: the claim survives."""
+        weak = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
+        assertion_id = weak.validation.assertion_id
+        reject(self.tx, weak.validation.proposal_id, operations=self.operations, **DECISION)
+        self.add_passage()
+        strong = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
+        self.assertEqual(strong.validation.outcome, Outcome.ADDS_EVIDENCE)
+        decided = accept(self.tx, strong.validation.proposal_id, registry=self.registry, operations=self.operations, **DECISION)
+        self.assertEqual(decided["assertion"]["status"], "accepted")
+        self.assertEqual(self.reader.assertion(assertion_id)["observationIds"], [PASSAGE_ID])
+
+    def test_rejected_claim_can_be_reopened_and_then_supported(self):
+        submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
+        assertion_id = submission.validation.assertion_id
+        reject(self.tx, submission.validation.proposal_id, operations=self.operations, reject_claim=True, **DECISION)
+        self.add_passage()
+        draft = self.passage_draft(LEADER, "The leader had the right wing")
+        self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.DUPLICATE)
+
+        reopened = reopen(self.tx, assertion_id, operations=self.operations, **DECISION)
+        self.assertEqual(reopened["assertion"]["status"], "proposed")
+        self.assertEqual(reopened["assertion"]["reopenedBy"], "test-curator")
+        with self.assertRaises(ReviewError):
+            reopen(self.tx, assertion_id, operations=self.operations, **DECISION)
+
+        evidence = submit(self.tx, draft, self.registry, self.operations)
+        self.assertEqual(evidence.validation.outcome, Outcome.ADDS_EVIDENCE)
+        decided = accept(self.tx, evidence.validation.proposal_id, registry=self.registry, operations=self.operations, **DECISION)
+        self.assertEqual(decided["assertion"]["status"], "accepted")
 
     def test_invented_evidence_is_refused_and_nothing_is_stored(self):
         self.battle_with_leader()

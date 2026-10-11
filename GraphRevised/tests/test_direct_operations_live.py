@@ -130,6 +130,7 @@ def decision_params(proposal_id, status):
         "decidedAt": "2026-10-11T00:00:00Z",
         "decidedBy": "test",
         "decisionBasis": "test",
+        "rejectClaim": False,
     }
 
 
