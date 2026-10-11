@@ -1,3 +1,5 @@
+> **Superseded** by [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md) (2026-10-11).
+
 # Chrystallum Clean-Start Handoff
 
 ## Completed work
