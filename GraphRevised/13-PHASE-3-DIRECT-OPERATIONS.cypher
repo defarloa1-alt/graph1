@@ -130,7 +130,11 @@ ON CREATE SET
   record.label = $label,
   record.shortLabel = $shortLabel,
   record.description = $description,
-  record.retrievedAt = $retrievedAt
+  record.retrievedAt = $retrievedAt,
+  record.sourceUri = $sourceUri,
+  record.sourceRevision = $sourceRevision,
+  record.contentHash = $contentHash,
+  record.rawPayloadUri = $rawPayloadUri
 ON MATCH SET
   record.label = coalesce($label, record.label),
   record.shortLabel = coalesce($shortLabel, record.shortLabel),

@@ -51,8 +51,9 @@ Callers must treat zero rows as failure. Refusals:
 | Proposal | the Assertion does not exist, or a retry names a different Assertion |
 | Decision | the transition is not in the Proposal lifecycle, or acceptance targets a non-`proposed` Assertion |
 
-Phase 5 added two creation-only parameter groups: `qualifierPropertyIds` on
-SourceObservations, and `rationale`, `draftSchemaVersion`,
+Phase 5 added creation-only parameter groups: `sourceUri`, `sourceRevision`,
+`contentHash`, and `rawPayloadUri` on AuthorityRecords (matching the existing
+Actium and Agrippa records); `qualifierPropertyIds` on SourceObservations; and `rationale`, `draftSchemaVersion`,
 `predicateRegistryVersion`, `promptVersion`, and `modelId` on Proposals.
 [operations.py](operations.py) loads the statements by name.
 

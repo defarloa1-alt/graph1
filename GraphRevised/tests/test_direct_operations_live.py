@@ -78,6 +78,10 @@ def authority_params(**overrides):
         "shortLabel": None,
         "description": None,
         "retrievedAt": None,
+        "sourceUri": None,
+        "sourceRevision": None,
+        "contentHash": None,
+        "rawPayloadUri": None,
         "role": "entity_identity",
         "relation": "closeMatch",
         "linkStatus": "accepted",
@@ -174,7 +178,10 @@ class DirectOperationsLiveTests(unittest.TestCase):
         self.assertEqual(self.run_op(GET_NODE, {"id": ACTIUM})[0]["nodeTypes"], ["Entity"])
         self.assertEqual(self.run_op(GET_SUBJECT, {"subjectId": SUBJECT})[0]["focus"]["id"], ACTIUM)
         neighborhood = self.run_op(GET_NEIGHBORHOOD, {"entityId": ACTIUM})
-        self.assertEqual([row["predicate"] for row in neighborhood], ["participatedIn"])
+        self.assertIn(
+            ("participatedIn", AGRIPPA),
+            [(row["predicate"], row["assertionSubject"]["id"]) for row in neighborhood],
+        )
         evidence = self.run_op(GET_EVIDENCE, {"assertionId": ASSERTION})[0]
         self.assertEqual([obs["id"] for obs in evidence["sourceObservations"]], [OBSERVATION])
         self.assertEqual([prop["id"] for prop in evidence["proposals"]], [PROPOSAL])

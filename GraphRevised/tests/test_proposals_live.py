@@ -15,8 +15,8 @@ from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 PAYLOAD = Path(__file__).resolve().parents[1] / "phase-2-source" / "wikidata-Q160387-r2555342002.json"
 ACTIUM = "chr:entity:battle-of-actium"
 AGRIPPA_OBSERVATION = "chr:observation:wikidata:Q160387:P710:32bdfa2f:r2555342002"
-OCTAVIAN = "chr:entity:augustus"
-OCTAVIAN_STATEMENT = "Q160387$d9469717-433b-c369-9fc7-3d7d5bf2b969"
+ANTONY = "chr:entity:mark-antony"
+ANTONY_STATEMENT = "Q160387$4d260aee-40ad-fb5f-7721-8dd10d8bdc96"
 DECISION = {"decided_by": "test-curator", "decision_basis": "test", "decided_at": "2026-10-11T00:00:00Z"}
 
 COUNTS = "CALL () { MATCH (n) RETURN count(n) AS nodes } CALL () { MATCH ()-[r]->() RETURN count(r) AS rels } RETURN nodes, rels"
@@ -51,28 +51,29 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
     def counts(self):
         return self.tx.run(COUNTS).single().data()
 
-    def add_octavian(self):
-        """Reviewed identity setup a curator would do before proposals can name Octavian."""
+    def add_antony(self):
+        """Reviewed identity setup a curator would do before proposals can name Antony."""
         run_write(self.tx, self.operations, "upsert_entity", {
-            "id": OCTAVIAN, "kind": "Person", "label": "Augustus", "description": None,
-            "status": "provisional", "shortLabel": "Octavian",
+            "id": ANTONY, "kind": "Person", "label": "Mark Antony", "description": None,
+            "status": "provisional", "shortLabel": "Antony",
         })
         run_write(self.tx, self.operations, "upsert_authority", {
-            "entityId": OCTAVIAN, "id": "chr:authority:wikidata:Q1405", "system": "Wikidata",
-            "identifier": "Q1405", "label": "Wikidata record: Augustus (Q1405)", "shortLabel": "Wikidata: Augustus",
-            "description": None, "retrievedAt": None, "role": "entity_identity",
+            "entityId": ANTONY, "id": "chr:authority:wikidata:Q51673", "system": "Wikidata",
+            "identifier": "Q51673", "label": "Wikidata record: Mark Antony (Q51673)", "shortLabel": "Wikidata: Antony",
+            "description": None, "retrievedAt": None, "sourceUri": None, "sourceRevision": None,
+            "contentHash": None, "rawPayloadUri": None, "role": "entity_identity",
             "relation": "closeMatch", "linkStatus": "accepted",
         })
         params = statement_observation(
-            PAYLOAD, OCTAVIAN_STATEMENT,
-            label="Wikidata observation: Augustus participated in Battle of Actium",
-            short_label="Wikidata: Octavian -> Actium",
+            PAYLOAD, ANTONY_STATEMENT,
+            label="Wikidata observation: Mark Antony participated in Battle of Actium",
+            short_label="Wikidata: Antony -> Actium",
         )
         run_write(self.tx, self.operations, "upsert_observation", params)
         return params["id"]
 
-    def octavian_draft(self):
-        observation = self.reader.observation(self.add_octavian())
+    def antony_draft(self):
+        observation = self.reader.observation(self.add_antony())
         result = drafts_from_observation(observation, self.reader, self.registry)
         self.assertEqual(result.unresolved, ())
         self.assertEqual(len(result.drafts), 1)
@@ -91,15 +92,15 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
     def test_unlinked_participants_are_reported_not_created(self):
         before = self.counts()
         params = statement_observation(
-            PAYLOAD, OCTAVIAN_STATEMENT, label="x", short_label="x",
+            PAYLOAD, ANTONY_STATEMENT, label="x", short_label="x",
         )
         result = drafts_from_observation(params, self.reader, self.registry)
         self.assertEqual(result.drafts, ())
-        self.assertEqual(result.unresolved, ("Q1405 has no local Entity",))
+        self.assertEqual(result.unresolved, ("Q51673 has no local Entity",))
         self.assertEqual(self.counts(), before)
 
-    def test_octavian_proposal_full_workflow(self):
-        draft = self.octavian_draft()
+    def test_antony_proposal_full_workflow(self):
+        draft = self.antony_draft()
         submission = submit(self.tx, draft, self.registry, self.operations)
         self.assertEqual(submission.validation.outcome, Outcome.VALID)
         self.assertTrue(submission.stored)
@@ -111,7 +112,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.assertEqual(stored["p"]["status"], "submitted")
         self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v1")
         self.assertEqual(stored["a"]["status"], "proposed")
-        self.assertEqual(stored["a"]["label"], "Augustus participated in Battle of Actium")
+        self.assertEqual(stored["a"]["label"], "Mark Antony participated in Battle of Actium")
         self.assertIn(proposal_id, [row["id"] for row in list_proposals(self.tx, "submitted")])
 
         before_retry = self.counts()
@@ -133,20 +134,20 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             reject(self.tx, proposal_id, operations=self.operations, **DECISION)
 
     def test_rejection_marks_assertion_rejected(self):
-        submission = submit(self.tx, self.octavian_draft(), self.registry, self.operations)
+        submission = submit(self.tx, self.antony_draft(), self.registry, self.operations)
         decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION)
         self.assertEqual(decided["proposal"]["status"], "rejected")
         self.assertEqual(decided["assertion"]["status"], "rejected")
 
     def test_invented_evidence_is_refused_and_nothing_is_stored(self):
-        self.add_octavian()
+        self.add_antony()
         before = self.counts()
         invented = ProposalDraft(
             predicate="participatedIn",
-            subject_id=OCTAVIAN,
+            subject_id=ANTONY,
             object_id=ACTIUM,
             observation_ids=(AGRIPPA_OBSERVATION,),
-            rationale="cites Agrippa's statement as if it were Octavian's",
+            rationale="cites Agrippa's statement as if it were Antony's",
             proposed_by="test",
         )
         submission = submit(self.tx, invented, self.registry, self.operations)

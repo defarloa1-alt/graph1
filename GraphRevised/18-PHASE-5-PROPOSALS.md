@@ -156,6 +156,28 @@ recommended next step:
 4. Use the deterministic proposer as an evaluation baseline: on Wikidata
    statements, the agent must reproduce its drafts.
 
-Persisting the Octavian slice for real (rather than in rolled-back tests) is
-a curator decision; the setup in `test_proposals_live.add_octavian` is the
-exact sequence.
+## 9. First claim through the workflow: Octavian at Actium
+
+Persisted on 2026-10-11 by
+[slices/octavian_actium.py](slices/octavian_actium.py), which is idempotent:
+
+- preserved identity payload
+  [wikidata-Q1405-r2555830380.json](phase-5-source/wikidata-Q1405-r2555830380.json)
+  (SHA-256 `eedf7ab08fe99d5072e34d72a79897bdfa93edb865f64429c4fa679fad75080b`);
+- Entity `chr:entity:augustus` (label `Augustus`, Wikidata's preferred label;
+  `provisional`) with an accepted Wikidata identity link;
+- statement observation
+  `chr:observation:wikidata:Q160387:P710:d9469717:r2555342002`, built from the
+  already-preserved Phase 2 Actium payload;
+- Proposal `chr:proposal:augustus:participated-in:battle-of-actium:a6067452e73c`,
+  submitted by the deterministic proposer and accepted by Tony DeFarlo through
+  the review CLI.
+
+A second run of the script wrote nothing (`duplicate`). The graph went from
+4,033 nodes / 4,032 relationships to 4,038 / 4,037. Actium now has two
+accepted participants, Agrippa and Augustus, both derived as
+"Battle of Actium, 31 BCE".
+
+As with Agrippa, the Wikidata statement has no references: this is
+demonstration-grade evidence. The live tests now use Mark Antony (Q51673) as
+the not-yet-persisted participant.
