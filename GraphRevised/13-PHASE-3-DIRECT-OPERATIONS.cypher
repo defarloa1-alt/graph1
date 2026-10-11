@@ -154,6 +154,7 @@ ON CREATE SET
   observation.predicateExternalId = $predicateExternalId,
   observation.objectExternalId = $objectExternalId,
   observation.externalStatementId = $externalStatementId,
+  observation.qualifierPropertyIds = $qualifierPropertyIds,
   observation.sourceRevision = $sourceRevision,
   observation.retrievedAt = $retrievedAt,
   observation.contentHash = $contentHash,
@@ -210,6 +211,7 @@ RETURN assertion, observation;
 // Create or reuse a Proposal for an Assertion. A new Proposal is always
 // `submitted`; status changes only through the decision operation below. A
 // Proposal proposes exactly one Assertion; a retry naming another is refused.
+// Rationale and version provenance are fixed at creation.
 MATCH (assertion:Assertion {id: $assertionId})
 OPTIONAL MATCH (existing:Proposal {id: $id})
 OPTIONAL MATCH (existing)-[:PROPOSES]->(existingTarget:Assertion)
@@ -221,7 +223,12 @@ ON CREATE SET
   proposal.shortLabel = $shortLabel,
   proposal.operation = $operation,
   proposal.status = "submitted",
-  proposal.createdBy = $createdBy
+  proposal.createdBy = $createdBy,
+  proposal.rationale = $rationale,
+  proposal.draftSchemaVersion = $draftSchemaVersion,
+  proposal.predicateRegistryVersion = $predicateRegistryVersion,
+  proposal.promptVersion = $promptVersion,
+  proposal.modelId = $modelId
 ON MATCH SET
   proposal.label = coalesce($label, proposal.label),
   proposal.shortLabel = coalesce($shortLabel, proposal.shortLabel)

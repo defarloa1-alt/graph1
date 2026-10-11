@@ -88,6 +88,9 @@ or `rejected`. Zero rows from any write means the request was refused.
 
 ## Next work: Phase 5
 
+**Update:** steps 1, 3, 4, and 5 below are done; the agent prompt (step 2)
+remains. See [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md).
+
 Do not reuse the legacy agent chain directly. Build a new bounded proposal
 workflow:
 

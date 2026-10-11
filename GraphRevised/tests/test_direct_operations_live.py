@@ -7,9 +7,8 @@ NEO4J_USERNAME default to the local clean-start instance.
 
 import os
 import unittest
-from pathlib import Path
 
-OPERATIONS_PATH = Path(__file__).resolve().parents[1] / "13-PHASE-3-DIRECT-OPERATIONS.cypher"
+from GraphRevised.operations import OPERATION_NAMES, load_operations
 
 ACTIUM = "chr:entity:battle-of-actium"
 AGRIPPA = "chr:entity:marcus-vipsanius-agrippa"
@@ -35,17 +34,7 @@ PROPOSAL = "chr:proposal:accept-marcus-vipsanius-agrippa-participation-at-actium
     LINK_SUPPORT,
     UPSERT_PROPOSAL,
     DECIDE_PROPOSAL,
-) = range(15)
-
-
-def load_statements() -> list[str]:
-    lines = [
-        line
-        for line in OPERATIONS_PATH.read_text(encoding="utf-8").splitlines()
-        if not line.strip().startswith("//")
-    ]
-    statements = [part.strip() for part in "\n".join(lines).split(";")]
-    return [statement for statement in statements if statement]
+) = OPERATION_NAMES
 
 
 SNAPSHOT_QUERY = """
@@ -119,6 +108,11 @@ def proposal_params(**overrides):
         "shortLabel": None,
         "operation": "create",
         "createdBy": "test",
+        "rationale": "test",
+        "draftSchemaVersion": "test",
+        "predicateRegistryVersion": "test",
+        "promptVersion": None,
+        "modelId": None,
     }
     params.update(overrides)
     return params
@@ -140,7 +134,7 @@ class DirectOperationsLiveTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         from neo4j import GraphDatabase
 
-        cls.statements = load_statements()
+        cls.operations = load_operations()
         cls.driver = GraphDatabase.driver(
             os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
             auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
@@ -160,7 +154,7 @@ class DirectOperationsLiveTests(unittest.TestCase):
         self.tx.rollback()
 
     def run_op(self, index, params):
-        return self.tx.run(self.statements[index], params).data()
+        return self.tx.run(self.operations[index], params).data()
 
     def snapshot(self):
         return self.tx.run(SNAPSHOT_QUERY).single().data()
@@ -175,9 +169,6 @@ class DirectOperationsLiveTests(unittest.TestCase):
     def assertRefused(self, index, params) -> None:
         self.assertEqual(self.run_op(index, params), [])
         self.assertUnchanged()
-
-    def test_artifact_has_fifteen_statements(self) -> None:
-        self.assertEqual(len(self.statements), 15)
 
     def test_reads_return_actium_slice(self) -> None:
         self.assertEqual(self.run_op(GET_NODE, {"id": ACTIUM})[0]["nodeTypes"], ["Entity"])
@@ -209,6 +200,7 @@ class DirectOperationsLiveTests(unittest.TestCase):
                     "predicateExternalId": "P710",
                     "objectExternalId": "Q48174",
                     "externalStatementId": "Q160387$32bdfa2f-497d-fb83-169f-f9567f3152ec",
+                    "qualifierPropertyIds": None,
                     "sourceRevision": 2555342002,
                     "retrievedAt": "2026-10-11T11:25:54.938655+00:00",
                     "contentHash": "different-on-purpose",

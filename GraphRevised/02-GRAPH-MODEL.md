@@ -68,6 +68,7 @@ sourceEntityId: Q160387
 predicateExternalId: P710
 objectExternalId: Q48174
 externalStatementId: Q160387$32bdfa2f-...
+qualifierPropertyIds: [...]
 sourceRevision: ...
 retrievedAt: ...
 contentHash: ...
@@ -157,6 +158,10 @@ and `decisionBasis`. Accepting sets the Assertion to `accepted` (with
 `acceptedAt`) and requires it to be `proposed`. Rejecting sets a `proposed`
 Assertion to `rejected` but leaves an Assertion that another Proposal already
 accepted untouched.
+
+A stored Proposal also records its provenance: `createdBy`, `rationale`,
+`draftSchemaVersion`, `predicateRegistryVersion`, `promptVersion`, and
+`modelId`. These are fixed at creation.
 
 Proposal labels must state the requested action in plain language. An accepted
 Proposal is workflow/audit history that records how an Assertion entered the

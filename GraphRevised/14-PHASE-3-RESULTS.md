@@ -51,6 +51,11 @@ Callers must treat zero rows as failure. Refusals:
 | Proposal | the Assertion does not exist, or a retry names a different Assertion |
 | Decision | the transition is not in the Proposal lifecycle, or acceptance targets a non-`proposed` Assertion |
 
+Phase 5 added two creation-only parameter groups: `qualifierPropertyIds` on
+SourceObservations, and `rationale`, `draftSchemaVersion`,
+`predicateRegistryVersion`, `promptVersion`, and `modelId` on Proposals.
+[operations.py](operations.py) loads the statements by name.
+
 Optional display parameters may be null; null never erases an existing value.
 SourceObservation source facts are immutable after creation. Property names
 match the live graph (`sourceRevision`, `rawPayloadUri`).
@@ -81,7 +86,7 @@ status is a no-op that preserves them.
 runs against local Neo4j database `neo4j`. Every test executes inside a
 transaction that is rolled back, so the database is never changed. It checks:
 
-- the artifact contains 15 statements;
+- the artifact contains 15 statements (checked by the loader in [operations.py](operations.py));
 - all reads return the Actium slice, including `Battle of Actium, 31 BCE`;
 - replaying all 11 write operations with Actium parameters leaves every node,
   relationship, and property unchanged;
@@ -90,7 +95,7 @@ transaction that is rolled back, so the database is never changed. It checks:
   `validating`, keeps its decision metadata on retry, and a second Proposal's
   rejection leaves the accepted Assertion intact.
 
-All 13 tests passed on 2026-10-11. The pre-hardening operations were also run
+All 12 tests passed on 2026-10-11. The pre-hardening operations were also run
 in a rolled-back transaction to confirm the defects were real: the Year
 operation created a Year `0`, and the decision operation reversed the accepted
 Actium Proposal to `rejected`. Database counts remained 4,033 nodes and 4,032

@@ -152,6 +152,12 @@ Agent proposes
 
 The agent must not write directly to the accepted graph.
 
+**Status: workflow complete; LLM proposer pending.** `ProposalDraft`, the
+`predicates-v1` registry, the deterministic validator, storage, curator
+review, and a deterministic Wikidata proposer are implemented and replay-tested
+against the Actium observations. See
+[18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md).
+
 Workflow checkpoints, retries, locks, and job state should be stored outside
 the durable historical graph. Raw authority payloads should also be stored
 outside Neo4j, with references from source observations.
