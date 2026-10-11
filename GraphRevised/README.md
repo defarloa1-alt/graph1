@@ -41,6 +41,7 @@ concept has already been modeled.
 17. [17-PHASE-5-HANDOFF.md](17-PHASE-5-HANDOFF.md) — verified project state and Phase 5 starting point
 18. [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md) — ProposalDraft, predicate registry, validator, review workflow
 19. [Review of the Chrystallum Subject Backbone Architecture.md](Review%20of%20the%20Chrystallum%20Subject%20Backbone%20Architecture.md) — architectural review and recommendations
+20. [docs/](docs) — model/API choice review and the agreed response
 
 ## Clean-start rules
 

@@ -370,6 +370,28 @@ community, and production context where these affect interpretation.
 
 **Dependency:** E3, source-observation maturity, and a concrete domain test.
 
+### E8. Evidence stance and contested assertions
+
+Scholarly sources disagree. The graph currently has only `SUPPORTED_BY`, so it
+cannot record that a source contradicts or qualifies an Assertion. Add a
+stance to the evidence link (`supports`, `contradicts`, `qualifies`) and define
+when contradicting evidence moves an Assertion to `contested`, without
+collapsing competing interpretations into one claim.
+
+**Dependency:** Phase 5 proposal workflow. Required before ingesting
+secondary scholarship. Raised by
+[docs/Response - Model and API Choice.md](docs/Response%20-%20Model%20and%20API%20Choice.md).
+
+### E9. Source acquisition through a research API
+
+Use a research API (Perplexity Agent API per the model-choice review) to
+discover and fetch candidate sources. Its output is a preserved, hashed
+document that may become a SourceObservation; search results and synthesized
+answers are never evidence themselves.
+
+**Dependency:** passage observations (Phase 5 step 4), E5 rights-aware source
+storage.
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its
