@@ -358,3 +358,15 @@ closes the claim. Rejecting evidence and rejecting a claim need to be
 separable, and a rejected claim needs a re-open path (for example
 superseding), before such proposals are decided.
 
+### Curator review of the v4/v5 proposals (2026-10-11)
+
+Decided by Tony DeFarlo. Accepted: Antony 65.1 (new claim), 66.5, 67.2;
+Augustus 65.4. Rejected: Antony 65.2 (pre-battle, consistent with Caesar
+65.3), 66.4 (characterization), 68.2 (after-the-fact report). Left open
+pending the design issue above: Cleopatra participatedIn (66.3) and Augustus
+commanded Actium (the predicate cannot say which side was commanded).
+
+*Mark Antony participated in Battle of Actium* is the first accepted claim
+grounded only in a source text (Plutarch 65.1, 66.5, 67.2), with no Wikidata
+statement. Graph: 4,075 nodes, 4,089 relationships.
+

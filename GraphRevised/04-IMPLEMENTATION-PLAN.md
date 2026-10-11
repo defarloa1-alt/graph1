@@ -392,6 +392,32 @@ answers are never evidence themselves.
 **Dependency:** passage observations (Phase 5 step 4), E5 rights-aware source
 storage.
 
+### E10. Source discovery and source chronology
+
+For an inquiry, the agent should discover which sources exist for the subject
+and where they stand relative to one another, rather than reading only the
+source it was handed. For Actium, Plutarch (early 2nd century CE) is a late
+narrative; earlier witnesses include Augustan poetry (Horace, Virgil,
+Propertius), Velleius Paterculus, and Augustus's own lost memoir, which
+Plutarch cites at *Antony* 68.1 ("as Caesar himself has written").
+
+Discovery channels:
+
+1. citations inside passages already read (source chains such as 68.1);
+2. Wikidata `described by source` (P1343) and work/author statements;
+3. CTS catalogues (Perseus/Scaife) by author, work, and date;
+4. scholarly bibliographies and the E9 research API.
+
+Model needs: source works as `Entity {kind: Work}` with authors and
+composition dates (temporal qualification, Phase 7); passage observations
+linked to their Work; a predicate for one source citing or deriving from
+another; and an inquiry-level source plan ranked by date, genre
+(contemporary poetry versus later narrative), and independence. Discovery
+proposes sources and source relations; preserving and reading them still
+goes through the existing observation, proposal, and review path.
+
+**Dependency:** E9, Phase 7 temporal qualification, Work entities.
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its
