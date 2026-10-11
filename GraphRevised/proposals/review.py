@@ -55,15 +55,20 @@ def main(argv: list[str] | None = None) -> int:
                 rows = session.execute_read(list_proposals, args.status)
                 for row in rows:
                     print(f"{row['status']:<11} {row['operation']:<11} {row['id']}\n            {row['assertion']}")
-                    for evidence in row["pendingEvidence"]:
+                    for evidence in row["evidence"]:
                         print(f"            + {evidence['observation']}")
-                        print(f"              {evidence['locator']}")
-                        print(f"              quotation: \"{evidence['quotation']}\"")
+                        if evidence["locator"]:
+                            print(f"              {evidence['locator']}")
+                        if evidence["quotation"]:
+                            print(f"              quotation: \"{evidence['quotation']}\"")
                         if evidence["passage"]:
                             print(textwrap.fill(
                                 mark_quotation(evidence["passage"], evidence["quotation"]),
                                 width=100, initial_indent="              | ", subsequent_indent="              | ",
                             ))
+                    if row["rationale"]:
+                        print(textwrap.fill(f"rationale: {row['rationale']}", width=100,
+                                            initial_indent="              ", subsequent_indent="              "))
                     print()
                 print(f"{len(rows)} proposal(s)")
                 return 0

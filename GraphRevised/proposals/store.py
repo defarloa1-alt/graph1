@@ -169,14 +169,22 @@ def list_proposals(tx: Any, status: str | None = None) -> list[dict[str, Any]]:
         """
         MATCH (proposal:Proposal)-[:PROPOSES]->(assertion:Assertion)
         WHERE $status IS NULL OR proposal.status = $status
-        OPTIONAL MATCH (proposal)-[evidence:PROPOSES_EVIDENCE]->(pending:SourceObservation)
+        OPTIONAL MATCH (proposal)-[pending:PROPOSES_EVIDENCE]->(pendingObservation:SourceObservation)
         WITH proposal, assertion,
-             [item IN collect({observation: pending.label, locator: pending.locator,
-                               passage: pending.passageText, quotation: evidence.quotation})
+             [item IN collect({observation: coalesce(pendingObservation.label, pendingObservation.id),
+                               locator: pendingObservation.locator, passage: pendingObservation.passageText,
+                               quotation: pending.quotation})
               WHERE item.observation IS NOT NULL] AS pendingEvidence
+        OPTIONAL MATCH (assertion)-[support:SUPPORTED_BY]->(observation:SourceObservation)
+        WITH proposal, assertion, pendingEvidence,
+             [item IN collect({observation: coalesce(observation.label, observation.id),
+                               locator: observation.locator, passage: observation.passageText,
+                               quotation: support.quotation})
+              WHERE item.observation IS NOT NULL] AS support
         RETURN proposal.id AS id, proposal.status AS status, proposal.operation AS operation,
                assertion.label AS assertion, proposal.createdBy AS createdBy,
-               proposal.rationale AS rationale, pendingEvidence
+               proposal.rationale AS rationale,
+               CASE WHEN proposal.operation = "addEvidence" THEN pendingEvidence ELSE support END AS evidence
         ORDER BY id
         """,
         status=status,

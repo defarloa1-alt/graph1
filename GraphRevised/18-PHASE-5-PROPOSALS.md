@@ -270,3 +270,25 @@ rejected passages remain only as audit history. Agrippa's participation now
 rests on Wikidata plus Plutarch 65.2 and 66.3; Augustus's on Wikidata plus
 Plutarch 65.2, 65.5, and 68.1. Graph: 4,051 nodes, 4,056 relationships.
 
+## 11. Antony and Cleopatra (2026-10-11)
+
+[slices/add_entity.py](slices/add_entity.py) generalizes curator-approved
+identity setup (preserved Wikidata payload, Entity, accepted identity link; no
+Assertions). Added `chr:entity:mark-antony` (Q51673, r2553883228) and
+`chr:entity:cleopatra` (Q635, r2553821272). Their Wikidata P710 statements were
+deliberately not proposed first, so that Plutarch could ground new claims.
+
+Reader reruns on Antony 61–68:
+
+| Prompt | Change | Result |
+|---|---|---|
+| v3 | Lessons from review: a person's ships or preparations alone do not show participation; a name identified with an entity is not "unresolved" | 1 new claim (Antony, 65.1); 5 duplicates; the two rejected passages were not re-proposed. Missed Antony's flight (66.5) and Cleopatra entirely: the ships rule overcorrected. |
+| v4 | Presence during the engagement (commanding, fighting, aboard, fleeing) counts; ships or troops with no sign of the person do not | Antony +2 evidence proposals (65.2, 66.5); 2 drafts self-flagged as ambiguous and deferred (65.4, 66.4); still no Cleopatra claim. |
+
+The v3/v4 rules were tuned on the same chapters they were run on, so these
+results overstate performance on unseen text; the next evaluation should use
+different chapters. Cleopatra's presence (66.5 "her ship sailing off", 67.1
+"raised a signal on her ship") was read by the model as departure rather than
+participation; prompt tuning on these chapters was stopped to avoid
+overfitting. Graph after the v4 run: 4,061 nodes, 4,066 relationships.
+

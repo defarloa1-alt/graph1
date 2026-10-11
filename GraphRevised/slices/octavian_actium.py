@@ -11,93 +11,30 @@ script stops at a submitted Proposal; acceptance is a curator step:
 
 from __future__ import annotations
 
-import hashlib
-import json
 import os
-from datetime import datetime, timezone
 from pathlib import Path
 
-import requests
 from neo4j import GraphDatabase
 
-from GraphRevised.adapters.wikidata_identity import USER_AGENT
-from GraphRevised.adapters.wikidata_statements import REPOSITORY_ROOT, statement_observation
+from GraphRevised.adapters.wikidata_statements import statement_observation
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.store import Neo4jReader, submit
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
+from GraphRevised.slices.add_entity import persist_identity, preserved_identity_payload
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
-SOURCE_DIRECTORY = GRAPH_REVISED / "phase-5-source"
 ACTIUM_PAYLOAD = GRAPH_REVISED / "phase-2-source" / "wikidata-Q160387-r2555342002.json"
 OCTAVIAN_STATEMENT = "Q160387$d9469717-433b-c369-9fc7-3d7d5bf2b969"
 QID = "Q1405"
 ENTITY_ID = "chr:entity:augustus"
-SOURCE_URI = f"https://www.wikidata.org/wiki/Special:EntityData/{QID}.json"
-
-
-def preserved_identity_payload() -> tuple[Path, dict]:
-    """Return the preserved Q1405 payload, fetching it only if none exists."""
-    existing = sorted(SOURCE_DIRECTORY.glob(f"wikidata-{QID}-r*.json"))
-    existing = [path for path in existing if not path.name.endswith(".metadata.json")]
-    if existing:
-        path = existing[-1]
-        return path, json.loads(path.with_suffix(".metadata.json").read_text(encoding="utf-8"))
-
-    response = requests.get(SOURCE_URI, headers={"User-Agent": USER_AGENT}, timeout=30)
-    response.raise_for_status()
-    payload_bytes = response.content
-    entity = json.loads(payload_bytes)["entities"][QID]
-    metadata = {
-        "sourceSystem": "Wikidata",
-        "sourceUri": SOURCE_URI,
-        "entityId": QID,
-        "entityLabel": entity["labels"]["en"]["value"],
-        "entityDescription": entity["descriptions"]["en"]["value"],
-        "revision": entity["lastrevid"],
-        "modified": entity["modified"],
-        "retrievedAt": datetime.now(timezone.utc).isoformat(),
-        "contentHash": hashlib.sha256(payload_bytes).hexdigest(),
-    }
-    SOURCE_DIRECTORY.mkdir(exist_ok=True)
-    path = SOURCE_DIRECTORY / f"wikidata-{QID}-r{entity['lastrevid']}.json"
-    path.write_bytes(payload_bytes)
-    path.with_suffix(".metadata.json").write_bytes(
-        (json.dumps(metadata, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-    )
-    return path, metadata
 
 
 def persist(tx, payload_path: Path, metadata: dict):
     operations = load_operations()
     registry = load_registry()
     label = metadata["entityLabel"]
-
-    run_write(tx, operations, "upsert_entity", {
-        "id": ENTITY_ID,
-        "kind": "Person",
-        "label": label,
-        "description": metadata["entityDescription"],
-        "status": "provisional",
-        "shortLabel": label,
-    })
-    run_write(tx, operations, "upsert_authority", {
-        "entityId": ENTITY_ID,
-        "id": f"chr:authority:wikidata:{QID}",
-        "system": "Wikidata",
-        "identifier": QID,
-        "label": f"Wikidata record: {label} ({QID})",
-        "shortLabel": f"Wikidata: {label}",
-        "description": metadata["entityDescription"],
-        "retrievedAt": metadata["retrievedAt"],
-        "sourceUri": metadata["sourceUri"],
-        "sourceRevision": metadata["revision"],
-        "contentHash": metadata["contentHash"],
-        "rawPayloadUri": payload_path.resolve().relative_to(REPOSITORY_ROOT).as_posix(),
-        "role": "entity_identity",
-        "relation": "closeMatch",
-        "linkStatus": "accepted",
-    })
+    persist_identity(tx, operations, entity_id=ENTITY_ID, kind="Person", payload_path=payload_path, metadata=metadata)
     observation = statement_observation(
         ACTIUM_PAYLOAD,
         OCTAVIAN_STATEMENT,
@@ -114,7 +51,7 @@ def persist(tx, payload_path: Path, metadata: dict):
 
 
 def main() -> int:
-    payload_path, metadata = preserved_identity_payload()
+    payload_path, metadata = preserved_identity_payload(QID)
     print(f"identity payload: {payload_path.name} ({metadata['contentHash'][:16]})")
     driver = GraphDatabase.driver(
         os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),

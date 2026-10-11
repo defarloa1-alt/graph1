@@ -30,7 +30,7 @@ from .schema import ProposalDraft, Quotation
 from .store import Neo4jReader, submit
 from .validator import Outcome, validate
 
-PROMPT_VERSION = "passage-reader-v2"
+PROMPT_VERSION = "passage-reader-v4"
 PROPOSER_ID = "passage-reader"
 DEFAULT_MODEL = "claude-sonnet-5-5"
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
@@ -62,7 +62,13 @@ Octavian, not Julius Caesar. Explain how you identified each name in the rationa
 ambiguities only when the identification remains genuinely uncertain; such claims are held for \
 a human.
 6. participatedIn requires that the passage connect the person or group to the event itself, for \
-example by placing them in the battle's line or action.
+example by placing them in the battle's line or action. The person counts as taking part when \
+the passage shows them present during the engagement: commanding, fighting, aboard a ship in \
+the action, or fleeing from it. Preparations before the engagement, or the actions of a \
+person's ships or troops with no sign of the person, do not by themselves show that the \
+person took part.
+7. A name you identify with a candidate entity is resolved; list a name under \
+unresolved_mentions only when no candidate entity fits it in this passage.
 """
 
 
