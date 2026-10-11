@@ -35,12 +35,12 @@ from GraphRevised.adapters.wikidata_context import entity_context
 from GraphRevised.adapters.perseus_passages import Edition, load_edition, passage_observation, section_refs
 from GraphRevised.operations import load_operations, run_write
 
+from .prompt_version import prompt_version
 from .registry import PredicateRegistry, load_registry
 from .schema import ProposalDraft, Quotation
 from .store import Neo4jReader, submit
 from .validator import validate
 
-PROMPT_VERSION = "passage-reader-v6"
 PROPOSER_ID = "passage-reader"
 DEFAULT_MODEL = "claude-sonnet-5-5"
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
@@ -232,6 +232,9 @@ def read_passage(
     if response.stop_reason == "refusal":
         return None, meta
     return response.parsed_output, meta
+
+
+PROMPT_VERSION = prompt_version("passage-reader-v6", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(

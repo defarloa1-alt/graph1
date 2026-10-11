@@ -37,12 +37,12 @@ from pydantic import BaseModel
 from GraphRevised.adapters.wikidata_identity import USER_AGENT, WIKIDATA_API_URL
 from GraphRevised.operations import load_operations
 from GraphRevised.proposals.passage_reader import DEFAULT_MODEL, anthropic_client
+from GraphRevised.proposals.prompt_version import prompt_version
 from GraphRevised.slices.add_entity import ENTITY_KINDS, persist_identity, preserved_identity_payload
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 QUEUE_DIRECTORY = GRAPH_REVISED / "queues"
 RUNS_DIRECTORY = GRAPH_REVISED / "runs"
-PROMPT_VERSION = "identity-queue-v1"
 MAX_CANDIDATES = 6
 SEARCH_PAUSE_SECONDS = 1.0
 
@@ -183,8 +183,32 @@ def local_entities_for(session, qids: list[str]) -> dict[str, str]:
     return {row["qid"]: row["entityId"] for row in rows}
 
 
+def inquiry_context(inquiry: dict[str, Any], session) -> str:
+    """Subject, focus period, and source, taken from the inquiry and the graph."""
+    edition = GRAPH_REVISED / inquiry["source"]["edition"]
+    sidecar = edition.with_suffix(".metadata.json")
+    metadata = json.loads(sidecar.read_text(encoding="utf-8")) if sidecar.exists() else {}
+    source = metadata.get("work") or edition.stem
+    if metadata.get("translator"):
+        source += f", trans. {metadata['translator']}"
+    if metadata.get("edition"):
+        source += f" ({metadata['edition']})"
+    focus = session.run(
+        """
+        MATCH (:Subject {id: $subjectId})-[:HAS_SUBJECT_FOCUS]->(focus:Entity)
+        OPTIONAL MATCH (focus)-[:IN_YEAR]->(year:Year)
+        RETURN focus.label AS label, year.label AS year
+        """,
+        subjectId=inquiry["subjectId"],
+    ).data()
+    focus_text = "; ".join(f"{row['label']}" + (f" ({row['year']})" if row["year"] else "") for row in focus)
+    return (f"Inquiry: {inquiry['label']}\nSubject focus: {focus_text or 'unknown'}\n"
+            f"Source: {source}, chapters {inquiry['source']['chapters']}")
+
+
 def build(inquiry_path: Path, session) -> Path:
     inquiry = json.loads(inquiry_path.read_text(encoding="utf-8"))
+    context = inquiry_context(inquiry, session)
     run = latest_run(inquiry["id"])
     mentions = gather_mentions(run)
     client = anthropic_client()
@@ -195,7 +219,7 @@ def build(inquiry_path: Path, session) -> Path:
     )
     hints, model = ask(
         client, HINT_PROMPT,
-        f"Inquiry: {inquiry['label']}\nSource: Plutarch, Life of Antony (Perrin translation)\n\nMentions:\n{listing}",
+        f"{context}\n\nMentions:\n{listing}",
         HintOutput,
     )
 
@@ -236,7 +260,7 @@ def build(inquiry_path: Path, session) -> Path:
     )
     suggestions, _ = ask(
         client, SUGGEST_PROMPT,
-        f"Source: Plutarch, Life of Antony, narrative of 32-31 BCE.\n\n{suggestion_text}",
+        f"{context}\n\n{suggestion_text}",
         SuggestOutput,
     )
     for suggestion in suggestions.suggestions:
@@ -258,11 +282,14 @@ def build(inquiry_path: Path, session) -> Path:
         "builtAt": datetime.now(timezone.utc).isoformat(),
         "fromRun": run.name,
         "promptVersion": PROMPT_VERSION,
+        "context": context,
         "model": model,
         "entries": sorted(entries.values(), key=lambda e: ({"core": 0, "peripheral": 1}.get(e["centrality"], 2), e["canonicalName"])),
     }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path
 
+
+PROMPT_VERSION = prompt_version("identity-queue-v1", HINT_PROMPT, SUGGEST_PROMPT, inquiry_context, build)
 
 def show(inquiry_path: Path, show_all: bool) -> None:
     inquiry = json.loads(inquiry_path.read_text(encoding="utf-8"))

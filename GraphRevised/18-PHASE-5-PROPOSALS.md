@@ -385,3 +385,22 @@ Node and relationship counts were unchanged (4,075 / 4,089); a rerun moved
 nothing. Two operations were added (`link_pending_evidence`,
 `reopen_assertion`), for 20 in total. The suite has 60 tests.
 
+## 16. Hardcoding fixes (2026-10-11)
+
+- The identity queue's prompts had the source ("Plutarch, Life of Antony")
+  and period hardcoded. They now come from the inquiry, the edition's metadata
+  sidecar, and the Subject focus's year in the graph. A guard test fails if
+  reusable code (`proposals/`, `identity/`, `adapters/`) names a particular
+  source or subject.
+- Prompt versions are now a label plus a digest of the system prompt and the
+  code that builds the task packet
+  ([proposals/prompt_version.py](proposals/prompt_version.py)), for example
+  `passage-reader-v6-006ea47f`. Editing a prompt without bumping its label
+  can no longer leave Proposals recording the wrong prompt.
+
+Remaining structural assumptions, to address with the second source: the
+reader reads only Perseus TEI addressed by chapter.section; the context window
+(two sections before, one after) and the scope rule are fixed in code; entity
+context is Wikidata-only and English-only. The Actium slice scripts are
+curation written as code and should become data.
+
