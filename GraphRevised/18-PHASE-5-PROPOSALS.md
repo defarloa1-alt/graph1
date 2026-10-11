@@ -292,3 +292,41 @@ different chapters. Cleopatra's presence (66.5 "her ship sailing off", 67.1
 participation; prompt tuning on these chapters was stopped to avoid
 overfitting. Graph after the v4 run: 4,061 nodes, 4,066 relationships.
 
+## 12. Inquiry-scoped reading (prompt v5)
+
+Before v5 the reader stayed on topic only by accident: it could name every
+Entity in the graph (all Actium-related at the time), and its prompt contained
+Actium- and Plutarch-specific rules. That does not hold as the graph grows.
+
+A run is now bound to an inquiry file such as
+[inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json):
+the Subject, the source edition and chapters, declared candidate entities, and
+subject- and source-specific guidance. Following the prompt architecture in
+[05-AGENT-BOUNDARIES.md](05-AGENT-BOUNDARIES.md), the system prompt is now a
+generic role card; the guidance travels in the task packet.
+
+- **Scope** = the Subject's focus, entities linked to the focus by
+  non-rejected Assertions, and the inquiry's declared candidates. Only scope
+  entities are offered to the model, and a draft naming anything else is
+  refused as `out_of_scope` before validation. An inquiry declaring a
+  non-existent entity is refused.
+- **Relevance**: every claim states in one sentence how it bears on the
+  Subject's focus. `proposal-draft-v3` adds `inquiry_id` and `relevance`, and
+  both are stored on the Proposal.
+- Each run log starts with the inquiry, its version, the Subject, the resolved
+  scope, the prompt version, and the model.
+
+A v5 dry run on 65.1, 65.3, 66.5, and 67.1 reproduced the v4 results for
+Antony, drafted nothing for 65.3 (consistent with the curator's rejection of
+that passage), and for the first time drafted Cleopatra's participation from
+66.5, self-deferred because she is explicitly aboard only in 67.1.
+
+## 13. Why the reader does not add people
+
+The reader may not create entities by design (agents propose claims; identity
+is a curator decision). Names in a passage are not identities: "Domitius" in
+63.2 could be any of several Domitii Ahenobarbi. Unresolved mentions are
+logged with name and quotation in every run; the planned identity-resolution
+step turns them into a review queue: mention → Wikidata candidate search
+(Phase 4 adapter) → curator choice → `add_entity` → reader rerun.
+

@@ -115,6 +115,8 @@ def proposal_params(**overrides):
         "predicateRegistryVersion": "test",
         "promptVersion": None,
         "modelId": None,
+        "inquiryId": None,
+        "relevance": None,
     }
     params.update(overrides)
     return params

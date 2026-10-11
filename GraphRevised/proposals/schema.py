@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-DRAFT_SCHEMA_VERSION = "proposal-draft-v2"
+DRAFT_SCHEMA_VERSION = "proposal-draft-v3"
 LOCAL_ID_PATTERN = r"^chr:[a-z]+:[A-Za-z0-9._:-]+$"
 
 
@@ -30,7 +30,7 @@ class ProposalDraft(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    schema_version: Literal["proposal-draft-v2"] = DRAFT_SCHEMA_VERSION
+    schema_version: Literal["proposal-draft-v3"] = DRAFT_SCHEMA_VERSION
     predicate: str = Field(min_length=1)
     subject_id: str = Field(pattern=LOCAL_ID_PATTERN)
     object_id: str = Field(pattern=LOCAL_ID_PATTERN)
@@ -41,3 +41,5 @@ class ProposalDraft(BaseModel):
     model_id: str | None = None
     ambiguities: tuple[str, ...] = ()
     quotations: tuple[Quotation, ...] = ()
+    inquiry_id: str | None = None
+    relevance: str | None = Field(default=None, max_length=1000)

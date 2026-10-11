@@ -5,10 +5,14 @@ test passage) inside their transaction, so they do not depend on what the
 live graph currently contains. Only the Actium replay uses real data.
 """
 
+import json
 import os
+import tempfile
 import unittest
+from pathlib import Path
 
 from GraphRevised.operations import load_operations, run_write
+from GraphRevised.proposals.passage_reader import load_inquiry
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
 from GraphRevised.proposals.store import Neo4jReader, ReviewError, accept, list_proposals, reject, submit
@@ -274,6 +278,42 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.INVALID)
         self.assertEqual(self.counts(), before)
 
+    # -- inquiry scope -------------------------------------------------------
+
+    def test_inquiry_scope_is_focus_linked_and_declared_entities_only(self):
+        self.accepted_leader_claim()
+        self.add_entity(ADMIRAL)
+        bystander = ("chr:entity:test-bystander", "Person", "Test bystander", "Q999990004")
+        self.add_entity(bystander)
+        self.write("upsert_subject", {"id": "chr:subject:test-battle", "label": "History of the test battle",
+                                      "status": "provisional", "shortLabel": None})
+        self.write("link_subject_focus", {"subjectId": "chr:subject:test-battle", "entityId": BATTLE[0]})
+        inquiry = {
+            "id": "chr:inquiry:test", "version": 1, "label": "Test inquiry",
+            "subjectId": "chr:subject:test-battle",
+            "source": {"edition": "phase-5-source/none.xml", "chapters": "1-2"},
+            "candidateEntityIds": [ADMIRAL[0]], "guidance": [],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps(inquiry), encoding="utf-8")
+            scope = {entity["id"] for entity in load_inquiry(path, self.tx).scope}
+        self.assertEqual(scope, {BATTLE[0], LEADER[0], ADMIRAL[0]})
+
+    def test_inquiry_with_unknown_declared_entity_is_refused(self):
+        self.add_entity(BATTLE)
+        self.write("upsert_subject", {"id": "chr:subject:test-battle", "label": "History of the test battle",
+                                      "status": "provisional", "shortLabel": None})
+        self.write("link_subject_focus", {"subjectId": "chr:subject:test-battle", "entityId": BATTLE[0]})
+        inquiry = {
+            "id": "chr:inquiry:test", "version": 1, "label": "Test inquiry", "subjectId": "chr:subject:test-battle",
+            "source": {"edition": "none", "chapters": "1-2"}, "candidateEntityIds": ["chr:entity:nobody"], "guidance": [],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps(inquiry), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_inquiry(path, self.tx)
 
 if __name__ == "__main__":
     unittest.main()

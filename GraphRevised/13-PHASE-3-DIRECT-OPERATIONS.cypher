@@ -266,7 +266,9 @@ ON CREATE SET
   proposal.draftSchemaVersion = $draftSchemaVersion,
   proposal.predicateRegistryVersion = $predicateRegistryVersion,
   proposal.promptVersion = $promptVersion,
-  proposal.modelId = $modelId
+  proposal.modelId = $modelId,
+  proposal.inquiryId = $inquiryId,
+  proposal.relevance = $relevance
 ON MATCH SET
   proposal.label = coalesce($label, proposal.label),
   proposal.shortLabel = coalesce($shortLabel, proposal.shortLabel)
@@ -295,7 +297,9 @@ ON CREATE SET
   proposal.draftSchemaVersion = $draftSchemaVersion,
   proposal.predicateRegistryVersion = $predicateRegistryVersion,
   proposal.promptVersion = $promptVersion,
-  proposal.modelId = $modelId
+  proposal.modelId = $modelId,
+  proposal.inquiryId = $inquiryId,
+  proposal.relevance = $relevance
 MERGE (proposal)-[:PROPOSES]->(assertion)
 MERGE (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation)
 ON CREATE SET evidence.quotation = $quotation

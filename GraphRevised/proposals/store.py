@@ -119,6 +119,8 @@ def submit(
         "predicateRegistryVersion": registry.version,
         "promptVersion": result.draft.prompt_version,
         "modelId": result.draft.model_id,
+        "inquiryId": result.draft.inquiry_id,
+        "relevance": result.draft.relevance,
     }
 
     if result.outcome is Outcome.ADDS_EVIDENCE:
