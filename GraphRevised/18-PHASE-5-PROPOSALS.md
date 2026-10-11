@@ -258,3 +258,15 @@ Graph: 4,051 nodes, 4,051 relationships.
 Observed weaknesses for the next prompt version: "Caesar" was sometimes listed
 as an unresolved mention in sections where it was identified elsewhere, and
 participation was twice inferred from the person's fleet or preparations.
+
+### Curator review (2026-10-11)
+
+Decided by Tony DeFarlo through the review CLI, each with a recorded basis:
+accepted 65.2 (Agrippa and Augustus), 65.5, 66.3, and 68.1; rejected 65.3
+(pre-battle anecdote) and 66.1 (describes Caesar's ships, not Caesar). Both
+assertions stayed `accepted` with unchanged `acceptedAt`; the five accepted
+passages became `SUPPORTED_BY` evidence with their quotations, and the two
+rejected passages remain only as audit history. Agrippa's participation now
+rests on Wikidata plus Plutarch 65.2 and 66.3; Augustus's on Wikidata plus
+Plutarch 65.2, 65.5, and 68.1. Graph: 4,051 nodes, 4,056 relationships.
+
