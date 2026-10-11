@@ -171,7 +171,8 @@ def list_proposals(tx: Any, status: str | None = None) -> list[dict[str, Any]]:
         WHERE $status IS NULL OR proposal.status = $status
         OPTIONAL MATCH (proposal)-[evidence:PROPOSES_EVIDENCE]->(pending:SourceObservation)
         WITH proposal, assertion,
-             [item IN collect({observation: pending.label, quotation: evidence.quotation})
+             [item IN collect({observation: pending.label, locator: pending.locator,
+                               passage: pending.passageText, quotation: evidence.quotation})
               WHERE item.observation IS NOT NULL] AS pendingEvidence
         RETURN proposal.id AS id, proposal.status AS status, proposal.operation AS operation,
                assertion.label AS assertion, proposal.createdBy AS createdBy,

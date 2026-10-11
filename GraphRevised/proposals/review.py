@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+import textwrap
 from datetime import datetime, timezone
 
 from neo4j import GraphDatabase
@@ -21,6 +22,13 @@ from GraphRevised.operations import load_operations
 
 from .registry import load_registry
 from .store import ReviewError, accept, list_proposals, reject
+
+
+def mark_quotation(passage: str, quotation: str | None) -> str:
+    """The full passage with the quoted span bracketed as [[...]]."""
+    if quotation and quotation in passage:
+        return passage.replace(quotation, f"[[{quotation}]]", 1)
+    return passage
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -48,7 +56,15 @@ def main(argv: list[str] | None = None) -> int:
                 for row in rows:
                     print(f"{row['status']:<11} {row['operation']:<11} {row['id']}\n            {row['assertion']}")
                     for evidence in row["pendingEvidence"]:
-                        print(f"            + {evidence['observation']}: \"{evidence['quotation']}\"")
+                        print(f"            + {evidence['observation']}")
+                        print(f"              {evidence['locator']}")
+                        print(f"              quotation: \"{evidence['quotation']}\"")
+                        if evidence["passage"]:
+                            print(textwrap.fill(
+                                mark_quotation(evidence["passage"], evidence["quotation"]),
+                                width=100, initial_indent="              | ", subsequent_indent="              | ",
+                            ))
+                    print()
                 print(f"{len(rows)} proposal(s)")
                 return 0
 
