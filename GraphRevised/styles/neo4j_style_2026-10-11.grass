@@ -1,0 +1,1068 @@
+node.Proposal {
+  color: #3efbde;
+  size: 62px;
+  caption: "{shortLabel}";
+}
+
+node.Assertion {
+  color: #FFE081;
+  size: 88px;
+  caption: "{shortLabel}";
+}
+
+node.SourceObservation {
+  color: #ff8659;
+  size: 62px;
+  caption: "{shortLabel}";
+}
+
+node.AuthorityRecord {
+  color: #59b78c;
+  size: 62px;
+  caption: "{shortLabel}";
+}
+
+node.Subject {
+  color: #ff95b6;
+  size: 80px;
+  caption: "{shortLabel}";
+}
+
+
+node.Entity {
+  color: #c99286;
+  size: 72px;
+  caption: "{label}";
+}
+
+node.Year {
+  color: #D9D9D9;
+  size: 48px;
+  caption: "{label}";
+}
+
+node.Concept {
+  color: #bbbf54;
+  size: 25px;
+}
+
+node.Component {
+  color: #abae8a;
+  size: 25px;
+}
+
+node._Bloom_Perspective_ {
+  color: #eedaff;
+  size: 25px;
+}
+
+node.Formula {
+  color: #ceec89;
+  size: 25px;
+}
+
+node.Framework {
+  color: #d47de4;
+  size: 25px;
+}
+
+node.Agent {
+  color: #bfbb1d;
+  size: 25px;
+}
+
+node.DebateType {
+  color: #f69cb4;
+  size: 25px;
+}
+
+node.ExternalTool {
+  color: #2fc6c0;
+  size: 25px;
+}
+
+node.GlobalID {
+  color: #b59d46;
+  size: 25px;
+}
+
+node.TimeStep {
+  color: #f4cfba;
+  size: 25px;
+}
+
+node.Period {
+  color: #1b1be0;
+  size: 25px;
+}
+
+node.Place {
+  color: #e16dc8;
+  size: 25px;
+}
+
+node.Organization {
+  color: #d7b69f;
+  size: 25px;
+}
+
+node.Human {
+  color: #fa9ed8;
+  size: 25px;
+}
+
+node.Event {
+  color: #b5e6fe;
+  size: 25px;
+}
+
+node.PropertyRegistry {
+  color: #84b2ff;
+  size: 25px;
+}
+
+node.Person {
+  color: #abaa86;
+  size: 25px;
+}
+
+node.ClassificationSystem {
+  color: #ffba8f;
+  size: 25px;
+}
+
+node.AuthoritySystem {
+  color: #64f3b8;
+  size: 25px;
+}
+
+node.FederationSystem {
+  color: #5bb7ab;
+  size: 25px;
+}
+
+node.FederationHub {
+  color: #c4b2ff;
+  size: 25px;
+}
+
+node.Dynasty {
+  color: #F16667;
+  size: 25px;
+}
+
+node.PoliticalFacet {
+  color: #fdd990;
+  size: 25px;
+}
+
+node.Facet {
+  color: #d5ab42;
+  size: 25px;
+}
+
+node.FacetCategory {
+  color: #f9a6b3;
+  size: 25px;
+}
+
+node.CulturalFacet {
+  color: #29d5e4;
+  size: 25px;
+}
+
+node.TechnologicalFacet {
+  color: #3fd59b;
+  size: 25px;
+}
+
+node.ReligiousFacet {
+  color: #76ffff;
+  size: 25px;
+}
+
+node.EconomicFacet {
+  color: #9cbbdd;
+  size: 25px;
+}
+
+node.MilitaryFacet {
+  color: #ffca29;
+  size: 25px;
+}
+
+node.EnvironmentalFacet {
+  color: #c49393;
+  size: 25px;
+}
+
+node.DemographicFacet {
+  color: #b5ca4e;
+  size: 25px;
+}
+
+node.IntellectualFacet {
+  color: #e89d9c;
+  size: 25px;
+}
+
+node.ScientificFacet {
+  color: #00daf6;
+  size: 25px;
+}
+
+node.ArtisticFacet {
+  color: #5db6cb;
+  size: 25px;
+}
+
+node.SocialFacet {
+  color: #ff9355;
+  size: 25px;
+}
+
+node.LinguisticFacet {
+  color: #ded5a8;
+  size: 25px;
+}
+
+node.ArchaeologicalFacet {
+  color: #3fbf4e;
+  size: 25px;
+}
+
+node.DiplomaticFacet {
+  color: #ff94f7;
+  size: 25px;
+}
+
+node.GeographicFacet {
+  color: #9ee6ff;
+  size: 25px;
+}
+
+node.RelationshipCategory {
+  color: #2fa8ff;
+  size: 25px;
+}
+
+node.RelationshipType {
+  color: #5db99a;
+  size: 25px;
+}
+
+node.WikidataProperty {
+  color: #76e2e7;
+  size: 25px;
+}
+
+node.CRMClass {
+  color: #cdb7de;
+  size: 25px;
+}
+
+node.CRMProperty {
+  color: #ffc8ff;
+  size: 25px;
+}
+
+node.Scheme {
+  color: #00fcff;
+  size: 25px;
+}
+
+node.ChangeNote {
+  color: #ca89fb;
+  size: 25px;
+}
+
+node.Era {
+  color: #F79767;
+  size: 25px;
+}
+
+node.PlaceType {
+  color: #ffb8da;
+  size: 25px;
+}
+
+node.Decade {
+  color: #a5a848;
+  size: 25px;
+}
+
+node.Century {
+  color: #35b9c0;
+  size: 25px;
+}
+
+node.Millennium {
+  color: #fe8e00;
+  size: 25px;
+}
+
+node.SubjectConcept {
+  color: #dab3ed;
+  size: 25px;
+}
+
+node.Claim {
+  color: #58b47f;
+  size: 25px;
+}
+
+node.RetrievalContext {
+  color: #7eadd7;
+  size: 25px;
+}
+
+node.AnalysisRun {
+  color: #f69200;
+  size: 25px;
+}
+
+node.FacetAssessment {
+  color: #c97de9;
+  size: 25px;
+}
+
+node.BridgeType {
+  color: #ffe480;
+  size: 25px;
+}
+
+node.CIDOC_Class {
+  color: #ffd3e2;
+  size: 25px;
+}
+
+node.CIDOC_Property {
+  color: #33c082;
+  size: 25px;
+}
+
+node.CRMinf_Class {
+  color: #71be60;
+  size: 25px;
+}
+
+node.CRMinf_Property {
+  color: #59c790;
+  size: 25px;
+}
+
+node.Ontology {
+  color: #00b2e6;
+  size: 25px;
+}
+
+node.SubjectConceptRegistry {
+  color: #ffc96d;
+  size: 25px;
+}
+
+node.LCC_Class {
+  color: #45e8ff;
+  size: 25px;
+}
+
+node.LCSH_Subject {
+  color: #ffbda7;
+  size: 25px;
+}
+
+node.FAST_Subject {
+  color: #72c9df;
+  size: 25px;
+}
+
+node.Geometry {
+  color: #e6e4ff;
+  size: 25px;
+}
+
+node.Institution {
+  color: #a0e1ce;
+  size: 25px;
+}
+
+node.LegalRestriction {
+  color: #2bb8e6;
+  size: 25px;
+}
+
+node.Work {
+  color: #9d9ec0;
+  size: 25px;
+}
+
+node.Position {
+  color: #ffaeff;
+  size: 25px;
+}
+
+node.Material {
+  color: #ffdfb7;
+  size: 25px;
+}
+
+node.Object {
+  color: #f39255;
+  size: 25px;
+}
+
+node.Activity {
+  color: #ff9272;
+  size: 25px;
+}
+
+node.Gens {
+  color: #c6cef9;
+  size: 25px;
+}
+
+node.Praenomen {
+  color: #c696d3;
+  size: 25px;
+}
+
+node.Cognomen {
+  color: #c6959f;
+  size: 25px;
+}
+
+node.PlaceVersion {
+  color: #d5a3a1;
+  size: 25px;
+}
+
+node.PlaceName {
+  color: #f2753c;
+  size: 25px;
+}
+
+node.Location {
+  color: #efbbe3;
+  size: 25px;
+}
+
+node.PeriodCandidate {
+  color: #8b8dff;
+  size: 25px;
+}
+
+node.E4_Period {
+  color: #ffd5dd;
+  size: 25px;
+}
+
+node.GeoCoverageCandidate {
+  color: #d6e9c6;
+  size: 25px;
+}
+
+node.PlaceTypeTokenMap {
+  color: #00fff8;
+  size: 25px;
+}
+
+node.GeoSemanticType {
+  color: #ffe2a3;
+  size: 25px;
+}
+
+node.Silver {
+  color: #ffb3f6;
+  size: 25px;
+}
+
+node.Potosi {
+  color: #96d3ff;
+  size: 25px;
+}
+
+node.Mercury {
+  color: #c6b87c;
+  size: 25px;
+}
+
+node.Class {
+  color: #8fc898;
+  size: 25px;
+}
+
+node.ChemicalElement {
+  color: #98ab00;
+  size: 25px;
+}
+
+node.Toxicity {
+  color: #d3e4ff;
+  size: 25px;
+}
+
+node.ManilaGalleon {
+  color: #8899e3;
+  size: 25px;
+}
+
+relationship.INPUT_TO {
+  width: 1px;
+}
+
+relationship.PART_OF {
+  width: 1px;
+}
+
+relationship.OUTPUTS {
+  width: 1px;
+}
+
+relationship.FEEDS_INTO {
+  width: 1px;
+}
+
+relationship.REQUIRES {
+  width: 1px;
+}
+
+relationship.PRODUCES {
+  width: 1px;
+}
+
+relationship.DERIVED_FROM {
+  width: 1px;
+}
+
+relationship.CONTAINS {
+  width: 1px;
+}
+
+relationship.INCLUDES {
+  width: 1px;
+}
+
+relationship.INTEGRATES_WITH {
+  width: 1px;
+}
+
+relationship.MAPS_TO {
+  width: 1px;
+}
+
+relationship.HAS_STATE {
+  width: 1px;
+}
+
+relationship.EVOLVES_VIA {
+  width: 1px;
+}
+
+relationship.FOLLOWED_BY {
+  width: 1px;
+}
+
+relationship.PRECEDED_BY {
+  width: 1px;
+}
+
+relationship.DURING {
+  width: 1px;
+}
+
+relationship.* {
+  width: 1px;
+  caption: "<type>";
+}
+
+relationship.WITHIN_TIMESPAN {
+  width: 1px;
+}
+
+relationship.LOCATED_IN {
+  width: 1px;
+}
+
+relationship.ENDED_EXISTENCE_OF {
+  width: 1px;
+}
+
+relationship.RESULTED_IN {
+  width: 1px;
+}
+
+relationship.PARTICIPATED_IN {
+  width: 1px;
+}
+
+relationship.CONTROLLED {
+  width: 1px;
+}
+
+relationship.CONTAINS_PERIOD {
+  width: 1px;
+}
+
+relationship.SUB_PERIOD_OF {
+  width: 1px;
+}
+
+relationship.DEFINED_BY {
+  width: 1px;
+}
+
+relationship.CATEGORIZED_AS {
+  width: 1px;
+}
+
+relationship.SUBJECT_OF {
+  width: 1px;
+}
+
+relationship.OCCURRED_IN {
+  width: 1px;
+}
+
+relationship.LOCATED_AT {
+  width: 1px;
+}
+
+relationship.POINT_IN_TIME {
+  width: 1px;
+}
+
+relationship.OVERTHROWN_BY {
+  width: 1px;
+}
+
+relationship.GOVERNED {
+  width: 1px;
+}
+
+relationship.INITIATED {
+  width: 1px;
+}
+
+relationship.OPPOSED_BY {
+  width: 1px;
+}
+
+relationship.ALLIED_WITH {
+  width: 1px;
+}
+
+relationship.CROSSED {
+  width: 1px;
+}
+
+relationship.ASSASSINATED {
+  width: 1px;
+}
+
+relationship.ESTABLISHED {
+  width: 1px;
+}
+
+relationship.ENDED_BY {
+  width: 1px;
+}
+
+relationship.STARTED_IN {
+  width: 1px;
+}
+
+relationship.ENDED_IN {
+  width: 1px;
+}
+
+relationship.FEDERATES_TO {
+  width: 1px;
+}
+
+relationship.HAS {
+  width: 1px;
+}
+
+relationship.LINKS_TO {
+  width: 1px;
+}
+
+relationship.MATCHES {
+  width: 1px;
+}
+
+relationship.RESOLVES_TO {
+  width: 1px;
+}
+
+relationship.NEXT_YEAR {
+  width: 1px;
+}
+
+relationship.BROADER_THAN {
+  width: 1px;
+}
+
+relationship.CONTAINS_YEAR {
+  width: 1px;
+}
+
+relationship.BROADER {
+  width: 1px;
+}
+
+relationship.NARROWER {
+  width: 1px;
+}
+
+relationship.IN_PERIOD {
+  width: 1px;
+}
+
+relationship.MATCHES_LCSH {
+  width: 1px;
+}
+
+relationship.MATCHES_PERIOD {
+  width: 1px;
+}
+
+relationship.RELATED_TO {
+  width: 1px;
+}
+
+relationship.TEMPORAL_CONTEXT {
+  width: 1px;
+}
+
+relationship.APPLIES_TO_REGION {
+  width: 1px;
+}
+
+relationship.OVERLAPS_WITH {
+  width: 1px;
+}
+
+relationship.FOUNDED_BY {
+  width: 1px;
+}
+
+relationship.SPATIAL_EXTENT {
+  width: 1px;
+}
+
+relationship.IN_FACET_CATEGORY {
+  width: 1px;
+}
+
+relationship.IN_REL_CATEGORY {
+  width: 1px;
+}
+
+relationship.MAPS_TO_CRM_CLASS {
+  width: 1px;
+}
+
+relationship.MAPS_TO_CRM_PROPERTY {
+  width: 1px;
+}
+
+relationship.MAPS_TO_WIKIDATA_PROPERTY {
+  width: 1px;
+}
+
+relationship.INVERSE_OF {
+  width: 1px;
+}
+
+relationship.ALIGNS_WITH {
+  width: 1px;
+}
+
+relationship.P89_FALLS_WITHIN {
+  width: 1px;
+}
+
+relationship.HAS_GEOGRAPHIC_FACET {
+  width: 1px;
+}
+
+relationship.HAS_PART {
+  width: 1px;
+}
+
+relationship.IN_SCHEME {
+  width: 1px;
+}
+
+relationship.CHANGE_NOTE {
+  width: 1px;
+}
+
+relationship.STARTS_IN {
+  width: 1px;
+}
+
+relationship.ENDS_IN {
+  width: 1px;
+}
+
+relationship.HAS_CULTURAL_FACET {
+  width: 1px;
+}
+
+relationship.HAS_DEMOGRAPHIC_FACET {
+  width: 1px;
+}
+
+relationship.HAS_SOCIAL_FACET {
+  width: 1px;
+}
+
+relationship.HAS_POLITICAL_FACET {
+  width: 1px;
+}
+
+relationship.HAS_ARTISTIC_FACET {
+  width: 1px;
+}
+
+relationship.HAS_ECONOMIC_FACET {
+  width: 1px;
+}
+
+relationship.HAS_ARCHAEOLOGICAL_FACET {
+  width: 1px;
+}
+
+relationship.HAS_SCIENTIFIC_FACET {
+  width: 1px;
+}
+
+relationship.HAS_TECHNOLOGICAL_FACET {
+  width: 1px;
+}
+
+relationship.HAS_RELIGIOUS_FACET {
+  width: 1px;
+}
+
+relationship.HAS_MILITARY_FACET {
+  width: 1px;
+}
+
+relationship.HAS_TYPE {
+  width: 1px;
+}
+
+relationship.PARENT_OF {
+  width: 1px;
+}
+
+relationship.OWNS_DOMAIN {
+  width: 1px;
+}
+
+relationship.MADE_CLAIM {
+  width: 1px;
+}
+
+relationship.USED_CONTEXT {
+  width: 1px;
+}
+
+relationship.HAS_ANALYSIS_RUN {
+  width: 1px;
+}
+
+relationship.HAS_FACET_ASSESSMENT {
+  width: 1px;
+}
+
+relationship.ASSESSES_FACET {
+  width: 1px;
+}
+
+relationship.EVALUATED_BY {
+  width: 1px;
+}
+
+relationship.STARTS_IN_YEAR {
+  width: 1px;
+}
+
+relationship.ENDS_IN_YEAR {
+  width: 1px;
+}
+
+relationship.OCCURRED_DURING {
+  width: 1px;
+}
+
+relationship.OCCURRED_AT {
+  width: 1px;
+}
+
+relationship.HAS_SUBJECT_CONCEPT {
+  width: 1px;
+}
+
+relationship.SUPPORTED_BY {
+  width: 1px;
+}
+
+relationship.ASSERTS {
+  width: 1px;
+}
+
+relationship.SUBCLASS_OF {
+  width: 1px;
+}
+
+relationship.DOMAIN {
+  width: 1px;
+}
+
+relationship.RANGE {
+  width: 1px;
+}
+
+relationship.HAS_CLASS {
+  width: 1px;
+}
+
+relationship.HAS_PROPERTY {
+  width: 1px;
+}
+
+relationship.HAS_CHILD_CONCEPT {
+  width: 1px;
+}
+
+relationship.HAS_NAME {
+  width: 1px;
+}
+
+relationship.CANDIDATE_BROADER_THAN {
+  width: 1px;
+}
+
+relationship.CANDIDATE_NARROWER_THAN {
+  width: 1px;
+}
+
+relationship.REGION_CANDIDATE {
+  width: 1px;
+}
+
+relationship.CANONICALIZED_AS {
+  width: 1px;
+}
+
+relationship.VALID_IN_REGION {
+  width: 1px;
+}
+
+relationship.NARROWER_THAN {
+  width: 1px;
+}
+
+relationship.HAS_GEO_COVERAGE_CANDIDATE {
+  width: 1px;
+}
+
+relationship.HAS_GEO_SEMANTIC_TYPE {
+  width: 1px;
+}
+
+relationship.INSTANCE_OF_PLACE_TYPE {
+  width: 1px;
+}
+
+relationship.HAS_GEO_COVERAGE {
+  width: 1px;
+}
+
+relationship.PRODUCED_IN {
+  width: 1px;
+}
+
+relationship.AMALGAMATES {
+  width: 1px;
+}
+
+relationship.FOUND_AT {
+  width: 1px;
+}
+
+relationship.INSTANCE_OF {
+  width: 1px;
+}
+
+relationship.CAUSES {
+  width: 1px;
+}
+
+relationship.SHIPPED_VIA {
+  width: 1px;
+}
+
+relationship.ORIGIN {
+  width: 1px;
+}
+
+relationship.DESTINATION {
+  width: 1px;
+}
+
+relationship.OVERLAND_ROUTE {
+  width: 1px;
+}
+
+relationship.TREASURE_FLEET_ROUTE {
+  width: 1px;
+}
+
+relationship.TRADED_TO {
+  width: 1px;
+}
+
+relationship.MINED_AT {
+  width: 1px;
+}
+
+relationship.MARKET_FOR {
+  width: 1px;
+}
+
+relationship.SEA_ROUTE {
+  width: 1px;
+}
+
+relationship.EXPORTS_SILVER_TO {
+  width: 1px;
+}
+
+relationship.HAS_SUBJECT_FOCUS {
+  width: 1px;
+}
+
+relationship.HAS_AUTHORITY_RECORD {
+  width: 1px;
+}
+
+relationship.IN_YEAR {
+  width: 1px;
+}
+
+relationship.ASSERTION_SUBJECT {
+  width: 1px;
+}
+
+relationship.ASSERTION_OBJECT {
+  width: 1px;
+}
+
+relationship.PROPOSES {
+  width: 1px;
+}

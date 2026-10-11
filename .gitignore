@@ -40,6 +40,9 @@ wheels/
 config.py
 .env
 .env.local
+.env-*
+connections/
+GraphRevised/Connections.txt
 *.key
 *.pem
 

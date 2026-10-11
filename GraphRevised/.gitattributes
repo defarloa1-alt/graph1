@@ -1,0 +1,2 @@
+# Preserved source payloads are hashed byte-for-byte; never convert line endings.
+phase-*-source/** -text -whitespace

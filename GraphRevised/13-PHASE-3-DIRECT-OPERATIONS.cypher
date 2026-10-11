@@ -1,0 +1,281 @@
+// Phase 3 direct operations.
+//
+// Run each statement independently against the local `neo4j` database.
+// Callers must provide deterministic IDs and parameters. Every write is
+// retry-safe under the Phase 1 uniqueness constraints.
+//
+// Guarded writes return zero rows, and write nothing, when the request is
+// refused (unknown endpoint, conflicting identity, illegal transition, Year
+// outside the backbone). Callers must treat zero rows from a write as failure.
+//
+// Optional display parameters may be null. On a retry, null never erases an
+// existing value, and identity-defining properties are never rewritten.
+
+// ---------------------------------------------------------------------------
+// Reads
+// ---------------------------------------------------------------------------
+
+// Get one node by its stable local ID.
+MATCH (node:Entity {id: $id}) RETURN node, labels(node) AS nodeTypes
+UNION MATCH (node:Subject {id: $id}) RETURN node, labels(node) AS nodeTypes
+UNION MATCH (node:AuthorityRecord {id: $id}) RETURN node, labels(node) AS nodeTypes
+UNION MATCH (node:SourceObservation {id: $id}) RETURN node, labels(node) AS nodeTypes
+UNION MATCH (node:Assertion {id: $id}) RETURN node, labels(node) AS nodeTypes
+UNION MATCH (node:Proposal {id: $id}) RETURN node, labels(node) AS nodeTypes;
+
+// Get a subject and its focus entity.
+MATCH (subject:Subject {id: $subjectId})
+OPTIONAL MATCH (subject)-[:HAS_SUBJECT_FOCUS]->(focus:Entity)
+RETURN subject, focus;
+
+// Get an entity's compact accepted assertion neighborhood.
+MATCH (subjectEntity:Entity {id: $entityId})
+OPTIONAL MATCH (assertion:Assertion {status: "accepted"})
+  -[:ASSERTION_SUBJECT|ASSERTION_OBJECT]->(subjectEntity)
+OPTIONAL MATCH (assertion)-[:ASSERTION_SUBJECT]->(assertionSubject)
+OPTIONAL MATCH (assertion)-[:ASSERTION_OBJECT]->(assertionObject)
+WHERE assertionSubject IS NOT NULL AND assertionObject IS NOT NULL
+RETURN
+  assertionSubject,
+  assertion.predicate AS predicate,
+  assertion.label AS assertionLabel,
+  assertion.status AS assertionStatus,
+  assertionObject;
+
+// Get a complete evidence trail for one assertion.
+MATCH (assertion:Assertion {id: $assertionId})
+OPTIONAL MATCH (assertion)-[:ASSERTION_SUBJECT]->(assertionSubject)
+OPTIONAL MATCH (assertion)-[:ASSERTION_OBJECT]->(assertionObject)
+OPTIONAL MATCH (assertion)-[:SUPPORTED_BY]->(observation:SourceObservation)
+OPTIONAL MATCH (proposal:Proposal)-[:PROPOSES]->(assertion)
+RETURN
+  assertion,
+  assertionSubject,
+  assertionObject,
+  collect(DISTINCT observation) AS sourceObservations,
+  collect(DISTINCT proposal) AS proposals;
+
+// Derive temporal context for an assertion through its object entity.
+MATCH (assertion:Assertion {id: $assertionId})
+      -[:ASSERTION_OBJECT]->(event:Entity)
+OPTIONAL MATCH (event)-[:IN_YEAR]->(year:Year)
+RETURN
+  assertion,
+  event,
+  year.year AS eventYear,
+  CASE
+    WHEN year.year IS NULL THEN event.label
+    WHEN year.year < 0 THEN event.label + ", " + toString(abs(year.year)) + " BCE"
+    WHEN year.year > 0 THEN event.label + ", " + toString(year.year) + " CE"
+    ELSE event.label
+  END AS temporalContext;
+
+// ---------------------------------------------------------------------------
+// Idempotent writes
+// ---------------------------------------------------------------------------
+
+// Create or reuse an Entity. `kind` is fixed at creation; a retry with a
+// different kind is refused.
+OPTIONAL MATCH (existing:Entity {id: $id})
+WITH existing
+WHERE existing IS NULL OR existing.kind = $kind
+MERGE (node:Entity {id: $id})
+ON CREATE SET
+  node.kind = $kind,
+  node.label = $label,
+  node.description = $description,
+  node.status = $status,
+  node.shortLabel = $shortLabel
+ON MATCH SET
+  node.label = coalesce($label, node.label),
+  node.description = coalesce($description, node.description),
+  node.status = coalesce($status, node.status),
+  node.shortLabel = coalesce($shortLabel, node.shortLabel)
+RETURN node;
+
+// Create or reuse a Subject.
+MERGE (subject:Subject {id: $id})
+ON CREATE SET
+  subject.label = $label,
+  subject.status = $status,
+  subject.shortLabel = $shortLabel
+ON MATCH SET
+  subject.label = coalesce($label, subject.label),
+  subject.status = coalesce($status, subject.status),
+  subject.shortLabel = coalesce($shortLabel, subject.shortLabel)
+RETURN subject;
+
+// Link a Subject to its focus Entity.
+MATCH (subject:Subject {id: $subjectId})
+MATCH (entity:Entity {id: $entityId})
+MERGE (subject)-[relationship:HAS_SUBJECT_FOCUS]->(entity)
+RETURN subject, relationship, entity;
+
+// Link an Entity to an existing backbone Year. Never creates a Year: a year
+// outside the backbone, including year zero, is refused.
+MATCH (entity:Entity {id: $entityId})
+MATCH (year:Year {year: $year})
+MERGE (entity)-[relationship:IN_YEAR]->(year)
+RETURN entity, relationship, year;
+
+// Create or reuse an AuthorityRecord and attach it to an Entity. The record is
+// keyed by (system, identifier); a retry under a different local ID is refused.
+MATCH (entity:Entity {id: $entityId})
+OPTIONAL MATCH (existing:AuthorityRecord {system: $system, identifier: $identifier})
+WITH entity, existing
+WHERE existing IS NULL OR existing.id = $id
+MERGE (record:AuthorityRecord {system: $system, identifier: $identifier})
+ON CREATE SET
+  record.id = $id,
+  record.label = $label,
+  record.shortLabel = $shortLabel,
+  record.description = $description,
+  record.retrievedAt = $retrievedAt
+ON MATCH SET
+  record.label = coalesce($label, record.label),
+  record.shortLabel = coalesce($shortLabel, record.shortLabel),
+  record.description = coalesce($description, record.description),
+  record.retrievedAt = coalesce($retrievedAt, record.retrievedAt)
+MERGE (entity)-[relationship:HAS_AUTHORITY_RECORD]->(record)
+ON CREATE SET
+  relationship.role = $role,
+  relationship.relation = $relation,
+  relationship.status = $linkStatus
+RETURN entity, relationship, record;
+
+// Create or reuse a preserved SourceObservation. Source facts are immutable
+// after creation; only display text and observed/superseded status may change.
+MERGE (observation:SourceObservation {id: $id})
+ON CREATE SET
+  observation.label = $label,
+  observation.shortLabel = $shortLabel,
+  observation.sourceSystem = $sourceSystem,
+  observation.sourceEntityId = $sourceEntityId,
+  observation.predicateExternalId = $predicateExternalId,
+  observation.objectExternalId = $objectExternalId,
+  observation.externalStatementId = $externalStatementId,
+  observation.sourceRevision = $sourceRevision,
+  observation.retrievedAt = $retrievedAt,
+  observation.contentHash = $contentHash,
+  observation.rawPayloadUri = $rawPayloadUri,
+  observation.status = $status
+ON MATCH SET
+  observation.label = coalesce($label, observation.label),
+  observation.shortLabel = coalesce($shortLabel, observation.shortLabel),
+  observation.status = coalesce($status, observation.status)
+RETURN observation;
+
+// Create or reuse a normalized Assertion and connect its endpoints. A new
+// Assertion is always `proposed`; status changes only through a Proposal
+// decision. Predicate and endpoints are fixed at creation; a retry with a
+// different predicate or endpoint is refused.
+OPTIONAL MATCH (existing:Assertion {id: $id})
+OPTIONAL MATCH (existing)-[:ASSERTION_SUBJECT]->(existingSubject)
+OPTIONAL MATCH (existing)-[:ASSERTION_OBJECT]->(existingObject)
+WITH existing,
+     collect(DISTINCT existingSubject.id) AS existingSubjectIds,
+     collect(DISTINCT existingObject.id) AS existingObjectIds
+WHERE existing IS NULL
+   OR (existing.predicate = $predicate
+       AND existingSubjectIds = [$subjectId]
+       AND existingObjectIds = [$objectId])
+OPTIONAL MATCH (subjectEntity:Entity {id: $subjectId})
+OPTIONAL MATCH (subjectSubject:Subject {id: $subjectId})
+OPTIONAL MATCH (objectEntity:Entity {id: $objectId})
+OPTIONAL MATCH (objectSubject:Subject {id: $objectId})
+OPTIONAL MATCH (objectAuthority:AuthorityRecord {id: $objectId})
+WITH coalesce(subjectEntity, subjectSubject) AS assertionSubject,
+     coalesce(objectEntity, objectSubject, objectAuthority) AS assertionObject
+WHERE assertionSubject IS NOT NULL AND assertionObject IS NOT NULL
+MERGE (assertion:Assertion {id: $id})
+ON CREATE SET
+  assertion.label = $label,
+  assertion.shortLabel = $shortLabel,
+  assertion.predicate = $predicate,
+  assertion.status = "proposed",
+  assertion.assertedBy = $assertedBy
+ON MATCH SET
+  assertion.label = coalesce($label, assertion.label),
+  assertion.shortLabel = coalesce($shortLabel, assertion.shortLabel)
+MERGE (assertion)-[:ASSERTION_SUBJECT]->(assertionSubject)
+MERGE (assertion)-[:ASSERTION_OBJECT]->(assertionObject)
+RETURN assertion, assertionSubject, assertionObject;
+
+// Attach a SourceObservation to an Assertion.
+MATCH (assertion:Assertion {id: $assertionId})
+MATCH (observation:SourceObservation {id: $observationId})
+MERGE (assertion)-[:SUPPORTED_BY]->(observation)
+RETURN assertion, observation;
+
+// Create or reuse a Proposal for an Assertion. A new Proposal is always
+// `submitted`; status changes only through the decision operation below. A
+// Proposal proposes exactly one Assertion; a retry naming another is refused.
+MATCH (assertion:Assertion {id: $assertionId})
+OPTIONAL MATCH (existing:Proposal {id: $id})
+OPTIONAL MATCH (existing)-[:PROPOSES]->(existingTarget:Assertion)
+WITH assertion, existing, collect(existingTarget.id) AS existingTargetIds
+WHERE existing IS NULL OR existingTargetIds = [$assertionId]
+MERGE (proposal:Proposal {id: $id})
+ON CREATE SET
+  proposal.label = $label,
+  proposal.shortLabel = $shortLabel,
+  proposal.operation = $operation,
+  proposal.status = "submitted",
+  proposal.createdBy = $createdBy
+ON MATCH SET
+  proposal.label = coalesce($label, proposal.label),
+  proposal.shortLabel = coalesce($shortLabel, proposal.shortLabel)
+MERGE (proposal)-[:PROPOSES]->(assertion)
+RETURN proposal, assertion;
+
+// Move a Proposal through its lifecycle and, on a decision, synchronize its
+// Assertion.
+//
+//   submitted  -> validating | rejected | deferred
+//   validating -> accepted | rejected | deferred
+//   deferred   -> validating | rejected
+//   accepted, rejected: terminal
+//
+// Repeating the current status is an idempotent no-op that preserves the
+// original decision metadata. Accepting requires a `proposed` Assertion;
+// rejecting leaves an Assertion that another Proposal already accepted
+// untouched.
+MATCH (proposal:Proposal {id: $proposalId})-[:PROPOSES]->(assertion:Assertion)
+WITH proposal, assertion,
+     proposal.status = $proposalStatus AS isRetry,
+     {
+       submitted: ["validating", "rejected", "deferred"],
+       validating: ["accepted", "rejected", "deferred"],
+       deferred: ["validating", "rejected"]
+     } AS allowedTransitions
+WHERE isRetry
+   OR $proposalStatus IN coalesce(allowedTransitions[proposal.status], [])
+WITH proposal, assertion, isRetry
+WHERE isRetry
+   OR $proposalStatus <> "accepted"
+   OR assertion.status = "proposed"
+SET
+  proposal.status = $proposalStatus,
+  proposal.decidedAt = CASE
+    WHEN NOT isRetry AND $proposalStatus IN ["accepted", "rejected"] THEN $decidedAt
+    ELSE proposal.decidedAt
+  END,
+  proposal.decidedBy = CASE
+    WHEN NOT isRetry AND $proposalStatus IN ["accepted", "rejected"] THEN $decidedBy
+    ELSE proposal.decidedBy
+  END,
+  proposal.decisionBasis = CASE
+    WHEN NOT isRetry AND $proposalStatus IN ["accepted", "rejected"] THEN $decisionBasis
+    ELSE proposal.decisionBasis
+  END,
+  assertion.acceptedAt = CASE
+    WHEN NOT isRetry AND $proposalStatus = "accepted" THEN $decidedAt
+    ELSE assertion.acceptedAt
+  END,
+  assertion.status = CASE
+    WHEN isRetry THEN assertion.status
+    WHEN $proposalStatus = "accepted" THEN "accepted"
+    WHEN $proposalStatus = "rejected" AND assertion.status = "proposed" THEN "rejected"
+    ELSE assertion.status
+  END
+RETURN proposal, assertion;
