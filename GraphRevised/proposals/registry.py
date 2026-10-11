@@ -11,7 +11,7 @@ from typing import Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v1.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v2.json"
 
 
 @dataclass(frozen=True)

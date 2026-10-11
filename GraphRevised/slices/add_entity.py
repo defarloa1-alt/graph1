@@ -102,6 +102,27 @@ def persist_identity(
     })
 
 
+def persist_local_entity(
+    tx: Any,
+    operations: dict[str, str],
+    *,
+    entity_id: str,
+    kind: str,
+    label: str,
+    description: str,
+    status: str = "provisional",
+) -> None:
+    """A local analytical Entity with no external identity, such as a fleet's wing."""
+    run_write(tx, operations, "upsert_entity", {
+        "id": entity_id,
+        "kind": kind,
+        "label": label,
+        "description": description,
+        "status": status,
+        "shortLabel": None,
+    })
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--qid", required=True)

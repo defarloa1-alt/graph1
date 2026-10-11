@@ -111,7 +111,15 @@
         "confidence": "medium",
         "reason": "The passages describe the place (promontory and gulf mouth), which matches the cape with the Apollo sanctuary. The last quotation (68.1) could refer to the battle, Q160387."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q216551",
+        "entityId": "chr:entity:actium-promontory",
+        "label": "Akri",
+        "by": "Tony DeFarlo",
+        "basis": "The promontory with Apollo's sanctuary at the mouth of the Ambracian Gulf, where Antony's fleet anchored (62.3, 63.1)",
+        "at": "2026-10-11T20:15:02.677899+00:00"
+      }
     },
     {
       "canonicalName": "Alexas of Laodicea",
@@ -214,7 +222,15 @@
         "confidence": "high",
         "reason": "Spartan freebooter, son of Lachares, who fought for Octavian at Actium. Q78820444 is his later descendant."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q1378466",
+        "entityId": "chr:entity:gaius-julius-eurycles",
+        "label": "Gaius Julius Eurycles",
+        "by": "Tony DeFarlo",
+        "basis": "Spartan son of Lachares who pursued Antony (67.2); matches Plutarch's own identification",
+        "at": "2026-10-11T20:14:56.904876+00:00"
+      }
     },
     {
       "canonicalName": "Gnaeus Domitius Ahenobarbus",
@@ -288,7 +304,15 @@
         "confidence": "high",
         "reason": "Consul of 32 BC, who defected from Antony to Octavian and died soon after. The other namesakes are from other eras."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q360920",
+        "entityId": "chr:entity:gnaeus-domitius-ahenobarbus",
+        "label": "Gnaeus Domitius Ahenobarbus",
+        "by": "Tony DeFarlo",
+        "basis": "Consul 32 BCE who defected from Antony before Actium (63.2-63.3)",
+        "at": "2026-10-11T20:14:49.488276+00:00"
+      }
     },
     {
       "canonicalName": "Lucius Arruntius",
@@ -358,7 +382,15 @@
         "confidence": "high",
         "reason": "Admiral under Octavian at Actium and consul 22 BC. Others are later or of uncertain identity."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q727792",
+        "entityId": "chr:entity:lucius-arruntius",
+        "label": "Lucius Arruntius",
+        "by": "Tony DeFarlo",
+        "basis": "Octavian's admiral at Actium, consul 22 BCE; listed as a participant on Wikidata's Battle of Actium",
+        "at": "2026-10-11T20:14:52.047343+00:00"
+      }
     },
     {
       "canonicalName": "Lucius Gellius Publicola",
@@ -432,7 +464,15 @@
         "confidence": "medium",
         "reason": "Fits the Actium commander, consul of 36 BC. Q15711212 (accused of adultery with his stepmother) may be the same man, so the evidence does not fully separate them."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q1283545",
+        "entityId": "chr:entity:lucius-gellius-poplicola",
+        "label": "Lucius Gellius Poplicola",
+        "by": "Tony DeFarlo",
+        "basis": "Consul 36 BCE who commanded for Antony at Actium; Q15711212 appears to be a duplicate Wikidata item",
+        "at": "2026-10-11T20:14:59.453411+00:00"
+      }
     },
     {
       "canonicalName": "Marcus Insteius",
@@ -478,7 +518,15 @@
         "confidence": "high",
         "reason": "A follower of Antony, in the right period. The others are 2nd-century AD figures."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q17747765",
+        "entityId": "chr:entity:marcus-insteius",
+        "label": "Marcus Insteius",
+        "by": "Tony DeFarlo",
+        "basis": "Follower of Antony in the right period; other Insteii are 2nd century CE",
+        "at": "2026-10-11T20:14:54.576856+00:00"
+      }
     },
     {
       "canonicalName": "Marcus Octavius",
@@ -549,7 +597,15 @@
         "confidence": "high",
         "reason": "Antony's land commander at Actium; the only candidate."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q637205",
+        "entityId": "chr:entity:publius-canidius-crassus",
+        "label": "Publius Canidius Crassus",
+        "by": "Tony DeFarlo",
+        "basis": "Antony's land commander at Actium; only candidate; period matches",
+        "at": "2026-10-11T20:14:44.131603+00:00"
+      }
     },
     {
       "canonicalName": "Titus Statilius Taurus",
@@ -649,7 +705,15 @@
         "confidence": "high",
         "reason": "Octavian's land commander at Actium, consul 26 BC. The other Tauri are later."
       },
-      "status": "pending"
+      "status": "resolved",
+      "decision": {
+        "qid": "Q2331658",
+        "entityId": "chr:entity:titus-statilius-taurus",
+        "label": "Titus Statilius Taurus",
+        "by": "Tony DeFarlo",
+        "basis": "Octavian's land commander at Actium, consul 26 BCE; other Tauri are later",
+        "at": "2026-10-11T20:14:46.691570+00:00"
+      }
     },
     {
       "canonicalName": "Amyntas of Galatia",

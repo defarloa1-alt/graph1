@@ -418,6 +418,27 @@ goes through the existing observation, proposal, and review path.
 
 **Dependency:** E9, Phase 7 temporal qualification, Work entities.
 
+### E11. Actor actions (IGAR) and causal context
+
+For an event inquiry, decompose each actor's part as Input (trigger), Goal,
+Action, and Result. Actions are sub-events (`Entity {kind: Event}`, such as
+"Antony's flight from Actium") linked by claims: performed by an actor, part
+of the event, triggered by a prior event, resulted in an outcome. Goals are
+the most interpretive element and are always attributed to a source: Plutarch
+66.4 ("dragged along by the woman"), rightly rejected as evidence of
+participation, is valid evidence for "Antony's goal, according to Plutarch".
+
+A broad request such as "graph the battle" becomes a subject constellation
+(causes and prelude, the battle, aftermath). A "why it happened" preface is an
+Explanation Agent output generated from claims, citing each; causal claims are
+interpretive and attributed, and may be contested (E8).
+
+Review the legacy `scripts/agents/military/igar.py` as reference only, per the
+legacy triage rules.
+
+**Dependency:** commanded-forces model (done), new predicates (performedBy,
+triggeredBy, resultedIn, aimedAt), E8 stance, Phase 7 temporal ordering.
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its

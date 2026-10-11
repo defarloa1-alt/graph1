@@ -1,0 +1,273 @@
+{
+  "version": "predicates-v2",
+  "description": "Predicates a ProposalDraft may use. Wikidata mappings say which source statements can evidence each predicate: forward means the statement's entity is the assertion subject; inverse means the statement's value is the assertion subject. v2: commanded relates a person to a force (Group), not to an event.",
+  "temporalQualifierPropertyIds": [
+    "P580",
+    "P582",
+    "P585",
+    "P1319",
+    "P1326"
+  ],
+  "predicates": [
+    {
+      "id": "participatedIn",
+      "display": "participated in",
+      "subjectKinds": [
+        "Person",
+        "Group"
+      ],
+      "objectKinds": [
+        "Event"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P710",
+          "direction": "inverse"
+        },
+        {
+          "pid": "P607",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "commanded",
+      "display": "commanded",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Group"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": []
+    },
+    {
+      "id": "alliedWith",
+      "display": "allied with",
+      "subjectKinds": [
+        "Person",
+        "Group"
+      ],
+      "objectKinds": [
+        "Person",
+        "Group"
+      ],
+      "symmetric": true,
+      "temporalQualification": "required",
+      "wikidata": []
+    },
+    {
+      "id": "occurredAt",
+      "display": "occurred at",
+      "subjectKinds": [
+        "Event"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P276",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "partOf",
+      "display": "part of",
+      "subjectKinds": [
+        "Event"
+      ],
+      "objectKinds": [
+        "Event"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P361",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "bornAt",
+      "display": "born at",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P19",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "diedAt",
+      "display": "died at",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P20",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "childOf",
+      "display": "child of",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P22",
+          "direction": "forward"
+        },
+        {
+          "pid": "P25",
+          "direction": "forward"
+        },
+        {
+          "pid": "P40",
+          "direction": "inverse"
+        }
+      ]
+    },
+    {
+      "id": "spouseOf",
+      "display": "spouse of",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "symmetric": true,
+      "temporalQualification": "whenPresent",
+      "wikidata": [
+        {
+          "pid": "P26",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "siblingOf",
+      "display": "sibling of",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "symmetric": true,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P3373",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "heldPosition",
+      "display": "held position",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Other"
+      ],
+      "symmetric": false,
+      "temporalQualification": "required",
+      "wikidata": [
+        {
+          "pid": "P39",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "describedBy",
+      "display": "described by",
+      "subjectKinds": [
+        "Person",
+        "Event",
+        "Place",
+        "Group",
+        "Object",
+        "Work",
+        "Period",
+        "Other"
+      ],
+      "objectKinds": [
+        "Work"
+      ],
+      "symmetric": false,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P1343",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "distinctFrom",
+      "display": "distinct from",
+      "subjectKinds": [
+        "Person",
+        "Event",
+        "Place",
+        "Group",
+        "Object",
+        "Work",
+        "Period",
+        "Other"
+      ],
+      "objectKinds": [
+        "Person",
+        "Event",
+        "Place",
+        "Group",
+        "Object",
+        "Work",
+        "Period",
+        "Other"
+      ],
+      "symmetric": true,
+      "temporalQualification": "none",
+      "wikidata": [
+        {
+          "pid": "P1889",
+          "direction": "forward"
+        }
+      ]
+    }
+  ]
+}

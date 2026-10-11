@@ -170,7 +170,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             "MATCH (p:Proposal {id: $id})-[:PROPOSES]->(a:Assertion) RETURN p, a", id=proposal_id
         ).single()
         self.assertEqual(stored["p"]["status"], "submitted")
-        self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v1")
+        self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v2")
         self.assertEqual(stored["a"]["status"], "proposed")
         self.assertEqual(stored["a"]["label"], "Test leader participated in Test battle")
         self.assertIn(proposal_id, [row["id"] for row in list_proposals(self.tx, "submitted")])
