@@ -80,7 +80,15 @@ Source facts (`sourceSystem` through `rawPayloadUri`) are immutable once the
 observation exists. Only display text and `observed`/`superseded` status may
 change.
 
-Two observation kinds currently exist, each with its own deterministic ID:
+Passage observations (`observationKind: passage`) preserve a located span of
+a specific edition: locator, passage text without editorial notes, notes kept
+separately, edition citation, rights, and hashes. Their ID is
+`chr:observation:<system>:<work>:<locator>:<source revision prefix>`.
+
+`SUPPORTED_BY` and `PROPOSES_EVIDENCE` carry a `quotation` when the evidence
+is a passage: the verbatim span offered in support.
+
+Two Wikidata observation kinds currently exist, each with its own deterministic ID:
 
 | Kind | Observes | ID form |
 |---|---|---|
@@ -159,6 +167,10 @@ and `decisionBasis`. Accepting sets the Assertion to `accepted` (with
 Assertion to `rejected` but leaves an Assertion that another Proposal already
 accepted untouched.
 
+An `addEvidence` Proposal offers new evidence for an existing Assertion. Its
+evidence waits on `PROPOSES_EVIDENCE` and is attached as `SUPPORTED_BY` only on
+acceptance; its decisions never change the Assertion's status.
+
 A stored Proposal also records its provenance: `createdBy`, `rationale`,
 `draftSchemaVersion`, `predicateRegistryVersion`, `promptVersion`, and
 `modelId`. These are fixed at creation.
@@ -192,6 +204,7 @@ Relationship direction must be consistent in the stored graph.
 (:Assertion)-[:ASSERTION_OBJECT]->(:Entity|:Subject|:AuthorityRecord)
 (:Assertion)-[:SUPPORTED_BY]->(:SourceObservation)
 (:Proposal)-[:PROPOSES]->(:Assertion)
+(:Proposal)-[:PROPOSES_EVIDENCE]->(:SourceObservation)
 (:Entity)-[:IN_YEAR]->(:Year)
 ```
 

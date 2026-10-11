@@ -4,14 +4,19 @@ import os
 import unittest
 from pathlib import Path
 
+from GraphRevised.adapters.perseus_passages import load_edition, passage_observation
 from GraphRevised.adapters.wikidata_statements import statement_observation
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
-from GraphRevised.proposals.schema import ProposalDraft
+from GraphRevised.proposals.schema import ProposalDraft, Quotation
 from GraphRevised.proposals.store import Neo4jReader, ReviewError, accept, list_proposals, reject, submit
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 
+EDITION_PATH = next((Path(__file__).resolve().parents[1] / "phase-5-source").glob("perseus-*.xml"))
+EDITION_COMMIT = "70427323b61267cdcd0256b9b02009c23392de07"
+AGRIPPA = "chr:entity:marcus-vipsanius-agrippa"
+AGRIPPA_ASSERTION = "chr:assertion:marcus-vipsanius-agrippa:participated-in:battle-of-actium"
 PAYLOAD = Path(__file__).resolve().parents[1] / "phase-2-source" / "wikidata-Q160387-r2555342002.json"
 ACTIUM = "chr:entity:battle-of-actium"
 AGRIPPA_OBSERVATION = "chr:observation:wikidata:Q160387:P710:32bdfa2f:r2555342002"
@@ -155,6 +160,86 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.assertFalse(submission.stored)
         self.assertEqual(self.counts(), before)
 
+    def add_passage(self, ref):
+        edition = load_edition(EDITION_PATH, source_commit=EDITION_COMMIT)
+        params = passage_observation(edition, ref, retrieved_at="2026-10-11T00:00:00Z", source_uri="test")
+        # A test-only ID keeps these tests independent of passages already in the graph.
+        params["id"] = f"chr:observation:test:antony:{ref}"
+        run_write(self.tx, self.operations, "upsert_passage_observation", params)
+        return params["id"]
+
+    def agrippa_passage_draft(self):
+        observation_id = self.add_passage("65.2")
+        return ProposalDraft(
+            predicate="participatedIn",
+            subject_id=AGRIPPA,
+            object_id=ACTIUM,
+            observation_ids=(observation_id,),
+            quotations=(Quotation(observation_id=observation_id, text="Caesar posted Agrippa on the left"),),
+            rationale="Plutarch places Agrippa in command of Caesar's left wing at Actium.",
+            proposed_by="test",
+        )
+
+    def test_passage_evidence_for_accepted_assertion_waits_for_acceptance(self):
+        draft = self.agrippa_passage_draft()
+        submission = submit(self.tx, draft, self.registry, self.operations)
+        self.assertEqual(submission.validation.outcome, Outcome.ADDS_EVIDENCE)
+        self.assertTrue(submission.stored)
+        proposal_id = submission.validation.proposal_id
+        self.assertEqual(len(self.reader.assertion(AGRIPPA_ASSERTION)["observationIds"]), 1)
+
+        before_retry = self.counts()
+        self.assertFalse(submit(self.tx, draft, self.registry, self.operations).stored)
+        self.assertEqual(self.counts(), before_retry)
+
+        accepted_at = self.tx.run("MATCH (a:Assertion {id: $id}) RETURN a.acceptedAt AS t", id=AGRIPPA_ASSERTION).single()["t"]
+        decided = accept(self.tx, proposal_id, registry=self.registry, operations=self.operations, **DECISION)
+        self.assertEqual(decided["proposal"]["status"], "accepted")
+        self.assertEqual(decided["assertion"]["status"], "accepted")
+        self.assertEqual(decided["assertion"]["acceptedAt"], accepted_at)
+        support = self.tx.run(
+            "MATCH (:Assertion {id: $id})-[s:SUPPORTED_BY]->(o:SourceObservation {observationKind: 'passage'}) "
+            "RETURN s.quotation AS quotation, s.addedByProposal AS proposal",
+            id=AGRIPPA_ASSERTION,
+        ).single()
+        self.assertEqual(support["quotation"], "Caesar posted Agrippa on the left")
+        self.assertEqual(support["proposal"], proposal_id)
+        self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.DUPLICATE)
+
+    def test_rejected_evidence_leaves_assertion_untouched(self):
+        submission = submit(self.tx, self.agrippa_passage_draft(), self.registry, self.operations)
+        decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION)
+        self.assertEqual(decided["proposal"]["status"], "rejected")
+        self.assertEqual(decided["assertion"]["status"], "accepted")
+        self.assertEqual(len(self.reader.assertion(AGRIPPA_ASSERTION)["observationIds"]), 1)
+
+    def test_passage_can_support_a_new_assertion(self):
+        self.add_antony()
+        observation_id = self.add_passage("65.1")
+        draft = ProposalDraft(
+            predicate="participatedIn",
+            subject_id=ANTONY,
+            object_id=ACTIUM,
+            observation_ids=(observation_id,),
+            quotations=(Quotation(observation_id=observation_id, text="Antony had the right wing"),),
+            rationale="Plutarch names Antony as commander of his own right wing in the engagement.",
+            proposed_by="test",
+        )
+        submission = submit(self.tx, draft, self.registry, self.operations)
+        self.assertEqual(submission.validation.outcome, Outcome.VALID)
+        decided = accept(self.tx, submission.validation.proposal_id, registry=self.registry, operations=self.operations, **DECISION)
+        self.assertEqual(decided["assertion"]["status"], "accepted")
+
+    def test_paraphrased_passage_evidence_is_refused(self):
+        before = self.counts()
+        observation_id = self.add_passage("65.2")
+        after_observation = self.counts()
+        draft = self.agrippa_passage_draft().model_copy(update={
+            "quotations": (Quotation(observation_id=observation_id, text="Agrippa led the left wing of the fleet"),),
+        })
+        self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.INVALID)
+        self.assertEqual(self.counts(), after_observation)
+        self.assertNotEqual(before, after_observation)
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Protocol
@@ -17,8 +18,9 @@ from .schema import ProposalDraft
 
 
 class Outcome(str, Enum):
-    VALID = "valid"  # may be stored as a submitted Proposal
-    DUPLICATE = "duplicate"  # the Assertion already exists; nothing to store
+    VALID = "valid"  # may be stored as a new proposed Assertion and submitted Proposal
+    ADDS_EVIDENCE = "adds_evidence"  # the Assertion exists; the draft brings new evidence for it
+    DUPLICATE = "duplicate"  # nothing new to store
     DEFERRED = "deferred"  # needs a capability not built yet (qualification, clarification)
     INVALID = "invalid"  # refused
 
@@ -33,6 +35,7 @@ class ValidationResult:
     subject: dict[str, Any] | None = None
     object: dict[str, Any] | None = None
     already_supported: bool | None = None
+    new_observation_ids: tuple[str, ...] = ()
 
 
 class GraphReader(Protocol):
@@ -56,7 +59,7 @@ def validate(
     """Validate a draft.
 
     `existing_assertion_ok` is used when re-validating a stored Proposal at
-    review time, where its own `proposed` Assertion already exists.
+    review time, where its own Assertion already exists.
     """
     definition = registry.get(draft.predicate)
     if definition is None:
@@ -80,20 +83,26 @@ def validate(
     if subject_id == object_id:
         reasons.append("subject and object must differ")
 
-    observations = []
+    quotations = {quotation.observation_id: quotation.text for quotation in draft.quotations}
+    for quoted_id in quotations.keys() - set(draft.observation_ids):
+        reasons.append(f"quotation cites {quoted_id}, which is not among the draft's observations")
+
+    statements = []
     for observation_id in draft.observation_ids:
         observation = reader.observation(observation_id)
         if observation is None:
             reasons.append(f"observation {observation_id} does not exist")
         elif observation.get("status") != "observed":
             reasons.append(f"observation {observation_id} is {observation.get('status')}, not observed")
-        elif observation.get("sourceSystem") != "Wikidata" or not observation.get("externalStatementId"):
-            reasons.append(f"observation {observation_id} is not a Wikidata statement observation")
+        elif observation.get("observationKind") == "passage":
+            reasons.extend(_check_passage(observation, quotations.get(observation_id)))
+        elif observation.get("sourceSystem") == "Wikidata" and observation.get("externalStatementId"):
+            statements.append(observation)
         else:
-            observations.append(observation)
+            reasons.append(f"observation {observation_id} is neither a Wikidata statement nor a passage")
 
     if subject is not None and obj is not None:
-        for observation in observations:
+        for observation in statements:
             if not _evidences(definition, observation, subject, obj):
                 reasons.append(
                     f"observation {observation['id']} does not state {definition.id} "
@@ -107,7 +116,7 @@ def validate(
     if definition.temporal_qualification == "required":
         deferrals.append(f"{definition.id} requires temporal qualification (Phase 7)")
     elif definition.temporal_qualification == "whenPresent":
-        for observation in observations:
+        for observation in statements:
             qualifiers = observation.get("qualifierPropertyIds")
             if qualifiers is None:
                 deferrals.append(f"qualifiers of {observation['id']} were not recorded")
@@ -127,15 +136,55 @@ def validate(
         return ValidationResult(Outcome.DEFERRED, tuple(deferrals), **result)
 
     existing = reader.assertion(canonical_assertion)
-    if existing is not None and not existing_assertion_ok:
-        supported = set(draft.observation_ids) <= set(existing["observationIds"])
+    if existing is None or existing_assertion_ok:
+        return ValidationResult(Outcome.VALID, (), **result)
+
+    new_observations = tuple(
+        observation_id for observation_id in draft.observation_ids
+        if observation_id not in existing["observationIds"]
+    )
+    if not new_observations:
         return ValidationResult(
             Outcome.DUPLICATE,
-            (f"{canonical_assertion} already exists with status {existing['status']}",),
-            already_supported=supported,
+            (f"{canonical_assertion} already exists ({existing['status']}) with this evidence",),
+            already_supported=True,
             **result,
         )
-    return ValidationResult(Outcome.VALID, (), **result)
+    if existing["status"] not in ("proposed", "accepted"):
+        return ValidationResult(
+            Outcome.DUPLICATE,
+            (f"{canonical_assertion} exists but is {existing['status']}; evidence cannot be added",),
+            already_supported=False,
+            **result,
+        )
+    return ValidationResult(
+        Outcome.ADDS_EVIDENCE,
+        (f"{canonical_assertion} exists ({existing['status']}); {len(new_observations)} new observation(s)",),
+        already_supported=False,
+        new_observation_ids=new_observations,
+        **result,
+    )
+
+
+TYPOGRAPHIC_QUOTES = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"'})
+
+
+def normalize(text: str) -> str:
+    """Text used for quote matching: whitespace collapsed and typographic quotes
+    made plain, so a faithful quotation is not refused over apostrophe style.
+    Nothing else is relaxed."""
+    return re.sub(r"\s+", " ", text.translate(TYPOGRAPHIC_QUOTES)).strip()
+
+
+def _check_passage(observation: dict[str, Any], quotation: str | None) -> list[str]:
+    if quotation is None:
+        return [f"passage observation {observation['id']} needs a verbatim quotation"]
+    quote = normalize(quotation)
+    if quote in normalize(observation.get("passageText") or ""):
+        return []
+    if any(quote in normalize(note) for note in observation.get("editorialNotes") or []):
+        return [f"quotation from {observation['id']} is an editorial note, not the source text"]
+    return [f"quotation does not appear verbatim in {observation['id']}"]
 
 
 def _evidences(

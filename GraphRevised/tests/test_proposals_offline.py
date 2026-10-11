@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from GraphRevised.adapters.wikidata_statements import StatementNotFound, statement_observation
 from GraphRevised.proposals.registry import assertion_id, load_registry
-from GraphRevised.proposals.schema import ProposalDraft
+from GraphRevised.proposals.schema import ProposalDraft, Quotation
 from GraphRevised.proposals.validator import Outcome, validate
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 
@@ -193,6 +193,79 @@ class RegistryAndProposerTests(unittest.TestCase):
     def test_unknown_statement_is_reported(self):
         with self.assertRaises(StatementNotFound):
             statement_observation(PAYLOAD, "Q160387$00000000-0000", label="x", short_label="x")
+
+
+PASSAGE = {
+    "id": "chr:observation:perseus:antony:65.2",
+    "observationKind": "passage",
+    "status": "observed",
+    "sourceSystem": "Perseus",
+    "passageText": "Caesar posted Agrippa on the left, and reserved the right wing for himself. Antony’s ships were heavy.",
+    "editorialNotes": ["Sept. 2, 31 B.C."],
+}
+
+
+def passage_draft(quote="Caesar posted Agrippa on the left", subject=AGRIPPA, observations=(PASSAGE,), quoted_id=None):
+    return draft(
+        subject=subject,
+        observations=observations,
+        quotations=(Quotation(observation_id=quoted_id or PASSAGE["id"], text=quote),) if quote else (),
+    )
+
+
+class PassageValidatorTests(unittest.TestCase):
+    def setUp(self):
+        self.registry = load_registry()
+        self.reader = FakeReader([ACTIUM, AGRIPPA], [P710, PASSAGE])
+
+    def check(self, proposal, reader=None):
+        return validate(proposal, reader or self.reader, self.registry)
+
+    def test_verbatim_quotation_is_valid(self):
+        self.assertEqual(self.check(passage_draft()).outcome, Outcome.VALID)
+
+    def test_whitespace_and_apostrophe_style_are_tolerated(self):
+        self.assertEqual(self.check(passage_draft("Antony's  ships\nwere heavy.")).outcome, Outcome.VALID)
+
+    def test_missing_quotation_is_invalid(self):
+        result = self.check(passage_draft(quote=None))
+        self.assertEqual(result.outcome, Outcome.INVALID)
+        self.assertTrue(any("needs a verbatim quotation" in reason for reason in result.reasons))
+
+    def test_paraphrase_is_invalid(self):
+        result = self.check(passage_draft("Agrippa commanded the left wing at Actium"))
+        self.assertEqual(result.outcome, Outcome.INVALID)
+        self.assertTrue(any("does not appear verbatim" in reason for reason in result.reasons))
+
+    def test_quoting_an_editorial_note_is_invalid(self):
+        result = self.check(passage_draft("Sept. 2, 31 B.C."))
+        self.assertEqual(result.outcome, Outcome.INVALID)
+        self.assertTrue(any("editorial note" in reason for reason in result.reasons))
+
+    def test_quotation_for_uncited_observation_is_invalid(self):
+        result = self.check(passage_draft(quoted_id="chr:observation:other"))
+        self.assertEqual(result.outcome, Outcome.INVALID)
+
+    def test_new_passage_for_existing_assertion_adds_evidence(self):
+        existing = {
+            "id": "chr:assertion:marcus-vipsanius-agrippa:participated-in:battle-of-actium",
+            "status": "accepted",
+            "predicate": "participatedIn",
+            "observationIds": [P710["id"]],
+        }
+        result = self.check(passage_draft(), FakeReader([ACTIUM, AGRIPPA], [P710, PASSAGE], [existing]))
+        self.assertEqual(result.outcome, Outcome.ADDS_EVIDENCE)
+        self.assertEqual(result.new_observation_ids, (PASSAGE["id"],))
+
+    def test_evidence_cannot_be_added_to_a_rejected_assertion(self):
+        existing = {
+            "id": "chr:assertion:marcus-vipsanius-agrippa:participated-in:battle-of-actium",
+            "status": "rejected",
+            "predicate": "participatedIn",
+            "observationIds": [],
+        }
+        result = self.check(passage_draft(), FakeReader([ACTIUM, AGRIPPA], [PASSAGE], [existing]))
+        self.assertEqual(result.outcome, Outcome.DUPLICATE)
 
 
 if __name__ == "__main__":

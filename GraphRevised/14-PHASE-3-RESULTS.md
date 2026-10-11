@@ -55,7 +55,10 @@ Phase 5 added creation-only parameter groups: `sourceUri`, `sourceRevision`,
 `contentHash`, and `rawPayloadUri` on AuthorityRecords (matching the existing
 Actium and Agrippa records); `qualifierPropertyIds` on SourceObservations; and `rationale`, `draftSchemaVersion`,
 `predicateRegistryVersion`, `promptVersion`, and `modelId` on Proposals.
-[operations.py](operations.py) loads the statements by name.
+[operations.py](operations.py) loads the statements by name. Passage evidence
+added three operations — `upsert_passage_observation`,
+`upsert_evidence_proposal`, and `apply_accepted_evidence` — and a `quotation`
+parameter on `link_support`, for 18 in total.
 
 Optional display parameters may be null; null never erases an existing value.
 SourceObservation source facts are immutable after creation. Property names

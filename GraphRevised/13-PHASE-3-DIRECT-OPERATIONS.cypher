@@ -170,6 +170,37 @@ ON MATCH SET
   observation.status = coalesce($status, observation.status)
 RETURN observation;
 
+// Create or reuse a preserved passage SourceObservation: a located span of a
+// specific edition. The passage text excludes editorial notes, which are kept
+// separately so a modern editor's note is never cited as the source.
+MERGE (observation:SourceObservation {id: $id})
+ON CREATE SET
+  observation.label = $label,
+  observation.shortLabel = $shortLabel,
+  observation.observationKind = "passage",
+  observation.sourceSystem = $sourceSystem,
+  observation.locator = $locator,
+  observation.passageText = $passageText,
+  observation.passageHash = $passageHash,
+  observation.editorialNotes = $editorialNotes,
+  observation.language = $language,
+  observation.workTitle = $workTitle,
+  observation.author = $author,
+  observation.translator = $translator,
+  observation.editionCitation = $editionCitation,
+  observation.rights = $rights,
+  observation.sourceUri = $sourceUri,
+  observation.sourceRevision = $sourceRevision,
+  observation.retrievedAt = $retrievedAt,
+  observation.contentHash = $contentHash,
+  observation.rawPayloadUri = $rawPayloadUri,
+  observation.status = $status
+ON MATCH SET
+  observation.label = coalesce($label, observation.label),
+  observation.shortLabel = coalesce($shortLabel, observation.shortLabel),
+  observation.status = coalesce($status, observation.status)
+RETURN observation;
+
 // Create or reuse a normalized Assertion and connect its endpoints. A new
 // Assertion is always `proposed`; status changes only through a Proposal
 // decision. Predicate and endpoints are fixed at creation; a retry with a
@@ -206,10 +237,13 @@ MERGE (assertion)-[:ASSERTION_SUBJECT]->(assertionSubject)
 MERGE (assertion)-[:ASSERTION_OBJECT]->(assertionObject)
 RETURN assertion, assertionSubject, assertionObject;
 
-// Attach a SourceObservation to an Assertion.
+// Attach a SourceObservation to an Assertion. `quotation` is the verbatim
+// supporting span for passage evidence (null for structured evidence); it is
+// fixed when the link is created.
 MATCH (assertion:Assertion {id: $assertionId})
 MATCH (observation:SourceObservation {id: $observationId})
-MERGE (assertion)-[:SUPPORTED_BY]->(observation)
+MERGE (assertion)-[support:SUPPORTED_BY]->(observation)
+ON CREATE SET support.quotation = $quotation
 RETURN assertion, observation;
 
 // Create or reuse a Proposal for an Assertion. A new Proposal is always
@@ -239,6 +273,34 @@ ON MATCH SET
 MERGE (proposal)-[:PROPOSES]->(assertion)
 RETURN proposal, assertion;
 
+// Create or reuse an addEvidence Proposal: new evidence for an existing
+// Assertion. The evidence waits on PROPOSES_EVIDENCE and becomes SUPPORTED_BY
+// only after acceptance (see the last operation). A retry naming another
+// Assertion is refused.
+MATCH (assertion:Assertion {id: $assertionId})
+MATCH (observation:SourceObservation {id: $observationId})
+OPTIONAL MATCH (existing:Proposal {id: $id})
+OPTIONAL MATCH (existing)-[:PROPOSES]->(existingTarget:Assertion)
+WITH assertion, observation, existing, collect(existingTarget.id) AS existingTargetIds
+WHERE existing IS NULL
+   OR (existing.operation = "addEvidence" AND existingTargetIds = [$assertionId])
+MERGE (proposal:Proposal {id: $id})
+ON CREATE SET
+  proposal.label = $label,
+  proposal.shortLabel = $shortLabel,
+  proposal.operation = "addEvidence",
+  proposal.status = "submitted",
+  proposal.createdBy = $createdBy,
+  proposal.rationale = $rationale,
+  proposal.draftSchemaVersion = $draftSchemaVersion,
+  proposal.predicateRegistryVersion = $predicateRegistryVersion,
+  proposal.promptVersion = $promptVersion,
+  proposal.modelId = $modelId
+MERGE (proposal)-[:PROPOSES]->(assertion)
+MERGE (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation)
+ON CREATE SET evidence.quotation = $quotation
+RETURN proposal, assertion, observation;
+
 // Move a Proposal through its lifecycle and, on a decision, synchronize its
 // Assertion.
 //
@@ -248,9 +310,10 @@ RETURN proposal, assertion;
 //   accepted, rejected: terminal
 //
 // Repeating the current status is an idempotent no-op that preserves the
-// original decision metadata. Accepting requires a `proposed` Assertion;
-// rejecting leaves an Assertion that another Proposal already accepted
-// untouched.
+// original decision metadata. Accepting a `create` Proposal requires a
+// `proposed` Assertion; rejecting leaves an Assertion that another Proposal
+// already accepted untouched. An `addEvidence` decision never changes the
+// Assertion's status.
 MATCH (proposal:Proposal {id: $proposalId})-[:PROPOSES]->(assertion:Assertion)
 WITH proposal, assertion,
      proposal.status = $proposalStatus AS isRetry,
@@ -265,6 +328,7 @@ WITH proposal, assertion, isRetry
 WHERE isRetry
    OR $proposalStatus <> "accepted"
    OR assertion.status = "proposed"
+   OR (proposal.operation = "addEvidence" AND assertion.status = "accepted")
 SET
   proposal.status = $proposalStatus,
   proposal.decidedAt = CASE
@@ -280,13 +344,23 @@ SET
     ELSE proposal.decisionBasis
   END,
   assertion.acceptedAt = CASE
-    WHEN NOT isRetry AND $proposalStatus = "accepted" THEN $decidedAt
+    WHEN NOT isRetry AND $proposalStatus = "accepted" AND proposal.operation <> "addEvidence"
+      THEN $decidedAt
     ELSE assertion.acceptedAt
   END,
   assertion.status = CASE
-    WHEN isRetry THEN assertion.status
+    WHEN isRetry OR proposal.operation = "addEvidence" THEN assertion.status
     WHEN $proposalStatus = "accepted" THEN "accepted"
     WHEN $proposalStatus = "rejected" AND assertion.status = "proposed" THEN "rejected"
     ELSE assertion.status
   END
 RETURN proposal, assertion;
+
+// Attach the evidence of an accepted addEvidence Proposal to its Assertion.
+// Idempotent; refused unless the Proposal is accepted.
+MATCH (proposal:Proposal {id: $proposalId, operation: "addEvidence", status: "accepted"})
+      -[:PROPOSES]->(assertion:Assertion)
+MATCH (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation:SourceObservation)
+MERGE (assertion)-[support:SUPPORTED_BY]->(observation)
+ON CREATE SET support.quotation = evidence.quotation, support.addedByProposal = proposal.id
+RETURN assertion, collect(observation.id) AS observationIds;

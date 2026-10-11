@@ -46,7 +46,9 @@ def main(argv: list[str] | None = None) -> int:
             if args.command == "list":
                 rows = session.execute_read(list_proposals, args.status)
                 for row in rows:
-                    print(f"{row['status']:<11} {row['id']}\n            {row['assertion']}")
+                    print(f"{row['status']:<11} {row['operation']:<11} {row['id']}\n            {row['assertion']}")
+                    for evidence in row["pendingEvidence"]:
+                        print(f"            + {evidence['observation']}: \"{evidence['quotation']}\"")
                 print(f"{len(rows)} proposal(s)")
                 return 0
 

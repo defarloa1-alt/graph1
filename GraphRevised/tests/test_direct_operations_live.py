@@ -8,7 +8,7 @@ NEO4J_USERNAME default to the local clean-start instance.
 import os
 import unittest
 
-from GraphRevised.operations import OPERATION_NAMES, load_operations
+from GraphRevised.operations import load_operations
 
 ACTIUM = "chr:entity:battle-of-actium"
 AGRIPPA = "chr:entity:marcus-vipsanius-agrippa"
@@ -18,23 +18,21 @@ OBSERVATION = "chr:observation:wikidata:Q160387:P710:32bdfa2f:r2555342002"
 ASSERTION = "chr:assertion:marcus-vipsanius-agrippa:participated-in:battle-of-actium"
 PROPOSAL = "chr:proposal:accept-marcus-vipsanius-agrippa-participation-at-actium"
 
-(
-    GET_NODE,
-    GET_SUBJECT,
-    GET_NEIGHBORHOOD,
-    GET_EVIDENCE,
-    GET_TEMPORAL_CONTEXT,
-    UPSERT_ENTITY,
-    UPSERT_SUBJECT,
-    LINK_SUBJECT_FOCUS,
-    LINK_YEAR,
-    UPSERT_AUTHORITY,
-    UPSERT_OBSERVATION,
-    UPSERT_ASSERTION,
-    LINK_SUPPORT,
-    UPSERT_PROPOSAL,
-    DECIDE_PROPOSAL,
-) = OPERATION_NAMES
+GET_NODE = "get_node"
+GET_SUBJECT = "get_subject"
+GET_NEIGHBORHOOD = "get_neighborhood"
+GET_EVIDENCE = "get_evidence"
+GET_TEMPORAL_CONTEXT = "get_temporal_context"
+UPSERT_ENTITY = "upsert_entity"
+UPSERT_SUBJECT = "upsert_subject"
+LINK_SUBJECT_FOCUS = "link_subject_focus"
+LINK_YEAR = "link_year"
+UPSERT_AUTHORITY = "upsert_authority"
+UPSERT_OBSERVATION = "upsert_observation"
+UPSERT_ASSERTION = "upsert_assertion"
+LINK_SUPPORT = "link_support"
+UPSERT_PROPOSAL = "upsert_proposal"
+DECIDE_PROPOSAL = "decide_proposal"
 
 
 SNAPSHOT_QUERY = """
@@ -184,7 +182,7 @@ class DirectOperationsLiveTests(unittest.TestCase):
         )
         evidence = self.run_op(GET_EVIDENCE, {"assertionId": ASSERTION})[0]
         self.assertEqual([obs["id"] for obs in evidence["sourceObservations"]], [OBSERVATION])
-        self.assertEqual([prop["id"] for prop in evidence["proposals"]], [PROPOSAL])
+        self.assertIn(PROPOSAL, [prop["id"] for prop in evidence["proposals"]])
         context = self.run_op(GET_TEMPORAL_CONTEXT, {"assertionId": ASSERTION})[0]
         self.assertEqual(context["temporalContext"], "Battle of Actium, 31 BCE")
 
@@ -216,7 +214,7 @@ class DirectOperationsLiveTests(unittest.TestCase):
                 },
             ),
             (UPSERT_ASSERTION, assertion_params()),
-            (LINK_SUPPORT, {"assertionId": ASSERTION, "observationId": OBSERVATION}),
+            (LINK_SUPPORT, {"assertionId": ASSERTION, "observationId": OBSERVATION, "quotation": None}),
             (UPSERT_PROPOSAL, proposal_params()),
             (DECIDE_PROPOSAL, decision_params(PROPOSAL, "accepted")),
         ]

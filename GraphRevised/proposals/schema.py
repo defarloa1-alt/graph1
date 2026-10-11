@@ -6,8 +6,17 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-DRAFT_SCHEMA_VERSION = "proposal-draft-v1"
+DRAFT_SCHEMA_VERSION = "proposal-draft-v2"
 LOCAL_ID_PATTERN = r"^chr:[a-z]+:[A-Za-z0-9._:-]+$"
+
+
+class Quotation(BaseModel):
+    """The verbatim span of a passage observation that supports the draft."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    observation_id: str = Field(pattern=LOCAL_ID_PATTERN)
+    text: str = Field(min_length=15, max_length=1500)
 
 
 class ProposalDraft(BaseModel):
@@ -15,12 +24,13 @@ class ProposalDraft(BaseModel):
 
     A draft names existing local nodes only. It cannot create entities,
     carry Cypher, or set a status; labels and IDs are derived deterministically
-    when the draft is stored.
+    when the draft is stored. Every passage observation it cites needs a
+    verbatim quotation from that passage.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    schema_version: Literal["proposal-draft-v1"] = DRAFT_SCHEMA_VERSION
+    schema_version: Literal["proposal-draft-v2"] = DRAFT_SCHEMA_VERSION
     predicate: str = Field(min_length=1)
     subject_id: str = Field(pattern=LOCAL_ID_PATTERN)
     object_id: str = Field(pattern=LOCAL_ID_PATTERN)
@@ -30,3 +40,4 @@ class ProposalDraft(BaseModel):
     prompt_version: str | None = None
     model_id: str | None = None
     ambiguities: tuple[str, ...] = ()
+    quotations: tuple[Quotation, ...] = ()

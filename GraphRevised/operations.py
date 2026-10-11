@@ -20,10 +20,13 @@ OPERATION_NAMES = (
     "link_year",
     "upsert_authority",
     "upsert_observation",
+    "upsert_passage_observation",
     "upsert_assertion",
     "link_support",
     "upsert_proposal",
+    "upsert_evidence_proposal",
     "decide_proposal",
+    "apply_accepted_evidence",
 )
 
 

@@ -181,3 +181,80 @@ accepted participants, Agrippa and Augustus, both derived as
 As with Agrippa, the Wikidata statement has no references: this is
 demonstration-grade evidence. The live tests now use Mark Antony (Q51673) as
 the not-yet-persisted participant.
+
+## 10. Passage evidence and the LLM reader (step 4)
+
+### Source
+
+Plutarch, *Antony* 61–68, trans. Bernadotte Perrin (Loeb, 1920), from the
+Perseus TEI edition pinned to commit `70427323`:
+[phase-5-source](phase-5-source) (SHA-256 `364e99f8…`, metadata sidecar with
+rights). The translation is public domain in the US; the TEI markup is
+CC BY-SA 4.0 (Perseus, Tufts).
+
+### Passage observations
+
+[adapters/perseus_passages.py](adapters/perseus_passages.py) turns one CTS
+section (for example `urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:65.2`) into
+a SourceObservation with `observationKind: passage`, the passage text, its
+hash, edition citation, rights, and the file hash. **Editorial notes are
+excluded from the passage text** and kept in `editorialNotes`: Perrin's inline
+"Sept. 2, 31 B.C." is the translator's scholarship, not Plutarch, and must
+never be cited as the ancient source.
+
+### Validation of passage evidence
+
+`proposal-draft-v2` adds `quotations`. Every cited passage needs a quotation
+that appears verbatim in the passage text. Matching tolerates only whitespace
+and curly-versus-straight quotes; a paraphrase, a quote from an editorial
+note, or a quote for an uncited observation is `invalid`. Identity of the
+people named cannot be checked mechanically; that is the curator's job, and
+the reader must explain its identifications in the rationale.
+
+### Adding evidence to an existing claim
+
+Corroboration needed a new governed path. When a draft's Assertion already
+exists with new evidence, the outcome is `adds_evidence` and `submit` stores an
+`addEvidence` Proposal. The evidence waits on
+`(:Proposal)-[:PROPOSES_EVIDENCE {quotation}]->(:SourceObservation)` and becomes
+`SUPPORTED_BY {quotation, addedByProposal}` only when a curator accepts it.
+An `addEvidence` decision never changes the Assertion's status; rejecting it
+leaves the claim untouched.
+
+### The reader
+
+[proposals/passage_reader.py](proposals/passage_reader.py), prompt
+`passage-reader-v2`, model `claude-sonnet-5-5` by default (Opus 5.5 via
+`--model`). It receives the target passage, two preceding sections and one
+following section as context only, the 13 predicates, and the graph's
+entities. Its structured output is a list of claims (each with a verbatim
+quotation) and unresolved mentions. Anthropic citations cannot be combined
+with structured outputs, so verification is the deterministic verbatim check.
+Refusal fallbacks are enabled (`fallbacks: "default"`), and each Proposal
+records the model that actually answered.
+
+A section's observation is persisted only when one of its drafts is stored.
+Every run writes a JSONL trace to [runs/](runs).
+
+### First run (2026-10-11)
+
+36 sections, 93,536 input and 11,526 output tokens (about $0.31). Results: 7
+`adds_evidence` drafts stored, 0 invalid, 0 malformed, 0 new assertions
+(Antony, Cleopatra, and the other commanders are not yet Entities, so the
+reader reported them as unresolved instead of drafting claims about them).
+"Caesar" was consistently identified as Augustus in the Actium narrative.
+Graph: 4,051 nodes, 4,051 relationships.
+
+| Section | Claim | Quotation | Assessment |
+|---|---|---|---|
+| 65.2 | Agrippa | "Caesar posted Agrippa on the left, and reserved the right wing for himself." | strong |
+| 65.2 | Augustus | same span | strong |
+| 65.3 | Augustus | "Caesar, we are told, who had left his tent while it was yet dark and was going round to visit his ships" | weak: before the fighting |
+| 65.5 | Augustus | "When Caesar saw this he was delighted, and ordered his right wing to row backwards" | strong |
+| 66.1 | Augustus | "while Caesar’s not only avoided dashing front to front against rough and hard bronze armour" | weak: his ships, not him |
+| 66.3 | Agrippa | "as Agrippa was extending the left wing with a view to encircling the enemy" | strong |
+| 68.1 | Augustus | "at Actium his fleet held out for a long time against Caesar" | strong; names Actium |
+
+Observed weaknesses for the next prompt version: "Caesar" was sometimes listed
+as an unresolved mention in sections where it was identified elsewhere, and
+participation was twice inferred from the person's fleet or preparations.
