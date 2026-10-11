@@ -31,6 +31,7 @@ from dotenv import dotenv_values
 from neo4j import GraphDatabase
 from pydantic import BaseModel, ValidationError
 
+from GraphRevised.adapters.wikidata_context import entity_context
 from GraphRevised.adapters.perseus_passages import Edition, load_edition, passage_observation, section_refs
 from GraphRevised.operations import load_operations, run_write
 
@@ -39,7 +40,7 @@ from .schema import ProposalDraft, Quotation
 from .store import Neo4jReader, submit
 from .validator import validate
 
-PROMPT_VERSION = "passage-reader-v5"
+PROMPT_VERSION = "passage-reader-v6"
 PROPOSER_ID = "passage-reader"
 DEFAULT_MODEL = "claude-sonnet-5-5"
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
@@ -69,7 +70,9 @@ contiguous span, at least 15 characters, the shortest span that supports the cla
 still containing the words that name or refer to its subject and object when the sentence has \
 them, so a reader of the quotation alone can see who is meant. Do not paraphrase, abridge, use \
 ellipses, or quote the surrounding sections.
-6. Explain in the rationale how you identified each name. Use ambiguities only when an \
+6. In-scope entities may list aliases and dates. Aliases help identification but can be shared \
+by different people, so decide from the passage and its context, not from a matching alias \
+alone. Explain in the rationale how you identified each name. Use ambiguities only when an \
 identification or the claim itself remains genuinely uncertain; such claims are held for a human.
 7. Follow the inquiry guidance. It is specific to this subject and source and takes precedence \
 over your general reading where they differ.
@@ -135,10 +138,18 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
     if missing:
         raise ValueError(f"declared candidates are not Entities: {sorted(missing)}")
     scope = tx.run(
-        "MATCH (entity:Entity) WHERE entity.id IN $ids "
-        "RETURN entity {.id, .label, .kind, .description} AS entity ORDER BY entity.id",
+        """
+        MATCH (entity:Entity) WHERE entity.id IN $ids
+        OPTIONAL MATCH (entity)-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord {system: "Wikidata"})
+        WHERE link.role = "entity_identity" AND link.status = "accepted"
+        WITH entity, head(collect(record)) AS record
+        RETURN entity {.id, .label, .kind, .description,
+                       qid: record.identifier, payloadUri: record.rawPayloadUri} AS entity
+        ORDER BY entity.id
+        """,
         ids=sorted(set(record["scopeIds"])),
     ).value("entity")
+    scope = [{**entity, **entity_context(entity["payloadUri"], entity["qid"])} for entity in scope]
     first, last = (int(n) for n in data["source"]["chapters"].split("-"))
     return Inquiry(
         id=data["id"],
@@ -182,7 +193,12 @@ def read_passage(
     registry: PredicateRegistry,
 ) -> tuple[ReaderOutput | None, dict[str, Any]]:
     def entity_line(entity: dict[str, Any]) -> str:
-        return f"- {entity['id']} | {entity['label']} | {entity['kind']} | {entity.get('description') or ''}"
+        line = f"- {entity['id']} | {entity['label']} | {entity['kind']} | {entity.get('description') or ''}"
+        if entity.get("aliases"):
+            line += f" | aliases: {'; '.join(entity['aliases'])}"
+        if entity.get("dates"):
+            line += " | " + ", ".join(f"{name} {year}" for name, year in entity["dates"].items())
+        return line
 
     user = (
         f"Inquiry: {inquiry.label}\n"

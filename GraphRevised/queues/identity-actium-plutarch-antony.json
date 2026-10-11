@@ -1,0 +1,2737 @@
+{
+  "inquiry": "chr:inquiry:actium-plutarch-antony",
+  "builtAt": "2026-10-11T20:07:08.400596+00:00",
+  "fromRun": "passage-reader-20261011T185235Z.jsonl",
+  "promptVersion": "identity-queue-v1",
+  "model": "claude-sonnet-5-5",
+  "entries": [
+    {
+      "canonicalName": "Actium",
+      "names": [
+        "Actium"
+      ],
+      "kind": "Place",
+      "centrality": "core",
+      "note": "Promontory and gulf mouth where the fleets fought; the name may also refer to the battle.",
+      "searchQueries": [
+        "Actium",
+        "Battle of Actium"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.3",
+          "quotation": "But while Antony was lying at anchor off Actium, where now Nicopolis stands"
+        },
+        {
+          "ref": "63.1",
+          "quotation": "then he grouped his ships at the mouth of the gulf near Actium"
+        },
+        {
+          "ref": "68.1",
+          "quotation": "But at Actium his fleet held out for a long time against Caesar"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q14881034",
+          "label": "Actium",
+          "description": "genus of insects",
+          "localEntity": null
+        },
+        {
+          "qid": "Q216551",
+          "label": "Akri",
+          "description": "cape with ancient Apollo sanctuary in western Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q23849509",
+          "label": "Actium",
+          "description": "article in Otto's encyclopedia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q14881029",
+          "label": "Actium barri",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q14881033",
+          "label": "Actium abitibiense",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q14880998",
+          "label": "Actium tenellum",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q160387",
+          "label": "Battle of Actium",
+          "description": "31 BCE decisive confrontation of the Final War of the Roman Republic",
+          "localEntity": "chr:entity:battle-of-actium"
+        },
+        {
+          "qid": "Q14880997",
+          "label": "Actium tentum",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q14881002",
+          "label": "Actium retractum",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q14881009",
+          "label": "Actium maiduorum",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q9173813",
+          "label": "Battle of Actium",
+          "description": "435 BC naval battle",
+          "localEntity": null
+        },
+        {
+          "qid": "Q119798572",
+          "label": "The Flight of Antony and Cleopatra from the Battle of Actium",
+          "description": "painting by Agnes Pringle (1853–1934), Laing Art Gallery",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Actium",
+        "suggested_qid": "Q216551",
+        "confidence": "medium",
+        "reason": "The passages describe the place (promontory and gulf mouth), which matches the cape with the Apollo sanctuary. The last quotation (68.1) could refer to the battle, Q160387."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Alexas of Laodicea",
+      "names": [
+        "Alexas the Syrian"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Companion of Antony after the flight; Plutarch calls him the Syrian; sometimes identified as Alexas of Laodicea.",
+      "searchQueries": [
+        "Alexas of Laodicea",
+        "Alexas Antony Syrian"
+      ],
+      "occurrences": [
+        {
+          "ref": "66.5",
+          "quotation": "where Alexas the Syrian and Scellius were his only companions"
+        }
+      ],
+      "candidates": [],
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Gaius Coelius",
+      "names": [
+        "Coelius"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Commander of Antony's left wing; his identity is uncertain.",
+      "searchQueries": [
+        "Gaius Coelius Antony admiral",
+        "Coelius Actium"
+      ],
+      "occurrences": [
+        {
+          "ref": "65.1",
+          "quotation": "Coelius the left"
+        }
+      ],
+      "candidates": [],
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Gaius Julius Eurycles",
+      "names": [
+        "Eurycles the Laconian",
+        "Eurycles"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Spartan commander who pursued Antony's ship; merged with 'Eurycles'.",
+      "searchQueries": [
+        "Gaius Julius Eurycles",
+        "Eurycles of Sparta"
+      ],
+      "occurrences": [
+        {
+          "ref": "67.2",
+          "quotation": "except the ship of Eurycles the Laconian, who attacked vigorously"
+        },
+        {
+          "ref": "67.3",
+          "quotation": "However, Eurycles did not hit Antony’s ship"
+        },
+        {
+          "ref": "67.4",
+          "quotation": "When Eurycles was gone, Antony threw himself down again in the same posture"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q1378466",
+          "label": "Gaius Julius Eurycles",
+          "description": "1st c. BCE Spartan freebooter, son of Lachares",
+          "localEntity": null
+        },
+        {
+          "qid": "Q78820444",
+          "label": "Gaius Julius Eurycles Herculanus Lucius Vibullius Pius",
+          "description": "first Spartan member of the Roman senate",
+          "localEntity": null
+        },
+        {
+          "qid": "Q8846427",
+          "label": "Eurycles of Sparta",
+          "description": "donor of baths at Corinth",
+          "localEntity": null
+        },
+        {
+          "qid": "Q19720500",
+          "label": "Eurycles of Laconia",
+          "description": "ancient Olympic stadion victor",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Gaius Julius Eurycles",
+        "suggested_qid": "Q1378466",
+        "confidence": "high",
+        "reason": "Spartan freebooter, son of Lachares, who fought for Octavian at Actium. Q78820444 is his later descendant."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Gnaeus Domitius Ahenobarbus",
+      "names": [
+        "Domitius"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Antony's officer who deserted to Caesar and died soon after; consul in 32 BC.",
+      "searchQueries": [
+        "Gnaeus Domitius Ahenobarbus consul 32 BC",
+        "Gnaeus Domitius Ahenobarbus"
+      ],
+      "occurrences": [
+        {
+          "ref": "63.2",
+          "quotation": "He also behaved with magnanimity towards Domitius, contrary to the judgment of Cleopatra."
+        },
+        {
+          "ref": "63.3",
+          "quotation": "And Domitius, as if repenting when his faithlessness and treachery became known, straightway died."
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q360920",
+          "label": "Gnaeus Domitius Ahenobarbus",
+          "description": "Roman consul 32 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q351503",
+          "label": "Gnaeus Domitius Ahenobarbus",
+          "description": "father of emperor Nero",
+          "localEntity": null
+        },
+        {
+          "qid": "Q725696",
+          "label": "Gnaeus Domitius Ahenobarbus",
+          "description": "Roman consul 162 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q445752",
+          "label": "Gnaeus Domitius Ahenobarbus",
+          "description": "Roman consul 96 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q445777",
+          "label": "Gnaeus Domitius Ahenobarbus",
+          "description": "consul of Rome in 122 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q579263",
+          "label": "Gnaeus Domitius Ahenobarbus",
+          "description": "Marian supporter",
+          "localEntity": null
+        },
+        {
+          "qid": "Q708263",
+          "label": "Gnaeus Domitius Ahenobarbus",
+          "description": "Roman consul 192 BC",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Gnaeus Domitius Ahenobarbus",
+        "suggested_qid": "Q360920",
+        "confidence": "high",
+        "reason": "Consul of 32 BC, who defected from Antony to Octavian and died soon after. The other namesakes are from other eras."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Lucius Arruntius",
+      "names": [
+        "Arruntius"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Caesar's naval commander at Actium.",
+      "searchQueries": [
+        "Lucius Arruntius consul 22 BC",
+        "Lucius Arruntius"
+      ],
+      "occurrences": [
+        {
+          "ref": "66.3",
+          "quotation": "engaging with Arruntius, although the sea-fight was still undecided"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q727792",
+          "label": "Lucius Arruntius",
+          "description": "Roman admiral and consul 22 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1076644",
+          "label": "Lucius Arruntius",
+          "description": "Roman consul 6 AD",
+          "localEntity": null
+        },
+        {
+          "qid": "Q352423",
+          "label": "Lucius Arruntius",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1873540",
+          "label": "Lucius Arruntius",
+          "description": "suffect consul with Titus Flavius ​​Bassus",
+          "localEntity": null
+        },
+        {
+          "qid": "Q710717",
+          "label": "Lucius Arruntius Camillus Scribonianus",
+          "description": "1st-century Roman usurper",
+          "localEntity": null
+        },
+        {
+          "qid": "Q121301075",
+          "label": "Lucius Arruntius",
+          "description": "man mentioned by Cicero in 53 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q84516260",
+          "label": "Lucius Arruntius Maximus",
+          "description": "administor of Hispania citerior province in 79 AD",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Lucius Arruntius",
+        "suggested_qid": "Q727792",
+        "confidence": "high",
+        "reason": "Admiral under Octavian at Actium and consul 22 BC. Others are later or of uncertain identity."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Lucius Gellius Publicola",
+      "names": [
+        "Publicola"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Commander of Antony's right wing; identification as Gellius Publicola is likely.",
+      "searchQueries": [
+        "Lucius Gellius Publicola",
+        "Gellius Publicola"
+      ],
+      "occurrences": [
+        {
+          "ref": "65.1",
+          "quotation": "Antony had the right wing, with Publicola"
+        },
+        {
+          "ref": "66.3",
+          "quotation": "Publicola was forced to advance against him, and so was separated from the centre"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q15711212",
+          "label": "Lucius Gellius Publicola",
+          "description": "man of the Roman Republic who was accused of adultery with his step-mother",
+          "localEntity": null
+        },
+        {
+          "qid": "Q364049",
+          "label": "Lucius Gellius Publicola",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q11934103",
+          "label": "Lucius Gellius Publicola",
+          "description": "consul 40 AD",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1283545",
+          "label": "Lucius Gellius Poplicola",
+          "description": "mid-1st century BC Roman politician",
+          "localEntity": null
+        },
+        {
+          "qid": "Q431311",
+          "label": "Lucius Gellius",
+          "description": "Roman general and politician (c. 136 BC–c. 54 BC)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q54553319",
+          "label": "Sempronia",
+          "description": "wife of Lucius Gellius Publicola",
+          "localEntity": null
+        },
+        {
+          "qid": "Q15711270",
+          "label": "Gnaeus Gellius Publicola",
+          "description": "friend of Clodius",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Lucius Gellius Publicola",
+        "suggested_qid": "Q1283545",
+        "confidence": "medium",
+        "reason": "Fits the Actium commander, consul of 36 BC. Q15711212 (accused of adultery with his stepmother) may be the same man, so the evidence does not fully separate them."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Marcus Insteius",
+      "names": [
+        "Marcus Insteius"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Commander of Antony's centre with Octavius.",
+      "searchQueries": [
+        "Marcus Insteius",
+        "Insteius Actium"
+      ],
+      "occurrences": [
+        {
+          "ref": "65.1",
+          "quotation": "in the centre were Marcus Octavius and Marcus Insteius"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q17747765",
+          "label": "Marcus Insteius",
+          "description": "follower of the triumvir Marcus Antonius",
+          "localEntity": null
+        },
+        {
+          "qid": "Q12286089",
+          "label": "Marcus Insteius Bithynicus",
+          "description": "suffect consul in 162",
+          "localEntity": null
+        },
+        {
+          "qid": "Q81179894",
+          "label": "Marcus Insteius Coelenus",
+          "description": "Roman military diplomat in the 2nd century",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Marcus Insteius",
+        "suggested_qid": "Q17747765",
+        "confidence": "high",
+        "reason": "A follower of Antony, in the right period. The others are 2nd-century AD figures."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Marcus Octavius",
+      "names": [
+        "Marcus Octavius"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Antony's admiral commanding the centre; possibly the same Marcus Octavius who served Pompey and later Antony.",
+      "searchQueries": [
+        "Marcus Octavius admiral Actium",
+        "Marcus Octavius legate of Antony"
+      ],
+      "occurrences": [
+        {
+          "ref": "65.1",
+          "quotation": "in the centre were Marcus Octavius and Marcus Insteius"
+        }
+      ],
+      "candidates": [],
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Publius Canidius Crassus",
+      "names": [
+        "Canidius"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Commander of Antony's land forces.",
+      "searchQueries": [
+        "Publius Canidius Crassus",
+        "Canidius Crassus"
+      ],
+      "occurrences": [
+        {
+          "ref": "63.3",
+          "quotation": "Canidius also, the commander of the land forces, changed his mind in presence of the danger"
+        },
+        {
+          "ref": "63.4",
+          "quotation": "it would be no disgrace, Canidius urged, for them to give up the sea to Caesar"
+        },
+        {
+          "ref": "65.2",
+          "quotation": "that of Antony was commanded by Canidius"
+        },
+        {
+          "ref": "67.5",
+          "quotation": "So Antony sent messengers to Canidius, ordering him to retire with his army as fast as he could through Macedonia into Asia;"
+        },
+        {
+          "ref": "68.3",
+          "quotation": "after Canidius their general had run away by night and forsaken the camp"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q637205",
+          "label": "Publius Canidius Crassus",
+          "description": "1st century BC Roman general and consul",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Publius Canidius Crassus",
+        "suggested_qid": "Q637205",
+        "confidence": "high",
+        "reason": "Antony's land commander at Actium; the only candidate."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Titus Statilius Taurus",
+      "names": [
+        "Taurus"
+      ],
+      "kind": "Person",
+      "centrality": "core",
+      "note": "Octavian's general who commanded the land forces.",
+      "searchQueries": [
+        "Titus Statilius Taurus",
+        "Statilius Taurus"
+      ],
+      "occurrences": [
+        {
+          "ref": "65.2",
+          "quotation": "that of Caesar by Taurus, who drew them up along the sea and remained quiet"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q2331658",
+          "label": "Titus Statilius Taurus",
+          "description": "Roman soldier and politician, consul in 26 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q718990",
+          "label": "Titus Statilius Taurus",
+          "description": "Roman politician, consul in 44 AD",
+          "localEntity": null
+        },
+        {
+          "qid": "Q718560",
+          "label": "Titus Statilius Taurus",
+          "description": "Roman politician, consul in 11 CE",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3991906",
+          "label": "Titus Statilius Taurus",
+          "description": "name of a line of Roman senators and soldiers during the late Republic and early Empire",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2437187",
+          "label": "Titus Statilius Taurus",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q718967",
+          "label": "Titus Statilius Taurus Corvinus",
+          "description": "Roman consul in 45 CE",
+          "localEntity": null
+        },
+        {
+          "qid": "Q130630096",
+          "label": "Statilius Taurus",
+          "description": "Roman moneyer operating under the authority of Augustus",
+          "localEntity": null
+        },
+        {
+          "qid": "Q32846566",
+          "label": "Statilius Taurus",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q133538758",
+          "label": "Statilius Taurus",
+          "description": null,
+          "localEntity": null
+        },
+        {
+          "qid": "Q129558244",
+          "label": "Statilius Taurus, the Minotaur, and the Conspiracy of Catiline",
+          "description": "scholarly article",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2623831",
+          "label": "Amphitheater of Statilius Taurus",
+          "description": "former Roman amphitheater in Rome",
+          "localEntity": null
+        },
+        {
+          "qid": "Q378099",
+          "label": "Sisenna Statilius Taurus",
+          "description": "1st-century CE Roman senator and consul",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Titus Statilius Taurus",
+        "suggested_qid": "Q2331658",
+        "confidence": "high",
+        "reason": "Octavian's land commander at Actium, consul 26 BC. The other Tauri are later."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Amyntas of Galatia",
+      "names": [
+        "Amyntas"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "King of Lycaonia and Galatia who defected to Caesar.",
+      "searchQueries": [
+        "Amyntas of Galatia",
+        "Amyntas king of Galatia"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.2",
+          "quotation": "Amyntas the king of Lycaonia and Galatia"
+        },
+        {
+          "ref": "63.3",
+          "quotation": "Amyntas and Deiotarus went over to Caesar"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q482101",
+          "label": "Amyntas of Galatia",
+          "description": "1st-century BC king of Galatia",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Amyntas of Galatia",
+        "suggested_qid": "Q482101",
+        "confidence": "high",
+        "reason": "Amyntas, king of Galatia and Lycaonia, defected to Octavian before Actium; this is the only candidate and it fits."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Anticyra",
+      "names": [
+        "Anticyra"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Greek town; there are several places with this name.",
+      "searchQueries": [
+        "Anticyra Phocis",
+        "Anticyra"
+      ],
+      "occurrences": [
+        {
+          "ref": "68.4",
+          "quotation": "down to the sea at Anticyra"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q59876725",
+          "label": "Dictynnaea",
+          "description": "epithet of Artemis",
+          "localEntity": null
+        },
+        {
+          "qid": "Q4774674",
+          "label": "Anticyra",
+          "description": "ancient village of Boeotia, Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q109268781",
+          "label": "Oia or Anticyra",
+          "description": "courtesan in ancient Athens",
+          "localEntity": null
+        },
+        {
+          "qid": "Q56284170",
+          "label": "Anticyra",
+          "description": "town reported to exist in ancient Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1358952",
+          "label": "Phalera",
+          "description": "genus of insects",
+          "localEntity": null
+        },
+        {
+          "qid": "Q680099",
+          "label": "Antíkyra",
+          "description": "town in Central Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2197833",
+          "label": "Elodina anticyra",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q123972360",
+          "label": "Encyclopædia Britannica, Ninth Edition/Anticyra",
+          "description": null,
+          "localEntity": null
+        },
+        {
+          "qid": "Q84655835",
+          "label": "1911 Encyclopædia Britannica/Anticyra",
+          "description": "encyclopedia article",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Anticyra",
+        "suggested_qid": "Q680099",
+        "confidence": "medium",
+        "reason": "The Phocian Anticyra on the Gulf of Corinth is probably meant, and the modern town Antikyra occupies that site. The ancient Boeotian and 'reported' items look less certain."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Archelaus of Cappadocia",
+      "names": [
+        "Archelaüs"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Ally king of Cappadocia installed by Antony.",
+      "searchQueries": [
+        "Archelaus of Cappadocia",
+        "Archelaus Sisines"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.1",
+          "quotation": "Archelaüs of Cappadocia"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q346463",
+          "label": "Archelaus of Cappadocia",
+          "description": "a Roman client prince and the last king of Cappadocia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q632585",
+          "label": "Archelaus",
+          "description": "father of Archelaus of Cappadocia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q84656647",
+          "label": "1911 Encyclopædia Britannica/Archelaus of Cappadocia",
+          "description": "encyclopedia article",
+          "localEntity": null
+        },
+        {
+          "qid": "Q64370742",
+          "label": "Three Roman Client Kings: Herod of Judaea, Archelaus of Cappadocia and Juba of Mauretania",
+          "description": null,
+          "localEntity": null
+        },
+        {
+          "qid": "Q632595",
+          "label": "Archelaus",
+          "description": "high priest of Comana Cappadocia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q762889",
+          "label": "Archelaus of Cilicia",
+          "description": "1st century AD Roman client king of Cilicia Trachea and Eastern Lycaonia",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Archelaus of Cappadocia",
+        "suggested_qid": "Q346463",
+        "confidence": "high",
+        "reason": "Archelaus, client king of Cappadocia installed by Antony, matches the context. The others are his father, a priest, a Cilician namesake, or articles."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Artavasdes I of Media Atropatene",
+      "names": [
+        "the king of the Medes"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Unnamed in the text; probably the ruler of Media Atropatene, an ally of Antony.",
+      "searchQueries": [
+        "Artavasdes I of Media Atropatene",
+        "Artavasdes of Atropatene"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.2",
+          "quotation": "the king of the Medes also sent an auxiliary force"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q706206",
+          "label": "Artavasdes I of Media Atropatene",
+          "description": "king",
+          "localEntity": null
+        },
+        {
+          "qid": "Q13426498",
+          "label": "Iotapa",
+          "description": "daughter of Artavasdes I of Media Atropatene",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2864802",
+          "label": "Artavasdes IV",
+          "description": "Prince who served as King of Media Atropatene",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Artavasdes I of Media Atropatene",
+        "suggested_qid": "Q706206",
+        "confidence": "high",
+        "reason": "The king of the Medes allied with Antony at this time is Artavasdes of Media Atropatene. The other candidates are a daughter and a later prince."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Athens",
+      "names": [
+        "Athens"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Caesar went there after the victory.",
+      "searchQueries": [
+        "Athens"
+      ],
+      "occurrences": [
+        {
+          "ref": "68.4",
+          "quotation": "Caesar sailed to Athens, and after making a settlement with the Greeks"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q203263",
+          "label": "Athens",
+          "description": "consolidated city-county and county seat of Clarke County, Georgia, United States",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1524",
+          "label": "Athens",
+          "description": "capital and largest city of Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q79439",
+          "label": "Athens",
+          "description": "county seat of Limestone County, Alabama, United States",
+          "localEntity": null
+        },
+        {
+          "qid": "Q547867",
+          "label": "National and Kapodistrian University of Athens",
+          "description": "university in Athens, Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q844930",
+          "label": "Classical Athens",
+          "description": "city-state in ancient Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q570807",
+          "label": "Athens",
+          "description": "township municipality in Ontario, Canada",
+          "localEntity": null
+        },
+        {
+          "qid": "Q755420",
+          "label": "Athens",
+          "description": "city in Athens County, Ohio, United States",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Athens",
+        "suggested_qid": "Q1524",
+        "confidence": "medium",
+        "reason": "The city of Athens, visited by Caesar after Actium. Q844930 (Classical Athens, the ancient city-state) is a possible alternative depending on project convention."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Bocchus II of Mauretania",
+      "names": [
+        "Bocchus"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Allied king supplying forces to Antony; Plutarch calls him king of Libya.",
+      "searchQueries": [
+        "Bocchus II of Mauretania",
+        "Bocchus II"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.1",
+          "quotation": "Bocchus the king of Libya"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q962956",
+          "label": "Bocchus II",
+          "description": "Amazigh (Berber) king of Mauretania",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Bocchus II of Mauretania",
+        "suggested_qid": "Q962956",
+        "confidence": "high",
+        "reason": "Bocchus II, king of Mauretania, sided with Antony; this is the only candidate and the period fits."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Brindisi",
+      "names": [
+        "Brundisium"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Italian port where Caesar's fleet assembled.",
+      "searchQueries": [
+        "Brindisi",
+        "Brundisium"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.2",
+          "quotation": "This fleet Caesar kept assembled at Tarentum and Brundisium"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q13496",
+          "label": "Brindisi",
+          "description": "Italian comune",
+          "localEntity": null
+        },
+        {
+          "qid": "Q37312359",
+          "label": "Brindisi",
+          "description": "family name",
+          "localEntity": null
+        },
+        {
+          "qid": "Q16148",
+          "label": "Province of Brindisi",
+          "description": "province of Italy",
+          "localEntity": null
+        },
+        {
+          "qid": "Q849715",
+          "label": "Brindisi – Salento Airport",
+          "description": "airport in Brindisi, southern Italy, located 6 kilometres (3.7 mi) from the city centre",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2603520",
+          "label": "Libiamo ne' lieti calici",
+          "description": "duet from Act I of Giuseppe Verdi's opera La Traviata",
+          "localEntity": null
+        },
+        {
+          "qid": "Q4968202",
+          "label": "Brindisi",
+          "description": "song to drink alcohol to",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2247329",
+          "label": "F.B. Brindisi 1912",
+          "description": "Italian football club",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1015351",
+          "label": "Roman Catholic Archdiocese of Brindisi-Ostuni",
+          "description": "Catholic archdiocese in Italy",
+          "localEntity": null
+        },
+        {
+          "qid": "Q727597",
+          "label": "Miguel Ángel Brindisi",
+          "description": "Argentine footballer and manager",
+          "localEntity": null
+        },
+        {
+          "qid": "Q103155084",
+          "label": "Brundisium",
+          "description": "ancient city",
+          "localEntity": null
+        },
+        {
+          "qid": "Q34402565",
+          "label": "Brundisium (Pauly-Wissowa)",
+          "description": "encyclopedic article in Paulys Realencyclopädie der classischen Altertumswissenschaft (RE)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q52536",
+          "label": "Brindisi Montagna",
+          "description": "Italian comune",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Brindisi",
+        "suggested_qid": "Q103155084",
+        "confidence": "medium",
+        "reason": "Brundisium is the ancient port city. If the project uses modern comune items for ancient places, Q13496 is the alternative."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Cape Matapan",
+      "names": [
+        "Taenarum"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Southern Peloponnese headland where Antony landed.",
+      "searchQueries": [
+        "Cape Tainaron",
+        "Cape Matapan"
+      ],
+      "occurrences": [
+        {
+          "ref": "67.4",
+          "quotation": "and then put in at Taenarum"
+        },
+        {
+          "ref": "67.6",
+          "quotation": "since he purposed to cross from Taenarum to Libya"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q849911",
+          "label": "Cape Matapan",
+          "description": "cape at south tip of Greece, ancient Taenarum",
+          "localEntity": null
+        },
+        {
+          "qid": "Q17636581",
+          "label": "Cape Matapan lighthouse",
+          "description": "lighthouse in Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q14213876",
+          "label": "SS Cape Matapan",
+          "description": "recent wreck site in Table Bay on the Cape Peninsula west coast",
+          "localEntity": null
+        },
+        {
+          "qid": "Q544090",
+          "label": "Battle of Cape Matapan",
+          "description": "1941 naval engagement of World War II",
+          "localEntity": null
+        },
+        {
+          "qid": "Q111598478",
+          "label": "Plaque at the Battle of Cape Matapan 28/03/1941",
+          "description": "plaque in memory of the sailors who died in the battle south of Cape Matapan on March 28, 1941",
+          "localEntity": null
+        },
+        {
+          "qid": "Q119699989",
+          "label": "The Battle of Cape Matapan, 29 March 1941",
+          "description": "painting by Charles David Cobb (1921–2014), National Museum of the Royal Navy, Portsmouth",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Cape Matapan",
+        "suggested_qid": "Q849911",
+        "confidence": "high",
+        "reason": "The cape at the southern tip of Greece, ancient Taenarum. The others are a lighthouse, a wreck, and the 1941 battle."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Deiotarus Philadelphus",
+      "names": [
+        "Deiotarus"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Defected to Caesar with Amyntas; possibly a Paphlagonian ruler, so the identification is uncertain.",
+      "searchQueries": [
+        "Deiotarus Philadelphus",
+        "Deiotarus Philadelphus of Paphlagonia"
+      ],
+      "occurrences": [
+        {
+          "ref": "63.3",
+          "quotation": "Amyntas and Deiotarus went over to Caesar"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q9203376",
+          "label": "Deiotarus Philadelphus",
+          "description": "king of Paphlagonia",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Deiotarus Philadelphus",
+        "suggested_qid": "Q9203376",
+        "confidence": "medium",
+        "reason": "Plutarch's Deiotarus who went over to Caesar is Deiotarus Philadelphus of Paphlagonia. This is probably the same person as the Philadelphus of Paphlagonia mention, so the curator may want to merge the two."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Dicomes",
+      "names": [
+        "Dicomes the king of the Getae"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Getic king who promised aid to Antony.",
+      "searchQueries": [
+        "Dicomes king of the Getae",
+        "Dicomes Getae"
+      ],
+      "occurrences": [
+        {
+          "ref": "63.4",
+          "quotation": "For Dicomes the king of the Getae promised to come to their aid with a large force"
+        }
+      ],
+      "candidates": [],
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Epirus",
+      "names": [
+        "Epeirus"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Region of Greece where Antony's camp stood.",
+      "searchQueries": [
+        "Epirus",
+        "Epirus ancient region"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.3",
+          "quotation": "occupying a place in Epeirus called Toruné"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q1820754",
+          "label": "Epirus",
+          "description": "Roman province",
+          "localEntity": null
+        },
+        {
+          "qid": "Q565751",
+          "label": "Epirus",
+          "description": "historical region of present-day Greece and Albania",
+          "localEntity": null
+        },
+        {
+          "qid": "Q111310426",
+          "label": "Epirus",
+          "description": "genus of aedemonini",
+          "localEntity": null
+        },
+        {
+          "qid": "Q11266977",
+          "label": "Epirus",
+          "description": "ancient Greek state and kingdom, located in the geographical region of Epirus",
+          "localEntity": null
+        },
+        {
+          "qid": "Q180484",
+          "label": "Epirus Region",
+          "description": "one of the 13 regions of Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q62021425",
+          "label": "Epirus",
+          "description": "horse",
+          "localEntity": null
+        },
+        {
+          "qid": "Q172353",
+          "label": "Pyrrhus",
+          "description": "king of Epirus from 307 to 302 and 297 to 272 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q335658",
+          "label": "Alexandros I of Epirus",
+          "description": "King of Epirus from 343/2 to 331 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2551754",
+          "label": "Thesprotians",
+          "description": "ancient Greek tribe that inhabited the region of Epirus",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1941398",
+          "label": "Chaonians",
+          "description": "ancient Greek tribe that inhabited the region of Epirus",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7208410",
+          "label": "Poionos",
+          "description": "ancient city of Epirus",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1249683",
+          "label": "Orraon",
+          "description": "ruined ancient city in Epirus, Greece",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Epirus",
+        "suggested_qid": "Q565751",
+        "confidence": "medium",
+        "reason": "The geographic region is meant. The Roman province (Q1820754) and the ancient state (Q11266977) are possible alternatives, but the plain region fits the narrative."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Herod the Great",
+      "names": [
+        "Herod the Jew"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "King of Judea; Plutarch lists him among Antony's allies.",
+      "searchQueries": [
+        "Herod the Great"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.2",
+          "quotation": "and Herod the Jew"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q51672",
+          "label": "Herod the Great",
+          "description": "king of Judea from 37/6 BCE to 4/1 BCE",
+          "localEntity": null
+        },
+        {
+          "qid": "Q16554385",
+          "label": "Herod the Great",
+          "description": "1958 film by Victor Tourjansky",
+          "localEntity": null
+        },
+        {
+          "qid": "Q85766377",
+          "label": "Herod the Great",
+          "description": "medieval mystery play",
+          "localEntity": null
+        },
+        {
+          "qid": "Q122192783",
+          "label": "Herod",
+          "description": "biblical account of Herod the Great (Gospel of Matthew)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q103932024",
+          "label": "Herod the Great",
+          "description": "encyclopedia article",
+          "localEntity": null
+        },
+        {
+          "qid": "Q115007019",
+          "label": "Herod the Great in Medieval Art and Literature.",
+          "description": "doctoral thesis",
+          "localEntity": null
+        },
+        {
+          "qid": "Q131006998",
+          "label": "Herod's Death",
+          "description": "circumstances surrounding the death of Herod the Great in 4 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q581668",
+          "label": "Antipater",
+          "description": "son of Herod and Doris, heir of Judea",
+          "localEntity": null
+        },
+        {
+          "qid": "Q5193307",
+          "label": "cultural depictions of Herod the Great",
+          "description": "Wikimedia list article",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Herod the Great",
+        "suggested_qid": "Q51672",
+        "confidence": "high",
+        "reason": "Herod was king of Judea from 37 BCE. The other candidates are films, plays, articles, or his son."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Ionian Sea",
+      "names": [
+        "Ionian sea"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Sea crossed by Caesar's fleet.",
+      "searchQueries": [
+        "Ionian Sea"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.3",
+          "quotation": "Caesar got the start of him by crossing the Ionian sea"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q37495",
+          "label": "Ionian Sea",
+          "description": "an elongated bay of the Mediterranean Sea, south of the Adriatic Sea, bounded by Southern Italy (Calabria, Sicily, Salento peninsula) to the west, southern Albania to the north, and the west coast of Greece to the east",
+          "localEntity": null
+        },
+        {
+          "qid": "Q107067246",
+          "label": "Ocean Regina",
+          "description": "bulk carrier launched in 1956",
+          "localEntity": null
+        },
+        {
+          "qid": "Q132717254",
+          "label": "Ionian Sea",
+          "description": null,
+          "localEntity": null
+        },
+        {
+          "qid": "Q117037829",
+          "label": "Ionian Sea",
+          "description": "crude oil tanker built in 1992",
+          "localEntity": null
+        },
+        {
+          "qid": "Q104380558",
+          "label": "Ionian Sea",
+          "description": "ship built in 2019",
+          "localEntity": null
+        },
+        {
+          "qid": "Q120172253",
+          "label": "Ionian Sea marine ecoregion",
+          "description": "bio-geographic region in MEOW scheme",
+          "localEntity": null
+        },
+        {
+          "qid": "Q48740434",
+          "label": "Albanian Ionian Sea Coast",
+          "description": "a coastline of the Northeastern Ionian Sea",
+          "localEntity": null
+        },
+        {
+          "qid": "Q8552381",
+          "label": "Category:Ionian Sea",
+          "description": "Wikimedia category",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3976853",
+          "label": "By the Ionian Sea: Notes of a Ramble in Southern Italy",
+          "description": "travel book by George Gissing",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Ionian Sea",
+        "suggested_qid": "Q37495",
+        "confidence": "high",
+        "reason": "The sea itself; the other candidates are ships, a book, or a category."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Lachares of Sparta",
+      "names": [
+        "Lachares"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Father of Eurycles, beheaded by Antony.",
+      "searchQueries": [
+        "Lachares Spartan",
+        "Lachares father of Eurycles"
+      ],
+      "occurrences": [
+        {
+          "ref": "67.2",
+          "quotation": "I am Eurycles the son of Lachares"
+        },
+        {
+          "ref": "67.3",
+          "quotation": "Now, Lachares had been beheaded by Antony"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q1378466",
+          "label": "Gaius Julius Eurycles",
+          "description": "1st c. BCE Spartan freebooter, son of Lachares",
+          "localEntity": null
+        },
+        {
+          "qid": "Q132673465",
+          "label": "Lachares",
+          "description": "pirate, father of Eurycles",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Lachares of Sparta",
+        "suggested_qid": "Q132673465",
+        "confidence": "high",
+        "reason": "Described as the pirate father of Eurycles, which matches the text. Q1378466 is the son."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Libya (ancient region)",
+      "names": [
+        "Libya"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Antony's intended destination; the Roman Cyrenaica region is probably meant.",
+      "searchQueries": [
+        "Libya ancient",
+        "Cyrenaica"
+      ],
+      "occurrences": [
+        {
+          "ref": "67.6",
+          "quotation": "since he purposed to cross from Taenarum to Libya"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q44112",
+          "label": "Cyrene",
+          "description": "ancient Greek and Roman city near present-day Shahhat, Libya",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3854262",
+          "label": "Mellitta",
+          "description": "settlement in Libya, ancient ad Ammonem",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2370577",
+          "label": "Ancient Libya",
+          "description": "ancient terminology for a continent in North Africa",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3773920",
+          "label": "Libyan Palette",
+          "description": "ancient Egyptian palette",
+          "localEntity": null
+        },
+        {
+          "qid": "Q124512336",
+          "label": "Libya",
+          "description": "ancient region, comprising both coastal and inland areas west of the Nile river and east of Cyrenaica",
+          "localEntity": null
+        },
+        {
+          "qid": "Q8250999",
+          "label": "Category:Ancient Libya",
+          "description": "Wikimedia category",
+          "localEntity": null
+        },
+        {
+          "qid": "Q165198",
+          "label": "Cyrenaica",
+          "description": "eastern coastal region of Libya",
+          "localEntity": null
+        },
+        {
+          "qid": "Q80642790",
+          "label": "Cyrenaica (Libyan Archaeological Guides)",
+          "description": "2013 edition",
+          "localEntity": null
+        },
+        {
+          "qid": "Q4221249",
+          "label": "Cyrenaica",
+          "description": null,
+          "localEntity": null
+        },
+        {
+          "qid": "Q34623080",
+          "label": "Cyrenaica (Pauly-Wissowa)",
+          "description": "cross-reference in Paulys Realencyclopädie der classischen Altertumswissenschaft (RE)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q65578544",
+          "label": "Cyrenaica",
+          "description": "print in the National Gallery of Art (NGA 54788)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3519113",
+          "label": "Cyrenaican tortoise",
+          "description": "subspecies of reptile",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Libya (ancient region)",
+        "suggested_qid": "Q124512336",
+        "confidence": "medium",
+        "reason": "The ancient region of Libya west of Egypt fits Antony's intended crossing. Cyrenaica (Q165198) and the broader Ancient Libya (Q2370577) are plausible alternatives."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Macedonia (Roman province)",
+      "names": [
+        "Macedonia"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Region proposed for retreat.",
+      "searchQueries": [
+        "Macedonia Roman province",
+        "Macedonia ancient region"
+      ],
+      "occurrences": [
+        {
+          "ref": "63.3",
+          "quotation": "to withdraw into Thrace or Macedonia"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q207497",
+          "label": "Macedonia",
+          "description": "Roman province",
+          "localEntity": null
+        },
+        {
+          "qid": "Q8678317",
+          "label": "Category:Macedonia (Roman province)",
+          "description": "Wikimedia category",
+          "localEntity": null
+        },
+        {
+          "qid": "Q28438466",
+          "label": "Category:Roman fortifications in Macedonia",
+          "description": "Wikimedia category",
+          "localEntity": null
+        },
+        {
+          "qid": "Q130265322",
+          "label": "Macedonia",
+          "description": "Roman personification of the region and province of Macedonia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2103129",
+          "label": "Polystylum",
+          "description": "ancient city in the Roman province of Macedonia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q830896",
+          "label": "Epirus Nova",
+          "description": "Late Roman and Early Byzantine province in central parts of modern Albania and western parts of modern North Macedonia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q83958",
+          "label": "Macedonia",
+          "description": "ancient Hellenic kingdom",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7800388",
+          "label": "Pieria",
+          "description": "ancient region of northeast Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q127430647",
+          "label": "Macedonia, Second Region",
+          "description": "The mint at the ancient site of Macedonian Second Region at Thessalonike",
+          "localEntity": null
+        },
+        {
+          "qid": "Q127430646",
+          "label": "Macedonia, First Region",
+          "description": "The mint at the ancient site of Macedonian First Region at Amphipolis",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1346328",
+          "label": "Eordaea",
+          "description": "historical region of ancient Macedonia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2542709",
+          "label": "Crestonia",
+          "description": "ancient region of Macedonia",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Macedonia (Roman province)",
+        "suggested_qid": "Q207497",
+        "confidence": "high",
+        "reason": "Macedonia was a Roman province by 31 BCE, matching the label."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Malchus I of Nabatea",
+      "names": [
+        "Malchus"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Arabian king, a Nabataean ruler who sent troops.",
+      "searchQueries": [
+        "Malichus I of Nabatea",
+        "Malchus I Nabataean king"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.2",
+          "quotation": "Malchus from Arabia"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q1597868",
+          "label": "Malichus I",
+          "description": "nabataean king",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Malchus I of Nabatea",
+        "suggested_qid": "Q1597868",
+        "confidence": "high",
+        "reason": "Malichus I of Nabataea reigned 59-30 BC and is the Arabian king Malchus here; it is the only candidate."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Mithridates III of Commagene",
+      "names": [
+        "Mithridates"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Ally king of Commagene; the regnal number should be checked, as some sources say Mithridates II.",
+      "searchQueries": [
+        "Mithridates III of Commagene",
+        "Mithridates of Commagene"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.1",
+          "quotation": "Mithridates of Commagene"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q200922",
+          "label": "Mithridates III of Commagene",
+          "description": "king of Commagene",
+          "localEntity": null
+        },
+        {
+          "qid": "Q28030685",
+          "label": "Mithridates III of Commagene",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q13426522",
+          "label": "Iotapa of Commagene",
+          "description": "Queen of Commagene, daughter of king Mithridates III",
+          "localEntity": null
+        },
+        {
+          "qid": "Q140068616",
+          "label": "Mithridates",
+          "description": "king of Sophene and Commagene from 228 to 212 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q406789",
+          "label": "Iotapa of Emesa",
+          "description": "Queen of Emesa, daughter of Mithridates III, spouse of Sampsiceramus II",
+          "localEntity": null
+        },
+        {
+          "qid": "Q734029",
+          "label": "Mithridates II of Commagene",
+          "description": "king of Commagene",
+          "localEntity": null
+        },
+        {
+          "qid": "Q470087",
+          "label": "Mithridates I Callinicus",
+          "description": "king of Commagene",
+          "localEntity": null
+        },
+        {
+          "qid": "Q5022209",
+          "label": "Callinicus",
+          "description": "son of King Antiochus IV of Commagene",
+          "localEntity": null
+        },
+        {
+          "qid": "Q6487856",
+          "label": "Laodice",
+          "description": "Queen of Commagene",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Mithridates III of Commagene",
+        "suggested_qid": "Q734029",
+        "confidence": "medium",
+        "reason": "The king of Commagene in 32-31 BCE was Mithridates II (c. 38-20 BC); Mithridates III reigned only from about 20 BC, so the canonical name looks mislabelled. Q200922 is the labelled match if the curator keeps the name; the curator should check the numbering."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Nicarchus (Plutarch's great-grandfather)",
+      "names": [
+        "Nicarchus"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Plutarch's ancestor, source of an anecdote about Antony's army.",
+      "searchQueries": [
+        "Nicarchus great-grandfather of Plutarch",
+        "Nicarchus Plutarch"
+      ],
+      "occurrences": [
+        {
+          "ref": "68.4",
+          "quotation": "my great-grandfather Nicarchus used to tell"
+        }
+      ],
+      "candidates": [],
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Nicopolis (Epirus)",
+      "names": [
+        "Nicopolis"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "City later founded by Octavian to commemorate the victory.",
+      "searchQueries": [
+        "Nicopolis Epirus",
+        "Nicopolis Actia"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.3",
+          "quotation": "where now Nicopolis stands"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q943637",
+          "label": "Nicopolis",
+          "description": "ancient city founded by Augustus after the battle of Actium",
+          "localEntity": null
+        },
+        {
+          "qid": "Q64012917",
+          "label": "Provenance investigation of Roman marble sarcophagi from Nicopolis, Epirus, Greece: revealing a strong artistic and trade connection with Athens",
+          "description": null,
+          "localEntity": null
+        },
+        {
+          "qid": "Q84024677",
+          "label": "Category:Maps of Nicopolis of Epirus",
+          "description": "Wikimedia category",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1393021",
+          "label": "Titular see of Nicopolis in Epiro",
+          "description": "titular see in Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2823603",
+          "label": "Actia",
+          "description": "Sports and arts festival in Nikopolis (Roman Epirus)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q21451626",
+          "label": "Actia Nicopolis Foundation",
+          "description": "Non profitable foundation, based in Preveza, Greece.",
+          "localEntity": null
+        },
+        {
+          "qid": "Q125746919",
+          "label": "Board of directors of Actia Nicopolis Foundation",
+          "description": "seven member board of directors of the Actia Nicopolis Foundation, Preveza, Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q116064377",
+          "label": "Psēphides historias tēs Prevezas",
+          "description": "periodical scientific edition, published by Actia Nicopolis Foundation, Preveza, Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q137707760",
+          "label": "Postcard collection by Nikos D. Karabelas",
+          "description": "Collection of postcards, mainly from Greece",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Nicopolis (Epirus)",
+        "suggested_qid": "Q943637",
+        "confidence": "high",
+        "reason": "The city Augustus founded after Actium, as in 'where now Nicopolis stands'."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Peloponnese",
+      "names": [
+        "Peloponnesus"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Destination of Antony's flight.",
+      "searchQueries": [
+        "Peloponnese"
+      ],
+      "occurrences": [
+        {
+          "ref": "66.4",
+          "quotation": "made for Peloponnesus"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q78967",
+          "label": "Peloponnese",
+          "description": "large peninsula and geographic region in southern Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q202484",
+          "label": "Peloponnese Region",
+          "description": "one of the 13 administrative regions of Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q681397",
+          "label": "Peloponnese",
+          "description": "Byzantine military-civilian province c 800 CE",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1572648",
+          "label": "Peloponnese Wall Lizard",
+          "description": "species of reptile",
+          "localEntity": null
+        },
+        {
+          "qid": "Q11815506",
+          "label": "Decentralized Administration of Peloponnese, Western Greece and the Ionian Islands",
+          "description": "administrative division in Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1107176",
+          "label": "Anguis cephalonnica",
+          "description": "species of reptile",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3551766",
+          "label": "University of Peloponnese",
+          "description": "university based in Tripoli and departments all over Peloponnese, Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q189901",
+          "label": "Q189901",
+          "description": "city in Argolis, Peloponnese, Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7345182",
+          "label": "Category:Peloponnese",
+          "description": "Wikimedia category",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Peloponnese",
+        "suggested_qid": "Q78967",
+        "confidence": "high",
+        "reason": "The peninsula and geographic region of southern Greece."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Pharsalus",
+      "names": [
+        "Pharsalus"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Site of the earlier Caesar–Pompey battle, proposed by Antony as an analogy.",
+      "searchQueries": [
+        "Pharsalus",
+        "Battle of Pharsalus"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.3",
+          "quotation": "Antony demanded that they should fight out the issue at Pharsalus"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q18098807",
+          "label": "Pharsalus",
+          "description": "genus of insects",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2085176",
+          "label": "Pharsalus",
+          "description": "titular see",
+          "localEntity": null
+        },
+        {
+          "qid": "Q38281085",
+          "label": "Pharsalos ancient city",
+          "description": "walled polis and archaeological site in Thessaly",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7180867",
+          "label": "Pharsalus",
+          "description": "episode of Rome",
+          "localEntity": null
+        },
+        {
+          "qid": "Q10626670",
+          "label": "Pharsalus repandus",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q985596",
+          "label": "Farsala",
+          "description": "town in Thessaly, Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q203681",
+          "label": "Battle of Pharsalus",
+          "description": "48 BCE decisive battle of Caesar's Civil War",
+          "localEntity": null
+        },
+        {
+          "qid": "Q47858111",
+          "label": "Acraea pharsalus pharsalus",
+          "description": null,
+          "localEntity": null
+        },
+        {
+          "qid": "Q392797",
+          "label": "Battle of Pharsalus",
+          "description": "1277 battle",
+          "localEntity": null
+        },
+        {
+          "qid": "Q20537847",
+          "label": "Battle of Pharsalus and the Beheading of Pompey",
+          "description": "painting by Apollonio di Giovanni di Tomaso",
+          "localEntity": null
+        },
+        {
+          "qid": "Q4872024",
+          "label": "Battle of Pharsalus",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q131140329",
+          "label": "The return of Pompeius after the battle of Pharsalus",
+          "description": "painting by Tintoretto",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Pharsalus",
+        "suggested_qid": "Q38281085",
+        "confidence": "medium",
+        "reason": "The place Pharsalus in Thessaly is meant, which is the ancient city. Q203681 is the 48 BCE battle and Q985596 the modern town, but the passage names a place to fight at."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Philadelphus of Paphlagonia",
+      "names": [
+        "Philadelphus"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Paphlagonian ally king; the identity is uncertain, possibly Deiotarus Philadelphus.",
+      "searchQueries": [
+        "Philadelphus of Paphlagonia",
+        "Philadelphus king of Paphlagonia"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.1",
+          "quotation": "Philadelphus of Paphlagonia"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q9203376",
+          "label": "Deiotarus Philadelphus",
+          "description": "king of Paphlagonia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1307732",
+          "label": "Johann Gottfried Zeidler",
+          "description": "German theologian",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Philadelphus of Paphlagonia",
+        "suggested_qid": "Q9203376",
+        "confidence": "high",
+        "reason": "Deiotarus Philadelphus, king of Paphlagonia, was Antony's ally. The other candidate is an unrelated German theologian."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Polemon I of Pontus",
+      "names": [
+        "Polemon"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "King of Pontus who sent troops to Antony.",
+      "searchQueries": [
+        "Polemon I of Pontus",
+        "Marcus Antonius Polemon"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.2",
+          "quotation": "from Pontus Polemon sent an army"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q325921",
+          "label": "Polemon I of Pontus",
+          "description": "Roman Client King of Cilicia, Pontus, Colchis and the Bosporan Kingdom",
+          "localEntity": null
+        },
+        {
+          "qid": "Q772775",
+          "label": "Polemon of Laodicea",
+          "description": "Greek sophist (c. 90 – 144)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2319252",
+          "label": "Polemon II of Pontus",
+          "description": "king of Pontus",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3290242",
+          "label": "Marcus Antonius Polemo I",
+          "description": "ancient Roman priest",
+          "localEntity": null
+        },
+        {
+          "qid": "Q125481129",
+          "label": "For Callimachus",
+          "description": "declamation by Marcus Antonius Polemon",
+          "localEntity": null
+        },
+        {
+          "qid": "Q125481516",
+          "label": "Declamations",
+          "description": "work by Marcus Antonius Polemon",
+          "localEntity": null
+        },
+        {
+          "qid": "Q125481108",
+          "label": "For Cynaegirus",
+          "description": "declamation by Marcus Antonius Polemon",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Polemon I of Pontus",
+        "suggested_qid": "Q325921",
+        "confidence": "high",
+        "reason": "Polemon I ruled Pontus in the triumviral period. The other Polemons are later (Polemon II, the sophist, or works)."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Pompey",
+      "names": [
+        "Pompey"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Mentioned in a comparison with Caesar at Pharsalus.",
+      "searchQueries": [
+        "Pompey",
+        "Gnaeus Pompeius Magnus"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.3",
+          "quotation": "as Caesar and Pompey had once done"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q212966",
+          "label": "Pompey",
+          "description": "commune in Meurthe-et-Moselle, France",
+          "localEntity": null
+        },
+        {
+          "qid": "Q19604",
+          "label": "Portsmouth F.C.",
+          "description": "association football club in Portsmouth, England",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7227476",
+          "label": "Pompey",
+          "description": "American Thoroughbred racehorse and sire (foaled 1923)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q37572647",
+          "label": "Pompey",
+          "description": "family name",
+          "localEntity": null
+        },
+        {
+          "qid": "Q125414",
+          "label": "Pompey",
+          "description": "Roman general and statesman (106–48 BC)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q140008452",
+          "label": "Pompey",
+          "description": "British Thoroughbred racehorse and sire (foaled 1840)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3708701",
+          "label": "Pompey",
+          "description": "town in Onondaga County, New York, United States",
+          "localEntity": null
+        },
+        {
+          "qid": "Q944814",
+          "label": "Theatre of Pompey",
+          "description": "structure in Ancient Rome",
+          "localEntity": null
+        },
+        {
+          "qid": "Q473280",
+          "label": "Gnaeus Pompeius Magnus",
+          "description": "eldest son of Pompey the Great",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1338377",
+          "label": "Gnaeus Pompeius Magnus",
+          "description": "Roman nobleman, husband of Claudia Antonia (23-47)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2279019",
+          "label": "Gnaeus Pompeius Magnus",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q8968997",
+          "label": "Category:Pompey",
+          "description": "Wikimedia category",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Pompey",
+        "suggested_qid": "Q125414",
+        "confidence": "high",
+        "reason": "Pompey the Great, the rival of Caesar, is the only candidate that fits the period."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Sadalas of Thrace",
+      "names": [
+        "Sadalas"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Odrysian Thracian king allied with Antony.",
+      "searchQueries": [
+        "Sadalas II of Thrace",
+        "Sadalas of Thrace"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.1",
+          "quotation": "Sadalas of Thrace"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q3461086",
+          "label": "Sadalas II",
+          "description": "odrysian king of Thrace, 48–42 BC",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3461087",
+          "label": "Sadalas III",
+          "description": "Prince of Thrace",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Sadalas of Thrace",
+        "suggested_qid": "Q3461087",
+        "confidence": "medium",
+        "reason": "Sadalas II (Q3461086) is dated 48-42 BC and so was dead by 32 BC. Sadalas III better fits the Actium period, but the evidence is limited."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Scellius",
+      "names": [
+        "Scellius"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Companion of Antony after the flight.",
+      "searchQueries": [
+        "Scellius companion of Antony",
+        "Scellius Plutarch"
+      ],
+      "occurrences": [
+        {
+          "ref": "66.5",
+          "quotation": "where Alexas the Syrian and Scellius were his only companions"
+        }
+      ],
+      "candidates": [],
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Sicilian revolt",
+      "names": [
+        "Sicilian war"
+      ],
+      "kind": "Event",
+      "centrality": "peripheral",
+      "note": "War of Octavian against Sextus Pompey, 38–36 BC.",
+      "searchQueries": [
+        "Sicilian revolt",
+        "War against Sextus Pompey"
+      ],
+      "occurrences": [
+        {
+          "ref": "63.4",
+          "quotation": "who had practised himself there in the Sicilian war"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q108111059",
+          "label": "Sicilian revolt",
+          "description": "Wikimedia disambiguation page",
+          "localEntity": null
+        },
+        {
+          "qid": "Q6856632",
+          "label": "Template:Campaignbox Sicilian revolt",
+          "description": "Wikimedia template",
+          "localEntity": null
+        },
+        {
+          "qid": "Q50356397",
+          "label": "1516–1523 Sicilian revolt",
+          "description": "Revolt in the Kingdom of Sicily",
+          "localEntity": null
+        },
+        {
+          "qid": "Q2265587",
+          "label": "Battle of Mylae",
+          "description": "naval battle of the Sicilian Revolt",
+          "localEntity": null
+        },
+        {
+          "qid": "Q500098",
+          "label": "Pact of Misenum",
+          "description": "treaty which ended the naval blockade of the Italian Peninsula during the Sicilian revolt",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Sicilian revolt",
+        "suggested_qid": null,
+        "confidence": "low",
+        "reason": "The reference is to the war against Sextus Pompey (c. 44-36 BC). The candidates are a disambiguation page, a template, a 16th-century revolt, and individual events, and none is the right item. The disambiguation page may point to the correct item."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Taranto",
+      "names": [
+        "Tarentum"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Italian port where Caesar's fleet assembled.",
+      "searchQueries": [
+        "Taranto",
+        "Tarentum"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.2",
+          "quotation": "This fleet Caesar kept assembled at Tarentum and Brundisium"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q37040214",
+          "label": "Taranto",
+          "description": "family name",
+          "localEntity": null
+        },
+        {
+          "qid": "Q13498",
+          "label": "Taranto",
+          "description": "Italian comune",
+          "localEntity": null
+        },
+        {
+          "qid": "Q476953",
+          "label": "SMS Strassburg",
+          "description": "1911 Magdeburg-class cruiser",
+          "localEntity": null
+        },
+        {
+          "qid": "Q29400",
+          "label": "Taranto Sport",
+          "description": "football club in Taranto, Italy",
+          "localEntity": null
+        },
+        {
+          "qid": "Q16283",
+          "label": "Province of Taranto",
+          "description": "province of Italy",
+          "localEntity": null
+        },
+        {
+          "qid": "Q695526",
+          "label": "Tarantino",
+          "description": "Intermediate Southern Italian dialect of Taranto",
+          "localEntity": null
+        },
+        {
+          "qid": "Q192738",
+          "label": "Gulf of Taranto",
+          "description": "bay",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1365669",
+          "label": "Roman Catholic Archdiocese of Taranto",
+          "description": "Roman Catholic metropolitan archdiocese in Italy",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1187823",
+          "label": "Tarentum",
+          "description": "borough of Pennsylvania",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3981082",
+          "label": "Taras",
+          "description": "ancient Greek city",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3981110",
+          "label": "Tarentum",
+          "description": "ancient Roman precinct in Campus Martius",
+          "localEntity": null
+        },
+        {
+          "qid": "Q5538328",
+          "label": "George D. Stuart Bridge",
+          "description": "bridge over the Allegheny River in Pennsylvania",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Taranto",
+        "suggested_qid": "Q3981082",
+        "confidence": "medium",
+        "reason": "The source's Tarentum is the ancient city (Taras), a naval base in 31 BCE. If the project links ancient places to modern comune items, Q13498 is the alternative."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Tarcondimotus I of Cilicia",
+      "names": [
+        "Tarcondemus"
+      ],
+      "kind": "Person",
+      "centrality": "peripheral",
+      "note": "Spelled Tarcondemus by Plutarch; ally of Antony, king in Upper Cilicia.",
+      "searchQueries": [
+        "Tarcondimotus I",
+        "Tarkondimotos Philantonios"
+      ],
+      "occurrences": [
+        {
+          "ref": "61.1",
+          "quotation": "Tarcondemus the king of Upper Cilicia"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q2394381",
+          "label": "Tarkondimotos I.",
+          "description": "Roman client king of Cilicia",
+          "localEntity": null
+        },
+        {
+          "qid": "Q140292644",
+          "label": "Q140292644",
+          "description": "encyclopedic article in Paulys Realencyclopädie der classischen Altertumswissenschaft (RE)",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Tarcondimotus I of Cilicia",
+        "suggested_qid": "Q2394381",
+        "confidence": "high",
+        "reason": "Roman client king of Cilicia and Antony's ally at Actium. The other candidate is only an RE encyclopedia article."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Thrace",
+      "names": [
+        "Thrace"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Region proposed for retreat.",
+      "searchQueries": [
+        "Thrace"
+      ],
+      "occurrences": [
+        {
+          "ref": "63.3",
+          "quotation": "to withdraw into Thrace or Macedonia"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q41741",
+          "label": "Thrace",
+          "description": "geographical and historical region in Southeast Europe",
+          "localEntity": null
+        },
+        {
+          "qid": "Q136500712",
+          "label": "Thrace",
+          "description": "square in Bulgaria",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1192701",
+          "label": "Thrace",
+          "description": "geographic region of Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q1491574",
+          "label": "Thrace",
+          "description": "Byzantine district (theme)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7797097",
+          "label": "Thrace",
+          "description": "daughter of Oceanus in Greek mythology",
+          "localEntity": null
+        },
+        {
+          "qid": "Q23889914",
+          "label": "Thracella",
+          "description": "genus of crustaceans",
+          "localEntity": null
+        },
+        {
+          "qid": "Q171314",
+          "label": "Eastern Macedonia and Thrace Region",
+          "description": "one of the 13 administrative regions of Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q171323",
+          "label": "East Thrace",
+          "description": "portion of Turkey that is located in South-eastern Europe",
+          "localEntity": null
+        },
+        {
+          "qid": "Q3129678",
+          "label": "Northern Thrace",
+          "description": "northern part of the historical region of Thrace in southeastern Europe",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Thrace",
+        "suggested_qid": "Q41741",
+        "confidence": "high",
+        "reason": "The historical region of Thrace is meant. The others are modern administrative or Byzantine units."
+      },
+      "status": "pending"
+    },
+    {
+      "canonicalName": "Toryne",
+      "names": [
+        "Toruné"
+      ],
+      "kind": "Place",
+      "centrality": "peripheral",
+      "note": "Place in Epirus, Plutarch's 'Toruné', where Antony's forces were positioned.",
+      "searchQueries": [
+        "Toryne",
+        "Toryne Epirus"
+      ],
+      "occurrences": [
+        {
+          "ref": "62.3",
+          "quotation": "occupying a place in Epeirus called Toruné"
+        }
+      ],
+      "candidates": [
+        {
+          "qid": "Q3375515",
+          "label": "Torynesis",
+          "description": "genus of insects",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7827503",
+          "label": "Toryne",
+          "description": "ancient city in Greece",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7827506",
+          "label": "Torynesis mintha",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q7827505",
+          "label": "Torynesis magna",
+          "description": "species of insect",
+          "localEntity": null
+        },
+        {
+          "qid": "Q41220434",
+          "label": "Torynelasma",
+          "description": "genus of brachiopods (fossil)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q33134927",
+          "label": "Torynelasmatidae",
+          "description": "family of brachiopods (fossil)",
+          "localEntity": null
+        },
+        {
+          "qid": "Q140499496",
+          "label": "Q140499496",
+          "description": "encyclopedic article in Paulys Realencyclopädie der classischen Altertumswissenschaft (RE)",
+          "localEntity": null
+        }
+      ],
+      "suggestion": {
+        "canonical_name": "Toryne",
+        "suggested_qid": "Q7827503",
+        "confidence": "high",
+        "reason": "Toryne is the ancient town in Epirus where Caesar's forces were positioned."
+      },
+      "status": "pending"
+    }
+  ]
+}
