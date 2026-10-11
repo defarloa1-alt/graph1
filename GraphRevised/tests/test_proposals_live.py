@@ -1,11 +1,13 @@
-"""Live Phase 5 replay tests. Every test is rolled back; the database never changes."""
+"""Live Phase 5 workflow tests. Every test is rolled back; the database never changes.
+
+The workflow tests build synthetic fixtures (test entities, made-up QIDs, a
+test passage) inside their transaction, so they do not depend on what the
+live graph currently contains. Only the Actium replay uses real data.
+"""
 
 import os
 import unittest
-from pathlib import Path
 
-from GraphRevised.adapters.perseus_passages import load_edition, passage_observation
-from GraphRevised.adapters.wikidata_statements import statement_observation
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
@@ -13,15 +15,17 @@ from GraphRevised.proposals.store import Neo4jReader, ReviewError, accept, list_
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 
-EDITION_PATH = next((Path(__file__).resolve().parents[1] / "phase-5-source").glob("perseus-*.xml"))
-EDITION_COMMIT = "70427323b61267cdcd0256b9b02009c23392de07"
-AGRIPPA = "chr:entity:marcus-vipsanius-agrippa"
-AGRIPPA_ASSERTION = "chr:assertion:marcus-vipsanius-agrippa:participated-in:battle-of-actium"
-PAYLOAD = Path(__file__).resolve().parents[1] / "phase-2-source" / "wikidata-Q160387-r2555342002.json"
-ACTIUM = "chr:entity:battle-of-actium"
 AGRIPPA_OBSERVATION = "chr:observation:wikidata:Q160387:P710:32bdfa2f:r2555342002"
-ANTONY = "chr:entity:mark-antony"
-ANTONY_STATEMENT = "Q160387$4d260aee-40ad-fb5f-7721-8dd10d8bdc96"
+
+BATTLE = ("chr:entity:test-battle", "Event", "Test battle", "Q999990001")
+LEADER = ("chr:entity:test-leader", "Person", "Test leader", "Q999990002")
+ADMIRAL = ("chr:entity:test-admiral", "Person", "Test admiral", "Q999990003")
+UNLINKED_QID = "Q999990009"
+PASSAGE_ID = "chr:observation:test:passage"
+PASSAGE_TEXT = (
+    "On the fifth day they came to an engagement. The leader had the right wing, "
+    "and the admiral was extending the left wing to encircle the enemy."
+)
 DECISION = {"decided_by": "test-curator", "decision_basis": "test", "decided_at": "2026-10-11T00:00:00Z"}
 
 COUNTS = "CALL () { MATCH (n) RETURN count(n) AS nodes } CALL () { MATCH ()-[r]->() RETURN count(r) AS rels } RETURN nodes, rels"
@@ -38,6 +42,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         cls.driver = GraphDatabase.driver(
             os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
             auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            notifications_min_severity="OFF",
         )
         cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
 
@@ -53,36 +58,82 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
     def tearDown(self):
         self.tx.rollback()
 
+    # -- fixtures -------------------------------------------------------------
+
     def counts(self):
         return self.tx.run(COUNTS).single().data()
 
-    def add_antony(self):
-        """Reviewed identity setup a curator would do before proposals can name Antony."""
-        run_write(self.tx, self.operations, "upsert_entity", {
-            "id": ANTONY, "kind": "Person", "label": "Mark Antony", "description": None,
-            "status": "provisional", "shortLabel": "Antony",
+    def write(self, operation, params):
+        return run_write(self.tx, self.operations, operation, params)
+
+    def add_entity(self, entity):
+        entity_id, kind, label, qid = entity
+        self.write("upsert_entity", {
+            "id": entity_id, "kind": kind, "label": label, "description": None,
+            "status": "provisional", "shortLabel": None,
         })
-        run_write(self.tx, self.operations, "upsert_authority", {
-            "entityId": ANTONY, "id": "chr:authority:wikidata:Q51673", "system": "Wikidata",
-            "identifier": "Q51673", "label": "Wikidata record: Mark Antony (Q51673)", "shortLabel": "Wikidata: Antony",
+        self.write("upsert_authority", {
+            "entityId": entity_id, "id": f"chr:authority:wikidata:{qid}", "system": "Wikidata",
+            "identifier": qid, "label": f"Wikidata record: {label} ({qid})", "shortLabel": None,
             "description": None, "retrievedAt": None, "sourceUri": None, "sourceRevision": None,
             "contentHash": None, "rawPayloadUri": None, "role": "entity_identity",
             "relation": "closeMatch", "linkStatus": "accepted",
         })
-        params = statement_observation(
-            PAYLOAD, ANTONY_STATEMENT,
-            label="Wikidata observation: Mark Antony participated in Battle of Actium",
-            short_label="Wikidata: Antony -> Actium",
-        )
-        run_write(self.tx, self.operations, "upsert_observation", params)
-        return params["id"]
 
-    def antony_draft(self):
-        observation = self.reader.observation(self.add_antony())
+    def statement(self, participant_qid, *, persist=True):
+        """A synthetic Wikidata P710 statement: the test battle has this participant."""
+        params = {
+            "id": f"chr:observation:test:p710:{participant_qid}",
+            "label": f"Test observation: {participant_qid} participated", "shortLabel": None,
+            "sourceSystem": "Wikidata", "sourceEntityId": BATTLE[3], "predicateExternalId": "P710",
+            "objectExternalId": participant_qid, "externalStatementId": f"{BATTLE[3]}$test-{participant_qid}",
+            "qualifierPropertyIds": [], "sourceRevision": 1, "retrievedAt": "2026-10-11T00:00:00Z",
+            "contentHash": "test", "rawPayloadUri": None, "status": "observed",
+        }
+        if persist:
+            self.write("upsert_observation", params)
+        return params
+
+    def add_passage(self):
+        self.write("upsert_passage_observation", {
+            "id": PASSAGE_ID, "label": "Test passage", "shortLabel": None, "sourceSystem": "Test",
+            "locator": "test:1", "passageText": PASSAGE_TEXT, "passageHash": "test",
+            "editorialNotes": ["Sept. 2"], "language": "en", "workTitle": "Test", "author": "Test",
+            "translator": None, "editionCitation": "Test", "rights": "test", "sourceUri": "test",
+            "sourceRevision": "test", "retrievedAt": "2026-10-11T00:00:00Z", "contentHash": "test",
+            "rawPayloadUri": None, "status": "observed",
+        })
+
+    def battle_with_leader(self):
+        self.add_entity(BATTLE)
+        self.add_entity(LEADER)
+        self.write("link_year", {"entityId": BATTLE[0], "year": -31})
+        observation = self.reader.observation(self.statement(LEADER[3])["id"])
         result = drafts_from_observation(observation, self.reader, self.registry)
         self.assertEqual(result.unresolved, ())
         self.assertEqual(len(result.drafts), 1)
         return result.drafts[0]
+
+    def accepted_leader_claim(self):
+        submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
+        accept(self.tx, submission.validation.proposal_id, registry=self.registry, operations=self.operations, **DECISION)
+        return submission.validation.assertion_id
+
+    def passage_draft(self, entity, quote):
+        return ProposalDraft(
+            predicate="participatedIn",
+            subject_id=entity[0],
+            object_id=BATTLE[0],
+            observation_ids=(PASSAGE_ID,),
+            quotations=(Quotation(observation_id=PASSAGE_ID, text=quote),),
+            rationale="The test passage places this person in the battle line.",
+            proposed_by="test",
+        )
+
+    def support_count(self, assertion_id):
+        return len(self.reader.assertion(assertion_id)["observationIds"])
+
+    # -- real-data replay ----------------------------------------------------
 
     def test_replaying_actium_observation_is_an_already_supported_duplicate(self):
         before = self.counts()
@@ -94,18 +145,18 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.assertFalse(submission.stored)
         self.assertEqual(self.counts(), before)
 
+    # -- structured evidence -------------------------------------------------
+
     def test_unlinked_participants_are_reported_not_created(self):
+        self.add_entity(BATTLE)
         before = self.counts()
-        params = statement_observation(
-            PAYLOAD, ANTONY_STATEMENT, label="x", short_label="x",
-        )
-        result = drafts_from_observation(params, self.reader, self.registry)
+        result = drafts_from_observation(self.statement(UNLINKED_QID, persist=False), self.reader, self.registry)
         self.assertEqual(result.drafts, ())
-        self.assertEqual(result.unresolved, ("Q51673 has no local Entity",))
+        self.assertEqual(result.unresolved, (f"{UNLINKED_QID} has no local Entity",))
         self.assertEqual(self.counts(), before)
 
-    def test_antony_proposal_full_workflow(self):
-        draft = self.antony_draft()
+    def test_full_workflow(self):
+        draft = self.battle_with_leader()
         submission = submit(self.tx, draft, self.registry, self.operations)
         self.assertEqual(submission.validation.outcome, Outcome.VALID)
         self.assertTrue(submission.stored)
@@ -117,7 +168,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.assertEqual(stored["p"]["status"], "submitted")
         self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v1")
         self.assertEqual(stored["a"]["status"], "proposed")
-        self.assertEqual(stored["a"]["label"], "Mark Antony participated in Battle of Actium")
+        self.assertEqual(stored["a"]["label"], "Test leader participated in Test battle")
         self.assertIn(proposal_id, [row["id"] for row in list_proposals(self.tx, "submitted")])
 
         before_retry = self.counts()
@@ -131,7 +182,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         context = self.tx.run(
             self.operations["get_temporal_context"], assertionId=submission.validation.assertion_id
         ).single()
-        self.assertEqual(context["temporalContext"], "Battle of Actium, 31 BCE")
+        self.assertEqual(context["temporalContext"], "Test battle, 31 BCE")
 
         with self.assertRaises(ReviewError):
             accept(self.tx, proposal_id, registry=self.registry, operations=self.operations, **DECISION)
@@ -139,20 +190,21 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             reject(self.tx, proposal_id, operations=self.operations, **DECISION)
 
     def test_rejection_marks_assertion_rejected(self):
-        submission = submit(self.tx, self.antony_draft(), self.registry, self.operations)
+        submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
         decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION)
         self.assertEqual(decided["proposal"]["status"], "rejected")
         self.assertEqual(decided["assertion"]["status"], "rejected")
 
     def test_invented_evidence_is_refused_and_nothing_is_stored(self):
-        self.add_antony()
+        self.battle_with_leader()
+        self.add_entity(ADMIRAL)
         before = self.counts()
         invented = ProposalDraft(
             predicate="participatedIn",
-            subject_id=ANTONY,
-            object_id=ACTIUM,
-            observation_ids=(AGRIPPA_OBSERVATION,),
-            rationale="cites Agrippa's statement as if it were Antony's",
+            subject_id=ADMIRAL[0],
+            object_id=BATTLE[0],
+            observation_ids=(f"chr:observation:test:p710:{LEADER[3]}",),
+            rationale="cites the leader's statement as if it were the admiral's",
             proposed_by="test",
         )
         submission = submit(self.tx, invented, self.registry, self.operations)
@@ -160,86 +212,68 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.assertFalse(submission.stored)
         self.assertEqual(self.counts(), before)
 
-    def add_passage(self, ref):
-        edition = load_edition(EDITION_PATH, source_commit=EDITION_COMMIT)
-        params = passage_observation(edition, ref, retrieved_at="2026-10-11T00:00:00Z", source_uri="test")
-        # A test-only ID keeps these tests independent of passages already in the graph.
-        params["id"] = f"chr:observation:test:antony:{ref}"
-        run_write(self.tx, self.operations, "upsert_passage_observation", params)
-        return params["id"]
-
-    def agrippa_passage_draft(self):
-        observation_id = self.add_passage("65.2")
-        return ProposalDraft(
-            predicate="participatedIn",
-            subject_id=AGRIPPA,
-            object_id=ACTIUM,
-            observation_ids=(observation_id,),
-            quotations=(Quotation(observation_id=observation_id, text="Caesar posted Agrippa on the left"),),
-            rationale="Plutarch places Agrippa in command of Caesar's left wing at Actium.",
-            proposed_by="test",
-        )
+    # -- passage evidence ----------------------------------------------------
 
     def test_passage_evidence_for_accepted_assertion_waits_for_acceptance(self):
-        draft = self.agrippa_passage_draft()
+        assertion_id = self.accepted_leader_claim()
+        self.add_passage()
+        draft = self.passage_draft(LEADER, "The leader had the right wing")
+        support_before = self.support_count(assertion_id)
+
         submission = submit(self.tx, draft, self.registry, self.operations)
         self.assertEqual(submission.validation.outcome, Outcome.ADDS_EVIDENCE)
         self.assertTrue(submission.stored)
-        proposal_id = submission.validation.proposal_id
-        self.assertEqual(len(self.reader.assertion(AGRIPPA_ASSERTION)["observationIds"]), 1)
+        self.assertEqual(self.support_count(assertion_id), support_before)
 
         before_retry = self.counts()
         self.assertFalse(submit(self.tx, draft, self.registry, self.operations).stored)
         self.assertEqual(self.counts(), before_retry)
 
-        accepted_at = self.tx.run("MATCH (a:Assertion {id: $id}) RETURN a.acceptedAt AS t", id=AGRIPPA_ASSERTION).single()["t"]
+        accepted_at = self.tx.run("MATCH (a:Assertion {id: $id}) RETURN a.acceptedAt AS t", id=assertion_id).single()["t"]
+        proposal_id = submission.validation.proposal_id
         decided = accept(self.tx, proposal_id, registry=self.registry, operations=self.operations, **DECISION)
         self.assertEqual(decided["proposal"]["status"], "accepted")
         self.assertEqual(decided["assertion"]["status"], "accepted")
         self.assertEqual(decided["assertion"]["acceptedAt"], accepted_at)
+        self.assertEqual(self.support_count(assertion_id), support_before + 1)
         support = self.tx.run(
-            "MATCH (:Assertion {id: $id})-[s:SUPPORTED_BY]->(o:SourceObservation {observationKind: 'passage'}) "
+            "MATCH (:Assertion {id: $id})-[s:SUPPORTED_BY]->(:SourceObservation {id: $passage}) "
             "RETURN s.quotation AS quotation, s.addedByProposal AS proposal",
-            id=AGRIPPA_ASSERTION,
+            id=assertion_id, passage=PASSAGE_ID,
         ).single()
-        self.assertEqual(support["quotation"], "Caesar posted Agrippa on the left")
+        self.assertEqual(support["quotation"], "The leader had the right wing")
         self.assertEqual(support["proposal"], proposal_id)
         self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.DUPLICATE)
 
     def test_rejected_evidence_leaves_assertion_untouched(self):
-        submission = submit(self.tx, self.agrippa_passage_draft(), self.registry, self.operations)
+        assertion_id = self.accepted_leader_claim()
+        self.add_passage()
+        support_before = self.support_count(assertion_id)
+        submission = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
         decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION)
         self.assertEqual(decided["proposal"]["status"], "rejected")
         self.assertEqual(decided["assertion"]["status"], "accepted")
-        self.assertEqual(len(self.reader.assertion(AGRIPPA_ASSERTION)["observationIds"]), 1)
+        self.assertEqual(self.support_count(assertion_id), support_before)
 
     def test_passage_can_support_a_new_assertion(self):
-        self.add_antony()
-        observation_id = self.add_passage("65.1")
-        draft = ProposalDraft(
-            predicate="participatedIn",
-            subject_id=ANTONY,
-            object_id=ACTIUM,
-            observation_ids=(observation_id,),
-            quotations=(Quotation(observation_id=observation_id, text="Antony had the right wing"),),
-            rationale="Plutarch names Antony as commander of his own right wing in the engagement.",
-            proposed_by="test",
-        )
+        self.add_entity(BATTLE)
+        self.add_entity(ADMIRAL)
+        self.add_passage()
+        draft = self.passage_draft(ADMIRAL, "the admiral was extending the left wing to encircle the enemy")
         submission = submit(self.tx, draft, self.registry, self.operations)
         self.assertEqual(submission.validation.outcome, Outcome.VALID)
         decided = accept(self.tx, submission.validation.proposal_id, registry=self.registry, operations=self.operations, **DECISION)
         self.assertEqual(decided["assertion"]["status"], "accepted")
 
     def test_paraphrased_passage_evidence_is_refused(self):
+        self.add_entity(BATTLE)
+        self.add_entity(ADMIRAL)
+        self.add_passage()
         before = self.counts()
-        observation_id = self.add_passage("65.2")
-        after_observation = self.counts()
-        draft = self.agrippa_passage_draft().model_copy(update={
-            "quotations": (Quotation(observation_id=observation_id, text="Agrippa led the left wing of the fleet"),),
-        })
+        draft = self.passage_draft(ADMIRAL, "the admiral led the left wing of the fleet")
         self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.INVALID)
-        self.assertEqual(self.counts(), after_observation)
-        self.assertNotEqual(before, after_observation)
+        self.assertEqual(self.counts(), before)
+
 
 if __name__ == "__main__":
     unittest.main()

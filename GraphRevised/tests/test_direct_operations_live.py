@@ -181,7 +181,7 @@ class DirectOperationsLiveTests(unittest.TestCase):
             [(row["predicate"], row["assertionSubject"]["id"]) for row in neighborhood],
         )
         evidence = self.run_op(GET_EVIDENCE, {"assertionId": ASSERTION})[0]
-        self.assertEqual([obs["id"] for obs in evidence["sourceObservations"]], [OBSERVATION])
+        self.assertIn(OBSERVATION, [obs["id"] for obs in evidence["sourceObservations"]])
         self.assertIn(PROPOSAL, [prop["id"] for prop in evidence["proposals"]])
         context = self.run_op(GET_TEMPORAL_CONTEXT, {"assertionId": ASSERTION})[0]
         self.assertEqual(context["temporalContext"], "Battle of Actium, 31 BCE")
