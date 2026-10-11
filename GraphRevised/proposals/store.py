@@ -74,14 +74,22 @@ class Neo4jReader:
             """
             MATCH (assertion:Assertion {id: $id})
             OPTIONAL MATCH (assertion)-[:SUPPORTED_BY]->(observation:SourceObservation)
-            RETURN assertion {.id, .status, .predicate} AS assertion,
-                   collect(observation.id) AS observationIds
+            WITH assertion, collect(observation.id) AS observationIds
+            OPTIONAL MATCH (open:Proposal {operation: "addEvidence"})-[:PROPOSES]->(assertion)
+            WHERE open.status IN ["submitted", "validating", "deferred"]
+            OPTIONAL MATCH (open)-[:PROPOSES_EVIDENCE]->(pending:SourceObservation)
+            RETURN assertion {.id, .status, .predicate} AS assertion, observationIds,
+                   collect(DISTINCT pending.id) AS pendingObservationIds
             """,
             id=assertion_id,
         ).single()
         if record is None:
             return None
-        return {**record["assertion"], "observationIds": record["observationIds"]}
+        return {
+            **record["assertion"],
+            "observationIds": record["observationIds"],
+            "pendingObservationIds": record["pendingObservationIds"],
+        }
 
 
 @dataclass(frozen=True)
@@ -121,6 +129,7 @@ def submit(
         "modelId": result.draft.model_id,
         "inquiryId": result.draft.inquiry_id,
         "relevance": result.draft.relevance,
+        "ambiguities": list(result.draft.ambiguities),
     }
 
     if result.outcome is Outcome.ADDS_EVIDENCE:
@@ -185,7 +194,7 @@ def list_proposals(tx: Any, status: str | None = None) -> list[dict[str, Any]]:
               WHERE item.observation IS NOT NULL] AS support
         RETURN proposal.id AS id, proposal.status AS status, proposal.operation AS operation,
                assertion.label AS assertion, proposal.createdBy AS createdBy,
-               proposal.rationale AS rationale,
+               proposal.rationale AS rationale, proposal.ambiguities AS ambiguities,
                CASE WHEN proposal.operation = "addEvidence" THEN pendingEvidence ELSE support END AS evidence
         ORDER BY id
         """,

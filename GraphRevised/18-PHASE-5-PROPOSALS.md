@@ -330,3 +330,31 @@ logged with name and quotation in every run; the planned identity-resolution
 step turns them into a review queue: mention → Wikidata candidate search
 (Phase 4 adapter) → curator choice → `add_entity` → reader rerun.
 
+## 14. Full v5 run and two fixes (2026-10-11)
+
+**Ambiguous drafts now reach the curator.** Drafts the reader flags as
+uncertain were previously `deferred` and stored nowhere but the run log. They
+are now stored as ordinary Proposals with an `ambiguities` property, shown as
+UNCERTAIN in the review listing. Only drafts needing temporal qualification
+(Phase 7) are still deferred.
+
+**Evidence already awaiting review is a duplicate.** The duplicate check
+looked only at attached evidence, and proposal IDs include the draft-schema
+version, so the v5 run re-proposed two pieces of Antony evidence (65.2, 66.5)
+already open from the v4 run. The validator now treats evidence in an open
+addEvidence Proposal as `duplicate`. The two copies were rejected as
+bookkeeping ("Claude (duplicate cleanup)", basis naming the original), not as
+judgments on the evidence.
+
+The full run (110,492 input / 13,850 output tokens) stored 8 proposals, 2 of
+them the duplicates above. New: Augustus `commanded` Actium (65.5); Cleopatra
+participatedIn Actium (66.3, flagged uncertain: only her ships are named);
+Augustus evidence 65.4; Antony evidence 66.4, 67.2, 68.2.
+
+**Open design issue.** Rejecting a `create` Proposal rejects its Assertion,
+and evidence cannot be added to a rejected Assertion. A curator who rejects
+weak *evidence* for a claim that may still be true (Cleopatra 66.3) therefore
+closes the claim. Rejecting evidence and rejecting a claim need to be
+separable, and a rejected claim needs a re-open path (for example
+superseding), before such proposals are decided.
+

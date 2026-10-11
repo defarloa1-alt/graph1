@@ -122,7 +122,6 @@ def validate(
                 deferrals.append(f"qualifiers of {observation['id']} were not recorded")
             elif registry.temporal_qualifier_pids & set(qualifiers):
                 deferrals.append(f"{observation['id']} carries temporal qualifiers (Phase 7)")
-    deferrals.extend(f"ambiguity: {item}" for item in draft.ambiguities)
 
     canonical_assertion = assertion_id(definition.id, subject_id, object_id)
     result = dict(
@@ -139,10 +138,18 @@ def validate(
     if existing is None or existing_assertion_ok:
         return ValidationResult(Outcome.VALID, (), **result)
 
+    pending = set(existing.get("pendingObservationIds") or [])
     new_observations = tuple(
         observation_id for observation_id in draft.observation_ids
-        if observation_id not in existing["observationIds"]
+        if observation_id not in existing["observationIds"] and observation_id not in pending
     )
+    if not new_observations and pending & set(draft.observation_ids):
+        return ValidationResult(
+            Outcome.DUPLICATE,
+            (f"this evidence for {canonical_assertion} is already proposed and awaiting review",),
+            already_supported=False,
+            **result,
+        )
     if not new_observations:
         return ValidationResult(
             Outcome.DUPLICATE,

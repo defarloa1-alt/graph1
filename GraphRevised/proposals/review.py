@@ -66,6 +66,9 @@ def main(argv: list[str] | None = None) -> int:
                                 mark_quotation(evidence["passage"], evidence["quotation"]),
                                 width=100, initial_indent="              | ", subsequent_indent="              | ",
                             ))
+                    for doubt in row["ambiguities"] or []:
+                        print(textwrap.fill(f"UNCERTAIN: {doubt}", width=100,
+                                            initial_indent="              ", subsequent_indent="              "))
                     if row["rationale"]:
                         print(textwrap.fill(f"rationale: {row['rationale']}", width=100,
                                             initial_indent="              ", subsequent_indent="              "))

@@ -268,7 +268,8 @@ ON CREATE SET
   proposal.promptVersion = $promptVersion,
   proposal.modelId = $modelId,
   proposal.inquiryId = $inquiryId,
-  proposal.relevance = $relevance
+  proposal.relevance = $relevance,
+  proposal.ambiguities = $ambiguities
 ON MATCH SET
   proposal.label = coalesce($label, proposal.label),
   proposal.shortLabel = coalesce($shortLabel, proposal.shortLabel)
@@ -299,7 +300,8 @@ ON CREATE SET
   proposal.promptVersion = $promptVersion,
   proposal.modelId = $modelId,
   proposal.inquiryId = $inquiryId,
-  proposal.relevance = $relevance
+  proposal.relevance = $relevance,
+  proposal.ambiguities = $ambiguities
 MERGE (proposal)-[:PROPOSES]->(assertion)
 MERGE (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation)
 ON CREATE SET evidence.quotation = $quotation

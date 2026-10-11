@@ -117,6 +117,7 @@ def proposal_params(**overrides):
         "modelId": None,
         "inquiryId": None,
         "relevance": None,
+        "ambiguities": [],
     }
     params.update(overrides)
     return params

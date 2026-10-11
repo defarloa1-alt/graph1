@@ -139,8 +139,10 @@ class ValidatorTests(unittest.TestCase):
         reader = FakeReader([AGRIPPA, position], [p39])
         self.assertEqual(self.check(draft("heldPosition", AGRIPPA, position, (p39,)), reader).outcome, Outcome.DEFERRED)
 
-    def test_ambiguity_is_deferred(self):
-        self.assertEqual(self.check(draft(ambiguities=("which Agrippa?",))).outcome, Outcome.DEFERRED)
+    def test_ambiguity_reaches_the_curator_instead_of_being_deferred(self):
+        result = self.check(draft(ambiguities=("which Agrippa?",)))
+        self.assertEqual(result.outcome, Outcome.VALID)
+        self.assertEqual(result.draft.ambiguities, ("which Agrippa?",))
 
     def test_existing_assertion_is_duplicate(self):
         existing = {
@@ -256,6 +258,18 @@ class PassageValidatorTests(unittest.TestCase):
         result = self.check(passage_draft(), FakeReader([ACTIUM, AGRIPPA], [P710, PASSAGE], [existing]))
         self.assertEqual(result.outcome, Outcome.ADDS_EVIDENCE)
         self.assertEqual(result.new_observation_ids, (PASSAGE["id"],))
+
+    def test_evidence_already_awaiting_review_is_a_duplicate(self):
+        existing = {
+            "id": "chr:assertion:marcus-vipsanius-agrippa:participated-in:battle-of-actium",
+            "status": "accepted",
+            "predicate": "participatedIn",
+            "observationIds": [P710["id"]],
+            "pendingObservationIds": [PASSAGE["id"]],
+        }
+        result = self.check(passage_draft(), FakeReader([ACTIUM, AGRIPPA], [P710, PASSAGE], [existing]))
+        self.assertEqual(result.outcome, Outcome.DUPLICATE)
+        self.assertIn("awaiting review", result.reasons[0])
 
     def test_evidence_cannot_be_added_to_a_rejected_assertion(self):
         existing = {
