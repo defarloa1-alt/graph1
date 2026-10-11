@@ -418,6 +418,45 @@ goes through the existing observation, proposal, and review path.
 
 **Dependency:** E9, Phase 7 temporal qualification, Work entities.
 
+### E12. Attributed claims and depicted events (precedes E11)
+
+Narrative detail in a source is the author's depiction, not established fact.
+"Caesar ordered his right wing to row backwards, wishing to draw the enemy
+out" is *according to Plutarch (Antony 65.5)*; the goal clause is Plutarch's
+reading of Caesar's intent. Following the prosopographical factoid pattern
+("source S says P did X"):
+
+- **Two claim modes.** `asserted` claims are Chrystallum's own claim that
+  something happened. `attributed` claims state that a source depicts it and
+  carry `attributedTo` (Work and author). Accepting an attributed claim means
+  it accurately captures what the source says, which a verbatim quotation and
+  curator review can verify; it does not mean the event happened.
+- **Each source keeps its own narrative.** Micro-events (movements, orders,
+  flights, surrenders) are depicted events within one work. Depictions by
+  different sources coexist and do not contradict each other; the claim that
+  two depictions refer to the same historical event is separate, interpretive,
+  and contestable (E8). No cross-source merging is forced.
+- **Promotion is explicit.** An attributed claim becomes asserted only by a
+  curator decision with a recorded basis, such as independent corroboration or
+  scholarly consensus.
+- **Works become entities** (Plutarch as Person, *Life of Antony* as Work), as
+  E10 also requires.
+- **Existing claims.** *Mark Antony participated in Battle of Actium* rests on
+  Plutarch alone; Augustus and Agrippa add Wikidata, an aggregator rather than
+  an independent witness. E10 sources are what would make these corroborated.
+
+Micro-events in *Antony* 65–68 (about fifteen: the four-day delay, Caesar's
+dawn tour, the sixth-hour advance, the backing-water order, Agrippa's
+encirclement, Cleopatra's flight, Antony's pursuit, the tenth-hour surrender,
+the land army's seven days) are the pilot. Plutarch marks triggers and goals
+explicitly ("when he saw", "no sooner ... than", "wishing to"), so IGAR (E11)
+is extracted as attributed claims over depicted events. Sequence must come
+from time markers ("fifth day", "sixth hour"), not narration order.
+
+**Dependency:** design doc first; Work entities; relative temporal markers
+(Phase 7-lite); predicates performedBy, movedTo/From, triggeredBy, resultedIn,
+precededBy, aimedAt.
+
 ### E11. Actor actions (IGAR) and causal context
 
 For an event inquiry, decompose each actor's part as Input (trigger), Goal,
