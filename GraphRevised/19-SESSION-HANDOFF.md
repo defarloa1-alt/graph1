@@ -12,7 +12,7 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live          # expect 106 tests, OK
+  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline  # expect 114 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -67,8 +67,8 @@ AuthorityRecord keeps Wikidata's wording.
 | Time | [proposals/temporal.py](proposals/temporal.py) — year conversion (no year zero ↔ astronomical), EDTF to Julian Day Number bounds |
 | Validator | [proposals/validator.py](proposals/validator.py) — deterministic; Wikidata statement evidence must state the claim; passage quotes must be verbatim (whitespace and quote style tolerated only) |
 | Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason`, `retract --reason`, `promote` |
-| Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v7` (predicate definitions in the task packet) |
-| Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v10) — Subject, source, scope, guidance |
+| Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v8`: claims attributed to the inquiry's source Work, with role, time, and context only as the passage states them |
+| Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v11) — Subject, narrative event, source edition and Work, scope, guidance |
 | Identity queue | [identity/queue.py](identity/queue.py), queue file [queues/identity-actium-plutarch-antony.json](queues/identity-actium-plutarch-antony.json) |
 | Adapters | Wikidata identity, statements, context (aliases/dates); Perseus TEI passages |
 | Curation slices | [slices/add_entity.py](slices/add_entity.py), [slices/actium_forces.py](slices/actium_forces.py), [slices/octavian_actium.py](slices/octavian_actium.py) |
@@ -134,14 +134,13 @@ a date span.
 
 ## 6. Next steps (agreed order)
 
-1. **Finish the command split** (5a): registry v3, reason codes, supersede,
-   and the qualifier mechanism ([22](22-CLAIM-QUALIFIERS.md): context, role,
-   time, mode, promotion) and the Plutarch / *Life of Antony* entities
-   (Q41523, Q12902608; passages linked `IN_WORK`) are done. Remaining: the
-   curator's decision on *Plutarch author of Life of Antony* (submitted from
-   Wikidata P50), reader prompt v8
-   (attributed and unary claims), source discovery, a second-source adapter,
-   then the reader rerun.
+1. **Finish the command split** (5a). Done: registry v3, reason codes,
+   supersede, the qualifier mechanism ([22](22-CLAIM-QUALIFIERS.md): context,
+   role, time, mode, promotion), the Plutarch / *Life of Antony* entities
+   (Q41523, Q12902608; passages linked `IN_WORK`), and reader prompt v8
+   (attributed claims with qualifiers; inquiry v11). Remaining: the curator's
+   decision on *Plutarch author of Life of Antony* (submitted from Wikidata
+   P50), source discovery, a second-source adapter, then the reader rerun.
 2. **Finish the review** (5, item 1): the non-command proposals are done;
    the command proposals whenever convenient.
 3. **E12 design doc** (attributed claims and depicted events: "according to

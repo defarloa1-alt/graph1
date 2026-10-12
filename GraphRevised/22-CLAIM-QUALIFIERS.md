@@ -265,9 +265,16 @@ Step 3's identity act is done (curator approval, 2026-10-12;
 [slices/plutarch_work.py](slices/plutarch_work.py)): Plutarch (Person,
 Q41523) and *Life of Antony* (Work, Q12902608, local label "Plutarch, Life of
 Antony"), the 16 preserved passages linked `IN_WORK`, and *Plutarch author of
-Life of Antony* submitted from Wikidata P50 for the curator. Remaining: step 6 (reader prompt v8, which
-drafts attributed claims and unary claims). Until then the reader drafts
-asserted claims, as before, and is not shown unary predicates.
+Life of Antony* submitted from Wikidata P50 for the curator.
+
+Step 6 is done: reader prompt `passage-reader-v8` drafts attributed claims
+(to the inquiry's `source.workId`), takes role, time, and context only as the
+passage states them with their own spans, uses the inquiry's
+`narrativeEventId` as a context basis, and may draft unary claims; inquiry
+v11 separates `commanded` from `heldAuthorityOver`. A one-section dry run
+(65.2) produced four valid attributed `commanded` drafts with the narrative
+event as context, no role, and no time, and stored nothing. Remaining:
+step 7, the rerun.
 
 ## 12. Curator decisions (2026-10-12)
 

@@ -10,6 +10,11 @@ candidates), and every
 claim must state how it bears on the Subject. Subject- and source-specific
 guidance lives in the inquiry, not in the prompt.
 
+Claims are drafted as what the source says: each is attributed to the
+inquiry's source Work ("according to"), and only the curator promotes one to
+an asserted claim. A claim may carry a role, a time, and a context event, each
+only as the passage states it.
+
 The model only drafts. Drafts outside the scope are refused before
 validation; the rest go through the deterministic validator. With --submit,
 valid drafts are stored as submitted Proposals recording the inquiry. A
@@ -38,7 +43,7 @@ from GraphRevised.operations import load_operations, run_write
 
 from .prompt_version import prompt_version
 from .registry import PredicateRegistry, load_registry
-from .schema import ProposalDraft, Quotation
+from .schema import DRAFT_SCHEMA_VERSION, ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from .store import Neo4jReader, submit
 from .validator import validate
 
@@ -77,17 +82,36 @@ alone. Explain in the rationale how you identified each name. Use ambiguities on
 identification or the claim itself remains genuinely uncertain; such claims are held for a human.
 7. Follow the inquiry guidance. It is specific to this subject and source and takes precedence \
 over your general reading where they differ.
+8. Every claim records what this source says, not what you believe happened. Draft what the \
+passage depicts even where other sources differ; a curator decides what is established.
+9. Qualifiers are optional and come only from the target passage. Give a role (role_id, from the \
+in-scope entities) only when the passage names the office or post, with role_quotation copied \
+exactly. Give a time only when the passage states one: time_source_expression is the passage's \
+own words and time_quotation the exact span containing them. Fill time_edtf only when the passage \
+itself states a calendar date or year; never from editorial notes or outside knowledge. A \
+predicate's list entry says which qualifiers it takes; a claim that needs a qualifier the passage \
+does not give is still drafted without it, and is held for later.
+10. For predicates that take a context, set context_id to the inquiry's narrative event when the \
+claim happens within it. If the passage names the event, also copy that span as context_quotation.
+11. A predicate marked "no object" takes no object_id: leave it null.
 """
 
 
 class ReaderClaim(BaseModel):
     predicate: str
     subject_id: str
-    object_id: str
+    object_id: str | None
     quotation: str
     rationale: str
     relevance: str
     ambiguities: list[str]
+    role_id: str | None
+    role_quotation: str | None
+    time_source_expression: str | None
+    time_quotation: str | None
+    time_edtf: str | None
+    context_id: str | None
+    context_quotation: str | None
 
 
 class UnresolvedMention(BaseModel):
@@ -112,6 +136,8 @@ class Inquiry:
     guidance: list[str]
     edition_path: Path
     chapters: range
+    work_id: str
+    narrative_event_id: str | None
 
 
 def load_inquiry(path: Path, tx: Any) -> Inquiry:
@@ -138,6 +164,14 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
     missing = set(data["candidateEntityIds"]) - set(record["scopeIds"])
     if missing:
         raise ValueError(f"declared candidates are not Entities: {sorted(missing)}")
+    work_id = data["source"].get("workId")
+    if not work_id or tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN count(w) AS n", id=work_id).single()["n"] != 1:
+        raise ValueError(f"the inquiry's source needs a workId naming a Work Entity, not {work_id!r}")
+    narrative_event_id = data.get("narrativeEventId")
+    if narrative_event_id and tx.run(
+        "MATCH (e:Entity {id: $id, kind: 'Event'}) RETURN count(e) AS n", id=narrative_event_id
+    ).single()["n"] != 1:
+        raise ValueError(f"narrativeEventId {narrative_event_id!r} is not an Event Entity")
     scope = tx.run(
         """
         MATCH (entity:Entity) WHERE entity.id IN $ids
@@ -162,6 +196,8 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         guidance=data["guidance"],
         edition_path=GRAPH_REVISED / data["source"]["edition"],
         chapters=range(first, last + 1),
+        work_id=work_id,
+        narrative_event_id=narrative_event_id,
     )
 
 
@@ -176,12 +212,21 @@ def anthropic_client() -> anthropic.Anthropic:
 
 
 def predicate_guide(registry: PredicateRegistry) -> str:
+    def qualifiers(d) -> str:
+        q = d.qualifiers
+        parts = [f"{name}: {value}" for name, value in (("context", q.context), ("role", q.role)) if value != "none"]
+        if q.time != "none":
+            parts.append("time: required with a role" if q.time == "withRole" else f"time: {q.time}")
+        return f" [{', '.join(parts)}]" if parts else ""
+
     return "\n".join(
-        f"- {d.id} ({d.display}): {'/'.join(sorted(d.subject_kinds))} -> {'/'.join(sorted(d.object_kinds))}"
+        f"- {d.id} ({d.display}): {'/'.join(sorted(d.subject_kinds))} -> "
+        + ("no object" if d.unary else '/'.join(sorted(d.object_kinds)))
         + (" [symmetric]" if d.symmetric else "")
+        + qualifiers(d)
         + (f" -- {d.definition}" if d.definition else "")
         for d in registry.predicates.values()
-        if not d.unary  # the reader's output always names an object; unary claims wait for prompt v8
+        if "attributed" in d.modes
     )
 
 
@@ -208,7 +253,8 @@ def read_passage(
         f"Subject: {inquiry.subject['label']}\n"
         f"Subject focus:\n" + "\n".join(entity_line(e) for e in inquiry.focus) + "\n\n"
         f"Inquiry guidance:\n" + "\n".join(f"- {line}" for line in inquiry.guidance) + "\n\n"
-        f"Source: {edition.author}, {edition.title}, trans. {edition.translator} ({edition.citation}).\n\n"
+        f"Source: {edition.author}, {edition.title}, trans. {edition.translator} ({edition.citation}).\n"
+        f"Narrative event: {inquiry.narrative_event_id or 'none declared'}\n\n"
         f"Predicates:\n{predicate_guide(registry)}\n\n"
         f"In-scope entities (id | label | kind | description):\n"
         + "\n".join(entity_line(e) for e in inquiry.scope) + "\n\n"
@@ -237,7 +283,7 @@ def read_passage(
     return response.parsed_output, meta
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v7", SYSTEM_PROMPT, predicate_guide, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v8", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(
@@ -246,23 +292,60 @@ def to_drafts(
     drafts, malformed = [], []
     for claim in output.claims:
         try:
-            drafts.append(ProposalDraft(
-                predicate=claim.predicate,
-                subject_id=claim.subject_id,
-                object_id=claim.object_id,
-                observation_ids=(observation_id,),
-                quotations=(Quotation(observation_id=observation_id, text=claim.quotation),),
-                rationale=claim.rationale,
-                proposed_by=PROPOSER_ID,
-                prompt_version=PROMPT_VERSION,
-                model_id=model_id,
-                ambiguities=tuple(claim.ambiguities),
-                inquiry_id=inquiry.id,
-                relevance=claim.relevance,
-            ))
-        except ValidationError as error:
+            drafts.append(_draft(claim, observation_id, model_id, inquiry))
+        except (ValidationError, ValueError) as error:
             malformed.append({"claim": claim.model_dump(), "error": str(error)})
     return drafts, malformed
+
+
+def _draft(claim: ReaderClaim, observation_id: str, model_id: str, inquiry: Inquiry) -> ProposalDraft:
+    """An attributed draft with the qualifiers the reader found, each shown by its own span."""
+    spans: list[QualifierQuotation] = []
+    if claim.role_id:
+        if not claim.role_quotation:
+            raise ValueError("a role needs role_quotation")
+        spans.append(QualifierQuotation(observation_id=observation_id, supports="role", text=claim.role_quotation))
+    time = None
+    if claim.time_source_expression:
+        if not claim.time_quotation:
+            raise ValueError("a time needs time_quotation")
+        spans.append(QualifierQuotation(observation_id=observation_id, supports="time", text=claim.time_quotation))
+        time = TimeQualifier(
+            source_expression=claim.time_source_expression,
+            edtf=claim.time_edtf,
+            calendar="julian" if claim.time_edtf else None,
+            normalization_basis="source" if claim.time_edtf else None,
+        )
+    context_basis = None
+    if claim.context_id:
+        if claim.context_quotation:
+            context_basis = "quotation"
+            spans.append(QualifierQuotation(observation_id=observation_id, supports="context", text=claim.context_quotation))
+        elif claim.context_id == inquiry.narrative_event_id:
+            context_basis = "inquiry"
+        else:
+            raise ValueError("a context other than the narrative event needs context_quotation")
+    return ProposalDraft(
+        predicate=claim.predicate,
+        subject_id=claim.subject_id,
+        object_id=claim.object_id,
+        observation_ids=(observation_id,),
+        quotations=(Quotation(observation_id=observation_id, text=claim.quotation),),
+        qualifier_quotations=tuple(spans),
+        rationale=claim.rationale,
+        proposed_by=PROPOSER_ID,
+        prompt_version=PROMPT_VERSION,
+        model_id=model_id,
+        ambiguities=tuple(claim.ambiguities),
+        inquiry_id=inquiry.id,
+        relevance=claim.relevance,
+        mode="attributed",
+        attributed_to=inquiry.work_id,
+        role_id=claim.role_id,
+        time=time,
+        context_id=claim.context_id,
+        context_basis=context_basis,
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -297,6 +380,8 @@ def main(argv: list[str] | None = None) -> int:
             log.write(json.dumps({
                 "inquiry": inquiry.id, "inquiryVersion": inquiry.version, "subject": inquiry.subject["id"],
                 "scope": sorted(scope_ids), "promptVersion": PROMPT_VERSION, "model": args.model,
+                "predicateRegistryVersion": registry.version, "draftSchemaVersion": DRAFT_SCHEMA_VERSION,
+                "workId": inquiry.work_id, "narrativeEventId": inquiry.narrative_event_id,
             }) + "\n")
 
             for ref in refs:
@@ -325,7 +410,8 @@ def main(argv: list[str] | None = None) -> int:
                 try:
                     run_write(tx, operations, "upsert_passage_observation", passage)
                     for draft in drafts:
-                        outside = sorted({draft.subject_id, draft.object_id} - scope_ids)
+                        named = {draft.subject_id, draft.object_id, draft.role_id, draft.context_id} - {None}
+                        outside = sorted(named - scope_ids)
                         if outside:
                             results.append((draft, "out_of_scope", [f"not in inquiry scope: {outside}"], None, False))
                         elif args.submit:
@@ -346,6 +432,10 @@ def main(argv: list[str] | None = None) -> int:
                 record["drafts"] = [
                     {
                         "predicate": d.predicate, "subject": d.subject_id, "object": d.object_id,
+                        "mode": d.mode, "attributedTo": d.attributed_to, "role": d.role_id,
+                        "time": d.time.model_dump() if d.time else None, "context": d.context_id,
+                        "contextBasis": d.context_basis,
+                        "qualifierQuotations": [q.model_dump() for q in d.qualifier_quotations],
                         "quotation": d.quotations[0].text, "rationale": d.rationale, "relevance": d.relevance,
                         "ambiguities": list(d.ambiguities),
                         "outcome": outcome, "reasons": reasons, "proposalId": proposal_id, "stored": stored,

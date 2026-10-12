@@ -614,10 +614,11 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.write("upsert_subject", {"id": "chr:subject:test-battle", "label": "History of the test battle",
                                       "status": "provisional", "shortLabel": None})
         self.write("link_subject_focus", {"subjectId": "chr:subject:test-battle", "entityId": BATTLE[0]})
+        self.add_local("chr:entity:test-work", "Work", "Test work")
         inquiry = {
             "id": "chr:inquiry:test", "version": 1, "label": "Test inquiry",
             "subjectId": "chr:subject:test-battle",
-            "source": {"edition": "phase-5-source/none.xml", "chapters": "1-2"},
+            "source": {"edition": "phase-5-source/none.xml", "chapters": "1-2", "workId": "chr:entity:test-work"},
             "candidateEntityIds": [ADMIRAL[0]], "guidance": [],
         }
         with tempfile.TemporaryDirectory() as directory:
@@ -626,14 +627,31 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             scope = {entity["id"] for entity in load_inquiry(path, self.tx).scope}
         self.assertEqual(scope, {BATTLE[0], LEADER[0], ADMIRAL[0]})
 
-    def test_inquiry_with_unknown_declared_entity_is_refused(self):
+    def test_inquiry_without_a_source_work_is_refused(self):
         self.add_entity(BATTLE)
         self.write("upsert_subject", {"id": "chr:subject:test-battle", "label": "History of the test battle",
                                       "status": "provisional", "shortLabel": None})
         self.write("link_subject_focus", {"subjectId": "chr:subject:test-battle", "entityId": BATTLE[0]})
         inquiry = {
             "id": "chr:inquiry:test", "version": 1, "label": "Test inquiry", "subjectId": "chr:subject:test-battle",
-            "source": {"edition": "none", "chapters": "1-2"}, "candidateEntityIds": ["chr:entity:nobody"], "guidance": [],
+            "source": {"edition": "none", "chapters": "1-2", "workId": "chr:entity:no-such-work"},
+            "candidateEntityIds": [], "guidance": [],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps(inquiry), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_inquiry(path, self.tx)
+
+    def test_inquiry_with_unknown_declared_entity_is_refused(self):
+        self.add_entity(BATTLE)
+        self.write("upsert_subject", {"id": "chr:subject:test-battle", "label": "History of the test battle",
+                                      "status": "provisional", "shortLabel": None})
+        self.write("link_subject_focus", {"subjectId": "chr:subject:test-battle", "entityId": BATTLE[0]})
+        self.add_local("chr:entity:test-work", "Work", "Test work")
+        inquiry = {
+            "id": "chr:inquiry:test", "version": 1, "label": "Test inquiry", "subjectId": "chr:subject:test-battle",
+            "source": {"edition": "none", "chapters": "1-2", "workId": "chr:entity:test-work"}, "candidateEntityIds": ["chr:entity:nobody"], "guidance": [],
         }
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "inquiry.json"
