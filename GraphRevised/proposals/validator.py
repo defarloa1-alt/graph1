@@ -119,13 +119,18 @@ def validate(
             qualifier_entities[name] = found
 
     time_bounds = None
+    long_span = False
     if draft.time is not None and draft.time.edtf is not None:
         try:
             time_bounds = parse_edtf(draft.time.edtf, draft.time.calendar)
-            if time_bounds.earliest_year is not None and time_bounds.latest_year is not None:
-                time_bounds.years()
         except TimeValueError as error:
             reasons.append(f"time: {error}")
+        else:
+            if time_bounds.earliest_year is not None and time_bounds.latest_year is not None:
+                try:
+                    time_bounds.years()
+                except TimeValueError:
+                    long_span = True  # a period's centuries: kept with its bounds, not linked to each Year
 
     quotations = {quotation.observation_id: quotation.text for quotation in draft.quotations}
     for quoted_id in quotations.keys() - set(draft.observation_ids):
@@ -161,10 +166,12 @@ def validate(
 
     deferrals = _deferrals(draft, definition, registry, statements)
     notes = tuple(_missing_qualifiers(draft, definition))
-    if definition.unary and notes:
+    if long_span:
+        notes += ("long span: stored with its bounds, not linked to each Year",)
+    if definition.unary and any(note.startswith(("undated", "no ")) for note in notes):
         # A unary claim's content is its qualifiers: without them it says nothing.
-        deferrals.extend(notes)
-        notes = ()
+        deferrals.extend(note for note in notes if note.startswith(("undated", "no ")))
+        notes = tuple(note for note in notes if not note.startswith(("undated", "no ")))
     canonical_assertion = assertion_id(definition.id, subject_id, object_id, qualifier_signature(draft))
     related = tuple(classify_related(draft, reader, assertion_id(definition.id, subject_id, object_id), canonical_assertion))
     result = dict(

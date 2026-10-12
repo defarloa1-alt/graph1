@@ -45,6 +45,7 @@ from GraphRevised.operations import load_operations, run_write
 from .prompt_version import prompt_version
 from .registry import PredicateRegistry, load_registry
 from .schema import DRAFT_SCHEMA_VERSION, ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
+from .entities import propose_entity
 from .validator import normalize
 from .store import Neo4jReader, submit
 from .validator import validate
@@ -105,6 +106,12 @@ atmosphere, detail, or interpretation for an author's reading of what events mea
 why it is worth reading, the exact quotation (rules as in 5), and the in-scope entities it \
 concerns. A note asserts nothing. Do not add a note for what a claim already captures, and add \
 none to passages with nothing notable.
+13. Periods. When the task packet allows Period proposals and the passage names a historical period, \
+era, or regime as a span of time (an age the author treats as one), list it under periods: the \
+name exactly as the author uses it, the exact quotation naming it, and its bounds only if the \
+passage states them (time_expression verbatim inside time_quotation; time_edtf only when the years \
+are stated). Use one name per period; do not list a period that only appears in an in-scope \
+entity list, and do not infer bounds from outside knowledge.
 """
 
 
@@ -138,10 +145,19 @@ class ReaderNote(BaseModel):
     concerns: list[str]
 
 
+class ReaderPeriod(BaseModel):
+    name: str
+    quotation: str
+    time_expression: str | None
+    time_quotation: str | None
+    time_edtf: str | None
+
+
 class ReaderOutput(BaseModel):
     claims: list[ReaderClaim]
     unresolved_mentions: list[UnresolvedMention]
     notes: list[ReaderNote]
+    periods: list[ReaderPeriod]
 
 
 @dataclass(frozen=True)
@@ -160,6 +176,7 @@ class Inquiry:
     context_before: int = 2  # sections shown before the target passage, as context only
     context_after: int = 1
     note_visibility: str = "private"  # passages of note: private, team, or public
+    proposable_kinds: tuple[str, ...] = ()  # kinds the reader may propose as entities, such as Period
 
 
 def load_inquiry(path: Path, tx: Any) -> Inquiry:
@@ -222,6 +239,7 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         context_before=data["source"].get("contextWindow", {}).get("before", 2),
         context_after=data["source"].get("contextWindow", {}).get("after", 1),
         note_visibility=data.get("noteVisibility", "private"),
+        proposable_kinds=tuple(data.get("proposableKinds", [])),
     )
 
 
@@ -280,7 +298,8 @@ def read_passage(
         f"Subject focus:\n" + "\n".join(entity_line(e) for e in inquiry.focus) + "\n\n"
         f"Inquiry guidance:\n" + "\n".join(f"- {line}" for line in inquiry.guidance) + "\n\n"
         f"Source: {edition.author}, {edition.title}, trans. {edition.translator} ({edition.citation}).\n"
-        f"Narrative event: {inquiry.narrative_event_id or 'none declared'}\n\n"
+        f"Narrative event: {inquiry.narrative_event_id or 'none declared'}\n"
+        f"Entity kinds you may propose: {', '.join(inquiry.proposable_kinds) or 'none'}\n\n"
         f"Predicates:\n{predicate_guide(registry)}\n\n"
         f"In-scope entities (id | label | kind | description):\n"
         + "\n".join(entity_line(e) for e in inquiry.scope)
@@ -316,7 +335,7 @@ def read_passage(
     return response.parsed_output, meta
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v10", SYSTEM_PROMPT, predicate_guide, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v11", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(
@@ -329,6 +348,50 @@ def to_drafts(
         except (ValidationError, ValueError) as error:
             malformed.append({"claim": claim.model_dump(), "error": str(error)})
     return drafts, malformed
+
+
+def to_periods(output: ReaderOutput, passage: dict[str, Any], inquiry: Inquiry) -> tuple[list[dict], list[dict]]:
+    """Periods the passage names, checked for verbatim quotations; refused ones with the reason."""
+    if "Period" not in inquiry.proposable_kinds:
+        return [], [{"period": p.model_dump(), "reason": "the inquiry does not allow Period proposals"}
+                    for p in output.periods]
+    periods, refused = [], []
+    text = normalize(passage["passageText"])
+    for period in output.periods:
+        reason = None
+        if not period.name.strip():
+            reason = "an empty name"
+        elif normalize(period.quotation) not in text or len(normalize(period.quotation)) < 15:
+            reason = "quotation does not appear verbatim in the passage"
+        elif period.time_expression and (not period.time_quotation
+                                         or normalize(period.time_quotation) not in text
+                                         or normalize(period.time_expression) not in normalize(period.time_quotation)):
+            reason = "the time expression must appear in a verbatim time quotation"
+        elif period.time_edtf and not inquiry.calendar:
+            reason = "a normalized date needs the inquiry's calendar"
+        if reason:
+            refused.append({"period": period.model_dump(), "reason": reason})
+        else:
+            periods.append(period.model_dump())
+    return periods, refused
+
+
+def period_draft(period: dict, entity_id: str, observation_id: str, model_id: str, inquiry: Inquiry) -> ProposalDraft:
+    """The source's bounds for a period, as an attributed unary `occurred` claim."""
+    return ProposalDraft(
+        predicate="occurred", subject_id=entity_id, object_id=None,
+        observation_ids=(observation_id,),
+        quotations=(Quotation(observation_id=observation_id, text=period["quotation"]),),
+        qualifier_quotations=(QualifierQuotation(observation_id=observation_id, supports="time",
+                                                 text=period["time_quotation"]),),
+        time=TimeQualifier(source_expression=period["time_expression"], edtf=period["time_edtf"],
+                           calendar=inquiry.calendar if period["time_edtf"] else None,
+                           normalization_basis="source" if period["time_edtf"] else None),
+        rationale=f"The passage gives the bounds of the period it names: {period['time_expression']}.",
+        proposed_by=PROPOSER_ID, prompt_version=PROMPT_VERSION, model_id=model_id,
+        inquiry_id=inquiry.id, relevance="The source's own periodization of the time of the subject.",
+        mode="attributed", attributed_to=inquiry.work_id,
+    )
 
 
 def _related_lines(result) -> list[str]:
@@ -417,6 +480,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--sections", help="comma-separated refs such as 65.1,65.2 (overrides the inquiry's chapters)")
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--submit", action="store_true", help="store valid drafts as submitted Proposals")
+    parser.add_argument("--outputs", default="claims,notes,periods",
+                        help="which outputs to store with --submit (claims, notes, periods)")
     args = parser.parse_args(argv)
 
     operations, registry, client = load_operations(), load_registry(), anthropic_client()
@@ -470,6 +535,11 @@ def main(argv: list[str] | None = None) -> int:
                 totals["malformed"] += len(malformed)
                 notes, refused_notes = to_notes(output, passage, scope_ids)
                 stored_notes: list[str] = []
+                periods, refused_periods = to_periods(output, passage, inquiry)
+                period_results: list[dict] = []
+                storing = set(args.outputs.split(","))
+                if "claims" not in storing:
+                    drafts = []
 
                 # The observation is written first so drafts can be validated
                 # against it; the transaction commits only if a draft was stored.
@@ -494,7 +564,21 @@ def main(argv: list[str] | None = None) -> int:
                             v = validate(draft, Neo4jReader(tx), registry)
                             results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes) + _related_lines(v),
                                             v.proposal_id, False))
-                    if args.submit:
+                    if args.submit and "periods" in storing:
+                        for period in periods:
+                            proposed = propose_entity(tx, operations, kind="Period", label=period["name"],
+                                                      proposed_by=PROPOSER_ID, observation_id=passage["id"],
+                                                      quotation=period["quotation"])
+                            entry = {"name": period["name"], "entityId": proposed["id"], "created": proposed["created"],
+                                     "candidates": [c["id"] for c in proposed["candidates"]], "claim": None}
+                            if period["time_expression"]:
+                                submission = submit(tx, period_draft(period, proposed["id"], passage["id"], meta["model"],
+                                                                     inquiry), registry, operations)
+                                entry["claim"] = {"outcome": submission.validation.outcome.value,
+                                                  "reasons": list(submission.validation.reasons),
+                                                  "stored": submission.stored}
+                            period_results.append(entry)
+                    if args.submit and "notes" in storing:
                         for note in notes:
                             note_id = annotation_id(PROPOSER_ID, passage["id"], note["note"], note["concerns"])
                             run_write(tx, operations, "upsert_annotation", {
@@ -506,7 +590,7 @@ def main(argv: list[str] | None = None) -> int:
                                 "concerns": note["concerns"],
                             })
                             stored_notes.append(note_id)
-                    if any(stored for *_, stored in results) or stored_notes:
+                    if any(stored for *_, stored in results) or stored_notes or period_results:
                         tx.commit()
                     else:
                         tx.rollback()
@@ -531,6 +615,8 @@ def main(argv: list[str] | None = None) -> int:
                 record["notes"] = notes
                 record["refusedNotes"] = refused_notes
                 record["storedNotes"] = stored_notes
+                record["periods"] = period_results or periods
+                record["refusedPeriods"] = refused_periods
                 record["unresolvedMentions"] = [m.model_dump() for m in output.unresolved_mentions]
                 log.write(json.dumps(record, ensure_ascii=False) + "\n")
                 for d, outcome, reasons, _, stored in results:
@@ -540,6 +626,10 @@ def main(argv: list[str] | None = None) -> int:
                           + (" [stored]" if stored else "") + (f" -- {reasons[0]}" if reasons else ""))
                 for note in notes:
                     print(f"{ref}: note ({note['noteType']}) {note['note'][:90]}")
+                for period in period_results or periods:
+                    print(f"{ref}: period {period['name']}" + (f" -> {period['entityId']}" if "entityId" in period else "")
+                          + (f" [bounds: {period['claim']['outcome']}]" if period.get("claim") else ""))
+                totals["periods"] = totals.get("periods", 0) + len(period_results)
                 totals["notes"] = totals.get("notes", 0) + len(stored_notes)
                 totals["refusedNotes"] = totals.get("refusedNotes", 0) + len(refused_notes)
                 names = ", ".join(m.name for m in output.unresolved_mentions)

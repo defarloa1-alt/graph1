@@ -1,6 +1,6 @@
 {
   "id": "chr:inquiry:actium-weigall-cleopatra",
-  "version": 1,
+  "version": 2,
   "label": "Battle of Actium in Weigall's Life and Times of Cleopatra",
   "subjectId": "chr:subject:history-of-battle-of-actium",
   "narrativeEventId": "chr:entity:battle-of-actium",
@@ -49,5 +49,8 @@
     "heldAuthorityOver is formal or supreme authority over a force, whether or not the person directed it in the fighting, for example an overall commander whose subordinate leads a wing. Draft it when the passage shows that authority, with a time only if the passage gives one.",
     "The in-scope entity Augustus is the person modern authors usually call Octavian before 27 BCE. Decide from context whom the author means by Caesar.",
     "Give a time in the author's own words as the time expression, only for predicates that take a time; add time_edtf only when the passage states the year. The author's footnotes and any transcriber's notes are not the passage text."
+  ],
+  "proposableKinds": [
+    "Period"
   ]
 }

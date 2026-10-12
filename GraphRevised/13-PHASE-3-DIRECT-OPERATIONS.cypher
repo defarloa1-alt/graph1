@@ -668,3 +668,20 @@ MATCH (annotation:Annotation {id: $id})
 WITH annotation, annotation.id AS deleted
 DETACH DELETE annotation
 RETURN deleted;
+
+// ---------------------------------------------------------------------------
+// Proposed entities (24-PERIODS-AND-TRANSFORMATION.md §3a; 23 §2)
+// ---------------------------------------------------------------------------
+
+// Decide a proposed Entity: accept it (provisional) or reject it (deprecated),
+// recording who, when, and why. Refused unless the Entity is still proposed;
+// repeating the same decision is a no-op that keeps the original record.
+MATCH (entity:Entity {id: $id})
+WHERE $status IN ["provisional", "deprecated"]
+  AND (entity.status = "proposed" OR (entity.status = $status AND entity.decidedAt IS NOT NULL))
+WITH entity, entity.status = $status AS isRetry
+SET entity.decidedAt = CASE WHEN isRetry THEN entity.decidedAt ELSE $decidedAt END,
+    entity.decidedBy = CASE WHEN isRetry THEN entity.decidedBy ELSE $decidedBy END,
+    entity.decisionBasis = CASE WHEN isRetry THEN entity.decisionBasis ELSE $decisionBasis END,
+    entity.status = $status
+RETURN entity;

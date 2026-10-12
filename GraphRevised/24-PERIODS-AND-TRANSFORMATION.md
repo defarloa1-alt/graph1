@@ -1,6 +1,6 @@
 # Periods and Transformation
 
-**Status:** draft for curator review, 2026-10-12. Nothing here is implemented.
+**Status:** agreed with the curator, 2026-10-12 (§8). Implementation in progress.
 **Builds on:** [03](03-TEMPORAL-YEAR-BACKBONE.md) §6 (periods are not the year
 backbone), [22](22-CLAIM-QUALIFIERS.md) (time spans with bounds, attributed
 claims), [23](23-NARRATIVE-AND-NOTES.md) (interpretation, Concepts), [07](07-DOMAIN-ADAPTATION.md) §3
@@ -23,9 +23,12 @@ when, and who says it mattered, is the point.
 
 ## 2. A period with a fuzzy edge
 
-A Period is an `Entity {kind: Period}` with a Wikidata identity where one exists
-(Roman Kingdom Q201038, Roman Republic Q17167, Roman Empire Q2277, Principate
-Q206414). Its dates are never a property of the entity. They come in three
+A Period is an `Entity {kind: Period}`, with a Wikidata identity where one
+exists. **Periods are not seeded by hand: the reader discovers them** (§3a),
+which tests whether the sources' own periodization can be recovered; the
+Wikidata periods (Roman Kingdom Q201038, Roman Republic Q17167, Roman Empire
+Q2277, Principate Q206414) are the identities the curator is expected to link
+them to. A Period's dates are never a property of the entity. They come in three
 layers, all made of existing parts:
 
 | Layer | Representation | Example (Republic) |
@@ -41,9 +44,11 @@ layers, all made of existing parts:
   the Republic, the Empire, or the transition span follows from its date and
   the period's bounds, in the read API. Storing "Actium during the Republic"
   would freeze one definition as fact.
-- Period relations, two predicates: `partOf` extended to Period → Period (the
-  Principate is part of the Empire) and `followedBy` (Period → Period, the
+- Period relations, two predicates: `subperiodOf` (Period → Period: the
+  Principate within the Empire) and `followedBy` (Period → Period, the
   conventional sequence). Both are attributed or asserted like any claim.
+  (`partOf` stays Event → Event, so it can never assert that an event belongs
+  to a period.)
 
 ## 3. The period survey
 
@@ -64,6 +69,18 @@ consensus:
    proposes; the curator accepts or adjusts, with a recorded basis.
 4. All years pass through `proposals/temporal.py`, since PeriodO and Wikidata
    number BCE years differently.
+
+### 3a. Periods discovered by the reader
+
+The reader reports each period a passage names, in the author's words, with
+the bounds only as the passage states them. A period not yet in the graph
+becomes a **proposed entity** (`status: proposed`, kind Period): hidden from
+exploration until the curator accepts it, links it to a Wikidata identity,
+or rejects it. Before one is created, local candidates are checked (an exact
+match reuses the existing entity), and at review the curator sees local and
+Wikidata candidates side by side. Where the passage dates the period, an
+attributed `occurred` claim records that author's bounds. The same mechanism
+carries depicted events (23 §2).
 
 ## 4. The transformation as a subject constellation
 
@@ -91,7 +108,7 @@ one weighing military reality chooses 31 BC.
 | `abolished` | Event → Office/Concept/Group | |
 | `conferred` | Event → Person | role qualifier: the office or power conferred; time from the event |
 | `followedBy` | Period → Period | conventional sequence |
-| `partOf` (extended) | Period → Period | narrower period |
+| `subperiodOf` | Period → Period | narrower period |
 | `occurred` (extended) | Period, no object | definitions and consensus (§2) |
 
 Existing predicates carry the rest: `heldPosition` with spans,
@@ -122,15 +139,22 @@ Hale).
 
 ## 7. Order
 
-1. Four Period entities with Wikidata identities; no dates yet.
-2. Registry v6: `occurred` and `partOf` extended to Period; `followedBy`.
+1. Proposed entities (reader-proposed, curator-accepted) and the reader's
+   period output (§3a); registry v6: `occurred` extended to Period,
+   `subperiodOf`, `followedBy`.
+2. A test run: the reader discovers the periods in the works already read.
 3. The period survey, starting with PeriodO, Wikidata, and LCSH/FAST.
 4. The two failed `ledTo` readings pointed at the Principate.
 5. The transformation pilot: `established`, `abolished`, `conferred`;
    enactments and offices; a reading of Dio 51–53 and the *Res Gestae* with
    political and legal lenses.
 
-## 8. Decisions for the curator
+## 8. Curator decisions (2026-10-12)
+
+All five accepted as recommended below, with one change: periods are not
+seeded by hand; the reader discovers them (§3a), as a test.
+
+### As drafted
 
 1. **Period dates as claims**, never entity properties: definitions
    attributed, consensus asserted, transition span from the consensus bounds?

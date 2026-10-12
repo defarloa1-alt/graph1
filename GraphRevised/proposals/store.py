@@ -13,7 +13,7 @@ from GraphRevised.operations import run_write
 
 from .registry import PredicateDefinition, PredicateRegistry, proposal_id
 from .schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
-from .temporal import display_edtf
+from .temporal import TimeValueError, display_edtf
 from .validator import Outcome, ValidationResult, validate
 
 
@@ -180,7 +180,12 @@ def submit(
                   _qualified_assertion_params(result, label, short_label) | {"category": definition.category})
         bounds = result.time_bounds
         if bounds is not None and bounds.earliest_year is not None and bounds.latest_year is not None:
-            run_write(tx, operations, "link_assertion_years", {"assertionId": result.assertion_id, "years": bounds.years()})
+            try:
+                years = bounds.years()
+            except TimeValueError:
+                years = []  # a long span keeps its bounds without a Year link for each year
+            if years:
+                run_write(tx, operations, "link_assertion_years", {"assertionId": result.assertion_id, "years": years})
     else:
         run_write(tx, operations, "upsert_assertion", {
             "id": result.assertion_id,

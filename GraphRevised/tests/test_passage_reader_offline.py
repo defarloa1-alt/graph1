@@ -3,7 +3,8 @@
 import unittest
 
 from GraphRevised.proposals.passage_reader import (
-    Inquiry, ReaderClaim, ReaderNote, ReaderOutput, predicate_guide, to_drafts, to_notes,
+    Inquiry, ReaderClaim, ReaderNote, ReaderOutput, ReaderPeriod, predicate_guide, to_drafts, to_notes,
+    to_periods,
 )
 from GraphRevised.proposals.registry import load_registry
 
@@ -26,7 +27,7 @@ def claim(**extra):
 
 
 def drafts(*claims):
-    return to_drafts(ReaderOutput(claims=list(claims), unresolved_mentions=[], notes=[]), OBSERVATION, "test-model", INQUIRY)
+    return to_drafts(ReaderOutput(claims=list(claims), unresolved_mentions=[], notes=[], periods=[]), OBSERVATION, "test-model", INQUIRY)
 
 
 class ReaderDraftTests(unittest.TestCase):
@@ -56,7 +57,7 @@ class ReaderDraftTests(unittest.TestCase):
         from dataclasses import replace
 
         output = ReaderOutput(claims=[claim(time_source_expression="in the year 31", time_quotation="in the year 31",
-                                            time_edtf="-0030")], unresolved_mentions=[], notes=[])
+                                            time_edtf="-0030")], unresolved_mentions=[], notes=[], periods=[])
         produced, malformed = to_drafts(output, OBSERVATION, "test-model", replace(INQUIRY, calendar=None))
         self.assertEqual((produced, len(malformed)), ([], 1))
 
@@ -81,7 +82,7 @@ class ReaderDraftTests(unittest.TestCase):
 
     def test_passages_of_note(self):
         passage = {"passageText": "He sat alone at the prow, his head in his hands, and spoke to no one."}
-        output = ReaderOutput(claims=[], unresolved_mentions=[], notes=[
+        output = ReaderOutput(claims=[], unresolved_mentions=[], periods=[], notes=[
             ReaderNote(note_type="characterization", note="Antony's despair after the flight",
                        quotation="sat alone at the prow, his head in his hands", concerns=["chr:entity:test-admiral"]),
             ReaderNote(note_type="mood", note="x", quotation="sat alone at the prow", concerns=["chr:entity:test-admiral"]),
@@ -94,9 +95,29 @@ class ReaderDraftTests(unittest.TestCase):
         self.assertEqual([n["noteType"] for n in notes], ["characterization"])
         self.assertEqual(len(refused), 3)
 
+    def test_periods_named_by_the_source(self):
+        from dataclasses import replace
+
+        passage = {"passageText": "Thus ended the Republic, which had lasted from 509 to 27 B.C., and the Empire began."}
+        named = ReaderPeriod(name="the Republic", quotation="Thus ended the Republic, which had lasted",
+                             time_expression="from 509 to 27 B.C.",
+                             time_quotation="which had lasted from 509 to 27 B.C.", time_edtf="-0508/-0026")
+        undated = ReaderPeriod(name="the Empire", quotation="27 B.C., and the Empire began", time_expression=None,
+                               time_quotation=None, time_edtf=None)
+        loose = ReaderPeriod(name="the Republic", quotation="Thus ended the Republic, which had lasted",
+                             time_expression="for five centuries", time_quotation="which had lasted from 509",
+                             time_edtf=None)
+        output = ReaderOutput(claims=[], unresolved_mentions=[], notes=[], periods=[named, undated, loose])
+        allowed = replace(INQUIRY, proposable_kinds=("Period",))
+        periods, refused = to_periods(output, passage, allowed)
+        self.assertEqual([p["name"] for p in periods], ["the Republic", "the Empire"])
+        self.assertEqual(len(refused), 1)
+        none, refused_all = to_periods(output, passage, INQUIRY)  # the inquiry allows no proposals
+        self.assertEqual((none, len(refused_all)), ([], 3))
+
     def test_guide_shows_qualifiers_and_unary_predicates(self):
         guide = predicate_guide(load_registry())
-        self.assertIn("occurred (occurred): Event -> no object [time: required]", guide)
+        self.assertIn("occurred (occurred): Event/Period -> no object [time: required]", guide)
         self.assertIn("time: required with a role", guide)
 
 

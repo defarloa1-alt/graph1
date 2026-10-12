@@ -175,7 +175,7 @@ class RegistryAndProposerTests(unittest.TestCase):
 
     def test_authority_held_and_command_exercised_are_separate_predicates(self):
         held, commanded = self.registry.get("heldAuthorityOver"), self.registry.get("commanded")
-        self.assertEqual(self.registry.version, "predicates-v5")
+        self.assertGreaterEqual(int(self.registry.version.rsplit("v", 1)[1]), 5)
         for definition in (held, commanded):
             self.assertEqual((definition.subject_kinds, definition.object_kinds), ({"Person"}, {"Group"}))
             self.assertTrue(definition.definition)

@@ -8,12 +8,18 @@
         --by <name> --basis "<reason>" --reason <code>
     python -m GraphRevised.proposals.review retract <assertion-id> --by <name> --basis "<reason>" --reason <code>
     python -m GraphRevised.proposals.review promote <attributed-assertion-id> [...] --by <name> --basis "<reason>"
+    python -m GraphRevised.proposals.review entities
+    python -m GraphRevised.proposals.review entity-accept <entity-id> [--qid Q...] --by <name> --basis "<reason>"
+    python -m GraphRevised.proposals.review entity-reject <entity-id> --by <name> --basis "<reason>"
 
 `reject` rejects a Proposal's evidence and leaves its claim open for better
 evidence; `reject --claim` also rejects the claim itself. `reopen` returns a
 rejected claim to `proposed` so new evidence can be proposed. `supersede`
 replaces a proposed or accepted claim with more precise claims, linked by
-SUPERSEDED_BY. `retract` rejects an accepted claim found to be wrong, keeping
+SUPERSEDED_BY. `entities` lists entities an agent proposed (periods, depicted
+events) with their mentions and local and Wikidata candidates; `entity-accept`
+makes one provisional, linking a Wikidata identity with --qid, and
+`entity-reject` deprecates it. `retract` rejects an accepted claim found to be wrong, keeping
 its evidence as audit history. `promote` makes accepted "according to"
 claims Chrystallum's own asserted claim, citing their evidence; the basis
 names the corroboration. Reason codes: false, unsupported, malformed, underspecified,
@@ -36,6 +42,9 @@ from neo4j import GraphDatabase
 from GraphRevised.operations import load_operations
 
 from .registry import load_registry
+from GraphRevised.identity.local_candidates import candidates
+
+from .entities import proposed_entities
 from .store import REASON_CODES, ReviewError, accept, list_proposals, promote, reject, reopen, retract, supersede
 
 
@@ -83,11 +92,69 @@ def print_proposals(rows: list[dict], registry=None) -> None:
     print(f"{len(rows)} proposal(s)")
 
 
+def wikidata_candidates(label: str, limit: int = 3) -> list[str]:
+    """Wikidata search results for a proposed entity's label, as "QID label - description"."""
+    import requests
+
+    from GraphRevised.adapters.wikidata_identity import USER_AGENT
+
+    try:
+        found = requests.get("https://www.wikidata.org/w/api.php", params={
+            "action": "wbsearchentities", "search": label, "language": "en", "limit": limit, "format": "json",
+        }, headers={"User-Agent": USER_AGENT}, timeout=30).json().get("search", [])
+    except (requests.RequestException, ValueError):
+        return ["(Wikidata search unavailable)"]
+    return [f"{item['id']} {item.get('label')} - {item.get('description')}" for item in found]
+
+
+def print_entities(session) -> None:
+    rows = session.execute_read(proposed_entities)
+    for row in rows:
+        print(f"proposed    {row['kind']:<8} {row['id']}\n            {row['label']}")
+        for mention in row["mentions"]:
+            if mention.get("quotation"):
+                print(textwrap.fill(f"mentioned in {mention['work']}: \"{mention['quotation']}\"", width=100,
+                                    initial_indent="              ", subsequent_indent="              "))
+        for claim in row["claims"]:
+            print(f"              claim: {claim}")
+        for match in session.execute_read(lambda tx: candidates(tx, row["label"], row["kind"], exclude=row["id"])):
+            print(f"              local candidate ({match['score']:.2f}): {match['id']} {match['label']}")
+        for line in wikidata_candidates(row["label"]):
+            print(f"              Wikidata: {line}")
+        print()
+    print(f"{len(rows)} proposed entit{'y' if len(rows) == 1 else 'ies'}")
+
+
+def decide_entity(tx, operations, entity_id: str, status: str, qid: str | None, **decision) -> dict:
+    rows = tx.run(operations["decide_entity"], {
+        "id": entity_id, "status": status, "decidedAt": decision["decided_at"],
+        "decidedBy": decision["decided_by"], "decisionBasis": decision["decision_basis"],
+    }).data()
+    if not rows:
+        raise ReviewError(f"{entity_id} is not a proposed entity")
+    if qid:
+        from GraphRevised.slices.add_entity import persist_identity, preserved_identity_payload
+
+        payload_path, metadata = preserved_identity_payload(qid)
+        kind = rows[0]["entity"]["kind"]
+        persist_identity(tx, operations, entity_id=entity_id, kind=kind, payload_path=payload_path,
+                         metadata=metadata)
+    return tx.run("MATCH (e:Entity {id: $id}) RETURN e", id=entity_id).single()["e"]
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     commands = parser.add_subparsers(dest="command", required=True)
     listing = commands.add_parser("list")
     listing.add_argument("--status")
+    commands.add_parser("entities")
+    for name in ("entity-accept", "entity-reject"):
+        decision = commands.add_parser(name)
+        decision.add_argument("entity_id")
+        decision.add_argument("--by", required=True)
+        decision.add_argument("--basis", required=True)
+        if name == "entity-accept":
+            decision.add_argument("--qid", help="link this Wikidata identity")
     for name, target in (
         ("accept", "proposal_id"), ("reject", "proposal_id"), ("reopen", "assertion_id"),
         ("supersede", "assertion_id"), ("retract", "assertion_id"), ("promote", "assertion_ids"),
@@ -114,6 +181,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     try:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+            if args.command == "entities":
+                print_entities(session)
+                return 0
             if args.command == "list":
                 print_proposals(session.execute_read(list_proposals, args.status), load_registry())
                 return 0
@@ -129,6 +199,12 @@ def main(argv: list[str] | None = None) -> int:
                     lambda tx: reopen(tx, args.assertion_id, operations=operations, **decision)
                 )
                 print(f"reopened: {result['assertion']['label']} ({result['assertion']['status']})")
+                return 0
+            if args.command in ("entity-accept", "entity-reject"):
+                status = "provisional" if args.command == "entity-accept" else "deprecated"
+                entity = session.execute_write(lambda tx: decide_entity(
+                    tx, operations, args.entity_id, status, getattr(args, "qid", None), **decision))
+                print(f"{status}: {entity['label']} ({args.entity_id})")
                 return 0
             if args.command == "promote":
                 registry = load_registry()

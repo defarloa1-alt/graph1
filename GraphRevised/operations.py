@@ -40,6 +40,7 @@ OPERATION_NAMES = (
     "upsert_annotation",
     "set_annotation_status",
     "delete_annotation",
+    "decide_entity",
 )
 
 
