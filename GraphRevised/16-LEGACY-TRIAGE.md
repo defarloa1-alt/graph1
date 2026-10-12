@@ -25,7 +25,7 @@ implemented and validated.
 | Area | Category | Rationale | Next action |
 |---|---|---|---|
 | [GraphRevised](.) | `ADOPT` | Active clean-start architecture, direct operations, and bounded Wikidata adapter. | Maintain as the only active graph contract. |
-| [viewer](../viewer) | `ADAPT` | The custom UI is a likely solution for readable captions and compact/evidence projections, but it uses legacy API/property assumptions. | Define a clean-start read API before adapting components. |
+| [viewer](../viewer) | `ADAPT` | The custom UI is a likely solution for readable captions and compact/evidence projections, but it uses legacy API/property assumptions. | Define a clean-start read API (Phase B) before adapting components; it already uses React 18 + Cytoscape.js + cola + Vite, the agreed explorer stack ([20-EXPLORER-UI.md](20-EXPLORER-UI.md)). |
 | [scripts/backbone/temporal](../scripts/backbone/temporal) and [Python](../Python) year checks | `ADAPT` | The Year backbone is retained, but existing scripts require schema and safety review. | Extract read-only year validation into a tested clean-start utility when needed. |
 | [scripts/tools](../scripts/tools) Wikidata retrieval utilities | `ADAPT` | They may contain reusable request/payload patterns, but predate the candidate-only adapter and source-observation contract. | Prefer [adapters/wikidata_identity.py](adapters/wikidata_identity.py); review individual utilities only for a concrete capability gap. |
 | [Neo4j/schema](../Neo4j/schema) and [Cypher](../Cypher) | `ARCHIVE` | Existing schema and operations use legacy assumptions and are unsafe to apply to the clean-start database. | Do not run; retain as implementation history. |

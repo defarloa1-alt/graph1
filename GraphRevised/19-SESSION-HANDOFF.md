@@ -98,4 +98,4 @@ Accepted claims:
 - The reader reads only Perseus TEI by chapter.section; context window and scope rule are fixed in code.
 - Entity context is Wikidata-only and English-only.
 - Force hierarchy (a wing is part of a fleet) has no predicate yet; labels carry it.
-- Neo4j Bloom status colouring is configured in Bloom (rule-based styling on `status`); nothing in the graph supports it beyond the `status` property.
+- Neo4j Bloom is for smoke testing only (status colouring via rule-based styling on `status`). The product UI is a custom React + Cytoscape.js explorer designed in Figma: [20-EXPLORER-UI.md](20-EXPLORER-UI.md).

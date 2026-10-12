@@ -133,7 +133,7 @@ what it delivers, why it matters for exploration, and how it is known to work.
   people, forces, places, and moments, so the network gains many short,
   meaningful paths ("Eurycles → pursued → Antony's galley → joined →
   Cleopatra's ship").
-- **Done when:** the battle can be walked step by step in Bloom, every step
+- **Done when:** the battle can be walked step by step (Bloom for smoke testing), every step
   quoted and labelled "according to Plutarch"; sequence comes from time
   markers, not narration order.
 
@@ -146,9 +146,9 @@ what it delivers, why it matters for exploration, and how it is known to work.
   predicate specificity and evidence, with **hub penalties** and with Year and
   Subject nodes excluded as shortcuts (otherwise everything connects through
   "31 BCE"); annotations and saved paths with enforced visibility (use case 3).
-- **Why:** this is the product. Bloom is fine for looking; it cannot trace
-  with explanations, rank paths, or distinguish attributed from asserted
-  edges.
+- **Why:** this is what the explorer UI
+  ([20-EXPLORER-UI.md](../20-EXPLORER-UI.md): React + Cytoscape.js, designed in
+  Figma) is built on. Bloom is used only for smoke testing.
 - **Done when:** "trace Eurycles to Cleopatra" returns a ranked, explained
   path with each hop's status, mode, and quotation, and generic or hub paths
   are suppressed.

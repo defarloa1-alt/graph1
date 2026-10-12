@@ -19,6 +19,14 @@ The design in this folder is intentionally more conservative than the legacy
 architecture. It is a starting point, not a claim that every future historical
 concept has already been modeled.
 
+## Direction and roadmap
+
+Chrystallum is for exploring a network of historical relations and
+discovering connections, not an encyclopedia. The agreed roadmap (phases A–F)
+is in [docs/Response - Use Cases.md](docs/Response%20-%20Use%20Cases.md); the
+product surface is described in [20-EXPLORER-UI.md](20-EXPLORER-UI.md); the
+current state and next task are in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md).
+
 ## Read in this order
 
 0. [00-NEO4J-SCHEMA-SNAPSHOT.md](00-NEO4J-SCHEMA-SNAPSHOT.md) — read-only baseline of the active local database
@@ -41,8 +49,9 @@ concept has already been modeled.
 17. [17-PHASE-5-HANDOFF.md](17-PHASE-5-HANDOFF.md) — verified project state and Phase 5 starting point
 18. [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md) — ProposalDraft, predicate registry, validator, review workflow
 19. [Review of the Chrystallum Subject Backbone Architecture.md](Review%20of%20the%20Chrystallum%20Subject%20Backbone%20Architecture.md) — architectural review and recommendations
-20. [docs/](docs) — model/API choice review and the agreed response
+20. [docs/](docs) — model/API choice review, use cases, and the agreed responses
 21. [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md) — **current handoff: start here in a new session**
+22. [20-EXPLORER-UI.md](20-EXPLORER-UI.md) — explorer UI direction (React + Cytoscape.js, designed in Figma)
 
 ## Clean-start rules
 
