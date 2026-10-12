@@ -162,6 +162,9 @@ what it delivers, why it matters for exploration, and how it is known to work.
   curator); visible confidence and mode in every projection.
 - **Why:** this makes volume safe. Without it, item 7 either floods the
   curator or fills the network with unmarked guesses.
+- **Governance:** route review by impact (E15): low-impact changes inside
+  one cluster follow the policy; changes crossing clusters or touching shared
+  vertices go to each affected cluster's curators.
 - **Done when:** acceptance rate on unseen text is known; the policy is
   written and enforced in code; the curator's queue contains only judgment
   calls.

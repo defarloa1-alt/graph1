@@ -549,6 +549,56 @@ Wikidata entities have one (P18; P242 locator maps for places).
 
 **Dependency:** Phase B read API; explorer UI cards.
 
+### E15. Graph change governance: changesets, impact analysis, cluster ownership
+
+A governance pattern for graph updates, borrowed from source-code review
+(pull requests, diffs, code owners, history, revert). It is not a product
+goal. Graph versioning tools exist (git-style branching and diffs); what is
+typically missing is *semantic* governance before an update: knowing which
+clusters a change affects, routing it to those clusters' curators, and
+treating an identity merge as riskier than a label edit.
+
+**Already in place:** Proposals (pull requests), curator review, decision
+records with prompt and model provenance (history), supersede/reject/reopen
+instead of delete (revert), a deterministic validator re-run at commit
+(checks), and rolled-back transactions (dry runs).
+
+**To add:**
+
+1. **Changesets.** Group related proposals into one reviewable unit: a reader
+   run, an identity merge, a predicate change.
+2. **Diffs before commit.** Apply a changeset in a rolled-back transaction,
+   compute the exact node and edge changes, present them for review.
+3. **Explicit clusters.** A cluster is a Subject with its scope rule and
+   declared members; broader/narrower Subjects form the hierarchy.
+4. **Impact analysis.** Vertex jump (direct lookup by stable ID: Entity.id,
+   Assertion.id, AuthorityRecord(system, identifier)) locates the touched
+   vertices without traversal. A membership and dependency index then answers
+   who relies on them: vertex → clusters; claim → saved paths and
+   explanations; predicate → claims using it.
+5. **Impact-routed review.** Low-impact changes inside one cluster (verified
+   attributed claims) follow the automatic acceptance policy (Phase C); changes
+   crossing clusters or touching shared vertices (Augustus belongs to many
+   subjects) need each affected cluster's curators; identity and predicate
+   changes always need a human with the impact report attached.
+6. **Later:** cluster ownership (curators per Subject), private workspaces as
+   branches with publication by review (use case 3), tagged graph versions for
+   replaying saved maps (06 §10) and for domain packs.
+
+| Change | Reach | Example |
+|---|---|---|
+| Identity (merge, split, re-link) | every claim on the entity, in every cluster | resolving "Domitius" to Q360920 |
+| Predicate redefinition | every claim using the predicate | `commanded` v2 rejected the event-level claim |
+| Claim status | paths and explanations through the edge | promotion to asserted |
+| Display text | negligible | label edits |
+
+**Start with:** dry-run diff and impact report for identity and predicate
+changes, explicit clusters, and the membership index. Changesets, ownership,
+and releases follow as the graph spans more clusters.
+
+**Dependency:** Phase C review policy (shares the routing rules); multiple
+Subjects in the graph.
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its
