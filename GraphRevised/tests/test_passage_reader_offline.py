@@ -2,7 +2,9 @@
 
 import unittest
 
-from GraphRevised.proposals.passage_reader import Inquiry, ReaderClaim, ReaderOutput, predicate_guide, to_drafts
+from GraphRevised.proposals.passage_reader import (
+    Inquiry, ReaderClaim, ReaderNote, ReaderOutput, predicate_guide, to_drafts, to_notes,
+)
 from GraphRevised.proposals.registry import load_registry
 
 OBSERVATION = "chr:observation:test:passage"
@@ -24,7 +26,7 @@ def claim(**extra):
 
 
 def drafts(*claims):
-    return to_drafts(ReaderOutput(claims=list(claims), unresolved_mentions=[]), OBSERVATION, "test-model", INQUIRY)
+    return to_drafts(ReaderOutput(claims=list(claims), unresolved_mentions=[], notes=[]), OBSERVATION, "test-model", INQUIRY)
 
 
 class ReaderDraftTests(unittest.TestCase):
@@ -54,7 +56,7 @@ class ReaderDraftTests(unittest.TestCase):
         from dataclasses import replace
 
         output = ReaderOutput(claims=[claim(time_source_expression="in the year 31", time_quotation="in the year 31",
-                                            time_edtf="-0030")], unresolved_mentions=[])
+                                            time_edtf="-0030")], unresolved_mentions=[], notes=[])
         produced, malformed = to_drafts(output, OBSERVATION, "test-model", replace(INQUIRY, calendar=None))
         self.assertEqual((produced, len(malformed)), ([], 1))
 
@@ -76,6 +78,21 @@ class ReaderDraftTests(unittest.TestCase):
         (draft,), _ = drafts(claim(predicate="occurred", subject_id="chr:entity:test-battle", object_id=None,
                                    time_source_expression="on the fifth", time_quotation="but on the fifth"))
         self.assertIsNone(draft.object_id)
+
+    def test_passages_of_note(self):
+        passage = {"passageText": "He sat alone at the prow, his head in his hands, and spoke to no one."}
+        output = ReaderOutput(claims=[], unresolved_mentions=[], notes=[
+            ReaderNote(note_type="characterization", note="Antony's despair after the flight",
+                       quotation="sat alone at the prow, his head in his hands", concerns=["chr:entity:test-admiral"]),
+            ReaderNote(note_type="mood", note="x", quotation="sat alone at the prow", concerns=["chr:entity:test-admiral"]),
+            ReaderNote(note_type="detail", note="paraphrased", quotation="he sat by himself at the bow",
+                       concerns=["chr:entity:test-admiral"]),
+            ReaderNote(note_type="detail", note="outside scope", quotation="spoke to no one at all",
+                       concerns=["chr:entity:elsewhere"]),
+        ])
+        notes, refused = to_notes(output, passage, {"chr:entity:test-admiral"})
+        self.assertEqual([n["noteType"] for n in notes], ["characterization"])
+        self.assertEqual(len(refused), 3)
 
     def test_guide_shows_qualifiers_and_unary_predicates(self):
         guide = predicate_guide(load_registry())

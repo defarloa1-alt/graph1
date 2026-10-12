@@ -39,11 +39,13 @@ from pydantic import BaseModel, ValidationError
 
 from GraphRevised.adapters.wikidata_context import entity_context
 from GraphRevised.adapters.sources import PassageSource, open_source
+from GraphRevised.capture.core import NOTE_TYPES, annotation_id
 from GraphRevised.operations import load_operations, run_write
 
 from .prompt_version import prompt_version
 from .registry import PredicateRegistry, load_registry
 from .schema import DRAFT_SCHEMA_VERSION, ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
+from .validator import normalize
 from .store import Neo4jReader, submit
 from .validator import validate
 
@@ -97,6 +99,12 @@ words is a valid time expression; it is never turned into a date.
 10. For predicates that take a context, set context_id to the inquiry's narrative event when the \
 claim happens within it. If the passage names the event, also copy that span as context_quotation.
 11. A predicate marked "no object" takes no object_id: leave it null.
+12. Passages of note. When the passage is worth reading for in-scope entities but states nothing \
+you can draft as a claim, add a note: its type (characterization, anecdote, omen, motive, speech, \
+atmosphere, detail, or interpretation for an author's reading of what events meant), one line on \
+why it is worth reading, the exact quotation (rules as in 5), and the in-scope entities it \
+concerns. A note asserts nothing. Do not add a note for what a claim already captures, and add \
+none to passages with nothing notable.
 """
 
 
@@ -123,9 +131,17 @@ class UnresolvedMention(BaseModel):
     note: str
 
 
+class ReaderNote(BaseModel):
+    note_type: str
+    note: str
+    quotation: str
+    concerns: list[str]
+
+
 class ReaderOutput(BaseModel):
     claims: list[ReaderClaim]
     unresolved_mentions: list[UnresolvedMention]
+    notes: list[ReaderNote]
 
 
 @dataclass(frozen=True)
@@ -143,6 +159,7 @@ class Inquiry:
     calendar: str | None = None  # calendar of normalized dates in this source's world (julian, gregorian)
     context_before: int = 2  # sections shown before the target passage, as context only
     context_after: int = 1
+    note_visibility: str = "private"  # passages of note: private, team, or public
 
 
 def load_inquiry(path: Path, tx: Any) -> Inquiry:
@@ -204,6 +221,7 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         calendar=data.get("calendar"),
         context_before=data["source"].get("contextWindow", {}).get("before", 2),
         context_after=data["source"].get("contextWindow", {}).get("after", 1),
+        note_visibility=data.get("noteVisibility", "private"),
     )
 
 
@@ -298,7 +316,7 @@ def read_passage(
     return response.parsed_output, meta
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v9", SYSTEM_PROMPT, predicate_guide, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v10", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(
@@ -311,6 +329,30 @@ def to_drafts(
         except (ValidationError, ValueError) as error:
             malformed.append({"claim": claim.model_dump(), "error": str(error)})
     return drafts, malformed
+
+
+def to_notes(output: ReaderOutput, passage: dict[str, Any], scope_ids: set[str]) -> tuple[list[dict], list[dict]]:
+    """Passages of note that can be stored, and those refused with the reason."""
+    notes, refused = [], []
+    for note in output.notes:
+        concerns = sorted(set(note.concerns))
+        reason = None
+        if note.note_type not in NOTE_TYPES:
+            reason = f"unknown note type {note.note_type!r}"
+        elif not note.note.strip():
+            reason = "an empty note"
+        elif not concerns:
+            reason = "a note concerns at least one entity"
+        elif set(concerns) - scope_ids:
+            reason = f"not in inquiry scope: {sorted(set(concerns) - scope_ids)}"
+        elif len(normalize(note.quotation)) < 15 or normalize(note.quotation) not in normalize(passage["passageText"]):
+            reason = "quotation does not appear verbatim in the passage"
+        if reason:
+            refused.append({"note": note.model_dump(), "reason": reason})
+        else:
+            notes.append({"noteType": note.note_type, "note": note.note.strip(), "quotation": note.quotation,
+                          "concerns": concerns})
+    return notes, refused
 
 
 def _draft(claim: ReaderClaim, observation_id: str, model_id: str, inquiry: Inquiry) -> ProposalDraft:
@@ -422,6 +464,8 @@ def main(argv: list[str] | None = None) -> int:
                     continue
                 drafts, malformed = to_drafts(output, passage["id"], meta["model"], inquiry)
                 totals["malformed"] += len(malformed)
+                notes, refused_notes = to_notes(output, passage, scope_ids)
+                stored_notes: list[str] = []
 
                 # The observation is written first so drafts can be validated
                 # against it; the transaction commits only if a draft was stored.
@@ -445,7 +489,19 @@ def main(argv: list[str] | None = None) -> int:
                         else:
                             v = validate(draft, Neo4jReader(tx), registry)
                             results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes), v.proposal_id, False))
-                    if any(stored for *_, stored in results):
+                    if args.submit:
+                        for note in notes:
+                            note_id = annotation_id(PROPOSER_ID, passage["id"], note["note"], note["concerns"])
+                            run_write(tx, operations, "upsert_annotation", {
+                                "id": note_id, "label": note["note"][:120], "kind": "passage-of-note",
+                                "noteType": note["noteType"], "note": note["note"], "author": PROPOSER_ID,
+                                "visibility": inquiry.note_visibility,
+                                "createdAt": datetime.now(timezone.utc).isoformat(),
+                                "observationId": passage["id"], "quotation": note["quotation"],
+                                "concerns": note["concerns"],
+                            })
+                            stored_notes.append(note_id)
+                    if any(stored for *_, stored in results) or stored_notes:
                         tx.commit()
                     else:
                         tx.rollback()
@@ -467,6 +523,9 @@ def main(argv: list[str] | None = None) -> int:
                     for d, outcome, reasons, proposal_id, stored in results
                 ]
                 record["malformed"] = malformed
+                record["notes"] = notes
+                record["refusedNotes"] = refused_notes
+                record["storedNotes"] = stored_notes
                 record["unresolvedMentions"] = [m.model_dump() for m in output.unresolved_mentions]
                 log.write(json.dumps(record, ensure_ascii=False) + "\n")
                 for d, outcome, reasons, _, stored in results:
@@ -474,8 +533,12 @@ def main(argv: list[str] | None = None) -> int:
                     totals["stored"] += stored
                     print(f"{ref}: {outcome:<13} {d.subject_id} {d.predicate} {d.object_id}"
                           + (" [stored]" if stored else "") + (f" -- {reasons[0]}" if reasons else ""))
+                for note in notes:
+                    print(f"{ref}: note ({note['noteType']}) {note['note'][:90]}")
+                totals["notes"] = totals.get("notes", 0) + len(stored_notes)
+                totals["refusedNotes"] = totals.get("refusedNotes", 0) + len(refused_notes)
                 names = ", ".join(m.name for m in output.unresolved_mentions)
-                print(f"{ref}: {len(drafts)} draft(s); unresolved: {names or '-'}")
+                print(f"{ref}: {len(drafts)} draft(s), {len(notes)} note(s); unresolved: {names or '-'}")
     finally:
         driver.close()
 
