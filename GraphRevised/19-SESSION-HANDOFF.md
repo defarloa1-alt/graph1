@@ -74,7 +74,7 @@ Accepted claims:
 
 ## 5. Open decisions (for the curator)
 
-1. **23 submitted proposals** (Actium v6 run). Review the 14 that do not use `commanded` (participation, place, forces): accept them, except reject the Cleopatra 66.3 *evidence* (`…7059319b3457`) with plain `reject` so her claim stays open. **Hold the 9 `commanded` proposals** until the command split (5a).
+1. **23 submitted proposals** (Actium v6 run). Review the 14 that do not use `commanded` (participation, place, forces): accept them, except reject the Cleopatra 66.3 *evidence* (`…7059319b3457`) with plain `reject --reason unsupported` so her claim stays open. The 9 `commanded` proposals stay open (5a, design-mode policy); review them against the v3 definition when convenient.
 2. **Cleopatra 67.1**: whether to submit a curator-authored claim citing "Cleopatra recognized him and raised a signal on her ship".
 3. **Unresolved commanders** with no Wikidata record: Coelius (Antony's left wing), Marcus Octavius (Antony's centre), Alexas. Option: local entities, like the forces.
 4. **33 peripheral mentions** in the identity queue (allies, places); deferred because most would need dated `alliedWith` claims.
@@ -89,38 +89,40 @@ directing the fleet.
 - **Registry v3:** `heldAuthorityOver` (Person → Group, formal or supreme
   authority) and `commanded` (Person → Group, command actually exercised).
   Evidence for one never counts for the other.
-- **Claim qualifiers:** an event context (`ASSERTION_CONTEXT` → Event), and a
-  `capacity` in the source's own vocabulary (imperium, triumvir, legatus,
-  praefectus classis), not modern strategic/operational/tactical labels. The
-  same qualifier mechanism serves Phase 7 time and E12 depiction.
+- **Claim qualifiers:** an event context (`ASSERTION_CONTEXT` → Event) and a
+  **role** (`ASSERTION_ROLE` → the Entity for the office or post, in the
+  source's own term), not modern strategic/operational/tactical labels. Role
+  replaced the earlier `capacity` on 2026-10-12; legal basis (*imperium*) is
+  not a role. Rules in
+  [docs/Response - Roman Republican Army Structure.md](docs/Response%20-%20Roman%20Republican%20Army%20Structure.md).
+  The same qualifier mechanism serves Phase 7 time and E12 depiction.
 - **Planning is an action** (E11), not a command predicate.
 - **Reason codes** for rejection and supersession: false, unsupported,
   malformed, underspecified, superseded-by-model.
-- **Supersede with links:** re-mark *Augustus commanded Battle of Actium* as
-  `superseded` (reason: underspecified) with `SUPERSEDED_BY` edges to the
-  precise claims that replace it; needs a new recorded supersede operation.
-- **Hold the nine `commanded` proposals** until v3; review the other fourteen
-  (participation, place, forces) as before. Then rerun the reader for command
-  claims with guidance separating the two senses.
+- **Supersede with links:** a recorded supersede operation with
+  `SUPERSEDED_BY` edges to the precise claims that replace a coarser one.
+- **Design-mode policy (curator, 2026-10-12):** while the model is still being
+  designed, claims are not rejected or superseded merely because a predicate
+  was redesigned. The open `commanded` proposals stay open, and the already
+  rejected *Augustus commanded Battle of Actium* stays rejected (its basis
+  records why). Then rerun the reader for command claims with guidance
+  separating the two senses.
 
 **Progress (2026-10-12).** Done: registry v3, reason codes, and the supersede
 operation ([18 §17](18-PHASE-5-PROPOSALS.md)). Curator decisions: supersession
 is allowed from `proposed` (and `accepted`); claims tied to an event get no
 exemption from the date-span requirement, so `heldAuthorityOver` drafts are
-deferred until Phase 7. Waiting: the claim qualifiers (event context and
-`capacity`) wait for the curator's research on capacity. Open: *Augustus
-commanded Battle of Actium* is already **rejected** (claim rejected under v2,
-basis "Superseded by force-level command claims"), so the supersede operation
-refuses it; its replacement, *Augustus heldAuthorityOver Octavian's fleet*,
-cannot be stored until Phase 7.
+deferred until Phase 7. Capacity became role (above). Next: implement the
+event-context and role qualifiers. Open: whether a role-qualified claim needs
+a date span.
 
 ## 6. Next steps (agreed order)
 
-1. **First task: the command split** (5a): registry v3, claim qualifiers,
-   reason codes, supersede-with-links; then rerun the reader for command
-   claims.
+1. **Finish the command split** (5a): registry v3, reason codes, and
+   supersede are done; next the event-context and role qualifiers, then rerun
+   the reader for command claims.
 2. **Finish the review** (5, item 1): the 14 non-command proposals now; the
-   command proposals after step 1.
+   command proposals whenever convenient.
 3. **E12 design doc** (attributed claims and depicted events: "according to
    Plutarch"), then the micro-event pilot on *Antony* 65–68 (Phase A).
    Principle agreed with the curator: narrative detail is the author's
@@ -151,5 +153,5 @@ review policy); E16 frontier expansion (leaf nodes to clusters).
 
 - The reader reads only Perseus TEI by chapter.section; context window and scope rule are fixed in code.
 - Entity context is Wikidata-only and English-only.
-- Force hierarchy (a wing is part of a fleet) has no predicate yet; labels carry it.
+- Force hierarchy (a wing is part of a fleet) has no predicate yet; labels carry it. Backlog: a Group → Group predicate (`SUBUNIT_OF` in the army-structure response).
 - Neo4j Bloom is for smoke testing only (status colouring via rule-based styling on `status`). The product UI is a custom React + Cytoscape.js explorer designed in Figma: [20-EXPLORER-UI.md](20-EXPLORER-UI.md).
