@@ -326,8 +326,10 @@ RETURN proposal, observation;
 // Accepting requires a `proposed` or `accepted` Assertion and accepts a
 // `proposed` one. Rejecting rejects the Proposal's evidence and leaves the
 // Assertion open, unless `rejectClaim` is true: then the Assertion, which must
-// still be `proposed`, is rejected as well. Repeating the current status is an
-// idempotent no-op that preserves the original decision metadata.
+// still be `proposed`, is rejected as well. A rejection needs a reason code:
+// false, unsupported, malformed, underspecified, or superseded-by-model.
+// Repeating the current status is an idempotent no-op that preserves the
+// original decision metadata.
 MATCH (proposal:Proposal {id: $proposalId})-[:PROPOSES]->(assertion:Assertion)
 WITH proposal, assertion,
      proposal.status = $proposalStatus AS isRetry,
@@ -347,6 +349,10 @@ WITH proposal, assertion, isRetry, isDecision
 WHERE isRetry
    OR NOT ($proposalStatus = "rejected" AND $rejectClaim)
    OR assertion.status = "proposed"
+WITH proposal, assertion, isRetry, isDecision
+WHERE isRetry
+   OR $proposalStatus <> "rejected"
+   OR $reason IN ["false", "unsupported", "malformed", "underspecified", "superseded-by-model"]
 SET
   proposal.status = $proposalStatus,
   proposal.decidedAt = CASE WHEN isDecision THEN $decidedAt ELSE proposal.decidedAt END,
@@ -355,6 +361,10 @@ SET
   proposal.rejectedClaim = CASE
     WHEN isDecision AND $proposalStatus = "rejected" THEN $rejectClaim
     ELSE proposal.rejectedClaim
+  END,
+  proposal.decisionReason = CASE
+    WHEN isDecision AND $proposalStatus = "rejected" THEN $reason
+    ELSE proposal.decisionReason
   END,
   assertion.acceptedAt = CASE
     WHEN isDecision AND $proposalStatus = "accepted" AND assertion.status = "proposed" THEN $decidedAt
@@ -388,3 +398,38 @@ SET
   assertion.reopenedBy = $decidedBy,
   assertion.reopenBasis = $decisionBasis
 RETURN assertion;
+
+// Supersede an Assertion by the Assertions that replace it. An explicit,
+// recorded curator act with a reason code. Refused unless the Assertion is
+// proposed or accepted and has no open Proposal (decide those first), every
+// replacement exists, differs from it, and is proposed or accepted, and the
+// reason is a known code. A retry naming the same replacements is a no-op that
+// preserves the original decision metadata; any other retry is refused.
+MATCH (old:Assertion {id: $assertionId})
+OPTIONAL MATCH (old)-[:SUPERSEDED_BY]->(prior:Assertion)
+WITH old, collect(prior.id) AS priorIds
+OPTIONAL MATCH (replacement:Assertion)
+WHERE replacement.id IN $replacementIds
+  AND replacement.id <> old.id
+  AND replacement.status IN ["proposed", "accepted"]
+WITH old, priorIds, collect(replacement) AS replacements, old.status = "superseded" AS isRetry
+WHERE size($replacementIds) > 0
+  AND size(replacements) = size($replacementIds)
+  AND $reason IN ["false", "unsupported", "malformed", "underspecified", "superseded-by-model"]
+  AND (
+    (isRetry AND size(priorIds) = size($replacementIds) AND all(id IN priorIds WHERE id IN $replacementIds))
+    OR (old.status IN ["proposed", "accepted"]
+        AND NOT EXISTS {
+          MATCH (open:Proposal)-[:PROPOSES]->(old)
+          WHERE open.status IN ["submitted", "validating", "deferred"]
+        })
+  )
+SET
+  old.supersededFrom = CASE WHEN isRetry THEN old.supersededFrom ELSE old.status END,
+  old.supersededAt = CASE WHEN isRetry THEN old.supersededAt ELSE $decidedAt END,
+  old.supersededBy = CASE WHEN isRetry THEN old.supersededBy ELSE $decidedBy END,
+  old.supersedeBasis = CASE WHEN isRetry THEN old.supersedeBasis ELSE $decisionBasis END,
+  old.supersedeReason = CASE WHEN isRetry THEN old.supersedeReason ELSE $reason END,
+  old.status = "superseded"
+FOREACH (item IN replacements | MERGE (old)-[:SUPERSEDED_BY]->(item))
+RETURN old AS assertion, [item IN replacements | item.id] AS replacementIds;

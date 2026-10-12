@@ -115,10 +115,8 @@ scripts/security/
 # Ontologies output
 ontologies/*.json
 
-# Obsidian
-.obsidian/cache/
-.obsidian/plugins/
-.obsidian/workspace.json
+# Obsidian (the curator's editor for the .md files; local only)
+.obsidian/
 
 # Node dependencies (install locally)
 viewer/node_modules/

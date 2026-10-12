@@ -16,6 +16,11 @@ from .schema import ProposalDraft, Quotation
 from .validator import Outcome, ValidationResult, validate
 
 
+# Why a claim or its evidence was rejected, or a claim superseded. The same
+# list is enforced by the decide_proposal and supersede_assertion operations.
+REASON_CODES = ("false", "unsupported", "malformed", "underspecified", "superseded-by-model")
+
+
 class ReviewError(RuntimeError):
     """A review action was refused."""
 
@@ -240,7 +245,10 @@ def accept(
         raise ReviewError(f"{proposal_id} failed re-validation ({result.outcome.value}): {list(result.reasons)}")
     if stored["assertionStatus"] not in ("proposed", "accepted"):
         raise ReviewError(f"its claim is {stored['assertionStatus']}; reopen the claim first")
-    decision = {"decidedAt": decided_at, "decidedBy": decided_by, "decisionBasis": decision_basis, "rejectClaim": False}
+    decision = {
+        "decidedAt": decided_at, "decidedBy": decided_by, "decisionBasis": decision_basis,
+        "rejectClaim": False, "reason": None,
+    }
     if stored["status"] != "validating":
         run_write(tx, operations, "decide_proposal", {"proposalId": proposal_id, "proposalStatus": "validating", **decision})
     decided = run_write(tx, operations, "decide_proposal", {"proposalId": proposal_id, "proposalStatus": "accepted", **decision})[0]
@@ -255,11 +263,15 @@ def reject(
     decided_by: str,
     decision_basis: str,
     decided_at: str,
+    reason: str,
     operations: dict[str, str],
     reject_claim: bool = False,
 ) -> dict[str, Any]:
     """Reject a Proposal's evidence, leaving its claim open; with
-    `reject_claim`, also reject the claim, which must still be proposed."""
+    `reject_claim`, also reject the claim, which must still be proposed.
+    `reason` is one of REASON_CODES."""
+    if reason not in REASON_CODES:
+        raise ReviewError(f"reason must be one of {list(REASON_CODES)}, not {reason!r}")
     stored = _stored_proposal(tx, proposal_id)
     if stored["status"] not in ("submitted", "validating", "deferred", "rejected"):
         raise ReviewError(f"{proposal_id} is {stored['status']}; it cannot be rejected")
@@ -272,6 +284,7 @@ def reject(
         "decidedBy": decided_by,
         "decisionBasis": decision_basis,
         "rejectClaim": reject_claim,
+        "reason": reason,
     })[0]
 
 
@@ -293,6 +306,42 @@ def reopen(
     }).data()
     if not rows:
         raise ReviewError(f"{assertion_id} is not a rejected claim")
+    return rows[0]
+
+
+def supersede(
+    tx: Any,
+    assertion_id: str,
+    replacement_ids: list[str],
+    *,
+    decided_by: str,
+    decision_basis: str,
+    decided_at: str,
+    reason: str,
+    operations: dict[str, str],
+) -> dict[str, Any]:
+    """Supersede a proposed or accepted claim by the claims that replace it,
+    linking it to each with SUPERSEDED_BY. Its open Proposals must be decided
+    first."""
+    if reason not in REASON_CODES:
+        raise ReviewError(f"reason must be one of {list(REASON_CODES)}, not {reason!r}")
+    replacements = sorted(set(replacement_ids))
+    if not replacements:
+        raise ReviewError("name at least one replacement claim")
+    rows = tx.run(operations["supersede_assertion"], {
+        "assertionId": assertion_id,
+        "replacementIds": replacements,
+        "decidedAt": decided_at,
+        "decidedBy": decided_by,
+        "decisionBasis": decision_basis,
+        "reason": reason,
+    }).data()
+    if not rows:
+        raise ReviewError(
+            f"{assertion_id} cannot be superseded: it must be proposed or accepted with no open "
+            f"proposals, and every replacement must be a different proposed or accepted claim "
+            f"(a retry must name the same replacements)"
+        )
     return rows[0]
 
 

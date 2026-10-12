@@ -167,6 +167,26 @@ class RegistryAndProposerTests(unittest.TestCase):
     def setUp(self):
         self.registry = load_registry()
 
+    def test_authority_held_and_command_exercised_are_separate_predicates(self):
+        held, commanded = self.registry.get("heldAuthorityOver"), self.registry.get("commanded")
+        self.assertEqual(self.registry.version, "predicates-v3")
+        for definition in (held, commanded):
+            self.assertEqual((definition.subject_kinds, definition.object_kinds), ({"Person"}, {"Group"}))
+            self.assertTrue(definition.definition)
+        self.assertNotEqual(
+            assertion_id("heldAuthorityOver", "chr:entity:a", "chr:entity:b"),
+            assertion_id("commanded", "chr:entity:a", "chr:entity:b"),
+        )
+
+    def test_authority_held_needs_a_date_span(self):
+        fleet = entity("chr:entity:fleet", "Group")
+        reader = FakeReader([AGRIPPA, fleet], [PASSAGE])
+        held = draft("heldAuthorityOver", AGRIPPA, fleet, (PASSAGE,),
+                     quotations=(Quotation(observation_id=PASSAGE["id"], text="Caesar posted Agrippa on the left"),))
+        self.assertEqual(validate(held, reader, self.registry).outcome, Outcome.DEFERRED)
+        commanded = held.model_copy(update={"predicate": "commanded"})
+        self.assertEqual(validate(commanded, reader, self.registry).outcome, Outcome.VALID)
+
     def test_registry_kinds_are_known_entity_kinds(self):
         kinds = {"Person", "Event", "Place", "Group", "Object", "Work", "Period", "Other"}
         for definition in self.registry.predicates.values():

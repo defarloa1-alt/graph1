@@ -11,7 +11,7 @@ from typing import Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v2.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v3.json"
 
 
 @dataclass(frozen=True)
@@ -29,6 +29,7 @@ class PredicateDefinition:
     symmetric: bool
     temporal_qualification: Literal["none", "whenPresent", "required"]
     wikidata: tuple[WikidataMapping, ...]
+    definition: str | None = None
 
 
 @dataclass(frozen=True)
@@ -60,6 +61,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
             symmetric=item["symmetric"],
             temporal_qualification=item["temporalQualification"],
             wikidata=tuple(WikidataMapping(**mapping) for mapping in item["wikidata"]),
+            definition=item.get("definition"),
         )
         for item in data["predicates"]
     }

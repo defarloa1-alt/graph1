@@ -49,7 +49,7 @@ source states:
 | Predicate | Subject → object | Wikidata evidence | Temporal qualification |
 |---|---|---|---|
 | `participatedIn` | Person/Group → Event | P710 (inverse), P607 | none |
-| `commanded` | Person → Group/Event | — | none |
+| `commanded` | Person → Group/Event (v2: Person → Group, a force) | — | none |
 | `alliedWith` | Person/Group ↔ Person/Group | — | required |
 | `occurredAt` | Event → Place | P276 | none |
 | `partOf` | Event → Event | P361 | none |
@@ -403,4 +403,39 @@ reader reads only Perseus TEI addressed by chapter.section; the context window
 (two sections before, one after) and the scope rule are fixed in code; entity
 context is Wikidata-only and English-only. The Actium slice scripts are
 curation written as code and should become data.
+
+## 17. Command split, part 1: registry v3, reason codes, supersession (2026-10-12)
+
+`commanded` conflated authority held with command exercised. At Actium that
+hides the central question: Octavian held supreme authority, while much of the
+tradition credits Agrippa with directing the fleet.
+
+- **[predicates-v3](proposals/predicates.v3.json)** adds `heldAuthorityOver`
+  (Person → Group: formal or supreme authority, whether or not exercised) and
+  narrows `commanded` to command actually exercised. Each carries a
+  `definition` that the reader sees in its predicate list. They are different
+  predicates, so they are different Assertions, and evidence for one never
+  counts for the other.
+- **`heldAuthorityOver` requires a date span** (`temporalQualification:
+  required`), with no exemption for claims tied to an event. Drafts using it
+  are `deferred` until Phase 7 and stored nowhere but the run log.
+- **Reason codes** — `false`, `unsupported`, `malformed`, `underspecified`,
+  `superseded-by-model` — are required on every rejection
+  (`review reject --reason`) and recorded as `decisionReason`. Decisions made
+  before v3 have none.
+- **Supersession** (`review supersede <assertion> --replacement <assertion>
+  ... --reason`): a `proposed` or `accepted` claim becomes `superseded` with
+  `SUPERSEDED_BY` links to the claims that replace it. Refused for rejected
+  claims, claims with open Proposals, self-replacement, and replacements that
+  are missing, rejected, or superseded. A retry naming the same replacements is
+  a no-op. Superseded claims take no new evidence and leave inquiry scope.
+- Reader prompt `passage-reader-v7`: the predicate list now includes
+  definitions.
+- 21 operations; 70 tests.
+
+**Not yet done:** the claim qualifiers (event context, `capacity`) wait for
+the curator's research on capacity. The nine held `commanded` proposals were
+drafted under v2, when `commanded` still covered authority held; they are
+re-validated against v3 on acceptance, but their meaning needs the curator's
+judgment against the narrowed definition.
 

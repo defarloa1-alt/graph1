@@ -29,6 +29,7 @@ OPERATION_NAMES = (
     "decide_proposal",
     "apply_accepted_evidence",
     "reopen_assertion",
+    "supersede_assertion",
 )
 
 

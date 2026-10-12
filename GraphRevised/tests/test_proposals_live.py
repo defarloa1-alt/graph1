@@ -15,7 +15,9 @@ from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.passage_reader import load_inquiry
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
-from GraphRevised.proposals.store import Neo4jReader, ReviewError, accept, list_proposals, reject, reopen, submit
+from GraphRevised.proposals.store import (
+    Neo4jReader, ReviewError, accept, list_proposals, reject, reopen, submit, supersede,
+)
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 
@@ -31,6 +33,7 @@ PASSAGE_TEXT = (
     "and the admiral was extending the left wing to encircle the enemy."
 )
 DECISION = {"decided_by": "test-curator", "decision_basis": "test", "decided_at": "2026-10-11T00:00:00Z"}
+REJECTION = {**DECISION, "reason": "unsupported"}
 
 COUNTS = "CALL () { MATCH (n) RETURN count(n) AS nodes } CALL () { MATCH ()-[r]->() RETURN count(r) AS rels } RETURN nodes, rels"
 
@@ -170,7 +173,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             "MATCH (p:Proposal {id: $id})-[:PROPOSES]->(a:Assertion) RETURN p, a", id=proposal_id
         ).single()
         self.assertEqual(stored["p"]["status"], "submitted")
-        self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v2")
+        self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v3")
         self.assertEqual(stored["a"]["status"], "proposed")
         self.assertEqual(stored["a"]["label"], "Test leader participated in Test battle")
         self.assertIn(proposal_id, [row["id"] for row in list_proposals(self.tx, "submitted")])
@@ -191,7 +194,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         with self.assertRaises(ReviewError):
             accept(self.tx, proposal_id, registry=self.registry, operations=self.operations, **DECISION)
         with self.assertRaises(ReviewError):
-            reject(self.tx, proposal_id, operations=self.operations, **DECISION)
+            reject(self.tx, proposal_id, operations=self.operations, **REJECTION)
 
     def test_new_claim_evidence_waits_for_acceptance(self):
         submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
@@ -202,7 +205,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
 
     def test_rejecting_evidence_leaves_the_claim_open(self):
         submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
-        decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION)
+        decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **REJECTION)
         self.assertEqual(decided["proposal"]["status"], "rejected")
         self.assertEqual(decided["assertion"]["status"], "proposed")
         self.assertEqual(self.support_count(submission.validation.assertion_id), 0)
@@ -210,7 +213,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
     def test_rejecting_the_claim(self):
         submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
         decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations,
-                         reject_claim=True, **DECISION)
+                         reject_claim=True, **REJECTION)
         self.assertEqual(decided["assertion"]["status"], "rejected")
         self.assertTrue(decided["proposal"]["rejectedClaim"])
 
@@ -219,14 +222,14 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.add_passage()
         submission = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
         with self.assertRaises(ReviewError):
-            reject(self.tx, submission.validation.proposal_id, operations=self.operations, reject_claim=True, **DECISION)
+            reject(self.tx, submission.validation.proposal_id, operations=self.operations, reject_claim=True, **REJECTION)
         self.assertEqual(self.reader.assertion(assertion_id)["status"], "accepted")
 
     def test_better_evidence_accepts_an_open_claim(self):
         """Weak evidence rejected, stronger evidence accepted: the claim survives."""
         weak = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
         assertion_id = weak.validation.assertion_id
-        reject(self.tx, weak.validation.proposal_id, operations=self.operations, **DECISION)
+        reject(self.tx, weak.validation.proposal_id, operations=self.operations, **REJECTION)
         self.add_passage()
         strong = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
         self.assertEqual(strong.validation.outcome, Outcome.ADDS_EVIDENCE)
@@ -237,7 +240,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
     def test_rejected_claim_can_be_reopened_and_then_supported(self):
         submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
         assertion_id = submission.validation.assertion_id
-        reject(self.tx, submission.validation.proposal_id, operations=self.operations, reject_claim=True, **DECISION)
+        reject(self.tx, submission.validation.proposal_id, operations=self.operations, reject_claim=True, **REJECTION)
         self.add_passage()
         draft = self.passage_draft(LEADER, "The leader had the right wing")
         self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.DUPLICATE)
@@ -308,7 +311,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.add_passage()
         support_before = self.support_count(assertion_id)
         submission = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
-        decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION)
+        decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations, **REJECTION)
         self.assertEqual(decided["proposal"]["status"], "rejected")
         self.assertEqual(decided["assertion"]["status"], "accepted")
         self.assertEqual(self.support_count(assertion_id), support_before)
@@ -330,6 +333,81 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         before = self.counts()
         draft = self.passage_draft(ADMIRAL, "the admiral led the left wing of the fleet")
         self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.INVALID)
+        self.assertEqual(self.counts(), before)
+
+    # -- reason codes and supersession ---------------------------------------
+
+    def test_rejection_needs_a_known_reason(self):
+        submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
+        with self.assertRaises(ReviewError):
+            reject(self.tx, submission.validation.proposal_id, operations=self.operations, **DECISION, reason="weak")
+        decided = reject(self.tx, submission.validation.proposal_id, operations=self.operations,
+                         **DECISION, reason="underspecified")
+        self.assertEqual(decided["proposal"]["decisionReason"], "underspecified")
+
+    def proposed_admiral_claim(self):
+        """A proposed claim whose only Proposal is still open."""
+        self.add_passage()
+        if self.reader.entity(ADMIRAL[0]) is None:
+            self.add_entity(ADMIRAL)
+        draft = self.passage_draft(ADMIRAL, "the admiral was extending the left wing to encircle the enemy")
+        submission = submit(self.tx, draft, self.registry, self.operations)
+        return submission.validation.assertion_id, submission.validation.proposal_id
+
+    def test_superseding_an_accepted_claim_links_its_replacements(self):
+        old = self.accepted_leader_claim()
+        new, _ = self.proposed_admiral_claim()
+        result = supersede(self.tx, old, [new], reason="underspecified", operations=self.operations, **DECISION)
+        self.assertEqual(result["assertion"]["status"], "superseded")
+        self.assertEqual(result["assertion"]["supersededFrom"], "accepted")
+        self.assertEqual(result["assertion"]["supersedeReason"], "underspecified")
+        self.assertEqual(result["replacementIds"], [new])
+        links = self.tx.run(
+            "MATCH (:Assertion {id: $old})-[:SUPERSEDED_BY]->(n:Assertion) RETURN collect(n.id) AS ids", old=old
+        ).single()["ids"]
+        self.assertEqual(links, [new])
+
+        before = self.counts()
+        retry = supersede(self.tx, old, [new], reason="underspecified", operations=self.operations,
+                          **(DECISION | {"decided_at": "2099-01-01T00:00:00Z"}))
+        self.assertEqual(retry["assertion"]["supersededAt"], DECISION["decided_at"])
+        self.assertEqual(self.counts(), before)
+        with self.assertRaises(ReviewError):
+            supersede(self.tx, old, [new, "chr:assertion:test:missing"], reason="underspecified",
+                      operations=self.operations, **DECISION)
+
+        self.add_passage()
+        evidence = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
+        self.assertEqual(evidence.validation.outcome, Outcome.DUPLICATE)
+        self.assertFalse(evidence.stored)
+
+    def test_superseding_a_proposed_claim_requires_its_proposals_decided(self):
+        replacement = self.accepted_leader_claim()
+        old, proposal = self.proposed_admiral_claim()
+        with self.assertRaises(ReviewError):
+            supersede(self.tx, old, [replacement], reason="superseded-by-model", operations=self.operations, **DECISION)
+        reject(self.tx, proposal, operations=self.operations, **DECISION, reason="superseded-by-model")
+        result = supersede(self.tx, old, [replacement], reason="superseded-by-model", operations=self.operations, **DECISION)
+        self.assertEqual(result["assertion"]["status"], "superseded")
+        self.assertEqual(result["assertion"]["supersededFrom"], "proposed")
+
+    def test_invalid_supersessions_are_refused(self):
+        accepted = self.accepted_leader_claim()
+        old, proposal = self.proposed_admiral_claim()
+        reject(self.tx, proposal, operations=self.operations, **REJECTION, reject_claim=True)
+        before = self.counts()
+        refused = [
+            (old, [accepted], "underspecified"),  # a rejected claim
+            (accepted, [accepted], "underspecified"),  # replaced by itself
+            (accepted, ["chr:assertion:test:missing"], "underspecified"),  # unknown replacement
+            (accepted, [old], "underspecified"),  # a rejected replacement
+            (accepted, [], "underspecified"),  # no replacement
+            (accepted, [accepted], "because"),  # unknown reason
+        ]
+        for assertion_id, replacements, reason in refused:
+            with self.subTest(assertion=assertion_id, replacements=replacements, reason=reason):
+                with self.assertRaises(ReviewError):
+                    supersede(self.tx, assertion_id, replacements, reason=reason, operations=self.operations, **DECISION)
         self.assertEqual(self.counts(), before)
 
     # -- inquiry scope -------------------------------------------------------

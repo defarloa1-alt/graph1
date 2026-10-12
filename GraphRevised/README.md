@@ -74,12 +74,9 @@ current state and next task are in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md
 
 ## Current database context
 
-The local Neo4j `neo4j` database currently contains only the temporal year
-backbone. That is a useful and intentionally limited starting point. The
-separate local `historical` database is empty and is not part of the
-clean-start plan.
-
-Nothing in this documentation requires changing the database immediately.
-
-The first implementation goal is to validate the model against that temporal
-backbone, then add one small historical example end to end.
+The local Neo4j `neo4j` database began with only the temporal year backbone
+(Phase 0). It now also holds the Battle of Actium slice built in Phases 2–5:
+entities, identity links, Wikidata and Plutarch source observations,
+assertions, and proposals. Current counts are in
+[19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md). The separate local
+`historical` database is empty and is not part of the clean-start plan.

@@ -1,7 +1,8 @@
 # Session Handoff — 2026-10-11
 
 **Supersedes:** [17-PHASE-5-HANDOFF.md](17-PHASE-5-HANDOFF.md).
-**Branch:** `graph-revised-clean-start` (last commit `d5d40ba`). Nothing pushed.
+**Branch:** `graph-revised-clean-start` (see `git log` for the last commit). Nothing pushed.
+**Updated 2026-10-12:** command split part 1 done (section 5a).
 **Detail of everything below:** [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md), sections 1–16.
 
 ## 1. Start here
@@ -11,7 +12,7 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live          # expect 64 tests, OK
+  GraphRevised.tests.test_proposals_live          # expect 70 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -46,12 +47,12 @@ Accepted claims:
 
 | Area | Artifact |
 |---|---|
-| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 20 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
+| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 21 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
 | Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v3` (quotations, inquiry, relevance, ambiguities) |
-| Predicates | [proposals/predicates.v2.json](proposals/predicates.v2.json) — 13 predicates; `commanded` is Person → Group (a force) |
+| Predicates | [proposals/predicates.v3.json](proposals/predicates.v3.json) — 14 predicates; `heldAuthorityOver` (authority held, needs a date span) and `commanded` (command exercised), both Person → Group (a force) |
 | Validator | [proposals/validator.py](proposals/validator.py) — deterministic; Wikidata statement evidence must state the claim; passage quotes must be verbatim (whitespace and quote style tolerated only) |
-| Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject` (evidence only), `reject --claim`, `reopen` |
-| Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v6-006ea47f` |
+| Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason` |
+| Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v7` (predicate definitions in the task packet) |
 | Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v10) — Subject, source, scope, guidance |
 | Identity queue | [identity/queue.py](identity/queue.py), queue file [queues/identity-actium-plutarch-antony.json](queues/identity-actium-plutarch-antony.json) |
 | Adapters | Wikidata identity, statements, context (aliases/dates); Perseus TEI passages |
@@ -63,7 +64,7 @@ Accepted claims:
 ## 4. Rules that are easy to break
 
 1. Agents propose; only a curator accepts. The reader never creates Entities; identity is a curator decision via the queue.
-2. Every Proposal holds evidence on `PROPOSES_EVIDENCE` until acceptance. `reject` rejects evidence and leaves the claim open; `reject --claim` rejects the claim; `reopen` restores a rejected claim.
+2. Every Proposal holds evidence on `PROPOSES_EVIDENCE` until acceptance. `reject` rejects evidence and leaves the claim open; `reject --claim` rejects the claim; `reopen` restores a rejected claim; `supersede` replaces a proposed or accepted claim. Rejections and supersessions need a reason code.
 3. A guarded write returning zero rows was refused; `run_write` raises `RefusedWrite`.
 4. Editorial notes in editions (for example Perrin's dates) are never cited as the ancient source.
 5. Preserved payloads are hashed as bytes. Write files with `write_bytes`, never text mode on Windows.
@@ -101,6 +102,17 @@ directing the fleet.
 - **Hold the nine `commanded` proposals** until v3; review the other fourteen
   (participation, place, forces) as before. Then rerun the reader for command
   claims with guidance separating the two senses.
+
+**Progress (2026-10-12).** Done: registry v3, reason codes, and the supersede
+operation ([18 §17](18-PHASE-5-PROPOSALS.md)). Curator decisions: supersession
+is allowed from `proposed` (and `accepted`); claims tied to an event get no
+exemption from the date-span requirement, so `heldAuthorityOver` drafts are
+deferred until Phase 7. Waiting: the claim qualifiers (event context and
+`capacity`) wait for the curator's research on capacity. Open: *Augustus
+commanded Battle of Actium* is already **rejected** (claim rejected under v2,
+basis "Superseded by force-level command claims"), so the supersede operation
+refuses it; its replacement, *Augustus heldAuthorityOver Octavian's fleet*,
+cannot be stored until Phase 7.
 
 ## 6. Next steps (agreed order)
 

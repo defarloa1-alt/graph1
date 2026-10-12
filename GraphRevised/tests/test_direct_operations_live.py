@@ -131,6 +131,7 @@ def decision_params(proposal_id, status):
         "decidedBy": "test",
         "decisionBasis": "test",
         "rejectClaim": False,
+        "reason": None,
     }
 
 
@@ -295,8 +296,12 @@ class DirectOperationsLiveTests(unittest.TestCase):
 
         second_id = "chr:proposal:test:octavian-second"
         self.run_op(UPSERT_PROPOSAL, proposal_params(id=second_id, assertionId=assertion_id))
-        rejected = self.run_op(DECIDE_PROPOSAL, decision_params(second_id, "rejected"))[0]
+        self.assertEqual(self.run_op(DECIDE_PROPOSAL, decision_params(second_id, "rejected")), [])
+        bad_reason = decision_params(second_id, "rejected") | {"reason": "wrong"}
+        self.assertEqual(self.run_op(DECIDE_PROPOSAL, bad_reason), [])
+        rejected = self.run_op(DECIDE_PROPOSAL, decision_params(second_id, "rejected") | {"reason": "unsupported"})[0]
         self.assertEqual(rejected["proposal"]["status"], "rejected")
+        self.assertEqual(rejected["proposal"]["decisionReason"], "unsupported")
         self.assertEqual(rejected["assertion"]["status"], "accepted")
 
 

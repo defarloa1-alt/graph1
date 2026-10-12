@@ -2,18 +2,18 @@
 
 ## 1. Purpose
 
-The local Neo4j `neo4j` database currently contains only the temporal year
-backbone. That is the correct starting point for the revised graph.
+At Phase 0 the local Neo4j `neo4j` database contained only the temporal
+year backbone. That was the correct starting point for the revised graph;
+later phases added data on top of it without changing the backbone.
 
 The separate local `historical` database is empty and is not used by this
 clean-start design.
 
-The Phase 0 snapshot records the currently observed properties. In particular,
-each `Year` node currently has both `year` and `year_value`, along with
-`label`, `iso8601_start`, `iso8601_end`, `created`, and
-`temporal_backbone`. The revised application should choose one canonical
-numeric year property before adding new writes; this is a schema decision, not
-a reason to mutate the existing backbone during inspection.
+The Phase 0 snapshot records the observed properties. In particular, each
+`Year` node has both `year` and `year_value`, along with `label`,
+`iso8601_start`, `iso8601_end`, `created`, and `temporal_backbone`.
+`Year.year` was chosen as the canonical numeric property (Phase 1); new writes
+must not depend on `year_value`.
 
 The year backbone gives the graph a stable, queryable way to attach entities to
 calendar years without prematurely introducing a large period ontology.

@@ -5,7 +5,8 @@
 
 An inquiry file binds a run to a Subject. The reader may name only entities in
 the inquiry's scope (the Subject's focus, entities linked to the focus by
-non-rejected assertions, and the inquiry's declared candidates), and every
+assertions that are not rejected or superseded, and the inquiry's declared
+candidates), and every
 claim must state how it bears on the Subject. Subject- and source-specific
 guidance lives in the inquiry, not in the prompt.
 
@@ -121,7 +122,7 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         MATCH (subject:Subject {id: $subjectId})-[:HAS_SUBJECT_FOCUS]->(focus:Entity)
         OPTIONAL MATCH (focus)<-[:ASSERTION_SUBJECT|ASSERTION_OBJECT]-(assertion:Assertion)
                        -[:ASSERTION_SUBJECT|ASSERTION_OBJECT]->(linked:Entity)
-        WHERE assertion.status <> "rejected"
+        WHERE NOT assertion.status IN ["rejected", "superseded"]
         WITH subject, collect(DISTINCT focus) AS focus, collect(DISTINCT linked) AS linked
         OPTIONAL MATCH (declared:Entity) WHERE declared.id IN $declared
         WITH subject, focus, linked, collect(DISTINCT declared) AS declared
@@ -178,6 +179,7 @@ def predicate_guide(registry: PredicateRegistry) -> str:
     return "\n".join(
         f"- {d.id} ({d.display}): {'/'.join(sorted(d.subject_kinds))} -> {'/'.join(sorted(d.object_kinds))}"
         + (" [symmetric]" if d.symmetric else "")
+        + (f" -- {d.definition}" if d.definition else "")
         for d in registry.predicates.values()
     )
 
@@ -234,7 +236,7 @@ def read_passage(
     return response.parsed_output, meta
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v6", SYSTEM_PROMPT, predicate_guide, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v7", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(

@@ -352,6 +352,100 @@ That is only a valid historical explanation if each edge is supported. The UI
 must not imply that a path is meaningful merely because Neo4j can find a route
 between two nodes.
 
+### 13.1 Path tracing requirements
+
+A trace request should specify:
+
+```yaml
+traceRequest:
+  start: chr:entity:senator-...
+  target: chr:entity:mollusk-...
+  maxHops: 6
+  allowedRelationshipFamilies:
+    - office
+    - participation
+    - place
+    - object
+    - type
+  statusFilter:
+    - accepted
+    - contested
+  requireEvidence: true
+  maxPaths: 10
+```
+
+The response should contain paths, not just a list of reachable nodes:
+
+```yaml
+path:
+  nodes:
+    - id: chr:entity:senator-...
+      label: ...
+    - id: chr:entity:office-...
+      label: ...
+    - id: chr:event:...
+      label: ...
+    - id: chr:place:...
+      label: ...
+    - id: chr:entity:mollusk-...
+      label: ...
+  edges:
+    - assertionId: chr:assertion:...
+      predicate: heldOffice
+      status: accepted
+      evidenceCount: 2
+    - assertionId: chr:assertion:...
+      predicate: participatedIn
+      status: accepted
+      evidenceCount: 3
+  explanation: ...
+```
+
+### 13.2 Path quality
+
+The system should rank or filter paths using:
+
+- maximum hop count;
+- allowed relationship families;
+- accepted versus contested status;
+- evidence availability;
+- temporal compatibility;
+- spatial compatibility;
+- duplicate or circular path suppression;
+- whether the path crosses an authority mapping or a SubjectConcept;
+- whether any edge is inferred rather than directly sourced.
+
+An inferred path must be visibly different from a directly documented path.
+The UI should be able to say:
+
+```text
+This path contains two directly sourced assertions and one inferred
+relationship. It is offered as a research lead, not as an established fact.
+```
+
+### 13.3 Path explanation
+
+Every displayed path should be expandable into a hop-by-hop explanation:
+
+```text
+1. The senator held office X.
+2. Office X is associated with event Y.
+3. Event Y occurred at place Z.
+4. Place Z has an excavated shell deposit.
+5. The deposit is classified by the relevant authority as a mollusk.
+```
+
+Each sentence must link to the assertion and evidence that support it. If the
+path crosses a SubjectConcept, the UI should label that transition as an
+organizational or research connection rather than presenting it as a direct
+historical relationship.
+
+The governing rule for long-range navigation is:
+
+> The graph may discover a path across many entity types, but the UI may only
+> present it as an explanation when every hop is typed, bounded, status-aware,
+> and traceable to evidence.
+
 ## 14. Two trace modes
 
 The navigation service should support two different operations:
@@ -461,97 +555,3 @@ Remote endpoints
   → validated claim cluster
   → possible SubjectConcept promotion
 ```
-
-### 13.1 Path tracing requirements
-
-A trace request should specify:
-
-```yaml
-traceRequest:
-  start: chr:entity:senator-...
-  target: chr:entity:mollusk-...
-  maxHops: 6
-  allowedRelationshipFamilies:
-    - office
-    - participation
-    - place
-    - object
-    - type
-  statusFilter:
-    - accepted
-    - contested
-  requireEvidence: true
-  maxPaths: 10
-```
-
-The response should contain paths, not just a list of reachable nodes:
-
-```yaml
-path:
-  nodes:
-    - id: chr:entity:senator-...
-      label: ...
-    - id: chr:entity:office-...
-      label: ...
-    - id: chr:event:...
-      label: ...
-    - id: chr:place:...
-      label: ...
-    - id: chr:entity:mollusk-...
-      label: ...
-  edges:
-    - assertionId: chr:assertion:...
-      predicate: heldOffice
-      status: accepted
-      evidenceCount: 2
-    - assertionId: chr:assertion:...
-      predicate: participatedIn
-      status: accepted
-      evidenceCount: 3
-  explanation: ...
-```
-
-### 13.2 Path quality
-
-The system should rank or filter paths using:
-
-- maximum hop count;
-- allowed relationship families;
-- accepted versus contested status;
-- evidence availability;
-- temporal compatibility;
-- spatial compatibility;
-- duplicate or circular path suppression;
-- whether the path crosses an authority mapping or a SubjectConcept;
-- whether any edge is inferred rather than directly sourced.
-
-An inferred path must be visibly different from a directly documented path.
-The UI should be able to say:
-
-```text
-This path contains two directly sourced assertions and one inferred
-relationship. It is offered as a research lead, not as an established fact.
-```
-
-### 13.3 Path explanation
-
-Every displayed path should be expandable into a hop-by-hop explanation:
-
-```text
-1. The senator held office X.
-2. Office X is associated with event Y.
-3. Event Y occurred at place Z.
-4. Place Z has an excavated shell deposit.
-5. The deposit is classified by the relevant authority as a mollusk.
-```
-
-Each sentence must link to the assertion and evidence that support it. If the
-path crosses a SubjectConcept, the UI should label that transition as an
-organizational or research connection rather than presenting it as a direct
-historical relationship.
-
-The governing rule for long-range navigation is:
-
-> The graph may discover a path across many entity types, but the UI may only
-> present it as an explanation when every hop is typed, bounded, status-aware,
-> and traceable to evidence.

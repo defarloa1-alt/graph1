@@ -178,6 +178,23 @@ accepted. Evidence and claim are decided separately:
 - **reopen**: an explicit, recorded curator act returns a `rejected`
   Assertion to `proposed` (`reopenedAt`, `reopenedBy`, `reopenBasis`), so new
   evidence can be proposed for it.
+- **supersede**: an explicit, recorded curator act replaces a `proposed` or
+  `accepted` Assertion with one or more more precise Assertions. It becomes
+  `superseded` and links to each replacement by `SUPERSEDED_BY`, recording
+  `supersededFrom`, `supersededAt`, `supersededBy`, `supersedeBasis`, and
+  `supersedeReason`. Its open Proposals must be decided first. A superseded
+  Assertion takes no new evidence and leaves inquiry scope.
+
+Every rejection and supersession carries a reason code (`decisionReason` on
+the Proposal, `supersedeReason` on the Assertion):
+
+| Code | Meaning |
+|---|---|
+| `false` | the claim is wrong |
+| `unsupported` | the evidence does not show the claim |
+| `malformed` | the claim breaks the predicate's definition or kinds |
+| `underspecified` | true in substance but too coarse; precise claims replace it |
+| `superseded-by-model` | a model or registry change replaced it |
 
 An `addEvidence` Proposal offers new evidence for an existing Assertion.
 Accepting it for a still-`proposed` Assertion also accepts the claim: a claim
@@ -217,6 +234,7 @@ Relationship direction must be consistent in the stored graph.
 (:Assertion)-[:SUPPORTED_BY]->(:SourceObservation)
 (:Proposal)-[:PROPOSES]->(:Assertion)
 (:Proposal)-[:PROPOSES_EVIDENCE]->(:SourceObservation)
+(:Assertion)-[:SUPERSEDED_BY]->(:Assertion)
 (:Entity)-[:IN_YEAR]->(:Year)
 ```
 
