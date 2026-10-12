@@ -504,3 +504,33 @@ and a `retract` operation (accepted → rejected with a reason code, evidence
 kept), so a wrong delegated acceptance can be undone. 22 operations; 72
 tests.
 
+## 20. Whole-work runs without cues (2026-10-12)
+
+The curator decided that readers locate passages themselves: inquiries name
+whole works, and guidance carries no locators or source wording (a test
+enforces it). Earlier Dio guidance had quoted the target passage ("on the
+second of September") and cited locators; its run is treated as cued.
+
+| Run | Sections | Stored | Duplicate | Deferred | Cost |
+|---|---:|---:|---:|---:|---:|
+| Dio, *Roman History* 50–51 (v4) | 371 | 5 | 10 | 1 | about $1.10 |
+| Plutarch, *Antony* whole Life (v13) | 359 | 33 | 0 | 2 | about $1.40 |
+
+About 92% of input tokens were read from the prompt cache.
+
+- **Passages located independently.** In all 87 chapters of *Antony*, drafts
+  came only from chapters 61 and 64–68; in Dio, only from 50.14, 50.31–34,
+  51.1, and 51.5: the battle narratives.
+- **The cued Dio run is reproduced.** Ten of its claims were drafted again
+  without cues (outcome `duplicate`).
+- **Dio's own date.** From 51.1.1 the reader drafted *Battle of Actium
+  occurred* attributed to Dio, with the time "the second of September" as a
+  source expression and no normalized value, as the rules require for a day
+  and month without a year.
+- **Open issue: vague time expressions.** Three `heldAuthorityOver` drafts met
+  the required time with narrative phrases such as "When the forces came
+  together for the war" and "after the defeat". They are verbatim and
+  validate, but they date nothing.
+- Queue after the runs: 64 submitted Proposals (32 attributed
+  `participatedIn`, 25 `commanded`, 3 `heldAuthorityOver`, 2 `occurred`, 2
+  `authorOf`). Graph: 4,247 nodes, 4,410 relationships.
