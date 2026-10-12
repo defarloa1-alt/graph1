@@ -151,8 +151,9 @@ a date span.
    reruns on Plutarch.
 2. **Finish the review** (5, item 1): the non-command proposals are done;
    the command proposals whenever convenient.
-3. **E12 design doc** (attributed claims and depicted events: "according to
-   Plutarch"), then the micro-event pilot on *Antony* 65–68 (Phase A).
+3. **E12 design doc** drafted: [23-NARRATIVE-AND-NOTES.md](23-NARRATIVE-AND-NOTES.md)
+   (depicted events per source, passages of note as Annotations; four
+   decisions for the curator), then the pilot on *Antony* and Dio (Phase A).
    Principle agreed with the curator: narrative detail is the author's
    depiction, not fact.
 4. **Fair evaluation**: run the reader unchanged on chapters it has not seen;
