@@ -30,7 +30,7 @@ class PromptVersionTests(unittest.TestCase):
         names = ("Plutarch", "Antony", "Actium", "Perrin", "Octavian", "Caesar", "Dio", "Cary", "Agrippa",
                  "Cleopatra", "Augustus", "Q160387", "Q41523", "Q185223")
         for path in [*root.glob("proposals/*.py"), *root.glob("identity/*.py"), *root.glob("adapters/*.py"),
-                     *root.glob("discovery/*.py"), *root.glob("slices/*.py")]:
+                     *root.glob("discovery/*.py"), *root.glob("slices/*.py"), *root.glob("export/*.py")]:
             text = path.read_text(encoding="utf-8")
             for name in names:
                 self.assertIsNone(re.search(rf"\b{name}\b", text), f"{name} hardcoded in {path.name}")
