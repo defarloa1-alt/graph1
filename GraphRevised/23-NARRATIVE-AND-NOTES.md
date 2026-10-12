@@ -1,6 +1,6 @@
 # Depicted Events and Passages of Note (E12)
 
-**Status:** draft for curator review, 2026-10-12. Nothing here is implemented.
+**Status:** agreed with the curator, 2026-10-12 (decisions in §9). Implementation in progress.
 **Builds on:** [22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md) (claim mode,
 context, time), backlog E12 in [04](04-IMPLEMENTATION-PLAN.md), the use-case
 response (annotations, roadmap Phase A).
@@ -138,13 +138,131 @@ Read *Antony* and Dio 50–51 again with the new outputs. Done when:
 3. entity cards show passages of note for the main figures, each with its
    source and note type.
 
-## 6. Decisions for the curator
+## 6. Interpretation
 
-1. **Depicted events created by the reader** with `status: proposed` (§2),
-   instead of a curator identity act for each one? Recommended: yes.
-2. **Passages of note as Annotation nodes**, shared with curator and user
-   annotations (§3), instead of a relationship-only design? Recommended: yes.
-3. **Predicates** for depicted events (§2 table): `triggeredBy`,
-   `resultedIn`, `depictsSameAs`. Recommended: these three, no more until the
-   pilot shows a need.
-4. **Goals and motives** kept as passages of note until E11. Recommended: yes.
+### A third kind of content
+
+| Kind | Example | Whose voice | Where |
+|---|---|---|---|
+| Fact claim | Agrippa took part in the battle | Chrystallum's, by promotion | asserted claims (22) |
+| Depiction | Cleopatra's squadron sails through the line | the ancient author's | attributed claims, depicted events (§2) |
+| Interpretation | Actium decided whether Rome's centre of gravity lay East or West; a contest of conventional and unconventional war | a modern scholar's | **interpretive claims and notes (this section)** |
+
+A modern historian's reading of what an event meant is neither a fact nor a
+depiction. Example (curator's reading of Barry Strauss, *The War That Made
+the Roman Empire*, 2022): Actium as "a struggle for the heart of the Roman
+Empire", East or West; Europe as "the child of Imperial Rome that emerged
+from this battle"; the battle as "two ways of war", conventional and
+unconventional.
+
+### Claim categories
+
+Every predicate declares a **category** in the registry, `factual` or
+`interpretive`, and each Assertion records it when created (existing claims
+are factual; migration 002). Interpretive claims:
+
+- are always attributed to a Work (a scholar's reading), never asserted by
+  Chrystallum; promotion would mean adopting a scholar's interpretation and
+  is not offered;
+- may disagree with one another; recording that one reading contradicts or
+  qualifies another is E8;
+- are marked as interpretive hops in path tracing, so a path through them is
+  never presented as fact (06 §15).
+
+Interpretive predicates (registry v5):
+
+| Predicate | Subject → object | Meaning |
+|---|---|---|
+| `exemplifies` | Event/Group/Person/Work → Concept | the scholar reads it as an instance of the concept |
+| `ledTo` | Event → Event/Period/Group/Concept/Place | a long-range consequence in the scholar's reading, distinct from a narrative's `resultedIn` |
+| `depictsSameAs` | Event ↔ Event | two sources' depictions are of one historical action (curator) |
+
+### Kinds: Office and Concept
+
+`Other` would otherwise hold offices, concepts, and leftovers, and queries
+could not tell them apart. Two kinds are added (values of `Entity.kind`, not
+labels):
+
+| Kind | Holds | Identity |
+|---|---|---|
+| `Office` | positions and posts; targets of `heldPosition` and role qualifiers | DPRR (E17), Wikidata |
+| `Concept` | analytical ideas, themes, frames; targets of `exemplifies` | Wikidata where one exists, else local, curator-approved |
+
+Each Concept has a one-line definition, so near-synonyms are merged rather
+than multiplied. Generic Concepts take the hub penalty in path tracing.
+`Other` remains for what fits nothing yet.
+
+### "Show me the interpretations of the battle"
+
+The answer combines interpretive claims whose subject or object is the event
+with passages of note of type `interpretation` that concern it, grouped by
+Work and author and ordered by date of composition:
+
+```text
+Interpretations of the Battle of Actium
+  Strauss, The War That Made the Roman Empire (2022)
+    exemplifies -> conventional versus unconventional war   [claim, according to Strauss]
+    ledTo -> the Western-centred Roman Empire              [claim, according to Strauss]
+    "a struggle for the heart of the Roman Empire ..."     [passage of note, with locator]
+```
+
+It is the read operation `getInterpretations(entity)` in the Phase B API and
+an "interpretation" filter in the explorer's right ribbon. Each Concept is a
+doorway in turn: every event any scholar has read as an instance of it.
+
+## 7. Capture: passages chosen while reading
+
+Three channels, one path: a preserved passage, a note, and claims proposed
+from it, never created directly.
+
+1. **Agent capture** from open texts: the reader flags passages of note
+   (§3).
+2. **Manual capture** by the curator: work, edition, page or location, the
+   quoted text, a note, and the entities it concerns (a command now; a form
+   in the explorer later).
+3. **Imports** of reading highlights: Kindle `My Clippings.txt` and
+   Readwise/Reader CSV exports, which carry book, author, location, highlight,
+   note, and time. A book is matched to an existing Work entity through a
+   curated mapping; an unknown book is reported, never created.
+
+Rules:
+
+- **Curator transcription** is a SourceObservation kind: the quoted text as
+  the curator or the import recorded it, with the edition and locator (a
+  page, or a Kindle location, which is specific to that edition), who
+  captured it, when, and from which import file.
+- **The note is not the author's words.** The quotation is evidence of what
+  the author wrote; the curator's note is an Annotation. They are stored
+  separately, as editorial notes are kept apart from ancient text.
+- **Rights.** Quotations from works in copyright are kept short and
+  verbatim, and Annotations and transcriptions are **private by default**;
+  making them visible to a team is the curator's explicit choice, enforced by
+  the read API.
+
+## 8. Implementation order
+
+1. Registry v5: `Office` and `Concept` kinds, claim categories, the new
+   predicates; migration 002 sets `category: factual` on existing claims.
+2. Annotations (an eighth core label, unique `id`) with `ANNOTATES` and
+   `CONCERNS`; curator transcriptions as a passage-like observation kind.
+3. Capture command and the Kindle and Readwise importers.
+4. Reader outputs for depicted events and passages of note; the pilot (§5).
+5. `getInterpretations` with the Phase B read API.
+
+## 9. Curator decisions (2026-10-12)
+
+All accepted as recommended:
+
+1. The reader may propose depicted events, created `status: proposed` (§2).
+2. Passages of note are Annotation nodes, shared with curator and user
+   annotations (§3).
+3. Depicted-event predicates: `triggeredBy`, `resultedIn`, `depictsSameAs`.
+4. Goals and motives stay as passages of note until E11.
+5. The interpretive layer: attributed-only interpretive claims, `exemplifies`
+   and `ledTo`, Concept entities (§6).
+6. Curator-entered passages from works in copyright, as short quotations with
+   a locator (§7).
+
+The curator added: passages will also come from personal reading (Kindle and
+Readwise/Reader highlights), and kind `Other` should not carry concepts and
+offices together (§6).
