@@ -136,8 +136,10 @@ a date span.
 
 1. **Finish the command split** (5a): registry v3, reason codes, supersede,
    and the qualifier mechanism ([22](22-CLAIM-QUALIFIERS.md): context, role,
-   time, mode, promotion) are done. Remaining: the curator's identity act for
-   Plutarch and *Life of Antony* as Work entities, reader prompt v8
+   time, mode, promotion) and the Plutarch / *Life of Antony* entities
+   (Q41523, Q12902608; passages linked `IN_WORK`) are done. Remaining: the
+   curator's decision on *Plutarch author of Life of Antony* (submitted from
+   Wikidata P50), reader prompt v8
    (attributed and unary claims), source discovery, a second-source adapter,
    then the reader rerun.
 2. **Finish the review** (5, item 1): the non-command proposals are done;
