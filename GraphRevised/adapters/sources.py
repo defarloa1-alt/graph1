@@ -1,7 +1,7 @@
 """One interface over passage sources, chosen by an inquiry's `source.type`.
 
     perseus-tei        {"edition": <preserved TEI path>, "chapters": "61-68"}
-    lacuscurtius-html  {"pages": [<preserved page paths>], "chapters": "50.11-51.2", "translator": ...}
+    lacuscurtius-html  {"pages": [<preserved page paths>], "chapters": "50.11-50.15,50.31-51.2", "translator": ...}
 
 Paths are relative to the GraphRevised directory. `chapters` selects what a
 run reads; `refs(None)` lists every section, for context windows.
@@ -30,10 +30,26 @@ class PassageSource:
 def open_source(config: dict[str, Any], base: Path) -> PassageSource:
     kind = config.get("type", "perseus-tei")
     if kind == "perseus-tei":
-        return _perseus(config, base)
-    if kind == "lacuscurtius-html":
-        return _lacuscurtius(config, base)
-    raise ValueError(f"unknown source type {kind!r}")
+        source = _perseus(config, base)
+    elif kind == "lacuscurtius-html":
+        source = _lacuscurtius(config, base)
+    else:
+        raise ValueError(f"unknown source type {kind!r}")
+    return _with_range_lists(source)
+
+
+def _with_range_lists(source: PassageSource) -> PassageSource:
+    """Let a selection list several ranges ("50.11-50.15,50.31-51.2"), in document order."""
+    single = source.refs
+
+    def refs(selection: str | None) -> list[str]:
+        if not selection or "," not in selection:
+            return single(selection)
+        chosen = {ref for part in selection.split(",") for ref in single(part.strip())}
+        return [ref for ref in single(None) if ref in chosen]
+
+    return PassageSource(author=source.author, title=source.title, translator=source.translator,
+                         citation=source.citation, refs=refs, observation=source.observation)
 
 
 def _perseus(config: dict[str, Any], base: Path) -> PassageSource:

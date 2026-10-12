@@ -89,6 +89,7 @@ class LacusCurtiusTests(unittest.TestCase):
                              self.directory)
         self.assertEqual(source.refs("7.1-7.1"), ["7.1.1", "7.1.2"])
         self.assertEqual(len(source.refs(None)), 3)
+        self.assertEqual(source.refs("7.2-7.2, 7.1-7.1"), ["7.1.1", "7.1.2", "7.2.1"])
         with self.assertRaises(ValueError):
             open_source({"type": "unknown"}, self.directory)
 
