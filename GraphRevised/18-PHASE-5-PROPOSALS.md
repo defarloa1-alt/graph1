@@ -544,3 +544,33 @@ Plutarch sections whose authority claims had been deferred stored both
 (64.1, and 68.3 as undated); Dio 50.14.1 drafted nothing on the rerun, a
 reminder that model output varies between runs. Passages that add colour
 but are not claims ("passages of note") are to be designed with E12.
+
+## 21. First interpretations: Weigall and Hale (2026-10-12)
+
+Reader prompt v10 (passages of note) read two public-domain modern works whole,
+with the three Concepts in scope.
+
+| Run | Paragraphs | Claims stored | Notes | Cost |
+|---|---:|---:|---:|---:|
+| Weigall, *The Life and Times of Cleopatra* (1914) | 465 | 31 | 81 (25 interpretation) | about $3.10 |
+| Hale, *Famous Sea Fights* (1911) | 847 | 33 | 34 (14 interpretation) | about $3.55 |
+
+- **Located independently.** Weigall's output came almost entirely from
+  chapters 15–18, the war; Hale's from chapter 2 (Actium), with three brief
+  mentions in later chapters (Actium as a benchmark for galley tactics at
+  Lepanto).
+- **Interpretive claims** (according to Hale): *Battle of Actium exemplifies
+  decisive battle*, with three supporting passages, and *exemplifies East-West
+  contest for the Roman Empire*. Weigall's readings came as notes instead.
+- **Two `ledTo` drafts were invalid**: the long-range consequence (the
+  imperial regime, the Principate) has no entity, so the reader pointed one at
+  Augustus (a Person, not allowed) and left one without an object. A Period or
+  Concept for the Principate would let these through.
+- **"Interpretations of the battle"** now answers from the graph: two Hale
+  claims, ten Hale notes, and thirteen Weigall notes, among them Weigall's
+  statement that his facts rest on the early authorities while the explanatory
+  theories are his own, and his reading that the battle was forced on Antony
+  by those who wanted the Egyptians out of his party.
+- Cost was about twice the estimate: modern paragraphs are long and the notes
+  add output. The Batch API would halve it.
+- Queue: 130 submitted Proposals and 115 flagged Annotations.
