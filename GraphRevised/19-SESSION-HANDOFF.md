@@ -10,9 +10,9 @@
 ```bash
 cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
-python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity \
+python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live          # expect 72 tests, OK
+  GraphRevised.tests.test_proposals_live          # expect 88 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
