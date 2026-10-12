@@ -433,9 +433,23 @@ tradition credits Agrippa with directing the fleet.
   definitions.
 - 21 operations; 70 tests.
 
-**Not yet done:** the claim qualifiers (event context, `capacity`) wait for
-the curator's research on capacity. The nine held `commanded` proposals were
+**Not yet done:** the claim qualifiers (event context and role; role
+replaced `capacity`, see
+[docs/Response - Roman Republican Army Structure.md](docs/Response%20-%20Roman%20Republican%20Army%20Structure.md)). The nine held `commanded` proposals were
 drafted under v2, when `commanded` still covered authority held; they are
 re-validated against v3 on acceptance, but their meaning needs the curator's
-judgment against the narrowed definition.
+judgment against the narrowed definition. While the model is in design they
+stay open: claims are not rejected or superseded merely because a predicate
+was redesigned.
+
+### Delegated review of the v6 non-command proposals (2026-10-12)
+
+At the curator's request, Claude decided the ten non-command proposals,
+recorded as "Claude (delegated by Tony DeFarlo)" with a basis for each. Each
+was re-validated against predicates-v3. Accepted: participation of
+Poplicola (65.1, 66.3), Insteius (65.1), Arruntius (66.3), Eurycles (67.2,
+attacking Antony's fleeing ship), Antony's fleet (66.1, 68.1), and Octavian's
+fleet (66.1); and *Battle of Actium occurred at* the Actium promontory (68.1).
+Rejected as `unsupported`: Cleopatra 66.3 (only her ships are named); her
+claim stays open. Graph: 4,142 nodes, 4,178 relationships.
 

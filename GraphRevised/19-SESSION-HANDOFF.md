@@ -24,15 +24,15 @@ python -m GraphRevised.proposals.review list --status submitted
 
 ## 2. Verified graph state
 
-4,142 nodes, 4,169 relationships (4,025 Year nodes + 117 others).
+4,142 nodes, 4,178 relationships (4,025 Year nodes + 117 others), after the 2026-10-12 review.
 
 | Label | Count | Notes |
 |---|---:|---|
 | Entity | 24 | 11 Person, 11 Group (local force entities), 1 Event, 1 Place |
 | AuthorityRecord | 13 | Wikidata identity links, each with a preserved payload |
 | SourceObservation | 18 | 2 Wikidata statements, 16 Plutarch passages |
-| Assertion | 19 | 3 accepted, 15 proposed, 1 rejected |
-| Proposal | 42 | 11 accepted, 8 rejected, **23 submitted (awaiting review)** |
+| Assertion | 19 | 10 accepted, 8 proposed, 1 rejected |
+| Proposal | 42 | 20 accepted, 9 rejected, **13 submitted (all `commanded`)** |
 | Subject | 1 | History of the Battle of Actium |
 
 Accepted claims:
@@ -42,6 +42,18 @@ Accepted claims:
 | Augustus participated in Battle of Actium | Wikidata P710 · Plutarch 65.2, 65.4, 65.5, 68.1 |
 | Agrippa participated in Battle of Actium | Wikidata P710 · Plutarch 65.2, 66.3 |
 | Mark Antony participated in Battle of Actium | Plutarch 65.1, 66.5, 67.2 (text-only claim) |
+| Lucius Gellius Poplicola participated in Battle of Actium | Plutarch 65.1, 66.3 |
+| Marcus Insteius participated in Battle of Actium | Plutarch 65.1 |
+| Lucius Arruntius participated in Battle of Actium | Plutarch 66.3 |
+| Gaius Julius Eurycles participated in Battle of Actium | Plutarch 67.2 (the pursuit of Antony's flight) |
+| Antony's fleet at Actium participated in Battle of Actium | Plutarch 66.1, 68.1 |
+| Octavian's fleet at Actium participated in Battle of Actium | Plutarch 66.1 |
+| Battle of Actium occurred at Actium promontory | Plutarch 68.1 |
+
+Still proposed: Cleopatra participatedIn (evidence 66.3 rejected as
+`unsupported`; claim open) and the seven `commanded` claims (13 Proposals).
+The seven claims added on 2026-10-12 rest on Plutarch alone and were decided
+by "Claude (delegated by Tony DeFarlo)".
 
 ## 3. What exists
 
@@ -74,7 +86,8 @@ Accepted claims:
 
 ## 5. Open decisions (for the curator)
 
-1. **23 submitted proposals** (Actium v6 run). Review the 14 that do not use `commanded` (participation, place, forces): accept them, except reject the Cleopatra 66.3 *evidence* (`…7059319b3457`) with plain `reject --reason unsupported` so her claim stays open. The 9 `commanded` proposals stay open (5a, design-mode policy); review them against the v3 definition when convenient.
+1. **13 submitted `commanded` proposals** (7 claims) stay open (5a, design-mode policy); review them against the v3 definition when convenient. The 10 non-command proposals were decided on 2026-10-12 (the earlier count of 14 non-command and 9 command was wrong). *Mark Antony commanded Antony's fleet* (the whole fleet) is the borderline case between authority held and command exercised.
+1a. **Display label:** the Actium promontory Entity is labelled "Akri" (from Wikidata), so the accepted claim reads "Battle of Actium occurred at Akri". Consider a local label such as "Actium promontory".
 2. **Cleopatra 67.1**: whether to submit a curator-authored claim citing "Cleopatra recognized him and raised a signal on her ship".
 3. **Unresolved commanders** with no Wikidata record: Coelius (Antony's left wing), Marcus Octavius (Antony's centre), Alexas. Option: local entities, like the forces.
 4. **33 peripheral mentions** in the identity queue (allies, places); deferred because most would need dated `alliedWith` claims.
@@ -121,8 +134,8 @@ a date span.
 1. **Finish the command split** (5a): registry v3, reason codes, and
    supersede are done; next the event-context and role qualifiers, then rerun
    the reader for command claims.
-2. **Finish the review** (5, item 1): the 14 non-command proposals now; the
-   command proposals whenever convenient.
+2. **Finish the review** (5, item 1): the non-command proposals are done;
+   the command proposals whenever convenient.
 3. **E12 design doc** (attributed claims and depicted events: "according to
    Plutarch"), then the micro-event pilot on *Antony* 65–68 (Phase A).
    Principle agreed with the curator: narrative detail is the author's
