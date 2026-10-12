@@ -12,7 +12,8 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius  # expect 127 tests, OK
+  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius \
+  GraphRevised.tests.test_curation_live  # expect 129 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -71,7 +72,7 @@ AuthorityRecord keeps Wikidata's wording.
 | Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v11) — Subject, narrative event, source edition and Work, scope, guidance |
 | Identity queue | [identity/queue.py](identity/queue.py), queue file [queues/identity-actium-plutarch-antony.json](queues/identity-actium-plutarch-antony.json) |
 | Adapters | Wikidata identity, statements, context (aliases/dates); passages from Perseus TEI and LacusCurtius HTML behind one source interface ([adapters/sources.py](adapters/sources.py)); Scaife catalogue |
-| Curation slices | [slices/add_entity.py](slices/add_entity.py), [slices/actium_forces.py](slices/actium_forces.py), [slices/octavian_actium.py](slices/octavian_actium.py) |
+| Curation | Data, not code: manifests [curation/actium.json](curation/actium.json) and [curation/works.json](curation/works.json) applied by [slices/apply_curation.py](slices/apply_curation.py) (`--dry-run` reports changes); [slices/add_entity.py](slices/add_entity.py) and [slices/add_work.py](slices/add_work.py) for single approvals |
 | Migration | [migrations/001-pending-evidence-for-open-proposals.cypher](migrations/001-pending-evidence-for-open-proposals.cypher) (applied) |
 | Preserved sources | `phase-2-source/`, `phase-4-source/`, `phase-5-source/` — hashed byte-for-byte; `.gitattributes` keeps them `-text` |
 | Run traces | [runs/](runs) — one JSONL per reader run, with inquiry, scope, prompt version, model |
@@ -87,6 +88,7 @@ AuthorityRecord keeps Wikidata's wording.
 7. Tests must not depend on live graph contents; use synthetic fixtures in the rolled-back transaction.
 8. Shell note: long `python - <<'EOF'` heredocs containing triple-quoted strings have failed in this environment; write edit scripts to the scratchpad and run them instead.
 9. Delegated review follows [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md): Claude may accept only claims a verbatim quote plainly shows, records itself as `Claude (delegated by …)`, and leaves identity, predicates, roles, command, and uncertain cases to the curator.
+10. Curation is data: approved identities and local entities go into a manifest in `curation/`, never into a new script. Reusable code, including `slices/`, must name no source or subject (a test enforces it).
 
 ## 5. Open decisions (for the curator)
 
@@ -155,9 +157,11 @@ a date span.
    measure curator acceptance. Prompts v3–v6 were tuned on *Antony* 61–68.
 5. **Phase 7 temporal qualification**: unblocks marriages, offices, and
    source dating.
-6. **Second source** (for E10): add `source.type` and an adapter interface;
-   move the context window and scope rule into the inquiry; turn slice scripts
-   into data.
+6. **Second source** (for E10): done — `source.type` and the source interface,
+   the context window and calendar in the inquiry, curation as manifests.
+   Remaining hard-coding: the scope rule (focus, linked, declared) is fixed in
+   code; English-only citation patterns in source discovery; default models
+   are CLI defaults.
 
 **Roadmap:** [docs/Response - Use Cases.md](docs/Response%20-%20Use%20Cases.md)
 (Chrystallum is for exploring and discovering connections, not an
@@ -175,7 +179,8 @@ review policy); E16 frontier expansion (leaf nodes to clusters).
 
 ## 7. Known gaps
 
-- The reader reads only Perseus TEI by chapter.section; context window and scope rule are fixed in code.
+- The scope rule (focus, entities linked to it, declared candidates) is fixed in code.
+- Wikidata time values use historical BCE numbering (no year zero), unlike EDTF; comparing Wikidata qualifier values with claims must convert through `proposals/temporal.py`.
 - Entity context is Wikidata-only and English-only.
 - Force hierarchy (a wing is part of a fleet) has no predicate yet; labels carry it. Backlog: a Group → Group predicate (`SUBUNIT_OF` in the army-structure response).
 - Neo4j Bloom is for smoke testing only (status colouring via rule-based styling on `status`). The product UI is a custom React + Cytoscape.js explorer designed in Figma: [20-EXPLORER-UI.md](20-EXPLORER-UI.md).

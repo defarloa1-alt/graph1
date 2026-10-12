@@ -18,6 +18,9 @@ from .wikidata_statements import REPOSITORY_ROOT
 
 TEI = "{http://www.tei-c.org/ns/1.0}"
 NS = {"t": TEI[1:-1]}
+XML_LANG = "{http://www.w3.org/XML/1998/namespace}lang"
+# TEI uses ISO 639-2 codes; observations use ISO 639-1 where one exists.
+LANGUAGE_CODES = {"eng": "en", "lat": "la", "deu": "de", "ger": "de", "fre": "fr", "fra": "fr", "ita": "it"}
 
 
 class PassageNotFound(LookupError):
@@ -36,11 +39,17 @@ class Edition:
     source_commit: str
     content_hash: str
     root: ET.Element
+    language: str
+    rights: str | None = None  # the preserved metadata's rights statement, when recorded
 
 
-def load_edition(path: Path, *, source_commit: str) -> Edition:
+def load_edition(path: Path, *, source_commit: str, rights: str | None = None) -> Edition:
     payload = path.read_bytes()
     root = ET.fromstring(payload)
+    text_element = root.find(".//t:text", NS)
+    language = text_element.get(XML_LANG) if text_element is not None else None
+    if not language:
+        raise ValueError(f"{path.name} does not declare the language of its text")
     title_stmt = root.find(".//t:titleStmt", NS)
     translator = title_stmt.find("t:editor[@role='translator']", NS)
     edition_div = root.find(".//t:body/t:div", NS)
@@ -72,6 +81,8 @@ def load_edition(path: Path, *, source_commit: str) -> Edition:
         source_commit=source_commit,
         content_hash=hashlib.sha256(payload).hexdigest(),
         root=root,
+        language=LANGUAGE_CODES.get(language, language),
+        rights=rights,
     )
 
 
@@ -104,15 +115,12 @@ def passage_observation(edition: Edition, ref: str, *, retrieved_at: str, source
         "passageText": text,
         "passageHash": hashlib.sha256(text.encode("utf-8")).hexdigest(),
         "editorialNotes": notes,
-        "language": "en",
+        "language": edition.language,
         "workTitle": edition.title,
         "author": edition.author,
         "translator": edition.translator,
         "editionCitation": edition.citation,
-        "rights": (
-            f"Translation public domain ({edition.citation.rsplit('; ', 1)[-1]}); "
-            f"TEI markup {edition.licence or 'licence unknown'}, Perseus Digital Library"
-        ),
+        "rights": edition.rights or f"rights not recorded; TEI markup {edition.licence or 'licence unknown'}",
         "sourceUri": source_uri,
         "sourceRevision": edition.source_commit,
         "retrievedAt": retrieved_at,

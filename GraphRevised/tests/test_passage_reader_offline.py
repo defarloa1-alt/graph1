@@ -9,7 +9,7 @@ OBSERVATION = "chr:observation:test:passage"
 INQUIRY = Inquiry(
     id="chr:inquiry:test", version=1, label="Test inquiry", subject={"id": "chr:subject:test", "label": "Test"},
     focus=[], scope=[], guidance=[], source={"type": "perseus-tei", "edition": "none.xml", "chapters": "1-2"},
-    work_id="chr:entity:test-work", narrative_event_id="chr:entity:test-battle",
+    work_id="chr:entity:test-work", narrative_event_id="chr:entity:test-battle", calendar="julian",
 )
 
 
@@ -49,6 +49,14 @@ class ReaderDraftTests(unittest.TestCase):
         (draft,), _ = drafts(claim(time_source_expression="in the year 31", time_quotation="in the year 31 they fought",
                                    time_edtf="-0030"))
         self.assertEqual((draft.time.calendar, draft.time.normalization_basis), ("julian", "source"))
+
+    def test_a_normalized_date_needs_the_inquiry_calendar(self):
+        from dataclasses import replace
+
+        output = ReaderOutput(claims=[claim(time_source_expression="in the year 31", time_quotation="in the year 31",
+                                            time_edtf="-0030")], unresolved_mentions=[])
+        produced, malformed = to_drafts(output, OBSERVATION, "test-model", replace(INQUIRY, calendar=None))
+        self.assertEqual((produced, len(malformed)), ([], 1))
 
     def test_qualifiers_without_their_spans_are_malformed(self):
         cases = (

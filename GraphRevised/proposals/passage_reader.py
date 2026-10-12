@@ -90,7 +90,7 @@ exactly. Give a time only when the passage states one: time_source_expression is
 own words and time_quotation the exact span containing them. Fill time_edtf only when the passage \
 itself states the year (with or without month and day); never from editorial notes, the surrounding \
 narrative, or outside knowledge, and not for a day and month given without a year. time_edtf numbers \
-years astronomically: 1 BCE is 0000 and 31 BCE is -0030, so 2 September 31 BCE is -0030-09-02. A \
+years astronomically: 1 BCE is 0000, 2 BCE is -0001, and 100 BCE is -0099; years CE are unchanged. A \
 predicate's list entry says which qualifiers it takes; a claim that needs a qualifier the passage \
 does not give is still drafted without it, and is held for later.
 10. For predicates that take a context, set context_id to the inquiry's narrative event when the \
@@ -139,6 +139,9 @@ class Inquiry:
     source: dict[str, Any]  # adapter configuration: type, files, chapters (adapters/sources.py)
     work_id: str
     narrative_event_id: str | None
+    calendar: str | None = None  # calendar of normalized dates in this source's world (julian, gregorian)
+    context_before: int = 2  # sections shown before the target passage, as context only
+    context_after: int = 1
 
 
 def load_inquiry(path: Path, tx: Any) -> Inquiry:
@@ -197,6 +200,9 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         source=data["source"],
         work_id=work_id,
         narrative_event_id=narrative_event_id,
+        calendar=data.get("calendar"),
+        context_before=data["source"].get("contextWindow", {}).get("before", 2),
+        context_after=data["source"].get("contextWindow", {}).get("after", 1),
     )
 
 
@@ -309,10 +315,12 @@ def _draft(claim: ReaderClaim, observation_id: str, model_id: str, inquiry: Inqu
         if not claim.time_quotation:
             raise ValueError("a time needs time_quotation")
         spans.append(QualifierQuotation(observation_id=observation_id, supports="time", text=claim.time_quotation))
+        if claim.time_edtf and not inquiry.calendar:
+            raise ValueError("a normalized date needs the inquiry's calendar")
         time = TimeQualifier(
             source_expression=claim.time_source_expression,
             edtf=claim.time_edtf,
-            calendar="julian" if claim.time_edtf else None,
+            calendar=inquiry.calendar if claim.time_edtf else None,
             normalization_basis="source" if claim.time_edtf else None,
         )
     context_basis = None
@@ -387,7 +395,8 @@ def main(argv: list[str] | None = None) -> int:
                 index = all_refs.index(ref)
                 context = [
                     (r, edition.observation(r)["passageText"])
-                    for r in all_refs[max(0, index - 2):index] + all_refs[index + 1:index + 2]
+                    for r in all_refs[max(0, index - inquiry.context_before):index]
+                    + all_refs[index + 1:index + 1 + inquiry.context_after]
                 ]
                 output, meta = read_passage(client, args.model, inquiry, edition, ref, passage, context, registry)
                 totals["inputTokens"] += meta["inputTokens"]

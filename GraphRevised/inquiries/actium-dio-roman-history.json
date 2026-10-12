@@ -1,9 +1,10 @@
 {
   "id": "chr:inquiry:actium-dio-roman-history",
-  "version": 1,
+  "version": 2,
   "label": "Battle of Actium in Cassius Dio's Roman History",
   "subjectId": "chr:subject:history-of-battle-of-actium",
   "narrativeEventId": "chr:entity:battle-of-actium",
+  "calendar": "julian",
   "source": {
     "type": "lacuscurtius-html",
     "pages": [
@@ -12,7 +13,11 @@
     ],
     "chapters": "50.11-51.2",
     "translator": "Earnest Cary",
-    "workId": "chr:entity:cassius-dio-roman-history"
+    "workId": "chr:entity:cassius-dio-roman-history",
+    "contextWindow": {
+      "before": 2,
+      "after": 1
+    }
   },
   "candidateEntityIds": [
     "chr:entity:mark-antony",

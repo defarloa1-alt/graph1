@@ -262,7 +262,7 @@ built and tested on synthetic Works:
   accepts the asserted claim in one transaction.
 
 Step 3's identity act is done (curator approval, 2026-10-12;
-[slices/plutarch_work.py](slices/plutarch_work.py)): Plutarch (Person,
+[curation/works.json](curation/works.json)): Plutarch (Person,
 Q41523) and *Life of Antony* (Work, Q12902608, local label "Plutarch, Life of
 Antony"), the 16 preserved passages linked `IN_WORK`, and *Plutarch author of
 Life of Antony* submitted from Wikidata P50 for the curator.

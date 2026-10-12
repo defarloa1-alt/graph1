@@ -38,8 +38,9 @@ def open_source(config: dict[str, Any], base: Path) -> PassageSource:
 
 def _perseus(config: dict[str, Any], base: Path) -> PassageSource:
     path = base / config["edition"]
-    edition = perseus_passages.load_edition(path, source_commit=path.stem.rsplit("-", 1)[1])
     metadata = json.loads(path.with_suffix(".metadata.json").read_text(encoding="utf-8"))
+    edition = perseus_passages.load_edition(path, source_commit=path.stem.rsplit("-", 1)[1],
+                                            rights=metadata.get("rights"))
 
     def refs(selection: str | None) -> list[str]:
         first, last = (int(n) for n in (selection or "1-999").split("-"))
@@ -55,7 +56,7 @@ def _perseus(config: dict[str, Any], base: Path) -> PassageSource:
 
 def _lacuscurtius(config: dict[str, Any], base: Path) -> PassageSource:
     edition = lacuscurtius_passages.load_edition([base / page for page in config["pages"]],
-                                                 translator=config.get("translator"))
+                                                 translator=config.get("translator"), language=config.get("language"))
     return PassageSource(
         author=edition.author, title=edition.title, translator=edition.translator, citation=edition.citation,
         refs=lambda selection: lacuscurtius_passages.section_refs(edition, selection) if selection else edition.all_refs(),

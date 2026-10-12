@@ -159,7 +159,7 @@ recommended next step:
 ## 9. First claim through the workflow: Octavian at Actium
 
 Persisted on 2026-10-11 by
-[slices/octavian_actium.py](slices/octavian_actium.py), which is idempotent:
+a slice script (now the `statementProposals` entry of [curation/actium.json](curation/actium.json)), which is idempotent:
 
 - preserved identity payload
   [wikidata-Q1405-r2555830380.json](phase-5-source/wikidata-Q1405-r2555830380.json)

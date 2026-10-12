@@ -1,0 +1,138 @@
+{
+  "description": "Curator-approved identities and local entities for the Battle of Actium inquiries (Phase 5, 2026-10-11/12). The Battle of Actium and Agrippa were created in Phase 2 (12-PHASE-2-ACTIUM.md) and are not repeated here.",
+  "identities": [
+    {
+      "id": "chr:entity:augustus",
+      "kind": "Person",
+      "qid": "Q1405"
+    },
+    {
+      "id": "chr:entity:mark-antony",
+      "kind": "Person",
+      "qid": "Q51673"
+    },
+    {
+      "id": "chr:entity:cleopatra",
+      "kind": "Person",
+      "qid": "Q635"
+    },
+    {
+      "id": "chr:entity:publius-canidius-crassus",
+      "kind": "Person",
+      "qid": "Q637205"
+    },
+    {
+      "id": "chr:entity:titus-statilius-taurus",
+      "kind": "Person",
+      "qid": "Q2331658"
+    },
+    {
+      "id": "chr:entity:gnaeus-domitius-ahenobarbus",
+      "kind": "Person",
+      "qid": "Q360920"
+    },
+    {
+      "id": "chr:entity:lucius-arruntius",
+      "kind": "Person",
+      "qid": "Q727792"
+    },
+    {
+      "id": "chr:entity:marcus-insteius",
+      "kind": "Person",
+      "qid": "Q17747765"
+    },
+    {
+      "id": "chr:entity:gaius-julius-eurycles",
+      "kind": "Person",
+      "qid": "Q1378466"
+    },
+    {
+      "id": "chr:entity:lucius-gellius-poplicola",
+      "kind": "Person",
+      "qid": "Q1283545"
+    },
+    {
+      "id": "chr:entity:actium-promontory",
+      "kind": "Place",
+      "qid": "Q216551",
+      "label": "Actium promontory",
+      "shortLabel": "Actium promontory"
+    }
+  ],
+  "localEntities": [
+    {
+      "id": "chr:entity:octavian-fleet-at-actium",
+      "kind": "Group",
+      "label": "Octavian's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:octavian-fleet-at-actium-left-wing",
+      "kind": "Group",
+      "label": "Left wing of Octavian's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:octavian-fleet-at-actium-centre",
+      "kind": "Group",
+      "label": "Centre of Octavian's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:octavian-fleet-at-actium-right-wing",
+      "kind": "Group",
+      "label": "Right wing of Octavian's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:antony-fleet-at-actium",
+      "kind": "Group",
+      "label": "Antony's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:antony-fleet-at-actium-left-wing",
+      "kind": "Group",
+      "label": "Left wing of Antony's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:antony-fleet-at-actium-centre",
+      "kind": "Group",
+      "label": "Centre of Antony's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:antony-fleet-at-actium-right-wing",
+      "kind": "Group",
+      "label": "Right wing of Antony's fleet at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:cleopatra-squadron-at-actium",
+      "kind": "Group",
+      "label": "Cleopatra's squadron at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:octavian-army-at-actium",
+      "kind": "Group",
+      "label": "Octavian's land army at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    },
+    {
+      "id": "chr:entity:antony-army-at-actium",
+      "kind": "Group",
+      "label": "Antony's land army at Actium",
+      "description": "Local analytical entity: a force at the Battle of Actium as described by Plutarch, Antony 65-66."
+    }
+  ],
+  "statementProposals": [
+    {
+      "payload": "phase-2-source/wikidata-Q160387-r2555342002.json",
+      "statementId": "Q160387$d9469717-433b-c369-9fc7-3d7d5bf2b969",
+      "label": "Wikidata observation: Augustus participated in Battle of Actium",
+      "shortLabel": "Wikidata: Augustus -> Actium"
+    }
+  ]
+}

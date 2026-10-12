@@ -27,6 +27,9 @@ import requests
 from .wikidata_identity import USER_AGENT
 from .wikidata_statements import REPOSITORY_ROOT
 
+# LacusCurtius keeps texts by language in the path: /Thayer/E/ English, /Thayer/L/ Latin, /Thayer/G/ Greek.
+PATH_LANGUAGES = {"E": "en", "L": "la", "G": "grc"}
+
 REPRODUCES = re.compile(
     r"This webpage reproduces (?:a|an|the) (?:Book|Part|Chapter)?\s*(?:of )?(?P<title>.+?) by (?P<author>.+?) "
     r"published in (?P<publication>.+?\d{4})"
@@ -45,6 +48,7 @@ class Page:
     retrieved_at: str
     content_hash: str
     page_updated: str | None
+    public_domain_statement: str | None
     sections: dict[str, str]  # "31.1" -> text
     notes: dict[str, list[str]]  # "31.1" -> editorial notes referenced there
 
@@ -58,6 +62,7 @@ class Edition:
     translator: str | None
     citation: str
     work_slug: str
+    language: str
     pages: tuple[Page, ...] = field(default_factory=tuple)
 
     def all_refs(self) -> list[str]:
@@ -95,10 +100,16 @@ def preserve_page(url: str, directory: Path) -> Path:
     return path
 
 
-def load_edition(paths: list[Path], *, translator: str | None = None) -> Edition:
+def load_edition(paths: list[Path], *, translator: str | None = None, language: str | None = None) -> Edition:
+    """Load preserved pages. The language comes from `language` or the page's /Thayer/<letter>/ path."""
     pages = [_load_page(path) for path in paths]
     if not pages:
         raise ValueError("no pages")
+    if language is None:
+        letter = re.search(r"/Thayer/([A-Z])/", pages[0].source_uri)
+        language = PATH_LANGUAGES.get(letter.group(1)) if letter else None
+        if language is None:
+            raise ValueError(f"the language of {pages[0].source_uri} is not known; give it in the source config")
     first = pages[0].path.read_bytes().decode("utf-8", "replace")
     match = REPRODUCES.search(_plain(first))
     if not match:
@@ -109,7 +120,7 @@ def load_edition(paths: list[Path], *, translator: str | None = None) -> Edition
     ) if part)
     return Edition(
         author=match["author"], title=match["title"], translator=translator, citation=citation,
-        work_slug=_work_slug(pages[0].source_uri), pages=tuple(pages),
+        work_slug=_work_slug(pages[0].source_uri), language=language, pages=tuple(pages),
     )
 
 
@@ -135,12 +146,12 @@ def passage_observation(edition: Edition, ref: str) -> dict[str, Any]:
         "passageText": text,
         "passageHash": hashlib.sha256(text.encode("utf-8")).hexdigest(),
         "editorialNotes": page.notes.get(local, []),
-        "language": "en",
+        "language": edition.language,
         "workTitle": edition.title,
         "author": edition.author,
         "translator": edition.translator,
         "editionCitation": edition.citation,
-        "rights": f"Translation public domain ({edition.citation}); LacusCurtius public-domain page",
+        "rights": f"{page.public_domain_statement or 'Rights not stated on the page.'} ({edition.citation})",
         "sourceUri": page.source_uri,
         "sourceRevision": f"{page.page_updated or 'undated'}:{page.content_hash[:8]}",
         "retrievedAt": page.retrieved_at,
@@ -164,7 +175,8 @@ def _load_page(path: Path) -> Page:
     return Page(
         book=book.group(1) if book else path.stem, path=path, source_uri=metadata["sourceUri"],
         retrieved_at=metadata["retrievedAt"], content_hash=metadata["contentHash"],
-        page_updated=metadata.get("pageUpdated"), sections={k: v for k, v in sections.items() if v}, notes=notes,
+        page_updated=metadata.get("pageUpdated"), public_domain_statement=metadata.get("publicDomainStatement"),
+        sections={k: v for k, v in sections.items() if v}, notes=notes,
     )
 
 

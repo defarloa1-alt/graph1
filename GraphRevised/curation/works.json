@@ -1,0 +1,23 @@
+{
+  "description": "Curator-approved source Works and their authors (2026-10-12). Each Work's local label is the curator's; its AuthorityRecord keeps Wikidata's wording.",
+  "works": [
+    {
+      "authorId": "chr:entity:plutarch",
+      "authorQid": "Q41523",
+      "workId": "chr:entity:plutarch-life-of-antony",
+      "workQid": "Q12902608",
+      "workLabel": "Plutarch, Life of Antony",
+      "workShortLabel": "Life of Antony",
+      "passagePrefix": "chr:observation:perseus:tlg0007.tlg058."
+    },
+    {
+      "authorId": "chr:entity:cassius-dio",
+      "authorQid": "Q185223",
+      "workId": "chr:entity:cassius-dio-roman-history",
+      "workQid": "Q3974431",
+      "workLabel": "Cassius Dio, Roman History",
+      "workShortLabel": "Roman History",
+      "passagePrefix": "chr:observation:lacuscurtius:cassius-dio:"
+    }
+  ]
+}

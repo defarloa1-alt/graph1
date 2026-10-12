@@ -6,7 +6,8 @@
 Three channels, combined:
 
 1. citations inside passages already preserved for the inquiry's source
-   ("as Caesar himself has written"), found deterministically;
+   ("as he himself has written", "according to ..."), found deterministically
+   for the languages that have citation patterns;
 2. candidate witnesses proposed by a model, each with a locator, approximate
    date, genre, relation to the event, and known dependencies; these are
    candidates for the curator, never facts;
@@ -84,18 +85,24 @@ class SourcePlanOutput(BaseModel):
     notes: str
 
 
-# Phrases by which a narrative cites another account, in English translation.
-CITATION = re.compile(
-    r"(?:as|according to)\s+(?P<who>[A-Z][\w'-]*(?:\s+[A-Z][\w'-]*)*)\s*(?:himself|herself)?\s*"
-    r"(?P<verb>has written|had written|wrote|writes|says|said|tells us|records|relates)?",
-)
+# Phrases by which a narrative cites another account, by passage language.
+# Passages in a language with no pattern are not scanned (and are counted).
+CITATION_PATTERNS = {
+    "en": re.compile(
+        r"(?:as|according to)\s+(?P<who>[A-Z][\w'-]*(?:\s+[A-Z][\w'-]*)*)\s*(?:himself|herself)?\s*"
+        r"(?P<verb>has written|had written|wrote|writes|says|said|tells us|records|relates)?",
+    ),
+}
 
 
 def cited_sources(passages: list[dict[str, Any]]) -> list[dict[str, str]]:
     """Places where a preserved passage cites another account."""
     found = []
     for passage in passages:
-        for match in CITATION.finditer(passage["passageText"]):
+        pattern = CITATION_PATTERNS.get(passage.get("language") or "en")
+        if pattern is None:
+            continue
+        for match in pattern.finditer(passage["passageText"]):
             if match["verb"] or match.group(0).lower().startswith("according to"):
                 start = max(0, match.start() - 80)
                 found.append({
@@ -194,13 +201,16 @@ def main(argv: list[str] | None = None) -> int:
             source = session.run("MATCH (w:Entity {id: $id}) RETURN w.label AS label", id=inquiry.work_id).single()
             passages = session.run(
                 "MATCH (o:SourceObservation)-[:IN_WORK]->(:Entity {id: $id}) "
-                "RETURN o.locator AS locator, o.passageText AS passageText ORDER BY locator",
+                "RETURN o.locator AS locator, o.passageText AS passageText, o.language AS language ORDER BY locator",
                 id=inquiry.work_id,
             ).data()
     finally:
         driver.close()
 
     citations = cited_sources(passages)
+    unscanned = sorted({p["language"] for p in passages if p.get("language") not in CITATION_PATTERNS})
+    if unscanned:
+        print(f"citations not scanned for languages without patterns: {unscanned}")
     catalog = load_catalog(CACHE_DIRECTORY)
     output, meta = propose(anthropic_client(), args.model, inquiry, source["label"], citations)
     if output is None:

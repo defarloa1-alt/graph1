@@ -1,13 +1,18 @@
 {
   "id": "chr:inquiry:actium-plutarch-antony",
-  "version": 11,
+  "version": 12,
   "label": "Battle of Actium in Plutarch's Life of Antony",
   "subjectId": "chr:subject:history-of-battle-of-actium",
   "narrativeEventId": "chr:entity:battle-of-actium",
+  "calendar": "julian",
   "source": {
     "edition": "phase-5-source/perseus-tlg0007.tlg058.perseus-eng2-70427323b61267cdcd0256b9b02009c23392de07.xml",
     "chapters": "61-68",
-    "workId": "chr:entity:plutarch-life-of-antony"
+    "workId": "chr:entity:plutarch-life-of-antony",
+    "contextWindow": {
+      "before": 2,
+      "after": 1
+    }
   },
   "candidateEntityIds": [
     "chr:entity:mark-antony",
