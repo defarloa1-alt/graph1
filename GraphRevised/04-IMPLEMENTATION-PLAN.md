@@ -711,6 +711,35 @@ missing hops are proposed and accepted (06 §15).
 **Dependency:** Phase B read API (ledger queries), E10, E15, facet lenses
 (Phase D).
 
+### E17. DPRR: role vocabulary and attributed office-holding
+
+The Digital Prosopography of the Roman Republic (King's College London) is a
+modern scholarly reconstruction, largely from Broughton's *Magistrates of the
+Roman Republic*, of who held which office in which year, with uncertainty
+flags; it covers 509–31 BCE. Agreed with the curator on 2026-10-12:
+
+1. **Authority for the role vocabulary.** DPRR's controlled list of
+   Republican offices (consul, *legatus*, *praefectus classis*, triumvir)
+   supplies the identity links for role Entities (`kind: Other`), which role
+   qualifiers need ([22](22-CLAIM-QUALIFIERS.md) §5). The curator approves
+   which offices become Entities. The legacy mapping
+   `scripts/federation/dprr_office_labels.json` (204 offices) may seed it
+   after review and a row in [16-LEGACY-TRIAGE.md](16-LEGACY-TRIAGE.md); the
+   legacy Aura data is not reused.
+2. **Attributed evidence of office-holding.** A DPRR post assertion becomes a
+   structured SourceObservation (like a Wikidata statement) supporting
+   `heldPosition` with its year, attributed to DPRR (keeping the secondary
+   work it cites), promoted when an ancient source agrees. It is not evidence
+   of command exercised in an engagement.
+3. **Later design:** a rule letting a role qualifier on a passage-based claim
+   be evidenced by a structured office-holding record instead of a quotation.
+
+**Open:** DPRR's licence. The project describes its data as freely available
+Linked Open Data, but no licence was found (its site is behind bot
+protection); confirm before storing records.
+
+**Dependency:** registry v4 (done), role Entities, a DPRR adapter (RDF).
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its

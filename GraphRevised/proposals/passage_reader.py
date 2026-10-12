@@ -38,7 +38,7 @@ from neo4j import GraphDatabase
 from pydantic import BaseModel, ValidationError
 
 from GraphRevised.adapters.wikidata_context import entity_context
-from GraphRevised.adapters.perseus_passages import Edition, load_edition, passage_observation, section_refs
+from GraphRevised.adapters.sources import PassageSource, open_source
 from GraphRevised.operations import load_operations, run_write
 
 from .prompt_version import prompt_version
@@ -88,7 +88,9 @@ passage depicts even where other sources differ; a curator decides what is estab
 in-scope entities) only when the passage names the office or post, with role_quotation copied \
 exactly. Give a time only when the passage states one: time_source_expression is the passage's \
 own words and time_quotation the exact span containing them. Fill time_edtf only when the passage \
-itself states a calendar date or year; never from editorial notes or outside knowledge. A \
+itself states the year (with or without month and day); never from editorial notes, the surrounding \
+narrative, or outside knowledge, and not for a day and month given without a year. time_edtf numbers \
+years astronomically: 1 BCE is 0000 and 31 BCE is -0030, so 2 September 31 BCE is -0030-09-02. A \
 predicate's list entry says which qualifiers it takes; a claim that needs a qualifier the passage \
 does not give is still drafted without it, and is held for later.
 10. For predicates that take a context, set context_id to the inquiry's narrative event when the \
@@ -134,8 +136,7 @@ class Inquiry:
     focus: list[dict[str, Any]]
     scope: list[dict[str, Any]]
     guidance: list[str]
-    edition_path: Path
-    chapters: range
+    source: dict[str, Any]  # adapter configuration: type, files, chapters (adapters/sources.py)
     work_id: str
     narrative_event_id: str | None
 
@@ -185,7 +186,6 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         ids=sorted(set(record["scopeIds"])),
     ).value("entity")
     scope = [{**entity, **entity_context(entity["payloadUri"], entity["qid"])} for entity in scope]
-    first, last = (int(n) for n in data["source"]["chapters"].split("-"))
     return Inquiry(
         id=data["id"],
         version=data["version"],
@@ -194,8 +194,7 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         focus=record["focus"],
         scope=scope,
         guidance=data["guidance"],
-        edition_path=GRAPH_REVISED / data["source"]["edition"],
-        chapters=range(first, last + 1),
+        source=data["source"],
         work_id=work_id,
         narrative_event_id=narrative_event_id,
     )
@@ -234,7 +233,7 @@ def read_passage(
     client: anthropic.Anthropic,
     model: str,
     inquiry: Inquiry,
-    edition: Edition,
+    edition: PassageSource,
     ref: str,
     passage: dict[str, Any],
     context: list[tuple[str, str]],
@@ -371,10 +370,9 @@ def main(argv: list[str] | None = None) -> int:
                 run_path.open("w", encoding="utf-8") as log:
             inquiry = session.execute_read(lambda tx: load_inquiry(args.inquiry, tx))
             scope_ids = {entity["id"] for entity in inquiry.scope}
-            edition = load_edition(inquiry.edition_path, source_commit=inquiry.edition_path.stem.rsplit("-", 1)[1])
-            metadata = json.loads(inquiry.edition_path.with_suffix(".metadata.json").read_text(encoding="utf-8"))
-            refs = args.sections.split(",") if args.sections else section_refs(edition, inquiry.chapters)
-            all_refs = section_refs(edition, range(1, 1000))
+            edition = open_source(inquiry.source, GRAPH_REVISED)
+            refs = args.sections.split(",") if args.sections else edition.refs(inquiry.source.get("chapters"))
+            all_refs = edition.refs(None)
             print(f"inquiry: {inquiry.id} v{inquiry.version} -> {inquiry.subject['label']}")
             print(f"scope: {', '.join(e['label'] for e in inquiry.scope)}\n")
             log.write(json.dumps({
@@ -385,10 +383,10 @@ def main(argv: list[str] | None = None) -> int:
             }) + "\n")
 
             for ref in refs:
-                passage = passage_observation(edition, ref, retrieved_at=metadata["retrievedAt"], source_uri=metadata["sourceUri"])
+                passage = edition.observation(ref)
                 index = all_refs.index(ref)
                 context = [
-                    (r, passage_observation(edition, r, retrieved_at="", source_uri="")["passageText"])
+                    (r, edition.observation(r)["passageText"])
                     for r in all_refs[max(0, index - 2):index] + all_refs[index + 1:index + 2]
                 ]
                 output, meta = read_passage(client, args.model, inquiry, edition, ref, passage, context, registry)
@@ -409,6 +407,9 @@ def main(argv: list[str] | None = None) -> int:
                 tx = session.begin_transaction()
                 try:
                     run_write(tx, operations, "upsert_passage_observation", passage)
+                    run_write(tx, operations, "link_observation_work", {
+                        "observationId": passage["id"], "workId": inquiry.work_id,
+                    })
                     for draft in drafts:
                         named = {draft.subject_id, draft.object_id, draft.role_id, draft.context_id} - {None}
                         outside = sorted(named - scope_ids)

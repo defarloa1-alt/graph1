@@ -1,0 +1,48 @@
+{
+  "id": "chr:inquiry:actium-dio-roman-history",
+  "version": 1,
+  "label": "Battle of Actium in Cassius Dio's Roman History",
+  "subjectId": "chr:subject:history-of-battle-of-actium",
+  "narrativeEventId": "chr:entity:battle-of-actium",
+  "source": {
+    "type": "lacuscurtius-html",
+    "pages": [
+      "phase-6-source/lacuscurtius-cassius-dio-50-html-1f50fd6b.html",
+      "phase-6-source/lacuscurtius-cassius-dio-51-html-688a84b4.html"
+    ],
+    "chapters": "50.11-51.2",
+    "translator": "Earnest Cary",
+    "workId": "chr:entity:cassius-dio-roman-history"
+  },
+  "candidateEntityIds": [
+    "chr:entity:mark-antony",
+    "chr:entity:cleopatra",
+    "chr:entity:publius-canidius-crassus",
+    "chr:entity:titus-statilius-taurus",
+    "chr:entity:gnaeus-domitius-ahenobarbus",
+    "chr:entity:lucius-arruntius",
+    "chr:entity:marcus-insteius",
+    "chr:entity:gaius-julius-eurycles",
+    "chr:entity:lucius-gellius-poplicola",
+    "chr:entity:actium-promontory",
+    "chr:entity:octavian-fleet-at-actium",
+    "chr:entity:octavian-fleet-at-actium-left-wing",
+    "chr:entity:octavian-fleet-at-actium-centre",
+    "chr:entity:octavian-fleet-at-actium-right-wing",
+    "chr:entity:antony-fleet-at-actium",
+    "chr:entity:antony-fleet-at-actium-left-wing",
+    "chr:entity:antony-fleet-at-actium-centre",
+    "chr:entity:antony-fleet-at-actium-right-wing",
+    "chr:entity:cleopatra-squadron-at-actium",
+    "chr:entity:octavian-army-at-actium",
+    "chr:entity:antony-army-at-actium"
+  ],
+  "guidance": [
+    "In Dio's account of these years \"Caesar\" denotes Octavian (later Augustus), not Julius Caesar.",
+    "For participatedIn the Battle of Actium, a person counts as taking part when the passage shows them present during the engagement: commanding, fighting, aboard a ship in the action, or fleeing from it. Preparations before the engagement, or the actions of a person's ships or troops with no sign of the person, do not by themselves show that the person took part.",
+    "commanded relates a person to a force they directed in action, using the force entities in scope: a fleet, one wing or the centre of a fleet, Cleopatra's squadron, or a land army. Command of a wing or the centre is not command of the whole fleet; use the most specific force the passage supports.",
+    "heldAuthorityOver is formal or supreme authority over a force, whether or not the person directed it in the fighting: for example an overall commander whose subordinate leads a wing. Draft it only when the passage shows that authority; it needs a time, which this narrative rarely states, so such claims are usually held.",
+    "Dio composes long speeches for Antony and Caesar before the battle (50.16-30). Treat what a speaker asserts inside a speech as rhetoric Dio gives that speaker, not as Dio's narrative: draft nothing from inside the speeches.",
+    "Dio marks time within the narrative (\"on the second of September\", \"at the sound of the trumpet\", hours and days). Give such a marker as the time expression only for predicates that take a time. A day and month without a year gets no time_edtf. Notes by the Loeb editor or the transcriber are never Dio's text."
+  ]
+}

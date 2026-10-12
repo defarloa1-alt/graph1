@@ -1,7 +1,6 @@
 """Reader output to drafts (prompt v8), without a model call or a database."""
 
 import unittest
-from pathlib import Path
 
 from GraphRevised.proposals.passage_reader import Inquiry, ReaderClaim, ReaderOutput, predicate_guide, to_drafts
 from GraphRevised.proposals.registry import load_registry
@@ -9,7 +8,7 @@ from GraphRevised.proposals.registry import load_registry
 OBSERVATION = "chr:observation:test:passage"
 INQUIRY = Inquiry(
     id="chr:inquiry:test", version=1, label="Test inquiry", subject={"id": "chr:subject:test", "label": "Test"},
-    focus=[], scope=[], guidance=[], edition_path=Path("none.xml"), chapters=range(1, 2),
+    focus=[], scope=[], guidance=[], source={"type": "perseus-tei", "edition": "none.xml", "chapters": "1-2"},
     work_id="chr:entity:test-work", narrative_event_id="chr:entity:test-battle",
 )
 

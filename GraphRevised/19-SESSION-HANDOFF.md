@@ -12,7 +12,7 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan               # expect 120 tests, OK
+  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius  # expect 127 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -70,7 +70,7 @@ AuthorityRecord keeps Wikidata's wording.
 | Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v8`: claims attributed to the inquiry's source Work, with role, time, and context only as the passage states them |
 | Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v11) — Subject, narrative event, source edition and Work, scope, guidance |
 | Identity queue | [identity/queue.py](identity/queue.py), queue file [queues/identity-actium-plutarch-antony.json](queues/identity-actium-plutarch-antony.json) |
-| Adapters | Wikidata identity, statements, context (aliases/dates); Perseus TEI passages |
+| Adapters | Wikidata identity, statements, context (aliases/dates); passages from Perseus TEI and LacusCurtius HTML behind one source interface ([adapters/sources.py](adapters/sources.py)); Scaife catalogue |
 | Curation slices | [slices/add_entity.py](slices/add_entity.py), [slices/actium_forces.py](slices/actium_forces.py), [slices/octavian_actium.py](slices/octavian_actium.py) |
 | Migration | [migrations/001-pending-evidence-for-open-proposals.cypher](migrations/001-pending-evidence-for-open-proposals.cypher) (applied) |
 | Preserved sources | `phase-2-source/`, `phase-4-source/`, `phase-5-source/` — hashed byte-for-byte; `.gitattributes` keeps them `-text` |
@@ -140,9 +140,11 @@ a date span.
    (Q41523, Q12902608; passages linked `IN_WORK`), and reader prompt v8
    (attributed claims with qualifiers; inquiry v11). Remaining: the curator's
    decision on *Plutarch author of Life of Antony* (submitted from Wikidata
-   P50), the choice of second source from the source plan
-   ([plans/](plans), E10 status in [04](04-IMPLEMENTATION-PLAN.md)), its
-   adapter, then the reader rerun.
+   P50); the second source (Cassius Dio, Cary's translation, chosen from the
+   [source plan](plans)) has its adapter and inquiry
+   ([18 §19](18-PHASE-5-PROPOSALS.md)) and waits for the curator's approval of
+   Dio's identities (Q185223, Q3974431); then the reader runs on Dio and
+   reruns on Plutarch.
 2. **Finish the review** (5, item 1): the non-command proposals are done;
    the command proposals whenever convenient.
 3. **E12 design doc** (attributed claims and depicted events: "according to

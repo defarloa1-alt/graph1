@@ -469,6 +469,36 @@ passages were linked `IN_WORK`, and reader prompt `passage-reader-v8` now
 drafts claims attributed to the inquiry's source Work, with qualifiers only
 as the passage states them (inquiry v11). 114 tests.
 
+## 19. Second source: Cassius Dio in Cary's translation (2026-10-12)
+
+The curator chose Dio's *Roman History* in Earnest Cary's public-domain Loeb
+translation (1917) over the Greek text. It is read from LacusCurtius pages
+(one per book), preserved byte-for-byte in `phase-6-source/` with their hash,
+retrieval time, and the page's own statement that the text is in the public
+domain; the pages also say they have not yet been proofread.
+
+- [adapters/lacuscurtius_passages.py](adapters/lacuscurtius_passages.py)
+  turns a section (book.chapter.section) into a passage observation; page
+  numbers and note markers are left out of the text and the Loeb editor's
+  notes are kept per section in `editorialNotes`.
+- [adapters/sources.py](adapters/sources.py) is the source interface: the
+  inquiry's `source.type` (`perseus-tei` or `lacuscurtius-html`) selects the
+  adapter, so the reader no longer assumes Perseus TEI. All 16 stored
+  Plutarch observations are byte-identical through it.
+- The reader now links each passage it stores to the inquiry's Work, so
+  attributed claims from a newly read passage validate.
+- Reader prompt: `time_edtf` uses astronomical years (31 BCE is `-0030`), and
+  a day and month without a year get no normalized value (Dio 51.1.1 says "on
+  the second of September" without the year).
+- [inquiries/actium-dio-roman-history.json](inquiries/actium-dio-roman-history.json)
+  (v1): Dio 50.11–51.2, with guidance to draft nothing from inside the speeches
+  Dio composes for Antony and Caesar (50.16–30).
+- [slices/add_work.py](slices/add_work.py): a data-driven version of the
+  Plutarch slice for any author and Work.
+
+Pending the curator's identity approval: Cassius Dio (Q185223) and *Roman
+History* (Q3974431). 127 tests.
+
 The review led to the interim [delegation policy](21-REVIEW-DELEGATION.md)
 and a `retract` operation (accepted → rejected with a reason code, evidence
 kept), so a wrong delegated acceptance can be undone. 22 operations; 72
