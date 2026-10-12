@@ -599,6 +599,48 @@ and releases follow as the graph spans more clusters.
 **Dependency:** Phase C review policy (shares the routing rules); multiple
 Subjects in the graph.
 
+### E16. Frontier expansion: from leaf nodes to clusters
+
+Leaf nodes (entities with an identity link and little else, such as Marcus
+Insteius) are the graph's frontier. In an exploration graph they are doors.
+Expanding them is three separate jobs, not one agent:
+
+1. **Frontier ledger (deterministic, not an agent).** What is built versus
+   what is still needed, per entity: claims by status, evidence count,
+   unresolved mentions that point at it, predicates typical for its kind but
+   missing (a Person without birth, death, or office claims), cluster
+   memberships, and, once the explorer exists, how often people navigate to
+   it. Output: a ranked worklist. Being deterministic makes it auditable and
+   cheap to recompute after every commit.
+2. **Frontier planner (agent).** Reads the worklist and decides, per leaf,
+   what kind of work it needs and routes it to the existing workers: identity
+   queue, Wikidata statement harvest, source discovery (E10), or a reader
+   inquiry with a facet lens. It also decides whether the expansion **extends
+   the current cluster** (stays within the Subject's focus) or **opens a new
+   one** (Agrippa → his building programme → the Pantheon); a new cluster is a
+   proposed Subject with a broader/narrower/related link, governed by E15. The
+   planner writes work orders; it does not extract claims or write the graph.
+3. **Workers.** The reader with lenses, the deterministic proposers, and the
+   identity queue do the extraction, through the normal proposal path.
+
+This is not the facet SFA's job: lenses extract within a scope, while the
+planner chooses scopes. It is closest to the coordinating role planned for
+the SCA (a cluster steward), or a concierge for gaps rather than for user
+requests.
+
+It is deliberately **not a blind subgraph crawler.** Unbudgeted expansion
+along authority links is how the legacy system produced millions of noise
+edges. Expansion is budgeted per cluster, ranked by relevance to the cluster's
+focus, by demand (where people explore), and by bridge potential (cross-facet
+edges), with explicit stopping rules and the curator's review capacity
+(E15 routing) as a hard limit.
+
+In the explorer, leaves are marked as unexplored frontier, and "expand" on a
+leaf creates a planner work order (use case 2: drill-down).
+
+**Dependency:** Phase B read API (ledger queries), E10, E15, facet lenses
+(Phase D).
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its

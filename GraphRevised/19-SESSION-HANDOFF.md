@@ -73,25 +73,67 @@ Accepted claims:
 
 ## 5. Open decisions (for the curator)
 
-1. **23 submitted proposals** (Actium v6 run). Recommendation recorded in the session: accept 22; reject the Cleopatra 66.3 *evidence* (`…7059319b3457`) with plain `reject` so her claim stays open.
+1. **23 submitted proposals** (Actium v6 run). Review the 14 that do not use `commanded` (participation, place, forces): accept them, except reject the Cleopatra 66.3 *evidence* (`…7059319b3457`) with plain `reject` so her claim stays open. **Hold the 9 `commanded` proposals** until the command split (5a).
 2. **Cleopatra 67.1**: whether to submit a curator-authored claim citing "Cleopatra recognized him and raised a signal on her ship".
 3. **Unresolved commanders** with no Wikidata record: Coelius (Antony's left wing), Marcus Octavius (Antony's centre), Alexas. Option: local entities, like the forces.
 4. **33 peripheral mentions** in the identity queue (allies, places); deferred because most would need dated `alliedWith` claims.
 
+## 5a. Decision: split command (first task of the next session)
+
+Agreed with the curator on 2026-10-12. `commanded` conflates authority held
+with command exercised. At Actium this hides the central question: Octavian
+held supreme authority, while much of the tradition credits Agrippa with
+directing the fleet.
+
+- **Registry v3:** `heldAuthorityOver` (Person → Group, formal or supreme
+  authority) and `commanded` (Person → Group, command actually exercised).
+  Evidence for one never counts for the other.
+- **Claim qualifiers:** an event context (`ASSERTION_CONTEXT` → Event), and a
+  `capacity` in the source's own vocabulary (imperium, triumvir, legatus,
+  praefectus classis), not modern strategic/operational/tactical labels. The
+  same qualifier mechanism serves Phase 7 time and E12 depiction.
+- **Planning is an action** (E11), not a command predicate.
+- **Reason codes** for rejection and supersession: false, unsupported,
+  malformed, underspecified, superseded-by-model.
+- **Supersede with links:** re-mark *Augustus commanded Battle of Actium* as
+  `superseded` (reason: underspecified) with `SUPERSEDED_BY` edges to the
+  precise claims that replace it; needs a new recorded supersede operation.
+- **Hold the nine `commanded` proposals** until v3; review the other fourteen
+  (participation, place, forces) as before. Then rerun the reader for command
+  claims with guidance separating the two senses.
+
 ## 6. Next steps (agreed order)
 
-1. Finish the review above.
-2. **Fair evaluation**: run the reader unchanged on chapters it has not seen; measure curator acceptance. Prompts v3–v6 were tuned on *Antony* 61–68.
-3. **Phase 7 temporal qualification**: unblocks marriages, offices, and source dating.
-4. **Second source** (for E10): add `source.type` and an adapter interface; move the context window and scope rule into the inquiry; turn slice scripts into data.
-5. **Roadmap agreed in principle:** [docs/Response - Use Cases.md](docs/Response%20-%20Use%20Cases.md)
-   (Chrystallum is for exploring and discovering connections, not an
-   encyclopedia; phases A–F, with gates before multi-agent fan-out).
-   **Proposed first task for the next session:** a design doc for E12
-   (attributed claims and depicted events: "according to Plutarch"), then the
-   micro-event pilot on *Antony* 65–68. Principle agreed with the curator:
-   narrative detail is the author's depiction, not fact.
-6. Backlog in [04-IMPLEMENTATION-PLAN.md](04-IMPLEMENTATION-PLAN.md): E8 evidence stance and contested claims; E9 research-API acquisition; **E10 source discovery and chronology** (earlier witnesses to Actium: Augustan poets, Velleius Paterculus, Augustus's lost memoir cited at *Antony* 68.1); **E11 actor actions (IGAR) and causal context**; **E12 attributed claims and depicted events**; **E13 geography and space-time exploration**; **E14 entity images** (with Phase B); **E15 graph change governance** (impact-routed review; pairs with the Phase C review policy).
+1. **First task: the command split** (5a): registry v3, claim qualifiers,
+   reason codes, supersede-with-links; then rerun the reader for command
+   claims.
+2. **Finish the review** (5, item 1): the 14 non-command proposals now; the
+   command proposals after step 1.
+3. **E12 design doc** (attributed claims and depicted events: "according to
+   Plutarch"), then the micro-event pilot on *Antony* 65–68 (Phase A).
+   Principle agreed with the curator: narrative detail is the author's
+   depiction, not fact.
+4. **Fair evaluation**: run the reader unchanged on chapters it has not seen;
+   measure curator acceptance. Prompts v3–v6 were tuned on *Antony* 61–68.
+5. **Phase 7 temporal qualification**: unblocks marriages, offices, and
+   source dating.
+6. **Second source** (for E10): add `source.type` and an adapter interface;
+   move the context window and scope rule into the inquiry; turn slice scripts
+   into data.
+
+**Roadmap:** [docs/Response - Use Cases.md](docs/Response%20-%20Use%20Cases.md)
+(Chrystallum is for exploring and discovering connections, not an
+encyclopedia; phases A–F, with gates before multi-agent fan-out). Product UI:
+[20-EXPLORER-UI.md](20-EXPLORER-UI.md).
+
+**Backlog** in [04-IMPLEMENTATION-PLAN.md](04-IMPLEMENTATION-PLAN.md): E8
+evidence stance and contested claims; E9 research-API acquisition; E10 source
+discovery and chronology (earlier witnesses to Actium: Augustan poets,
+Velleius Paterculus, Augustus's lost memoir cited at *Antony* 68.1); E11 actor
+actions (IGAR) and causal context; E12 attributed claims and depicted events;
+E13 geography and space-time exploration; E14 entity images (with Phase B);
+E15 graph change governance (impact-routed review, pairs with the Phase C
+review policy); E16 frontier expansion (leaf nodes to clusters).
 
 ## 7. Known gaps
 
