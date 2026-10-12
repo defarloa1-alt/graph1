@@ -211,6 +211,31 @@ example requires it:
 
 Every temporal extension must preserve the existing ability to query by year.
 
+**Requirements recorded 2026-10-12.** Many predicates need date spans, and
+year granularity is not enough.
+
+- **Where:** temporal qualifiers are properties of the Assertion, which is the
+  reified relationship, and display as properties of the edge. Unlike plain
+  relationship properties, this lets two sources give different dates for the
+  same relationship as separate claims with their own evidence.
+- **Spans:** start and end, each optionally with earliest and latest bounds
+  ("married between 37 and 36 BCE").
+- **Precision below the year:** day, month, season, year, decade, circa,
+  using EDTF (ISO 8601-2) for exact, approximate, uncertain, and interval
+  values (`-0031-09-02`, `-0037~/-0036`).
+- **Relative time** for micro-events, anchored to an event ("the fifth day",
+  "the sixth hour").
+- **Source dating preserved separately from normalization:** consular years
+  ("cos. 32"), pre-Julian Roman calendar dates, regnal years. A converted
+  date such as "Sept. 2, 31 B.C." is a modern normalization (Perrin's note,
+  not Plutarch).
+- **Year backbone kept for navigation:** a span links to the Year nodes it
+  touches, so year queries and the timeline slider keep working; finer
+  detail lives in the properties.
+- **Per predicate in the registry:** which predicates require a span (offices,
+  marriages, alliances, `heldAuthorityOver`, command in a capacity) and their
+  typical precision, extending the existing `temporalQualification` flag.
+
 ## 10. Phase 8: governance and self-description
 
 Only after the core graph and proposal workflow are stable should the system
@@ -637,6 +662,15 @@ edges), with explicit stopping rules and the curator's review capacity
 
 In the explorer, leaves are marked as unexplored frontier, and "expand" on a
 leaf creates a planner work order (use case 2: drill-down).
+
+**Bridge-directed expansion.** Expansion can also be aimed at a target. When
+a semantic-bridge trace (06 §14, the senator-to-mollusk path through purple)
+finds the clusters at both ends but gaps between them, the planner turns each
+missing hop into a work order: a missing entity ("broad purple stripe") to the
+identity queue or a local entity; a missing claim to a reader inquiry with the
+fitting lens (social for dress convention, technological for dye production,
+biological for taxonomy). The discovered path stays a hypothesis until its
+missing hops are proposed and accepted (06 §15).
 
 **Dependency:** Phase B read API (ledger queries), E10, E15, facet lenses
 (Phase D).
