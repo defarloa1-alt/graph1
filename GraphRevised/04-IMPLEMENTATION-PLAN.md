@@ -526,6 +526,29 @@ coastlines).
 **Dependency:** E12 (depicted events, attributed claims), Phase 7 temporal
 qualification, Phase B read API, explorer UI.
 
+### E14. Entity images (with Phase B)
+
+Show Wikidata-linked images on entity cards. Nine of the first fourteen
+Wikidata entities have one (P18; P242 locator maps for places).
+
+- No graph change: the file name comes from the preserved Wikidata payload,
+  like aliases and dates.
+- Commons metadata (license, author, description, date, thumbnail URL) is
+  fetched once per file and preserved with a hash, so attribution is
+  reproducible.
+- **Images are depictions.** Each card states what the image is and when it
+  was made: the Battle of Actium's image is a 17th-century painting; the
+  Domitius Ahenobarbus image is probably the altar relief associated with the
+  family (attribution debated), not a portrait of the consul of 32 BCE. A
+  model may suggest the type (contemporary, later depiction, modern photo of a
+  site); the curator corrects it.
+- **Licenses vary** (public domain to CC BY-SA): every card shows author,
+  license, and a Commons link.
+- Later: coins struck in a person's lifetime are contemporary portraits and
+  primary evidence (via numismatic authorities such as Nomisma).
+
+**Dependency:** Phase B read API; explorer UI cards.
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its

@@ -91,7 +91,7 @@ Accepted claims:
    (attributed claims and depicted events: "according to Plutarch"), then the
    micro-event pilot on *Antony* 65–68. Principle agreed with the curator:
    narrative detail is the author's depiction, not fact.
-6. Backlog in [04-IMPLEMENTATION-PLAN.md](04-IMPLEMENTATION-PLAN.md): E8 evidence stance and contested claims; E9 research-API acquisition; **E10 source discovery and chronology** (earlier witnesses to Actium: Augustan poets, Velleius Paterculus, Augustus's lost memoir cited at *Antony* 68.1); **E11 actor actions (IGAR) and causal context**; **E12 attributed claims and depicted events**; **E13 geography and space-time exploration**.
+6. Backlog in [04-IMPLEMENTATION-PLAN.md](04-IMPLEMENTATION-PLAN.md): E8 evidence stance and contested claims; E9 research-API acquisition; **E10 source discovery and chronology** (earlier witnesses to Actium: Augustan poets, Velleius Paterculus, Augustus's lost memoir cited at *Antony* 68.1); **E11 actor actions (IGAR) and causal context**; **E12 attributed claims and depicted events**; **E13 geography and space-time exploration**; **E14 entity images** (with Phase B).
 
 ## 7. Known gaps
 

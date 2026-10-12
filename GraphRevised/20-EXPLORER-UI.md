@@ -58,7 +58,7 @@ Detail cards are where provenance lives; the stage stays readable.
 
 | Card | Shows |
 |---|---|
-| Entity | label, kind, description, aliases and dates, identity links, status, subjects it belongs to |
+| Entity | label, kind, description, aliases and dates, identity links, status, subjects it belongs to; image with what it depicts, when made, author, and license (E14) |
 | Claim (edge) | predicate in plain language, status, mode ("according to Plutarch"), every piece of evidence with its quotation, decisions and who made them |
 | Source / passage | work, author, edition, locator, full passage with the quoted span marked, editorial notes kept separate, rights |
 | Path | hop-by-hop explanation, each hop linked to its claim card; weakest hop; how many hops are inferred, proposed, or attributed |
