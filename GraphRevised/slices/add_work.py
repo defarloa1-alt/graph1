@@ -27,16 +27,25 @@ from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.store import Neo4jReader, submit
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
-from GraphRevised.slices.add_entity import persist_identity, preserved_identity_payload
+from GraphRevised.slices.add_entity import persist_identity, persist_local_entity, preserved_identity_payload
 
 
 def apply_work(tx, operations, registry, item: dict) -> dict:
     """Apply one manifest `works` entry: authorId, authorQid, workId, workQid, workLabel,
-    workShortLabel, passagePrefix."""
+    workShortLabel, passagePrefix. A Work with no Wikidata record omits workQid and gives
+    workDescription instead: it becomes a local Work, and no "author of" is proposed."""
     author_path, author_meta = preserved_identity_payload(item["authorQid"])
-    work_path, work_meta = preserved_identity_payload(item["workQid"])
     persist_identity(tx, operations, entity_id=item["authorId"], kind="Person",
                      payload_path=author_path, metadata=author_meta)
+    if not item.get("workQid"):
+        persist_local_entity(tx, operations, entity_id=item["workId"], kind="Work", label=item["workLabel"],
+                             description=item["workDescription"])
+        run_write(tx, operations, "upsert_entity", {
+            "id": item["workId"], "kind": "Work", "label": item["workLabel"], "description": None,
+            "status": None, "shortLabel": item["workShortLabel"],
+        })
+        return {"passagesLinked": 0, "authorStatements": 0, "proposals": [], "localWork": True}
+    work_path, work_meta = preserved_identity_payload(item["workQid"])
     persist_identity(tx, operations, entity_id=item["workId"], kind="Work", payload_path=work_path, metadata=work_meta)
     run_write(tx, operations, "upsert_entity", {
         "id": item["workId"], "kind": "Work", "label": item["workLabel"], "description": None,
