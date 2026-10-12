@@ -67,6 +67,18 @@ The `FOLLOWED_BY` chain therefore has one deliberate cross-era transition:
 All other links advance by one numeric year. Backbone validation must account
 for this zero skip rather than incorrectly treating it as a broken sequence.
 
+### ISO 8601 and EDTF numbering
+
+ISO 8601 and EDTF number years astronomically: year `0000` is 1 BCE, so
+31 BCE is `-0030`. Chrystallum's `Year.year` has no year zero, so 31 BCE is
+`-31`. For BCE years, ISO year = `Year.year` + 1; CE years are equal. Revised
+graph code converts only through one tested function.
+
+The backbone's legacy `iso8601_start` and `iso8601_end` properties are off by
+one for every BCE year: Year `-31` carries `-0031-01-01`, which in ISO 8601 is
+32 BCE. They are legacy metadata and must not be read. They are left
+unchanged because the backbone is not altered during the clean start.
+
 ## 4. Initial relationship
 
 For the first graph slice:
@@ -115,7 +127,10 @@ after year
 range
 ```
 
-Do not encode uncertainty by changing the year label. Use an assertion:
+Do not encode uncertainty by changing the year label, and do not add Month or
+Day nodes to the backbone. Day-level and finer precision is a property of the
+dated assertion (see Phase 7 in
+[04-IMPLEMENTATION-PLAN.md](04-IMPLEMENTATION-PLAN.md)):
 
 ```yaml
 assertion:

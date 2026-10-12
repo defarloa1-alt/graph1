@@ -222,13 +222,33 @@ year granularity is not enough.
   ("married between 37 and 36 BCE").
 - **Precision below the year:** day, month, season, year, decade, circa,
   using EDTF (ISO 8601-2) for exact, approximate, uncertain, and interval
-  values (`-0031-09-02`, `-0037~/-0036`).
+  values (`-0030-09-02` for 2 September 31 BCE, `-0036~/-0035` for between
+  37 and 36 BCE).
+- **Two year numberings, one bridge.** Chrystallum years (`Year.year`) are
+  BCE-negative with no year zero: 31 BCE is `-31`. EDTF and ISO 8601 number
+  years astronomically, with year `0000` = 1 BCE: 31 BCE is `-0030`. For BCE
+  years, ISO year = Chrystallum year + 1; CE years are equal. One tested
+  conversion function is the only place this is done.
+- **Day precision belongs to the claim, not the Year link.** The date is a
+  property of the dated Assertion (EDTF value, precision, calendar, the
+  source's own wording) because competing dates need separate evidence and a
+  span would otherwise be copied onto every Year edge. The backbone gains no
+  Month or Day nodes: they would be about 1.5 million mostly empty nodes and
+  would presuppose a calendar. Sortable earliest and latest bounds on the
+  Assertion, indexed, serve day-level filtering and the timeline slider.
+- **Calendar is recorded, not assumed.** Dates before 45 BCE are in the
+  pre-Julian Roman calendar, which drifted from the solar year; early Julian
+  dates are also affected by the misapplied leap years before 8 BCE. A
+  converted date names its calendar and keeps the source's own dating.
 - **Relative time** for micro-events, anchored to an event ("the fifth day",
   "the sixth hour").
 - **Source dating preserved separately from normalization:** consular years
   ("cos. 32"), pre-Julian Roman calendar dates, regnal years. A converted
   date such as "Sept. 2, 31 B.C." is a modern normalization (Perrin's note,
   not Plutarch).
+- **Which date is authoritative:** the accepted dated Assertion. Year links
+  for navigation are derived from it. The direct, unsourced Phase 2 link
+  *Battle of Actium → 31 BCE* is to be replaced by a sourced claim.
 - **Year backbone kept for navigation:** a span links to the Year nodes it
   touches, so year queries and the timeline slider keep working; finer
   detail lives in the properties.
