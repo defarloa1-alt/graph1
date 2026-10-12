@@ -331,6 +331,10 @@ def to_drafts(
     return drafts, malformed
 
 
+def _related_lines(result) -> list[str]:
+    return [f"{item['relation']}: {item['id']} ({item['status']}, {item['mode']})" for item in result.related]
+
+
 def to_notes(output: ReaderOutput, passage: dict[str, Any], scope_ids: set[str]) -> tuple[list[dict], list[dict]]:
     """Passages of note that can be stored, and those refused with the reason."""
     notes, refused = [], []
@@ -484,11 +488,12 @@ def main(argv: list[str] | None = None) -> int:
                         elif args.submit:
                             submission = submit(tx, draft, registry, operations)
                             v = submission.validation
-                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes), v.proposal_id,
-                                            submission.stored))
+                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes) + _related_lines(v),
+                                            v.proposal_id, submission.stored))
                         else:
                             v = validate(draft, Neo4jReader(tx), registry)
-                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes), v.proposal_id, False))
+                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes) + _related_lines(v),
+                                            v.proposal_id, False))
                     if args.submit:
                         for note in notes:
                             note_id = annotation_id(PROPOSER_ID, passage["id"], note["note"], note["concerns"])

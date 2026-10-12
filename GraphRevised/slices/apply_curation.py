@@ -14,7 +14,8 @@ Sections, applied in this order in one transaction:
 Identity payloads are fetched once and preserved in phase-5-source/. Every
 write is a guarded operation and nothing is accepted, so applying a manifest
 again changes nothing. --dry-run applies it in a transaction that is rolled
-back and reports what would change.
+back and reports what would change, with any existing Entity a new one might
+duplicate (identity/local_candidates.py).
 """
 
 from __future__ import annotations
@@ -28,6 +29,7 @@ from typing import Any
 from neo4j import GraphDatabase
 
 from GraphRevised.adapters.wikidata_statements import statement_observation
+from GraphRevised.identity.local_candidates import candidates
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.store import Neo4jReader, submit
@@ -102,6 +104,11 @@ def main(argv: list[str] | None = None) -> int:
                           f"{len(new_relationships)} relationship(s) new or changed")
                     for labels, properties in added:
                         print(f"  {labels[0]} {properties.get('id')}: {properties.get('label')}")
+                        if labels[0] == "Entity" and properties.get("label"):
+                            for match in candidates(tx, properties["label"], properties.get("kind"),
+                                                    exclude=properties["id"]):
+                                print(f"      possible duplicate ({match['score']:.2f}): {match['id']} "
+                                      f"{match['label']} (matched {match['matched']!r})")
                     tx.rollback()
                 else:
                     tx.commit()

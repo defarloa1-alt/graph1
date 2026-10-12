@@ -41,6 +41,7 @@ class ValidationResult:
     qualifier_entities: dict[str, dict[str, Any]] | None = None  # context, role, attributedTo
     time_bounds: TimeBounds | None = None
     notes: tuple[str, ...] = ()  # e.g. a claim stored without a time its predicate expects
+    related: tuple[dict[str, Any], ...] = ()  # other claims with the same subject, predicate, and object
 
 
 class GraphReader(Protocol):
@@ -52,6 +53,10 @@ class GraphReader(Protocol):
 
     def assertion(self, assertion_id: str) -> dict[str, Any] | None:
         """{id, status, predicate, observationIds} or None."""
+
+    def related_assertions(self, base_id: str) -> list[dict[str, Any]]:
+        """Claims whose ID is `base_id` or `base_id` plus a qualifier digest, with their
+        qualifiers: {id, status, mode, attributedTo, context, role, time}. Optional."""
 
 
 def qualifier_kinds(registry: PredicateRegistry) -> dict[str, tuple[str, str]]:
@@ -161,6 +166,7 @@ def validate(
         deferrals.extend(notes)
         notes = ()
     canonical_assertion = assertion_id(definition.id, subject_id, object_id, qualifier_signature(draft))
+    related = tuple(classify_related(draft, reader, assertion_id(definition.id, subject_id, object_id), canonical_assertion))
     result = dict(
         draft=draft,
         assertion_id=canonical_assertion,
@@ -170,6 +176,7 @@ def validate(
         qualifier_entities=qualifier_entities,
         time_bounds=time_bounds,
         notes=notes,
+        related=related,
     )
     if deferrals:
         return ValidationResult(Outcome.DEFERRED, tuple(deferrals), **result)
@@ -211,6 +218,50 @@ def validate(
         new_observation_ids=new_observations,
         **result,
     )
+
+
+def draft_qualifiers(draft: ProposalDraft) -> dict[str, Any]:
+    """The draft's content qualifiers in the form related_assertions reports them."""
+    time = None
+    if draft.time is not None:
+        time = draft.time.edtf or draft.time.relative_offset or draft.time.source_expression
+    return {"context": draft.context_id, "role": draft.role_id, "time": time}
+
+
+def classify_related(
+    draft: ProposalDraft, reader: GraphReader, base_id: str, own_id: str
+) -> list[dict[str, Any]]:
+    """How each existing claim with the same subject, predicate, and object relates to the draft:
+
+    parallel       the same content qualifiers in another mode or from another source
+                   (a promotion or corroboration candidate)
+    refines        the draft adds qualifiers the existing claim lacks (a candidate to supersede it)
+    refined-by     the existing claim is the more precise one
+    conflicts      a qualifier both state, with different values (a candidate for contradicts, E8)
+    """
+    lookup = getattr(reader, "related_assertions", None)
+    if lookup is None:
+        return []
+    mine = draft_qualifiers(draft)
+    related = []
+    for other in lookup(base_id):
+        if other["id"] == own_id:
+            continue
+        theirs = {key: other.get(key) for key in ("context", "role", "time")}
+        shared = [key for key in theirs if mine[key] is not None and theirs[key] is not None]
+        if any(mine[key] != theirs[key] for key in shared):
+            relation = "conflicts"
+        elif mine == theirs:
+            relation = "parallel"
+        elif all(theirs[key] is None or theirs[key] == mine[key] for key in theirs):
+            relation = "refines"
+        elif all(mine[key] is None or mine[key] == theirs[key] for key in mine):
+            relation = "refined-by"
+        else:
+            relation = "conflicts"
+        related.append({"id": other["id"], "relation": relation, "status": other.get("status"),
+                        "mode": other.get("mode") or "asserted", "attributedTo": other.get("attributedTo")})
+    return related
 
 
 def _check_qualifier_rules(draft: ProposalDraft, definition: PredicateDefinition) -> list[str]:

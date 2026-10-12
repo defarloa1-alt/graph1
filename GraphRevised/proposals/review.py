@@ -60,6 +60,8 @@ def print_proposals(rows: list[dict], registry=None) -> None:
         print(f"{row['status']:<11} {row['operation']:<11} {row['id']}\n            {row['assertion']}")
         if registry is not None and undated(row, registry):
             print("            UNDATED: the predicate expects a time the source did not give")
+        for other in row.get("related") or []:
+            print(f"            RELATED: {other}")
         for evidence in row["evidence"]:
             print(f"            + {evidence['observation']}")
             if evidence["locator"]:

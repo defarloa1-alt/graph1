@@ -74,6 +74,22 @@ class Neo4jReader:
         ).single()
         return None if record is None else {**record["p"], "workId": record["workId"]}
 
+    def related_assertions(self, base_id: str) -> list[dict[str, Any]]:
+        return self._tx.run(
+            """
+            MATCH (assertion:Assertion)
+            WHERE assertion.id = $base OR (assertion.id STARTS WITH $prefix AND size(assertion.id) = size($prefix) + 10)
+            OPTIONAL MATCH (assertion)-[:ATTRIBUTED_TO]->(work:Entity)
+            OPTIONAL MATCH (assertion)-[:ASSERTION_CONTEXT]->(context:Entity)
+            OPTIONAL MATCH (assertion)-[:ASSERTION_ROLE]->(role:Entity)
+            RETURN assertion.id AS id, assertion.status AS status, assertion.mode AS mode,
+                   work.id AS attributedTo, context.id AS context, role.id AS role,
+                   coalesce(assertion.timeEdtf, assertion.timeRelativeOffset, assertion.timeSourceExpression) AS time
+            ORDER BY id
+            """,
+            base=base_id, prefix=base_id + ":q",
+        ).data()
+
     def proposal_exists(self, proposal_id: str) -> bool:
         return self._tx.run(
             "MATCH (proposal:Proposal {id: $id}) RETURN count(proposal) > 0 AS exists", id=proposal_id
@@ -323,6 +339,14 @@ def list_proposals(tx: Any, status: str | None = None) -> list[dict[str, Any]]:
         RETURN proposal.id AS id, proposal.status AS status, proposal.operation AS operation,
                assertion.label AS assertion, proposal.createdBy AS createdBy,
                assertion.predicate AS predicate, assertion.timeSourceExpression AS time,
+               COLLECT {
+                 WITH CASE WHEN assertion.id =~ '.*:q[0-9a-f]{10}$'
+                           THEN left(assertion.id, size(assertion.id) - 12) ELSE assertion.id END AS base
+                 MATCH (other:Assertion)
+                 WHERE other.id <> assertion.id
+                   AND (other.id = base OR (other.id STARTS WITH base + ':q' AND other.id =~ '.*:q[0-9a-f]{10}$'))
+                 RETURN other.label + ' [' + other.status + ']'
+               } AS related,
                EXISTS { (assertion)-[:ASSERTION_ROLE]->() } AS hasRole,
                proposal.rationale AS rationale, proposal.ambiguities AS ambiguities,
                CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
