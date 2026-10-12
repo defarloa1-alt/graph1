@@ -53,7 +53,9 @@ Accepted claims:
 Still proposed: Cleopatra participatedIn (evidence 66.3 rejected as
 `unsupported`; claim open) and the seven `commanded` claims (13 Proposals).
 The seven claims added on 2026-10-12 rest on Plutarch alone and were decided
-by "Claude (delegated by Tony DeFarlo)".
+by "Claude (delegated by Tony DeFarlo)". The promontory Entity was relabelled
+from Wikidata's "Akri" to "Actium promontory" (curator decision); its
+AuthorityRecord keeps Wikidata's wording.
 
 ## 3. What exists
 
@@ -87,7 +89,6 @@ by "Claude (delegated by Tony DeFarlo)".
 ## 5. Open decisions (for the curator)
 
 1. **13 submitted `commanded` proposals** (7 claims) stay open (5a, design-mode policy); review them against the v3 definition when convenient. The 10 non-command proposals were decided on 2026-10-12 (the earlier count of 14 non-command and 9 command was wrong). *Mark Antony commanded Antony's fleet* (the whole fleet) is the borderline case between authority held and command exercised.
-1a. **Display label:** the Actium promontory Entity is labelled "Akri" (from Wikidata), so the accepted claim reads "Battle of Actium occurred at Akri". Consider a local label such as "Actium promontory".
 2. **Cleopatra 67.1**: whether to submit a curator-authored claim citing "Cleopatra recognized him and raised a signal on her ship".
 3. **Unresolved commanders** with no Wikidata record: Coelius (Antony's left wing), Marcus Octavius (Antony's centre), Alexas. Option: local entities, like the forces.
 4. **33 peripheral mentions** in the identity queue (allies, places); deferred because most would need dated `alliedWith` claims.
