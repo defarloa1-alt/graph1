@@ -33,10 +33,15 @@ from GraphRevised.slices.add_entity import persist_identity, persist_local_entit
 def apply_work(tx, operations, registry, item: dict) -> dict:
     """Apply one manifest `works` entry: authorId, authorQid, workId, workQid, workLabel,
     workShortLabel, passagePrefix. A Work with no Wikidata record omits workQid and gives
-    workDescription instead: it becomes a local Work, and no "author of" is proposed."""
-    author_path, author_meta = preserved_identity_payload(item["authorQid"])
-    persist_identity(tx, operations, entity_id=item["authorId"], kind="Person",
-                     payload_path=author_path, metadata=author_meta)
+    workDescription instead: it becomes a local Work, and no "author of" is proposed. An author
+    with no Wikidata record likewise omits authorQid and gives authorLabel and authorDescription."""
+    if item.get("authorQid"):
+        author_path, author_meta = preserved_identity_payload(item["authorQid"])
+        persist_identity(tx, operations, entity_id=item["authorId"], kind="Person",
+                         payload_path=author_path, metadata=author_meta)
+    else:
+        persist_local_entity(tx, operations, entity_id=item["authorId"], kind="Person",
+                             label=item["authorLabel"], description=item["authorDescription"])
     if not item.get("workQid"):
         persist_local_entity(tx, operations, entity_id=item["workId"], kind="Work", label=item["workLabel"],
                              description=item["workDescription"])
