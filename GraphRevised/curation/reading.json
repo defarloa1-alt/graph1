@@ -1,0 +1,4 @@
+{
+  "description": "Books the curator reads, mapped to Work entities, for importing Kindle and Readwise/Reader highlights (23-NARRATIVE-AND-NOTES.md §7). A Work must exist (curator-approved identity) before its highlights can be imported; a title here is matched case-insensitively as a prefix of the export's title.",
+  "books": []
+}

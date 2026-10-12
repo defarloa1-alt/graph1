@@ -582,3 +582,89 @@ WITH promoted, collect(source) AS sources
 WHERE size($sourceIds) > 0 AND size(sources) = size($sourceIds)
 FOREACH (source IN sources | MERGE (promoted)-[:PROMOTED_FROM]->(source))
 RETURN promoted, [source IN sources | source.id] AS sourceIds;
+
+// ---------------------------------------------------------------------------
+// Annotations and curator transcriptions (23-NARRATIVE-AND-NOTES.md §3, §7)
+// ---------------------------------------------------------------------------
+
+// Create or reuse a curator transcription: a short quotation of a Work as the
+// curator or a highlight import recorded it, with its edition and locator.
+// Linked IN_WORK to its Work, which must exist. Source facts are fixed at
+// creation; only display text and status may change.
+MATCH (work:Entity {id: $workId, kind: "Work"})
+MERGE (observation:SourceObservation {id: $id})
+ON CREATE SET
+  observation.label = $label,
+  observation.shortLabel = $shortLabel,
+  observation.observationKind = "transcription",
+  observation.sourceSystem = $sourceSystem,
+  observation.locator = $locator,
+  observation.locatorType = $locatorType,
+  observation.passageText = $passageText,
+  observation.passageHash = $passageHash,
+  observation.editorialNotes = [],
+  observation.language = $language,
+  observation.workTitle = $workTitle,
+  observation.author = $author,
+  observation.editionCitation = $editionCitation,
+  observation.rights = $rights,
+  observation.visibility = $visibility,
+  observation.capturedBy = $capturedBy,
+  observation.capturedAt = $capturedAt,
+  observation.retrievedAt = $capturedAt,
+  observation.contentHash = $contentHash,
+  observation.rawPayloadUri = $rawPayloadUri,
+  observation.status = "observed"
+ON MATCH SET
+  observation.label = coalesce($label, observation.label),
+  observation.shortLabel = coalesce($shortLabel, observation.shortLabel)
+MERGE (observation)-[:IN_WORK]->(work)
+RETURN observation;
+
+// Create or reuse an Annotation: commentary, never a claim. It may annotate a
+// passage (with the verbatim quotation) and concerns one or more Entities.
+// Refused if the passage or any concerned Entity is missing, or if a retry
+// names a different set of concerned Entities. New Annotations are `flagged`.
+OPTIONAL MATCH (existing:Annotation {id: $id})
+OPTIONAL MATCH (existing)-[:CONCERNS]->(concerned:Entity)
+WITH collect(concerned.id) AS existingConcerns, count(existing) > 0 AS exists
+OPTIONAL MATCH (target:Entity) WHERE target.id IN $concerns
+WITH existingConcerns, exists, collect(target) AS targets
+OPTIONAL MATCH (observation:SourceObservation {id: $observationId})
+WITH existingConcerns, exists, targets, observation
+WHERE size($concerns) > 0
+  AND size(targets) = size($concerns)
+  AND ($observationId IS NULL OR observation IS NOT NULL)
+  AND (NOT exists OR (size(existingConcerns) = size($concerns)
+                      AND all(id IN existingConcerns WHERE id IN $concerns)))
+  AND $visibility IN ["private", "team", "public"]
+MERGE (annotation:Annotation {id: $id})
+ON CREATE SET
+  annotation.label = $label,
+  annotation.kind = $kind,
+  annotation.noteType = $noteType,
+  annotation.note = $note,
+  annotation.author = $author,
+  annotation.visibility = $visibility,
+  annotation.status = "flagged",
+  annotation.createdAt = $createdAt
+ON MATCH SET
+  annotation.label = coalesce($label, annotation.label)
+FOREACH (item IN CASE WHEN observation IS NULL THEN [] ELSE [observation] END |
+  MERGE (annotation)-[link:ANNOTATES]->(item)
+  ON CREATE SET link.quotation = $quotation)
+FOREACH (item IN targets | MERGE (annotation)-[:CONCERNS]->(item))
+RETURN annotation;
+
+// Endorse, dismiss, or re-flag an Annotation, recording who and when.
+MATCH (annotation:Annotation {id: $id})
+WHERE $status IN ["flagged", "endorsed", "dismissed"]
+SET annotation.status = $status, annotation.decidedBy = $decidedBy, annotation.decidedAt = $decidedAt
+RETURN annotation;
+
+// Delete an Annotation. Annotations are commentary and may be removed freely;
+// the passages and Entities they pointed to are untouched.
+MATCH (annotation:Annotation {id: $id})
+WITH annotation, annotation.id AS deleted
+DETACH DELETE annotation
+RETURN deleted;

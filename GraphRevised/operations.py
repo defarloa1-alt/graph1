@@ -36,6 +36,10 @@ OPERATION_NAMES = (
     "link_assertion_years",
     "link_observation_work",
     "link_promoted_from",
+    "upsert_transcription_observation",
+    "upsert_annotation",
+    "set_annotation_status",
+    "delete_annotation",
 )
 
 

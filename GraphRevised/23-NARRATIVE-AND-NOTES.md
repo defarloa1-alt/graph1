@@ -249,6 +249,24 @@ Rules:
 4. Reader outputs for depicted events and passages of note; the pilot (§5).
 5. `getInterpretations` with the Phase B read API.
 
+### Progress (2026-10-12)
+
+Steps 1–3 are done:
+
+- Registry `predicates-v5` (categories, `Office` and `Concept`, the new
+  predicates); migration 002 categorized the 52 existing claims.
+- Annotation (migration 003 constraint) and transcription observations,
+  with four operations (31 in all).
+- [capture/](capture): `cli add` for one passage, `cli import` for Kindle
+  `My Clippings.txt` and Readwise/Reader CSV, matched to Works through
+  [curation/reading.json](curation/reading.json); imported files are kept in
+  the git-ignored `private-sources/`. A live test carries a captured
+  quotation through to an attributed, interpretive `exemplifies` claim on a
+  Concept. 140 tests.
+
+Before the first real capture, the curator adds each book read as a Work
+(identity approval) and to `curation/reading.json`.
+
 ## 9. Curator decisions (2026-10-12)
 
 All accepted as recommended:

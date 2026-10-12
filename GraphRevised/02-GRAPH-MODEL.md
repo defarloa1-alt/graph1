@@ -13,7 +13,7 @@ Required properties:
 
 ```yaml
 id: chr:entity:...
-kind: Person | Event | Place | Group | Object | Work | Period | Other
+kind: Person | Event | Place | Group | Object | Work | Period | Office | Concept | Other
 label: ...
 status: provisional | resolved | deprecated
 ```
@@ -25,6 +25,10 @@ assertions when they are uncertain, disputed, or source-specific.
 An Entity description is locally adopted display text. If it originates with
 an authority record, preserve the source wording and revision on the linked
 AuthorityRecord and SourceObservation.
+
+`Office` holds positions and posts (targets of `heldPosition` and role
+qualifiers); `Concept` holds analytical ideas and frames (targets of
+`exemplifies`). The list of kinds is data, in the predicate registry.
 
 ### Subject
 
@@ -91,6 +95,13 @@ separately, edition citation, rights, and hashes. Their ID is
 
 `SUPPORTED_BY` and `PROPOSES_EVIDENCE` carry a `quotation` when the evidence
 is a passage: the verbatim span offered in support.
+
+Transcription observations (`observationKind: transcription`) are short
+quotations the curator captured while reading, by hand or from Kindle and
+Readwise/Reader highlights, with the edition and locator (page or Kindle
+location), who captured them, and when. They are linked `IN_WORK` to their
+Work, are private by default, and serve as evidence like passages
+([23](23-NARRATIVE-AND-NOTES.md) §7).
 
 Two Wikidata observation kinds currently exist, each with its own deterministic ID:
 
@@ -193,6 +204,9 @@ accepted. Evidence and claim are decided separately:
   `retractReason`). Its evidence links remain as audit history, and it can be
   reopened. Its open Proposals must be decided first.
 
+Every Assertion records its claim `category` (`factual` or
+`interpretive`) from its predicate; interpretive claims are attributed only.
+
 Every rejection, supersession, and retraction carries a reason code (`decisionReason` on
 the Proposal, `supersedeReason` on the Assertion):
 
@@ -254,8 +268,16 @@ Relationship direction must be consistent in the stored graph.
 (:Assertion)-[:PROMOTED_FROM]->(:Assertion)
 (:Assertion)-[:IN_YEAR]->(:Year)
 (:SourceObservation)-[:IN_WORK]->(:Entity {kind: Work})
+(:Annotation)-[:ANNOTATES {quotation}]->(:SourceObservation)
+(:Annotation)-[:CONCERNS]->(:Entity)
 (:Entity)-[:IN_YEAR]->(:Year)
 ```
+
+**Annotation** (the eighth core label, unique `id`, migration 003) is
+commentary, never a claim: a passage of note flagged by the reader or the
+curator, or a curator's note, with `kind`, `noteType`, `note`, `author`,
+`visibility` (private, team, public), and `status` (flagged, endorsed,
+dismissed). It may be deleted freely; it is never a hop in path tracing.
 
 The qualifier relationships, `PROMOTED_FROM`, and `IN_WORK` are specified in
 [22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md). A unary Assertion (such as

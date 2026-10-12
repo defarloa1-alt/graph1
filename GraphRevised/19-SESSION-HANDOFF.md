@@ -13,7 +13,7 @@ export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.tx
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
   GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius \
-  GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries  # expect 132 tests, OK
+  GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries GraphRevised.tests.test_capture  # expect 140 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -62,9 +62,11 @@ AuthorityRecord keeps Wikidata's wording.
 
 | Area | Artifact |
 |---|---|
-| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 27 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
+| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 31 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
 | Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v4` (quotations, inquiry, relevance, ambiguities; mode, context, role, time, qualifier quotations) |
 | Predicates | [proposals/predicates.v4.json](proposals/predicates.v4.json) — 16 predicates, each declaring its qualifiers and modes; `heldAuthorityOver` (needs a time) and `commanded` (needs a time when it has a role), both Person → Group; unary `occurred`; `authorOf` |
+| Capture | [capture/](capture) — passages from reading (manual, Kindle, Readwise/Reader) as private transcriptions plus Annotations; books mapped in [curation/reading.json](curation/reading.json) |
+| Export | [export/cytoscape.py](export/cytoscape.py) — compact projection to `.cyjs` and a Cytoscape.js smoke page |
 | Time | [proposals/temporal.py](proposals/temporal.py) — year conversion (no year zero ↔ astronomical), EDTF to Julian Day Number bounds |
 | Validator | [proposals/validator.py](proposals/validator.py) — deterministic; Wikidata statement evidence must state the claim; passage quotes must be verbatim (whitespace and quote style tolerated only) |
 | Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason`, `retract --reason`, `promote` |

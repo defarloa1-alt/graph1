@@ -65,7 +65,8 @@ the review delegation policy added `retract_assertion`, for 22. Qualified
 claims ([22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md)) added
 `upsert_qualified_assertion`, `set_pending_qualifier_quotations`,
 `link_assertion_years`, `link_observation_work`, and `link_promoted_from`, for
-27.
+27. Capture added `upsert_transcription_observation`, `upsert_annotation`,
+`set_annotation_status`, and `delete_annotation`, for 31.
 
 Optional display parameters may be null; null never erases an existing value.
 SourceObservation source facts are immutable after creation. Property names

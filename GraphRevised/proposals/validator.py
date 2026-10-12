@@ -133,7 +133,7 @@ def validate(
             reasons.append(f"observation {observation_id} does not exist")
         elif observation.get("status") != "observed":
             reasons.append(f"observation {observation_id} is {observation.get('status')}, not observed")
-        elif observation.get("observationKind") == "passage":
+        elif observation.get("observationKind") in ("passage", "transcription"):
             reasons.extend(_check_passage(observation, quotations.get(observation_id)))
             passages.append(observation)
         elif observation.get("sourceSystem") == "Wikidata" and observation.get("externalStatementId"):

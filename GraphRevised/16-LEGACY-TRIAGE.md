@@ -54,6 +54,7 @@ SourceObservation
 Assertion
 Proposal
 Year
+Annotation   (added 2026-10-12, 23-NARRATIVE-AND-NOTES.md)
 ```
 
 ## Adoption rules
