@@ -128,18 +128,22 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(result.draft.subject_id, "chr:entity:julia")
         self.assertEqual(result.assertion_id, self.check(draft("siblingOf", AGRIPPA, JULIA, (p3373,)), reader).assertion_id)
 
-    def test_marriage_needs_a_time_qualifier(self):
-        self.assertEqual(self.check(draft("spouseOf", JULIA, AGRIPPA, (P26_UNQUALIFIED,))).outcome, Outcome.DEFERRED)
+    def test_an_undated_marriage_is_stored_and_noted(self):
+        result = self.check(draft("spouseOf", JULIA, AGRIPPA, (P26_UNQUALIFIED,)))
+        self.assertEqual(result.outcome, Outcome.VALID)
+        self.assertTrue(any(note.startswith("undated:") for note in result.notes))
 
     def test_unknown_qualifiers_defer_when_predicate_takes_time(self):
         reader = FakeReader([AGRIPPA, JULIA], [P26_UNQUALIFIED | {"qualifierPropertyIds": None}])
         self.assertEqual(self.check(draft("spouseOf", AGRIPPA, JULIA, (P26_UNQUALIFIED,)), reader).outcome, Outcome.DEFERRED)
 
-    def test_required_qualification_is_deferred(self):
+    def test_an_expected_time_is_a_note_not_a_gate(self):
         position = entity("chr:entity:consul", "Other", "Q40779")
         p39 = observation("chr:observation:p39", "Q48174", "P39", "Q40779")
         reader = FakeReader([AGRIPPA, position], [p39])
-        self.assertEqual(self.check(draft("heldPosition", AGRIPPA, position, (p39,)), reader).outcome, Outcome.DEFERRED)
+        result = self.check(draft("heldPosition", AGRIPPA, position, (p39,)), reader)
+        self.assertEqual(result.outcome, Outcome.VALID)
+        self.assertEqual(result.notes, ("undated: heldPosition expects a time",))
 
     def test_ambiguity_reaches_the_curator_instead_of_being_deferred(self):
         result = self.check(draft(ambiguities=("which Agrippa?",)))
@@ -185,7 +189,9 @@ class RegistryAndProposerTests(unittest.TestCase):
         reader = FakeReader([AGRIPPA, fleet], [PASSAGE])
         held = draft("heldAuthorityOver", AGRIPPA, fleet, (PASSAGE,),
                      quotations=(Quotation(observation_id=PASSAGE["id"], text="Caesar posted Agrippa on the left"),))
-        self.assertEqual(validate(held, reader, self.registry).outcome, Outcome.DEFERRED)
+        result = validate(held, reader, self.registry)
+        self.assertEqual(result.outcome, Outcome.VALID)
+        self.assertTrue(result.notes)
         commanded = held.model_copy(update={"predicate": "commanded"})
         self.assertEqual(validate(commanded, reader, self.registry).outcome, Outcome.VALID)
 
@@ -392,11 +398,14 @@ class QualifierValidatorTests(unittest.TestCase):
         self.assertEqual(wrong_kind.outcome, Outcome.INVALID)
         self.assertEqual(self.check(command(**ROLE_AND_TIME)).outcome, Outcome.VALID)
 
-    def test_command_with_a_role_needs_a_time(self):
-        self.assertEqual(self.check(command(**ROLE)).outcome, Outcome.DEFERRED)
+    def test_command_with_a_role_is_noted_when_undated(self):
+        result = self.check(command(**ROLE))
+        self.assertEqual(result.outcome, Outcome.VALID)
+        self.assertEqual(result.notes, ("undated: commanded with a role expects a time",))
+        self.assertEqual(self.check(command()).notes, ())
 
     def test_authority_held_needs_a_time_and_accepts_one_from_the_source(self):
-        self.assertEqual(self.check(command("heldAuthorityOver")).outcome, Outcome.DEFERRED)
+        self.assertEqual(self.check(command("heldAuthorityOver")).outcome, Outcome.VALID)
         self.assertEqual(self.check(command("heldAuthorityOver", **TIME)).outcome, Outcome.VALID)
 
     def test_time_must_be_shown_and_parse(self):

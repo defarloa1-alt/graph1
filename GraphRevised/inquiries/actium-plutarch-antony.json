@@ -1,6 +1,6 @@
 {
   "id": "chr:inquiry:actium-plutarch-antony",
-  "version": 13,
+  "version": 14,
   "label": "Battle of Actium in Plutarch's Life of Antony",
   "subjectId": "chr:subject:history-of-battle-of-actium",
   "narrativeEventId": "chr:entity:battle-of-actium",
@@ -41,7 +41,7 @@
     "In this Life, \"Caesar\" in the narrative of Antony's war with him denotes Octavian (later Augustus), not Julius Caesar.",
     "For participatedIn, a person counts as taking part in the event when the passage shows them present during it: commanding, fighting, aboard a ship in the action, or fleeing from it. Preparations before the event, or the actions of a person's ships or troops with no sign of the person, do not by themselves show that the person took part.",
     "commanded relates a person to a force they directed in action, using the force entities in scope: a fleet, one wing or the centre of a fleet, a squadron, or a land army. Command of a wing or the centre is not command of the whole fleet; use the most specific force the passage supports.",
-    "heldAuthorityOver is formal or supreme authority over a force, whether or not the person directed it in the fighting, for example an overall commander whose subordinate leads a wing. Draft it only when the passage shows that authority; it needs a time, so without one in the passage it is held.",
+    "heldAuthorityOver is formal or supreme authority over a force, whether or not the person directed it in the fighting, for example an overall commander whose subordinate leads a wing. Draft it when the passage shows that authority, with a time only if the passage gives one.",
     "Give a time marker in the source's own words as the time expression, only for predicates that take a time. Add time_edtf only when the passage states the year. Notes by a modern editor, translator, or transcriber are never the ancient author's text."
   ]
 }

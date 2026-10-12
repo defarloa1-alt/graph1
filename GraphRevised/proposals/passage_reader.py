@@ -91,8 +91,9 @@ own words and time_quotation the exact span containing them. Fill time_edtf only
 itself states the year (with or without month and day); never from editorial notes, the surrounding \
 narrative, or outside knowledge, and not for a day and month given without a year. time_edtf numbers \
 years astronomically: 1 BCE is 0000, 2 BCE is -0001, and 100 BCE is -0099; years CE are unchanged. A \
-predicate's list entry says which qualifiers it takes; a claim that needs a qualifier the passage \
-does not give is still drafted without it, and is held for later.
+predicate's list entry says which qualifiers it takes; a claim whose qualifier the passage does not \
+give is still drafted without it and stored as undated. A vague time phrase in the passage's own \
+words is a valid time expression; it is never turned into a date.
 10. For predicates that take a context, set context_id to the inquiry's narrative event when the \
 claim happens within it. If the passage names the event, also copy that span as context_quotation.
 11. A predicate marked "no object" takes no object_id: leave it null.
@@ -297,7 +298,7 @@ def read_passage(
     return response.parsed_output, meta
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v8", SYSTEM_PROMPT, predicate_guide, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v9", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(
@@ -439,10 +440,11 @@ def main(argv: list[str] | None = None) -> int:
                         elif args.submit:
                             submission = submit(tx, draft, registry, operations)
                             v = submission.validation
-                            results.append((draft, v.outcome.value, list(v.reasons), v.proposal_id, submission.stored))
+                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes), v.proposal_id,
+                                            submission.stored))
                         else:
                             v = validate(draft, Neo4jReader(tx), registry)
-                            results.append((draft, v.outcome.value, list(v.reasons), v.proposal_id, False))
+                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes), v.proposal_id, False))
                     if any(stored for *_, stored in results):
                         tx.commit()
                     else:

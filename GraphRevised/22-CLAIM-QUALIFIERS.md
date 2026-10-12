@@ -180,10 +180,17 @@ with `none | optional | required` per qualifier. Proposed values:
 | `authorOf` (new) | none | none | optional |
 | others | none | none | as now |
 
-A draft missing a required qualifier is `deferred` (stored only in the run
-log), as now. Consistent with the curator's ruling that event-bound claims
-get no exemption, a `heldAuthorityOver` claim drawn from Plutarch, who gives
-no date for it, stays deferred until a source supplies one.
+**Revised by the curator (2026-10-12): an expected qualifier is a note, not a
+gate.** Not every passage dates what it says, and passages that only add
+colour still belong in the graph. A draft missing a "required" qualifier is
+stored like any other and noted (`undated: heldAuthorityOver expects a time`);
+the review listing marks it UNDATED, and the frontier ledger (E16) treats it
+as a gap a later source may fill. A dated version from another source is a
+separate, finer claim (§3). Vague time phrases in the source's own words are
+kept verbatim as time expressions and are never normalized. One exception:
+a unary claim such as `occurred` has no content without its time, so it
+still waits for one. This supersedes the earlier ruling that event-bound
+claims get no exemption.
 
 Wikidata qualifiers stop being a reason to defer: P580, P582, P585, P1319,
 and P1326 map to time; P2868 and P3831 (subject or object has role) map to
@@ -288,5 +295,6 @@ All five recommendations were accepted:
 4. **Context may rest on the inquiry's declared narrative**, recorded as
    `contextBasis: inquiry`, as well as on a quotation; most passages do not
    repeat the event's name (65.5 never says "Actium").
-5. **`commanded` with a role requires time; without a role it does not.**
-   `heldAuthorityOver` always requires time.
+5. **`commanded` with a role expects a time; without a role it does not.**
+   `heldAuthorityOver` always expects one. (Revised the same day: a missing
+   expected time no longer defers a claim; see §7.)

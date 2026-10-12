@@ -534,3 +534,13 @@ About 92% of input tokens were read from the prompt cache.
 - Queue after the runs: 64 submitted Proposals (32 attributed
   `participatedIn`, 25 `commanded`, 3 `heldAuthorityOver`, 2 `occurred`, 2
   `authorOf`). Graph: 4,247 nodes, 4,410 relationships.
+
+**Decision: an expected time is a note, not a gate.** The curator ruled that
+a claim is not excluded for lacking a date: it is stored, marked UNDATED in
+review, and dated later if a source gives a date ([22 §7](22-CLAIM-QUALIFIERS.md)).
+Vague time phrases stay as the source's wording. Reader prompt
+`passage-reader-v9`; inquiries Plutarch v14, Dio v5. Rerunning the two
+Plutarch sections whose authority claims had been deferred stored both
+(64.1, and 68.3 as undated); Dio 50.14.1 drafted nothing on the rerun, a
+reminder that model output varies between runs. Passages that add colour
+but are not claims ("passages of note") are to be designed with E12.

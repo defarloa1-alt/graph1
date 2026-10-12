@@ -46,9 +46,20 @@ def mark_quotation(passage: str, quotation: str | None) -> str:
     return passage
 
 
-def print_proposals(rows: list[dict]) -> None:
+def undated(row: dict, registry) -> bool:
+    """The claim's predicate expects a time and the source gave none."""
+    definition = registry.get(row.get("predicate") or "")
+    if definition is None or row.get("time"):
+        return False
+    expected = definition.qualifiers.time
+    return expected == "required" or (expected == "withRole" and row.get("hasRole"))
+
+
+def print_proposals(rows: list[dict], registry=None) -> None:
     for row in rows:
         print(f"{row['status']:<11} {row['operation']:<11} {row['id']}\n            {row['assertion']}")
+        if registry is not None and undated(row, registry):
+            print("            UNDATED: the predicate expects a time the source did not give")
         for evidence in row["evidence"]:
             print(f"            + {evidence['observation']}")
             if evidence["locator"]:
@@ -102,7 +113,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
             if args.command == "list":
-                print_proposals(session.execute_read(list_proposals, args.status))
+                print_proposals(session.execute_read(list_proposals, args.status), load_registry())
                 return 0
 
             operations = load_operations()

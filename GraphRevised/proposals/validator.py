@@ -40,6 +40,7 @@ class ValidationResult:
     new_observation_ids: tuple[str, ...] = ()
     qualifier_entities: dict[str, dict[str, Any]] | None = None  # context, role, attributedTo
     time_bounds: TimeBounds | None = None
+    notes: tuple[str, ...] = ()  # e.g. a claim stored without a time its predicate expects
 
 
 class GraphReader(Protocol):
@@ -151,6 +152,11 @@ def validate(
         return ValidationResult(Outcome.INVALID, tuple(reasons), draft)
 
     deferrals = _deferrals(draft, definition, registry, statements)
+    notes = tuple(_missing_qualifiers(draft, definition))
+    if definition.unary and notes:
+        # A unary claim's content is its qualifiers: without them it says nothing.
+        deferrals.extend(notes)
+        notes = ()
     canonical_assertion = assertion_id(definition.id, subject_id, object_id, qualifier_signature(draft))
     result = dict(
         draft=draft,
@@ -160,6 +166,7 @@ def validate(
         object=obj,
         qualifier_entities=qualifier_entities,
         time_bounds=time_bounds,
+        notes=notes,
     )
     if deferrals:
         return ValidationResult(Outcome.DEFERRED, tuple(deferrals), **result)
@@ -258,23 +265,32 @@ def _check_qualifier_evidence(
     return reasons
 
 
+def _missing_qualifiers(draft: ProposalDraft, definition: PredicateDefinition) -> list[str]:
+    """Qualifiers the predicate expects ("required" in the registry) that the
+    source did not give. The claim is still stored: a source need not date
+    everything it says, and a later source may supply what is missing."""
+    missing = []
+    expected = definition.qualifiers
+    if expected.context == "required" and not draft.context_id:
+        missing.append(f"no context: {definition.id} expects one")
+    if expected.role == "required" and not draft.role_id:
+        missing.append(f"no role: {definition.id} expects one")
+    time_expected = expected.time == "required" or (expected.time == "withRole" and draft.role_id is not None)
+    if time_expected and draft.time is None:
+        missing.append(f"undated: {definition.id}{' with a role' if expected.time == 'withRole' else ''} expects a time")
+    return missing
+
+
 def _deferrals(
     draft: ProposalDraft,
     definition: PredicateDefinition,
     registry: PredicateRegistry,
     statements: list[dict[str, Any]],
 ) -> list[str]:
-    """Qualifiers a predicate requires but the draft lacks, and Wikidata
-    qualifiers that would otherwise be flattened."""
+    """Wikidata qualifiers that would otherwise be flattened or cannot yet be
+    compared. (Missing expected qualifiers are notes, not deferrals.)"""
     deferrals = []
     required = definition.qualifiers
-    if required.context == "required" and not draft.context_id:
-        deferrals.append(f"{definition.id} requires a context event")
-    if required.role == "required" and not draft.role_id:
-        deferrals.append(f"{definition.id} requires a role")
-    time_required = required.time == "required" or (required.time == "withRole" and draft.role_id is not None)
-    if time_required and draft.time is None:
-        deferrals.append(f"{definition.id} {'with a role ' if required.time == 'withRole' else ''}requires a time qualifier")
 
     for observation in statements:
         qualifiers = observation.get("qualifierPropertyIds")

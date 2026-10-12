@@ -320,6 +320,8 @@ def list_proposals(tx: Any, status: str | None = None) -> list[dict[str, Any]]:
               WHERE item.observation IS NOT NULL] AS support
         RETURN proposal.id AS id, proposal.status AS status, proposal.operation AS operation,
                assertion.label AS assertion, proposal.createdBy AS createdBy,
+               assertion.predicate AS predicate, assertion.timeSourceExpression AS time,
+               EXISTS { (assertion)-[:ASSERTION_ROLE]->() } AS hasRole,
                proposal.rationale AS rationale, proposal.ambiguities AS ambiguities,
                CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
         ORDER BY id

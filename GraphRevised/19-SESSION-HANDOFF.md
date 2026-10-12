@@ -90,6 +90,7 @@ AuthorityRecord keeps Wikidata's wording.
 9. Delegated review follows [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md): Claude may accept only claims a verbatim quote plainly shows, records itself as `Claude (delegated by …)`, and leaves identity, predicates, roles, command, and uncertain cases to the curator.
 10. Curation is data: approved identities and local entities go into a manifest in `curation/`, never into a new script. Reusable code, including `slices/`, must name no source or subject (a test enforces it).
 11. Readers locate passages themselves: inquiries name whole works (no `chapters`), and guidance states source conventions and predicate rules only, never locators or the source's words (a test enforces it).
+12. A missing date never excludes a claim: it is stored and marked UNDATED; vague time phrases stay verbatim and are never normalized (except unary claims such as `occurred`, which need their time).
 
 ## 5. Open decisions (for the curator)
 
