@@ -94,6 +94,7 @@ def assertion_params(**overrides):
         "label": None,
         "shortLabel": None,
         "predicate": "participatedIn",
+        "category": "factual",
         "assertedBy": "test",
         "subjectId": AGRIPPA,
         "objectId": ACTIUM,

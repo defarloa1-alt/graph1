@@ -173,7 +173,8 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             "MATCH (p:Proposal {id: $id})-[:PROPOSES]->(a:Assertion) RETURN p, a", id=proposal_id
         ).single()
         self.assertEqual(stored["p"]["status"], "submitted")
-        self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v4")
+        self.assertEqual(stored["p"]["predicateRegistryVersion"], self.registry.version)
+        self.assertEqual(stored["a"]["category"], "factual")
         self.assertEqual(stored["a"]["status"], "proposed")
         self.assertEqual(stored["a"]["label"], "Test leader participated in Test battle")
         self.assertIn(proposal_id, [row["id"] for row in list_proposals(self.tx, "submitted")])
@@ -463,7 +464,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.add_entity(ADMIRAL)
         self.add_local(BATTLE[0], "Event", BATTLE[2])
         self.add_local("chr:entity:test-wing", "Group", "Test left wing")
-        self.add_local("chr:entity:test-legatus", "Other", "legatus")
+        self.add_local("chr:entity:test-legatus", "Office", "legatus")
 
     def command_draft(self, work_id, passage_id, mode="attributed"):
         return ProposalDraft(
@@ -535,7 +536,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         stored = self.tx.run("MATCH (a:Assertion {id: $id}) RETURN properties(a) AS a",
                              id=submission.validation.assertion_id).single()["a"]
         params = {key: stored.get(key) for key in (
-            "label", "shortLabel", "predicate", "assertedBy", "mode", "contextBasis", "timeEdtf", "timeCalendar",
+            "label", "shortLabel", "predicate", "category", "assertedBy", "mode", "contextBasis", "timeEdtf", "timeCalendar",
             "timePrecision", "timeApproximate", "timeUncertain", "timeSourceExpression", "timeNormalizationBasis",
             "timeRelativeOffset", "startEarliestJdn", "startLatestJdn", "endEarliestJdn", "endLatestJdn")}
         params |= {"id": stored["id"], "subjectId": ADMIRAL[0], "objectId": "chr:entity:test-wing",

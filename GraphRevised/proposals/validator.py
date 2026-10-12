@@ -54,7 +54,10 @@ class GraphReader(Protocol):
         """{id, status, predicate, observationIds} or None."""
 
 
-QUALIFIER_KINDS = {"context_id": ("context", "Event"), "role_id": ("role", "Other"), "attributed_to": ("attributedTo", "Work")}
+def qualifier_kinds(registry: PredicateRegistry) -> dict[str, tuple[str, str]]:
+    """Draft field -> (qualifier name, required Entity kind); the role kind comes from the registry."""
+    return {"context_id": ("context", "Event"), "role_id": ("role", registry.role_kind),
+            "attributed_to": ("attributedTo", "Work")}
 
 
 def validate(
@@ -98,7 +101,7 @@ def validate(
 
     reasons.extend(_check_qualifier_rules(draft, definition))
     qualifier_entities: dict[str, dict[str, Any]] = {}
-    for field, (name, kind) in QUALIFIER_KINDS.items():
+    for field, (name, kind) in qualifier_kinds(registry).items():
         target = getattr(draft, field)
         if target is None:
             continue

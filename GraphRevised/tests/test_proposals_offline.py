@@ -138,7 +138,7 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(self.check(draft("spouseOf", AGRIPPA, JULIA, (P26_UNQUALIFIED,)), reader).outcome, Outcome.DEFERRED)
 
     def test_an_expected_time_is_a_note_not_a_gate(self):
-        position = entity("chr:entity:consul", "Other", "Q40779")
+        position = entity("chr:entity:consul", "Office", "Q40779")
         p39 = observation("chr:observation:p39", "Q48174", "P39", "Q40779")
         reader = FakeReader([AGRIPPA, position], [p39])
         result = self.check(draft("heldPosition", AGRIPPA, position, (p39,)), reader)
@@ -175,7 +175,7 @@ class RegistryAndProposerTests(unittest.TestCase):
 
     def test_authority_held_and_command_exercised_are_separate_predicates(self):
         held, commanded = self.registry.get("heldAuthorityOver"), self.registry.get("commanded")
-        self.assertEqual(self.registry.version, "predicates-v4")
+        self.assertEqual(self.registry.version, "predicates-v5")
         for definition in (held, commanded):
             self.assertEqual((definition.subject_kinds, definition.object_kinds), ({"Person"}, {"Group"}))
             self.assertTrue(definition.definition)
@@ -196,7 +196,8 @@ class RegistryAndProposerTests(unittest.TestCase):
         self.assertEqual(validate(commanded, reader, self.registry).outcome, Outcome.VALID)
 
     def test_registry_kinds_are_known_entity_kinds(self):
-        kinds = {"Person", "Event", "Place", "Group", "Object", "Work", "Period", "Other"}
+        kinds = set(self.registry.entity_kinds)
+        self.assertTrue({"Office", "Concept"} <= kinds)
         for definition in self.registry.predicates.values():
             self.assertLessEqual(definition.subject_kinds | definition.object_kinds, kinds, definition.id)
 
@@ -312,7 +313,7 @@ class PassageValidatorTests(unittest.TestCase):
 
 FLEET = entity("chr:entity:left-wing", "Group")
 BATTLE_EVENT = entity("chr:entity:battle", "Event")
-LEGATE = entity("chr:entity:legatus", "Other")
+LEGATE = entity("chr:entity:legatus", "Office")
 WORK = entity("chr:entity:histories", "Work")
 OTHER_WORK = entity("chr:entity:other-work", "Work")
 COMMAND_PASSAGE = {
@@ -450,6 +451,19 @@ class QualifierValidatorTests(unittest.TestCase):
         self.assertEqual(self.check(command(**(battle | {"time": None, "qualifier_quotations": ()}))).outcome,
                          Outcome.DEFERRED)
         self.assertEqual(self.check(command(object_id=None)).outcome, Outcome.INVALID)
+
+    def test_interpretations_are_attributed_and_point_at_concepts(self):
+        concept = entity("chr:entity:test-concept", "Concept")
+        reader = FakeReader([BATTLE_EVENT, concept, WORK], [COMMAND_PASSAGE])
+        reading = command("exemplifies", subject_id=BATTLE_EVENT["id"], object_id=concept["id"],
+                          mode="attributed", attributed_to=WORK["id"])
+        self.assertEqual(validate(reading, reader, self.registry).outcome, Outcome.VALID)
+        self.assertEqual(self.registry.get("exemplifies").category, "interpretive")
+        asserted = reading.model_copy(update={"mode": "asserted", "attributed_to": None})
+        self.assertEqual(validate(asserted, reader, self.registry).outcome, Outcome.INVALID)
+        not_concept = reading.model_copy(update={"object_id": FLEET["id"]})
+        self.assertEqual(validate(not_concept, FakeReader([BATTLE_EVENT, FLEET, WORK], [COMMAND_PASSAGE]),
+                                  self.registry).outcome, Outcome.INVALID)
 
     def test_wikidata_evidence_for_a_qualified_claim_is_deferred(self):
         qualified = draft(time=SEPTEMBER)

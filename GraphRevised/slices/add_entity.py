@@ -26,7 +26,9 @@ from GraphRevised.operations import load_operations, run_write
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 SOURCE_DIRECTORY = GRAPH_REVISED / "phase-5-source"
-ENTITY_KINDS = ("Person", "Event", "Place", "Group", "Object", "Work", "Period", "Other")
+from GraphRevised.proposals.registry import load_registry
+
+ENTITY_KINDS = load_registry().entity_kinds
 
 
 def preserved_identity_payload(qid: str) -> tuple[Path, dict[str, Any]]:

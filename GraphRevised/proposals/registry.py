@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v4.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v5.json"
 
 Requirement = Literal["none", "optional", "required"]
 TimeRequirement = Literal["none", "optional", "required", "withRole"]
@@ -44,6 +44,7 @@ class PredicateDefinition:
     definition: str | None = None
     qualifiers: Qualifiers = Qualifiers()
     modes: frozenset[str] = frozenset({"asserted"})
+    category: Literal["factual", "interpretive"] = "factual"
 
     @property
     def unary(self) -> bool:
@@ -57,6 +58,8 @@ class PredicateRegistry:
     temporal_qualifier_pids: frozenset[str]
     role_qualifier_pids: frozenset[str]
     predicates: dict[str, PredicateDefinition]
+    entity_kinds: tuple[str, ...] = ()
+    role_kind: str = "Other"
 
     def get(self, predicate_id: str) -> PredicateDefinition | None:
         return self.predicates.get(predicate_id)
@@ -83,6 +86,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
             definition=item.get("definition"),
             qualifiers=Qualifiers(**item.get("qualifiers", {})),
             modes=frozenset(item.get("modes", ["asserted"])),
+            category=item.get("category", "factual"),
         )
         for item in data["predicates"]
     }
@@ -91,6 +95,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
         temporal_qualifier_pids=frozenset(data["temporalQualifierPropertyIds"]),
         role_qualifier_pids=frozenset(data.get("roleQualifierPropertyIds", [])),
         predicates=predicates,
+        entity_kinds=tuple(data.get("entityKinds", ())),
+        role_kind=data.get("roleKind", "Other"),
     )
 
 

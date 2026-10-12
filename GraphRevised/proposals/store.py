@@ -160,7 +160,8 @@ def submit(
         return SubmissionResult(result, stored=True)
 
     if _is_qualified(result.draft):
-        run_write(tx, operations, "upsert_qualified_assertion", _qualified_assertion_params(result, label, short_label))
+        run_write(tx, operations, "upsert_qualified_assertion",
+                  _qualified_assertion_params(result, label, short_label) | {"category": definition.category})
         bounds = result.time_bounds
         if bounds is not None and bounds.earliest_year is not None and bounds.latest_year is not None:
             run_write(tx, operations, "link_assertion_years", {"assertionId": result.assertion_id, "years": bounds.years()})
@@ -170,6 +171,7 @@ def submit(
             "label": label,
             "shortLabel": short_label,
             "predicate": definition.id,
+            "category": definition.category,
             "assertedBy": result.draft.proposed_by,
             "subjectId": result.draft.subject_id,
             "objectId": result.draft.object_id,

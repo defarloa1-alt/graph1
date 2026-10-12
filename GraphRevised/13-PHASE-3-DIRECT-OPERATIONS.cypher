@@ -228,6 +228,7 @@ ON CREATE SET
   assertion.label = $label,
   assertion.shortLabel = $shortLabel,
   assertion.predicate = $predicate,
+  assertion.category = $category,
   assertion.status = "proposed",
   assertion.assertedBy = $assertedBy
 ON MATCH SET
@@ -511,6 +512,7 @@ ON CREATE SET
   assertion.label = $label,
   assertion.shortLabel = $shortLabel,
   assertion.predicate = $predicate,
+  assertion.category = $category,
   assertion.status = "proposed",
   assertion.assertedBy = $assertedBy,
   assertion.mode = $mode,
