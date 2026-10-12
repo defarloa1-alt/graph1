@@ -89,8 +89,8 @@ AuthorityRecord keeps Wikidata's wording.
 8. Shell note: long `python - <<'EOF'` heredocs containing triple-quoted strings have failed in this environment; write edit scripts to the scratchpad and run them instead.
 9. Delegated review follows [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md): Claude may accept only claims a verbatim quote plainly shows, records itself as `Claude (delegated by …)`, and leaves identity, predicates, roles, command, and uncertain cases to the curator.
 10. Curation is data: approved identities and local entities go into a manifest in `curation/`, never into a new script. Reusable code, including `slices/`, must name no source or subject (a test enforces it).
-
 11. Readers locate passages themselves: inquiries name whole works (no `chapters`), and guidance states source conventions and predicate rules only, never locators or the source's words (a test enforces it).
+
 ## 5. Open decisions (for the curator)
 
 1. **13 submitted `commanded` proposals** (7 claims) stay open (5a, design-mode policy); review them against the v3 definition when convenient. The 10 non-command proposals were decided on 2026-10-12 (the earlier count of 14 non-command and 9 command was wrong). *Mark Antony commanded Antony's fleet* (the whole fleet) is the borderline case between authority held and command exercised.
