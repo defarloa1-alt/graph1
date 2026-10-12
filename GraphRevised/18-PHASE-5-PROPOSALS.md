@@ -453,6 +453,17 @@ fleet (66.1); and *Battle of Actium occurred at* the Actium promontory (68.1).
 Rejected as `unsupported`: Cleopatra 66.3 (only her ships are named); her
 claim stays open. Graph: 4,142 nodes, 4,178 relationships.
 
+## 18. Qualified claims (2026-10-12)
+
+The claim-qualifier design ([22](22-CLAIM-QUALIFIERS.md)) is implemented
+except the Work identity act and the reader prompt: registry `predicates-v4`
+(per-predicate context, role, time, and modes; unary `occurred`; `authorOf`),
+draft schema `proposal-draft-v4`, qualifier validation, qualified and unary
+Assertions with derived Year links, Works with `IN_WORK`, and promotion from
+attributed to asserted claims. Existing claims keep their IDs. 27 operations;
+106 tests. Progress and the one deliberate gap (Wikidata qualifier values)
+are in 22 §11.
+
 The review led to the interim [delegation policy](21-REVIEW-DELEGATION.md)
 and a `retract` operation (accepted → rejected with a reason code, evidence
 kept), so a wrong delegated acceptance can be undone. 22 operations; 72

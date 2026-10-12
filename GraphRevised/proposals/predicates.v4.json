@@ -1,0 +1,451 @@
+{
+  "version": "predicates-v4",
+  "description": "Predicates a ProposalDraft may use. Wikidata mappings say which source statements can evidence each predicate: forward means the statement's entity is the assertion subject; inverse means the statement's value is the assertion subject. v2: commanded relates a person to a force (Group), not to an event. v3: authority held over a force (heldAuthorityOver) is separated from command actually exercised (commanded); evidence for one never counts for the other. v4: each predicate declares its qualifiers (context, role, time: none, optional, required, or withRole for time required only when a role is given) and its claim modes; adds the unary occurred and authorOf (22-CLAIM-QUALIFIERS.md).",
+  "temporalQualifierPropertyIds": [
+    "P580",
+    "P582",
+    "P585",
+    "P1319",
+    "P1326"
+  ],
+  "roleQualifierPropertyIds": [
+    "P2868",
+    "P3831"
+  ],
+  "predicates": [
+    {
+      "id": "participatedIn",
+      "display": "participated in",
+      "subjectKinds": [
+        "Person",
+        "Group"
+      ],
+      "objectKinds": [
+        "Event"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "optional",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P710",
+          "direction": "inverse"
+        },
+        {
+          "pid": "P607",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "commanded",
+      "display": "commanded",
+      "definition": "The person actually directed the force in action: led it, gave it orders, or fought at its head. Formal or supreme authority over a force is heldAuthorityOver, not commanded.",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Group"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "optional",
+        "role": "optional",
+        "time": "withRole"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": []
+    },
+    {
+      "id": "heldAuthorityOver",
+      "display": "held authority over",
+      "definition": "The person held formal or supreme authority over the force, whether or not they directed it in action. Directing it in action is commanded.",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Group"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "optional",
+        "role": "optional",
+        "time": "required"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": []
+    },
+    {
+      "id": "alliedWith",
+      "display": "allied with",
+      "subjectKinds": [
+        "Person",
+        "Group"
+      ],
+      "objectKinds": [
+        "Person",
+        "Group"
+      ],
+      "symmetric": true,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "required"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": []
+    },
+    {
+      "id": "occurredAt",
+      "display": "occurred at",
+      "subjectKinds": [
+        "Event"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P276",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "partOf",
+      "display": "part of",
+      "subjectKinds": [
+        "Event"
+      ],
+      "objectKinds": [
+        "Event"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P361",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "occurred",
+      "display": "occurred",
+      "definition": "The event took place at the time given by the claim's time qualifier. A unary claim: it has no object.",
+      "subjectKinds": [
+        "Event"
+      ],
+      "objectKinds": [],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "required"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": []
+    },
+    {
+      "id": "bornAt",
+      "display": "born at",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P19",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "diedAt",
+      "display": "died at",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P20",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "childOf",
+      "display": "child of",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P22",
+          "direction": "forward"
+        },
+        {
+          "pid": "P25",
+          "direction": "forward"
+        },
+        {
+          "pid": "P40",
+          "direction": "inverse"
+        }
+      ]
+    },
+    {
+      "id": "spouseOf",
+      "display": "spouse of",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "symmetric": true,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "required"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P26",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "siblingOf",
+      "display": "sibling of",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "symmetric": true,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P3373",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "heldPosition",
+      "display": "held position",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Other"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "required"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P39",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "describedBy",
+      "display": "described by",
+      "subjectKinds": [
+        "Person",
+        "Event",
+        "Place",
+        "Group",
+        "Object",
+        "Work",
+        "Period",
+        "Other"
+      ],
+      "objectKinds": [
+        "Work"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P1343",
+          "direction": "forward"
+        }
+      ]
+    },
+    {
+      "id": "authorOf",
+      "display": "author of",
+      "definition": "The person composed the work. The time qualifier, when given, is the date of composition.",
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Work"
+      ],
+      "symmetric": false,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "optional"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P50",
+          "direction": "inverse"
+        }
+      ]
+    },
+    {
+      "id": "distinctFrom",
+      "display": "distinct from",
+      "subjectKinds": [
+        "Person",
+        "Event",
+        "Place",
+        "Group",
+        "Object",
+        "Work",
+        "Period",
+        "Other"
+      ],
+      "objectKinds": [
+        "Person",
+        "Event",
+        "Place",
+        "Group",
+        "Object",
+        "Work",
+        "Period",
+        "Other"
+      ],
+      "symmetric": true,
+      "qualifiers": {
+        "context": "none",
+        "role": "none",
+        "time": "none"
+      },
+      "modes": [
+        "asserted",
+        "attributed"
+      ],
+      "wikidata": [
+        {
+          "pid": "P1889",
+          "direction": "forward"
+        }
+      ]
+    }
+  ]
+}

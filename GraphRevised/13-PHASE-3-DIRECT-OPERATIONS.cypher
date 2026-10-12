@@ -385,7 +385,8 @@ MATCH (proposal:Proposal {id: $proposalId, status: "accepted"})-[:PROPOSES]->(as
 OPTIONAL MATCH (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation:SourceObservation)
 FOREACH (_ IN CASE WHEN observation IS NULL THEN [] ELSE [1] END |
   MERGE (assertion)-[support:SUPPORTED_BY]->(observation)
-  ON CREATE SET support.quotation = evidence.quotation, support.addedByProposal = proposal.id
+  ON CREATE SET support.quotation = evidence.quotation, support.addedByProposal = proposal.id,
+                support.qualifierQuotations = evidence.qualifierQuotations
 )
 RETURN assertion, collect(observation.id) AS observationIds;
 
@@ -458,3 +459,124 @@ SET
   assertion.retractReason = CASE WHEN isRetry THEN assertion.retractReason ELSE $reason END,
   assertion.status = "rejected"
 RETURN assertion;
+
+// ---------------------------------------------------------------------------
+// Qualified claims (22-CLAIM-QUALIFIERS.md)
+// ---------------------------------------------------------------------------
+
+// Create or reuse a qualified Assertion: one with a mode other than asserted,
+// a context, a role, a time, or no object (a unary predicate). Like
+// upsert_assertion, it is created `proposed`, and its predicate, endpoints,
+// mode, qualifier links, and normalized time are fixed at creation: a retry
+// that changes any of them is refused. Every named node must exist with the
+// right kind: context an Event, attribution a Work.
+OPTIONAL MATCH (existing:Assertion {id: $id})
+OPTIONAL MATCH (existing)-[:ASSERTION_SUBJECT]->(existingSubject)
+OPTIONAL MATCH (existing)-[:ASSERTION_OBJECT]->(existingObject)
+OPTIONAL MATCH (existing)-[:ASSERTION_CONTEXT]->(existingContext)
+OPTIONAL MATCH (existing)-[:ASSERTION_ROLE]->(existingRole)
+OPTIONAL MATCH (existing)-[:ATTRIBUTED_TO]->(existingWork)
+WITH existing,
+     collect(DISTINCT existingSubject.id) AS subjectIds,
+     collect(DISTINCT existingObject.id) AS objectIds,
+     collect(DISTINCT existingContext.id) AS contextIds,
+     collect(DISTINCT existingRole.id) AS roleIds,
+     collect(DISTINCT existingWork.id) AS workIds
+WHERE existing IS NULL
+   OR (existing.predicate = $predicate
+       AND coalesce(existing.mode, "asserted") = $mode
+       AND subjectIds = [$subjectId]
+       AND objectIds = CASE WHEN $objectId IS NULL THEN [] ELSE [$objectId] END
+       AND contextIds = CASE WHEN $contextId IS NULL THEN [] ELSE [$contextId] END
+       AND roleIds = CASE WHEN $roleId IS NULL THEN [] ELSE [$roleId] END
+       AND workIds = CASE WHEN $attributedToId IS NULL THEN [] ELSE [$attributedToId] END
+       AND coalesce(existing.timeEdtf, "") = coalesce($timeEdtf, "")
+       AND coalesce(existing.timeCalendar, "") = coalesce($timeCalendar, "")
+       AND coalesce(existing.timeSourceExpression, "") = coalesce($timeSourceExpression, "")
+       AND coalesce(existing.timeRelativeOffset, "") = coalesce($timeRelativeOffset, ""))
+OPTIONAL MATCH (subjectNode:Entity {id: $subjectId})
+OPTIONAL MATCH (objectNode:Entity {id: $objectId})
+OPTIONAL MATCH (contextNode:Entity {id: $contextId, kind: "Event"})
+OPTIONAL MATCH (roleNode:Entity {id: $roleId})
+OPTIONAL MATCH (workNode:Entity {id: $attributedToId, kind: "Work"})
+WITH subjectNode, objectNode, contextNode, roleNode, workNode
+WHERE subjectNode IS NOT NULL
+  AND ($objectId IS NULL OR objectNode IS NOT NULL)
+  AND ($contextId IS NULL OR contextNode IS NOT NULL)
+  AND ($roleId IS NULL OR roleNode IS NOT NULL)
+  AND (($mode = "asserted" AND $attributedToId IS NULL)
+       OR ($mode = "attributed" AND workNode IS NOT NULL))
+MERGE (assertion:Assertion {id: $id})
+ON CREATE SET
+  assertion.label = $label,
+  assertion.shortLabel = $shortLabel,
+  assertion.predicate = $predicate,
+  assertion.status = "proposed",
+  assertion.assertedBy = $assertedBy,
+  assertion.mode = $mode,
+  assertion.contextBasis = $contextBasis,
+  assertion.timeEdtf = $timeEdtf,
+  assertion.timeCalendar = $timeCalendar,
+  assertion.timePrecision = $timePrecision,
+  assertion.timeApproximate = $timeApproximate,
+  assertion.timeUncertain = $timeUncertain,
+  assertion.timeSourceExpression = $timeSourceExpression,
+  assertion.timeNormalizationBasis = $timeNormalizationBasis,
+  assertion.timeRelativeOffset = $timeRelativeOffset,
+  assertion.startEarliestJdn = $startEarliestJdn,
+  assertion.startLatestJdn = $startLatestJdn,
+  assertion.endEarliestJdn = $endEarliestJdn,
+  assertion.endLatestJdn = $endLatestJdn
+ON MATCH SET
+  assertion.label = coalesce($label, assertion.label),
+  assertion.shortLabel = coalesce($shortLabel, assertion.shortLabel)
+MERGE (assertion)-[:ASSERTION_SUBJECT]->(subjectNode)
+FOREACH (node IN CASE WHEN objectNode IS NULL THEN [] ELSE [objectNode] END |
+  MERGE (assertion)-[:ASSERTION_OBJECT]->(node))
+FOREACH (node IN CASE WHEN contextNode IS NULL THEN [] ELSE [contextNode] END |
+  MERGE (assertion)-[:ASSERTION_CONTEXT]->(node))
+FOREACH (node IN CASE WHEN roleNode IS NULL THEN [] ELSE [roleNode] END |
+  MERGE (assertion)-[:ASSERTION_ROLE]->(node))
+FOREACH (node IN CASE WHEN workNode IS NULL THEN [] ELSE [workNode] END |
+  MERGE (assertion)-[:ATTRIBUTED_TO]->(node))
+RETURN assertion;
+
+// Record the qualifier quotations of one piece of pending evidence, each as
+// "<role|time|context>:<verbatim span>". Fixed once set; refused unless the
+// Proposal is submitted and already proposes that evidence.
+MATCH (proposal:Proposal {id: $proposalId, status: "submitted"})
+      -[evidence:PROPOSES_EVIDENCE]->(:SourceObservation {id: $observationId})
+WHERE evidence.qualifierQuotations IS NULL OR evidence.qualifierQuotations = $qualifierQuotations
+SET evidence.qualifierQuotations = $qualifierQuotations
+RETURN proposal, evidence;
+
+// Link an Assertion to every backbone Year its time touches: the derived
+// navigation projection of its time qualifier. Never creates a Year; refused
+// unless every Year exists.
+MATCH (assertion:Assertion {id: $assertionId})
+OPTIONAL MATCH (year:Year) WHERE year.year IN $years
+WITH assertion, collect(year) AS years
+WHERE size($years) > 0 AND size(years) = size($years)
+FOREACH (year IN years | MERGE (assertion)-[:IN_YEAR]->(year))
+RETURN assertion, [year IN years | year.year] AS years;
+
+// Link a passage observation to the Work it is a passage of. One Work per
+// observation: refused if it is already in another Work.
+MATCH (observation:SourceObservation {id: $observationId, observationKind: "passage"})
+MATCH (work:Entity {id: $workId, kind: "Work"})
+OPTIONAL MATCH (observation)-[:IN_WORK]->(other:Entity)
+WITH observation, work, collect(other.id) AS otherIds
+WHERE all(id IN otherIds WHERE id = $workId)
+MERGE (observation)-[:IN_WORK]->(work)
+RETURN observation, work;
+
+// Link a promoted asserted Assertion to the accepted attributed Assertions it
+// rests on. Refused unless every source claim is accepted and attributed.
+MATCH (promoted:Assertion {id: $assertionId})
+WHERE coalesce(promoted.mode, "asserted") = "asserted"
+OPTIONAL MATCH (source:Assertion {mode: "attributed", status: "accepted"})
+WHERE source.id IN $sourceIds
+WITH promoted, collect(source) AS sources
+WHERE size($sourceIds) > 0 AND size(sources) = size($sourceIds)
+FOREACH (source IN sources | MERGE (promoted)-[:PROMOTED_FROM]->(source))
+RETURN promoted, [source IN sources | source.id] AS sourceIds;

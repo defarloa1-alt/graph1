@@ -172,3 +172,48 @@ def parse_edtf(value: str, calendar: Calendar) -> TimeBounds:
         earliest_year=from_astronomical(start.first_year) if start else None,
         latest_year=from_astronomical(end.last_year) if end else None,
     )
+
+
+MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December")
+
+
+def _era(year: int) -> str:
+    """A Chrystallum year for display: -31 -> '31 BCE', 14 -> '14 CE'."""
+    return f"{-year} BCE" if year < 0 else f"{year} CE"
+
+
+def _display_point(text: str) -> str:
+    match = _DATE.match(text)
+    if not match:
+        raise TimeValueError(f"not a supported EDTF date: {text!r}")
+    year_text, month, day, flag = match["year"], match["month"], match["day"], match["flag"]
+    if "X" in year_text:
+        low, high = int(year_text.replace("X", "0")), int(year_text.replace("X", "9"))
+        first, last = from_astronomical(min(low, high)), from_astronomical(max(low, high))
+        shown = f"{-first}–{_era(last)}" if first < 0 and last < 0 else f"{_era(first)}–{_era(last)}"
+    else:
+        shown = _era(from_astronomical(int(year_text)))
+        if month:
+            shown = f"{MONTHS[int(month) - 1]} {shown}"
+            if day:
+                shown = f"{int(day)} {shown}"
+    if flag in ("~", "%"):
+        shown = f"c. {shown}"
+    if flag in ("?", "%"):
+        shown += "?"
+    return shown
+
+
+def display_edtf(value: str) -> str:
+    """A reader-facing form: '-0030-09-02' -> '2 September 31 BCE',
+    '-0036~/-0035' -> 'c. 37 BCE – 36 BCE', '-0030/..' -> 'from 31 BCE'."""
+    parts = value.split("/")
+    if len(parts) == 1:
+        return _display_point(value)
+    start, end = parts
+    if start == "..":
+        return f"until {_display_point(end)}"
+    if end == "..":
+        return f"from {_display_point(start)}"
+    return f"{_display_point(start)} – {_display_point(end)}"

@@ -240,6 +240,32 @@ No churn while the model is in design ([19 §5a](19-SESSION-HANDOFF.md)):
 7. Rerun on *Antony* 61–68 after source discovery adds a second source
    ([19 §6](19-SESSION-HANDOFF.md)).
 
+### Progress (2026-10-12)
+
+Steps 1, 2, 4, and 5 are implemented and tested (106 tests), with step 3
+built and tested on synthetic Works:
+
+- [proposals/temporal.py](proposals/temporal.py): year conversion, EDTF
+  parsing to Julian Day Number bounds, display form, the 200-year link limit.
+- [predicates.v4.json](proposals/predicates.v4.json) and
+  `proposal-draft-v4` ([schema.py](proposals/schema.py)).
+- Validator checks §8, except that Wikidata qualifier *values* are not yet
+  compared with a claim's: a Wikidata statement offered for a time- or
+  role-qualified claim is deferred, and statements carrying qualifiers are
+  still deferred rather than flattened. Agrippa's dated marriages therefore
+  stay deferred until the statement adapter records qualifier values.
+- Operations `upsert_qualified_assertion` (including unary claims),
+  `set_pending_qualifier_quotations`, `link_assertion_years`,
+  `link_observation_work`, `link_promoted_from`; evidence acceptance copies
+  qualifier quotations to `SUPPORTED_BY`.
+- `review promote <attributed claim> ... --by --basis`: creates, links, and
+  accepts the asserted claim in one transaction.
+
+Remaining: step 3's identity act (Plutarch and *Life of Antony* as Work and
+Person entities, a curator decision) and step 6 (reader prompt v8, which
+drafts attributed claims and unary claims). Until then the reader drafts
+asserted claims, as before, and is not shown unary predicates.
+
 ## 12. Curator decisions (2026-10-12)
 
 All five recommendations were accepted:

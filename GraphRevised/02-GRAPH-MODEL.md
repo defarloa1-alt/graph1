@@ -248,8 +248,19 @@ Relationship direction must be consistent in the stored graph.
 (:Proposal)-[:PROPOSES]->(:Assertion)
 (:Proposal)-[:PROPOSES_EVIDENCE]->(:SourceObservation)
 (:Assertion)-[:SUPERSEDED_BY]->(:Assertion)
+(:Assertion)-[:ASSERTION_CONTEXT]->(:Entity {kind: Event})
+(:Assertion)-[:ASSERTION_ROLE]->(:Entity {kind: Other})
+(:Assertion)-[:ATTRIBUTED_TO]->(:Entity {kind: Work})
+(:Assertion)-[:PROMOTED_FROM]->(:Assertion)
+(:Assertion)-[:IN_YEAR]->(:Year)
+(:SourceObservation)-[:IN_WORK]->(:Entity {kind: Work})
 (:Entity)-[:IN_YEAR]->(:Year)
 ```
+
+The qualifier relationships, `PROMOTED_FROM`, and `IN_WORK` are specified in
+[22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md). A unary Assertion (such as
+`occurred`) has no `ASSERTION_OBJECT`. An Assertion's `IN_YEAR` links are
+derived from its time qualifier.
 
 The inverse wording may be generated for display, but the database should use
 one canonical direction.

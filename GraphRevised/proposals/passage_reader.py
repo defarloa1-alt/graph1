@@ -181,6 +181,7 @@ def predicate_guide(registry: PredicateRegistry) -> str:
         + (" [symmetric]" if d.symmetric else "")
         + (f" -- {d.definition}" if d.definition else "")
         for d in registry.predicates.values()
+        if not d.unary  # the reader's output always names an object; unary claims wait for prompt v8
     )
 
 

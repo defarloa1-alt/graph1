@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from GraphRevised.adapters.wikidata_statements import StatementNotFound, statement_observation
 from GraphRevised.proposals.registry import assertion_id, load_registry
-from GraphRevised.proposals.schema import ProposalDraft, Quotation
+from GraphRevised.proposals.schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from GraphRevised.proposals.validator import Outcome, validate
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 
@@ -120,16 +120,18 @@ class ValidatorTests(unittest.TestCase):
         result = self.check(draft("spouseOf", AGRIPPA, JULIA, (P26,)))
         self.assertEqual(result.outcome, Outcome.DEFERRED)
 
-    def test_unqualified_spouse_is_valid_and_canonicalized(self):
-        result = self.check(draft("spouseOf", JULIA, AGRIPPA, (P26_UNQUALIFIED,)))
+    def test_symmetric_predicate_is_canonicalized(self):
+        p3373 = observation("chr:observation:p3373", "Q48174", "P3373", "Q2259")
+        reader = FakeReader([AGRIPPA, JULIA], [p3373])
+        result = self.check(draft("siblingOf", JULIA, AGRIPPA, (p3373,)), reader)
         self.assertEqual(result.outcome, Outcome.VALID)
         self.assertEqual(result.draft.subject_id, "chr:entity:julia")
-        self.assertEqual(
-            result.assertion_id,
-            self.check(draft("spouseOf", AGRIPPA, JULIA, (P26_UNQUALIFIED,))).assertion_id,
-        )
+        self.assertEqual(result.assertion_id, self.check(draft("siblingOf", AGRIPPA, JULIA, (p3373,)), reader).assertion_id)
 
-    def test_unknown_qualifiers_defer_when_predicate_needs_them(self):
+    def test_marriage_needs_a_time_qualifier(self):
+        self.assertEqual(self.check(draft("spouseOf", JULIA, AGRIPPA, (P26_UNQUALIFIED,))).outcome, Outcome.DEFERRED)
+
+    def test_unknown_qualifiers_defer_when_predicate_takes_time(self):
         reader = FakeReader([AGRIPPA, JULIA], [P26_UNQUALIFIED | {"qualifierPropertyIds": None}])
         self.assertEqual(self.check(draft("spouseOf", AGRIPPA, JULIA, (P26_UNQUALIFIED,)), reader).outcome, Outcome.DEFERRED)
 
@@ -169,7 +171,7 @@ class RegistryAndProposerTests(unittest.TestCase):
 
     def test_authority_held_and_command_exercised_are_separate_predicates(self):
         held, commanded = self.registry.get("heldAuthorityOver"), self.registry.get("commanded")
-        self.assertEqual(self.registry.version, "predicates-v3")
+        self.assertEqual(self.registry.version, "predicates-v4")
         for definition in (held, commanded):
             self.assertEqual((definition.subject_kinds, definition.object_kinds), ({"Person"}, {"Group"}))
             self.assertTrue(definition.definition)
@@ -300,6 +302,151 @@ class PassageValidatorTests(unittest.TestCase):
         }
         result = self.check(passage_draft(), FakeReader([ACTIUM, AGRIPPA], [PASSAGE], [existing]))
         self.assertEqual(result.outcome, Outcome.DUPLICATE)
+
+
+FLEET = entity("chr:entity:left-wing", "Group")
+BATTLE_EVENT = entity("chr:entity:battle", "Event")
+LEGATE = entity("chr:entity:legatus", "Other")
+WORK = entity("chr:entity:histories", "Work")
+OTHER_WORK = entity("chr:entity:other-work", "Work")
+COMMAND_PASSAGE = {
+    "id": "chr:observation:test:command",
+    "observationKind": "passage",
+    "status": "observed",
+    "sourceSystem": "Test",
+    "workId": WORK["id"],
+    "passageText": "On the second day of September Agrippa, as legate, held the left wing, and the battle began.",
+    "editorialNotes": [],
+}
+QUOTE = Quotation(observation_id=COMMAND_PASSAGE["id"], text="Agrippa, as legate, held the left wing")
+
+
+def qualifier(supports, text):
+    return QualifierQuotation(observation_id=COMMAND_PASSAGE["id"], supports=supports, text=text)
+
+
+SEPTEMBER = TimeQualifier(
+    source_expression="On the second day of September", edtf="-0030-09-02", calendar="julian",
+    normalization_basis="source",
+)
+
+
+def command(predicate="commanded", **extra):
+    return ProposalDraft(**{
+        "predicate": predicate,
+        "subject_id": AGRIPPA["id"],
+        "object_id": FLEET["id"],
+        "observation_ids": (COMMAND_PASSAGE["id"],),
+        "quotations": (QUOTE,),
+        "rationale": "offline qualifier test",
+        "proposed_by": "test",
+        **extra,
+    })
+
+
+ROLE = {"role_id": LEGATE["id"], "qualifier_quotations": (qualifier("role", "as legate"),)}
+TIME = {"time": SEPTEMBER, "qualifier_quotations": (qualifier("time", "On the second day of September"),)}
+ROLE_AND_TIME = {"role_id": LEGATE["id"], "time": SEPTEMBER, "qualifier_quotations": (
+    qualifier("role", "as legate"), qualifier("time", "On the second day of September"))}
+
+
+class QualifierValidatorTests(unittest.TestCase):
+    def setUp(self):
+        self.registry = load_registry()
+        self.reader = FakeReader([AGRIPPA, FLEET, BATTLE_EVENT, LEGATE, WORK, OTHER_WORK, ACTIUM], [COMMAND_PASSAGE, P710])
+
+    def check(self, proposal):
+        return validate(proposal, self.reader, self.registry)
+
+    def test_unqualified_claims_keep_their_ids_and_qualifiers_change_them(self):
+        plain = self.check(command())
+        self.assertEqual(plain.outcome, Outcome.VALID)
+        self.assertEqual(plain.assertion_id, "chr:assertion:marcus-vipsanius-agrippa:commanded:left-wing")
+        ids = {plain.assertion_id}
+        for extra in (ROLE_AND_TIME, TIME, {"mode": "attributed", "attributed_to": WORK["id"]},
+                      {"context_id": BATTLE_EVENT["id"], "context_basis": "inquiry", "inquiry_id": "chr:inquiry:test"}):
+            result = self.check(command(**extra))
+            self.assertEqual(result.outcome, Outcome.VALID, result.reasons)
+            self.assertTrue(result.assertion_id.startswith(plain.assertion_id + ":q"))
+            ids.add(result.assertion_id)
+        self.assertEqual(len(ids), 5)
+        self.assertEqual(self.check(command(**TIME)).assertion_id, self.check(command(**TIME)).assertion_id)
+
+    def test_attributed_claims_cite_their_own_work(self):
+        self.assertEqual(self.check(command(mode="attributed", attributed_to=WORK["id"])).outcome, Outcome.VALID)
+        result = self.check(command(mode="attributed", attributed_to=OTHER_WORK["id"]))
+        self.assertEqual(result.outcome, Outcome.INVALID)
+        self.assertTrue(any("not a passage of" in reason for reason in result.reasons))
+        statement = draft(mode="attributed", attributed_to=WORK["id"])
+        self.assertEqual(self.check(statement).outcome, Outcome.INVALID)
+        with self.assertRaises(ValidationError):
+            command(mode="attributed")
+
+    def test_a_role_needs_its_quotation_and_the_right_kind(self):
+        with_time = {"time": SEPTEMBER}
+        missing = self.check(command(role_id=LEGATE["id"], **with_time,
+                                     qualifier_quotations=(qualifier("time", "On the second day of September"),)))
+        self.assertEqual(missing.outcome, Outcome.INVALID)
+        self.assertTrue(any("role quotation" in reason for reason in missing.reasons))
+        wrong_kind = self.check(command(**(ROLE_AND_TIME | {"role_id": FLEET["id"]})))
+        self.assertEqual(wrong_kind.outcome, Outcome.INVALID)
+        self.assertEqual(self.check(command(**ROLE_AND_TIME)).outcome, Outcome.VALID)
+
+    def test_command_with_a_role_needs_a_time(self):
+        self.assertEqual(self.check(command(**ROLE)).outcome, Outcome.DEFERRED)
+
+    def test_authority_held_needs_a_time_and_accepts_one_from_the_source(self):
+        self.assertEqual(self.check(command("heldAuthorityOver")).outcome, Outcome.DEFERRED)
+        self.assertEqual(self.check(command("heldAuthorityOver", **TIME)).outcome, Outcome.VALID)
+
+    def test_time_must_be_shown_and_parse(self):
+        wrong_span = command(time=SEPTEMBER, qualifier_quotations=(qualifier("time", "the battle began"),))
+        self.assertEqual(self.check(wrong_span).outcome, Outcome.INVALID)
+        paraphrase = command(time=SEPTEMBER, qualifier_quotations=(qualifier("time", "On 2 September"),))
+        self.assertEqual(self.check(paraphrase).outcome, Outcome.INVALID)
+        bad = TimeQualifier(source_expression="On the second day of September", edtf="-0030-09-31",
+                            calendar="julian", normalization_basis="source")
+        result = self.check(command(time=bad, qualifier_quotations=TIME["qualifier_quotations"]))
+        self.assertEqual(result.outcome, Outcome.INVALID)
+        self.assertTrue(any(reason.startswith("time:") for reason in result.reasons))
+
+    def test_qualifiers_the_predicate_does_not_take_are_refused(self):
+        occurred_at = command("occurredAt", subject_id=BATTLE_EVENT["id"], object_id=ACTIUM["id"], **ROLE)
+        self.assertEqual(self.check(occurred_at).outcome, Outcome.INVALID)
+
+    def test_context_needs_a_basis_and_an_event(self):
+        no_inquiry = command(context_id=BATTLE_EVENT["id"], context_basis="inquiry")
+        self.assertEqual(self.check(no_inquiry).outcome, Outcome.INVALID)
+        no_quote = command(context_id=BATTLE_EVENT["id"], context_basis="quotation")
+        self.assertEqual(self.check(no_quote).outcome, Outcome.INVALID)
+        quoted = command(context_id=BATTLE_EVENT["id"], context_basis="quotation",
+                         qualifier_quotations=(qualifier("context", "the battle began"),))
+        self.assertEqual(self.check(quoted).outcome, Outcome.VALID)
+        not_event = command(context_id=FLEET["id"], context_basis="inquiry", inquiry_id="chr:inquiry:test")
+        self.assertEqual(self.check(not_event).outcome, Outcome.INVALID)
+
+    def test_relative_time_needs_a_context(self):
+        relative = TimeQualifier(source_expression="On the second day of September", relative_offset="P1D")
+        self.assertEqual(self.check(command(time=relative, qualifier_quotations=TIME["qualifier_quotations"])).outcome,
+                         Outcome.INVALID)
+        with self.assertRaises(ValidationError):
+            TimeQualifier(source_expression="x", relative_offset="PT")
+
+    def test_unary_occurred(self):
+        battle = dict(predicate="occurred", subject_id=BATTLE_EVENT["id"], object_id=None, **TIME)
+        result = self.check(command(**battle))
+        self.assertEqual(result.outcome, Outcome.VALID, result.reasons)
+        self.assertTrue(result.assertion_id.startswith("chr:assertion:battle:occurred:q"))
+        self.assertEqual(self.check(command(**(battle | {"object_id": FLEET["id"]}))).outcome, Outcome.INVALID)
+        self.assertEqual(self.check(command(**(battle | {"time": None, "qualifier_quotations": ()}))).outcome,
+                         Outcome.DEFERRED)
+        self.assertEqual(self.check(command(object_id=None)).outcome, Outcome.INVALID)
+
+    def test_wikidata_evidence_for_a_qualified_claim_is_deferred(self):
+        qualified = draft(time=SEPTEMBER)
+        self.assertEqual(self.check(qualified).outcome, Outcome.INVALID)  # participatedIn takes no time
+        role = draft(role_id=LEGATE["id"])
+        self.assertEqual(self.check(role).outcome, Outcome.DEFERRED)
 
 
 if __name__ == "__main__":

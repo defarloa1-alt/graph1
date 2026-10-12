@@ -31,6 +31,11 @@ OPERATION_NAMES = (
     "reopen_assertion",
     "supersede_assertion",
     "retract_assertion",
+    "upsert_qualified_assertion",
+    "set_pending_qualifier_quotations",
+    "link_assertion_years",
+    "link_observation_work",
+    "link_promoted_from",
 )
 
 

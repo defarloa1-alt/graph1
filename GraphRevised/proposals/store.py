@@ -11,8 +11,9 @@ from typing import Any
 
 from GraphRevised.operations import run_write
 
-from .registry import PredicateRegistry, proposal_id
-from .schema import ProposalDraft, Quotation
+from .registry import PredicateDefinition, PredicateRegistry, proposal_id
+from .schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
+from .temporal import display_edtf
 from .validator import Outcome, ValidationResult, validate
 
 
@@ -64,10 +65,14 @@ class Neo4jReader:
 
     def observation(self, observation_id: str) -> dict[str, Any] | None:
         record = self._tx.run(
-            "MATCH (observation:SourceObservation {id: $id}) RETURN properties(observation) AS p",
+            """
+            MATCH (observation:SourceObservation {id: $id})
+            OPTIONAL MATCH (observation)-[:IN_WORK]->(work:Entity)
+            RETURN properties(observation) AS p, work.id AS workId
+            """,
             id=observation_id,
         ).single()
-        return None if record is None else record["p"]
+        return None if record is None else {**record["p"], "workId": record["workId"]}
 
     def proposal_exists(self, proposal_id: str) -> bool:
         return self._tx.run(
@@ -122,9 +127,7 @@ def submit(
         return SubmissionResult(result, stored=False)
 
     definition = registry.get(result.draft.predicate)
-    subject, obj = result.subject, result.object
-    label = f"{subject['label']} {definition.display} {obj['label']}"
-    short_label = f"{subject.get('shortLabel') or subject['label']} -> {obj.get('shortLabel') or obj['label']}"
+    label, short_label = claim_labels(definition, result)
     quotations = {quotation.observation_id: quotation.text for quotation in result.draft.quotations}
     provenance = {
         "createdBy": result.draft.proposed_by,
@@ -153,17 +156,24 @@ def submit(
                 "shortLabel": f"+evidence: {short_label}",
                 **provenance,
             })
+        _store_qualifier_quotations(tx, operations, result.proposal_id, result.draft, result.new_observation_ids)
         return SubmissionResult(result, stored=True)
 
-    run_write(tx, operations, "upsert_assertion", {
-        "id": result.assertion_id,
-        "label": label,
-        "shortLabel": short_label,
-        "predicate": definition.id,
-        "assertedBy": result.draft.proposed_by,
-        "subjectId": result.draft.subject_id,
-        "objectId": result.draft.object_id,
-    })
+    if _is_qualified(result.draft):
+        run_write(tx, operations, "upsert_qualified_assertion", _qualified_assertion_params(result, label, short_label))
+        bounds = result.time_bounds
+        if bounds is not None and bounds.earliest_year is not None and bounds.latest_year is not None:
+            run_write(tx, operations, "link_assertion_years", {"assertionId": result.assertion_id, "years": bounds.years()})
+    else:
+        run_write(tx, operations, "upsert_assertion", {
+            "id": result.assertion_id,
+            "label": label,
+            "shortLabel": short_label,
+            "predicate": definition.id,
+            "assertedBy": result.draft.proposed_by,
+            "subjectId": result.draft.subject_id,
+            "objectId": result.draft.object_id,
+        })
     run_write(tx, operations, "upsert_proposal", {
         "id": result.proposal_id,
         "assertionId": result.assertion_id,
@@ -178,7 +188,117 @@ def submit(
             "observationId": observation_id,
             "quotation": quotations.get(observation_id),
         })
+    _store_qualifier_quotations(tx, operations, result.proposal_id, result.draft, result.draft.observation_ids)
     return SubmissionResult(result, stored=True)
+
+
+def claim_labels(definition: PredicateDefinition, result: ValidationResult) -> tuple[str, str]:
+    """The reader-facing label and short caption of a claim, qualifiers included."""
+    subject, obj, draft = result.subject, result.object, result.draft
+    entities = result.qualifier_entities or {}
+    label = f"{subject['label']} {definition.display}" + (f" {obj['label']}" if obj else "")
+    if "role" in entities:
+        label += f" as {entities['role']['label']}"
+    if "context" in entities:
+        label += f" during {entities['context']['label']}"
+    if draft.time is not None:
+        label += f" ({display_edtf(draft.time.edtf) if draft.time.edtf else draft.time.source_expression})"
+    if "attributedTo" in entities:
+        label = f"According to {entities['attributedTo']['label']}: {label}"
+    short = subject.get("shortLabel") or subject["label"]
+    short += f" -> {obj.get('shortLabel') or obj['label']}" if obj else f" {definition.display}"
+    return label, short
+
+
+def _is_qualified(draft: ProposalDraft) -> bool:
+    return (
+        draft.mode != "asserted" or draft.object_id is None or draft.context_id is not None
+        or draft.role_id is not None or draft.time is not None
+    )
+
+
+def _qualified_assertion_params(result: ValidationResult, label: str, short_label: str) -> dict[str, Any]:
+    draft, bounds, time = result.draft, result.time_bounds, result.draft.time
+    return {
+        "id": result.assertion_id,
+        "label": label,
+        "shortLabel": short_label,
+        "predicate": draft.predicate,
+        "assertedBy": draft.proposed_by,
+        "subjectId": draft.subject_id,
+        "objectId": draft.object_id,
+        "mode": draft.mode,
+        "attributedToId": draft.attributed_to,
+        "contextId": draft.context_id,
+        "contextBasis": draft.context_basis,
+        "roleId": draft.role_id,
+        "timeEdtf": time.edtf if time else None,
+        "timeCalendar": time.calendar if time else None,
+        "timePrecision": bounds.precision if bounds else None,
+        "timeApproximate": bounds.approximate if bounds else None,
+        "timeUncertain": bounds.uncertain if bounds else None,
+        "timeSourceExpression": time.source_expression if time else None,
+        "timeNormalizationBasis": time.normalization_basis if time else None,
+        "timeRelativeOffset": time.relative_offset if time else None,
+        "startEarliestJdn": bounds.start_earliest_jdn if bounds else None,
+        "startLatestJdn": bounds.start_latest_jdn if bounds else None,
+        "endEarliestJdn": bounds.end_earliest_jdn if bounds else None,
+        "endLatestJdn": bounds.end_latest_jdn if bounds else None,
+    }
+
+
+def _store_qualifier_quotations(
+    tx: Any, operations: dict[str, str], proposal: str, draft: ProposalDraft, observation_ids: tuple[str, ...]
+) -> None:
+    """Record each piece of pending evidence's qualifier quotations as "<supports>:<span>"."""
+    for observation_id in observation_ids:
+        spans = [f"{q.supports}:{q.text}" for q in draft.qualifier_quotations if q.observation_id == observation_id]
+        if spans:
+            run_write(tx, operations, "set_pending_qualifier_quotations", {
+                "proposalId": proposal, "observationId": observation_id, "qualifierQuotations": spans,
+            })
+
+
+def _qualifier_quotations(evidence: list[dict[str, Any]]) -> tuple[QualifierQuotation, ...]:
+    return tuple(
+        QualifierQuotation(observation_id=item["observationId"], supports=span.split(":", 1)[0], text=span.split(":", 1)[1])
+        for item in evidence
+        for span in item.get("qualifierQuotations") or []
+    )
+
+
+def _draft_from_stored(stored: dict[str, Any], evidence: list[dict[str, Any]], *, rationale: str, proposed_by: str) -> ProposalDraft:
+    """Rebuild the draft a stored claim and its evidence amount to, qualifiers included."""
+    time = None
+    if stored.get("timeSourceExpression") is not None:
+        time = TimeQualifier(
+            source_expression=stored["timeSourceExpression"],
+            edtf=stored.get("timeEdtf"),
+            calendar=stored.get("timeCalendar"),
+            normalization_basis=stored.get("timeNormalizationBasis"),
+            relative_offset=stored.get("timeRelativeOffset"),
+        )
+    return ProposalDraft(
+        predicate=stored["predicate"],
+        subject_id=stored["subjectId"],
+        object_id=stored.get("objectId"),
+        observation_ids=tuple(item["observationId"] for item in evidence),
+        quotations=tuple(
+            Quotation(observation_id=item["observationId"], text=item["quotation"])
+            for item in evidence
+            if item["quotation"]
+        ),
+        qualifier_quotations=_qualifier_quotations(evidence),
+        rationale=rationale,
+        proposed_by=proposed_by,
+        mode=stored.get("mode") or "asserted",
+        attributed_to=stored.get("workId"),
+        context_id=stored.get("contextId"),
+        context_basis=stored.get("contextBasis"),
+        role_id=stored.get("roleId"),
+        time=time,
+        inquiry_id=stored.get("inquiryId"),
+    )
 
 
 def list_proposals(tx: Any, status: str | None = None) -> list[dict[str, Any]]:
@@ -227,16 +347,8 @@ def accept(
     evidence = [item for item in stored["evidence"] if item["observationId"] is not None]
     if not evidence:
         raise ReviewError(f"{proposal_id} has no evidence")
-    draft = ProposalDraft(
-        predicate=stored["predicate"],
-        subject_id=stored["subjectId"],
-        object_id=stored["objectId"],
-        observation_ids=tuple(item["observationId"] for item in evidence),
-        quotations=tuple(
-            Quotation(observation_id=item["observationId"], text=item["quotation"])
-            for item in evidence
-            if item["quotation"]
-        ),
+    draft = _draft_from_stored(
+        stored, evidence,
         rationale=stored["rationale"] or "stored proposal without rationale",
         proposed_by=stored["createdBy"] or "unknown",
     )
@@ -372,6 +484,80 @@ def retract(
     return rows[0]
 
 
+def promote(
+    tx: Any,
+    source_ids: list[str],
+    *,
+    decided_by: str,
+    decision_basis: str,
+    decided_at: str,
+    registry: PredicateRegistry,
+    operations: dict[str, str],
+) -> dict[str, Any]:
+    """Promote accepted attributed claims to Chrystallum's own asserted claim.
+
+    The attributed claims are not changed: a source still says what it says.
+    The asserted claim is proposed with their evidence by the curator, linked
+    PROMOTED_FROM each of them, and accepted, all in this transaction. Refused
+    unless every source claim is accepted, attributed, and states the same
+    relationship with the same qualifiers."""
+    sources = [_attributed_claim(tx, source_id) for source_id in sorted(set(source_ids))]
+    if not sources:
+        raise ReviewError("name at least one attributed claim to promote")
+    keys = ("predicate", "subjectId", "objectId", "contextId", "roleId", "timeEdtf", "timeCalendar",
+            "timeRelativeOffset")
+    if len({tuple(source[key] for key in keys) for source in sources}) != 1:
+        raise ReviewError("the claims do not state the same relationship with the same qualifiers")
+    if not sources[0]["timeEdtf"] and len({source["timeSourceExpression"] for source in sources}) != 1:
+        raise ReviewError("the claims give their time in different words and no normalized value")
+    evidence = [item for source in sources for item in source["evidence"]]
+    stored = {**sources[0], "mode": "asserted", "workId": None,
+              "inquiryId": next((s["inquiryId"] for s in sources if s["inquiryId"]), None)}
+    draft = _draft_from_stored(stored, evidence, rationale=f"Promoted by curator: {decision_basis}", proposed_by=decided_by)
+    submission = submit(tx, draft, registry, operations)
+    result = submission.validation
+    if result.outcome not in (Outcome.VALID, Outcome.ADDS_EVIDENCE, Outcome.DUPLICATE) or (
+        result.outcome is Outcome.DUPLICATE and not result.already_supported
+    ):
+        raise ReviewError(f"the asserted claim cannot be stored ({result.outcome.value}): {list(result.reasons)}")
+    if submission.stored:
+        accept(tx, result.proposal_id, decided_by=decided_by, decision_basis=decision_basis,
+               decided_at=decided_at, registry=registry, operations=operations)
+    linked = run_write(tx, operations, "link_promoted_from", {
+        "assertionId": result.assertion_id, "sourceIds": [source["id"] for source in sources],
+    })[0]
+    return {"assertion": linked["promoted"], "sourceIds": linked["sourceIds"]}
+
+
+def _attributed_claim(tx: Any, assertion_id: str) -> dict[str, Any]:
+    record = tx.run(
+        """
+        MATCH (assertion:Assertion {id: $id, mode: "attributed", status: "accepted"})
+        MATCH (assertion)-[:ASSERTION_SUBJECT]->(subject)
+        OPTIONAL MATCH (assertion)-[:ASSERTION_OBJECT]->(object)
+        OPTIONAL MATCH (assertion)-[:ASSERTION_CONTEXT]->(context)
+        OPTIONAL MATCH (assertion)-[:ASSERTION_ROLE]->(role)
+        OPTIONAL MATCH (assertion)-[support:SUPPORTED_BY]->(observation:SourceObservation)
+        OPTIONAL MATCH (decided:Proposal {status: "accepted"})-[:PROPOSES]->(assertion)
+        RETURN assertion.id AS id, assertion.predicate AS predicate, subject.id AS subjectId,
+               object.id AS objectId, context.id AS contextId, role.id AS roleId,
+               assertion.contextBasis AS contextBasis,
+               assertion.timeEdtf AS timeEdtf, assertion.timeCalendar AS timeCalendar,
+               assertion.timeSourceExpression AS timeSourceExpression,
+               assertion.timeNormalizationBasis AS timeNormalizationBasis,
+               assertion.timeRelativeOffset AS timeRelativeOffset,
+               head([p IN collect(DISTINCT decided.inquiryId) WHERE p IS NOT NULL]) AS inquiryId,
+               [item IN collect(DISTINCT {observationId: observation.id, quotation: support.quotation,
+                                          qualifierQuotations: support.qualifierQuotations})
+                WHERE item.observationId IS NOT NULL] AS evidence
+        """,
+        id=assertion_id,
+    ).single()
+    if record is None:
+        raise ReviewError(f"{assertion_id} is not an accepted attributed claim")
+    return record.data()
+
+
 def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
     """A stored Proposal with the evidence it puts forward: its pending
     evidence, or the Assertion's evidence for a Proposal stored before
@@ -380,18 +566,31 @@ def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
         """
         MATCH (proposal:Proposal {id: $id})-[:PROPOSES]->(assertion:Assertion)
         MATCH (assertion)-[:ASSERTION_SUBJECT]->(subject)
-        MATCH (assertion)-[:ASSERTION_OBJECT]->(object)
+        OPTIONAL MATCH (assertion)-[:ASSERTION_OBJECT]->(object)
+        OPTIONAL MATCH (assertion)-[:ASSERTION_CONTEXT]->(context)
+        OPTIONAL MATCH (assertion)-[:ASSERTION_ROLE]->(role)
+        OPTIONAL MATCH (assertion)-[:ATTRIBUTED_TO]->(work)
+        WITH proposal, assertion, subject, object, context, role, work
         OPTIONAL MATCH (proposal)-[pending:PROPOSES_EVIDENCE]->(pendingObservation:SourceObservation)
-        WITH proposal, assertion, subject, object,
-             [item IN collect({observationId: pendingObservation.id, quotation: pending.quotation})
+        WITH proposal, assertion, subject, object, context, role, work,
+             [item IN collect({observationId: pendingObservation.id, quotation: pending.quotation,
+                               qualifierQuotations: pending.qualifierQuotations})
               WHERE item.observationId IS NOT NULL] AS pendingEvidence
         OPTIONAL MATCH (assertion)-[support:SUPPORTED_BY]->(observation:SourceObservation)
-        WITH proposal, assertion, subject, object, pendingEvidence,
-             collect({observationId: observation.id, quotation: support.quotation}) AS support
+        WITH proposal, assertion, subject, object, context, role, work, pendingEvidence,
+             collect({observationId: observation.id, quotation: support.quotation,
+                      qualifierQuotations: support.qualifierQuotations}) AS support
         RETURN proposal.status AS status, proposal.operation AS operation,
                proposal.rationale AS rationale, proposal.createdBy AS createdBy,
+               proposal.inquiryId AS inquiryId,
                assertion.status AS assertionStatus,
                assertion.predicate AS predicate, subject.id AS subjectId, object.id AS objectId,
+               context.id AS contextId, role.id AS roleId, work.id AS workId,
+               assertion.mode AS mode, assertion.contextBasis AS contextBasis,
+               assertion.timeEdtf AS timeEdtf, assertion.timeCalendar AS timeCalendar,
+               assertion.timeSourceExpression AS timeSourceExpression,
+               assertion.timeNormalizationBasis AS timeNormalizationBasis,
+               assertion.timeRelativeOffset AS timeRelativeOffset,
                CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
         """,
         id=proposal_id,

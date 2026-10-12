@@ -12,7 +12,7 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live          # expect 88 tests, OK
+  GraphRevised.tests.test_proposals_live          # expect 106 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -61,11 +61,12 @@ AuthorityRecord keeps Wikidata's wording.
 
 | Area | Artifact |
 |---|---|
-| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 22 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
-| Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v3` (quotations, inquiry, relevance, ambiguities) |
-| Predicates | [proposals/predicates.v3.json](proposals/predicates.v3.json) — 14 predicates; `heldAuthorityOver` (authority held, needs a date span) and `commanded` (command exercised), both Person → Group (a force) |
+| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 27 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
+| Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v4` (quotations, inquiry, relevance, ambiguities; mode, context, role, time, qualifier quotations) |
+| Predicates | [proposals/predicates.v4.json](proposals/predicates.v4.json) — 16 predicates, each declaring its qualifiers and modes; `heldAuthorityOver` (needs a time) and `commanded` (needs a time when it has a role), both Person → Group; unary `occurred`; `authorOf` |
+| Time | [proposals/temporal.py](proposals/temporal.py) — year conversion (no year zero ↔ astronomical), EDTF to Julian Day Number bounds |
 | Validator | [proposals/validator.py](proposals/validator.py) — deterministic; Wikidata statement evidence must state the claim; passage quotes must be verbatim (whitespace and quote style tolerated only) |
-| Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason`, `retract --reason` |
+| Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason`, `retract --reason`, `promote` |
 | Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v7` (predicate definitions in the task packet) |
 | Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v10) — Subject, source, scope, guidance |
 | Identity queue | [identity/queue.py](identity/queue.py), queue file [queues/identity-actium-plutarch-antony.json](queues/identity-actium-plutarch-antony.json) |
@@ -133,9 +134,12 @@ a date span.
 
 ## 6. Next steps (agreed order)
 
-1. **Finish the command split** (5a): registry v3, reason codes, and
-   supersede are done; next the event-context and role qualifiers, then rerun
-   the reader for command claims.
+1. **Finish the command split** (5a): registry v3, reason codes, supersede,
+   and the qualifier mechanism ([22](22-CLAIM-QUALIFIERS.md): context, role,
+   time, mode, promotion) are done. Remaining: the curator's identity act for
+   Plutarch and *Life of Antony* as Work entities, reader prompt v8
+   (attributed and unary claims), source discovery, a second-source adapter,
+   then the reader rerun.
 2. **Finish the review** (5, item 1): the non-command proposals are done;
    the command proposals whenever convenient.
 3. **E12 design doc** (attributed claims and depicted events: "according to

@@ -11,12 +11,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from GraphRevised.operations import load_operations, run_write
+from GraphRevised.operations import RefusedWrite, load_operations, run_write
 from GraphRevised.proposals.passage_reader import load_inquiry
 from GraphRevised.proposals.registry import load_registry
-from GraphRevised.proposals.schema import ProposalDraft, Quotation
+from GraphRevised.proposals.schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from GraphRevised.proposals.store import (
-    Neo4jReader, ReviewError, accept, list_proposals, reject, reopen, retract, submit, supersede,
+    Neo4jReader, ReviewError, accept, list_proposals, promote, reject, reopen, retract, submit, supersede,
 )
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
@@ -173,7 +173,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             "MATCH (p:Proposal {id: $id})-[:PROPOSES]->(a:Assertion) RETURN p, a", id=proposal_id
         ).single()
         self.assertEqual(stored["p"]["status"], "submitted")
-        self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v3")
+        self.assertEqual(stored["p"]["predicateRegistryVersion"], "predicates-v4")
         self.assertEqual(stored["a"]["status"], "proposed")
         self.assertEqual(stored["a"]["label"], "Test leader participated in Test battle")
         self.assertIn(proposal_id, [row["id"] for row in list_proposals(self.tx, "submitted")])
@@ -440,6 +440,169 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         with self.assertRaises(ReviewError):
             retract(self.tx, accepted, reason="regret", operations=self.operations, **DECISION)
         self.assertEqual(self.counts(), before)
+
+    # -- qualified claims ----------------------------------------------------
+
+    def add_local(self, entity_id, kind, label):
+        self.write("upsert_entity", {"id": entity_id, "kind": kind, "label": label, "description": None,
+                                     "status": "provisional", "shortLabel": None})
+
+    def add_work_passage(self, work_id, passage_id, text):
+        self.add_local(work_id, "Work", f"Work {work_id.rsplit(':', 1)[-1]}")
+        self.write("upsert_passage_observation", {
+            "id": passage_id, "label": f"Passage {passage_id}", "shortLabel": None, "sourceSystem": "Test",
+            "locator": "test:2", "passageText": text, "passageHash": "test", "editorialNotes": [],
+            "language": "en", "workTitle": "Test", "author": "Test", "translator": None,
+            "editionCitation": "Test", "rights": "test", "sourceUri": "test", "sourceRevision": "test",
+            "retrievedAt": "2026-10-12T00:00:00Z", "contentHash": "test", "rawPayloadUri": None,
+            "status": "observed",
+        })
+        self.write("link_observation_work", {"observationId": passage_id, "workId": work_id})
+
+    def command_fixture(self):
+        self.add_entity(ADMIRAL)
+        self.add_local(BATTLE[0], "Event", BATTLE[2])
+        self.add_local("chr:entity:test-wing", "Group", "Test left wing")
+        self.add_local("chr:entity:test-legatus", "Other", "legatus")
+
+    def command_draft(self, work_id, passage_id, mode="attributed"):
+        return ProposalDraft(
+            predicate="commanded", subject_id=ADMIRAL[0], object_id="chr:entity:test-wing",
+            observation_ids=(passage_id,),
+            quotations=(Quotation(observation_id=passage_id, text="the admiral, as legate, held the left wing"),),
+            qualifier_quotations=(
+                QualifierQuotation(observation_id=passage_id, supports="role", text="as legate"),
+                QualifierQuotation(observation_id=passage_id, supports="time", text="On the second day of September"),
+            ),
+            mode=mode, attributed_to=work_id if mode == "attributed" else None,
+            role_id="chr:entity:test-legatus",
+            context_id=BATTLE[0], context_basis="inquiry", inquiry_id="chr:inquiry:test",
+            time=TimeQualifier(source_expression="On the second day of September", edtf="-0030-09-02",
+                               calendar="julian", normalization_basis="source"),
+            rationale="The test passage gives the admiral's role, wing, and day.", proposed_by="test",
+        )
+
+    COMMAND_TEXT = "On the second day of September the admiral, as legate, held the left wing at the battle."
+
+    def test_qualified_attributed_claim_is_stored_linked_and_accepted(self):
+        self.command_fixture()
+        self.add_work_passage("chr:entity:test-work", "chr:observation:test:work-passage", self.COMMAND_TEXT)
+        draft = self.command_draft("chr:entity:test-work", "chr:observation:test:work-passage")
+        submission = submit(self.tx, draft, self.registry, self.operations)
+        self.assertEqual(submission.validation.outcome, Outcome.VALID, submission.validation.reasons)
+        assertion_id = submission.validation.assertion_id
+        stored = self.tx.run(
+            """
+            MATCH (a:Assertion {id: $id})
+            OPTIONAL MATCH (a)-[:ASSERTION_CONTEXT]->(c) OPTIONAL MATCH (a)-[:ASSERTION_ROLE]->(r)
+            OPTIONAL MATCH (a)-[:ATTRIBUTED_TO]->(w) OPTIONAL MATCH (a)-[:IN_YEAR]->(y:Year)
+            RETURN a, c.id AS context, r.id AS role, w.id AS work, collect(y.year) AS years
+            """, id=assertion_id,
+        ).single()
+        self.assertEqual(stored["a"]["mode"], "attributed")
+        self.assertEqual(stored["a"]["timePrecision"], "day")
+        self.assertEqual(stored["a"]["startEarliestJdn"], stored["a"]["endLatestJdn"])
+        self.assertEqual((stored["context"], stored["role"], stored["work"]),
+                         (BATTLE[0], "chr:entity:test-legatus", "chr:entity:test-work"))
+        self.assertEqual(stored["years"], [-31])
+        self.assertEqual(stored["a"]["label"], "According to Work test-work: Test admiral commanded Test left wing "
+                                               "as legatus during Test battle (2 September 31 BCE)")
+
+        before = self.counts()
+        self.assertEqual(submit(self.tx, draft, self.registry, self.operations).validation.outcome, Outcome.DUPLICATE)
+        self.assertEqual(self.counts(), before)
+
+        decided = accept(self.tx, submission.validation.proposal_id, registry=self.registry,
+                         operations=self.operations, **DECISION)
+        self.assertEqual(decided["assertion"]["status"], "accepted")
+        spans = self.tx.run(
+            "MATCH (:Assertion {id: $id})-[s:SUPPORTED_BY]->() RETURN s.qualifierQuotations AS q", id=assertion_id
+        ).single()["q"]
+        self.assertEqual(sorted(spans), ["role:as legate", "time:On the second day of September"])
+
+    def test_a_passage_belongs_to_one_work(self):
+        self.add_work_passage("chr:entity:test-work", "chr:observation:test:work-passage", self.COMMAND_TEXT)
+        self.add_local("chr:entity:test-other-work", "Work", "Other work")
+        with self.assertRaises(RefusedWrite):
+            self.write("link_observation_work", {"observationId": "chr:observation:test:work-passage",
+                                                 "workId": "chr:entity:test-other-work"})
+
+    def test_qualified_assertion_identity_is_fixed(self):
+        self.command_fixture()
+        self.add_work_passage("chr:entity:test-work", "chr:observation:test:work-passage", self.COMMAND_TEXT)
+        submission = submit(self.tx, self.command_draft("chr:entity:test-work", "chr:observation:test:work-passage"),
+                            self.registry, self.operations)
+        stored = self.tx.run("MATCH (a:Assertion {id: $id}) RETURN properties(a) AS a",
+                             id=submission.validation.assertion_id).single()["a"]
+        params = {key: stored.get(key) for key in (
+            "label", "shortLabel", "predicate", "assertedBy", "mode", "contextBasis", "timeEdtf", "timeCalendar",
+            "timePrecision", "timeApproximate", "timeUncertain", "timeSourceExpression", "timeNormalizationBasis",
+            "timeRelativeOffset", "startEarliestJdn", "startLatestJdn", "endEarliestJdn", "endLatestJdn")}
+        params |= {"id": stored["id"], "subjectId": ADMIRAL[0], "objectId": "chr:entity:test-wing",
+                   "attributedToId": "chr:entity:test-work", "contextId": BATTLE[0], "roleId": "chr:entity:test-legatus"}
+        self.assertEqual(len(self.write("upsert_qualified_assertion", params)), 1)
+        before = self.counts()
+        for change in ({"timeEdtf": "-0030-09-03"}, {"roleId": None}, {"contextId": None}, {"mode": "asserted",
+                       "attributedToId": None}):
+            with self.subTest(change=change):
+                self.assertEqual(self.tx.run(self.operations["upsert_qualified_assertion"], params | change).data(), [])
+        self.assertEqual(self.counts(), before)
+
+    def test_unary_dated_claim_links_its_years(self):
+        self.add_local(BATTLE[0], "Event", BATTLE[2])
+        self.add_work_passage("chr:entity:test-work", "chr:observation:test:span",
+                              "The war lasted from 32 BCE to 30 BCE, as the annals record.")
+        draft = ProposalDraft(
+            predicate="occurred", subject_id=BATTLE[0], observation_ids=("chr:observation:test:span",),
+            quotations=(Quotation(observation_id="chr:observation:test:span", text="The war lasted from 32 BCE to 30 BCE"),),
+            qualifier_quotations=(QualifierQuotation(observation_id="chr:observation:test:span", supports="time",
+                                                     text="from 32 BCE to 30 BCE"),),
+            time=TimeQualifier(source_expression="from 32 BCE to 30 BCE", edtf="-0031/-0029", calendar="julian",
+                               normalization_basis="source"),
+            rationale="The passage dates the event as a span.", proposed_by="test",
+        )
+        submission = submit(self.tx, draft, self.registry, self.operations)
+        self.assertEqual(submission.validation.outcome, Outcome.VALID, submission.validation.reasons)
+        years = self.tx.run("MATCH (:Assertion {id: $id})-[:IN_YEAR]->(y:Year) RETURN collect(y.year) AS y",
+                            id=submission.validation.assertion_id).single()["y"]
+        self.assertEqual(sorted(years), [-32, -31, -30])
+        objects = self.tx.run("MATCH (:Assertion {id: $id})-[:ASSERTION_OBJECT]->(o) RETURN count(o) AS n",
+                              id=submission.validation.assertion_id).single()["n"]
+        self.assertEqual(objects, 0)
+
+    def accepted_attributed(self, work_id, passage_id):
+        self.add_work_passage(work_id, passage_id, self.COMMAND_TEXT)
+        submission = submit(self.tx, self.command_draft(work_id, passage_id), self.registry, self.operations)
+        accept(self.tx, submission.validation.proposal_id, registry=self.registry, operations=self.operations, **DECISION)
+        return submission.validation.assertion_id
+
+    def test_promotion_creates_an_asserted_claim_from_two_witnesses(self):
+        self.command_fixture()
+        first = self.accepted_attributed("chr:entity:test-work", "chr:observation:test:work-passage")
+        second = self.accepted_attributed("chr:entity:test-second-work", "chr:observation:test:second-passage")
+        self.assertNotEqual(first, second)
+        result = promote(self.tx, [first, second], operations=self.operations, registry=self.registry,
+                         **(DECISION | {"decision_basis": "two independent witnesses"}))
+        promoted = result["assertion"]
+        self.assertEqual(promoted["status"], "accepted")
+        self.assertEqual(promoted["mode"], "asserted")
+        self.assertEqual(sorted(result["sourceIds"]), sorted([first, second]))
+        self.assertEqual(self.support_count(promoted["id"]), 2)
+        for source in (first, second):
+            self.assertEqual(self.reader.assertion(source)["status"], "accepted")
+        before = self.counts()
+        promote(self.tx, [first, second], operations=self.operations, registry=self.registry, **DECISION)
+        self.assertEqual(self.counts(), before)
+
+    def test_promotion_is_refused_for_claims_that_differ_or_are_not_accepted(self):
+        self.command_fixture()
+        accepted = self.accepted_attributed("chr:entity:test-work", "chr:observation:test:work-passage")
+        self.add_work_passage("chr:entity:test-second-work", "chr:observation:test:second-passage", self.COMMAND_TEXT)
+        pending = submit(self.tx, self.command_draft("chr:entity:test-second-work", "chr:observation:test:second-passage"),
+                         self.registry, self.operations).validation.assertion_id
+        for sources in ([accepted, pending], [pending], [self.accepted_leader_claim()]):
+            with self.subTest(sources=sources), self.assertRaises(ReviewError):
+                promote(self.tx, sources, operations=self.operations, registry=self.registry, **DECISION)
 
     # -- inquiry scope -------------------------------------------------------
 
