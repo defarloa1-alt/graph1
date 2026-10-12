@@ -1,6 +1,6 @@
 # Claim Qualifiers and Claim Mode
 
-**Status:** draft for curator review, 2026-10-12. Nothing here is implemented.
+**Status:** agreed with the curator, 2026-10-12 (decisions in §12). Implementation in progress (§11).
 **Covers:** the qualifier work in [19 §5a](19-SESSION-HANDOFF.md) (event
 context, role), Phase 7 temporal qualification
 ([04 §9](04-IMPLEMENTATION-PLAN.md)), and the claim mode of E12, as one
@@ -117,7 +117,7 @@ role and is not modelled here.
 |---|---|
 | `timeEdtf` | the normalized value in EDTF (ISO 8601-2), astronomical year numbering: 31 BCE is `-0030` |
 | `timePrecision` | day, month, season, year, decade, century, circa |
-| `timeCalendar` | the calendar of the normalized value: `julian`, `gregorian`, or `roman-prejulian` |
+| `timeCalendar` | the calendar of the normalized value: `julian` (proleptic before 45 BCE) or `gregorian` |
 | `timeSourceExpression` | the source's own wording, verbatim ("on the fifth day", "in the consulship of …") |
 | `timeNormalizationBasis` | who made the normalized value: `source` (the source gives the date), `scholarship` (a cited modern conversion), or `curator` |
 | `start/end Earliest/Latest Jdn` | four sortable bounds as Julian Day Numbers, derived from `timeEdtf` and `timeCalendar` |
@@ -137,7 +137,10 @@ role and is not modelled here.
   qualifier. The reader records `timeSourceExpression` verbatim; it may fill
   `timeEdtf` only when the source itself states a calendar date or year.
   Conversions from consular or regnal years, or from the pre-Julian calendar,
-  are separate acts with a cited basis. Editorial notes are never the source
+  are separate acts with a cited basis; until then a pre-Julian date stays in
+  `timeSourceExpression` only, because only Julian and Gregorian values can be
+  computed. The Julian calendar is applied proleptically: the misapplied leap
+  years of 45–8 BCE are not modelled. Editorial notes are never the source
   (Perrin's "Sept. 2, 31 B.C." is `scholarship` at best, citing Perrin, and
   never Plutarch).
 - **Relative time** ("the fifth day", "the sixth hour") is anchored to the
@@ -237,18 +240,17 @@ No churn while the model is in design ([19 §5a](19-SESSION-HANDOFF.md)):
 7. Rerun on *Antony* 61–68 after source discovery adds a second source
    ([19 §6](19-SESSION-HANDOFF.md)).
 
-## 12. Decisions for the curator
+## 12. Curator decisions (2026-10-12)
 
-1. **Default mode for the reader: `attributed`?** Recommended: yes. A single
-   source's narrative is its depiction (E12); asserted claims come by
-   promotion.
-2. **Existing accepted claims stay `asserted`?** Recommended: yes, under the
-   design-mode policy, although seven of them rest on Plutarch alone. The
-   alternative is to re-mark them `attributed` to Plutarch.
-3. **Unary `occurred` predicate** for dated existence (§6)? Recommended: yes.
-4. **Context evidence:** most passages do not repeat the event's name (65.5
-   never says "Actium"). Allow context to rest on the inquiry's declared
-   narrative (recorded as `contextBasis: inquiry`) as well as on a quotation?
-   Recommended: yes.
-5. **`commanded` with a role requires time** (Phase 7 lists "command in a
-   capacity"); `commanded` without a role does not. Confirm.
+All five recommendations were accepted:
+
+1. **The reader's default mode is `attributed`.** A single source's narrative
+   is its depiction (E12); asserted claims come by promotion.
+2. **Existing accepted claims stay `asserted`**, under the design-mode policy,
+   although seven of them rest on Plutarch alone.
+3. **A unary `occurred` predicate** dates an event's existence (§6).
+4. **Context may rest on the inquiry's declared narrative**, recorded as
+   `contextBasis: inquiry`, as well as on a quotation; most passages do not
+   repeat the event's name (65.5 never says "Actium").
+5. **`commanded` with a role requires time; without a role it does not.**
+   `heldAuthorityOver` always requires time.
