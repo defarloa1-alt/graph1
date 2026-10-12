@@ -72,6 +72,23 @@ by source and by mode; source chronology (which witnesses are earliest and
 independent, from E10); degree and hub indicators that explain why hub paths
 are down-ranked.
 
+## 4a. Map panel (E13)
+
+A map panel beside the centre stage, synchronized with it: selecting a node
+highlights its places; selecting a place filters the stage; the bottom
+timeline drives both.
+
+- **Rendering:** Google Maps JavaScript API with deck.gl on the WebGL overlay;
+  historical layers (Pleiades places, ancient coastlines, ORBIS routes) above
+  the modern basemap, which alone misleads for antiquity.
+- **Data:** coordinates come from Pleiades or Wikidata through the read API,
+  never stored from Google.
+- **Layers:** places (with precision radius), depicted movement tracks per
+  source with status encoding, computed analyses (sightlines, travel times)
+  visibly marked as computed.
+- **Modes:** place doorway (everything at a place across time); place
+  resolution (candidate pins for the identity queue); battle replay by source.
+
 ## 5. Visual encoding
 
 Following [06-GRAPH-NAVIGATION.md](06-GRAPH-NAVIGATION.md):

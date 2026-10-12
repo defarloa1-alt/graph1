@@ -478,6 +478,54 @@ legacy triage rules.
 **Dependency:** commanded-forces model (done), new predicates (performedBy,
 triggeredBy, resultedIn, aimedAt), E8 stance, Phase 7 temporal ordering.
 
+### E13. Geography and space-time exploration
+
+Maps let Chrystallum test sources against the physical world, not only
+display places.
+
+**Constraints**
+
+- Modern basemaps show today's geography; ancient coastlines and harbours
+  differ (Actium's gulf mouth, Ephesus's silted harbour). Historical layers are
+  required: Pleiades, the Ancient World Mapping Center, DARMC, and ORBIS
+  (Roman travel time and cost).
+- Canonical coordinates come from open sources (Pleiades, Wikidata P625).
+  Google Maps Platform is a display and analysis layer; its terms restrict
+  storing or caching most content. Verify current terms and pricing before
+  building.
+- A location is a claim: it has a source, a precision radius, and a time.
+  Place names and boundaries change.
+
+**Capabilities, in order**
+
+1. Space-time explorer: a map panel beside the graph stage, linked selection
+   in both directions, one timeline slider driving both.
+2. Micro-event tracks by source (after E12): the battle replayed as movements
+   "according to Plutarch", with other sources as alternative tracks, so
+   divergence between witnesses is visible.
+3. Place as a doorway through time: everything at a place across periods.
+4. Place resolution on the map: candidate pins for unresolved place mentions,
+   ranked by consistency with the narrative's directions and distances.
+5. Physical plausibility of depictions: sightlines, travel speeds, distances,
+   and wind against terrain (elevation, photorealistic 3D tiles, Earth Engine)
+   and a reconstructed ancient coastline. Results are **computed claims** with
+   versioned methods and data, evidence about depictions, never facts.
+6. Co-presence leads: people in the same place in the same season, offered to
+   semantic-bridge discovery as hypotheses, never as claims.
+7. Live updates: proposed tracks dashed, accepted tracks solid, using the
+   graph's status encoding.
+
+**Model needs:** Place entities with location claims (source, precision,
+time); region geometry; movement claims (movedFrom/To with relative time)
+forming trajectories; a `computed` claim type with method versioning.
+
+**Order:** Pleiades coordinates and a synchronized map panel first; source
+tracks after E12; terrain and plausibility analysis last (needs reconstructed
+coastlines).
+
+**Dependency:** E12 (depicted events, attributed claims), Phase 7 temporal
+qualification, Phase B read API, explorer UI.
+
 ### Backlog acceptance rule
 
 An enhancement may move into the active phase sequence only when its
