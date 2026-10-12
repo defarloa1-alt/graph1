@@ -13,7 +13,7 @@ export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.tx
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
   GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius \
-  GraphRevised.tests.test_curation_live  # expect 129 tests, OK
+  GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries  # expect 132 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -90,6 +90,7 @@ AuthorityRecord keeps Wikidata's wording.
 9. Delegated review follows [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md): Claude may accept only claims a verbatim quote plainly shows, records itself as `Claude (delegated by …)`, and leaves identity, predicates, roles, command, and uncertain cases to the curator.
 10. Curation is data: approved identities and local entities go into a manifest in `curation/`, never into a new script. Reusable code, including `slices/`, must name no source or subject (a test enforces it).
 
+11. Readers locate passages themselves: inquiries name whole works (no `chapters`), and guidance states source conventions and predicate rules only, never locators or the source's words (a test enforces it).
 ## 5. Open decisions (for the curator)
 
 1. **13 submitted `commanded` proposals** (7 claims) stay open (5a, design-mode policy); review them against the v3 definition when convenient. The 10 non-command proposals were decided on 2026-10-12 (the earlier count of 14 non-command and 9 command was wrong). *Mark Antony commanded Antony's fleet* (the whole fleet) is the borderline case between authority held and command exercised.

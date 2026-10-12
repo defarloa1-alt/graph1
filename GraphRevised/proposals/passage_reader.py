@@ -253,7 +253,9 @@ def read_passage(
             line += " | " + ", ".join(f"{name} {year}" for name, year in entity["dates"].items())
         return line
 
-    user = (
+    # Everything that is the same for every passage of a run comes first and is
+    # cached; only the surrounding sections and the target passage vary.
+    packet = (
         f"Inquiry: {inquiry.label}\n"
         f"Subject: {inquiry.subject['label']}\n"
         f"Subject focus:\n" + "\n".join(entity_line(e) for e in inquiry.focus) + "\n\n"
@@ -262,7 +264,9 @@ def read_passage(
         f"Narrative event: {inquiry.narrative_event_id or 'none declared'}\n\n"
         f"Predicates:\n{predicate_guide(registry)}\n\n"
         f"In-scope entities (id | label | kind | description):\n"
-        + "\n".join(entity_line(e) for e in inquiry.scope) + "\n\n"
+        + "\n".join(entity_line(e) for e in inquiry.scope)
+    )
+    user = (
         f"Surrounding sections (context only, not evidence):\n"
         + "\n\n".join(f"[{r}] {text}" for r, text in context) + "\n\n"
         f"Target passage [{ref}]:\n{passage['passageText']}"
@@ -272,7 +276,10 @@ def read_passage(
         max_tokens=16000,
         betas=["server-side-fallback-2026-07-01"],
         extra_body={"fallbacks": "default"},
-        system=SYSTEM_PROMPT,
+        system=[
+            {"type": "text", "text": SYSTEM_PROMPT},
+            {"type": "text", "text": packet, "cache_control": {"type": "ephemeral"}},
+        ],
         messages=[{"role": "user", "content": user}],
         output_format=ReaderOutput,
     )
@@ -280,6 +287,8 @@ def read_passage(
         "model": response.model,
         "stopReason": response.stop_reason,
         "inputTokens": response.usage.input_tokens,
+        "cacheReadTokens": response.usage.cache_read_input_tokens or 0,
+        "cacheWriteTokens": response.usage.cache_creation_input_tokens or 0,
         "outputTokens": response.usage.output_tokens,
         "requestId": response._request_id,
     }
@@ -371,7 +380,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     RUNS_DIRECTORY.mkdir(exist_ok=True)
     run_path = RUNS_DIRECTORY / f"passage-reader-{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.jsonl"
-    totals: dict[str, int] = {"stored": 0, "malformed": 0, "inputTokens": 0, "outputTokens": 0}
+    totals: dict[str, int] = {"stored": 0, "malformed": 0, "inputTokens": 0, "cacheReadTokens": 0,
+                              "cacheWriteTokens": 0, "outputTokens": 0}
 
     try:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session, \
@@ -400,6 +410,8 @@ def main(argv: list[str] | None = None) -> int:
                 ]
                 output, meta = read_passage(client, args.model, inquiry, edition, ref, passage, context, registry)
                 totals["inputTokens"] += meta["inputTokens"]
+                totals["cacheReadTokens"] += meta["cacheReadTokens"]
+                totals["cacheWriteTokens"] += meta["cacheWriteTokens"]
                 totals["outputTokens"] += meta["outputTokens"]
                 record: dict[str, Any] = {"ref": ref, "observationId": passage["id"], **meta, "promptVersion": PROMPT_VERSION}
                 if output is None:
