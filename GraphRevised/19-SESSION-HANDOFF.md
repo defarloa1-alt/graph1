@@ -12,7 +12,7 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline  # expect 114 tests, OK
+  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan               # expect 120 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -140,7 +140,9 @@ a date span.
    (Q41523, Q12902608; passages linked `IN_WORK`), and reader prompt v8
    (attributed claims with qualifiers; inquiry v11). Remaining: the curator's
    decision on *Plutarch author of Life of Antony* (submitted from Wikidata
-   P50), source discovery, a second-source adapter, then the reader rerun.
+   P50), the choice of second source from the source plan
+   ([plans/](plans), E10 status in [04](04-IMPLEMENTATION-PLAN.md)), its
+   adapter, then the reader rerun.
 2. **Finish the review** (5, item 1): the non-command proposals are done;
    the command proposals whenever convenient.
 3. **E12 design doc** (attributed claims and depicted events: "according to

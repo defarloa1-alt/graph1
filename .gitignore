@@ -130,3 +130,6 @@ claude/files (2).zip
 # Raw session transcripts (may contain API keys) - keep local only
 Archive/docs-2026-07/sessions/Transcript.md
 Archive/docs-2026-07/sessions/Transcript of dev chat.md
+
+# Clean-start caches (large lookup payloads, hashed in their metadata)
+GraphRevised/cache/

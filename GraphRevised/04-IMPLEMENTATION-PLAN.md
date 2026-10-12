@@ -463,6 +463,22 @@ goes through the existing observation, proposal, and review path.
 
 **Dependency:** E9, Phase 7 temporal qualification, Work entities.
 
+**Status (2026-10-12): first source plan produced.**
+[discovery/source_plan.py](discovery/source_plan.py) combines channels 1 and
+3 with model-proposed candidates (channel 4 stands in for the research API):
+citations found deterministically in the passages already read, a model's
+candidate witnesses with locators, dates, genre, relation to the event, and
+dependencies, and a check of each against the Scaife catalogue
+([adapters/scaife_catalog.py](adapters/scaife_catalog.py)) for available
+editions and languages; title matches are flagged for verification. The plan
+is a file in [plans/](plans), not graph data. Wikidata `described by source`
+returned only modern reference works for the battle, so channel 2 is weak for
+ancient events. For Actium the plan ranks the Augustan poets, coins, the
+Nicopolis monument, Augustus's lost memoir (cited at *Antony* 68.1), and the
+*Res Gestae* as contemporary; Velleius as near-contemporary; Suetonius,
+Florus, Dio, Eutropius, Orosius, and the Livian *Periochae* as later. Dio,
+the fullest narrative, is in the catalogue in Greek only; Velleius is absent.
+
 ### E12. Attributed claims and depicted events (precedes E11)
 
 Narrative detail in a source is the author's depiction, not established fact.

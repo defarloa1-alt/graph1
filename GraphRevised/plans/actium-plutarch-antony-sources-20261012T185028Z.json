@@ -1,0 +1,417 @@
+{
+  "inquiry": "chr:inquiry:actium-plutarch-antony",
+  "inquiryVersion": 11,
+  "sourceRead": "chr:entity:plutarch-life-of-antony",
+  "createdAt": "2026-10-12T18:50:28.778400+00:00",
+  "promptVersion": "source-plan-v1-a7a846cd",
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 1566,
+  "outputTokens": 3886,
+  "requestId": "req_011CfxqwLMWjLwqkMQ8a4FuC",
+  "catalog": {
+    "sourceUri": "https://scaife.perseus.org/library/json/",
+    "retrievedAt": "2026-10-12T18:49:50.116438+00:00",
+    "contentHash": "2948dbb257dae168129f3c4b32a8b24ac11cd206439f825749ac7e4b5a54d653"
+  },
+  "citationsInSourceRead": [
+    {
+      "locator": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:68.1",
+      "who": "Caesar",
+      "context": "e were not more than five thousand dead, but three hundred ships were captured, as Caesar himself has written."
+    }
+  ],
+  "candidates": [
+    {
+      "author": "Mark Antony (issuer)",
+      "work": "Legionary denarii",
+      "locator": "RRC 544",
+      "cts_work_urn": null,
+      "composition": "c. 32-31 BCE",
+      "composition_year": -32,
+      "genre": "coin",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Coins struck to pay Antony's forces before Actium, with a galley on one side and legionary standards on the other, attest to the army and fleet assembled.",
+      "confidence": "high",
+      "catalog": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      }
+    },
+    {
+      "author": "Horace",
+      "work": "Epodes",
+      "locator": "Epode 9",
+      "cts_work_urn": null,
+      "composition": "c. 31 BCE",
+      "composition_year": -31,
+      "genre": "lyric poetry",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "A poem composed in the immediate aftermath of the battle, alluding to the defection of the Galatians and the flight of the enemy fleet.",
+      "confidence": "high",
+      "catalog": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:latinLit:phi0893.phi003",
+        "workLabel": "Epodi",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0893.phi003.perseus-lat2"
+        ]
+      }
+    },
+    {
+      "author": "Horace",
+      "work": "Odes (Carmina)",
+      "locator": "1.37",
+      "cts_work_urn": "urn:cts:latinLit:phi0893.phi001",
+      "composition": "c. 30 BCE",
+      "composition_year": -30,
+      "genre": "lyric poetry",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "The Cleopatra ode celebrates the defeat and Cleopatra's flight and death, giving the official Augustan view of the battle.",
+      "confidence": "high",
+      "catalog": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi0893.phi001",
+        "workLabel": "Odes",
+        "languages": [
+          "eng",
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0893.phi001.perseus-lat2",
+          "urn:cts:latinLit:phi0893.phi001.perseus-eng2"
+        ]
+      }
+    },
+    {
+      "author": "Octavian (dedicant)",
+      "work": "Actian Victory Monument (Campsite Memorial) at Nicopolis",
+      "locator": "dedicatory inscription and rostra sockets",
+      "cts_work_urn": null,
+      "composition": "c. 29 BCE",
+      "composition_year": -29,
+      "genre": "monument/inscription",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "The commemorative monument on Octavian's camp site displayed captured warship rams, and its inscription records the victory dedicated to Neptune and Mars.",
+      "confidence": "high",
+      "catalog": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      }
+    },
+    {
+      "author": "Octavian (issuer)",
+      "work": "Victory coinage (CAESAR DIVI F / IMP CAESAR denarii)",
+      "locator": "unknown",
+      "cts_work_urn": null,
+      "composition": "c. 30-27 BCE",
+      "composition_year": -29,
+      "genre": "coin",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Issues showing Victory on a prow and the Actian Apollo celebrate the naval victory.",
+      "confidence": "medium",
+      "catalog": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      }
+    },
+    {
+      "author": "Augustus",
+      "work": "Memoirs (De vita sua)",
+      "locator": "unknown",
+      "cts_work_urn": null,
+      "composition": "c. 25 BCE",
+      "composition_year": -25,
+      "genre": "lost",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Octavian's own account of the battle, which Plutarch cites (Ant. 68.1) for the casualty figure and the three hundred captured ships.",
+      "confidence": "high",
+      "catalog": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      }
+    },
+    {
+      "author": "Virgil",
+      "work": "Aeneid",
+      "locator": "8.671-713",
+      "cts_work_urn": "urn:cts:latinLit:phi0690.phi003",
+      "composition": "c. 19 BCE",
+      "composition_year": -19,
+      "genre": "epic poetry",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "The Shield of Aeneas depicts the battle as a cosmic clash, with Augustus and Agrippa against Antony and Cleopatra and Actian Apollo intervening.",
+      "confidence": "high",
+      "catalog": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi0690.phi003",
+        "workLabel": "Aeneid",
+        "languages": [
+          "eng",
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0690.phi003.perseus-lat2",
+          "urn:cts:latinLit:phi0690.phi003.perseus-eng2"
+        ]
+      }
+    },
+    {
+      "author": "Propertius",
+      "work": "Elegies",
+      "locator": "3.11; 4.6",
+      "cts_work_urn": "urn:cts:latinLit:phi0620.phi001",
+      "composition": "c. 23-16 BCE",
+      "composition_year": -16,
+      "genre": "elegiac poetry",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Elegy 4.6 gives a poetic narrative of the battle and Apollo's role, and 3.11 treats Cleopatra's defeat.",
+      "confidence": "high",
+      "catalog": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi0620.phi001",
+        "workLabel": "Elegiae",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0620.phi001.perseus-lat3"
+        ]
+      }
+    },
+    {
+      "author": "Augustus",
+      "work": "Res Gestae Divi Augusti",
+      "locator": "25.2",
+      "cts_work_urn": null,
+      "composition": "c. 14 CE",
+      "composition_year": 14,
+      "genre": "inscription (funerary autobiography)",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Augustus names the war 'in which I conquered at Actium' and describes the oath of Italy and the western provinces that preceded it.",
+      "confidence": "high",
+      "catalog": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      }
+    },
+    {
+      "author": "Strabo",
+      "work": "Geography",
+      "locator": "7.7.6",
+      "cts_work_urn": "urn:cts:greekLit:tlg0099.tlg001",
+      "composition": "c. 20 CE",
+      "composition_year": 20,
+      "genre": "geography",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Describes the site of Actium, the dedication of captured ships, and Octavian's foundation of Nicopolis as a commemoration of the victory.",
+      "confidence": "medium",
+      "catalog": {
+        "status": "work found",
+        "workUrn": "urn:cts:greekLit:tlg0099.tlg001",
+        "workLabel": "Geography",
+        "languages": [
+          "eng",
+          "grc"
+        ],
+        "editions": [
+          "urn:cts:greekLit:tlg0099.tlg001.perseus-grc2",
+          "urn:cts:greekLit:tlg0099.tlg001.perseus-eng4",
+          "urn:cts:greekLit:tlg0099.tlg001.perseus-eng3"
+        ]
+      }
+    },
+    {
+      "author": "Velleius Paterculus",
+      "work": "Historiae Romanae",
+      "locator": "2.84-86",
+      "cts_work_urn": "urn:cts:latinLit:phi1044.phi001",
+      "composition": "c. 30 CE",
+      "composition_year": 30,
+      "genre": "history",
+      "relation": "near-contemporary",
+      "depends_on": [
+        "likely Augustus, Memoirs"
+      ],
+      "coverage": "A short pro-Augustan narrative of the battle, covering the desertions, Cleopatra's flight first, Antony following her, and Octavian's clemency.",
+      "confidence": "high",
+      "catalog": {
+        "status": "not in catalogue (proposed URN urn:cts:latinLit:phi1044.phi001 not found)",
+        "authorUrns": [],
+        "authorWorks": {}
+      }
+    },
+    {
+      "author": "Suetonius",
+      "work": "Divus Augustus",
+      "locator": "17",
+      "cts_work_urn": null,
+      "composition": "c. 121 CE",
+      "composition_year": 121,
+      "genre": "biography",
+      "relation": "later",
+      "depends_on": [
+        "likely Augustus, Memoirs"
+      ],
+      "coverage": "A concise notice of the victory at Actium and its aftermath, including Octavian's foundation of Nicopolis and the Actian games.",
+      "confidence": "high",
+      "catalog": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:latinLit:phi1348.abo012",
+        "workLabel": "Divus Augustus",
+        "languages": [
+          "eng",
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi1348.abo012.perseus-lat2",
+          "urn:cts:latinLit:phi1348.abo012.perseus-eng2"
+        ]
+      }
+    },
+    {
+      "author": "Florus",
+      "work": "Epitome of Roman History",
+      "locator": "2.21",
+      "cts_work_urn": null,
+      "composition": "c. 130 CE",
+      "composition_year": 130,
+      "genre": "history (epitome)",
+      "relation": "later",
+      "depends_on": [
+        "likely Livy"
+      ],
+      "coverage": "A rhetorical account of the opposing fleets, the size of Antony's ships, Cleopatra's flight, and the outcome.",
+      "confidence": "high",
+      "catalog": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:latinLit:phi1242.phi001",
+        "workLabel": "Epitome Rerum Romanorum",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi1242.phi001.perseus-lat1"
+        ]
+      }
+    },
+    {
+      "author": "Cassius Dio",
+      "work": "Roman History",
+      "locator": "50.11-35; 51.1",
+      "cts_work_urn": "urn:cts:greekLit:tlg0385.tlg001",
+      "composition": "c. 220 CE",
+      "composition_year": 220,
+      "genre": "history",
+      "relation": "later",
+      "depends_on": [
+        "likely Livy",
+        "likely Augustus, Memoirs"
+      ],
+      "coverage": "The fullest surviving narrative of the campaign and battle, including the speeches before it, the tactics, the breakout, and the dating to 2 September 31 BCE.",
+      "confidence": "high",
+      "catalog": {
+        "status": "work found",
+        "workUrn": "urn:cts:greekLit:tlg0385.tlg001",
+        "workLabel": "Historia Romana",
+        "languages": [
+          "grc"
+        ],
+        "editions": [
+          "urn:cts:greekLit:tlg0385.tlg001.perseus-grc2"
+        ]
+      }
+    },
+    {
+      "author": "Eutropius",
+      "work": "Breviarium",
+      "locator": "7.7",
+      "cts_work_urn": null,
+      "composition": "c. 369 CE",
+      "composition_year": 369,
+      "genre": "history (epitome)",
+      "relation": "later",
+      "depends_on": [
+        "likely Livy (via epitome)"
+      ],
+      "coverage": "A very brief notice of Antony's defeat at Actium.",
+      "confidence": "medium",
+      "catalog": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:greekLit:stoa0121.stoa001",
+        "workLabel": "Breviarium historiae romanae",
+        "languages": [
+          "grc"
+        ],
+        "editions": [
+          "urn:cts:greekLit:stoa0121.stoa001.opp-grc1"
+        ]
+      }
+    },
+    {
+      "author": "Orosius",
+      "work": "Historiae adversus paganos",
+      "locator": "6.19",
+      "cts_work_urn": null,
+      "composition": "c. 417 CE",
+      "composition_year": 417,
+      "genre": "history",
+      "relation": "later",
+      "depends_on": [
+        "likely Livy (via epitome)"
+      ],
+      "coverage": "Gives a summary of the battle with fleet numbers and casualty figures.",
+      "confidence": "medium",
+      "catalog": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:latinLit:stoa0215c.stoa001",
+        "workLabel": "Historiae Adversum Paganos",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:stoa0215c.stoa001.opp-lat1"
+        ]
+      }
+    },
+    {
+      "author": "Livy (epitomator)",
+      "work": "Periochae",
+      "locator": "132-133",
+      "cts_work_urn": null,
+      "composition": "original c. 10 BCE; epitome 4th c. CE",
+      "composition_year": null,
+      "genre": "history (epitome)",
+      "relation": "later",
+      "depends_on": [
+        "Livy, Ab Urbe Condita books 132-133 (lost)"
+      ],
+      "coverage": "Brief summaries of Livy's lost account of the war and the naval victory at Actium.",
+      "confidence": "medium",
+      "catalog": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      }
+    }
+  ],
+  "notes": "Plutarch himself cites Augustus' lost memoirs for the casualty figures. Cassius Dio is the main parallel narrative. The Augustan poets give contemporary, ideologically shaped versions. The CTS URNs for Res Gestae, Horace's Epodes, Suetonius, Florus, Eutropius and Orosius were left null because I am uncertain of them. The RRC 544 reference for Antony's legionary denarii should be verified."
+}

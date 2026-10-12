@@ -25,7 +25,8 @@ class PromptVersionTests(unittest.TestCase):
         from pathlib import Path
 
         root = Path(__file__).resolve().parents[1]
-        for path in [*root.glob("proposals/*.py"), *root.glob("identity/*.py"), *root.glob("adapters/*.py")]:
+        for path in [*root.glob("proposals/*.py"), *root.glob("identity/*.py"), *root.glob("adapters/*.py"),
+                     *root.glob("discovery/*.py")]:
             text = path.read_text(encoding="utf-8")
             for name in ("Plutarch", "Antony", "Actium", "Perrin", "Octavian"):
                 self.assertNotIn(name, text, f"{name} hardcoded in {path.name}")
