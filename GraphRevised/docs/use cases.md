@@ -1,0 +1,8 @@
+#use cases
+#1. Chrystallum as a commerical domain pack built on a core set of the processes that support configuration of different federations.
+#2 Chrystallum as the ability for user commnand of Graph x where x could be anything outside of the rule that it does not respond to how to type questions. e.g. the user sees bronze is some object, and the user wants to drill down into that domain.
+#3 Chrystallum needs to support user defined information. I may want to add remove update etc nodes and relations. I may want to annotate nodes and relations on the graph, which should have a propert of some id needed for me - i.e public vs priate.
+#4 I understand and agree with our approach of the sliver bullet through a basic use case of the reader etc, just to check wether this core graph cluseter pattern works. 
+#5 The plan was and is that there are a concierge, SCA and SFA functions. Explain how the current agents baed on the current config.
+#6 Package vs Graph command. There seem to be two choices - 1) I continue to command a graph for a subject as we just did, and ultimitly build a commerical Roman Republic package, Graph Social status, Graph life of cicerio etc. There may be some merit to this approach.
+#7 On the other hand, If the user instruction was Graph the Roman Republic - Chrystallum where the concierge checked if there was a SCA existing or not and agents are spun up for each of our facets. This is a more complex approach, but benefits are large - 18 or so agents going thru deep research into their facets, generating hi volume of claims. There life is short. They persist results in the graph, leared the graph state. There is complexity about how these disparent agents should be structured in placed in a workflow

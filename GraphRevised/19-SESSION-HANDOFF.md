@@ -84,7 +84,10 @@ Accepted claims:
 2. **Fair evaluation**: run the reader unchanged on chapters it has not seen; measure curator acceptance. Prompts v3–v6 were tuned on *Antony* 61–68.
 3. **Phase 7 temporal qualification**: unblocks marriages, offices, and source dating.
 4. **Second source** (for E10): add `source.type` and an adapter interface; move the context window and scope rule into the inquiry; turn slice scripts into data.
-5. **Proposed first task for the next session:** a design doc for E12
+5. **Roadmap agreed in principle:** [docs/Response - Use Cases.md](docs/Response%20-%20Use%20Cases.md)
+   (Chrystallum is for exploring and discovering connections, not an
+   encyclopedia; phases A–F, with gates before multi-agent fan-out).
+   **Proposed first task for the next session:** a design doc for E12
    (attributed claims and depicted events: "according to Plutarch"), then the
    micro-event pilot on *Antony* 65–68. Principle agreed with the curator:
    narrative detail is the author's depiction, not fact.
