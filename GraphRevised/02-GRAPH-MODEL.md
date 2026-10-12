@@ -30,6 +30,10 @@ AuthorityRecord and SourceObservation.
 
 Represents a body of knowledge or inquiry about one or more entities.
 
+A Subject is created intentionally: for an inquiry, a research scope, a body
+of literature, or a user's drill-down. It is never an automatic shadow of an
+Entity; most Entities have no Subject of their own.
+
 Required properties:
 
 ```yaml
@@ -208,6 +212,11 @@ A stored Proposal also records its provenance: `createdBy`, `rationale`,
 `draftSchemaVersion`, `predicateRegistryVersion`, `promptVersion`, and
 `modelId`. These are fixed at creation.
 
+Proposals and their decisions are durable editorial history and stay in
+Neo4j. Agent workflow state does not: queues, locks, retries, model jobs, and
+checkpoints live outside the graph (the identity queue and run traces are
+files).
+
 Proposal labels must state the requested action in plain language. An accepted
 Proposal is workflow/audit history that records how an Assertion entered the
 graph; it is not a second historical claim and should be hidden from ordinary
@@ -254,21 +263,16 @@ Use an explicit relationship when a simple, unqualified year link is enough:
 ```
 
 Use an Assertion when the date is uncertain, disputed, source-specific, or
-requires a qualifier:
+requires a qualifier. A date is a **time qualifier** on the Assertion, not an
+`ASSERTION_OBJECT`: a Year is never an assertion object. The qualifier
+properties, the unary `occurred` predicate for dating an event, and the
+derived `IN_YEAR` links from the Assertion are specified in
+[22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md) §6.
 
-```text
-(:Assertion {
-  predicate: occurredOn,
-  status: accepted,
-  datePrecision: day
-})-[:ASSERTION_SUBJECT]->(:Entity)
-(:Assertion)-[:ASSERTION_OBJECT]->(:Year)
-```
-
-The initial implementation may use direct `IN_YEAR` links for the temporal
-backbone and introduce qualified temporal assertions when the first use case
-requires them. Do not create both representations for the same fact without
-defining which one is authoritative.
+The accepted dated Assertion is authoritative; `IN_YEAR` links are a
+rebuildable navigation projection derived from it. The direct, unsourced
+Phase 2 link *Battle of Actium → 31 BCE* predates this rule and is to be
+replaced by a sourced claim.
 
 An assertion about an event may derive temporal context through its assertion
 object. For example, an assertion that a person participated in the Battle of

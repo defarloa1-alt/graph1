@@ -1,7 +1,7 @@
 # Session Handoff — 2026-10-11
 
 **Supersedes:** [17-PHASE-5-HANDOFF.md](17-PHASE-5-HANDOFF.md).
-**Branch:** `graph-revised-clean-start` (see `git log` for the last commit). Nothing pushed.
+**Branch:** `graph-revised-clean-start`, public on GitHub (`origin`) up to `c19aceb`; later commits are local until pushed (`git status -sb` shows how many).
 **Updated 2026-10-12:** command split part 1 done (section 5a).
 **Detail of everything below:** [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md), sections 1–16.
 
