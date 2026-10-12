@@ -6,12 +6,14 @@
     python -m GraphRevised.proposals.review reopen <assertion-id> --by <name> --basis "<reason>"
     python -m GraphRevised.proposals.review supersede <assertion-id> --replacement <assertion-id> [...]
         --by <name> --basis "<reason>" --reason <code>
+    python -m GraphRevised.proposals.review retract <assertion-id> --by <name> --basis "<reason>" --reason <code>
 
 `reject` rejects a Proposal's evidence and leaves its claim open for better
 evidence; `reject --claim` also rejects the claim itself. `reopen` returns a
 rejected claim to `proposed` so new evidence can be proposed. `supersede`
 replaces a proposed or accepted claim with more precise claims, linked by
-SUPERSEDED_BY. Reason codes: false, unsupported, malformed, underspecified,
+SUPERSEDED_BY. `retract` rejects an accepted claim found to be wrong, keeping
+its evidence as audit history. Reason codes: false, unsupported, malformed, underspecified,
 superseded-by-model.
 
 Reads NEO4J_PASSWORD (and optional NEO4J_URI, NEO4J_USERNAME, NEO4J_DATABASE)
@@ -31,7 +33,7 @@ from neo4j import GraphDatabase
 from GraphRevised.operations import load_operations
 
 from .registry import load_registry
-from .store import REASON_CODES, ReviewError, accept, list_proposals, reject, reopen, supersede
+from .store import REASON_CODES, ReviewError, accept, list_proposals, reject, reopen, retract, supersede
 
 
 def mark_quotation(passage: str, quotation: str | None) -> str:
@@ -71,13 +73,14 @@ def main(argv: list[str] | None = None) -> int:
     listing = commands.add_parser("list")
     listing.add_argument("--status")
     for name, target in (
-        ("accept", "proposal_id"), ("reject", "proposal_id"), ("reopen", "assertion_id"), ("supersede", "assertion_id"),
+        ("accept", "proposal_id"), ("reject", "proposal_id"), ("reopen", "assertion_id"),
+        ("supersede", "assertion_id"), ("retract", "assertion_id"),
     ):
         decision = commands.add_parser(name)
         decision.add_argument(target)
         decision.add_argument("--by", required=True)
         decision.add_argument("--basis", required=True)
-        if name in ("reject", "supersede"):
+        if name in ("reject", "supersede", "retract"):
             decision.add_argument("--reason", required=True, choices=REASON_CODES)
         if name == "reject":
             decision.add_argument("--claim", action="store_true", help="also reject the claim itself")
@@ -110,6 +113,12 @@ def main(argv: list[str] | None = None) -> int:
                     lambda tx: reopen(tx, args.assertion_id, operations=operations, **decision)
                 )
                 print(f"reopened: {result['assertion']['label']} ({result['assertion']['status']})")
+                return 0
+            if args.command == "retract":
+                result = session.execute_write(lambda tx: retract(
+                    tx, args.assertion_id, reason=args.reason, operations=operations, **decision
+                ))
+                print(f"retracted: {result['assertion']['label']} ({result['assertion']['status']})")
                 return 0
             if args.command == "supersede":
                 result = session.execute_write(lambda tx: supersede(

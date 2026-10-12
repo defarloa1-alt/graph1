@@ -30,6 +30,7 @@ OPERATION_NAMES = (
     "apply_accepted_evidence",
     "reopen_assertion",
     "supersede_assertion",
+    "retract_assertion",
 )
 
 

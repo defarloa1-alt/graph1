@@ -184,8 +184,12 @@ accepted. Evidence and claim are decided separately:
   `supersededFrom`, `supersededAt`, `supersededBy`, `supersedeBasis`, and
   `supersedeReason`. Its open Proposals must be decided first. A superseded
   Assertion takes no new evidence and leaves inquiry scope.
+- **retract**: an explicit, recorded curator act rejects an `accepted`
+  Assertion found to be wrong (`retractedAt`, `retractedBy`, `retractBasis`,
+  `retractReason`). Its evidence links remain as audit history, and it can be
+  reopened. Its open Proposals must be decided first.
 
-Every rejection and supersession carries a reason code (`decisionReason` on
+Every rejection, supersession, and retraction carries a reason code (`decisionReason` on
 the Proposal, `supersedeReason` on the Assertion):
 
 | Code | Meaning |

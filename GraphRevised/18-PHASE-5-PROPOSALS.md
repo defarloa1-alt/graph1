@@ -453,3 +453,8 @@ fleet (66.1); and *Battle of Actium occurred at* the Actium promontory (68.1).
 Rejected as `unsupported`: Cleopatra 66.3 (only her ships are named); her
 claim stays open. Graph: 4,142 nodes, 4,178 relationships.
 
+The review led to the interim [delegation policy](21-REVIEW-DELEGATION.md)
+and a `retract` operation (accepted → rejected with a reason code, evidence
+kept), so a wrong delegated acceptance can be undone. 22 operations; 72
+tests.
+

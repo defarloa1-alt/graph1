@@ -345,6 +345,33 @@ def supersede(
     return rows[0]
 
 
+def retract(
+    tx: Any,
+    assertion_id: str,
+    *,
+    decided_by: str,
+    decision_basis: str,
+    decided_at: str,
+    reason: str,
+    operations: dict[str, str],
+) -> dict[str, Any]:
+    """Retract an accepted claim found to be wrong: it becomes rejected and
+    keeps its evidence as audit history. Its open Proposals must be decided
+    first."""
+    if reason not in REASON_CODES:
+        raise ReviewError(f"reason must be one of {list(REASON_CODES)}, not {reason!r}")
+    rows = tx.run(operations["retract_assertion"], {
+        "assertionId": assertion_id,
+        "decidedAt": decided_at,
+        "decidedBy": decided_by,
+        "decisionBasis": decision_basis,
+        "reason": reason,
+    }).data()
+    if not rows:
+        raise ReviewError(f"{assertion_id} cannot be retracted: it must be an accepted claim with no open proposals")
+    return rows[0]
+
+
 def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
     """A stored Proposal with the evidence it puts forward: its pending
     evidence, or the Assertion's evidence for a Proposal stored before

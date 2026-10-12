@@ -433,3 +433,28 @@ SET
   old.status = "superseded"
 FOREACH (item IN replacements | MERGE (old)-[:SUPERSEDED_BY]->(item))
 RETURN old AS assertion, [item IN replacements | item.id] AS replacementIds;
+
+// Retract an accepted Assertion: the curator finds an accepted claim wrong.
+// An explicit, recorded act with a reason code; the claim becomes rejected and
+// keeps its evidence links as audit history (reopen_assertion can return it to
+// proposed). Refused unless the Assertion is accepted, has no open Proposal,
+// and the reason is a known code. A retry is a no-op that preserves the
+// original metadata.
+MATCH (assertion:Assertion {id: $assertionId})
+WITH assertion, assertion.status = "rejected" AND assertion.retractedAt IS NOT NULL AS isRetry
+WHERE $reason IN ["false", "unsupported", "malformed", "underspecified", "superseded-by-model"]
+  AND (
+    isRetry
+    OR (assertion.status = "accepted"
+        AND NOT EXISTS {
+          MATCH (open:Proposal)-[:PROPOSES]->(assertion)
+          WHERE open.status IN ["submitted", "validating", "deferred"]
+        })
+  )
+SET
+  assertion.retractedAt = CASE WHEN isRetry THEN assertion.retractedAt ELSE $decidedAt END,
+  assertion.retractedBy = CASE WHEN isRetry THEN assertion.retractedBy ELSE $decidedBy END,
+  assertion.retractBasis = CASE WHEN isRetry THEN assertion.retractBasis ELSE $decisionBasis END,
+  assertion.retractReason = CASE WHEN isRetry THEN assertion.retractReason ELSE $reason END,
+  assertion.status = "rejected"
+RETURN assertion;

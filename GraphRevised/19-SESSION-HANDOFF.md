@@ -12,7 +12,7 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live          # expect 70 tests, OK
+  GraphRevised.tests.test_proposals_live          # expect 72 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 
@@ -61,11 +61,11 @@ AuthorityRecord keeps Wikidata's wording.
 
 | Area | Artifact |
 |---|---|
-| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 21 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
+| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 22 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
 | Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v3` (quotations, inquiry, relevance, ambiguities) |
 | Predicates | [proposals/predicates.v3.json](proposals/predicates.v3.json) — 14 predicates; `heldAuthorityOver` (authority held, needs a date span) and `commanded` (command exercised), both Person → Group (a force) |
 | Validator | [proposals/validator.py](proposals/validator.py) — deterministic; Wikidata statement evidence must state the claim; passage quotes must be verbatim (whitespace and quote style tolerated only) |
-| Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason` |
+| Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason`, `retract --reason` |
 | Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v7` (predicate definitions in the task packet) |
 | Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v10) — Subject, source, scope, guidance |
 | Identity queue | [identity/queue.py](identity/queue.py), queue file [queues/identity-actium-plutarch-antony.json](queues/identity-actium-plutarch-antony.json) |
@@ -78,13 +78,14 @@ AuthorityRecord keeps Wikidata's wording.
 ## 4. Rules that are easy to break
 
 1. Agents propose; only a curator accepts. The reader never creates Entities; identity is a curator decision via the queue.
-2. Every Proposal holds evidence on `PROPOSES_EVIDENCE` until acceptance. `reject` rejects evidence and leaves the claim open; `reject --claim` rejects the claim; `reopen` restores a rejected claim; `supersede` replaces a proposed or accepted claim. Rejections and supersessions need a reason code.
+2. Every Proposal holds evidence on `PROPOSES_EVIDENCE` until acceptance. `reject` rejects evidence and leaves the claim open; `reject --claim` rejects the claim; `reopen` restores a rejected claim; `supersede` replaces a proposed or accepted claim; `retract` rejects an accepted claim found wrong. Rejections, supersessions, and retractions need a reason code.
 3. A guarded write returning zero rows was refused; `run_write` raises `RefusedWrite`.
 4. Editorial notes in editions (for example Perrin's dates) are never cited as the ancient source.
 5. Preserved payloads are hashed as bytes. Write files with `write_bytes`, never text mode on Windows.
 6. Reusable code (`proposals/`, `identity/`, `adapters/`) must not name a source or subject; a test enforces it. Subject knowledge belongs in the inquiry.
 7. Tests must not depend on live graph contents; use synthetic fixtures in the rolled-back transaction.
 8. Shell note: long `python - <<'EOF'` heredocs containing triple-quoted strings have failed in this environment; write edit scripts to the scratchpad and run them instead.
+9. Delegated review follows [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md): Claude may accept only claims a verbatim quote plainly shows, records itself as `Claude (delegated by …)`, and leaves identity, predicates, roles, command, and uncertain cases to the curator.
 
 ## 5. Open decisions (for the curator)
 

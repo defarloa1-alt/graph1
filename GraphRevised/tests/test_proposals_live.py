@@ -16,7 +16,7 @@ from GraphRevised.proposals.passage_reader import load_inquiry
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, Quotation
 from GraphRevised.proposals.store import (
-    Neo4jReader, ReviewError, accept, list_proposals, reject, reopen, submit, supersede,
+    Neo4jReader, ReviewError, accept, list_proposals, reject, reopen, retract, submit, supersede,
 )
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
@@ -408,6 +408,37 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             with self.subTest(assertion=assertion_id, replacements=replacements, reason=reason):
                 with self.assertRaises(ReviewError):
                     supersede(self.tx, assertion_id, replacements, reason=reason, operations=self.operations, **DECISION)
+        self.assertEqual(self.counts(), before)
+
+    def test_retracting_an_accepted_claim(self):
+        assertion_id = self.accepted_leader_claim()
+        support_before = self.support_count(assertion_id)
+        result = retract(self.tx, assertion_id, reason="false", operations=self.operations, **DECISION)
+        self.assertEqual(result["assertion"]["status"], "rejected")
+        self.assertEqual(result["assertion"]["retractReason"], "false")
+        self.assertEqual(result["assertion"]["retractedBy"], "test-curator")
+        self.assertEqual(self.support_count(assertion_id), support_before)
+
+        before = self.counts()
+        retry = retract(self.tx, assertion_id, reason="false", operations=self.operations,
+                        **(DECISION | {"decided_at": "2099-01-01T00:00:00Z"}))
+        self.assertEqual(retry["assertion"]["retractedAt"], DECISION["decided_at"])
+        self.assertEqual(self.counts(), before)
+        reopened = reopen(self.tx, assertion_id, operations=self.operations, **DECISION)
+        self.assertEqual(reopened["assertion"]["status"], "proposed")
+
+    def test_invalid_retractions_are_refused(self):
+        accepted = self.accepted_leader_claim()
+        proposed, _ = self.proposed_admiral_claim()
+        self.add_passage()
+        submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
+        before = self.counts()
+        for assertion_id, reason in ((proposed, "false"), (accepted, "false"), ("chr:assertion:test:missing", "false")):
+            with self.subTest(assertion=assertion_id):
+                with self.assertRaises(ReviewError):  # proposed; has open evidence proposal; missing
+                    retract(self.tx, assertion_id, reason=reason, operations=self.operations, **DECISION)
+        with self.assertRaises(ReviewError):
+            retract(self.tx, accepted, reason="regret", operations=self.operations, **DECISION)
         self.assertEqual(self.counts(), before)
 
     # -- inquiry scope -------------------------------------------------------

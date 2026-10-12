@@ -52,6 +52,7 @@ current state and next task are in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md
 20. [docs/](docs) — model/API choice review, use cases, and the agreed responses
 21. [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md) — **current handoff: start here in a new session**
 22. [20-EXPLORER-UI.md](20-EXPLORER-UI.md) — explorer UI direction (React + Cytoscape.js, designed in Figma)
+23. [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md) — what Claude may decide when the curator delegates review
 
 ## Clean-start rules
 
