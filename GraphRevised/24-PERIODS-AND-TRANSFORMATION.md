@@ -82,6 +82,42 @@ Wikidata candidates side by side. Where the passage dates the period, an
 attributed `occurred` claim records that author's bounds. The same mechanism
 carries depicted events (23 §2).
 
+### 3b. As built: the PeriodO survey (2026-10-12)
+
+`discovery/period_survey.py` follows `curation/authorities.json`, which names
+the lookups for each entity kind (Period: local, Wikidata, PeriodO) and whether
+a new period is surveyed as soon as the reader proposes it. Nobody feeds it
+anything: the reader proposes a period; the survey runs.
+
+- **Data:** the PeriodO dataset, cached in `cache/` with its version, hash, and
+  retrieval time, and refreshed after `maxAgeDays`.
+- **Time:** definitions must come within `nearYears` of the time the period
+  is read about, taken from the dated claims of the Works that mention it
+  (for Hale, Actium: 31–30 BC). This is what keeps "Empire" Roman and not
+  Russian. Without dated claims nothing is matched.
+- **Name:** the same period when the definition's label (or a translation of
+  it) carries the name's head word ("Republic") and adds nothing else beyond
+  its region; the region may supply qualifiers ("Republic" for Rome) but never
+  the noun. Words are compared without accents and by five-letter stems, so
+  *République romaine*, *Romano Repubblicano*, and *Roman Republican* match.
+  Phases and regional variants ("Late Roman Republic", "Haut Empire") are
+  listed as related only. When one source defines the period more than once,
+  its widest span is taken and the rest are its subdivisions.
+- **Evidence:** each match becomes a proposed Work for its source (reused
+  once it exists), a `record` observation holding only the record's own
+  wording (label, start and stop as worded, region), and an `occurred` claim
+  attributed to the Work. The claim check lists each other source's dates as
+  related, so the fuzzy edges are visible in review.
+- **Review:** `review entities` shows the PeriodO matches, and the Wikidata
+  places PeriodO assigns them (Q2277 for "Empire"), beside the usual
+  candidates. Accepting a period with its Wikidata identity adds the Wikidata
+  label and aliases to its names, so a re-run finds more ("Roman Empire").
+
+First run: 3 definitions for the Empire (Heidelberg 27 BC, Library of
+Congress 30 BC, ArkeoGIS 25 BC) and 10 for the Republic, with 11 source Works
+proposed. Not built yet: the regional/general distinction and the consensus
+(§3, items 2–3), and Wikidata and LCSH/FAST as survey sources.
+
 ## 4. The transformation as a subject constellation
 
 *The transformation of the Roman Republic into the Principate* is a Subject,

@@ -107,9 +107,14 @@ def wikidata_candidates(label: str, limit: int = 3) -> list[str]:
     return [f"{item['id']} {item.get('label')} - {item.get('description')}" for item in found]
 
 
-def print_entities(session) -> None:
+def print_entities(session, operations, registry) -> None:
+    from GraphRevised.discovery.period_survey import describe, load_config, periodo_dataset, survey_period, uses_lookup
+
+    config = load_config()
+    periodo = None
     rows = session.execute_read(proposed_entities)
     for row in rows:
+        lookups = config.get("kinds", {}).get(row["kind"], {}).get("lookups", ["local", "wikidata"])
         print(f"proposed    {row['kind']:<8} {row['id']}\n            {row['label']}")
         for mention in row["mentions"]:
             if mention.get("quotation"):
@@ -117,10 +122,24 @@ def print_entities(session) -> None:
                                     initial_indent="              ", subsequent_indent="              "))
         for claim in row["claims"]:
             print(f"              claim: {claim}")
-        for match in session.execute_read(lambda tx: candidates(tx, row["label"], row["kind"], exclude=row["id"])):
-            print(f"              local candidate ({match['score']:.2f}): {match['id']} {match['label']}")
-        for line in wikidata_candidates(row["label"]):
-            print(f"              Wikidata: {line}")
+        if "local" in lookups:
+            for match in session.execute_read(lambda tx: candidates(tx, row["label"], row["kind"], exclude=row["id"])):
+                print(f"              local candidate ({match['score']:.2f}): {match['id']} {match['label']}")
+        if "wikidata" in lookups:
+            for line in wikidata_candidates(row["label"]):
+                print(f"              Wikidata: {line}")
+        if uses_lookup(config, row["kind"], "periodo"):
+            periodo = periodo or periodo_dataset(config)
+            survey = session.execute_read(lambda tx: survey_period(tx, operations, registry, periodo, config,
+                                                                   row["id"], store=False))
+            for match in survey["same"]:
+                print(textwrap.fill(f"PeriodO: {describe(match)}", width=100, initial_indent="              ",
+                                    subsequent_indent="                "))
+            for place, count in survey["places"].most_common(3):
+                print(f"              PeriodO places it in {place} ({count} definition(s))")
+            if survey["related"]:
+                print(f"              PeriodO: {len(survey['related'])} related definition(s): "
+                      f"python -m GraphRevised.discovery.period_survey {row['id']}")
         print()
     print(f"{len(rows)} proposed entit{'y' if len(rows) == 1 else 'ies'}")
 
@@ -182,7 +201,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
             if args.command == "entities":
-                print_entities(session)
+                print_entities(session, load_operations(), load_registry())
                 return 0
             if args.command == "list":
                 print_proposals(session.execute_read(list_proposals, args.status), load_registry())

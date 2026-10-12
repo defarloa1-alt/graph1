@@ -143,13 +143,13 @@ def validate(
             reasons.append(f"observation {observation_id} does not exist")
         elif observation.get("status") != "observed":
             reasons.append(f"observation {observation_id} is {observation.get('status')}, not observed")
-        elif observation.get("observationKind") in ("passage", "transcription"):
+        elif observation.get("observationKind") in ("passage", "transcription", "record"):
             reasons.extend(_check_passage(observation, quotations.get(observation_id)))
             passages.append(observation)
         elif observation.get("sourceSystem") == "Wikidata" and observation.get("externalStatementId"):
             statements.append(observation)
         else:
-            reasons.append(f"observation {observation_id} is neither a Wikidata statement nor a passage")
+            reasons.append(f"observation {observation_id} is neither a Wikidata statement, a passage, nor a record")
 
     reasons.extend(_check_qualifier_evidence(draft, passages, statements))
 

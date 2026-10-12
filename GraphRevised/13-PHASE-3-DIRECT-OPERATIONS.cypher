@@ -685,3 +685,41 @@ SET entity.decidedAt = CASE WHEN isRetry THEN entity.decidedAt ELSE $decidedAt E
     entity.decisionBasis = CASE WHEN isRetry THEN entity.decisionBasis ELSE $decisionBasis END,
     entity.status = $status
 RETURN entity;
+
+// ---------------------------------------------------------------------------
+// Authority records (24-PERIODS-AND-TRANSFORMATION.md §7)
+// ---------------------------------------------------------------------------
+
+// Create or reuse a record observation: one entry of a reference dataset (a
+// PeriodO period definition) as published by a Work. The passage text holds
+// only the record's own wording, so quotations stay verbatim; the dataset's
+// editorial notes are kept apart. Linked IN_WORK to its Work, which must
+// exist. Source facts are fixed at creation.
+MATCH (work:Entity {id: $workId, kind: "Work"})
+MERGE (observation:SourceObservation {id: $id})
+ON CREATE SET
+  observation.label = $label,
+  observation.shortLabel = $shortLabel,
+  observation.observationKind = "record",
+  observation.sourceSystem = $sourceSystem,
+  observation.sourceEntityId = $sourceEntityId,
+  observation.locator = $locator,
+  observation.passageText = $passageText,
+  observation.passageHash = $passageHash,
+  observation.editorialNotes = $editorialNotes,
+  observation.language = $language,
+  observation.workTitle = $workTitle,
+  observation.author = $author,
+  observation.editionCitation = $editionCitation,
+  observation.rights = $rights,
+  observation.sourceUri = $sourceUri,
+  observation.sourceRevision = $sourceRevision,
+  observation.retrievedAt = $retrievedAt,
+  observation.contentHash = $contentHash,
+  observation.rawPayloadUri = $rawPayloadUri,
+  observation.status = "observed"
+ON MATCH SET
+  observation.label = coalesce($label, observation.label),
+  observation.shortLabel = coalesce($shortLabel, observation.shortLabel)
+MERGE (observation)-[:IN_WORK]->(work)
+RETURN observation;

@@ -1,0 +1,17 @@
+{
+  "description": "Which reference sources are consulted for each entity kind, and how. Code names no sources: it follows this file. Lookups only propose; identity and acceptance stay with the curator.",
+  "version": 1,
+  "kinds": {
+    "Period": {
+      "lookups": ["local", "wikidata", "periodo"],
+      "surveyOnPropose": true
+    }
+  },
+  "periodo": {
+    "sourceUri": "https://data.perio.do/d.json",
+    "maxAgeDays": 90,
+    "nearYears": 50,
+    "ignoredWords": ["period", "periode", "periodo", "age", "era", "epoch", "epoque", "zeit", "time", "times", "the"],
+    "calendar": "gregorian"
+  }
+}

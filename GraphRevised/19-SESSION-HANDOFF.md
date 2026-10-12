@@ -12,9 +12,11 @@ cd C:/Projects/Graph1
 export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
 python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.test_wikidata_identity GraphRevised.tests.test_temporal \
   GraphRevised.tests.test_direct_operations_live GraphRevised.tests.test_proposals_offline \
-  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \n  GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius \
-  GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries GraphRevised.tests.test_capture \n  GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
-  GraphRevised.tests.test_proposed_entities  # expect 157 tests, OK
+  GraphRevised.tests.test_proposals_live GraphRevised.tests.test_passage_reader_offline \
+  GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius \
+  GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries GraphRevised.tests.test_capture \
+  GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
+  GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey  # expect 165 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 ```
 

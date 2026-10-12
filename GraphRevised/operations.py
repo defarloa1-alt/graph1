@@ -41,6 +41,7 @@ OPERATION_NAMES = (
     "set_annotation_status",
     "delete_annotation",
     "decide_entity",
+    "upsert_record_observation",
 )
 
 

@@ -492,6 +492,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     RUNS_DIRECTORY.mkdir(exist_ok=True)
     run_path = RUNS_DIRECTORY / f"passage-reader-{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.jsonl"
+    authorities = json.loads((GRAPH_REVISED / "curation" / "authorities.json").read_text(encoding="utf-8"))
+    periodo = None  # loaded when a new period is first surveyed
     totals: dict[str, int] = {"stored": 0, "malformed": 0, "inputTokens": 0, "cacheReadTokens": 0,
                               "cacheWriteTokens": 0, "outputTokens": 0}
 
@@ -577,6 +579,17 @@ def main(argv: list[str] | None = None) -> int:
                                 entry["claim"] = {"outcome": submission.validation.outcome.value,
                                                   "reasons": list(submission.validation.reasons),
                                                   "stored": submission.stored}
+                            if proposed["created"] and authorities["kinds"].get("Period", {}).get("surveyOnPropose"):
+                                # Published periodizations of the new period, found without
+                                # the curator: PeriodO definitions become attributed claims.
+                                from GraphRevised.discovery.period_survey import periodo_dataset, survey_period
+
+                                periodo = periodo if periodo is not None else periodo_dataset(authorities)
+                                surveyed = survey_period(tx, operations, registry, periodo, authorities,
+                                                         proposed["id"], store=True)
+                                entry["survey"] = [{"definition": s["definition"], "work": s["work"],
+                                                    "outcome": (s["claim"] or {}).get("outcome")}
+                                                   for s in surveyed["stored"]]
                             period_results.append(entry)
                     if args.submit and "notes" in storing:
                         for note in notes:
@@ -628,7 +641,8 @@ def main(argv: list[str] | None = None) -> int:
                     print(f"{ref}: note ({note['noteType']}) {note['note'][:90]}")
                 for period in period_results or periods:
                     print(f"{ref}: period {period['name']}" + (f" -> {period['entityId']}" if "entityId" in period else "")
-                          + (f" [bounds: {period['claim']['outcome']}]" if period.get("claim") else ""))
+                          + (f" [bounds: {period['claim']['outcome']}]" if period.get("claim") else "")
+                          + (f" [PeriodO: {len(period['survey'])} definition(s)]" if period.get("survey") else ""))
                 totals["periods"] = totals.get("periods", 0) + len(period_results)
                 totals["notes"] = totals.get("notes", 0) + len(stored_notes)
                 totals["refusedNotes"] = totals.get("refusedNotes", 0) + len(refused_notes)
