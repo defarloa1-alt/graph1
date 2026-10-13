@@ -76,8 +76,9 @@ events are a different case. They have no outside identity to get wrong;
 they are the source's own narrative units, scoped to one Work.
 
 **Proposed:** the reader may propose a depicted event, created with
-`status: proposed`, together with the attributed claims about it. It is hidden
-from exploration until accepted. Accepting the event follows the delegation
+`status: proposed`, together with the attributed claims about it. It is shown
+in exploration at once, labelled as proposed ([25](25-LIVES-AND-PLAYGROUND.md)
+decision 2; until 2026-10-13 it was hidden until accepted). Accepting the event follows the delegation
 policy for attributed claims ([21](21-REVIEW-DELEGATION.md)); linking it to a
 real-world identity or to another source's depiction remains the curator's.
 

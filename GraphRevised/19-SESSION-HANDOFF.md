@@ -15,7 +15,8 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_source_plan GraphRevised.tests.test_lacuscurtius \
   GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries GraphRevised.tests.test_capture \
   GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
-  GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey  # expect 165 tests, OK
+  GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
+  GraphRevised.tests.test_cytoscape_export  # expect 169 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 python -m GraphRevised.proposals.review entities
 ```
@@ -60,13 +61,13 @@ Works read: Plutarch *Life of Antony*, Cassius Dio *Roman History* 50–51 (Cary
 | Capture | [capture/](capture) — the curator's own passages (manual, Kindle, Readwise) as private transcriptions with Annotations |
 | Curation | Data, not code: manifests in [curation/](curation), applied by [slices/apply_curation.py](slices/apply_curation.py) (`--dry-run` shows duplicates) |
 | Identity | [identity/local_candidates.py](identity/local_candidates.py) — local candidates before any new entity; Wikidata identity adapters |
-| Export | [export/cytoscape.py](export/cytoscape.py) — `.cyjs` and a Cytoscape.js smoke page (git-ignored output) |
+| Export | [export/cytoscape.py](export/cytoscape.py) — `.cyjs` and a Cytoscape.js smoke page (git-ignored output). Since L1: every entity (also proposed and unlinked ones), accepted and proposed claims with a status and source line, passages of note and mentions on each entity's card; `--audit` adds rejected, superseded, deprecated, dismissed |
 | Caches | `cache/` (git-ignored): Scaife catalogue, PeriodO dataset (version 301), each with its hash and retrieval time |
 | Run logs | [runs/](runs) — one JSONL per reader run with versions, tokens, notes, and periods |
 
 ## 4. Rules that are easy to break
 
-1. **Visibility (changes in L1, doc 25).** Agents never accept anything. Until L1 is built, proposed content is hidden from exploration; after L1 it is shown at once, labelled with its status and source, and the curator promotes rather than gates. Identity merges and splits are always curator decisions.
+1. **Visibility (L1, doc 25).** Agents never accept anything, but nothing they find is hidden: proposed claims and entities appear in exploration at once, labelled with status and source (`proposed · according to <Work>` for an attribution, `proposed · from <Work>` for evidence). The curator promotes rather than gates. Rejected and superseded claims, deprecated entities, and dismissed notes appear only in audit mode (`export.cytoscape --audit`). Identity merges and splits are always curator decisions.
 2. Every Proposal holds its evidence on `PROPOSES_EVIDENCE` until it is accepted. Rejecting, superseding, and retracting need a reason code (false, unsupported, malformed, underspecified, superseded-by-model).
 3. A guarded write that returns zero rows was refused; `run_write` raises `RefusedWrite`.
 4. Editors' notes in editions are never cited as the source's own words; neither are PeriodO's editorial notes.
@@ -93,7 +94,7 @@ Under doc 25 these are promotions, not gates; none blocks the Lives phase.
 
 ## 6. Next steps
 
-**The Lives phase, [25](25-LIVES-AND-PLAYGROUND.md) §3:** L1 visibility; L2 registry v7 (opposition, motivations and goals as interpretive claims, `category: imaginative`); L3 person inquiries in which the reader proposes Person, Event, and Place entities; L4 Plutarch's *Caesar* first, then Marius, Sulla, Pompey, and Cicero; L5 world context.
+**The Lives phase, [25](25-LIVES-AND-PLAYGROUND.md) §3:** L1 visibility (done 2026-10-13, in the export; the Phase B read API will apply the same rule); L2 registry v7 (opposition, motivations and goals as interpretive claims, `category: imaginative`); L3 person inquiries in which the reader proposes Person, Event, and Place entities; L4 Plutarch's *Caesar* first, then Marius, Sulla, Pompey, and Cicero; L5 world context.
 
 Waiting until after the Lives phase: the period consensus and the regional/general split (24 §3), Wikidata and LCSH/FAST as survey sources, the two failed `ledTo` readings, the transformation pilot (24 §4–7), depicted events, the Batch API, the read API (`getInterpretations`), index-led reading, a `check_draft` tool for agents, E8 stance.
 

@@ -156,6 +156,13 @@ An SFA works through one analytical facet. It may retrieve sources, identify
 candidate entities, and propose assertions or subject candidates. It never
 writes accepted knowledge directly.
 
+What an agent proposes is visible at once, not held back until review
+([25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md) decision 2): every
+read projection shows proposed claims and entities beside accepted ones,
+labelled with their status and source. Acceptance is the curator's
+promotion, not a gate on being seen. Rejected, superseded, and deprecated
+content is shown only in audit views.
+
 Future source-ingestion workflows may include an Index Harvest Agent. Its
 role is to interpret a machine-readable scholarly index and route cited
 passages to appropriate SFAs. Parsing and persistence remain deterministic,

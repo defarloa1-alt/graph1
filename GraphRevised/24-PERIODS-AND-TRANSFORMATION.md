@@ -74,8 +74,9 @@ consensus:
 
 The reader reports each period a passage names, in the author's words, with
 the bounds only as the passage states them. A period not yet in the graph
-becomes a **proposed entity** (`status: proposed`, kind Period): hidden from
-exploration until the curator accepts it, links it to a Wikidata identity,
+becomes a **proposed entity** (`status: proposed`, kind Period): shown in
+exploration at once, labelled as proposed ([25](25-LIVES-AND-PLAYGROUND.md)
+decision 2), until the curator accepts it, links it to a Wikidata identity,
 or rejects it. Before one is created, local candidates are checked (an exact
 match reuses the existing entity), and at review the curator sees local and
 Wikidata candidates side by side. Where the passage dates the period, an

@@ -14,6 +14,12 @@ not one wrong fact. Delegation is therefore limited to decisions that a
 verbatim quotation lets anyone check, and every delegated decision stays
 identifiable.
 
+Since [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md) (decision 2),
+proposed claims are visible in exploration before anyone reviews them,
+labelled "proposed". Review no longer decides what is seen; it decides what
+is promoted to accepted. A wrong acceptance still matters, because the
+"accepted" label is what a reader trusts, so this policy is unchanged.
+
 ## 2. Scope
 
 | Claude may decide (when delegated) | Only the curator decides |

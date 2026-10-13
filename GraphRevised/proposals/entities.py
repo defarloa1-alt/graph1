@@ -2,8 +2,8 @@
 
 An agent may not decide identity, but some entities are the sources' own
 units: a period an author names, an action a narrative depicts. These may be
-proposed. A proposed Entity has `status: proposed`, is hidden from
-exploration, and waits for the curator to accept it (with a Wikidata identity
+proposed. A proposed Entity has `status: proposed`, is shown in exploration
+at once with that status, and waits for the curator to accept it (with a Wikidata identity
 where one exists) or reject it. Before one is created, local candidates of
 the same kind are checked: an exact match is reused instead. Each mention is
 recorded as an Annotation of kind `entity-mention` on the passage, so the
