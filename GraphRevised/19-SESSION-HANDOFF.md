@@ -1,6 +1,6 @@
 # Session Handoff — 2026-10-13 (evening)
 
-**Branch:** `graph-revised-clean-start`. Pushed to `origin` up to `c61ac2e`; the commits after it are local (push only with the curator's go-ahead).
+**Branch:** `graph-revised-clean-start`, pushed to `origin` (2026-10-13, with the curator's go-ahead; push only with it).
 **Read first:** [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md), sections 5-13 especially. They record this session's decisions in order.
 **Also new:** [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md) (what the Figma explorer receives), [docs/Response - Roman Republican Institutions and Military Hierarchies.md](docs/Response%20-%20Roman%20Republican%20Institutions%20and%20Military%20Hierarchies.md) (the structure design).
 **History:** [18](18-PHASE-5-PROPOSALS.md) (Phase 5), [22](22-CLAIM-QUALIFIERS.md), [23](23-NARRATIVE-AND-NOTES.md), [24](24-PERIODS-AND-TRANSFORMATION.md).
@@ -30,17 +30,17 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 - `.obsidian/` and the curator's Obsidian edits to the `.md` files are theirs (`00`, `01`, `README` have uncommitted edits of theirs): never touch the folder, and stage only your own hunks.
 - **Data is not in git** (25 §13): harvest payloads are git-ignored; the local disk holds the only copy of the graph and payloads.
 
-## 2. Graph state (2026-10-13, after the Antony harvest)
+## 2. Graph state (2026-10-13, after the second Antony expansion)
 
-6,037 nodes, 7,788 relationships (4,025 Year nodes from 2000 BCE to 2025).
+6,258 nodes, 8,095 relationships (4,025 Year nodes from 2000 BCE to 2025).
 
 | Label | Count | Notes |
 |---|---:|---|
-| Entity | 145 | 69 Person, 39 Work, 11 Group, 10 Office, 6 Place, 5 Event, 3 Concept, 2 Period; 108 proposed (the harvest), 36 provisional, 1 resolved |
-| Assertion | 387 | 10 accepted, 376 proposed, 1 rejected; 82 dated, every one tethered to Years |
-| Proposal | 535 | 20 accepted, 9 rejected, 506 submitted |
+| Entity | 195 | 92 Person, 44 Work, 17 Group, 15 Office, 13 Place, 9 Event, 3 Concept, 2 Period; mostly proposed (the harvests) |
+| Assertion | 447 | 10 accepted, 436 proposed, 1 rejected; every dated one tethered to Years |
+| Proposal | 596 | |
 | SourceObservation | 607 | passages (Plutarch, Dio, Weigall, Hale), PeriodO records, Wikidata statements (with their time and qualifiers recorded) |
-| AuthorityRecord | 209 | Wikidata identities, the crosswalk (role `crosswalk`: DPRR, Nomisma, Trismegistos, LC, FAST, GND, VIAF), LCSH and FAST on the Subject |
+| AuthorityRecord | 259 | Wikidata identities, the crosswalk (role `crosswalk`: DPRR, Nomisma, Trismegistos, LC, FAST, GND, VIAF), LCSH and FAST on the Subject |
 | Annotation | 128 | passages of note and entity mentions |
 | Subject | 1 | History of the Battle of Actium, with LCSH sh85000736 and FAST 796265 |
 
@@ -86,10 +86,12 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 
 ## 5. Waiting for the curator
 
-1. **The actor list and order** for the chronological build (25 §13).
-2. Whether to run the next expansion from Antony (50 more entities; 19 then wait for the budget).
-3. Work forms for the five Works read (suggested: Plutarch *Life of Antony* biography, Dio history, Weigall biography, Hale history, Strauss history).
-4. Pushing the local commits.
+Settled 2026-10-13 (late): the actor list (25 §13, with the Gracchi, Cleopatra, and Agrippa added); the second Antony expansion ran (25 harvested, 50 new entities, 19 waiting for the budget); Work forms set on the five Works (Plutarch and Weigall biography; Dio, Hale, Strauss history); local commits pushed.
+
+1. **Which actor comes next**: Caesar (the test life) or Hannibal (strict chronology).
+2. Powers such as *imperium*: kind Type (Institutions response) replacing kind Office (24 §8 decision 4)?
+3. The harvest maps Wikidata P361 "part of" on a Person (Antony → triumvirate) to `partOf, subperiodOf`; proposed: leave it unmapped on a Person until a membership predicate exists.
+4. Notes in 04, 06, and the Use Cases response pointing to 25 where they predate "everything visible" and enrichers by kind.
 5. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
 
 ## 6. Next steps

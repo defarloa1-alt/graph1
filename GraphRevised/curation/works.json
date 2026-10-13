@@ -1,5 +1,5 @@
 {
-  "description": "Curator-approved source Works and their authors (2026-10-12). Each Work's local label is the curator's; its AuthorityRecord keeps Wikidata's wording.",
+  "description": "Curator-approved source Works and their authors (2026-10-12; forms 2026-10-13). Each Work's local label is the curator's; its AuthorityRecord keeps Wikidata's wording.",
   "works": [
     {
       "authorId": "chr:entity:plutarch",
@@ -8,6 +8,7 @@
       "workQid": "Q12902608",
       "workLabel": "Plutarch, Life of Antony",
       "workShortLabel": "Life of Antony",
+      "form": "biography",
       "passagePrefix": "chr:observation:perseus:tlg0007.tlg058."
     },
     {
@@ -17,6 +18,7 @@
       "workQid": "Q3974431",
       "workLabel": "Cassius Dio, Roman History",
       "workShortLabel": "Roman History",
+      "form": "history",
       "passagePrefix": "chr:observation:lacuscurtius:cassius-dio:"
     },
     {
@@ -26,6 +28,7 @@
       "workLabel": "Strauss, The War That Made the Roman Empire",
       "workShortLabel": "The War That Made the Roman Empire",
       "workDescription": "Barry Strauss, The War That Made the Roman Empire: Antony, Cleopatra, and Octavian at Actium (2022). Modern scholarship, in copyright; no Wikidata record.",
+      "form": "history",
       "passagePrefix": "chr:observation:transcription:strauss-war-that-made-the-roman-empire:"
     },
     {
@@ -35,6 +38,7 @@
       "workLabel": "Weigall, The Life and Times of Cleopatra",
       "workShortLabel": "Life and Times of Cleopatra",
       "workDescription": "Arthur E. P. Brome Weigall, The Life and Times of Cleopatra, Queen of Egypt: A Study in the Origin of the Roman Empire (Edinburgh and London: William Blackwood and Sons, 1914). Public domain; Project Gutenberg #54038. No Wikidata record.",
+      "form": "biography",
       "passagePrefix": "chr:observation:gutenberg:54038:"
     },
     {
@@ -45,6 +49,7 @@
       "workLabel": "Hale, Famous Sea Fights",
       "workShortLabel": "Famous Sea Fights",
       "workDescription": "John Richard Hale, Famous Sea Fights from Salamis to Tsu-Shima (Boston: Little, Brown, and Company, 1911). Public domain; Project Gutenberg #25088, whose catalogue wrongly names A. Hilliard Atteridge. No Wikidata record.",
+      "form": "history",
       "passagePrefix": "chr:observation:gutenberg:25088:"
     }
   ]

@@ -280,10 +280,16 @@ For each actor: the first-contact harvest and its budgeted expansion
 (sections 10-12), the structure enrichers for the offices and forces the life
 touches (increment 4), then the reader on that life's sources (Plutarch's
 *Lives* first; Suetonius, Appian, Dio, Cicero's letters as they apply). Works
-become sources for a life, not the focus of an inquiry. The list and order of
-actors are to be confirmed with the curator at the start of the next session
-(the Lives named so far: Scipio, Hannibal, Marius, Sulla, Pompey, Crassus,
-Cicero, Caesar, Cato, Antony, Octavian).
+become sources for a life, not the focus of an inquiry.
+
+**Decided 2026-10-13: the actors.** Hannibal, Scipio Africanus, Tiberius and
+Gaius Gracchus, Marius, Sulla, Crassus, Pompey, Cicero, Caesar, Cato the
+Younger, Antony, Cleopatra, Octavian, and Agrippa, in that order (by when they
+act). The list is a start, not a limit: agents that follow the one-hop rule
+(section 11) will surface more people and relations, and those join as they
+surface. Antony is harvested and expanded twice; which actor comes next is
+still open (Caesar as the test life, as section 3 planned, or Hannibal to
+keep the chronology).
 
 **Decided: data does not live in git.** Git is for scripts. Harvest payloads
 (preserved Wikidata records) stay on disk, hashed in their metadata and on
