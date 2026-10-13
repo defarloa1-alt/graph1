@@ -54,7 +54,8 @@ Looking back over the Actium work, the curator restated what Chrystallum is for:
 | L1 | **Visibility** (done 2026-10-13) | Exploration and the Cytoscape export include proposed claims and entities, styled by status; review commands stay, as promotion. Rewrite rule 1 in the handoff and the matching text in [05](05-AGENT-BOUNDARIES.md) and [21](21-REVIEW-DELEGATION.md). As built: the export shows every entity (also unlinked ones), a status and source line on each claim, and passages of note on each entity's card; `--audit` adds rejected, superseded, deprecated, and dismissed content. The read API does not exist yet and will apply the same rule. |
 | L2 | **Registry v7** (done 2026-10-13, motives parked) | Already present: `childOf`, `siblingOf`, `spouseOf` (time), `heldPosition` (time), `alliedWith` (time), `participatedIn`, `bornAt`, `diedAt`. To add: enmity or opposition (time), and motivations and goals as **interpretive** claims attributed to an author ("according to Plutarch, Caesar sought…"); `category: imaginative`. |
 | L2b | **CIDOC CRM mappings** | A `crm` mapping on each predicate and entity kind in the registry, beside the `wikidata` mapping (for example Person E21, Event E5, Place E53, Period E4, Concept and Office E55, Work E73; `participatedIn` P11, `occurredAt` P7, time qualifiers E52 Time-Span P4; attributed claims as CRMinf I2 Belief). Predicates that CRM expresses through events (`heldPosition` as E85 Joining, `bornAt` as E67 Birth) record that full path; predicates with no CRM property (`opposed`) say so. Quiet: nothing users see changes. CRM stays an interoperability profile, never the native schema ([01](01-ARCHITECTURE.md) §5); the JSON-LD / Linked Art export waits for a consumer, after the read API. Reuse the legacy `CIDOC/` folder: CRM v7.1.2 JSON-LD context, CRMinf, CIDOC-Wikidata mapping. |
-| L3 | **Person inquiries** | The subject is a person, not a battle. Reading a life names hundreds of people, places, and events, so the reader must be able to propose Person, Event, and Place entities (local-first, with Wikidata candidates), as it already does for periods; under decision 2 they are visible at once. |
+| L3 | **Person inquiries, harvest first** | Opens with the agent-driven first-contact harvest (section 10): the deterministic part fetches and preserves the Wikidata record, classes every statement (identifier, attribute, relationship, housekeeping), maps qualifiers, tethers every date to the Year backbone, and proposes one-hop entities and claims "according to Wikidata"; the agent decides what to follow beyond that (which forward links and backlinks, which federations the external identifiers open, when a branch is a leaf), within a budget. Legacy rules and tables to adapt are listed in 16-LEGACY-TRIAGE.md. The reader then adds the ancient and modern voices. |
+| L3 (reader) | **Person inquiries** | The subject is a person, not a battle. Reading a life names hundreds of people, places, and events, so the reader must be able to propose Person, Event, and Place entities (local-first, with Wikidata candidates), as it already does for periods; under decision 2 they are visible at once. |
 | L4 | **Sources** | Plutarch's *Lives* in Perrin's translation (Perseus): Marius, Sulla, Pompey, Caesar, Cicero, with *Antony* already preserved. Find the editions through the Scaife catalogue and source plan; never guess identifiers. Later: Suetonius and the *Res Gestae* for Octavian; Livy and Polybius for Scipio and Hannibal; DPRR for offices and family once its licence is confirmed. |
 | L5 | **World context** | A synchronism query (a Year or span → what else is dated there, by region), PeriodO's world periods as background bands, and Wikidata dated events as a reference tier. |
 | L6 | **Cost** | Whole-work runs cost about $1–4 each on Sonnet 5.5; six *Lives* should cost about $10–20, and about half that through the Batch API. |
@@ -185,4 +186,41 @@ what has been written about it, which is where bibliographic sources belong.
 - **Names over time (for L3):** an alias property shows the common name, so
   Octavian is not shown as "Augustus" in 31 BC. Details to settle when
   person inquiries begin.
+
+## 10. First-contact harvest and dates (curator, 2026-10-13)
+
+**Vision (curator).** When a subject or person is first met in Wikidata, the
+agent harvests its whole record: properties, external identifiers
+(federations), and forward and back links as the agent judges useful. A
+person with a QID then has everything Wikidata gives (birth place with
+coordinates, family, offices) from the start. The full record is already
+preserved for every identity (Antony: 219 statements, 160 properties, 120
+external identifiers); almost none of it is used yet.
+
+**Decided: four kinds of Wikidata statement**, classed in the registry as data
+(default by datatype, explicit overrides):
+
+| Kind | Becomes |
+|---|---|
+| Identifier (external-id) | a labelled AuthorityRecord, the quiet federation crosswalk |
+| Attribute (non-date literals, classifying values: gender, occupation, manner of death) | a property shown on the card, "from Wikidata" |
+| Relationship (item-valued, to another historical entity; often date-spanned and with a role: position held, spouse, conflict, place of birth) | a claim with qualifiers, "according to Wikidata" |
+| Housekeeping (Commons category and the like) | ignored; kept in the preserved record |
+
+Qualifiers map onto claim qualifiers: start and end time, point in time,
+earliest and latest date (an uncertain window), together with (colleague),
+applies to jurisdiction (context), series ordinal, end cause. Building this
+is the first L3 step: the Wikidata proposer currently defers every statement
+with qualifiers.
+
+**Decided: every date tethers to the Year backbone.** No date is a bare
+property: birth, death, office terms, and marriages are dated claims, and the
+card reads them from those claims. A claim tethers by what its date means:
+*during* (true throughout: `IN_YEAR` to each year), *sometime within* (an
+uncertain window: its earliest and latest years), or a long span (its start
+and end years; today spans over 200 years get no Year link, which leaves 11
+of 15 dated claims untethered). Relative times borrow their context event's
+year, marked as derived. A date outside the backbone (2000 BCE to 2025)
+extends the backbone or is flagged, never skipped silently. Undated claims
+stay undated and appear in the slider's undated tray.
 
