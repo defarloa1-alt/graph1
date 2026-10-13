@@ -88,15 +88,15 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 
 Settled 2026-10-13 (late): the actor list (25 §13, with the Gracchi, Cleopatra, and Agrippa added); the second Antony expansion ran (25 harvested, 50 new entities, 19 waiting for the budget); Work forms set on the five Works (Plutarch and Weigall biography; Dio, Hale, Strauss history); local commits pushed. Then: the order is chronological, so Hannibal is next; agents choose the sources (25 §13); notes added to 04, 06, 07, 09, 18, and the Use Cases response where 25 overtakes them, and role entities corrected to kind Office in 02, 04, and 22.
 
-1. Powers such as *imperium*: kind Type (Institutions response) replacing kind Office (24 §8 decision 4)?
-2. The harvest maps Wikidata P361 "part of" on a Person (Antony → triumvirate) to `partOf, subperiodOf`; proposed: leave it unmapped on a Person until a membership predicate exists.
-3. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
+Also settled: powers are kind Type, not Office; Antony was a member of the Second Triumvirate, so `memberOf` joins registry v9 (Institutions response, sections Powers and Membership).
+
+1. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
 
 ## 6. Next steps
 
-1. **Increment 4: registry v9 and the first structure enricher.** Kinds **Type** and **Polity**; predicates `partOf` for Groups and Types, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`; a quantity qualifier (min, max, typical). Then Polybius 6 as a structure inquiry (constitution and army). Design: the Response doc above and 25 §12.
+1. **Increment 4: registry v9 and the first structure enricher.** Kinds **Type** and **Polity**; predicates `partOf` for Groups and Types, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`, `memberOf`; a quantity qualifier (min, max, typical); context on `heldPower` may be Event, Place, or Group, and a role may be a power Type. The harvest maps P463 and P361 on a Person to `memberOf`, and a class target (Q83204 *triumvirate*) waits for the agent to find the instance (Q212079 *Second Triumvirate*). Then Polybius 6 as a structure inquiry (constitution and army). Design: the Response doc above and 25 §12.
 2. **The actor-centred build** (25 §13), chronological from **Hannibal**: per actor, harvest and expand, enrich structures, then the agent's source plan chooses and the reader reads the life. Build first: the agent's source choice (the source plan's last step, now the curator's) with its guardrails.
-3. Smaller items: the agent's choice of what to expand first (now mechanical: people, events, places, then label); window labels should read "sometime 68–50 BCE"; predicates for the unmapped Wikidata relationships (gens, unmarried partner, stepparent, relative with kinship, allegiance, member of); names over time through an alias property showing the common name (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked).
+3. Smaller items: the agent's choice of what to expand first (now mechanical: people, events, places, then label); window labels should read "sometime 68–50 BCE"; predicates for the unmapped Wikidata relationships (gens, unmarried partner, stepparent, relative with kinship, allegiance); names over time through an alias property showing the common name (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked).
 4. Held: option B (folding Proposals into claims). Later: the read API, the Figma explorer, the growth loop beyond one hop.
 
 ## 7. Known gaps

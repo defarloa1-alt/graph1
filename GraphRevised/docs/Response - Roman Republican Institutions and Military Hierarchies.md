@@ -56,9 +56,54 @@ recommends, never stored hierarchies. Facets stay lenses: "military" and
 - `electedBy` (Office to an assembly Group, dated).
 - `exercisedPower` (Office to power Type, dated competence) and `heldPower`.
 - `servedUnder`.
+- `memberOf` (Person to Group, dated): membership of a college, alliance, or
+  body (below).
+- Context on `heldPower` may be an Event, Place, or Group; the role qualifier
+  may be a power Type as well as an Office (for `conferred`).
 - A **quantity** qualifier (minimum, maximum, typical) for counts and
   establishments, never a headcount.
 - Kinds **Type** and **Polity**.
+
+## Powers: *imperium* (curator, 2026-10-13)
+
+**Decided.** A power is a **Type**, not an Office; this replaces 24 §8
+decision 4. *Imperium* was the authority to command on the state's behalf,
+granted to a person for a defined command within limits of time and task: not
+an office, not a rank, and not a permanent attribute of its holder. Office
+and power stay distinct: a consul held *imperium* because of his office, a
+proconsul through prorogation or a special grant.
+
+| Curator's sketch | Here |
+|---|---|
+| `PowerType {key: imperium}` | Entity kind Type: *imperium*, *potestas*, *auspicium*, tribunician power, *imperium maius*. *Auctoritas* is standing and influence, not enforceable power: a Concept |
+| `PowerGrant` with `SUBJECT_OF` | a `heldPower` claim, Person to power Type, time required |
+| `DERIVED_FROM` an office tenure | the claim's role qualifier: the Office it was held through (consul) |
+| `DERIVED_FROM` a law or prorogation | `conferred` (registry v6): the law or decree as an Event, the person as object, the power as role |
+| `APPLIES_TO` a *provincia*, army, or territory | the claim's context. *Provincia* means a task, enemy, or command as much as a territory, so `heldPower` allows Event, Place, and Group as context; today context is Event only |
+| competence of an office | `exercisedPower`, Office to power Type, dated |
+| components (military, coercive, judicial authority) | Types linked by `partOf`, **attributed only**: whether *imperium* included civil jurisdiction is a scholarly dispute (the traditional reading against Drogula's), so each reading is a separate attributed claim and the graph does not choose |
+| degrees (dictatorial, consular, praetorian; *imperium maius*) | likewise attributed claims, never a stored hierarchy; one reading has commanders fully sovereign within separate *provinciae*, so precedence is not assumed from rank |
+
+The *domi* and *militiae* spheres and the *pomerium* boundary are readings
+too, attributed where a source states them.
+
+## Membership (curator, 2026-10-13)
+
+**Decided.** Mark Antony was a **member of** the Second Triumvirate. Wikidata
+records it as "part of" (P361) pointing at *triumvirate* (Q83204), the
+general class ("political regime ruled or dominated by three powerful
+individuals"); the body itself is *Second Triumvirate* (Q212079, "Roman
+political alliance (43–32 BC)", an instance of alliance and of triumvirate).
+Rules for the harvest:
+
+- P463 (member of) and P361 (part of) on a Person map to `memberOf`, never to
+  `partOf` or `subperiodOf`.
+- When the target is a class rather than an instance (Q83204), the claim is
+  not stored as given: the agent looks for the instance the dates and the
+  other members point to (Q212079 for Antony), and records why.
+- Membership of the Second Triumvirate sits beside `heldPosition` *triumvir
+  rei publicae constituendae* (the Office, 43–33 BC in Wikidata): one says
+  he belonged to the college, the other that he held the post.
 
 ## Not adopted
 

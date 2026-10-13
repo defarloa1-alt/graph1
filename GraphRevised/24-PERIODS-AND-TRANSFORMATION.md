@@ -205,5 +205,7 @@ seeded by hand; the reader discovers them (§3a), as a test.
 4. **Powers** (tribunician power, *imperium maius*): kind `Office`, so they
    can be role qualifiers, or kind `Concept`? Recommended: `Office`, with the
    definition saying it is a power rather than a magistracy.
+   **Superseded 2026-10-13:** powers are kind Type, held through `heldPower`
+   with the office as role ([Institutions response](docs/Response%20-%20Roman%20Republican%20Institutions%20and%20Military%20Hierarchies.md), Powers).
 5. **First Period entities**: Roman Kingdom, Roman Republic, Roman Empire,
    Principate, with the Wikidata identities in §2? Recommended: yes.
