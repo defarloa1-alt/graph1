@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v6.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v7.json"
 
 Requirement = Literal["none", "optional", "required"]
 TimeRequirement = Literal["none", "optional", "required", "withRole"]
@@ -44,7 +44,7 @@ class PredicateDefinition:
     definition: str | None = None
     qualifiers: Qualifiers = Qualifiers()
     modes: frozenset[str] = frozenset({"asserted"})
-    category: Literal["factual", "interpretive"] = "factual"
+    category: Literal["factual", "interpretive"] = "factual"  # a claim may also be imaginative, from its Work
 
     @property
     def unary(self) -> bool:
@@ -60,9 +60,16 @@ class PredicateRegistry:
     predicates: dict[str, PredicateDefinition]
     entity_kinds: tuple[str, ...] = ()
     role_kind: str = "Other"
+    work_forms: frozenset[str] = frozenset()
+    creative_forms: frozenset[str] = frozenset()  # a claim attributed to a Work of one of these forms is imaginative
 
     def get(self, predicate_id: str) -> PredicateDefinition | None:
         return self.predicates.get(predicate_id)
+
+    def claim_category(self, definition: PredicateDefinition, work_form: str | None) -> str:
+        """A claim attributed to a creative Work is imaginative, whatever its predicate;
+        otherwise the predicate's own category (factual or interpretive)."""
+        return "imaginative" if work_form in self.creative_forms else definition.category
 
     def for_wikidata(self, pid: str) -> list[tuple[PredicateDefinition, WikidataMapping]]:
         return [
@@ -97,6 +104,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
         predicates=predicates,
         entity_kinds=tuple(data.get("entityKinds", ())),
         role_kind=data.get("roleKind", "Other"),
+        work_forms=frozenset(data.get("workForms", ())),
+        creative_forms=frozenset(data.get("creativeForms", ())),
     )
 
 

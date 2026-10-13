@@ -723,3 +723,14 @@ ON MATCH SET
   observation.shortLabel = coalesce($shortLabel, observation.shortLabel)
 MERGE (observation)-[:IN_WORK]->(work)
 RETURN observation;
+
+// Set a Work's form (history, biography, play, novel, ...), one of the
+// registry's work forms (25-LIVES-AND-PLAYGROUND.md section 6, decision 3).
+// A claim attributed to a Work of a creative form is stored as imaginative,
+// so once any claim is attributed to the Work its form is fixed: a retry
+// with the same form succeeds, a different form is refused.
+MATCH (work:Entity {id: $workId, kind: "Work"})
+WHERE $form IN $allowedForms
+  AND (work.form IS NULL OR work.form = $form OR NOT EXISTS { (:Assertion)-[:ATTRIBUTED_TO]->(work) })
+SET work.form = $form
+RETURN work;

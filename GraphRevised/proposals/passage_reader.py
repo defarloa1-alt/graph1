@@ -112,6 +112,10 @@ name exactly as the author uses it, the exact quotation naming it, and its bound
 passage states them (time_expression verbatim inside time_quotation; time_edtf only when the years \
 are stated). Use one name per period; do not list a period that only appears in an in-scope \
 entity list, and do not infer bounds from outside knowledge.
+14. Opposition. Draft opposed only when the passage states that two people or groups were \
+opponents: rivals or enemies, in politics or at war. Give the time the passage states, and the war \
+or battle as context when the passage names one. Feelings alone (hatred, fear, contempt, jealousy) \
+are not opposition; record them as a passage of note (motive or characterization).
 """
 
 
@@ -335,7 +339,7 @@ def read_passage(
     return response.parsed_output, meta
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v11", SYSTEM_PROMPT, predicate_guide, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v12", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(

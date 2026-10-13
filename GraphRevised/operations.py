@@ -42,6 +42,7 @@ OPERATION_NAMES = (
     "delete_annotation",
     "decide_entity",
     "upsert_record_observation",
+    "set_work_form",
 )
 
 

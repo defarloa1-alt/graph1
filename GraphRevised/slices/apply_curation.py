@@ -7,7 +7,8 @@ Sections, applied in this order in one transaction:
 
     identities          {id, kind, qid, label?, shortLabel?}       Entity + Wikidata identity link
     localEntities       {id, kind, label, description}             Entity with no external identity
-    works               {authorId, authorQid, workId, workQid, workLabel, workShortLabel, passagePrefix}
+    works               {authorId, authorQid, workId, workQid, workLabel, workShortLabel, passagePrefix,
+                         form?}
     statementProposals  {payload, statementId, label, shortLabel}  a Wikidata statement, proposed
                                                                      through the deterministic proposer
 

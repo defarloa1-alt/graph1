@@ -34,7 +34,18 @@ def apply_work(tx, operations, registry, item: dict) -> dict:
     """Apply one manifest `works` entry: authorId, authorQid, workId, workQid, workLabel,
     workShortLabel, passagePrefix. A Work with no Wikidata record omits workQid and gives
     workDescription instead: it becomes a local Work, and no "author of" is proposed. An author
-    with no Wikidata record likewise omits authorQid and gives authorLabel and authorDescription."""
+    with no Wikidata record likewise omits authorQid and gives authorLabel and authorDescription.
+    An optional `form` (a registry work form: history, biography, play, novel, ...) is set on the
+    Work; claims attributed to a Work of a creative form are imaginative."""
+    result = _apply_work(tx, operations, registry, item)
+    if item.get("form"):
+        run_write(tx, operations, "set_work_form", {"workId": item["workId"], "form": item["form"],
+                                                    "allowedForms": sorted(registry.work_forms)})
+        result["form"] = item["form"]
+    return result
+
+
+def _apply_work(tx, operations, registry, item: dict) -> dict:
     if item.get("authorQid"):
         author_path, author_meta = preserved_identity_payload(item["authorQid"])
         persist_identity(tx, operations, entity_id=item["authorId"], kind="Person",

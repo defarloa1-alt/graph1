@@ -12,8 +12,10 @@ and those no claim touches yet), each labelled with its status and source.
 An attributed claim reads "proposed · according to <Work>"; an asserted claim
 names the Works its evidence comes from, "proposed · from <Work>", counting
 evidence still pending on open Proposals (a source system such as Wikidata
-where the evidence has no Work; "no evidence" when none is left open). Each entity carries the passages of
-note and mentions that concern it. Rejected and superseded claims, deprecated
+where the evidence has no Work). Every claim also says how well it is
+attested, judged with the other claims of its family (export/confidence.py):
+"well attested (4 authors)", "one author's reading", "imagined". Each entity
+carries the passages of note and mentions that concern it. Rejected and superseded claims, deprecated
 entities, and dismissed notes appear only with --audit.
 
 Following 06-GRAPH-NAVIGATION.md, a claim is one edge carrying its predicate,
@@ -34,6 +36,7 @@ from typing import Any
 
 from neo4j import GraphDatabase
 
+from GraphRevised.export.confidence import LIVE, confidence, family_key
 from GraphRevised.proposals.temporal import display_edtf
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
@@ -58,21 +61,31 @@ CLAIMS = f"""
 MATCH (a:Assertion) WHERE a.status IN $statuses
 MATCH (a)-[:ASSERTION_SUBJECT]->(s:Entity)
 OPTIONAL MATCH (a)-[:ASSERTION_OBJECT]->(o:Entity)
-RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .timeEdtf, .timeSourceExpression}} AS claim,
+RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .timeEdtf, .timeSourceExpression,
+            start: a.startEarliestJdn, end: a.endLatestJdn}} AS claim,
        s {ENTITY} AS subject, o {ENTITY} AS object,
-       COLLECT {{ MATCH (a)-[:ASSERTION_CONTEXT]->(c:Entity) RETURN c.label }}[0] AS context,
-       COLLECT {{ MATCH (a)-[:ASSERTION_ROLE]->(r:Entity) RETURN r.label }}[0] AS role,
-       COLLECT {{ MATCH (a)-[:ATTRIBUTED_TO]->(w:Entity) RETURN w.label }}[0] AS work,
+       COLLECT {{ MATCH (a)-[:ASSERTION_CONTEXT]->(c:Entity) RETURN c {{.id, .label}} }}[0] AS context,
+       COLLECT {{ MATCH (a)-[:ASSERTION_ROLE]->(r:Entity) RETURN r {{.id, .label}} }}[0] AS role,
+       COLLECT {{ MATCH (a)-[:ATTRIBUTED_TO]->(w:Entity) RETURN w {{.id, .label}} }}[0] AS work,
        COLLECT {{ MATCH (a)-[:SUPPORTED_BY]->(ev:SourceObservation) RETURN DISTINCT ev.id }} AS evidence,
        COLLECT {{ MATCH (p:Proposal)-[:PROPOSES]->(a) WHERE p.status IN $open
                  MATCH (p)-[:PROPOSES_EVIDENCE]->(ev:SourceObservation) RETURN DISTINCT ev.id }} AS pendingEvidence,
        COLLECT {{ MATCH (a)-[:SUPPORTED_BY]->(ev:SourceObservation)
-                 OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity) RETURN coalesce(w.label, ev.sourceSystem) AS source
+                 OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity)
+                 RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem)}} AS source
                  UNION
                  MATCH (p:Proposal)-[:PROPOSES]->(a) WHERE p.status IN $open
                  MATCH (p)-[:PROPOSES_EVIDENCE]->(ev:SourceObservation)
-                 OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity) RETURN coalesce(w.label, ev.sourceSystem) AS source
+                 OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity)
+                 RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem)}} AS source
                }} AS sources
+"""
+
+AUTHORS = """
+MATCH (claim:Assertion {predicate: "authorOf"})-[:ASSERTION_SUBJECT]->(author:Entity)
+MATCH (claim)-[:ASSERTION_OBJECT]->(work:Entity)
+WHERE claim.status IN $live
+RETURN work.id AS work, author.id AS author
 """
 
 STYLE = [
@@ -97,6 +110,8 @@ STYLE = [
                                                          "target-arrow-color": "#c0392b", "opacity": 0.6}},
     {"selector": "edge[status = 'superseded']", "style": {"line-style": "dotted", "opacity": 0.45}},
     {"selector": "edge[mode = 'attributed']", "style": {"source-arrow-shape": "circle", "source-arrow-fill": "hollow"}},
+    {"selector": "edge[category = 'imaginative']", "style": {"line-color": "#c2607f", "target-arrow-color": "#c2607f",
+                                                              "line-style": "dotted", "color": "#a0506b"}},
 ]
 
 
@@ -104,7 +119,7 @@ def status_line(status: str, mode: str, work: str | None, sources: list[str]) ->
     """'proposed · according to <Work>' for an attribution; 'proposed · from <Work>, <Work>' for evidence."""
     if mode == "attributed" and work:
         return f"{status} · according to {work}"
-    return f"{status} · from {', '.join(sources)}" if sources else f"{status} · no evidence"
+    return f"{status} · from {', '.join(sources)}" if sources else status
 
 
 def note_line(note: dict[str, Any]) -> str:
@@ -126,22 +141,40 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
 
     for row in tx.run(ENTITIES, audit=audit):
         node(row["entity"], row["notes"])
-    for row in tx.run(CLAIMS, statuses=AUDIT if audit else VISIBLE, open=OPEN_PROPOSALS):
+    author_of = dict(tx.run(AUTHORS, live=list(LIVE)).values("work", "author"))
+    rows = list(tx.run(CLAIMS, statuses=AUDIT if audit else VISIBLE, open=OPEN_PROPOSALS))
+    families: dict[str, list[dict[str, Any]]] = {}
+    members = {}
+    for row in rows:
+        claim = row["claim"]
+        keys = [row["work"]["id"]] if row["work"] else []
+        keys += [source["key"] for source in row["sources"]]
+        members[claim["id"]] = member = {
+            "status": claim["status"], "category": claim.get("category"),
+            "authors": {author_of.get(key, key) for key in keys},
+            "context": (row["context"] or {}).get("id"), "role": (row["role"] or {}).get("id"),
+            "start": claim.get("start"), "end": claim.get("end"),
+        }
+        families.setdefault(family_key(claim["id"]), []).append(member)
+    for row in rows:
         claim, subject, obj = row["claim"], row["subject"], row["object"]
         node(subject)  # an endpoint hidden from the entity list (deprecated) still anchors its claim
         mode = claim.get("mode") or "asserted"
-        sources = sorted(row["sources"])
+        work = (row["work"] or {}).get("label")
+        sources = sorted({source["label"] for source in row["sources"]})
         time = (display_edtf(claim["timeEdtf"]) if claim.get("timeEdtf") else claim.get("timeSourceExpression"))
         data = {
             "predicate": claim["predicate"], "status": claim["status"], "mode": mode,
-            "category": claim.get("category"), "attributedTo": row["work"], "sources": sources,
-            "statusLine": status_line(claim["status"], mode, row["work"], sources),
-            "role": row["role"], "context": row["context"], "time": time,
+            "category": claim.get("category"), "attributedTo": work, "sources": sources,
+            "statusLine": status_line(claim["status"], mode, work, sources),
+            "confidence": confidence(members[claim["id"]], families[family_key(claim["id"])]),
+            "role": (row["role"] or {}).get("label"), "context": (row["context"] or {}).get("label"), "time": time,
             "evidence": len(row["evidence"]), "pendingEvidence": len(row["pendingEvidence"]),
             "fullLabel": claim["label"],
         }
         if obj is None:
-            nodes[subject["id"]]["data"]["unaryClaims"].append(f"{claim['label']} — {data['statusLine']}")
+            nodes[subject["id"]]["data"]["unaryClaims"].append(
+                f"{claim['label']} — {data['statusLine']}; {data['confidence']}")
             continue
         node(obj)
         edges.append({"data": {"id": claim["id"], "source": subject["id"], "target": obj["id"],
@@ -164,7 +197,7 @@ HTML = """<!doctype html>
   @media (max-width: 700px) {{ #cy {{ inset: 0 0 45% 0; }} #card {{ top: 55%; width: 100%; border-left: 0; border-top: 1px solid var(--line); }} }}
 </style></head>
 <body><div id="cy"></div><aside id="card"><h2>Click a node or claim</h2>
-<p>Solid: accepted. Dashed: proposed. Hollow circle at the start: "according to" a source.
+<p>Solid: accepted. Dashed: proposed. Hollow circle at the start: "according to" a source. Pink dotted: imagined.
 Faded with a dashed border: a proposed entity. Nothing here is hidden for being unreviewed.</p></aside>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
 <script>
@@ -181,7 +214,7 @@ function show(title, fields) {{
 cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["kind", d.kind], ["status", d.status],
   ["description", d.description], ["unary claims", d.unaryClaims], ["passages of note and mentions", d.notes],
   ["id", d.id]]); }});
-cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.fullLabel, [["status", d.statusLine],
+cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.fullLabel, [["status", d.statusLine], ["attestation", d.confidence],
   ["predicate", d.predicate], ["mode", d.mode], ["category", d.category], ["role", d.role], ["during", d.context],
   ["time", d.time], ["evidence", d.evidence], ["pending evidence", d.pendingEvidence], ["claim id", d.id]]); }});
 </script></body></html>

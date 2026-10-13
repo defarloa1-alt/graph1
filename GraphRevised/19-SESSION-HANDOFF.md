@@ -16,7 +16,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries GraphRevised.tests.test_capture \
   GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
-  GraphRevised.tests.test_cytoscape_export  # expect 169 tests, OK
+  GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7  # expect 183 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 python -m GraphRevised.proposals.review entities
 ```
@@ -49,10 +49,10 @@ Works read: Plutarch *Life of Antony*, Cassius Dio *Roman History* 50–51 (Cary
 |---|---|
 | Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 33 guarded, retry-safe operations, loaded by name through [operations.py](operations.py) |
 | Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v4`: quotations; mode (asserted or attributed); context, role, and time qualifiers with qualifier quotations |
-| Predicates | [proposals/predicates.v6.json](proposals/predicates.v6.json) — 23 predicates. Factual: participation, command and authority, alliance, family, offices, birth and death places, event structure, `occurred` (Event or Period), period order. Interpretive, attributed only: `depictsSameAs`, `exemplifies`, `ledTo` |
+| Predicates | [proposals/predicates.v7.json](proposals/predicates.v7.json) — 24 predicates. Factual: participation, command and authority, alliance, opposition (`opposed`, symmetric, time required, optional war or battle as context; no Wikidata mapping), family, offices, birth and death places, event structure, `occurred` (Event or Period), period order. Interpretive, attributed only: `depictsSameAs`, `exemplifies`, `ledTo`. v7 also lists Work forms; a claim attributed to a Work of a creative form (poem, play, novel, film, painting, …) is stored as `imaginative`, derived by the validator, and fiction never supports an asserted claim |
 | Validator and store | [proposals/validator.py](proposals/validator.py) (deterministic; verbatim quotes; outcomes valid, adds_evidence, duplicate, deferred, invalid; notes such as UNDATED; related claims: parallel, refines, refined-by, conflicts) and [proposals/store.py](proposals/store.py) |
 | Review | [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason`, `reopen`, `supersede`, `retract`, `promote`, `entities`, `entity-accept [--qid]`, `entity-reject` |
-| Reader | [proposals/passage_reader.py](proposals/passage_reader.py) — prompt `passage-reader-v11`, Claude Sonnet 5.5 with server-side fallback; outputs claims, passages of note, and periods (`--outputs`); prompt caching (about 92% cache reads) |
+| Reader | [proposals/passage_reader.py](proposals/passage_reader.py) — prompt `passage-reader-v12` (rule 14: opposition), Claude Sonnet 5.5 with server-side fallback; outputs claims, passages of note, and periods (`--outputs`); prompt caching (about 92% cache reads) |
 | Inquiries | [inquiries/](inquiries) — Plutarch, Dio, Weigall, Hale. Whole works, no locators or source wording in the guidance |
 | Proposed entities | [proposals/entities.py](proposals/entities.py) — local-first reuse, mentions recorded as Annotations |
 | Period survey | [discovery/period_survey.py](discovery/period_survey.py) and [adapters/periodo.py](adapters/periodo.py), configured by [curation/authorities.json](curation/authorities.json); runs on its own when the reader proposes a period (24 §3b) |
@@ -81,6 +81,8 @@ Works read: Plutarch *Life of Antony*, Cassius Dio *Roman History* 50–51 (Cary
 12. Interpretations are content, not noise: attributed `exemplifies` and `ledTo` claims, plus passages of note.
 13. Periods have fuzzy edges and are discovered, never seeded by hand. Each source's bounds are an attributed claim.
 14. Strip any Perplexity signed (`X-Amz`) links from docs before committing.
+15. `imaginative` is never chosen: it follows from the attributed Work's `form`, which is fixed once a claim rests on the Work. A passage of a creative Work can never support an asserted claim, so fiction cannot be promoted to fact.
+16. Attestation (`export/confidence.py`) is computed when the graph is read, in words, from the claim family and its distinct authors. Never store a confidence score.
 
 ## 5. Waiting for the curator
 
@@ -94,7 +96,7 @@ Under doc 25 these are promotions, not gates; none blocks the Lives phase.
 
 ## 6. Next steps
 
-**The Lives phase, [25](25-LIVES-AND-PLAYGROUND.md) §3:** L1 visibility (done 2026-10-13, in the export; the Phase B read API will apply the same rule); L2 registry v7 (opposition, motivations and goals as interpretive claims, `category: imaginative`); L3 person inquiries in which the reader proposes Person, Event, and Place entities; L4 Plutarch's *Caesar* first, then Marius, Sulla, Pompey, and Cicero; L5 world context.
+**The Lives phase, [25](25-LIVES-AND-PLAYGROUND.md) §3:** L1 visibility (done 2026-10-13, in the export; the Phase B read API will apply the same rule); L2 registry v7 (done 2026-10-13: `opposed`, Work forms and derived `imaginative`, attestation in words; motives parked, see 25 §6); L2b CIDOC CRM mappings in the registry (quiet; export later); L3 person inquiries in which the reader proposes Person, Event, and Place entities; L4 Plutarch's *Caesar* first, then Marius, Sulla, Pompey, and Cicero; L5 world context.
 
 Waiting until after the Lives phase: the period consensus and the regional/general split (24 §3), Wikidata and LCSH/FAST as survey sources, the two failed `ledTo` readings, the transformation pilot (24 §4–7), depicted events, the Batch API, the read API (`getInterpretations`), index-led reading, a `check_draft` tool for agents, E8 stance.
 

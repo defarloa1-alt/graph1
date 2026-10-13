@@ -42,14 +42,15 @@ class ValidationResult:
     time_bounds: TimeBounds | None = None
     notes: tuple[str, ...] = ()  # e.g. a claim stored without a time its predicate expects
     related: tuple[dict[str, Any], ...] = ()  # other claims with the same subject, predicate, and object
+    category: str | None = None  # factual, interpretive, or imaginative (derived from the attributed Work's form)
 
 
 class GraphReader(Protocol):
     def entity(self, entity_id: str) -> dict[str, Any] | None:
-        """{id, label, shortLabel, kind, wikidataIds} or None."""
+        """{id, label, shortLabel, kind, form, wikidataIds} or None; form is set on Works only."""
 
     def observation(self, observation_id: str) -> dict[str, Any] | None:
-        """SourceObservation properties, plus workId for a passage in a Work, or None."""
+        """SourceObservation properties, plus workId and workForm for a passage in a Work, or None."""
 
     def assertion(self, assertion_id: str) -> dict[str, Any] | None:
         """{id, status, predicate, observationIds} or None."""
@@ -151,6 +152,11 @@ def validate(
         else:
             reasons.append(f"observation {observation_id} is neither a Wikidata statement, a passage, nor a record")
 
+    if draft.mode == "asserted":
+        for passage in passages:
+            if passage.get("workForm") in registry.creative_forms:
+                reasons.append(f"{passage['id']} is from a creative Work ({passage['workForm']}): it can support "
+                               "only a claim attributed to that Work, never an asserted one")
     reasons.extend(_check_qualifier_evidence(draft, passages, statements))
 
     if subject is not None and (obj is not None or definition.unary):
@@ -184,6 +190,7 @@ def validate(
         time_bounds=time_bounds,
         notes=notes,
         related=related,
+        category=registry.claim_category(definition, qualifier_entities.get("attributedTo", {}).get("form")),
     )
     if deferrals:
         return ValidationResult(Outcome.DEFERRED, tuple(deferrals), **result)

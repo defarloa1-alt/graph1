@@ -38,7 +38,7 @@ class Neo4jReader:
             MATCH (entity:Entity {id: $id})
             OPTIONAL MATCH (entity)-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord {system: "Wikidata"})
             WHERE link.role = "entity_identity" AND link.status = "accepted"
-            RETURN entity {.id, .label, .shortLabel, .kind, .description} AS entity,
+            RETURN entity {.id, .label, .shortLabel, .kind, .description, .form} AS entity,
                    collect(record.identifier) AS wikidataIds
             """,
             id=entity_id,
@@ -68,11 +68,11 @@ class Neo4jReader:
             """
             MATCH (observation:SourceObservation {id: $id})
             OPTIONAL MATCH (observation)-[:IN_WORK]->(work:Entity)
-            RETURN properties(observation) AS p, work.id AS workId
+            RETURN properties(observation) AS p, work.id AS workId, work.form AS workForm
             """,
             id=observation_id,
         ).single()
-        return None if record is None else {**record["p"], "workId": record["workId"]}
+        return None if record is None else {**record["p"], "workId": record["workId"], "workForm": record["workForm"]}
 
     def related_assertions(self, base_id: str) -> list[dict[str, Any]]:
         return self._tx.run(
@@ -177,7 +177,7 @@ def submit(
 
     if _is_qualified(result.draft):
         run_write(tx, operations, "upsert_qualified_assertion",
-                  _qualified_assertion_params(result, label, short_label) | {"category": definition.category})
+                  _qualified_assertion_params(result, label, short_label) | {"category": result.category})
         bounds = result.time_bounds
         if bounds is not None and bounds.earliest_year is not None and bounds.latest_year is not None:
             try:
@@ -192,7 +192,7 @@ def submit(
             "label": label,
             "shortLabel": short_label,
             "predicate": definition.id,
-            "category": definition.category,
+            "category": result.category,
             "assertedBy": result.draft.proposed_by,
             "subjectId": result.draft.subject_id,
             "objectId": result.draft.object_id,

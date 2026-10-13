@@ -72,9 +72,10 @@ class ExplorationExportTests(unittest.TestCase):
         fought = edges["chr:assertion:test-x-fought"]
         self.assertEqual(fought["statusLine"], "proposed · from Test author, Test history")
         self.assertEqual((fought["evidence"], fought["pendingEvidence"]), (0, 1))
+        self.assertEqual(fought["confidence"], "attested (1 author)")
         self.assertEqual(nodes["chr:entity:test-x-period"]["status"], "proposed")
         self.assertEqual(nodes["chr:entity:test-x-period"]["unaryClaims"],
-                         ["Test era occurred — proposed · according to Test author, Test history"])
+                         ["Test era occurred — proposed · according to Test author, Test history; attested (1 author)"])
 
     def test_entities_without_claims_are_shown(self):
         nodes, _ = self.view()
