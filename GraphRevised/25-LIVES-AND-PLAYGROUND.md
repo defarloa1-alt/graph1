@@ -255,3 +255,20 @@ claims (83 BCE, preferred and referenced; 14 January 83 BCE, unreferenced)
 do not conflict. A day-exact date before the Julian reform of 46 BCE is a
 modern conversion and a weak voice.
 
+## 12. Structure: types, institutions, and facets as lenses (curator, 2026-10-13)
+
+**Decided.** Unit types, organizational patterns, roles, and powers are a new
+Entity kind **Type**, and states such as the Roman Republic or the Ptolemaic
+Kingdom a new kind **Polity**. They are nodes, so hierarchies and relations
+can be drawn: `partOf`, `instanceOf`, `precedes`, each a dated, sourced claim.
+Facets stay lenses that filter Types and claims (military, political); they
+are not nodes. Offices stay kind Office; institutions (Senate, assemblies)
+are Groups; a historical legion or fleet is a Group that is an instance of a
+Type. This is the structure the subject facet agents used to build, now built
+by the enrichers by kind (section 11). The full mapping and the registry v9
+plan are in [docs/Response - Roman Republican Institutions and Military
+Hierarchies.md](docs/Response%20-%20Roman%20Republican%20Institutions%20and%20Military%20Hierarchies.md).
+The budget for increment 3: harvest the surfaced people, events, and places
+(not reference works or offices), about 50 new entities per run, the agent
+choosing when there are more.
+
