@@ -31,6 +31,7 @@ class PromptVersionTests(unittest.TestCase):
                  "Cleopatra", "Augustus", "Q160387", "Q41523", "Q185223")
         for path in [*root.glob("proposals/*.py"), *root.glob("identity/*.py"), *root.glob("adapters/*.py"),
                      *root.glob("discovery/*.py"), *root.glob("slices/*.py"), *root.glob("export/*.py"),
+                     *root.glob("harvest/*.py"),
                      *root.glob("capture/*.py")]:
             text = path.read_text(encoding="utf-8")
             for name in names:

@@ -17,7 +17,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
-  GraphRevised.tests.test_library_headings  # expect 190 tests, OK
+  GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest  # expect 199 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 python -m GraphRevised.proposals.review entities
 ```
@@ -62,6 +62,7 @@ Works read: Plutarch *Life of Antony*, Cassius Dio *Roman History* 50–51 (Cary
 | Capture | [capture/](capture) — the curator's own passages (manual, Kindle, Readwise) as private transcriptions with Annotations |
 | Curation | Data, not code: manifests in [curation/](curation), applied by [slices/apply_curation.py](slices/apply_curation.py) (`--dry-run` shows duplicates) |
 | Identity | [identity/local_candidates.py](identity/local_candidates.py) — local candidates before any new entity; Wikidata identity adapters |
+| Harvest (L3, increment 1) | [harvest/wikidata_harvest.py](harvest/wikidata_harvest.py) `<QID>` — report only, no graph writes: every statement of the preserved Wikidata record classed (identifier, attribute, dated, relationship, housekeeping) by [harvest/wikidata_rules.v1.json](harvest/wikidata_rules.v1.json) and the registry; qualifiers mapped; dates read with precision (`temporal.wikidata_time`) and tethered to Years (during, within, start and end); every code shown with its label (cache/wikidata-labels.json). Output in exports/harvest-<QID>.md |
 | Export | [export/cytoscape.py](export/cytoscape.py) — `.cyjs` and a Cytoscape.js smoke page (git-ignored output). Every entity (also proposed and unlinked ones); **one edge per fact** (all sources' claims with the same subject, predicate, and object; imagined versions apart), with its attestation and one voice per source (quotations, locators, review history); passages of note on each entity's card; `--audit` adds rejected, superseded, deprecated, dismissed. The shapes are the UI data contract, [26](26-UI-DATA-CONTRACT.md) |
 | Caches | `cache/` (git-ignored): Scaife catalogue, PeriodO dataset (version 301), each with its hash and retrieval time |
 | Run logs | [runs/](runs) — one JSONL per reader run with versions, tokens, notes, and periods |

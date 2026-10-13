@@ -174,6 +174,61 @@ def parse_edtf(value: str, calendar: Calendar) -> TimeBounds:
     )
 
 
+WIKIDATA_CALENDARS: dict[str, Calendar] = {
+    "http://www.wikidata.org/entity/Q1985786": "julian",
+    "http://www.wikidata.org/entity/Q1985727": "gregorian",
+}
+
+
+def _edtf_year(year: int) -> str:
+    """Astronomical year in EDTF form: -82 -> '-0082'."""
+    return f"-{abs(year):04d}" if year < 0 else f"{year:04d}"
+
+
+def wikidata_time(value: dict) -> tuple[str, Calendar]:
+    """A Wikidata time value as (EDTF, calendar), honouring its precision.
+
+    Wikidata numbers BCE years historically (-0083 is 83 BCE), so the year is
+    a Chrystallum year and is converted to EDTF's astronomical numbering here.
+    Precision: 11 day, 10 month, 9 year; 8 decade and 7 century become an
+    interval of the years they cover (the 50s BCE are 59-50 BCE; the 1st
+    century BCE is 100-1 BCE). Anything coarser is refused, never guessed.
+    """
+    match = re.match(r"^([+-])(\d+)-(\d{2})-(\d{2})T", value["time"])
+    if not match:
+        raise TimeValueError(f"not a Wikidata time: {value['time']!r}")
+    calendar = WIKIDATA_CALENDARS.get(value.get("calendarmodel", ""))
+    if calendar is None:
+        raise TimeValueError(f"unknown Wikidata calendar model {value.get('calendarmodel')!r}")
+    year = int(match[2]) * (-1 if match[1] == "-" else 1)
+    if year == 0:
+        raise TimeValueError("Wikidata year 0 is not a historical year")
+    month, day, precision = int(match[3]), int(match[4]), value["precision"]
+    if precision >= 9:
+        edtf = _edtf_year(to_astronomical(year))
+        if precision >= 10:
+            edtf += f"-{month:02d}"
+        if precision >= 11:
+            edtf += f"-{day:02d}"
+        return edtf, calendar
+    span = {8: 10, 7: 100}.get(precision)
+    if span is None:
+        raise TimeValueError(f"Wikidata precision {precision} is coarser than a century")
+    if year < 0:  # BCE counts down: the 1st century BCE is 100-1 BCE, the 50s BCE are 59-50 BCE
+        if span == 100:
+            number = -(-abs(year) // 100)
+            first, last = -(number * 100), -((number - 1) * 100 + 1)
+        else:
+            first, last = -(abs(year) // 10 * 10 + 9), -(abs(year) // 10 * 10)
+    elif span == 100:
+        number = -(-year // 100)
+        first, last = (number - 1) * 100 + 1, number * 100
+    else:
+        first, last = year // 10 * 10, year // 10 * 10 + 9
+    first, last = (1 if first == 0 else first), (-1 if last == 0 else last)
+    return f"{_edtf_year(to_astronomical(first))}/{_edtf_year(to_astronomical(last))}", calendar
+
+
 MONTHS = ("January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December")
 

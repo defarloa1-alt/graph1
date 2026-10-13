@@ -1,0 +1,68 @@
+{
+  "version": "wikidata-harvest-rules-v1",
+  "description": "How the first-contact harvest classes Wikidata statements (25-LIVES-AND-PLAYGROUND.md section 10). Defaults go by datatype: external-id is an identifier; wikibase-item is a relationship (mapped to a predicate through the predicate registry's wikidata mappings, otherwise unmapped and kept); time is a dated claim; other literals are attributes. The lists below override the defaults. Every PID here was checked against Wikidata's own label when the harvest report resolves it.",
+  "attributeItems": [
+    "P21",
+    "P31",
+    "P27",
+    "P106",
+    "P140",
+    "P103",
+    "P1412",
+    "P735",
+    "P734",
+    "P1196",
+    "P509",
+    "P101",
+    "P172",
+    "P1050",
+    "P97"
+  ],
+  "datedEvents": {
+    "P569": "born",
+    "P570": "died",
+    "P571": "began",
+    "P576": "ended",
+    "P585": "occurred",
+    "P580": "began",
+    "P582": "ended"
+  },
+  "housekeeping": [
+    "P373",
+    "P910",
+    "P935",
+    "P1151",
+    "P1424",
+    "P1472",
+    "P5008",
+    "P6104",
+    "P6216",
+    "P8989"
+  ],
+  "qualifiers": {
+    "time": {
+      "P580": "start",
+      "P582": "end",
+      "P585": "point",
+      "P1319": "earliest",
+      "P1326": "latest"
+    },
+    "carried": {
+      "P1706": "together with",
+      "P1001": "jurisdiction",
+      "P642": "of",
+      "P1545": "series ordinal",
+      "P1534": "end cause",
+      "P2842": "place of marriage",
+      "P1365": "replaces",
+      "P1366": "replaced by",
+      "P2715": "elected in",
+      "P768": "electoral district",
+      "P17": "country"
+    }
+  },
+  "notes": {
+    "P1343": "described by source stays a relationship (registry: describedBy), Wikidata's own bibliography of the entity: input for the Subject 'Read more' list (25 section 8)",
+    "P1038": "relative stays an unmapped relationship until its kinship qualifier (P1039) is mapped; legacy code lost that qualifier"
+  }
+}

@@ -224,3 +224,34 @@ year, marked as derived. A date outside the backbone (2000 BCE to 2025)
 extends the backbone or is flagged, never skipped silently. Undated claims
 stay undated and appear in the slider's undated tray.
 
+## 11. Surfacing entities and enrichment (curator, 2026-10-13)
+
+**Decided: the one-hop rule, for every agent.** Whenever any agent meets an
+entity (the harvest, the passage reader, a curator capture: a place, a
+parent, a participant, an office), it proposes people, places, events,
+offices, groups, and periods as entities (visible at once, labelled);
+reference works go to the bibliography as catalogued Works for the Subject's
+"Read more" list, not to the canvas; noise is dropped by rule (collections,
+copyright status, writing language); the agent judges the rest within a
+budget. Antony's harvest reached 69 entities this way: about 28 people, 8
+offices, 7 events and periods, 2 places, 4 groups, 14 reference works, and 5
+noise.
+
+**Decided: in a sparse graph, early agents populate beyond the focus.** That
+was the purpose of the subject facet agents (SFAs), and it returns as
+**enrichment by kind**: when an entity surfaces, its kind and its external
+identifiers route it to an enricher (a place with a Pleiades ID to a
+geographic enricher: coordinates, ancient names, neighbours; an office with
+DPRR and Wikidata records to an institutional one: rank, terms, holders by
+year; a battle to a military one: sides, commanders, date, place; a coin type
+with a Nomisma ID to an economic one). Facets become enrichers run on what
+surfaces, demand-driven and budgeted, rather than standing agents per
+Subject: people first, facets after (decision 1).
+
+**Dates at day or month precision** are stored on the claim (`timeEdtf`, for
+example -0082-01-14, with calendar, precision, and Julian Day Number bounds)
+and tethered to their Year; Year nodes hold the year only. Antony's two birth
+claims (83 BCE, preferred and referenced; 14 January 83 BCE, unreferenced)
+do not conflict. A day-exact date before the Julian reform of 46 BCE is a
+modern conversion and a weak voice.
+
