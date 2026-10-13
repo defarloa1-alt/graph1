@@ -133,6 +133,8 @@ def qualifier_signature(draft: ProposalDraft) -> dict[str, Any]:
         time = draft.time
         if time.edtf:
             signature["time"] = {"edtf": time.edtf, "calendar": time.calendar}
+            if time.mode != "during":  # an uncertain window is a different claim from a definite span
+                signature["time"]["mode"] = time.mode
         elif time.relative_offset:
             signature["time"] = {"relativeOffset": time.relative_offset}
         else:

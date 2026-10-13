@@ -16,7 +16,7 @@ from .registry import (
     qualifier_signature,
 )
 from .schema import ProposalDraft
-from .temporal import TimeBounds, TimeValueError, parse_edtf
+from .temporal import TimeBounds, TimeValueError, parse_edtf, year_links
 
 
 class Outcome(str, Enum):
@@ -120,18 +120,16 @@ def validate(
             qualifier_entities[name] = found
 
     time_bounds = None
-    long_span = False
+    tether_notes: list[str] = []
     if draft.time is not None and draft.time.edtf is not None:
         try:
             time_bounds = parse_edtf(draft.time.edtf, draft.time.calendar)
         except TimeValueError as error:
             reasons.append(f"time: {error}")
         else:
-            if time_bounds.earliest_year is not None and time_bounds.latest_year is not None:
-                try:
-                    time_bounds.years()
-                except TimeValueError:
-                    long_span = True  # a period's centuries: kept with its bounds, not linked to each Year
+            links, tether_notes = year_links(time_bounds, draft.time.mode)
+            if any(how in ("start", "end") for _, how in links) and draft.time.mode == "during"                     and time_bounds.earliest_year is not None and time_bounds.latest_year is not None:
+                tether_notes.insert(0, "long span: tethered to its start and end Years")
 
     quotations = {quotation.observation_id: quotation.text for quotation in draft.quotations}
     for quoted_id in quotations.keys() - set(draft.observation_ids):
@@ -172,8 +170,7 @@ def validate(
 
     deferrals = _deferrals(draft, definition, registry, statements)
     notes = tuple(_missing_qualifiers(draft, definition))
-    if long_span:
-        notes += ("long span: stored with its bounds, not linked to each Year",)
+    notes += tuple(tether_notes)
     if definition.unary and any(note.startswith(("undated", "no ")) for note in notes):
         # A unary claim's content is its qualifiers: without them it says nothing.
         deferrals.extend(note for note in notes if note.startswith(("undated", "no ")))

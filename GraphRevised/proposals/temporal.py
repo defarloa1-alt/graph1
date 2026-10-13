@@ -180,6 +180,34 @@ WIKIDATA_CALENDARS: dict[str, Calendar] = {
 }
 
 
+YEAR_BACKBONE = (-2000, 2025)  # the Year nodes that exist (03-TEMPORAL-YEAR-BACKBONE.md)
+
+
+def year_links(bounds: TimeBounds, mode: str = "during") -> tuple[list[tuple[int, str]], list[str]]:
+    """How a time value tethers to the Year backbone: (year, how) links, and notes.
+
+    during   a point or a definite span: every Year it touches, or its start and
+             end Years when it touches more than MAX_LINKED_YEARS
+    within   an uncertain window (it happened at some point inside): its earliest
+             and latest Years only, never every Year between
+    An open end links the end that is known. Years outside the backbone are not
+    linked and are named in a note, never skipped silently.
+    """
+    first, last = bounds.earliest_year, bounds.latest_year
+    links: list[tuple[int, str]] = []
+    if first is None or last is None:
+        links = [(first, "start")] if last is None else [(last, "end")]
+    elif mode == "within":
+        links = [(first, "earliest")] + ([(last, "latest")] if last != first else [])
+    else:
+        years = [y for y in range(first, last + 1) if y != 0]
+        links = [(y, "during") for y in years] if len(years) <= MAX_LINKED_YEARS else [(first, "start"), (last, "end")]
+    inside = [(y, how) for y, how in links if YEAR_BACKBONE[0] <= y <= YEAR_BACKBONE[1]]
+    outside = sorted({y for y, _ in links} - {y for y, _ in inside})
+    notes = [f"outside the Year backbone, not linked: {', '.join(map(str, outside))}"] if outside else []
+    return inside, notes
+
+
 def _edtf_year(year: int) -> str:
     """Astronomical year in EDTF form: -82 -> '-0082'."""
     return f"-{abs(year):04d}" if year < 0 else f"{year:04d}"

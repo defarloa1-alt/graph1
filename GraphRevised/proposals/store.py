@@ -13,7 +13,7 @@ from GraphRevised.operations import run_write
 
 from .registry import PredicateDefinition, PredicateRegistry, proposal_id
 from .schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
-from .temporal import TimeValueError, display_edtf
+from .temporal import TimeValueError, display_edtf, year_links
 from .validator import Outcome, ValidationResult, validate
 
 
@@ -179,13 +179,11 @@ def submit(
         run_write(tx, operations, "upsert_qualified_assertion",
                   _qualified_assertion_params(result, label, short_label) | {"category": result.category})
         bounds = result.time_bounds
-        if bounds is not None and bounds.earliest_year is not None and bounds.latest_year is not None:
-            try:
-                years = bounds.years()
-            except TimeValueError:
-                years = []  # a long span keeps its bounds without a Year link for each year
-            if years:
-                run_write(tx, operations, "link_assertion_years", {"assertionId": result.assertion_id, "years": years})
+        if bounds is not None:
+            links, _ = year_links(bounds, result.draft.time.mode)
+            if links:
+                run_write(tx, operations, "link_assertion_years", {
+                    "assertionId": result.assertion_id, "links": [{"year": y, "as": how} for y, how in links]})
     else:
         run_write(tx, operations, "upsert_assertion", {
             "id": result.assertion_id,
@@ -263,6 +261,7 @@ def _qualified_assertion_params(result: ValidationResult, label: str, short_labe
         "timeSourceExpression": time.source_expression if time else None,
         "timeNormalizationBasis": time.normalization_basis if time else None,
         "timeRelativeOffset": time.relative_offset if time else None,
+        "timeMode": time.mode if time and time.edtf else None,
         "startEarliestJdn": bounds.start_earliest_jdn if bounds else None,
         "startLatestJdn": bounds.start_latest_jdn if bounds else None,
         "endEarliestJdn": bounds.end_earliest_jdn if bounds else None,

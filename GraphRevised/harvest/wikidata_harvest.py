@@ -36,15 +36,12 @@ import requests
 
 from GraphRevised.adapters.wikidata_identity import USER_AGENT
 from GraphRevised.proposals.registry import PredicateRegistry, load_registry
-from GraphRevised.proposals.temporal import (
-    MAX_LINKED_YEARS, TimeValueError, display_edtf, parse_edtf, wikidata_time,
-)
+from GraphRevised.proposals.temporal import TimeValueError, display_edtf, parse_edtf, wikidata_time, year_links
 from GraphRevised.slices.add_entity import preserved_identity_payload
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 RULES_PATH = Path(__file__).resolve().parent / "wikidata_rules.v1.json"
 LABEL_CACHE = GRAPH_REVISED / "cache" / "wikidata-labels.json"
-BACKBONE = (-2000, 2025)
 
 
 def load_rules(path: Path = RULES_PATH) -> dict[str, Any]:
@@ -108,20 +105,19 @@ def _value(snak: dict[str, Any]) -> Any:
 
 
 def tether(edtf: str, calendar: str, mode: str) -> dict[str, Any]:
-    """How a time value tethers to the Year backbone, in Chrystallum years."""
-    bounds = parse_edtf(edtf, calendar)
-    first, last = bounds.earliest_year, bounds.latest_year
-    outside = sorted({y for y in (first, last) if y is not None and not BACKBONE[0] <= y <= BACKBONE[1]})
-    if outside:
-        return {"how": "outside the backbone", "years": outside}
-    if first is None or last is None:
-        return {"how": "start only" if last is None else "end only", "years": [first if last is None else last]}
-    if mode == "within":
-        return {"how": "within", "years": [first] if first == last else [first, last]}
-    count = len([y for y in range(first, last + 1) if y != 0])
-    if count > MAX_LINKED_YEARS:
-        return {"how": "start and end", "years": [first, last]}
-    return {"how": "during", "years": [first] if first == last else [first, last], "count": count}
+    """How a time value tethers to the Year backbone (temporal.year_links), summarised for the report."""
+    links, notes = year_links(parse_edtf(edtf, calendar), mode)
+    if not links:
+        return {"how": "outside the backbone", "years": sorted({int(y) for n in notes for y in n.split(": ")[1].split(", ")})}
+    hows = {how for _, how in links}
+    years = [y for y, _ in links]
+    if hows == {"during"}:
+        return {"how": "during", "years": [years[0]] if len(years) == 1 else [years[0], years[-1]], "count": len(years)}
+    if hows <= {"earliest", "latest"}:
+        return {"how": "within", "years": years}
+    if hows == {"start", "end"}:
+        return {"how": "start and end", "years": years}
+    return {"how": "start only" if hows == {"start"} else "end only", "years": years}
 
 
 def _time(values: dict[str, Any]) -> dict[str, Any]:
@@ -227,7 +223,7 @@ def _shown_value(s: Statement, labels: Labels) -> str:
 def _tether_text(time: dict[str, Any]) -> str:
     t = time["tether"]
     years = " and ".join(str(y) for y in t["years"]) if t["how"] != "during" else (
-        str(t["years"][0]) if len(t["years"]) == 1 else f"{t['years'][0]}..{t['years'][1]} ({t['count']} Years)")
+        str(t["years"][0]) if t["count"] == 1 else f"{t['years'][0]}..{t['years'][1]} ({t['count']} Years)")
     return f"{time['display']} → {t['how']}: {years}"
 
 

@@ -494,7 +494,8 @@ WHERE existing IS NULL
        AND coalesce(existing.timeEdtf, "") = coalesce($timeEdtf, "")
        AND coalesce(existing.timeCalendar, "") = coalesce($timeCalendar, "")
        AND coalesce(existing.timeSourceExpression, "") = coalesce($timeSourceExpression, "")
-       AND coalesce(existing.timeRelativeOffset, "") = coalesce($timeRelativeOffset, ""))
+       AND coalesce(existing.timeRelativeOffset, "") = coalesce($timeRelativeOffset, "")
+       AND coalesce(existing.timeMode, "") = coalesce($timeMode, ""))
 OPTIONAL MATCH (subjectNode:Entity {id: $subjectId})
 OPTIONAL MATCH (objectNode:Entity {id: $objectId})
 OPTIONAL MATCH (contextNode:Entity {id: $contextId, kind: "Event"})
@@ -525,6 +526,7 @@ ON CREATE SET
   assertion.timeSourceExpression = $timeSourceExpression,
   assertion.timeNormalizationBasis = $timeNormalizationBasis,
   assertion.timeRelativeOffset = $timeRelativeOffset,
+  assertion.timeMode = $timeMode,
   assertion.startEarliestJdn = $startEarliestJdn,
   assertion.startLatestJdn = $startLatestJdn,
   assertion.endEarliestJdn = $endEarliestJdn,
@@ -552,15 +554,23 @@ WHERE evidence.qualifierQuotations IS NULL OR evidence.qualifierQuotations = $qu
 SET evidence.qualifierQuotations = $qualifierQuotations
 RETURN proposal, evidence;
 
-// Link an Assertion to every backbone Year its time touches: the derived
-// navigation projection of its time qualifier. Never creates a Year; refused
-// unless every Year exists.
+// Tether an Assertion to the backbone Years its time names, each link saying
+// how (temporal.year_links): "during" for every Year of a point or definite
+// span, "start" and "end" for a long span, "earliest" and "latest" for an
+// uncertain window. The derived navigation projection of the time qualifier.
+// Never creates a Year; refused unless every named Year exists.
 MATCH (assertion:Assertion {id: $assertionId})
-OPTIONAL MATCH (year:Year) WHERE year.year IN $years
-WITH assertion, collect(year) AS years
-WHERE size($years) > 0 AND size(years) = size($years)
-FOREACH (year IN years | MERGE (assertion)-[:IN_YEAR]->(year))
-RETURN assertion, [year IN years | year.year] AS years;
+UNWIND $links AS link
+OPTIONAL MATCH (year:Year {year: link.year})
+WITH assertion, collect({year: year, how: link.as}) AS found
+WHERE size(found) > 0 AND all(item IN found WHERE item.year IS NOT NULL)
+CALL (assertion, found) {
+  UNWIND found AS item
+  WITH assertion, item.year AS year, item.how AS how
+  MERGE (assertion)-[tether:IN_YEAR]->(year)
+  ON CREATE SET tether.as = how
+}
+RETURN assertion, [item IN found | item.year.year] AS years;
 
 // Link a passage observation to the Work it is a passage of. One Work per
 // observation: refused if it is already in another Work.

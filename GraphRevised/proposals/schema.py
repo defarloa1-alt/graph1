@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-DRAFT_SCHEMA_VERSION = "proposal-draft-v4"
+DRAFT_SCHEMA_VERSION = "proposal-draft-v5"
 LOCAL_ID_PATTERN = r"^chr:[a-z]+:[A-Za-z0-9._:-]+$"
 # An ISO 8601 duration from the context event: P4D (the fifth day), PT6H.
 DURATION_PATTERN = r"^P(\d+Y)?(\d+M)?(\d+W)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$"
@@ -44,6 +44,8 @@ class TimeQualifier(BaseModel):
     calendar: Literal["julian", "gregorian"] | None = None
     normalization_basis: Literal["source", "scholarship", "curator"] | None = None
     relative_offset: str | None = Field(default=None, pattern=DURATION_PATTERN)
+    # during: true throughout (or at) the value; within: at some point inside an uncertain window
+    mode: Literal["during", "within"] = "during"
 
     @model_validator(mode="after")
     def _normalized_fields_go_together(self) -> "TimeQualifier":
@@ -51,6 +53,8 @@ class TimeQualifier(BaseModel):
             raise ValueError("edtf, calendar, and normalization_basis are given together or not at all")
         if self.relative_offset is not None and self.relative_offset.rstrip("T") == "P":
             raise ValueError("relative_offset needs at least one duration component")
+        if self.mode == "within" and self.edtf is None:
+            raise ValueError("an uncertain window needs its normalized bounds")
         return self
 
 
@@ -65,7 +69,7 @@ class ProposalDraft(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    schema_version: Literal["proposal-draft-v4"] = DRAFT_SCHEMA_VERSION
+    schema_version: Literal["proposal-draft-v4", "proposal-draft-v5"] = DRAFT_SCHEMA_VERSION
     predicate: str = Field(min_length=1)
     subject_id: str = Field(pattern=LOCAL_ID_PATTERN)
     object_id: str | None = Field(default=None, pattern=LOCAL_ID_PATTERN)

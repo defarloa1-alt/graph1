@@ -88,11 +88,12 @@ class ProposedEntityTests(unittest.TestCase):
             rationale="The passage gives the period's bounds.", proposed_by="test")
         submission = submit(self.tx, draft, self.registry, self.operations)
         self.assertEqual(submission.validation.outcome, Outcome.VALID, submission.validation.reasons)
-        self.assertIn("long span: stored with its bounds, not linked to each Year", submission.validation.notes)
+        self.assertIn("long span: tethered to its start and end Years", submission.validation.notes)
         stored = self.tx.run(
             "MATCH (a:Assertion {id: $id}) RETURN a.startEarliestJdn AS start, a.endLatestJdn AS end, "
-            "COUNT { (a)-[:IN_YEAR]->() } AS links", id=submission.validation.assertion_id).single()
-        self.assertEqual(stored["links"], 0)
+            "COLLECT { MATCH (a)-[t:IN_YEAR]->(y) RETURN [y.year, t.as] } AS links",
+            id=submission.validation.assertion_id).single()
+        self.assertEqual(sorted(stored["links"]), [[-509, "start"], [-27, "end"]])  # every date tethers (25 section 10)
         self.assertLess(stored["start"], stored["end"])
 
     def test_the_curator_accepts_or_rejects(self):
