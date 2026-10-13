@@ -43,6 +43,7 @@ OPERATION_NAMES = (
     "decide_entity",
     "upsert_record_observation",
     "set_work_form",
+    "upsert_subject_authority",
 )
 
 

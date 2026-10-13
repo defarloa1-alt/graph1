@@ -11,6 +11,9 @@ Sections, applied in this order in one transaction:
                          form?}
     statementProposals  {payload, statementId, label, shortLabel}  a Wikidata statement, proposed
                                                                      through the deterministic proposer
+    subjectHeadings     {subjectId, system, identifier, relation?}  a library subject heading (LCSH or
+                                                                     FAST) on a Subject; its label is read
+                                                                     from the preserved authority record
 
 Identity payloads are fetched once and preserved in phase-5-source/. Every
 write is a guarded operation and nothing is accepted, so applying a manifest
@@ -29,6 +32,7 @@ from typing import Any
 
 from neo4j import GraphDatabase
 
+from GraphRevised.adapters.library_headings import display, preserved_heading
 from GraphRevised.adapters.wikidata_statements import statement_observation
 from GraphRevised.identity.local_candidates import candidates
 from GraphRevised.operations import load_operations, run_write
@@ -49,7 +53,8 @@ RETURN nodes, relationships
 
 
 def apply_manifest(tx: Any, manifest: dict[str, Any], operations: dict[str, str], registry) -> dict[str, Any]:
-    summary: dict[str, Any] = {"identities": 0, "localEntities": 0, "works": [], "statementProposals": []}
+    summary: dict[str, Any] = {"identities": 0, "localEntities": 0, "works": [], "statementProposals": [],
+                               "subjectHeadings": []}
     for item in manifest.get("identities", []):
         payload_path, metadata = preserved_identity_payload(item["qid"])
         persist_identity(tx, operations, entity_id=item["id"], kind=item["kind"],
@@ -76,7 +81,34 @@ def apply_manifest(tx: Any, manifest: dict[str, Any], operations: dict[str, str]
             result = submit(tx, draft, registry, operations).validation
             summary["statementProposals"].append((result.outcome.value, result.proposal_id))
         summary["statementProposals"].extend(("unresolved", reason) for reason in proposed.unresolved)
+    for item in manifest.get("subjectHeadings", []):
+        summary["subjectHeadings"].append(apply_subject_heading(tx, operations, item))
     return summary
+
+
+def apply_subject_heading(tx: Any, operations: dict[str, str], item: dict[str, Any]) -> str:
+    """Attach a curator-approved library subject heading to a Subject (role subject_access)."""
+    system, identifier = item["system"], item["identifier"]
+    path, metadata = preserved_heading(system, identifier)
+    shown = display(system, identifier, metadata["label"])
+    run_write(tx, operations, "upsert_subject_authority", {
+        "subjectId": item["subjectId"],
+        "id": f"chr:authority:{system.lower()}:{identifier}",
+        "system": system,
+        "identifier": identifier,
+        "label": f"{system} heading: {shown}",
+        "shortLabel": shown,
+        "description": metadata["uri"],
+        "retrievedAt": metadata["retrievedAt"],
+        "sourceUri": metadata["sourceUri"],
+        "contentHash": metadata["contentHash"],
+        "rawPayloadUri": path.resolve().relative_to(GRAPH_REVISED.parent).as_posix(),
+        "license": metadata["license"],
+        "role": "subject_access",
+        "relation": item.get("relation", "closeMatch"),
+        "linkStatus": "accepted",
+    })
+    return shown
 
 
 def main(argv: list[str] | None = None) -> int:

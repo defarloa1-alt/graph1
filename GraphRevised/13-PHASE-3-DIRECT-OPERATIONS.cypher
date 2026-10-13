@@ -734,3 +734,34 @@ WHERE $form IN $allowedForms
   AND (work.form IS NULL OR work.form = $form OR NOT EXISTS { (:Assertion)-[:ATTRIBUTED_TO]->(work) })
 SET work.form = $form
 RETURN work;
+
+// Create or reuse an AuthorityRecord and attach it to a Subject: a library
+// subject heading (LCSH, FAST) with role subject_access. Keyed by (system,
+// identifier) like Entity authority records; a retry under a different
+// local ID is refused. The label comes from the authority's own record, so a
+// code is never stored without its words.
+MATCH (subject:Subject {id: $subjectId})
+OPTIONAL MATCH (existing:AuthorityRecord {system: $system, identifier: $identifier})
+WITH subject, existing
+WHERE (existing IS NULL OR existing.id = $id) AND $label IS NOT NULL
+MERGE (record:AuthorityRecord {system: $system, identifier: $identifier})
+ON CREATE SET
+  record.id = $id,
+  record.label = $label,
+  record.shortLabel = $shortLabel,
+  record.description = $description,
+  record.retrievedAt = $retrievedAt,
+  record.sourceUri = $sourceUri,
+  record.contentHash = $contentHash,
+  record.rawPayloadUri = $rawPayloadUri,
+  record.license = $license
+ON MATCH SET
+  record.label = coalesce($label, record.label),
+  record.shortLabel = coalesce($shortLabel, record.shortLabel),
+  record.retrievedAt = coalesce($retrievedAt, record.retrievedAt)
+MERGE (subject)-[relationship:HAS_AUTHORITY_RECORD]->(record)
+ON CREATE SET
+  relationship.role = $role,
+  relationship.relation = $relation,
+  relationship.status = $linkStatus
+RETURN subject, relationship, record;

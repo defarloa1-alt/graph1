@@ -211,6 +211,7 @@ These are real, not hypothetical:
 | Fact `mode` | attributed | Hollow marker at the start ("according to") |
 | Fact `category` | interpretive, imaginative | Distinct line style; imagined facts in their own colour lane |
 | `attestation` | words | Badge; never a percentage |
+| Authority codes (Wikidata, LCSH, FAST) | label plus code | **Never a code alone** (curator's rule): the authority's own words first, the code beside them, "Battle of Actium (31 B.C.) (FAST 796265)"; quiet, in the card's footer |
 
 The smoke view ([export/cytoscape.py](export/cytoscape.py), output in
 `exports/graph.html`) implements shapes 2 and 3 and this encoding, as a

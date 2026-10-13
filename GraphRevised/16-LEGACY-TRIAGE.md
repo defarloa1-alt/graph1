@@ -34,6 +34,7 @@ implemented and validated.
 | [Archive](../Archive) | `ARCHIVE` | Already intentionally archived historical material. | Preserve in place; do not duplicate into `GraphRevised`. |
 | [JSON](../JSON), [CSV](../CSV), and [output](../output) | `REFERENCE` | Contains mixed raw data, derived data, and generated results with unclear clean-start status. | Evaluate individual datasets only with provenance and a defined ingestion need. |
 | [tests](../tests) and legacy test scripts | `REFERENCE` | May capture useful edge cases, but test legacy behavior and schemas. | Port only specific assertions needed by the clean-start contract. |
+| [Subjects/LCC/dg_schedule.csv](../Subjects/LCC/dg_schedule.csv) | `ARCHIVE` (**do not use**) | Checked 2026-10-13 against LC's outline and full 2024 DG schedule: most ranges and labels are wrong (DG1-999 for DG11-999, Etruscans at DG16 for DG222.5+, Army and Navy in DG for DE61, an invented Early/Middle/Late Republic split, DG261 for the Second Triumvirate, which is DG268). Apparently generated, not transcribed. | Never load. LCC is not used for now (25 §8); if it returns, take it only from LC's own schedules. |
 | `.venv`, `viewer/node_modules`, `.pytest_cache`, `tmp`, `temp`, logs, and generated assets | `EXCLUDE` | Local dependencies, caches, temporary material, or generated outputs. | Never move into `GraphRevised`; clean only under a separate, explicit maintenance task. |
 
 ## Observed legacy markers

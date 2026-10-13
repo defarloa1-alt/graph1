@@ -147,3 +147,30 @@ Rules the test produced:
 which users say what they need, and finds it attractive that a user can
 switch persona at will. Candidate personas: researcher, explorer,
 high-school student, graduate student, novelist or curious reader.
+
+## 8. Subjects and library headings (curator, 2026-10-13)
+
+The single Subject (*History of the Battle of Actium*) looked like a copy of
+the event. The distinction kept: the event is what happened; the Subject is
+what has been written about it, which is where bibliographic sources belong.
+
+- **Decided.** A Subject carries its library subject headings, LCSH and FAST,
+  where they exist, as AuthorityRecords with role `subject_access`
+  (`curation/subjects.json`, applied through `upsert_subject_authority`).
+  Each identifier is checked against its authority first; the label is read
+  from the preserved record, never typed.
+- **Decided.** Never display a code alone: always the authority's words with
+  the code beside them, "Battle of Actium (31 B.C.) (FAST 796265)".
+- **Decided.** LCC is skipped for now. The legacy `Subjects/LCC/dg_schedule.csv`
+  proved largely invented (16-LEGACY-TRIAGE.md).
+- **As applied.** LCSH sh85000736 *Actium, Battle of, 31 B.C.* and FAST 796265
+  *Battle of Actium (31 B.C.)* (ODC-By, attribution required). The FAST
+  identifier is 796265; OCLC marks the fst00796265 form deprecated. LC
+  cancelled the heading's LCC number DG269 in 2002, which a pasted research
+  summary had read as a confirmation.
+- **Open.** Works covering a Subject (coverage such as chapters or pages, and
+  kind: ancient account, modern history, imaginative), reading state per
+  Work, and parent Subjects from the headings' broader terms (LCSH
+  *Rome--History--Civil War, 43-31 B.C.--Campaigns*; FAST *Roman Civil War
+  (Rome : 43-31 B.C.)*). These feed the "Read more" list on a card and the
+  growth loop's reading list.

@@ -16,7 +16,8 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries GraphRevised.tests.test_capture \
   GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
-  GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7  # expect 185 tests, OK
+  GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
+  GraphRevised.tests.test_library_headings  # expect 190 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 python -m GraphRevised.proposals.review entities
 ```
@@ -83,6 +84,7 @@ Works read: Plutarch *Life of Antony*, Cassius Dio *Roman History* 50–51 (Cary
 14. Strip any Perplexity signed (`X-Amz`) links from docs before committing.
 15. `imaginative` is never chosen: it follows from the attributed Work's `form`, which is fixed once a claim rests on the Work. A passage of a creative Work can never support an asserted claim, so fiction cannot be promoted to fact.
 16. Attestation (`export/confidence.py`) is computed when the graph is read, in words, from the claim family and its distinct authors. Never store a confidence score.
+17. Never display a code alone (QID, LCSH, FAST): always the authority's own label with the code beside it. Library headings are checked against their authority and their labels read from the preserved record ([adapters/library_headings.py](adapters/library_headings.py)). LCC is not used; never load the legacy `Subjects/LCC/dg_schedule.csv`.
 
 ## 5. Waiting for the curator
 
