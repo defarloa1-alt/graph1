@@ -272,3 +272,23 @@ The budget for increment 3: harvest the surfaced people, events, and places
 (not reference works or offices), about 50 new entities per run, the agent
 choosing when there are more.
 
+## 13. Beyond Actium: key actors, chronologically (curator, 2026-10-13)
+
+**Decided.** After Actium the graph is built around **key actors, taken in
+chronological order, each life graphed in full**, rather than around Works.
+For each actor: the first-contact harvest and its budgeted expansion
+(sections 10-12), the structure enrichers for the offices and forces the life
+touches (increment 4), then the reader on that life's sources (Plutarch's
+*Lives* first; Suetonius, Appian, Dio, Cicero's letters as they apply). Works
+become sources for a life, not the focus of an inquiry. The list and order of
+actors are to be confirmed with the curator at the start of the next session
+(the Lives named so far: Scipio, Hannibal, Marius, Sulla, Pompey, Crassus,
+Cicero, Caesar, Cato, Antony, Octavian).
+
+**Decided: data does not live in git.** Git is for scripts. Harvest payloads
+(preserved Wikidata records) stay on disk, hashed in their metadata and on
+the graph's AuthorityRecords, and are git-ignored from 2026-10-13
+(`GraphRevised/phase-5-source/wikidata-Q*`); records tracked earlier, which
+tests and curation use, stay tracked. The local disk is then the only copy of
+the graph and the payloads: back them up outside git.
+
