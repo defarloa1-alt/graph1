@@ -104,4 +104,4 @@ Waiting until after the Lives phase: the period consensus and the regional/gener
 - Force hierarchy (a wing is part of a fleet) has no predicate yet.
 - PeriodO matching misses names whose stems differ across languages (German *Römische*, *Kaiserzeit*); such definitions are listed as related or not at all.
 - Neo4j Bloom is for smoke tests only. The product is a custom React and Cytoscape.js explorer ([20-EXPLORER-UI.md](20-EXPLORER-UI.md)).
-- The old `Temporal/` folder: only `periodo-dataset.csv` was useful, and the PeriodO cache replaces it. `Temporal/Neo4j-…-Created-2026-02-19.txt` looks like an Aura credentials export and was not opened: remove it from git if it is tracked, and rotate the password.
+- The old `Temporal/` folder: only `periodo-dataset.csv` was useful, and the PeriodO cache replaces it. **`Temporal/Neo4j-f7b612a3-Created-2026-02-19.txt` is the legacy Aura instance's credentials export** (URI, user, password). It is tracked (commit `a82fcb1`) and on several branches on `origin`, so it was exposed while the repo was public: the curator should rotate that password or delete the instance; removing the file from git does not undo the exposure.
