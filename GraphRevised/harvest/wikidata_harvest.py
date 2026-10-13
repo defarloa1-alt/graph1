@@ -32,9 +32,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import requests
-
-from GraphRevised.adapters.wikidata_identity import USER_AGENT
+from GraphRevised.adapters.wikidata_identity import polite_get
 from GraphRevised.adapters.wikidata_statements import assemble_time
 from GraphRevised.proposals.registry import PredicateRegistry, load_registry
 from GraphRevised.proposals.temporal import TimeValueError, display_edtf, parse_edtf, year_links
@@ -60,10 +58,9 @@ class Labels:
         missing = sorted(i for i in ids if i not in self.known)
         for start in range(0, len(missing), 50):
             batch = missing[start:start + 50]
-            response = requests.get("https://www.wikidata.org/w/api.php", params={
+            response = polite_get("https://www.wikidata.org/w/api.php", params={
                 "action": "wbgetentities", "ids": "|".join(batch), "props": "labels|descriptions",
-                "languages": "en", "format": "json"}, headers={"User-Agent": USER_AGENT}, timeout=30)
-            response.raise_for_status()
+                "languages": "en", "format": "json"})
             retrieved = datetime.now(timezone.utc).isoformat()
             for identifier, entity in response.json()["entities"].items():
                 self.known[identifier] = {

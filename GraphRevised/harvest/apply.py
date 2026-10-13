@@ -31,10 +31,12 @@ import json
 import os
 import re
 from collections import Counter
+from pathlib import Path
 from typing import Any
 
 from neo4j import GraphDatabase
 
+from GraphRevised.adapters.wikidata_identity import polite_get
 from GraphRevised.adapters.wikidata_statements import statement_observation
 from GraphRevised.harvest.wikidata_harvest import Labels, Statement, classify, load_rules
 from GraphRevised.operations import load_operations, run_write
@@ -51,22 +53,58 @@ class HarvestError(RuntimeError):
     """The harvest cannot start (no local focus with an accepted identity)."""
 
 
-def kind_of(entity: dict[str, Any], rules: dict[str, Any]) -> str | None:
-    """The kind an entity's "instance of" classes give by the rules' table, or None for the agent."""
+SUPERCLASS_CACHE = Path(__file__).resolve().parents[1] / "cache" / "wikidata-superclasses.json"
+
+
+class Superclasses:
+    """One level of Wikidata "subclass of" (P279) for a class, fetched once and cached."""
+
+    def __init__(self, path: Path = SUPERCLASS_CACHE) -> None:
+        self.path = path
+        self.known: dict[str, list[str]] = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+    def __call__(self, qid: str) -> list[str]:
+        if qid not in self.known:
+            response = polite_get("https://www.wikidata.org/w/api.php", params={
+                "action": "wbgetclaims", "entity": qid, "property": "P279", "format": "json"})
+            self.known[qid] = [c["mainsnak"].get("datavalue", {}).get("value", {}).get("id")
+                               for c in response.json().get("claims", {}).get("P279", [])
+                               if c.get("rank") != "deprecated" and c["mainsnak"].get("snaktype") == "value"]
+            self.path.parent.mkdir(exist_ok=True)
+            self.path.write_text(json.dumps(self.known, indent=1, sort_keys=True), encoding="utf-8")
+        return self.known[qid]
+
+
+def kind_of(entity: dict[str, Any], rules: dict[str, Any], superclasses=None) -> str | None:
+    """The kind an entity's "instance of" classes give by the rules' table; failing that, the kind
+    their direct superclasses give (one level of "subclass of"); else None for the agent. Only
+    classes in the checked table ever decide a kind."""
     classes = {c["mainsnak"].get("datavalue", {}).get("value", {}).get("id")
                for c in entity.get("claims", {}).get("P31", []) if c.get("rank") != "deprecated"}
-    for kind in rules["kindPriority"]:
-        if classes & set(rules["kinds"].get(kind, [])):
-            return kind
-    return None
+
+    def match(candidates: set[str]) -> str | None:
+        for kind in rules["kindPriority"]:
+            if candidates & set(rules["kinds"].get(kind, [])):
+                return kind
+        return None
+
+    found = match(classes)
+    if found is None and superclasses is not None:
+        found = match({parent for cls in classes if cls for parent in superclasses(cls)})
+    return found
+
+
+SUPERCLASSES = Superclasses()
 
 
 def _slug(label: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-") or "unnamed"
 
 
-def surface(tx: Any, operations: dict[str, str], qid: str, rules: dict[str, Any]) -> dict[str, Any]:
-    """Meet a target once: reuse the local Entity holding its QID, or propose one if its kind is known."""
+def surface(tx: Any, operations: dict[str, str], qid: str, rules: dict[str, Any],
+            budget: dict[str, int] | None = None) -> dict[str, Any]:
+    """Meet a target once: reuse the local Entity holding its QID, or propose one if its kind is known
+    and the run's budget of new entities allows (otherwise it waits for a later run)."""
     local = Neo4jReader(tx).entity_ids_for_wikidata(qid)
     if len(local) == 1:
         return {"qid": qid, "entityId": local[0], "state": "in the graph"}
@@ -74,15 +112,22 @@ def surface(tx: Any, operations: dict[str, str], qid: str, rules: dict[str, Any]
         return {"qid": qid, "entityId": None, "state": f"{len(local)} local Entities hold this QID: curator"}
     path, metadata = preserved_identity_payload(qid)
     entity = json.loads(path.read_bytes())["entities"][qid]
-    kind = kind_of(entity, rules)
+    classes = {c["mainsnak"].get("datavalue", {}).get("value", {}).get("id") for c in entity.get("claims", {}).get("P31", [])}
+    if classes & set(rules.get("noiseClasses", [])):
+        return {"qid": qid, "entityId": None, "state": "dropped: noise by rule", "label": metadata["entityLabel"]}
+    kind = kind_of(entity, rules, SUPERCLASSES)
     if kind is None:
         return {"qid": qid, "entityId": None, "state": "kind unknown: waits for the agent", "label": metadata["entityLabel"]}
+    if budget is not None and budget["left"] <= 0:
+        return {"qid": qid, "entityId": None, "state": "waiting: budget spent", "label": metadata["entityLabel"]}
     entity_id = f"chr:entity:{_slug(metadata['entityLabel'])}"
     taken = tx.run("MATCH (e:Entity {id: $id}) RETURN count(e) AS n", id=entity_id).single()["n"]
     if taken:
         entity_id = f"{entity_id}-{qid.lower()}"
     persist_identity(tx, operations, entity_id=entity_id, kind=kind, payload_path=path, metadata=metadata,
                      status="proposed")
+    if budget is not None:
+        budget["left"] -= 1
     return {"qid": qid, "entityId": entity_id, "state": f"proposed {kind}", "label": metadata["entityLabel"]}
 
 
@@ -108,7 +153,7 @@ def propose_statement(tx: Any, operations: dict[str, str], registry: PredicateRe
 
 
 def harvest(tx: Any, qid: str, operations: dict[str, str], registry: PredicateRegistry,
-            rules: dict[str, Any]) -> dict[str, Any]:
+            rules: dict[str, Any], budget: dict[str, int] | None = None) -> dict[str, Any]:
     reader = Neo4jReader(tx)
     focus_ids = reader.entity_ids_for_wikidata(qid)
     if len(focus_ids) != 1:
@@ -123,7 +168,8 @@ def harvest(tx: Any, qid: str, operations: dict[str, str], registry: PredicateRe
 
     mapped = [s for s in statements if s.kind == "relationship" and s.predicates]
     dated = [s for s in statements if s.kind == "dated" and registry.for_wikidata(s.pid)]
-    surfaced = {qid_: surface(tx, operations, qid_, rules) for qid_ in sorted({s.value for s in mapped})}
+    surfaced = {qid_: surface(tx, operations, qid_, rules, budget)
+                for qid_ in sorted({s.value for s in mapped if isinstance(s.value, str)})}
     claims: list[tuple[str, str, tuple[str, ...]]] = []
     for statement in mapped + dated:
         if statement.problems:
@@ -160,6 +206,31 @@ def harvest(tx: Any, qid: str, operations: dict[str, str], registry: PredicateRe
     }
 
 
+EXPAND_KINDS = ("Person", "Event", "Place")
+
+
+def expand(tx: Any, qid: str, operations: dict[str, str], registry: PredicateRegistry, rules: dict[str, Any],
+           limit: int = 50) -> list[dict[str, Any]]:
+    """Harvest each person, event, and place the focus's harvest surfaced (25 section 12), within a
+    budget of new entities for the whole run. Reference works and offices are not expanded. Entities
+    met once the budget is spent wait for a later run; the agent's choice of what to take first is
+    not built yet, so the order is by kind (people, events, places) and then by label."""
+    reader = Neo4jReader(tx)
+    focus_ids = reader.entity_ids_for_wikidata(qid)
+    if len(focus_ids) != 1:
+        raise HarvestError(f"{qid} needs exactly one local Entity with an accepted identity, not {len(focus_ids)}")
+    path, _ = preserved_identity_payload(qid)
+    statements, _ = classify(json.loads(path.read_bytes())["entities"][qid], rules, registry)
+    targets = []
+    for target in sorted({s.value for s in statements if s.kind == "relationship" and s.predicates}):
+        local = reader.entity_ids_for_wikidata(target)
+        entity = reader.entity(local[0]) if len(local) == 1 else None
+        if entity and entity["kind"] in EXPAND_KINDS and entity["id"] != focus_ids[0]:
+            targets.append((EXPAND_KINDS.index(entity["kind"]), entity["label"], target))
+    budget = {"left": limit}
+    return [harvest(tx, target, operations, registry, rules, budget) for _, _, target in sorted(targets)]
+
+
 def summary(result: dict[str, Any]) -> str:
     states = Counter(item["state"].split(":")[0] for item in result["surfaced"].values())
     outcomes = Counter(outcome for outcome, _, _ in result["claims"])
@@ -182,6 +253,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("qid")
     parser.add_argument("--apply", action="store_true", help="commit; without it the transaction is rolled back")
+    parser.add_argument("--expand", action="store_true",
+                        help="harvest the people, events, and places the focus's harvest surfaced (increment 3)")
+    parser.add_argument("--limit", type=int, default=50, help="new entities allowed in one --expand run")
     args = parser.parse_args(argv)
     driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
                                   auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
@@ -190,7 +264,9 @@ def main(argv: list[str] | None = None) -> int:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
             tx = session.begin_transaction()
             try:
-                result = harvest(tx, args.qid, load_operations(), load_registry(), load_rules())
+                operations, registry, rules = load_operations(), load_registry(), load_rules()
+                results = (expand(tx, args.qid, operations, registry, rules, args.limit) if args.expand
+                           else [harvest(tx, args.qid, operations, registry, rules)])
                 tx.commit() if args.apply else tx.rollback()
             except BaseException:
                 if not tx.closed():
@@ -198,7 +274,13 @@ def main(argv: list[str] | None = None) -> int:
                 raise
     finally:
         driver.close()
-    print(("APPLIED. " if args.apply else "DRY RUN (rolled back). ") + summary(result))
+    print("APPLIED." if args.apply else "DRY RUN (rolled back).")
+    print("\n\n".join(summary(result) for result in results))
+    if args.expand:
+        created = sum(1 for r in results for item in r["surfaced"].values() if item["state"].startswith("proposed"))
+        waiting = sum(1 for r in results for item in r["surfaced"].values() if item["state"].startswith("waiting"))
+        print(f"\nExpansion: {len(results)} entities harvested, {created} new entities proposed, "
+              f"{waiting} waiting for the budget")
     return 0
 
 

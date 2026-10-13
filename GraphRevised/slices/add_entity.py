@@ -20,7 +20,7 @@ from typing import Any
 import requests
 from neo4j import GraphDatabase
 
-from GraphRevised.adapters.wikidata_identity import USER_AGENT
+from GraphRevised.adapters.wikidata_identity import USER_AGENT, polite_get
 from GraphRevised.adapters.wikidata_statements import REPOSITORY_ROOT
 from GraphRevised.operations import load_operations, run_write
 
@@ -29,6 +29,18 @@ SOURCE_DIRECTORY = GRAPH_REVISED / "phase-5-source"
 from GraphRevised.proposals.registry import load_registry
 
 ENTITY_KINDS = load_registry().entity_kinds
+
+
+def _best_label(entity: dict[str, Any], qid: str) -> str:
+    """English, else Wikidata's multilingual label, else any language tagged with its code; never a bare QID."""
+    labels = entity.get("labels", {})
+    for language in ("en", "mul", "en-gb", "en-us"):
+        if language in labels:
+            return labels[language]["value"]
+    if labels:
+        language, label = sorted(labels.items())[0]
+        return f"{label['value']} [{language}]"
+    return f"(no label) {qid}"
 
 
 def preserved_identity_payload(qid: str) -> tuple[Path, dict[str, Any]]:
@@ -42,15 +54,14 @@ def preserved_identity_payload(qid: str) -> tuple[Path, dict[str, Any]]:
         return path, json.loads(path.with_suffix(".metadata.json").read_text(encoding="utf-8"))
 
     source_uri = f"https://www.wikidata.org/wiki/Special:EntityData/{qid}.json"
-    response = requests.get(source_uri, headers={"User-Agent": USER_AGENT}, timeout=30)
-    response.raise_for_status()
+    response = polite_get(source_uri)
     payload_bytes = response.content
     entity = json.loads(payload_bytes)["entities"][qid]
     metadata = {
         "sourceSystem": "Wikidata",
         "sourceUri": source_uri,
         "entityId": qid,
-        "entityLabel": entity["labels"]["en"]["value"],
+        "entityLabel": _best_label(entity, qid),
         "entityDescription": entity.get("descriptions", {}).get("en", {}).get("value"),
         "revision": entity["lastrevid"],
         "modified": entity["modified"],

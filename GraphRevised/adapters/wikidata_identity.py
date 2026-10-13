@@ -15,6 +15,27 @@ import requests
 WIKIDATA_API_URL = "https://www.wikidata.org/w/api.php"
 WIKIDATA_ENTITY_URL = "https://www.wikidata.org/wiki/Special:EntityData/"
 USER_AGENT = "Chrystallum/0.1 (authority identity discovery)"
+
+
+def polite_get(url: str, *, params: dict[str, Any] | None = None, headers: dict[str, str] | None = None,
+               timeout: int = 30, attempts: int = 5) -> requests.Response:
+    """GET with the project's User-Agent, retrying 429 and 5xx with backoff (Retry-After when the
+    server gives it). Wikidata rate-limits bursts; the legacy harvest learned this the hard way."""
+    import time
+
+    delay = 2.0
+    for attempt in range(attempts):
+        response = requests.get(url, params=params, headers={"User-Agent": USER_AGENT, **(headers or {})},
+                                timeout=timeout)
+        if response.status_code != 429 and response.status_code < 500:
+            response.raise_for_status()
+            return response
+        if attempt == attempts - 1:
+            response.raise_for_status()
+        wait = response.headers.get("Retry-After")
+        time.sleep(float(wait) if wait and wait.isdigit() else delay)
+        delay *= 2
+    raise RuntimeError("unreachable")
 QID_PATTERN = re.compile(r"^Q[1-9]\d*$")
 MAX_RESULTS = 10
 

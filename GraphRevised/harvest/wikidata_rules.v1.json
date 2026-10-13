@@ -70,8 +70,9 @@
   "notes": {
     "P1343": "described by source stays a relationship (registry: describedBy), Wikidata's own bibliography of the entity: input for the Subject 'Read more' list (25 section 8)",
     "P1038": "relative stays an unmapped relationship until its kinship qualifier (P1039) is mapped; legacy code lost that qualifier",
-    "kinds": "Wikidata 'instance of' classes mapped to kinds, each class checked against its Wikidata label on 2026-10-13 from the classes of Mark Antony's one-hop targets; a target whose classes are not listed goes to the agent's judgement, never guessed. A historical country, an empire, or a form of government is left to the agent (a polity is neither simply a Place nor a Group).",
-    "federations": "External identifiers kept as AuthorityRecords (curator, 2026-10-13: only federations we use); the rest stay readable in the preserved record. Checked labels: P1415 is the Oxford Dictionary of National Biography, not the Oxford Classical Dictionary as legacy code assumed."
+    "kinds": "Wikidata 'instance of' classes mapped to kinds, each class checked against its Wikidata label on 2026-10-13 from the classes of Mark Antony's one-hop targets; a target whose classes are not listed goes to the agent's judgement, never guessed. A historical country, an empire, or a form of government is left to the agent (a polity is neither simply a Place nor a Group). Extended 2026-10-13 from the classes of the expansion's agent queue, each checked against its label. Deliberately left to the agent: US city classes (a Wikidata statement points to Alexandria, Virginia), temporal entity, former administrative territorial entity; polities (historical country, ancient civilization) wait for the Polity kind (registry v9).",
+    "federations": "External identifiers kept as AuthorityRecords (curator, 2026-10-13: only federations we use); the rest stay readable in the preserved record. Checked labels: P1415 is the Oxford Dictionary of National Biography, not the Oxford Classical Dictionary as legacy code assumed.",
+    "noiseClasses": "Wikimedia disambiguation page: a statement pointing at one is a Wikidata error, dropped by rule."
   },
   "kindPriority": [
     "Person",
@@ -80,11 +81,13 @@
     "Period",
     "Place",
     "Group",
-    "Work"
+    "Work",
+    "Concept"
   ],
   "kinds": {
     "Person": [
-      "Q5"
+      "Q5",
+      "Q21070568"
     ],
     "Event": [
       "Q178561",
@@ -112,11 +115,24 @@
       "Q108178728",
       "Q51929311",
       "Q3685476",
-      "Q1187811"
+      "Q1187811",
+      "Q23442",
+      "Q204894",
+      "Q1620908",
+      "Q82794",
+      "Q166620",
+      "Q1048163",
+      "Q3957",
+      "Q2989398"
     ],
     "Group": [
       "Q899409",
-      "Q3046146"
+      "Q3046146",
+      "Q4204501",
+      "Q4533081",
+      "Q1393724",
+      "Q878249",
+      "Q83204"
     ],
     "Work": [
       "Q3331189",
@@ -128,7 +144,16 @@
       "Q1238720",
       "Q1787111",
       "Q1469824",
-      "Q17152639"
+      "Q17152639",
+      "Q732577",
+      "Q4230425",
+      "Q1006160",
+      "Q1525071",
+      "Q1239328",
+      "Q56165908"
+    ],
+    "Concept": [
+      "Q12909644"
     ]
   },
   "federations": {
@@ -143,5 +168,8 @@
     "P9350": "PeriodO",
     "P1667": "TGN",
     "P1566": "GeoNames"
-  }
+  },
+  "noiseClasses": [
+    "Q4167410"
+  ]
 }
