@@ -30,6 +30,7 @@ import argparse
 import json
 import os
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -257,6 +258,7 @@ def main(argv: list[str] | None = None) -> int:
                         help="harvest the people, events, and places the focus's harvest surfaced (increment 3)")
     parser.add_argument("--limit", type=int, default=50, help="new entities allowed in one --expand run")
     args = parser.parse_args(argv)
+    sys.stdout.reconfigure(encoding="utf-8")  # labels in every script (Rzym, Kościelna) on a Windows console
     driver = GraphDatabase.driver(os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
                                   auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
                                   notifications_min_severity="OFF")

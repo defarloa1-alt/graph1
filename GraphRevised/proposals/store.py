@@ -12,9 +12,9 @@ from typing import Any
 from GraphRevised.operations import run_write
 
 from .registry import PredicateDefinition, PredicateRegistry, proposal_id
-from .schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
+from .schema import ProposalDraft, QualifierQuotation, QuantityQualifier, Quotation, TimeQualifier
 from .temporal import TimeValueError, display_edtf, year_links
-from .validator import Outcome, ValidationResult, validate
+from .validator import Outcome, ValidationResult, quantity_key, validate
 
 
 # Why a claim or its evidence was rejected, or a claim superseded. The same
@@ -75,7 +75,7 @@ class Neo4jReader:
         return None if record is None else {**record["p"], "workId": record["workId"], "workForm": record["workForm"]}
 
     def related_assertions(self, base_id: str) -> list[dict[str, Any]]:
-        return self._tx.run(
+        rows = self._tx.run(
             """
             MATCH (assertion:Assertion)
             WHERE assertion.id = $base OR (assertion.id STARTS WITH $prefix AND size(assertion.id) = size($prefix) + 10)
@@ -84,11 +84,15 @@ class Neo4jReader:
             OPTIONAL MATCH (assertion)-[:ASSERTION_ROLE]->(role:Entity)
             RETURN assertion.id AS id, assertion.status AS status, assertion.mode AS mode,
                    work.id AS attributedTo, context.id AS context, role.id AS role,
-                   coalesce(assertion.timeEdtf, assertion.timeRelativeOffset, assertion.timeSourceExpression) AS time
+                   coalesce(assertion.timeEdtf, assertion.timeRelativeOffset, assertion.timeSourceExpression) AS time,
+                   {minimum: assertion.quantityMinimum, maximum: assertion.quantityMaximum,
+                    typical: assertion.quantityTypical} AS figures
             ORDER BY id
             """,
             base=base_id, prefix=base_id + ":q",
         ).data()
+        return [{key: value for key, value in row.items() if key != "figures"} | {"quantity": quantity_key(row["figures"])}
+                for row in rows]
 
     def proposal_exists(self, proposal_id: str) -> bool:
         return self._tx.run(
@@ -222,6 +226,8 @@ def claim_labels(definition: PredicateDefinition, result: ValidationResult) -> t
         label += f" as {entities['role']['label']}"
     if "context" in entities:
         label += f" during {entities['context']['label']}"
+    if draft.quantity is not None:
+        label += f" (quantity {draft.quantity.display()})"
     if draft.time is not None:
         label += f" ({display_edtf(draft.time.edtf) if draft.time.edtf else draft.time.source_expression})"
     if "attributedTo" in entities:
@@ -234,7 +240,7 @@ def claim_labels(definition: PredicateDefinition, result: ValidationResult) -> t
 def _is_qualified(draft: ProposalDraft) -> bool:
     return (
         draft.mode != "asserted" or draft.object_id is None or draft.context_id is not None
-        or draft.role_id is not None or draft.time is not None
+        or draft.role_id is not None or draft.time is not None or draft.quantity is not None
     )
 
 
@@ -266,6 +272,10 @@ def _qualified_assertion_params(result: ValidationResult, label: str, short_labe
         "startLatestJdn": bounds.start_latest_jdn if bounds else None,
         "endEarliestJdn": bounds.end_earliest_jdn if bounds else None,
         "endLatestJdn": bounds.end_latest_jdn if bounds else None,
+        "quantityMinimum": draft.quantity.minimum if draft.quantity else None,
+        "quantityMaximum": draft.quantity.maximum if draft.quantity else None,
+        "quantityTypical": draft.quantity.typical if draft.quantity else None,
+        "quantitySourceExpression": draft.quantity.source_expression if draft.quantity else None,
     }
 
 
@@ -299,7 +309,13 @@ def _draft_from_stored(stored: dict[str, Any], evidence: list[dict[str, Any]], *
             calendar=stored.get("timeCalendar"),
             normalization_basis=stored.get("timeNormalizationBasis"),
             relative_offset=stored.get("timeRelativeOffset"),
+            mode=stored.get("timeMode") or "during",
         )
+    quantity = None
+    if stored.get("quantitySourceExpression") is not None:
+        quantity = QuantityQualifier(
+            source_expression=stored["quantitySourceExpression"], minimum=stored.get("quantityMinimum"),
+            maximum=stored.get("quantityMaximum"), typical=stored.get("quantityTypical"))
     return ProposalDraft(
         predicate=stored["predicate"],
         subject_id=stored["subjectId"],
@@ -319,6 +335,7 @@ def _draft_from_stored(stored: dict[str, Any], evidence: list[dict[str, Any]], *
         context_basis=stored.get("contextBasis"),
         role_id=stored.get("roleId"),
         time=time,
+        quantity=quantity,
         inquiry_id=stored.get("inquiryId"),
     )
 
@@ -537,7 +554,7 @@ def promote(
     if not sources:
         raise ReviewError("name at least one attributed claim to promote")
     keys = ("predicate", "subjectId", "objectId", "contextId", "roleId", "timeEdtf", "timeCalendar",
-            "timeRelativeOffset")
+            "timeRelativeOffset", "timeMode", "quantityMinimum", "quantityMaximum", "quantityTypical")
     if len({tuple(source[key] for key in keys) for source in sources}) != 1:
         raise ReviewError("the claims do not state the same relationship with the same qualifiers")
     if not sources[0]["timeEdtf"] and len({source["timeSourceExpression"] for source in sources}) != 1:
@@ -577,7 +594,10 @@ def _attributed_claim(tx: Any, assertion_id: str) -> dict[str, Any]:
                assertion.timeEdtf AS timeEdtf, assertion.timeCalendar AS timeCalendar,
                assertion.timeSourceExpression AS timeSourceExpression,
                assertion.timeNormalizationBasis AS timeNormalizationBasis,
-               assertion.timeRelativeOffset AS timeRelativeOffset,
+               assertion.timeRelativeOffset AS timeRelativeOffset, assertion.timeMode AS timeMode,
+               assertion.quantityMinimum AS quantityMinimum, assertion.quantityMaximum AS quantityMaximum,
+               assertion.quantityTypical AS quantityTypical,
+               assertion.quantitySourceExpression AS quantitySourceExpression,
                head([p IN collect(DISTINCT decided.inquiryId) WHERE p IS NOT NULL]) AS inquiryId,
                [item IN collect(DISTINCT {observationId: observation.id, quotation: support.quotation,
                                           qualifierQuotations: support.qualifierQuotations})
@@ -622,7 +642,10 @@ def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
                assertion.timeEdtf AS timeEdtf, assertion.timeCalendar AS timeCalendar,
                assertion.timeSourceExpression AS timeSourceExpression,
                assertion.timeNormalizationBasis AS timeNormalizationBasis,
-               assertion.timeRelativeOffset AS timeRelativeOffset,
+               assertion.timeRelativeOffset AS timeRelativeOffset, assertion.timeMode AS timeMode,
+               assertion.quantityMinimum AS quantityMinimum, assertion.quantityMaximum AS quantityMaximum,
+               assertion.quantityTypical AS quantityTypical,
+               assertion.quantitySourceExpression AS quantitySourceExpression,
                CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
         """,
         id=proposal_id,

@@ -48,7 +48,7 @@ recommends, never stored hierarchies. Facets stay lenses: "military" and
 | `Source`, `SourcePassage` | Work and passage SourceObservation |
 | `validFrom` / `validTo`, precision | time qualifiers, tethered to Years |
 
-## Registry v9 (planned)
+## Registry v9 (built 2026-10-13: [predicates.v9.json](../proposals/predicates.v9.json), `proposal-draft-v6`)
 
 - `partOf` extended to Groups and Types (the force hierarchy gap: "a wing is
   part of a fleet"); `instanceOf` (Group to Type).
@@ -58,8 +58,15 @@ recommends, never stored hierarchies. Facets stay lenses: "military" and
 - `servedUnder`.
 - `memberOf` (Person to Group, dated): membership of a college, alliance, or
   body (below).
-- Context on `heldPower` may be an Event, Place, or Group; the role qualifier
-  may be a power Type as well as an Office (for `conferred`).
+- Context and role kinds are declared per predicate (`contextKinds`, `roleKinds`;
+  defaults Event and Office): context on `heldPower` may be an Event, Place, or
+  Group, on `servedUnder` an Event or Group.
+- `partOf` pairs its kinds (`kindPairs`: Event-Event, Group-Group, Type-Type).
+- Wikidata P361 "part of" evidences whichever of `partOf`, `subperiodOf`, and
+  `memberOf` fits its endpoints' kinds; P463 maps to `memberOf`.
+- Harvest kind Polity from Wikidata *historical country* (Q3024240), *empire*
+  (Q48349), and *Hellenistic kingdom* (Q3932025), after Period in priority.
+  Type has no Wikidata classes: types come from the enrichers and the reader.
 - A **quantity** qualifier (minimum, maximum, typical) for counts and
   establishments, never a headcount.
 - Kinds **Type** and **Polity**.
@@ -78,7 +85,7 @@ proconsul through prorogation or a special grant.
 | `PowerType {key: imperium}` | Entity kind Type: *imperium*, *potestas*, *auspicium*, tribunician power, *imperium maius*. *Auctoritas* is standing and influence, not enforceable power: a Concept |
 | `PowerGrant` with `SUBJECT_OF` | a `heldPower` claim, Person to power Type, time required |
 | `DERIVED_FROM` an office tenure | the claim's role qualifier: the Office it was held through (consul) |
-| `DERIVED_FROM` a law or prorogation | `conferred` (registry v6): the law or decree as an Event, the person as object, the power as role |
+| `DERIVED_FROM` a law or prorogation | `conferred` (planned in 24 §4, not yet in the registry): the law or decree as an Event, the person as object, the power as role, so its role kinds will include Type |
 | `APPLIES_TO` a *provincia*, army, or territory | the claim's context. *Provincia* means a task, enemy, or command as much as a territory, so `heldPower` allows Event, Place, and Group as context; today context is Event only |
 | competence of an office | `exercisedPower`, Office to power Type, dated |
 | components (military, coercive, judicial authority) | Types linked by `partOf`, **attributed only**: whether *imperium* included civil jurisdiction is a scholarly dispute (the traditional reading against Drogula's), so each reading is a separate attributed claim and the graph does not choose |

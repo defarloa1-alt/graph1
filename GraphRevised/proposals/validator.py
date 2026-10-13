@@ -60,10 +60,16 @@ class GraphReader(Protocol):
         qualifiers: {id, status, mode, attributedTo, context, role, time}. Optional."""
 
 
-def qualifier_kinds(registry: PredicateRegistry) -> dict[str, tuple[str, str]]:
-    """Draft field -> (qualifier name, required Entity kind); the role kind comes from the registry."""
-    return {"context_id": ("context", "Event"), "role_id": ("role", registry.role_kind),
-            "attributed_to": ("attributedTo", "Work")}
+def qualifier_kinds(registry: PredicateRegistry, definition: PredicateDefinition) -> dict[str, tuple[str, frozenset[str]]]:
+    """Draft field -> (qualifier name, allowed Entity kinds). Context and role kinds are the
+    predicate's (contextKinds, roleKinds), by default an Event and the registry's roleKind."""
+    return {"context_id": ("context", definition.context_kinds),
+            "role_id": ("role", registry.role_kinds(definition)),
+            "attributed_to": ("attributedTo", frozenset({"Work"}))}
+
+
+def _kinds(kinds: frozenset[str]) -> str:
+    return " or ".join(sorted(kinds))
 
 
 def validate(
@@ -102,20 +108,23 @@ def validate(
         reasons.append(f"object {object_id} is not an existing Entity")
     elif obj["kind"] not in definition.object_kinds:
         reasons.append(f"{definition.id} object must be {sorted(definition.object_kinds)}, not {obj['kind']}")
+    elif subject is not None and subject["kind"] in definition.subject_kinds             and not definition.allows_kinds(subject["kind"], obj["kind"]):
+        pairs = ", ".join(f"{s} to {o}" for s, o in sorted(definition.kind_pairs or ()))
+        reasons.append(f"{definition.id} relates {pairs}, not {subject['kind']} to {obj['kind']}")
     if subject_id == object_id:
         reasons.append("subject and object must differ")
 
     reasons.extend(_check_qualifier_rules(draft, definition))
     qualifier_entities: dict[str, dict[str, Any]] = {}
-    for field, (name, kind) in qualifier_kinds(registry).items():
+    for field, (name, kinds) in qualifier_kinds(registry, definition).items():
         target = getattr(draft, field)
         if target is None:
             continue
         found = reader.entity(target)
         if found is None:
             reasons.append(f"{name} {target} is not an existing Entity")
-        elif found["kind"] != kind:
-            reasons.append(f"{name} must be an Entity of kind {kind}, not {found['kind']}")
+        elif found["kind"] not in kinds:
+            reasons.append(f"{name} must be an Entity of kind {_kinds(kinds)}, not {found['kind']}")
         else:
             qualifier_entities[name] = found
 
@@ -242,7 +251,14 @@ def draft_qualifiers(draft: ProposalDraft) -> dict[str, Any]:
     time = None
     if draft.time is not None:
         time = draft.time.edtf or draft.time.relative_offset or draft.time.source_expression
-    return {"context": draft.context_id, "role": draft.role_id, "time": time}
+    return {"context": draft.context_id, "role": draft.role_id, "time": time,
+            "quantity": quantity_key(draft.quantity.signature()) if draft.quantity is not None else None}
+
+
+def quantity_key(figures: dict[str, Any]) -> str | None:
+    """A quantity's figures as one comparable value ("minimum=30;maximum=30"); None when it has none."""
+    return ";".join(f"{key}={figures[key]}" for key in ("minimum", "maximum", "typical")
+                    if figures.get(key) is not None) or None
 
 
 def classify_related(
@@ -264,7 +280,7 @@ def classify_related(
     for other in lookup(base_id):
         if other["id"] == own_id:
             continue
-        theirs = {key: other.get(key) for key in ("context", "role", "time")}
+        theirs = {key: other.get(key) for key in ("context", "role", "time", "quantity")}
         shared = [key for key in theirs if mine[key] is not None and theirs[key] is not None]
         if any(mine[key] != theirs[key] for key in shared):
             relation = "conflicts"
@@ -293,6 +309,8 @@ def _check_qualifier_rules(draft: ProposalDraft, definition: PredicateDefinition
         reasons.append(f"{definition.id} takes no role")
     if draft.time is not None and allowed.time == "none":
         reasons.append(f"{definition.id} takes no time qualifier")
+    if draft.quantity is not None and allowed.quantity == "none":
+        reasons.append(f"{definition.id} takes no quantity")
     if draft.context_basis == "inquiry" and not draft.inquiry_id:
         reasons.append("a context resting on the inquiry needs the draft's inquiry_id")
     if draft.time is not None and draft.time.relative_offset and not draft.context_id:
@@ -314,7 +332,7 @@ def _check_qualifier_evidence(
                 reasons.append(f"{passage['id']} is not a passage of {draft.attributed_to}")
 
     passage_texts = {passage["id"]: passage.get("passageText") or "" for passage in passages}
-    shown: dict[str, list[str]] = {"role": [], "time": [], "context": []}
+    shown: dict[str, list[str]] = {"role": [], "time": [], "context": [], "quantity": []}
     for quotation in draft.qualifier_quotations:
         if quotation.observation_id not in passage_texts:
             reasons.append(f"{quotation.supports} quotation cites {quotation.observation_id}, which is not a cited passage")
@@ -333,6 +351,11 @@ def _check_qualifier_evidence(
                 reasons.append("the time's source expression must appear in its time quotation")
         if draft.context_basis == "quotation" and not shown["context"]:
             reasons.append("a context resting on a quotation needs a context quotation")
+        if draft.quantity is not None:
+            if not shown["quantity"]:
+                reasons.append("a quantity drawn from a passage needs a quantity quotation")
+            elif not any(normalize(draft.quantity.source_expression) in text for text in shown["quantity"]):
+                reasons.append("the quantity's source expression must appear in its quantity quotation")
     return reasons
 
 
@@ -346,6 +369,8 @@ def _missing_qualifiers(draft: ProposalDraft, definition: PredicateDefinition) -
         missing.append(f"no context: {definition.id} expects one")
     if expected.role == "required" and not draft.role_id:
         missing.append(f"no role: {definition.id} expects one")
+    if expected.quantity == "required" and draft.quantity is None:
+        missing.append(f"no quantity: {definition.id} expects one")
     time_expected = expected.time == "required" or (expected.time == "withRole" and draft.role_id is not None)
     if time_expected and draft.time is None:
         missing.append(f"undated: {definition.id}{' with a role' if expected.time == 'withRole' else ''} expects a time")
@@ -366,7 +391,7 @@ def _deferrals(
     for observation in statements:
         qualifiers = observation.get("qualifierPropertyIds")
         recorded = observation.get("statementTimeEdtf") is not None
-        if draft.role_id is not None or (draft.time is not None and not recorded):
+        if draft.role_id is not None or draft.quantity is not None or (draft.time is not None and not recorded):
             deferrals.append(f"qualifier values of {observation['id']} are not compared with the claim's yet")
         elif recorded and draft.time is not None:
             continue  # the time was compared with the statement's own (a refusal above if it differed)

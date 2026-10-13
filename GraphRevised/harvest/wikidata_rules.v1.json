@@ -70,7 +70,7 @@
   "notes": {
     "P1343": "described by source stays a relationship (registry: describedBy), Wikidata's own bibliography of the entity: input for the Subject 'Read more' list (25 section 8)",
     "P1038": "relative stays an unmapped relationship until its kinship qualifier (P1039) is mapped; legacy code lost that qualifier",
-    "kinds": "Wikidata 'instance of' classes mapped to kinds, each class checked against its Wikidata label on 2026-10-13 from the classes of Mark Antony's one-hop targets; a target whose classes are not listed goes to the agent's judgement, never guessed. A historical country, an empire, or a form of government is left to the agent (a polity is neither simply a Place nor a Group). Extended 2026-10-13 from the classes of the expansion's agent queue, each checked against its label. Deliberately left to the agent: US city classes (a Wikidata statement points to Alexandria, Virginia), temporal entity, former administrative territorial entity; polities (historical country, ancient civilization) wait for the Polity kind (registry v9).",
+    "kinds": "Wikidata 'instance of' classes mapped to kinds, each class checked against its Wikidata label on 2026-10-13 from the classes of Mark Antony's one-hop targets; a target whose classes are not listed goes to the agent's judgement, never guessed. A historical country, an empire, or a form of government is left to the agent (a polity is neither simply a Place nor a Group). Extended 2026-10-13 from the classes of the expansion's agent queue, each checked against its label. Deliberately left to the agent: US city classes (a Wikidata statement points to Alexandria, Virginia), temporal entity, former administrative territorial entity; polities (historical country, ancient civilization) wait for the Polity kind (registry v9). Polity added 2026-10-13 (registry v9), each class checked against its label: historical country (Q3024240), empire (Q48349), Hellenistic kingdom (Q3932025); after Period in priority, so the Roman Republic, Kingdom, and Empire, which Wikidata classes both as historical period and historical country, stay Periods until the curator decides. Ancient civilization (Q28171280) and form of government (Q1307214, a metaclass) are left to the agent. Type has no Wikidata classes: types come from the structure enrichers and the reader.",
     "federations": "External identifiers kept as AuthorityRecords (curator, 2026-10-13: only federations we use); the rest stay readable in the preserved record. Checked labels: P1415 is the Oxford Dictionary of National Biography, not the Oxford Classical Dictionary as legacy code assumed.",
     "noiseClasses": "Wikimedia disambiguation page: a statement pointing at one is a Wikidata error, dropped by rule."
   },
@@ -79,6 +79,7 @@
     "Event",
     "Office",
     "Period",
+    "Polity",
     "Place",
     "Group",
     "Work",
@@ -102,6 +103,11 @@
     ],
     "Period": [
       "Q11514315"
+    ],
+    "Polity": [
+      "Q3024240",
+      "Q48349",
+      "Q3932025"
     ],
     "Place": [
       "Q515",

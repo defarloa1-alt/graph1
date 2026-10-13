@@ -18,7 +18,8 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
-  GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest  # expect 204 tests, OK
+  GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest \
+  GraphRevised.tests.test_registry_v9  # expect 221 tests, OK
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -49,8 +50,8 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 | Area | Artifact |
 |---|---|
 | Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher), loaded by name through [operations.py](operations.py); new today: `set_work_form`, `upsert_subject_authority`, `record_statement_time`; `link_assertion_years` takes `{year, as}` links |
-| Draft contract | [proposals/schema.py](proposals/schema.py), `proposal-draft-v5`: `TimeQualifier.mode` (during, within) |
-| Predicates | [proposals/predicates.v8.json](proposals/predicates.v8.json), 26 predicates: v7 `opposed` (symmetric, time required, no Wikidata mapping) and Work forms; v8 `born` and `died` (dated unary claims), P1344 to `participatedIn` |
+| Draft contract | [proposals/schema.py](proposals/schema.py), `proposal-draft-v6`: `TimeQualifier.mode` (during, within); v6 `QuantityQualifier` (minimum, maximum, typical, the source's words), part of a claim's identity by its figures |
+| Predicates | [proposals/predicates.v9.json](proposals/predicates.v9.json), 33 predicates: v7 `opposed` and Work forms; v8 `born` and `died`; **v9** kinds Type and Polity, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`, `memberOf`, `partOf` for Groups and Types (`kindPairs`), quantity on `partOf` and `electedBy`, context and role kinds per predicate; P361 chosen by kind, P463 to `memberOf` |
 | Validator and store | [proposals/validator.py](proposals/validator.py): derives `imaginative` from the attributed Work's form; refuses fiction as evidence for an asserted claim; compares a Wikidata statement's recorded time with the claim's (refuses a mismatch; Wikidata's "unknown value" leaves the claim undated). [proposals/store.py](proposals/store.py) |
 | Time | [proposals/temporal.py](proposals/temporal.py), the only year converter: `wikidata_time` (precision day to century; BCE decades and centuries counted down), `year_links` (during, earliest/latest for a window, start/end for spans over 200 years; outside the backbone named in a note) |
 | Harvest (L3, increments 1-3) | [harvest/wikidata_harvest.py](harvest/wikidata_harvest.py) `<QID>`: a report, no writes. [harvest/apply.py](harvest/apply.py) `<QID> [--expand] [--limit 50] [--apply]`, dry run by default: one-hop targets become proposed Entities by kind (the P31 table in [harvest/wikidata_rules.v1.json](harvest/wikidata_rules.v1.json), one level of superclasses, disambiguation pages dropped, unknown kinds wait for the agent); mapped and dated statements become proposed claims "according to Wikidata"; federation identifiers become crosswalk records; `--expand` harvests the surfaced people, events, and places within a budget of new entities |
@@ -90,11 +91,13 @@ Settled 2026-10-13 (late): the actor list (25 §13, with the Gracchi, Cleopatra,
 
 Also settled: powers are kind Type, not Office; Antony was a member of the Second Triumvirate, so `memberOf` joins registry v9 (Institutions response, sections Powers and Membership).
 
-1. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
+1. **Roman Republic: Period or Polity?** Wikidata classes the Republic, Kingdom, and Empire as both *historical period* and *historical country*. Today they stay Periods (Period before Polity in the harvest's priority); one entity per QID cannot be both kinds.
+2. **Repeated facts read as disputes.** Attestation calls a family disputed when its members' times do not overlap, so Antony's two consulships (44 and 34 BCE) show "disputed". Proposed: a registry flag for facts that happen once (`born`, `died`, `occurred`, `bornAt`, `diedAt`), where non-overlapping times are a dispute; for everything else they are separate occurrences.
+3. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
 
 ## 6. Next steps
 
-1. **Increment 4: registry v9 and the first structure enricher.** Kinds **Type** and **Polity**; predicates `partOf` for Groups and Types, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`, `memberOf`; a quantity qualifier (min, max, typical); context on `heldPower` may be Event, Place, or Group, and a role may be a power Type. The harvest maps P463 and P361 on a Person to `memberOf`, and a class target (Q83204 *triumvirate*) waits for the agent to find the instance (Q212079 *Second Triumvirate*). Then Polybius 6 as a structure inquiry (constitution and army). Design: the Response doc above and 25 §12.
+1. **Increment 4: the first structure enricher** (registry v9 is built, 2026-10-13). Polybius 6 as a structure inquiry is next. Registry v9 as built: kinds **Type** and **Polity**; predicates `partOf` for Groups and Types, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`, `memberOf`; a quantity qualifier (min, max, typical); context on `heldPower` may be Event, Place, or Group, and a role may be a power Type. The harvest maps P463 and P361 on a Person to `memberOf`, and a class target (Q83204 *triumvirate*) waits for the agent to find the instance (Q212079 *Second Triumvirate*). Then Polybius 6 as a structure inquiry (constitution and army). Design: the Response doc above and 25 §12.
 2. **The actor-centred build** (25 §13), chronological from **Hannibal**: per actor, harvest and expand, enrich structures, then the agent's source plan chooses and the reader reads the life. Build first: the agent's source choice (the source plan's last step, now the curator's) with its guardrails.
 3. Smaller items: the agent's choice of what to expand first (now mechanical: people, events, places, then label); window labels should read "sometime 68–50 BCE"; predicates for the unmapped Wikidata relationships (gens, unmarried partner, stepparent, relative with kinship, allegiance); names over time through an alias property showing the common name (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked).
 4. Held: option B (folding Proposals into claims). Later: the read API, the Figma explorer, the growth loop beyond one hop.
@@ -102,6 +105,7 @@ Also settled: powers are kind Type, not Office; Antony was a member of the Secon
 ## 7. Known gaps
 
 - Persons in the graph are proposed from Wikidata only; no reader has read their lives yet.
+- A Wikidata "part of" pointing at a class (Q83204 *triumvirate*) waits as "kind unknown"; the agent step that finds the instance (Q212079 *Second Triumvirate*) is not built. Antony `memberOf` the Second Triumvirate has no Wikidata evidence (Q212079 lists no members): it will come from the reader.
 - Wikidata statements without references are weak voices but count as one source in attestation.
 - Disputes across claim families (Dio and Hale naming different commanders) are not detected.
 - The scope rule for reader inquiries is fixed in code; person inquiries need it widened.

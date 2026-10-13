@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v8.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v9.json"
 
 Requirement = Literal["none", "optional", "required"]
 TimeRequirement = Literal["none", "optional", "required", "withRole"]
@@ -31,6 +31,7 @@ class Qualifiers:
     context: Requirement = "none"
     role: Requirement = "none"
     time: TimeRequirement = "none"
+    quantity: Requirement = "none"
 
 
 @dataclass(frozen=True)
@@ -45,6 +46,19 @@ class PredicateDefinition:
     qualifiers: Qualifiers = Qualifiers()
     modes: frozenset[str] = frozenset({"asserted"})
     category: Literal["factual", "interpretive"] = "factual"  # a claim may also be imaginative, from its Work
+    context_kinds: frozenset[str] = frozenset({"Event"})
+    role_kinds: frozenset[str] | None = None  # None: the registry's roleKind
+    kind_pairs: frozenset[tuple[str, str]] | None = None  # None: any subject kind with any object kind
+
+    def allows_kinds(self, subject_kind: str, object_kind: str | None) -> bool:
+        """Whether a subject of one kind may take an object of the other (kindPairs, when declared)."""
+        if subject_kind not in self.subject_kinds:
+            return False
+        if object_kind is None:
+            return self.unary
+        if object_kind not in self.object_kinds:
+            return False
+        return self.kind_pairs is None or (subject_kind, object_kind) in self.kind_pairs
 
     @property
     def unary(self) -> bool:
@@ -65,6 +79,9 @@ class PredicateRegistry:
 
     def get(self, predicate_id: str) -> PredicateDefinition | None:
         return self.predicates.get(predicate_id)
+
+    def role_kinds(self, definition: PredicateDefinition) -> frozenset[str]:
+        return definition.role_kinds if definition.role_kinds is not None else frozenset({self.role_kind})
 
     def claim_category(self, definition: PredicateDefinition, work_form: str | None) -> str:
         """A claim attributed to a creative Work is imaginative, whatever its predicate;
@@ -94,6 +111,9 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
             qualifiers=Qualifiers(**item.get("qualifiers", {})),
             modes=frozenset(item.get("modes", ["asserted"])),
             category=item.get("category", "factual"),
+            context_kinds=frozenset(item.get("contextKinds", ["Event"])),
+            role_kinds=frozenset(item["roleKinds"]) if "roleKinds" in item else None,
+            kind_pairs=frozenset(tuple(pair) for pair in item["kindPairs"]) if "kindPairs" in item else None,
         )
         for item in data["predicates"]
     }
@@ -139,6 +159,8 @@ def qualifier_signature(draft: ProposalDraft) -> dict[str, Any]:
             signature["time"] = {"relativeOffset": time.relative_offset}
         else:
             signature["time"] = {"sourceExpression": time.source_expression}
+    if draft.quantity is not None:
+        signature["quantity"] = draft.quantity.signature()
     return signature
 
 

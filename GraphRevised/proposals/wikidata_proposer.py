@@ -2,7 +2,9 @@
 
 It maps a statement through the predicate registry and resolves QIDs only to
 existing local Entities with an accepted Wikidata identity link. It never
-creates entities; unresolved QIDs are reported instead.
+creates entities; unresolved QIDs are reported instead. When one property maps
+to several predicates (P361 "part of": partOf, subperiodOf, memberOf), only
+those whose kinds fit the endpoints are drafted.
 """
 
 from __future__ import annotations
@@ -18,6 +20,8 @@ PROPOSER_ID = "wikidata-statement-proposer-v1"
 
 class IdentityReader(Protocol):
     def entity_ids_for_wikidata(self, qid: str) -> list[str]: ...
+
+    def entity(self, entity_id: str) -> dict[str, Any] | None: ...
 
 
 @dataclass(frozen=True)
@@ -38,6 +42,7 @@ def drafts_from_observation(
 
     drafts: list[ProposalDraft] = []
     unresolved: list[str] = []
+    misfits: list[str] = []
     mappings = registry.for_wikidata(pid)
     if not mappings:
         unresolved.append(f"{pid} has no registered predicate")
@@ -54,6 +59,10 @@ def drafts_from_observation(
                 unresolved.append(f"{qid} has {problem}")
             endpoints.append(local_ids[0] if len(local_ids) == 1 else None)
         if None in endpoints:
+            continue
+        kinds = [(reader.entity(endpoint) or {}).get("kind") for endpoint in endpoints]
+        if not definition.allows_kinds(kinds[0], kinds[1] if len(kinds) > 1 else None):
+            misfits.append(f"{definition.id} does not relate a {kinds[0]}" + (f" to a {kinds[1]}" if len(kinds) > 1 else ""))
             continue
         time = None
         if stated and definition.qualifiers.time != "none":
@@ -75,4 +84,6 @@ def drafts_from_observation(
                 proposed_by=PROPOSER_ID,
             )
         )
+    if not drafts and misfits and not unresolved:
+        unresolved.append(f"{pid} fits no registered predicate here: " + "; ".join(misfits))
     return ProposerResult(tuple(drafts), tuple(dict.fromkeys(unresolved)))

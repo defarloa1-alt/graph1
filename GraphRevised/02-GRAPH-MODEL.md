@@ -13,7 +13,7 @@ Required properties:
 
 ```yaml
 id: chr:entity:...
-kind: Person | Event | Place | Group | Object | Work | Period | Office | Concept | Other
+kind: Person | Event | Place | Group | Object | Work | Period | Office | Concept | Polity | Type | Other
 label: ...
 status: provisional | resolved | deprecated
 ```
@@ -28,7 +28,8 @@ AuthorityRecord and SourceObservation.
 
 `Office` holds positions and posts (targets of `heldPosition` and role
 qualifiers); `Concept` holds analytical ideas and frames (targets of
-`exemplifies`). The list of kinds is data, in the predicate registry.
+`exemplifies`); `Polity` holds states (the Ptolemaic Kingdom); `Type` holds
+unit types, organizational patterns, roles, and powers (*imperium*), registry v9. The list of kinds is data, in the predicate registry.
 
 ### Subject
 

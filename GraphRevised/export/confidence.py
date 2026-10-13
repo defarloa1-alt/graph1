@@ -42,15 +42,26 @@ def _times_conflict(members: list[dict[str, Any]]) -> bool:
                for i, (a_start, a_end) in enumerate(bounded) for b_start, b_end in bounded[i + 1:])
 
 
+def _quantities_conflict(members: list[dict[str, Any]]) -> bool:
+    """Two members giving different figures for times that are not apart: an establishment that
+    changed (30 maniples in a Polybian legion, cohorts later) is two dated facts, not a dispute."""
+    counted = [m for m in members if m.get("quantity") is not None]
+    for i, a in enumerate(counted):
+        for b in counted[i + 1:]:
+            if a["quantity"] != b["quantity"] and not _times_conflict([a, b]):
+                return True
+    return False
+
+
 def disputed(members: list[dict[str, Any]]) -> bool:
     """Members that state the same qualifier with different values. Differences in a
     time's wording alone are not a dispute: only normalized bounds are compared."""
     return (_differ(m.get("context") for m in members) or _differ(m.get("role") for m in members)
-            or _times_conflict(members))
+            or _times_conflict(members) or _quantities_conflict(members))
 
 
 def confidence(claim: dict[str, Any], family: list[dict[str, Any]]) -> str:
-    """`claim` and each family member: {status, category, authors, context, role, start, end}."""
+    """`claim` and each family member: {status, category, authors, context, role, quantity, start, end}."""
     category = claim.get("category") or "factual"
     if category == "imaginative":
         return "imagined"

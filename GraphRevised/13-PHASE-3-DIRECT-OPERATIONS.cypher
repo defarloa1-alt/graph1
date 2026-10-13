@@ -466,11 +466,12 @@ RETURN assertion;
 // ---------------------------------------------------------------------------
 
 // Create or reuse a qualified Assertion: one with a mode other than asserted,
-// a context, a role, a time, or no object (a unary predicate). Like
-// upsert_assertion, it is created `proposed`, and its predicate, endpoints,
-// mode, qualifier links, and normalized time are fixed at creation: a retry
-// that changes any of them is refused. Every named node must exist with the
-// right kind: context an Event, attribution a Work.
+// a context, a role, a time, a quantity, or no object (a unary predicate).
+// Like upsert_assertion, it is created `proposed`, and its predicate,
+// endpoints, mode, qualifier links, normalized time, and quantity are fixed at
+// creation: a retry that changes any of them is refused. Every named node must
+// exist; attribution must be a Work. The kinds a predicate allows for its
+// context and role (registry contextKinds, roleKinds) are the validator's.
 OPTIONAL MATCH (existing:Assertion {id: $id})
 OPTIONAL MATCH (existing)-[:ASSERTION_SUBJECT]->(existingSubject)
 OPTIONAL MATCH (existing)-[:ASSERTION_OBJECT]->(existingObject)
@@ -495,10 +496,13 @@ WHERE existing IS NULL
        AND coalesce(existing.timeCalendar, "") = coalesce($timeCalendar, "")
        AND coalesce(existing.timeSourceExpression, "") = coalesce($timeSourceExpression, "")
        AND coalesce(existing.timeRelativeOffset, "") = coalesce($timeRelativeOffset, "")
-       AND coalesce(existing.timeMode, "") = coalesce($timeMode, ""))
+       AND coalesce(existing.timeMode, "") = coalesce($timeMode, "")
+       AND coalesce(existing.quantityMinimum, -1) = coalesce($quantityMinimum, -1)
+       AND coalesce(existing.quantityMaximum, -1) = coalesce($quantityMaximum, -1)
+       AND coalesce(existing.quantityTypical, -1) = coalesce($quantityTypical, -1))
 OPTIONAL MATCH (subjectNode:Entity {id: $subjectId})
 OPTIONAL MATCH (objectNode:Entity {id: $objectId})
-OPTIONAL MATCH (contextNode:Entity {id: $contextId, kind: "Event"})
+OPTIONAL MATCH (contextNode:Entity {id: $contextId})
 OPTIONAL MATCH (roleNode:Entity {id: $roleId})
 OPTIONAL MATCH (workNode:Entity {id: $attributedToId, kind: "Work"})
 WITH subjectNode, objectNode, contextNode, roleNode, workNode
@@ -530,7 +534,11 @@ ON CREATE SET
   assertion.startEarliestJdn = $startEarliestJdn,
   assertion.startLatestJdn = $startLatestJdn,
   assertion.endEarliestJdn = $endEarliestJdn,
-  assertion.endLatestJdn = $endLatestJdn
+  assertion.endLatestJdn = $endLatestJdn,
+  assertion.quantityMinimum = $quantityMinimum,
+  assertion.quantityMaximum = $quantityMaximum,
+  assertion.quantityTypical = $quantityTypical,
+  assertion.quantitySourceExpression = $quantitySourceExpression
 ON MATCH SET
   assertion.label = coalesce($label, assertion.label),
   assertion.shortLabel = coalesce($shortLabel, assertion.shortLabel)

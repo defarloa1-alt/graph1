@@ -40,6 +40,7 @@ from neo4j import GraphDatabase
 from GraphRevised.export.confidence import LIVE, confidence, family_key
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.temporal import display_edtf
+from GraphRevised.proposals.validator import quantity_key
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 
@@ -64,6 +65,7 @@ MATCH (a:Assertion) WHERE a.status IN $statuses
 MATCH (a)-[:ASSERTION_SUBJECT]->(s:Entity)
 OPTIONAL MATCH (a)-[:ASSERTION_OBJECT]->(o:Entity)
 RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .timeEdtf, .timeSourceExpression,
+            .quantitySourceExpression, .quantityMinimum, .quantityMaximum, .quantityTypical,
             start: a.startEarliestJdn, end: a.endLatestJdn}} AS claim,
        s {ENTITY} AS subject, o {ENTITY} AS object,
        COLLECT {{ MATCH (a)-[:ASSERTION_CONTEXT]->(c:Entity) RETURN c {{.id, .label}} }}[0] AS context,
@@ -101,6 +103,8 @@ STYLE = [
     {"selector": "node[kind = 'Work']", "style": {"background-color": "#b8a13a", "shape": "rectangle"}},
     {"selector": "node[kind = 'Period']", "style": {"background-color": "#3a9fb8", "shape": "barrel", "width": 34}},
     {"selector": "node[kind = 'Concept']", "style": {"background-color": "#c2607f", "shape": "hexagon"}},
+    {"selector": "node[kind = 'Polity']", "style": {"background-color": "#7a5c3a", "shape": "octagon", "width": 30, "height": 30}},
+    {"selector": "node[kind = 'Type']", "style": {"background-color": "#5c6b7a", "shape": "tag"}},
     {"selector": "node[status = 'proposed']", "style": {"background-opacity": 0.35, "border-width": 2,
                                                          "border-style": "dashed", "border-color": "#777"}},
     {"selector": "node[status = 'deprecated']", "style": {"opacity": 0.35}},
@@ -137,6 +141,7 @@ def _voice(row: dict[str, Any]) -> dict[str, Any]:
         "claimId": claim["id"], "status": claim["status"], "mode": claim.get("mode") or "asserted",
         "accordingTo": (row["work"] or {}).get("label"), "time": _time(claim),
         "role": (row["role"] or {}).get("label"), "context": (row["context"] or {}).get("label"),
+        "quantity": claim.get("quantitySourceExpression"),
         "quotes": quotes, "review": [p for p in row["proposals"] if p.get("status")],
     }
 
@@ -144,7 +149,8 @@ def _voice(row: dict[str, Any]) -> dict[str, Any]:
 def voice_line(voice: dict[str, Any]) -> str:
     who = f"according to {voice['accordingTo']}" if voice["accordingTo"] else "our own statement"
     terms = "; ".join(part for part in (voice["time"], voice["role"] and f"as {voice['role']}",
-                                        voice["context"] and f"during {voice['context']}") if part)
+                                        voice["context"] and f"during {voice['context']}",
+                                        voice.get("quantity") and f"quantity: {voice['quantity']}") if part)
     quotes = " ".join(f"{q['locator']}: “{q['quotation']}”" + (" (pending)" if q["pending"] else "")
                       for q in voice["quotes"] if q["quotation"]) or "no evidence of its own"
     return f"{who} [{voice['status']}]" + (f" ({terms})" if terms else "") + f" — {quotes}"
@@ -184,6 +190,8 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
             "status": claim["status"], "category": claim.get("category") or "factual",
             "authors": {author_of.get(key, key) for key in keys},
             "context": (row["context"] or {}).get("id"), "role": (row["role"] or {}).get("id"),
+            "quantity": quantity_key({key: claim.get("quantity" + key.capitalize())
+                                      for key in ("minimum", "maximum", "typical")}),
             "start": claim.get("start"), "end": claim.get("end"),
         }
         families.setdefault(family_key(claim["id"]), []).append(member)
