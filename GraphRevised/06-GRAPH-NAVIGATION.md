@@ -1,5 +1,10 @@
 # Graph Navigation and Visual Read Model
 
+> **Note (2026-10-13).** Where this document hides proposals by default (a proposals
+> layer that is off, `statusFilter: [accepted]`), it is overtaken: everything is visible at once, labelled with its status and source; the curator promotes rather than gates ([25](25-LIVES-AND-PLAYGROUND.md) decision 2). Only rejected, superseded,
+> deprecated, and dismissed content waits for an audit view. Provenance stays in the
+> sidebar, never on the canvas (25 §5); the data shapes are in [26](26-UI-DATA-CONTRACT.md).
+
 ## 1. Purpose
 
 Graph navigation is a central user experience in Chrystallum. The user should

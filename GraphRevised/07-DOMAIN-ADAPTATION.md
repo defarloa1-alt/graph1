@@ -1,5 +1,9 @@
 # Domain Adaptation and Broad Historical Inquiries
 
+> **Note (2026-10-13).** The SCA and SFA routing described here gives way to enrichers
+> by kind, routed by an entity's kind and external identifiers, with facets as lenses
+> ([25](25-LIVES-AND-PLAYGROUND.md) §11-12). The domain-pack and native-terms principles stand.
+
 ## 1. Why this matters
 
 A request such as:

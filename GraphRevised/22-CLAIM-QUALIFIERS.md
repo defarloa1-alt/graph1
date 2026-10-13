@@ -38,7 +38,7 @@ Agrippa a role or a date is for the reader to find:
   ─ ASSERTION_SUBJECT → Agrippa
   ─ ASSERTION_OBJECT  → left wing of Octavian's fleet
   ─ ASSERTION_CONTEXT → Battle of Actium                (Event)
-  ─ ASSERTION_ROLE    → legatus                          (Entity, kind Other)
+  ─ ASSERTION_ROLE    → legatus                          (Entity, kind Office)
   ─ ATTRIBUTED_TO     → Cassius Dio, Roman History       (Entity, kind Work)
   ─ SUPPORTED_BY      → passage observation(s), with quotations
   ─ IN_YEAR           → Year -31                         (derived, for navigation)
@@ -104,8 +104,8 @@ durable objects: a legion, a person's office, an alliance.
 
 **Role** (`ASSERTION_ROLE → Entity`): the office or post the person acted in,
 per [docs/Response - Roman Republican Army Structure.md](docs/Response%20-%20Roman%20Republican%20Army%20Structure.md).
-Role entities use `kind: Other`, like the offices `heldPosition` already
-points to, so command claims and career claims meet at one node. The label is
+Role entities use kind Office (registry v5; `kind: Other` before it), like the
+offices `heldPosition` points to, so command claims and career claims meet at one node. The label is
 the source's term; glosses are aliases. Legal basis (*imperium*) is not a
 role and is not modelled here.
 
@@ -201,7 +201,7 @@ role. Agrippa's three dated P26 spouse statements become storable.
 Deterministic checks, added to the existing ones:
 
 1. Each qualifier is allowed for the predicate, and required ones are present.
-2. Context is an existing Event; role an existing Entity of kind Other;
+2. Context is an existing Event; role an existing Entity of kind Office;
    attributedTo an existing Work.
 3. **Attributed:** every cited passage observation is `IN_WORK` the
    attributed Work.

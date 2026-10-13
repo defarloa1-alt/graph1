@@ -287,9 +287,21 @@ Gaius Gracchus, Marius, Sulla, Crassus, Pompey, Cicero, Caesar, Cato the
 Younger, Antony, Cleopatra, Octavian, and Agrippa, in that order (by when they
 act). The list is a start, not a limit: agents that follow the one-hop rule
 (section 11) will surface more people and relations, and those join as they
-surface. Antony is harvested and expanded twice; which actor comes next is
-still open (Caesar as the test life, as section 3 planned, or Hannibal to
-keep the chronology).
+surface. Antony is harvested and expanded twice. **The order is
+chronological** (curator, 2026-10-13): Hannibal comes next, not Caesar as
+section 3 first planned.
+
+**Decided 2026-10-13: agents choose the sources.** For each actor, the agent
+identifies the best available sources rather than being handed them; the
+works named in this document and in L4 are examples, not instructions. The
+source plan ([discovery/source_plan.py](discovery/source_plan.py)) already
+gathers candidates; its final step, now a curator choice, becomes the
+agent's. Three guardrails stay deterministic: every candidate is confirmed at
+a catalogue (Scaife, Gutenberg, LacusCurtius) before anything is fetched,
+never from a model's memory; rights are checked by rule, and works in
+copyright stay curator capture only (23 §7); the agent chooses within a cost
+budget, and its plan, with the reason for each choice, is kept and visible.
+The curator may still add or veto a source.
 
 **Decided: data does not live in git.** Git is for scripts. Harvest payloads
 (preserved Wikidata records) stay on disk, hashed in their metadata and on

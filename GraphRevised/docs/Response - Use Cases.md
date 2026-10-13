@@ -3,6 +3,11 @@
 **Responds to:** [use cases.md](use%20cases.md)
 **Date:** 2026-10-11
 
+> **Note (2026-10-13).** Where this response makes review the condition for an edge
+> being seen or used (including Phase C's automatic acceptance), it is overtaken:
+> everything is visible at once, labelled with its status and source; the curator promotes rather than gates ([25](../25-LIVES-AND-PLAYGROUND.md) decision 2). Acceptance
+> still matters for attestation and narrative, not for visibility.
+
 ## The governing purpose
 
 Chrystallum is not an encyclopedia. Its purpose is to let a person explore a

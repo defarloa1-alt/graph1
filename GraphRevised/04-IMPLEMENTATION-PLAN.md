@@ -1,5 +1,12 @@
 # Clean-Start Implementation Plan
 
+> **Note (2026-10-13).** Parts of this plan are overtaken; the current state is in
+> [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md). The LLM proposer is built (the passage
+> reader, [18](18-PHASE-5-PROPOSALS.md) §10 onward). Proposed content is not hidden until
+> review: everything is visible at once, labelled with its status and source; the curator promotes rather than gates ([25](25-LIVES-AND-PLAYGROUND.md) decision 2). The CCA, SCA, and SFA chain
+> and round-robin facet agents give way to enrichers by kind, with facets as lenses
+> (25 §11-12). Role entities are kind Office, not Other.
+
 ## 1. Objective
 
 Prove the revised architecture with the smallest useful vertical slice.
@@ -720,7 +727,7 @@ flags; it covers 509–31 BCE. Agreed with the curator on 2026-10-12:
 
 1. **Authority for the role vocabulary.** DPRR's controlled list of
    Republican offices (consul, *legatus*, *praefectus classis*, triumvir)
-   supplies the identity links for role Entities (`kind: Other`), which role
+   supplies the identity links for role Entities (kind Office since registry v5), which role
    qualifiers need ([22](22-CLAIM-QUALIFIERS.md) §5). The curator approves
    which offices become Entities. The legacy mapping
    `scripts/federation/dprr_office_labels.json` (204 offices) may seed it

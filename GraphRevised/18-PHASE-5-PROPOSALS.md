@@ -17,7 +17,9 @@ SourceObservation
 ```
 
 Steps 1–3 of the handoff are complete and tested. The LLM agent (step 4) is
-not built yet; see section 8.
+not built yet; see section 8. (Since built: the passage reader, sections 10 onward.
+Since 2026-10-13 a stored proposal is visible at once, labelled;
+[25](25-LIVES-AND-PLAYGROUND.md) decision 2.)
 
 ## 2. Artifacts
 

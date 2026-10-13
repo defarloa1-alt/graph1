@@ -73,7 +73,7 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 7. Tests never depend on live graph contents.
 8. **Shell:** heredocs containing `\n` escapes, triple quotes, or nested quotes have failed repeatedly here. Write edit scripts to the scratchpad with the editor and run them, or edit files directly.
 9. Delegated review follows [21](21-REVIEW-DELEGATION.md); on hold until the curator says go.
-10. Readers find passages themselves; inquiries name whole works.
+10. Readers find passages themselves; inquiries name whole works. Agents choose those works (25 §13): confirmed at a catalogue, rights checked by rule, within a budget, the plan kept and visible.
 11. A missing date never excludes a claim (UNDATED). Unary claims such as `occurred` and `born` need their time.
 12. Interpretations are content: attributed `exemplifies` and `ledTo`, passages of note.
 13. Periods are discovered, never seeded by hand.
@@ -86,18 +86,16 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 
 ## 5. Waiting for the curator
 
-Settled 2026-10-13 (late): the actor list (25 §13, with the Gracchi, Cleopatra, and Agrippa added); the second Antony expansion ran (25 harvested, 50 new entities, 19 waiting for the budget); Work forms set on the five Works (Plutarch and Weigall biography; Dio, Hale, Strauss history); local commits pushed.
+Settled 2026-10-13 (late): the actor list (25 §13, with the Gracchi, Cleopatra, and Agrippa added); the second Antony expansion ran (25 harvested, 50 new entities, 19 waiting for the budget); Work forms set on the five Works (Plutarch and Weigall biography; Dio, Hale, Strauss history); local commits pushed. Then: the order is chronological, so Hannibal is next; agents choose the sources (25 §13); notes added to 04, 06, 07, 09, 18, and the Use Cases response where 25 overtakes them, and role entities corrected to kind Office in 02, 04, and 22.
 
-1. **Which actor comes next**: Caesar (the test life) or Hannibal (strict chronology).
-2. Powers such as *imperium*: kind Type (Institutions response) replacing kind Office (24 §8 decision 4)?
-3. The harvest maps Wikidata P361 "part of" on a Person (Antony → triumvirate) to `partOf, subperiodOf`; proposed: leave it unmapped on a Person until a membership predicate exists.
-4. Notes in 04, 06, and the Use Cases response pointing to 25 where they predate "everything visible" and enrichers by kind.
-5. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
+1. Powers such as *imperium*: kind Type (Institutions response) replacing kind Office (24 §8 decision 4)?
+2. The harvest maps Wikidata P361 "part of" on a Person (Antony → triumvirate) to `partOf, subperiodOf`; proposed: leave it unmapped on a Person until a membership predicate exists.
+3. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
 
 ## 6. Next steps
 
 1. **Increment 4: registry v9 and the first structure enricher.** Kinds **Type** and **Polity**; predicates `partOf` for Groups and Types, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`; a quantity qualifier (min, max, typical). Then Polybius 6 as a structure inquiry (constitution and army). Design: the Response doc above and 25 §12.
-2. **The actor-centred build** (25 §13): per actor, harvest and expand, enrich structures, read the life (Plutarch's *Caesar* among the first).
+2. **The actor-centred build** (25 §13), chronological from **Hannibal**: per actor, harvest and expand, enrich structures, then the agent's source plan chooses and the reader reads the life. Build first: the agent's source choice (the source plan's last step, now the curator's) with its guardrails.
 3. Smaller items: the agent's choice of what to expand first (now mechanical: people, events, places, then label); window labels should read "sometime 68–50 BCE"; predicates for the unmapped Wikidata relationships (gens, unmarried partner, stepparent, relative with kinship, allegiance, member of); names over time through an alias property showing the common name (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked).
 4. Held: option B (folding Proposals into claims). Later: the read API, the Figma explorer, the growth loop beyond one hop.
 

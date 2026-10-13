@@ -263,7 +263,7 @@ Relationship direction must be consistent in the stored graph.
 (:Proposal)-[:PROPOSES_EVIDENCE]->(:SourceObservation)
 (:Assertion)-[:SUPERSEDED_BY]->(:Assertion)
 (:Assertion)-[:ASSERTION_CONTEXT]->(:Entity {kind: Event})
-(:Assertion)-[:ASSERTION_ROLE]->(:Entity {kind: Other})
+(:Assertion)-[:ASSERTION_ROLE]->(:Entity {kind: Office})
 (:Assertion)-[:ATTRIBUTED_TO]->(:Entity {kind: Work})
 (:Assertion)-[:PROMOTED_FROM]->(:Assertion)
 (:Assertion)-[:IN_YEAR]->(:Year)

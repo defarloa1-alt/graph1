@@ -1,5 +1,9 @@
 # Machine-Readable Index Harvesting
 
+> **Note (2026-10-13).** Still deferred (E5). Where this document routes passages to
+> subject facet agents, read enrichers by kind and facets as lenses
+> ([25](25-LIVES-AND-PLAYGROUND.md) §11-12).
+
 ## 1. Purpose
 
 A machine-readable scholarly index can be a high-value source-ingestion
