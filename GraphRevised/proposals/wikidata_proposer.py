@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from typing import Any, Protocol
 
 from .registry import PredicateRegistry
-from .schema import ProposalDraft
+from .schema import ProposalDraft, TimeQualifier
 
 PROPOSER_ID = "wikidata-statement-proposer-v1"
 
@@ -33,7 +33,8 @@ def drafts_from_observation(
 ) -> ProposerResult:
     pid = observation["predicateExternalId"]
     source_qid = observation["sourceEntityId"]
-    value_qid = observation["objectExternalId"]
+    value_qid = observation.get("objectExternalId")  # absent for a time statement (Neo4j stores no nulls)
+    stated = observation.get("statementTimeEdtf")
 
     drafts: list[ProposalDraft] = []
     unresolved: list[str] = []
@@ -42,9 +43,11 @@ def drafts_from_observation(
         unresolved.append(f"{pid} has no registered predicate")
 
     for definition, mapping in mappings:
+        if definition.unary != (value_qid is None):
+            continue  # a dated unary claim comes from a time statement, a link from an item statement
         holder_qid, target_qid = (source_qid, value_qid) if mapping.direction == "forward" else (value_qid, source_qid)
         endpoints = []
-        for qid in (holder_qid, target_qid):
+        for qid in (holder_qid, target_qid) if target_qid is not None else (holder_qid,):
             local_ids = reader.entity_ids_for_wikidata(qid)
             if len(local_ids) != 1:
                 problem = "no local Entity" if not local_ids else f"{len(local_ids)} local Entities"
@@ -52,15 +55,22 @@ def drafts_from_observation(
             endpoints.append(local_ids[0] if len(local_ids) == 1 else None)
         if None in endpoints:
             continue
+        time = None
+        if stated and definition.qualifiers.time != "none":
+            time = TimeQualifier(
+                source_expression=f"{observation.get('statementTimeDisplay') or stated} (Wikidata)",
+                edtf=stated, calendar=observation["statementTimeCalendar"], normalization_basis="source",
+                mode=observation.get("statementTimeMode") or "during")
         drafts.append(
             ProposalDraft(
                 predicate=definition.id,
                 subject_id=endpoints[0],
-                object_id=endpoints[1],
+                object_id=endpoints[1] if len(endpoints) > 1 else None,
+                time=time,
                 observation_ids=(observation["id"],),
                 rationale=(
                     f"Wikidata statement {observation['externalStatementId']} at revision "
-                    f"{observation['sourceRevision']}: {source_qid} {pid} {value_qid}."
+                    f"{observation['sourceRevision']}: {source_qid} {pid} {value_qid or stated}."
                 ),
                 proposed_by=PROPOSER_ID,
             )

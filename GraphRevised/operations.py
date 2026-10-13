@@ -44,6 +44,7 @@ OPERATION_NAMES = (
     "upsert_record_observation",
     "set_work_form",
     "upsert_subject_authority",
+    "record_statement_time",
 )
 
 

@@ -7,6 +7,7 @@ from pathlib import Path
 from GraphRevised.harvest.wikidata_harvest import classify, load_rules, tether
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.temporal import TimeValueError, wikidata_time
+from GraphRevised.proposals.validator import validate
 
 JULIAN = "http://www.wikidata.org/entity/Q1985786"
 PAYLOAD = Path(__file__).resolve().parents[1] / "phase-5-source" / "wikidata-Q51673-r2553883228.json"
@@ -85,3 +86,78 @@ class ClassifyTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class StatementClaimTests(unittest.TestCase):
+    """Wikidata statements with dates and qualifiers become valid claims, compared rather than deferred."""
+
+    @classmethod
+    def setUpClass(cls):
+        from GraphRevised.adapters.wikidata_statements import statement_observation
+        from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
+        from GraphRevised.tests.test_proposals_offline import FakeReader, entity
+
+        cls.registry = load_registry()
+        cls.drafts_from_observation = staticmethod(drafts_from_observation)
+        claims = json.loads(PAYLOAD.read_bytes())["entities"]["Q51673"]["claims"]
+        cls.antony = entity("chr:entity:test-antony", "Person", "Q51673")
+        cls.octavia = entity("chr:entity:test-octavia", "Person", "Q229483")
+        cls.fadia = entity("chr:entity:test-fadia", "Person", "Q11923347")
+
+        def observe(pid, pick):
+            statement = next(c for c in claims[pid] if pick(c))
+            return statement_observation(PAYLOAD, statement["id"], label="test", short_label="test",
+                                         retrieved_at="2026-10-13T00:00:00Z")
+
+        cls.born = observe("P569", lambda c: c.get("rank") == "preferred")
+        cls.married = observe("P26", lambda c: c["mainsnak"]["datavalue"]["value"]["id"] == "Q229483")
+        cls.window = observe("P26", lambda c: c["mainsnak"]["datavalue"]["value"]["id"] == "Q11923347")
+        cls.reader = FakeReader([cls.antony, cls.octavia, cls.fadia], [cls.born, cls.married, cls.window])
+
+    def proposed(self, observation):
+        result = self.drafts_from_observation(observation, self.reader, self.registry)
+        self.assertEqual(len(result.drafts), 1, result.unresolved)
+        return result.drafts[0]
+
+    def test_a_birth_date_is_a_dated_claim(self):
+        self.assertIsNone(self.born["objectExternalId"])
+        draft = self.proposed(self.born)
+        self.assertEqual((draft.predicate, draft.object_id, draft.time.edtf), ("born", None, "-0082"))
+        result = validate(draft, self.reader, self.registry)
+        self.assertEqual(result.outcome.value, "valid", result.reasons)
+
+    def test_a_marriage_carries_its_span_and_qualifiers(self):
+        self.assertEqual(json.loads(self.married["statementQualifiers"])["P1534"], ["Q93190"])  # ended by divorce
+        draft = self.proposed(self.married)
+        self.assertEqual((draft.predicate, draft.time.edtf, draft.time.mode), ("spouseOf", "-0039/-0031", "during"))
+        self.assertEqual(validate(draft, self.reader, self.registry).outcome.value, "valid")
+
+    def test_an_uncertain_window_is_a_within_claim(self):
+        draft = self.proposed(self.window)
+        self.assertEqual((draft.time.edtf, draft.time.mode), ("-0067/-0049", "within"))
+        self.assertEqual(validate(draft, self.reader, self.registry).outcome.value, "valid")
+
+    def test_a_time_the_statement_does_not_state_is_refused(self):
+        draft = self.proposed(self.married)
+        wrong = draft.model_copy(update={"time": draft.time.model_copy(update={"edtf": "-0040/-0031"})})
+        result = validate(wrong, self.reader, self.registry)
+        self.assertEqual(result.outcome.value, "invalid")
+        self.assertTrue(any("not the time" in reason for reason in result.reasons))
+
+
+class KindTests(unittest.TestCase):
+    def test_kinds_come_from_instance_of_and_unknown_classes_wait(self):
+        from GraphRevised.harvest.apply import kind_of
+
+        def entity(*classes, deprecated=()):
+            claims = [{"mainsnak": {"datavalue": {"value": {"id": c}}}, "rank": "normal"} for c in classes]
+            claims += [{"mainsnak": {"datavalue": {"value": {"id": c}}}, "rank": "deprecated"} for c in deprecated]
+            return {"claims": {"P31": claims}}
+
+        rules = load_rules()
+        self.assertEqual(kind_of(entity("Q5"), rules), "Person")
+        self.assertEqual(kind_of(entity("Q1200957", "Q515"), rules), "Place")  # tourist destination and city
+        self.assertEqual(kind_of(entity("Q4164871", "Q5"), rules), "Person")   # priority, not order
+        self.assertIsNone(kind_of(entity("Q1307214"), rules))                  # form of government: the agent's call
+        self.assertIsNone(kind_of(entity(deprecated=("Q5",)), rules))
+        self.assertTrue(set(rules["kinds"]) <= set(rules["kindPriority"]))

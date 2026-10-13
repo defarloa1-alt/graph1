@@ -16,7 +16,10 @@
     "P101",
     "P172",
     "P1050",
-    "P97"
+    "P97",
+    "P2358",
+    "P2359",
+    "P3716"
   ],
   "datedEvents": {
     "P569": "born",
@@ -37,7 +40,10 @@
     "P5008",
     "P6104",
     "P6216",
-    "P8989"
+    "P8989",
+    "P6379",
+    "P7763",
+    "P6886"
   ],
   "qualifiers": {
     "time": {
@@ -63,6 +69,79 @@
   },
   "notes": {
     "P1343": "described by source stays a relationship (registry: describedBy), Wikidata's own bibliography of the entity: input for the Subject 'Read more' list (25 section 8)",
-    "P1038": "relative stays an unmapped relationship until its kinship qualifier (P1039) is mapped; legacy code lost that qualifier"
+    "P1038": "relative stays an unmapped relationship until its kinship qualifier (P1039) is mapped; legacy code lost that qualifier",
+    "kinds": "Wikidata 'instance of' classes mapped to kinds, each class checked against its Wikidata label on 2026-10-13 from the classes of Mark Antony's one-hop targets; a target whose classes are not listed goes to the agent's judgement, never guessed. A historical country, an empire, or a form of government is left to the agent (a polity is neither simply a Place nor a Group).",
+    "federations": "External identifiers kept as AuthorityRecords (curator, 2026-10-13: only federations we use); the rest stay readable in the preserved record. Checked labels: P1415 is the Oxford Dictionary of National Biography, not the Oxford Classical Dictionary as legacy code assumed."
+  },
+  "kindPriority": [
+    "Person",
+    "Event",
+    "Office",
+    "Period",
+    "Place",
+    "Group",
+    "Work"
+  ],
+  "kinds": {
+    "Person": [
+      "Q5"
+    ],
+    "Event": [
+      "Q178561",
+      "Q1261499",
+      "Q198",
+      "Q626066"
+    ],
+    "Office": [
+      "Q4164871",
+      "Q17279032",
+      "Q355567"
+    ],
+    "Period": [
+      "Q11514315"
+    ],
+    "Place": [
+      "Q515",
+      "Q1549591",
+      "Q902814",
+      "Q200250",
+      "Q2264924",
+      "Q15284",
+      "Q148837",
+      "Q747074",
+      "Q108178728",
+      "Q51929311",
+      "Q3685476",
+      "Q1187811"
+    ],
+    "Group": [
+      "Q899409",
+      "Q3046146"
+    ],
+    "Work": [
+      "Q3331189",
+      "Q975413",
+      "Q47461344",
+      "Q13136",
+      "Q7725634",
+      "Q10432278",
+      "Q1238720",
+      "Q1787111",
+      "Q1469824",
+      "Q17152639"
+    ]
+  },
+  "federations": {
+    "P6863": "DPRR",
+    "P1584": "Pleiades",
+    "P2950": "Nomisma",
+    "P11252": "Trismegistos",
+    "P244": "Library of Congress",
+    "P214": "VIAF",
+    "P227": "GND",
+    "P2163": "FAST",
+    "P9350": "PeriodO",
+    "P1667": "TGN",
+    "P1566": "GeoNames"
   }
 }

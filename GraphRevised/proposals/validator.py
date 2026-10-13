@@ -164,6 +164,12 @@ def validate(
                     f"observation {observation['id']} does not state {definition.id} "
                     f"between {subject_id} and {object_id}"
                 )
+    for observation in statements:
+        stated = observation.get("statementTimeEdtf")
+        if draft.time is not None and stated is not None and (
+                draft.time.edtf, draft.time.calendar, draft.time.mode) != (
+                stated, observation.get("statementTimeCalendar"), observation.get("statementTimeMode") or "during"):
+            reasons.append(f"the claim's time is not the time {observation['id']} states ({stated})")
 
     if reasons:
         return ValidationResult(Outcome.INVALID, tuple(reasons), draft)
@@ -359,8 +365,15 @@ def _deferrals(
 
     for observation in statements:
         qualifiers = observation.get("qualifierPropertyIds")
-        if draft.time is not None or draft.role_id is not None:
+        recorded = observation.get("statementTimeEdtf") is not None
+        if draft.role_id is not None or (draft.time is not None and not recorded):
             deferrals.append(f"qualifier values of {observation['id']} are not compared with the claim's yet")
+        elif recorded and draft.time is not None:
+            continue  # the time was compared with the statement's own (a refusal above if it differed)
+        elif recorded and required.time != "none":
+            deferrals.append(f"{observation['id']} states a time the claim leaves out")
+        elif observation.get("statementQualifiers") is not None:
+            continue  # its qualifiers were read and state no usable time (Wikidata's "unknown value"): undated
         elif qualifiers is None and required.time != "none":
             # Observations stored before qualifiers were recorded; role
             # qualifiers are checked only where recorded.
@@ -401,10 +414,14 @@ def _evidences(
     obj: dict[str, Any] | None,
 ) -> bool:
     """True when a Wikidata statement observation states this relationship."""
-    if obj is None:
-        return False
     source = observation.get("sourceEntityId")
     value = observation.get("objectExternalId")
+    if definition.unary:  # a dated unary claim: the statement's own time value about the subject
+        return value is None and observation.get("statementTimeEdtf") is not None and any(
+            m.pid == observation.get("predicateExternalId") and source in subject["wikidataIds"]
+            for m in definition.wikidata)
+    if obj is None:
+        return False
     for mapping in definition.wikidata:
         if mapping.pid != observation.get("predicateExternalId"):
             continue

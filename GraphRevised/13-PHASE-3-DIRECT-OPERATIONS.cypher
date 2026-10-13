@@ -775,3 +775,19 @@ ON CREATE SET
   relationship.relation = $relation,
   relationship.status = $linkStatus
 RETURN subject, relationship, record;
+
+// Record what a Wikidata statement observation states about time, normalized
+// by the adapter (start/end, point, or earliest/latest qualifiers, or the
+// statement's own time value), and its other qualifiers as JSON. Source facts:
+// fixed once set; a retry with the same values succeeds, different ones are refused.
+MATCH (observation:SourceObservation {id: $id, sourceSystem: "Wikidata"})
+WHERE (observation.statementQualifiers IS NULL
+       OR (coalesce(observation.statementTimeEdtf, "") = coalesce($statementTimeEdtf, "")
+           AND coalesce(observation.statementTimeMode, "") = coalesce($statementTimeMode, "")
+           AND observation.statementQualifiers = $statementQualifiers))
+SET observation.statementTimeEdtf = $statementTimeEdtf,
+    observation.statementTimeCalendar = $statementTimeCalendar,
+    observation.statementTimeMode = $statementTimeMode,
+    observation.statementTimeDisplay = $statementTimeDisplay,
+    observation.statementQualifiers = $statementQualifiers
+RETURN observation;

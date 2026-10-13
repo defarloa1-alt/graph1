@@ -35,8 +35,9 @@ from typing import Any
 import requests
 
 from GraphRevised.adapters.wikidata_identity import USER_AGENT
+from GraphRevised.adapters.wikidata_statements import assemble_time
 from GraphRevised.proposals.registry import PredicateRegistry, load_registry
-from GraphRevised.proposals.temporal import TimeValueError, display_edtf, parse_edtf, wikidata_time, year_links
+from GraphRevised.proposals.temporal import TimeValueError, display_edtf, parse_edtf, year_links
 from GraphRevised.slices.add_entity import preserved_identity_payload
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
@@ -95,6 +96,7 @@ class Statement:
     carried: dict[str, list[Any]] = field(default_factory=dict)
     unmapped_qualifiers: list[str] = field(default_factory=list)
     problems: list[str] = field(default_factory=list)
+    statement_id: str = ""
 
 
 def _value(snak: dict[str, Any]) -> Any:
@@ -121,28 +123,9 @@ def tether(edtf: str, calendar: str, mode: str) -> dict[str, Any]:
 
 
 def _time(values: dict[str, Any]) -> dict[str, Any]:
-    """Assemble one time qualifier from Wikidata point, start/end, or earliest/latest values."""
-    def part(raw: dict[str, Any], side: str) -> tuple[str, str]:
-        edtf, calendar = wikidata_time(raw)
-        if "/" in edtf:  # a decade or century: its first year opens, its last year closes
-            edtf = edtf.split("/")[0 if side == "start" else 1]
-        return edtf, calendar
-
-    if "point" in values:
-        edtf, calendar = wikidata_time(values["point"])
-        mode = "during"
-    elif "start" in values or "end" in values:
-        start = part(values["start"], "start") if "start" in values else ("..", None)
-        end = part(values["end"], "end") if "end" in values else ("..", None)
-        calendar = start[1] or end[1]
-        edtf, mode = f"{start[0]}/{end[0]}", "during"
-    else:
-        earliest = part(values["earliest"], "start") if "earliest" in values else ("..", None)
-        latest = part(values["latest"], "end") if "latest" in values else ("..", None)
-        calendar = earliest[1] or latest[1]
-        edtf, mode = f"{earliest[0]}/{latest[0]}", "within"
-    return {"edtf": edtf, "calendar": calendar, "mode": mode, "display": display_edtf(edtf),
-            "tether": tether(edtf, calendar, mode)}
+    """One time value (adapters.wikidata_statements.assemble_time), with its display and Year tether."""
+    time = assemble_time(values)
+    return time | {"display": display_edtf(time["edtf"]), "tether": tether(time["edtf"], time["calendar"], time["mode"])}
 
 
 def classify(entity: dict[str, Any], rules: dict[str, Any], registry: PredicateRegistry) -> tuple[list[Statement], int]:
@@ -157,7 +140,8 @@ def classify(entity: dict[str, Any], rules: dict[str, Any], registry: PredicateR
             snak = claim["mainsnak"]
             datatype = snak.get("datatype", "")
             statement = Statement(pid=pid, kind="attribute", value=_value(snak), datatype=datatype,
-                                  rank=claim.get("rank", "normal"), references=len(claim.get("references", [])))
+                                  rank=claim.get("rank", "normal"), references=len(claim.get("references", [])),
+                                  statement_id=claim.get("id", ""))
             if snak.get("snaktype") != "value":
                 statement.problems.append(f"{snak.get('snaktype')}: Wikidata records an unknown or no value")
             if pid in rules["housekeeping"]:
