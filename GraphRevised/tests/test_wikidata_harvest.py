@@ -29,6 +29,15 @@ class WikidataTimeTests(unittest.TestCase):
         self.assertEqual(wikidata_time(time("-0083-00-00T00:00:00Z", 7)), ("-0099/0000", "julian"))   # 100-1 BCE
         self.assertEqual(wikidata_time(time("+0014-00-00T00:00:00Z", 7)), ("0001/0100", "julian"))
 
+    def test_a_date_known_to_its_century_is_sometime_within_it(self):
+        from GraphRevised.adapters.wikidata_statements import assemble_time
+
+        century = assemble_time({"point": time("-0083-00-00T00:00:00Z", 7)})
+        self.assertEqual((century["edtf"], century["mode"]), ("-0099/0000", "within"))
+        self.assertEqual(tether(century["edtf"], century["calendar"], century["mode"]),
+                         {"how": "within", "years": [-100, -1]})  # two Year links, not a hundred
+        self.assertEqual(assemble_time({"point": time("-0083-00-00T00:00:00Z", 9)})["mode"], "during")
+
     def test_coarse_or_impossible_values_are_refused(self):
         with self.assertRaises(TimeValueError):
             wikidata_time(time("-0500-00-00T00:00:00Z", 6))

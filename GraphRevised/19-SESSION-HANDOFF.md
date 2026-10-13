@@ -58,6 +58,7 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 | Library headings | [adapters/library_headings.py](adapters/library_headings.py): LCSH and FAST records preserved, labels read from the record; [curation/subjects.json](curation/subjects.json) |
 | Attestation | [export/confidence.py](export/confidence.py): computed at read time, in words, from the claim family and its distinct authors |
 | Export | [export/cytoscape.py](export/cytoscape.py): one edge per fact with its voices, attestation, and review history; the shapes of [26](26-UI-DATA-CONTRACT.md) |
+| Neo4j view | [views/explorer-view.cypher](views/explorer-view.cypher): the explorer's picture in Neo4j Desktop (the canvas, a focus, its card, a year's synchronism; an APOC variant with true lines) and a Browser style |
 | Reader | [proposals/passage_reader.py](proposals/passage_reader.py), prompt `passage-reader-v12` (rule 14: opposition) |
 | Wikidata HTTP | `polite_get` in [adapters/wikidata_identity.py](adapters/wikidata_identity.py): retries 429 and 5xx with backoff |
 | Migration | [migrations/004_tether_dated_claims.py](migrations/004_tether_dated_claims.py): tethered the 11 period claims spans over 200 years had left unlinked |
@@ -91,9 +92,9 @@ Settled 2026-10-13 (late): the actor list (25 §13, with the Gracchi, Cleopatra,
 
 Also settled: powers are kind Type, not Office; Antony was a member of the Second Triumvirate, so `memberOf` joins registry v9 (Institutions response, sections Powers and Membership).
 
-1. **Roman Republic: Period or Polity?** Wikidata classes the Republic, Kingdom, and Empire as both *historical period* and *historical country*. Today they stay Periods (Period before Polity in the harvest's priority); one entity per QID cannot be both kinds.
-2. **Repeated facts read as disputes.** Attestation calls a family disputed when its members' times do not overlap, so Antony's two consulships (44 and 34 BCE) show "disputed". Proposed: a registry flag for facts that happen once (`born`, `died`, `occurred`, `bornAt`, `diedAt`), where non-overlapping times are a dispute; for everything else they are separate occurrences.
-3. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
+Also settled: the Roman Republic, Kingdom, and Empire are Polities (Polity before Period in the harvest; `occurred` dates a polity; 24 §2); facts that happen once (`once` in the registry: born, died, occurred, bornAt, diedAt, occurredAt) are disputed by differing times, contexts, or roles, and any other fact may recur, so Antony's two consulships are no longer "disputed".
+
+1. From earlier: two proposed periods (Roman Republic, Empire), 11 PeriodO Works, the `authorOf` claims, the 13 `commanded` claims in design mode, the reader's remaining claims and notes.
 
 ## 6. Next steps
 
@@ -105,6 +106,7 @@ Also settled: powers are kind Type, not Office; Antony was a member of the Secon
 ## 7. Known gaps
 
 - Persons in the graph are proposed from Wikidata only; no reader has read their lives yet.
+- **Eight birth and death claims known only to their decade or century** were stored as true *throughout* it (710 Year links: Julia "born" in every year of the 1st century BCE). The harvest now stores such dates as *sometime within* (first and last Year only); the eight stored claims and their observations' recorded times need a migration (005) that supersedes them with the corrected claims.
 - A Wikidata "part of" pointing at a class (Q83204 *triumvirate*) waits as "kind unknown"; the agent step that finds the instance (Q212079 *Second Triumvirate*) is not built. Antony `memberOf` the Second Triumvirate has no Wikidata evidence (Q212079 lists no members): it will come from the reader.
 - Wikidata statements without references are weak voices but count as one source in attestation.
 - Disputes across claim families (Dio and Hale naming different commanders) are not detected.

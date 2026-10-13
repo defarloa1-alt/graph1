@@ -44,7 +44,7 @@ def _times_conflict(members: list[dict[str, Any]]) -> bool:
 
 def _quantities_conflict(members: list[dict[str, Any]]) -> bool:
     """Two members giving different figures for times that are not apart: an establishment that
-    changed (30 maniples in a Polybian legion, cohorts later) is two dated facts, not a dispute."""
+    changed (one figure in one century, another later) is two dated facts, not a dispute."""
     counted = [m for m in members if m.get("quantity") is not None]
     for i, a in enumerate(counted):
         for b in counted[i + 1:]:
@@ -53,15 +53,23 @@ def _quantities_conflict(members: list[dict[str, Any]]) -> bool:
     return False
 
 
-def disputed(members: list[dict[str, Any]]) -> bool:
+def disputed(members: list[dict[str, Any]], once: bool = False) -> bool:
     """Members that state the same qualifier with different values. Differences in a
-    time's wording alone are not a dispute: only normalized bounds are compared."""
-    return (_differ(m.get("context") for m in members) or _differ(m.get("role") for m in members)
-            or _times_conflict(members) or _quantities_conflict(members))
+    time's wording alone are not a dispute: only normalized bounds are compared.
+
+    A fact that happens once (`once` in the registry: born, occurred) is disputed by any
+    differing time, context, or role. Any other fact may recur, so those differences are
+    separate occasions (two consulships years apart); only different figures for
+    one time dispute it."""
+    if once and (_differ(m.get("context") for m in members) or _differ(m.get("role") for m in members)
+                 or _times_conflict(members)):
+        return True
+    return _quantities_conflict(members)
 
 
 def confidence(claim: dict[str, Any], family: list[dict[str, Any]]) -> str:
-    """`claim` and each family member: {status, category, authors, context, role, quantity, start, end}."""
+    """`claim` and each family member: {status, category, authors, context, role, quantity, start, end};
+    the claim may say `once: true` for a fact that happens once."""
     category = claim.get("category") or "factual"
     if category == "imaginative":
         return "imagined"
@@ -72,7 +80,7 @@ def confidence(claim: dict[str, Any], family: list[dict[str, Any]]) -> str:
     plural = f"{count} author{'' if count == 1 else 's'}"
     if category == "interpretive":
         return "one author's reading" if count <= 1 else f"a reading shared by {plural}"
-    if disputed(same):
+    if disputed(same, once=claim.get("once", False)):
         return f"disputed ({plural})"
     if count >= 2:
         return f"well attested ({plural})"

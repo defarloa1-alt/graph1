@@ -49,6 +49,7 @@ class PredicateDefinition:
     context_kinds: frozenset[str] = frozenset({"Event"})
     role_kinds: frozenset[str] | None = None  # None: the registry's roleKind
     kind_pairs: frozenset[tuple[str, str]] | None = None  # None: any subject kind with any object kind
+    once: bool = False  # a fact that happens once (born, occurred): differing sources dispute it
 
     def allows_kinds(self, subject_kind: str, object_kind: str | None) -> bool:
         """Whether a subject of one kind may take an object of the other (kindPairs, when declared)."""
@@ -114,6 +115,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
             context_kinds=frozenset(item.get("contextKinds", ["Event"])),
             role_kinds=frozenset(item["roleKinds"]) if "roleKinds" in item else None,
             kind_pairs=frozenset(tuple(pair) for pair in item["kindPairs"]) if "kindPairs" in item else None,
+            once=item.get("once", False),
         )
         for item in data["predicates"]
     }

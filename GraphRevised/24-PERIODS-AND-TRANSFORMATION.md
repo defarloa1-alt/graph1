@@ -28,7 +28,10 @@ exists. **Periods are not seeded by hand: the reader discovers them** (§3a),
 which tests whether the sources' own periodization can be recovered; the
 Wikidata periods (Roman Kingdom Q201038, Roman Republic Q17167, Roman Empire
 Q2277, Principate Q206414) are the identities the curator is expected to link
-them to. A Period's dates are never a property of the entity. They come in three
+them to. (**Changed 2026-10-13:** Wikidata classes the Republic, Kingdom, and
+Empire as both period and state; those QIDs now identify **Polity** entities,
+the states, whose existence is dated by `occurred` claims. A period the reader
+names stays a Period, the historians' construct, without that identity.) A Period's dates are never a property of the entity. They come in three
 layers, all made of existing parts:
 
 | Layer | Representation | Example (Republic) |

@@ -128,13 +128,19 @@ class ConfidenceTests(unittest.TestCase):
                          "attested (1 author)")
 
     def test_disputes_compare_values_not_wording(self):
-        a = member(authors={"dio"}, start=100, end=100)
+        a = member(authors={"dio"}, start=100, end=100, once=True)
         b = member(authors={"hale"}, start=100, end=100)
         c = member(authors={"weigall"}, start=500, end=500)
         self.assertEqual(confidence(a, [a, b]), "well attested (2 authors)")
         self.assertEqual(confidence(a, [a, b, c]), "disputed (3 authors)")
         self.assertEqual(confidence(a, [a, member(authors={"x"}, context="chr:entity:a"),
                                         member(authors={"y"}, context="chr:entity:b")]), "disputed (3 authors)")
+
+    def test_a_fact_that_recurs_is_not_disputed_by_its_occasions(self):
+        consul = member(authors={"wikidata"}, start=100, end=100)
+        again = member(authors={"wikidata"}, start=500, end=500, context="chr:entity:b")
+        self.assertEqual(confidence(consul, [consul, again]), "attested (1 author)")
+        self.assertEqual(confidence({**consul, "once": True}, [consul, again]), "disputed (1 author)")
 
 
 @unittest.skipUnless(os.environ.get("NEO4J_PASSWORD"), "NEO4J_PASSWORD not set")

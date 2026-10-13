@@ -22,7 +22,9 @@ TIME_QUALIFIERS = {"P580": "start", "P582": "end", "P585": "point", "P1319": "ea
 
 def assemble_time(values: dict[str, dict[str, Any]]) -> dict[str, Any]:
     """One time value from Wikidata point, start/end, or earliest/latest values, by precision:
-    {edtf, calendar, mode}, mode "during" for a point or span and "within" for an uncertain window."""
+    {edtf, calendar, mode}, mode "during" for a point or span and "within" for an uncertain window.
+    A point known only to its decade or century ("1st century BCE") is such a window: sometime
+    within it, never throughout it."""
     def part(raw: dict[str, Any], side: str) -> tuple[str, str]:
         edtf, calendar = wikidata_time(raw)
         if "/" in edtf:  # a decade or century: its first year opens, its last year closes
@@ -31,7 +33,7 @@ def assemble_time(values: dict[str, dict[str, Any]]) -> dict[str, Any]:
 
     if "point" in values:
         edtf, calendar = wikidata_time(values["point"])
-        return {"edtf": edtf, "calendar": calendar, "mode": "during"}
+        return {"edtf": edtf, "calendar": calendar, "mode": "within" if "/" in edtf else "during"}
     if "start" in values or "end" in values:
         start = part(values["start"], "start") if "start" in values else ("..", None)
         end = part(values["end"], "end") if "end" in values else ("..", None)

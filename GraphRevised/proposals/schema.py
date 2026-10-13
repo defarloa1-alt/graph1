@@ -59,8 +59,8 @@ class TimeQualifier(BaseModel):
 
 
 class QuantityQualifier(BaseModel):
-    """How many: of a component in its whole (30 maniples in a legion) or of
-    holders elected (two praetors). An establishment or a count as a source
+    """How many: of a component in its whole (thirty units in a larger unit) or
+    of holders elected (two a year). An establishment or a count as a source
     gives it, never a headcount: `minimum` and `maximum` for a range,
     `typical` for a usual figure, `source_expression` the source's words."""
 

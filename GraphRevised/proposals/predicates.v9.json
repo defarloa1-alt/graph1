@@ -1,6 +1,6 @@
 {
   "version": "predicates-v9",
-  "description": "Predicates a ProposalDraft may use. Wikidata mappings say which source statements can evidence each predicate: forward means the statement's entity is the assertion subject; inverse means the statement's value is the assertion subject. v2: commanded relates a person to a force (Group), not to an event. v3: authority held over a force (heldAuthorityOver) is separated from command actually exercised (commanded); evidence for one never counts for the other. v4: each predicate declares its qualifiers (context, role, time: none, optional, required, or withRole for time required only when a role is given) and its claim modes; adds the unary occurred and authorOf (22-CLAIM-QUALIFIERS.md). v5: each predicate declares a category (factual or interpretive); kinds Office and Concept; narrative links triggeredBy and resultedIn; interpretive exemplifies and ledTo (attributed only) and depictsSameAs (curator) (23-NARRATIVE-AND-NOTES.md). v6: occurred extends to Period (each source's bounds an attributed claim); subperiodOf and followedBy relate periods; partOf stays Event to Event (24-PERIODS-AND-TRANSFORMATION.md). v7: opposed relates people or groups who were opponents, symmetric, time required, with an optional context event (the war or battle); political, military, or personal opposition is not split. Works carry a form; a claim attributed to a Work of a creative form is imaginative, derived and never chosen (25-LIVES-AND-PLAYGROUND.md section 6). v8: born and died are dated unary claims (no date is a bare property; 25 section 10), from Wikidata P569 and P570; participatedIn also maps P1344 (participant in). v9 (2026-10-13; docs/Response - Roman Republican Institutions and Military Hierarchies.md): kinds Type (unit types, organizational patterns, roles, powers) and Polity (states); partOf extended to Groups and Types, its endpoint kinds paired (kindPairs) so an event is never part of a group; instanceOf, precedes, electedBy, exercisedPower, heldPower, servedUnder, memberOf; a quantity qualifier (minimum, maximum, typical) on partOf and electedBy; context and role kinds per predicate (contextKinds, roleKinds; defaults Event and the roleKind). P361 on a Person and P463 map to memberOf; which predicate a P361 statement evidences follows from its endpoints' kinds.",
+  "description": "Predicates a ProposalDraft may use. Wikidata mappings say which source statements can evidence each predicate: forward means the statement's entity is the assertion subject; inverse means the statement's value is the assertion subject. v2: commanded relates a person to a force (Group), not to an event. v3: authority held over a force (heldAuthorityOver) is separated from command actually exercised (commanded); evidence for one never counts for the other. v4: each predicate declares its qualifiers (context, role, time: none, optional, required, or withRole for time required only when a role is given) and its claim modes; adds the unary occurred and authorOf (22-CLAIM-QUALIFIERS.md). v5: each predicate declares a category (factual or interpretive); kinds Office and Concept; narrative links triggeredBy and resultedIn; interpretive exemplifies and ledTo (attributed only) and depictsSameAs (curator) (23-NARRATIVE-AND-NOTES.md). v6: occurred extends to Period (each source's bounds an attributed claim); subperiodOf and followedBy relate periods; partOf stays Event to Event (24-PERIODS-AND-TRANSFORMATION.md). v7: opposed relates people or groups who were opponents, symmetric, time required, with an optional context event (the war or battle); political, military, or personal opposition is not split. Works carry a form; a claim attributed to a Work of a creative form is imaginative, derived and never chosen (25-LIVES-AND-PLAYGROUND.md section 6). v8: born and died are dated unary claims (no date is a bare property; 25 section 10), from Wikidata P569 and P570; participatedIn also maps P1344 (participant in). v9 (2026-10-13; docs/Response - Roman Republican Institutions and Military Hierarchies.md): kinds Type (unit types, organizational patterns, roles, powers) and Polity (states); partOf extended to Groups and Types, its endpoint kinds paired (kindPairs) so an event is never part of a group; instanceOf, precedes, electedBy, exercisedPower, heldPower, servedUnder, memberOf; a quantity qualifier (minimum, maximum, typical) on partOf and electedBy; context and role kinds per predicate (contextKinds, roleKinds; defaults Event and the roleKind). P361 on a Person and P463 map to memberOf; which predicate a P361 statement evidences follows from its endpoints' kinds. Facts that happen once (once: true: born, died, occurred, bornAt, diedAt, occurredAt) are disputed when their sources give different times, places, contexts, or roles; any other fact may recur (two consulships, two marriages), so such differences are separate occasions, not a dispute. occurred extended to Polity: a state's existence, by each source's dates.",
   "entityKinds": [
     "Concept",
     "Event",
@@ -189,7 +189,8 @@
           "pid": "P276",
           "direction": "forward"
         }
-      ]
+      ],
+      "once": true
     },
     {
       "id": "partOf",
@@ -236,7 +237,7 @@
           "Type"
         ]
       ],
-      "definition": "The subject is a component of the object: an event within a larger event, a force within a larger force (a wing of a fleet), a unit type within an organizational pattern (maniples in a Polybian legion, with a quantity). Never an event within a period (period membership is computed) or a person within a group (memberOf)."
+      "definition": "The subject is a component of the object: an event within a larger event, a force within a larger force (a wing of a fleet), a unit type within an organizational pattern (with a quantity: how many such units). Never an event within a period (period membership is computed) or a person within a group (memberOf)."
     },
     {
       "id": "triggeredBy",
@@ -365,10 +366,11 @@
     {
       "id": "occurred",
       "display": "occurred",
-      "definition": "The event took place, or the period lasted, over the time given by the claim's time qualifier. A unary claim: it has no object. For a period, each source's bounds are a separate attributed claim.",
+      "definition": "The event took place, the period lasted, or the state existed, over the time given by the claim's time qualifier. A unary claim: it has no object. For a period, each source's bounds are a separate attributed claim.",
       "subjectKinds": [
         "Event",
-        "Period"
+        "Period",
+        "Polity"
       ],
       "objectKinds": [],
       "symmetric": false,
@@ -382,7 +384,8 @@
         "asserted",
         "attributed"
       ],
-      "wikidata": []
+      "wikidata": [],
+      "once": true
     },
     {
       "id": "bornAt",
@@ -409,7 +412,8 @@
           "pid": "P19",
           "direction": "forward"
         }
-      ]
+      ],
+      "once": true
     },
     {
       "id": "diedAt",
@@ -436,7 +440,8 @@
           "pid": "P20",
           "direction": "forward"
         }
-      ]
+      ],
+      "once": true
     },
     {
       "id": "born",
@@ -462,7 +467,8 @@
           "pid": "P569",
           "direction": "forward"
         }
-      ]
+      ],
+      "once": true
     },
     {
       "id": "died",
@@ -488,7 +494,8 @@
           "pid": "P570",
           "direction": "forward"
         }
-      ]
+      ],
+      "once": true
     },
     {
       "id": "childOf",
@@ -785,7 +792,7 @@
       ],
       "symmetric": false,
       "category": "factual",
-      "definition": "A historical force or body is an instance of a type: a legion of the Polybian pattern, a campaign fleet. Dated where the type changed.",
+      "definition": "A historical force or body is an instance of a type: a unit of a given pattern, a body of a given type. Dated where the type changed.",
       "qualifiers": {
         "context": "none",
         "role": "none",
@@ -831,7 +838,7 @@
       ],
       "symmetric": false,
       "category": "factual",
-      "definition": "Holders of the office are elected by the assembly, at a time; a quantity gives how many were elected (two praetors from 242 BCE).",
+      "definition": "Holders of the office are elected by the assembly, at a time; a quantity gives how many were elected.",
       "qualifiers": {
         "context": "none",
         "role": "none",
@@ -855,7 +862,7 @@
       ],
       "symmetric": false,
       "category": "factual",
-      "definition": "The office carries a power (imperium, tribunician power) as its competence, at a time.",
+      "definition": "The office carries a power as its competence, at a time.",
       "qualifiers": {
         "context": "none",
         "role": "none",
@@ -878,7 +885,7 @@
       ],
       "symmetric": false,
       "category": "factual",
-      "definition": "A person held a power for a defined command within limits of time and task: the role is the office it was held through (consul), the context the provincia, war, or force it applied to. A power is never a permanent attribute: the claim is dated.",
+      "definition": "A person held a power for a defined command within limits of time and task: the role is the office it was held through, the context the task, war, territory, or force it applied to. A power is never a permanent attribute: the claim is dated.",
       "qualifiers": {
         "context": "optional",
         "role": "optional",
@@ -906,7 +913,7 @@
       ],
       "symmetric": false,
       "category": "factual",
-      "definition": "A person served under another's command, in a role (legate, quaestor) and a context (a war or a force), at a time. Replaces edges between command assignments, which the model does not have.",
+      "definition": "A person served under another's command, in a role and a context (a war or a force), at a time. Replaces edges between command assignments, which the model does not have.",
       "qualifiers": {
         "context": "optional",
         "role": "optional",
@@ -933,7 +940,7 @@
       ],
       "symmetric": false,
       "category": "factual",
-      "definition": "A person belonged to a body: a college, an alliance, a council (Antony and the Second Triumvirate). Distinct from holding its office (heldPosition) and from an informal alliance between persons (alliedWith).",
+      "definition": "A person belonged to a body: a college, an alliance, a council. Distinct from holding its office (heldPosition) and from an informal alliance between persons (alliedWith).",
       "qualifiers": {
         "context": "none",
         "role": "optional",
