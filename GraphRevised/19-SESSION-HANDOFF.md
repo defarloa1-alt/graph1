@@ -1,4 +1,4 @@
-# Session Handoff — 2026-10-13 (evening)
+# Session Handoff — 2026-10-13 (late evening)
 
 **Branch:** `graph-revised-clean-start`, pushed to `origin` (2026-10-13, with the curator's go-ahead; push only with it).
 **Read first:** [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md), sections 5-13 especially. They record this session's decisions in order.
@@ -98,10 +98,13 @@ Also settled: the Roman Republic, Kingdom, and Empire are Polities (Polity befor
 
 ## 6. Next steps
 
-1. **Increment 4: the first structure enricher** (registry v9 is built, 2026-10-13). Polybius 6 as a structure inquiry is next. Registry v9 as built: kinds **Type** and **Polity**; predicates `partOf` for Groups and Types, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`, `memberOf`; a quantity qualifier (min, max, typical); context on `heldPower` may be Event, Place, or Group, and a role may be a power Type. The harvest maps P463 and P361 on a Person to `memberOf`, and a class target (Q83204 *triumvirate*) waits for the agent to find the instance (Q212079 *Second Triumvirate*). Then Polybius 6 as a structure inquiry (constitution and army). Design: the Response doc above and 25 §12.
-2. **The actor-centred build** (25 §13), chronological from **Hannibal**: per actor, harvest and expand, enrich structures, then the agent's source plan chooses and the reader reads the life. Build first: the agent's source choice (the source plan's last step, now the curator's) with its guardrails.
-3. Smaller items: the agent's choice of what to expand first (now mechanical: people, events, places, then label); window labels should read "sometime 68–50 BCE"; predicates for the unmapped Wikidata relationships (gens, unmarried partner, stepparent, relative with kinship, allegiance); names over time through an alias property showing the common name (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked).
-4. Held: option B (folding Proposals into claims). Later: the read API, the Figma explorer, the growth loop beyond one hop.
+Registry v9 is built (kinds Type and Polity, the structure predicates, quantity; see section 3). In order:
+
+1. **The agent's source choice** (25 §13): the source plan's last step, now the curator's, becomes the agent's, with its guardrails (each candidate confirmed at a catalogue before fetching; rights by rule, copyrighted works curator capture only; a cost budget; the plan and its reasons kept and visible). Needed first, because Polybius and Hannibal's sources are the agent's to find.
+2. **The first structure enricher: Polybius 6** (constitution and army; design in the Institutions response and 25 §12). Needs: the reader may propose Type entities (local-first, like periods and depicted events); reader prompt v13 with rules for `partOf` between Types with a quantity and its quantity quotation, `instanceOf`, `electedBy`, `exercisedPower`, `precedes`; an inquiry naming the whole Work. Whole-work cost about $1-4 on Sonnet 5.5.
+3. **Hannibal**, the first actor in chronological order (25 §13): harvest and expand, enrich the structures his life touches, the agent's source plan, then the reader. Then Scipio, the Gracchi, and on.
+4. Smaller items: the agent's choice of what to expand first (now mechanical: people, events, places, then label); window labels should read "sometime 68–50 BCE"; predicates for the unmapped Wikidata relationships (gens, unmarried partner, stepparent, relative with kinship, allegiance); names over time through an alias property showing the common name (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked).
+5. Held: option B (folding Proposals into claims). Later: the read API, the Figma explorer, the growth loop beyond one hop.
 
 ## 7. Known gaps
 
