@@ -45,6 +45,8 @@ OPERATION_NAMES = (
     "set_work_form",
     "upsert_subject_authority",
     "record_statement_time",
+    "renormalize_statement_time",
+    "unlink_assertion_years",
 )
 
 

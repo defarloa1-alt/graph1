@@ -19,7 +19,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
   GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest \
-  GraphRevised.tests.test_registry_v9  # expect 221 tests, OK
+  GraphRevised.tests.test_registry_v9  # expect 225 tests, OK
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -33,13 +33,13 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 
 ## 2. Graph state (2026-10-13, after the second Antony expansion)
 
-6,258 nodes, 8,095 relationships (4,025 Year nodes from 2000 BCE to 2025).
+6,274 nodes, 7,433 relationships (4,025 Year nodes from 2000 BCE to 2025).
 
 | Label | Count | Notes |
 |---|---:|---|
 | Entity | 195 | 92 Person, 44 Work, 17 Group, 15 Office, 13 Place, 9 Event, 3 Concept, 2 Period; mostly proposed (the harvests) |
-| Assertion | 447 | 10 accepted, 436 proposed, 1 rejected; every dated one tethered to Years |
-| Proposal | 596 | |
+| Assertion | 455 | 10 accepted, 436 proposed, 1 rejected, 8 superseded (migration 005); every dated one tethered to Years |
+| Proposal | 604 | |
 | SourceObservation | 607 | passages (Plutarch, Dio, Weigall, Hale), PeriodO records, Wikidata statements (with their time and qualifiers recorded) |
 | AuthorityRecord | 259 | Wikidata identities, the crosswalk (role `crosswalk`: DPRR, Nomisma, Trismegistos, LC, FAST, GND, VIAF), LCSH and FAST on the Subject |
 | Annotation | 128 | passages of note and entity mentions |
@@ -61,7 +61,7 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 | Neo4j view | [views/explorer-view.cypher](views/explorer-view.cypher): the explorer's picture in Neo4j Desktop (the canvas, a focus, its card, a year's synchronism; an APOC variant with true lines) and a Browser style |
 | Reader | [proposals/passage_reader.py](proposals/passage_reader.py), prompt `passage-reader-v12` (rule 14: opposition) |
 | Wikidata HTTP | `polite_get` in [adapters/wikidata_identity.py](adapters/wikidata_identity.py): retries 429 and 5xx with backoff |
-| Migration | [migrations/004_tether_dated_claims.py](migrations/004_tether_dated_claims.py): tethered the 11 period claims spans over 200 years had left unlinked |
+| Migrations | [004](migrations/004_tether_dated_claims.py): tethered the 11 period claims spans over 200 years had left unlinked. [005](migrations/005_window_dates.py) (applied 2026-10-13): eight births and deaths known only to their decade or century, stored as true throughout it (710 Year links), superseded by claims dated sometime within it (16 links); the observations' reading corrected (`renormalize_statement_time`, the former mode kept), the old claims' Year links removed (`unlink_assertion_years`) |
 | Unchanged | review commands, inquiries, proposed entities, period survey, sources, capture, curation, identity |
 
 ## 4. Rules that are easy to break
@@ -106,7 +106,7 @@ Also settled: the Roman Republic, Kingdom, and Empire are Polities (Polity befor
 ## 7. Known gaps
 
 - Persons in the graph are proposed from Wikidata only; no reader has read their lives yet.
-- **Eight birth and death claims known only to their decade or century** were stored as true *throughout* it (710 Year links: Julia "born" in every year of the 1st century BCE). The harvest now stores such dates as *sometime within* (first and last Year only); the eight stored claims and their observations' recorded times need a migration (005) that supersedes them with the corrected claims.
+- A Wikidata span whose start or end is known only to its decade (a marriage "from the 70s BCE") is still read from that decade's first or last year as a definite bound; its uncertainty is not yet a window on that end.
 - A Wikidata "part of" pointing at a class (Q83204 *triumvirate*) waits as "kind unknown"; the agent step that finds the instance (Q212079 *Second Triumvirate*) is not built. Antony `memberOf` the Second Triumvirate has no Wikidata evidence (Q212079 lists no members): it will come from the reader.
 - Wikidata statements without references are weak voices but count as one source in attestation.
 - Disputes across claim families (Dio and Hale naming different commanders) are not detected.

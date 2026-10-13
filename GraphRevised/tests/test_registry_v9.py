@@ -194,8 +194,9 @@ class StoredDraftTests(unittest.TestCase):
         self.assertEqual(draft.quantity.signature(), {"minimum": 30, "maximum": 30})
 
 
-@unittest.skipUnless(os.environ.get("NEO4J_PASSWORD"), "NEO4J_PASSWORD not set")
-class LiveV9Tests(unittest.TestCase):
+class LiveBase(unittest.TestCase):
+    """A rolled-back transaction per test, with fixture helpers."""
+
     @classmethod
     def setUpClass(cls):
         from neo4j import GraphDatabase
@@ -242,6 +243,9 @@ class LiveV9Tests(unittest.TestCase):
         return accept(self.tx, proposal, decided_by="test", decision_basis="v9 live test",
                       decided_at="2026-10-13T00:00:00Z", registry=self.registry, operations=self.operations)
 
+
+@unittest.skipUnless(os.environ.get("NEO4J_PASSWORD"), "NEO4J_PASSWORD not set")
+class LiveV9Tests(LiveBase):
     def test_a_quantified_composition_is_stored_and_accepted(self):
         from GraphRevised.proposals.store import submit
 
@@ -274,6 +278,39 @@ class LiveV9Tests(unittest.TestCase):
         submission = submit(self.tx, draft, self.registry, self.operations)
         self.assertTrue(submission.stored, submission.validation.reasons)
         self.assertEqual(self.accept(submission.validation.proposal_id)["assertion"]["status"], "accepted")
+
+
+@unittest.skipUnless(os.environ.get("NEO4J_PASSWORD"), "NEO4J_PASSWORD not set")
+class LiveWindowRepairTests(LiveBase):
+    """Migration 005's operations: only a time's reading moves, and only from during to within."""
+
+    def observation(self, edtf, mode):
+        self.tx.run("CREATE (:SourceObservation {id: 'chr:observation:test:century', sourceSystem: 'Wikidata', "
+                    "statementTimeEdtf: $edtf, statementTimeMode: $mode})", edtf=edtf, mode=mode)
+
+    def renormalize(self, edtf, mode):
+        return self.tx.run(self.operations["renormalize_statement_time"], {
+            "id": "chr:observation:test:century", "statementTimeEdtf": edtf, "statementTimeMode": mode,
+            "decidedAt": "2026-10-13T00:00:00Z", "basis": "test"}).data()
+
+    def test_a_reading_moves_from_during_to_within_and_nothing_else_changes(self):
+        self.observation("-0099/0000", "during")
+        self.assertEqual(self.renormalize("-0199/-0100", "within"), [])  # the value is a source fact
+        self.assertEqual(self.renormalize("-0099/0000", "during"), [])
+        self.assertEqual(len(self.renormalize("-0099/0000", "within")), 1)
+        self.assertEqual(len(self.renormalize("-0099/0000", "within")), 1)  # a retry
+        stored = self.tx.run("MATCH (o:SourceObservation {id: 'chr:observation:test:century'}) "
+                             "RETURN o.statementTimeMode AS mode, o.statementTimeRenormalizedFrom AS was").single()
+        self.assertEqual((stored["mode"], stored["was"]), ("within", "during"))
+
+    def test_year_links_go_only_from_claims_that_left_the_graph(self):
+        self.tx.run("MERGE (y:Year {year: -31}) CREATE (:Assertion {id: 'chr:assertion:test-live', status: 'proposed'})"
+                    "-[:IN_YEAR]->(y)")
+        self.assertEqual(self.tx.run(self.operations["unlink_assertion_years"],
+                                     {"assertionId": "chr:assertion:test-live"}).data(), [])
+        self.tx.run("MATCH (a:Assertion {id: 'chr:assertion:test-live'}) SET a.status = 'superseded'")
+        removed = self.tx.run(self.operations["unlink_assertion_years"], {"assertionId": "chr:assertion:test-live"}).single()
+        self.assertEqual(removed["removed"], 1)
 
 
 if __name__ == "__main__":

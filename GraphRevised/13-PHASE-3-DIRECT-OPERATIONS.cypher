@@ -799,3 +799,30 @@ SET observation.statementTimeEdtf = $statementTimeEdtf,
     observation.statementTimeDisplay = $statementTimeDisplay,
     observation.statementQualifiers = $statementQualifiers
 RETURN observation;
+
+// Correct how a recorded statement time is read: from "during" to "within",
+// for a value known only to its decade or century, which is sometime within
+// that span, never throughout it. The source facts (the value, its calendar,
+// the qualifiers) stay fixed: refused unless the normalized value is the one
+// recorded and the mode moves from during to within. A retry is a no-op.
+MATCH (observation:SourceObservation {id: $id, sourceSystem: "Wikidata"})
+WHERE observation.statementTimeEdtf = $statementTimeEdtf
+  AND (observation.statementTimeMode = "during" OR observation.statementTimeMode = "within")
+  AND $statementTimeMode = "within"
+SET observation.statementTimeRenormalizedFrom = coalesce(observation.statementTimeRenormalizedFrom,
+                                                         CASE WHEN observation.statementTimeMode = "during" THEN "during" END),
+    observation.statementTimeRenormalizedAt = coalesce(observation.statementTimeRenormalizedAt,
+                                                       CASE WHEN observation.statementTimeMode = "during" THEN $decidedAt END),
+    observation.statementTimeRenormalizedBasis = coalesce(observation.statementTimeRenormalizedBasis,
+                                                          CASE WHEN observation.statementTimeMode = "during" THEN $basis END),
+    observation.statementTimeMode = "within"
+RETURN observation;
+
+// Remove the Year links of a claim that has left the live graph (superseded or
+// rejected): Year links are a rebuildable navigation projection of live claims.
+MATCH (assertion:Assertion {id: $assertionId})
+WHERE assertion.status IN ["superseded", "rejected"]
+OPTIONAL MATCH (assertion)-[link:IN_YEAR]->(:Year)
+WITH assertion, collect(link) AS links
+FOREACH (link IN links | DELETE link)
+RETURN assertion.id AS id, size(links) AS removed;
