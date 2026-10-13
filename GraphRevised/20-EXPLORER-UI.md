@@ -1,6 +1,18 @@
 # Explorer UI Direction
 
-**Status:** direction agreed 2026-10-11; design not started.
+**Status:** direction agreed 2026-10-11; design not started. Updated
+2026-10-13: the curator's layout adds a chat section, and the shapes the UI
+receives are fixed in [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md).
+
+**Curator's layout (2026-10-13).** A large centre stage, a chat section, and
+borders with various uses: details of the selected node or fact, filtering
+options, the time slider. Nobody navigates Proposals, Assertions, or
+passages; they appear as text in a sidebar. One line on the canvas is one
+fact, however many sources state it, and each source is a voice on the
+fact's card (26 §2–3). The chat carries the narrative and answers questions
+in the user's persona, from the graph only (25 §7); what a user asserts in
+chat is captured as a note or proposal, never written as fact. The layout
+below is the earlier sketch; where they differ, this paragraph and 26 win.
 
 ## 1. Purpose and stack
 
@@ -59,7 +71,7 @@ Detail cards are where provenance lives; the stage stays readable.
 | Card | Shows |
 |---|---|
 | Entity | label, kind, description, aliases and dates, identity links, status, subjects it belongs to; image with what it depicts, when made, author, and license (E14) |
-| Claim (edge) | predicate in plain language, status, mode ("according to Plutarch"), every piece of evidence with its quotation, decisions and who made them |
+| Fact (edge) | the fact as a sentence, its attestation in words, status, and one voice per source ("according to Plutarch", or our own statement) with its quotations and locators; decisions and who made them collapsed (26 §2–3) |
 | Source / passage | work, author, edition, locator, full passage with the quoted span marked, editorial notes kept separate, rights |
 | Path | hop-by-hop explanation, each hop linked to its claim card; weakest hop; how many hops are inferred, proposed, or attributed |
 | Proposal (review mode) | the proposal, its pending evidence, uncertainty notes, accept and reject actions |

@@ -1,4 +1,4 @@
-"""Export the exploration view for Cytoscape: entities as nodes, claims as edges.
+"""Export the exploration view for Cytoscape: entities as nodes, facts as edges.
 
     python -m GraphRevised.export.cytoscape [--audit] [--out GraphRevised/exports/graph]
 
@@ -7,23 +7,24 @@ Import > Network from File, or pass `elements` to Cytoscape.js) and
 <out>.html (a self-contained Cytoscape.js page to open in a browser).
 
 Read-only. Everything found is shown at once (25-LIVES-AND-PLAYGROUND.md
-decision 2): accepted and proposed claims, every entity (proposed ones too,
-and those no claim touches yet), each labelled with its status and source.
-An attributed claim reads "proposed · according to <Work>"; an asserted claim
-names the Works its evidence comes from, "proposed · from <Work>", counting
-evidence still pending on open Proposals (a source system such as Wikidata
-where the evidence has no Work). Every claim also says how well it is
-attested, judged with the other claims of its family (export/confidence.py):
-"well attested (4 authors)", "one author's reading", "imagined". Each entity
-carries the passages of note and mentions that concern it. Rejected and superseded claims, deprecated
-entities, and dismissed notes appear only with --audit.
+decision 2): accepted and proposed claims and every entity (proposed ones
+too, and those no claim touches yet), labelled with status and source.
 
-Following 06-GRAPH-NAVIGATION.md, a claim is one edge carrying its predicate,
-status, mode, sources, and qualifiers; Proposals, source observations, and
-Years are left out. A unary claim (such as `occurred`) has no object and is
-listed on its subject node. Annotations are included whatever their
-visibility, so the output (git-ignored) is the curator's own view. This is a
-smoke view, not the explorer (20-EXPLORER-UI.md).
+One edge is one fact: all claims with the same predicate, subject, and
+object (our own asserted claim and each source's attributed version) are
+drawn as a single line, kept apart only by category, so imagined versions
+form their own line (26-UI-DATA-CONTRACT.md). The fact carries its
+attestation in words (export/confidence.py), and each claim behind it is a
+voice: who says it ("according to <Work>", or our own statement), its time,
+role, and context in that source, the quotations with their locators
+(counting evidence still pending on open Proposals), and its review history.
+A unary fact (such as `occurred`) has no object and is listed on its subject
+node. Proposals, source observations, and Years never become nodes. Each
+entity carries the passages of note and mentions that concern it. Rejected
+and superseded claims, deprecated entities, and dismissed notes appear only
+with --audit. Annotations are included whatever their visibility, so the
+output (git-ignored) is the curator's own view. This is a smoke view, not
+the explorer (20-EXPLORER-UI.md).
 """
 
 from __future__ import annotations
@@ -37,6 +38,7 @@ from typing import Any
 from neo4j import GraphDatabase
 
 from GraphRevised.export.confidence import LIVE, confidence, family_key
+from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.temporal import display_edtf
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
@@ -67,18 +69,19 @@ RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .tim
        COLLECT {{ MATCH (a)-[:ASSERTION_CONTEXT]->(c:Entity) RETURN c {{.id, .label}} }}[0] AS context,
        COLLECT {{ MATCH (a)-[:ASSERTION_ROLE]->(r:Entity) RETURN r {{.id, .label}} }}[0] AS role,
        COLLECT {{ MATCH (a)-[:ATTRIBUTED_TO]->(w:Entity) RETURN w {{.id, .label}} }}[0] AS work,
-       COLLECT {{ MATCH (a)-[:SUPPORTED_BY]->(ev:SourceObservation) RETURN DISTINCT ev.id }} AS evidence,
-       COLLECT {{ MATCH (p:Proposal)-[:PROPOSES]->(a) WHERE p.status IN $open
-                 MATCH (p)-[:PROPOSES_EVIDENCE]->(ev:SourceObservation) RETURN DISTINCT ev.id }} AS pendingEvidence,
-       COLLECT {{ MATCH (a)-[:SUPPORTED_BY]->(ev:SourceObservation)
+       COLLECT {{ MATCH (a)-[link:SUPPORTED_BY]->(ev:SourceObservation)
                  OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity)
-                 RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem)}} AS source
+                 RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem),
+                         locator: ev.shortLabel, quotation: link.quotation, pending: false}} AS source
                  UNION
                  MATCH (p:Proposal)-[:PROPOSES]->(a) WHERE p.status IN $open
-                 MATCH (p)-[:PROPOSES_EVIDENCE]->(ev:SourceObservation)
+                 MATCH (p)-[link:PROPOSES_EVIDENCE]->(ev:SourceObservation)
                  OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity)
-                 RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem)}} AS source
-               }} AS sources
+                 RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem),
+                         locator: ev.shortLabel, quotation: link.quotation, pending: true}} AS source
+               }} AS sources,
+       COLLECT {{ MATCH (p:Proposal)-[:PROPOSES]->(a)
+                 RETURN p {{.status, .operation, .decidedBy, .decidedAt}} ORDER BY p.decidedAt }} AS proposals
 """
 
 AUTHORS = """
@@ -115,70 +118,107 @@ STYLE = [
 ]
 
 
-def status_line(status: str, mode: str, work: str | None, sources: list[str]) -> str:
-    """'proposed · according to <Work>' for an attribution; 'proposed · from <Work>, <Work>' for evidence."""
-    if mode == "attributed" and work:
-        return f"{status} · according to {work}"
-    return f"{status} · from {', '.join(sources)}" if sources else status
-
-
 def note_line(note: dict[str, Any]) -> str:
     kind = note.get("noteType") if note.get("kind") == "passage-of-note" else note.get("kind")
     where = ", ".join(part for part in (note.get("source"), note.get("status")) if part)
     return f"{kind}: {note.get('note')} ({where})"
 
 
+def _time(claim: dict[str, Any]) -> str | None:
+    return display_edtf(claim["timeEdtf"]) if claim.get("timeEdtf") else claim.get("timeSourceExpression")
+
+
+def _voice(row: dict[str, Any]) -> dict[str, Any]:
+    """One claim behind a fact: who says it, in what terms, on what evidence, reviewed how."""
+    claim = row["claim"]
+    quotes = sorted(({"source": s["label"], "locator": s["locator"], "quotation": s["quotation"],
+                      "pending": s["pending"]} for s in row["sources"]), key=lambda q: q["locator"] or "")
+    return {
+        "claimId": claim["id"], "status": claim["status"], "mode": claim.get("mode") or "asserted",
+        "accordingTo": (row["work"] or {}).get("label"), "time": _time(claim),
+        "role": (row["role"] or {}).get("label"), "context": (row["context"] or {}).get("label"),
+        "quotes": quotes, "review": [p for p in row["proposals"] if p.get("status")],
+    }
+
+
+def voice_line(voice: dict[str, Any]) -> str:
+    who = f"according to {voice['accordingTo']}" if voice["accordingTo"] else "our own statement"
+    terms = "; ".join(part for part in (voice["time"], voice["role"] and f"as {voice['role']}",
+                                        voice["context"] and f"during {voice['context']}") if part)
+    quotes = " ".join(f"{q['locator']}: “{q['quotation']}”" + (" (pending)" if q["pending"] else "")
+                      for q in voice["quotes"] if q["quotation"]) or "no evidence of its own"
+    return f"{who} [{voice['status']}]" + (f" ({terms})" if terms else "") + f" — {quotes}"
+
+
+def review_line(voice: dict[str, Any]) -> str:
+    steps = ", ".join(f"{p['operation'] or 'proposal'} {p['status']}"
+                      + (f" by {p['decidedBy']} {p['decidedAt'][:10]}" if p.get("decidedBy") else "")
+                      for p in voice["review"])
+    return f"{voice['accordingTo'] or 'our own statement'}: {steps or 'no review records'}"
+
+
 def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
+    registry = load_registry()
     nodes: dict[str, dict[str, Any]] = {}
-    edges: list[dict[str, Any]] = []
 
     def node(entity: dict[str, Any], notes: list[dict[str, Any]] = ()) -> None:
         nodes.setdefault(entity["id"], {"data": {
             "id": entity["id"], "label": entity.get("shortLabel") or entity["label"], "fullLabel": entity["label"],
             "kind": entity["kind"], "status": entity.get("status"), "description": entity.get("description"),
-            "notes": [note_line(n) for n in notes], "unaryClaims": [],
+            "notes": [note_line(n) for n in notes], "facts": [], "factLines": [],
         }})
 
     for row in tx.run(ENTITIES, audit=audit):
         node(row["entity"], row["notes"])
     author_of = dict(tx.run(AUTHORS, live=list(LIVE)).values("work", "author"))
     rows = list(tx.run(CLAIMS, statuses=AUDIT if audit else VISIBLE, open=OPEN_PROPOSALS))
+
+    # Attestation is judged over the whole family; a fact is the family's members of one category.
     families: dict[str, list[dict[str, Any]]] = {}
-    members = {}
+    facts: dict[tuple[str, str], list[Any]] = {}
     for row in rows:
         claim = row["claim"]
         keys = [row["work"]["id"]] if row["work"] else []
         keys += [source["key"] for source in row["sources"]]
-        members[claim["id"]] = member = {
-            "status": claim["status"], "category": claim.get("category"),
+        member = {
+            "status": claim["status"], "category": claim.get("category") or "factual",
             "authors": {author_of.get(key, key) for key in keys},
             "context": (row["context"] or {}).get("id"), "role": (row["role"] or {}).get("id"),
             "start": claim.get("start"), "end": claim.get("end"),
         }
         families.setdefault(family_key(claim["id"]), []).append(member)
-    for row in rows:
-        claim, subject, obj = row["claim"], row["subject"], row["object"]
-        node(subject)  # an endpoint hidden from the entity list (deprecated) still anchors its claim
-        mode = claim.get("mode") or "asserted"
-        work = (row["work"] or {}).get("label")
-        sources = sorted({source["label"] for source in row["sources"]})
-        time = (display_edtf(claim["timeEdtf"]) if claim.get("timeEdtf") else claim.get("timeSourceExpression"))
-        data = {
-            "predicate": claim["predicate"], "status": claim["status"], "mode": mode,
-            "category": claim.get("category"), "attributedTo": work, "sources": sources,
-            "statusLine": status_line(claim["status"], mode, work, sources),
-            "confidence": confidence(members[claim["id"]], families[family_key(claim["id"])]),
-            "role": (row["role"] or {}).get("label"), "context": (row["context"] or {}).get("label"), "time": time,
-            "evidence": len(row["evidence"]), "pendingEvidence": len(row["pendingEvidence"]),
-            "fullLabel": claim["label"],
+        facts.setdefault((family_key(claim["id"]), member["category"]), []).append(row)
+
+    edges = []
+    for (family, category), members in facts.items():
+        first = members[0]
+        subject, obj, predicate = first["subject"], first["object"], first["claim"]["predicate"]
+        definition = registry.get(predicate)
+        display = definition.display if definition else predicate
+        statuses = {row["claim"]["status"] for row in members}
+        status = next(s for s in ("accepted", "proposed", "rejected", "superseded") if s in statuses)
+        live_modes = {row["claim"].get("mode") or "asserted" for row in members if row["claim"]["status"] in LIVE}
+        voices = sorted((_voice(row) for row in members),
+                        key=lambda v: (v["accordingTo"] is not None, v["accordingTo"] or "", v["claimId"]))
+        fact = {
+            "sentence": f"{subject['label']} {display}" + (f" {obj['label']}" if obj else ""),
+            "predicate": predicate, "category": category, "status": status,
+            "mode": "asserted" if "asserted" in live_modes else "attributed",
+            "attestation": confidence({"category": category}, families[family]),
+            "times": sorted({v["time"] for v in voices if v["time"]}),
+            "voices": voices,
+            "voiceLines": [voice_line(v) for v in voices],
+            "reviewLines": [review_line(v) for v in voices],
         }
+        node(subject)  # an endpoint hidden from the entity list (deprecated) still anchors its fact
         if obj is None:
-            nodes[subject["id"]]["data"]["unaryClaims"].append(
-                f"{claim['label']} — {data['statusLine']}; {data['confidence']}")
+            nodes[subject["id"]]["data"]["facts"].append(fact)
+            nodes[subject["id"]]["data"]["factLines"].append(
+                f"{fact['sentence']} ({'; '.join(fact['times']) or 'undated'}) — {fact['attestation']}")
             continue
         node(obj)
-        edges.append({"data": {"id": claim["id"], "source": subject["id"], "target": obj["id"],
-                               "label": claim["predicate"], **data}})
+        edges.append({"data": {"id": f"{family}#{category}", "source": subject["id"], "target": obj["id"],
+                               "label": display, **fact}})
     return {"elements": {"nodes": list(nodes.values()), "edges": edges}}
 
 
@@ -197,7 +237,7 @@ HTML = """<!doctype html>
   @media (max-width: 700px) {{ #cy {{ inset: 0 0 45% 0; }} #card {{ top: 55%; width: 100%; border-left: 0; border-top: 1px solid var(--line); }} }}
 </style></head>
 <body><div id="cy"></div><aside id="card"><h2>Click a node or claim</h2>
-<p>Solid: accepted. Dashed: proposed. Hollow circle at the start: "according to" a source. Pink dotted: imagined.
+<p>One line per fact. Solid: accepted. Dashed: proposed. Hollow circle at the start: only "according to" its sources. Pink dotted: imagined.
 Faded with a dashed border: a proposed entity. Nothing here is hidden for being unreviewed.</p></aside>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
 <script>
@@ -212,7 +252,25 @@ function show(title, fields) {{
     "<ul>" + v.map(item => `<li>${{esc(item)}}</li>`).join("") + "</ul>" : esc(v)}}</dd>`).join("") + "</dl>";
 }}
 cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["kind", d.kind], ["status", d.status],
-  ["description", d.description], ["unary claims", d.unaryClaims], ["passages of note and mentions", d.notes],
+  ["description", d.description], ["facts", d.factLines], ["passages of note and mentions", d.notes],
+  ["id", d.id]]); }});
+cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.sentence, [["attestation", d.attestation],
+  ["status", d.status], ["category", d.category], ["when", d.times.join("; ")], ["voices", d.voiceLines],
+  ["review history", d.reviewLines], ["fact id", d.id]]); }});
+</script>
+<script>
+const graph = {graph};
+const cy = cytoscape({{ container: document.getElementById("cy"), elements: graph.elements, style: {style},
+                        layout: {{ name: "cose", animate: false, nodeRepulsion: 9000, idealEdgeLength: 120 }} }});
+const card = document.getElementById("card");
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({{"&": "&amp;", "<": "&lt;", ">": "&gt;"}}[c]));
+function show(title, fields) {{
+  card.innerHTML = `<h2>${{esc(title)}}</h2><dl>` + fields.filter(([, v]) => v !== null && v !== undefined && v !== "" &&
+    !(Array.isArray(v) && !v.length)).map(([k, v]) => `<dt>${{esc(k)}}</dt><dd>${{Array.isArray(v) ?
+    "<ul>" + v.map(item => `<li>${{esc(item)}}</li>`).join("") + "</ul>" : esc(v)}}</dd>`).join("") + "</dl>";
+}}
+cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["kind", d.kind], ["status", d.status],
+  ["description", d.description], ["facts", d.factLines], ["passages of note and mentions", d.notes],
   ["id", d.id]]); }});
 cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.fullLabel, [["status", d.statusLine], ["attestation", d.confidence],
   ["predicate", d.predicate], ["mode", d.mode], ["category", d.category], ["role", d.role], ["during", d.context],
@@ -244,7 +302,7 @@ def main(argv: list[str] | None = None) -> int:
     page = HTML.format(graph=json.dumps(graph, ensure_ascii=False).replace("</", "<\\/"), style=json.dumps(STYLE))
     args.out.with_suffix(".html").write_text(page, encoding="utf-8")
     elements = graph["elements"]
-    print(f"{len(elements['nodes'])} nodes, {len(elements['edges'])} claim edges")
+    print(f"{len(elements['nodes'])} nodes, {len(elements['edges'])} fact edges")
     print(f"{args.out.with_suffix('.cyjs')}\n{args.out.with_suffix('.html')}")
     return 0
 

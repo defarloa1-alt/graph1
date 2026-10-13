@@ -16,7 +16,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_curation_live GraphRevised.tests.test_inquiries GraphRevised.tests.test_capture \
   GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
-  GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7  # expect 183 tests, OK
+  GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7  # expect 185 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
 python -m GraphRevised.proposals.review entities
 ```
@@ -61,7 +61,7 @@ Works read: Plutarch *Life of Antony*, Cassius Dio *Roman History* 50–51 (Cary
 | Capture | [capture/](capture) — the curator's own passages (manual, Kindle, Readwise) as private transcriptions with Annotations |
 | Curation | Data, not code: manifests in [curation/](curation), applied by [slices/apply_curation.py](slices/apply_curation.py) (`--dry-run` shows duplicates) |
 | Identity | [identity/local_candidates.py](identity/local_candidates.py) — local candidates before any new entity; Wikidata identity adapters |
-| Export | [export/cytoscape.py](export/cytoscape.py) — `.cyjs` and a Cytoscape.js smoke page (git-ignored output). Since L1: every entity (also proposed and unlinked ones), accepted and proposed claims with a status and source line, passages of note and mentions on each entity's card; `--audit` adds rejected, superseded, deprecated, dismissed |
+| Export | [export/cytoscape.py](export/cytoscape.py) — `.cyjs` and a Cytoscape.js smoke page (git-ignored output). Every entity (also proposed and unlinked ones); **one edge per fact** (all sources' claims with the same subject, predicate, and object; imagined versions apart), with its attestation and one voice per source (quotations, locators, review history); passages of note on each entity's card; `--audit` adds rejected, superseded, deprecated, dismissed. The shapes are the UI data contract, [26](26-UI-DATA-CONTRACT.md) |
 | Caches | `cache/` (git-ignored): Scaife catalogue, PeriodO dataset (version 301), each with its hash and retrieval time |
 | Run logs | [runs/](runs) — one JSONL per reader run with versions, tokens, notes, and periods |
 
