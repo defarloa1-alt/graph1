@@ -69,3 +69,61 @@ proposed entities, the period survey, the source adapters, and curation as
 data are the parts a Lives reader needs. What changes is the subject of an
 inquiry (a person), how much the reader may propose (entities of more
 kinds), and how the results are shown (all at once, labelled).
+
+## 5. Quiet provenance (curator, 2026-10-13)
+
+Authority, federation, and governance are the bedrock that lets any domain
+stand, but they are ours, not the user's. The user sees:
+
+- **themselves at the centre**, with **signposts** they choose to follow into
+  a particular maze, leaving **breadcrumbs** behind them;
+- a **simple, easy-to-read narrative** about whatever they stand on, with
+  sources, authority records, and federation details as **sidebar
+  properties**, never as relationships on the canvas.
+
+The user does not care whether a fact came from Wikidata, DPRR, or PeriodO;
+we do, quietly. Voices are different: "according to Plutarch" or "in
+McCullough's novel" is content the user wants, so authors and Works stay
+visible while source systems stay in the sidebar. The canvas shows
+historical relations only; SourceObservation, AuthorityRecord, Proposal, and
+Year stay off it, as they already do in the export.
+
+## 6. Registry v7 design log (L2)
+
+| # | Question | State |
+|---|---|---|
+| 1 | Opposition: name and shape | **Decided 2026-10-13.** One symmetric predicate `opposed` (Person or Group, either way round), time required, optional Event context (the war or battle), asserted or attributed, Wikidata P7047. No split into political, military, or personal: the context Event, other predicates (offices, kinship), and interpretations carry those. Worked case: Antony and Octavian, 44–30 BCE. |
+| 2 | What a motivation points to | **Open, parked by the curator.** Proposal on the table: interpretive, attributed-only `sought` (Person or Group → Concept or Office, optional Event context) and `influenced` (Person → Person, optional Event context); the source's words stay in the required quotation; feelings, and professed versus real aims, stay passages of note. |
+| 3 | How imaginative Works are marked | Not yet discussed. |
+| 4 | Confidence: computed or assigned, built or only designed in L2 | Not yet discussed. |
+
+## 7. Narratives and personas (test, 2026-10-13)
+
+An agent wrote Mark Antony's centre-stage narrative twice, from the graph
+alone (four works, claims, passages of note, the Wikidata description): once
+for a researcher (quotations, footnoted locators, voices side by side) and
+once for an explorer who knows nothing of Rome (a hook, a cast list, the
+dispute over Antony's flight told as a mystery, no visible citations). The
+curator found the researcher version matched the intended centre stage.
+
+Rules the test produced:
+
+1. **A persona changes the presentation, not the data.** Both versions used
+   the same passages and nothing from outside the graph.
+2. **Passages of note carry most of a narrative.** Claims gave the skeleton
+   (who, where, when, command); notes gave the why, the mood, and the
+   disputes. The narrative reads both.
+3. **Quote sources, never the reader's summaries.** A note's summary said
+   "for three days"; the quotation did not, so it was left out.
+4. **State something flatly only where the sources agree; otherwise name who
+   says it.** Simplifying for an explorer pushes towards flat statement.
+5. **Disagreement is the hook.** Four voices on one flight engage more than
+   one smoothed account.
+6. **Where the graph ends, the narrative says so and offers a signpost**
+   ("not yet read: Antony before 32 BC"), which is the natural trigger for
+   the next reading run.
+
+**Personas, open (TBD).** The curator leans towards a brief questionnaire in
+which users say what they need, and finds it attractive that a user can
+switch persona at will. Candidate personas: researcher, explorer,
+high-school student, graduate student, novelist or curious reader.
