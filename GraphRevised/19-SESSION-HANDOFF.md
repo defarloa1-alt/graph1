@@ -1,9 +1,8 @@
-# Session Handoff — 2026-10-11
+# Session Handoff — 2026-10-13
 
-**Supersedes:** [17-PHASE-5-HANDOFF.md](17-PHASE-5-HANDOFF.md).
-**Branch:** `graph-revised-clean-start`, public on GitHub (`origin`) up to `c19aceb`; later commits are local until pushed (`git status -sb` shows how many).
-**Updated 2026-10-12:** command split part 1 done (section 5a).
-**Detail of everything below:** [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md), sections 1–16.
+**Branch:** `graph-revised-clean-start`. Private on GitHub (`origin`) up to `c19aceb`; 35+ local commits are not pushed (push only with the curator's go-ahead).
+**Next phase:** [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md) — read it first. It changes the direction agreed in earlier sessions.
+**History:** [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md) (Phase 5), [22](22-CLAIM-QUALIFIERS.md) (qualifiers), [23](23-NARRATIVE-AND-NOTES.md) (notes, interpretation, capture), [24](24-PERIODS-AND-TRANSFORMATION.md) (periods, the PeriodO survey in §3b).
 
 ## 1. Start here
 
@@ -18,177 +17,91 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_gutenberg GraphRevised.tests.test_related_and_candidates \
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey  # expect 165 tests, OK
 python -m GraphRevised.proposals.review list --status submitted
+python -m GraphRevised.proposals.review entities
 ```
 
-- Local Neo4j only: `neo4j://127.0.0.1:7687`, database `neo4j`. Never the legacy Aura instance.
-- **Do not load the repo `.env` wholesale**: it holds the legacy Aura `NEO4J_URI`. Code reads only
-  `ANTHROPIC_API_KEY` from it (`passage_reader.anthropic_client`).
+- Local Neo4j only: `neo4j://127.0.0.1:7687`, database `neo4j`. Never the legacy Aura instance; never run legacy scripts against the local database.
+- **Do not load the repo `.env` wholesale**: it holds the legacy Aura `NEO4J_URI`. Code reads only `ANTHROPIC_API_KEY` from it.
 - `Connections.txt` holds the local password; it is git-ignored. Never print or commit it.
 - Live tests run in rolled-back transactions with synthetic fixtures; they never change the graph.
+- `.obsidian/` and the curator's Obsidian edits to the `.md` files are theirs: never touch the folder, and stage only your own hunks.
 
-## 2. Verified graph state
+## 2. Graph state (2026-10-13)
 
-4,142 nodes, 4,178 relationships (4,025 Year nodes + 117 others), after the 2026-10-12 review.
+4,645 nodes, 5,449 relationships (4,025 Year nodes from 2000 BCE to 2025).
 
 | Label | Count | Notes |
 |---|---:|---|
-| Entity | 24 | 11 Person, 11 Group (local force entities), 1 Event, 1 Place |
-| AuthorityRecord | 13 | Wikidata identity links, each with a preserved payload |
-| SourceObservation | 18 | 2 Wikidata statements, 16 Plutarch passages |
-| Assertion | 19 | 10 accepted, 8 proposed, 1 rejected |
-| Proposal | 42 | 20 accepted, 9 rejected, **13 submitted (all `commanded`)** |
+| Entity | 50 | 16 Person, 11 Group (Actium forces), 3 Concept, 1 Event, 1 Place (provisional); 5 Works provisional; **11 Works and 2 Periods proposed** |
+| AuthorityRecord | 19 | Wikidata identity links, each with a preserved payload |
+| SourceObservation | 153 | passages: 19 Perseus (Plutarch), 11 LacusCurtius (Dio), 106 Gutenberg (Weigall, Hale); 13 PeriodO records; 4 Wikidata statements |
+| Assertion | 97 | 10 accepted, 86 proposed (2 interpretive), 1 rejected |
+| Proposal | 172 | 20 accepted, 9 rejected, **143 submitted** |
+| Annotation | 128 | 115 passages of note, 13 entity mentions (all flagged) |
 | Subject | 1 | History of the Battle of Actium |
 
-Accepted claims:
-
-| Claim | Evidence |
-|---|---|
-| Augustus participated in Battle of Actium | Wikidata P710 · Plutarch 65.2, 65.4, 65.5, 68.1 |
-| Agrippa participated in Battle of Actium | Wikidata P710 · Plutarch 65.2, 66.3 |
-| Mark Antony participated in Battle of Actium | Plutarch 65.1, 66.5, 67.2 (text-only claim) |
-| Lucius Gellius Poplicola participated in Battle of Actium | Plutarch 65.1, 66.3 |
-| Marcus Insteius participated in Battle of Actium | Plutarch 65.1 |
-| Lucius Arruntius participated in Battle of Actium | Plutarch 66.3 |
-| Gaius Julius Eurycles participated in Battle of Actium | Plutarch 67.2 (the pursuit of Antony's flight) |
-| Antony's fleet at Actium participated in Battle of Actium | Plutarch 66.1, 68.1 |
-| Octavian's fleet at Actium participated in Battle of Actium | Plutarch 66.1 |
-| Battle of Actium occurred at Actium promontory | Plutarch 68.1 |
-
-Still proposed: Cleopatra participatedIn (evidence 66.3 rejected as
-`unsupported`; claim open) and the seven `commanded` claims (13 Proposals).
-The seven claims added on 2026-10-12 rest on Plutarch alone and were decided
-by "Claude (delegated by Tony DeFarlo)". The promontory Entity was relabelled
-from Wikidata's "Akri" to "Actium promontory" (curator decision); its
-AuthorityRecord keeps Wikidata's wording.
+Works read: Plutarch *Life of Antony*, Cassius Dio *Roman History* 50–51 (Cary), Weigall *The Life and Times of Cleopatra*, Hale *Famous Sea Fights* ch. 2. Strauss's *The War That Made the Roman Empire* exists for curator capture only.
 
 ## 3. What exists
 
 | Area | Artifact |
 |---|---|
-| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 31 guarded, retry-safe operations; [operations.py](operations.py) loads them by name |
-| Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v4` (quotations, inquiry, relevance, ambiguities; mode, context, role, time, qualifier quotations) |
-| Predicates | [proposals/predicates.v4.json](proposals/predicates.v4.json) — 16 predicates, each declaring its qualifiers and modes; `heldAuthorityOver` (needs a time) and `commanded` (needs a time when it has a role), both Person → Group; unary `occurred`; `authorOf` |
-| Capture | [capture/](capture) — passages from reading (manual, Kindle, Readwise/Reader) as private transcriptions plus Annotations; books mapped in [curation/reading.json](curation/reading.json) |
-| Export | [export/cytoscape.py](export/cytoscape.py) — compact projection to `.cyjs` and a Cytoscape.js smoke page |
-| Time | [proposals/temporal.py](proposals/temporal.py) — year conversion (no year zero ↔ astronomical), EDTF to Julian Day Number bounds |
-| Validator | [proposals/validator.py](proposals/validator.py) — deterministic; Wikidata statement evidence must state the claim; passage quotes must be verbatim (whitespace and quote style tolerated only) |
-| Storage and review | [proposals/store.py](proposals/store.py), [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason` (evidence only), `reject --claim`, `reopen`, `supersede --replacement --reason`, `retract --reason`, `promote` |
-| Passage reader | [proposals/passage_reader.py](proposals/passage_reader.py) — Claude Sonnet 5.5, inquiry-scoped, prompt `passage-reader-v8`: claims attributed to the inquiry's source Work, with role, time, and context only as the passage states them |
-| Inquiry | [inquiries/actium-plutarch-antony.json](inquiries/actium-plutarch-antony.json) (v11) — Subject, narrative event, source edition and Work, scope, guidance |
-| Identity queue | [identity/queue.py](identity/queue.py), queue file [queues/identity-actium-plutarch-antony.json](queues/identity-actium-plutarch-antony.json) |
-| Adapters | Wikidata identity, statements, context (aliases/dates); passages from Perseus TEI and LacusCurtius HTML behind one source interface ([adapters/sources.py](adapters/sources.py)); Scaife catalogue |
-| Curation | Data, not code: manifests [curation/actium.json](curation/actium.json) and [curation/works.json](curation/works.json) applied by [slices/apply_curation.py](slices/apply_curation.py) (`--dry-run` reports changes); [slices/add_entity.py](slices/add_entity.py) and [slices/add_work.py](slices/add_work.py) for single approvals |
-| Migration | [migrations/001-pending-evidence-for-open-proposals.cypher](migrations/001-pending-evidence-for-open-proposals.cypher) (applied) |
-| Preserved sources | `phase-2-source/`, `phase-4-source/`, `phase-5-source/` — hashed byte-for-byte; `.gitattributes` keeps them `-text` |
-| Run traces | [runs/](runs) — one JSONL per reader run, with inquiry, scope, prompt version, model |
+| Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher) — 33 guarded, retry-safe operations, loaded by name through [operations.py](operations.py) |
+| Draft contract | [proposals/schema.py](proposals/schema.py) — `proposal-draft-v4`: quotations; mode (asserted or attributed); context, role, and time qualifiers with qualifier quotations |
+| Predicates | [proposals/predicates.v6.json](proposals/predicates.v6.json) — 23 predicates. Factual: participation, command and authority, alliance, family, offices, birth and death places, event structure, `occurred` (Event or Period), period order. Interpretive, attributed only: `depictsSameAs`, `exemplifies`, `ledTo` |
+| Validator and store | [proposals/validator.py](proposals/validator.py) (deterministic; verbatim quotes; outcomes valid, adds_evidence, duplicate, deferred, invalid; notes such as UNDATED; related claims: parallel, refines, refined-by, conflicts) and [proposals/store.py](proposals/store.py) |
+| Review | [proposals/review.py](proposals/review.py) — `list`, `accept`, `reject --reason`, `reopen`, `supersede`, `retract`, `promote`, `entities`, `entity-accept [--qid]`, `entity-reject` |
+| Reader | [proposals/passage_reader.py](proposals/passage_reader.py) — prompt `passage-reader-v11`, Claude Sonnet 5.5 with server-side fallback; outputs claims, passages of note, and periods (`--outputs`); prompt caching (about 92% cache reads) |
+| Inquiries | [inquiries/](inquiries) — Plutarch, Dio, Weigall, Hale. Whole works, no locators or source wording in the guidance |
+| Proposed entities | [proposals/entities.py](proposals/entities.py) — local-first reuse, mentions recorded as Annotations |
+| Period survey | [discovery/period_survey.py](discovery/period_survey.py) and [adapters/periodo.py](adapters/periodo.py), configured by [curation/authorities.json](curation/authorities.json); runs on its own when the reader proposes a period (24 §3b) |
+| Time | [proposals/temporal.py](proposals/temporal.py) — the only year converter (Chrystallum has no year zero; EDTF and PeriodO are astronomical; Wikidata is historical); EDTF to Julian Day Number bounds; spans over 200 years get no Year links |
+| Sources | [adapters/sources.py](adapters/sources.py) — Perseus TEI, LacusCurtius HTML, Gutenberg HTML behind one interface; Scaife catalogue; source plans in [discovery/](discovery) and [plans/](plans) |
+| Capture | [capture/](capture) — the curator's own passages (manual, Kindle, Readwise) as private transcriptions with Annotations |
+| Curation | Data, not code: manifests in [curation/](curation), applied by [slices/apply_curation.py](slices/apply_curation.py) (`--dry-run` shows duplicates) |
+| Identity | [identity/local_candidates.py](identity/local_candidates.py) — local candidates before any new entity; Wikidata identity adapters |
+| Export | [export/cytoscape.py](export/cytoscape.py) — `.cyjs` and a Cytoscape.js smoke page (git-ignored output) |
+| Caches | `cache/` (git-ignored): Scaife catalogue, PeriodO dataset (version 301), each with its hash and retrieval time |
+| Run logs | [runs/](runs) — one JSONL per reader run with versions, tokens, notes, and periods |
 
 ## 4. Rules that are easy to break
 
-1. Agents propose; only a curator accepts. The reader never creates Entities; identity is a curator decision via the queue.
-2. Every Proposal holds evidence on `PROPOSES_EVIDENCE` until acceptance. `reject` rejects evidence and leaves the claim open; `reject --claim` rejects the claim; `reopen` restores a rejected claim; `supersede` replaces a proposed or accepted claim; `retract` rejects an accepted claim found wrong. Rejections, supersessions, and retractions need a reason code.
-3. A guarded write returning zero rows was refused; `run_write` raises `RefusedWrite`.
-4. Editorial notes in editions (for example Perrin's dates) are never cited as the ancient source.
-5. Preserved payloads are hashed as bytes. Write files with `write_bytes`, never text mode on Windows.
-6. Reusable code (`proposals/`, `identity/`, `adapters/`) must not name a source or subject; a test enforces it. Subject knowledge belongs in the inquiry.
-7. Tests must not depend on live graph contents; use synthetic fixtures in the rolled-back transaction.
-8. Shell note: long `python - <<'EOF'` heredocs containing triple-quoted strings have failed in this environment; write edit scripts to the scratchpad and run them instead.
-9. Delegated review follows [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md): Claude may accept only claims a verbatim quote plainly shows, records itself as `Claude (delegated by …)`, and leaves identity, predicates, roles, command, and uncertain cases to the curator.
-10. Curation is data: approved identities and local entities go into a manifest in `curation/`, never into a new script. Reusable code, including `slices/`, must name no source or subject (a test enforces it).
-11. Readers locate passages themselves: inquiries name whole works (no `chapters`), and guidance states source conventions and predicate rules only, never locators or the source's words (a test enforces it).
-12. A missing date never excludes a claim: it is stored and marked UNDATED; vague time phrases stay verbatim and are never normalized (except unary claims such as `occurred`, which need their time).
+1. **Visibility (changes in L1, doc 25).** Agents never accept anything. Until L1 is built, proposed content is hidden from exploration; after L1 it is shown at once, labelled with its status and source, and the curator promotes rather than gates. Identity merges and splits are always curator decisions.
+2. Every Proposal holds its evidence on `PROPOSES_EVIDENCE` until it is accepted. Rejecting, superseding, and retracting need a reason code (false, unsupported, malformed, underspecified, superseded-by-model).
+3. A guarded write that returns zero rows was refused; `run_write` raises `RefusedWrite`.
+4. Editors' notes in editions are never cited as the source's own words; neither are PeriodO's editorial notes.
+5. Preserved payloads are hashed as bytes. Write them with `write_bytes`, never in text mode on Windows.
+6. Reusable code (`proposals/`, `identity/`, `adapters/`, `discovery/`, `slices/`, `export/`, `capture/`) names no source or subject; a test enforces it. Subject knowledge lives in inquiries and in `curation/`.
+7. Tests never depend on live graph contents.
+8. **Shell:** heredocs that contain triple quotes or `\n` have failed here; write edit scripts to the scratchpad, or use the editor. On Windows, strip `\r` when passing lists from a file to a command: a trailing carriage return made the last section of each reader run fail.
+9. Delegated review follows [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md) and is recorded as "Claude (delegated by Tony DeFarlo)". It is on hold until the curator says go.
+10. Readers find passages themselves: inquiries name whole works, and guidance gives conventions and predicate rules only, never locators or the source's words (a test enforces it).
+11. A missing date never excludes a claim: it is stored as UNDATED. Unary claims such as `occurred` still need their time.
+12. Interpretations are content, not noise: attributed `exemplifies` and `ledTo` claims, plus passages of note.
+13. Periods have fuzzy edges and are discovered, never seeded by hand. Each source's bounds are an attributed claim.
+14. Strip any Perplexity signed (`X-Amz`) links from docs before committing.
 
-## 5. Open decisions (for the curator)
+## 5. Waiting for the curator
 
-1. **13 submitted `commanded` proposals** (7 claims) stay open (5a, design-mode policy); review them against the v3 definition when convenient. The 10 non-command proposals were decided on 2026-10-12 (the earlier count of 14 non-command and 9 command was wrong). *Mark Antony commanded Antony's fleet* (the whole fleet) is the borderline case between authority held and command exercised.
-2. **Cleopatra 67.1**: whether to submit a curator-authored claim citing "Cleopatra recognized him and raised a signal on her ship".
-3. **Unresolved commanders** with no Wikidata record: Coelius (Antony's left wing), Marcus Octavius (Antony's centre), Alexas. Option: local entities, like the forces.
-4. **33 peripheral mentions** in the identity queue (allies, places); deferred because most would need dated `alliedWith` claims.
+Under doc 25 these are promotions, not gates; none blocks the Lives phase.
 
-## 5a. Decision: split command (first task of the next session)
+1. Two proposed periods from Hale 2.34: *Roman Republic* (Wikidata Q17167 is the obvious match) and *Empire* (the Roman Empire, Q2277). Accepting with `--qid` lets a survey re-run match on the Wikidata names.
+2. 11 proposed Works, one for each PeriodO source (Library of Congress, Heidelberg, British Museum, PACTOLS and others), and 13 PeriodO `occurred` claims.
+3. *Plutarch author of Life of Antony* and *Cassius Dio author of Roman History* (from Wikidata P50).
+4. 13 submitted `commanded` proposals: keep them open in design mode, then review them against the split between `commanded` and `heldAuthorityOver`.
+5. The remaining reader claims and 115 passages of note from the four works.
 
-Agreed with the curator on 2026-10-12. `commanded` conflates authority held
-with command exercised. At Actium this hides the central question: Octavian
-held supreme authority, while much of the tradition credits Agrippa with
-directing the fleet.
+## 6. Next steps
 
-- **Registry v3:** `heldAuthorityOver` (Person → Group, formal or supreme
-  authority) and `commanded` (Person → Group, command actually exercised).
-  Evidence for one never counts for the other.
-- **Claim qualifiers:** an event context (`ASSERTION_CONTEXT` → Event) and a
-  **role** (`ASSERTION_ROLE` → the Entity for the office or post, in the
-  source's own term), not modern strategic/operational/tactical labels. Role
-  replaced the earlier `capacity` on 2026-10-12; legal basis (*imperium*) is
-  not a role. Rules in
-  [docs/Response - Roman Republican Army Structure.md](docs/Response%20-%20Roman%20Republican%20Army%20Structure.md).
-  The same qualifier mechanism serves Phase 7 time and E12 depiction.
-- **Planning is an action** (E11), not a command predicate.
-- **Reason codes** for rejection and supersession: false, unsupported,
-  malformed, underspecified, superseded-by-model.
-- **Supersede with links:** a recorded supersede operation with
-  `SUPERSEDED_BY` edges to the precise claims that replace a coarser one.
-- **Design-mode policy (curator, 2026-10-12):** while the model is still being
-  designed, claims are not rejected or superseded merely because a predicate
-  was redesigned. The open `commanded` proposals stay open, and the already
-  rejected *Augustus commanded Battle of Actium* stays rejected (its basis
-  records why). Then rerun the reader for command claims with guidance
-  separating the two senses.
+**The Lives phase, [25](25-LIVES-AND-PLAYGROUND.md) §3:** L1 visibility; L2 registry v7 (opposition, motivations and goals as interpretive claims, `category: imaginative`); L3 person inquiries in which the reader proposes Person, Event, and Place entities; L4 Plutarch's *Caesar* first, then Marius, Sulla, Pompey, and Cicero; L5 world context.
 
-**Progress (2026-10-12).** Done: registry v3, reason codes, and the supersede
-operation ([18 §17](18-PHASE-5-PROPOSALS.md)). Curator decisions: supersession
-is allowed from `proposed` (and `accepted`); claims tied to an event get no
-exemption from the date-span requirement, so `heldAuthorityOver` drafts are
-deferred until Phase 7. Capacity became role (above). Next: implement the
-event-context and role qualifiers. Open: whether a role-qualified claim needs
-a date span.
-
-## 6. Next steps (agreed order)
-
-1. **Finish the command split** (5a). Done: registry v3, reason codes,
-   supersede, the qualifier mechanism ([22](22-CLAIM-QUALIFIERS.md): context,
-   role, time, mode, promotion), the Plutarch / *Life of Antony* entities
-   (Q41523, Q12902608; passages linked `IN_WORK`), and reader prompt v8
-   (attributed claims with qualifiers; inquiry v11). Remaining: the curator's
-   decision on *Plutarch author of Life of Antony* (submitted from Wikidata
-   P50); the second source (Cassius Dio, Cary's translation, chosen from the
-   [source plan](plans)) has its adapter and inquiry
-   ([18 §19](18-PHASE-5-PROPOSALS.md)) and waits for the curator's approval of
-   Dio's identities (Q185223, Q3974431); then the reader runs on Dio and
-   reruns on Plutarch.
-2. **Finish the review** (5, item 1): the non-command proposals are done;
-   the command proposals whenever convenient.
-3. **E12 design doc** drafted: [23-NARRATIVE-AND-NOTES.md](23-NARRATIVE-AND-NOTES.md)
-   (depicted events per source, passages of note as Annotations; four
-   decisions for the curator), then the pilot on *Antony* and Dio (Phase A).
-   Principle agreed with the curator: narrative detail is the author's
-   depiction, not fact.
-4. **Fair evaluation**: run the reader unchanged on chapters it has not seen;
-   measure curator acceptance. Prompts v3–v6 were tuned on *Antony* 61–68.
-5. **Phase 7 temporal qualification**: unblocks marriages, offices, and
-   source dating.
-6. **Second source** (for E10): done — `source.type` and the source interface,
-   the context window and calendar in the inquiry, curation as manifests.
-   Remaining hard-coding: the scope rule (focus, linked, declared) is fixed in
-   code; English-only citation patterns in source discovery; default models
-   are CLI defaults.
-
-**Roadmap:** [docs/Response - Use Cases.md](docs/Response%20-%20Use%20Cases.md)
-(Chrystallum is for exploring and discovering connections, not an
-encyclopedia; phases A–F, with gates before multi-agent fan-out). Product UI:
-[20-EXPLORER-UI.md](20-EXPLORER-UI.md).
-
-**Backlog** in [04-IMPLEMENTATION-PLAN.md](04-IMPLEMENTATION-PLAN.md): E8
-evidence stance and contested claims; E9 research-API acquisition; E10 source
-discovery and chronology (earlier witnesses to Actium: Augustan poets,
-Velleius Paterculus, Augustus's lost memoir cited at *Antony* 68.1); E11 actor
-actions (IGAR) and causal context; E12 attributed claims and depicted events;
-E13 geography and space-time exploration; E14 entity images (with Phase B);
-E15 graph change governance (impact-routed review, pairs with the Phase C
-review policy); E16 frontier expansion (leaf nodes to clusters).
+Waiting until after the Lives phase: the period consensus and the regional/general split (24 §3), Wikidata and LCSH/FAST as survey sources, the two failed `ledTo` readings, the transformation pilot (24 §4–7), depicted events, the Batch API, the read API (`getInterpretations`), index-led reading, a `check_draft` tool for agents, E8 stance.
 
 ## 7. Known gaps
 
-- The scope rule (focus, entities linked to it, declared candidates) is fixed in code.
-- Wikidata time values use historical BCE numbering (no year zero), unlike EDTF; comparing Wikidata qualifier values with claims must convert through `proposals/temporal.py`.
+- The scope rule (focus, linked entities, declared candidates) is fixed in code; person inquiries will need it widened (L3).
 - Entity context is Wikidata-only and English-only.
-- Force hierarchy (a wing is part of a fleet) has no predicate yet; labels carry it. Backlog: a Group → Group predicate (`SUBUNIT_OF` in the army-structure response).
-- Neo4j Bloom is for smoke testing only (status colouring via rule-based styling on `status`). The product UI is a custom React + Cytoscape.js explorer designed in Figma: [20-EXPLORER-UI.md](20-EXPLORER-UI.md).
+- Force hierarchy (a wing is part of a fleet) has no predicate yet.
+- PeriodO matching misses names whose stems differ across languages (German *Römische*, *Kaiserzeit*); such definitions are listed as related or not at all.
+- Neo4j Bloom is for smoke tests only. The product is a custom React and Cytoscape.js explorer ([20-EXPLORER-UI.md](20-EXPLORER-UI.md)).
+- The old `Temporal/` folder: only `periodo-dataset.csv` was useful, and the PeriodO cache replaces it. `Temporal/Neo4j-…-Created-2026-02-19.txt` looks like an Aura credentials export and was not opened: remove it from git if it is tracked, and rotate the password.
