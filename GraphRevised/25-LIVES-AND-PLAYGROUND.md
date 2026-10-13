@@ -174,3 +174,15 @@ what has been written about it, which is where bibliographic sources belong.
   *Rome--History--Civil War, 43-31 B.C.--Campaigns*; FAST *Roman Civil War
   (Rome : 43-31 B.C.)*). These feed the "Read more" list on a card and the
   growth loop's reading list.
+
+## 9. Open items and holds (curator, 2026-10-13)
+
+- **Open, to take up:** Subject coverage, reading state, and parent Subjects
+  (section 8); Work forms for the five Works in the graph; L2b CIDOC CRM
+  mappings; motives (`sought`, `influenced`, section 6).
+- **Held:** option B, folding Proposals into their claims as review history
+  (the review records add about 170 nodes; users never see them).
+- **Names over time (for L3):** an alias property shows the common name, so
+  Octavian is not shown as "Augustus" in 31 BC. Details to settle when
+  person inquiries begin.
+
