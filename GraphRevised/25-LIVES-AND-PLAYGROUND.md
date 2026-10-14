@@ -248,6 +248,39 @@ with a Nomisma ID to an economic one). Facets become enrichers run on what
 surfaces, demand-driven and budgeted, rather than standing agents per
 Subject: people first, facets after (decision 1).
 
+**Decided 2026-10-14: the SCA and SFA are retired** (curator). The subject
+concept agent has no successor: Subjects are created intentionally (02 §1),
+and the actors list (`curation/actors.json`) and the agent's source plan order
+the work. The subject facet agents become the enrichers by kind and, later,
+lenses: a reader run on a life with a facet filter, never a standing agent
+per facet. The legacy code stays archived (16-LEGACY-TRIAGE.md). Its failures
+are the reason: categories built instead of facts, the model's paraphrase as
+evidence, stored confidence numbers, invented data (purged 2026-07-16). What
+carries over, as rules for the harvest and the enrichers, not as agents:
+
+- **A person whole, then family** (`scripts/agents/biographic/HARVEST_SCOPE.md`):
+  the person's own record complete first (dates, places, identities), with no
+  hop limit on it; family one and two hops out after; fill gaps, never
+  overwrite, flag conflicts. Each actor's harvest and expansion follows it.
+- **The person comes first; lenses refer to it.** Enrichers and lenses use
+  the entities the harvest and the reader propose; they do not make their own
+  copies.
+- **Routing by identifier**: an entity's kind and its external identifiers
+  choose its enricher (the legacy harvest's identifier tier).
+- **Gather, classify, apply**: a script gathers, a model classifies, a
+  deterministic applier proposes (the legacy geographic agent, keyed by
+  Pleiades ID), as `harvest/apply.py` already does.
+- **Rules by kind**: an event's date comes from its own record, never from a
+  participant's dates; a Place needs coordinates; the legacy military deny
+  list of Wikidata classes, property allow and block lists, and anachronism
+  checks (`Facets/MILITARY_SFA_ONTOLOGY_METHODOLOGY.md` §3-5) inform the
+  harvest rules (handoff rule 19). Career-order checks (minimum age, required
+  earlier office) flag a proposal for the curator; they never refuse one,
+  since those rules are themselves dated, sourced claims.
+- **A link outside an enricher's kind is a signal, not a proposal.**
+- **Pilot first**: five to ten claims, reviewed, before any enricher runs at
+  scale.
+
 **Dates at day or month precision** are stored on the claim (`timeEdtf`, for
 example -0082-01-14, with calendar, precision, and Julian Day Number bounds)
 and tethered to their Year; Year nodes hold the year only. Antony's two birth

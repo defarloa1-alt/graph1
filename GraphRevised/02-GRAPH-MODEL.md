@@ -15,8 +15,11 @@ Required properties:
 id: chr:entity:...
 kind: Person | Event | Place | Group | Object | Work | Period | Office | Concept | Polity | Type | Other
 label: ...
-status: provisional | resolved | deprecated
+status: proposed | provisional | resolved | deprecated
 ```
+
+`proposed` marks an entity an agent surfaced (the harvest, the reader), shown
+at once and labelled, until the curator accepts or rejects it.
 
 Optional properties include descriptions, aliases, date values, and local
 classification. Date values should also be represented through qualified
@@ -37,7 +40,10 @@ Represents a body of knowledge or inquiry about one or more entities.
 
 A Subject is created intentionally: for an inquiry, a research scope, a body
 of literature, or a user's drill-down. It is never an automatic shadow of an
-Entity; most Entities have no Subject of their own.
+Entity. **Since 2026-10-14 Subjects are also buckets** ([28](28-SUBJECT-BUCKETS.md)):
+every entity sits in at least one, mostly computed from its claims, and
+Subjects form a hierarchy (`BROADER`, several parents allowed) anchored to
+library headings.
 
 Required properties:
 
@@ -263,8 +269,8 @@ Relationship direction must be consistent in the stored graph.
 (:Proposal)-[:PROPOSES]->(:Assertion)
 (:Proposal)-[:PROPOSES_EVIDENCE]->(:SourceObservation)
 (:Assertion)-[:SUPERSEDED_BY]->(:Assertion)
-(:Assertion)-[:ASSERTION_CONTEXT]->(:Entity {kind: Event})
-(:Assertion)-[:ASSERTION_ROLE]->(:Entity {kind: Office})
+(:Assertion)-[:ASSERTION_CONTEXT]->(:Entity)   Event by default; per predicate (registry contextKinds)
+(:Assertion)-[:ASSERTION_ROLE]->(:Entity)      Office by default; per predicate (registry roleKinds)
 (:Assertion)-[:ATTRIBUTED_TO]->(:Entity {kind: Work})
 (:Assertion)-[:PROMOTED_FROM]->(:Assertion)
 (:Assertion)-[:IN_YEAR]->(:Year)
@@ -272,7 +278,16 @@ Relationship direction must be consistent in the stored graph.
 (:Annotation)-[:ANNOTATES {quotation}]->(:SourceObservation)
 (:Annotation)-[:CONCERNS]->(:Entity)
 (:Entity)-[:IN_YEAR]->(:Year)
+(:Subject)-[:BROADER]->(:Subject)
+(:Location)-[:WITHIN]->(:Location)
+(:Location)-[:MODERN_LOCATION]->(:Location)
+(:Entity {kind: Place})-[:AT_LOCATION]->(:Location)
 ```
+
+**Location** (the ninth core label, planned 2026-10-14) is the gazetteer:
+a geographic backbone preloaded from Pleiades and GeoNames, off the canvas
+like Year ([27](27-GAZETTEER.md)). The last four relationships above are
+planned, not yet built.
 
 **Annotation** (the eighth core label, unique `id`, migration 003) is
 commentary, never a claim: a passage of note flagged by the reader or the
