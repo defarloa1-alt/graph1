@@ -72,8 +72,8 @@ metadata file beside them, as the PeriodO cache does.
   2. otherwise (about 33,000), the nearest GeoNames populated place, found in
      the dump outside the graph, gives the admin codes, and the place links
      to the most specific unit they name (`how: "nearest place"`, derived,
-     with the distance). Beyond a distance threshold (rules data, proposed
-     50 km) no link is made and the place is listed;
+     with the distance). Beyond 50 km (curator, 2026-10-14; rules data)
+     no link is made and the place is listed;
   3. unlocated places (about 7,600) get no modern link; their ancient
      parents may still place them.
 - **Entities of kind Place** link to their Location by an identifier they
@@ -98,7 +98,6 @@ metadata file beside them, as the PeriodO cache does.
 
 ## 5. Open
 
-- The distance threshold for the bridge (proposed 50 km).
 - How the reader's proposed Places (step 3 of the handoff) are matched to
   Locations before an Entity is created.
 - GeoNames alternate names (English labels for administrative units below
