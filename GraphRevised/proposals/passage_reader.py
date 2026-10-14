@@ -39,7 +39,7 @@ from pydantic import BaseModel, ValidationError
 
 from GraphRevised.adapters.wikidata_context import entity_context
 from GraphRevised.adapters.sources import PassageSource, open_source
-from GraphRevised.capture.core import NOTE_TYPES, annotation_id
+from GraphRevised.capture.core import NOTE_TYPES, annotation_id, annotation_label
 from GraphRevised.operations import load_operations, run_write
 
 from .prompt_version import prompt_version
@@ -599,7 +599,9 @@ def main(argv: list[str] | None = None) -> int:
                         for note in notes:
                             note_id = annotation_id(PROPOSER_ID, passage["id"], note["note"], note["concerns"])
                             run_write(tx, operations, "upsert_annotation", {
-                                "id": note_id, "label": note["note"][:120], "kind": "passage-of-note",
+                                "id": note_id, "kind": "passage-of-note",
+                                "label": annotation_label(tx, kind="passage-of-note", note_type=note["noteType"],
+                                                          observation_id=passage["id"]),
                                 "noteType": note["noteType"], "note": note["note"], "author": PROPOSER_ID,
                                 "visibility": inquiry.note_visibility,
                                 "createdAt": datetime.now(timezone.utc).isoformat(),

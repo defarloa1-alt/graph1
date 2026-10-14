@@ -19,7 +19,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
   GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest \
-  GraphRevised.tests.test_registry_v9  # expect 225 tests, OK
+  GraphRevised.tests.test_registry_v9  # expect 226 tests, OK
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -61,7 +61,7 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 | Neo4j view | [views/explorer-view.cypher](views/explorer-view.cypher): the explorer's picture in Neo4j Desktop (the canvas, a focus, its card, a year's synchronism; an APOC variant with true lines) and a Browser style |
 | Reader | [proposals/passage_reader.py](proposals/passage_reader.py), prompt `passage-reader-v12` (rule 14: opposition); its predicate guide is built from the registry, so it now lists the v9 predicates (recorded through `predicateRegistryVersion`); no structure rules yet (v13, next steps) |
 | Wikidata HTTP | `polite_get` in [adapters/wikidata_identity.py](adapters/wikidata_identity.py): retries 429 and 5xx with backoff |
-| Migrations | [004](migrations/004_tether_dated_claims.py): tethered the 11 period claims spans over 200 years had left unlinked. [005](migrations/005_window_dates.py) (applied 2026-10-13): eight births and deaths known only to their decade or century, stored as true throughout it (710 Year links), superseded by claims dated sometime within it (16 links); the observations' reading corrected (`renormalize_statement_time`, the former mode kept), the old claims' Year links removed (`unlink_assertion_years`) |
+| Migrations | [004](migrations/004_tether_dated_claims.py): tethered the 11 period claims spans over 200 years had left unlinked. [005](migrations/005_window_dates.py) (applied 2026-10-13): eight births and deaths known only to their decade or century, stored as true throughout it (710 Year links), superseded by claims dated sometime within it (16 links); the observations' reading corrected (`renormalize_statement_time`, the former mode kept), the old claims' Year links removed (`unlink_assertion_years`). [006](migrations/006_annotation_labels.py) (applied 2026-10-14): the 128 annotations relabelled by what and where ("Anecdote · Weigall 17.11") instead of repeating their note; new ones are labelled so by `capture.core.annotation_label` |
 | Unchanged | review commands, inquiries, proposed entities, period survey, sources, capture, curation, identity |
 
 ## 4. Rules that are easy to break

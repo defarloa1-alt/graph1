@@ -33,6 +33,25 @@ def annotation_id(author: str, observation_id: str | None, note: str | None, con
     return f"chr:annotation:{hashlib.sha256(key.encode('utf-8')).hexdigest()[:16]}"
 
 
+def annotation_label(tx: Any, *, kind: str, note_type: str | None, observation_id: str | None = None,
+                     mentioned: str | None = None, mentioned_kind: str | None = None,
+                     source: str | None = None) -> str:
+    """What an annotation is and where it comes from ("Anecdote · Weigall 17.11"); what it says
+    stays in its note. The place is the observation's short caption, else its Work, else `source`."""
+    if kind == "entity-mention" and mentioned:
+        what = f"Mention of “{mentioned}”" + (f" ({mentioned_kind})" if mentioned_kind else "")
+    elif kind == "passage-of-note" and note_type:
+        what = note_type.capitalize()
+    else:
+        what = kind.replace("-", " ").capitalize()
+    where = source
+    if observation_id is not None:
+        row = tx.run("MATCH (o:SourceObservation {id: $id}) OPTIONAL MATCH (o)-[:IN_WORK]->(w:Entity) "
+                     "RETURN coalesce(o.shortLabel, w.label, o.label) AS caption", id=observation_id).single()
+        where = (row and row["caption"]) or where
+    return f"{what} · {where}" if where else what
+
+
 def capture(tx: Any, operations: dict[str, str], item: dict[str, Any]) -> dict[str, Any]:
     """Write one capture. `item` keys: workId, locator, locatorType, quote, and optionally
     note, noteType, concerns, edition, language, sourceSystem, capturedBy, capturedAt,
@@ -82,7 +101,7 @@ def capture(tx: Any, operations: dict[str, str], item: dict[str, Any]) -> dict[s
         result["annotationId"] = annotation_id(author, observation_id, item.get("note"), concerns)
         run_write(tx, operations, "upsert_annotation", {
             "id": result["annotationId"],
-            "label": (item.get("note") or quote)[:120],
+            "label": annotation_label(tx, kind="passage-of-note", note_type=note_type, observation_id=observation_id),
             "kind": "passage-of-note",
             "noteType": note_type,
             "note": item.get("note"),

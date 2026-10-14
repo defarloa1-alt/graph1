@@ -278,7 +278,9 @@ Relationship direction must be consistent in the stored graph.
 commentary, never a claim: a passage of note flagged by the reader or the
 curator, or a curator's note, with `kind`, `noteType`, `note`, `author`,
 `visibility` (private, team, public), and `status` (flagged, endorsed,
-dismissed). It may be deleted freely; it is never a hop in path tracing.
+dismissed). Its `label` says what it is and where, never what it says
+("Anecdote · Weigall 17.11", "Mention of “Empire” (Period) · Hale 2.34");
+the `note` carries the content (capture.core.annotation_label, migration 006). It may be deleted freely; it is never a hop in path tracing.
 
 The qualifier relationships, `PROMOTED_FROM`, and `IN_WORK` are specified in
 [22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md). A unary Assertion (such as

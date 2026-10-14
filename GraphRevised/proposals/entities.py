@@ -16,7 +16,7 @@ import re
 from datetime import datetime, timezone
 from typing import Any
 
-from GraphRevised.capture.core import annotation_id
+from GraphRevised.capture.core import annotation_id, annotation_label
 from GraphRevised.identity.local_candidates import candidates
 from GraphRevised.operations import run_write
 
@@ -36,6 +36,7 @@ def propose_entity(
     observation_id: str,
     quotation: str,
     note: str | None = None,
+    source: str | None = None,
 ) -> dict[str, Any]:
     """Reuse an existing entity with the same name and kind, or create a proposed one;
     record the mention either way. Returns {id, created, reused, candidates}."""
@@ -57,7 +58,9 @@ def propose_entity(
     mention_note = note or f"{kind} named as \"{label}\""
     run_write(tx, operations, "upsert_annotation", {
         "id": annotation_id(proposed_by, observation_id, mention_note, [entity_id]),
-        "label": mention_note[:120], "kind": "entity-mention", "noteType": "detail", "note": mention_note,
+        "label": annotation_label(tx, kind="entity-mention", note_type="detail", observation_id=observation_id,
+                                  mentioned=label, mentioned_kind=kind, source=source),
+        "kind": "entity-mention", "noteType": "detail", "note": mention_note,
         "author": proposed_by, "visibility": "private", "createdAt": datetime.now(timezone.utc).isoformat(),
         "observationId": observation_id, "quotation": quotation, "concerns": [entity_id],
     })

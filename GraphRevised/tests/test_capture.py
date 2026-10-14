@@ -3,7 +3,7 @@
 import os
 import unittest
 
-from GraphRevised.capture.core import CaptureError, capture
+from GraphRevised.capture.core import CaptureError, annotation_label, capture
 from GraphRevised.capture.highlights import match_book, parse_kindle, parse_readwise
 from GraphRevised.operations import RefusedWrite, load_operations, run_write
 from GraphRevised.proposals.registry import load_registry
@@ -40,6 +40,15 @@ READWISE = '''Highlight,Book Title,Book Author,Amazon Book ID,Note,Color,Tags,Lo
 
 BOOKS = [{"title": "A History of Test Wars", "author": "Ann Author", "workId": "chr:entity:test-history",
           "edition": "Test Press, 2022, Kindle edition"}]
+
+
+class AnnotationLabelTests(unittest.TestCase):
+    def test_a_label_says_what_and_where_never_the_note(self):
+        self.assertEqual(annotation_label(None, kind="entity-mention", note_type="detail", mentioned="Empire",
+                                          mentioned_kind="Period", source="PeriodO"),
+                         "Mention of “Empire” (Period) · PeriodO")
+        self.assertEqual(annotation_label(None, kind="passage-of-note", note_type="anecdote"), "Anecdote")
+        self.assertEqual(annotation_label(None, kind="curator-note", note_type=None), "Curator note")
 
 
 class HighlightParserTests(unittest.TestCase):
@@ -107,12 +116,14 @@ class CaptureLiveTests(unittest.TestCase):
                MATCH (a)-[:CONCERNS]->(e:Entity)
                RETURN o.observationKind AS kind, o.visibility AS ov, w.id AS work, a.note AS note,
                       a.noteType AS type, a.visibility AS av, a.status AS status, link.quotation AS quotation,
+                      a.label AS label, o.shortLabel AS place,
                       collect(e.id) AS concerns""",
             o=result["observationId"], a=result["annotationId"]).single()
         self.assertEqual((row["kind"], row["work"]), ("transcription", "chr:entity:test-history"))
         self.assertEqual((row["ov"], row["av"], row["status"]), ("private", "private", "flagged"))
         self.assertEqual((row["note"], row["type"]), ("Strategy as an eternal choice", "interpretation"))
         self.assertEqual(row["concerns"], ["chr:entity:test-battle"])
+        self.assertEqual(row["label"], f"Interpretation · {row['place']}")  # what and where; the note says what
         self.assertEqual(capture(self.tx, self.operations, self.ITEM), result)  # a retry writes nothing new
 
     def test_a_capture_is_evidence_for_an_attributed_interpretation(self):

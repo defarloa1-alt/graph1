@@ -311,7 +311,7 @@ def store_evidence(tx: Any, operations: dict[str, str], registry: Any, dataset: 
                    match: Match, entity_id: str, calendar: str) -> dict[str, Any]:
     definition = match.definition
     work = propose_entity(tx, operations, kind="Work", label=work_label(definition), proposed_by=SURVEY_ID,
-                          observation_id=None, quotation=None,
+                          observation_id=None, quotation=None, source="PeriodO",
                           note=f"Work named as the source of PeriodO definitions: "
                                f"{definition.source.citation or work_label(definition)}"[:500])
     observation = record_observation(definition, dataset, work["id"])
