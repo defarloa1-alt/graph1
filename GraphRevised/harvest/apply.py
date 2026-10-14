@@ -18,7 +18,9 @@ the outcome is reported. With --apply the transaction commits. Steps:
    through the deterministic proposer and the validator: proposed claims
    "according to Wikidata", never accepted.
 5. The focus's identifiers in federations we use become AuthorityRecords
-   (role crosswalk); the rest stay readable in the preserved record.
+   (role crosswalk); the rest stay readable in the preserved record. A record
+   that already exists under its system and identifier is linked, never
+   relabelled; the link carries the statement's rank and reference count.
 
 Unmapped relationships (gens, partners, relatives, allegiance...) are
 reported and wait for predicates. Nothing here accepts anything.
@@ -102,6 +104,17 @@ def _slug(label: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-") or "unnamed"
 
 
+def federation_system(rules: dict[str, Any], pid: str, value: str) -> str | None:
+    """The system an identifier belongs to: a name, or by the identifier's prefix (longest first)."""
+    rule = rules["federations"].get(pid)
+    if not isinstance(rule, dict):
+        return rule
+    for prefix in sorted(rule["byPrefix"], key=len, reverse=True):
+        if value.startswith(prefix):
+            return rule["byPrefix"][prefix]
+    return rule["default"]
+
+
 def surface(tx: Any, operations: dict[str, str], qid: str, rules: dict[str, Any],
             budget: dict[str, int] | None = None) -> dict[str, Any]:
     """Meet a target once: reuse the local Entity holding its QID, or propose one if its kind is known
@@ -180,8 +193,19 @@ def harvest(tx: Any, qid: str, operations: dict[str, str], registry: PredicateRe
 
     crosswalk = []
     for statement in statements:
-        system = rules["federations"].get(statement.pid)
-        if statement.kind != "identifier" or system is None or not isinstance(statement.value, str):
+        if statement.kind != "identifier" or not isinstance(statement.value, str):
+            continue
+        system = federation_system(rules, statement.pid, statement.value)
+        if system is None:
+            continue
+        link = {"entityId": focus["id"], "system": system, "identifier": statement.value,
+                "role": "crosswalk", "relation": "closeMatch", "linkStatus": "accepted",
+                "statementRank": statement.rank, "statementReferences": statement.references}
+        if tx.run("MATCH (a:AuthorityRecord {system: $system, identifier: $identifier}) RETURN a.id AS id",
+                  link).single():
+            # An existing record (a Subject's heading, another entity's identifier) keeps its own words.
+            run_write(tx, operations, "link_authority", link)
+            crosswalk.append(f"{system} {statement.value}")
             continue
         run_write(tx, operations, "upsert_authority", {
             "entityId": focus["id"], "id": f"chr:authority:{_slug(system)}:{_slug(statement.value)}",
@@ -193,6 +217,7 @@ def harvest(tx: Any, qid: str, operations: dict[str, str], registry: PredicateRe
             "rawPayloadUri": path.resolve().relative_to(path.resolve().parents[2]).as_posix(),
             "role": "crosswalk", "relation": "closeMatch", "linkStatus": "accepted",
         })
+        run_write(tx, operations, "link_authority", link)  # the statement's rank and references, on the link
         crosswalk.append(f"{system} {statement.value}")
 
     unmapped = [s for s in statements if s.kind == "relationship" and not s.predicates]

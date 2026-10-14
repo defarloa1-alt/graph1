@@ -47,6 +47,9 @@ OPERATION_NAMES = (
     "record_statement_time",
     "renormalize_statement_time",
     "unlink_assertion_years",
+    "link_authority",
+    "rename_authority_system",
+    "merge_authority_into",
 )
 
 

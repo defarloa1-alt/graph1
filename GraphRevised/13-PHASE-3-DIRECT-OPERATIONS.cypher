@@ -826,3 +826,50 @@ OPTIONAL MATCH (assertion)-[link:IN_YEAR]->(:Year)
 WITH assertion, collect(link) AS links
 FOREACH (link IN links | DELETE link)
 RETURN assertion.id AS id, size(links) AS removed;
+
+// Link an Entity to an AuthorityRecord that already exists, by (system,
+// identifier), without changing the record: its label and provenance stay
+// its own (a Subject's heading keeps the heading's words). The link records
+// the source statement's rank and reference count, refreshed on a retry.
+MATCH (entity:Entity {id: $entityId})
+MATCH (record:AuthorityRecord {system: $system, identifier: $identifier})
+MERGE (entity)-[link:HAS_AUTHORITY_RECORD]->(record)
+ON CREATE SET
+  link.role = $role,
+  link.relation = $relation,
+  link.status = $linkStatus
+SET link.statementRank = $statementRank,
+    link.statementReferences = $statementReferences
+RETURN entity, link, record;
+
+// Move an AuthorityRecord to another system, under the local ID that system
+// gives it, with its display text recomposed. Refused if a record already
+// holds that system and identifier (merge into it instead) or the new ID.
+// The former ID is kept.
+MATCH (record:AuthorityRecord {id: $id})
+WHERE NOT EXISTS { MATCH (other:AuthorityRecord {system: $system, identifier: record.identifier}) WHERE other <> record }
+  AND NOT EXISTS { MATCH (other:AuthorityRecord {id: $newId}) WHERE other <> record }
+SET record.formerId = coalesce(record.formerId, record.id),
+    record.id = $newId,
+    record.system = $system,
+    record.label = $label,
+    record.shortLabel = $shortLabel
+RETURN record;
+
+// Retire a duplicate AuthorityRecord into the record for the same identifier
+// that stays: its links move there with their properties (a link the target
+// already has is kept as it is), and the duplicate is deleted, its ID kept on
+// the target. Refused unless both exist with the same identifier and the
+// duplicate has no relationships other than authority links.
+MATCH (duplicate:AuthorityRecord {id: $id}), (target:AuthorityRecord {id: $targetId})
+WHERE duplicate <> target AND duplicate.identifier = target.identifier
+  AND NOT EXISTS { MATCH (duplicate)-[r]-() WHERE type(r) <> "HAS_AUTHORITY_RECORD" }
+CALL (duplicate, target) {
+  MATCH (node)-[old:HAS_AUTHORITY_RECORD]->(duplicate)
+  MERGE (node)-[moved:HAS_AUTHORITY_RECORD]->(target)
+  ON CREATE SET moved = properties(old)
+  RETURN count(old) AS moved
+}
+SET target.mergedIds = coalesce(target.mergedIds, []) + duplicate.id
+DETACH DELETE duplicate
+RETURN target, moved;

@@ -20,7 +20,9 @@ role, and context in that source, the quotations with their locators
 (counting evidence still pending on open Proposals), and its review history.
 A unary fact (such as `occurred`) has no object and is listed on its subject
 node. Proposals, source observations, and Years never become nodes. Each
-entity carries the passages of note and mentions that concern it. Rejected
+entity carries the passages of note and mentions that concern it, and its
+authority records as a quiet footer: one per system, the best-supported
+first, the others counted (26 §4). Rejected
 and superseded claims, deprecated entities, and dismissed notes appear only
 with --audit. Annotations are included whatever their visibility, so the
 output (git-ignored) is the curator's own view. This is a smoke view, not
@@ -57,7 +59,12 @@ RETURN e {ENTITY} AS entity,
          MATCH (n:Annotation)-[:CONCERNS]->(e) WHERE $audit OR n.status <> "dismissed"
          OPTIONAL MATCH (n)-[:ANNOTATES]->(o:SourceObservation)
          RETURN n {{.id, .kind, .noteType, .note, .status, source: o.shortLabel}} ORDER BY o.shortLabel, n.id
-       }} AS notes
+       }} AS notes,
+       COLLECT {{
+         MATCH (e)-[link:HAS_AUTHORITY_RECORD]->(a:AuthorityRecord)
+         RETURN {{system: a.system, identifier: a.identifier, label: a.label, role: link.role,
+                 rank: link.statementRank, references: link.statementReferences}}
+       }} AS authority
 """
 
 CLAIMS = f"""
@@ -128,6 +135,29 @@ def note_line(note: dict[str, Any]) -> str:
     return f"{kind}: {note.get('note')} ({where})"
 
 
+RANK_ORDER = {"preferred": 0, "normal": 1}
+
+
+def authority_footer(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The card's quiet footer: one record per system, the identity first, then by system name.
+    Within a system the best-supported statement wins (preferred rank, then most references,
+    then identifier); the rest are counted, not listed, and stay in the graph."""
+    systems: dict[str, list[dict[str, Any]]] = {}
+    for record in records:
+        systems.setdefault(record["system"], []).append(record)
+    footer = []
+    for system, group in systems.items():
+        best = min(group, key=lambda r: (r.get("role") != "entity_identity", RANK_ORDER.get(r.get("rank"), 2),
+                                         -(r.get("references") or 0), r["identifier"]))
+        footer.append({"system": system, "identifier": best["identifier"], "label": best["label"],
+                       "role": best.get("role"), "others": len(group) - 1})
+    return sorted(footer, key=lambda f: (f["role"] != "entity_identity", f["system"]))
+
+
+def authority_line(entry: dict[str, Any]) -> str:
+    return entry["label"] + (f" and {entry['others']} more" if entry["others"] else "")
+
+
 def _time(claim: dict[str, Any]) -> str | None:
     return display_edtf(claim["timeEdtf"]) if claim.get("timeEdtf") else claim.get("timeSourceExpression")
 
@@ -167,15 +197,17 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
     registry = load_registry()
     nodes: dict[str, dict[str, Any]] = {}
 
-    def node(entity: dict[str, Any], notes: list[dict[str, Any]] = ()) -> None:
+    def node(entity: dict[str, Any], notes: list[dict[str, Any]] = (), authority: list[dict[str, Any]] = ()) -> None:
+        footer = authority_footer(list(authority))
         nodes.setdefault(entity["id"], {"data": {
             "id": entity["id"], "label": entity.get("shortLabel") or entity["label"], "fullLabel": entity["label"],
             "kind": entity["kind"], "status": entity.get("status"), "description": entity.get("description"),
             "notes": [note_line(n) for n in notes], "facts": [], "factLines": [],
+            "authority": footer, "authorityLines": [authority_line(entry) for entry in footer],
         }})
 
     for row in tx.run(ENTITIES, audit=audit):
-        node(row["entity"], row["notes"])
+        node(row["entity"], row["notes"], row["authority"])
     author_of = dict(tx.run(AUTHORS, live=list(LIVE)).values("work", "author"))
     rows = list(tx.run(CLAIMS, statuses=AUDIT if audit else VISIBLE, open=OPEN_PROPOSALS))
 
@@ -262,28 +294,10 @@ function show(title, fields) {{
 }}
 cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["kind", d.kind], ["status", d.status],
   ["description", d.description], ["facts", d.factLines], ["passages of note and mentions", d.notes],
-  ["id", d.id]]); }});
+  ["authority records", d.authorityLines], ["id", d.id]]); }});
 cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.sentence, [["attestation", d.attestation],
   ["status", d.status], ["category", d.category], ["when", d.times.join("; ")], ["voices", d.voiceLines],
   ["review history", d.reviewLines], ["fact id", d.id]]); }});
-</script>
-<script>
-const graph = {graph};
-const cy = cytoscape({{ container: document.getElementById("cy"), elements: graph.elements, style: {style},
-                        layout: {{ name: "cose", animate: false, nodeRepulsion: 9000, idealEdgeLength: 120 }} }});
-const card = document.getElementById("card");
-const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({{"&": "&amp;", "<": "&lt;", ">": "&gt;"}}[c]));
-function show(title, fields) {{
-  card.innerHTML = `<h2>${{esc(title)}}</h2><dl>` + fields.filter(([, v]) => v !== null && v !== undefined && v !== "" &&
-    !(Array.isArray(v) && !v.length)).map(([k, v]) => `<dt>${{esc(k)}}</dt><dd>${{Array.isArray(v) ?
-    "<ul>" + v.map(item => `<li>${{esc(item)}}</li>`).join("") + "</ul>" : esc(v)}}</dd>`).join("") + "</dl>";
-}}
-cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["kind", d.kind], ["status", d.status],
-  ["description", d.description], ["facts", d.factLines], ["passages of note and mentions", d.notes],
-  ["id", d.id]]); }});
-cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.fullLabel, [["status", d.statusLine], ["attestation", d.confidence],
-  ["predicate", d.predicate], ["mode", d.mode], ["category", d.category], ["role", d.role], ["during", d.context],
-  ["time", d.time], ["evidence", d.evidence], ["pending evidence", d.pendingEvidence], ["claim id", d.id]]); }});
 </script></body></html>
 """
 

@@ -1,6 +1,7 @@
 """First-contact harvest, increment 1: Wikidata dates by precision, statement classes, Year tethers. Offline."""
 
 import json
+import os
 import unittest
 from pathlib import Path
 
@@ -170,3 +171,113 @@ class KindTests(unittest.TestCase):
         self.assertIsNone(kind_of(entity("Q1307214"), rules))                  # form of government: the agent's call
         self.assertIsNone(kind_of(entity(deprecated=("Q5",)), rules))
         self.assertTrue(set(rules["kinds"]) <= set(rules["kindPriority"]))
+
+
+class FederationSystemTests(unittest.TestCase):
+    def test_a_federation_may_name_its_system_by_prefix(self):
+        from GraphRevised.harvest.apply import federation_system
+
+        rules = {"federations": {"P1": "Plain", "P2": {"byPrefix": {"s": "Short", "sh": "Long"}, "default": "Other"}}}
+        self.assertEqual(federation_system(rules, "P1", "anything"), "Plain")
+        self.assertEqual(federation_system(rules, "P2", "sh123"), "Long")  # the longest prefix wins
+        self.assertEqual(federation_system(rules, "P2", "s123"), "Short")
+        self.assertEqual(federation_system(rules, "P2", "x123"), "Other")
+        self.assertIsNone(federation_system(rules, "P3", "x123"))
+
+    def test_one_identifier_property_holding_two_files_is_split_by_prefix(self):
+        from GraphRevised.harvest.apply import federation_system
+
+        rules = load_rules()
+        self.assertIsInstance(rules["federations"]["P244"], dict)
+        systems = {federation_system(rules, "P244", value) for value in ("sh85000001", "n80000001", "nr2000000001")}
+        self.assertEqual(len(systems), 2, "subject headings and names are different systems")
+
+
+AUTHORITY_FIXTURES = """
+CREATE (e:Entity {id: "chr:entity:test-auth-event", kind: "Event", label: "Test event", status: "provisional"})
+CREATE (s:Subject {id: "chr:subject:test-auth", label: "Test subject", status: "provisional"})
+CREATE (heading:AuthorityRecord {id: "chr:authority:test-headings:x1", system: "Test headings", identifier: "x1",
+                                 label: "Heading words (x1)"})
+CREATE (s)-[:HAS_AUTHORITY_RECORD {role: "subject_access", relation: "closeMatch", status: "accepted"}]->(heading)
+CREATE (dup:AuthorityRecord {id: "chr:authority:test-library:x1", system: "Test library", identifier: "x1",
+                             label: "Test event in Test library (x1)"})
+CREATE (e)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", relation: "closeMatch", status: "accepted"}]->(dup)
+CREATE (name:AuthorityRecord {id: "chr:authority:test-library:y1", system: "Test library", identifier: "y1",
+                              label: "Test event in Test library (y1)"})
+CREATE (e)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", relation: "closeMatch", status: "accepted"}]->(name)
+"""
+EVENT = "chr:entity:test-auth-event"
+HEADING, DUPLICATE, NAME = "chr:authority:test-headings:x1", "chr:authority:test-library:x1", "chr:authority:test-library:y1"
+
+
+@unittest.skipUnless(os.environ.get("NEO4J_PASSWORD"), "NEO4J_PASSWORD not set")
+class AuthorityOperationTests(unittest.TestCase):
+    """Linking without relabelling, renaming a system, retiring a duplicate. Rolled back; synthetic fixtures."""
+
+    @classmethod
+    def setUpClass(cls):
+        from neo4j import GraphDatabase
+
+        from GraphRevised.operations import load_operations
+
+        cls.operations = load_operations()
+        cls.driver = GraphDatabase.driver(
+            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
+            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+            notifications_min_severity="OFF")
+        cls.session = cls.driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j"))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.session.close()
+        cls.driver.close()
+
+    def setUp(self):
+        self.tx = self.session.begin_transaction()
+        self.tx.run(AUTHORITY_FIXTURES)
+
+    def tearDown(self):
+        self.tx.rollback()
+
+    def op(self, name, params):
+        return self.tx.run(self.operations[name], params).data()
+
+    def record(self, record_id):
+        return self.tx.run(
+            "MATCH (a:AuthorityRecord {id: $id}) "
+            "RETURN a.label AS label, a.system AS system, a.formerId AS formerId, a.mergedIds AS mergedIds, "
+            "COUNT { (a)<-[:HAS_AUTHORITY_RECORD]-() } AS links", id=record_id).single()
+
+    def test_linking_an_existing_record_keeps_its_words_and_records_the_statement(self):
+        link = {"entityId": EVENT, "system": "Test headings", "identifier": "x1", "role": "crosswalk",
+                "relation": "closeMatch", "linkStatus": "accepted", "statementRank": "preferred",
+                "statementReferences": 2}
+        self.assertTrue(self.op("link_authority", link))
+        row = self.tx.run("MATCH (:Entity {id: $event})-[l:HAS_AUTHORITY_RECORD]->(:AuthorityRecord {id: $heading}) "
+                          "RETURN l.role AS role, l.statementRank AS rank, l.statementReferences AS refs",
+                          event=EVENT, heading=HEADING).single()
+        self.assertEqual((row["role"], row["rank"], row["refs"]), ("crosswalk", "preferred", 2))
+        self.assertEqual(self.record(HEADING)["label"], "Heading words (x1)")
+        self.assertEqual(self.op("link_authority", {**link, "identifier": "missing"}), [], "never creates a record")
+
+    def test_a_duplicate_is_retired_into_the_record_that_stays(self):
+        rows = self.op("merge_authority_into", {"id": DUPLICATE, "targetId": HEADING})
+        self.assertEqual(rows[0]["moved"], 1)
+        row = self.record(HEADING)
+        self.assertEqual((row["label"], row["mergedIds"], row["links"]), ("Heading words (x1)", [DUPLICATE], 2))
+        self.assertIsNone(self.record(DUPLICATE))
+
+    def test_a_record_with_another_identifier_or_other_relationships_is_not_retired(self):
+        self.assertEqual(self.op("merge_authority_into", {"id": NAME, "targetId": HEADING}), [])
+        self.tx.run("MATCH (a {id: $id}) CREATE (:Assertion {id: 'chr:assertion:test-auth'})-[:ASSERTION_OBJECT]->(a)",
+                    id=DUPLICATE)
+        self.assertEqual(self.op("merge_authority_into", {"id": DUPLICATE, "targetId": HEADING}), [])
+
+    def test_renaming_a_system_keeps_the_former_id_and_refuses_a_clash(self):
+        rename = {"id": NAME, "newId": "chr:authority:test-names:y1", "system": "Test names",
+                  "label": "Test event in Test names (Test names y1)", "shortLabel": "Test names: Test event"}
+        self.assertTrue(self.op("rename_authority_system", rename))
+        row = self.record("chr:authority:test-names:y1")
+        self.assertEqual((row["system"], row["formerId"], row["links"]), ("Test names", NAME, 1))
+        clash = {**rename, "id": DUPLICATE, "newId": "chr:authority:test-headings:x1b", "system": "Test headings"}
+        self.assertEqual(self.op("rename_authority_system", clash), [], "x1 already has a Test headings record")

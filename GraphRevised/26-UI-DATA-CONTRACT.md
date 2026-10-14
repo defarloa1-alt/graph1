@@ -137,7 +137,7 @@ the authority line.
 | `notes[]` | Passages of note: type (motive, characterization, anecdote…), one line, source | built, ungrouped |
 | `narrative` | Shape 5, for the chosen persona | not built |
 | `signposts[]` | Doors out: `{label, count, state}`, state `explored` or `not yet read` | not built |
-| `authority[]` | Quiet footer: "Wikidata Q51673" with link | in the graph, not in the export |
+| `authority[]` | Quiet footer: one record per system, the identity first, the best-supported identifier shown and the rest counted ("Cleopatra in VIAF (VIAF 67762941) and 7 more"); never a code alone | built (2026-10-14) |
 
 Signposts for Antony as the graph stands, for mock-ups: *Battles (1)*,
 *Commands (4)*, *Cleopatra*, *Octavian*, *Elsewhere in 31 BC (empty)*,

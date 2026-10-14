@@ -42,6 +42,18 @@ CREATE (note)-[:CONCERNS]->(leader)
 CREATE (dismissed:Annotation {id: "chr:annotation:test-x-dismissed", kind: "passage-of-note", noteType: "detail",
                               note: "Test dismissed", status: "dismissed"})-[:ANNOTATES]->(passage)
 CREATE (dismissed)-[:CONCERNS]->(leader)
+CREATE (leader)-[:HAS_AUTHORITY_RECORD {role: "entity_identity"}]->
+       (:AuthorityRecord {id: "chr:authority:test-x-t1", system: "Test identity", identifier: "T1",
+                          label: "Test identity record: Test leader (T1)"})
+CREATE (leader)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", statementRank: "normal", statementReferences: 0}]->
+       (:AuthorityRecord {id: "chr:authority:test-x-c2", system: "Test cluster", identifier: "c2",
+                          label: "Test leader in Test cluster (c2)"})
+CREATE (leader)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", statementRank: "normal", statementReferences: 1}]->
+       (:AuthorityRecord {id: "chr:authority:test-x-c9", system: "Test cluster", identifier: "c9",
+                          label: "Test leader in Test cluster (c9)"})
+CREATE (leader)-[:HAS_AUTHORITY_RECORD {role: "crosswalk", statementRank: "normal", statementReferences: 0}]->
+       (:AuthorityRecord {id: "chr:authority:test-x-c1", system: "Test cluster", identifier: "c1",
+                          label: "Test leader in Test cluster (c1)"})
 """
 
 
@@ -108,6 +120,12 @@ class ExplorationExportTests(unittest.TestCase):
     def test_notes_are_listed_on_the_entity(self):
         nodes, _ = self.view()
         self.assertEqual(nodes["chr:entity:test-x-leader"]["notes"], ["motive: Test motive (Test 1.1, flagged)"])
+
+    def test_authority_records_are_one_per_system_best_supported_first(self):
+        nodes, _ = self.view()
+        self.assertEqual(nodes["chr:entity:test-x-leader"]["authorityLines"],
+                         ["Test identity record: Test leader (T1)", "Test leader in Test cluster (c9) and 2 more"])
+        self.assertEqual(nodes["chr:entity:test-x-battle"]["authorityLines"], [])
 
     def test_rejected_deprecated_and_dismissed_only_in_audit(self):
         nodes, edges = self.view()
