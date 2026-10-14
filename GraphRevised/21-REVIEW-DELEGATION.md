@@ -57,3 +57,28 @@ review (2026-10-12) accepted nine proposals and rejected one piece of
 evidence; it is listed in [18 §17](18-PHASE-5-PROPOSALS.md). Its least
 obvious decision is Eurycles (67.2), where pursuit of Antony's flight was
 counted as part of the engagement.
+
+The second delegated review (2026-10-13) covered handoff items the curator
+named: the two `authorOf` claims, the 13 design-mode `commanded` claims, and
+the passage reader's remaining claims and notes. The curator **explicitly
+extended** this request beyond section 2's default scope to command,
+authority, interpretive claims, and our own command statements; each such
+decision says so in its basis. Outcome: 105 proposals accepted, 13 pieces of
+evidence rejected (`unsupported`, the claims left open), 12 left open, and the
+117 passages of note endorsed (`decidedBy: Claude (delegated by Tony
+DeFarlo)`, 2026-10-13T23:30Z and 23:45Z). Least obvious decisions:
+
+- Our own (asserted) command claims were accepted only where two authors'
+  accepted claims corroborate them, and linked `PROMOTED_FROM` those claims:
+  Octavian's right wing (Plutarch, Weigall), Agrippa's left wing (Plutarch,
+  Weigall), Canidius's land army (Plutarch, Hale). The single-source ones
+  (Insteius's centre, Antony's right wing and fleet, Taurus) stay open.
+- A battle order ("in the centre were Marcus Octavius and Marcus Insteius";
+  "Agrippa's fleet blockading") was read as command of that post or force.
+- Flight and pursuit counted as participation, as with Eurycles.
+- Left open: Publicola (identity), pronouns resolved only by the neighbouring
+  passage (Plutarch 65.3 and 65.4), and Dio's near-duplicate date, a candidate
+  to supersede by its twin.
+- Rejected evidence: inferences the quotation does not state (Weigall's
+  "opposing Arruntius" as the centre, Hale's "the Allies" as Antony's fleet,
+  the headland of Actium as the battle's place).

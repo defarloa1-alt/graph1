@@ -212,3 +212,43 @@ seeded by hand; the reader discovers them (§3a), as a test.
    with the office as role ([Institutions response](docs/Response%20-%20Roman%20Republican%20Institutions%20and%20Military%20Hierarchies.md), Powers).
 5. **First Period entities**: Roman Kingdom, Roman Republic, Roman Empire,
    Principate, with the Wikidata identities in §2? Recommended: yes.
+
+## 9. PeriodO or Wikidata? (checked 2026-10-13)
+
+The curator asked whether PeriodO is truly the way for historical time, as
+opposed to Wikidata QIDs. Checked against the cached PeriodO dataset (version
+301, 2026-09-24) and Wikidata's API and query service:
+
+- **PeriodO** holds 9,446 period definitions from 501 authorities, each with
+  its source's own bound wording and, for over 600 bounds, earliest and latest
+  years: competing, attributed definitions with fuzzy edges, which is this
+  design. Its Wikidata links are **places only** (spatial coverage, 405 place
+  QIDs); no period definition links to a Wikidata period. Coverage leans to the
+  Mediterranean and Europe (about 3,100 definitions) against about 1,250 for
+  East and South Asia, 330 for the Americas, and few for sub-Saharan Africa.
+  PeriodO calls itself a public-domain gazetteer; the CC0 instrument itself
+  could not be confirmed.
+- **Wikidata** holds one item per period with one consensus date, thinly
+  referenced: the Roman Republic's inception and dissolution carry only
+  "imported from Wikimedia project"; the Roman Empire lists three dissolutions
+  (395 preferred, 476, 1453). Its PeriodO property (P9350, PeriodO period ID)
+  is used on 112 items, none of them the Roman periods.
+
+**Answer: both, in different roles; the design stands.** Wikidata gives
+identity (a stable QID, labels in many languages, library links); PeriodO
+gives the definitions (attributed, worded, fuzzy); Wikidata's own dates are
+one more attributed definition ("according to Wikidata"), never the consensus.
+Proposed changes, not built:
+
+1. Where a matched PeriodO definition is the target of a Wikidata P9350, offer
+   that QID as the identity candidate (rare, so never relied on).
+2. In review, show the Wikidata QIDs PeriodO gives as **places covered**
+   ("Roman Empire (Q2277), place covered"), never as a period identity
+   (§3b reads them too loosely).
+3. World bands (25 decision 4) from PeriodO's general definitions only
+   (world or country coverage), labelled with their authority, as reference
+   data; archaeological and regional phases excluded once the
+   regional/general split (§3 item 2) exists; thin regions said to be thin.
+
+The reader's proposed period "Empire" was relabelled **Roman Empire** by the
+curator (2026-10-13); its mention keeps the source's word.
