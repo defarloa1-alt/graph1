@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-14. **Status:** agreed with the curator; nothing built yet.
 **Changes:** [02](02-GRAPH-MODEL.md) §1 (Subject), which said most Entities have no Subject of their own.
-**Builds on:** [25](25-LIVES-AND-PLAYGROUND.md) §8 (Subjects and library headings), [24](24-PERIODS-AND-TRANSFORMATION.md) §2 (membership computed, not asserted), [docs/#vision.md](docs/%23vision.md) (the subject backbone).
+**Builds on:** [25](25-LIVES-AND-PLAYGROUND.md) §8 (Subjects and library headings), [24](24-PERIODS-AND-TRANSFORMATION.md) §2 (membership computed, not asserted), the curator's vision note of 2026-10-14 (the subject backbone; not kept).
 **Order:** after the gazetteer ([27](27-GAZETTEER.md)).
 
 ## 1. Decision

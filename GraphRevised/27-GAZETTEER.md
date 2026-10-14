@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-14. **Status:** agreed with the curator; nothing built yet.
 **Priority:** before the remaining next steps (curator, 2026-10-14: "backbone takes priority").
-**Builds on:** [03](03-TEMPORAL-YEAR-BACKBONE.md) (the Year backbone, its model), [docs/#vision.md](docs/%23vision.md) (temporal, geographic, and subject backbones), [25](25-LIVES-AND-PLAYGROUND.md) §11 (enrichers by kind).
+**Builds on:** [03](03-TEMPORAL-YEAR-BACKBONE.md) (the Year backbone, its model), the curator's vision note of 2026-10-14 (temporal, geographic, and subject backbones; not kept), [25](25-LIVES-AND-PLAYGROUND.md) §11 (enrichers by kind).
 
 ## 1. Decisions (curator, 2026-10-14)
 
