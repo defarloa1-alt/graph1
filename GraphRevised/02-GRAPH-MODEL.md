@@ -284,10 +284,10 @@ Relationship direction must be consistent in the stored graph.
 (:Entity {kind: Place})-[:AT_LOCATION]->(:Location)
 ```
 
-**Location** (the ninth core label, planned 2026-10-14) is the gazetteer:
+**Location** (the ninth core label, loaded 2026-10-15) is the gazetteer:
 a geographic backbone preloaded from Pleiades and GeoNames, off the canvas
-like Year ([27](27-GAZETTEER.md)). The last four relationships above are
-planned, not yet built.
+like Year ([27](27-GAZETTEER.md), 505,546 Locations; the last four
+relationships above).
 
 **Annotation** (the eighth core label, unique `id`, migration 003) is
 commentary, never a claim: a passage of note flagged by the reader or the

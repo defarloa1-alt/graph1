@@ -45,8 +45,8 @@ from GraphRevised.slices.add_work import apply_work
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 
 SNAPSHOT = """
-CALL () { MATCH (n) WHERE NOT n:Year RETURN collect([labels(n), properties(n)]) AS nodes }
-CALL () { MATCH (a)-[r]->(b) WHERE NOT a:Year
+CALL () { MATCH (n) WHERE NOT n:Year AND NOT n:Location RETURN collect([labels(n), properties(n)]) AS nodes }
+CALL () { MATCH (a)-[r]->(b) WHERE NOT a:Year AND NOT a:Location
           RETURN collect([coalesce(a.id, a.year), type(r), properties(r), coalesce(b.id, b.year)]) AS relationships }
 RETURN nodes, relationships
 """

@@ -873,3 +873,73 @@ CALL (duplicate, target) {
 SET target.mergedIds = coalesce(target.mergedIds, []) + duplicate.id
 DETACH DELETE duplicate
 RETURN target, moved;
+
+// ---------------------------------------------------------------------------
+// Gazetteer (27-GAZETTEER.md): Locations, off the canvas like Years. Batched:
+// each takes $rows and is refused (zero rows) unless every row is written.
+// ---------------------------------------------------------------------------
+
+// Upsert a batch of Locations. A Location's system and identifier are fixed
+// at creation: a row naming an existing id under another system or
+// identifier refuses the batch. Coordinates become a point when given.
+UNWIND $rows AS row
+MERGE (location:Location {id: row.id})
+ON CREATE SET location.system = row.system, location.identifier = row.identifier
+WITH location, row
+WHERE location.system = row.system AND location.identifier = row.identifier
+SET location.label = row.label,
+    location.kind = row.kind,
+    location.dataset = row.dataset,
+    location.location = CASE WHEN row.lat IS NULL OR row.lon IS NULL THEN null
+                             ELSE point({longitude: row.lon, latitude: row.lat}) END,
+    location.population = row.population,
+    location.placeTypes = row.placeTypes,
+    location.names = row.names,
+    location.nameAttestations = row.nameAttestations
+WITH count(location) AS written
+WHERE written = size($rows)
+RETURN written;
+
+// Link a batch of Locations to their parents. In the modern tree a Location
+// has one parent: a link to another modern parent is replaced. In the ancient
+// tree several parents are kept, one link per relation, with Pleiades'
+// period keys. Refused unless both ends of every row exist.
+UNWIND $rows AS row
+MATCH (child:Location {id: row.child}), (parent:Location {id: row.parent})
+WHERE child <> parent
+CALL (child, parent, row) {
+  MATCH (child)-[old:WITHIN {tree: "modern"}]->(other)
+  WHERE row.tree = "modern" AND other <> parent
+  DELETE old
+}
+MERGE (child)-[within:WITHIN {tree: row.tree, relation: row.relation}]->(parent)
+SET within.periods = row.periods
+WITH count(within) AS written
+WHERE written = size($rows)
+RETURN written;
+
+// Link a batch of ancient Locations to the modern Location they lie in: how
+// the link was made ("pleiades reference" or "nearest place"), the distance,
+// and the populated place it went through. One link per pair.
+UNWIND $rows AS row
+MATCH (ancient:Location {id: row.ancient}), (modern:Location {id: row.modern})
+MERGE (ancient)-[link:MODERN_LOCATION]->(modern)
+SET link.how = row.how,
+    link.distanceKm = row.distanceKm,
+    link.viaId = row.viaId,
+    link.viaLabel = row.viaLabel
+WITH count(link) AS written
+WHERE written = size($rows)
+RETURN written;
+
+// Link a batch of Place Entities to their gazetteer Locations, by an
+// identifier the Entity already holds (`basis`). Refused unless every Entity
+// is of kind Place and every Location exists.
+UNWIND $rows AS row
+MATCH (place:Entity {id: row.entity, kind: "Place"}), (location:Location {id: row.location})
+MERGE (place)-[link:AT_LOCATION]->(location)
+ON CREATE SET link.status = row.status
+SET link.basis = row.basis
+WITH count(link) AS written
+WHERE written = size($rows)
+RETURN written;

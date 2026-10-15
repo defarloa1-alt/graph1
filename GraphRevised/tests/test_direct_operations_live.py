@@ -37,11 +37,11 @@ DECIDE_PROPOSAL = "decide_proposal"
 
 SNAPSHOT_QUERY = """
 CALL () {
-  MATCH (node) WHERE NOT node:Year
+  MATCH (node) WHERE NOT node:Year AND NOT node:Location
   RETURN collect([labels(node), properties(node)]) AS nodes
 }
 CALL () {
-  MATCH (start)-[relationship]->(end) WHERE NOT start:Year
+  MATCH (start)-[relationship]->(end) WHERE NOT start:Year AND NOT start:Location
   RETURN collect([
     coalesce(start.id, start.year), type(relationship),
     properties(relationship), coalesce(end.id, end.year)

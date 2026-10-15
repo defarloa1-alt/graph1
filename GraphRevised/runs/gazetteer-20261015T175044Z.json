@@ -1,0 +1,1593 @@
+{
+ "applied": true,
+ "datasets": {
+  "geonames": "GeoNames allCountries, 2026-10-14, sha256 5d7304c271e5",
+  "pleiades": "Pleiades places, 2026-10-14, sha256 052dc0e0c522"
+ },
+ "rules": {
+  "maxKm": 50,
+  "note": "An ancient place reaches the modern tree through a GeoNames feature Pleiades names, else the nearest GeoNames populated place within maxKm (curator, 2026-10-14), whose admin codes give the most specific unit; beyond maxKm no link is made and the place is listed."
+ },
+ "geonames": {
+  "continents": 7,
+  "countries": 252,
+  "ADM1": 3865,
+  "ADM2": 47642,
+  "ADM3": 170131,
+  "ADM4": 224761,
+  "ADM5": 15042,
+  "duplicateCodePaths": 0,
+  "adm5WithoutParent": 179,
+  "withoutParent": 0,
+  "parentDiffersFromHierarchy": 0,
+  "referencedFound": 1503,
+  "referencedMissing": 3,
+  "populatedPlacesKept": 2151493
+ },
+ "geonamesLocationsByKind": {
+  "ADM4": 224761,
+  "ADM3": 170131,
+  "ADM2": 47642,
+  "ADM5": 15042,
+  "ADM1": 3865,
+  "PPL": 299,
+  "country": 252,
+  "ANS": 240,
+  "PPLA3": 160,
+  "ISL": 97,
+  "PPLA2": 76,
+  "STM": 74
+ },
+ "locations": 505546,
+ "withinLinks": {
+  "modern": 463131,
+  "ancient": 3364
+ },
+ "modernLocationLinks": {
+  "nearest place": 33164,
+  "pleiades reference": 1509
+ },
+ "bridge": {
+  "referencedWithoutUnit": 9,
+  "bridgedByNearestPlace": 33164,
+  "bridgedByReference": 1451,
+  "unlocated": 7577,
+  "notBridged": 207,
+  "ancientParentMissing": 8
+ },
+ "placeEntityLinks": [
+  {
+   "entity": "chr:entity:actium-promontory",
+   "location": "chr:location:pleiades:530771",
+   "status": "accepted",
+   "basis": "Pleiades 530771 names Wikidata Q216551"
+  },
+  {
+   "entity": "chr:entity:alexandria",
+   "location": "chr:location:pleiades:727070",
+   "status": "accepted",
+   "basis": "Pleiades 727070 (crosswalk)"
+  },
+  {
+   "entity": "chr:entity:antioch",
+   "location": "chr:location:pleiades:658381",
+   "status": "accepted",
+   "basis": "Pleiades 658381 names Wikidata Q200441"
+  },
+  {
+   "entity": "chr:entity:athens",
+   "location": "chr:location:pleiades:579885",
+   "status": "accepted",
+   "basis": "Pleiades 579885 names Wikidata Q1524"
+  },
+  {
+   "entity": "chr:entity:cherchell",
+   "location": "chr:location:pleiades:295279",
+   "status": "accepted",
+   "basis": "Pleiades 295279 names Wikidata Q1617666"
+  },
+  {
+   "entity": "chr:entity:crete",
+   "location": "chr:location:pleiades:589748",
+   "status": "accepted",
+   "basis": "Pleiades 589748 names Wikidata Q34374"
+  },
+  {
+   "entity": "chr:entity:ionian-sea",
+   "location": "chr:location:pleiades:1046",
+   "status": "accepted",
+   "basis": "Pleiades 1046 names Wikidata Q37495"
+  },
+  {
+   "entity": "chr:entity:nola",
+   "location": "chr:location:pleiades:432981",
+   "status": "accepted",
+   "basis": "Pleiades 432981 names Wikidata Q72288"
+  },
+  {
+   "entity": "chr:entity:philippi",
+   "location": "chr:location:pleiades:501482",
+   "status": "accepted",
+   "basis": "Pleiades 501482 names Wikidata Q379652"
+  },
+  {
+   "entity": "chr:entity:rome",
+   "location": "chr:location:pleiades:423025",
+   "status": "accepted",
+   "basis": "Pleiades 423025 (crosswalk)"
+  },
+  {
+   "entity": "chr:entity:rome",
+   "location": "chr:location:geonames:3169070",
+   "status": "accepted",
+   "basis": "GeoNames 3169070 (crosswalk)"
+  },
+  {
+   "entity": "chr:entity:sicyon",
+   "location": "chr:location:pleiades:570668",
+   "status": "accepted",
+   "basis": "Pleiades 570668 names Wikidata Q368628"
+  }
+ ],
+ "placeEntitiesUnmatched": [
+  {
+   "entity": "chr:entity:farsala",
+   "label": "Farsala"
+  },
+  {
+   "entity": "chr:entity:i-zmir",
+   "label": "İzmir"
+  }
+ ],
+ "unbridged": [
+  {
+   "pleiades": "29556",
+   "title": "Epimaranitae?/Nareitai?",
+   "lat": 22.5,
+   "lon": 52.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "29713",
+   "title": "Persicus Sinus/Erythr(ae)um Mare",
+   "lat": 27.0000001,
+   "lon": 50.9999999,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "30249",
+   "title": "Ogyris (island)",
+   "lat": 27.0000001,
+   "lon": 50.9999999,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "466778575",
+   "title": "Abu Ballas Trail",
+   "lat": 25.019452524703055,
+   "lon": 28.47263742247808,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "148089",
+   "title": "Gallicum Mare",
+   "lat": 43.0,
+   "lon": 4.0,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "157878",
+   "title": "Ligusticum Mare",
+   "lat": 43.5000002,
+   "lon": 8.9999997,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "354101",
+   "title": "Bir Baghira",
+   "lat": 25.922553,
+   "lon": 12.900578,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "354142",
+   "title": "Niger (mountain)",
+   "lat": 28.652967232071436,
+   "lon": 14.826655963392882,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "363931",
+   "title": "Austuriani",
+   "lat": 29.301788777772714,
+   "lon": 18.28853789298469,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "363971",
+   "title": "Herakleion Akroterion",
+   "lat": 31.5,
+   "lon": 19.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "364017",
+   "title": "Syrtica",
+   "lat": 30.2947080616996,
+   "lon": 17.790955591744396,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "364020",
+   "title": "Tagrifet",
+   "lat": 29.196565,
+   "lon": 17.338157,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "373802",
+   "title": "Gasr esc-Sahabi",
+   "lat": 30.007154,
+   "lon": 20.7960693,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39273",
+   "title": "Adramiton Chora",
+   "lat": 16.38080125196526,
+   "lon": 50.497159120545334,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39290",
+   "title": "Arabicus Sinus/Erythr(ae)um/Rubrum Mare",
+   "lat": 19.0,
+   "lon": 39.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39297",
+   "title": "Askitai",
+   "lat": 17.5,
+   "lon": 57.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39305",
+   "title": "Aualites Sinus",
+   "lat": 12.35860587159105,
+   "lon": 47.10731220898384,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39308",
+   "title": "Azanium Mare/Barbarikon Pelagos",
+   "lat": 20.0000001,
+   "lon": 64.9999999,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39315",
+   "title": "Bracheia/Prasodes Thalassa",
+   "lat": 5.000000058430487e-08,
+   "lon": 72.49999995,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39321",
+   "title": "Canon",
+   "lat": 12.5,
+   "lon": 47.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39345",
+   "title": "Exusta/Katakekaumene (islands)",
+   "lat": 15.541152766338778,
+   "lon": 41.83387525688433,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "39352",
+   "title": "Indicum Mare",
+   "lat": -20.0,
+   "lon": 80.0,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "560720",
+   "title": "Platea (island)",
+   "lat": 35.8634532,
+   "lon": 26.2322965,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "827790769",
+   "title": "Kush (kingdom)",
+   "lat": 17.751420771010146,
+   "lon": 32.78279873176483,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "325665299",
+   "title": "Tumek-Kichidzhik",
+   "lat": 41.574652,
+   "lon": 58.542156,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "632192759",
+   "title": "Via Hadriana",
+   "lat": 26.89794875,
+   "lon": 32.51410787,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716528",
+   "title": "el-Areg",
+   "lat": 29.058555,
+   "lon": 26.401535,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716533",
+   "title": "Bahrein",
+   "lat": 28.680379,
+   "lon": 26.487423,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716589",
+   "title": "Libya Inferior (region)",
+   "lat": 30.889219948918697,
+   "lon": 26.473596095001977,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716595",
+   "title": "Marmarica",
+   "lat": 31.5,
+   "lon": 23.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716596",
+   "title": "Marmaridai",
+   "lat": 31.5,
+   "lon": 23.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716607",
+   "title": "Nuweimisa",
+   "lat": 28.700404,
+   "lon": 26.733201,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716613",
+   "title": "Ogdaimoi?",
+   "lat": 30.25077293704213,
+   "lon": 27.131773651291642,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "716636",
+   "title": "Sitra",
+   "lat": 28.788587,
+   "lon": 27.052842,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717252",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717253",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717254",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717255",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717256",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717257",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717258",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717259",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "717260",
+   "title": "Untitled",
+   "lat": 30.5,
+   "lon": 26.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "727137",
+   "title": "Kanobikon Stoma",
+   "lat": 16.101082933237464,
+   "lon": 31.459148244506146,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "727189",
+   "title": "Pelousiakos (river)",
+   "lat": 16.101082933237464,
+   "lon": 31.459148244506146,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "727224",
+   "title": "Sebennytikon Stoma",
+   "lat": 16.101082933237464,
+   "lon": 31.459148244506146,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "727239",
+   "title": "Tanitikon/Saitikon Stoma",
+   "lat": 16.101082933237464,
+   "lon": 31.459148244506146,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "736898",
+   "title": "Bir Hawashiya",
+   "lat": 28.227687,
+   "lon": 32.402208,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "737637",
+   "title": "Phchet",
+   "lat": 22.61841632644414,
+   "lon": 31.171231372623428,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "756652",
+   "title": "Tal'at al-Arta",
+   "lat": 28.017515,
+   "lon": 31.421969,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "756672",
+   "title": "Ujra Zena",
+   "lat": 27.927959,
+   "lon": 31.485697,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589683",
+   "title": "Ampas",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589708",
+   "title": "Argos?",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589713",
+   "title": "Asomata",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589732",
+   "title": "Bigla",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589751",
+   "title": "Damatria",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589779",
+   "title": "Eremokastro",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589780",
+   "title": "Eremokastro",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589865",
+   "title": "Khalospita",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589876",
+   "title": "Kolympia",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589896",
+   "title": "Lartos",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589915",
+   "title": "Loryma Sinus",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589923",
+   "title": "Mantra Boutouriou",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589928",
+   "title": "Mesobounos",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589930",
+   "title": "Metropolite",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589951",
+   "title": "Napes",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589954",
+   "title": "Nessos",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589963",
+   "title": "Orthe",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589975",
+   "title": "Panos Pr.",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "589977",
+   "title": "Paradeisi",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "590041",
+   "title": "Schedia Sinus",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "590055",
+   "title": "Soroni",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "590062",
+   "title": "Soura",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "590077",
+   "title": "Thermydon Sinus",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "591924",
+   "title": "Untitled",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "593435",
+   "title": "Untitled",
+   "lat": 34.75,
+   "lon": 26.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "786014015",
+   "title": "Abu Ballas",
+   "lat": 24.439066346589136,
+   "lon": 27.64878787366449,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "442639",
+   "title": "Lucania (region)",
+   "lat": 39.885,
+   "lon": 17.276944,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "234483664",
+   "title": "Ahramat Branch",
+   "lat": 16.101082933237464,
+   "lon": 31.459148244506146,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "857769",
+   "title": "Untitled",
+   "lat": 41.5,
+   "lon": 38.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "648602",
+   "title": "Cilicius Aulon",
+   "lat": 36.25,
+   "lon": 34.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "766330",
+   "title": "Abu Gerida",
+   "lat": 26.35825,
+   "lon": 33.288666,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "766367",
+   "title": "Gidami",
+   "lat": 26.420675,
+   "lon": 33.310399,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "766381",
+   "title": "Maghrabiya",
+   "lat": 26.311833,
+   "lon": 33.394766,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "766413",
+   "title": "Umm Esh",
+   "lat": 26.182634,
+   "lon": 33.558843,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "775",
+   "title": "Africa (region)",
+   "lat": 32.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "776142",
+   "title": "Abu Gerara",
+   "lat": 25.976951,
+   "lon": 29.913904,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "776143",
+   "title": "Ain Amour",
+   "lat": 25.651954,
+   "lon": 29.990903,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "776153",
+   "title": "Anhydra Ore",
+   "lat": 25.25,
+   "lon": 29.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "776193",
+   "title": "Libyaigyptioi",
+   "lat": 25.75,
+   "lon": 31.25,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "785971",
+   "title": "Aphrodites (Oros)",
+   "lat": 25.605802750702114,
+   "lon": 33.62406696190063,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "785994",
+   "title": "Bir el-Qash",
+   "lat": 25.850018,
+   "lon": 33.650042,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "785995",
+   "title": "Bir el-Sid",
+   "lat": 25.92993,
+   "lon": 33.64507,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "788222",
+   "title": "Untitled",
+   "lat": 25.75,
+   "lon": 33.75,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795773",
+   "title": "Abu Fas",
+   "lat": 22.09553,
+   "lon": 33.990514,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795776",
+   "title": "Alfawa",
+   "lat": 20.944572,
+   "lon": 34.995478,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795786",
+   "title": "Berenice Panchrysos?",
+   "lat": 21.882527,
+   "lon": 35.205045,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795787",
+   "title": "Bir Abraq",
+   "lat": 23.415392675969454,
+   "lon": 34.799481533618135,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795788",
+   "title": "Bir Abu Hashim",
+   "lat": 23.685153,
+   "lon": 34.170377,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795790",
+   "title": "Blemmyes",
+   "lat": 23.5,
+   "lon": 33.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795821",
+   "title": "el-Ileiga",
+   "lat": 23.621794,
+   "lon": 35.023679,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795878",
+   "title": "Um Garriat",
+   "lat": 22.511049,
+   "lon": 33.538448,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "795884",
+   "title": "Wadi el-Hudi",
+   "lat": 23.5,
+   "lon": 33.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "79632",
+   "title": "Ouergionios Okeanos",
+   "lat": 49.0,
+   "lon": -11.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "797282",
+   "title": "Untitled",
+   "lat": 22.5,
+   "lon": 33.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "797283",
+   "title": "Untitled",
+   "lat": 22.5,
+   "lon": 33.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "797284",
+   "title": "Untitled",
+   "lat": 22.5,
+   "lon": 33.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "798037",
+   "title": "Abounkis",
+   "lat": 16.101082933237464,
+   "lon": 31.459148244506146,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805597",
+   "title": "Boron",
+   "lat": 17.683332,
+   "lon": 32.983332,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805614",
+   "title": "Gebel Gurad",
+   "lat": 19.000187,
+   "lon": 35.36573,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805615",
+   "title": "Gebel Raihob",
+   "lat": 19.150946,
+   "lon": 34.843659,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805622",
+   "title": "Komotit",
+   "lat": 19.566666,
+   "lon": 34.983333,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805629",
+   "title": "Megabar(r)i?",
+   "lat": 18.023852503473837,
+   "lon": 32.89259777967857,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805636",
+   "title": "Nauarai",
+   "lat": 20.162602,
+   "lon": 34.247341,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805637",
+   "title": "Nigeim",
+   "lat": 19.483333,
+   "lon": 34.266666,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805639",
+   "title": "Nubaei?",
+   "lat": 17.63901747832744,
+   "lon": 31.852977851655897,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805642",
+   "title": "Omar Kabash",
+   "lat": 20.240402,
+   "lon": 33.342538,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "805655",
+   "title": "Serakoit",
+   "lat": 20.263559,
+   "lon": 35.916573,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814647",
+   "title": "Achroua",
+   "lat": 27.897794,
+   "lon": 37.329689,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814653",
+   "title": "Apataioi",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814665",
+   "title": "Banoubaroi",
+   "lat": 25.5,
+   "lon": 36.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814672",
+   "title": "Disa",
+   "lat": 27.61709,
+   "lon": 36.378737,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814686",
+   "title": "Hufrat az-Zawiyah",
+   "lat": 27.92039,
+   "lon": 35.97795,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814693",
+   "title": "Khirbet ash-Shiqri",
+   "lat": 27.877947,
+   "lon": 36.065003,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814697",
+   "title": "Laba",
+   "lat": 27.517708,
+   "lon": 36.33554,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814701",
+   "title": "Madiama",
+   "lat": 27.662475,
+   "lon": 36.384064,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814727",
+   "title": "Robathoi",
+   "lat": 27.5,
+   "lon": 36.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814729",
+   "title": "Ruwwafah",
+   "lat": 27.74252,
+   "lon": 36.277823,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814733",
+   "title": "Sidenoi",
+   "lat": 27.5,
+   "lon": 36.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814740",
+   "title": "Thamydenoi/Tamudaei",
+   "lat": 27.5,
+   "lon": 36.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "814756",
+   "title": "Zaigaina (islands)",
+   "lat": 24.934657691039234,
+   "lon": 35.86798556013334,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815402",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815404",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815405",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815406",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815407",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815408",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815409",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815410",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815411",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "815412",
+   "title": "Untitled",
+   "lat": 27.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "825318",
+   "title": "Maeotis",
+   "lat": 46.07267747627597,
+   "lon": 36.71166945889652,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "549872870",
+   "title": "Seleukeia on the Erythraian Sea",
+   "lat": 27.0000001,
+   "lon": 50.9999999,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "344491",
+   "title": "Syrtis Maior",
+   "lat": 31.474808472421035,
+   "lon": 17.827474591075145,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "47806597",
+   "title": "Caldone (promontory)",
+   "lat": 27.0000001,
+   "lon": 50.9999999,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "900159789",
+   "title": "Samḥa (island)",
+   "lat": 12.176699578628781,
+   "lon": 53.026395999390175,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "265818",
+   "title": "Baliaricum Mare",
+   "lat": 40.0,
+   "lon": 1.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "992830",
+   "title": "Alpes Cottiae (late Roman province)",
+   "lat": 42.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "463803480",
+   "title": "Ptolemaic Kingdom",
+   "lat": 33.697679091853935,
+   "lon": 26.69407651412198,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "694023687",
+   "title": "Shahr-i Ghulghula",
+   "lat": 30.577778,
+   "lon": 65.086667,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "49838",
+   "title": "Adisathron (mountain)",
+   "lat": 17.5,
+   "lon": 72.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "49842",
+   "title": "Aigidion Nesos",
+   "lat": 15.431656329897196,
+   "lon": 73.275844563487,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "49913",
+   "title": "Bendas (river)",
+   "lat": 17.5,
+   "lon": 72.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "49962",
+   "title": "Dharphal",
+   "lat": 17.5,
+   "lon": 72.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "50015",
+   "title": "Kaineiton Nesos",
+   "lat": 12.5,
+   "lon": 72.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "50063",
+   "title": "Kolchikos Kolpos",
+   "lat": 7.927230308933972,
+   "lon": 79.23670020753552,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "50178",
+   "title": "Orientale Mare/Gangeticus Sinus/Eous Oceanus",
+   "lat": 15.0000001,
+   "lon": 89.9999999,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "50236",
+   "title": "Pyrron Oros",
+   "lat": 7.5,
+   "lon": 77.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "50264",
+   "title": "Sesekreienai? Inss.",
+   "lat": 17.5,
+   "lon": 72.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "50275",
+   "title": "Solen (river)",
+   "lat": 7.5,
+   "lon": 77.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "50592",
+   "title": "Agathou Daimonos (island)",
+   "lat": -20.0,
+   "lon": 80.0,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "579872604",
+   "title": "Bi'r Minayh ",
+   "lat": 25.558291,
+   "lon": 33.60644,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "154459219",
+   "title": "Africa (diocese)",
+   "lat": 32.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "752636525",
+   "title": "Roman temple at Ain Amur",
+   "lat": 25.65208985126469,
+   "lon": 29.990816275390284,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "20469",
+   "title": "Germanicum Mare",
+   "lat": 56.0,
+   "lon": 3.0,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "20497",
+   "title": "[Iutae]",
+   "lat": 57.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "20594",
+   "title": "Sarmaticus Oceanus",
+   "lat": 56.0,
+   "lon": 18.0,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "981503",
+   "title": "Ancient Egypt (region)",
+   "lat": 16.101082933237464,
+   "lon": 31.459148244506146,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "981508",
+   "title": "Armenia Minor (Roman eparcheia)",
+   "lat": 42.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "981545",
+   "title": "Pontus Galaticus",
+   "lat": 42.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "981546",
+   "title": "Pontus Polemoniacus",
+   "lat": 42.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "982259",
+   "title": "Alpes Maritimae (province)",
+   "lat": 42.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991329",
+   "title": "Germania II",
+   "lat": 52.5,
+   "lon": 2.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991340",
+   "title": "Viennensis (late Roman province)",
+   "lat": 42.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991345",
+   "title": "Byzacena",
+   "lat": 32.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991387",
+   "title": "Aegyptus Iovia",
+   "lat": 32.5,
+   "lon": 27.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991388",
+   "title": "Libya Inferior",
+   "lat": 32.5,
+   "lon": 27.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991389",
+   "title": "Bithynia",
+   "lat": 42.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991390",
+   "title": "Diospontus",
+   "lat": 42.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991396",
+   "title": "Palaestina (province)",
+   "lat": 32.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991397",
+   "title": "Aegyptus Herculia",
+   "lat": 27.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "991398",
+   "title": "Thebais",
+   "lat": 27.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "992080",
+   "title": "Oriens",
+   "lat": 27.5,
+   "lon": 27.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "992827",
+   "title": "Narbonensis II",
+   "lat": 42.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1224",
+   "title": "Pontus Euxinus",
+   "lat": 43.0786852,
+   "lon": 34.7425505,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1282",
+   "title": "Siculum/Ausonium Mare",
+   "lat": 37.5,
+   "lon": 17.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "138188",
+   "title": "Aquitanicus Sinus",
+   "lat": 38.930499,
+   "lon": -10.482686000000001,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "992829",
+   "title": "Alpes Maritimae (late Roman province)",
+   "lat": 42.5,
+   "lon": 7.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "599490806",
+   "title": "Hafir far west of Araba",
+   "lat": 16.507908,
+   "lon": 31.553486,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "40080",
+   "title": "Berenice Panchrysos",
+   "lat": 21.950248546769007,
+   "lon": 35.14114767066866,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "246419",
+   "title": "Hispanum/(H)Ibericum Mare",
+   "lat": 40.0000001,
+   "lon": 1.9999999,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001135",
+   "title": "Pontike",
+   "lat": 42.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001136",
+   "title": "Anatolike",
+   "lat": 32.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001920",
+   "title": "Galatia I",
+   "lat": 42.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001925",
+   "title": "Pontos Polemoniakos",
+   "lat": 42.5,
+   "lon": 37.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001941",
+   "title": "Palaestina III (late Roman province)",
+   "lat": 27.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001943",
+   "title": "Aigyptos",
+   "lat": 32.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001944",
+   "title": "Augoustamnike I",
+   "lat": 32.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001945",
+   "title": "Augoustamnike II",
+   "lat": 32.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001946",
+   "title": "Arkadia",
+   "lat": 27.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001947",
+   "title": "Thebais Engista",
+   "lat": 27.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001948",
+   "title": "Thebais Ano",
+   "lat": 27.5,
+   "lon": 32.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "1001950",
+   "title": "Libye he Kato",
+   "lat": 32.5,
+   "lon": 27.5,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "963101100",
+   "title": "Hafir far west of Araba",
+   "lat": 16.482599,
+   "lon": 31.556463,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "963101102",
+   "title": "Hafir far west of Araba",
+   "lat": 16.533217,
+   "lon": 31.54753,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "963101103",
+   "title": "Hafir far west of Araba",
+   "lat": 16.519818,
+   "lon": 31.526688,
+   "reason": "no populated place within range"
+  },
+  {
+   "pleiades": "963101104",
+   "title": "Hafir far west of Araba",
+   "lat": 16.49302,
+   "lon": 31.526688,
+   "reason": "no populated place within range"
+  }
+ ]
+}

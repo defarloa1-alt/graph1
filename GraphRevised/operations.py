@@ -50,6 +50,10 @@ OPERATION_NAMES = (
     "link_authority",
     "rename_authority_system",
     "merge_authority_into",
+    "upsert_locations",
+    "link_location_parents",
+    "link_modern_locations",
+    "link_place_locations",
 )
 
 

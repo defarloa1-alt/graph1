@@ -2,7 +2,7 @@
 
 **Branch:** `graph-revised-clean-start`, pushed to `origin` (2026-10-13, with the curator's go-ahead; push only with it).
 **Read first:** [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md), sections 5-13 especially. Decided late on 2026-10-13: the Institutions response (sections Registry v9, Powers, Membership), [24](24-PERIODS-AND-TRANSFORMATION.md) §2 note and §9 (PeriodO or Wikidata), [21](21-REVIEW-DELEGATION.md) §5 (the second delegated review).
-**New 2026-10-15:** depicted events built and read for the battle from four sources ([23](23-NARRATIVE-AND-NOTES.md) pilot, [29](29-EVENT-CENTRED-INQUIRY.md) §9a; walk them with [views/actium-walk.cypher](views/actium-walk.cypher)); [29-EVENT-CENTRED-INQUIRY.md](29-EVENT-CENTRED-INQUIRY.md) (the event is the inquiry; Chrystallum's account on the stage; Wikipedia as starting point; the source registry; the new order in §6), [26](26-UI-DATA-CONTRACT.md) §4a (the notes stage), [views/actium-annotations.cypher](views/actium-annotations.cypher).
+**New 2026-10-15:** the gazetteer is loaded ([27](27-GAZETTEER.md) §4a: 505,546 Locations; a Place's chain with [views/place-chain.cypher](views/place-chain.cypher)); depicted events built and read for the battle from four sources ([23](23-NARRATIVE-AND-NOTES.md) pilot, [29](29-EVENT-CENTRED-INQUIRY.md) §9a; walk them with [views/actium-walk.cypher](views/actium-walk.cypher)); [29-EVENT-CENTRED-INQUIRY.md](29-EVENT-CENTRED-INQUIRY.md) (the event is the inquiry; Chrystallum's account on the stage; Wikipedia as starting point; the source registry; the new order in §6), [26](26-UI-DATA-CONTRACT.md) §4a (the notes stage), [views/actium-annotations.cypher](views/actium-annotations.cypher).
 **New 2026-10-14:** [27-GAZETTEER.md](27-GAZETTEER.md) (the geographic backbone, next to build), [28-SUBJECT-BUCKETS.md](28-SUBJECT-BUCKETS.md) (every entity in a bucket), 25 §11 (SCA and SFA retired).
 **Also new:** [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md) (what the Figma explorer receives), [docs/Response - Roman Republican Institutions and Military Hierarchies.md](docs/Response%20-%20Roman%20Republican%20Institutions%20and%20Military%20Hierarchies.md) (the structure design).
 **History:** [18](18-PHASE-5-PROPOSALS.md) (Phase 5), [22](22-CLAIM-QUALIFIERS.md), [23](23-NARRATIVE-AND-NOTES.md), [24](24-PERIODS-AND-TRANSFORMATION.md).
@@ -21,7 +21,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
   GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest \
-  GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events  # expect 241 tests, OK
+  GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events \n  GraphRevised.tests.test_gazetteer  # expect 251 tests, OK
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -33,9 +33,9 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 - `.obsidian/` and the curator's Obsidian edits to the `.md` files are theirs (`00`, `01`, `README` have uncommitted edits of theirs): never touch the folder, and stage only your own hunks.
 - **Data is not in git** (25 §13): harvest payloads are git-ignored; the local disk holds the only copy of the graph and payloads.
 
-## 2. Graph state (2026-10-15, after the depicted-event runs)
+## 2. Graph state (2026-10-15, after the gazetteer load)
 
-8,373 nodes, 11,853 relationships (4,025 Year nodes from 2000 BCE to 2025).
+513,919 nodes, 513,032 relationships: 505,546 Locations (the gazetteer, off the canvas) and 4,025 Year nodes (2000 BCE to 2025) are the backbones; the rest is the Actium graph.
 
 | Label | Count | Notes |
 |---|---:|---|
@@ -46,12 +46,14 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 | AuthorityRecord | 258 | Wikidata identities, the crosswalk, LCSH and FAST (one record per system and identifier) |
 | Annotation | 453 | passages of note (117 endorsed, 56 new flagged), entity mentions (each depicted event's first naming) |
 | Subject | 1 | History of the Battle of Actium, with LCSH sh85000736 and FAST 796265 |
+| Location | 505,546 | GeoNames' modern tree (461,700 units, continent to ADM5), 1,447 features Pleiades names, all 42,399 Pleiades places; `WITHIN` (modern 463,131, ancient 3,363), `MODERN_LOCATION` 34,673, `AT_LOCATION` 12 (11 Place entities) |
 
 ## 3. What exists
 
 | Area | Artifact |
 |---|---|
 | Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher), loaded by name through [operations.py](operations.py), 41 operations; new on 2026-10-14: `link_authority`, `rename_authority_system`, `merge_authority_into` (migration 007); new on 2026-10-13: `set_work_form`, `upsert_subject_authority`, `record_statement_time`, `renormalize_statement_time` and `unlink_assertion_years` (migration 005); `upsert_qualified_assertion` stores a quantity and no longer insists the context is an Event; `link_assertion_years` takes `{year, as}` links |
+| Gazetteer (2026-10-15) | [gazetteer/](gazetteer): `load` (dry run by default; `--apply` writes in batches of 5,000 through `upsert_locations`, `link_location_parents`, `link_modern_locations`, `link_place_locations`), rules in [curation/gazetteer.json](curation/gazetteer.json), schema in [gazetteer/schema.cypher](gazetteer/schema.cypher), a report per run in `runs/`. Whole-graph snapshots (live tests, `apply_curation`) leave out Locations as they leave out Years: they exceed the transaction memory limit otherwise |
 | Depicted events (2026-10-15) | Registry [predicates.v10.json](proposals/predicates.v10.json): `happenedBefore` (Event to Event, the source's order), `occurred` with an optional context event (a time marker's anchor). Reader prompt `passage-reader-v13`: `depicted_events`, turned into proposed Events and attributed claims by `to_depicted` and `depicted_drafts`; optional reader text is an empty string, not null (the output grammar limit). Event inquiries: `sources` (one event, several Works, each with `voice` and guidance); the reader takes `--source` and `--chapters`; a dry run keeps a source in one rolled-back transaction. [inquiries/actium-battle.json](inquiries/actium-battle.json); [views/actium-walk.cypher](views/actium-walk.cypher), [views/actium-annotations.cypher](views/actium-annotations.cypher) |
 | Draft contract | [proposals/schema.py](proposals/schema.py), `proposal-draft-v6`: `TimeQualifier.mode` (during, within); v6 `QuantityQualifier` (minimum, maximum, typical, the source's words), part of a claim's identity by its figures |
 | Predicates | [proposals/predicates.v9.json](proposals/predicates.v9.json), 33 predicates: v7 `opposed` and Work forms; v8 `born` and `died`; **v9** kinds Type and Polity, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`, `memberOf`, `partOf` for Groups and Types (`kindPairs`), quantity on `partOf` and `electedBy`, context and role kinds per predicate; P361 chosen by kind, P463 to `memberOf` |
@@ -106,7 +108,7 @@ Open:
 
 ## 6. Next steps
 
-**2026-10-15:** the depicted-event pilot (23 §5) is done for the battle's chapters in all four sources; next for it: review (the 269 events are visible, proposed), Hale's inferences arriving as factual events, shorter labels. Registry v9 is built (kinds Type and Polity, the structure predicates, quantity; see section 3). In order (the backbones first, curator, 2026-10-14; **revised 2026-10-15**: after the gazetteer comes the event-centred research run for the Battle of Actium, [29](29-EVENT-CENTRED-INQUIRY.md) §9, which absorbs item 3 below; then the subject buckets):
+**2026-10-15:** the gazetteer is built and loaded (item 1 below is done; Farsala and İzmir wait for the curator's identity match). The depicted-event pilot (23 §5) is done for the battle's chapters in all four sources; next for it: review (the 269 events are visible, proposed), Hale's inferences arriving as factual events, shorter labels. Registry v9 is built (kinds Type and Polity, the structure predicates, quantity; see section 3). In order (the backbones first, curator, 2026-10-14; **revised 2026-10-15**: after the gazetteer comes the event-centred research run for the Battle of Actium, [29](29-EVENT-CENTRED-INQUIRY.md) §9, which absorbs item 3 below; then the subject buckets):
 
 1. **The gazetteer** ([27](27-GAZETTEER.md)): the dumps are downloaded to `cache/geonames/` and `cache/pleiades/` (2026-10-14, with `metadata.json` beside each: source, retrieval time, Last-Modified, SHA-256, licence). Build: constraint and point index for `Location`; batched operations; the loader (dry run by default) for the GeoNames tree (about 462,000 units), all 42,399 Pleiades places with their ancient `WITHIN` links, the bridge (Pleiades' GeoNames references, else the nearest populated place within 50 km, curator 2026-10-14); then the 13 Place entities linked by the identifiers they hold.
 2. **Subject buckets** ([28](28-SUBJECT-BUCKETS.md)): `BROADER` from the headings' broader terms, membership computed from claims (registry data says which predicates carry it), the Punic Wars as the first hierarchy (headings checked 2026-10-14).

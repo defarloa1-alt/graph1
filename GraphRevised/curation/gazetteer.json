@@ -1,0 +1,30 @@
+{
+  "description": "Rules for the gazetteer layer (27-GAZETTEER.md): which features of each authority form the backbone, how the trees are drawn, and how ancient places reach the modern tree. Code names no thresholds or codes: it follows this file.",
+  "version": 1,
+  "geonames": {
+    "dataset": "GeoNames allCountries",
+    "modernTree": {
+      "admin": ["ADM1", "ADM2", "ADM3", "ADM4", "ADM5"],
+      "continentCode": "CONT",
+      "note": "Countries and dependencies are the rows of countryInfo.txt (each names its own geonameid and continent); other PCL* and TERR features, historical divisions (ADM1H ...), and divisions of no level (ADMD) stay out of the strict tree."
+    },
+    "continents": {
+      "AF": "Africa",
+      "AN": "Antarctica",
+      "AS": "Asia",
+      "EU": "Europe",
+      "NA": "North America",
+      "OC": "Oceania",
+      "SA": "South America"
+    },
+    "populatedPlaceClass": "P"
+  },
+  "pleiades": {
+    "dataset": "Pleiades places",
+    "parentRelations": ["part_of_physical", "part_of_regional", "part_of_admin", "part_of_analytical", "in_territory_of"]
+  },
+  "bridge": {
+    "maxKm": 50,
+    "note": "An ancient place reaches the modern tree through a GeoNames feature Pleiades names, else the nearest GeoNames populated place within maxKm (curator, 2026-10-14), whose admin codes give the most specific unit; beyond maxKm no link is made and the place is listed."
+  }
+}

@@ -1,6 +1,6 @@
 # 27 — The Gazetteer: a Geographic Backbone
 
-**Date:** 2026-10-14. **Status:** agreed with the curator; nothing built yet.
+**Date:** 2026-10-14. **Status:** agreed with the curator; built and loaded 2026-10-15 (§4a).
 **Priority:** before the remaining next steps (curator, 2026-10-14: "backbone takes priority").
 **Builds on:** [03](03-TEMPORAL-YEAR-BACKBONE.md) (the Year backbone, its model), the curator's vision note of 2026-10-14 (temporal, geographic, and subject backbones; not kept), [25](25-LIVES-AND-PLAYGROUND.md) §11 (enrichers by kind).
 
@@ -95,6 +95,40 @@ metadata file beside them, as the PeriodO cache does.
 - Hannibal's campaigns: the places of his route, ancient and modern.
 - Synchronism by place (25 §3 L5): what happened in the same region in the
   same years, through `WITHIN` and the Year backbone together.
+
+## 4a. As built (2026-10-15)
+
+`python -m GraphRevised.gazetteer.load [--apply]` ([gazetteer/](gazetteer)): dry run
+by default; rules in [curation/gazetteer.json](curation/gazetteer.json) (the 50 km
+bridge, which GeoNames codes form the tree, which Pleiades relations are parents);
+four batched operations (`upsert_locations`, `link_location_parents`,
+`link_modern_locations`, `link_place_locations`); the schema in
+[gazetteer/schema.cypher](gazetteer/schema.cypher) (both uniqueness constraints
+and the point index `location_point`). Each run writes a report to `runs/`,
+listing what was left out. Loaded from the dumps of 2026-10-14:
+
+| | Count |
+|---|---:|
+| Locations | 505,546 |
+| Modern units: 7 continents, 252 countries (countryInfo's), ADM1 3,865, ADM2 47,642, ADM3 170,131, ADM4 224,761, ADM5 15,042 | 461,700 |
+| GeoNames features Pleiades names, not already units | 1,447 (1,503 found; 3 not in the dump; 9 with no unit to sit in) |
+| Pleiades places | 42,399 |
+| `WITHIN` modern / ancient | 463,131 / 3,363 (8 ancient parents not in the dump) |
+| `MODERN_LOCATION`: by Pleiades' reference / nearest populated place | 1,509 / 33,164 |
+| Unlocated (no modern link) / beyond 50 km of any populated place | 7,577 / 207 (seas, gulfs, deserts) |
+| Place Entities linked (`AT_LOCATION`, accepted, by an identifier they hold) | 12 links, 11 entities (Rome by Pleiades and GeoNames) |
+
+Checks: every unit has a parent; the code-derived parents agree with
+`hierarchy.txt` everywhere; no two units share a code path; 179 ADM5 units with
+no parent in `hierarchy.txt` are left out. Built differently from §3:
+countries are countryInfo's rows (each names its geonameid and continent), not
+every `PCL*` or `TERR` feature; a unit with an empty code above it (a skipped
+level) is kept and takes the nearest level its codes name. Not matched:
+Farsala and İzmir, whose Wikidata items Pleiades does not name (identity is
+the curator's). A Place's chain: [views/place-chain.cypher](views/place-chain.cypher)
+("Roma · Italia, Regio I · Latium | Roma · Città metropolitana di Roma Capitale ·
+Lazio · Italian Republic · Europe"). Tests and snapshots that compare the whole
+graph leave Locations out, as they leave out Years.
 
 ## 5. Open
 
