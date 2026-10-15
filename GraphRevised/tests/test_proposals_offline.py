@@ -467,7 +467,7 @@ class QualifierValidatorTests(unittest.TestCase):
 
     def test_wikidata_evidence_for_a_qualified_claim_is_deferred(self):
         qualified = draft(time=SEPTEMBER)
-        self.assertEqual(self.check(qualified).outcome, Outcome.INVALID)  # participatedIn takes no time
+        self.assertEqual(self.check(qualified).outcome, Outcome.DEFERRED)  # participatedIn takes a time from v11
         role = draft(role_id=LEGATE["id"])
         self.assertEqual(self.check(role).outcome, Outcome.DEFERRED)
 

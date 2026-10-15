@@ -33,7 +33,7 @@ from pydantic import BaseModel
 from GraphRevised.adapters.sources import PassageSource, open_source
 from GraphRevised.proposals.passage_reader import Inquiry, anthropic_client, load_inquiries
 from GraphRevised.proposals.prompt_version import prompt_version
-from GraphRevised.proposals.reading_rules import BRIEFS_DIRECTORY, brief_path, load_reading_rules, normalize, steering
+from GraphRevised.proposals.reading_rules import BRIEFS_DIRECTORY, brief_path, normalize, steering
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 DEFAULT_MODEL = "claude-opus-5-5"
@@ -205,7 +205,6 @@ def main(argv: list[str] | None = None) -> int:
     finally:
         driver.close()
 
-    rules = load_reading_rules()
     client = anthropic_client()
     BRIEFS_DIRECTORY.mkdir(exist_ok=True)
     for inquiry in inquiries:
@@ -223,7 +222,7 @@ def main(argv: list[str] | None = None) -> int:
         brief = {
             "workId": inquiry.work_id, "inquiry": inquiry.id, "inquiryVersion": inquiry.version,
             "createdAt": datetime.now(timezone.utc).isoformat(), "promptVersion": PROMPT_VERSION,
-            "readingRulesVersion": rules.version, **meta,
+            "readingRulesVersion": inquiry.reading_rules_version, **meta,
             "sample": {"refs": [ref for ref, _ in sample], "characters": sum(len(t) for _, t in sample),
                        "budget": args.budget},
             "conventions": kept, "rejected": rejected, "notes": output.notes,

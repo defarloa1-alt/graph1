@@ -1,8 +1,8 @@
 """Shared reading rules and source briefs: how the reader's guidance is composed.
 
 The guidance the reader sees for one source is, in order: the shared rules
-(proposals/reading_rules.v1.json: general, event-inquiry, per-predicate, and
-by the Work's form), the conventions of the source's brief (briefs/, written
+(proposals/reading_rules.v<N>.json, the version the inquiry asks for: general,
+event-inquiry, per-predicate, and by the Work's form), the conventions of the source's brief (briefs/, written
 by discovery/source_brief.py), and anything the inquiry itself adds. Briefs
 keep their evidence for review; only the conventions reach the reader.
 """
@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
-RULES_PATH = GRAPH_REVISED / "proposals" / "reading_rules.v1.json"
+RULES_PATH = GRAPH_REVISED / "proposals" / "reading_rules.v2.json"
 BRIEFS_DIRECTORY = GRAPH_REVISED / "briefs"
 
 # Guidance never points at a passage or quotes the source (18 §20): the reader finds passages itself.
@@ -41,7 +41,12 @@ class ReadingRules:
         return lines
 
 
-def load_reading_rules(path: Path = RULES_PATH) -> ReadingRules:
+def load_reading_rules(path: Path = RULES_PATH, *, version: int | None = None) -> ReadingRules:
+    """The current rules, or with `version` that version's file (an inquiry reads with the rules it names)."""
+    if version is not None:
+        path = RULES_PATH.with_name(f"reading_rules.v{version}.json")
+        if not path.exists():
+            raise ValueError(f"no reading rules v{version}")
     data = json.loads(path.read_text(encoding="utf-8"))
     return ReadingRules(
         version=data["version"],

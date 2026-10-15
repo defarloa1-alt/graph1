@@ -9,7 +9,7 @@ from GraphRevised.proposals.entities import depicted_event_id
 from GraphRevised.proposals.passage_reader import (
     Inquiry, ReaderDepictedEvent, ReaderEventLink, ReaderOutput, ReaderParticipant, depicted_drafts, to_depicted,
 )
-from GraphRevised.proposals.registry import load_registry
+from GraphRevised.proposals.registry import REGISTRY_PATH, load_registry
 from GraphRevised.proposals.validator import Outcome, validate
 from GraphRevised.tests.test_proposals_offline import FakeReader, entity
 
@@ -126,8 +126,13 @@ class DepictedEventTests(unittest.TestCase):
         events, refused = to_depicted(output(FLIGHT), PASSAGE, replace(INQUIRY, proposable_kinds=()), set(), SCOPE)
         self.assertEqual((events, len(refused)), ([], 1))
 
-    def test_registry_v10(self):
+    def test_registry_v11_dates_participation(self):
         registry = load_registry()
+        self.assertEqual(registry.version, "predicates-v11")
+        self.assertEqual(registry.get("participatedIn").qualifiers.time, "optional")
+
+    def test_registry_v10(self):
+        registry = load_registry(REGISTRY_PATH.with_name("predicates.v10.json"))
         self.assertEqual(registry.version, "predicates-v10")
         before = registry.get("happenedBefore")
         self.assertTrue(before.allows_kinds("Event", "Event"))

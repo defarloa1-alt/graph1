@@ -308,9 +308,7 @@ def load_inquiries(path: Path, tx: Any, *, briefs: Path | None = BRIEFS_DIRECTOR
     with `"scope": "computed"` its scope comes from the graph rather than `candidateEntityIds`.
     `briefs=None` leaves the briefs out (the briefing agent reads a source without its old brief)."""
     data = json.loads(path.read_text(encoding="utf-8"))
-    rules = load_reading_rules() if data.get("readingRules") else None
-    if rules is not None and data["readingRules"] != rules.version:
-        raise ValueError(f"the inquiry asks for reading rules v{data['readingRules']}, not v{rules.version}")
+    rules = load_reading_rules(version=data["readingRules"]) if data.get("readingRules") else None
     declared = list(data.get("candidateEntityIds", []))
     if data.get("scope") == "computed":
         if rules is None or not data.get("narrativeEventId"):
