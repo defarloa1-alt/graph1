@@ -185,10 +185,35 @@ Step 5 of §3 runs event-first for the Battle of Actium: one inquiry,
 (`sources`, each with its `voice` and its own guidance; the shared guidance once),
 read with depicted events ([23](23-NARRATIVE-AND-NOTES.md), pilot). The reader
 takes `--source` and `--chapters`; a dry run keeps a source in one rolled-back
-transaction. Not built yet: the registry file (§6), Wikipedia first contact
-(§3 steps 1–2), the event source plan, the account (§4), and moving the domain
-rules out of the inquiry (§7: the battle inquiry already holds them once for all
-four sources).
+transaction. Not built yet: the registry file (§6), the event source plan,
+the account (§4), and moving the domain rules out of the inquiry (§7: the
+battle inquiry already holds them once for all its sources).
+
+**Wikipedia first contact (built 2026-10-15; §3 steps 1–2, §5).**
+`python -m GraphRevised.harvest.wikipedia_contact <QID> [--apply] [--limit 50]`:
+the article is found through the Wikidata record's sitelink, fetched at a fixed
+revision with the wiki's own rights statement (CC BY-SA 4.0), and preserved in
+`phase-8-source/` ([adapters/wikipedia_passages.py](adapters/wikipedia_passages.py):
+body paragraphs as passages, section.paragraph; citation markers, navigation
+boxes, and the apparatus after the body left out). It becomes a local Work of
+form `reference` ("Wikipedia, Battle of Actium"). Its infobox and body links
+map to Wikidata items through the wiki's page properties, and each item is met
+as the harvest meets a target (`surface`), within the budget; where a paragraph
+links an entity, an entity mention keeps the paragraph's words. Battle of
+Actium, revision 1378178531: 31 passages, 88 linked articles, 23 entities
+already in the graph, 30 proposed (11 places, 5 people, 4 offices, 3 polities,
+3 events, 2 groups, 1 period), 30 left to the agent (concepts and types such as
+galley, blockade, *imperium*; gods; the Ambracian Gulf), 1 dropped, 71
+mentions. Two classes were added to the harvest rules, each checked at
+Wikidata: assassination (Q3882219) as Event, and Wikimedia set index article
+(Q15623926) as noise.
+
+**Wikipedia as the fifth voice.** An inquiry may set `scopeFromMentions`:
+entities named in its own sources' passages join its scope. The battle inquiry
+(v3) does, and reads the article like the other sources: 47 depicted events,
+174 proposals, 13 notes, using what first contact surfaced (the fleet gathered
+at Ephesus, the winter at Patrae, Corcyra, the Adriatic crossing, Dellius's
+defection, Sosius and Lurius at the wings).
 
 The spine test (2026-10-15, before this run) found phases 4–8 present only as
 "took part" claims and phases 1–3 and 9 only as notes. After it, Dio's chapters

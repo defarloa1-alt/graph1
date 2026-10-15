@@ -70,9 +70,9 @@
   "notes": {
     "P1343": "described by source stays a relationship (registry: describedBy), Wikidata's own bibliography of the entity: input for the Subject 'Read more' list (25 section 8)",
     "P1038": "relative stays an unmapped relationship until its kinship qualifier (P1039) is mapped; legacy code lost that qualifier",
-    "kinds": "Wikidata 'instance of' classes mapped to kinds, each class checked against its Wikidata label on 2026-10-13 from the classes of Mark Antony's one-hop targets; a target whose classes are not listed goes to the agent's judgement, never guessed. A historical country, an empire, or a form of government is left to the agent (a polity is neither simply a Place nor a Group). Extended 2026-10-13 from the classes of the expansion's agent queue, each checked against its label. Deliberately left to the agent: US city classes (a Wikidata statement points to Alexandria, Virginia), temporal entity, former administrative territorial entity; polities (historical country, ancient civilization) wait for the Polity kind (registry v9). Polity added 2026-10-13 (registry v9), each class checked against its label: historical country (Q3024240), empire (Q48349), Hellenistic kingdom (Q3932025); before Period in priority (curator, 2026-10-13): the Roman Republic, Kingdom, and Empire, which Wikidata classes both as historical period and historical country, are Polities, the states; their periods are dated claims on them (occurred), and a historians' period construct the reader names stays a Period. Ancient civilization (Q28171280) and form of government (Q1307214, a metaclass) are left to the agent. Type has no Wikidata classes: types come from the structure enrichers and the reader.",
+    "kinds": "Wikidata 'instance of' classes mapped to kinds, each class checked against its Wikidata label on 2026-10-13 from the classes of Mark Antony's one-hop targets; a target whose classes are not listed goes to the agent's judgement, never guessed. A historical country, an empire, or a form of government is left to the agent (a polity is neither simply a Place nor a Group). Extended 2026-10-13 from the classes of the expansion's agent queue, each checked against its label. Deliberately left to the agent: US city classes (a Wikidata statement points to Alexandria, Virginia), temporal entity, former administrative territorial entity; polities (historical country, ancient civilization) wait for the Polity kind (registry v9). Polity added 2026-10-13 (registry v9), each class checked against its label: historical country (Q3024240), empire (Q48349), Hellenistic kingdom (Q3932025); before Period in priority (curator, 2026-10-13): the Roman Republic, Kingdom, and Empire, which Wikidata classes both as historical period and historical country, are Polities, the states; their periods are dated claims on them (occurred), and a historians' period construct the reader names stays a Period. Ancient civilization (Q28171280) and form of government (Q1307214, a metaclass) are left to the agent. Type has no Wikidata classes: types come from the structure enrichers and the reader. Added 2026-10-15 from Wikipedia first contact (29), checked against its label: assassination (Q3882219, Event); without it the assassination of Julius Caesar fell through to Group by a superclass of conspiracy (alliance).",
     "federations": "External identifiers kept as AuthorityRecords (curator, 2026-10-13: only federations we use); the rest stay readable in the preserved record. Checked labels: P1415 is the Oxford Dictionary of National Biography, not the Oxford Classical Dictionary as legacy code assumed. A federation may name its system by the identifier's prefix (byPrefix, else default): P244 (Library of Congress Authorities ID) holds both LC files, so sh identifiers are LCSH, the same records the Subjects' headings use, and n identifiers the LC Name Authority File (checked at id.loc.gov 2026-10-14: n80067160 resolves under names, sh85100624 under subjects, neither in the other).",
-    "noiseClasses": "Wikimedia disambiguation page: a statement pointing at one is a Wikidata error, dropped by rule."
+    "noiseClasses": "Wikimedia disambiguation page: a statement pointing at one is a Wikidata error, dropped by rule. Wikimedia set index article (Q15623926, a list of items sharing a name; checked 2026-10-15) likewise: a Wikipedia link to one (Titus Statilius Taurus, Q3991906) names no single entity."
   },
   "kindPriority": [
     "Person",
@@ -94,7 +94,8 @@
       "Q178561",
       "Q1261499",
       "Q198",
-      "Q626066"
+      "Q626066",
+      "Q3882219"
     ],
     "Office": [
       "Q4164871",
@@ -176,6 +177,7 @@
     "P1566": "GeoNames"
   },
   "noiseClasses": [
-    "Q4167410"
+    "Q4167410",
+    "Q15623926"
   ]
 }

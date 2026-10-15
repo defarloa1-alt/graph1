@@ -2,6 +2,7 @@
 
 **Branch:** `graph-revised-clean-start`, pushed to `origin` (2026-10-13, with the curator's go-ahead; push only with it).
 **Read first:** [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md), sections 5-13 especially. Decided late on 2026-10-13: the Institutions response (sections Registry v9, Powers, Membership), [24](24-PERIODS-AND-TRANSFORMATION.md) §2 note and §9 (PeriodO or Wikidata), [21](21-REVIEW-DELEGATION.md) §5 (the second delegated review).
+**New 2026-10-15 (latest):** Wikipedia first contact and Wikipedia as the battle's fifth voice ([29](29-EVENT-CENTRED-INQUIRY.md) §9a); next: the source registry, the event source plan, and Chrystallum's account (29 §6, §3, §4; the account's open question, stored or generated, is the curator's, 29 §10).
 **New 2026-10-15:** the gazetteer is loaded ([27](27-GAZETTEER.md) §4a: 505,546 Locations; a Place's chain with [views/place-chain.cypher](views/place-chain.cypher)); depicted events built and read for the battle from four sources ([23](23-NARRATIVE-AND-NOTES.md) pilot, [29](29-EVENT-CENTRED-INQUIRY.md) §9a; walk them with [views/actium-walk.cypher](views/actium-walk.cypher)); [29-EVENT-CENTRED-INQUIRY.md](29-EVENT-CENTRED-INQUIRY.md) (the event is the inquiry; Chrystallum's account on the stage; Wikipedia as starting point; the source registry; the new order in §6), [26](26-UI-DATA-CONTRACT.md) §4a (the notes stage), [views/actium-annotations.cypher](views/actium-annotations.cypher).
 **New 2026-10-14:** [27-GAZETTEER.md](27-GAZETTEER.md) (the geographic backbone, next to build), [28-SUBJECT-BUCKETS.md](28-SUBJECT-BUCKETS.md) (every entity in a bucket), 25 §11 (SCA and SFA retired).
 **Also new:** [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md) (what the Figma explorer receives), [docs/Response - Roman Republican Institutions and Military Hierarchies.md](docs/Response%20-%20Roman%20Republican%20Institutions%20and%20Military%20Hierarchies.md) (the structure design).
@@ -21,7 +22,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
   GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest \
-  GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events \n  GraphRevised.tests.test_gazetteer  # expect 251 tests, OK
+  GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events \n  GraphRevised.tests.test_gazetteer GraphRevised.tests.test_wikipedia  # expect 256 tests, OK (about 7 minutes since the gazetteer)
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -33,9 +34,9 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 - `.obsidian/` and the curator's Obsidian edits to the `.md` files are theirs (`00`, `01`, `README` have uncommitted edits of theirs): never touch the folder, and stage only your own hunks.
 - **Data is not in git** (25 §13): harvest payloads are git-ignored; the local disk holds the only copy of the graph and payloads.
 
-## 2. Graph state (2026-10-15, after the gazetteer load)
+## 2. Graph state (2026-10-15, after the gazetteer load and Wikipedia)
 
-513,919 nodes, 513,032 relationships: 505,546 Locations (the gazetteer, off the canvas) and 4,025 Year nodes (2000 BCE to 2025) are the backbones; the rest is the Actium graph.
+514,529 nodes, 514,226 relationships (the Entity and claim counts below are from before Wikipedia's 30 entities, 47 events, and 174 proposals): 505,546 Locations (the gazetteer, off the canvas) and 4,025 Year nodes (2000 BCE to 2025) are the backbones; the rest is the Actium graph.
 
 | Label | Count | Notes |
 |---|---:|---|
@@ -99,25 +100,41 @@ Settled 2026-10-14: the actors as data ([curation/actors.json](curation/actors.j
 
 Settled 2026-10-15 ([29](29-EVENT-CENTRED-INQUIRY.md) §2): the event is the inquiry, not a Work; Chrystallum's account on the stage beside the event, every statement citing a preserved passage; Wikipedia as a starting point (discovery, the card's link, a labelled tertiary voice); facets as lens steps in the drill-down path; the event-centred research run after the gazetteer and before the subject buckets; a notes stage beside the facts stage (26 §4a).
 
-Open:
+Settled 2026-10-15, later the same day: event order through a new predicate `happenedBefore` (registry v10), separate from the dated cursus order `precedes`; `occurred` may take the battle as context so a time marker can carry an offset; the depicted-event pilot event-first, Plutarch then the other sources (all done); Wikipedia's first contact and its reading as a fifth voice (done); two harvest classes added after checking at Wikidata (assassination as Event, Wikimedia set index article as noise).
 
-1. **Twelve claims the delegated review left open** ([21](21-REVIEW-DELEGATION.md) §5): Publicola as Lucius Gellius Poplicola (identity, three proposals); Plutarch's pronouns resolved only by the neighbouring passage (65.3 Antony; 65.4 Caesar, three proposals); our own single-source command statements (Insteius's centre, Antony's right wing, Antony's fleet, Taurus); Dio's near-duplicate date of Actium, to supersede by its twin.
-2. **The two proposed periods** (Roman Republic, Roman Empire) and the **11 PeriodO Works** of the survey, with its 11 flagged mentions: accept, link, or reject (`review entities`). The Wikidata QIDs of the Roman periods now identify Polities, so the reader's periods take no QID.
-3. **The three PeriodO changes** proposed in 24 §9 (P9350 as an identity candidate; PeriodO's QIDs shown as places covered; world bands from general definitions).
-4. The Wikidata harvest's proposed claims (about 440) await promotion; none is delegated.
+### Open: decisions that are the curator's
 
-## 6. Next steps
+Blocking the next steps:
 
-**2026-10-15:** the gazetteer is built and loaded (item 1 below is done; Farsala and İzmir wait for the curator's identity match). The depicted-event pilot (23 §5) is done for the battle's chapters in all four sources; next for it: review (the 269 events are visible, proposed), Hale's inferences arriving as factual events, shorter labels. Registry v9 is built (kinds Type and Polity, the structure predicates, quantity; see section 3). In order (the backbones first, curator, 2026-10-14; **revised 2026-10-15**: after the gazetteer comes the event-centred research run for the Battle of Actium, [29](29-EVENT-CENTRED-INQUIRY.md) §9, which absorbs item 3 below; then the subject buckets):
+1. **Chrystallum's account: stored or generated?** (29 §10 item 1). Recommended: kept as a versioned file outside the graph with its citations, regenerated when its sources change. Needed before the account is built (next step 1d).
+2. **The battle's phases** (29 §10 item 2): whether the nine-step spine (isolation, attrition, council, deployment, engagement, the squadron's breakout, Antony following, the fleet's defeat, the army's surrender), extended by the road to war and by meaning and memory, becomes our own asserted sub-events of the battle, with each source's depicted events linked to them (`depictsSameAs` or `partOf`).
 
-1. **The gazetteer** ([27](27-GAZETTEER.md)): the dumps are downloaded to `cache/geonames/` and `cache/pleiades/` (2026-10-14, with `metadata.json` beside each: source, retrieval time, Last-Modified, SHA-256, licence). Build: constraint and point index for `Location`; batched operations; the loader (dry run by default) for the GeoNames tree (about 462,000 units), all 42,399 Pleiades places with their ancient `WITHIN` links, the bridge (Pleiades' GeoNames references, else the nearest populated place within 50 km, curator 2026-10-14); then the 13 Place entities linked by the identifiers they hold.
-2. **Subject buckets** ([28](28-SUBJECT-BUCKETS.md)): `BROADER` from the headings' broader terms, membership computed from claims (registry data says which predicates carry it), the Punic Wars as the first hierarchy (headings checked 2026-10-14).
-3. **The agent's source choice** (25 §13): the source plan's last step, now the curator's, becomes the agent's, with its guardrails (each candidate confirmed at a catalogue before fetching; rights by rule, copyrighted works curator capture only; a cost budget; the plan and its reasons kept and visible). Needed first, because Polybius and Hannibal's sources are the agent's to find.
-4. **The first structure enricher: Polybius 6** (constitution and army; design in the Institutions response and 25 §12). Needs: the reader may propose Type entities (local-first, like periods and depicted events); reader prompt v13 with rules for `partOf` between Types with a quantity and its quantity quotation, `instanceOf`, `electedBy`, `exercisedPower`, `precedes`; an inquiry naming the whole Work. Whole-work cost about $1-4 on Sonnet 5.5.
-5. **Notes that stand in for claims.** A passage of note is a pointer into the literature and asserts nothing; the facts of its passage belong in claims beside it. On the Actium works the reader often had no predicate or entity for those facts, so a note is all the graph holds (Weigall 16.6: nineteen Roman legions and the contingents assembled at Ephesus, no claim; twelve notes say outright that no predicate fitted). Needs: reader v13 to use the v9 predicates (`partOf` with a quantity between forces); the reader proposing Place, Person, and Group entities (L3, local-first, visible at once), so Ephesus and the contingents can exist; a force placed somewhere at a time through a depicted event (an assembly that `occurredAt` a Place, the forces `participatedIn` it) with today's predicates. Then re-read the passages whose notes stand in for claims, keeping the notes for colour only.
-6. **Hannibal**, the first actor in chronological order (25 §13): harvest and expand, enrich the structures his life touches, the agent's source plan, then the reader. Then Scipio, the Gracchi, and on.
-7. Smaller items: the agent's choice of what to expand first (now mechanical: people, events, places, then label); window labels should read "sometime 68–50 BCE"; predicates for the unmapped Wikidata relationships (gens, unmarried partner, stepparent, relative with kinship, allegiance); names over time through an alias property showing the common name (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked).
-8. Held: option B (folding Proposals into claims). Later: the read API, the Figma explorer, the growth loop beyond one hop.
+Not blocking:
+
+3. **Mentions: on the passage or on each note's link?** (29 §10 item 3; 26 §4a `mentions`). Recommended: on the passage, with their own status, since deciding that "Caesar" means Augustus is our judgement. Wikipedia's 71 link mentions are the first such records.
+4. **Identity for two Places the gazetteer could not link** (27 §4a): Farsala (Pharsalus) and İzmir (Smyrna). Pleiades does not name their Wikidata items, so a match by name is the curator's.
+5. **Review of what the readers proposed.** About 1,350 Proposals are submitted, including 316 depicted events (Plutarch 28, Dio 76, Hale 77, Weigall 88, Wikipedia 47). Everything is visible and labelled; nothing needs promoting to be seen; none of it is delegated. Known faults to judge rather than accept blindly: an author's inference arriving as a factual event (Hale's "flight arranged beforehand"), a few weak links ("flees" triggered by "waits at anchor").
+6. **The 30 linked items Wikipedia first contact left to the agent** (29 §9a): concepts and types (galley, liburna, quinquereme, blockade, *imperium*, Roman triumph), gods (Apollo, Neptune, Mars), places the class table lacks (Ambracian Gulf, Methoni, Roman Egypt), and others. Options: add checked classes to the harvest rules, propose Types through the structure enricher, or leave them.
+7. **Pushing the branch.** The commits after `70d3597` are local; push only with the curator's go-ahead.
+8. Carried over: the twelve claims the delegated review left open ([21](21-REVIEW-DELEGATION.md) §5: Publicola's identity; the pronouns of Plutarch 65.3 and 65.4; our single-source command statements for Insteius, Antony's right wing and fleet, Taurus; Dio's near-duplicate date); the two proposed Periods (Roman Republic, Roman Empire) and the 11 PeriodO Works with their 11 flagged mentions (`review entities`); the three PeriodO changes in 24 §9; the Wikidata harvest's ~440 proposed claims.
+
+## 6. Next steps (the plan, in order; curator 2026-10-14 and 2026-10-15)
+
+Done 2026-10-15: the gazetteer ([27](27-GAZETTEER.md) §4a); depicted events for the battle from four sources and Wikipedia ([23](23-NARRATIVE-AND-NOTES.md), pilot); Wikipedia first contact (29 §9a).
+
+1. **Finish the event-centred research run for the Battle of Actium** ([29](29-EVENT-CENTRED-INQUIRY.md)):
+   - a. **The source registry** (29 §6): `curation/sources.json`, the machine-readable companion to [docs/Agent resources.md](docs/Agent%20resources.md). First entries: the systems already read (Perseus/Scaife, LacusCurtius, Project Gutenberg, Wikipedia), then Wikisource and Internet Archive; each with its coverage, how to discover and fetch, the identifier scheme, the rights policy as the source states it and the date checked, limitations, and the adapter. Then the report's sources one at a time, each licence checked at the source (rule 17), filling the report's gaps (Latin epigraphy such as the Heidelberg and Clauss-Slaby databases; the Hannibal-era historians). Add the governing paragraph at the head of the resources document: a starting point, not a whitelist.
+   - b. **The event source plan** (29 §3 step 3): `discovery/source_plan.py` takes an event inquiry; candidates from the registry, the Wikipedia article's references, citations in passages already read, Wikidata "described by source", the catalogues (Scaife, Gutenberg, LacusCurtius), and the agent's own search; statuses in words (found, identified, located, chosen, read) instead of one confidence; work, edition, and copy as separate fields; the agent chooses within a budget and records why (25 §13). Expected first choices for Actium: Velleius Paterculus 2.84–87, the Augustan poets (Horace *Epodes* 9 and *Odes* 1.37, Virgil *Aeneid* 8), Suetonius *Augustus*, Florus, Orosius.
+   - c. **Read the chosen sources** into the battle inquiry, and re-read Plutarch 61–64 and Dio 50.11–15 for notes (they were read before notes existed).
+   - d. **Chrystallum's account** (29 §4), once open item 1 is decided: the agent's narrative of the battle, every statement citing a preserved passage, labelled as ours, versioned, never counted as an author in attestation.
+   - e. **Reader prompt v14 fixes** from the pilot: an author's inference or reconstruction becomes an interpretive claim or a note, not a factual event; shorter labels; links only on the source's explicit words.
+   - f. **Domain rules out of the inquiries** (29 §7): the participation and command rules move to shared data beside the registry; inquiries keep only what is particular to them.
+2. **Subject buckets** ([28](28-SUBJECT-BUCKETS.md)): `BROADER` from the headings' broader terms, membership computed from claims (registry data says which predicates carry it), the Punic Wars as the first hierarchy (headings checked 2026-10-14). The curator's drill-down sketch (Ancient History, Roman periods, the Roman Republic, the civil war, the battle, with facets as lens steps) is the intended path (29 §8).
+3. **The first structure enricher: Polybius 6** (constitution and army; the Institutions response and 25 §12). Needs: the reader may propose Type entities; prompt rules for `partOf` between Types with a quantity, `instanceOf`, `electedBy`, `exercisedPower`, `precedes`; an inquiry naming the whole Work.
+4. **Notes that stand in for claims.** Partly met by depicted events (the council, the plan, the desertions, the fleet at Ephesus are now events). Remaining: forces with a quantity (`partOf` between forces; Weigall's nineteen legions) and a re-read of the passages whose notes still stand in for claims.
+5. **Hannibal**, the first actor in chronological order (25 §13), event-first: his battles as inquiries (Cannae, Zama), the harvest and expansion, the gazetteer for his route, the agent's source plan, then the reader. Then Scipio, the Gracchi, and on.
+6. Smaller items: the agent's choice of what to expand first; window labels ("sometime 68–50 BCE"); predicates for the unmapped Wikidata relationships (gens, partner, stepparent, relative with kinship, allegiance); names over time (Octavian, not "Augustus", in 31 BCE); Subject coverage and reading state (25 §8); L2b CIDOC CRM mappings; motives (`sought`, `influenced`, parked); nested attribution ("Plutarch reports that Octavian wrote", 29 §10 item 4); evidence stance (E8, 29 §10 item 5); faster live tests.
+7. Held: option B (folding Proposals into claims). Later: the read API, the Figma explorer (shapes in [26](26-UI-DATA-CONTRACT.md), including the notes stage), the growth loop beyond one hop.
 
 ## 7. Known gaps
 
@@ -130,4 +147,7 @@ Open:
 - The scope rule for reader inquiries is fixed in code; person inquiries need it widened.
 - Entity context is Wikidata-only and English-only.
 - Neo4j Bloom is for smoke tests only; the product is the custom React and Cytoscape.js explorer.
+- The full test suite takes about 7 minutes since the gazetteer (it took 2): some live tests read more of a larger graph.
+- `surface` reuses an Entity only through its Wikidata identity: an Entity without one (the local Titus Statilius Taurus) could be proposed again from a linked item of known kind. Taurus was safe here only because his Wikipedia link is a set index page.
+- Depicted events are one source's units: the same action in five sources is five events until the curator links them (`depictsSameAs`), and there is no shared spine yet (open item 2).
 - `Temporal/Neo4j-f7b612a3-Created-2026-02-19.txt` is the legacy Aura credentials export, tracked and pushed earlier; the curator is taking the instance down.

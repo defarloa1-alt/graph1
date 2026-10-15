@@ -288,6 +288,20 @@ def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
     missing = set(data["candidateEntityIds"]) - set(record["scopeIds"])
     if missing:
         raise ValueError(f"declared candidates are not Entities: {sorted(missing)}")
+    mentioned: list[str] = []
+    if data.get("scopeFromMentions"):
+        # Entities named in the inquiry's own sources (their entity mentions, such as a first
+        # contact's links) join the scope, so the reader can use what discovery surfaced.
+        mentioned = tx.run(
+            """
+            MATCH (mention:Annotation {kind: "entity-mention"})-[:ANNOTATES]->(:SourceObservation)
+                  -[:IN_WORK]->(work:Entity) WHERE work.id IN $works
+            MATCH (mention)-[:CONCERNS]->(entity:Entity)
+            WHERE NOT entity.status IN ["deprecated", "rejected"] AND NOT entity.id STARTS WITH "chr:entity:depicted:"
+            RETURN DISTINCT entity.id AS id
+            """,
+            works=[source["workId"] for source in inquiry_sources(data)],
+        ).value("id")
     for source in inquiry_sources(data):
         work_id = source.get("workId")
         if not work_id or tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN count(w) AS n", id=work_id).single()["n"] != 1:
@@ -307,7 +321,7 @@ def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
                        qid: record.identifier, payloadUri: record.rawPayloadUri} AS entity
         ORDER BY entity.id
         """,
-        ids=sorted(set(record["scopeIds"])),
+        ids=sorted(set(record["scopeIds"]) | set(mentioned)),
     ).value("entity")
     scope = [{**entity, **entity_context(entity["payloadUri"], entity["qid"])} for entity in scope]
     return [

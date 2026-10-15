@@ -3,6 +3,7 @@
     perseus-tei        {"edition": <preserved TEI path>, "chapters": "61-68"}
     lacuscurtius-html  {"pages": [<preserved page paths>], "chapters": "50.11-50.15,50.31-51.2", "translator": ...}
     gutenberg-html     {"book": <preserved book path>, "edition": "<printed edition>"}  (refs: chapter.paragraph)
+    wikipedia-html     {"article": <preserved parse response path>}  (refs: section.paragraph; 0 is the lead)
 
 Paths are relative to the GraphRevised directory. `chapters` selects what a
 run reads; `refs(None)` lists every section, for context windows.
@@ -15,7 +16,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
-from . import gutenberg_passages, lacuscurtius_passages, perseus_passages
+from . import gutenberg_passages, lacuscurtius_passages, perseus_passages, wikipedia_passages
 
 
 @dataclass(frozen=True)
@@ -36,6 +37,8 @@ def open_source(config: dict[str, Any], base: Path) -> PassageSource:
         source = _lacuscurtius(config, base)
     elif kind == "gutenberg-html":
         source = _gutenberg(config, base)
+    elif kind == "wikipedia-html":
+        source = _wikipedia(config, base)
     else:
         raise ValueError(f"unknown source type {kind!r}")
     return _with_range_lists(source)
@@ -89,4 +92,13 @@ def _gutenberg(config: dict[str, Any], base: Path) -> PassageSource:
         author=edition.author, title=edition.title, translator=edition.translator, citation=edition.citation,
         refs=lambda selection: gutenberg_passages.section_refs(edition, selection) if selection else edition.all_refs(),
         observation=lambda ref: gutenberg_passages.passage_observation(edition, ref),
+    )
+
+
+def _wikipedia(config: dict[str, Any], base: Path) -> PassageSource:
+    article = wikipedia_passages.load_article(base / config["article"])
+    return PassageSource(
+        author=article.author, title=article.title, translator=None, citation=article.citation,
+        refs=lambda selection: wikipedia_passages.section_refs(article, selection) if selection else article.all_refs(),
+        observation=lambda ref: wikipedia_passages.passage_observation(article, ref),
     )
