@@ -1,0 +1,187 @@
+{
+  "workId": "chr:entity:hale-famous-sea-fights",
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 4,
+  "createdAt": "2026-10-15T19:36:04.164032+00:00",
+  "promptVersion": "source-brief-v2-0a0f246a",
+  "readingRulesVersion": 1,
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 30539,
+  "outputTokens": 2510,
+  "requestId": "req_011Cg4arhxfcmnYasMTaF9M6",
+  "sample": {
+    "refs": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.6",
+      "1.24",
+      "1.30",
+      "1.37",
+      "1.44",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5",
+      "2.7",
+      "2.9",
+      "2.12",
+      "2.13",
+      "2.14",
+      "2.15",
+      "2.16",
+      "2.18",
+      "2.21",
+      "2.22",
+      "2.23",
+      "2.24",
+      "2.26",
+      "2.27",
+      "2.29",
+      "2.33",
+      "3.18",
+      "3.21",
+      "3.22",
+      "3.27",
+      "4.4",
+      "5.36",
+      "5.51",
+      "5.77",
+      "5.78",
+      "7.18",
+      "7.22",
+      "7.23",
+      "7.34",
+      "8.16",
+      "8.21",
+      "8.22",
+      "9.53",
+      "9.55",
+      "9.73",
+      "9.74",
+      "11.32",
+      "11.36",
+      "14.25"
+    ],
+    "characters": 59997,
+    "budget": 60000
+  },
+  "conventions": [
+    {
+      "kind": "naming",
+      "rule": "The author calls the future emperor Octavian throughout, a form not among the in-scope aliases; map it to Augustus. The bare name Cæsar (with the ligature) denotes Julius Caesar, as in phrases about Antony as his old lieutenant, so do not map it to Augustus even though Augustus carries Caesar aliases.",
+      "why": "Octavian is absent from the alias list, and Cæsar alone could be wrongly matched to Augustus's Caesar aliases.",
+      "evidence": [
+        {
+          "ref": "2.2",
+          "quotation": "Octavian, the dictator of the West, had expelled Lepidus"
+        },
+        {
+          "ref": "2.5",
+          "quotation": "But Cæsar's old lieutenant, once as energetic and enterprising a soldier as his master"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Tarentum here is the south Italian port, glossed with its modern name, not the in-scope Tarentum, which is a precinct in Rome; do not link the two. Ancient place names often carry a modern gloss in parentheses, and Patræ is spelled with a ligature for Patras.",
+      "why": "The in-scope Tarentum entity is a different place from the harbour the author means.",
+      "evidence": [
+        {
+          "ref": "2.4",
+          "quotation": "His fleet crowded the ports of Tarentum (Taranto) and Brundusium (Brindisi)"
+        },
+        {
+          "ref": "2.3",
+          "quotation": "at Patræ (now Patras), on the Gulf of Corinth"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "The author names the forces by collective labels: the Western fleet or the galleys of Agrippa for Octavian's fleet; the Allies, the Egypto-Roman fleet or the Eastern fleet for Antony's fleet; and the Egyptian squadron or the sixty ships for Cleopatra's squadron. Decide from context whether Egyptian ships means Cleopatra's squadron or Egyptian contingents generally.",
+      "why": "These labels must be mapped to the in-scope force entities.",
+      "evidence": [
+        {
+          "ref": "2.22",
+          "quotation": "the Western fleet closed with the Allies"
+        },
+        {
+          "ref": "2.18",
+          "quotation": "The sight of the Egypto-Roman fleet crowding down to the narrows"
+        },
+        {
+          "ref": "2.26",
+          "quotation": "But the withdrawal of the sixty ships threw the odds of battle heavily against the rest of Antony's fleet"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Actium is used for the low point with the Apollo temple, its headland and its beach, which map to the Actium promontory; the battle is named after it. Akte and Punta are given as equivalent names for the same point.",
+      "why": "Place uses of the name must be kept apart from the battle entity.",
+      "evidence": [
+        {
+          "ref": "2.13",
+          "quotation": "Its name, Latinized into Actium, became famous as that of the naval battle."
+        },
+        {
+          "ref": "2.29",
+          "quotation": "drove ashore on the sandy beach of Actium"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "Hale is a modern popular historian who fills gaps with his own inferences, marked by hedges of necessity or seeming, and with judgments of what commanders should have done. Draft these as the author's inference or as interpretation notes, not as plain narrative fact.",
+      "why": "Reconstructions and verdicts are not reported events.",
+      "evidence": [
+        {
+          "ref": "2.24",
+          "quotation": "must have formed a straggling irregular line with large intervals"
+        },
+        {
+          "ref": "2.7",
+          "quotation": "so it would seem that some at least of Antony's ships had been fitted"
+        },
+        {
+          "ref": "2.5",
+          "quotation": "Antony ought to have replied to this challenge by putting to sea"
+        }
+      ]
+    },
+    {
+      "kind": "other",
+      "rule": "The author often compares ancient ships and tactics with modern naval warfare; treat these comparisons as explanatory asides, not as claims about the battle.",
+      "why": "Analogies to torpedoes or engines are rhetoric, not events.",
+      "evidence": [
+        {
+          "ref": "2.23",
+          "quotation": "Successful attack on the oars was equivalent to disabling an adversary's engines in a modern sea-fight."
+        },
+        {
+          "ref": "2.7",
+          "quotation": "Just as modern men-of-war are provided with steel nets hanging on booms"
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "Years are written with the era abbreviation placed before the number, sometimes as a split winter range. Within the action, times are given as counted days and times of day rather than dates. Give these in the source's words and do not convert them to calendar dates.",
+      "why": "The format differs from plain statement, and relative markers carry no year.",
+      "evidence": [
+        {
+          "ref": "2.3",
+          "quotation": "During the winter of B.C. 32–31"
+        },
+        {
+          "ref": "2.18",
+          "quotation": "On the fifth day the wind had fallen"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "notes": "The sample covers Hale's whole book, of which only one chapter treats Actium; the other chapters concern unrelated battles. No composed speeches or editorial apparatus appear in the Actium passages."
+}

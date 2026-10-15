@@ -45,6 +45,7 @@ from GraphRevised.capture.core import NOTE_TYPES, annotation_id, annotation_labe
 from GraphRevised.operations import load_operations, run_write
 
 from .prompt_version import prompt_version
+from .reading_rules import BRIEFS_DIRECTORY, ReadingRules, brief_guidance, load_brief, load_reading_rules
 from .registry import PredicateRegistry, load_registry
 from .schema import DRAFT_SCHEMA_VERSION, DURATION_PATTERN, ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from .entities import depicted_event_id, depicted_events, propose_depicted_event, propose_entity
@@ -251,6 +252,8 @@ class Inquiry:
     note_visibility: str = "private"  # passages of note: private, team, or public
     proposable_kinds: tuple[str, ...] = ()  # kinds the reader may propose as entities, such as Period
     voice: str | None = None  # how labels name this source's depictions (the author's short name)
+    reading_rules_version: int | None = None  # shared rules composed into the guidance (reading_rules.py)
+    brief: dict[str, Any] | None = None  # the source brief whose conventions the guidance includes
 
 
 def inquiry_sources(data: dict[str, Any]) -> list[dict[str, Any]]:
@@ -263,10 +266,56 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
     return load_inquiries(path, tx)[0]
 
 
-def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
+def computed_scope(tx: Any, event_id: str, rules: ReadingRules) -> list[str]:
+    """An event inquiry's scope from the graph (reading_rules `scope`): the event's neighbours, the
+    entities taking part in its parts, the command structure of those, and every Concept."""
+    live = "NOT a.status IN ['rejected', 'superseded']"
+
+    def neighbours(ids: set[str], predicates: list[str] | None = None, kinds: list[str] | None = None) -> set[str]:
+        return set(tx.run(
+            f"""
+            MATCH (e:Entity)<-[:ASSERTION_SUBJECT|ASSERTION_OBJECT]-(a:Assertion)
+                  -[:ASSERTION_SUBJECT|ASSERTION_OBJECT]->(n:Entity)
+            WHERE e.id IN $ids AND n <> e AND {live}
+              AND ($predicates IS NULL OR a.predicate IN $predicates) AND ($kinds IS NULL OR n.kind IN $kinds)
+            RETURN collect(DISTINCT n.id) AS ids
+            """, ids=sorted(ids), predicates=predicates, kinds=kinds).single()["ids"])
+
+    spec = rules.scope
+    parts = set(tx.run(
+        f"""
+        MATCH (part:Entity {{kind: 'Event'}})<-[:ASSERTION_SUBJECT]-(a:Assertion {{predicate: 'partOf'}})
+              -[:ASSERTION_OBJECT]->(:Entity {{id: $id}})
+        WHERE {live} RETURN collect(DISTINCT part.id) AS ids
+        """, id=event_id).single()["ids"])
+    found = neighbours({event_id}) | neighbours(parts, kinds=spec["kinds"])
+    found |= neighbours(found | {event_id}, predicates=spec["commandPredicates"])
+    if spec.get("allConcepts"):
+        found |= set(tx.run(
+            "MATCH (c:Entity {kind: 'Concept'}) WHERE NOT coalesce(c.status, '') IN ['rejected', 'deprecated'] "
+            "RETURN collect(c.id) AS ids").single()["ids"])
+    kinds = set(spec["kinds"]) | {"Work"}
+    kept = tx.run("MATCH (e:Entity) WHERE e.id IN $ids AND e.kind IN $kinds RETURN collect(e.id) AS ids",
+                  ids=sorted(found), kinds=sorted(kinds)).single()["ids"]
+    return sorted(i for i in kept if not i.startswith("chr:entity:depicted:") and i != event_id)
+
+
+def load_inquiries(path: Path, tx: Any, *, briefs: Path | None = BRIEFS_DIRECTORY) -> list[Inquiry]:
     """Read the inquiry file and resolve its scope against the graph: one Inquiry per source,
-    sharing the subject, narrative event, scope, and guidance, each adding its source's own guidance."""
+    sharing the subject, narrative event, scope, and guidance, each adding its source's own guidance.
+
+    An inquiry with `readingRules` is told the shared rules and its sources' briefs (reading_rules.py);
+    with `"scope": "computed"` its scope comes from the graph rather than `candidateEntityIds`.
+    `briefs=None` leaves the briefs out (the briefing agent reads a source without its old brief)."""
     data = json.loads(path.read_text(encoding="utf-8"))
+    rules = load_reading_rules() if data.get("readingRules") else None
+    if rules is not None and data["readingRules"] != rules.version:
+        raise ValueError(f"the inquiry asks for reading rules v{data['readingRules']}, not v{rules.version}")
+    declared = list(data.get("candidateEntityIds", []))
+    if data.get("scope") == "computed":
+        if rules is None or not data.get("narrativeEventId"):
+            raise ValueError("a computed scope needs readingRules and a narrativeEventId")
+        declared = sorted(set(declared) | set(computed_scope(tx, data["narrativeEventId"], rules)))
     record = tx.run(
         """
         MATCH (subject:Subject {id: $subjectId})-[:HAS_SUBJECT_FOCUS]->(focus:Entity)
@@ -281,11 +330,11 @@ def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
                [entity IN focus + linked + declared | entity.id] AS scopeIds
         """,
         subjectId=data["subjectId"],
-        declared=data["candidateEntityIds"],
+        declared=declared,
     ).single()
     if record is None:
         raise ValueError(f"{data['subjectId']} is not a Subject with a focus Entity")
-    missing = set(data["candidateEntityIds"]) - set(record["scopeIds"])
+    missing = set(declared) - set(record["scopeIds"])
     if missing:
         raise ValueError(f"declared candidates are not Entities: {sorted(missing)}")
     mentioned: list[str] = []
@@ -302,10 +351,21 @@ def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
             """,
             works=[source["workId"] for source in inquiry_sources(data)],
         ).value("id")
+    forms: dict[str, str | None] = {}
     for source in inquiry_sources(data):
         work_id = source.get("workId")
-        if not work_id or tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN count(w) AS n", id=work_id).single()["n"] != 1:
+        work = tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN w.form AS form", id=work_id).data() if work_id else []
+        if len(work) != 1:
             raise ValueError(f"the inquiry's source needs a workId naming a Work Entity, not {work_id!r}")
+        forms[work_id] = work[0]["form"]
+
+    def guidance(source: dict[str, Any]) -> tuple[list[str], dict[str, Any] | None]:
+        if rules is None:
+            return data.get("guidance", []) + source.get("guidance", []), None
+        brief = load_brief(source["workId"], briefs) if briefs is not None else None
+        shared = rules.guidance(form=forms[source["workId"]], event_inquiry=bool(narrative_event_id),
+                                predicates=list(rules.predicates))
+        return shared + brief_guidance(brief) + data.get("guidance", []) + source.get("guidance", []), brief
     narrative_event_id = data.get("narrativeEventId")
     if narrative_event_id and tx.run(
         "MATCH (e:Entity {id: $id, kind: 'Event'}) RETURN count(e) AS n", id=narrative_event_id
@@ -324,6 +384,7 @@ def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
         ids=sorted(set(record["scopeIds"]) | set(mentioned)),
     ).value("entity")
     scope = [{**entity, **entity_context(entity["payloadUri"], entity["qid"])} for entity in scope]
+    composed = [(source, *guidance(source)) for source in inquiry_sources(data)]
     return [
         Inquiry(
             id=data["id"],
@@ -332,7 +393,7 @@ def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
             subject=record["subject"],
             focus=record["focus"],
             scope=scope,
-            guidance=data["guidance"] + source.get("guidance", []),
+            guidance=lines,
             source=source,
             work_id=source["workId"],
             narrative_event_id=narrative_event_id,
@@ -342,8 +403,10 @@ def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
             note_visibility=data.get("noteVisibility", "private"),
             proposable_kinds=tuple(data.get("proposableKinds", [])),
             voice=source.get("voice"),
+            reading_rules_version=rules.version if rules else None,
+            brief={k: brief.get(k) for k in ("workId", "createdAt", "promptVersion", "model")} if brief else None,
         )
-        for source in inquiry_sources(data)
+        for source, lines, brief in composed
     ]
 
 
@@ -789,6 +852,7 @@ def _read_source(args, inquiry: Inquiry, session, dry, operations, registry, cli
         "scope": sorted(scope_ids), "promptVersion": PROMPT_VERSION, "model": args.model,
         "predicateRegistryVersion": registry.version, "draftSchemaVersion": DRAFT_SCHEMA_VERSION,
         "workId": inquiry.work_id, "narrativeEventId": inquiry.narrative_event_id, "submit": args.submit,
+        "readingRulesVersion": inquiry.reading_rules_version, "brief": inquiry.brief,
     }) + "\n")
 
     for ref in refs:

@@ -1,10 +1,12 @@
 {
   "id": "chr:inquiry:actium-battle",
-  "version": 3,
+  "version": 4,
   "label": "The Battle of Actium, as its sources tell it",
   "subjectId": "chr:subject:history-of-battle-of-actium",
   "narrativeEventId": "chr:entity:battle-of-actium",
   "calendar": "julian",
+  "readingRules": 1,
+  "scope": "computed",
   "sources": [
     {
       "type": "perseus-tei",
@@ -14,10 +16,7 @@
       "contextWindow": {
         "before": 2,
         "after": 1
-      },
-      "guidance": [
-        "In this Life, \"Caesar\" in the narrative of Antony's war with him denotes Octavian (later Augustus), not Julius Caesar."
-      ]
+      }
     },
     {
       "type": "lacuscurtius-html",
@@ -31,11 +30,7 @@
         "before": 2,
         "after": 1
       },
-      "voice": "Dio",
-      "guidance": [
-        "In Dio's account of these years, \"Caesar\" denotes Octavian (later Augustus), not Julius Caesar.",
-        "Dio composes speeches for his characters. What a speaker asserts inside a speech is rhetoric Dio gives that speaker, not Dio's narrative: draft nothing from inside a speech."
-      ]
+      "voice": "Dio"
     },
     {
       "type": "gutenberg-html",
@@ -46,13 +41,7 @@
         "before": 2,
         "after": 1
       },
-      "voice": "Hale",
-      "guidance": [
-        "This is a modern historian's work, not an ancient source. Draft as claims what the author states about the people, forces, places, and events in scope.",
-        "Where the author reads an event as an instance of an in-scope concept, draft exemplifies; where the author presents a long-range consequence of it, draft ledTo. Record any other reading of what the events meant as a note of type interpretation.",
-        "The in-scope entity Augustus is the person modern authors usually call Octavian before 27 BCE. Decide from context whom the author means by Caesar.",
-        "The author's footnotes and any transcriber's notes are not the passage text."
-      ]
+      "voice": "Hale"
     },
     {
       "type": "gutenberg-html",
@@ -63,13 +52,7 @@
         "before": 2,
         "after": 1
       },
-      "voice": "Weigall",
-      "guidance": [
-        "This is a modern historian's work, not an ancient source. Draft as claims what the author states about the people, forces, places, and events in scope.",
-        "Where the author reads an event as an instance of an in-scope concept, draft exemplifies; where the author presents a long-range consequence of it, draft ledTo. Record any other reading of what the events meant as a note of type interpretation.",
-        "The in-scope entity Augustus is the person modern authors usually call Octavian before 27 BCE. Decide from context whom the author means by Caesar.",
-        "The author's footnotes and any transcriber's notes are not the passage text."
-      ]
+      "voice": "Weigall"
     },
     {
       "type": "wikipedia-html",
@@ -79,50 +62,8 @@
       "contextWindow": {
         "before": 2,
         "after": 1
-      },
-      "guidance": [
-        "This is an encyclopedia article written by many contributors: a summary of other sources, read at one revision. Draft as claims what the article itself states.",
-        "Where the article reports what a named ancient or modern author says, the claim is still the article's account: say in the rationale whose account it reports.",
-        "The in-scope entity Augustus is the person modern authors usually call Octavian before 27 BCE."
-      ]
+      }
     }
-  ],
-  "candidateEntityIds": [
-    "chr:entity:mark-antony",
-    "chr:entity:cleopatra",
-    "chr:entity:augustus",
-    "chr:entity:marcus-vipsanius-agrippa",
-    "chr:entity:publius-canidius-crassus",
-    "chr:entity:titus-statilius-taurus",
-    "chr:entity:gnaeus-domitius-ahenobarbus",
-    "chr:entity:lucius-arruntius",
-    "chr:entity:marcus-insteius",
-    "chr:entity:gaius-julius-eurycles",
-    "chr:entity:lucius-gellius-poplicola",
-    "chr:entity:actium-promontory",
-    "chr:entity:octavian-fleet-at-actium",
-    "chr:entity:octavian-fleet-at-actium-left-wing",
-    "chr:entity:octavian-fleet-at-actium-centre",
-    "chr:entity:octavian-fleet-at-actium-right-wing",
-    "chr:entity:antony-fleet-at-actium",
-    "chr:entity:antony-fleet-at-actium-left-wing",
-    "chr:entity:antony-fleet-at-actium-centre",
-    "chr:entity:antony-fleet-at-actium-right-wing",
-    "chr:entity:cleopatra-squadron-at-actium",
-    "chr:entity:octavian-army-at-actium",
-    "chr:entity:antony-army-at-actium",
-    "chr:entity:concept-conventional-versus-unconventional-war",
-    "chr:entity:concept-decisive-battle",
-    "chr:entity:concept-east-west-contest-for-the-roman-empire"
-  ],
-  "guidance": [
-    "This inquiry is the battle itself, not any one book. Read each source for the steps of the battle as that source tells them: the decisions and movements that lead into it, the fighting, and the flight, pursuit, and surrender that end it, when the source ties them to the battle. Each step is a depicted event of this source.",
-    "A fleet, a wing or the centre of a fleet, a squadron, or a land army in scope can take part in a depicted event as a participant, as a person can.",
-    "Order the steps only where the source orders them: by a time marker, by saying one followed another, or by presenting one as the cause or outcome of another.",
-    "For participatedIn in the battle as a whole, a person counts as taking part when the passage shows them present during it: commanding, fighting, aboard a ship in the action, or fleeing from it. Preparations before the event, or the actions of a person's ships or troops with no sign of the person, do not by themselves show that the person took part.",
-    "commanded relates a person to a force they directed in action, using the force entities in scope: a fleet, one wing or the centre of a fleet, a squadron, or a land army. Command of a wing or the centre is not command of the whole fleet; use the most specific force the passage supports.",
-    "heldAuthorityOver is formal or supreme authority over a force, whether or not the person directed it in the fighting, for example an overall commander whose subordinate leads a wing. Draft it when the passage shows that authority, with a time only if the passage gives one.",
-    "Give a time marker in the source's own words as the time expression. Add time_edtf only when the passage states the year. Notes by a modern editor, translator, or transcriber are never the author's text."
   ],
   "proposableKinds": [
     "Event"

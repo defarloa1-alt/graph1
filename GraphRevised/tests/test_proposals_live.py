@@ -629,6 +629,69 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             scope = {entity["id"] for entity in load_inquiry(path, self.tx).scope}
         self.assertEqual(scope, {BATTLE[0], LEADER[0], ADMIRAL[0]})
 
+    def link(self, predicate: str, subject: str, obj: str, status: str = "proposed") -> None:
+        self.tx.run(
+            "MATCH (s:Entity {id: $s}), (o:Entity {id: $o}) "
+            "CREATE (a:Assertion {id: 'chr:assertion:test:' + randomUUID(), predicate: $p, status: $status}) "
+            "CREATE (a)-[:ASSERTION_SUBJECT]->(s), (a)-[:ASSERTION_OBJECT]->(o)",
+            s=subject, o=obj, p=predicate, status=status)
+
+    def event_inquiry_fixture(self) -> dict:
+        self.add_entity(BATTLE)
+        self.write("upsert_subject", {"id": "chr:subject:test-battle", "label": "History of the test battle",
+                                      "status": "provisional", "shortLabel": None})
+        self.write("link_subject_focus", {"subjectId": "chr:subject:test-battle", "entityId": BATTLE[0]})
+        self.add_local("chr:entity:test-work", "Work", "Test work")
+        return {
+            "id": "chr:inquiry:test", "version": 1, "label": "Test inquiry", "subjectId": "chr:subject:test-battle",
+            "narrativeEventId": BATTLE[0], "readingRules": 1, "scope": "computed",
+            "sources": [{"edition": "phase-5-source/none.xml", "workId": "chr:entity:test-work"}],
+        }
+
+    def test_computed_scope_reaches_parts_commanders_and_concepts(self):
+        inquiry = self.event_inquiry_fixture()
+        for entity in [("chr:entity:test-step", "Event", "Test step"), ("chr:entity:test-squadron", "Group", "Test squadron"),
+                       ("chr:entity:test-captain", "Person", "Test captain"), ("chr:entity:test-idea", "Concept", "Test idea"),
+                       ("chr:entity:test-bystander", "Person", "Test bystander"), ("chr:entity:test-elsewhere", "Event", "Test elsewhere")]:
+            self.add_local(*entity)
+        self.link("partOf", "chr:entity:test-step", BATTLE[0])
+        self.link("participatedIn", "chr:entity:test-squadron", "chr:entity:test-step")
+        self.link("commanded", "chr:entity:test-captain", "chr:entity:test-squadron")
+        self.link("participatedIn", "chr:entity:test-bystander", "chr:entity:test-elsewhere")
+        self.link("participatedIn", "chr:entity:test-captain", "chr:entity:test-elsewhere", status="rejected")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps(inquiry), encoding="utf-8")
+            scope = {entity["id"] for entity in load_inquiry(path, self.tx).scope}
+        self.assertLessEqual({BATTLE[0], "chr:entity:test-step", "chr:entity:test-squadron", "chr:entity:test-captain",
+                              "chr:entity:test-idea"}, scope)
+        self.assertFalse({"chr:entity:test-bystander", "chr:entity:test-elsewhere"} & scope)
+
+    def test_reading_rules_and_brief_are_composed_into_the_guidance(self):
+        from GraphRevised.proposals.passage_reader import load_inquiries
+        from GraphRevised.proposals.reading_rules import load_reading_rules
+        inquiry = self.event_inquiry_fixture() | {"guidance": ["An inquiry's own line."]}
+        rules = load_reading_rules()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps(inquiry), encoding="utf-8")
+            (Path(directory) / "test-work.json").write_text(json.dumps({
+                "workId": "chr:entity:test-work", "conventions": [{"kind": "naming", "rule": "A brief's convention.",
+                                                                   "evidence": [{"ref": "1", "quotation": "x" * 20}]}],
+                "rejected": [{"rule": "A rejected convention.", "reason": "no evidence"}]}), encoding="utf-8")
+            guidance = load_inquiries(path, self.tx, briefs=Path(directory))[0].guidance
+            without = load_inquiries(path, self.tx, briefs=None)[0].guidance
+        self.assertEqual(guidance[:len(rules.event_inquiry)], list(rules.event_inquiry))
+        self.assertIn(rules.predicates["commanded"], guidance)
+        self.assertEqual(guidance[-2:], ["A brief's convention.", "An inquiry's own line."])
+        self.assertNotIn("A rejected convention.", guidance)
+        self.assertNotIn("A brief's convention.", without)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps(inquiry | {"readingRules": rules.version + 1}), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_inquiry(path, self.tx)
+
     def test_inquiry_without_a_source_work_is_refused(self):
         self.add_entity(BATTLE)
         self.write("upsert_subject", {"id": "chr:subject:test-battle", "label": "History of the test battle",

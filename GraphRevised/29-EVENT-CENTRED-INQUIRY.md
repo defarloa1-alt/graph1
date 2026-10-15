@@ -170,6 +170,13 @@ registry, so they cannot drift between inquiries; an inquiry keeps only what
 is particular to its event or source. With event inquiries this becomes
 necessary rather than tidy: one inquiry will read many works.
 
+**Decided (curator, 2026-10-15): agents prepare the inquiry.** The curator
+writes no guidance, source list, or scope. The inquiry file becomes output:
+the curator names the event; the shared rules, a computed scope, the source
+plan (§6), and a source-briefing agent supply the rest, each recorded and
+open to veto. Built the same day (§9a): the shared rules, the computed scope,
+and the briefing agent; the inquiry builder follows with the event source plan.
+
 ## 8. On the stage
 
 - **Centre:** the event, Chrystallum's account beside it, the facts around it
@@ -224,6 +231,41 @@ Hale's book carries a wrong GPL licence URL (no licence laundering); the
 Archive's Terms of Use page needs JavaScript and is still to be read. The
 governing paragraph now heads the resources document. The report's other
 sources join as plans need them.
+
+**Agents prepare the inquiry (built 2026-10-15; §7).** Three parts, so the
+battle inquiry (v4) holds no hand-written guidance or scope:
+
+- **Shared reading rules**, [proposals/reading_rules.v1.json](proposals/reading_rules.v1.json):
+  general rules, rules for event inquiries, the practical meaning of
+  `participatedIn`, `commanded`, and `heldAuthorityOver`, and rules by Work form
+  (`reference`). An inquiry opts in with `readingRules: 1`; the earlier
+  single-work inquiries keep their own guidance and read as before.
+- **A computed scope** (`"scope": "computed"`): the event's neighbours through
+  live claims, the people, forces, and places taking part in its parts (events
+  `partOf` it), the command structure of those, every Concept, and the entities
+  its sources' passages mention. For the battle it gives exactly the 218
+  entities the 26 hand-picked candidates gave.
+- **The source-briefing agent**, [discovery/source_brief.py](discovery/source_brief.py)
+  (`source-brief-v2`, one call per Work): the Work's record and a sample of its
+  passages (the opening ones and those naming the most in-scope entities, within
+  60,000 characters) give the source's conventions (naming, speeches, stance,
+  apparatus, dating). Each cites a sampled passage verbatim; a convention that
+  points at a passage, quotes the source, or lacks verbatim evidence is kept
+  under `rejected`. The reader sees only the conventions' words. Briefs in
+  [briefs/](briefs), one per Work. Battle of Actium: 36 conventions over the
+  five sources, none rejected (the first prompt version quoted hedge words in
+  single quotes; the check now catches single quotes, and the prompt forbids
+  quotation marks and loose pointers such as "the early chapters"). Findings
+  beyond the hand guidance: Wikipedia's Marcus Octavius is not Octavian; Dio's
+  transcription leaves stray link markers; Weigall quotes Plutarch at length
+  inside his narrative (Plutarch's account as cited, not Weigall's own); and
+  the Wikipedia article links the Treaty of Tarentum to *Tarentum (Campus
+  Martius)*, the Roman precinct, so the proposed Place Tarentum (Q3981110) is
+  the wrong identity for the city (Hale's brief noticed it).
+
+The reader's run log records the reading rules' version and the brief used.
+Not yet re-read with the briefs: the five sources were read with the hand
+guidance of v3.
 
 **Wikipedia first contact (built 2026-10-15; §3 steps 1–2, §5).**
 `python -m GraphRevised.harvest.wikipedia_contact <QID> [--apply] [--limit 50]`:

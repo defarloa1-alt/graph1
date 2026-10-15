@@ -1,0 +1,326 @@
+{
+  "workId": "chr:entity:cassius-dio-roman-history",
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 4,
+  "createdAt": "2026-10-15T19:34:55.698290+00:00",
+  "promptVersion": "source-brief-v2-0a0f246a",
+  "readingRulesVersion": 1,
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 30420,
+  "outputTokens": 2809,
+  "requestId": "req_011Cg4amaezUdwGGXVqgiuxX",
+  "sample": {
+    "refs": [
+      "50.1.1",
+      "50.1.2",
+      "50.1.3",
+      "50.1.4",
+      "50.1.5",
+      "50.2.1",
+      "50.2.2",
+      "50.2.3",
+      "50.2.5",
+      "50.2.6",
+      "50.2.7",
+      "50.3.1",
+      "50.3.2",
+      "50.3.3",
+      "50.3.5",
+      "50.4.1",
+      "50.4.2",
+      "50.4.4",
+      "50.4.5",
+      "50.5.2",
+      "50.6.1",
+      "50.6.3",
+      "50.6.5",
+      "50.7.1",
+      "50.7.3",
+      "50.8.6",
+      "50.9.1",
+      "50.9.2",
+      "50.9.4",
+      "50.9.5",
+      "50.9.6",
+      "50.10.1",
+      "50.11.1",
+      "50.11.2",
+      "50.11.3",
+      "50.12.1",
+      "50.12.2",
+      "50.12.5",
+      "50.12.6",
+      "50.12.7",
+      "50.12.8",
+      "50.13.1",
+      "50.13.2",
+      "50.13.4",
+      "50.13.5",
+      "50.13.6",
+      "50.13.7",
+      "50.13.8",
+      "50.14.1",
+      "50.14.3",
+      "50.15.1",
+      "50.15.2",
+      "50.15.3",
+      "50.15.4",
+      "50.16.2",
+      "50.18.4",
+      "50.18.5",
+      "50.18.6",
+      "50.19.1",
+      "50.19.2",
+      "50.19.3",
+      "50.19.4",
+      "50.22.3",
+      "50.23.1",
+      "50.23.2",
+      "50.23.3",
+      "50.25.2",
+      "50.26.3",
+      "50.26.5",
+      "50.27.1",
+      "50.28.2",
+      "50.28.4",
+      "50.29.1",
+      "50.29.3",
+      "50.30.4",
+      "50.31.1",
+      "50.31.2",
+      "50.31.3",
+      "50.31.4",
+      "50.31.5",
+      "50.31.6",
+      "50.32.2",
+      "50.32.5",
+      "50.32.6",
+      "50.32.8",
+      "50.33.1",
+      "50.33.3",
+      "50.33.5",
+      "50.33.6",
+      "50.33.7",
+      "50.34.1",
+      "50.35.4",
+      "50.35.5",
+      "51.1.1",
+      "51.1.2",
+      "51.1.4",
+      "51.1.5",
+      "51.2.1",
+      "51.2.3",
+      "51.2.4",
+      "51.2.5",
+      "51.3.1",
+      "51.3.5",
+      "51.3.7",
+      "51.4.2",
+      "51.4.3",
+      "51.4.6",
+      "51.5.2",
+      "51.5.3",
+      "51.5.6",
+      "51.6.1",
+      "51.6.2",
+      "51.6.4",
+      "51.6.5",
+      "51.6.6",
+      "51.7.1",
+      "51.7.2",
+      "51.7.3",
+      "51.7.5",
+      "51.7.6",
+      "51.8.1",
+      "51.8.2",
+      "51.8.3",
+      "51.8.4",
+      "51.8.6",
+      "51.8.7",
+      "51.9.1",
+      "51.9.2",
+      "51.9.3",
+      "51.9.4",
+      "51.9.5",
+      "51.10.1",
+      "51.10.2",
+      "51.10.3",
+      "51.10.4",
+      "51.10.5",
+      "51.10.6",
+      "51.10.7",
+      "51.10.8",
+      "51.10.9",
+      "51.11.1",
+      "51.11.4",
+      "51.11.5",
+      "51.12.6",
+      "51.12.7",
+      "51.13.2",
+      "51.13.4",
+      "51.14.3",
+      "51.14.6",
+      "51.15.1",
+      "51.15.2",
+      "51.15.4",
+      "51.15.5",
+      "51.15.6",
+      "51.15.7",
+      "51.16.1",
+      "51.17.6",
+      "51.18.1",
+      "51.18.2",
+      "51.18.3",
+      "51.19.1",
+      "51.19.2",
+      "51.19.3",
+      "51.19.4",
+      "51.19.5",
+      "51.19.6",
+      "51.21.2",
+      "51.21.5",
+      "51.21.8",
+      "51.21.9",
+      "51.22.1",
+      "51.22.3",
+      "51.22.8",
+      "51.25.2"
+    ],
+    "characters": 59980,
+    "budget": 60000
+  },
+  "conventions": [
+    {
+      "kind": "naming",
+      "rule": "Caesar, used alone, almost always means Octavian (the in-scope Augustus); he is once called Octavius. The same name can also mean Julius Caesar, as Octavian's father, the murdered Caesar, or Cleopatra's earlier partner, so decide each instance from context.",
+      "why": "The Augustus entity carries Gaius Julius Caesar among its aliases, so references to the dictator could be wrongly attached to Octavian, or the reverse.",
+      "evidence": [
+        {
+          "ref": "50.31.5",
+          "quotation": "Caesar checked his course, in doubt what to do."
+        },
+        {
+          "ref": "51.19.2",
+          "quotation": "a festival should be held every four years in honour of Octavius"
+        },
+        {
+          "ref": "51.2.5",
+          "quotation": "who had once been of great assistance to the former Caesar"
+        },
+        {
+          "ref": "51.8.2",
+          "quotation": "one of the assassins of Caesar"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Cleopatra usually means the queen, who is also called the Egyptian woman or the Egyptian queen. The name can also mean her daughter, so check context before linking it to the in-scope Cleopatra.",
+      "why": "The daughter shares the name, and an unqualified mention could be wrongly assigned to the queen.",
+      "evidence": [
+        {
+          "ref": "50.6.1",
+          "quotation": "on the side of the Egyptian woman against his native country"
+        },
+        {
+          "ref": "51.15.6",
+          "quotation": "Cleopatra was married to Juba, the son of Juba"
+        }
+      ]
+    },
+    {
+      "kind": "speech",
+      "rule": "The long pre-battle addresses of Antony and Caesar are compositions by Dio. Treat their boasts, arguments, abuse and nicknames as rhetoric attributed to the speaker, not as narrative fact about the fleets or the fighting.",
+      "why": "Claims about ship size, equipment or the enemy's character made inside these speeches are not the author's own statements.",
+      "evidence": [
+        {
+          "ref": "50.15.4",
+          "quotation": "Antony called his soldiers together and spoke as follows:"
+        },
+        {
+          "ref": "50.23.3",
+          "quotation": "he also assembled his army and spoke to this effect:"
+        },
+        {
+          "ref": "50.27.1",
+          "quotation": "nor call him Antony, but rather Serapion"
+        },
+        {
+          "ref": "50.31.1",
+          "quotation": "Such were Caesar's words."
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "Dio sometimes hedges, reports hearsay, or says outright that he doubts a tradition. Draft such statements as reported or uncertain, and do not assert a claim the author himself rejects.",
+      "why": "Without this care, hearsay and rejected traditions would be drafted as plain fact.",
+      "evidence": [
+        {
+          "ref": "50.12.5",
+          "quotation": "I have even heard the report that he actually transported triremes"
+        },
+        {
+          "ref": "50.12.6",
+          "quotation": "therefore cannot believe the tradition"
+        },
+        {
+          "ref": "50.14.1",
+          "quotation": "Lucius Tarius, it seems, was anchored"
+        },
+        {
+          "ref": "51.14.3",
+          "quotation": "In this or in some very similar way she perished"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "Dio presents omens and portents as foreshadowing outcomes and as shaping decisions. Draft these as the author's interpretation, not as events that caused the result.",
+      "why": "Omens should not be modelled as causal steps leading into the battle.",
+      "evidence": [
+        {
+          "ref": "50.8.6",
+          "quotation": "an omen of his defeat was given beforehand by the children in Rome"
+        },
+        {
+          "ref": "50.15.2",
+          "quotation": "She had reached this opinion as the result of being disturbed by omens."
+        }
+      ]
+    },
+    {
+      "kind": "apparatus",
+      "rule": "Stray symbols left over from the transcription sometimes appear at the start of a passage or before a word. Ignore them.",
+      "why": "These are transcriber markers, not part of the text.",
+      "evidence": [
+        {
+          "ref": "50.12.7",
+          "quotation": "ºNow Actium is a place sacred to Apollo"
+        },
+        {
+          "ref": "51.19.6",
+          "quotation": "both within the •pomerium and outside"
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "Dates are given as a day and month without a year, or by reference to consulships and seasons rather than numbered years. Keep these expressions as written and add no year-based time_edtf unless a year is stated outright.",
+      "why": "Consular or seasonal reckoning is not a plainly stated year.",
+      "evidence": [
+        {
+          "ref": "51.1.1",
+          "quotation": "Such was the naval battle in which they engaged on the second of September."
+        },
+        {
+          "ref": "51.4.3",
+          "quotation": "in the middle of the winter of the year in which he was holding office for the fourth time"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "notes": "Other short names in the sample (Sextus, Domitius, Dellius, Agrippa, Sosius) match their in-scope entities without conflict. Dio's first-person remarks on the significance of the day are author commentary and fall under the shared rules on interpretation."
+}

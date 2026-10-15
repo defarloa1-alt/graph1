@@ -1,0 +1,296 @@
+{
+  "workId": "chr:entity:plutarch-life-of-antony",
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 4,
+  "createdAt": "2026-10-15T19:34:18.100179+00:00",
+  "promptVersion": "source-brief-v2-0a0f246a",
+  "readingRulesVersion": 1,
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 30890,
+  "outputTokens": 2977,
+  "requestId": "req_011Cg4aigmG3sAFU4D18rsoP",
+  "sample": {
+    "refs": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "5.1",
+      "5.2",
+      "5.3",
+      "5.4",
+      "6.1",
+      "6.2",
+      "7.1",
+      "7.2",
+      "8.1",
+      "8.2",
+      "10.1",
+      "10.2",
+      "10.4",
+      "11.1",
+      "11.2",
+      "11.3",
+      "12.2",
+      "12.3",
+      "13.1",
+      "13.2",
+      "14.1",
+      "14.2",
+      "16.1",
+      "16.3",
+      "16.4",
+      "17.1",
+      "19.1",
+      "19.2",
+      "20.1",
+      "21.1",
+      "21.4",
+      "22.1",
+      "22.4",
+      "23.1",
+      "24.1",
+      "25.1",
+      "25.2",
+      "25.3",
+      "27.1",
+      "27.4",
+      "28.1",
+      "29.1",
+      "30.1",
+      "30.2",
+      "30.3",
+      "30.4",
+      "31.2",
+      "32.1",
+      "32.2",
+      "32.4",
+      "32.5",
+      "33.1",
+      "33.2",
+      "33.3",
+      "35.1",
+      "35.2",
+      "35.4",
+      "35.5",
+      "37.2",
+      "37.4",
+      "50.4",
+      "53.1",
+      "53.3",
+      "53.5",
+      "54.1",
+      "54.2",
+      "55.1",
+      "55.2",
+      "56.1",
+      "56.2",
+      "56.3",
+      "57.1",
+      "57.3",
+      "58.1",
+      "58.2",
+      "58.4",
+      "58.5",
+      "59.2",
+      "59.3",
+      "60.1",
+      "60.3",
+      "61.1",
+      "61.3",
+      "62.1",
+      "62.2",
+      "62.3",
+      "63.1",
+      "63.2",
+      "63.3",
+      "63.4",
+      "63.5",
+      "63.6",
+      "64.1",
+      "64.2",
+      "65.1",
+      "65.2",
+      "65.4",
+      "66.1",
+      "66.2",
+      "66.3",
+      "67.1",
+      "67.2",
+      "67.3",
+      "67.4",
+      "67.5",
+      "67.7",
+      "68.1",
+      "69.1",
+      "69.2",
+      "69.3",
+      "71.1",
+      "71.3",
+      "72.1",
+      "72.2",
+      "73.1",
+      "73.2",
+      "74.1",
+      "74.3",
+      "75.1",
+      "76.1",
+      "76.2",
+      "78.1",
+      "82.1",
+      "84.2",
+      "85.3",
+      "86.4",
+      "86.5",
+      "87.1",
+      "87.3",
+      "87.4"
+    ],
+    "characters": 59982,
+    "budget": 60000
+  },
+  "conventions": [
+    {
+      "kind": "naming",
+      "rule": "The name Caesar refers to Julius Caesar in the earlier career narrative and to Octavian (Augustus) once the young heir appears, including throughout the Actium war. Decide from context each time; Caius Caesar is always Julius, while Octavius Caesar and the young Caesar are Octavian.",
+      "why": "The same bare name points to two different in-scope persons, and a careless reading would merge them.",
+      "evidence": [
+        {
+          "ref": "8.2",
+          "quotation": "he himself took the right wing, but he gave the command of the left to Antony"
+        },
+        {
+          "ref": "65.2",
+          "quotation": "Caesar posted Agrippa on the left, and reserved the right wing for himself"
+        },
+        {
+          "ref": "17.1",
+          "quotation": "at which Octavius Caesar was present and fought on their side"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Several in-scope people appear under short or variant names: Publicola is Lucius Gellius Poplicola, Taurus is Titus Statilius Taurus, Domitius in the Actium campaign is Gnaeus Domitius Ahenobarbus, and Eurycles the Laconian is Gaius Julius Eurycles. Elsewhere the same names can mean other people, such as a later Domitius Ahenobarbus who married Antony's daughter, so check context.",
+      "why": "Short forms must be resolved to the right in-scope entity without being over-applied.",
+      "evidence": [
+        {
+          "ref": "65.1",
+          "quotation": "Antony had the right wing, with Publicola"
+        },
+        {
+          "ref": "65.2",
+          "quotation": "that of Caesar by Taurus"
+        },
+        {
+          "ref": "63.2",
+          "quotation": "when Domitius, who was already in a fever, got into a small boat and went over to Caesar"
+        },
+        {
+          "ref": "87.3",
+          "quotation": "one was taken to wife by Domitius Ahenobarbus"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Pompey can mean Pompey the Great or Sextus Pompeius, and Antony or Cleopatra can occasionally mean a child of the triumvir or the queen. Decide from context and do not attach such a mention to Mark Antony, Cleopatra VII, or Sextus Pompey without checking.",
+      "why": "Family names repeat across generations and between rivals.",
+      "evidence": [
+        {
+          "ref": "32.5",
+          "quotation": "Pompey, then, after being feasted in his turn by Antony and Caesar, sailed back to Sicily"
+        },
+        {
+          "ref": "5.4",
+          "quotation": "whether Pompey should dismiss his forces"
+        },
+        {
+          "ref": "87.1",
+          "quotation": "Antony, the son of Fulvia, she raised so high"
+        }
+      ]
+    },
+    {
+      "kind": "speech",
+      "rule": "Direct speech, retorts, and messages are run into the text without quotation marks and are often anecdotes Plutarch passes on. Draft them as what a character is said to have said, not as narrated fact about the battle.",
+      "why": "Speech content is rhetoric or anecdote, and its boundaries are easy to miss without marks.",
+      "evidence": [
+        {
+          "ref": "64.2",
+          "quotation": "Imperator, why dost thou distrust these wounds and this sword and put thy hopes in miserable logs of wood?"
+        },
+        {
+          "ref": "67.2",
+          "quotation": "Who is this that pursues Antony? the answer was, I am Eurycles the son of Lachares"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "Plutarch is a moralising biographer who attributes motives and inner states, especially to Cleopatra and Antony, and hedges with markers of hearsay or majority opinion. Draft attributed motives and hearsay with that attribution or hedge, and record his moral judgements on the war as interpretation.",
+      "why": "Statements of intent, blame, or destiny are the author's reading rather than observed action.",
+      "evidence": [
+        {
+          "ref": "63.5",
+          "quotation": "although she was already contemplating flight, and was disposing her own forces"
+        },
+        {
+          "ref": "56.3",
+          "quotation": "since it was destined that everything should come into Caesar’s hands"
+        },
+        {
+          "ref": "62.1",
+          "quotation": "he wished the decision to rest with his navy, to please Cleopatra"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "When Plutarch cites another writer, including Octavian's own account, for figures or claims, keep that attribution in the claim instead of presenting the figure as Plutarch's own statement.",
+      "why": "Casualty and capture figures come with a named source.",
+      "evidence": [
+        {
+          "ref": "68.1",
+          "quotation": "three hundred ships were captured, as Caesar himself has written"
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "Times are given as days counted from a prior moment and as numbered hours of the day, with no calendar year. Keep these as relative time expressions in the source's wording and do not convert them to clock times or dates.",
+      "why": "The battle's sequence rests on these relative markers.",
+      "evidence": [
+        {
+          "ref": "65.1",
+          "quotation": "but on the fifth, the weather becoming fine and the sea calm"
+        },
+        {
+          "ref": "65.4",
+          "quotation": "But it was now the sixth hour"
+        },
+        {
+          "ref": "68.1",
+          "quotation": "at the tenth hour, give up the struggle"
+        }
+      ]
+    },
+    {
+      "kind": "other",
+      "rule": "The narrative is not strictly chronological: the author follows Antony's flight and then returns to the fleet still fighting, and he flags digressions about later events. Order steps only by the explicit markers, not by their position in the text.",
+      "why": "Text order does not equal event order around the battle.",
+      "evidence": [
+        {
+          "ref": "68.1",
+          "quotation": "This, then, was the situation of Antony. But at Actium his fleet held out for a long time"
+        },
+        {
+          "ref": "50.4",
+          "quotation": "This, however, took place at a later time."
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "notes": "Translation of Plutarch's Life of Antony (Perrin, Loeb). No editorial apparatus is visible in the sampled passages. The main hazards are the name Caesar shifting from Julius to Octavian, motives Plutarch attributes to the characters, and the narrative jumping between Antony's flight and the fleet still fighting."
+}

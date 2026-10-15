@@ -1,0 +1,169 @@
+{
+  "workId": "chr:entity:weigall-life-and-times-of-cleopatra",
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 4,
+  "createdAt": "2026-10-15T19:37:20.351229+00:00",
+  "promptVersion": "source-brief-v2-0a0f246a",
+  "readingRulesVersion": 1,
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 30176,
+  "outputTokens": 2794,
+  "requestId": "req_011Cg4axDR6z8KPThtm7MK8S",
+  "sample": {
+    "refs": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "3.11",
+      "5.6",
+      "6.12",
+      "6.16",
+      "7.15",
+      "11.9",
+      "12.1",
+      "13.4",
+      "13.16",
+      "14.9",
+      "14.28",
+      "15.4",
+      "15.12",
+      "16.2",
+      "16.21",
+      "16.22",
+      "16.25",
+      "17.2",
+      "17.4",
+      "17.5",
+      "17.13",
+      "17.14",
+      "17.16",
+      "17.18",
+      "17.20",
+      "17.21",
+      "17.27",
+      "17.28",
+      "18.5",
+      "18.21",
+      "19.6",
+      "19.9",
+      "19.14",
+      "19.15"
+    ],
+    "characters": 60000,
+    "budget": 60000
+  },
+  "conventions": [
+    {
+      "kind": "stance",
+      "rule": "Weigall writes as an avowed sympathiser of Cleopatra who openly advances his own speculations, reconstructing motives, feelings and even some movements with hedged words of likelihood and first-person judgments. Draft such statements as Weigall's inference or interpretation, not as plain narrative fact, and keep the hedge.",
+      "why": "Much of his battle narrative mixes attested action with his own reconstruction of what the participants thought or probably did.",
+      "evidence": [
+        {
+          "ref": "1.1",
+          "quotation": "if I succeed in giving plausibility to the speculations here advanced"
+        },
+        {
+          "ref": "17.21",
+          "quotation": "had perhaps freed her flagship for a moment from the attentions of Octavian’s little warships"
+        },
+        {
+          "ref": "17.2",
+          "quotation": "I gather that this plan, however, was hotly opposed by Domitius Ahenobarbus and others"
+        },
+        {
+          "ref": "19.15",
+          "quotation": "There is no reason to suppose that Cleopatra had betrayed her husband"
+        }
+      ]
+    },
+    {
+      "kind": "speech",
+      "rule": "Where the author voices the arguments of councils or of Cleopatra in a run of rhetorical questions and exclamations, the wording is his own reconstruction of what may have been argued. Do not draft it as a recorded speech; at most record that the position was urged, attributed to Weigall's reading.",
+      "why": "These passages are presented as conjecture yet read like direct argument.",
+      "evidence": [
+        {
+          "ref": "17.5",
+          "quotation": "The risk was great, they seem to have argued"
+        },
+        {
+          "ref": "17.4",
+          "quotation": "A single naval battle, and Rome would be theirs!"
+        }
+      ]
+    },
+    {
+      "kind": "other",
+      "rule": "The author sometimes inserts long verbatim quotations from Plutarch into his narrative, including for the fighting itself. Treat quoted matter as Plutarch's account as cited by Weigall, and draft Weigall's own claims only from his surrounding prose.",
+      "why": "The quoted description of the fighting is Plutarch's, not Weigall's independent statement.",
+      "evidence": [
+        {
+          "ref": "17.20",
+          "quotation": "“When they engaged,” writes Plutarch, “there was no ramming"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "The future Augustus is called Octavian throughout, which is not among his listed aliases; map it to Augustus. The name Cæsar, spelled with a ligature, usually means Julius Caesar, but the young Cæsar means Caesarion and a phrase like Caesar's nephew means Octavian, so decide from context; Antony is often just her husband.",
+      "why": "Bare Caesar forms could be mismatched to Augustus, whose aliases include Caesar names.",
+      "evidence": [
+        {
+          "ref": "18.21",
+          "quotation": "The young Cæsar travelled, it would seem, in considerable state"
+        },
+        {
+          "ref": "14.9",
+          "quotation": "he was able to defy Cæsar’s nephew"
+        },
+        {
+          "ref": "17.18",
+          "quotation": "the right wing by Octavian"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Antony's commanders appear under short or variant forms, such as Sossius with a double s for Gaius Sosius, and bare names like Insteius, Dellius, Canidius and Domitius Ahenobarbus; match them to the in-scope persons.",
+      "why": "Variant spellings and partial names may not match labels directly.",
+      "evidence": [
+        {
+          "ref": "17.18",
+          "quotation": "C. Sossius moving against Octavian, Marcus Insteius opposing Arruntius"
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "Years are written with the era abbreviation before the number, and battle-day dates are often given as month and day without a year; add time_edtf only where the year is actually stated in the passage.",
+      "why": "The precise day-dates near the battle carry no year in the passage.",
+      "evidence": [
+        {
+          "ref": "14.9",
+          "quotation": "In January B.C. 37 the Triumvirate"
+        },
+        {
+          "ref": "17.18",
+          "quotation": "The morning of September 2nd was calm"
+        }
+      ]
+    },
+    {
+      "kind": "apparatus",
+      "rule": "Short capitalised lines naming a person or subject are illustration captions from the edition, not text; draft nothing from them.",
+      "why": "They appear as standalone passages in the sample.",
+      "evidence": [
+        {
+          "ref": "16.2",
+          "quotation": "CLEOPATRA AND HER SON CÆSARION."
+        },
+        {
+          "ref": "3.11",
+          "quotation": "THE CHIEF GOD OF ALEXANDRIA."
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "notes": "A 1914 biography sympathetic to Cleopatra; the battle narrative blends Plutarch with heavy authorial reconstruction of thoughts and motives."
+}

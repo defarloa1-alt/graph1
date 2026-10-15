@@ -1,0 +1,163 @@
+{
+  "workId": "chr:entity:wikipedia-en-battle-of-actium",
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 4,
+  "createdAt": "2026-10-15T19:37:44.480814+00:00",
+  "promptVersion": "source-brief-v2-0a0f246a",
+  "readingRulesVersion": 1,
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 17987,
+  "outputTokens": 2240,
+  "requestId": "req_011Cg4azGf8PB11eV5riqUE4",
+  "sample": {
+    "refs": [
+      "0.1",
+      "0.2",
+      "0.3",
+      "0.4",
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6",
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5",
+      "2.6",
+      "2.7",
+      "2.8",
+      "2.9",
+      "2.10",
+      "2.11",
+      "2.12",
+      "2.13",
+      "2.14",
+      "2.15",
+      "3.1",
+      "3.2",
+      "3.3",
+      "3.4",
+      "3.5",
+      "3.6"
+    ],
+    "characters": 20786,
+    "budget": 60000
+  },
+  "conventions": [
+    {
+      "kind": "naming",
+      "rule": "The article calls the future emperor Octavian throughout the battle narrative, a form not among the in-scope aliases; map it to the Augustus person entity. Where Augustus appears as a title conferred on him, use the office entity, not the person.",
+      "why": "The in-scope person label and aliases do not include Octavian, and the word Augustus is used both as a conferred title and as a later name.",
+      "evidence": [
+        {
+          "ref": "2.3",
+          "quotation": "Octavian, after a short hesitation, ordered his vessels to steer to the right"
+        },
+        {
+          "ref": "0.4",
+          "quotation": "in 27 BC was awarded the title of Augustus (\"revered\") by the Roman Senate"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "In this article, Caesar used alone refers to Julius Caesar, not to Octavian, even though the Augustus entity carries Caesar-based aliases. A Marcus Octavius commanding part of Antony's fleet is a different man from Octavian and is not the Augustus entity.",
+      "why": "Alias overlap could cause these names to be resolved to the wrong person.",
+      "evidence": [
+        {
+          "ref": "1.2",
+          "quotation": "he was officially adopted as Caesar's only son"
+        },
+        {
+          "ref": "2.4",
+          "quotation": "Marcus Octavius and Marcus Insteius commanded the centre"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Actium is used for the promontory, for a former colony, and as a label for the gulf and straits, which the article also calls the Ambracian Gulf. Resolve each use from context, and link the battle only to the 31 BC event, not the earlier battle of the same name.",
+      "why": "Place uses vary, and two in-scope events share the battle's label.",
+      "evidence": [
+        {
+          "ref": "2.4",
+          "quotation": "The two fleets met outside the Gulf of Actium on the morning of 2 September"
+        },
+        {
+          "ref": "2.1",
+          "quotation": "his land forces encamped near the promontory of Actium"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "Besides its main narrative, the article reports alternative reconstructions and judgements by named modern scholars and researchers. Draft these as that scholar's account in the rationale, and where one contradicts the main narrative, keep both rather than merging them.",
+      "why": "One account of the battle's course differs sharply from the main narrative, and other passages give scholars' inferences or speculative research.",
+      "evidence": [
+        {
+          "ref": "2.13",
+          "quotation": "J. M. Carter gives a differing account of the battle. He postulates that Antony knew he was surrounded"
+        },
+        {
+          "ref": "2.11",
+          "quotation": "Lange argues that Antony would have had victory within reach"
+        },
+        {
+          "ref": "2.15",
+          "quotation": "are investigating whether the Egyptian fleet may have been trapped in dead water"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "Keep the article's hedges, such as estimates, rumours, and phrases of apparent agreement, in the drafted claim, and lower confidence accordingly.",
+      "why": "Several statements are presented as belief or estimate rather than fact.",
+      "evidence": [
+        {
+          "ref": "2.2",
+          "quotation": "it appears that this movement was agreed to"
+        },
+        {
+          "ref": "3.2",
+          "quotation": "with the connivance, it was believed, of Cleopatra"
+        }
+      ]
+    },
+    {
+      "kind": "other",
+      "rule": "The article gives ship and troop numbers that disagree across passages. Draft each figure as stated where it occurs, without reconciling them.",
+      "why": "Fleet sizes differ between passages, apparently drawn from different underlying sources.",
+      "evidence": [
+        {
+          "ref": "2.4",
+          "quotation": "Antony's fleet had 250 larger galleys"
+        },
+        {
+          "ref": "2.6",
+          "quotation": "It is estimated that Antony had around 140 ships, to Octavian's 260"
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "Exact day dates are given in BC, but the battle-day narrative often uses relative markers or times of day that depend on a date stated earlier. Give these markers in the article's words, and do not treat overlapping time markers as fixing a strict order.",
+      "why": "Relative markers depend on an earlier stated date, and the midday and noon markers overlap.",
+      "evidence": [
+        {
+          "ref": "2.3",
+          "quotation": "The next day was wet and the sea was rough."
+        },
+        {
+          "ref": "2.10",
+          "quotation": "By about noon the fleets were in formation but Octavian refused to be drawn out"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "notes": "Reference article read at one revision. Main hazards are name resolution (Octavian, Caesar, Marcus Octavius, Actium), modern scholars' alternative reconstructions reported alongside the main narrative, and fleet figures that disagree across passages."
+}

@@ -1,0 +1,31 @@
+{
+  "description": "Shared reading rules (29-EVENT-CENTRED-INQUIRY.md §7): what the reader is told in every inquiry, so the rules cannot drift between inquiries. The reader's guidance is composed from these rules, the source's brief (discovery/source_brief.py), and whatever an inquiry adds that is particular to it. Like the predicate registry, nothing here names a source or a subject; nothing points at a passage or quotes a source.",
+  "version": 1,
+  "general": [
+    "Give a time marker in the source's own words as the time expression. Add time_edtf only when the passage states the year.",
+    "Notes by a modern editor, translator, or transcriber, and an author's footnotes, are never the author's text.",
+    "Where the author reads an event as an instance of an in-scope concept, draft exemplifies; where the author presents a long-range consequence of it, draft ledTo. Record any other reading of what the events meant as a note of type interpretation."
+  ],
+  "eventInquiry": [
+    "This inquiry is the event itself, not any one book. Read each source for the steps of the event as that source tells them: the decisions and movements that lead into it, the action itself, and what ends it, when the source ties them to the event. Each step is a depicted event of this source.",
+    "A fleet, a wing or the centre of a fleet, a squadron, or a land army in scope can take part in a depicted event as a participant, as a person can.",
+    "Order the steps only where the source orders them: by a time marker, by saying one followed another, or by presenting one as the cause or outcome of another."
+  ],
+  "predicates": {
+    "participatedIn": "For participatedIn in the narrative event as a whole, a person counts as taking part when the passage shows them present during it: commanding, fighting, aboard a ship in the action, or fleeing from it. Preparations before the event, or the actions of a person's ships or troops with no sign of the person, do not by themselves show that the person took part.",
+    "commanded": "commanded relates a person to a force they directed in action, using the force entities in scope: a fleet, one wing or the centre of a fleet, a squadron, or a land army. Command of a wing or the centre is not command of the whole fleet; use the most specific force the passage supports.",
+    "heldAuthorityOver": "heldAuthorityOver is formal or supreme authority over a force, whether or not the person directed it in the fighting, for example an overall commander whose subordinate leads a wing. Draft it when the passage shows that authority, with a time only if the passage gives one."
+  },
+  "byForm": {
+    "reference": [
+      "This is a reference work written by many contributors: a summary of other sources, read at one revision. Draft as claims what the work itself states.",
+      "Where the work reports what a named ancient or modern author says, the claim is still the work's account: say in the rationale whose account it reports."
+    ]
+  },
+  "scope": {
+    "description": "An event inquiry's scope, computed from the graph instead of declared: the event's neighbours through live claims; the entities of these kinds that take part in the event's parts (events partOf it); the command structure of what is then in scope; every Concept; and, with scopeFromMentions, the entities its sources' passages mention. Depicted events stay out (the reader sees its own source's list).",
+    "kinds": ["Person", "Group", "Place", "Event", "Office", "Polity", "Period", "Type", "Concept"],
+    "commandPredicates": ["commanded", "heldAuthorityOver", "partOf"],
+    "allConcepts": true
+  }
+}
