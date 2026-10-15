@@ -1,0 +1,703 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 6,
+  "workId": "chr:entity:proposed-work-strabo-geography",
+  "createdAt": "2026-10-15T20:46:45.748695+00:00",
+  "promptVersion": "passage-finder-v1-77bac7c6",
+  "model": "claude-haiku-5-5",
+  "usage": {
+    "inputTokens": 75672,
+    "outputTokens": 12766,
+    "calls": 6
+  },
+  "batches": [
+    {
+      "first": "2.3.4",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "5.3.8",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "9.1.2",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "11.3.5",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "12.8.10",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "15.1.73",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 16
+    }
+  ],
+  "passages": 1516,
+  "nameCandidates": 116,
+  "selected": [
+    "5.3.8",
+    "5.4.9",
+    "6.1.6",
+    "6.2.3",
+    "6.2.4",
+    "6.4.2",
+    "7.1.4",
+    "7.3.11",
+    "7.6.1",
+    "7.7.5",
+    "7.7.6",
+    "7.7.7",
+    "8.4.2",
+    "8.4.3",
+    "8.4.4",
+    "8.5.5",
+    "8.6.23",
+    "8.7.4",
+    "8.7.5",
+    "8.8.1",
+    "10.2.2",
+    "10.2.7",
+    "10.5.3",
+    "11.3.5",
+    "11.13.3",
+    "11.13.4",
+    "11.14.9",
+    "11.14.14",
+    "11.14.15",
+    "11.14.16",
+    "12.1.4",
+    "12.2.11",
+    "12.3.5",
+    "12.3.6",
+    "12.3.7",
+    "12.3.13",
+    "12.3.14",
+    "12.3.15",
+    "12.3.34",
+    "12.3.35",
+    "12.6.2",
+    "12.8.8",
+    "12.8.9",
+    "12.8.10",
+    "12.8.16",
+    "13.1.27",
+    "13.1.30",
+    "13.2.3",
+    "13.4.3",
+    "14.1.14",
+    "14.1.23",
+    "14.1.41",
+    "14.1.42",
+    "14.2.19",
+    "14.5.3",
+    "14.5.4",
+    "14.5.6",
+    "14.5.10",
+    "14.5.13",
+    "14.5.14",
+    "14.5.15",
+    "14.6.6",
+    "15.1.4",
+    "17.1.9",
+    "17.1.10",
+    "17.1.11"
+  ],
+  "verdicts": {
+    "2.3.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Eudoxus voyages; no Actium link"
+    },
+    "2.5.28": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Geography of Keltica"
+    },
+    "3.2.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Spanish towns; Antony's generals appear only in Sextus Pompey's unrelated death"
+    },
+    "3.3.8": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Augustus's Cantabrian campaigns, unrelated"
+    },
+    "3.4.9": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's Munda campaign, unrelated"
+    },
+    "3.4.10": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Iberian battles of Sertorius and Caesar, unrelated"
+    },
+    "3.4.13": {
+      "byName": "names 5 in-scope actors",
+      "relevant": false,
+      "why": "Keltiberian wars and cities, unrelated"
+    },
+    "4.1.1": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Gallic ethnography and divisions"
+    },
+    "4.1.5": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Massilia's constitution and history, unrelated"
+    },
+    "4.1.9": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Coastal cities near Var, unrelated"
+    },
+    "4.2.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Arverni wars against Rome, unrelated"
+    },
+    "4.3.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Lugdunum and Gallic nations, unrelated"
+    },
+    "4.5.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's British expeditions, unrelated"
+    },
+    "4.6.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Alpine peoples and passes, unrelated"
+    },
+    "4.6.7": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Salassi gold mines and wars, unrelated"
+    },
+    "4.6.10": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Iapodes and Illyrian routes, unrelated"
+    },
+    "5.1.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Cisalpine Celtic peoples and colonies"
+    },
+    "5.1.11": {
+      "byName": "names 5 in-scope actors",
+      "relevant": false,
+      "why": "Cisalpine cities and roads"
+    },
+    "5.2.2": {
+      "byName": "names 4 in-scope actors",
+      "relevant": false,
+      "why": "Etruscan origins and Tarquins, unrelated"
+    },
+    "5.3.7": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Rome's walls and city growth, unrelated"
+    },
+    "5.3.8": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "5.4.9": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "6.1.6": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "6.2.3": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "6.2.4": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "6.4.2": {
+      "byName": "names 5 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "7.1.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "7.3.11": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "7.6.1": {
+      "byName": "names 4 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "7.7.5": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "7.7.6": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "7.7.7": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.4.2": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.4.3": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.4.4": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.5.5": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.6.23": {
+      "byName": "names 5 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.7.4": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.7.5": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "8.8.1": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "9.1.2": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Attic coast geography, Piraeus distances"
+    },
+    "9.1.3": {
+      "byName": "names the event",
+      "relevant": false,
+      "why": "Attica's shape and name, no event"
+    },
+    "9.1.4": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Scironides rocks and Nisaea, unrelated"
+    },
+    "9.2.42": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Orchomenus and Achaean origins"
+    },
+    "9.3.1": {
+      "byName": "names the event",
+      "relevant": false,
+      "why": "Phocis and Locris geography; Actium only as coastline landmark"
+    },
+    "9.3.2": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Delphi and Elateia description"
+    },
+    "10.1.16": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "General Greek regional transition"
+    },
+    "10.2.1": {
+      "byName": "names the event",
+      "relevant": false,
+      "why": "Aetolian and Acarnanian borders; Actius temple mentioned only as landmark"
+    },
+    "10.2.2": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Acarnanian cities near Actium, including Augustan Nicopolis built after the battle"
+    },
+    "10.2.3": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Aetolian territorial divisions"
+    },
+    "10.2.6": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Olenus and Pylene history"
+    },
+    "10.2.7": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Describes the Actium promontory, temple and harbour, the battle site"
+    },
+    "10.2.8": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Leucas and Corinthian colonization"
+    },
+    "10.2.13": {
+      "byName": "names 5 in-scope actors",
+      "relevant": false,
+      "why": "Cephallenia; Antonius family exile unrelated to battle"
+    },
+    "10.2.20": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Taphian islands and Teleboae"
+    },
+    "10.2.21": {
+      "byName": "names the event",
+      "relevant": false,
+      "why": "Coastal distances; Actium only as reference point"
+    },
+    "10.2.22": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Acarnanian tribes and Olenus"
+    },
+    "10.5.2": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Delos and Latona myth"
+    },
+    "10.5.3": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Caesar's triumph after the victory at Actium, aftermath"
+    },
+    "10.5.4": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Delos commerce and Mithridatic ravages"
+    },
+    "11.3.5": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "11.13.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "11.13.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "11.14.9": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "11.14.14": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "11.14.15": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "11.14.16": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.1.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.2.11": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.5": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.6": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.7": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.13": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.14": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.15": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.34": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.3.35": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.6.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.8.8": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.8.9": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.8.10": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "12.8.16": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "13.1.27": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "13.1.30": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "13.2.3": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "13.4.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.1.14": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.1.23": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.1.41": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.1.42": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.2.19": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.5.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.5.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.5.6": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.5.10": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.5.13": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.5.14": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.5.15": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "14.6.6": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "15.1.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "kept: no verdict returned"
+    },
+    "15.1.73": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Indian embassy to Augustus, unrelated to Actium"
+    },
+    "16.1.28": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "Parthian relations; Antony's campaign is not Actium"
+    },
+    "16.2.3": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Description of Syria and Commagene"
+    },
+    "16.2.40": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Pompey's capture of Jerusalem, unrelated"
+    },
+    "16.2.46": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "Herod's rise and sons, no link to Actium"
+    },
+    "16.4.22": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Aelius Gallus expedition to Arabia"
+    },
+    "17.1.8": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Alexandria's layout and Alexander's tomb"
+    },
+    "17.1.9": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Antony's Timonium built after his defeat at Actium"
+    },
+    "17.1.10": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Nicopolis founded at Augustus's victory over Antony; Antony and Cleopatra's end"
+    },
+    "17.1.11": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Cleopatra and Antony present at Actium and flight pursued by Augustus"
+    },
+    "17.1.12": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Roman administration of Egypt, no link to the battle"
+    },
+    "17.1.13": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Egyptian revenues and trade"
+    },
+    "17.1.53": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Egyptian frontier and Ethiopian peoples"
+    },
+    "17.3.7": {
+      "byName": "names 10 in-scope actors",
+      "relevant": false,
+      "why": "Mauretanian customs and Juba's line, unrelated matter"
+    },
+    "17.3.20": {
+      "byName": "names 4 in-scope actors",
+      "relevant": false,
+      "why": "Syrtes coast geography"
+    },
+    "17.3.25": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Augustan division of provinces, no mention of Actium"
+    }
+  }
+}

@@ -1,15 +1,15 @@
 {
   "workId": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
   "inquiry": "chr:inquiry:actium-battle",
-  "inquiryVersion": 5,
-  "createdAt": "2026-10-15T20:05:57.554857+00:00",
+  "inquiryVersion": 6,
+  "createdAt": "2026-10-15T20:50:01.967730+00:00",
   "promptVersion": "source-brief-v2-0a0f246a",
   "readingRulesVersion": 1,
   "model": "claude-opus-5-5",
   "stopReason": "end_turn",
-  "inputTokens": 34323,
-  "outputTokens": 4000,
-  "requestId": "req_011Cg4d89naKKmC1qxhfzxG3",
+  "inputTokens": 31152,
+  "outputTokens": 2348,
+  "requestId": "req_011Cg4gVvUMZorUx1qG1TxVm",
   "sample": {
     "refs": [
       "1.1.1",
@@ -18,126 +18,126 @@
       "1.2.3",
       "1.4.1",
       "1.9.5",
-      "lacuscurtius-velleius-paterculus-2a-html-1f023b73.4.5",
-      "lacuscurtius-velleius-paterculus-2a-html-1f023b73.11.3",
-      "lacuscurtius-velleius-paterculus-2a-html-1f023b73.12.3",
-      "lacuscurtius-velleius-paterculus-2a-html-1f023b73.15.1",
-      "lacuscurtius-velleius-paterculus-2a-html-1f023b73.19.2",
-      "lacuscurtius-velleius-paterculus-2a-html-1f023b73.21.1",
-      "lacuscurtius-velleius-paterculus-2a-html-1f023b73.23.6",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.30.3",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.31.2",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.31.3",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.32.4",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.39.3",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.41.2",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.42.2",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.44.1",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.46.1",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.47.1",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.47.2",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.48.1",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.48.5",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.49.3",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.49.4",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.51.1",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.51.3",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.53.2",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.53.3",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.55.3",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.56.1",
-      "lacuscurtius-velleius-paterculus-2b-html-f198e31e.58.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.60.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.60.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.60.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.60.5",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.61.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.61.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.61.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.61.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.62.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.62.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.62.5",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.63.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.63.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.64.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.64.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.64.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.65.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.65.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.66.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.66.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.66.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.67.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.69.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.69.5",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.70.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.71.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.71.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.72.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.72.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.72.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.73.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.73.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.74.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.74.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.74.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.75.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.76.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.76.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.76.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.77.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.77.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.78.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.79.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.79.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.79.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.79.5",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.80.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.81.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.82.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.82.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.83.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.83.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.83.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.84.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.84.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.4",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.6",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.86.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.86.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.87.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.87.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.87.3",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.88.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.88.2",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.90.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.91.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.93.1",
-      "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.93.2",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.96.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.99.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.99.2",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.100.4",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.101.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.102.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.104.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.105.3",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.106.3",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.110.6",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.111.4",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.112.3",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.113.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.115.2",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.120.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.122.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.124.2",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.127.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.128.1",
-      "lacuscurtius-velleius-paterculus-2d-html-66eef552.129.3"
+      "2.4.5",
+      "2.11.3",
+      "2.12.3",
+      "2.15.1",
+      "2.19.2",
+      "2.21.1",
+      "2.23.6",
+      "2.30.3",
+      "2.31.2",
+      "2.31.3",
+      "2.32.4",
+      "2.39.3",
+      "2.41.2",
+      "2.42.2",
+      "2.44.1",
+      "2.46.1",
+      "2.47.1",
+      "2.47.2",
+      "2.48.1",
+      "2.48.5",
+      "2.49.3",
+      "2.49.4",
+      "2.51.1",
+      "2.51.3",
+      "2.53.2",
+      "2.53.3",
+      "2.55.3",
+      "2.56.1",
+      "2.58.2",
+      "2.60.1",
+      "2.60.3",
+      "2.60.4",
+      "2.60.5",
+      "2.61.1",
+      "2.61.2",
+      "2.61.3",
+      "2.61.4",
+      "2.62.1",
+      "2.62.3",
+      "2.62.5",
+      "2.63.1",
+      "2.63.2",
+      "2.64.1",
+      "2.64.3",
+      "2.64.4",
+      "2.65.1",
+      "2.65.2",
+      "2.66.1",
+      "2.66.2",
+      "2.66.3",
+      "2.67.3",
+      "2.69.3",
+      "2.69.5",
+      "2.70.1",
+      "2.71.1",
+      "2.71.2",
+      "2.72.2",
+      "2.72.3",
+      "2.72.4",
+      "2.73.2",
+      "2.73.3",
+      "2.74.1",
+      "2.74.2",
+      "2.74.3",
+      "2.75.3",
+      "2.76.2",
+      "2.76.3",
+      "2.76.4",
+      "2.77.1",
+      "2.77.2",
+      "2.78.1",
+      "2.79.1",
+      "2.79.2",
+      "2.79.4",
+      "2.79.5",
+      "2.80.3",
+      "2.81.3",
+      "2.82.1",
+      "2.82.4",
+      "2.83.1",
+      "2.83.2",
+      "2.83.3",
+      "2.84.1",
+      "2.84.2",
+      "2.85.1",
+      "2.85.2",
+      "2.85.3",
+      "2.85.4",
+      "2.85.6",
+      "2.86.2",
+      "2.86.3",
+      "2.87.1",
+      "2.87.2",
+      "2.87.3",
+      "2.88.1",
+      "2.88.2",
+      "2.90.1",
+      "2.91.1",
+      "2.93.1",
+      "2.93.2",
+      "2.96.1",
+      "2.99.1",
+      "2.99.2",
+      "2.100.4",
+      "2.101.1",
+      "2.102.1",
+      "2.104.1",
+      "2.105.3",
+      "2.106.3",
+      "2.110.6",
+      "2.111.4",
+      "2.112.3",
+      "2.113.1",
+      "2.115.2",
+      "2.120.1",
+      "2.122.1",
+      "2.124.2",
+      "2.127.1",
+      "2.128.1",
+      "2.129.3"
     ],
     "characters": 59978,
     "budget": 60000
@@ -145,145 +145,134 @@
   "conventions": [
     {
       "kind": "naming",
-      "rule": "The name Caesar, alone or with Gaius, denotes several men: the dictator, the young heir who becomes Augustus, Tiberius, and the emperor's grandson Gaius. Do not resolve it from the in-scope alias list; decide each use from context, and in the Actium narrative it is the heir, later Augustus.",
-      "why": "The in-scope alias Gaius Caesar belongs to Augustus, but the source also gives that name to the dictator and to the grandson.",
+      "rule": "The name Caesar denotes several men: the dictator, his adopted heir (the in-scope Augustus) both before and after he took that title, Tiberius, and the young grandson Gaius, among others. Decide from context each time; for the battle and its build-up it normally means Augustus, not Julius Caesar.",
+      "why": "The Augustus aliases and the Julius Caesar label both match Caesar, and the source also applies it to Tiberius and Gaius.",
       "evidence": [
         {
-          "ref": "lacuscurtius-velleius-paterculus-2b-html-f198e31e.46.1",
-          "quotation": "Meanwhile, in Gaul, Gaius Caesar was carrying on his gigantic task"
+          "ref": "2.85.2",
+          "quotation": "The command of the right wing of Caesar's fleet was entrusted to Marcus Lurius"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.60.5",
-          "quotation": "the young Gaius Caesar was the object of daily plots on the part of Antony"
+          "ref": "2.41.2",
+          "quotation": "Caesar was only about eighteen years of age at the time of Sulla's dictator­ship"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.1",
-          "quotation": "on which Caesar and Antony led out their fleets and fought"
+          "ref": "2.120.1",
+          "quotation": "On hearing of this disaster, Caesar flew to his father's side."
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2d-html-66eef552.101.1",
+          "ref": "2.101.1",
           "quotation": "Shortly after this Gaius Caesar, who had previously made a tour of other provinces"
         }
       ]
     },
     {
       "kind": "naming",
-      "rule": "Bare family names name more than one person. Antonius can be the triumvir's brother Lucius or his son, Pompey can be Sextus or his father, Lepidus can be the triumvir or a younger man of that name, and Agrippa can be Agrippa's posthumous son. Use context, not the in-scope label, to decide who is meant.",
-      "why": "The source reuses names across generations and siblings, so a careless match would attach claims to the wrong in-scope person.",
+      "rule": "Pompey and Pompeius can mean Pompeius Magnus or his son Sextus Pompey, and Antonius can mean Mark Antony or his brothers Lucius and Gaius or his son Iulus; Marcus Agrippa can also mean Agrippa's posthumous son. Identify each from context before linking to an in-scope person.",
+      "why": "Shared family names would otherwise be linked to the wrong in-scope person.",
       "evidence": [
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.74.3",
-          "quotation": "Antonius, beaten on all sides by the forces of Caesar, had taken refuge in Perusia"
-        },
-        {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.79.5",
+          "ref": "2.79.5",
           "quotation": "Pompey lost almost all his ships, and fled to Asia"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.88.1",
-          "quotation": "Marcus Lepidus, a young man whose good looks exceeded his prudence"
+          "ref": "2.74.3",
+          "quotation": "Antonius, beaten on all sides by the forces of Caesar, had taken refuge in Perusia"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2d-html-66eef552.104.1",
+          "ref": "2.104.1",
           "quotation": "Marcus Agrippa, to whom Julia had given birth after the death of Agrippa"
         }
       ]
     },
     {
       "kind": "naming",
-      "rule": "Antony's and Octavian's commanders appear under short names or spellings that differ from the labels: Publicola for Poplicola, Taurus for Statilius Taurus, Canidius for Canidius Crassus, and Lurius and Arruntius without full names. Cleopatra is often called only the queen. Match these to the in-scope persons.",
-      "why": "Short forms and spelling variants are not listed among the aliases.",
+      "rule": "The source spells the in-scope Lucius Gellius Poplicola as Publicola, and names several different men Gnaeus Domitius; link only the one who deserts Antony before the battle to Gnaeus Domitius Ahenobarbus.",
+      "why": "Spelling variant not among aliases, and the Domitii are distinct generations.",
       "evidence": [
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.2",
-          "quotation": "The command of Antony's fleet was entrusted to Publicola and Sosius"
+          "ref": "2.85.2",
+          "quotation": "The command of Antony's fleet was entrusted to Publicola and Sosius."
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.2",
-          "quotation": "the army of Caesar was commanded by Taurus, that of Antony by Canidius"
+          "ref": "2.72.3",
+          "quotation": "Gnaeus Domitius, father of Lucius Domitius our late contemporary"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.84.2",
-          "quotation": "refused to salute the queen except by name"
+          "ref": "2.12.3",
+          "quotation": "In this year Gnaeus Domitius, the tribune of the people, passed a law"
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "Years are given by the pair of consuls in office, or as a count of years back from the author's own day (the consulship of his addressee Vinicius), or by founding of the city. Keep these expressions as the time expression; add a year only when the passage itself states one.",
+      "why": "Consular and relative datings are not plain years and depend on the author's present.",
+      "evidence": [
+        {
+          "ref": "2.84.1",
+          "quotation": "Then, in the consul­ship of Caesar and Messala Corvinus, the decisive battle took place at Actium."
+        },
+        {
+          "ref": "2.15.1",
+          "quotation": "One hundred and twenty years ago, in the consul­ship of Lucius Caesar and Publius Rutilius"
         }
       ]
     },
     {
       "kind": "stance",
-      "rule": "The author is a partisan of Octavian and Tiberius who openly praises one side and condemns the other, and he judges the outcome before narrating it. Draft his verdicts, character sketches and statements of what was certain or what one may infer as the author's interpretation, not as narrated events.",
-      "why": "His evaluative framing is mixed into the narrative and would otherwise be drafted as fact.",
+      "rule": "The author is an openly partisan admirer of Augustus and Tiberius and hostile to Antony and Cleopatra; his moral verdicts, his claim that the outcome was settled before the fighting, and his inferences about what Antony or Augustus would have done are his judgments, so draft them as interpretation, not as events.",
+      "why": "Evaluative and counterfactual statements are woven into the narrative.",
       "evidence": [
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.84.1",
+          "ref": "2.84.1",
           "quotation": "The victory of the Caesarian party was a certainty long before the battle."
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.1",
-          "quotation": "the one for the safety, the other for the ruin, of the world"
+          "ref": "2.85.6",
+          "quotation": "one might question whether in case of victory he would have acted according to Cleopatra's will or his own"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.86.2",
+          "ref": "2.86.2",
           "quotation": "it may be inferred how moderate a use Caesar would have made of the victory"
         }
       ]
     },
     {
       "kind": "speech",
-      "rule": "The author quotes remarks in direct speech and addresses figures or his dedicatee in his own voice. Treat the quoted words as reported speech, not narrative action, and treat the author's own addresses and exclamations as rhetoric.",
-      "why": "Direct quotations and apostrophes carry the author's rhetoric rather than events of the battle.",
+      "rule": "Quoted remarks and reported shouting, and the author's own direct addresses to a character or to his patron, are rhetoric; draft only the fact that the utterance was made, not its content as narrative fact.",
+      "why": "The author apostrophises figures and reports pointed sayings.",
       "evidence": [
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.86.3",
-          "quotation": "I shall hold aloof from your quarrel and shall be the prize of the victor"
-        },
-        {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.66.3",
+          "ref": "2.66.3",
           "quotation": "But you accomplished nothing, Mark Antony"
-        }
-      ]
-    },
-    {
-      "kind": "dating",
-      "rule": "Years are given by the consuls in office, or as a count of years back from the author's own day, which is tied to his dedicatee's consulship. Keep these as the time expression and do not convert them to a calendar year.",
-      "why": "The source rarely states a year in a form that supports time_edtf.",
-      "evidence": [
-        {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.84.1",
-          "quotation": "of Caesar and Messala Corvinus, the decisive battle took place at Actium"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.65.2",
-          "quotation": "seventy-two, Marcus Vinicius, before the beginning of your consul"
+          "ref": "2.86.3",
+          "quotation": "My services to Antony are too great, and his kindness to me too well known"
+        },
+        {
+          "ref": "2.85.4",
+          "quotation": "kept shouting and pointing out to them that Antony had fled"
         }
       ]
     },
     {
       "kind": "apparatus",
-      "rule": "A bullet sign sometimes stands before a word. It is a transcriber's marker for a note, not part of the author's text, so omit it from claims and quotations of content.",
-      "why": "The marker is editorial matter embedded in the passage text.",
+      "rule": "A small bullet mark before a word is a transcriber's marker for an editorial note, not part of the text; ignore it.",
+      "why": "Markers are embedded in the passage text.",
       "evidence": [
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.82.4",
+          "ref": "2.82.4",
           "quotation": "holding in his hand the •thyrsus"
-        }
-      ]
-    },
-    {
-      "kind": "other",
-      "rule": "Some passages begin or end in mid-sentence, so the subject of a clause may lie in an unseen neighbouring passage. Do not supply the missing actor or event; draft only what the passage itself shows.",
-      "why": "Fragmentary passages invite guessing at who acted.",
-      "evidence": [
-        {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.6",
-          "quotation": "so that one might question whether in case of victory he would have acted according to Cleopatra's will or his own"
         },
         {
-          "ref": "lacuscurtius-velleius-paterculus-2c-html-45a8b33f.85.3",
-          "quotation": "Even without their chief"
+          "ref": "2.31.2",
+          "quotation": "to a distance of •fifty miles from the sea"
         }
       ]
     }
   ],
   "rejected": [],
-  "notes": "Velleius writes a compressed, panegyrical account for Marcus Vinicius. The Actium narrative is brief and full of judgement, and its name reuse across generations is the main risk."
+  "notes": "Velleius is a near-contemporary officer under Tiberius writing a compressed, panegyrical survey; the battle narrative is brief and framed by pre-battle desertions and command assignments. He often cross-refers to his own earlier narrative, which signals no new event."
 }

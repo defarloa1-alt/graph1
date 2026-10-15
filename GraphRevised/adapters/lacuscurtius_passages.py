@@ -182,7 +182,8 @@ def _load_page(path: Path) -> Page:
     parser.close()
     sections = {ref: _normalize("".join(parts)) for ref, parts in parser.sections.items()}
     notes = {ref: [parser.note_texts[n] for n in ids if n in parser.note_texts] for ref, ids in parser.note_refs.items()}
-    book = re.search(r"/(\d+)\*\.html", metadata["sourceUri"])
+    # The book is the page's number; a book split over pages adds a letter (2A*.html ... 2D*.html).
+    book = re.search(r"/(\d+)[A-Z]?\*\.html", metadata["sourceUri"])
     return Page(
         book=book.group(1) if book else path.stem, path=path, source_uri=metadata["sourceUri"],
         retrieved_at=metadata["retrievedAt"], content_hash=metadata["contentHash"],

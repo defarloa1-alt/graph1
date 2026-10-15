@@ -786,6 +786,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--sections", help="comma-separated refs such as 65.1,65.2 (overrides the inquiry's chapters)")
     parser.add_argument("--chapters", help="a range in the source's own terms, such as 65-68 (overrides the inquiry's chapters)")
     parser.add_argument("--source", help="for an inquiry with several sources: read only the one with this workId")
+    parser.add_argument("--found", action="store_true",
+                        help="read only the passages the passage finder selected for each source (discovery/passage_finder.py)")
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--submit", action="store_true", help="store valid drafts as submitted Proposals")
     parser.add_argument("--outputs", default="claims,notes,periods,events",
@@ -837,8 +839,15 @@ def _read_source(args, inquiry: Inquiry, session, dry, operations, registry, cli
                  periodo, totals: dict[str, int], storing: set[str]):
     scope_ids = {entity["id"] for entity in inquiry.scope}
     edition = open_source(inquiry.source, GRAPH_REVISED)
+    finds = None
     if args.sections:
         refs = args.sections.split(",")
+    elif getattr(args, "found", False):
+        from GraphRevised.discovery.passage_finder import load_finds  # discovery builds on the reader, not the reverse
+        finds = load_finds(inquiry.id, inquiry.work_id)
+        if finds is None:
+            raise ValueError(f"no passage finds for {inquiry.work_id}; run discovery.passage_finder first")
+        refs = finds["selected"]
     else:
         refs = edition.refs(args.chapters or inquiry.source.get("chapters"))
     all_refs = edition.refs(None)
@@ -853,6 +862,8 @@ def _read_source(args, inquiry: Inquiry, session, dry, operations, registry, cli
         "predicateRegistryVersion": registry.version, "draftSchemaVersion": DRAFT_SCHEMA_VERSION,
         "workId": inquiry.work_id, "narrativeEventId": inquiry.narrative_event_id, "submit": args.submit,
         "readingRulesVersion": inquiry.reading_rules_version, "brief": inquiry.brief,
+        "finds": {k: finds[k] for k in ("createdAt", "promptVersion", "model", "passages")} | {"selected": len(refs)}
+                 if finds else None,
     }) + "\n")
 
     for ref in refs:

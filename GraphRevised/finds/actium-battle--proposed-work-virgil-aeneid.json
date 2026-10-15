@@ -1,0 +1,72 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 6,
+  "workId": "chr:entity:proposed-work-virgil-aeneid",
+  "createdAt": "2026-10-15T20:45:27.750735+00:00",
+  "promptVersion": "passage-finder-v1-77bac7c6",
+  "model": "claude-haiku-5-5",
+  "usage": {
+    "inputTokens": 6242,
+    "outputTokens": 1624,
+    "calls": 1
+  },
+  "batches": [
+    {
+      "first": "1.272",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 8
+    }
+  ],
+  "passages": 327,
+  "nameCandidates": 8,
+  "selected": [
+    "1.272",
+    "3.278",
+    "6.756",
+    "8.671",
+    "8.729"
+  ],
+  "verdicts": {
+    "1.272": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Jupiter's prophecy of Caesar's eastern triumphs and the peace after war"
+    },
+    "3.258": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Harpy prophecy and voyage past Ithaca, with no link to the battle"
+    },
+    "3.278": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Thanksgiving and games held on the Actium shore; Apollo temple dedication commemorates the site"
+    },
+    "3.294": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Helenus and Andromache episode in Buthrotum, unrelated to the battle"
+    },
+    "6.756": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Anchises' prophecy of Augustus and the golden age that follows the war"
+    },
+    "8.608": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Gift of the shield and earlier Roman scenes, not Actium itself"
+    },
+    "8.671": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Shield depiction of the Actium fleet battle, Cleopatra and Antony's flight, and Augustus' triumph"
+    },
+    "8.729": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "Closing of the shield description that includes the Actium scenes"
+    }
+  }
+}

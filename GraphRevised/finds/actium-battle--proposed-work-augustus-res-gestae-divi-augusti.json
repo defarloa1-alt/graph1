@@ -1,0 +1,150 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 6,
+  "workId": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+  "createdAt": "2026-10-15T20:45:43.181678+00:00",
+  "promptVersion": "passage-finder-v1-77bac7c6",
+  "model": "claude-haiku-5-5",
+  "usage": {
+    "inputTokens": 5528,
+    "outputTokens": 2533,
+    "calls": 2
+  },
+  "batches": [
+    {
+      "first": "1.1G.14",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "5.27.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 2
+    }
+  ],
+  "passages": 754,
+  "nameCandidates": 22,
+  "selected": [
+    "5.5L.3",
+    "5.5L.4",
+    "5.5L.5",
+    "5.14G.1",
+    "5.25.1",
+    "5.5L.9",
+    "5.27.1"
+  ],
+  "verdicts": {
+    "1.1G.14": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "early career and consulship, not the Actium campaign"
+    },
+    "1.5.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "dictatorship and grain supply, unrelated to Actium"
+    },
+    "1.6.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "tribunician power and laws, unrelated to Actium"
+    },
+    "2.8.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "census and senate roll, unrelated to Actium"
+    },
+    "2.10.1": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "priesthoods and honours, unrelated to Actium"
+    },
+    "2.11.1": {
+      "byName": "names 4 in-scope actors",
+      "relevant": false,
+      "why": "return from Syria and altar, unrelated to Actium"
+    },
+    "2.12.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "return from Spain and Gaul, unrelated to Actium"
+    },
+    "3.14.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "honours for sons, unrelated to Actium"
+    },
+    "3.16.1": {
+      "byName": "names 13 in-scope actors",
+      "relevant": false,
+      "why": "land payments to veterans, no link to Actium"
+    },
+    "3.17.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "treasury contributions, unrelated to Actium"
+    },
+    "3.18.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "grain and money tickets, unrelated to Actium"
+    },
+    "4.19.1": {
+      "byName": "names 4 in-scope actors",
+      "relevant": false,
+      "why": "temple building list, no Actium link"
+    },
+    "4.21.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "temples from war spoils, not tied to Actium"
+    },
+    "4.22.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "games and shows, unrelated to Actium"
+    },
+    "5.5L.3": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "oath passage leading to the Actium war leadership demand"
+    },
+    "5.5L.4": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Italy demands Augustus as leader in war won at Actium"
+    },
+    "5.5L.5": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "provinces' oath of allegiance in the same passage as Actium"
+    },
+    "5.14G.1": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "unclear Greek fragment, possibly war or fleet figures"
+    },
+    "5.25.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "explicit mention of victory at Actium and Italy's oath"
+    },
+    "5.5L.9": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "unclear fragment on provinces, possibly the oath passage"
+    },
+    "5.27.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Annexing Egypt is an aftermath of Actium's defeat of Antony and Cleopatra, though Actium is not named"
+    },
+    "6.S2.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Building list of Roman temples and works; no tie to Actium stated"
+    }
+  }
+}
