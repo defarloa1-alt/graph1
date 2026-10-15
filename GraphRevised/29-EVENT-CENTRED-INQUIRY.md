@@ -325,8 +325,18 @@ Alexandria; one claim refused by the validator, a timed `participatedIn`);
 Velleius 59 (19 events: the desertions of Plancus, Dellius, and Domitius,
 Agrippa's captures of Leucas, Patrae, and Corinth, the battle day, Cleopatra
 beginning the flight, Antony's men fighting on, Canidius's flight, the army's
-surrender, the clemency to Sosius). Not yet re-read with the briefs: the first
-five sources.
+surrender, the clemency to Sosius).
+
+**The first five sources re-read (2026-10-15; inquiry v7, registry v11, reading
+rules v2, briefs, `--found`).** The finder selected 519 passages (Plutarch 123,
+Dio 141, Hale 34, Weigall 191, Wikipedia 30), wider than the battle chapters of
+the first reading, so the lead-up and the aftermath are now read too, and the
+passages read before notes existed (Plutarch 61–64, Dio 50.11–15) are read for
+notes. 324 new proposals stored, 423 drafts that matched claims already stored
+(the re-read agrees with the first), 113 new depicted events, 173 notes, one
+malformed draft and one refused note. Four participations are now dated from
+the sources' words (registry v11), among them Antony and Agrippa on 2 September
+31 BC according to Wikipedia.
 
 **Wikipedia first contact (built 2026-10-15; §3 steps 1–2, §5).**
 `python -m GraphRevised.harvest.wikipedia_contact <QID> [--apply] [--limit 50]`:
