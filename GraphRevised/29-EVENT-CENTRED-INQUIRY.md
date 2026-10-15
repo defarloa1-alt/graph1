@@ -300,7 +300,33 @@ generalised on the way: Perseus passages are the deepest numbered divisions
 at any depth (Strabo's book.chapter.section, the *Aeneid*'s book.card;
 divisions numbered without a digit, such as a translator's argument, are
 apparatus); a LacusCurtius page that names no author (the *Res Gestae*) takes
-it from the plan. Not yet read: the four new sources (next step 1c).
+it from the plan.
+
+**The passage finder (built 2026-10-15; curator: read the selection, not whole
+works).** [discovery/passage_finder.py](discovery/passage_finder.py)
+(`passage-finder-v1`): a name step without a model (the event's name or its
+adjective, two different in-scope people or forces, and the passages either
+side of one naming the event, since a poem's battle scene names it once), then
+Haiku's verdict in batches of 20, keeping what it is unsure of and retrying an
+empty answer once. The reader reads the selection with `--found` and records
+it. For the four new sources: 183 of 3,232 passages (the *Aeneid* 5, the *Res
+Gestae* 7, Strabo 66, Velleius 105), in [finds/](finds). The first run kept
+whole batches when an answer came back empty; the retry and the batch record
+came from that. LacusCurtius books split over pages (Velleius 2A to 2D) now
+keep their book number in refs.
+
+**The four new sources read (2026-10-15, `--found --submit`, reader v13 with
+the shared rules and briefs).** 89 proposals stored, 30 depicted events, 20
+notes: the *Aeneid* 19 (the shield's nine scenes, every claim imaginative and
+attributed, the poet's partisan colouring as interpretation notes, Apollo's bow
+a note and not a participant); the *Res Gestae* 1 (the oath of Italy and the
+provinces); Strabo 10 (asides on Actium, Nicopolis, and Antony's retreat to
+Alexandria; one claim refused by the validator, a timed `participatedIn`);
+Velleius 59 (19 events: the desertions of Plancus, Dellius, and Domitius,
+Agrippa's captures of Leucas, Patrae, and Corinth, the battle day, Cleopatra
+beginning the flight, Antony's men fighting on, Canidius's flight, the army's
+surrender, the clemency to Sosius). Not yet re-read with the briefs: the first
+five sources.
 
 **Wikipedia first contact (built 2026-10-15; §3 steps 1–2, §5).**
 `python -m GraphRevised.harvest.wikipedia_contact <QID> [--apply] [--limit 50]`:

@@ -25,7 +25,8 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events \
   GraphRevised.tests.test_gazetteer GraphRevised.tests.test_wikipedia \
   GraphRevised.tests.test_source_registry GraphRevised.tests.test_source_brief \
-  GraphRevised.tests.test_event_source_plan GraphRevised.tests.test_inquiry_builder  # expect 285 tests, OK (2 to 8 minutes)
+  GraphRevised.tests.test_event_source_plan GraphRevised.tests.test_inquiry_builder \
+  GraphRevised.tests.test_passage_finder  # expect 287 tests, OK (2 to 8 minutes)
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -121,7 +122,7 @@ Not blocking:
 4a. **The source briefs** ([briefs/](briefs), 36 conventions): visible and used by the reader from the next run; veto any you disagree with. Worth a look: the briefs for Hale, Weigall, and Wikipedia say a bare Caesar there means Julius Caesar (Weigall's adds that context decides).
 5. **Review of what the readers proposed.** About 1,350 Proposals are submitted, including 316 depicted events (Plutarch 28, Dio 76, Hale 77, Weigall 88, Wikipedia 47). Everything is visible and labelled; nothing needs promoting to be seen; none of it is delegated. Known faults to judge rather than accept blindly: an author's inference arriving as a factual event (Hale's "flight arranged beforehand"), a few weak links ("flees" triggered by "waits at anchor").
 6. **The 30 linked items Wikipedia first contact left to the agent** (29 §9a): concepts and types (galley, liburna, quinquereme, blockade, *imperium*, Roman triumph), gods (Apollo, Neptune, Mars), places the class table lacks (Ambracian Gulf, Methoni, Roman Egypt), and others. Options: add checked classes to the harvest rules, propose Types through the structure enricher, or leave them.
-7. **Pushing the branch.** The commits after `70d3597` are local; push only with the curator's go-ahead.
+7. **Pushing the branch.** Pushed to `dfd390c` on 2026-10-15 with the curator's go-ahead; later commits are local until the next go-ahead.
 8. Carried over: the twelve claims the delegated review left open ([21](21-REVIEW-DELEGATION.md) §5: Publicola's identity; the pronouns of Plutarch 65.3 and 65.4; our single-source command statements for Insteius, Antony's right wing and fleet, Taurus; Dio's near-duplicate date); the two proposed Periods (Roman Republic, Roman Empire) and the 11 PeriodO Works with their 11 flagged mentions (`review entities`); the three PeriodO changes in 24 §9; the Wikidata harvest's ~440 proposed claims.
 
 ## 6. Next steps (the plan, in order; curator 2026-10-14 and 2026-10-15)
@@ -131,7 +132,7 @@ Done 2026-10-15: the gazetteer ([27](27-GAZETTEER.md) §4a); depicted events for
 1. **Finish the event-centred research run for the Battle of Actium** ([29](29-EVENT-CENTRED-INQUIRY.md)):
    - a. ~~The source registry~~ **Built 2026-10-15** ([curation/sources.json](curation/sources.json), 29 §9a): six systems, rights quoted at each source with the date checked; the governing paragraph heads the resources document. Remaining, as plans need them: the report's other sources one at a time, each licence checked at the source (rule 17), and its gaps (Latin epigraphy such as the Heidelberg and Clauss-Slaby databases; the Hannibal-era historians); the Internet Archive's Terms of Use (the page needs JavaScript). The project's User-Agent now names the curator and a contact address, as Wikimedia's and the Archive's bot policies ask.
    - b. ~~The event source plan~~ **Built 2026-10-15** (29 §9a), with the inquiry builder: the agent chose Virgil *Aeneid*, Augustus *Res Gestae*, Strabo, and Velleius Paterculus (budget 4), all preserved and briefed; the battle inquiry is v6 with nine sources.
-   - c. **Read the chosen sources** into the battle inquiry (the four new ones hold 3,232 passages, Strabo 1,516 of them for a few asides: whole-work reading needs a cheap step that finds the passages worth reading first; the curator's call on cost), and re-read Plutarch 61–64 and Dio 50.11–15 for notes (they were read before notes existed).
+   - c. **Read the chosen sources**: done for the four new ones (29 §9a): the passage finder ([discovery/passage_finder.py](discovery/passage_finder.py)) selected 183 of 3,232 passages, and the reader (`--found --submit`) stored 89 proposals, 30 depicted events, 20 notes. Remaining: re-read the first five sources with the shared rules and briefs, and Plutarch 61–64 and Dio 50.11–15 for notes (read before notes existed).
    - d. **Chrystallum's account** (29 §4), once open item 1 is decided: the agent's narrative of the battle, every statement citing a preserved passage, labelled as ours, versioned, never counted as an author in attestation.
    - e. **Reader prompt v14 fixes** from the pilot: an author's inference or reconstruction becomes an interpretive claim or a note, not a factual event; shorter labels; links only on the source's explicit words.
    - f. ~~Domain rules out of the inquiries~~ **Built 2026-10-15** (29 §9a): shared reading rules, computed scope, source briefs. Remaining: the **inquiry builder**, which writes an event inquiry from the event, the chosen sources of the plan (1b), the rules, and the briefs, so the curator only names the event.
