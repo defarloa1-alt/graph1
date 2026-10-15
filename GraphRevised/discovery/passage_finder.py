@@ -140,7 +140,8 @@ def find(client, model: str, inquiry: Inquiry, source: PassageSource, event: dic
                             "verdicts": len(output.verdicts) if output else 0})
             if output and output.verdicts:
                 break
-        returned = {v.ref: v for v in (output.verdicts if output else [])}
+        # Refs come back as given, or wrapped as they were shown ("[50.12.5]").
+        returned = {v.ref.strip().strip("[]").strip(): v for v in (output.verdicts if output else [])}
         for ref, _ in batch:
             v = returned.get(ref)
             verdicts[ref] = ({"relevant": v.relevant, "why": v.why} if v

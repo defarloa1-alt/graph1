@@ -1,0 +1,213 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 7,
+  "workId": "chr:entity:wikipedia-en-battle-of-actium",
+  "createdAt": "2026-10-15T21:12:17.590992+00:00",
+  "promptVersion": "passage-finder-v1-e9889d16",
+  "model": "claude-haiku-5-5",
+  "usage": {
+    "inputTokens": 8538,
+    "outputTokens": 2213,
+    "calls": 2
+  },
+  "batches": [
+    {
+      "first": "0.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "2.11",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 10
+    }
+  ],
+  "passages": 31,
+  "nameCandidates": 30,
+  "selected": [
+    "0.1",
+    "0.2",
+    "0.3",
+    "0.4",
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4",
+    "1.5",
+    "1.6",
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4",
+    "2.5",
+    "2.6",
+    "2.7",
+    "2.8",
+    "2.9",
+    "2.10",
+    "2.11",
+    "2.12",
+    "2.13",
+    "2.14",
+    "3.1",
+    "3.2",
+    "3.3",
+    "3.4",
+    "3.5",
+    "3.6"
+  ],
+  "verdicts": {
+    "0.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Direct description of the battle, date, place and fleets"
+    },
+    "0.2": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Pre-battle positioning and forces of both sides at Actium"
+    },
+    "0.3": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Narrates the naval fighting, rout and Cleopatra's role"
+    },
+    "0.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Aftermath: Octavian's consolidation of power following the victory"
+    },
+    "1.1": {
+      "byName": "names 20 in-scope actors",
+      "relevant": true,
+      "why": "Lead-up: breakdown of triumvirate leading to the conflict"
+    },
+    "1.2": {
+      "byName": "names 13 in-scope actors",
+      "relevant": true,
+      "why": "Lead-up: Octavian's and Antony's rival standing and claims"
+    },
+    "1.3": {
+      "byName": "names 17 in-scope actors",
+      "relevant": true,
+      "why": "Lead-up: Antony's independent acts and Caesarion propaganda fueling war"
+    },
+    "1.4": {
+      "byName": "names 18 in-scope actors",
+      "relevant": true,
+      "why": "Lead-up: mutual grievances as the triumvirate expired"
+    },
+    "1.5": {
+      "byName": "names 19 in-scope actors",
+      "relevant": true,
+      "why": "Lead-up: defections to Antony and his assembling of the fleet"
+    },
+    "1.6": {
+      "byName": "names 18 in-scope actors",
+      "relevant": true,
+      "why": "Lead-up: Octavian's preparations and declaration of war on Antony"
+    },
+    "2.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Antony's positioning at Actium before the battle"
+    },
+    "2.2": {
+      "byName": "names 14 in-scope actors",
+      "relevant": true,
+      "why": "Pre-battle months and Cleopatra's withdrawal advice"
+    },
+    "2.3": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "Narrates the decision to give battle and the opening moves"
+    },
+    "2.4": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Describes battle deployment and commanders on the day"
+    },
+    "2.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Commentary on expected battle locus and commanders' roles"
+    },
+    "2.6": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Fleet sizes and desertion affecting the battle"
+    },
+    "2.7": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "Describes Antony's warships and their weaknesses in the fight"
+    },
+    "2.8": {
+      "byName": "names 11 in-scope actors",
+      "relevant": true,
+      "why": "Describes Octavian's fleet and tactics in the battle"
+    },
+    "2.9": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "Pre-battle defection bringing Antony's plans to Octavian"
+    },
+    "2.10": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "Narrates the engagement and its course during the afternoon"
+    },
+    "2.11": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "narrates Cleopatra's fleet retreat during the battle"
+    },
+    "2.12": {
+      "byName": "names 11 in-scope actors",
+      "relevant": true,
+      "why": "narrates the battle's collapse and Antony's escape"
+    },
+    "2.13": {
+      "byName": "names 14 in-scope actors",
+      "relevant": true,
+      "why": "alternative account of the battle's manoeuvres and escape"
+    },
+    "2.14": {
+      "byName": "names 11 in-scope actors",
+      "relevant": true,
+      "why": "end of the battle and its immediate aftermath"
+    },
+    "3.1": {
+      "byName": "names 11 in-scope actors",
+      "relevant": true,
+      "why": "political and military aftermath of the battle"
+    },
+    "3.2": {
+      "byName": "names 15 in-scope actors",
+      "relevant": true,
+      "why": "post-battle desertions and campaign tied to the war's end"
+    },
+    "3.3": {
+      "byName": "names 13 in-scope actors",
+      "relevant": true,
+      "why": "follow-on defeat of Antony, continuation of the Actium campaign"
+    },
+    "3.4": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "aftermath, triumphs and commemoration of Actium"
+    },
+    "3.5": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "consequences of the victory at Actium"
+    },
+    "3.6": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "commemoration of the victory at the battlefield"
+    }
+  }
+}

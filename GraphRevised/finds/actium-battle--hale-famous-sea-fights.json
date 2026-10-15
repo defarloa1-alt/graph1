@@ -1,0 +1,298 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 7,
+  "workId": "chr:entity:hale-famous-sea-fights",
+  "createdAt": "2026-10-15T21:09:17.405798+00:00",
+  "promptVersion": "passage-finder-v1-e9889d16",
+  "model": "claude-haiku-5-5",
+  "usage": {
+    "inputTokens": 14028,
+    "outputTokens": 3336,
+    "calls": 3
+  },
+  "batches": [
+    {
+      "first": "1.19",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "2.21",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "5.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 5
+    }
+  ],
+  "passages": 847,
+  "nameCandidates": 45,
+  "selected": [
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4",
+    "2.5",
+    "2.7",
+    "2.9",
+    "2.10",
+    "2.11",
+    "2.12",
+    "2.13",
+    "2.14",
+    "2.15",
+    "2.16",
+    "2.17",
+    "2.18",
+    "2.19",
+    "2.20",
+    "2.21",
+    "2.22",
+    "2.23",
+    "2.24",
+    "2.25",
+    "2.26",
+    "2.27",
+    "2.28",
+    "2.29",
+    "2.30",
+    "2.31",
+    "2.32",
+    "2.33",
+    "2.34",
+    "2.35",
+    "2.36"
+  ],
+  "verdicts": {
+    "1.19": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "ancient trireme rowing theory, unrelated to Actium"
+    },
+    "1.54": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Greek fleet at Mycale, a different battle"
+    },
+    "2.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "states Actium's significance and aftermath"
+    },
+    "2.2": {
+      "byName": "names 19 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: triumvirs' rivalry before the war"
+    },
+    "2.3": {
+      "byName": "names 11 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Antony's forces and bases before the battle"
+    },
+    "2.4": {
+      "byName": "names 15 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Octavian's plan and fleet comparison"
+    },
+    "2.5": {
+      "byName": "names 14 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Agrippa's early naval operations and Antony's inaction"
+    },
+    "2.7": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's fleet crews and ships before battle"
+    },
+    "2.9": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "blockade of Antony's fleet in the Gulf"
+    },
+    "2.10": {
+      "byName": "names 5 in-scope actors",
+      "relevant": true,
+      "why": "Octavian's army crossing to the Ambracian Gulf"
+    },
+    "2.11": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Octavian's camp and later Nicopolis commemoration"
+    },
+    "2.12": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "describes the battle location and fleets"
+    },
+    "2.13": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "the Actium headland, naming the battle site"
+    },
+    "2.14": {
+      "byName": "names 13 in-scope actors",
+      "relevant": true,
+      "why": "Antony's camp and allies at the site"
+    },
+    "2.15": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "events of the stalemate leading to battle"
+    },
+    "2.16": {
+      "byName": "names 14 in-scope actors",
+      "relevant": true,
+      "why": "Antony's decision to break out by sea"
+    },
+    "2.17": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "pre-battle pressure on Antony to fight on land"
+    },
+    "2.18": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "narrates the fleet leaving the straits to fight"
+    },
+    "2.19": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "armies watching the battle unfold"
+    },
+    "2.20": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "narrates the battle dispositions of Agrippa's fleet"
+    },
+    "2.21": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "fleets hesitate before the battle, lead-up"
+    },
+    "2.22": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "the Western fleet closes; the battle begins"
+    },
+    "2.23": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "ramming and oar-disabling tactics in the battle"
+    },
+    "2.24": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Egyptian squadron unfurls sails; turning point"
+    },
+    "2.25": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's flight from the battle"
+    },
+    "2.26": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony abandons his flagship during the battle"
+    },
+    "2.27": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "pursuit of Antony's galley and rearguard fight"
+    },
+    "2.28": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "Antony's reaction aboard Cleopatra's ship after fleeing"
+    },
+    "2.29": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "remaining fleet fights on after the withdrawal"
+    },
+    "2.30": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "fire attack ending the battle"
+    },
+    "2.31": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "immediate aftermath and the lost treasure"
+    },
+    "2.32": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "surrender of the remnant fleet and Canidius's army"
+    },
+    "2.33": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Cleopatra's return to Alexandria after the defeat"
+    },
+    "2.34": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "dating Actium and its meaning for the Republic's end"
+    },
+    "2.35": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Nicopolis and games commemorating the victory"
+    },
+    "2.36": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "Augustus's fleet afterward, aftermath of the victory"
+    },
+    "3.1": {
+      "byName": "names the event",
+      "relevant": false,
+      "why": "general naval warfare; Actium cited only in passing"
+    },
+    "3.2": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Norse voyages, unrelated to the event"
+    },
+    "4.31": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "French and English defeat at sea, unrelated"
+    },
+    "4.32": {
+      "byName": "names the event",
+      "relevant": false,
+      "why": "Lepanto; Actium mentioned only as a comparison"
+    },
+    "5.1": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "General Ottoman history, not the Actium event"
+    },
+    "5.78": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Narrates Lepanto (1571), not Actium"
+    },
+    "5.79": {
+      "byName": "names the event",
+      "relevant": false,
+      "why": "Lepanto narrative; Actium appears only as a passing simile"
+    },
+    "5.80": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Lepanto boarding action, unrelated to Actium"
+    },
+    "8.24": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Battle of the Saintes (1782), unrelated to Actium"
+    }
+  }
+}

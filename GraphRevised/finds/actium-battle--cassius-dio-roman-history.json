@@ -1,0 +1,985 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 7,
+  "workId": "chr:entity:cassius-dio-roman-history",
+  "createdAt": "2026-10-15T21:15:59.663819+00:00",
+  "promptVersion": "passage-finder-v1-e9889d16",
+  "model": "claude-haiku-5-5",
+  "usage": {
+    "inputTokens": 22793,
+    "outputTokens": 13464,
+    "calls": 8
+  },
+  "batches": [
+    {
+      "first": "50.1.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "50.6.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "50.12.5",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "50.19.3",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "51.1.2",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "51.6.6",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "51.10.9",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "51.19.3",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 15
+    }
+  ],
+  "passages": 371,
+  "nameCandidates": 155,
+  "selected": [
+    "50.1.1",
+    "50.1.2",
+    "50.1.3",
+    "50.1.4",
+    "50.1.5",
+    "50.2.1",
+    "50.2.2",
+    "50.2.3",
+    "50.2.5",
+    "50.2.6",
+    "50.2.7",
+    "50.3.1",
+    "50.3.2",
+    "50.3.3",
+    "50.3.5",
+    "50.4.1",
+    "50.4.2",
+    "50.4.4",
+    "50.4.5",
+    "50.5.2",
+    "50.6.1",
+    "50.6.3",
+    "50.6.5",
+    "50.7.1",
+    "50.8.6",
+    "50.9.1",
+    "50.9.2",
+    "50.9.4",
+    "50.9.5",
+    "50.9.6",
+    "50.10.1",
+    "50.11.1",
+    "50.11.2",
+    "50.11.3",
+    "50.11.6",
+    "50.12.1",
+    "50.12.2",
+    "50.12.3",
+    "50.12.4",
+    "50.12.5",
+    "50.12.6",
+    "50.12.7",
+    "50.12.8",
+    "50.13.1",
+    "50.13.2",
+    "50.13.4",
+    "50.13.5",
+    "50.13.6",
+    "50.13.7",
+    "50.13.8",
+    "50.14.1",
+    "50.14.2",
+    "50.14.3",
+    "50.15.1",
+    "50.15.2",
+    "50.15.3",
+    "50.15.4",
+    "50.19.1",
+    "50.19.2",
+    "50.23.1",
+    "50.23.2",
+    "50.23.3",
+    "50.25.2",
+    "50.26.3",
+    "50.26.5",
+    "50.27.1",
+    "50.28.1",
+    "50.28.2",
+    "50.28.4",
+    "50.31.1",
+    "50.31.2",
+    "50.31.3",
+    "50.31.6",
+    "50.33.1",
+    "50.33.3",
+    "50.33.7",
+    "51.1.1",
+    "51.1.2",
+    "51.1.3",
+    "51.1.4",
+    "51.1.5",
+    "51.2.1",
+    "51.2.3",
+    "51.2.4",
+    "51.2.5",
+    "51.3.1",
+    "51.3.5",
+    "51.4.2",
+    "51.4.3",
+    "51.4.6",
+    "51.5.2",
+    "51.5.3",
+    "51.5.4",
+    "51.5.6",
+    "51.6.1",
+    "51.6.2",
+    "51.6.5",
+    "51.6.6",
+    "51.7.1",
+    "51.8.1",
+    "51.8.2",
+    "51.8.3",
+    "51.8.4",
+    "51.8.6",
+    "51.8.7",
+    "51.9.1",
+    "51.9.3",
+    "51.9.5",
+    "51.10.1",
+    "51.10.3",
+    "51.10.4",
+    "51.10.5",
+    "51.10.6",
+    "51.10.7",
+    "51.10.8",
+    "51.10.9",
+    "51.11.4",
+    "51.11.5",
+    "51.12.6",
+    "51.12.7",
+    "51.13.4",
+    "51.14.3",
+    "51.14.6",
+    "51.15.1",
+    "51.15.2",
+    "51.15.4",
+    "51.15.5",
+    "51.15.6",
+    "51.15.7",
+    "51.16.1",
+    "51.17.6",
+    "51.18.2",
+    "51.19.1",
+    "51.19.2",
+    "51.19.3",
+    "51.19.4",
+    "51.19.5",
+    "51.21.1",
+    "51.21.7",
+    "51.21.8",
+    "51.22.3"
+  ],
+  "verdicts": {
+    "50.1.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony and Caesar's rivalry sets the lead-up to the war"
+    },
+    "50.1.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Announces the open breach between Antony and Caesar leading to war"
+    },
+    "50.1.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Antony's stated charges and demands forming the pretext for war"
+    },
+    "50.1.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's stated charges against Antony, the war's pretext"
+    },
+    "50.1.5": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's grievances over Cleopatra and Caesarion, part of the pretext"
+    },
+    "50.2.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Mutual charges and envoys as lead-up to the war"
+    },
+    "50.2.2": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Preparations for war and the consuls' party turning openly hostile"
+    },
+    "50.2.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Sosius's speech against Caesar, a step toward open hostility"
+    },
+    "50.2.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Senate session against Antony's side, a step in the breach"
+    },
+    "50.2.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Consuls flee to Antony, a step in the lead-up"
+    },
+    "50.2.7": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's response to the consuls' departure, part of the lead-up"
+    },
+    "50.3.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Defections from Antony to Caesar, a participant's part in the lead-up"
+    },
+    "50.3.2": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "Antony declares war and renounces Octavia, lead-up to Actium"
+    },
+    "50.3.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Defectors reveal Antony's plans and will to Caesar"
+    },
+    "50.3.5": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony's will and acknowledgment of Caesarion, cause of the war"
+    },
+    "50.4.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Roman anger at Antony's will, lead-up to war"
+    },
+    "50.4.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Roman indignation turns against Antony, lead-up to war"
+    },
+    "50.4.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Senate declares war on Cleopatra, a step of the war"
+    },
+    "50.4.5": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Rites of declaring war at Bellona temple, a step of the war"
+    },
+    "50.5.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's life with Cleopatra, background tied to the war's cause"
+    },
+    "50.6.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: war vote and Antony's alliance with Cleopatra"
+    },
+    "50.6.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "participants: Caesar's allies in Italy for the war"
+    },
+    "50.6.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "participants: Antony's side and allied regions in the war"
+    },
+    "50.7.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Antony's oath to his soldiers before the war"
+    },
+    "50.8.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "omens foretelling Antony's defeat and death"
+    },
+    "50.9.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: delay before the fighting, Caesar's preparations"
+    },
+    "50.9.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Antony halts at Corcyra, fleet positions"
+    },
+    "50.9.4": {
+      "byName": "names 5 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: defections and spying between the two sides"
+    },
+    "50.9.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Caesar's challenge to join battle"
+    },
+    "50.9.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Antony's reply to the challenge and its purpose"
+    },
+    "50.10.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "weak: Antony's deposition and consulship context, borderline"
+    },
+    "50.10.6": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Roman city fire portent, unrelated to the battle"
+    },
+    "50.11.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "lead-up: Caesar's storm-hit attempt toward Actium"
+    },
+    "50.11.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: state of Antony's fleet and crews"
+    },
+    "50.11.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "lead-up: Agrippa's actions harrying Antony"
+    },
+    "50.11.6": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "lead-up: Caesar's crossing toward the battle area"
+    },
+    "50.12.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "place and approach: Caesar's advance toward Actium"
+    },
+    "50.12.2": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "place: Corcyra, Fresh Harbour, base near Actium"
+    },
+    "50.12.3": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "place and standoff: challenge to Antony's fleet at Actium"
+    },
+    "50.12.4": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "place: Caesar's fortified position at Nicopolis near Actium"
+    },
+    "50.12.5": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Antony commands and blockades Actium before the battle"
+    },
+    "50.12.6": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "Doubts a lead-up feat of transporting ships at Actium"
+    },
+    "50.12.7": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Describes Actium and the strait where the battle took place"
+    },
+    "50.12.8": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's positions and camp at Actium"
+    },
+    "50.13.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Antony hastens to Actium on Caesar's arrival"
+    },
+    "50.13.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's approach and naval harassment before engagement"
+    },
+    "50.13.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar encircles Antony's camp at Actium"
+    },
+    "50.13.5": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "Agrippa's and others' campaigns leading up to the confrontation"
+    },
+    "50.13.6": {
+      "byName": "names 4 in-scope actors",
+      "relevant": true,
+      "why": "Domitius defects to Caesar before the battle"
+    },
+    "50.13.7": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony's suspicion and purges amid the standoff, uncertain link"
+    },
+    "50.13.8": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony leaves the Actium area, uncertain link to the battle"
+    },
+    "50.14.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Preliminary naval clash before Agrippa arrives"
+    },
+    "50.14.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Sosius's attack and Agrippa's intervention in the naval clash"
+    },
+    "50.14.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony's cavalry defeat and withdrawal across the narrows"
+    },
+    "50.15.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Council deciding the plan to sail out with Cleopatra"
+    },
+    "50.15.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Omens shaping the decision before the battle"
+    },
+    "50.15.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Plan to sail out and force a passage in battle array"
+    },
+    "50.15.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Preparation of ships and valuables for the sortie"
+    },
+    "50.19.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony's pre-battle speech on naval strength"
+    },
+    "50.19.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony's pre-battle speech weighing the chances"
+    },
+    "50.19.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Concerns Sicily and Sextus Pompey's earlier war, not Actium"
+    },
+    "50.20.2": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Post-Sextus executions and Lepidus, an unrelated domestic matter"
+    },
+    "50.23.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony embarks associates and troops before the sea battle"
+    },
+    "50.23.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony's fleet design for the coming naval engagement"
+    },
+    "50.23.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony's towered ships; Caesar learns intent and addresses army"
+    },
+    "50.25.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's pre-battle speech denouncing Antony's conduct"
+    },
+    "50.26.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's reasoning for fighting Antony, lead-up to the war"
+    },
+    "50.26.5": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony bewitched by Cleopatra; justification for the war against him"
+    },
+    "50.27.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's reading of Antony as Egyptian, part of the pre-battle address"
+    },
+    "50.28.1": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Pre-battle speech on conquering Antony's allies in Asia"
+    },
+    "50.28.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Pre-battle speech urging the army to seize Antony's wealth"
+    },
+    "50.28.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Speech recalling wars including Antony at Mutina, framing the coming fight"
+    },
+    "50.31.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's plan to intercept Antony and Cleopatra at sea"
+    },
+    "50.31.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Agrippa restrains Caesar; storm damages Antony's fleet before battle"
+    },
+    "50.31.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Caesar deploys infantry on ships and waits for the enemy"
+    },
+    "50.31.6": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony reluctantly joins battle with Caesar"
+    },
+    "50.33.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Indecisive battle; Cleopatra waiting at anchor behind the fleets"
+    },
+    "50.33.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's fleet flees and Antony follows, decisive turn"
+    },
+    "50.33.7": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Close fighting between the fleets during the naval battle"
+    },
+    "51.1.1": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "Dates the naval battle to 2 September and marks Caesar's sole power"
+    },
+    "51.1.2": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Commemorates Actium: dedications and Actia festival from the battle"
+    },
+    "51.1.3": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "Nicopolis founded on the battle camp site; commemoration"
+    },
+    "51.1.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Aftermath: pursuit of Antony and Cleopatra after the battle"
+    },
+    "51.1.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Aftermath: allies and army dispersing after the battle"
+    },
+    "51.2.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's punishment of cities and princes after the victory"
+    },
+    "51.2.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Rewards and punishments for actions around the naval battle"
+    },
+    "51.2.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Fates of Antony's supporters after the battle"
+    },
+    "51.2.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Fates of Antony's supporters after the battle"
+    },
+    "51.3.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Fate of Antony's soldiers after the war"
+    },
+    "51.3.5": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's arrangements for Italy after the victory"
+    },
+    "51.4.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Caesar pursuing Antony after the war's end"
+    },
+    "51.4.3": {
+      "byName": "names 13 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's return to Italy after the victory"
+    },
+    "51.4.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Settling veterans after the victory"
+    },
+    "51.5.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony and Cleopatra's flight; learning of Caesar's return"
+    },
+    "51.5.3": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Antony and Cleopatra's retreat after Actium"
+    },
+    "51.5.4": {
+      "byName": "next to a passage naming the event",
+      "relevant": true,
+      "why": "Cleopatra's return to Egypt after the naval defeat"
+    },
+    "51.5.6": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony's movements after the defeat"
+    },
+    "51.6.1": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Preparations for war in Egypt after Actium"
+    },
+    "51.6.2": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's killing of the boys; aftermath of the war"
+    },
+    "51.6.5": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's last overtures to Octavian after defeat"
+    },
+    "51.6.6": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's secret offer to Cleopatra after Actium, bearing on her turn against Antony"
+    },
+    "51.7.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony loses allied support and ships in the post-Actium collapse"
+    },
+    "51.7.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Gladiators' loyalty in Syria, a separate matter from the sea battle"
+    },
+    "51.7.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Gladiators besieged in Syria, unrelated to Actium itself"
+    },
+    "51.8.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Antony and Cleopatra's post-defeat negotiations with Caesar"
+    },
+    "51.8.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Antony's surrender of Turullius and offer of his own life as terms after Actium"
+    },
+    "51.8.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's response to Antony's embassy, part of the post-Actium diplomacy"
+    },
+    "51.8.4": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Antony's third embassy to Caesar after the defeat"
+    },
+    "51.8.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's treasure and Caesar's manipulation via Thyrsus, leading to Antony's fall"
+    },
+    "51.8.7": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's aim to turn Cleopatra against Antony, the end of their alliance"
+    },
+    "51.9.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's movements and Gallus's seizure of Paraetonium, following Actium"
+    },
+    "51.9.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's failed attempts to parley and attack, after the naval reverse"
+    },
+    "51.9.5": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Fall of Pelusium through Cleopatra's betrayal, following the defeat"
+    },
+    "51.10.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony's cavalry battle before Alexandria after the setbacks"
+    },
+    "51.10.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's propaganda against Antony's treachery to his soldiers"
+    },
+    "51.10.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony's fleet and Cleopatra's desertion of the ships, bearing on the naval war"
+    },
+    "51.10.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's feigned suicide drawing Antony into the mausoleum"
+    },
+    "51.10.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's message leading Antony to end his life"
+    },
+    "51.10.7": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's self-wounding and death, the end of the campaign"
+    },
+    "51.10.8": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra peering from the tomb as Antony lies dying"
+    },
+    "51.10.9": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony's death ends the war's final campaign"
+    },
+    "51.11.4": {
+      "byName": "names 4 in-scope actors",
+      "relevant": true,
+      "why": "Octavian's post-war handling of Cleopatra"
+    },
+    "51.11.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Aftermath custody of Cleopatra following Antony's death"
+    },
+    "51.12.6": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's plea to Caesar after the defeat"
+    },
+    "51.12.7": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's plea to die with Antony, aftermath"
+    },
+    "51.13.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's suicide, end of the war"
+    },
+    "51.14.3": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Death of Cleopatra and attendants, end of the war"
+    },
+    "51.14.6": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's reaction to Cleopatra's death"
+    },
+    "51.15.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Summary of Antony and Cleopatra's war and deaths"
+    },
+    "51.15.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Author's reading of Antony, a participant"
+    },
+    "51.15.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Author's reading of Cleopatra, a participant"
+    },
+    "51.15.5": {
+      "byName": "names 5 in-scope actors",
+      "relevant": true,
+      "why": "Killing of Antony's and Cleopatra's children, aftermath"
+    },
+    "51.15.6": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Settlement of Egypt after the war, aftermath"
+    },
+    "51.15.7": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony's family and freedmen after the war"
+    },
+    "51.16.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Punishment and pardon of Antony's supporters"
+    },
+    "51.17.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Treasure seized in Egypt after the war"
+    },
+    "51.18.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Mentions Antony's opposition after the naval battle; Parthian matter tied to it"
+    },
+    "51.18.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian negotiations, unrelated to the battle"
+    },
+    "51.19.1": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Roman honours commemorating the naval victory"
+    },
+    "51.19.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Commemorations of Octavian's naval victory"
+    },
+    "51.19.3": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Senate's honours to Octavian and erasure of Antony's memorials, aftermath of the war"
+    },
+    "51.19.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "News of Antony's death following the defeat, aftermath"
+    },
+    "51.19.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Thanksgivings and Egyptian triumph voted after Antony's fall, aftermath and commemoration"
+    },
+    "51.20.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Dedications in Ephesus and Nicaea, unrelated to the battle"
+    },
+    "51.21.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's return to Italy and Rome after the campaign, aftermath"
+    },
+    "51.21.6": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Carrinas's triumph over the Morini, unrelated matter"
+    },
+    "51.21.7": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Triumphal days commemorate the naval victory at Actium"
+    },
+    "51.21.8": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Egyptian triumph featuring Cleopatra's effigy, aftermath of the war"
+    },
+    "51.22.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Tarentine statue moved to Rome with spoils, not tied to the battle"
+    },
+    "51.22.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Dedication of Egyptian spoils and Cleopatra's end, aftermath"
+    },
+    "51.22.4": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Games at consecration of Julius shrine, unrelated"
+    },
+    "51.22.8": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Dacian envoys and alliance with Antony, unrelated to Actium"
+    },
+    "51.23.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Statilius Taurus's theatre, unrelated matter"
+    },
+    "51.23.2": {
+      "byName": "names 5 in-scope actors",
+      "relevant": false,
+      "why": "Crassus's campaign against Dacians in Macedonia, unrelated"
+    },
+    "51.26.5": {
+      "byName": "names 3 in-scope actors",
+      "relevant": false,
+      "why": "Siege of Genucla against Dacians and Bastarnae, unrelated"
+    }
+  }
+}

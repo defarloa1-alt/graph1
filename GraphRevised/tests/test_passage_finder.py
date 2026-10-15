@@ -38,5 +38,37 @@ class NameStepTests(unittest.TestCase):
         self.assertFalse(any(p.search("The battle began.") for p in event_terms("Battle of Pharsalus")))
 
 
+class FakeSource:
+    def refs(self, selection):
+        return list(TEXTS)
+
+    def observation(self, ref):
+        return {"passageText": TEXTS[ref]}
+
+
+class FakeClient:
+    """Answers every batch as the model does, refs wrapped in brackets; the first passage is not relevant."""
+
+    def __init__(self):
+        self.beta = self
+        self.messages = self
+
+    def parse(self, *, messages, **_):
+        from types import SimpleNamespace
+        from GraphRevised.discovery.passage_finder import FinderOutput, Verdict
+        refs = [line.split("]")[0] + "]" for line in messages[0]["content"].split("\n") if line.startswith("[")]
+        verdicts = [Verdict(ref=r, relevant=i > 0, why="test") for i, r in enumerate(refs)]
+        return SimpleNamespace(model="fake", stop_reason="end_turn", parsed_output=FinderOutput(verdicts=verdicts),
+                               usage=SimpleNamespace(input_tokens=1, output_tokens=1))
+
+
+class ScreenTests(unittest.TestCase):
+    def test_bracketed_refs_are_matched_and_verdicts_kept(self):
+        from GraphRevised.discovery.passage_finder import find
+        found = find(FakeClient(), "fake", inquiry([]), FakeSource(), {"label": "Battle of Pharsalus"}, batch_size=20)
+        self.assertEqual(found["selected"], ["1.3", "1.4"])
+        self.assertEqual(found["verdicts"]["1.2"]["why"], "test")
+
+
 if __name__ == "__main__":
     unittest.main()

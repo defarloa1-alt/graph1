@@ -1,0 +1,1583 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 7,
+  "workId": "chr:entity:plutarch-life-of-antony",
+  "createdAt": "2026-10-15T21:14:56.978022+00:00",
+  "promptVersion": "passage-finder-v1-e9889d16",
+  "model": "claude-haiku-5-5",
+  "usage": {
+    "inputTokens": 50045,
+    "outputTokens": 23234,
+    "calls": 14
+  },
+  "batches": [
+    {
+      "first": "1.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "7.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "13.2",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "20.2",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "28.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "33.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "39.2",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "46.4",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "53.3",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "58.5",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "64.1",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "69.2",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "76.3",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 20
+    },
+    {
+      "first": "85.2",
+      "attempt": 1,
+      "stopReason": "end_turn",
+      "verdicts": 11
+    }
+  ],
+  "passages": 359,
+  "nameCandidates": 271,
+  "selected": [
+    "16.4",
+    "17.1",
+    "19.1",
+    "25.1",
+    "28.1",
+    "29.1",
+    "30.1",
+    "30.2",
+    "30.3",
+    "30.4",
+    "31.1",
+    "31.2",
+    "31.3",
+    "33.1",
+    "33.2",
+    "33.3",
+    "35.1",
+    "35.2",
+    "35.4",
+    "35.5",
+    "36.1",
+    "36.3",
+    "37.4",
+    "53.1",
+    "53.2",
+    "53.3",
+    "53.4",
+    "53.5",
+    "53.6",
+    "54.1",
+    "54.2",
+    "54.3",
+    "54.4",
+    "54.6",
+    "55.1",
+    "55.2",
+    "56.1",
+    "56.2",
+    "56.3",
+    "57.1",
+    "57.2",
+    "57.3",
+    "58.1",
+    "58.2",
+    "58.4",
+    "60.1",
+    "60.2",
+    "60.3",
+    "61.1",
+    "61.3",
+    "62.1",
+    "62.2",
+    "62.3",
+    "63.1",
+    "63.2",
+    "63.3",
+    "63.4",
+    "63.5",
+    "63.6",
+    "64.1",
+    "64.2",
+    "65.1",
+    "65.2",
+    "65.4",
+    "66.1",
+    "66.2",
+    "66.3",
+    "66.4",
+    "67.1",
+    "67.2",
+    "67.3",
+    "67.4",
+    "67.5",
+    "67.7",
+    "68.1",
+    "68.2",
+    "68.3",
+    "68.5",
+    "69.1",
+    "69.2",
+    "69.3",
+    "71.1",
+    "71.2",
+    "71.3",
+    "72.1",
+    "72.2",
+    "72.3",
+    "73.1",
+    "73.2",
+    "73.3",
+    "74.1",
+    "74.3",
+    "75.1",
+    "75.4",
+    "76.1",
+    "76.2",
+    "76.3",
+    "76.4",
+    "76.5",
+    "77.1",
+    "77.2",
+    "77.3",
+    "78.1",
+    "78.2",
+    "78.3",
+    "78.4",
+    "79.1",
+    "79.2",
+    "81.1",
+    "81.2",
+    "82.1",
+    "83.2",
+    "83.4",
+    "84.1",
+    "84.2",
+    "84.3",
+    "85.2",
+    "85.3",
+    "86.1",
+    "86.2",
+    "86.3",
+    "86.4",
+    "86.5"
+  ],
+  "verdicts": {
+    "1.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Antony's ancestry, unrelated to Actium"
+    },
+    "2.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Marriages and Cicero hatred, no link to Actium"
+    },
+    "2.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Lentulus burial dispute, unrelated"
+    },
+    "2.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Youthful debts with Curio, earlier period"
+    },
+    "2.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Clodius alliance and exile, earlier period"
+    },
+    "3.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Syrian campaign against Aristobulus, not Actium"
+    },
+    "3.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Egyptian invasion plans, not tied to Actium"
+    },
+    "3.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Pelusium campaign, earlier Egyptian episode"
+    },
+    "3.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Burial of a former ally, unrelated to Actium"
+    },
+    "4.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's personal manner, no bearing on Actium"
+    },
+    "4.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Anecdote about a gift, unrelated"
+    },
+    "5.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Tribunate and Caesar's civil war lead-up, not Actium"
+    },
+    "5.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Tribune acts for Caesar in civil war, not Actium"
+    },
+    "5.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Reading of Caesar's letters, civil war era"
+    },
+    "5.4": {
+      "byName": "names 10 in-scope actors",
+      "relevant": false,
+      "why": "Senate dispute and flight to Caesar, civil war lead-up"
+    },
+    "6.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Cicero's Helen remark on the earlier civil war"
+    },
+    "6.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's invasion of Italy, earlier war"
+    },
+    "6.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's conquest of Rome, earlier war"
+    },
+    "6.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's popularity with soldiers, pre-Actium period"
+    },
+    "6.6": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's friends' blame, Caesar-era politics"
+    },
+    "7.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's 48 BCE crossing from Brundisium, not Actium"
+    },
+    "7.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Antony's 48 BCE Adriatic crossing, unrelated to Actium"
+    },
+    "7.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Storm and capture of Lissus in 48 BCE, not Actium"
+    },
+    "8.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Caesarian battles earlier in career, not Actium"
+    },
+    "8.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Pharsalus command, decades before Actium"
+    },
+    "8.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Master of Horse after Pharsalus, unrelated to Actium"
+    },
+    "9.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Dolabella's debt law and Antony's marital suspicion, unrelated"
+    },
+    "9.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Street fighting with Dolabella, unrelated to Actium"
+    },
+    "10.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "General discord under Caesar, not tied to Actium"
+    },
+    "10.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Pompey house purchase and African campaign absence, unrelated"
+    },
+    "10.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Marriage to Fulvia; Cleopatra mention is only a passing character remark"
+    },
+    "10.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Fulvia anecdote during Spanish campaign, unrelated"
+    },
+    "10.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Fulvia anecdote, unrelated to Actium"
+    },
+    "11.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's return from Spain honours, unrelated"
+    },
+    "11.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Consulship dispute with Dolabella, unrelated"
+    },
+    "11.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Dolabella proclamation dispute, unrelated"
+    },
+    "12.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Lupercalia prelude to Caesar's murder, not Actium"
+    },
+    "12.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Diadem offer at Lupercalia, unrelated to Actium"
+    },
+    "12.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Diadem refusal at Lupercalia, unrelated to Actium"
+    },
+    "13.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Conspirators weighing Antony, unrelated to Actium"
+    },
+    "13.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's assassination plot, not Actium"
+    },
+    "14.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "Aftermath of Caesar's death, unrelated to Actium"
+    },
+    "14.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Amnesty after Caesar's death, unrelated to Actium"
+    },
+    "14.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Antony's funeral oration, unrelated to Actium"
+    },
+    "15.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Calpurnia and treasure, unrelated to Actium"
+    },
+    "15.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Caesar's papers and appointments, unrelated to Actium"
+    },
+    "15.3": {
+      "byName": "names 10 in-scope actors",
+      "relevant": false,
+      "why": "Charonitae mockery, unrelated to Actium"
+    },
+    "16.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Young Caesar's claim to inheritance, no link to Actium"
+    },
+    "16.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Antony's insults to young Caesar, distant lead-up only"
+    },
+    "16.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Early reconciliation of Antony and Octavian, distant lead-up only"
+    },
+    "16.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Renewed Antony-Octavian hatred and rival levies, lead-up to the war"
+    },
+    "17.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Senate declares Antony public enemy, lead-up to the Antony-Octavian war"
+    },
+    "17.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's hardship after Mutina, not Actium"
+    },
+    "17.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's endurance on the Alps march, not Actium"
+    },
+    "18.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Antony and Lepidus, unrelated to Actium"
+    },
+    "18.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Parley with Lepidus's troops, unrelated to Actium"
+    },
+    "18.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Antony wins Lepidus's camp, unrelated to Actium"
+    },
+    "19.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Triumvirate division of empire, political setup before the final war"
+    },
+    "19.2": {
+      "byName": "names 12 in-scope actors",
+      "relevant": false,
+      "why": "Proscription bargaining, not Actium"
+    },
+    "20.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Marriage arrangement and proscriptions, not Actium"
+    },
+    "20.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Cicero's execution and head display, unrelated to Actium"
+    },
+    "20.3": {
+      "byName": "names 5 in-scope actors",
+      "relevant": false,
+      "why": "Lucius Caesar's rescue by his sister, unrelated to Actium"
+    },
+    "21.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "general criticism of the triumvirate, not tied to Actium"
+    },
+    "21.4": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "division of money and army before Philippi, not Actium"
+    },
+    "22.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "campaign against Brutus and Cassius at Philippi, a different battle"
+    },
+    "22.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "defeat of Cassius at Philippi, a different battle"
+    },
+    "22.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "second Philippi battle and Brutus's death, a different battle"
+    },
+    "23.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Antony raising money in the East for the Parthian plans, not tied to Actium"
+    },
+    "23.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's conduct toward the Greeks, not tied to Actium"
+    },
+    "24.1": {
+      "byName": "names 11 in-scope actors",
+      "relevant": false,
+      "why": "Censorinus left in Greece and Asian wealth, no link to Actium stated"
+    },
+    "24.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's entry into Ephesus, unrelated to the battle"
+    },
+    "24.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Hybreas's protest over Asian contributions, no tie to Actium"
+    },
+    "24.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's character and response to Hybreas, no tie to Actium"
+    },
+    "25.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "author's reading of Cleopatra's influence as the cause of Antony's downfall and captivity, lead-up to the war"
+    },
+    "25.2": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "Dellius and Cleopatra's Cilician meeting, not tied to Actium"
+    },
+    "25.3": {
+      "byName": "names 10 in-scope actors",
+      "relevant": false,
+      "why": "Cleopatra's past influence on Caesar and Pompey, not tied to Actium"
+    },
+    "26.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Cleopatra's voyage up the Cydnus, not tied to Actium"
+    },
+    "26.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Cleopatra's reception at Tarsus, not tied to Actium"
+    },
+    "26.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "banquet on Cleopatra's ship, not tied to Actium"
+    },
+    "27.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "reciprocal feast and banter, not tied to Actium"
+    },
+    "28.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony neglects Roman war and is drawn to Alexandria, lead-up to the rift"
+    },
+    "28.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Kitchen anecdote about Antony's dinners, no bearing on the battle"
+    },
+    "28.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Philotas's tale of dinners, unrelated matter"
+    },
+    "28.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Sophism at supper with Antony's son, unrelated"
+    },
+    "28.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Gift of beakers at supper, unrelated"
+    },
+    "29.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's hold over Antony, cause of the later break"
+    },
+    "29.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Fishing prank, unrelated to the war"
+    },
+    "29.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Fishing joke with Cleopatra, unrelated to the war"
+    },
+    "30.1": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "News of Roman war and Parthian advance prompting Antony's return, lead-up"
+    },
+    "30.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony turns toward Italy; Fulvia's blame, lead-up to settlement"
+    },
+    "30.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Fulvia's death and move toward reconciliation with Caesar, lead-up"
+    },
+    "30.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Division of empire between Antony and Caesar, political background to the war"
+    },
+    "31.1": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Octavia marriage as security for the division, lead-up to the breach"
+    },
+    "31.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Antony's ties to Cleopatra versus Octavia, seeds of the rupture"
+    },
+    "31.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Octavia's marriage celebrated, part of the lead-up"
+    },
+    "32.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Sextus Pompeius and piracy, separate episode"
+    },
+    "32.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Misenum treaty with Pompey, separate episode"
+    },
+    "32.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Pompey's banquet jibe, unrelated to Actium"
+    },
+    "32.4": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "Menas's offer to Pompey, unrelated to Actium"
+    },
+    "32.5": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Pompey refuses perjury, unrelated to Actium"
+    },
+    "33.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony and Caesar's rivalry and friction, a lead-up to the breach"
+    },
+    "33.2": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Omen that Caesar overshadows Antony, bearing on their rivalry"
+    },
+    "33.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Repeated omens of Antony losing to Caesar; his departure from Italy"
+    },
+    "33.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian victories by Ventidius at Athens, unrelated to Actium"
+    },
+    "34.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Ventidius's Parthian campaign, unrelated"
+    },
+    "34.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Siege of Samosata and Antiochus, unrelated"
+    },
+    "34.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Peace with Antiochus, unrelated"
+    },
+    "34.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Ventidius's triumph over Parthians, unrelated"
+    },
+    "34.6": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Sossius and Canidius's eastern campaigns, unrelated"
+    },
+    "35.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Antony's hostile return to Italy and rejection at Brundisium, lead-up to breach"
+    },
+    "35.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Octavia pleads with Caesar amid the breach, lead-up"
+    },
+    "35.4": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Tarentum agreement between Antony and Caesar, lead-up to the rupture"
+    },
+    "35.5": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's war against Pompey and Antony's separation from Octavia, lead-up"
+    },
+    "36.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony's renewed passion for Cleopatra, a cause of the final conflict"
+    },
+    "36.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Honours to Cleopatra and her children cause offence, lead-up"
+    },
+    "37.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian royal succession and Monaeses, unrelated"
+    },
+    "37.2": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "Parthian diplomacy and Crassus standards, unrelated"
+    },
+    "37.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Army muster for Parthian war, unrelated"
+    },
+    "37.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's influence distorting Antony's conduct of war, lead-up theme"
+    },
+    "39.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Armenian defection in Parthian campaign, unrelated"
+    },
+    "39.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian siege episode, unrelated to Actium"
+    },
+    "39.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian pursuit, unrelated to Actium"
+    },
+    "39.7": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Decimation during Parthian campaign, unrelated"
+    },
+    "40.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian winter hardship, unrelated"
+    },
+    "40.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian truce talks, unrelated"
+    },
+    "40.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian truce and departure, unrelated"
+    },
+    "41.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Retreat route via Mardian guide, unrelated"
+    },
+    "41.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian deception on retreat, unrelated"
+    },
+    "41.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Mardian guide's betrayal, unrelated"
+    },
+    "41.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian river ambush, unrelated"
+    },
+    "42.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian skirmishes on retreat, unrelated"
+    },
+    "42.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Gallus skirmish, Parthian campaign, unrelated"
+    },
+    "42.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Parthian battle mistakes, unrelated"
+    },
+    "43.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Casualties of Parthian campaign, unrelated"
+    },
+    "43.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's army praised in Parthian context, unrelated"
+    },
+    "44.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian battle harangue, unrelated"
+    },
+    "44.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian battle apology, unrelated"
+    },
+    "45.6": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Retreat hardship, Xenophon comparison, unrelated"
+    },
+    "46.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian envoys on retreat, unrelated"
+    },
+    "46.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian ambush warning, unrelated"
+    },
+    "46.4": {
+      "byName": "names 7 in-scope actors",
+      "relevant": false,
+      "why": "Parthian retreat route, unrelated to Actium"
+    },
+    "47.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian campaign route advice, unrelated"
+    },
+    "47.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian pursuit during retreat, unrelated"
+    },
+    "47.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian campaign skirmish, unrelated"
+    },
+    "48.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian campaign, Mithridates bribery, unrelated"
+    },
+    "48.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Retreat march plunder, unrelated"
+    },
+    "48.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Retreat confusion, unrelated"
+    },
+    "48.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Retreat guide's estimate, unrelated"
+    },
+    "48.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Army disorder on retreat, unrelated"
+    },
+    "49.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "River crossing in Parthian campaign, unrelated"
+    },
+    "50.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Parthian campaign losses, unrelated"
+    },
+    "50.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Artavasdes's desertion in Parthian campaign, unrelated"
+    },
+    "50.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's handling of Artavasdes, unrelated"
+    },
+    "50.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Armenian triumph at Alexandria, unrelated to Actium"
+    },
+    "51.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Winter march and Cleopatra at White Village, pre-Actium but not the battle"
+    },
+    "51.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Cleopatra's supplies for soldiers, not tied to the battle"
+    },
+    "52.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Median alliance plans, unrelated"
+    },
+    "52.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's Parthian plans, unrelated"
+    },
+    "53.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Octavia's sailing gives Caesar pretext for war, lead-up to final conflict"
+    },
+    "53.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Octavia's gifts and troops to Antony, lead-up to rift with Caesar"
+    },
+    "53.3": {
+      "byName": "names 11 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's rivalry with Octavia; lead-up to the rift"
+    },
+    "53.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's manipulation of Antony before his Parthian plans; lead-up"
+    },
+    "53.5": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Flatterers vilify Antony; drives the lead-up to war"
+    },
+    "53.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony's thoughts turn to civil war; lead-up"
+    },
+    "54.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Octavia's treatment and Caesar's war justification; lead-up"
+    },
+    "54.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Octavia's conduct; Antony hated for wronging her; lead-up"
+    },
+    "54.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Alexandria distribution seen as hostile to Rome; lead-up"
+    },
+    "54.4": {
+      "byName": "names 4 in-scope actors",
+      "relevant": true,
+      "why": "Donations to Cleopatra and sons; Caesar's propaganda basis for war"
+    },
+    "54.6": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Donations' aftermath; Cleopatra as New Isis; lead-up"
+    },
+    "55.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Mutual accusations between Caesar and Antony leading to war"
+    },
+    "55.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's replies and Antony's soldiers' claims; lead-up"
+    },
+    "56.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Antony gathers the naval force at Ephesus for the war"
+    },
+    "56.2": {
+      "byName": "names 12 in-scope actors",
+      "relevant": true,
+      "why": "Antony's council and Cleopatra's bribery to stay with fleet"
+    },
+    "56.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Justification for Cleopatra's presence in the fleet; lead-up"
+    },
+    "57.1": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Antony's movements before the war, Cleopatra's Athens gifts"
+    },
+    "57.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Athens honours Cleopatra; Antony orders Octavia out; lead-up"
+    },
+    "57.3": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Octavia leaves; she fears being blamed as cause of war"
+    },
+    "58.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's preparations and fear of settling war that summer"
+    },
+    "58.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Antony's delay of war; defectors give Caesar Antony's will"
+    },
+    "58.4": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Contents of Antony's will used against him; lead-up"
+    },
+    "58.5": {
+      "byName": "names 9 in-scope actors",
+      "relevant": false,
+      "why": "Calvisius charges about Antony's conduct toward Cleopatra, unrelated to the battle"
+    },
+    "58.6": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Forum scene with Cleopatra's litter, pre-war, not about the battle"
+    },
+    "59.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Friends in Rome seek to save Antony from being declared enemy; lead-up only loosely tied"
+    },
+    "59.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": false,
+      "why": "Geminius at supper, Cleopatra's suspicion; no bearing on the battle"
+    },
+    "59.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Cleopatra's flatterers drive off friends; unrelated episode"
+    },
+    "59.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": false,
+      "why": "Dellius and Sarmentus anecdote; unrelated to the battle"
+    },
+    "60.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Vote of war against Cleopatra, lead-up to the war"
+    },
+    "60.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Portents given before the war, lead-up to the confrontation"
+    },
+    "60.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Omens including Cleopatra's flagship Antonius, pre-war signs"
+    },
+    "61.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Forces assembled for the war, participants and their strength"
+    },
+    "61.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Division of territory between Antony and Caesar for the war"
+    },
+    "62.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony chooses naval decision; lead-up to the sea battle at Actium"
+    },
+    "62.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's fleet and demand to Antony before the battle"
+    },
+    "62.3": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Antony's challenge; Antony anchored off Actium, Caesar's movement to Toruné"
+    },
+    "63.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Antony's fleet drawn up at mouth of gulf near Actium before engagement"
+    },
+    "63.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Caesar outwitted and withdraws; Antony's dispositions during the standoff"
+    },
+    "63.3": {
+      "byName": "names 11 in-scope actors",
+      "relevant": true,
+      "why": "Defections and naval failures during the campaign at Actium"
+    },
+    "63.4": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Canidius advises land battle instead of sea, lead-up to decision"
+    },
+    "63.5": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's insistence on naval decision and her planned flight"
+    },
+    "63.6": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Ambush attempt on Antony between walls near the naval station during the campaign"
+    },
+    "64.1": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "preparations for the sea battle at Actium"
+    },
+    "64.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's mood and orders before the engagement"
+    },
+    "65.1": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "the battle begins once the weather clears"
+    },
+    "65.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "deployment of both fleets and commanders"
+    },
+    "65.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "positions and advance of the fleets in the battle"
+    },
+    "66.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "describes the course of the ship fighting"
+    },
+    "66.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "describes the close fighting at sea"
+    },
+    "66.3": {
+      "byName": "names 4 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's squadron breaks out during the battle"
+    },
+    "66.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's retreat after Cleopatra's ships flee"
+    },
+    "67.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony boards Cleopatra's ship in flight"
+    },
+    "67.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "pursuit by Caesar's Liburnians during the flight"
+    },
+    "67.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Eurycles' attack on the fleeing admirals"
+    },
+    "67.4": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Antony's withdrawal after the defeat"
+    },
+    "67.5": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "aftermath: orders to the army following the defeat"
+    },
+    "67.7": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "aftermath: Antony hiding men after the defeat"
+    },
+    "68.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "end of the naval struggle and losses"
+    },
+    "68.2": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "news of Antony's flight after the battle"
+    },
+    "68.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "fate of Antony's army after the battle"
+    },
+    "68.5": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "news of Antony's defeat reaching a city; tangential but tied to the battle"
+    },
+    "69.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony's movements after the defeat; the Philippi digression is unrelated"
+    },
+    "69.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Libyan army defection, lead-up to Antony's final defeat"
+    },
+    "69.3": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Names Actium and Antony's forces there"
+    },
+    "69.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": false,
+      "why": "Antony's Pharos retreat and Timon comparison, no Actium link"
+    },
+    "70.4": {
+      "byName": "next to a passage naming the event",
+      "relevant": false,
+      "why": "Timon's tomb inscription, unrelated matter"
+    },
+    "71.1": {
+      "byName": "names the event",
+      "relevant": true,
+      "why": "Canidius reports loss of forces at Actium"
+    },
+    "71.2": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Antony's reaction to Actium losses and desertions"
+    },
+    "71.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Post-Actium revelry, aftermath of the defeat"
+    },
+    "71.4": {
+      "byName": "names 2 in-scope actors",
+      "relevant": false,
+      "why": "Cleopatra's poison tests, unrelated to the battle"
+    },
+    "72.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Embassy to Caesar after the defections, aftermath"
+    },
+    "72.2": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Herod's defection, a lead-up to the collapse"
+    },
+    "72.3": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Alexas' betrayal and Herod, aftermath of defections"
+    },
+    "73.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's terms to Cleopatra after the war's turn"
+    },
+    "73.2": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Thyrsus episode during the same negotiations"
+    },
+    "73.3": {
+      "byName": "names 4 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's court to Antony amid the continuing war"
+    },
+    "74.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Resumed campaign in the Final War, continuation of the conflict"
+    },
+    "74.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Cavalry battle and desertion in the same war"
+    },
+    "75.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Antony resolves on attack by land and sea, a lead-up to the battle"
+    },
+    "75.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Omen of Hercules deserting Antony before the battle"
+    },
+    "76.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Fleet desertion to Caesar, decisive naval defeat"
+    },
+    "76.2": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Cavalry desertion and defeat, Antony's retreat"
+    },
+    "76.3": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony's resolve to die after defeat, aftermath of the war"
+    },
+    "76.4": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's suicide after the defeat, aftermath"
+    },
+    "76.5": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony's lingering death after the failed suicide"
+    },
+    "77.1": {
+      "byName": "names 8 in-scope actors",
+      "relevant": true,
+      "why": "Antony hauled to Cleopatra's tomb, end of the war"
+    },
+    "77.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Antony's final ascent to the tomb, narrated end"
+    },
+    "77.3": {
+      "byName": "names 6 in-scope actors",
+      "relevant": true,
+      "why": "Antony's death scene with Cleopatra"
+    },
+    "78.1": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Caesar learns of Antony's death, aftermath"
+    },
+    "78.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's reaction to Antony's death and letters"
+    },
+    "78.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's orders to take Cleopatra after the war"
+    },
+    "78.4": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Negotiations with Cleopatra at the tomb, aftermath"
+    },
+    "79.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Proculeius enters tomb to secure Cleopatra"
+    },
+    "79.2": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's attempted suicide thwarted by Proculeius"
+    },
+    "81.1": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Execution of Antony's son, aftermath of the war"
+    },
+    "81.2": {
+      "byName": "names 5 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's children and Caesarion, aftermath"
+    },
+    "82.1": {
+      "byName": "names 10 in-scope actors",
+      "relevant": true,
+      "why": "Burial of Antony and Cleopatra's death, aftermath"
+    },
+    "83.2": {
+      "byName": "names 7 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's interview with Caesar after defeat"
+    },
+    "83.4": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's plea to Caesar, aftermath of the war"
+    },
+    "84.1": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Dolabella warns Cleopatra of her removal to Rome"
+    },
+    "84.2": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's libations at Antony's tomb, commemoration"
+    },
+    "84.3": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's farewell to Antony, commemoration and end"
+    },
+    "85.2": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Cleopatra's suicide after Antony's defeat, the war's aftermath"
+    },
+    "85.3": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Caesar learns of and investigates Cleopatra's death after the war"
+    },
+    "86.1": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Narrates the manner of Cleopatra's death, the war's end"
+    },
+    "86.2": {
+      "byName": "names 2 in-scope actors",
+      "relevant": true,
+      "why": "Alternative account of Cleopatra's death, the war's end"
+    },
+    "86.3": {
+      "byName": "names 3 in-scope actors",
+      "relevant": true,
+      "why": "Caesar's triumph image of Cleopatra, commemoration of the war's outcome"
+    },
+    "86.4": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Burial of Cleopatra with Antony and Caesar's reaction, aftermath"
+    },
+    "86.5": {
+      "byName": "names 9 in-scope actors",
+      "relevant": true,
+      "why": "Antony's statues torn down, aftermath and commemoration of the defeated side"
+    },
+    "87.1": {
+      "byName": "names 13 in-scope actors",
+      "relevant": false,
+      "why": "Antony's children and marriages, unrelated to the battle"
+    },
+    "87.2": {
+      "byName": "names 4 in-scope actors",
+      "relevant": false,
+      "why": "Dynastic marriages of Octavia's family, unrelated to the battle"
+    },
+    "87.3": {
+      "byName": "names 11 in-scope actors",
+      "relevant": false,
+      "why": "Later marriages and family arrangements, unrelated to the battle"
+    },
+    "87.4": {
+      "byName": "names 12 in-scope actors",
+      "relevant": false,
+      "why": "Descendants of Antony and imperial succession, unrelated to the battle"
+    }
+  }
+}
