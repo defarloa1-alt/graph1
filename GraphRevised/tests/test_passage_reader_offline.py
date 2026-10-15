@@ -117,7 +117,8 @@ class ReaderDraftTests(unittest.TestCase):
 
     def test_guide_shows_qualifiers_and_unary_predicates(self):
         guide = predicate_guide(load_registry())
-        self.assertIn("occurred (occurred): Event/Period/Polity -> no object [time: required]", guide)
+        self.assertIn("occurred (occurred): Event/Period/Polity -> no object [context: optional, time: required]", guide)
+        self.assertIn("happenedBefore (happened before): Event -> Event", guide)
         self.assertIn("time: required with a role", guide)
 
 

@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-13. **For:** the curator designing the explorer in Figma, and
 whoever builds the read API. **Status:** shapes 2 and 3 are built (the export
-emits them today); shapes 1, 4, 5, and 6 are specified here and not built.
+emits them today); shapes 1, 4, 4a, 5, and 6 are specified here and not built.
 
 The explorer never shows storage. Claims, Proposals, passages, and authority
 records stay behind the read API; the UI receives a few plain shapes. This
@@ -143,6 +143,31 @@ Signposts for Antony as the graph stands, for mock-ups: *Battles (1)*,
 *Commands (4)*, *Cleopatra*, *Octavian*, *Elsewhere in 31 BC (empty)*,
 *Not yet read: his life before 32 BC*.
 
+## 4a. Notes stage — the stage switched to a node's notes (specified)
+
+Added 2026-10-15 (curator). The user can switch the centre stage from **facts**
+(the default: nodes and lines) to **notes** for the node they stand on: every
+passage of note that concerns it, as cards on the stage rather than a list on
+its node card. The node stays the centre; switching back returns to the facts.
+
+| Field | Meaning |
+|---|---|
+| `focus` | The node the notes concern (`id`, `label`, `kind`) |
+| `groups[]` | Notes grouped by `type` (interpretation, motive, detail, characterization, anecdote, atmosphere, speech, omen), each group ordered by Work, then passage |
+| `note.text` | The reader's or curator's one line, shown as theirs, never as the author's words |
+| `note.quotation`, `note.locator`, `note.accordingTo` | The author's verbatim words, where, and whose Work ("Weigall, The Life and Times of Cleopatra") |
+| `note.alsoConcerns[]` | The other entities the note concerns: doors to their notes stages |
+| `note.factsFromPassage[]` | Facts (shape 2) drawn from the same passage, so the colour sits beside the facts |
+| `note.status` | flagged or endorsed (dismissed only in audit) |
+| `note.mentions[]` | **Open** (not in the graph yet): the words in the passage that refer to the focus ("her ships"), to highlight why the note is on this stage |
+
+Real example: *Cleopatra's squadron at Actium* has five notes today (Hale 2.12
+atmosphere, "the state galley of Cleopatra, a floating palace"; Hale 2.24,
+Weigall 17.5 and 17.19 interpretation; Weigall 17.14 detail) beside three facts
+(participated in Actium, according to Plutarch and to Hale; commanded by
+Cleopatra, according to Weigall). The query behind it is in
+[views/actium-annotations.cypher](views/actium-annotations.cypher).
+
 ## 5. Narrative — the chat and the card's story (specified)
 
 Written by an agent from the graph only (25 §7). A persona changes the
@@ -200,6 +225,15 @@ These are real, not hypothetical:
    draw them, marked, never hide them.
 7. **Review noise.** Some voices carry six "add evidence" records, including
    clean-up rejections. Keep the review history collapsed.
+8. **A note whose quotation does not name the focus.** Weigall 17.14 is on the
+   squadron's notes stage with the words "all the fleet was ordered to ship its
+   big sails"; the squadron is named elsewhere in the paragraph, or not at all.
+   Only about a third of the links from notes to entities are named in the
+   note's quotation (98 of 288). Until mentions exist, show the full passage
+   one tap away.
+9. **A passage that names the focus but whose note is not tagged to it.** Hale
+   2.25 and 2.26 say "squadron", yet their notes concern other entities, so
+   they do not appear on the squadron's stage.
 
 ## 8. Visual encoding summary
 
@@ -211,6 +245,7 @@ These are real, not hypothetical:
 | Fact `mode` | attributed | Hollow marker at the start ("according to") |
 | Fact `category` | interpretive, imaginative | Distinct line style; imagined facts in their own colour lane |
 | `attestation` | words | Badge; never a percentage |
+| Stage mode | facts, notes | A switch on the stage; notes grouped by type, each card quoting its source |
 | Authority codes (Wikidata, LCSH, FAST) | label plus code | **Never a code alone** (curator's rule): the authority's own words first, the code beside them, "Battle of Actium (31 B.C.) (FAST 796265)"; quiet, in the card's footer |
 
 The smoke view ([export/cytoscape.py](export/cytoscape.py), output in

@@ -27,15 +27,17 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from dataclasses import replace
+from typing import Annotated, Any
 
 import anthropic
 from dotenv import dotenv_values
 from neo4j import GraphDatabase
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, BeforeValidator, Field, ValidationError
 
 from GraphRevised.adapters.wikidata_context import entity_context
 from GraphRevised.adapters.sources import PassageSource, open_source
@@ -44,8 +46,8 @@ from GraphRevised.operations import load_operations, run_write
 
 from .prompt_version import prompt_version
 from .registry import PredicateRegistry, load_registry
-from .schema import DRAFT_SCHEMA_VERSION, ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
-from .entities import propose_entity
+from .schema import DRAFT_SCHEMA_VERSION, DURATION_PATTERN, ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
+from .entities import depicted_event_id, depicted_events, propose_depicted_event, propose_entity
 from .validator import normalize
 from .store import Neo4jReader, submit
 from .validator import validate
@@ -99,7 +101,8 @@ give is still drafted without it and stored as undated. A vague time phrase in t
 words is a valid time expression; it is never turned into a date.
 10. For predicates that take a context, set context_id to the inquiry's narrative event when the \
 claim happens within it. If the passage names the event, also copy that span as context_quotation.
-11. A predicate marked "no object" takes no object_id: leave it null.
+11. A predicate marked "no object" takes no object_id: leave it empty. Give an empty string for any \
+text field that does not apply.
 12. Passages of note. When the passage is worth reading for in-scope entities but states nothing \
 you can draft as a claim, add a note: its type (characterization, anecdote, omen, motive, speech, \
 atmosphere, detail, or interpretation for an author's reading of what events meant), one line on \
@@ -116,24 +119,59 @@ entity list, and do not infer bounds from outside knowledge.
 opponents: rivals or enemies, in politics or at war. Give the time the passage states, and the war \
 or battle as context when the passage names one. Feelings alone (hatred, fear, contempt, jealousy) \
 are not opposition; record them as a passage of note (motive or characterization).
+15. Depicted events. When the task packet allows Event proposals, list under depicted_events each \
+distinct action or occurrence the target passage narrates as part of the narrative event or around \
+it: a manoeuvre, an order carried out, a flight, a pursuit, a decision taken, a surrender. They are \
+this source's depiction, never merged with another source's. For each: key, a short id unique in \
+your output (e1, e2); label, a plain name of at most six words saying who did what, without the \
+source's name (for example "the admiral's wing turns back"), or instead existing_id when the passage continues an \
+event already listed as depicted from this source; quotation, the span narrating it (rules as in \
+5); within_narrative_event, true when it happens during the narrative event, false when before or \
+after it; participants, the in-scope people, groups, or forces that carry it out or take part, each \
+with a quotation of at least 15 characters naming or referring to them; place_id and \
+place_quotation only for an in-scope place the passage gives as where it happened; time_expression \
+and time_quotation for the passage's own time marker (an hour, a day, a season, or a point such as \
+dawn or nightfall; words of manner such as "suddenly" are not times), and relative_offset (an ISO 8601 duration such \
+as PT6H or P4D) only when the marker counts from the start of the narrative event. links relate it \
+to another event, named by key, by an id from the already-depicted list, or by the narrative \
+event's id: triggered_by (the source presents it as set off by the other), resulted_in (the other is \
+its stated outcome), after (the source says it came after the other). Each link quotes the words \
+that show it, at least 15 characters. The order in which the source tells events is not a link. \
+Depicted events replace separate claims about the same action: do not also draft participatedIn, \
+partOf, or occurredAt claims for them.
 """
+
+
+# Text the model leaves empty when it does not apply. The output schema says only "string":
+# nullable fields would enlarge the output grammar past the API's limit once depicted events
+# are added. Python callers may still pass None; empty text is read as absent (_absent).
+Text = Annotated[str, BeforeValidator(lambda value: "" if value is None else value)]
+
+
+def _absent(model: BaseModel, fields: tuple[str, ...]) -> BaseModel:
+    """The model with empty optional text read as absent (None)."""
+    return model.model_copy(update={name: getattr(model, name) or None for name in fields})
 
 
 class ReaderClaim(BaseModel):
     predicate: str
     subject_id: str
-    object_id: str | None
+    object_id: Text
     quotation: str
     rationale: str
     relevance: str
     ambiguities: list[str]
-    role_id: str | None
-    role_quotation: str | None
-    time_source_expression: str | None
-    time_quotation: str | None
-    time_edtf: str | None
-    context_id: str | None
-    context_quotation: str | None
+    role_id: Text
+    role_quotation: Text
+    time_source_expression: Text
+    time_quotation: Text
+    time_edtf: Text
+    context_id: Text
+    context_quotation: Text
+
+
+CLAIM_OPTIONAL = ("object_id", "role_id", "role_quotation", "time_source_expression", "time_quotation",
+                  "time_edtf", "context_id", "context_quotation")
 
 
 class UnresolvedMention(BaseModel):
@@ -152,9 +190,39 @@ class ReaderNote(BaseModel):
 class ReaderPeriod(BaseModel):
     name: str
     quotation: str
-    time_expression: str | None
-    time_quotation: str | None
-    time_edtf: str | None
+    time_expression: Text
+    time_quotation: Text
+    time_edtf: Text
+
+
+PERIOD_OPTIONAL = ("time_expression", "time_quotation", "time_edtf")
+
+
+class ReaderParticipant(BaseModel):
+    entity_id: str
+    quotation: str
+
+
+class ReaderEventLink(BaseModel):
+    relation: str  # triggered_by, resulted_in, or after; checked in to_depicted
+    target: str
+    quotation: str
+
+
+class ReaderDepictedEvent(BaseModel):
+    # Plain strings, empty when absent: optional fields would enlarge the output grammar.
+    key: str
+    label: str
+    existing_id: str
+    quotation: str
+    within_narrative_event: bool
+    participants: list[ReaderParticipant]
+    place_id: str
+    place_quotation: str
+    time_expression: str
+    time_quotation: str
+    relative_offset: str
+    links: list[ReaderEventLink]
 
 
 class ReaderOutput(BaseModel):
@@ -162,6 +230,7 @@ class ReaderOutput(BaseModel):
     unresolved_mentions: list[UnresolvedMention]
     notes: list[ReaderNote]
     periods: list[ReaderPeriod]
+    depicted_events: list[ReaderDepictedEvent] = Field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -181,10 +250,22 @@ class Inquiry:
     context_after: int = 1
     note_visibility: str = "private"  # passages of note: private, team, or public
     proposable_kinds: tuple[str, ...] = ()  # kinds the reader may propose as entities, such as Period
+    voice: str | None = None  # how labels name this source's depictions (the author's short name)
+
+
+def inquiry_sources(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """An inquiry reads one source (`source`) or, for an event inquiry, several (`sources`), in order."""
+    return data["sources"] if "sources" in data else [data["source"]]
 
 
 def load_inquiry(path: Path, tx: Any) -> Inquiry:
-    """Read the inquiry file and resolve its scope against the graph."""
+    """The inquiry for its first source (see load_inquiries)."""
+    return load_inquiries(path, tx)[0]
+
+
+def load_inquiries(path: Path, tx: Any) -> list[Inquiry]:
+    """Read the inquiry file and resolve its scope against the graph: one Inquiry per source,
+    sharing the subject, narrative event, scope, and guidance, each adding its source's own guidance."""
     data = json.loads(path.read_text(encoding="utf-8"))
     record = tx.run(
         """
@@ -207,9 +288,10 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
     missing = set(data["candidateEntityIds"]) - set(record["scopeIds"])
     if missing:
         raise ValueError(f"declared candidates are not Entities: {sorted(missing)}")
-    work_id = data["source"].get("workId")
-    if not work_id or tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN count(w) AS n", id=work_id).single()["n"] != 1:
-        raise ValueError(f"the inquiry's source needs a workId naming a Work Entity, not {work_id!r}")
+    for source in inquiry_sources(data):
+        work_id = source.get("workId")
+        if not work_id or tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN count(w) AS n", id=work_id).single()["n"] != 1:
+            raise ValueError(f"the inquiry's source needs a workId naming a Work Entity, not {work_id!r}")
     narrative_event_id = data.get("narrativeEventId")
     if narrative_event_id and tx.run(
         "MATCH (e:Entity {id: $id, kind: 'Event'}) RETURN count(e) AS n", id=narrative_event_id
@@ -228,23 +310,27 @@ def load_inquiry(path: Path, tx: Any) -> Inquiry:
         ids=sorted(set(record["scopeIds"])),
     ).value("entity")
     scope = [{**entity, **entity_context(entity["payloadUri"], entity["qid"])} for entity in scope]
-    return Inquiry(
-        id=data["id"],
-        version=data["version"],
-        label=data["label"],
-        subject=record["subject"],
-        focus=record["focus"],
-        scope=scope,
-        guidance=data["guidance"],
-        source=data["source"],
-        work_id=work_id,
-        narrative_event_id=narrative_event_id,
-        calendar=data.get("calendar"),
-        context_before=data["source"].get("contextWindow", {}).get("before", 2),
-        context_after=data["source"].get("contextWindow", {}).get("after", 1),
-        note_visibility=data.get("noteVisibility", "private"),
-        proposable_kinds=tuple(data.get("proposableKinds", [])),
-    )
+    return [
+        Inquiry(
+            id=data["id"],
+            version=data["version"],
+            label=data["label"],
+            subject=record["subject"],
+            focus=record["focus"],
+            scope=scope,
+            guidance=data["guidance"] + source.get("guidance", []),
+            source=source,
+            work_id=source["workId"],
+            narrative_event_id=narrative_event_id,
+            calendar=data.get("calendar"),
+            context_before=source.get("contextWindow", {}).get("before", 2),
+            context_after=source.get("contextWindow", {}).get("after", 1),
+            note_visibility=data.get("noteVisibility", "private"),
+            proposable_kinds=tuple(data.get("proposableKinds", [])),
+            voice=source.get("voice"),
+        )
+        for source in inquiry_sources(data)
+    ]
 
 
 def anthropic_client() -> anthropic.Anthropic:
@@ -285,6 +371,7 @@ def read_passage(
     passage: dict[str, Any],
     context: list[tuple[str, str]],
     registry: PredicateRegistry,
+    depicted: list[dict[str, Any]] = (),
 ) -> tuple[ReaderOutput | None, dict[str, Any]]:
     def entity_line(entity: dict[str, Any]) -> str:
         line = f"- {entity['id']} | {entity['label']} | {entity['kind']} | {entity.get('description') or ''}"
@@ -308,8 +395,13 @@ def read_passage(
         f"In-scope entities (id | label | kind | description):\n"
         + "\n".join(entity_line(e) for e in inquiry.scope)
     )
+    already = ""
+    if "Event" in inquiry.proposable_kinds:
+        already = ("Events already depicted from this source (id | label):\n"
+                   + ("\n".join(f"- {e['id']} | {e['label']}" for e in depicted) or "- none yet") + "\n\n")
     user = (
-        f"Surrounding sections (context only, not evidence):\n"
+        already
+        + f"Surrounding sections (context only, not evidence):\n"
         + "\n\n".join(f"[{r}] {text}" for r, text in context) + "\n\n"
         f"Target passage [{ref}]:\n{passage['passageText']}"
     )
@@ -339,7 +431,7 @@ def read_passage(
     return response.parsed_output, meta
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v12", SYSTEM_PROMPT, predicate_guide, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v13", SYSTEM_PROMPT, predicate_guide, read_passage)
 
 
 def to_drafts(
@@ -347,6 +439,7 @@ def to_drafts(
 ) -> tuple[list[ProposalDraft], list[dict]]:
     drafts, malformed = [], []
     for claim in output.claims:
+        claim = _absent(claim, CLAIM_OPTIONAL)
         try:
             drafts.append(_draft(claim, observation_id, model_id, inquiry))
         except (ValidationError, ValueError) as error:
@@ -362,6 +455,7 @@ def to_periods(output: ReaderOutput, passage: dict[str, Any], inquiry: Inquiry) 
     periods, refused = [], []
     text = normalize(passage["passageText"])
     for period in output.periods:
+        period = _absent(period, PERIOD_OPTIONAL)
         reason = None
         if not period.name.strip():
             reason = "an empty name"
@@ -396,6 +490,137 @@ def period_draft(period: dict, entity_id: str, observation_id: str, model_id: st
         inquiry_id=inquiry.id, relevance="The source's own periodization of the time of the subject.",
         mode="attributed", attributed_to=inquiry.work_id,
     )
+
+
+LINK_PREDICATES = {"triggered_by": "triggeredBy", "resulted_in": "resultedIn", "after": "happenedBefore"}
+
+
+def to_depicted(
+    output: ReaderOutput, passage: dict[str, Any], inquiry: Inquiry, known_ids: set[str], scope_ids: set[str]
+) -> tuple[list[dict], list[dict]]:
+    """Depicted events checked against the passage: each with its local `id` (new or existing),
+    and only the participants, place, time, and links that the passage shows verbatim.
+    A part that fails is dropped with its reason; an event whose core fails is refused."""
+    if "Event" not in inquiry.proposable_kinds:
+        return [], [{"event": e.model_dump(), "reason": "the inquiry does not allow Event proposals"}
+                    for e in output.depicted_events]
+    text = normalize(passage["passageText"])
+
+    def verbatim(span: str | None, minimum: int = 15) -> bool:
+        return bool(span) and len(normalize(span)) >= minimum and normalize(span) in text
+
+    keyed: dict[str, str] = {}
+    for event in output.depicted_events:
+        if event.existing_id:
+            keyed[event.key] = event.existing_id
+        elif event.label and event.label.strip():
+            keyed[event.key] = depicted_event_id(inquiry.work_id, event.label)
+    events, refused = [], []
+    seen: set[str] = set()
+    for event in output.depicted_events:
+        reason = None
+        if event.key in seen:
+            reason = f"duplicate key {event.key!r}"
+        elif event.existing_id and event.existing_id not in known_ids:
+            reason = f"existing_id {event.existing_id!r} is not an event depicted from this source"
+        elif not event.existing_id and not (event.label and event.label.strip()):
+            reason = "a new event needs a label"
+        elif not verbatim(event.quotation):
+            reason = "quotation does not appear verbatim in the passage"
+        elif event.relative_offset and not (event.within_narrative_event and inquiry.narrative_event_id):
+            reason = "a relative offset counts from the narrative event, so the event must be within it"
+        elif event.relative_offset and not re.fullmatch(DURATION_PATTERN, event.relative_offset):
+            reason = f"relative offset {event.relative_offset!r} is not an ISO 8601 duration"
+        seen.add(event.key)
+        if reason:
+            refused.append({"event": event.model_dump(), "reason": reason})
+            continue
+        dropped = []
+        participants = []
+        for p in event.participants:
+            if p.entity_id not in scope_ids:
+                dropped.append({"participant": p.entity_id, "reason": "not in inquiry scope"})
+            elif not verbatim(p.quotation):
+                dropped.append({"participant": p.entity_id, "reason": "quotation not verbatim"})
+            else:
+                participants.append({"id": p.entity_id, "quotation": p.quotation})
+        place = None
+        if event.place_id:
+            if event.place_id in scope_ids and verbatim(event.place_quotation):
+                place = {"id": event.place_id, "quotation": event.place_quotation}
+            else:
+                dropped.append({"place": event.place_id, "reason": "not in scope or quotation not verbatim"})
+        time = None
+        if event.time_expression:
+            if (verbatim(event.time_quotation, 3)
+                    and normalize(event.time_expression) in normalize(event.time_quotation)):
+                time = {"expression": event.time_expression, "quotation": event.time_quotation,
+                        "offset": event.relative_offset or None}
+            else:
+                dropped.append({"time": event.time_expression, "reason": "the time expression must appear in a verbatim time quotation"})
+        links = []
+        for link in event.links:
+            target = keyed.get(link.target) or (link.target if link.target in known_ids
+                                                or link.target == inquiry.narrative_event_id else None)
+            if link.relation not in LINK_PREDICATES:
+                dropped.append({"link": link.model_dump(), "reason": f"unknown relation {link.relation!r}"})
+            elif target is None:
+                dropped.append({"link": link.model_dump(), "reason": "unknown target"})
+            elif not verbatim(link.quotation):
+                dropped.append({"link": link.model_dump(), "reason": "quotation not verbatim"})
+            elif target == keyed[event.key]:
+                dropped.append({"link": link.model_dump(), "reason": "an event cannot link to itself"})
+            else:
+                links.append({"relation": link.relation, "target": target, "quotation": link.quotation})
+        events.append({
+            "key": event.key, "id": keyed[event.key], "new": not event.existing_id,
+            "label": (event.label or "").strip(), "quotation": event.quotation,
+            "withinNarrativeEvent": event.within_narrative_event, "participants": participants,
+            "place": place, "time": time, "links": links, "dropped": dropped,
+        })
+    return events, refused
+
+
+def depicted_drafts(event: dict, observation_id: str, model_id: str, inquiry: Inquiry) -> list[ProposalDraft]:
+    """The attributed claims a depicted event stands for: within the narrative event, who took part,
+    where, when (as the source words it), and its links to other events."""
+    def draft(predicate: str, subject: str, obj: str | None, quotation: str, rationale: str, **extra) -> ProposalDraft:
+        return ProposalDraft(
+            predicate=predicate, subject_id=subject, object_id=obj, observation_ids=(observation_id,),
+            quotations=(Quotation(observation_id=observation_id, text=quotation),),
+            rationale=rationale, proposed_by=PROPOSER_ID, prompt_version=PROMPT_VERSION, model_id=model_id,
+            inquiry_id=inquiry.id, relevance="A step in this source's account of the narrative event.",
+            mode="attributed", attributed_to=inquiry.work_id, **extra,
+        )
+
+    narrative = inquiry.narrative_event_id
+    drafts = []
+    if event["withinNarrativeEvent"] and narrative:
+        drafts.append(draft("partOf", event["id"], narrative, event["quotation"],
+                            "The source narrates this action within the narrative event."))
+    for p in event["participants"]:
+        drafts.append(draft("participatedIn", p["id"], event["id"], p["quotation"],
+                            "The passage names this participant in the depicted action."))
+    if event["place"]:
+        drafts.append(draft("occurredAt", event["id"], event["place"]["id"], event["place"]["quotation"],
+                            "The passage gives the place of the depicted action."))
+    if event["time"]:
+        within = event["withinNarrativeEvent"] and narrative
+        drafts.append(draft(
+            "occurred", event["id"], None, event["quotation"],
+            f"The passage marks the time of the action: {event['time']['expression']}.",
+            time=TimeQualifier(source_expression=event["time"]["expression"],
+                               relative_offset=event["time"]["offset"]),
+            qualifier_quotations=(QualifierQuotation(observation_id=observation_id, supports="time",
+                                                     text=event["time"]["quotation"]),),
+            context_id=narrative if within else None, context_basis="inquiry" if within else None,
+        ))
+    for link in event["links"]:
+        predicate = LINK_PREDICATES[link["relation"]]
+        subject, obj = (link["target"], event["id"]) if link["relation"] == "after" else (event["id"], link["target"])
+        drafts.append(draft(predicate, subject, obj, link["quotation"],
+                            f"The passage presents this order between the events ({link['relation'].replace('_', ' ')})."))
+    return drafts
 
 
 def _related_lines(result) -> list[str]:
@@ -482,10 +707,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("inquiry", type=Path, help="inquiry JSON file")
     parser.add_argument("--sections", help="comma-separated refs such as 65.1,65.2 (overrides the inquiry's chapters)")
+    parser.add_argument("--chapters", help="a range in the source's own terms, such as 65-68 (overrides the inquiry's chapters)")
+    parser.add_argument("--source", help="for an inquiry with several sources: read only the one with this workId")
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--submit", action="store_true", help="store valid drafts as submitted Proposals")
-    parser.add_argument("--outputs", default="claims,notes,periods",
-                        help="which outputs to store with --submit (claims, notes, periods)")
+    parser.add_argument("--outputs", default="claims,notes,periods,events",
+                        help="which outputs to store with --submit (claims, notes, periods, events)")
     args = parser.parse_args(argv)
 
     operations, registry, client = load_operations(), load_registry(), anthropic_client()
@@ -500,166 +727,219 @@ def main(argv: list[str] | None = None) -> int:
     periodo = None  # loaded when a new period is first surveyed
     totals: dict[str, int] = {"stored": 0, "malformed": 0, "inputTokens": 0, "cacheReadTokens": 0,
                               "cacheWriteTokens": 0, "outputTokens": 0}
+    storing = set(args.outputs.split(","))
 
     try:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session, \
                 run_path.open("w", encoding="utf-8") as log:
-            inquiry = session.execute_read(lambda tx: load_inquiry(args.inquiry, tx))
-            scope_ids = {entity["id"] for entity in inquiry.scope}
-            edition = open_source(inquiry.source, GRAPH_REVISED)
-            refs = args.sections.split(",") if args.sections else edition.refs(inquiry.source.get("chapters"))
-            all_refs = edition.refs(None)
-            print(f"inquiry: {inquiry.id} v{inquiry.version} -> {inquiry.subject['label']}")
-            print(f"scope: {', '.join(e['label'] for e in inquiry.scope)}\n")
-            log.write(json.dumps({
-                "inquiry": inquiry.id, "inquiryVersion": inquiry.version, "subject": inquiry.subject["id"],
-                "scope": sorted(scope_ids), "promptVersion": PROMPT_VERSION, "model": args.model,
-                "predicateRegistryVersion": registry.version, "draftSchemaVersion": DRAFT_SCHEMA_VERSION,
-                "workId": inquiry.work_id, "narrativeEventId": inquiry.narrative_event_id,
-            }) + "\n")
-
-            for ref in refs:
-                passage = edition.observation(ref)
-                index = all_refs.index(ref)
-                context = [
-                    (r, edition.observation(r)["passageText"])
-                    for r in all_refs[max(0, index - inquiry.context_before):index]
-                    + all_refs[index + 1:index + 1 + inquiry.context_after]
-                ]
-                output, meta = read_passage(client, args.model, inquiry, edition, ref, passage, context, registry)
-                totals["inputTokens"] += meta["inputTokens"]
-                totals["cacheReadTokens"] += meta["cacheReadTokens"]
-                totals["cacheWriteTokens"] += meta["cacheWriteTokens"]
-                totals["outputTokens"] += meta["outputTokens"]
-                record: dict[str, Any] = {"ref": ref, "observationId": passage["id"], **meta, "promptVersion": PROMPT_VERSION}
-                if output is None:
-                    record["error"] = "refusal or no parsed output"
-                    log.write(json.dumps(record) + "\n")
-                    print(f"{ref}: no output ({meta['stopReason']})")
-                    continue
-                drafts, malformed = to_drafts(output, passage["id"], meta["model"], inquiry)
-                totals["malformed"] += len(malformed)
-                notes, refused_notes = to_notes(output, passage, scope_ids)
-                stored_notes: list[str] = []
-                periods, refused_periods = to_periods(output, passage, inquiry)
-                period_results: list[dict] = []
-                storing = set(args.outputs.split(","))
-                if "claims" not in storing:
-                    drafts = []
-
-                # The observation is written first so drafts can be validated
-                # against it; the transaction commits only if a draft was stored.
-                results: list[tuple[ProposalDraft, str, list[str], str | None, bool]] = []
-                tx = session.begin_transaction()
+            inquiries = session.execute_read(lambda tx: load_inquiries(args.inquiry, tx))
+            if args.source:
+                inquiries = [i for i in inquiries if i.work_id == args.source]
+                if not inquiries:
+                    raise ValueError(f"the inquiry has no source with workId {args.source!r}")
+            for inquiry in inquiries:
+                # A dry run keeps the whole source in one transaction, rolled back at the end, so
+                # events proposed in one passage can be linked from the next; --submit commits
+                # passage by passage.
+                dry = None if args.submit else session.begin_transaction()
                 try:
-                    run_write(tx, operations, "upsert_passage_observation", passage)
-                    run_write(tx, operations, "link_observation_work", {
-                        "observationId": passage["id"], "workId": inquiry.work_id,
-                    })
-                    for draft in drafts:
-                        named = {draft.subject_id, draft.object_id, draft.role_id, draft.context_id} - {None}
-                        outside = sorted(named - scope_ids)
-                        if outside:
-                            results.append((draft, "out_of_scope", [f"not in inquiry scope: {outside}"], None, False))
-                        elif args.submit:
-                            submission = submit(tx, draft, registry, operations)
-                            v = submission.validation
-                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes) + _related_lines(v),
-                                            v.proposal_id, submission.stored))
-                        else:
-                            v = validate(draft, Neo4jReader(tx), registry)
-                            results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes) + _related_lines(v),
-                                            v.proposal_id, False))
-                    if args.submit and "periods" in storing:
-                        for period in periods:
-                            proposed = propose_entity(tx, operations, kind="Period", label=period["name"],
-                                                      proposed_by=PROPOSER_ID, observation_id=passage["id"],
-                                                      quotation=period["quotation"])
-                            entry = {"name": period["name"], "entityId": proposed["id"], "created": proposed["created"],
-                                     "candidates": [c["id"] for c in proposed["candidates"]], "claim": None}
-                            if period["time_expression"]:
-                                submission = submit(tx, period_draft(period, proposed["id"], passage["id"], meta["model"],
-                                                                     inquiry), registry, operations)
-                                entry["claim"] = {"outcome": submission.validation.outcome.value,
-                                                  "reasons": list(submission.validation.reasons),
-                                                  "stored": submission.stored}
-                            if proposed["created"] and authorities["kinds"].get("Period", {}).get("surveyOnPropose"):
-                                # Published periodizations of the new period, found without
-                                # the curator: PeriodO definitions become attributed claims.
-                                from GraphRevised.discovery.period_survey import periodo_dataset, survey_period
-
-                                periodo = periodo if periodo is not None else periodo_dataset(authorities)
-                                surveyed = survey_period(tx, operations, registry, periodo, authorities,
-                                                         proposed["id"], store=True)
-                                entry["survey"] = [{"definition": s["definition"], "work": s["work"],
-                                                    "outcome": (s["claim"] or {}).get("outcome")}
-                                                   for s in surveyed["stored"]]
-                            period_results.append(entry)
-                    if args.submit and "notes" in storing:
-                        for note in notes:
-                            note_id = annotation_id(PROPOSER_ID, passage["id"], note["note"], note["concerns"])
-                            run_write(tx, operations, "upsert_annotation", {
-                                "id": note_id, "kind": "passage-of-note",
-                                "label": annotation_label(tx, kind="passage-of-note", note_type=note["noteType"],
-                                                          observation_id=passage["id"]),
-                                "noteType": note["noteType"], "note": note["note"], "author": PROPOSER_ID,
-                                "visibility": inquiry.note_visibility,
-                                "createdAt": datetime.now(timezone.utc).isoformat(),
-                                "observationId": passage["id"], "quotation": note["quotation"],
-                                "concerns": note["concerns"],
-                            })
-                            stored_notes.append(note_id)
-                    if any(stored for *_, stored in results) or stored_notes or period_results:
-                        tx.commit()
-                    else:
-                        tx.rollback()
-                except BaseException:
-                    tx.rollback()
-                    raise
-
-                record["drafts"] = [
-                    {
-                        "predicate": d.predicate, "subject": d.subject_id, "object": d.object_id,
-                        "mode": d.mode, "attributedTo": d.attributed_to, "role": d.role_id,
-                        "time": d.time.model_dump() if d.time else None, "context": d.context_id,
-                        "contextBasis": d.context_basis,
-                        "qualifierQuotations": [q.model_dump() for q in d.qualifier_quotations],
-                        "quotation": d.quotations[0].text, "rationale": d.rationale, "relevance": d.relevance,
-                        "ambiguities": list(d.ambiguities),
-                        "outcome": outcome, "reasons": reasons, "proposalId": proposal_id, "stored": stored,
-                    }
-                    for d, outcome, reasons, proposal_id, stored in results
-                ]
-                record["malformed"] = malformed
-                record["notes"] = notes
-                record["refusedNotes"] = refused_notes
-                record["storedNotes"] = stored_notes
-                record["periods"] = period_results or periods
-                record["refusedPeriods"] = refused_periods
-                record["unresolvedMentions"] = [m.model_dump() for m in output.unresolved_mentions]
-                log.write(json.dumps(record, ensure_ascii=False) + "\n")
-                for d, outcome, reasons, _, stored in results:
-                    totals[outcome] = totals.get(outcome, 0) + 1
-                    totals["stored"] += stored
-                    print(f"{ref}: {outcome:<13} {d.subject_id} {d.predicate} {d.object_id}"
-                          + (" [stored]" if stored else "") + (f" -- {reasons[0]}" if reasons else ""))
-                for note in notes:
-                    print(f"{ref}: note ({note['noteType']}) {note['note'][:90]}")
-                for period in period_results or periods:
-                    print(f"{ref}: period {period['name']}" + (f" -> {period['entityId']}" if "entityId" in period else "")
-                          + (f" [bounds: {period['claim']['outcome']}]" if period.get("claim") else "")
-                          + (f" [PeriodO: {len(period['survey'])} definition(s)]" if period.get("survey") else ""))
-                totals["periods"] = totals.get("periods", 0) + len(period_results)
-                totals["notes"] = totals.get("notes", 0) + len(stored_notes)
-                totals["refusedNotes"] = totals.get("refusedNotes", 0) + len(refused_notes)
-                names = ", ".join(m.name for m in output.unresolved_mentions)
-                print(f"{ref}: {len(drafts)} draft(s), {len(notes)} note(s); unresolved: {names or '-'}")
+                    periodo = _read_source(args, inquiry, session, dry, operations, registry, client, log,
+                                           authorities, periodo, totals, storing)
+                finally:
+                    if dry is not None:
+                        dry.rollback()
     finally:
         driver.close()
 
     print(f"\nlog: {run_path.relative_to(GRAPH_REVISED.parent).as_posix()}")
     print(json.dumps(totals))
     return 0
+
+
+def _read_source(args, inquiry: Inquiry, session, dry, operations, registry, client, log, authorities,
+                 periodo, totals: dict[str, int], storing: set[str]):
+    scope_ids = {entity["id"] for entity in inquiry.scope}
+    edition = open_source(inquiry.source, GRAPH_REVISED)
+    if args.sections:
+        refs = args.sections.split(",")
+    else:
+        refs = edition.refs(args.chapters or inquiry.source.get("chapters"))
+    all_refs = edition.refs(None)
+    known = (depicted_events(dry, inquiry.work_id) if dry is not None
+             else session.execute_read(lambda tx: depicted_events(tx, inquiry.work_id)))
+    scope_ids |= {e["id"] for e in known}
+    print(f"inquiry: {inquiry.id} v{inquiry.version} -> {inquiry.subject['label']}; source: {inquiry.work_id}")
+    print(f"scope: {', '.join(e['label'] for e in inquiry.scope)}\n")
+    log.write(json.dumps({
+        "inquiry": inquiry.id, "inquiryVersion": inquiry.version, "subject": inquiry.subject["id"],
+        "scope": sorted(scope_ids), "promptVersion": PROMPT_VERSION, "model": args.model,
+        "predicateRegistryVersion": registry.version, "draftSchemaVersion": DRAFT_SCHEMA_VERSION,
+        "workId": inquiry.work_id, "narrativeEventId": inquiry.narrative_event_id, "submit": args.submit,
+    }) + "\n")
+
+    for ref in refs:
+        passage = edition.observation(ref)
+        index = all_refs.index(ref)
+        context = [
+            (r, edition.observation(r)["passageText"])
+            for r in all_refs[max(0, index - inquiry.context_before):index]
+            + all_refs[index + 1:index + 1 + inquiry.context_after]
+        ]
+        output, meta = read_passage(client, args.model, inquiry, edition, ref, passage, context, registry, known)
+        for key in ("inputTokens", "cacheReadTokens", "cacheWriteTokens", "outputTokens"):
+            totals[key] += meta[key]
+        record: dict[str, Any] = {"ref": ref, "observationId": passage["id"], **meta, "promptVersion": PROMPT_VERSION}
+        if output is None:
+            record["error"] = "refusal or no parsed output"
+            log.write(json.dumps(record) + "\n")
+            print(f"{ref}: no output ({meta['stopReason']})")
+            continue
+        drafts, malformed = to_drafts(output, passage["id"], meta["model"], inquiry)
+        totals["malformed"] += len(malformed)
+        notes, refused_notes = to_notes(output, passage, scope_ids)
+        stored_notes: list[str] = []
+        periods, refused_periods = to_periods(output, passage, inquiry)
+        period_results: list[dict] = []
+        events, refused_events = to_depicted(output, passage, inquiry, {e["id"] for e in known}, scope_ids)
+        if "events" not in storing:
+            events = []
+        if "claims" not in storing:
+            drafts = []
+
+        # The observation is written first so drafts can be validated
+        # against it; the transaction commits only if something was stored.
+        results: list[tuple[ProposalDraft, str, list[str], str | None, bool]] = []
+        event_results: list[dict] = []
+        tx = dry if dry is not None else session.begin_transaction()
+        try:
+            run_write(tx, operations, "upsert_passage_observation", passage)
+            run_write(tx, operations, "link_observation_work", {
+                "observationId": passage["id"], "workId": inquiry.work_id,
+            })
+            # Depicted events exist before the claims that name them are validated.
+            event_drafts: list[ProposalDraft] = []
+            for event in events:
+                if event["new"]:
+                    proposed = propose_depicted_event(
+                        tx, operations, work_id=inquiry.work_id, label=event["label"],
+                        voice=inquiry.voice or edition.author, proposed_by=PROPOSER_ID,
+                        observation_id=passage["id"], quotation=event["quotation"])
+                    if proposed["created"]:
+                        known.append({"id": proposed["id"], "label": f"{event['label']} ({inquiry.voice or edition.author})"})
+                scope_ids.add(event["id"])
+                event_results.append({"id": event["id"], "new": event["new"]})
+                event_drafts.extend(depicted_drafts(event, passage["id"], meta["model"], inquiry))
+            for draft in drafts + event_drafts:
+                named = {draft.subject_id, draft.object_id, draft.role_id, draft.context_id} - {None}
+                outside = sorted(named - scope_ids)
+                if outside:
+                    results.append((draft, "out_of_scope", [f"not in inquiry scope: {outside}"], None, False))
+                elif args.submit:
+                    submission = submit(tx, draft, registry, operations)
+                    v = submission.validation
+                    results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes) + _related_lines(v),
+                                    v.proposal_id, submission.stored))
+                else:
+                    v = validate(draft, Neo4jReader(tx), registry)
+                    results.append((draft, v.outcome.value, list(v.reasons) + list(v.notes) + _related_lines(v),
+                                    v.proposal_id, False))
+            if args.submit and "periods" in storing:
+                for period in periods:
+                    proposed = propose_entity(tx, operations, kind="Period", label=period["name"],
+                                              proposed_by=PROPOSER_ID, observation_id=passage["id"],
+                                              quotation=period["quotation"])
+                    entry = {"name": period["name"], "entityId": proposed["id"], "created": proposed["created"],
+                             "candidates": [c["id"] for c in proposed["candidates"]], "claim": None}
+                    if period["time_expression"]:
+                        submission = submit(tx, period_draft(period, proposed["id"], passage["id"], meta["model"],
+                                                             inquiry), registry, operations)
+                        entry["claim"] = {"outcome": submission.validation.outcome.value,
+                                          "reasons": list(submission.validation.reasons),
+                                          "stored": submission.stored}
+                    if proposed["created"] and authorities["kinds"].get("Period", {}).get("surveyOnPropose"):
+                        # Published periodizations of the new period, found without
+                        # the curator: PeriodO definitions become attributed claims.
+                        from GraphRevised.discovery.period_survey import periodo_dataset, survey_period
+
+                        periodo = periodo if periodo is not None else periodo_dataset(authorities)
+                        surveyed = survey_period(tx, operations, registry, periodo, authorities,
+                                                 proposed["id"], store=True)
+                        entry["survey"] = [{"definition": s["definition"], "work": s["work"],
+                                            "outcome": (s["claim"] or {}).get("outcome")}
+                                           for s in surveyed["stored"]]
+                    period_results.append(entry)
+            if args.submit and "notes" in storing:
+                for note in notes:
+                    note_id = annotation_id(PROPOSER_ID, passage["id"], note["note"], note["concerns"])
+                    run_write(tx, operations, "upsert_annotation", {
+                        "id": note_id, "kind": "passage-of-note",
+                        "label": annotation_label(tx, kind="passage-of-note", note_type=note["noteType"],
+                                                  observation_id=passage["id"]),
+                        "noteType": note["noteType"], "note": note["note"], "author": PROPOSER_ID,
+                        "visibility": inquiry.note_visibility,
+                        "createdAt": datetime.now(timezone.utc).isoformat(),
+                        "observationId": passage["id"], "quotation": note["quotation"],
+                        "concerns": note["concerns"],
+                    })
+                    stored_notes.append(note_id)
+            if dry is None:
+                if any(stored for *_, stored in results) or stored_notes or period_results or event_results:
+                    tx.commit()
+                else:
+                    tx.rollback()
+        except BaseException:
+            if dry is None:
+                tx.rollback()
+            raise
+
+        record["drafts"] = [
+            {
+                "predicate": d.predicate, "subject": d.subject_id, "object": d.object_id,
+                "mode": d.mode, "attributedTo": d.attributed_to, "role": d.role_id,
+                "time": d.time.model_dump() if d.time else None, "context": d.context_id,
+                "contextBasis": d.context_basis,
+                "qualifierQuotations": [q.model_dump() for q in d.qualifier_quotations],
+                "quotation": d.quotations[0].text, "rationale": d.rationale, "relevance": d.relevance,
+                "ambiguities": list(d.ambiguities),
+                "outcome": outcome, "reasons": reasons, "proposalId": proposal_id, "stored": stored,
+            }
+            for d, outcome, reasons, proposal_id, stored in results
+        ]
+        record["malformed"] = malformed
+        record["notes"] = notes
+        record["refusedNotes"] = refused_notes
+        record["storedNotes"] = stored_notes
+        record["periods"] = period_results or periods
+        record["refusedPeriods"] = refused_periods
+        record["depictedEvents"] = events
+        record["refusedEvents"] = refused_events
+        record["unresolvedMentions"] = [m.model_dump() for m in output.unresolved_mentions]
+        log.write(json.dumps(record, ensure_ascii=False) + "\n")
+        for event in events:
+            print(f"{ref}: event {'new ' if event['new'] else ''}{event['id'].rsplit(':', 1)[1]}"
+                  + (f" @ {event['time']['expression']!r}" if event["time"] else "")
+                  + (f" [dropped {len(event['dropped'])}]" if event["dropped"] else ""))
+        for refused in refused_events:
+            print(f"{ref}: event refused -- {refused['reason']}")
+        for d, outcome, reasons, _, stored in results:
+            totals[outcome] = totals.get(outcome, 0) + 1
+            totals["stored"] += stored
+            print(f"{ref}: {outcome:<13} {d.subject_id} {d.predicate} {d.object_id}"
+                  + (" [stored]" if stored else "") + (f" -- {reasons[0]}" if reasons else ""))
+        for note in notes:
+            print(f"{ref}: note ({note['noteType']}) {note['note'][:90]}")
+        for period in period_results or periods:
+            print(f"{ref}: period {period['name']}" + (f" -> {period['entityId']}" if "entityId" in period else "")
+                  + (f" [bounds: {period['claim']['outcome']}]" if period.get("claim") else "")
+                  + (f" [PeriodO: {len(period['survey'])} definition(s)]" if period.get("survey") else ""))
+        totals["periods"] = totals.get("periods", 0) + len(period_results)
+        totals["notes"] = totals.get("notes", 0) + len(stored_notes)
+        totals["refusedNotes"] = totals.get("refusedNotes", 0) + len(refused_notes)
+        totals["events"] = totals.get("events", 0) + len(events)
+        totals["refusedEvents"] = totals.get("refusedEvents", 0) + len(refused_events)
+        names = ", ".join(m.name for m in output.unresolved_mentions)
+        print(f"{ref}: {len(drafts)} draft(s), {len(events)} event(s), {len(notes)} note(s); unresolved: {names or '-'}")
+    return periodo
 
 
 if __name__ == "__main__":

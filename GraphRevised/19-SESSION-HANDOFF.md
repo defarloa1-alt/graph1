@@ -1,7 +1,8 @@
-# Session Handoff — 2026-10-14
+# Session Handoff — 2026-10-15
 
 **Branch:** `graph-revised-clean-start`, pushed to `origin` (2026-10-13, with the curator's go-ahead; push only with it).
 **Read first:** [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md), sections 5-13 especially. Decided late on 2026-10-13: the Institutions response (sections Registry v9, Powers, Membership), [24](24-PERIODS-AND-TRANSFORMATION.md) §2 note and §9 (PeriodO or Wikidata), [21](21-REVIEW-DELEGATION.md) §5 (the second delegated review).
+**New 2026-10-15:** depicted events built and read for the battle from four sources ([23](23-NARRATIVE-AND-NOTES.md) pilot, [29](29-EVENT-CENTRED-INQUIRY.md) §9a; walk them with [views/actium-walk.cypher](views/actium-walk.cypher)); [29-EVENT-CENTRED-INQUIRY.md](29-EVENT-CENTRED-INQUIRY.md) (the event is the inquiry; Chrystallum's account on the stage; Wikipedia as starting point; the source registry; the new order in §6), [26](26-UI-DATA-CONTRACT.md) §4a (the notes stage), [views/actium-annotations.cypher](views/actium-annotations.cypher).
 **New 2026-10-14:** [27-GAZETTEER.md](27-GAZETTEER.md) (the geographic backbone, next to build), [28-SUBJECT-BUCKETS.md](28-SUBJECT-BUCKETS.md) (every entity in a bucket), 25 §11 (SCA and SFA retired).
 **Also new:** [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md) (what the Figma explorer receives), [docs/Response - Roman Republican Institutions and Military Hierarchies.md](docs/Response%20-%20Roman%20Republican%20Institutions%20and%20Military%20Hierarchies.md) (the structure design).
 **History:** [18](18-PHASE-5-PROPOSALS.md) (Phase 5), [22](22-CLAIM-QUALIFIERS.md), [23](23-NARRATIVE-AND-NOTES.md), [24](24-PERIODS-AND-TRANSFORMATION.md).
@@ -20,7 +21,7 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
   GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest \
-  GraphRevised.tests.test_registry_v9  # expect 233 tests, OK
+  GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events  # expect 241 tests, OK
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -32,18 +33,18 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 - `.obsidian/` and the curator's Obsidian edits to the `.md` files are theirs (`00`, `01`, `README` have uncommitted edits of theirs): never touch the folder, and stage only your own hunks.
 - **Data is not in git** (25 §13): harvest payloads are git-ignored; the local disk holds the only copy of the graph and payloads.
 
-## 2. Graph state (2026-10-13, after migration 005 and the second delegated review)
+## 2. Graph state (2026-10-15, after the depicted-event runs)
 
-6,273 nodes, 7,544 relationships (4,025 Year nodes from 2000 BCE to 2025).
+8,373 nodes, 11,853 relationships (4,025 Year nodes from 2000 BCE to 2025).
 
 | Label | Count | Notes |
 |---|---:|---|
-| Entity | 195 | 92 Person, 44 Work, 17 Group, 15 Office, 13 Place, 9 Event, 3 Concept, 2 Period; 158 proposed (the harvests), 36 provisional, 1 resolved |
-| Assertion | 455 | 68 accepted (after the delegated review), 378 proposed, 1 rejected, 8 superseded (migration 005); every dated one tethered to Years |
-| Proposal | 604 | 125 accepted, 30 rejected, 449 submitted (nearly all from the Wikidata harvest) |
-| SourceObservation | 607 | passages (Plutarch, Dio, Weigall, Hale), PeriodO records, Wikidata statements (with their time and qualifiers recorded) |
-| AuthorityRecord | 258 | Wikidata identities, the crosswalk (role `crosswalk`: DPRR, Nomisma, Trismegistos, LCSH, LCNAF, FAST, GND, VIAF; each link with its Wikidata statement's rank and reference count), LCSH and FAST on the Subject; one record per system and identifier (migration 007) |
-| Annotation | 128 | the reader's 117 passages of note and mentions endorsed; 11 period-survey mentions flagged |
+| Entity | 464 | 269 depicted events (Plutarch 28, Dio 76, Hale 77, Weigall 88), all proposed; 427 proposed in all |
+| Assertion | 1,160 | 68 accepted, 1,083 proposed, 1 rejected, 8 superseded |
+| Proposal | 1,342 | 125 accepted, 30 rejected, 1,187 submitted (the harvest's and the depicted events') |
+| SourceObservation | 670 | passages (Plutarch, Dio, Weigall, Hale), PeriodO records, Wikidata statements |
+| AuthorityRecord | 258 | Wikidata identities, the crosswalk, LCSH and FAST (one record per system and identifier) |
+| Annotation | 453 | passages of note (117 endorsed, 56 new flagged), entity mentions (each depicted event's first naming) |
 | Subject | 1 | History of the Battle of Actium, with LCSH sh85000736 and FAST 796265 |
 
 ## 3. What exists
@@ -51,6 +52,7 @@ python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next 
 | Area | Artifact |
 |---|---|
 | Graph operations | [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher), loaded by name through [operations.py](operations.py), 41 operations; new on 2026-10-14: `link_authority`, `rename_authority_system`, `merge_authority_into` (migration 007); new on 2026-10-13: `set_work_form`, `upsert_subject_authority`, `record_statement_time`, `renormalize_statement_time` and `unlink_assertion_years` (migration 005); `upsert_qualified_assertion` stores a quantity and no longer insists the context is an Event; `link_assertion_years` takes `{year, as}` links |
+| Depicted events (2026-10-15) | Registry [predicates.v10.json](proposals/predicates.v10.json): `happenedBefore` (Event to Event, the source's order), `occurred` with an optional context event (a time marker's anchor). Reader prompt `passage-reader-v13`: `depicted_events`, turned into proposed Events and attributed claims by `to_depicted` and `depicted_drafts`; optional reader text is an empty string, not null (the output grammar limit). Event inquiries: `sources` (one event, several Works, each with `voice` and guidance); the reader takes `--source` and `--chapters`; a dry run keeps a source in one rolled-back transaction. [inquiries/actium-battle.json](inquiries/actium-battle.json); [views/actium-walk.cypher](views/actium-walk.cypher), [views/actium-annotations.cypher](views/actium-annotations.cypher) |
 | Draft contract | [proposals/schema.py](proposals/schema.py), `proposal-draft-v6`: `TimeQualifier.mode` (during, within); v6 `QuantityQualifier` (minimum, maximum, typical, the source's words), part of a claim's identity by its figures |
 | Predicates | [proposals/predicates.v9.json](proposals/predicates.v9.json), 33 predicates: v7 `opposed` and Work forms; v8 `born` and `died`; **v9** kinds Type and Polity, `instanceOf`, `precedes`, `electedBy`, `exercisedPower`, `heldPower`, `servedUnder`, `memberOf`, `partOf` for Groups and Types (`kindPairs`), quantity on `partOf` and `electedBy`, context and role kinds per predicate; P361 chosen by kind, P463 to `memberOf` |
 | Validator and store | [proposals/validator.py](proposals/validator.py): derives `imaginative` from the attributed Work's form; refuses fiction as evidence for an asserted claim; compares a Wikidata statement's recorded time with the claim's (refuses a mismatch; Wikidata's "unknown value" leaves the claim undated); v9: paired kinds (`kindPairs`), context and role kinds per predicate, a quantity shown by its own quotation. [proposals/store.py](proposals/store.py): a stored claim's time mode and quantity round-trip at review (before the fix, a claim dated within a window could not be accepted). [proposals/wikidata_proposer.py](proposals/wikidata_proposer.py): drafts only the predicates whose kinds fit the endpoints |
@@ -93,6 +95,8 @@ Settled this session (2026-10-13), recorded where named: the actors and their ch
 
 Settled 2026-10-14: the actors as data ([curation/actors.json](curation/actors.json), each Wikidata identity checked); the SCA and SFA retired, their ideas kept as rules for the harvest and enrichers (25 §11); one record per authority system and identifier (migration 007); **the geographic backbone first**, a gazetteer layer from Pleiades and the GeoNames administrative tree, TGN as identifiers only ([27](27-GAZETTEER.md)); **every entity in a subject bucket**, our own hierarchy anchored to LCSH and FAST, membership computed from claims, Wikidata's main subject (P921) not used ([28](28-SUBJECT-BUCKETS.md)).
 
+Settled 2026-10-15 ([29](29-EVENT-CENTRED-INQUIRY.md) §2): the event is the inquiry, not a Work; Chrystallum's account on the stage beside the event, every statement citing a preserved passage; Wikipedia as a starting point (discovery, the card's link, a labelled tertiary voice); facets as lens steps in the drill-down path; the event-centred research run after the gazetteer and before the subject buckets; a notes stage beside the facts stage (26 §4a).
+
 Open:
 
 1. **Twelve claims the delegated review left open** ([21](21-REVIEW-DELEGATION.md) §5): Publicola as Lucius Gellius Poplicola (identity, three proposals); Plutarch's pronouns resolved only by the neighbouring passage (65.3 Antony; 65.4 Caesar, three proposals); our own single-source command statements (Insteius's centre, Antony's right wing, Antony's fleet, Taurus); Dio's near-duplicate date of Actium, to supersede by its twin.
@@ -102,7 +106,7 @@ Open:
 
 ## 6. Next steps
 
-Registry v9 is built (kinds Type and Polity, the structure predicates, quantity; see section 3). In order (the backbones first, curator, 2026-10-14):
+**2026-10-15:** the depicted-event pilot (23 §5) is done for the battle's chapters in all four sources; next for it: review (the 269 events are visible, proposed), Hale's inferences arriving as factual events, shorter labels. Registry v9 is built (kinds Type and Polity, the structure predicates, quantity; see section 3). In order (the backbones first, curator, 2026-10-14; **revised 2026-10-15**: after the gazetteer comes the event-centred research run for the Battle of Actium, [29](29-EVENT-CENTRED-INQUIRY.md) §9, which absorbs item 3 below; then the subject buckets):
 
 1. **The gazetteer** ([27](27-GAZETTEER.md)): the dumps are downloaded to `cache/geonames/` and `cache/pleiades/` (2026-10-14, with `metadata.json` beside each: source, retrieval time, Last-Modified, SHA-256, licence). Build: constraint and point index for `Location`; batched operations; the loader (dry run by default) for the GeoNames tree (about 462,000 units), all 42,399 Pleiades places with their ancient `WITHIN` links, the bridge (Pleiades' GeoNames references, else the nearest populated place within 50 km, curator 2026-10-14); then the 13 Place entities linked by the identifiers they hold.
 2. **Subject buckets** ([28](28-SUBJECT-BUCKETS.md)): `BROADER` from the headings' broader terms, membership computed from claims (registry data says which predicates carry it), the Punic Wars as the first hierarchy (headings checked 2026-10-14).

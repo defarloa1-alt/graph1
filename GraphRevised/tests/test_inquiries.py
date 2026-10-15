@@ -11,6 +11,7 @@ import unittest
 from pathlib import Path
 
 from GraphRevised.adapters.sources import open_source
+from GraphRevised.proposals.passage_reader import inquiry_sources
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 INQUIRIES = sorted((GRAPH_REVISED / "inquiries").glob("*.json"))
@@ -29,19 +30,22 @@ class InquiryGuidanceTests(unittest.TestCase):
     def test_guidance_has_no_locators_or_source_quotations(self):
         for path in INQUIRIES:
             data = json.loads(path.read_text(encoding="utf-8"))
-            source = open_source(data["source"], GRAPH_REVISED)
-            text = normalize(" ".join(source.observation(ref)["passageText"] for ref in source.refs(None)))
-            for line in data["guidance"]:
-                with self.subTest(inquiry=path.name, guidance=line[:60]):
-                    self.assertIsNone(LOCATOR.search(line), "guidance points at a passage")
-                    for quoted in QUOTED.findall(line):
-                        if len(quoted.split()) >= 2:
-                            self.assertNotIn(normalize(quoted), text, "guidance quotes the source")
+            # An event inquiry's shared guidance is checked against every source it reads.
+            for config in inquiry_sources(data):
+                source = open_source(config, GRAPH_REVISED)
+                text = normalize(" ".join(source.observation(ref)["passageText"] for ref in source.refs(None)))
+                for line in data["guidance"] + config.get("guidance", []):
+                    with self.subTest(inquiry=path.name, source=config["workId"], guidance=line[:60]):
+                        self.assertIsNone(LOCATOR.search(line), "guidance points at a passage")
+                        for quoted in QUOTED.findall(line):
+                            if len(quoted.split()) >= 2:
+                                self.assertNotIn(normalize(quoted), text, "guidance quotes the source")
 
     def test_inquiries_read_whole_works(self):
         for path in INQUIRIES:
-            with self.subTest(inquiry=path.name):
-                self.assertNotIn("chapters", json.loads(path.read_text(encoding="utf-8"))["source"])
+            for config in inquiry_sources(json.loads(path.read_text(encoding="utf-8"))):
+                with self.subTest(inquiry=path.name, source=config["workId"]):
+                    self.assertNotIn("chapters", config)
 
 
 if __name__ == "__main__":

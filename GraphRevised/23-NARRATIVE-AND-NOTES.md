@@ -268,6 +268,34 @@ Steps 1–3 are done:
 Before the first real capture, the curator adds each book read as a Work
 (identity approval) and to `curation/reading.json`.
 
+### Pilot (2026-10-15): depicted events built and read
+
+Step 4's depicted events are built, event-first ([29](29-EVENT-CENTRED-INQUIRY.md)):
+one inquiry for the battle ([inquiries/actium-battle.json](inquiries/actium-battle.json))
+names its four sources. Reader prompt `passage-reader-v13` lists `depicted_events`;
+each becomes a proposed Event, `chr:entity:depicted:<work>:<slug>`, labelled with its
+voice ("Antony is taken aboard Cleopatra's ship (Plutarch)"), and attributed claims:
+`partOf` the battle, `participatedIn` for each participant, `occurredAt`, `occurred`
+with the source's time words (an offset only when the marker counts from the battle),
+and `triggeredBy`, `resultedIn`, and the new `happenedBefore` (registry v10) between
+events. Every part is quoted; a part the passage does not show is dropped, logged.
+
+| Source (battle chapters only) | Events | Claims on them | Order links | Timed |
+|---|---:|---:|---:|---:|
+| Plutarch, *Antony* 65–68 | 28 | 89 | 16 | 8 |
+| Dio 50.11–15, 50.31–51.2 | 76 | 189 | 43 | 10 |
+| Hale, chapter 2 | 77 | 201 | 33 | 18 |
+| Weigall, chapter 17 | 88 | 214 | 54 | 22 |
+
+Against the pilot's tests (§5): (1) each source's battle can be walked, mostly
+step by step ([views/actium-walk.cypher](views/actium-walk.cypher)); stretches the
+source does not order stay unlinked, by rule; (2) the four depictions sit side by
+side, unmerged: the squadron's flight is unexplained in Plutarch, planned at the
+council in Dio, "arranged beforehand" in Hale, and set off by the rising wind in
+Weigall; (3) unchanged (notes). Known faults: an author's inference can arrive as a
+factual event (Hale's "flight arranged beforehand"); a few links are weak ("flees"
+triggered by "waits at anchor"); labels are long.
+
 ## 9. Curator decisions (2026-10-12)
 
 All accepted as recommended:
