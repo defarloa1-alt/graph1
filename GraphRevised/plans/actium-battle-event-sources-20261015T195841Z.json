@@ -1,0 +1,1602 @@
+{
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 4,
+  "event": "chr:entity:battle-of-actium",
+  "createdAt": "2026-10-15T19:58:41.344191+00:00",
+  "promptVersion": "event-source-plan-v1-6a930831",
+  "budget": 4,
+  "propose": {
+    "model": "claude-opus-5-5",
+    "stopReason": "end_turn",
+    "inputTokens": 5140,
+    "outputTokens": 6664,
+    "requestId": "req_011Cg4cXTP2UUMsoiNKpXPLF"
+  },
+  "choose": {
+    "model": "claude-opus-5-5",
+    "stopReason": "end_turn",
+    "inputTokens": 4788,
+    "outputTokens": 1340,
+    "requestId": "req_011Cg4cbSu7pRiqLfHxQEQ9J"
+  },
+  "catalogues": {
+    "scaife": {
+      "sourceUri": "https://scaife.perseus.org/library/json/",
+      "retrievedAt": "2026-10-12T18:49:50.116438+00:00",
+      "contentHash": "2948dbb257dae168129f3c4b32a8b24ac11cd206439f825749ac7e4b5a54d653"
+    },
+    "gutenberg": {
+      "sourceUri": "https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv",
+      "retrievedAt": "2026-10-15T19:50:02.646598+00:00",
+      "contentHash": "3c60f0ad5181881587553d8e13925b3f862693b71854ea34261bf8a6cf3d4c1d"
+    },
+    "lacuscurtius": {
+      "sourceUri": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/home.html",
+      "retrievedAt": "2026-10-15T19:50:03.498453+00:00",
+      "contentHash": "eeb495a9bc844916a7141eb09b2b4884685e0230c6df1456ebb65a8df02e5840"
+    }
+  },
+  "channels": {
+    "wikipediaReferences": [
+      "Lendering, Jona (10 October 2020). \"Actium (31 BCE)\" . Livius.org . Retrieved 16 October 2020 .",
+      "Kellum, Barbara (September 2010). \"Representations and Re-presentations of the Battle of Actium\" . Oxford Scholarship Online . pp. 187– 203. doi : 10.1093/acprof:oso/9780195389579.003.0012 . ISBN 978-0-19-538957-9 . Retrieved 16 October 2020 . {{ cite web }} : CS1 maint: periodical has ISBN ( link ) doi : 10.1093/acprof:oso/9780195389579.003.0012",
+      "Migiro, Geoffrey (31 December 2017). \"What Was the Battle of Actium?\" . WorldAtlas . Retrieved 16 October 2020 .",
+      "Eck & Takács 2003 , p. 37.",
+      "Eck & Takács 2003 , pp. 38–39.",
+      "Davis, Paul K. (1999). 100 decisive battles: From ancient times to the present . New York: Oxford University Press. p. 63. ISBN 978-0195143669 . OCLC 45102987 .",
+      "White Singer, Mary (1947). \"Octavia's Mediation at Tarentum\" . The Classical Journal . 43 (3): 174– 175. JSTOR 3293735 .",
+      "Roller, Duane W. (2010). Cleopatra: A Biography . US: Oxford University Press. pp. 70– 73.",
+      "Fowler, Paul; Grocock, Christopher; Melville, James (2017). OCR Ancient History GCSE Component 2 : Rome . London: Bloomsbury Publishing. p. 192. ISBN 978-1-350-01520-3 . OCLC 999629260 .",
+      "David & David 2002 , p. 35.",
+      "Kebric 2005 , p. 109.",
+      "Potter 2009 , p. 161.",
+      "Scullard 2013 , p. 150.",
+      "Shuckburgh 1917 , pp. 775–779.",
+      "Shuckburgh 1917 , pp. 780–784.",
+      "Dio Cassius 50.31 .",
+      "Shuckburgh 1917 , p. 781 .",
+      "Plutarch , Antony 65–66 .",
+      "Velleius Paterculus , History of Rome , ii.85.",
+      "Pelling 1988 , p. 281.",
+      "Shuckburgh 1917 , pp. 780–784, says 500.",
+      "Plutarch, Antony 61 .",
+      "Dio Cassius 50.13 .",
+      "Dio Cassius 50.32 .",
+      "Dio Cassius 50.23.1–3 .",
+      "Lange, Carsten (December 2011). \"The Battle of Actium: A reconsideration\" . Classical Quarterly . New Series, 61 (2): 608– 623. doi : 10.1017/S0009838811000139 . JSTOR 41301557 . S2CID 171027512 . Retrieved 28 November 2017 .",
+      "CNRS (6 July 2020). \"Behind the dead-water phenomenon\" . phys.org . Retrieved 16 October 2020 .",
+      "\"Scientists find clue to mysterious 'dead water' effect that stops a ship\" . The Week . 15 July 2020 . Retrieved 18 September 2020 .",
+      "Raia, Ann R.; Sebesta, Judith Lynn (September 2017). \"The World of State\" . College of New Rochelle. Archived from the original on 6 March 2018 . Retrieved 2 April 2018 .",
+      "Lippold, Georg (1936). Die Skulpturen des Vaticanischen Museums (in German). Vol. 3. Berlin: Walter de Gruyter & Co. pp. 169– 171. doi : 10.1515/9783110875737 . ISBN 9783110875737 . {{ cite book }} : ISBN / Date incompatibility ( help )",
+      "Curtius, L. (1933). \"Ikonographische Beitrage zum Portrar der romischen Republik und der Julisch-Claudischen Familie\". RM (in German). 48 : 184 ff. Abb. 3 Taf. 25–27.",
+      "Plutarch , Antony 76 .",
+      "Green (1990), 697.",
+      "Scullard 2013 , p. 171.",
+      "Eck & Takács 2003 , p. 49.",
+      "Actium – the solution Archived March 6, 2007, at the Wayback Machine",
+      "Chronicon of Jerome , 2005 online edition (tertullian.org)",
+      "Dio Cassius 51.1 ; Suetonius , Augustus 18.2; Murray and Petsas (1989).",
+      "Zachos, Konstantinos L. (2003). \"The tropaeum of the sea-battle of Actium at Nikopolis: interim report\" . Journal of Roman Archaeology . 16 : 64– 92. doi : 10.1017/s1047759400013003 . ISSN 1047-7594 .",
+      "\"Suetonius, Divus Augustus, Chapter 18, Section 2\" . www.perseus.tufts.edu . Retrieved 2025-01-26 .",
+      "\"Cassius Dio, Historiae Romanae, Book 51, chapter 1, section 2\" . www.perseus.tufts.edu . Retrieved 2025-01-26 .",
+      "Lorenzo, K (2019). \"Post-Actium place making: Octavian and the Ambracian Gulf\". In Döhl, R; Rensburg, J. J. (eds.). Signs of Place: A Visual Interpretation of Landscape . Berlin: Edition Topoi. p. 134.",
+      "Carter, John M. (1970). The Battle of Actium: The Rise & Triumph of Augustus Caesar . Hamilton. ISBN 0241015162 . OCLC 77602 .",
+      "David, Rosalie; David, Anthony E. (2002). A Biographical Dictionary of Ancient Egypt . Routledge . ISBN 978-1135377045 .",
+      "Eck, Werner ; Takács, Sarolta A. (2003). The Age of Augustus . Translated by Schneider, Deborah Lucas (first ed.). Oxford: Blackwell Publishing. ISBN 0-631-22957-4 .",
+      "Everitt, Anthony (2006), Augustus: The Life of Rome's First Emperor , New York: Random House , ISBN 1-4000-6128-8",
+      "Kebric, Robert B. (2005). Roman People . McGraw-Hill. ISBN 978-0072869040 .",
+      "Pelling, C.B.R. , ed. (1988). Plutarch: Life of Antony . Cambridge University Press. ISBN 0-521-24066-2 .",
+      "Murray, William M.; Petsas, Photios M. (1989). Octavian's Campsite Memorial for the Actian War . Transactions of the American Philosophical Society. Vol. 79. Philadelphia: American Philosophical Society.",
+      "Potter, D.S. (2009). Rome in the Ancient World: From Romulus to Justinian . Thames & Hudson. ISBN 978-0500251522 .",
+      "Scullard, H. H. (2013). From the Gracchi to Nero: A History of Rome 133 BC to AD 68 . Routledge. ISBN 978-1136783876 .",
+      "Shuckburgh, Evelyn Shirley (1917). A History of Rome to the Battle of Actium . New York: Macmillan and Company.",
+      "Califf, David J. (2004). Battle of Actium . Chelsea House Publishers. ISBN 0791074404 . OCLC 52312409 .",
+      "Green, Peter (1990). Alexander to Actium: The Historical Evolution of the Hellenistic Age . University of California Press. ISBN 0520056116 . OCLC 13332042 .",
+      "Gurval, Robert Alan (1995). Actium and Augustus: The Politics and Emotions of Civil War . University of Michigan Press. ISBN 0472105906 . OCLC 32093780 .",
+      "Sheppard, Si (2009). Actium 31 BC: Downfall of Antony and Cleopatra (PDF) . Oxford: Osprey Publishing. ISBN 978-1-84603-405-3 . Archived from the original (PDF) on 2019-12-23."
+    ],
+    "passageCitations": [
+      {
+        "locator": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2:68.1",
+        "who": "Caesar",
+        "context": "e were not more than five thousand dead, but three hundred ships were captured, as Caesar himself has written.",
+        "work": "Plutarch, Life of Antony"
+      },
+      {
+        "locator": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_216 (ch. 11, para. 19, p. 216-217)",
+        "who": "Roman",
+        "context": "in golden chains through the streets, although such an execution was customary according to Roman usage. Just previous to the battle of Ac",
+        "work": "Weigall, The Life and Times of Cleopatra"
+      },
+      {
+        "locator": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_286 (ch. 15, para. 8, p. 286-287)",
+        "who": "Plutarch",
+        "context": "to Alexandria, well satisfied with his summer’s work, but “with his thoughts,” as Plutarch says, “now taken up with the coming civil wa",
+        "work": "Weigall, The Life and Times of Cleopatra"
+      },
+      {
+        "locator": "https://www.gutenberg.org/files/54038/54038-h/54038-h.htm#Page_345 (ch. 17, para. 27, p. 345-347)",
+        "who": "Plutarch",
+        "context": "mpted to refuse the gifts, but Antony, pressing them to accept, “cheered them,” as Plutarch says, “with all the goodness and humanity im",
+        "work": "Weigall, The Life and Times of Cleopatra"
+      }
+    ],
+    "wikidataDescribedBy": [
+      "Armenian Soviet Encyclopedia (Q2657718): first general encyclopedia in Armenian language",
+      "Sytin Military Encyclopedia (Q4114391): Russian military encyclopedia",
+      "Small Brockhaus and Efron Encyclopedic Dictionary (Q19180675): Russian encyclopedic dictionary",
+      "Brockhaus and Efron Encyclopedic Dictionary (Q602358): comprehensive multi-volume encyclopedia in Russian",
+      "Antik Cag Sozlugu (Q122785443): "
+    ],
+    "citationsNotScanned": []
+  },
+  "candidates": [
+    {
+      "author": "",
+      "work": "Plutarch, Life of Antony",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "",
+      "composition_year": null,
+      "form": "biography",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "",
+      "channels": [],
+      "certainty": "",
+      "status": "read",
+      "readAs": "chr:entity:plutarch-life-of-antony",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {}
+    },
+    {
+      "author": "",
+      "work": "Cassius Dio, Roman History",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "",
+      "composition_year": null,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "",
+      "channels": [],
+      "certainty": "",
+      "status": "read",
+      "readAs": "chr:entity:cassius-dio-roman-history",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {}
+    },
+    {
+      "author": "",
+      "work": "Hale, Famous Sea Fights",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "",
+      "composition_year": null,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "",
+      "channels": [],
+      "certainty": "",
+      "status": "read",
+      "readAs": "chr:entity:hale-famous-sea-fights",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {}
+    },
+    {
+      "author": "",
+      "work": "Weigall, The Life and Times of Cleopatra",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "",
+      "composition_year": null,
+      "form": "biography",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "",
+      "channels": [],
+      "certainty": "",
+      "status": "read",
+      "readAs": "chr:entity:weigall-life-and-times-of-cleopatra",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {}
+    },
+    {
+      "author": "",
+      "work": "Wikipedia, Battle of Actium",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "",
+      "composition_year": null,
+      "form": "reference",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "",
+      "channels": [],
+      "certainty": "",
+      "status": "read",
+      "readAs": "chr:entity:wikipedia-en-battle-of-actium",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {}
+    },
+    {
+      "author": "Virgil",
+      "work": "Aeneid",
+      "locator": "8.671-713",
+      "cts_work_urn": "urn:cts:latinLit:phi0690.phi003",
+      "composition": "c. 19 BCE",
+      "composition_year": -19,
+      "form": "poem",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "The Actium scene on the shield of Aeneas, the canonical Augustan representation of the battle.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "chosen",
+      "identifiedAt": [
+        "Scaife: Aeneid (urn:cts:latinLit:phi0690.phi003, work found)",
+        "Project Gutenberg: The Aeneid (ebook 228)",
+        "Project Gutenberg: The Fourth Book of Virgil's Aeneid and the Ninth Book of Voltaire's Henriad (ebook 20144)",
+        "Project Gutenberg: The Aeneid of Virgil (ebook 22456)"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi0690.phi003.perseus-lat2",
+          "label": "Perseus phi0690.phi003.perseus-lat2",
+          "language": "lat"
+        },
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi0690.phi003.perseus-eng2",
+          "label": "Perseus phi0690.phi003.perseus-eng2",
+          "language": "eng"
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "228",
+          "label": "Gutenberg 228: The Aeneid",
+          "language": "en",
+          "translators": [
+            "Dryden, John, 1631-1700 [Translator]"
+          ]
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "20144",
+          "label": "Gutenberg 20144: The Fourth Book of Virgil's Aeneid and the Ninth Book of Voltaire's Henriad",
+          "language": "en",
+          "translators": []
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "22456",
+          "label": "Gutenberg 22456: The Aeneid of Virgil",
+          "language": "en",
+          "translators": [
+            "Mackail, J. W. (John William), 1859-1945 [Translator]"
+          ]
+        }
+      ],
+      "scaife": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi0690.phi003",
+        "workLabel": "Aeneid",
+        "languages": [
+          "eng",
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0690.phi003.perseus-lat2",
+          "urn:cts:latinLit:phi0690.phi003.perseus-eng2"
+        ]
+      },
+      "readAs": null,
+      "chosenCopy": 1,
+      "reason": "Virgil's shield of Aeneas is the canonical contemporary poetic version of Actium, a distinct voice, and the Perseus English translation follows the Latin text."
+    },
+    {
+      "author": "Augustus, Emperor of Rome",
+      "work": "Res Gestae Divi Augusti",
+      "locator": "ch. 25",
+      "cts_work_urn": "",
+      "composition": "c. 14 CE",
+      "composition_year": 14,
+      "form": "inscription",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Octavian's own brief account of the war, the oath of Italy and the western provinces, and the victory at Actium.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high; names Actium indirectly through the war against Cleopatra",
+      "status": "chosen",
+      "identifiedAt": [
+        "LacusCurtius: The Monumentum Ancyranum"
+      ],
+      "copies": [
+        {
+          "system": "lacuscurtius",
+          "adapter": "lacuscurtius-html",
+          "identifier": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Augustus/Res_Gestae/home.html",
+          "label": "LacusCurtius: The Monumentum Ancyranum",
+          "language": "en"
+        }
+      ],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null,
+      "chosenCopy": 0,
+      "reason": "The Res Gestae is Octavian's own contemporary account of the war and the victory at Actium, a witness the graph does not yet read, and this copy is in English."
+    },
+    {
+      "author": "Strabo",
+      "work": "Geography",
+      "locator": "7.7.6; 10.2.2",
+      "cts_work_urn": "urn:cts:greekLit:tlg0099.tlg001",
+      "composition": "c. 20 CE",
+      "composition_year": 20,
+      "form": "history",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "The topography of Actium, the ship dedications and the foundation of Nicopolis.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "medium-high on locators",
+      "status": "chosen",
+      "identifiedAt": [
+        "Scaife: Geography (urn:cts:greekLit:tlg0099.tlg001, work found)",
+        "Project Gutenberg: The Geography of Strabo, Volume 1 (of 3) (ebook 44884)",
+        "Project Gutenberg: The Geography of Strabo, Volume 2 (of 3) (ebook 44885)",
+        "Project Gutenberg: The Geography of Strabo, Volume 3 (of 3) (ebook 44886)"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:greekLit:tlg0099.tlg001.perseus-grc2",
+          "label": "Perseus tlg0099.tlg001.perseus-grc2",
+          "language": "grc"
+        },
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:greekLit:tlg0099.tlg001.perseus-eng4",
+          "label": "Perseus tlg0099.tlg001.perseus-eng4",
+          "language": "eng"
+        },
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:greekLit:tlg0099.tlg001.perseus-eng3",
+          "label": "Perseus tlg0099.tlg001.perseus-eng3",
+          "language": "eng"
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "44884",
+          "label": "Gutenberg 44884: The Geography of Strabo, Volume 1 (of 3)",
+          "language": "en",
+          "translators": [
+            "Falconer, W. (William), 1801-1885 [Translator]",
+            "Hamilton, Hans Claude, 1811-1895 [Translator]"
+          ]
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "44885",
+          "label": "Gutenberg 44885: The Geography of Strabo, Volume 2 (of 3)",
+          "language": "en",
+          "translators": [
+            "Falconer, W. (William), 1801-1885 [Translator]",
+            "Hamilton, Hans Claude, 1811-1895 [Translator]"
+          ]
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "44886",
+          "label": "Gutenberg 44886: The Geography of Strabo, Volume 3 (of 3)",
+          "language": "en",
+          "translators": [
+            "Falconer, W. (William), 1801-1885 [Translator]",
+            "Hamilton, Hans Claude, 1811-1895 [Translator]"
+          ]
+        }
+      ],
+      "scaife": {
+        "status": "work found",
+        "workUrn": "urn:cts:greekLit:tlg0099.tlg001",
+        "workLabel": "Geography",
+        "languages": [
+          "eng",
+          "grc"
+        ],
+        "editions": [
+          "urn:cts:greekLit:tlg0099.tlg001.perseus-grc2",
+          "urn:cts:greekLit:tlg0099.tlg001.perseus-eng4",
+          "urn:cts:greekLit:tlg0099.tlg001.perseus-eng3"
+        ]
+      },
+      "readAs": null,
+      "chosenCopy": 1,
+      "reason": "Strabo is a contemporary Greek witness to the battle site, the ship dedications and Nicopolis, and the Perseus English edition covers the whole work in a single copy."
+    },
+    {
+      "author": "Velleius Paterculus",
+      "work": "Historiae Romanae",
+      "locator": "2.84-87",
+      "cts_work_urn": "urn:cts:latinLit:phi1044.phi001",
+      "composition": "c. 30 CE",
+      "composition_year": 30,
+      "form": "history",
+      "relation": "near-contemporary",
+      "depends_on": [],
+      "coverage": "A pro-Augustan narrative of the battle, the desertions and Antony's flight, and the clemency shown afterwards.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "chosen",
+      "identifiedAt": [
+        "LacusCurtius: Velleius Paterculus"
+      ],
+      "copies": [
+        {
+          "system": "lacuscurtius",
+          "adapter": "lacuscurtius-html",
+          "identifier": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Velleius_Paterculus/home.html",
+          "label": "LacusCurtius: Velleius Paterculus",
+          "language": "en"
+        }
+      ],
+      "scaife": {
+        "status": "not in catalogue (proposed URN urn:cts:latinLit:phi1044.phi001 not found)",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null,
+      "chosenCopy": 0,
+      "reason": "Velleius gives a near-contemporary prose narrative of the battle, the desertions and Antony's flight, which offsets the later Plutarch and Dio the graph already reads, and this copy is in English."
+    },
+    {
+      "author": "Horace",
+      "work": "Epodes",
+      "locator": "Epode 9",
+      "cts_work_urn": "urn:cts:latinLit:phi0893.phi002",
+      "composition": "c. 30 BCE",
+      "composition_year": -30,
+      "form": "poem",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "A poem written in the immediate aftermath of the battle, describing the defection of the Galatians and the enemy's flight.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Carmen Saeculare (urn:cts:latinLit:phi0893.phi002, work found)"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi0893.phi002.perseus-lat2",
+          "label": "Perseus phi0893.phi002.perseus-lat2",
+          "language": "lat"
+        }
+      ],
+      "scaife": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi0893.phi002",
+        "workLabel": "Carmen Saeculare",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0893.phi002.perseus-lat2"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "Horace's Epodes are a valuable contemporary poem, but this copy is Latin only, and Virgil already supplies the poetic voice."
+    },
+    {
+      "author": "Horace",
+      "work": "Carmina (Odes)",
+      "locator": "1.37",
+      "cts_work_urn": "urn:cts:latinLit:phi0893.phi001",
+      "composition": "c. 23 BCE",
+      "composition_year": -23,
+      "form": "poem",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "The Cleopatra ode celebrating the victory and her flight and death.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Odes (urn:cts:latinLit:phi0893.phi001, work found)",
+        "Project Gutenberg: The Odes and Carmen Saeculare of Horace (ebook 5432)"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi0893.phi001.perseus-lat2",
+          "label": "Perseus phi0893.phi001.perseus-lat2",
+          "language": "lat"
+        },
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi0893.phi001.perseus-eng2",
+          "label": "Perseus phi0893.phi001.perseus-eng2",
+          "language": "eng"
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "5432",
+          "label": "Gutenberg 5432: The Odes and Carmen Saeculare of Horace",
+          "language": "en",
+          "translators": [
+            "Conington, John, 1825-1869 [Translator]"
+          ]
+        }
+      ],
+      "scaife": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi0893.phi001",
+        "workLabel": "Odes",
+        "languages": [
+          "eng",
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0893.phi001.perseus-lat2",
+          "urn:cts:latinLit:phi0893.phi001.perseus-eng2"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "The Cleopatra ode is available in English, but the budget favours Virgil's fuller poetic treatment of the battle."
+    },
+    {
+      "author": "Propertius, Sextus",
+      "work": "Elegies",
+      "locator": "3.11; 4.6",
+      "cts_work_urn": "urn:cts:latinLit:phi0620.phi001",
+      "composition": "c. 16 BCE",
+      "composition_year": -16,
+      "form": "poem",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Elegies on Cleopatra's defeat and on Apollo's role at Actium (4.6).",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Elegiae (urn:cts:latinLit:phi0620.phi001, work found)"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi0620.phi001.perseus-lat3",
+          "label": "Perseus phi0620.phi001.perseus-lat3",
+          "language": "lat"
+        }
+      ],
+      "scaife": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi0620.phi001",
+        "workLabel": "Elegiae",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi0620.phi001.perseus-lat3"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "Propertius is another contemporary poet, available only in Latin, and his voice overlaps with Virgil's."
+    },
+    {
+      "author": "Josephus, Flavius",
+      "work": "Jewish Antiquities",
+      "locator": "15.5; 15.6",
+      "cts_work_urn": "urn:cts:greekLit:tlg0526.tlg001",
+      "composition": "c. 94 CE",
+      "composition_year": 94,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Herod's position during the Actian War and his meeting with Octavian afterwards.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "medium; the battle is treated only peripherally",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Jewish Antiquities (urn:cts:greekLit:tlg0526.tlg001, work found)"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:greekLit:tlg0526.tlg001.perseus-grc2",
+          "label": "Perseus tlg0526.tlg001.perseus-grc2",
+          "language": "grc"
+        },
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:greekLit:tlg0526.tlg001.perseus-eng2",
+          "label": "Perseus tlg0526.tlg001.perseus-eng2",
+          "language": "eng"
+        }
+      ],
+      "scaife": {
+        "status": "work found",
+        "workUrn": "urn:cts:greekLit:tlg0526.tlg001",
+        "workLabel": "Jewish Antiquities",
+        "languages": [
+          "eng",
+          "grc"
+        ],
+        "editions": [
+          "urn:cts:greekLit:tlg0526.tlg001.perseus-grc2",
+          "urn:cts:greekLit:tlg0526.tlg001.perseus-eng2"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "Josephus covers Herod's side of the war rather than the battle itself, so he ranks below the direct witnesses."
+    },
+    {
+      "author": "Suetonius",
+      "work": "Divus Augustus",
+      "locator": "17-18",
+      "cts_work_urn": "urn:cts:latinLit:phi1348.abo002",
+      "composition": "c. 121 CE",
+      "composition_year": 121,
+      "form": "biography",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "The victory at Actium, the foundation of Nicopolis and the dedication of Octavian's campsite memorial.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Divus Augustus (urn:cts:latinLit:phi1348.abo012, work matched by title (verify))"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi1348.abo012.perseus-lat2",
+          "label": "Perseus phi1348.abo012.perseus-lat2",
+          "language": "lat"
+        },
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi1348.abo012.perseus-eng2",
+          "label": "Perseus phi1348.abo012.perseus-eng2",
+          "language": "eng"
+        }
+      ],
+      "scaife": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:latinLit:phi1348.abo012",
+        "workLabel": "Divus Augustus",
+        "languages": [
+          "eng",
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi1348.abo012.perseus-lat2",
+          "urn:cts:latinLit:phi1348.abo012.perseus-eng2"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "Suetonius is a later biographer whose material on Nicopolis and the campsite memorial largely overlaps with Strabo and the Res Gestae."
+    },
+    {
+      "author": "Florus, Lucius Annaeus",
+      "work": "Epitome of Roman History",
+      "locator": "2.21",
+      "cts_work_urn": "urn:cts:latinLit:phi1242.phi001",
+      "composition": "c. 130 CE",
+      "composition_year": 130,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [
+        "Livy"
+      ],
+      "coverage": "A rhetorical account of the fleets and the battle, drawn from Livy.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Epitome Rerum Romanorum (urn:cts:latinLit:phi1242.phi001, work found)"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:phi1242.phi001.perseus-lat1",
+          "label": "Perseus phi1242.phi001.perseus-lat1",
+          "language": "lat"
+        }
+      ],
+      "scaife": {
+        "status": "work found",
+        "workUrn": "urn:cts:latinLit:phi1242.phi001",
+        "workLabel": "Epitome Rerum Romanorum",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:phi1242.phi001.perseus-lat1"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "Florus is a later Livian epitome available only in Latin, and the contemporary witnesses rank ahead of it."
+    },
+    {
+      "author": "Eutropius",
+      "work": "Breviarium ab urbe condita",
+      "locator": "7.7",
+      "cts_work_urn": "",
+      "composition": "c. 369 CE",
+      "composition_year": 369,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A brief notice of Antony's defeat at Actium.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Breviarium historiae romanae (urn:cts:greekLit:stoa0121.stoa001, work matched by title (verify))"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:greekLit:stoa0121.stoa001.opp-grc1",
+          "label": "Perseus stoa0121.stoa001.opp-grc1",
+          "language": "grc"
+        }
+      ],
+      "scaife": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:greekLit:stoa0121.stoa001",
+        "workLabel": "Breviarium historiae romanae",
+        "languages": [
+          "grc"
+        ],
+        "editions": [
+          "urn:cts:greekLit:stoa0121.stoa001.opp-grc1"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "Eutropius gives only a brief notice, and this copy is the Greek version rather than English."
+    },
+    {
+      "author": "Orosius, Paulus",
+      "work": "Historiae adversus paganos",
+      "locator": "6.19",
+      "cts_work_urn": "",
+      "composition": "c. 417 CE",
+      "composition_year": 417,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [
+        "Livy"
+      ],
+      "coverage": "A late antique narrative of the battle, with figures derived from the Livian tradition.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Scaife: Historiae Adversum Paganos (urn:cts:latinLit:stoa0215c.stoa001, work matched by title (verify))"
+      ],
+      "copies": [
+        {
+          "system": "perseus",
+          "adapter": "perseus-tei",
+          "identifier": "urn:cts:latinLit:stoa0215c.stoa001.opp-lat1",
+          "label": "Perseus stoa0215c.stoa001.opp-lat1",
+          "language": "lat"
+        }
+      ],
+      "scaife": {
+        "status": "work matched by title (verify)",
+        "workUrn": "urn:cts:latinLit:stoa0215c.stoa001",
+        "workLabel": "Historiae Adversum Paganos",
+        "languages": [
+          "lat"
+        ],
+        "editions": [
+          "urn:cts:latinLit:stoa0215c.stoa001.opp-lat1"
+        ]
+      },
+      "readAs": null,
+      "reasonLeftOut": "Orosius is a late antique derivative of the Livian tradition, available only in Latin."
+    },
+    {
+      "author": "Shakespeare, William",
+      "work": "Antony and Cleopatra",
+      "locator": "Act 3, scenes 7-11",
+      "cts_work_urn": "",
+      "composition": "c. 1607",
+      "composition_year": 1607,
+      "form": "play",
+      "relation": "later",
+      "depends_on": [
+        "Plutarch"
+      ],
+      "coverage": "A dramatization of the decision to fight at sea, Cleopatra's flight and Antony's shame.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "located",
+      "identifiedAt": [
+        "Project Gutenberg: Antony and Cleopatra (ebook 1130)",
+        "Project Gutenberg: Antony and Cleopatra (ebook 1534)",
+        "Project Gutenberg: Antony and Cleopatra (ebook 1796)"
+      ],
+      "copies": [
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "1130",
+          "label": "Gutenberg 1130: Antony and Cleopatra",
+          "language": "en",
+          "translators": []
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "1534",
+          "label": "Gutenberg 1534: Antony and Cleopatra",
+          "language": "en",
+          "translators": []
+        },
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "1796",
+          "label": "Gutenberg 1796: Antony and Cleopatra",
+          "language": "en",
+          "translators": []
+        }
+      ],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null,
+      "reasonLeftOut": "Shakespeare's play is an early modern dramatization rather than an ancient witness, so it ranks below the ancient sources within this budget."
+    },
+    {
+      "author": "Dryden, John",
+      "work": "All for Love",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "1677",
+      "composition_year": 1677,
+      "form": "play",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A tragedy set in the battle's aftermath.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "medium; Actium serves as background",
+      "status": "located",
+      "identifiedAt": [
+        "Project Gutenberg: All for Love; Or, The World Well Lost: A Tragedy (ebook 2062)"
+      ],
+      "copies": [
+        {
+          "system": "gutenberg",
+          "adapter": "gutenberg-html",
+          "identifier": "2062",
+          "label": "Gutenberg 2062: All for Love; Or, The World Well Lost: A Tragedy",
+          "language": "en",
+          "translators": []
+        }
+      ],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null,
+      "reasonLeftOut": "Dryden's tragedy is a later literary reworking set after the battle and adds little evidence about the event."
+    },
+    {
+      "author": "Dellius, Quintus",
+      "work": "History of Antony's wars",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "c. 30 BCE",
+      "composition_year": -30,
+      "form": "lost",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Lost account by a defector from Antony's side, used by Plutarch for the Parthian campaign and the eve of Actium.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "medium; its coverage of Actium itself is uncertain",
+      "status": "identified",
+      "identifiedAt": [
+        "LacusCurtius: Quintus Curtius"
+      ],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Augustus, Emperor of Rome",
+      "work": "Commentarii de vita sua (Autobiography)",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "c. 25 BCE",
+      "composition_year": -25,
+      "form": "lost",
+      "relation": "contemporary",
+      "depends_on": [],
+      "coverage": "Octavian's lost memoir, cited by Plutarch for the casualty figures and the 300 captured ships.",
+      "channels": [
+        "passage-citation",
+        "agent"
+      ],
+      "certainty": "high; Plutarch Ant. 68 cites it for the battle",
+      "status": "identified",
+      "identifiedAt": [
+        "LacusCurtius: The Monumentum Ancyranum"
+      ],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Jerome, Saint",
+      "work": "Chronicon",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "c. 380 CE",
+      "composition_year": 380,
+      "form": "chronicle",
+      "relation": "later",
+      "depends_on": [
+        "Eusebius"
+      ],
+      "coverage": "A chronological notice of the battle and the Actian era.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "author found, work not matched",
+        "authorUrns": [
+          "urn:cts:latinLit:stoa0162"
+        ],
+        "authorWorks": {
+          "urn:cts:latinLit:stoa0162.stoa004": "Epistulae",
+          "urn:cts:latinLit:stoa0162.stoa024": "In Hieremiam Prophetam Libri Sex"
+        }
+      },
+      "readAs": null
+    },
+    {
+      "author": "Castro, Laureys a",
+      "work": "The Battle of Actium (painting)",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "1672",
+      "composition_year": 1672,
+      "form": "painting",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A Baroque marine painting depicting the battle.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "medium-high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Brockhaus and Efron",
+      "work": "Brockhaus and Efron Encyclopedic Dictionary",
+      "locator": "article Actium",
+      "cts_work_urn": "",
+      "composition": "1890-1907",
+      "composition_year": 1895,
+      "form": "reference",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "An encyclopedia entry on the battle.",
+      "channels": [
+        "wikidata-described-by"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Sytin",
+      "work": "Military Encyclopedia (Sytin)",
+      "locator": "article Actium",
+      "cts_work_urn": "",
+      "composition": "1911-1915",
+      "composition_year": 1912,
+      "form": "reference",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A military encyclopedia entry on the battle.",
+      "channels": [
+        "wikidata-described-by"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Shuckburgh, Evelyn Shirley",
+      "work": "A History of Rome to the Battle of Actium",
+      "locator": "pp. 775-784",
+      "cts_work_urn": "",
+      "composition": "1917",
+      "composition_year": 1917,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A detailed narrative of the campaign and the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Scullard, H. H.",
+      "work": "From the Gracchi to Nero",
+      "locator": "pp. 150, 171",
+      "cts_work_urn": "",
+      "composition": "1959 (2013 reprint)",
+      "composition_year": 1959,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A standard narrative of the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Mankiewicz, Joseph L.",
+      "work": "Cleopatra (1963 film)",
+      "locator": "",
+      "cts_work_urn": "",
+      "composition": "1963",
+      "composition_year": 1963,
+      "form": "film",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A film depiction of the battle and Antony's flight.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Carter, John M.",
+      "work": "The Battle of Actium: The Rise & Triumph of Augustus Caesar",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "1970",
+      "composition_year": 1970,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A monograph on the battle and its context.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Pelling, C. B. R.",
+      "work": "Plutarch: Life of Antony",
+      "locator": "p. 281",
+      "cts_work_urn": "",
+      "composition": "1988",
+      "composition_year": 1988,
+      "form": "commentary",
+      "relation": "later",
+      "depends_on": [
+        "Plutarch"
+      ],
+      "coverage": "A critical commentary on Plutarch's Actium chapters.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Murray, William M.",
+      "work": "Octavian's Campsite Memorial for the Actian War",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "1989",
+      "composition_year": 1989,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Archaeology of the Nicopolis victory monument and its ship rams.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Green, Peter",
+      "work": "Alexander to Actium: The Historical Evolution of the Hellenistic Age",
+      "locator": "p. 697",
+      "cts_work_urn": "",
+      "composition": "1990",
+      "composition_year": 1990,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Treats the battle as the end of the Hellenistic age.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Gurval, Robert Alan",
+      "work": "Actium and Augustus: The Politics and Emotions of Civil War",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "1995",
+      "composition_year": 1995,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Examines the battle's commemoration in Augustan poetry and monuments.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Davis, Paul K.",
+      "work": "100 Decisive Battles: From Ancient Times to the Present",
+      "locator": "p. 63",
+      "cts_work_urn": "",
+      "composition": "1999",
+      "composition_year": 1999,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A short entry on the battle as a decisive engagement.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Zachos, Konstantinos L.",
+      "work": "The tropaeum of the sea-battle of Actium at Nikopolis: interim report",
+      "locator": "JRA 16, pp. 64-92",
+      "cts_work_urn": "",
+      "composition": "2003",
+      "composition_year": 2003,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Excavation report on the Actian victory monument.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Eck, Werner",
+      "work": "The Age of Augustus",
+      "locator": "pp. 37-49",
+      "cts_work_urn": "",
+      "composition": "2003",
+      "composition_year": 2003,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A concise modern account of the battle and its aftermath.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Califf, David J.",
+      "work": "Battle of Actium",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "2004",
+      "composition_year": 2004,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "An introductory book on the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Everitt, Anthony",
+      "work": "Augustus: The Life of Rome's First Emperor",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "2006",
+      "composition_year": 2006,
+      "form": "biography",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A popular biography narrating the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Sheppard, Si",
+      "work": "Actium 31 BC: Downfall of Antony and Cleopatra",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "2009",
+      "composition_year": 2009,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "A military campaign study of the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Roller, Duane W.",
+      "work": "Cleopatra: A Biography",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "2010",
+      "composition_year": 2010,
+      "form": "biography",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Cleopatra's role in the campaign and the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Kellum, Barbara",
+      "work": "Representations and Re-presentations of the Battle of Actium",
+      "locator": "pp. 187-203",
+      "cts_work_urn": "",
+      "composition": "2010",
+      "composition_year": 2010,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Visual and literary representations of the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Lange, Carsten Hjort",
+      "work": "The Battle of Actium: A reconsideration (Classical Quarterly 61.2)",
+      "locator": "pp. 608-623",
+      "cts_work_urn": "",
+      "composition": "2011",
+      "composition_year": 2011,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "Reassesses the battle's tactics and significance.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Lendering, Jona",
+      "work": "Actium (31 BCE) (Livius.org)",
+      "locator": "unknown",
+      "cts_work_urn": "",
+      "composition": "2020",
+      "composition_year": 2020,
+      "form": "reference",
+      "relation": "later",
+      "depends_on": [],
+      "coverage": "An online article summarizing the sources on the battle.",
+      "channels": [
+        "wikipedia-reference"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "not in catalogue",
+        "authorUrns": [],
+        "authorWorks": {}
+      },
+      "readAs": null
+    },
+    {
+      "author": "Livy",
+      "work": "Periochae",
+      "locator": "132-133",
+      "cts_work_urn": "",
+      "composition": "c. 4th century CE epitome of Livy",
+      "composition_year": null,
+      "form": "history",
+      "relation": "later",
+      "depends_on": [
+        "Livy"
+      ],
+      "coverage": "Summaries of Livy's lost books narrating Actium and its aftermath.",
+      "channels": [
+        "agent"
+      ],
+      "certainty": "high",
+      "status": "found",
+      "identifiedAt": [],
+      "copies": [],
+      "scaife": {
+        "status": "author found, work not matched",
+        "authorUrns": [
+          "urn:cts:latinLit:phi0914"
+        ],
+        "authorWorks": {
+          "urn:cts:latinLit:phi0914.phi001": "Ab urbe condita"
+        }
+      },
+      "readAs": null
+    }
+  ],
+  "refusedChoices": [],
+  "notes": "Ancient witnesses prioritized: Augustus's own Res Gestae and his lost memoir (cited in Plutarch Ant. 68), Velleius, the Augustan poets (Horace, Virgil, Propertius), Strabo, Suetonius and the Livian tradition (Periochae, Florus, Orosius). Weigall's citations point only to Plutarch, which is already read. Several cited-only-by-page modern works (Kebric, Potter, David & David, Fowler) were omitted as marginal."
+}

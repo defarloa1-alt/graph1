@@ -1,7 +1,8 @@
 """One interface over passage sources, chosen by an inquiry's `source.type`.
 
     perseus-tei        {"edition": <preserved TEI path>, "chapters": "61-68"}
-    lacuscurtius-html  {"pages": [<preserved page paths>], "chapters": "50.11-50.15,50.31-51.2", "translator": ...}
+    lacuscurtius-html  {"pages": [<preserved page paths>], "chapters": "50.11-50.15,50.31-51.2", "translator": ...,
+                        "author": ... (when the pages do not name one)}
     gutenberg-html     {"book": <preserved book path>, "edition": "<printed edition>"}  (refs: chapter.paragraph)
     wikipedia-html     {"article": <preserved parse response path>}  (refs: section.paragraph; 0 is the lead)
 
@@ -62,7 +63,7 @@ def _perseus(config: dict[str, Any], base: Path) -> PassageSource:
     path = base / config["edition"]
     metadata = json.loads(path.with_suffix(".metadata.json").read_text(encoding="utf-8"))
     edition = perseus_passages.load_edition(path, source_commit=path.stem.rsplit("-", 1)[1],
-                                            rights=metadata.get("rights"))
+                                            rights=metadata.get("rights"), cts_urn=metadata.get("ctsUrn"))
 
     def refs(selection: str | None) -> list[str]:
         first, last = (int(n) for n in (selection or "1-999").split("-"))
@@ -78,7 +79,8 @@ def _perseus(config: dict[str, Any], base: Path) -> PassageSource:
 
 def _lacuscurtius(config: dict[str, Any], base: Path) -> PassageSource:
     edition = lacuscurtius_passages.load_edition([base / page for page in config["pages"]],
-                                                 translator=config.get("translator"), language=config.get("language"))
+                                                 translator=config.get("translator"), language=config.get("language"),
+                                                 author=config.get("author"))
     return PassageSource(
         author=edition.author, title=edition.title, translator=edition.translator, citation=edition.citation,
         refs=lambda selection: lacuscurtius_passages.section_refs(edition, selection) if selection else edition.all_refs(),

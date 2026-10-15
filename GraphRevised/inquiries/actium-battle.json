@@ -1,6 +1,6 @@
 {
   "id": "chr:inquiry:actium-battle",
-  "version": 4,
+  "version": 6,
   "label": "The Battle of Actium, as its sources tell it",
   "subjectId": "chr:subject:history-of-battle-of-actium",
   "narrativeEventId": "chr:entity:battle-of-actium",
@@ -59,6 +59,60 @@
       "article": "phase-8-source/wikipedia-en-battle-of-actium-r1378178531.json",
       "workId": "chr:entity:wikipedia-en-battle-of-actium",
       "voice": "Wikipedia",
+      "contextWindow": {
+        "before": 2,
+        "after": 1
+      }
+    },
+    {
+      "type": "perseus-tei",
+      "edition": "phase-9-source/perseus-phi0690.phi003.perseus-eng2-128a05afa9cc7179ab18f8d05f78a9f1dd50e415.xml",
+      "workId": "chr:entity:proposed-work-virgil-aeneid",
+      "voice": "Virgil",
+      "contextWindow": {
+        "before": 2,
+        "after": 1
+      }
+    },
+    {
+      "type": "perseus-tei",
+      "edition": "phase-9-source/perseus-tlg0099.tlg001.perseus-eng4-0189b9c8d8d1f148133f2f0af309b4ee90ea4332.xml",
+      "workId": "chr:entity:proposed-work-strabo-geography",
+      "voice": "Strabo",
+      "contextWindow": {
+        "before": 2,
+        "after": 1
+      }
+    },
+    {
+      "type": "lacuscurtius-html",
+      "pages": [
+        "phase-9-source/lacuscurtius-velleius-paterculus-1-html-3c99a06c.html",
+        "phase-9-source/lacuscurtius-velleius-paterculus-2a-html-1f023b73.html",
+        "phase-9-source/lacuscurtius-velleius-paterculus-2b-html-f198e31e.html",
+        "phase-9-source/lacuscurtius-velleius-paterculus-2c-html-45a8b33f.html",
+        "phase-9-source/lacuscurtius-velleius-paterculus-2d-html-66eef552.html"
+      ],
+      "workId": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+      "voice": "Velleius Paterculus",
+      "contextWindow": {
+        "before": 2,
+        "after": 1
+      }
+    },
+    {
+      "type": "lacuscurtius-html",
+      "author": "Augustus",
+      "pages": [
+        "phase-9-source/lacuscurtius-augustus-res-gestae-1-html-49c4023c.html",
+        "phase-9-source/lacuscurtius-augustus-res-gestae-2-html-6bd535c7.html",
+        "phase-9-source/lacuscurtius-augustus-res-gestae-3-html-1530d6b1.html",
+        "phase-9-source/lacuscurtius-augustus-res-gestae-4-html-4cc7dc03.html",
+        "phase-9-source/lacuscurtius-augustus-res-gestae-5-html-acd39ff7.html",
+        "phase-9-source/lacuscurtius-augustus-res-gestae-6-html-93e505b7.html"
+      ],
+      "workId": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+      "voice": "Augustus",
       "contextWindow": {
         "before": 2,
         "after": 1

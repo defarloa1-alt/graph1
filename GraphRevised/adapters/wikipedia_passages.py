@@ -113,6 +113,22 @@ def load_article(path: Path) -> Article:
                    infobox_links=infobox)
 
 
+def references(path: Path) -> list[str]:
+    """The article's footnotes and bibliography entries as plain text, each once, in order.
+
+    They are candidate sources for a source plan (doc 29 §3 step 3), never passages."""
+    payload = json.loads(path.read_bytes())["parse"]["text"]
+    soup = BeautifulSoup(payload if isinstance(payload, str) else payload["*"], "html.parser")
+    for style in soup.find_all("style"):
+        style.decompose()
+    found: list[str] = []
+    for element in soup.select("span.reference-text") + soup.find_all("cite"):
+        text = re.sub(r"\s+", " ", element.get_text(" ")).strip()
+        if text and not any(text in earlier for earlier in found):
+            found.append(text)
+    return found
+
+
 def _title(href: str | None) -> str | None:
     """The article an internal link points to, or None for any other link."""
     if not href or not href.startswith("/wiki/"):

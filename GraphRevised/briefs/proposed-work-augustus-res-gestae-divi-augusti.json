@@ -1,0 +1,202 @@
+{
+  "workId": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 6,
+  "createdAt": "2026-10-15T20:07:34.637216+00:00",
+  "promptVersion": "source-brief-v2-0a0f246a",
+  "readingRulesVersion": 1,
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 19339,
+  "outputTokens": 2674,
+  "requestId": "req_011Cg4dFsv5ZNzfy9jHRUbdB",
+  "sample": {
+    "refs": [
+      "1.1L.1",
+      "1.1G.1",
+      "1.1.1",
+      "1.1G.14",
+      "1.2.1",
+      "1.1L.20",
+      "1.3.1",
+      "1.1L.28",
+      "1.4.1",
+      "1.5.1",
+      "1.6.1",
+      "2.2L.1",
+      "2.8.1",
+      "2.10.1",
+      "2.11.1",
+      "2.12.1",
+      "2.13.1",
+      "3.14.1",
+      "3.3L.8",
+      "3.3L.10",
+      "3.3L.15",
+      "3.3L.17",
+      "3.3L.19",
+      "3.15.1",
+      "3.16.1",
+      "3.17.1",
+      "3.18.1",
+      "4.19.1",
+      "4.4L.17",
+      "4.4L.19",
+      "4.20.1",
+      "4.4L.28",
+      "4.21.1",
+      "4.4L.37",
+      "4.4L.38",
+      "4.22.1",
+      "4.23.1",
+      "4.24.1",
+      "5.5L.4",
+      "5.25.1",
+      "5.26.1",
+      "5.27.1",
+      "5.28.1",
+      "5.29.1",
+      "5.30.1",
+      "5.31.1",
+      "6.32.1",
+      "6.33.1",
+      "6.6L.16",
+      "6.34.1",
+      "6.35.1",
+      "6.S1.1",
+      "6.S2.1",
+      "6.S3.1",
+      "6.S4.1"
+    ],
+    "characters": 23786,
+    "budget": 60000
+  },
+  "conventions": [
+    {
+      "kind": "naming",
+      "rule": "The author speaks of himself in the first person throughout, so every I, me and my in the narrative is Augustus. When he says his father he means his adoptive father Julius Caesar, and his son Gaius is his adopted grandson, not Augustus himself, even though Gaius Caesar is one of his own aliases.",
+      "why": "Without this the reader may fail to link first-person actions to Augustus, or may attach references to the father or to the son Gaius to the wrong in-scope person.",
+      "evidence": [
+        {
+          "ref": "1.2.1",
+          "quotation": "Those who slew my father I drove into exile"
+        },
+        {
+          "ref": "5.27.1",
+          "quotation": "was subdued by my son Gaius"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "The author never names his opponents in the civil wars. He calls them only by a role, such as his antagonist in the war or the killers of his father. Link such a reference to an in-scope person, such as Mark Antony, only where the context makes the identity certain, and otherwise leave it unlinked.",
+      "why": "Antony and Cleopatra are never named, so a reader looking for their names will miss these references or over-assign them.",
+      "evidence": [
+        {
+          "ref": "4.24.1",
+          "quotation": "my antagonist in the war, when he despoiled the temples"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Names that appear in consular year-formulas may belong to namesakes rather than to the in-scope people. The Marcus Lepidus and Sextus Pompeius in these formulas are later consuls, not the triumvir Lepidus or Sextus Pompey. A Lucius Arruntius in such a formula may be either the in-scope admiral or a later namesake, so decide from context.",
+      "why": "Matching these names to in-scope aliases would create false identifications.",
+      "evidence": [
+        {
+          "ref": "3.17.1",
+          "quotation": "in the consul­ship of Marcus Lepidus and Lucius Arruntius"
+        },
+        {
+          "ref": "2.8.1",
+          "quotation": "in the consul­ship of Sextus Pompeius and Sextus Apuleius"
+        },
+        {
+          "ref": "1.5.1",
+          "quotation": "in the consul­ship of Marcus Marcellus and Lucius Arruntius"
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "The source dates events by naming the consuls of the year, by counting the author's own consulships, or by counting the years of his tribunician power. It never gives an era year. Keep these as time expressions in the source's own words, and do not add time_edtf converted from them.",
+      "why": "These formulas are not stated years, and converting them would be the reader's inference.",
+      "evidence": [
+        {
+          "ref": "3.15.1",
+          "quotation": "In the eighteenth year of my tribunician power, as consul for the twelfth time"
+        },
+        {
+          "ref": "2.11.1",
+          "quotation": "in the consul­ship of Quintusº Lucretius and Marcus Vinucius"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "This is the victor's own self-commemorating account. It credits him with the successes of operations carried out by his subordinates under his auspices, and it presents the civil wars as restoring the republic. Do not treat his first-person claims of victory as showing that he was personally present or in command. Draft his framing of the wars as his own claim, not as plain fact.",
+      "why": "Augustus gives himself authority over everything done under his auspices, which can mislead participatedIn and commanded claims.",
+      "evidence": [
+        {
+          "ref": "1.4.1",
+          "quotation": "conducted either by myself or by my lieutenants under my auspices"
+        },
+        {
+          "ref": "1.1G.14",
+          "quotation": "I restored liberty to the republic, which had been oppressed by the tyranny of a faction"
+        },
+        {
+          "ref": "record",
+          "quotation": "Octavian's own contemporary account of the war and the victory at Actium"
+        }
+      ]
+    },
+    {
+      "kind": "other",
+      "rule": "Most numbers and achievements are career totals summed over all of the author's wars, not figures for a single battle. Do not attach a total of ships, men or triumphs to Actium unless the passage ties it there.",
+      "why": "Totals such as the number of captured ships are easily mistaken for Actium figures.",
+      "evidence": [
+        {
+          "ref": "1.3.1",
+          "quotation": "I captured six hundred ships, over and above those which were smaller than triremes"
+        }
+      ]
+    },
+    {
+      "kind": "apparatus",
+      "rule": "Some passages are fragments of the Latin or Greek inscription text that the English translation repeats, and one passage begins with a Greek fragment before the English starts. Draft from the English only, and never count the same statement twice. Treat paragraph signs, raised markers, dots and ellipses marking gaps, and stray headings as editorial matter.",
+      "why": "The parallel-language fragments duplicate content, and the markers are not the author's words.",
+      "evidence": [
+        {
+          "ref": "5.5L.4",
+          "quotation": "me belli, quó víci ad Actium, ducem depoposcit"
+        },
+        {
+          "ref": "1.1G.14",
+          "quotation": "γμάτων εἵλατο. At the age of nineteen"
+        },
+        {
+          "ref": "6.35.1",
+          "quotation": "I was in my seventy-sixth year. Summary"
+        }
+      ]
+    },
+    {
+      "kind": "apparatus",
+      "rule": "The introductory heading and the closing summary speak of Augustus in the third person and were added by others, not written by him. Do not attribute their content to Augustus as author.",
+      "why": "These framing texts follow a different voice and authorship from the first-person account.",
+      "evidence": [
+        {
+          "ref": "6.S1.1",
+          "quotation": "The sum total of the money which he contributed to the treasury"
+        },
+        {
+          "ref": "1.1.1",
+          "quotation": "Below is a copy of the acts of the Deified Augustus"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "notes": "Actium itself is mentioned only once in the sample, as the war in which Italy chose him as leader, and none of the battle's steps are narrated there. The translation also uses several words for Augustus, such as princeps, imperator and the title Augustus. Distinguish the title, which is an in-scope office, from the person."
+}

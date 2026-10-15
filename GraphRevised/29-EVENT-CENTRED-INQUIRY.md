@@ -267,6 +267,41 @@ The reader's run log records the reading rules' version and the brief used.
 Not yet re-read with the briefs: the five sources were read with the hand
 guidance of v3.
 
+**The event source plan and the inquiry builder (built 2026-10-15; §3 step 3,
+§6).** [discovery/event_source_plan.py](discovery/event_source_plan.py)
+(`event-source-plan-v1`, two calls): the agent reads the Wikipedia article's 56
+references, the citations in the passages already read, and Wikidata's
+"described by source" into candidate works and adds the witnesses it knows;
+each is then checked deterministically at the registry's catalogues (Scaife,
+the Gutenberg catalogue, the LacusCurtius index of Roman texts,
+[adapters/text_catalogues.py](adapters/text_catalogues.py)); statuses in words
+(found, identified, located, chosen, read); a lost work is never located, and a
+title must share at least two distinctive words with a catalogue entry (the
+first run located a 2009 history through a children's book of verse, and lost
+works through their authors' other books; the choosing agent caught both, and
+the rules now do). The agent chose four within a budget of four, each with its
+reason: Virgil *Aeneid* (Perseus, Williams 1910), Augustus *Res Gestae*
+(LacusCurtius, Loeb 1924), Strabo *Geography* (Perseus, Hamilton and Falconer
+1854-57), Velleius Paterculus (LacusCurtius, Loeb). Located and left out, each
+with a reason: Horace *Odes* and *Epodes*, Propertius, Suetonius, Florus,
+Orosius, Eutropius, Josephus, Shakespeare, Dryden. Plan:
+[plans/actium-battle-event-sources-20261015T195841Z.json](plans/actium-battle-event-sources-20261015T195841Z.json).
+
+[discovery/inquiry_builder.py](discovery/inquiry_builder.py) (dry run by
+default) preserves each chosen copy under the registry's rule (a Perseus
+translation public domain in the US by its publication year, from the
+openly licensed repositories only; a LacusCurtius page with exactly one
+asterisk; a Gutenberg book whose catalogue page reads public domain in the
+USA), proves the reader can open it, proposes its Work with the plan's form,
+adds it to the inquiry, and has the briefing agent write its brief. The
+battle inquiry is now v6 with nine sources (new: 327, 1,516, 635, and 754
+passages); 31 conventions for the four new briefs, one rejected. Adapters
+generalised on the way: Perseus passages are the deepest numbered divisions
+at any depth (Strabo's book.chapter.section, the *Aeneid*'s book.card;
+divisions numbered without a digit, such as a translator's argument, are
+apparatus); a LacusCurtius page that names no author (the *Res Gestae*) takes
+it from the plan. Not yet read: the four new sources (next step 1c).
+
 **Wikipedia first contact (built 2026-10-15; §3 steps 1–2, §5).**
 `python -m GraphRevised.harvest.wikipedia_contact <QID> [--apply] [--limit 50]`:
 the article is found through the Wikidata record's sitelink, fetched at a fixed

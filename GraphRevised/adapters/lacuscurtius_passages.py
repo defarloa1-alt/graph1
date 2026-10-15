@@ -34,6 +34,12 @@ REPRODUCES = re.compile(
     r"This webpage reproduces (?:a|an|the) (?:Book|Part|Chapter)?\s*(?:of )?(?P<title>.+?) by (?P<author>.+?) "
     r"published in (?P<publication>.+?\d{4})"
 )
+# Some works name no author in the statement ("a section of The Res Gestae ... as published in ...");
+# the author then comes from the source configuration.
+REPRODUCES_UNSIGNED = re.compile(
+    r"This webpage reproduces (?:a|an|the) (?:section|Book|Part|Chapter)\s+of (?P<title>.+?) "
+    r"as published in (?P<publication>.+?\d{4})"
+)
 
 
 class PassageNotFound(LookupError):
@@ -85,7 +91,7 @@ def preserve_page(url: str, directory: Path) -> Path:
     path.write_bytes(payload)
     text = _plain(payload.decode("utf-8", "replace"))
     updated = re.search(r"Page updated: ([^<]+?\d{2})\b", text)
-    rights = REPRODUCES.search(text)
+    rights = REPRODUCES.search(text) or REPRODUCES_UNSIGNED.search(text)
     metadata = {
         "sourceSystem": "LacusCurtius",
         "sourceUri": url,
@@ -100,8 +106,10 @@ def preserve_page(url: str, directory: Path) -> Path:
     return path
 
 
-def load_edition(paths: list[Path], *, translator: str | None = None, language: str | None = None) -> Edition:
-    """Load preserved pages. The language comes from `language` or the page's /Thayer/<letter>/ path."""
+def load_edition(paths: list[Path], *, translator: str | None = None, language: str | None = None,
+                 author: str | None = None) -> Edition:
+    """Load preserved pages. The language comes from `language` or the page's /Thayer/<letter>/ path;
+    the author from the page's statement of what it reproduces, else from `author`."""
     pages = [_load_page(path) for path in paths]
     if not pages:
         raise ValueError("no pages")
@@ -112,14 +120,17 @@ def load_edition(paths: list[Path], *, translator: str | None = None, language: 
             raise ValueError(f"the language of {pages[0].source_uri} is not known; give it in the source config")
     first = pages[0].path.read_bytes().decode("utf-8", "replace")
     match = REPRODUCES.search(_plain(first))
-    if not match:
-        raise ValueError(f"{pages[0].path.name} does not say what it reproduces")
+    unsigned = None if match else REPRODUCES_UNSIGNED.search(_plain(first))
+    if not match and not (unsigned and author):
+        raise ValueError(f"{pages[0].path.name} does not say what it reproduces"
+                         + (" or by whom; give the author in the source config" if unsigned else ""))
+    match = match or unsigned
     citation = "; ".join(part for part in (
         f"{match['title']}", f"trans. {translator}" if translator else None, match["publication"],
         "transcribed by Bill Thayer, LacusCurtius",
     ) if part)
     return Edition(
-        author=match["author"], title=match["title"], translator=translator, citation=citation,
+        author=match.groupdict().get("author") or author, title=match["title"], translator=translator, citation=citation,
         work_slug=_work_slug(pages[0].source_uri), language=language, pages=tuple(pages),
     )
 

@@ -1,0 +1,204 @@
+{
+  "workId": "chr:entity:proposed-work-strabo-geography",
+  "inquiry": "chr:inquiry:actium-battle",
+  "inquiryVersion": 5,
+  "createdAt": "2026-10-15T20:05:14.403737+00:00",
+  "promptVersion": "source-brief-v2-0a0f246a",
+  "readingRulesVersion": 1,
+  "model": "claude-opus-5-5",
+  "stopReason": "end_turn",
+  "inputTokens": 30544,
+  "outputTokens": 2629,
+  "requestId": "req_011Cg4d5fnnYvPx5rsbKvGTP",
+  "sample": {
+    "refs": [
+      "1.1.1",
+      "1.1.2",
+      "1.1.3",
+      "2.3.4",
+      "2.3.5",
+      "4.4.1",
+      "6.1.12",
+      "6.2.3",
+      "7.7.6",
+      "8.4.3",
+      "9.2.22",
+      "11.13.3",
+      "11.13.4",
+      "11.14.15",
+      "12.3.6",
+      "12.3.14",
+      "12.8.9",
+      "12.8.16",
+      "13.1.30",
+      "14.1.14",
+      "14.5.3",
+      "14.5.10",
+      "14.5.14",
+      "14.6.6",
+      "16.1.28",
+      "16.2.46",
+      "17.1.9",
+      "17.1.10",
+      "17.1.11",
+      "17.3.7",
+      "17.3.15"
+    ],
+    "characters": 59984,
+    "budget": 60000
+  },
+  "conventions": [
+    {
+      "kind": "naming",
+      "rule": "The bare name Caesar is used for two men: sometimes for Julius Caesar (often marked with the deified title divus) and sometimes for Augustus, who is otherwise usually called Augustus Caesar. Decide from context which man is meant each time; do not assume either by default.",
+      "why": "Misreading Caesar would attach claims to the wrong person.",
+      "evidence": [
+        {
+          "ref": "4.4.1",
+          "quotation": "the Veneti, who fought a naval battle with Caesar"
+        },
+        {
+          "ref": "7.7.6",
+          "quotation": "but Caesar has conferred on it greater honours"
+        },
+        {
+          "ref": "12.3.14",
+          "quotation": "after it had been declared free by Divus Caesar"
+        },
+        {
+          "ref": "12.8.9",
+          "quotation": "attached himself to the generals of Caesar"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Nicopolis names two different foundations: the city on the Ambracian Gulf near the Actium promontory, which is the in-scope Nicopolis, and a suburb near Alexandreia marking the later victory over Antony in Egypt. Link only the first to the in-scope place.",
+      "why": "The Egyptian Nicopolis belongs to the war's end at Alexandria, not to Actium.",
+      "evidence": [
+        {
+          "ref": "7.7.6",
+          "quotation": "collected their remaining inhabitants into one city, which he called Nicopolis, situated upon the gulf"
+        },
+        {
+          "ref": "17.1.10",
+          "quotation": "After passing through the Hippodromos is the Nicopolis"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "Cleopatra can denote an earlier Ptolemaic queen as well as the queen allied with Antony; check the surrounding reign before linking. Alexandria is spelled Alexandreia in places.",
+      "why": "An earlier Cleopatra appears in the same source and must not be merged with the in-scope queen.",
+      "evidence": [
+        {
+          "ref": "2.3.4",
+          "quotation": "On the death of that prince, his widow, Cleopatra, assumed the reins of government"
+        },
+        {
+          "ref": "17.1.9",
+          "quotation": "he retired to Alexandreia after his defeat at Actium"
+        }
+      ]
+    },
+    {
+      "kind": "naming",
+      "rule": "The source speaks both of the Actian or Actiac war, meaning the whole final civil war, and of the battle or victory at Actium itself. Link the war wording to the Final War of the Roman Republic and the battle wording to the 31 BCE Battle of Actium.",
+      "why": "An episode placed in the war is not thereby part of the battle.",
+      "evidence": [
+        {
+          "ref": "8.4.3",
+          "quotation": "There Agrippa killed, in the Actian war, Bogus"
+        },
+        {
+          "ref": "11.14.15",
+          "quotation": "On the breaking out of the Actiac war he was then put to death"
+        },
+        {
+          "ref": "12.3.6",
+          "quotation": "after the victory at Actium, he was led in triumph"
+        }
+      ]
+    },
+    {
+      "kind": "other",
+      "rule": "This is a regional geography: the battle and its aftermath appear only as brief asides attached to places, with no narrative of the fighting. Draft only what the aside states, and do not build steps of the action from a place description.",
+      "why": "Over-reading short asides would invent depicted events the source does not give.",
+      "evidence": [
+        {
+          "ref": "7.7.6",
+          "quotation": "He called it after the victory which he obtained in front of the gulf"
+        },
+        {
+          "ref": "17.1.11",
+          "quotation": "He was present with her at the battle of Actium, and accompanied her in her flight."
+        }
+      ]
+    },
+    {
+      "kind": "dating",
+      "rule": "Times are given relative to the battle or to the author's own day rather than as years; keep these relative expressions as the time wording and treat present-tense descriptions and references to the author's era as his own time, about the start of the first century CE.",
+      "why": "Present tense describes the author's day, not the battle period.",
+      "evidence": [
+        {
+          "ref": "12.3.6",
+          "quotation": "A little before the battle of Actium, Adiatorix"
+        },
+        {
+          "ref": "17.1.10",
+          "quotation": "which are now abandoned on account of the erection of the temples at Nicopolis"
+        },
+        {
+          "ref": "14.6.6",
+          "quotation": "Cleopatra, the queen of Egypt in our time"
+        }
+      ]
+    },
+    {
+      "kind": "stance",
+      "rule": "The author often marks hearsay, alternative versions, or his own opinion; carry such hedges into the claim as reported or uncertain rather than as plain fact, and attribute figures he takes from named writers to them.",
+      "why": "Hedged or attributed statements are not the author's firm assertion.",
+      "evidence": [
+        {
+          "ref": "7.7.6",
+          "quotation": "were destroyed, it is said, by fire"
+        },
+        {
+          "ref": "17.1.10",
+          "quotation": "or (for there are two accounts) by the application of a poisonous ointment"
+        },
+        {
+          "ref": "11.13.3",
+          "quotation": "according to Dellius, the friend of Antony"
+        }
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "kind": "apparatus",
+      "rule": "Square-bracketed words are translator supplements, and the text also carries inline poem citations, asterisk lacunae, and parenthetical variant readings or queried figures. Do not treat these as the author's words.",
+      "why": "Editorial matter is mixed into the passage text without separation.",
+      "evidence": [
+        {
+          "ref": "2.3.4",
+          "quotation": "brought to the king by the [coast]-guard of the Arabian Gulf"
+        },
+        {
+          "ref": "1.1.3",
+          "quotation": "Iliad vii. 421"
+        },
+        {
+          "ref": "12.3.14",
+          "quotation": "* * * * * [then by] a chief of the Cappadocians"
+        },
+        {
+          "ref": "7.7.6",
+          "quotation": "founded by Gorgus, (Torgus, Tolgus,) the son of Cypselus"
+        }
+      ],
+      "reason": "evidence not found verbatim: ['1.1.3']"
+    }
+  ],
+  "notes": "Sample contains no battle narrative; relevant matter is limited to asides on the Actium sanctuary, ship dedications, Nicopolis, and the war's wider effects. Speeches quoted are anecdotal and unrelated to the event, so no speech convention is written."
+}

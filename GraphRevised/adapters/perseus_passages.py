@@ -3,17 +3,28 @@
 The passage text excludes editorial notes: in Perseus translations a `<note>`
 is the modern editor's or translator's scholarship, not the ancient author's
 text. Notes are kept separately so they are never cited as the source.
+
+A passage is a deepest text division, at any depth (chapter.section in a Life,
+book.card in a poem, book.chapter.section in a geography), its ref the divisions'
+numbers joined by dots. Divisions numbered without a digit (front matter, a
+translator's preface or argument) are apparatus, not the author's text, and are
+not passages.
 """
 
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import requests
+
+from .wikidata_identity import USER_AGENT
 from .wikidata_statements import REPOSITORY_ROOT
 
 TEI = "{http://www.tei-c.org/ns/1.0}"
@@ -43,7 +54,7 @@ class Edition:
     rights: str | None = None  # the preserved metadata's rights statement, when recorded
 
 
-def load_edition(path: Path, *, source_commit: str, rights: str | None = None) -> Edition:
+def load_edition(path: Path, *, source_commit: str, rights: str | None = None, cts_urn: str | None = None) -> Edition:
     payload = path.read_bytes()
     root = ET.fromstring(payload)
     text_element = root.find(".//t:text", NS)
@@ -72,7 +83,7 @@ def load_edition(path: Path, *, source_commit: str, rights: str | None = None) -
     licence = root.find(".//t:availability/t:licence", NS)
     return Edition(
         path=path,
-        cts_urn=edition_div.get(f"{TEI}n") or edition_div.get("n"),
+        cts_urn=edition_div.get(f"{TEI}n") or edition_div.get("n") or cts_urn,
         title=_text(title_stmt.find("t:title", NS)),
         author=_text(title_stmt.find("t:author", NS)),
         translator=_text(translator) if translator is not None else None,
@@ -86,20 +97,43 @@ def load_edition(path: Path, *, source_commit: str, rights: str | None = None) -
     )
 
 
+def passages(edition: Edition) -> list[tuple[str, ET.Element]]:
+    """Every passage in document order: (ref, its deepest text division)."""
+    found: list[tuple[str, ET.Element]] = []
+
+    def walk(element: ET.Element, numbers: list[str]) -> None:
+        divisions = element.findall("t:div", NS)
+        if not divisions:
+            if numbers:
+                found.append((".".join(numbers), element))
+            return
+        for division in divisions:
+            n = division.get("n") or ""
+            if re.search(r"\d", n):
+                walk(division, numbers + [n])
+
+    walk(edition.root.find(".//t:body/t:div", NS), [])
+    return found
+
+
+_INDEXES: dict[str, dict[str, ET.Element]] = {}
+
+
+def _index(edition: Edition) -> dict[str, ET.Element]:
+    """The passages by ref, built once per edition (by its hash)."""
+    if edition.content_hash not in _INDEXES:
+        _INDEXES[edition.content_hash] = dict(passages(edition))
+    return _INDEXES[edition.content_hash]
+
+
 def section_refs(edition: Edition, chapters: range) -> list[str]:
-    refs = []
-    for chapter in edition.root.iterfind(".//t:body/t:div/t:div", NS):
-        if int(chapter.get("n")) in chapters:
-            refs.extend(f"{chapter.get('n')}.{section.get('n')}" for section in chapter.findall("t:div", NS))
-    return refs
+    """The passages whose first number (the chapter, or the book) is in the range."""
+    return [ref for ref, _ in passages(edition) if ref.split(".")[0].isdigit() and int(ref.split(".")[0]) in chapters]
 
 
 def passage_observation(edition: Edition, ref: str, *, retrieved_at: str, source_uri: str) -> dict[str, Any]:
     """Return parameters for the `upsert_passage_observation` operation."""
-    chapter_n, section_n = ref.split(".", 1)
-    section = edition.root.find(
-        f".//t:body/t:div/t:div[@n='{chapter_n}']/t:div[@n='{section_n}']", NS
-    )
+    section = _index(edition).get(ref)
     if section is None:
         raise PassageNotFound(f"{edition.cts_urn}:{ref}")
 
@@ -156,3 +190,62 @@ def _section_text(section: ET.Element) -> tuple[str, list[str]]:
 
 def _text(element: ET.Element | None) -> str:
     return normalize("".join(element.itertext())) if element is not None else ""
+
+
+# The Perseus repositories whose README licenses all their contents CC BY-SA 4.0 (checked 2026-10-15,
+# curation/sources.json); editions in other repositories carry their own terms and are not preserved here.
+REPOSITORIES = {"greekLit": "PerseusDL/canonical-greekLit", "latinLit": "PerseusDL/canonical-latinLit"}
+MARKUP_RIGHTS = ("TEI markup CC BY-SA 4.0, Perseus Digital Library, Tufts University; redistribution of this "
+                 "file requires attribution and the same licence.")
+
+
+def public_domain_in_us(year: int, today: datetime | None = None) -> bool:
+    """Published more than 95 years before this year (US term for works published 1929 and later)."""
+    return year <= (today or datetime.now(timezone.utc)).year - 96
+
+
+def preserve_edition(edition_urn: str, directory: Path) -> Path:
+    """Fetch a Perseus TEI edition at the repository's current commit, once, with its metadata.
+
+    Refused unless the repository licenses its contents openly and the translation's own
+    publication year makes it public domain in the US."""
+    namespace, rest = edition_urn.removeprefix("urn:cts:").split(":", 1)
+    if namespace not in REPOSITORIES:
+        raise ValueError(f"{edition_urn}: no openly licensed Perseus repository for {namespace}")
+    repository = REPOSITORIES[namespace]
+    textgroup, work, _ = rest.split(".", 2)
+    commit = requests.get(f"https://api.github.com/repos/{repository}/commits/master",
+                          headers={"User-Agent": USER_AGENT}, timeout=60).json()["sha"]
+    path = directory / f"perseus-{rest}-{commit}.xml"
+    if path.exists():
+        return path
+    file_path = f"data/{textgroup}/{work}/{rest}.xml"
+    source_uri = f"https://raw.githubusercontent.com/{repository}/{commit}/{file_path}"
+    response = requests.get(source_uri, headers={"User-Agent": USER_AGENT}, timeout=120)
+    response.raise_for_status()
+    payload = response.content
+    root = ET.fromstring(payload)
+    imprint_date = root.find(".//t:sourceDesc//t:imprint/t:date", NS)
+    years = [int(y) for y in re.findall(r"\b(1[5-9]\d\d|20\d\d)\b", _text(imprint_date))]
+    if not years or not public_domain_in_us(max(years)):
+        raise ValueError(f"{edition_urn}: the edition's publication year ({_text(imprint_date) or 'none'}) "
+                         "does not make it public domain in the US")
+    directory.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(payload)
+    translator = root.find(".//t:titleStmt/t:editor[@role='translator']", NS)
+    metadata = {
+        "sourceSystem": "Perseus",
+        "repository": repository,
+        "path": file_path,
+        "sourceRevision": commit,
+        "sourceUri": source_uri,
+        "ctsUrn": edition_urn,
+        "work": f"{_text(root.find('.//t:titleStmt/t:author', NS))}, {_text(root.find('.//t:titleStmt/t:title', NS))}",
+        "translator": _text(translator) or None,
+        "edition": _text(root.find(".//t:sourceDesc//t:monogr/t:title", NS)) + f" ({_text(imprint_date)})",
+        "rights": f"Translation public domain in the US (published {max(years)}). {MARKUP_RIGHTS}",
+        "retrievedAt": datetime.now(timezone.utc).isoformat(),
+        "contentHash": hashlib.sha256(payload).hexdigest(),
+    }
+    path.with_suffix(".metadata.json").write_bytes((json.dumps(metadata, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+    return path
