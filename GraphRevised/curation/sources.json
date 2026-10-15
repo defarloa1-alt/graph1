@@ -1,0 +1,260 @@
+{
+  "description": "The source registry (29-EVENT-CENTRED-INQUIRY.md §6): the machine-readable companion to docs/Agent resources.md. One entry per source system: what it covers, how to discover and fetch from it, its identifier scheme, its rights as the source itself states them and when that was checked, its limitations, and the adapter that reads it. A starting point, not a whitelist: the agent consults it first and may propose sources beyond it; discovery is not acceptance. Rights are quoted from the source's own pages, never from memory or an aggregator (handoff rule 17).",
+  "version": 1,
+  "rightsClasses": {
+    "A": "ingestible: machine-readable, with an explicit licence that allows preserving and quoting; attribution and share-alike obligations kept",
+    "B": "conditional: rights vary by item, edition, or translation; each item is checked before it is preserved",
+    "C": "consultative: free to read; the agent may cite and record identifiers, but copying or automated reuse is restricted or unclear"
+  },
+  "statuses": {
+    "read": "an adapter exists and passages from it are in the graph",
+    "registered": "rights checked at the source; no adapter yet",
+    "candidate": "named in docs/Agent resources.md; rights not yet checked at the source"
+  },
+  "sources": [
+    {
+      "id": "perseus",
+      "label": "Perseus Digital Library (Scaife Viewer)",
+      "homepage": "https://scaife.perseus.org/",
+      "status": "read",
+      "kind": "text library",
+      "coverage": {
+        "languages": ["grc", "lat", "eng"],
+        "description": "Greek and Latin literature in TEI editions, with English translations (many Loeb translations of the 1910s-1920s). The Scaife Viewer draws its texts from public GitHub repositories, among them PerseusDL/canonical-greekLit, PerseusDL/canonical-latinLit, and OpenGreekAndLatin/First1KGreek.",
+        "evidence": ["literary text"]
+      },
+      "discover": {
+        "method": "catalogue",
+        "endpoint": "https://scaife.perseus.org/library/json/",
+        "how": "The library catalogue lists every CTS text group, work, and edition; adapters/scaife_catalog.py caches it with its hash. A candidate is identified when its work URN is in the catalogue."
+      },
+      "fetch": {
+        "method": "Git (raw file at a fixed commit)",
+        "pattern": "https://raw.githubusercontent.com/PerseusDL/{repository}/{commit}/data/{textgroup}/{work}/{edition}.xml",
+        "how": "The TEI file at a pinned commit, preserved with its hash; the commit is the revision."
+      },
+      "identifiers": {
+        "scheme": "CTS URN",
+        "example": "urn:cts:greekLit:tlg0007.tlg058.perseus-eng2 (Plutarch, Antony; Perrin's translation)"
+      },
+      "rights": {
+        "class": "A/B",
+        "statement": "all contents of this repository are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License. ... You must offer Perseus any modifications you make.",
+        "statementUri": "https://github.com/PerseusDL/canonical-latinLit",
+        "alsoStated": "Tufts University holds the overall copyright to the Perseus Digital Library; materials within it have varying copyright status (the same README). Scaife's about page: the viewer's code is open source under an MIT licence; texts come from the repositories listed.",
+        "checkedAt": "2026-10-15",
+        "perItem": "Each repository's README and the edition's TEI header; the translation's own publication date decides its public-domain status (Perrin, 1920: public domain in the US).",
+        "obligations": ["attribution (Perseus Digital Library, Tufts University)", "share-alike for the TEI markup"]
+      },
+      "limitations": [
+        "Scaife's web pages are behind bot protection (Anubis, 2026-10-15); the catalogue JSON and GitHub raw files are reachable.",
+        "Repositories other than PerseusDL's carry their own licences; check each before preserving.",
+        "Translations are mostly a century old; the translation is a voice of its own (the translator is recorded)."
+      ],
+      "adapter": {"type": "perseus-tei", "module": "adapters/perseus_passages.py", "catalogue": "adapters/scaife_catalog.py"}
+    },
+    {
+      "id": "lacuscurtius",
+      "label": "LacusCurtius (Bill Thayer)",
+      "homepage": "https://penelope.uchicago.edu/Thayer/E/home.html",
+      "status": "read",
+      "kind": "text library",
+      "coverage": {
+        "languages": ["eng", "lat", "grc"],
+        "description": "Greek and Roman authors in English (Loeb and other public-domain translations), some with the original text, proofread or marked unproofread page by page; also topography and inscriptions of Rome and Italy.",
+        "evidence": ["literary text", "inscription"]
+      },
+      "discover": {
+        "method": "browse",
+        "how": "No machine-readable catalogue. The site's index pages list authors and works; the agent finds a work's pages there and records their URLs."
+      },
+      "fetch": {
+        "method": "HTML page",
+        "pattern": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/{Author}/{book}*.html",
+        "how": "One page per book or section, preserved with its hash, its 'page updated' date, and its proofreading state."
+      },
+      "identifiers": {
+        "scheme": "page URL",
+        "example": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/50*.html"
+      },
+      "rights": {
+        "class": "B",
+        "statement": "A page or image on this site is in the public domain ONLY if its URL has a total of one *asterisk. If the URL has two **asterisks, the item is copyright someone else, and used by permission or fair use. If the URL has none the item is © Bill Thayer.",
+        "statementUri": "https://penelope.uchicago.edu/Thayer/E/home.html",
+        "alsoStated": "The copyright page (https://penelope.uchicago.edu/Thayer/E/HELP/Copyright/home.html): for reuse of the editor's own material, 'just drop me a line'; for two-asterisk items, permission from the copyright owner.",
+        "checkedAt": "2026-10-15",
+        "rule": "Preserve and quote only pages whose URL has exactly one asterisk; the page's own public-domain line is recorded as well (the Dio pages: 'The text is in the public domain.').",
+        "perItem": "The asterisks in the page URL and the page's own statement.",
+        "obligations": []
+      },
+      "limitations": [
+        "The site says nothing about automated downloading: fetch pages one at a time, at reading pace, never mirror.",
+        "Thayer's notes and commentary (no asterisk) are his copyright: never preserved as a source's words (handoff rule 4).",
+        "Many pages are marked unproofread; the state is kept on the preserved record."
+      ],
+      "adapter": {"type": "lacuscurtius-html", "module": "adapters/lacuscurtius_passages.py"}
+    },
+    {
+      "id": "gutenberg",
+      "label": "Project Gutenberg",
+      "homepage": "https://www.gutenberg.org/",
+      "status": "read",
+      "kind": "text library",
+      "coverage": {
+        "languages": ["eng", "and others"],
+        "description": "Books in the public domain in the US: modern histories and biographies of the 19th and early 20th centuries, older translations of ancient authors, and literature (plays and poems about Actium).",
+        "evidence": ["literary text", "modern scholarship"]
+      },
+      "discover": {
+        "method": "catalogue",
+        "endpoint": "https://www.gutenberg.org/ebooks/{ebook}",
+        "how": "The book's catalogue page gives author, language, release date, and copyright status. The site points to machine-readable catalogue data for the whole collection, which it says is in the public domain (robot access policy)."
+      },
+      "fetch": {
+        "method": "HTML book file",
+        "pattern": "https://www.gutenberg.org/files/{ebook}/{ebook}-h/{ebook}-h.htm",
+        "how": "The whole book in one file, preserved with its hash and the licence header it carries."
+      },
+      "identifiers": {
+        "scheme": "ebook number",
+        "example": "54038 (Weigall, The Life and Times of Cleopatra, Queen of Egypt)"
+      },
+      "rights": {
+        "class": "A",
+        "statement": "The vast majority of Project Gutenberg eBooks are in the public domain in the US. ... you can freely redistribute any eBook, anywhere, any time, with or without the 'Project Gutenberg' trademark included. ... No permission is needed to use quotes from Project Gutenberg items.",
+        "statementUri": "https://www.gutenberg.org/policy/permission.html",
+        "alsoStated": "Not all items that are public domain in the US are public domain in other countries. 'Project Gutenberg' is a registered trademark; each eBook carries its licence.",
+        "checkedAt": "2026-10-15",
+        "rule": "The book's catalogue page must read 'Public domain in the USA.'; that status and the book's licence header are preserved with it.",
+        "perItem": "The catalogue page's copyright status and the book's header.",
+        "obligations": ["the trademark's terms, if the Project Gutenberg name is kept on a redistributed copy"]
+      },
+      "limitations": [
+        "Robot access policy (https://www.gutenberg.org/policy/robot_access.html): 'The Project Gutenberg website is intended for human users only'; automated access can lead to an IP block. A single book and its catalogue page at a time is how the adapter reads it; any bulk use goes through the robot harvest endpoint or a private mirror, as the policy recommends.",
+        "Catalogue authors can be wrong (Hale's Famous Sea Fights is catalogued under Atteridge; the adapter records the disagreement).",
+        "Public-domain status is for the US only."
+      ],
+      "adapter": {"type": "gutenberg-html", "module": "adapters/gutenberg_passages.py"}
+    },
+    {
+      "id": "wikipedia",
+      "label": "Wikipedia",
+      "homepage": "https://www.wikipedia.org/",
+      "status": "read",
+      "kind": "encyclopedia",
+      "coverage": {
+        "languages": ["eng", "and others"],
+        "description": "A tertiary voice (29 §5): orientation and discovery first; as evidence, 'according to Wikipedia' at a fixed revision. Its links surface entities; its references are candidate sources.",
+        "evidence": ["reference work"]
+      },
+      "discover": {
+        "method": "Wikidata sitelink",
+        "how": "The event's or person's Wikidata record names its article; the article's links resolve to Wikidata items through page properties (harvest/wikipedia_contact.py)."
+      },
+      "fetch": {
+        "method": "MediaWiki Action API",
+        "endpoint": "https://{lang}.wikipedia.org/w/api.php",
+        "how": "action=parse at the current revision, preserved with its revision id and hash; meta=siteinfo&siprop=rightsinfo gives the licence as the wiki states it."
+      },
+      "identifiers": {
+        "scheme": "page title and revision id",
+        "example": "Battle of Actium, revision 1378178531"
+      },
+      "rights": {
+        "class": "A",
+        "statement": "Creative Commons Attribution-Share Alike 4.0 (https://creativecommons.org/licenses/by-sa/4.0/deed.en)",
+        "statementUri": "https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=rightsinfo",
+        "checkedAt": "2026-10-15",
+        "perItem": "The wiki's rightsinfo, recorded on each preserved article.",
+        "obligations": ["attribution (the article and its revision)", "share-alike"]
+      },
+      "limitations": [
+        "Wikimedia's User-Agent policy asks bots to identify themselves with contact details (https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy); the project's User-Agent (adapters/wikidata_identity.py) names the operator and a contact address, and the word bot, from 2026-10-15.",
+        "Never a substitute for the sources it cites; counts as one author in attestation."
+      ],
+      "adapter": {"type": "wikipedia-html", "module": "adapters/wikipedia_passages.py", "firstContact": "harvest/wikipedia_contact.py"}
+    },
+    {
+      "id": "wikisource",
+      "label": "Wikisource",
+      "homepage": "https://wikisource.org/",
+      "status": "registered",
+      "kind": "text library",
+      "coverage": {
+        "languages": ["eng", "lat", "grc", "and others"],
+        "description": "Transcribed public-domain texts and translations, often proofread against page scans; one wiki per language (la.wikisource.org for Latin texts, en.wikisource.org for English translations).",
+        "evidence": ["literary text"]
+      },
+      "discover": {
+        "method": "Wikidata and the MediaWiki search",
+        "how": "Works and editions have Wikidata items with Wikisource sitelinks; otherwise the wiki's own search (action=query&list=search)."
+      },
+      "fetch": {
+        "method": "MediaWiki Action API",
+        "endpoint": "https://{lang}.wikisource.org/w/api.php",
+        "how": "As for Wikipedia: action=parse at a fixed revision, with the wiki's rightsinfo and the page's licence template."
+      },
+      "identifiers": {
+        "scheme": "page title and revision id; the Wikidata item of the edition"
+      },
+      "rights": {
+        "class": "B",
+        "statement": "All works on Wikisource must be in the public domain or released under a license compatible with the free content definition. ... A template should be used on the source material page to indicate the license.",
+        "statementUri": "https://en.wikisource.org/wiki/Wikisource:Copyright_policy",
+        "alsoStated": "Contributions are under CC BY-SA 4.0 and the GFDL unless noted; translations made by contributors are CC BY-SA unless the contributor licenses them otherwise. The wiki's rightsinfo: Creative Commons Attribution-Share Alike 4.0.",
+        "checkedAt": "2026-10-15",
+        "rule": "Read the page's licence template; a public-domain source text or a CC BY-SA translation may be preserved, with the translator (a contributor's translation is the wiki's own voice and is labelled so).",
+        "perItem": "The licence template on each work's page.",
+        "obligations": ["attribution", "share-alike for contributors' translations"]
+      },
+      "limitations": [
+        "Quality varies; the proofreading state of each page is shown on the wiki and should be kept.",
+        "No adapter yet: the Wikipedia adapter's parser is the starting point."
+      ],
+      "adapter": null
+    },
+    {
+      "id": "internet-archive",
+      "label": "Internet Archive",
+      "homepage": "https://archive.org/",
+      "status": "registered",
+      "kind": "scanned library",
+      "coverage": {
+        "languages": ["many"],
+        "description": "Scanned books with OCR text: editions and translations not transcribed elsewhere, and modern histories out of copyright. Also copies of Gutenberg books uploaded by others.",
+        "evidence": ["literary text", "modern scholarship"]
+      },
+      "discover": {
+        "method": "search API",
+        "endpoint": "https://archive.org/advancedsearch.php?q={query}&fl[]=identifier&fl[]=title&output=json",
+        "how": "A search by title and mediatype:texts; each hit's identifier then opens its metadata record."
+      },
+      "fetch": {
+        "method": "Item Metadata API, then a file of the item",
+        "endpoint": "https://archive.org/metadata/{identifier}",
+        "how": "The metadata record lists the item's files (scans, OCR text) and its rights fields; the chosen file is preserved with its hash."
+      },
+      "identifiers": {
+        "scheme": "item identifier",
+        "example": "boysbookofseafig00fras"
+      },
+      "rights": {
+        "class": "B",
+        "statement": "The Archive does not assert any new copyright or other proprietary rights over any of the material in its database.",
+        "statementUri": "https://archive.org/developers/index.html",
+        "alsoStated": "Item metadata fields, as the metadata schema defines them: licenseurl ('URL of the selected license'), rights ('Rights statement'), possible-copyright-status ('Information relevant to copyright status'). The Terms of Use (https://archive.org/about/terms.php) could not be read on 2026-10-15: the page needs JavaScript.",
+        "checkedAt": "2026-10-15",
+        "rule": "Rights come from the work itself (its publication date and place) and the item's rights fields, never from the Archive's hosting; uploader-supplied fields are not trusted alone.",
+        "perItem": "The item's licenseurl, rights, and possible-copyright-status fields, and the printed edition's date.",
+        "obligations": []
+      },
+      "limitations": [
+        "Uploader-supplied rights can be wrong: a Gutenberg copy of Hale's Famous Sea Fights (famousseafightsf25088gut) carries a GPL licence URL (2026-10-15). No licence laundering: a copy here does not change the originating edition's terms.",
+        "OCR text is unproofread; quote it only after checking against the scan.",
+        "Automated access (https://archive.org/developers/bots.html): a descriptive User-Agent with the tool, its version, and for AI agents the model (the adapter, when built, adds the model to the project's User-Agent); delays between requests; honour 429 and Retry-After.",
+        "The current Terms of Use are still to be read and quoted before the first preserved item."
+      ],
+      "adapter": null
+    }
+  ]
+}

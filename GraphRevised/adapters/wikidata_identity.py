@@ -14,7 +14,7 @@ import requests
 
 WIKIDATA_API_URL = "https://www.wikidata.org/w/api.php"
 WIKIDATA_ENTITY_URL = "https://www.wikidata.org/wiki/Special:EntityData/"
-USER_AGENT = "Chrystallum/0.1 (authority identity discovery)"
+USER_AGENT = "Chrystallum/0.1 (historical knowledge graph research bot; Anthony DeFarlo; defarloa1@pm.me)"
 
 
 def polite_get(url: str, *, params: dict[str, Any] | None = None, headers: dict[str, str] | None = None,

@@ -103,6 +103,22 @@ Event (Battle of Actium)
   otherwise name who says it; disagreement is the hook.
 - **Personas** change the telling, not the sources (26 §5).
 
+### 4a. Decided (curator, 2026-10-15, later)
+
+- **Stored.** The account is kept as a versioned file outside the graph, with
+  its citations, and regenerated when its sources change (§10 item 1).
+- **Introductory.** The use case is the curator writing about the event: the
+  account is read first, as the way in, before navigating the graph.
+- **Linked like Wikipedia.** Names in the account's text link to the graph's
+  entities and events (people, places, offices, the battle's own events), so a
+  reader can jump from the prose to the node; the link targets the Entity's
+  id, and its words are the account's own. A name with no Entity stays plain
+  text.
+- **The curator's own notes** come after the account and must persist,
+  linked to the entities, events, and passages they are about. Where they
+  live is open (§10 item 6); one option is an Obsidian plugin, the notes
+  stored in the curator's vault and linked to the graph.
+
 ## 5. Wikipedia's three roles
 
 | Role | What | Rule |
@@ -185,9 +201,29 @@ Step 5 of §3 runs event-first for the Battle of Actium: one inquiry,
 (`sources`, each with its `voice` and its own guidance; the shared guidance once),
 read with depicted events ([23](23-NARRATIVE-AND-NOTES.md), pilot). The reader
 takes `--source` and `--chapters`; a dry run keeps a source in one rolled-back
-transaction. Not built yet: the registry file (§6), the event source plan,
-the account (§4), and moving the domain rules out of the inquiry (§7: the
-battle inquiry already holds them once for all its sources).
+transaction. Not built yet: the event source plan, the account (§4), and
+moving the domain rules out of the inquiry (§7: the battle inquiry already
+holds them once for all its sources).
+
+**The source registry (built 2026-10-15; §6).**
+[curation/sources.json](curation/sources.json), version 1, six systems: the four
+already read (Perseus/Scaife, LacusCurtius, Project Gutenberg, Wikipedia) with
+status `read`, and Wikisource and Internet Archive with status `registered`
+(rights checked, no adapter). Each entry quotes its rights statement from the
+source's own page with the date checked, the rule by which an item's rights are
+read (LacusCurtius: exactly one asterisk in the URL; Gutenberg: the catalogue's
+"Public domain in the USA."; Wikisource: the page's licence template; Internet
+Archive: the work's own date and the item's rights fields, never the hosting),
+and the source's limits. Findings from the checks: Gutenberg's robot policy says
+the website "is intended for human users only" (the adapter's one book at a
+time stays; bulk use goes through its harvest endpoint or a mirror); Wikimedia's
+User-Agent policy and the Internet Archive's bot guidance both ask for contact
+details, which the project's User-Agent now carries (the curator's contact,
+2026-10-15); an Internet Archive copy of
+Hale's book carries a wrong GPL licence URL (no licence laundering); the
+Archive's Terms of Use page needs JavaScript and is still to be read. The
+governing paragraph now heads the resources document. The report's other
+sources join as plans need them.
 
 **Wikipedia first contact (built 2026-10-15; §3 steps 1–2, §5).**
 `python -m GraphRevised.harvest.wikipedia_contact <QID> [--apply] [--limit 50]`:
@@ -222,11 +258,9 @@ sources give the flight, pursuit, and surrender as ordered events.
 
 ## 10. Open
 
-1. **Stored or generated?** Whether the account is kept as a versioned
-   artifact (a file outside the graph with its citations, regenerated when
-   the sources change) or written fresh for each viewing. Recommended: kept,
-   because the research behind it is costly and its citations must be
-   reviewable.
+1. ~~**Stored or generated?**~~ **Decided 2026-10-15: stored** (§4a), a
+   versioned file outside the graph with its citations, regenerated when the
+   sources change.
 2. **The event's phases.** The Weaving document proposes a spine of nine
    phases for Actium (isolation, attrition, the council, deployment,
    engagement, the squadron's breakout, Antony following, the fleet's
@@ -239,3 +273,10 @@ sources give the flight, pursuit, and surrender as ordered events.
    ships were captured" cannot be said in the model yet.
 5. **A source that contradicts a claim** (backlog E8, stance on the evidence
    link) becomes pressing once one inquiry reads many works.
+6. **Where the curator's notes live** (§4a). Options: (a) in the graph, as
+   Annotations authored by the curator and linked to entities and passages;
+   (b) as Markdown files in the curator's Obsidian vault, linked to the graph
+   by entity ids, read by an Obsidian plugin that shows the graph beside the
+   note; (c) both, the vault as the editor and the graph holding a link to
+   each note. **Decided 2026-10-15 (curator): (c).** Built after the account;
+   the plugin is its own project, and `.obsidian/` stays the curator's.

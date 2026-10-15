@@ -22,7 +22,9 @@ python -m unittest GraphRevised.tests.test_prompt_version GraphRevised.tests.tes
   GraphRevised.tests.test_proposed_entities GraphRevised.tests.test_period_survey \
   GraphRevised.tests.test_cytoscape_export GraphRevised.tests.test_registry_v7 \
   GraphRevised.tests.test_library_headings GraphRevised.tests.test_wikidata_harvest \
-  GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events \n  GraphRevised.tests.test_gazetteer GraphRevised.tests.test_wikipedia  # expect 256 tests, OK (about 7 minutes since the gazetteer)
+  GraphRevised.tests.test_registry_v9 GraphRevised.tests.test_depicted_events \
+  GraphRevised.tests.test_gazetteer GraphRevised.tests.test_wikipedia \
+  GraphRevised.tests.test_source_registry  # expect 260 tests, OK (2 minutes on 2026-10-15; 7 at times since the gazetteer)
 python -m GraphRevised.export.cytoscape            # then open GraphRevised/exports/graph.html
 python -m GraphRevised.harvest.apply Q51673 --expand   # dry run: what the next expansion would do
 ```
@@ -106,7 +108,7 @@ Settled 2026-10-15, later the same day: event order through a new predicate `hap
 
 Blocking the next steps:
 
-1. **Chrystallum's account: stored or generated?** (29 §10 item 1). Recommended: kept as a versioned file outside the graph with its citations, regenerated when its sources change. Needed before the account is built (next step 1d).
+1. ~~Chrystallum's account: stored or generated?~~ **Settled 2026-10-15: stored** (29 §4a): a versioned file with its citations, introductory (the curator writes about the event and reads the account first), its names linked to the graph's entities and events like Wikipedia's links. The curator's own notes: written in the Obsidian vault, the graph holding a link to each note (option c, 29 §10 item 6); built after the account.
 2. **The battle's phases** (29 §10 item 2): whether the nine-step spine (isolation, attrition, council, deployment, engagement, the squadron's breakout, Antony following, the fleet's defeat, the army's surrender), extended by the road to war and by meaning and memory, becomes our own asserted sub-events of the battle, with each source's depicted events linked to them (`depictsSameAs` or `partOf`).
 
 Not blocking:
@@ -123,7 +125,7 @@ Not blocking:
 Done 2026-10-15: the gazetteer ([27](27-GAZETTEER.md) §4a); depicted events for the battle from four sources and Wikipedia ([23](23-NARRATIVE-AND-NOTES.md), pilot); Wikipedia first contact (29 §9a).
 
 1. **Finish the event-centred research run for the Battle of Actium** ([29](29-EVENT-CENTRED-INQUIRY.md)):
-   - a. **The source registry** (29 §6): `curation/sources.json`, the machine-readable companion to [docs/Agent resources.md](docs/Agent%20resources.md). First entries: the systems already read (Perseus/Scaife, LacusCurtius, Project Gutenberg, Wikipedia), then Wikisource and Internet Archive; each with its coverage, how to discover and fetch, the identifier scheme, the rights policy as the source states it and the date checked, limitations, and the adapter. Then the report's sources one at a time, each licence checked at the source (rule 17), filling the report's gaps (Latin epigraphy such as the Heidelberg and Clauss-Slaby databases; the Hannibal-era historians). Add the governing paragraph at the head of the resources document: a starting point, not a whitelist.
+   - a. ~~The source registry~~ **Built 2026-10-15** ([curation/sources.json](curation/sources.json), 29 §9a): six systems, rights quoted at each source with the date checked; the governing paragraph heads the resources document. Remaining, as plans need them: the report's other sources one at a time, each licence checked at the source (rule 17), and its gaps (Latin epigraphy such as the Heidelberg and Clauss-Slaby databases; the Hannibal-era historians); the Internet Archive's Terms of Use (the page needs JavaScript). The project's User-Agent now names the curator and a contact address, as Wikimedia's and the Archive's bot policies ask.
    - b. **The event source plan** (29 §3 step 3): `discovery/source_plan.py` takes an event inquiry; candidates from the registry, the Wikipedia article's references, citations in passages already read, Wikidata "described by source", the catalogues (Scaife, Gutenberg, LacusCurtius), and the agent's own search; statuses in words (found, identified, located, chosen, read) instead of one confidence; work, edition, and copy as separate fields; the agent chooses within a budget and records why (25 §13). Expected first choices for Actium: Velleius Paterculus 2.84–87, the Augustan poets (Horace *Epodes* 9 and *Odes* 1.37, Virgil *Aeneid* 8), Suetonius *Augustus*, Florus, Orosius.
    - c. **Read the chosen sources** into the battle inquiry, and re-read Plutarch 61–64 and Dio 50.11–15 for notes (they were read before notes existed).
    - d. **Chrystallum's account** (29 §4), once open item 1 is decided: the agent's narrative of the battle, every statement citing a preserved passage, labelled as ours, versioned, never counted as an author in attestation.

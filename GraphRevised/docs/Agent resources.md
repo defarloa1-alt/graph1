@@ -1,4 +1,15 @@
 Agent resources
+
+> **How agents use this document (2026-10-15).** It is a starting point, not a
+> whitelist. Its machine-readable companion is the source registry,
+> [curation/sources.json](../curation/sources.json): agents consult the
+> registry first and may propose sources beyond it, and discovery is not
+> acceptance. A source joins the registry only after its rights are checked
+> and quoted at the source itself, with the date checked; the classes A, B,
+> and C below are the registry's. Statements in this report are leads, not
+> confirmations: it was written by a research assistant, and each licence it
+> names is checked again before use ([29-EVENT-CENTRED-INQUIRY.md](../29-EVENT-CENTRED-INQUIRY.md) §6).
+
 # Free Online Text Sources for Ancient-History Agents
 
 This report treats “training” broadly—corpus ingestion, retrieval-augmented generation, fine-tuning, and agent-directed online consultation—but recommends admitting each source only for uses explicitly allowed by its license and terms. It emphasizes resources beyond the federation and authority infrastructure already in place: Wikidata, Pleiades, Trismegistos, PeriodO, LCC, LCSH, FAST, and related hubs.
