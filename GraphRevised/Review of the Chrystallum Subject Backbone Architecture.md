@@ -1,4 +1,13 @@
 # Review of the Chrystallum Subject Backbone Architecture
+
+> **Note (2026-10-16).** An external review of the legacy subject-backbone
+> design, kept for reference. Overtaken where it builds on that design: the
+> SCA and SFA are retired ([25](25-LIVES-AND-PLAYGROUND.md) §11), the runtime is
+> the Anthropic SDK rather than LangGraph, SubjectConcept is now Subject
+> ([02](02-GRAPH-MODEL.md)), and numeric confidence is never stored (attestation
+> is computed in words, 25 §6). Still useful: CIDOC CRM as an interoperability
+> profile (25 L2b), SKOS for Subjects, PROV-O, and idempotent writes.
+
 ## Executive assessment
 The plan is conceptually strong, internally coherent, and unusually disciplined about separating **entities**, **subject concepts**, **inquiry contexts**, **source observations**, and **scholarly claims**. Its most important achievement is preventing five frequent category errors: treating labels as identities, treating Wikidata as the local ontology, treating bibliographic subjects as historical entities, flattening qualified claims into bare edges, and allowing agents to mutate the durable graph without adjudication.[^1]
 

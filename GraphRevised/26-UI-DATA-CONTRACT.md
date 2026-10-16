@@ -170,8 +170,14 @@ Cleopatra, according to Weigall). The query behind it is in
 
 ## 5. Narrative — the chat and the card's story (specified)
 
-Written by an agent from the graph only (25 §7). A persona changes the
-telling, never the facts; the user can switch persona at any time.
+**Revised 2026-10-16.** For an event, the narrative starts from Chrystallum's
+account ([29](29-EVENT-CENTRED-INQUIRY.md) §4, §4a): one stored,
+researcher-grade text, every statement citing a preserved passage, which may
+draw on passages the graph has not turned into claims (this replaces "from
+the graph only", 25 §7). Persona retellings come later and are generated from
+the account. A persona changes the telling, never the facts or the sources;
+the user can switch persona at any time. The account's linked names give
+`refs` to entities and events as well as to facts.
 
 ```json
 {
@@ -239,7 +245,7 @@ These are real, not hypothetical:
 
 | Data | Values | Suggested encoding |
 |---|---|---|
-| Entity `kind` | Person, Group, Event, Place, Period, Work, Concept | Shape and colour |
+| Entity `kind` | Person, Group, Event, Place, Period, Work, Concept, Office, Polity, Type | Shape and colour |
 | Entity `status` | proposed | Faded fill, dashed outline |
 | Fact `status` | accepted, proposed | Solid, dashed |
 | Fact `mode` | attributed | Hollow marker at the start ("according to") |

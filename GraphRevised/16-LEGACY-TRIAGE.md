@@ -57,6 +57,7 @@ Assertion
 Proposal
 Year
 Annotation   (added 2026-10-12, 23-NARRATIVE-AND-NOTES.md)
+Location     (added 2026-10-15, 27-GAZETTEER.md)
 ```
 
 ## Adoption rules

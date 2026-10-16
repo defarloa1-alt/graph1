@@ -1,5 +1,13 @@
 # Agent Boundaries and Governed Write Path
 
+> **Note (2026-10-16).** The CCA, SCA, and SFA chain below is retired (curator,
+> 2026-10-14; [25](25-LIVES-AND-PLAYGROUND.md) §11): agents prepare event
+> inquiries ([29](29-EVENT-CENTRED-INQUIRY.md) §7), enrichers by kind replace the
+> facet agents, and facets are lenses. The boundaries stand: agents propose, a
+> deterministic validator checks, only the curator accepts, nothing is hidden
+> (25 decision 2), and prompt and registry versions are recorded. The runtime is
+> the Anthropic SDK, not LangGraph.
+
 This document describes how agents may interact with the revised graph. It is
 an orchestration design, not a reason to enlarge the core Neo4j schema.
 

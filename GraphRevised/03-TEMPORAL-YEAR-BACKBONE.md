@@ -1,5 +1,12 @@
 # Temporal Year Backbone
 
+> **Note (2026-10-16).** §4–5 are overtaken by [22](22-CLAIM-QUALIFIERS.md) §6:
+> no `BORN_IN_YEAR`, `DIED_IN_YEAR`, `ACTIVE_IN_YEAR`, or `OCCURRED_IN_YEAR`
+> relationships and no `occurredOn` predicate. A date is a time qualifier on a
+> claim (`occurred`, `born`, `died`, and any dated predicate), and the claim's
+> `IN_YEAR` links are derived from it (during, within, or start and end; 25
+> §10). The backbone itself is unchanged.
+
 ## 1. Purpose
 
 At Phase 0 the local Neo4j `neo4j` database contained only the temporal

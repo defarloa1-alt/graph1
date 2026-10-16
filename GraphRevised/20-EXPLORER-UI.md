@@ -10,8 +10,10 @@ options, the time slider. Nobody navigates Proposals, Assertions, or
 passages; they appear as text in a sidebar. One line on the canvas is one
 fact, however many sources state it, and each source is a voice on the
 fact's card (26 §2–3). The chat carries the narrative and answers questions
-in the user's persona, from the graph only (25 §7); what a user asserts in
-chat is captured as a note or proposal, never written as fact. The layout
+in the user's persona; for an event the narrative starts from Chrystallum's
+stored account, every statement citing a preserved passage (29 §4, which
+replaced "from the graph only"; 26 §5). What a user asserts in chat is
+captured as a note or proposal, never written as fact. The layout
 below is the earlier sketch; where they differ, this paragraph and 26 win.
 
 ## 1. Purpose and stack

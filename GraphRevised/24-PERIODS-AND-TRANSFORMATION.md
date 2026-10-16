@@ -61,7 +61,8 @@ consensus:
 1. **Sources:** PeriodO (definitions with bounds, by authority and region;
    years are astronomical there), Wikidata (inception and dissolution;
    historical numbering), library headings (LCSH and FAST chronological
-   subdivisions, LCC class ranges), and scholarship read by the reader.
+   subdivisions; LCC class ranges were planned, but LCC is not used for now,
+   25 §8), and scholarship read by the reader.
 2. **Each definition** becomes a preserved observation and an attributed
    `occurred` claim on the Period. Regional or archaeological phases
    ("Roman Republican" pottery in Slovenia from 350 BC) are kept but marked

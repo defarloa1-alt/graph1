@@ -352,7 +352,7 @@ Examples of roles:
 entity_identity
 subject_access
 faceted_subject_access
-classification_correspondence
+classification_correspondence   (reserved: LCC is not used for now, 25 §8)
 place_gazetteer
 period_definition
 object_type

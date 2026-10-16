@@ -1,6 +1,6 @@
 # 25 — Lives First, and a Playground for Exploration
 
-**Date:** 2026-10-13. **Status:** agreed with the curator; nothing in it is built yet.
+**Date:** 2026-10-13. **Status:** agreed with the curator. Built since: L1 visibility, L2 registry v7 and attestation, the L3 first-contact harvest and expansion, registry v9 (§12), the actors list (§13). Not built: L2b, the Lives reader, L5. §7's "from the graph only" (rule 1) was replaced for event accounts by [29](29-EVENT-CENTRED-INQUIRY.md) §4.
 **Changes the plan in:** [24-PERIODS-AND-TRANSFORMATION.md](24-PERIODS-AND-TRANSFORMATION.md) §7 (the transformation pilot waits) and the review rule in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md) §4.
 
 ## 1. Why
@@ -327,8 +327,9 @@ section 3 first planned.
 **Decided 2026-10-13: agents choose the sources.** For each actor, the agent
 identifies the best available sources rather than being handed them; the
 works named in this document and in L4 are examples, not instructions. The
-source plan ([discovery/source_plan.py](discovery/source_plan.py)) already
-gathers candidates; its final step, now a curator choice, becomes the
+source plan ([discovery/source_plan.py](discovery/source_plan.py); for an
+event, [discovery/event_source_plan.py](discovery/event_source_plan.py), 29
+§9a, where the agent's choice is built) already gathers candidates; its final step, now a curator choice, becomes the
 agent's. Three guardrails stay deterministic: every candidate is confirmed at
 a catalogue (Scaife, Gutenberg, LacusCurtius) before anything is fetched,
 never from a model's memory; rights are checked by rule, and works in

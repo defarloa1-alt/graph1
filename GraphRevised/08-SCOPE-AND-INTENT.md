@@ -1,5 +1,11 @@
 # Scope and Intent Boundary
 
+> **Note (2026-10-16).** The product charter and the three scope outcomes stand.
+> The CCA that was to apply them is retired with the SCA and SFA
+> ([25](25-LIVES-AND-PLAYGROUND.md) §11); the scope check belongs to whatever
+> front door turns a request into an inquiry, still unbuilt (backlog E1).
+> "SubjectConcept" below means a Subject (02 §1).
+
 ## 1. Product charter
 
 Chrystallum is a historical knowledge-graph system.

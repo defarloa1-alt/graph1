@@ -1,7 +1,10 @@
 # 29 — Event-Centred Inquiry and Chrystallum's Account
 
-**Date:** 2026-10-15. **Status:** decisions agreed with the curator (§2); the
-design below is proposed, nothing is built.
+**Date:** 2026-10-15, updated 2026-10-16. **Status:** decisions agreed with
+the curator (§2, §4a, §7, §10). Built: Wikipedia first contact, the source
+registry, the shared reading rules, computed scope, source briefs, the event
+source plan, the inquiry builder, and the passage finder; all nine sources
+read (§9a). Not built: the battle's phases and Chrystallum's account (next).
 **Changes:** [25](25-LIVES-AND-PLAYGROUND.md) §7 rule "from the graph only"
 (§4 here), the legacy lesson "Wikipedia is orientation only"
 ([16](16-LEGACY-TRIAGE.md), biographic row; §5 here), and the order of next
@@ -67,9 +70,10 @@ Event (Battle of Actium)
    noise dropped by rule, proposed and visible at once, within the budget
    (the one-hop rule, 25 §11). Prose without a link surfaces nothing by this
    route; the reader handles it in step 5.
-3. **Source plan for the event.** The existing plan
-   ([discovery/source_plan.py](discovery/source_plan.py)) takes the event,
-   not a Work. Candidates come from: the source registry (§6), citations in
+3. **Source plan for the event.** The plan takes the event, not a Work
+   (built as [discovery/event_source_plan.py](discovery/event_source_plan.py),
+   §9a; the earlier [discovery/source_plan.py](discovery/source_plan.py)
+   planned for one Work). Candidates come from: the source registry (§6), citations in
    the Wikipedia article's references and in passages already read, Wikidata
    "described by source", catalogues (Scaife, Gutenberg, LacusCurtius), and
    the agent's own search. The agent chooses within a budget and records why
@@ -109,6 +113,12 @@ Event (Battle of Actium)
   its citations, and regenerated when its sources change (§10 item 1).
 - **Introductory.** The use case is the curator writing about the event: the
   account is read first, as the way in, before navigating the graph.
+- **One account; personas later** (curator, 2026-10-16). One stored,
+  researcher-grade account per event. Persona retellings (26 §5) come later
+  and are generated from it, so a persona still changes the telling, never
+  the sources.
+- **Its sections follow the battle's phases** (§10 item 2, decided
+  2026-10-16).
 - **Linked like Wikipedia.** Names in the account's text link to the graph's
   entities and events (people, places, offices, the battle's own events), so a
   reader can jump from the prose to the node; the link targets the Entity's
@@ -208,9 +218,12 @@ Step 5 of §3 runs event-first for the Battle of Actium: one inquiry,
 (`sources`, each with its `voice` and its own guidance; the shared guidance once),
 read with depicted events ([23](23-NARRATIVE-AND-NOTES.md), pilot). The reader
 takes `--source` and `--chapters`; a dry run keeps a source in one rolled-back
-transaction. Not built yet: the event source plan, the account (§4), and
-moving the domain rules out of the inquiry (§7: the battle inquiry already
-holds them once for all its sources).
+transaction. (That was the first stage, inquiry v1-v2, with hand guidance held
+once for all sources. The paragraphs below record what followed, in the order
+built: the source registry, agents preparing the inquiry, the event source
+plan and inquiry builder, the passage finder, the readings; Wikipedia first
+contact, built between the pilot and the registry, comes last. The inquiry is
+now v7 with nine sources. Still to build: the phases and the account.)
 
 **The source registry (built 2026-10-15; §6).**
 [curation/sources.json](curation/sources.json), version 1, six systems: the four
@@ -264,8 +277,8 @@ battle inquiry (v4) holds no hand-written guidance or scope:
   the wrong identity for the city (Hale's brief noticed it).
 
 The reader's run log records the reading rules' version and the brief used.
-Not yet re-read with the briefs: the five sources were read with the hand
-guidance of v3.
+At this point the five sources had been read with the hand guidance of v3;
+they were re-read with the briefs later the same day (below).
 
 **The event source plan and the inquiry builder (built 2026-10-15; §3 step 3,
 §6).** [discovery/event_source_plan.py](discovery/event_source_plan.py)
@@ -374,12 +387,16 @@ sources give the flight, pursuit, and surrender as ordered events.
 1. ~~**Stored or generated?**~~ **Decided 2026-10-15: stored** (§4a), a
    versioned file outside the graph with its citations, regenerated when the
    sources change.
-2. **The event's phases.** The Weaving document proposes a spine of nine
-   phases for Actium (isolation, attrition, the council, deployment,
-   engagement, the squadron's breakout, Antony following, the fleet's
-   defeat, the army's surrender). Whether these become our own asserted
-   sub-events of the battle, approved by the curator, with each source's
-   depicted events (23 §2) linked to them.
+2. ~~**The event's phases.**~~ **Decided 2026-10-16 (curator): yes, linked
+   by `partOf`.** The Weaving document proposes a spine of nine phases for
+   Actium (isolation, attrition, the council, deployment, engagement, the
+   squadron's breakout, Antony following, the fleet's defeat, the army's
+   surrender), extended here by the road to war and by meaning and memory.
+   They become our own asserted sub-events of the battle (`partOf` it),
+   approved by the curator, and each source's depicted events (23 §2) are
+   `partOf` a phase. Not `depictsSameAs`: that says two depictions are one
+   action, while a phase holds many actions. The spine is our reading and is
+   labelled as ours; a depicted event that fits no phase stays unlinked.
 3. **Mentions** (the words in a passage that refer to an entity): on the
    passage, with their own status, or on each note's link (26 §4a, `mentions`).
 4. **Nested attribution**: "Plutarch reports that Octavian wrote that 300
