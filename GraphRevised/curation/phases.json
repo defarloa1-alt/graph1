@@ -1,0 +1,23 @@
+{
+  "description": "An event's phases: our own sub-events of it, in order, decided by the curator (29-EVENT-CENTRED-INQUIRY.md §10 item 2). The event-phases agent places each source's depicted events in them; the phases and the placements are proposed and visible at once, and the curator approves them. A phase's scope says what it holds, for the agent; it is our wording, not a source's.",
+  "events": {
+    "chr:entity:battle-of-actium": {
+      "decidedBy": "Tony DeFarlo",
+      "decidedAt": "2026-10-16",
+      "basis": "The nine-step spine of the Weaving document (docs/Weaving Neo4j Work Annotations into an Actium Narrative.md), extended by the road to war and by meaning and memory.",
+      "phases": [
+        {"key": "road-to-war", "label": "The road to war", "scope": "From the break between Antony and Octavian to the gathering of the forces in western Greece: the declaration of war, the fleets and armies assembled, the crossings and first positions."},
+        {"key": "isolation", "label": "Antony's position isolated", "scope": "Operations by Agrippa and Octavian that cut Antony's supply and communications and hemmed in his camp and fleet, by land and sea."},
+        {"key": "attrition", "label": "Attrition and desertion", "scope": "Hunger, sickness, and losses in Antony's camp, skirmishes before the battle, and the desertion of his allies and officers."},
+        {"key": "council", "label": "The council and the decision", "scope": "The debate in Antony's camp over fighting on land or at sea or withdrawing, the decision, and the preparations it set in motion, such as burning surplus ships and embarking treasure."},
+        {"key": "deployment", "label": "The fleets deploy", "scope": "The embarkation, the battle lines and their commanders, the waiting before the fleets close, and the day the fleets come out."},
+        {"key": "engagement", "label": "The lines engage", "scope": "The fighting before Cleopatra's squadron leaves: the advance, the manner of fighting, and the manoeuvres to outflank or draw the enemy out."},
+        {"key": "breakout", "label": "Cleopatra's squadron breaks through", "scope": "Cleopatra's squadron raising sail, passing through or beyond the fighting, and making for the open sea."},
+        {"key": "antony-follows", "label": "Antony follows Cleopatra", "scope": "Antony leaving the battle after the squadron, his passage to Cleopatra's ship, the pursuit, and the voyage away."},
+        {"key": "fleet-defeat", "label": "The remaining fleet is defeated", "scope": "The fighting that continued after Antony left, the burning and capture of ships, the fleet's surrender, and the losses."},
+        {"key": "army-surrender", "label": "The army surrenders", "scope": "Antony's land army after the sea battle: its waiting, its commanders' flight, its surrender, and the victor's treatment of the defeated."},
+        {"key": "meaning-memory", "label": "Meaning and memory", "scope": "What came of the battle and how it was remembered: commemoration, monuments and foundations, the victor's own account, and authors' judgements of what it decided."}
+      ]
+    }
+  }
+}

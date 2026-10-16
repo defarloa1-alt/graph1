@@ -382,6 +382,25 @@ The spine test (2026-10-15, before this run) found phases 4–8 present only as
 give the council, the plan, and the burning of the ships as events, and all four
 sources give the flight, pursuit, and surrender as ordered events.
 
+**The battle's phases (proposed 2026-10-16; §10 item 2).**
+[discovery/event_phases.py](discovery/event_phases.py) (`event-phases-v1`,
+Sonnet 5.5, nine calls, 44,160 input and 25,786 output tokens) reads the
+curator's spine from [curation/phases.json](curation/phases.json) and places
+each depicted event, by its label and the words that depicted it, in one phase
+or none. Without a model it then proposes the 11 phases as our own Events
+("The lines engage (Chrystallum)"), each `partOf` the battle, asserted, on the
+depicting passages of up to four sources, and each placed event `partOf` its
+phase on its own passage: 453 valid drafts, all stored as submitted Proposals.
+Placed: 442 of the 450 readable depicted events (road to war 92, isolation 31,
+attrition 44, council 41, deployment 54, engagement 46, breakout 16, Antony
+follows 47, the fleet's defeat 37, the army's surrender 23, meaning and memory
+11). Left unplaced: 8, seven of them after the battle (Alexandria, Scarpus,
+Brundisium, the winter at Samos) and one that spans the breakout and Antony's
+flight; and Virgil's 9, which a creative Work cannot place under an asserted
+claim (handoff rule 15). The reviewed dry run was stored as it stood
+(`--from-plan`), so what was checked is what was stored. Order between phases
+is the spine's order in the curation file; it is not stored as claims.
+
 ## 10. Open
 
 1. ~~**Stored or generated?**~~ **Decided 2026-10-15: stored** (§4a), a
