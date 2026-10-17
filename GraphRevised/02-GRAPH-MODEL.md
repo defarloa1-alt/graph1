@@ -1,3 +1,12 @@
+---
+status: governing
+authority: what a thing means and how it is stored (labels, kinds, relationships, statuses, identity)
+depends_on: []
+details_in: [22-CLAIM-QUALIFIERS.md, 23-NARRATIVE-AND-NOTES.md, 27-GAZETTEER.md, 28-SUBJECT-BUCKETS.md]
+superseded_by: null
+last_reviewed: 2026-10-17
+---
+
 # Revised Graph Model
 
 This document defines the smallest useful graph contract for the clean start.

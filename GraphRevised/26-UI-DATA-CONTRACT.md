@@ -1,3 +1,12 @@
+---
+status: governing
+authority: what the explorer receives (the shapes behind the read API)
+depends_on: [02-GRAPH-MODEL.md, 29-EVENT-CENTRED-INQUIRY.md, 32-RESEARCH-WORKSPACE.md]
+implemented_by: [export/cytoscape.py]
+superseded_by: null
+last_reviewed: 2026-10-17
+---
+
 # 26 — UI Data Contract
 
 **Date:** 2026-10-13. **For:** the curator designing the explorer in Figma, and

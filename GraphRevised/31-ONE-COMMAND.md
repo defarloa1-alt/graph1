@@ -1,3 +1,13 @@
+---
+status: governing
+authority: what the agents do (which runs, in what order, with what plan, review, and stopping)
+depends_on: [02-GRAPH-MODEL.md]
+specialized_by: [29-EVENT-CENTRED-INQUIRY.md]
+implemented_by: [orchestration/contracts.py, curation/sources.json]
+superseded_by: null
+last_reviewed: 2026-10-17
+---
+
 # 31 — One Command: a Methodology for Any Subject
 
 **Date:** 2026-10-16, revised the same day. **Status:** the curator chose this

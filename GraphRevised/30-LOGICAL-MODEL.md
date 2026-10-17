@@ -1,3 +1,11 @@
+---
+status: descriptive
+authority: none; describes the graph as built (where it and 02 disagree, 02 governs)
+depends_on: [02-GRAPH-MODEL.md]
+superseded_by: null
+last_reviewed: 2026-10-17
+---
+
 # 30 — Logical Model (UML)
 
 **Date:** 2026-10-16.

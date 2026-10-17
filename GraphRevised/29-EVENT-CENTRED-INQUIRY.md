@@ -1,3 +1,12 @@
+---
+status: governing
+authority: event inquiries, as a specialization of 31 (adds to it, never contradicts it)
+depends_on: [02-GRAPH-MODEL.md, 31-ONE-COMMAND.md]
+implemented_by: [inquiries/actium-battle.json, curation/phases.json, discovery/event_phases.py]
+superseded_by: null
+last_reviewed: 2026-10-17
+---
+
 # 29 — Event-Centred Inquiry and Chrystallum's Account
 
 **Date:** 2026-10-15, updated 2026-10-16. **Status:** decisions agreed with

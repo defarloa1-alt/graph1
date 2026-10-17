@@ -36,7 +36,7 @@ class _Contract(BaseModel):
 # --- The front door ------------------------------------------------------------------------------
 
 class RunMode(str, Enum):
-    """How much the curator decides before and during a run (31 §3.5)."""
+    """How much the curator decides before and during a run (31 §3.2)."""
     GUIDED = "guided"          # every plan item is approved, rejected, modified, or deferred first
     SUPERVISED = "supervised"  # the scope is approved; items run unless rejected or deferred
     AUTONOMOUS = "autonomous"  # the plan is shown and runs; everything stays proposed until promotion

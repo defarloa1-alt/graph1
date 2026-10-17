@@ -1,3 +1,11 @@
+---
+status: governing
+authority: the curator's workspace (plans as the curator sees them, notes, overlays, saved paths, status display)
+depends_on: [02-GRAPH-MODEL.md, 31-ONE-COMMAND.md]
+superseded_by: null
+last_reviewed: 2026-10-17
+---
+
 # 32 — The Research Workspace: Notes, Overlays, Saved Paths, and Status
 
 **Date:** 2026-10-17. **Status:** the curator's decisions are recorded in
