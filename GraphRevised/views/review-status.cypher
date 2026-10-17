@@ -5,6 +5,9 @@
 // Set once before the queries:
 //   :param event => 'chr:entity:battle-of-actium'
 //   :param phase => 'breakout'
+//   :param phases => ['road-to-war', 'isolation', 'attrition', 'council', 'deployment', 'engagement', 'breakout', 'antony-follows', 'fleet-defeat', 'army-surrender', 'meaning-memory']
+// $phases is the spine's order, copied from curation/phases.json: the order is the curator's decision,
+// kept as data and never as claims (33-DECISIONS.md D-091).
 //
 // The graphs (1, 2) draw each claim as a small Assertion node between two Entities, as
 // explorer-view.cypher does: Entity captions are labels, Assertion captions predicates. Run the
@@ -43,9 +46,8 @@ RETURN member, voice;
 // 3. The phases to approve, in the spine's order -----------------------------------------------
 // One row per phase: its review state, how many events were placed and from which sources, and the
 // agent's one-line description. Approve the phases (their partOf claims) before the placements.
-UNWIND range(0, 10) AS position
-WITH position, ['road-to-war', 'isolation', 'attrition', 'council', 'deployment', 'engagement', 'breakout',
-                'antony-follows', 'fleet-defeat', 'army-surrender', 'meaning-memory'][position] AS key
+UNWIND range(0, size($phases) - 1) AS position
+WITH position, $phases[position] AS key
 MATCH (ph:Entity) WHERE ph.id STARTS WITH 'chr:entity:phase:' AND ph.id ENDS WITH ':' + key
 MATCH (ph)<-[:ASSERTION_SUBJECT]-(a:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(:Entity {id: $event})
 MATCH (p:Proposal)-[:PROPOSES]->(a)
@@ -87,6 +89,24 @@ ORDER BY n DESC
 WITH createdBy, status, sum(n) AS proposals, collect(predicate + ' ' + n) AS byPredicate
 RETURN createdBy, status, proposals, byPredicate[..8] AS topPredicates
 ORDER BY status DESC, proposals DESC;
+
+
+// 6. Source orderings against the spine ---------------------------------------------------------
+// A source's happenedBefore between two depicted events whose phases the spine orders the other way:
+// a weak placement or link to judge, or phases that overlap. The spine is not changed by it (D-091).
+MATCH (x:Entity)<-[:ASSERTION_SUBJECT]-(h:Assertion {predicate: 'happenedBefore'})-[:ASSERTION_OBJECT]->(y:Entity)
+WHERE NOT h.status IN ['rejected', 'superseded']
+MATCH (x)<-[:ASSERTION_SUBJECT]-(px:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(a:Entity)
+MATCH (y)<-[:ASSERTION_SUBJECT]-(py:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(b:Entity)
+WHERE a.id STARTS WITH 'chr:entity:phase:' AND b.id STARTS WITH 'chr:entity:phase:'
+  AND NOT px.status IN ['rejected', 'superseded'] AND NOT py.status IN ['rejected', 'superseded']
+WITH x, y, h, a, b, [i IN range(0, size($phases) - 1) WHERE a.id ENDS WITH ':' + $phases[i]][0] AS ia,
+     [i IN range(0, size($phases) - 1) WHERE b.id ENDS WITH ':' + $phases[i]][0] AS ib
+WHERE ia > ib
+MATCH (w:Entity {id: 'chr:entity:' + split(x.id, ':')[3]})
+RETURN w.label AS source, coalesce(x.shortLabel, x.label) AS earlier, a.shortLabel AS inPhase,
+       coalesce(y.shortLabel, y.label) AS later, b.shortLabel AS inEarlierPhase, h.status AS claim
+ORDER BY source, earlier;
 
 
 // Browser style (paste once into the Browser command line) ---------------------------------------

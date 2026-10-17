@@ -344,9 +344,12 @@ of a reading:
   ours ("The lines engage (Chrystallum)"): each `partOf` the event, asserted,
   evidenced by the passages that depict its events; each depicted event
   `partOf` one phase at most. A depicted event from a creative Work is never
-  placed. The phases' order is the spine's, in `curation/phases.json`, until
-  the curator approves the phases; then it is stored as `happenedBefore`
-  between them (handoff 1f2(e)).
+  placed. **The phases' order is the curator's decision, kept as data**: the
+  ordered spine in `curation/phases.json`, never claims between the phases
+  ([33](33-DECISIONS.md) D-091). A claim needs a passage that shows it, and
+  the sources order only some of the steps; where a source orders two events
+  against the spine, that is a review item (a weak placement or link, or
+  phases that overlap), not a second order.
 
 ### Not graph data
 
