@@ -1,6 +1,6 @@
 {
   "description": "The source registry (29-EVENT-CENTRED-INQUIRY.md §6): the machine-readable companion to docs/Agent resources.md. One entry per source system: what it covers, how to discover and fetch from it, its identifier scheme, its rights as the source itself states them and when that was checked, its limitations, and the adapter that reads it. A starting point, not a whitelist: the agent consults it first and may propose sources beyond it; discovery is not acceptance. Rights are quoted from the source's own pages, never from memory or an aggregator (handoff rule 17).",
-  "version": 1,
+  "version": 2,
   "rightsClasses": {
     "A": "ingestible: machine-readable, with an explicit licence that allows preserving and quoting; attribution and share-alike obligations kept",
     "B": "conditional: rights vary by item, edition, or translation; each item is checked before it is preserved",
@@ -255,6 +255,61 @@
         "The current Terms of Use are still to be read and quoted before the first preserved item."
       ],
       "adapter": null
+    },
+    {
+      "id": "loc-catalog",
+      "label": "Library of Congress catalog",
+      "homepage": "https://search.catalog.loc.gov/",
+      "status": "registered",
+      "kind": "library catalogue",
+      "coverage": {
+        "languages": [
+          "eng",
+          "and others"
+        ],
+        "description": "Bibliographic records for books, most US-published books among them: the author's name heading, title and statement of responsibility, every edition's ISBN, call numbers (LCC, DDC), contents, bibliography and index notes, and the LCSH and name headings LC assigned. Evidence of what LC's catalogers recorded about an edition, never of what the book says.",
+        "evidence": [
+          "bibliographic record"
+        ]
+      },
+      "discover": {
+        "method": "SRU search",
+        "endpoint": "http://lx2.loc.gov:210/lcdb",
+        "how": "searchRetrieve by bath.isbn, bath.lccn, or dc.subject (a heading), recordSchema marcxml; adapters/lc_catalog.py search(). Search results are pointers only."
+      },
+      "fetch": {
+        "method": "SRU search for one LCCN",
+        "endpoint": "http://lx2.loc.gov:210/lcdb",
+        "how": "The response for bath.lccn preserved byte for byte with its hash in phase-5-source/ (lc-<lccn>.marcxml, git-ignored); it must hold exactly one record. https://lccn.loc.gov/<lccn>/marcxml, named on LC's limits page, answered 404 for a current record on 2026-10-17."
+      },
+      "identifiers": {
+        "scheme": "LCCN (Library of Congress Control Number)",
+        "example": "2021007113 (permalink https://lccn.loc.gov/2021007113)"
+      },
+      "rights": {
+        "class": "C",
+        "statement": "Materials displayed on our websites are intended for reference use only.",
+        "statementUri": "https://www.loc.gov/legal/",
+        "alsoStated": "The same page: 'As a publicly supported institution, we generally do not own the rights to materials in our collections.' The record-distribution page (https://www.loc.gov/cds/products/marcDist.php): 'we now offer an \"open-access\" provision, MDSConnect, at no cost to users'; 'These MDS record sets have been made available primarily for research and development usage.' No page found states a licence for the catalog records themselves (searched 2026-10-17).",
+        "checkedAt": "2026-10-17",
+        "rule": "Preserve and cite a record as research use (curator's decision, 2026-10-17, D-094), never republish it: records are git-ignored. A publisher's summary in a record (520 'Provided by publisher') is the publisher's words, never cited as the author's.",
+        "perItem": "None: one rule for every record.",
+        "obligations": [
+          "cite the record by its LCCN and permalink"
+        ],
+        "decision": "Tony DeFarlo, 2026-10-17: preserving and citing LC catalog records is research use; to be revisited if LC states a licence."
+      },
+      "limitations": [
+        "loc.gov/legal: 'Current guidelines recommend that software programs submit a total of no more than 10 requests per minute to our applications, regardless of the number of machines used to submit requests.' The adapter waits six seconds between requests.",
+        "LC's limits page (https://www.loc.gov/apis/json-and-yaml/working-within-limits/): MARCXML on lccn.loc.gov, 30 requests a minute, a 72-hour block when exceeded.",
+        "The SRU endpoint is plain http.",
+        "Most records name headings by their text only (no $0 or $1 URIs): a heading's LCSH or LCNAF id is found by an exact match of its text at id.loc.gov, and a person's also by the heading's dates; the identity stays the curator's.",
+        "A record describes one edition (often the first hardcover) and lists the others' ISBNs: a page number belongs to the edition the reader holds."
+      ],
+      "adapter": {
+        "type": "lc-catalog-marcxml",
+        "module": "adapters/lc_catalog.py"
+      }
     }
   ]
 }

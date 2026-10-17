@@ -144,3 +144,5 @@ GraphRevised/obsidian_book_notes/
 # fetched by the harvest stay on disk (hashed in their .metadata.json and on the graph's
 # AuthorityRecords) but are not tracked. Records tracked before 2026-10-13 stay tracked.
 GraphRevised/phase-5-source/wikidata-Q*
+# Library of Congress catalog records: research use, not republished (curation/sources.json loc-catalog).
+GraphRevised/phase-5-source/lc-*
