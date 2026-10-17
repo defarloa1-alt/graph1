@@ -4,9 +4,9 @@
 
 This folder is the clean-start design space for Chrystallum.
 
-The previous model accumulated too many node types, relationship types, agents,
-authority mappings, and workflow states before the smallest useful graph had
-been proven. This revision starts with a smaller contract:
+==The previous model accumulated too many node types, relationship types, agents,==
+==authority mappings, and workflow states before the smallest useful graph had==
+==been proven==. This revision starts with a smaller contract:
 
 1. represent durable things;
 2. represent subjects about those things;

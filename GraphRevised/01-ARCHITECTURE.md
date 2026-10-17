@@ -4,8 +4,8 @@
 
 ## 1. The central idea
 
-Chrystallum should be a small evidence graph before it becomes an elaborate
-research platform.
+==Chrystallum should be a small evidence graph before it becomes an elaborate==
+==research platform.==
 
 The graph has three questions to answer:
 
@@ -41,8 +41,8 @@ QIDs are authority links, not the local primary key.
 
 ### Subject
 
-A subject is a body of knowledge about one or more entities. It is not the
-historical thing itself.
+==A subject is a body of knowledge about one or more entities. It is not the==
+==historical thing itself.==
 
 Examples:
 
@@ -91,8 +91,8 @@ Review or acceptance
 Durable graph
 ```
 
-This is deliberately smaller than the previous SCA/SFA architecture. Agents
-may be introduced later, but the graph model must not depend on them.
+==This is deliberately smaller than the previous SCA/SFA architecture. Agents==
+==may be introduced later, but the graph model must not depend on them.==
 
 The agent system is an orchestration layer around this graph, not another
 semantic layer inside it. Its job is to plan work, propose changes, validate
@@ -183,7 +183,7 @@ that the stable model is portable.
 7. Every durable write must be safe to retry.
 8. Proposed information and accepted information must remain distinguishable.
 9. Temporal dates and scholarly period definitions must remain distinct.
-10. New complexity must be justified by a query, workflow, or interoperability need.
+10. ==New complexity must be justified by a query, workflow, or interoperability need.==
 11. The front-door agent plans and routes but does not create durable knowledge.
 12. Specialist agents propose; deterministic validation and commit services write.
 13. Prompt, schema, policy, and mapping versions must be recorded for every

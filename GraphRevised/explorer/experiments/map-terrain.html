@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrystallum Terrain Experiment</title>
+<!-- Local experiment: open this file in a browser. Map tiles load from the internet,
+     which the published artifact cannot do. Places and ancient names are mock until
+     the gazetteer (27) supplies Pleiades coordinates and names. -->
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+  :root { --ink: #1c1f23; --ink-2: #4d545b; --line: #d2d6da; --surface: #ffffffee; }
+  html, body { height: 100%; margin: 0; font: 14px/1.4 "Segoe UI", system-ui, sans-serif; color: var(--ink); }
+  #map { position: absolute; inset: 0; }
+  .panel { position: absolute; left: 12px; top: 12px; z-index: 2; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+  .panel h1 { font-size: 15px; margin: 0; }
+  .panel fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .panel legend { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 2px; }
+  .panel small { color: var(--ink-2); }
+  .place { display: flex; align-items: center; gap: 5px; cursor: pointer; transform: translate(0, 0); }
+  .place .dot { width: 9px; height: 9px; border-radius: 50%; background: #1c1f23; border: 2px solid #fff; box-shadow: 0 0 0 1px #1c1f23; }
+  .place .name { font: italic 600 14px Georgia, "Times New Roman", serif; color: #fff; text-shadow: 0 0 3px #000, 0 0 6px #000; white-space: nowrap; }
+  .place.sea .dot { display: none; }
+  .place.sea .name { font-weight: 400; letter-spacing: .2em; text-transform: uppercase; font-size: 12px; }
+  .place.event .dot { border-radius: 0; transform: rotate(45deg); background: #b8860b; }
+  .light .place .name { color: #1c1f23; text-shadow: 0 0 3px #fff, 0 0 6px #fff; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="panel">
+  <h1>Terrain without modern labels</h1>
+  <fieldset id="bases">
+    <legend>Base</legend>
+    <label><input type="radio" name="base" value="cawm" checked> Ancient terrain (CAWM, no labels)</label>
+    <label><input type="radio" name="base" value="imagery"> Satellite imagery (Esri, no labels)</label>
+    <label><input type="radio" name="base" value="relief"> Shaded relief (Esri, no labels)</label>
+    <label><input type="radio" name="base" value="dare"> Roman atlas (DARE, its own ancient labels)</label>
+  </fieldset>
+  <fieldset>
+    <legend>Terrain</legend>
+    <label><input type="checkbox" id="hillshade"> Hillshade from elevation</label>
+    <label><input type="checkbox" id="terrain3d"> 3D terrain (tilt with right-drag)</label>
+  </fieldset>
+  <fieldset>
+    <legend>Our labels</legend>
+    <label><input type="radio" name="names" value="ancient" checked> Ancient names</label>
+    <label><input type="radio" name="names" value="modern"> Names in the graph</label>
+  </fieldset>
+  <small>Places from the graph, placed by hand; ancient names are mock until the gazetteer supplies Pleiades names. Google's photorealistic 3D tiles (also label-free) need a Map Tiles API key.</small>
+</div>
+<script>
+const PLACES = [
+  // [name in the graph, ancient name (mock), lat, lon, kind]
+  ["Battle of Actium", "Actium, 2 September 31 BCE", 38.95, 20.73, "event"],
+  ["Actium promontory", "Aktion", 38.955, 20.76, "place"],
+  ["Ionian Sea", "Mare Ionium", 38.3, 19.4, "sea"],
+  ["Rome", "Roma", 41.89, 12.49, "place"],
+  ["Alexandria", "Alexandria", 31.2, 29.92, "place"],
+  ["İzmir", "Smyrna", 38.42, 27.14, "place"],
+  ["Athens", "Athenae", 37.98, 23.73, "place"],
+  ["Sicyon", "Sicyon", 37.98, 22.72, "place"],
+  ["Cherchell", "Iol Caesarea", 36.6, 2.2, "place"],
+  ["Crete", "Creta", 35.2, 24.9, "sea"],
+  ["Nola", "Nola", 40.93, 14.53, "place"],
+  ["Antioch", "Antiochia", 36.2, 36.16, "place"],
+  ["Farsala", "Pharsalus", 39.3, 22.38, "place"],
+  ["Philippi", "Philippi", 41.01, 24.29, "place"],
+];
+const BASES = {
+  cawm: { tiles: ["https://cawm.lib.uiowa.edu/tiles/{z}/{x}/{y}.png"], maxzoom: 11, attribution: "Consortium of Ancient World Mappers", light: true },
+  imagery: { tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"], maxzoom: 18, attribution: "Esri, Maxar, Earthstar Geographics", light: false },
+  relief: { tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}"], maxzoom: 13, attribution: "Esri", light: true },
+  dare: { tiles: ["https://dh.gu.se/tiles/imperium/{z}/{x}/{y}.png"], maxzoom: 11, attribution: "Digital Atlas of the Roman Empire (Johan Åhlfeldt)", light: true },
+};
+const sources = {
+  dem: { type: "raster-dem", tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"], encoding: "terrarium", tileSize: 256, maxzoom: 14, attribution: "Elevation: Mapzen terrain tiles (AWS Open Data)" },
+};
+const layers = [];
+for (const [k, b] of Object.entries(BASES)) {
+  sources[k] = { type: "raster", tiles: b.tiles, tileSize: 256, maxzoom: b.maxzoom, attribution: b.attribution };
+  layers.push({ id: k, type: "raster", source: k, layout: { visibility: k === "cawm" ? "visible" : "none" } });
+}
+layers.push({ id: "hillshade", type: "hillshade", source: "dem", layout: { visibility: "none" }, paint: { "hillshade-exaggeration": 0.6 } });
+
+const map = new maplibregl.Map({
+  container: "map",
+  style: { version: 8, sources, layers },
+  center: [21.5, 38.6], zoom: 6, maxPitch: 75,
+});
+map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
+
+const markers = PLACES.map(([modern, ancient, lat, lon, kind]) => {
+  const el = document.createElement("div");
+  el.className = `place ${kind}`;
+  el.innerHTML = `<span class="dot"></span><span class="name"></span>`;
+  el.querySelector(".name").textContent = ancient;
+  el.dataset.modern = modern; el.dataset.ancient = ancient;
+  el.title = `${modern} (in the graph)`;
+  return new maplibregl.Marker({ element: el, anchor: "left", offset: kind === "event" ? [0, 18] : [0, 0] }).setLngLat([lon, lat])
+    .setPopup(new maplibregl.Popup({ offset: 12 }).setText(`${ancient} · ${modern}. Its chain, ancient and modern, comes from the gazetteer (mock).`))
+    .addTo(map);
+});
+
+function setBase(k) {
+  for (const key of Object.keys(BASES)) map.setLayoutProperty(key, "visibility", key === k ? "visible" : "none");
+  document.body.classList.toggle("light", BASES[k].light);
+}
+document.querySelectorAll("input[name=base]").forEach(r => r.addEventListener("change", () => setBase(r.value)));
+document.querySelectorAll("input[name=names]").forEach(r => r.addEventListener("change", () => {
+  for (const m of markers) { const el = m.getElement(); el.querySelector(".name").textContent = r.value === "ancient" ? el.dataset.ancient : el.dataset.modern; }
+}));
+document.getElementById("hillshade").addEventListener("change", e => map.setLayoutProperty("hillshade", "visibility", e.target.checked ? "visible" : "none"));
+document.getElementById("terrain3d").addEventListener("change", e => {
+  if (e.target.checked) { map.setTerrain({ source: "dem", exaggeration: 1.6 }); map.easeTo({ pitch: 60, bearing: -20, zoom: Math.max(map.getZoom(), 8), center: [20.75, 38.95] }); }
+  else { map.setTerrain(null); map.easeTo({ pitch: 0, bearing: 0 }); }
+});
+map.on("load", () => setBase("cawm"));
+</script>
+</body>
+</html>

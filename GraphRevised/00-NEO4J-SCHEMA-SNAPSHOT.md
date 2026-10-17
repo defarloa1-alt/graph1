@@ -28,16 +28,16 @@ This snapshot records the database as observed. It does not define a target sche
 
 ## Node properties
 
-| Labels | Property | Count |
-|---|---|---|
-| ['Year'] | created | 4025 |
-| ['Year'] | iso8601_end | 4025 |
-| ['Year'] | iso8601_start | 4025 |
-| ['Year'] | label | 4025 |
-| ['Year'] | temporal_backbone | 4025 |
-| ['Year'] | year | 4025 |
-| ['Year'] | year_value | 4025 |
-
+| Labels   | Property          | Count |
+| -------- | ----------------- | ----- |
+| ['Year'] | created           | 4025  |
+| ['Year'] | iso8601_end       | 4025  |
+| ['Year'] | iso8601_start     | 4025  |
+| ['Year'] | label             | 4025  |
+| ['Year'] | temporal_backbone | 4025  |
+| ['Year'] | year              | 4025  |
+| ['Year'] | year_value        | 4025  |
+==? Why year and year_value?==
 ## Relationship properties
 
 | Type | Property | Count |

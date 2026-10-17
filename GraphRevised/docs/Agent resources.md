@@ -1,4 +1,4 @@
-Agent resources
+------------------Agent resources
 
 > **How agents use this document (2026-10-15).** It is a starting point, not a
 > whitelist. Its machine-readable companion is the source registry,
@@ -24,17 +24,17 @@ Do not equate **free access** with permission to download, reproduce, mine, or t
 | **B: conditional** | Ingest only approved records or versions | Rights vary by text, collection, image, translation, or contributor; evaluate each asset individually |
 | **C: consultative** | Agent reads or searches online and records citations, identifiers, or brief factual extractions | Free-to-read but copying, reuse, automation, or derivative works are restricted or unclear |
 
-A source registry should record at least:
+==🟡A source registry should record at least:==
 
-- Canonical source and record URLs
-- Polity, region, and date interval
-- Ancient language, script, modern translation language, and edition
-- Retrieval method: browser, API, Git, SPARQL, dump, IIIF, TEI/XML, RDF, CSV, JSON, or PDF
-- License at the **item/version level**, not merely the website level
-- Whether commercial use, redistribution, derivatives, or model training are permitted
-- Attribution string, access date, release identifier, checksum, and local transformations
-- Lenses supported: political, economic, religious, social, artistic, scientific, legal, military, linguistic, geographic, and environmental
-- Evidentiary type: literary text, inscription, papyrus, administrative document, coin, manuscript, map, or modern scholarly metadata
+- ==🟡Canonical source and record URLs==
+- ==🟡Polity, region, and date interval==
+- ==🟡Ancient language, script, modern translation language, and edition==
+- ==🟡Retrieval method: browser, API, Git, SPARQL, dump, IIIF, TEI/XML, RDF, CSV, JSON, or PDF==
+- ==🟡License at the **item/version level**, not merely the website level==
+- ==🟡Whether commercial use, redistribution, derivatives, or model training are permitted==
+- ==🟡Attribution string, access date, release identifier, checksum, and local transformations==
+- ==🟡Lenses supported: political, economic, religious, social, artistic, scientific, legal, military, linguistic, geographic, and environmental==
+- ==🟡Evidentiary type: literary text, inscription, papyrus, administrative document, coin, manuscript, map, or modern scholarly metadata==
 
 ## Cross-polity infrastructure
 
