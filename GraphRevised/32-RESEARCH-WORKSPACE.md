@@ -118,20 +118,34 @@ id:                       # left empty: the sync fills it
 noteType: excerpt         # observation | question | hypothesis | interpretation | excerpt | outline | argument
 status: draft             # draft | active (endorsed, archived: set in review)
 visibility: private
-book: "The War That Made the Roman Empire"   # the title as printed
-author: "Barry Strauss"
-isbn: ""                  # optional, from the copyright page: the surest identity
-edition: "Simon & Schuster, 2022"
+isbn: "9781982116682"     # from the copyright page of the copy in hand: the surest identity
 page: 3                   # or location: (a Kindle location)
-work:                     # optional: the book's Entity id; the sync fills it when it finds the book
+chapter: 1                # optional: the chapter the page is in
+quoting:                  # optional: whose words these are, when not the book's author's ("Plutarch, Antony 66.5")
+book:                     # only without an ISBN: the title as printed
+author:                   # only without an ISBN
+edition:                  # only without an ISBN: publisher and year
+work:                     # left empty: the sync fills the book's Entity id when it finds the book
 quotationStatus: private-copy   # private-copy | public-domain | licensed | permission | review-required
 concerns:
   - chr:entity:battle-of-actium
+related:                  # optional: other notes, as Obsidian links ("[[Strauss on the council]]")
+tags:                     # optional: Obsidian's own tags, for the curator's search; the sync ignores them
 ---
 ```
 
+**Only what the curator alone knows goes in a note** (curator, 2026-10-17): the
+copy in hand (its ISBN), where the passage is, what it concerns, whose words
+it is, and the curator's own thoughts. Whatever a catalogue gives (LCCN,
+subject headings, call numbers, publisher, year, page count) comes from the
+book's record, never typed, so the two cannot disagree. `book`, `author`, and
+`edition` are for a book without an ISBN (an old public-domain book, a Kindle
+copy without one); with an ISBN they may be left out, or given only to be
+checked against the record.
+
 **The book need not be in the graph** (curator, 2026-10-17): a note names its
-book by `book` and `author` (and `isbn` where known), and `work` is optional.
+book by its ISBN (or, without one, by `book` and `author`), and `work` is
+filled by the sync.
 
 What a run does with one note:
 
@@ -160,6 +174,14 @@ What a run does with one note:
    never a claim), `ANNOTATES` the transcription with the words it is about and
    `CONCERNS` its targets. An excerpt (no text of the curator's) still gets
    its Annotation, with no note text, so that what it concerns is recorded.
+   `chapter` joins the page in the transcription's locator ("ch. 1, p. 3");
+   `related` notes become `CONCERNS` links to their Annotations (32 §2.1,
+   designed); `tags` stay in the vault.
+   **`quoting`** marks words that are not the book's author's own: the
+   transcription records whose they are, and no claim is drafted from the
+   passage as the author's reading. Until nested attribution exists (29 §10
+   item 4: "Strauss reports that Plutarch says"), such a passage's claims wait
+   for the curator.
 5. **Remembered.** A hash of the note, so the next run knows what changed.
 
 Edits and deletions:
