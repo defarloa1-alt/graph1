@@ -3,6 +3,7 @@
 import unittest
 
 from GraphRevised.adapters.lc_catalog import CatalogError, isbn_valid, normalize_lccn, parse_record
+from GraphRevised.harvest.lc_record import direct_order, record_lines
 
 # A synthetic record in LC's shape (an SRU response around one MARCXML record); not a real book.
 SRU = b"""<?xml version="1.0"?>
@@ -78,6 +79,19 @@ class RecordTests(unittest.TestCase):
         self.assertEqual(r.language, "eng")
         self.assertIn("280-290", r.bibliography_note)
         self.assertEqual(r.publisher_summary, '"A gripping story."')
+
+    def test_the_record_text_holds_what_claims_quote(self):
+        lines = record_lines(self.record)
+        self.assertEqual(lines[:2], ["Tester, Ann B., author.", "The test of a war : a history / by Ann Tester."])
+        self.assertIn("Subject: Testium, Battle of, 31 B.C.", lines)
+        self.assertNotIn("Subject: Naval battles", lines)  # FAST headings are not LC's own subject analysis here
+        self.assertFalse(any("gripping" in line for line in lines))  # the publisher's words are never quoted
+        self.assertNotIn("ISBN 9780000000002 (ebook)", lines)  # a cancelled ISBN is not the edition's
+
+    def test_a_name_heading_in_direct_order(self):
+        self.assertEqual(direct_order("Tester, Ann B."), "Ann B. Tester")
+        self.assertEqual(direct_order("Testus, Marcus, 83 B.C.?-30 B.C."), "Marcus Testus")
+        self.assertEqual(direct_order("Plato"), "Plato")
 
     def test_a_record_without_an_lccn_is_refused(self):
         with self.assertRaises(CatalogError):

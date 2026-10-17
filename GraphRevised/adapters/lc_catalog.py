@@ -25,13 +25,16 @@ import hashlib
 import json
 import re
 import time
+import urllib.parse
 import xml.etree.ElementTree as ElementTree
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from GraphRevised.adapters.wikidata_identity import polite_get
+import requests
+
+from GraphRevised.adapters.wikidata_identity import USER_AGENT, polite_get
 
 SOURCE_DIRECTORY = Path(__file__).resolve().parents[1] / "phase-5-source"
 SRU_ENDPOINT = "http://lx2.loc.gov:210/lcdb"
@@ -237,6 +240,45 @@ def parse_record(payload: bytes) -> CatalogRecord:
         has_index=len(fixed) > 31 and fixed[31] == "1", language=fixed[35:38].strip() or None if len(fixed) >= 38 else None,
         subjects=subjects, publisher_summary=summary, revised=control.get("005"), unmapped_tags=unmapped,
     )
+
+
+# --- Headings resolved at id.loc.gov ----------------------------------------------------------------
+
+# id.loc.gov's known-label services: the one across its authorities first, then the names and the
+# subjects services. On 2026-10-17 each answered 404 for some headings that exist (the subjects one for
+# an established battle heading, the cross-scheme one for a name whose dates hold a "?"), so all are tried.
+LABEL_SERVICES = ("https://id.loc.gov/authorities/label/{label}",
+                  "https://id.loc.gov/authorities/names/label/{label}",
+                  "https://id.loc.gov/authorities/subjects/label/{label}")
+HEADING_SYSTEM = {"names": "LCNAF", "subjects": "LCSH"}
+
+
+def _known_label(service: str, text: str) -> str | None:
+    global _last_request
+    wait = _last_request + MIN_INTERVAL_SECONDS - time.monotonic()
+    if wait > 0:
+        time.sleep(wait)
+    try:
+        response = requests.get(service.format(label=urllib.parse.quote(text)), headers={"User-Agent": USER_AGENT},
+                                timeout=30, allow_redirects=False)
+    finally:
+        _last_request = time.monotonic()
+    uri = response.headers.get("X-Uri")
+    return uri if response.status_code in (301, 302, 303) and uri else None
+
+
+def resolve_heading(text: str) -> dict[str, str] | None:
+    """An exact heading's authority id: {"system", "identifier", "label", "uri"} with LC's own label,
+    or None when no service has a record of exactly that heading."""
+    for service in LABEL_SERVICES:
+        uri = _known_label(service, text)
+        if uri is None:
+            continue
+        scheme = uri.rstrip("/").rsplit("/", 2)[-2]
+        if scheme in HEADING_SYSTEM:
+            return {"system": HEADING_SYSTEM[scheme], "identifier": uri.rstrip("/").rsplit("/", 1)[-1],
+                    "label": text, "uri": uri}
+    return None
 
 
 # --- Finding and preserving -------------------------------------------------------------------------
