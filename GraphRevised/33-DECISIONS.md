@@ -102,7 +102,7 @@ marked.
 
 | ID | Decision | Recorded in |
 |---|---|---|
-| D-060 | The event is the inquiry, not a Work (**to be reworded**, handoff 1f2(b): an inquiry focuses on an event) | [29](29-EVENT-CENTRED-INQUIRY.md) §2 item 1 |
+| D-060 | The event is the inquiry, not a Work. **Superseded by D-088** (the wording; the substance, an inquiry names an event rather than a Work, stands) | [29](29-EVENT-CENTRED-INQUIRY.md) §2 item 1 |
 | D-061 | Chrystallum's account sits beside the event, labelled as ours, every statement citing a preserved passage; never counted as an author | [29](29-EVENT-CENTRED-INQUIRY.md) §2, §4 |
 | D-062 | Wikipedia: a starting point for discovery, a link on the card, and a labelled tertiary voice | [29](29-EVENT-CENTRED-INQUIRY.md) §5 |
 | D-063 | Facets are lens steps in the drill-down path | [29](29-EVENT-CENTRED-INQUIRY.md) §2 item 4 |
@@ -134,6 +134,8 @@ marked.
 | D-086 | Proposed claims in the same projection as approved ones; path tracing approved-only by default; status shown redundantly (settles 31 §7 item 2) | [32](32-RESEARCH-WORKSPACE.md) §1 items 9-11 |
 | D-087 | Match before storing: a candidate is compared with approved and proposed claim families | [32](32-RESEARCH-WORKSPACE.md) §1 item 12 |
 | D-001 | Which document governs what (§1) | here |
+| D-088 | An inquiry focuses on an event (or a person, a subject); it is not the event. Several inquiries may share a focus, one inquiry may have several. Supersedes D-060's wording. Reason: the event is what happened, the inquiry a research activity with its own scope, plans, and runs (sequence-diagram review). Alternative turned down: one object for both | [29](29-EVENT-CENTRED-INQUIRY.md) §2 item 1; [31](31-ONE-COMMAND.md) §3.11 |
+| D-089 | Program, Inquiry, Plan, Run, and Orientation dossier are distinct contracts, and workers hand on evidence packets; all are run state, never graph data. The dossier follows 31 §7 item 4's recommendation, still open to veto. Code: `orchestration/contracts.py` (`inquiry-run-v2`) | [31](31-ONE-COMMAND.md) §3.11, §6 |
 | D-002 | A decision register (this file). Reverses the earlier recommendation not to keep ADRs ([direction-review response](docs/Response%20-%20Review%20of%20the%20GraphRevised%20Direction.md)): decisions had spread over too many documents to find | here |
 
 ## 3. Open

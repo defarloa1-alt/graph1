@@ -1,5 +1,6 @@
 """The one-command contracts (31 §3): plans, decisions by mode, run state, reconciler and critic outputs."""
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,12 +8,14 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from GraphRevised.orchestration.contracts import (
-    AuthorityMatch, CoverageContribution, CoverageMap, CriticVerdict, IdentityCandidate, InquiryPlan, InquiryRunState, Interrupt,
-    OrientationBrief, PlanDecision, PlanItem, ReconciliationDecision, ResolvedFocus, RunMode, RunStatus,
-    ScopeDecision, SubjectAnchor, WorkerAssignment, WorkerResult,
+    AuthorityMatch, CoverageContribution, CoverageMap, CriticVerdict, EvidencePacket, IdentityCandidate, Inquiry,
+    InquiryPlan, InquiryRunState, Interrupt, OrientationBrief, OrientationDossier, PlanDecision, PlanItem, Program,
+    ReconciliationDecision, ResolvedFocus, RunMode, RunStatus, ScopeDecision, SubjectAnchor, WorkerAssignment,
+    WorkerResult,
 )
 
 NOW = "2026-01-01T00:00:00+00:00"
+INQUIRY = "chr:inquiry:battle-of-test"
 FOCUS = ResolvedFocus(status="resolved", decided_by="front-door",
                       chosen=IdentityCandidate(label="Battle of Test", kind="Event", qid="Q1", why="the only match"))
 SCOPE = ScopeDecision(decision="IN_SCOPE", primary_intent="HISTORICAL_GRAPH_CONSTRUCTION", explanation="a historical battle")
@@ -25,7 +28,7 @@ def item(item_id, depends_on=(), status="awaiting", budget=1.0):
 
 
 def plan(mode=RunMode.GUIDED, items=None, scope=SCOPE, **extra):
-    return InquiryPlan(plan_id="run-1", version=1, command="graph Battle of Test", mode=mode, scope=scope,
+    return InquiryPlan(plan_id="run-1", inquiry_id=INQUIRY, version=1, command="graph Battle of Test", mode=mode, scope=scope,
                        focus=FOCUS, coverage=CoverageMap(), recipe="Event", stopping_rules=["budget spent"],
                        budget_usd=10, items=items if items is not None else [item("P01"), item("P02", ["P01"])],
                        **extra)
@@ -96,8 +99,8 @@ class PlanTests(unittest.TestCase):
 class RunStateTests(unittest.TestCase):
     def run_state(self, **extra):
         approved = plan(items=[item("P01", status="approved"), item("P02", ["P01"], status="approved")])
-        return InquiryRunState(run_id="run-1", command=approved.command, mode=RunMode.GUIDED, owner="curator",
-                               plan=approved, **extra)
+        return InquiryRunState(run_id="run-1", command=approved.command, inquiry_id=INQUIRY, mode=RunMode.GUIDED,
+                               owner="curator", plan=approved, **extra)
 
     def test_the_next_item_waits_for_its_dependencies_and_for_open_questions(self):
         state = self.run_state()
@@ -126,6 +129,92 @@ class RunStateTests(unittest.TestCase):
             path = Path(directory) / "run.json"
             state.save(path)
             self.assertEqual(InquiryRunState.load(path), state)
+
+
+class InquiryProgramDossierTests(unittest.TestCase):
+    def test_an_inquiry_focuses_on_entities_and_is_not_one(self):
+        with self.assertRaises(ValidationError):
+            Inquiry(inquiry_id=INQUIRY, question="What happened at the battle?", focus_ids=[], kind="Event")
+        with self.assertRaises(ValidationError):
+            Inquiry(inquiry_id="chr:entity:battle-of-test", question="What happened at the battle?",
+                    focus_ids=["chr:entity:battle-of-test"], kind="Event")
+        two = Inquiry(inquiry_id=INQUIRY, question="How did the two battles differ?", kind="Event",
+                      focus_ids=["chr:entity:battle-a", "chr:entity:battle-b"])
+        self.assertEqual(len(two.focus_ids), 2)
+
+    def test_a_closed_inquiry_says_why(self):
+        common = dict(inquiry_id=INQUIRY, question="What happened at the battle?", focus_ids=["chr:entity:b"],
+                      kind="Event")
+        with self.assertRaises(ValidationError):
+            Inquiry(status="closed", **common)
+        Inquiry(status="closed", closed_reason="no new independent evidence", **common)
+
+    def test_an_inquiry_file_stands_for_its_inquiry_unchanged(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps({"id": INQUIRY, "version": 3, "label": "The Battle of Test, as told",
+                                        "subjectId": "chr:subject:test", "narrativeEventId": "chr:entity:b"}),
+                            encoding="utf-8")
+            before = path.read_bytes()
+            inquiry = Inquiry.from_reading_file(path, root=Path(directory))
+            self.assertEqual(path.read_bytes(), before)
+        self.assertEqual((inquiry.inquiry_id, inquiry.focus_ids, inquiry.reading_file),
+                         (INQUIRY, ["chr:entity:b"], "inquiry.json"))
+
+    def test_a_program_lists_inquiries_once(self):
+        with self.assertRaises(ValidationError):
+            Program(program_id="chr:program:test", command="graph Test", title="Test", inquiry_ids=[INQUIRY, INQUIRY])
+        with self.assertRaises(ValidationError):
+            Program(program_id="chr:program:test", command="graph Test", title="Test", inquiry_ids=["chr:entity:x"])
+
+    def test_a_dossier_revision_is_a_new_version_and_both_are_kept(self):
+        brief = OrientationBrief(focus=FOCUS, kind="Event", stopping_rule="enough")
+        first = OrientationDossier(dossier_id="chr:dossier:battle-of-test", version=1, focus_ids=["chr:entity:b"],
+                                   brief=brief)
+        second = first.revise(brief.model_copy(update={"controversies": ["battle or breakout"]}), run_id="run-2",
+                              inquiry_id=INQUIRY)
+        self.assertEqual((second.version, second.previous_version, second.used_by_inquiries), (2, 1, [INQUIRY]))
+        self.assertEqual(first.brief.controversies, [])
+        with tempfile.TemporaryDirectory() as directory:
+            paths = {first.save(Path(directory)), second.save(Path(directory))}
+            self.assertEqual(len(paths), 2)
+            self.assertEqual({OrientationDossier.load(p).version for p in paths}, {1, 2})
+        with self.assertRaises(ValidationError):
+            OrientationDossier(dossier_id="chr:dossier:x", version=2, focus_ids=["chr:entity:b"], brief=brief)
+
+
+class EvidencePacketTests(unittest.TestCase):
+    def state(self, **extra):
+        approved = plan(items=[item("P01", status="approved")])
+        state = InquiryRunState(run_id="run-1", command=approved.command, inquiry_id=INQUIRY, mode=RunMode.GUIDED,
+                                owner="curator", plan=approved)
+        state.assignments.append(WorkerAssignment(assignment_id="a1", item_id="P01", worker="GraphRevised.x",
+                                                  idempotency_key="run-1:P01:1"))
+        return InquiryRunState.model_validate(state.model_dump() | extra)
+
+    def packet(self, **extra):
+        return EvidencePacket(**({"packet_id": "k1", "inquiry_id": INQUIRY, "assignment_id": "a1",
+                                  "observation_ids": ["chr:observation:test:work:1.1:abc"]} | extra))
+
+    def test_a_packet_holds_preserved_observations_only(self):
+        with self.assertRaises(ValidationError):
+            self.packet(observation_ids=[])
+        with self.assertRaises(ValidationError):
+            self.packet(observation_ids=["https://example.org/search?q=battle"])
+
+    def test_a_run_holds_its_packets_and_what_cites_them(self):
+        packet = self.packet().model_dump()
+        self.state(packets=[packet], results=[{"assignment_id": "a1", "status": "ok", "packet_ids": ["k1"]}])
+        with self.assertRaises(ValidationError):
+            self.state(packets=[self.packet(assignment_id="a9").model_dump()])
+        with self.assertRaises(ValidationError):
+            self.state(packets=[self.packet(inquiry_id="chr:inquiry:other").model_dump()])
+        with self.assertRaises(ValidationError):
+            self.state(results=[{"assignment_id": "a1", "status": "ok", "packet_ids": ["k2"]}])
+
+    def test_a_plan_is_run_for_its_own_inquiry(self):
+        with self.assertRaises(ValidationError):
+            self.state(inquiry_id="chr:inquiry:other")
 
 
 class ReconcilerAndCriticTests(unittest.TestCase):

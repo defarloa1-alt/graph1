@@ -40,8 +40,15 @@ as the agent finds on its own.
 
 ## 2. Decisions (curator, 2026-10-15)
 
-1. **The event is the inquiry.** An inquiry names an event (later a person or
-   a subject), not a Work. The agent gathers the works for it.
+1. **An inquiry focuses on an event.** An inquiry names an event (later a
+   person or a subject), not a Work. The agent gathers the works for it.
+   (Reworded 2026-10-17, 1f2(b); first written "the event is the inquiry".)
+   The event is what happened; the inquiry is the research about it: a
+   question, a scope, a plan, its runs, and the curator's decisions. Several
+   inquiries may focus on one event (the naval campaign, the battle's memory),
+   and one inquiry may focus on several. The data already said so: an inquiry
+   file names its event by `narrativeEventId`. The contracts are in
+   [31](31-ONE-COMMAND.md) §3.11.
 2. **Chrystallum's account sits on the stage beside the event**: a narrative
    written by the agent, labelled as ours, every statement citing a passage.
 3. **Wikipedia is a starting point**: for the agent, to surface the high-level
@@ -63,7 +70,7 @@ Event (Battle of Actium)
   2. surface entities  people, places, events, offices, groups: proposed, visible at once
   3. source plan       the registry's seed sources + the agent's own discovery
   4. preserve          each chosen source fetched, hashed, rights recorded
-  5. read              the reader on each source, with the event as the inquiry
+  5. read              the reader on each source, in an inquiry focused on the event
   6. account           Chrystallum's account, citing what was preserved and read
 ```
 
@@ -90,7 +97,7 @@ Event (Battle of Actium)
 4. **Preserve.** Only a fetched, preserved, hashed document can be evidence;
    a search result or a model's answer never is (model-choice response,
    amendment 1).
-5. **Read.** The reader runs on each source with the event as its inquiry,
+5. **Read.** The reader runs on each source in an inquiry focused on the event,
    locating the relevant passages itself (whole works, 18 §20).
 6. **The account** (§4).
 

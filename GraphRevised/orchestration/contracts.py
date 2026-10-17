@@ -1,6 +1,11 @@
 """The typed contracts of one command (31-ONE-COMMAND.md §3): what the front door plans, what the
 orchestrator records, and what the reconciler and the critic return.
 
+Five things are kept apart (31 §3.11): a Program (a broad command's constellation of inquiries); an
+Inquiry (the research about a focus, never the focus itself); its InquiryPlan (versioned line items);
+a run (InquiryRunState, one execution of a plan); and the OrientationDossier, which outlives them.
+Workers hand on EvidencePackets, which the reconciler and the critic read.
+
 Everything here is run state, kept in a file per run outside the graph (02 §1). A candidate entity
 or a relationship need in an orientation brief is a planning artifact, never a graph node or a
 ProposalDraft: only workers that go through proposals/ write to the graph, and only by proposal.
@@ -12,6 +17,7 @@ these contracts make their choices inspectable and resumable, and refuse what is
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
@@ -19,14 +25,23 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-RUN_STATE_SCHEMA_VERSION = "inquiry-run-v1"
+RUN_STATE_SCHEMA_VERSION = "inquiry-run-v2"
+DOSSIER_SCHEMA_VERSION = "orientation-dossier-v1"
 LOCAL_ID_PATTERN = r"^chr:[a-z]+:[A-Za-z0-9._:-]+$"
+INQUIRY_ID_PATTERN = r"^chr:inquiry:[A-Za-z0-9._-]+$"
+PROGRAM_ID_PATTERN = r"^chr:program:[A-Za-z0-9._-]+$"
+DOSSIER_ID_PATTERN = r"^chr:dossier:[A-Za-z0-9._-]+$"
+OBSERVATION_ID_PATTERN = r"^chr:observation:[A-Za-z0-9._:-]+$"
 QID_PATTERN = r"^Q[1-9][0-9]*$"
 ITEM_ID_PATTERN = r"^P[0-9]{2,3}$"
 
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _matches(pattern: str, value: str) -> bool:
+    return re.fullmatch(pattern, value) is not None
 
 
 class _Contract(BaseModel):
@@ -195,6 +210,112 @@ class OrientationBrief(_Contract):
         return self
 
 
+# --- What is researched, and what is kept between inquiries (31 §3.11) ---------------------------
+
+class Program(_Contract):
+    """A command too broad for one inquiry ("Graph the Roman Republic"): a constellation of bounded
+    inquiries (07 §3), each planned and run on its own."""
+    program_id: str = Field(pattern=PROGRAM_ID_PATTERN)
+    command: str = Field(min_length=1)
+    title: str = Field(min_length=3)
+    subject: SubjectAnchor | None = None
+    inquiry_ids: list[str] = Field(default_factory=list)
+    status: Literal["proposed", "active", "closed"] = "proposed"
+    created_at: str = Field(default_factory=_now)
+
+    @model_validator(mode="after")
+    def _inquiries(self) -> "Program":
+        bad = [i for i in self.inquiry_ids if not _matches(INQUIRY_ID_PATTERN, i)]
+        if bad:
+            raise ValueError(f"not inquiry ids: {bad}")
+        if len(self.inquiry_ids) != len(set(self.inquiry_ids)):
+            raise ValueError("a program lists each inquiry once")
+        return self
+
+
+class Inquiry(_Contract):
+    """The research about a focus: a question and a scope, apart from the focus itself (29 §2 item 1)
+    and from its plans and runs, which name it. Several inquiries may focus on one event, and one
+    inquiry on several. Its reading configuration (sources, rules, scope) stays in its inquiry file,
+    whose id is the inquiry's."""
+    inquiry_id: str = Field(pattern=INQUIRY_ID_PATTERN)
+    question: str = Field(min_length=10)
+    focus_ids: list[str] = Field(min_length=1)  # local Entity ids
+    kind: SubjectKind  # the recipe its plan follows
+    subject_id: str | None = Field(default=None, pattern=LOCAL_ID_PATTERN)
+    program_id: str | None = Field(default=None, pattern=PROGRAM_ID_PATTERN)
+    reading_file: str | None = None  # the inquiry file, relative to GraphRevised/
+    status: Literal["open", "paused", "closed"] = "open"
+    closed_reason: str | None = None
+
+    @model_validator(mode="after")
+    def _consistent(self) -> "Inquiry":
+        bad = [i for i in self.focus_ids if not _matches(LOCAL_ID_PATTERN, i)]
+        if bad:
+            raise ValueError(f"a focus is a local Entity id: {bad}")
+        if len(self.focus_ids) != len(set(self.focus_ids)):
+            raise ValueError("each focus is named once")
+        if (self.status == "closed") != bool(self.closed_reason):
+            raise ValueError("a closed inquiry, and only a closed one, says why it closed")
+        return self
+
+    @classmethod
+    def from_reading_file(cls, path: Path, kind: SubjectKind = "Event", root: Path | None = None) -> "Inquiry":
+        """The inquiry an existing inquiry file stands for: its id, its label as the question, its
+        narrative event (or `focusIds`) as the focus, its Subject. The file is not changed."""
+        data = json.loads(path.read_text(encoding="utf-8"))
+        focus = data.get("focusIds") or [data["narrativeEventId"]]
+        reading_file = path.relative_to(root).as_posix() if root else path.as_posix()
+        return cls(inquiry_id=data["id"], question=data.get("question") or data["label"], focus_ids=focus,
+                   kind=kind, subject_id=data.get("subjectId"), program_id=data.get("programId"),
+                   reading_file=reading_file)
+
+
+class OrientationDossier(_Contract):
+    """What orientation learned about a focus, kept between inquiries and runs (31 §7 item 4): a later
+    inquiry starts from it instead of orienting again. A revision is a new version; the old is kept.
+    Reconnaissance, never evidence: its statements carry their sources, and nothing in it is a claim."""
+    schema_version: Literal["orientation-dossier-v1"] = DOSSIER_SCHEMA_VERSION
+    dossier_id: str = Field(pattern=DOSSIER_ID_PATTERN)
+    version: int = Field(ge=1)
+    previous_version: int | None = None
+    focus_ids: list[str] = Field(min_length=1)
+    subject_id: str | None = Field(default=None, pattern=LOCAL_ID_PATTERN)
+    brief: OrientationBrief
+    open_questions: list[str] = Field(default_factory=list)
+    used_by_inquiries: list[str] = Field(default_factory=list)
+    updated_at: str = Field(default_factory=_now)
+    updated_by_run: str | None = None
+
+    @model_validator(mode="after")
+    def _versions(self) -> "OrientationDossier":
+        if self.version > 1 and self.previous_version != self.version - 1:
+            raise ValueError("a revised dossier names the version it replaces")
+        if self.version == 1 and self.previous_version is not None:
+            raise ValueError("a first dossier replaces nothing")
+        return self
+
+    def revise(self, brief: OrientationBrief, run_id: str, inquiry_id: str | None = None,
+               open_questions: list[str] | None = None) -> "OrientationDossier":
+        """A new version from a later run's orientation; this version is unchanged."""
+        used = self.used_by_inquiries + ([inquiry_id] if inquiry_id and inquiry_id not in self.used_by_inquiries else [])
+        return self.model_validate(self.model_dump() | {
+            "version": self.version + 1, "previous_version": self.version, "brief": brief.model_dump(),
+            "open_questions": open_questions if open_questions is not None else self.open_questions,
+            "used_by_inquiries": used, "updated_at": _now(), "updated_by_run": run_id})
+
+    def save(self, directory: Path) -> Path:
+        """Each version in its own file, so none is overwritten."""
+        path = directory / f"{self.dossier_id.split(':', 2)[2]}.v{self.version}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes((self.model_dump_json(indent=2) + "\n").encode("utf-8"))
+        return path
+
+    @classmethod
+    def load(cls, path: Path) -> "OrientationDossier":
+        return cls.model_validate(json.loads(path.read_text(encoding="utf-8")))
+
+
 # --- The plan ------------------------------------------------------------------------------------
 
 PlanAction = Literal[
@@ -233,6 +354,7 @@ class PlanItem(_Contract):
 class InquiryPlan(_Contract):
     """The front door's line-item plan. A decision or an edit makes a new version; the old stays."""
     plan_id: str = Field(min_length=1)
+    inquiry_id: str = Field(pattern=INQUIRY_ID_PATTERN)  # the inquiry planned: a plan is not the inquiry
     version: int = Field(ge=1)
     previous_version: int | None = None
     command: str = Field(min_length=1)
@@ -327,6 +449,7 @@ class WorkerResult(_Contract):
     status: Literal["ok", "failed", "refused", "stopped"]
     outputs: list[str] = Field(default_factory=list)  # files written, plan files, proposal ids
     proposal_ids: list[str] = Field(default_factory=list)
+    packet_ids: list[str] = Field(default_factory=list)  # the evidence packets it handed on
     model: str | None = None
     prompt_version: str | None = None
     input_tokens: int = 0
@@ -340,6 +463,29 @@ class WorkerResult(_Contract):
     def _failure_says_why(self) -> "WorkerResult":
         if self.status != "ok" and not self.error:
             raise ValueError("a result that is not ok says why")
+        return self
+
+
+class EvidencePacket(_Contract):
+    """What one worker hands on for one stretch of evidence: the preserved observations, the
+    candidates drawn from them, and what they add. The reconciler classifies from it and the critic
+    reads it (31 §3.5, §3.6). Run state: its candidates become graph content only through proposals/."""
+    packet_id: str = Field(min_length=1)
+    inquiry_id: str = Field(pattern=INQUIRY_ID_PATTERN)
+    assignment_id: str = Field(min_length=1)
+    observation_ids: list[str] = Field(min_length=1)  # preserved SourceObservations only
+    candidate_keys: list[str] = Field(default_factory=list)  # the drafts' keys in the worker's output
+    entity_candidates: list[CandidateEntity] = Field(default_factory=list)
+    conflicts: list[str] = Field(default_factory=list)
+    uncertainties: list[str] = Field(default_factory=list)
+    rights_restrictions: list[str] = Field(default_factory=list)
+    coverage: CoverageContribution = Field(default_factory=lambda: CoverageContribution())
+
+    @model_validator(mode="after")
+    def _observations(self) -> "EvidencePacket":
+        bad = [o for o in self.observation_ids if not _matches(OBSERVATION_ID_PATTERN, o)]
+        if bad:
+            raise ValueError(f"a packet's evidence is preserved observations, not {bad}")
         return self
 
 
@@ -357,6 +503,7 @@ class Reconciliation(str, Enum):
 class ReconciliationDecision(_Contract):
     """How one candidate claim relates to the graph. The reconciler classifies; it never merges."""
     candidate: str = Field(min_length=1)  # the draft's key in the worker's output
+    packet_id: str | None = None  # the evidence packet the candidate came in
     classification: Reconciliation
     matched_assertion_ids: list[str] = Field(default_factory=list)
     explanation: str = Field(min_length=3)
@@ -386,6 +533,7 @@ class Verdict(str, Enum):
 class CriticVerdict(_Contract):
     """An independent model's reading of one stored proposal. It advises; it decides nothing (21)."""
     proposal_id: str = Field(pattern=LOCAL_ID_PATTERN)
+    packet_id: str | None = None  # the evidence packet the critic was given
     verdict: Verdict
     modification: str | None = None
     explanation: str = Field(min_length=3)
@@ -428,10 +576,16 @@ class RunStatus(str, Enum):
 
 
 class InquiryRunState(_Contract):
-    """One command's run, resumable from its file. Workflow state, never graph data."""
-    schema_version: Literal["inquiry-run-v1"] = RUN_STATE_SCHEMA_VERSION
+    """One run of a command, resumable from its file. Workflow state, never graph data. While the front
+    door plans, the run may not yet have an inquiry (a broad command becomes a Program first); once it
+    has a plan, it runs that plan for one inquiry."""
+    schema_version: Literal["inquiry-run-v2"] = RUN_STATE_SCHEMA_VERSION
     run_id: str = Field(min_length=1)
     command: str = Field(min_length=1)
+    inquiry_id: str | None = Field(default=None, pattern=INQUIRY_ID_PATTERN)
+    program_id: str | None = Field(default=None, pattern=PROGRAM_ID_PATTERN)
+    dossier_id: str | None = Field(default=None, pattern=DOSSIER_ID_PATTERN)  # the dossier it oriented from
+    dossier_version: int | None = Field(default=None, ge=1)
     mode: RunMode
     owner: str = Field(min_length=1)  # whose workspace the run's candidates and notes belong to (32 §2.3)
     visibility: Literal["private", "shared", "public"] = "private"
@@ -442,6 +596,7 @@ class InquiryRunState(_Contract):
     plan_versions: list[int] = Field(default_factory=list)
     assignments: list[WorkerAssignment] = Field(default_factory=list)
     results: list[WorkerResult] = Field(default_factory=list)
+    packets: list[EvidencePacket] = Field(default_factory=list)
     reconciliations: list[ReconciliationDecision] = Field(default_factory=list)
     verdicts: list[CriticVerdict] = Field(default_factory=list)
     interrupts: list[Interrupt] = Field(default_factory=list)
@@ -458,9 +613,23 @@ class InquiryRunState(_Contract):
             raise ValueError("a run with an open question is awaiting the user, not running")
         if self.plan is not None and self.plan.mode is not self.mode:
             raise ValueError("the plan's mode is the run's")
+        if self.plan is not None and self.plan.inquiry_id != self.inquiry_id:
+            raise ValueError("a run with a plan runs it for the plan's inquiry")
+        if (self.dossier_id is None) != (self.dossier_version is None):
+            raise ValueError("a dossier is named with its version")
         assigned = {a.assignment_id for a in self.assignments}
         if any(r.assignment_id not in assigned for r in self.results):
             raise ValueError("every result answers an assignment")
+        packet_ids = [p.packet_id for p in self.packets]
+        if len(packet_ids) != len(set(packet_ids)):
+            raise ValueError("packet ids are unique")
+        if any(p.assignment_id not in assigned or p.inquiry_id != self.inquiry_id for p in self.packets):
+            raise ValueError("every packet comes from an assignment of this run's inquiry")
+        known = set(packet_ids)
+        cited = [i for r in self.results for i in r.packet_ids] + [
+            d.packet_id for d in [*self.reconciliations, *self.verdicts] if d.packet_id]
+        if any(i not in known for i in cited):
+            raise ValueError("a result, reconciliation, or verdict names a packet the run does not hold")
         return self
 
     def open_interrupts(self) -> list[Interrupt]:

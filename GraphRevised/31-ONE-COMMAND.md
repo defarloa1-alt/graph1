@@ -279,6 +279,26 @@ From [docs/Deep dive into sources.md](docs/Deep%20dive%20into%20sources.md)
    families, evidence, traditions, evidence classes, gaps closed), so a run stops
    when reading no longer adds independent evidence (§3.8).
 
+### 3.11 Program, inquiry, plan, run, dossier
+
+Added 2026-10-17 (handoff 1f2(c), from the sequence-diagram review). Five
+things that were easy to run together are kept apart:
+
+| Object | Is | Lives |
+|---|---|---|
+| Focus | the Entity researched (the Battle of Actium): what happened | the graph |
+| Program | a broad command's constellation of bounded inquiries ("Graph the Roman Republic", 07 §3) | run state |
+| Inquiry | the research about one or more foci: a question, a scope, a Subject; several inquiries may share a focus | run state; its reading configuration in its inquiry file, same id |
+| Plan | the inquiry's versioned line items (§3.2) | the run file |
+| Run | one execution of a plan, resumable | `runs/` |
+| Orientation dossier | what orientation learned about a focus, versioned and reused by later inquiries (§7 item 4) | `dossiers/`, one file per version |
+
+A worker hands on an **evidence packet**: the preserved observations it read,
+the candidates drawn from them, conflicts, uncertainties, rights limits, and
+its coverage contribution (§3.10 item 9). The reconciler classifies from it,
+and the critic reads it blind (§3.6). None of these is graph data: a packet's
+candidates enter the graph only as proposals.
+
 ## 4. The test: a second domain
 
 *Graph Alexander the Great*, from the single command, with no file written by
@@ -336,6 +356,11 @@ the hardcoding guard covers the package.
 | `CriticVerdict` | the nine verdicts (§3.6) | a modification on any verdict but "supported if modified", or that verdict without one |
 | `Interrupt` | a question that stops the run | |
 | `InquiryRunState` | the whole run, saved and loaded from its file; the next runnable item by mode, dependencies, and open questions | a finished run without its reason; running with an open question; a result with no assignment |
+| `Program` (2026-10-17, `inquiry-run-v2`) | a broad command's inquiries | an inquiry listed twice; an id that is not an inquiry's |
+| `Inquiry` | the question, its foci, Subject, program, and inquiry file; `from_reading_file` reads an existing inquiry file without changing it | no focus; a focus that is not an Entity id; a closed inquiry without its reason |
+| `OrientationDossier` (`orientation-dossier-v1`) | the brief, open questions, the inquiries that used it; `revise` makes a new version, each saved in its own file | a version that does not name the one it replaces |
+| `EvidencePacket` | observations, candidates, entity candidates, conflicts, uncertainties, rights limits, coverage | a packet with no preserved observation, or with anything else as evidence |
+| (run state, v2) | the inquiry, program, and dossier a run belongs to; its packets; `packet_ids` on results, reconciliations, and verdicts | a plan for another inquiry; a packet from another inquiry or no assignment; a reference to a packet the run does not hold |
 
 ## 7. Decisions for the curator
 
@@ -351,7 +376,9 @@ Recommended answers; each is open to veto.
    related headings, labelled as ours (28 §6); the run does not stop for it.
 4. **What "train" means.** A persistent research dossier per subject (the
    orientation brief and its sources), kept as a file and reused by later
-   inquiries, rather than knowledge that lasts one command.
+   inquiries, rather than knowledge that lasts one command. (Its contract,
+   `OrientationDossier`, was built 2026-10-17 under handoff 1f2(c), §3.11; a
+   veto removes it.)
 5. **The general orientation.** Who, what, when, and where, with expected
    controversies and identity traps; no interpretive or causal claims.
 6. **The critic's authority.** Advise only; reconsider once its agreement with
