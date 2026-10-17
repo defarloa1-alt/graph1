@@ -101,25 +101,66 @@ graph as transcriptions and Annotations; it never writes knowledge.
   are kept and the curator is told (decision 5). Graph to vault comes later, as
   an export in the same format.
 - **The folder:** `GraphRevised/obsidian_book_notes/` (the vault's root is the
-  repository's). Only notes there with a `chrystallum:` frontmatter block are
+  repository's). Only notes there marked `chrystallum: note` are
   read; nothing else in the vault, and never `.obsidian/`. The folder is
   git-ignored: the notes are private and quote books in copyright, and the
   repository is public.
 - **A watcher:** it runs whenever a note in the folder is saved.
 
+**The note's format.** Flat frontmatter (Obsidian's Properties panel edits
+flat keys only), between `---` lines at the very top of the file; the
+passage in a `> [!quote]` callout; the curator's own text after it.
+
+```yaml
+---
+chrystallum: note         # the marker: notes without it are ignored
+id:                       # left empty: the sync fills it
+noteType: excerpt         # observation | question | hypothesis | interpretation | excerpt | outline | argument
+status: draft             # draft | active (endorsed, archived: set in review)
+visibility: private
+book: "The War That Made the Roman Empire"   # the title as printed
+author: "Barry Strauss"
+isbn: ""                  # optional, from the copyright page: the surest identity
+edition: "Simon & Schuster, 2022"
+page: 3                   # or location: (a Kindle location)
+work:                     # optional: the book's Entity id; the sync fills it when it finds the book
+quotationStatus: private-copy   # private-copy | public-domain | licensed | permission | review-required
+concerns:
+  - chr:entity:battle-of-actium
+---
+```
+
+**The book need not be in the graph** (curator, 2026-10-17): a note names its
+book by `book` and `author` (and `isbn` where known), and `work` is optional.
+
 What a run does with one note:
 
-1. **Identity.** A new note is given an id, written back into its frontmatter:
-   the only change the sync ever makes to a file. The id survives renames and
-   moves.
-2. **Targets checked.** Every id in `concerns`, and the `work`, must exist in
-   the graph; otherwise the note is reported and nothing is stored or created.
-3. **Written.** The quote block becomes a transcription (the book's words as
+1. **Identity.** A new note is given an id, written back into its frontmatter.
+   The id survives renames and moves.
+2. **The book.** With `work` given, the id must exist, and `book` and
+   `author` must agree with it (a disagreement is reported). Without it, the
+   book is looked for in the graph, by ISBN, then by title and author:
+   - one match: its id is written into `work` (the only other change the sync
+     makes to a file);
+   - more than one: nothing is stored for the note, and the curator is asked;
+   - none: the book is **proposed** as a Work, and its author as a Person when
+     no Person matches (both visible at once, labelled proposed); the book is
+     looked up in a catalogue the registry lists, its record preserved, and
+     *author authorOf book* drafted from that record, never from the note's
+     typed words. Until such a catalogue is registered (its terms checked at the
+     source, rule 17), the book is proposed without the authorship claim and
+     listed as waiting for one. Wikidata identity stays the curator's.
+   Nothing waits on the book: the transcription and the note are stored at once,
+   linked to the Work found or proposed.
+3. **Targets checked.** Every id in `concerns` must exist in the graph;
+   otherwise the note is reported and nothing is stored or created.
+4. **Written.** The quote block becomes a transcription (the book's words as
    printed, the locator, the edition, who captured it and when, private,
    `IN_WORK` the book); the curator's own text becomes an Annotation (theirs,
    never a claim), `ANNOTATES` the transcription with the words it is about and
-   `CONCERNS` its targets.
-4. **Remembered.** A hash of the note, so the next run knows what changed.
+   `CONCERNS` its targets. An excerpt (no text of the curator's) still gets
+   its Annotation, with no note text, so that what it concerns is recorded.
+5. **Remembered.** A hash of the note, so the next run knows what changed.
 
 Edits and deletions:
 
