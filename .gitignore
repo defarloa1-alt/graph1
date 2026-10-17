@@ -136,6 +136,10 @@ GraphRevised/cache/
 GraphRevised/exports/
 GraphRevised/private-sources/
 
+# The curator's book notes (Obsidian), read by the sync into the graph: private, and they quote
+# books in copyright, so never in this public repository (32 §2.1).
+GraphRevised/obsidian_book_notes/
+
 # Harvest payloads are data, not scripts (curator, 2026-10-13): preserved Wikidata records
 # fetched by the harvest stay on disk (hashed in their .metadata.json and on the graph's
 # AuthorityRecords) but are not tracked. Records tracked before 2026-10-13 stay tracked.

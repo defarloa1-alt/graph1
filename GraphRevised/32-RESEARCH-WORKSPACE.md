@@ -90,6 +90,49 @@ id sits in its frontmatter, and the graph holds the note with its targets; a
 sync tool reads designated folders, and the graph interface can open the note's
 Obsidian URI.
 
+### 2.1a The sync (decided by the curator, 2026-10-17; not built)
+
+**The sync is a small program, outside Obsidian, that watches one folder of the
+vault and makes the graph match the notes in it.** It writes notes into the
+graph as transcriptions and Annotations; it never writes knowledge.
+
+- **One way: vault to graph.** Notes are written in Obsidian; the graph holds
+  the result. A note changed in the graph as well is not merged: both versions
+  are kept and the curator is told (decision 5). Graph to vault comes later, as
+  an export in the same format.
+- **The folder:** `GraphRevised/obsidian_book_notes/` (the vault's root is the
+  repository's). Only notes there with a `chrystallum:` frontmatter block are
+  read; nothing else in the vault, and never `.obsidian/`. The folder is
+  git-ignored: the notes are private and quote books in copyright, and the
+  repository is public.
+- **A watcher:** it runs whenever a note in the folder is saved.
+
+What a run does with one note:
+
+1. **Identity.** A new note is given an id, written back into its frontmatter:
+   the only change the sync ever makes to a file. The id survives renames and
+   moves.
+2. **Targets checked.** Every id in `concerns`, and the `work`, must exist in
+   the graph; otherwise the note is reported and nothing is stored or created.
+3. **Written.** The quote block becomes a transcription (the book's words as
+   printed, the locator, the edition, who captured it and when, private,
+   `IN_WORK` the book); the curator's own text becomes an Annotation (theirs,
+   never a claim), `ANNOTATES` the transcription with the words it is about and
+   `CONCERNS` its targets.
+4. **Remembered.** A hash of the note, so the next run knows what changed.
+
+Edits and deletions:
+
+- **The curator's text edited:** the Annotation is updated, the earlier text
+  kept as history.
+- **The quoted words edited:** a different passage, so a new transcription;
+  the old one stays, since claims may cite it.
+- **A note deleted:** its Annotation is withdrawn; the transcription and any
+  claims drawn from it stay, with their own review history.
+- **Never a claim:** an edited note never changes a claim (decision 5).
+  Claims are drafted from a transcription by an agent and reviewed by the
+  curator, a separate step.
+
 ### 2.2 Saved paths are Annotations too
 
 `kind: path`, an ordered list of node and claim ids, `generatedBy` (curator or
@@ -126,8 +169,8 @@ each linked `PROMOTED_FROM` the private Annotation (the link stays private).
 
 ### 2.6 The sequence (2026-10-17, handoff 1f2(g))
 
-From the sequence-diagram review, adapted: the sync runs vault to graph first
-(the recommendation in §3 item 3, still open), and promotion makes new
+From the sequence-diagram review, adapted: the sync runs vault to graph,
+one way (§2.1a), and promotion makes new
 proposals rather than changing a note's visibility (decision 7). Nothing here
 is built.
 
@@ -167,6 +210,5 @@ sequenceDiagram
    migration of 71 Annotations).
 2. **Saved paths as Annotations** (§2.2) or a label of their own. Recommended:
    Annotations, until a query needs more.
-3. **Which way sync runs first**: vault to graph only (notes written in
-   Obsidian appear in the graph), or both ways from the start. Recommended: vault
-   to graph first.
+3. ~~**Which way sync runs first**~~ **Decided 2026-10-17 (curator):** vault
+   to graph, one way, a watcher on `GraphRevised/obsidian_book_notes/` (§2.1a).
