@@ -149,6 +149,26 @@ Event (Battle of Actium)
 
 ### 4b. Traced, statement by statement (2026-10-17, handoff 1f2(d))
 
+**A statement** is the smallest piece of the account a reader could check on
+its own: one assertion, usually one sentence, sometimes two clauses that rest
+on the same evidence. It has an id, a kind, its words, and what backs it. The
+account is nothing but statements, grouped in sections.
+
+**A source statement** says what the sources say: it may paraphrase, but the
+passages it cites must show it in their own words ("Agrippa held the left
+wing", citing Plutarch 65.2). Where only one source says it, it names that
+source ("according to Dio, …").
+
+**A synthesis** says what no single passage says: our own reading across the
+statements before it. It compares sources ("the four accounts agree that the
+squadron left, and differ on why"), orders or connects what they report ("the
+desertions came before the council, and shaped it"), or judges weight and
+meaning ("the blockade had decided the campaign before the fleets met"). It
+is in Chrystallum's voice and is shown as ours. It cites no passage itself:
+it names the earlier statements it draws on, and their passages are its
+evidence. So a reader can always tell the sources' words from ours, and
+follow ours back to theirs.
+
 So the account never becomes a second, unaudited layer of truth, every
 statement in it is one of three kinds, and the contract
 ([narrative/account.py](narrative/account.py), `account-v1`) refuses anything
