@@ -242,6 +242,33 @@ code. Under this design:
    and the agents' discoveries into proposed entries, each with its rights
    statement checked verbatim on the source's own page, for the curator's veto.
 
+From [docs/Deep dive into sources.md](docs/Deep%20dive%20into%20sources.md)
+(2026-10-17), an adapter specification for the whole inventory:
+
+5. **One envelope for every new adapter**: the request, the release, the rights
+   decision (from the registry's check), a pointer to the native payload
+   (preserved byte for byte with its hash, as now), the records mapped from it
+   with their unmapped fields kept, warnings, and errors. Text adapters keep
+   `PassageSource` ([adapters/sources.py](adapters/sources.py)); coins,
+   inscriptions, routes, and map layers need the envelope. Access in the
+   registry's bulk-first order: versioned release, Git, dump, API, record,
+   browser, and scraping only where expressly permitted.
+6. **Consultative observations**: for a source that may be read but not copied
+   (PHI, ETCSL, the Persepolis archive) and for modern scholarship (§3.9), one
+   observation kind holding the citation, identifier, link, retrieval date, and
+   a short permitted extract. A claim may cite it only with words the source
+   shows; never the agent's summary.
+7. **Object, document, edition, translation, and image as separate records**
+   for papyri, inscriptions, and coins (type and specimen apart), built when the
+   first such source is read; until then edition details stay on the passage.
+8. **Adapters in the order inquiries need them**: Wikisource (Shuckburgh),
+   then Nomisma and CRRO (coin types and magistrates: Actium's memory, the
+   Republic's moneyers), then Open Greek and Latin (Greek texts beyond Perseus,
+   for Alexander); Papyri.info when Ptolemaic Egypt is read.
+9. **Every worker reports its coverage contribution** (new entities, claim
+   families, evidence, traditions, evidence classes, gaps closed), so a run stops
+   when reading no longer adds independent evidence (§3.8).
+
 ## 4. The test: a second domain
 
 *Graph Alexander the Great*, from the single command, with no file written by
@@ -294,7 +321,7 @@ the hardcoding guard covers the package.
 | `CoverageMap`, `Gap` | what the graph holds, what is missing | |
 | `OrientationBrief` | kind, bounds, candidates, needs, federations, sources, lenses, controversies, traps, sourced statements, stopping rule | year zero; reversed bounds |
 | `InquiryPlan`, `PlanItem`, `PlanDecision` | versioned line items, their decisions, the mode | duplicate items; dependencies on later items; items over budget; items for a request out of scope; a decision without who and when; a modification without what |
-| `WorkerAssignment`, `WorkerResult` | what ran, with what, at what cost | a failure without a reason |
+| `WorkerAssignment`, `WorkerResult`, `CoverageContribution` | what ran, with what, at what cost, and what it added that is new and independent | a failure without a reason |
 | `ReconciliationDecision` | the eight classes (§3.5) | a related class that names no stored claim |
 | `CriticVerdict` | the nine verdicts (§3.6) | a modification on any verdict but "supported if modified", or that verdict without one |
 | `Interrupt` | a question that stops the run | |

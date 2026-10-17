@@ -7,7 +7,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from GraphRevised.orchestration.contracts import (
-    AuthorityMatch, CoverageMap, CriticVerdict, IdentityCandidate, InquiryPlan, InquiryRunState, Interrupt,
+    AuthorityMatch, CoverageContribution, CoverageMap, CriticVerdict, IdentityCandidate, InquiryPlan, InquiryRunState, Interrupt,
     OrientationBrief, PlanDecision, PlanItem, ReconciliationDecision, ResolvedFocus, RunMode, RunStatus,
     ScopeDecision, SubjectAnchor, WorkerAssignment, WorkerResult,
 )
@@ -118,6 +118,10 @@ class RunStateTests(unittest.TestCase):
 
     def test_the_state_round_trips_through_its_file(self):
         state = self.run_state()
+        state.assignments.append(WorkerAssignment(assignment_id="a1", item_id="P01", worker="GraphRevised.x",
+                                                  idempotency_key="run-1:P01:1"))
+        state.results.append(WorkerResult(assignment_id="a1", status="ok", coverage=CoverageContribution(
+            new_claim_families=3, new_traditions=1, new_evidence_classes=["coin"])))
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "run.json"
             state.save(path)

@@ -311,6 +311,17 @@ class WorkerAssignment(_Contract):
     started_at: str = Field(default_factory=_now)
 
 
+class CoverageContribution(_Contract):
+    """What one worker added, measured in what is new and independent, not in volume (31 §3.8):
+    the measure by which a run decides that more reading has stopped paying."""
+    new_entities: int = Field(default=0, ge=0)
+    new_claim_families: int = Field(default=0, ge=0)
+    new_evidence: int = Field(default=0, ge=0)  # evidence added to claims already stored
+    new_traditions: int = Field(default=0, ge=0)  # evidence from a tradition the claim did not have
+    new_evidence_classes: list[str] = Field(default_factory=list)  # e.g. coin, inscription, papyrus
+    gaps_closed: list[str] = Field(default_factory=list)
+
+
 class WorkerResult(_Contract):
     assignment_id: str
     status: Literal["ok", "failed", "refused", "stopped"]
@@ -321,6 +332,7 @@ class WorkerResult(_Contract):
     input_tokens: int = 0
     output_tokens: int = 0
     cost_usd: float = Field(default=0, ge=0)
+    coverage: CoverageContribution = Field(default_factory=CoverageContribution)
     error: str | None = None
     finished_at: str = Field(default_factory=_now)
 
