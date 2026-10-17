@@ -1,8 +1,10 @@
 # 31 — One Command: a Methodology for Any Subject
 
 **Date:** 2026-10-16, revised the same day. **Status:** the curator chose this
-model (2026-10-16); the contracts are built (§6), nothing else is. The
-decisions in §7 await the curator's veto.
+model (2026-10-16); the contracts are built (§6), nothing else is. §7 items 1
+and 2 are settled by the curator's addendum ([32](32-RESEARCH-WORKSPACE.md),
+2026-10-17); the others await the curator's veto. §3.8-3.10 added 2026-10-17
+from [docs/Source review perplexity.md](docs/Source%20review%20perplexity.md).
 **Order:** after Chrystallum's account for the Battle of Actium
 ([29](29-EVENT-CENTRED-INQUIRY.md) §4), before Hannibal
 ([19](19-SESSION-HANDOFF.md) §6).
@@ -28,6 +30,12 @@ The Battle of Actium was built step by step. Most steps are generic code, but
 the run was held together by judgement between steps and by files written by
 hand ([curation/phases.json](curation/phases.json) is the latest). That
 judgement is the methodology, and it is not yet where the system can follow it.
+
+**The claim we make for it** (from the source review): the agent researches a
+bounded historical inquiry across approved structured and consultative
+sources, reconciles entities, organizes evidence, identifies graph gaps and
+disagreements, and proposes provenance-rich additions for curator review. Not:
+the agent autonomously researches history and builds an authoritative graph.
 
 ## 2. The principle
 
@@ -179,6 +187,61 @@ recorded disagreement are.
   up. Either way the run state is the contract (§6), and the model runtime (the
   Anthropic SDK) is a separate choice.
 
+### 3.8 Independent witnesses
+
+Five sources saying one thing are not five witnesses: Hale and Weigall retell
+Plutarch and Dio, Weigall quotes Plutarch at length, Wikipedia cites them all.
+Attestation ([export/confidence.py](export/confidence.py)) counts distinct
+authors, so a fact can read "well attested (4 authors)" on one or two
+traditions (the known limit in 25 §6; backlog E10 asked for the relation).
+
+- A predicate between Works, `derivesFrom` (Work → Work, attributed or
+  asserted, with the passages that show it: a citation, a long quotation, the
+  author's own statement of his sources), proposed by the source briefs and the
+  event source plan, which already see what each author relies on.
+- Attestation counts independent traditions beside authors: "attested by 4
+  authors, drawing on 2 traditions". A Work whose sources are unknown counts
+  as its own tradition.
+- A run's diminishing returns are measured in new independent evidence, not
+  in more passages.
+
+### 3.9 A modern-scholarship lane
+
+Our modern voices are old enough to be public domain (Hale 1911, Weigall
+1914); recent scholarship (monographs, articles, excavation reports) is in
+copyright, and the battle's open questions (battle or breakout, the fleet, the
+monument, Augustan memory) live there.
+
+- An agent may find open-access articles, abstracts, and catalogue records
+  (consultative, class C) and propose them as Works with their bibliographic
+  record and locator: the "Read more" list, signposts, and source-plan targets.
+- Their claims enter only through the curator's transcriptions (23 §7, built,
+  unused so far) or through openly licensed text, never through the agent's
+  paraphrase. A model never declares copyrighted text cleared (32 decision 7).
+
+### 3.10 The registry as the agents' starting point
+
+Today the registry ([curation/sources.json](curation/sources.json)) is read only
+to filter where a copy may be located, and its rights rules are restated in
+code. Under this design:
+
+1. The orientation researcher and the source discoverer receive the registry
+   (systems, coverage, status, limits) and say for each candidate whether its
+   system is readable, registered without an adapter, or unregistered (the
+   event source plan, `event-source-plan-v2`).
+2. Each system's rights rule becomes a machine-readable check in the registry,
+   read by the adapters; a test fails when a readable system has none.
+   The registry also records the fields the curator marked in
+   [docs/Agent resources.md](docs/Agent%20resources.md): polity, region, and
+   dates; languages; lenses; evidentiary type; what reuse permits; and, from
+   the source review, the last successful test, failure behaviour, rate
+   limits, and the removal procedure.
+3. A candidate in a registered system without an adapter is reported as such;
+   adapters (Wikisource first, for Shuckburgh) are built when a plan needs them.
+4. A registry proposer turns [docs/Agent resources.md](docs/Agent%20resources.md)
+   and the agents' discoveries into proposed entries, each with its rights
+   statement checked verbatim on the source's own page, for the curator's veto.
+
 ## 4. The test: a second domain
 
 *Graph Alexander the Great*, from the single command, with no file written by
@@ -191,6 +254,16 @@ and an account for at least one battle.
 ## 5. Build order
 
 1. **Contracts** (built 2026-10-16, §6).
+1a. **The registry** (§3.10 items 1-3) and **independent witnesses** (§3.8).
+1b. **An evaluation set** for Actium (from the source review): known people,
+   places, collective actors, events and phases, material things;
+   straightforward, qualified, and disputed claims; identity traps, deliberate
+   duplicates, and claims the sources do not support, built around the
+   curator's 155 decided proposals. Measured: entity precision, identity,
+   citation correctness, entailment, duplicate and conflict handling, source
+   diversity, rights, rejection of unsupported claims, curator acceptance and
+   edits, new claim families per batch, cost per accepted proposal; above all,
+   how often an evidence packet lets the curator decide correctly and quickly.
 2. **Chrystallum's account for Actium**, with the outline agent (§3.4), so the
    Event recipe is complete.
 3. **The front door on Actium**: accept `graph "Battle of Actium"`, resolve,
@@ -231,10 +304,12 @@ the hardcoding guard covers the package.
 
 Recommended answers; each is open to veto.
 
-1. **Approval mode.** Guided for the curator while the planning is young;
-   supervised as the default for routine use later.
-2. **Visibility.** Proposed content stays visible at once, labelled (25
-   decision 2); no separate research layer.
+1. ~~Approval mode~~ **Settled 2026-10-17** (32 decision 2): line-item plans
+   with approve all; interrupts only for identity, scope, rights, destructive
+   reconciliation, or budget.
+2. ~~Visibility~~ **Settled 2026-10-17** (32 decision 9): proposed content in
+   the same projection, with redundant status; path tracing approved-only by
+   default.
 3. **No exact heading.** A provisional local Subject linked to broader and
    related headings, labelled as ours (28 §6); the run does not stop for it.
 4. **What "train" means.** A persistent research dossier per subject (the

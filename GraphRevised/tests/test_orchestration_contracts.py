@@ -77,6 +77,13 @@ class PlanTests(unittest.TestCase):
         with self.assertRaises(ValidationError):
             PlanDecision(status="modified", by="curator", at=NOW)
 
+    def test_approve_all_decides_only_what_awaits(self):
+        first = plan(items=[item("P01"), item("P02", status="deferred")])
+        second = first.approve_all(by="curator", at=NOW)
+        self.assertEqual(second.version, 2)
+        self.assertEqual(second.item("P01").decision.status, "approved")
+        self.assertEqual(second.item("P02").decision.status, "deferred")
+
     def test_what_runs_depends_on_the_mode(self):
         awaiting = item("P01")
         self.assertFalse(plan(RunMode.GUIDED).runnable(awaiting))
@@ -89,7 +96,8 @@ class PlanTests(unittest.TestCase):
 class RunStateTests(unittest.TestCase):
     def run_state(self, **extra):
         approved = plan(items=[item("P01", status="approved"), item("P02", ["P01"], status="approved")])
-        return InquiryRunState(run_id="run-1", command=approved.command, mode=RunMode.GUIDED, plan=approved, **extra)
+        return InquiryRunState(run_id="run-1", command=approved.command, mode=RunMode.GUIDED, owner="curator",
+                               plan=approved, **extra)
 
     def test_the_next_item_waits_for_its_dependencies_and_for_open_questions(self):
         state = self.run_state()

@@ -278,6 +278,15 @@ class InquiryPlan(_Contract):
         return self.model_validate(self.model_dump() | {
             "items": [i.model_dump() for i in items], "version": self.version + 1, "previous_version": self.version})
 
+    def approve_all(self, by: str, at: str | None = None) -> "InquiryPlan":
+        """A new version with every item still awaiting a decision approved (32 decision 2); items
+        already rejected, modified, or deferred keep their decision."""
+        decision = PlanDecision(status="approved", by=by, at=at or _now(), note="approve all")
+        items = [i.model_copy(update={"decision": decision}) if i.decision.status == "awaiting" else i
+                 for i in self.items]
+        return self.model_validate(self.model_dump() | {
+            "items": [i.model_dump() for i in items], "version": self.version + 1, "previous_version": self.version})
+
     def runnable(self, item: PlanItem) -> bool:
         """Whether the mode lets this item run, by its decision alone (dependencies aside)."""
         status = item.decision.status
@@ -412,6 +421,8 @@ class InquiryRunState(_Contract):
     run_id: str = Field(min_length=1)
     command: str = Field(min_length=1)
     mode: RunMode
+    owner: str = Field(min_length=1)  # whose workspace the run's candidates and notes belong to (32 §2.3)
+    visibility: Literal["private", "shared", "public"] = "private"
     status: RunStatus = RunStatus.PLANNING
     created_at: str = Field(default_factory=_now)
     orientation: OrientationBrief | None = None
