@@ -120,7 +120,7 @@ status: draft             # draft | active (endorsed, archived: set in review)
 visibility: private
 isbn: "9781982116682"     # from the copyright page of the copy in hand: the surest identity
 page: 3                   # or location: (a Kindle location)
-chapter: 1                # optional: the chapter the page is in
+chapter: Prologue         # optional: the chapter as printed, a number or a name ("12", "Prologue")
 quoting:                  # optional: whose words these are, when not the book's author's ("Plutarch, Antony 66.5")
 book:                     # only without an ISBN: the title as printed
 author:                   # only without an ISBN
@@ -174,7 +174,7 @@ What a run does with one note:
    never a claim), `ANNOTATES` the transcription with the words it is about and
    `CONCERNS` its targets. An excerpt (no text of the curator's) still gets
    its Annotation, with no note text, so that what it concerns is recorded.
-   `chapter` joins the page in the transcription's locator ("ch. 1, p. 3");
+   `chapter` joins the page in the transcription's locator ("Prologue, p. 3"; "ch. 12, p. 187");
    `related` notes become `CONCERNS` links to their Annotations (32 §2.1,
    designed); `tags` stay in the vault.
    **`quoting`** marks words that are not the book's author's own: the
