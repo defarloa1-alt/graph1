@@ -5,16 +5,16 @@ I cannot verify the actual contents behind the `vscode-webview://` links because
 
 ## Recommended document hierarchy
 
-| Order | Document | Proper role | Normative authority |
-|---:|---|---|---|
-| 1 | `19-SESSION-HANDOFF.md` | Entry point, current state, open decisions, implementation status, and next steps | **Informational**, except for explicitly recorded decisions |
-| 2 | `31-ONE-COMMAND.md` | Governing end-to-end agent workflow | **Normative for orchestration and agent behavior** |
-| 3 | `30-LOGICAL-MODEL.md` | Governing semantic and data model | **Normative for concepts, identities, states, and relationships** |
-| 4 | `29-EVENT-CENTRED-INQUIRY.md` | Event-specific specialization of the general workflow | **Normative within event inquiries** |
-| 5 | `32-RESEARCH-WORKSPACE.md` | Curator/user workflow and research experience | **Normative for workspace behavior** |
-| 6 | `26-UI-DATA-CONTRACT.md` | Boundary between stored model and explorer | **Normative for API/view payloads** |
-| — | Input research documents | Rationale and design evidence | **Informative, not governing** |
-| — | Python, JSON, Cypher, plans | Current implementation | Must conform to governing documents |
+| Order | Document                      | Proper role                                                                       | Normative authority                                               |
+| ----: | ----------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+|     1 | `19-SESSION-HANDOFF.md`       | Entry point, current state, open decisions, implementation status, and next steps | **Informational**, except for explicitly recorded decisions       |
+|     2 | `31-ONE-COMMAND.md`           | Governing end-to-end agent workflow                                               | **Normative for orchestration and agent behavior**                |
+|     3 | `30-LOGICAL-MODEL.md`         | Governing semantic and data model                                                 | **Normative for concepts, identities, states, and relationships** |
+|     4 | `29-EVENT-CENTRED-INQUIRY.md` | Event-specific specialization of the general workflow                             | **Normative within event inquiries**                              |
+|     5 | `32-RESEARCH-WORKSPACE.md`    | Curator/user workflow and research experience                                     | **Normative for workspace behavior**                              |
+|     6 | `26-UI-DATA-CONTRACT.md`      | Boundary between stored model and explorer                                        | **Normative for API/view payloads**                               |
+|     — | Input research documents      | Rationale and design evidence                                                     | **Informative, not governing**                                    |
+|     — | Python, JSON, Cypher, plans   | Current implementation                                                            | Must conform to governing documents                               |
 
 ### Important correction
 

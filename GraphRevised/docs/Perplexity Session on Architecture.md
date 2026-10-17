@@ -22,7 +22,7 @@ A more accurate statement would be:
 
 ## Main architectural finding
 
-The most important fact in the transcript is that your project already has **two related but different source mechanisms**:
+==🟠The most important fact in the transcript is that your project already has **two related but different source mechanisms**:==
 
 | Mechanism | Present implementation | Purpose |
 |---|---|---|
