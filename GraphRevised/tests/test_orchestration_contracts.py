@@ -4,15 +4,17 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from typing import get_args
 
 from pydantic import ValidationError
 
 from GraphRevised.orchestration.contracts import (
     AuthorityMatch, CoverageContribution, CoverageMap, CriticVerdict, EvidencePacket, IdentityCandidate, Inquiry,
     InquiryPlan, InquiryRunState, Interrupt, OrientationBrief, OrientationDossier, PlanDecision, PlanItem, Program,
-    ReconciliationDecision, ResolvedFocus, RunMode, RunStatus, ScopeDecision, SubjectAnchor, WorkerAssignment,
-    WorkerResult,
+    ReconciliationDecision, ResolvedFocus, RunMode, RunStatus, ScopeDecision, SubjectAnchor, SubjectKind,
+    WorkerAssignment, WorkerResult,
 )
+from GraphRevised.proposals.registry import load_registry
 
 NOW = "2026-01-01T00:00:00+00:00"
 INQUIRY = "chr:inquiry:battle-of-test"
@@ -141,6 +143,13 @@ class InquiryProgramDossierTests(unittest.TestCase):
         two = Inquiry(inquiry_id=INQUIRY, question="How did the two battles differ?", kind="Event",
                       focus_ids=["chr:entity:battle-a", "chr:entity:battle-b"])
         self.assertEqual(len(two.focus_ids), 2)
+
+    def test_an_inquiry_may_be_about_any_kind_the_registry_has(self):
+        kinds = set(load_registry().entity_kinds) - {"Other"}
+        self.assertEqual(kinds, set(get_args(SubjectKind)) - {"Constellation"})
+        for kind, focus in (("Person", "chr:entity:mark-antony"), ("Place", "chr:entity:actium"),
+                            ("Object", "chr:entity:nicopolis-monument"), ("Group", "chr:entity:antonys-fleet")):
+            Inquiry(inquiry_id=INQUIRY, question="What does the graph hold about it?", focus_ids=[focus], kind=kind)
 
     def test_a_closed_inquiry_says_why(self):
         common = dict(inquiry_id=INQUIRY, question="What happened at the battle?", focus_ids=["chr:entity:b"],

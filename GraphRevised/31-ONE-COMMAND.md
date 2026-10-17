@@ -286,9 +286,9 @@ things that were easy to run together are kept apart:
 
 | Object | Is | Lives |
 |---|---|---|
-| Focus | the Entity researched (the Battle of Actium): what happened | the graph |
+| Focus | the Entity researched, of any kind: an event (the Battle of Actium), a person, a place, an object, a group, an office, a period | the graph |
 | Program | a broad command's constellation of bounded inquiries ("Graph the Roman Republic", 07 §3) | run state |
-| Inquiry | the research about one or more foci: a question, a scope, a Subject; several inquiries may share a focus | run state; its reading configuration in its inquiry file, same id |
+| Inquiry | the research about one or more foci: a question, a scope, a Subject; several inquiries may share a focus. Its `kind` (any Entity kind but Other) chooses the recipe (§3.3); kinds without a recipe yet get one when the first inquiry needs it | run state; its reading configuration in its inquiry file, same id |
 | Plan | the inquiry's versioned line items (§3.2) | the run file |
 | Run | one execution of a plan, resumable | `runs/` |
 | Orientation dossier | what orientation learned about a focus, versioned and reused by later inquiries (§7 item 4) | `dossiers/`, one file per version |

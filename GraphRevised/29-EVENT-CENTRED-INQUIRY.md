@@ -40,15 +40,17 @@ as the agent finds on its own.
 
 ## 2. Decisions (curator, 2026-10-15)
 
-1. **An inquiry focuses on an event.** An inquiry names an event (later a
-   person or a subject), not a Work. The agent gathers the works for it.
-   (Reworded 2026-10-17, 1f2(b); first written "the event is the inquiry".)
-   The event is what happened; the inquiry is the research about it: a
-   question, a scope, a plan, its runs, and the curator's decisions. Several
-   inquiries may focus on one event (the naval campaign, the battle's memory),
-   and one inquiry may focus on several. The data already said so: an inquiry
-   file names its event by `narrativeEventId`. The contracts are in
-   [31](31-ONE-COMMAND.md) §3.11.
+1. **An inquiry focuses on an entity, here an event.** An inquiry names what
+   it is about, not a Work; the agent gathers the works for it. Its focus may
+   be an Entity of any kind: an event, a person, a place, an object, a group,
+   an office, a period (curator, 2026-10-17). This document is the event's
+   case. (Reworded 2026-10-17, 1f2(b); first written "the event is the
+   inquiry".) The focus is what happened, or who or what existed; the inquiry
+   is the research about it: a question, a scope, a plan, its runs, and the
+   curator's decisions. Several inquiries may share a focus (the naval
+   campaign, the battle's memory), and one inquiry may have several. The data
+   already said so: an inquiry file names its event by `narrativeEventId`. The
+   contracts are in [31](31-ONE-COMMAND.md) §3.11.
 2. **Chrystallum's account sits on the stage beside the event**: a narrative
    written by the agent, labelled as ours, every statement citing a passage.
 3. **Wikipedia is a starting point**: for the agent, to surface the high-level

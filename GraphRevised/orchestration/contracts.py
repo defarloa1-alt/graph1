@@ -57,8 +57,10 @@ class RunMode(str, Enum):
     AUTONOMOUS = "autonomous"  # the plan is shown and runs; everything stays proposed until promotion
 
 
-SubjectKind = Literal["Person", "Event", "Place", "Polity", "Group", "Office", "Type", "Concept", "Period",
-                      "Work", "Constellation"]
+# What a command or an inquiry may be about: any Entity kind in the registry but Other, or a
+# constellation of narrower inquiries (a test keeps this in step with the registry's entityKinds).
+SubjectKind = Literal["Person", "Event", "Place", "Object", "Polity", "Group", "Office", "Type", "Concept",
+                      "Period", "Work", "Constellation"]
 
 
 class ScopeDecision(_Contract):
@@ -235,8 +237,9 @@ class Program(_Contract):
 
 class Inquiry(_Contract):
     """The research about a focus: a question and a scope, apart from the focus itself (29 §2 item 1)
-    and from its plans and runs, which name it. Several inquiries may focus on one event, and one
-    inquiry on several. Its reading configuration (sources, rules, scope) stays in its inquiry file,
+    and from its plans and runs, which name it. The focus may be an Entity of any kind: an event, a
+    person, a place, an object, a group, an office, a period. Several inquiries may share a focus,
+    and one inquiry may have several. Its reading configuration (sources, rules, scope) stays in its inquiry file,
     whose id is the inquiry's."""
     inquiry_id: str = Field(pattern=INQUIRY_ID_PATTERN)
     question: str = Field(min_length=10)
@@ -262,9 +265,11 @@ class Inquiry(_Contract):
     @classmethod
     def from_reading_file(cls, path: Path, kind: SubjectKind = "Event", root: Path | None = None) -> "Inquiry":
         """The inquiry an existing inquiry file stands for: its id, its label as the question, its
-        narrative event (or `focusIds`) as the focus, its Subject. The file is not changed."""
+        `focusIds` (else its narrative event) as the focus, its `kind` if it names one, its Subject.
+        The file is not changed."""
         data = json.loads(path.read_text(encoding="utf-8"))
         focus = data.get("focusIds") or [data["narrativeEventId"]]
+        kind = data.get("kind", kind)
         reading_file = path.relative_to(root).as_posix() if root else path.as_posix()
         return cls(inquiry_id=data["id"], question=data.get("question") or data["label"], focus_ids=focus,
                    kind=kind, subject_id=data.get("subjectId"), program_id=data.get("programId"),
