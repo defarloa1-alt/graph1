@@ -124,6 +124,42 @@ each linked `PROMOTED_FROM` the private Annotation (the link stays private).
 - Path tracing (06 §13): approved-only by default; including proposed claims is
   a switch, and every hop's status is in the explanation.
 
+### 2.6 The sequence (2026-10-17, handoff 1f2(g))
+
+From the sequence-diagram review, adapted: the sync runs vault to graph first
+(the recommendation in §3 item 3, still open), and promotion makes new
+proposals rather than changing a note's visibility (decision 7). Nothing here
+is built.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Curator
+    participant Vault as Obsidian vault
+    participant Sync as Sync tool
+    participant Graph as Graph
+    participant FD as Front door
+    participant Store as proposals/
+
+    Curator->>Vault: write a note (its id and targets in the frontmatter)
+    Vault->>Sync: designated folders
+    Sync->>Graph: the targets exist? (Entity, claim, passage, Work, Subject, path, note)
+    Graph-->>Sync: yes, or the missing ids
+    Sync->>Graph: Annotation kind note, private, CONCERNS its targets
+    alt a note or a hypothesis
+        Graph-->>Curator: shown over the core graph, labelled as the curator's
+    else a question worth researching
+        Curator->>FD: a bounded inquiry from the note
+        FD-->>Curator: a line-item plan (31 §3.2)
+    end
+    opt promote from the overlay
+        Curator->>Store: an attributed or interpretive claim, or a public note
+        Store->>Store: validated, quotation rights set by the curator
+        Store->>Graph: proposed, PROMOTED_FROM the private note (the link stays private)
+    end
+    Note over Vault,Graph: An edited note never changes an approved claim,<br/>a conflict keeps both versions (decision 5).
+```
+
 ## 3. Open
 
 1. **Visibility words.** Annotations use private, team, public; the addendum

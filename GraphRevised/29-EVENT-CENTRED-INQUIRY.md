@@ -103,6 +103,43 @@ Event (Battle of Actium)
    locating the relevant passages itself (whole works, 18 §20).
 6. **The account** (§4).
 
+### 3a. The sequence (2026-10-17, handoff 1f2(g))
+
+The event's case of 31 §3.12, in the order the Actium run was built. The
+review's drawing put the account before the reading; the account is written
+last, from what was read and placed (§4b). Steps 1-10 are built or done (the
+placements are still under review); 11-14, the account, are not (31 §5
+step 2). The account's contract and check exist (§4b).
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Curator
+    participant Contact as First contact
+    participant Plan as Source plan and builder
+    participant Finder as Passage finder
+    participant Readers as Source readers
+    participant Phases as Phases agent
+    participant Outline as Outline and account
+    participant Store as proposals/ (visible at once)
+
+    Curator->>Contact: an inquiry focused on the event
+    Contact->>Store: Wikidata harvest, Wikipedia's linked entities, proposed
+    Contact->>Plan: Wikipedia's references, Wikidata described-by
+    Plan->>Plan: candidates checked at the catalogues, chosen within a budget
+    Plan->>Plan: chosen copies preserved, Works proposed, briefs written
+    Plan->>Finder: the inquiry's sources, whole works
+    Finder-->>Readers: the passages that bear on the event
+    Readers->>Store: claims, depicted events, notes, mentions
+    Phases->>Store: depicted events placed in the curator's spine
+    Curator->>Store: phases approved (2026-10-17), placements reviewed
+    Outline->>Outline: sections from the phases, statements from passages
+    Outline->>Outline: check against the graph (§4b)
+    Outline-->>Curator: Chrystallum's account, proposed
+    Curator->>Outline: approve, or a new version
+    Note over Outline,Curator: Statements no passage supports become signposts,<br/>the targets of the next source plan.
+```
+
 ## 4. Chrystallum's account
 
 - **Citation rule.** Every statement in the account cites a passage the

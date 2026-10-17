@@ -299,6 +299,90 @@ its coverage contribution (§3.10 item 9). The reconciler classifies from it,
 and the critic reads it blind (§3.6). None of these is graph data: a packet's
 candidates enter the graph only as proposals.
 
+### 3.12 The sequence
+
+Adapted 2026-10-17 from the sequence-diagram review (handoff 1f2(g)). Two
+corrections to the review's drawing: proposals are stored and visible at once
+(32 decision 9), so the curator's promotion runs beside the run and never
+holds it up; and the run stops on its budget or on diminishing returns in
+new independent evidence (§3.8), not when the curator has decided everything.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Curator
+    participant FD as Front door
+    participant Graph as Graph (read only)
+    participant Dossier as Orientation dossier
+    participant Registry as Source registry
+    participant Orch as Orchestrator (run file)
+    participant Workers as Workers
+    participant Recon as Reconciler
+    participant Valid as Validator
+    participant Critic as Critic
+    participant Store as proposals/
+
+    Curator->>FD: graph "<anything>"
+    FD->>FD: scope (08), identity at Wikidata
+    alt out of scope, or a reframe
+        FD-->>Curator: reframings, no plan
+    else ambiguous identity
+        FD-->>Curator: candidates (interrupt)
+    else too broad for one inquiry
+        FD-->>Curator: a Program of bounded inquiries
+    else one inquiry
+        FD->>Graph: coverage of the focus
+        FD->>Dossier: an earlier orientation of this focus?
+        FD->>Registry: systems, coverage, rights, adapters
+        FD->>FD: orientation brief (the dossier revised)
+        FD-->>Curator: line-item plan
+        Curator->>Orch: approve all, or decide items
+        loop each runnable item, within the budget
+            Orch->>Workers: assignment
+            Workers->>Workers: harvest, discover, preserve, find, read, lens, phases
+            Workers-->>Recon: evidence packet
+            Recon->>Graph: claim families, approved and proposed
+            Recon-->>Valid: classification (never a merge)
+            Valid->>Store: valid drafts stored, visible at once
+            Store-->>Critic: stored proposal + packet, blind first
+            Critic-->>Orch: verdict (advice only)
+            Workers-->>Orch: result and coverage contribution
+            opt identity, scope, rights, destructive reconciliation, budget
+                Orch-->>Curator: interrupt
+                Curator->>Orch: answer
+            end
+        end
+        Orch->>Orch: stop: budget, or no new independent evidence
+        Orch-->>Curator: what was added, gaps, why it stopped
+    end
+    Curator->>Store: promote (accept, reject, supersede), at any time
+```
+
+The source sequence inside a worker (§3.10):
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Worker
+    participant Registry as Source registry
+    participant Adapter
+    participant Source as External source
+    participant Store as Preserved payloads
+    participant Reader
+
+    Worker->>Registry: systems for this kind, period, lens
+    Registry-->>Worker: readable / registered without adapter / unregistered
+    Worker->>Registry: the rights rule for this item
+    Registry-->>Worker: may preserve, may quote, or consult only
+    Worker->>Adapter: fetch the item
+    Adapter->>Source: catalogue, API, file at a fixed revision
+    Source-->>Adapter: native response
+    Adapter->>Store: bytes, hash, revision, rights statement
+    Adapter-->>Reader: passages (or the envelope's records)
+    Reader-->>Worker: drafts, depicted events, notes, mentions
+    Worker->>Worker: evidence packet with its coverage contribution
+```
+
 ## 4. The test: a second domain
 
 *Graph Alexander the Great*, from the single command, with no file written by
