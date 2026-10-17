@@ -1,0 +1,75 @@
+{
+  "lccn": "2021007113",
+  "work": "chr:entity:strauss-war-that-made-the-roman-empire",
+  "version": "lc-record-v1",
+  "applied": true,
+  "createdAt": "2026-10-17T22:32:27.139564+00:00",
+  "outcomes": [
+    {
+      "for": "authorOf",
+      "subject": "chr:entity:barry-strauss",
+      "predicate": "authorOf",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    },
+    {
+      "for": "Cleopatra, Queen of Egypt, -30 B.C.",
+      "subject": "chr:entity:cleopatra",
+      "predicate": "describedBy",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    },
+    {
+      "for": "Antonius, Marcus, 83 B.C.?-30 B.C.",
+      "subject": "chr:entity:mark-antony",
+      "predicate": "describedBy",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    },
+    {
+      "for": "Actium, Battle of, 31 B.C.",
+      "subject": "chr:entity:battle-of-actium",
+      "predicate": "describedBy",
+      "outcome": "valid",
+      "stored": true,
+      "reasons": []
+    }
+  ],
+  "forCurator": [
+    {
+      "identity candidate": "chr:entity:barry-strauss",
+      "LCNAF": {
+        "system": "LCNAF",
+        "identifier": "n85300303",
+        "label": "Strauss, Barry S.",
+        "uri": "http://id.loc.gov/authorities/names/n85300303"
+      },
+      "why": "the author's LC name record; linking it is the curator's"
+    },
+    {
+      "heading": "Augustus, Emperor of Rome, 63 B.C.-14 A.D.",
+      "resolves to": {
+        "system": "LCNAF",
+        "identifier": "n79033006",
+        "label": "Augustus, Emperor of Rome, 63 B.C.-14 A.D.",
+        "uri": "http://id.loc.gov/authorities/names/n79033006"
+      },
+      "holders": [],
+      "why": "no Entity holds this record"
+    },
+    {
+      "heading": "Rome--History--Civil War, 43-31 B.C.",
+      "resolves to": {
+        "system": "LCSH",
+        "identifier": "sh85115124",
+        "label": "Rome--History--Civil War, 43-31 B.C.",
+        "uri": "http://id.loc.gov/authorities/subjects/sh85115124"
+      },
+      "holders": [],
+      "why": "no Entity holds this record"
+    }
+  ]
+}
