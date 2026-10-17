@@ -148,13 +148,18 @@ id: chr:assertion:...
 label: Marcus Vipsanius Agrippa participated in Battle of Actium
 predicate: participatedIn
 status: proposed | accepted | rejected | contested | superseded
+category: factual | interpretive | imaginative
+mode: asserted | attributed
 assertedBy: ...
 ```
 
 A new Assertion is always created `proposed`. Its status changes to
 `accepted` or `rejected` only through a Proposal decision. Its predicate and
 endpoints are fixed at creation; a different predicate or endpoint is a
-different Assertion.
+different Assertion. So are its qualifiers (time, role, context, quantity)
+and its mode: `asserted` is Chrystallum's own claim, `attributed` a source's
+depiction, linked `ATTRIBUTED_TO` its Work ([22](22-CLAIM-QUALIFIERS.md)).
+`contested` is reserved for evidence stance (backlog E8) and not yet used.
 
 The assertion points to its subject and object and may point to one or more
 source observations.
@@ -174,9 +179,14 @@ assertion.
 ```yaml
 id: chr:proposal:...
 label: Proposal to accept: Marcus Vipsanius Agrippa participated in Battle of Actium
-operation: create | update | link | reject
+operation: create | addEvidence
 status: submitted | validating | accepted | rejected | deferred
 ```
+
+`create` proposes a new Assertion; `addEvidence` offers new evidence for an
+existing one. (`update`, `link`, and `reject` were listed here before Phase 5
+and were never used: changes to a claim are new claims, supersession, or
+retraction, below.)
 
 Proposals may be created by agents, scripts, or users. They are not durable
 knowledge until accepted.
@@ -222,6 +232,9 @@ accepted. Evidence and claim are decided separately:
 
 Every Assertion records its claim `category` (`factual` or
 `interpretive`) from its predicate; interpretive claims are attributed only.
+A claim attributed to a Work of a creative form (poem, play, novel, …) is
+`imaginative`, derived from the Work's `form`, never chosen; fiction never
+supports an asserted claim ([25](25-LIVES-AND-PLAYGROUND.md) §6 item 3).
 
 Every rejection, supersession, and retraction carries a reason code (`decisionReason` on
 the Proposal, `supersedeReason` on the Assertion):
@@ -285,7 +298,7 @@ Relationship direction must be consistent in the stored graph.
 (:Assertion)-[:IN_YEAR]->(:Year)
 (:SourceObservation)-[:IN_WORK]->(:Entity {kind: Work})
 (:Annotation)-[:ANNOTATES {quotation}]->(:SourceObservation)
-(:Annotation)-[:CONCERNS]->(:Entity)
+(:Annotation)-[:CONCERNS]->(:Entity)          built; designed (32 §2.1): also Assertion, Subject, Proposal, Annotation
 (:Entity)-[:IN_YEAR]->(:Year)
 (:Subject)-[:BROADER]->(:Subject)
 (:Location)-[:WITHIN]->(:Location)
@@ -305,6 +318,44 @@ curator, or a curator's note, with `kind`, `noteType`, `note`, `author`,
 dismissed). Its `label` says what it is and where, never what it says
 ("Anecdote · Weigall 17.11", "Mention of “Empire” (Period) · Hale 2.34");
 the `note` carries the content (capture.core.annotation_label, migration 006). It may be deleted freely; it is never a hop in path tracing.
+
+Built kinds: `passage-of-note` (a passage worth reading for an entity, and
+why) and `entity-mention` (the words in a passage that first name an entity,
+such as a depicted event). **Designed, not built**
+([32](32-RESEARCH-WORKSPACE.md) §2): `kind: note`, the curator's research
+notes (observation, question, hypothesis, interpretation, excerpt, outline,
+argument), and `kind: path`, a saved path (32 §3 item 2: Annotations until a
+query needs more); `CONCERNS` widened to an Assertion, a Subject, a Proposal,
+or another Annotation, so a note on a claim comments on it without becoming
+one. The visibility words are open (32 §3 item 1: `team` or `shared`).
+
+### Our own units and the sources' units
+
+Two kinds of Event are not historical identities from an authority but units
+of a reading:
+
+- **Depicted events** ([23](23-NARRATIVE-AND-NOTES.md) §2):
+  `chr:entity:depicted:<work>:<slug>`, one source's narrative unit, labelled
+  with its voice ("Antony's flight (Plutarch)"), proposed by the reader, its
+  claims attributed to that Work. The same action in two sources is two
+  depicted events until the curator links them by `depictsSameAs`.
+- **Phases** ([29](29-EVENT-CENTRED-INQUIRY.md) §10 item 2):
+  `chr:entity:phase:<event>:<key>`, our own sub-events of an event, labelled as
+  ours ("The lines engage (Chrystallum)"): each `partOf` the event, asserted,
+  evidenced by the passages that depict its events; each depicted event
+  `partOf` one phase at most. A depicted event from a creative Work is never
+  placed. The phases' order is the spine's, in `curation/phases.json`, until
+  the curator approves the phases; then it is stored as `happenedBefore`
+  between them (handoff 1f2(e)).
+
+### Not graph data
+
+Kept as files, never as nodes ([31](31-ONE-COMMAND.md) §3.11): programs,
+inquiries (their reading configuration in `inquiries/`), plans, runs
+(`runs/`), orientation dossiers (`dossiers/`), evidence packets, and
+Chrystallum's accounts (`accounts/`, [29](29-EVENT-CENTRED-INQUIRY.md) §4b),
+as well as queues, briefs, finds, and source plans. They name graph ids; the
+graph does not name them.
 
 The qualifier relationships, `PROMOTED_FROM`, and `IN_WORK` are specified in
 [22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md). A unary Assertion (such as
@@ -384,9 +435,12 @@ SourceObservation.id is unique
 Assertion.id is unique
 Proposal.id is unique
 Year.year is unique
+Annotation.id is unique                         (migration 003)
+Location.id is unique                           (27, with a point index on Location.location)
+Location.(system, identifier) is unique
 ```
 
-Additional constraints should be added only after a real query or write
+These eleven are the live constraints (30 §7). Additional constraints should be added only after a real query or write
 pattern demonstrates the need.
 
 `Year.year` is canonical because the existing local temporal backbone has a
