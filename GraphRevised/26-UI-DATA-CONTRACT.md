@@ -203,6 +203,14 @@ the user can switch persona at any time. The account's linked names give
 Each paragraph's `refs` point to facts, so a tap opens the fact card and its
 voices: the footnotes stay one tap away and never clutter the text.
 
+**For an event's account (2026-10-17, [29](29-EVENT-CENTRED-INQUIRY.md)
+§4b),** the paragraphs are the account's statements, and each carries its
+`kind` (source, synthesis, signpost), so our own reading is shown as ours and
+a signpost as a door. A source statement's `refs` are its claims and its
+passages (locator and words, for the footnote); a synthesis's are the
+statements it rests on; the linked names give entity `refs`. Sections carry
+their phases, so the stage can follow the account through the battle.
+
 ## 6. Timeline item — the slider (specified)
 
 | Field | Meaning |

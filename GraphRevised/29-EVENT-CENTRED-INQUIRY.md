@@ -147,6 +147,38 @@ Event (Battle of Actium)
   live is open (§10 item 6); one option is an Obsidian plugin, the notes
   stored in the curator's vault and linked to the graph.
 
+### 4b. Traced, statement by statement (2026-10-17, handoff 1f2(d))
+
+So the account never becomes a second, unaudited layer of truth, every
+statement in it is one of three kinds, and the contract
+([narrative/account.py](narrative/account.py), `account-v1`) refuses anything
+else:
+
+| Kind | Says | Carries |
+|---|---|---|
+| source | what preserved passages say | at least one citation: the observation, its locator, the verbatim words; the claims it restates, if any (a passage no claim was drawn from may still be cited, §4) |
+| synthesis | our own reading across the account, marked as ours | no citation of its own: the earlier statements it rests on, which carry the evidence |
+| signpost | where the evidence ends ("not yet read: …") | nothing: a target for the next source plan (31 §3.4) |
+
+- **Sections are the narrative order, phases the historical order.** Each
+  section names the phases it covers (none for a framing section); by default
+  one section per phase, but the outline may split or join them (31 §3.4).
+- **The trace** runs section → phases → statement → claims → passages; a
+  synthesis is traced through the statements it rests on. `Account.trace()`
+  gives it as rows.
+- **Names link by their words** to Entity ids (§4a).
+- **Checked against the graph before it is shown** (`check`): every quoted
+  passage exists and holds the words verbatim, never in an editorial note; a
+  passage changed since it was cited makes the account stale; every claim it
+  restates exists and is neither rejected nor superseded (a proposed claim may
+  be cited: the account is read before review, and its card shows the status);
+  every phase, focus, and linked Entity exists.
+- **Versions and status.** One file per version in `accounts/`; a revision is
+  a new version. Status: draft, proposed, approved (the curator's), superseded.
+- Writing rules of §4 that a schema cannot check (state flatly only what the
+  sources agree on; name who says it otherwise) are the critic's and the
+  curator's.
+
 ## 5. Wikipedia's three roles
 
 | Role | What | Rule |
