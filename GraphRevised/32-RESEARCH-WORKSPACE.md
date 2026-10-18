@@ -196,6 +196,50 @@ Edits and deletions:
   Claims are drafted from a transcription by an agent and reviewed by the
   curator, a separate step.
 
+### 2.1b Images (2026-10-18; not built)
+
+**One image, one note**, marked `chrystallum: image` (Obsidian's Properties
+panel cannot edit a list of structured entries). The file goes in the
+folder's `images/`; `image` names it, or a URL. A URL image is kept as a
+private copy, hashed, with the URL and the date fetched (curator, 2026-10-18),
+since links break. Images never enter Neo4j: the graph holds a record of each
+(its hash, path, what it shows, who made it and when, where it came from, its
+rights) and the curator's note as an Annotation.
+
+```yaml
+---
+chrystallum: image
+id:
+image: "[[nicopolis_monument.png]]"   # a file in images/, or a URL
+depicts: "A modern digital reconstruction (not a photograph) of ..."   # what it shows; a reconstruction says so
+madeBy: unknown           # me, the photographer or artist, or unknown
+madeOn:                   # empty: the sync reads the photo's own date
+rights: copyright         # own-photo | copyright | cc-by | cc-by-sa | public-domain | unknown
+collection: "Ephorate of Antiquities of Preveza (Actia Nicopolis Archaeopark)"   # a museum, archive, or site
+accession:                # its number there, if any
+url: "https://..."        # the page it was found on
+isbn:                     # when it is from a book
+page:
+visibility: private
+concerns:
+  - chr:entity:nicopolis
+related:
+tags:
+---
+```
+
+- **An image is a depiction** (E14): its card says what it shows, when it was
+  made, by whom, and under what rights; a reconstruction is labelled as one.
+- A phone photo's date, and its GPS position where present, are read from the
+  file; the position may find the nearest place in the gazetteer.
+- Open (§3 item 4): whether an image may be evidence. Recommended: only
+  through text transcribed from it (a page, an inscription, a coin legend) and
+  confirmed by the curator, the image kept as that text's proof.
+
+**Templates** live in `obsidian_book_notes/_templates/` (`note.md`,
+`image.md`), for Obsidian's Templates plugin; the sync skips any file or folder
+whose name starts with `_`.
+
 ### 2.2 Saved paths are Annotations too
 
 `kind: path`, an ordered list of node and claim ids, `generatedBy` (curator or
@@ -275,3 +319,7 @@ sequenceDiagram
    Annotations, until a query needs more.
 3. ~~**Which way sync runs first**~~ **Decided 2026-10-17 (curator):** vault
    to graph, one way, a watcher on `GraphRevised/obsidian_book_notes/` (§2.1a).
+4. **Images as evidence** (§2.1b): recommended, only through text transcribed
+   from them and confirmed by the curator. Also open: whether an agent may draft
+   that transcription from a page photo (the photo stays private), and whether
+   the curator's own photos may later be shared.
