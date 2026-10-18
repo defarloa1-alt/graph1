@@ -1,8 +1,9 @@
 // Everything the graph holds about one event, from a summary down to pictures (2026-10-18).
-// Neo4j Browser or Desktop, read-only. Set once:
-//   :param event => 'chr:entity:battle-of-actium'
-//   :param phase => 'meaning-memory'        (query 4: any phase key)
-//   :param curator => 'Tony DeFarlo'        (query 8)
+// Neo4j Browser or Desktop, read-only. Set the parameters once, as one command run on its own
+// (several :param lines run together fail: the Browser reads the second line as Cypher):
+//   :params {event: 'chr:entity:battle-of-actium', phase: 'meaning-memory', curator: 'Tony DeFarlo'}
+// `phase` is for query 4 (any phase key), `curator` for query 8. To change one later, run it alone:
+//   :param phase => 'engagement'
 // Then run any query below on its own. Proposed and accepted content are shown together;
 // rejected and superseded claims are left out (25 decision 2). The Browser draws about 300 nodes
 // by default (:config initialNodeDisplay: 1000 raises it); the tables have no such limit.
