@@ -136,6 +136,8 @@ tags:                     # optional: Obsidian's own tags, for the curator's sea
 ---
 ```
 
+**An ellipsis (… or ...) in the quote block marks words skipped**, usually a sentence or so (curator, 2026-10-18). The transcription keeps it, and no claim may quote across it: the words either side were not written together (the validator refuses such a quotation from a transcription).
+
 **Only what the curator alone knows goes in a note** (curator, 2026-10-17): the
 copy in hand (its ISBN), where the passage is, what it concerns, whose words
 it is, and the curator's own thoughts. Whatever a catalogue gives (LCCN,

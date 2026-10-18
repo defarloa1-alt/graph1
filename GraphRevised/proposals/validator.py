@@ -425,6 +425,10 @@ def _check_passage(observation: dict[str, Any], quotation: str | None) -> list[s
     if quotation is None:
         return [f"passage observation {observation['id']} needs a verbatim quotation"]
     quote = normalize(quotation)
+    if observation.get("observationKind") == "transcription" and ("…" in quote or "..." in quote):
+        # In the curator's transcription an ellipsis marks words skipped: the words either side of it
+        # were not written together, so a quotation stays on one side.
+        return [f"quotation crosses an elision in {observation['id']}: quote one side of the …"]
     if quote in normalize(observation.get("passageText") or ""):
         return []
     if any(quote in normalize(note) for note in observation.get("editorialNotes") or []):

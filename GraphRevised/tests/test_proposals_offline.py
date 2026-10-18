@@ -273,6 +273,21 @@ class PassageValidatorTests(unittest.TestCase):
         self.assertEqual(result.outcome, Outcome.INVALID)
         self.assertTrue(any("editorial note" in reason for reason in result.reasons))
 
+    def test_a_quotation_never_crosses_the_curators_elision(self):
+        transcription = PASSAGE | {"id": "chr:observation:transcription:x", "observationKind": "transcription",
+                                   "passageText": "Caesar posted Agrippa on the left…. Antony’s ships were heavy."}
+        reader = FakeReader([ACTIUM, AGRIPPA], [P710, transcription])
+        crossing = passage_draft("on the left…. Antony’s ships", observations=(transcription,), quoted_id=transcription["id"])
+        result = self.check(crossing, reader)
+        self.assertEqual(result.outcome, Outcome.INVALID)
+        self.assertTrue(any("crosses an elision" in reason for reason in result.reasons))
+        one_side = passage_draft("Caesar posted Agrippa on the left", observations=(transcription,), quoted_id=transcription["id"])
+        self.assertEqual(self.check(one_side, reader).outcome, Outcome.VALID)
+        # In a source's own text an ellipsis may be the author's: it is quoted like any other words.
+        authors = PASSAGE | {"passageText": "Caesar waited... then posted Agrippa on the left."}
+        self.assertEqual(self.check(passage_draft("Caesar waited... then posted Agrippa", observations=(authors,)),
+                                    FakeReader([ACTIUM, AGRIPPA], [P710, authors])).outcome, Outcome.VALID)
+
     def test_quotation_for_uncited_observation_is_invalid(self):
         result = self.check(passage_draft(quoted_id="chr:observation:other"))
         self.assertEqual(result.outcome, Outcome.INVALID)
