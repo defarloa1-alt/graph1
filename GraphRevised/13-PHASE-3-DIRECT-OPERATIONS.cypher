@@ -943,3 +943,32 @@ SET link.basis = row.basis
 WITH count(link) AS written
 WHERE written = size($rows)
 RETURN written;
+
+// upsert_image_observation (2026-10-18; 32 §2.1b): an image the curator gathered, recorded by the
+// hash of its file. It shows what `depicts` says; it is never evidence for a claim (the validator
+// takes passages, transcriptions, records, and Wikidata statements only). Its facts are fixed once
+// recorded; the file stays in the curator's folder, never in Neo4j.
+MERGE (image:SourceObservation {id: $id})
+ON CREATE SET
+  image.label = $label,
+  image.shortLabel = $shortLabel,
+  image.observationKind = "image",
+  image.sourceSystem = "curator",
+  image.depicts = $depicts,
+  image.madeBy = $madeBy,
+  image.madeOn = $madeOn,
+  image.rights = $rights,
+  image.collection = $collection,
+  image.accession = $accession,
+  image.sourceUri = $sourceUri,
+  image.visibility = $visibility,
+  image.capturedBy = $capturedBy,
+  image.capturedAt = $capturedAt,
+  image.retrievedAt = $capturedAt,
+  image.contentHash = $contentHash,
+  image.rawPayloadUri = $rawPayloadUri,
+  image.status = "observed"
+ON MATCH SET
+  image.label = coalesce($label, image.label),
+  image.shortLabel = coalesce($shortLabel, image.shortLabel)
+RETURN image;

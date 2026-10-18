@@ -321,7 +321,12 @@ the `note` carries the content (capture.core.annotation_label, migration 006). I
 
 Built kinds: `passage-of-note` (a passage worth reading for an entity, and
 why) and `entity-mention` (the words in a passage that first name an entity,
-such as a depicted event). **Designed, not built**
+such as a depicted event); since 2026-10-18 `note` (a curator's note from the
+vault, `ANNOTATES` its transcription) and `image-note` (on an image), written
+by `capture/notes.py`. An **image** is a SourceObservation of kind `image`
+(the hash and path of the curator's file, what it depicts, who made it, its
+rights; operation `upsert_image_observation`): never evidence for a claim,
+the file never in Neo4j. **Designed, not built**
 ([32](32-RESEARCH-WORKSPACE.md) §2): `kind: note`, the curator's research
 notes (observation, question, hypothesis, interpretation, excerpt, outline,
 argument), and `kind: path`, a saved path (32 §3 item 2: Annotations until a

@@ -90,7 +90,9 @@ id sits in its frontmatter, and the graph holds the note with its targets; a
 sync tool reads designated folders, and the graph interface can open the note's
 Obsidian URI.
 
-### 2.1a The sync (decided by the curator, 2026-10-17; not built)
+### 2.1a The sync (decided by the curator, 2026-10-17; built without its watcher, 2026-10-18)
+
+**As built:** [capture/notes.py](capture/notes.py): `check` reports what keeps a note out of the graph; `apply` (dry run by default) writes book notes and image notes and the note's id back into the file; a transcription with the same words from the same book is reused. Not yet: the watcher, edits and deletions of notes already written, a book not yet in the graph (the note waits, told to look the ISBN up), and images given by URL.
 
 **The sync is a small program, outside Obsidian, that watches one folder of the
 vault and makes the graph match the notes in it.** It writes notes into the

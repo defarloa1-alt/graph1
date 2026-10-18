@@ -54,6 +54,7 @@ OPERATION_NAMES = (
     "link_location_parents",
     "link_modern_locations",
     "link_place_locations",
+    "upsert_image_observation",
 )
 
 
