@@ -481,6 +481,41 @@ Proposal's target, or an AuthorityRecord's local ID. A null optional display
 value never erases an existing value. Operations link only to existing `Year`
 nodes and never extend the backbone.
 
+### 6.1 Direct lookup ("vertex jump")
+
+A read or a write starts by finding its node directly, by a key the database
+indexes, and only then walks a bounded number of relationships from it. In
+Neo4j walking from a node already found is cheap; finding the starting node
+by scanning property values is what is slow. The keys a lookup may use are
+the unique ones:
+
+```text
+Entity.id, Subject.id, Assertion.id, Proposal.id, SourceObservation.id,
+Annotation.id, Location.id, Year.year
+AuthorityRecord.(system, identifier)      an external code: LCNAF n50051933, LCCN 2021007113, Wikidata Q1048
+```
+
+- **External codes are found through their AuthorityRecord, never kept
+  inside a local id.** `(LCNAF, n50051933)` leads to its record and the record
+  to the Entity that holds it: two index seeks. A local id stays the same when
+  an authority merges, splits, or withdraws a code (01 invariant 1).
+- **A claim's id is content-addressed** (22 §3): subject, predicate, object,
+  and a digest of mode, attribution, context, role, time, and quantity, never
+  who proposed it or when. Two proposers finding the same claim reach the same
+  id, and a claim's family (every version of one fact) shares the id up to the
+  digest.
+- **Never a key from mutable properties** (a label, a description), and no
+  composite key that would decide identity silently: a new one needs a
+  versioned canonicalization rule, as the claim digest has.
+
+Dropped from the legacy design of the same name (`docs/architecture/ENTITY_CIPHER_FOR_VERTEX_JUMPS.md`,
+February 2026, reference only), on purpose: ids built from the QID with a type
+prefix, and a cascade of BabelNet and synthetic ids for things without one
+(they change when Wikidata does, and needed keys rewritten afterwards);
+`FacetedEntity` hub nodes per entity, facet, and subject (facets are lenses,
+never nodes: 33 D-039); stored aggregate confidence on them (rule: attestation
+is computed, never stored, D-033).
+
 ## 7. Source and claim separation
 
 Keep the following distinct:
