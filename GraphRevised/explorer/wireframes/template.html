@@ -166,6 +166,17 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .book .ncard { margin-bottom: 10px; }
 .book .nglabel { display: block; break-after: avoid; margin: 2px 0 6px; }
 .pager { display: flex; gap: 10px; align-items: center; justify-content: center; padding-top: 6px; font-size: var(--fs-chrome); color: var(--ink-2); }
+/* kinds: a small icon beside the kind's name (curator, 2026-10-19) */
+.kicon { width: 11px; height: 11px; vertical-align: -1px; margin-right: 3px; }
+/* how it is read: the readings of a subject, high on its card */
+.readings { display: flex; flex-direction: column; gap: 8px; }
+.reading-item { border-left: 3px solid var(--ink-3); padding-left: 10px; display: flex; flex-direction: column; gap: 3px; }
+.reading-item .whose { font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-3); }
+.reading-item q { font-style: italic; font-size: var(--fs-read); line-height: 1.45; }
+.reading-item .gist { font-size: var(--fs-read); line-height: 1.45; color: var(--ink); }
+.reading-item .linkish { text-align: left; }
+a.ext { color: var(--ink-2); text-underline-offset: 2px; }
+a.ext::after { content: " ↗"; font-size: .85em; }
 /* the sources of a split group, as footnotes rather than "according to" on every node */
 .foot { position: absolute; left: 34px; bottom: var(--s3); z-index: 2; max-width: 360px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 4px 8px; font-size: var(--fs-label); color: var(--ink-2); }
 .foot ol { margin: 2px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 1px; }
@@ -454,6 +465,21 @@ const LENS_META = { // icons drawn for small sizes; the IconScout renders wait f
   economic: ["Economic", '<ellipse cx="6" cy="12.2" rx="3.4" ry="1.3"/><ellipse cx="6" cy="9.6" rx="3.4" ry="1.3"/><path d="M12 14V3.5M12 5.8l-1.6-1.6M12 5.8l1.6-1.6M12 8.8l-1.6-1.6M12 8.8l1.6-1.6"/>'],
   religious: ["Religious", '<path d="M4 14h8M5 14V9.2h6V14M3.5 9.2h9M8 7.6c-1.4-1-1.4-2.6 0-4.6 1.4 2 1.4 3.6 0 4.6z"/>'],
 };
+const KIND_ICON = { // drawn for small sizes, like the lens icons
+  Person: '<circle cx="8" cy="5" r="2.6"/><path d="M3 14c0-2.8 2.2-4.8 5-4.8s5 2 5 4.8"/>',
+  Event: '<rect x="2.5" y="3.5" width="11" height="10" rx="1.5"/><path d="M2.5 6.5h11M5.5 2v3M10.5 2v3"/>',
+  Place: '<path d="M8 14.5s4.5-4.6 4.5-8a4.5 4.5 0 0 0-9 0c0 3.4 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/>',
+  Group: '<circle cx="5.5" cy="5.5" r="2"/><circle cx="11" cy="6" r="1.7"/><path d="M1.8 13.5c0-2.2 1.7-3.8 3.7-3.8s3.7 1.6 3.7 3.8M9.5 10c2 0 4.2 1.2 4.2 3.5"/>',
+  Office: '<path d="M5.5 2.5v11M8 2.5v11M10.5 2.5v11M4.5 5h7M4.5 11h7M10.5 3l3-1.2v3.4z"/>',
+  Work: '<path d="M2.5 3.5h4A1.5 1.5 0 0 1 8 5v8.5A1.5 1.5 0 0 0 6.5 12h-4zM13.5 3.5h-4A1.5 1.5 0 0 0 8 5v8.5A1.5 1.5 0 0 1 9.5 12h4z"/>',
+  Concept: '<path d="M5.5 10.3a4 4 0 1 1 5 0V12h-5zM6 14h4"/>',
+  Period: '<path d="M4 2h8M4 14h8M5 2.5c0 3 6 2.5 6 5.5s-6 2.5-6 5.5M11 2.5c0 3-6 2.5-6 5.5s6 2.5 6 5.5"/>',
+  Polity: '<path d="M4 14V2M4 3h8l-1.5 2.5L12 8H4"/>',
+  Type: '<path d="M2.5 2.5h5l6 6-5 5-6-6zM5.3 5.3h.01"/>',
+};
+const kindIcon = k => KIND_ICON[k] ? `<svg class="kicon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${KIND_ICON[k]}</svg>` : "";
+/* the same icon as a canvas node's picture, drawn in the theme's ink */
+const kindIconUri = k => KIND_ICON[k] ? "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="${cssVar("--ink-2")}" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${KIND_ICON[k]}</svg>`) : "";
 const lensIcon = k => `<svg class="licon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${LENS_META[k][1]}</svg>`;
 const LENSES = { // mock mapping from lens to predicates; lenses filter claims (25 §12)
   military: ["participated in", "commanded", "held authority over", "served under", "part of", "occurred at"],
@@ -625,8 +651,15 @@ function canvasImage(n) { const im = imageFor(n); return im && (im.mock || im.ca
 const NOTE_RE0 = /^([\w-]+):\s*([\s\S]*?)\s*\(([^()]*?),\s*(\w+)\)\s*$/;
 const passages = new Map();
 const pass = loc => { if (!passages.has(loc)) passages.set(loc, { facts: new Map(), notes: [] }); return passages.get(loc); };
-for (const e of DATA.edges) for (const v of e.voices) for (const q of v.quotes) if (q.quotation && q.locator) pass(q.locator).facts.set(e.id, { fact: e, quotation: q.quotation, source: q.source });
+for (const e of DATA.edges) for (const v of e.voices) for (const q of v.quotes) if (q.quotation && q.locator) pass(q.locator).facts.set(e.id, { fact: e, quotation: q.quotation, source: q.source, url: q.url });
 for (const n of DATA.nodes) for (const raw of n.notes || []) { const m = raw.match(NOTE_RE0); if (m) pass(m[3]).notes.push({ node: n, type: m[1], text: m[2], state: m[4] }); }
+
+/* where a reader can open a passage, or a Work (its first passage's page, without the anchor) */
+const passageUrl = loc => { const ps = passages.get(loc); return ps ? [...ps.facts.values()].map(f => f.url).find(Boolean) || null : null; };
+const WORK_URL = new Map();
+for (const e of DATA.edges) for (const v of e.voices) for (const q of v.quotes) if (q.url && !WORK_URL.has(q.source))
+  WORK_URL.set(q.source, q.url.includes("scaife.perseus.org") ? q.url.replace("/reader/", "/library/").replace(/:[\d.]+\/$/, "/") : q.url.split("#")[0]);
+const ext = (url, text) => url ? `<a class="ext" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a>` : esc(text);
 
 /* ---------- state ---------- */
 const S = {
@@ -691,9 +724,10 @@ function cyStyle() {
   const ink = cssVar("--ink"), ink2 = cssVar("--ink-2"), ink3 = cssVar("--ink-3"), fill = cssVar("--fill"), strong = cssVar("--strong"), surface = cssVar("--surface"), bg = cssVar("--bg");
   const shapes = { Person: "ellipse", Event: "diamond", Place: "round-triangle", Group: "round-rectangle", Office: "hexagon", Work: "rectangle", Concept: "octagon", Period: "barrel", Polity: "pentagon", Type: "round-tag" };
   return [
-    { selector: "node", style: { width: 24, height: 24, "background-color": fill, "border-width": 1.5, "border-color": ink2, label: "data(label)", "font-family": "Atkinson Hyperlegible, sans-serif", "font-size": 7.5, color: ink, "text-valign": "bottom", "text-margin-y": 3, "text-wrap": "ellipsis", "text-max-width": 90, "text-background-color": bg, "text-background-opacity": .75, "text-background-padding": 1 } },
+    { selector: "node", style: { width: 24, height: 24, "background-color": fill, "border-width": 1.5, "border-color": ink2, label: "data(label)", "font-family": "Atkinson Hyperlegible, sans-serif", "font-size": 7.5, color: ink, "text-valign": "bottom", "text-margin-y": 3, "text-wrap": "wrap", "text-max-width": 128, "text-background-color": bg, "text-background-opacity": .75, "text-background-padding": 1 } },
     ...Object.entries(shapes).map(([k, s]) => ({ selector: `node[kind = "${k}"]`, style: { shape: s } })),
     { selector: "node.proposed", style: { "border-style": "dashed", "background-opacity": .4 } },
+    { selector: 'node[?kicon][img = ""]', style: { "background-image": "data(kicon)", "background-fit": "none", "background-width": "62%", "background-height": "62%", "background-clip": "none" } },
     { selector: 'node[img != ""]', style: { "background-image": "data(img)", "background-fit": "cover", "background-opacity": 1, width: 34, height: 34 } },
     { selector: "node.focus", style: { width: 48, height: 48, "background-color": strong, "background-opacity": 1, "border-width": 3, "border-color": strong, "font-size": 11, "font-weight": "bold" } },
     { selector: "node:selected", style: { "border-width": 3, "border-color": ink, "overlay-opacity": 0 } },
@@ -755,7 +789,7 @@ function drawCanvas() {
   const kept = new Map(cy.nodes().map(n => [n.id(), { ...n.position() }]));
   cy.batch(() => {
     cy.elements().remove();
-    cy.add(p.nodes.map(n => ({ group: "nodes", data: { id: n.id, label: n.id === center ? nameOf(n) : n.label, kind: n.kind, img: canvasImage(n) }, position: kept.get(n.id), classes: [n.id === center ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
+    cy.add(p.nodes.map(n => ({ group: "nodes", data: { id: n.id, label: n.id === center ? nameOf(n) : n.label, kind: n.kind, img: canvasImage(n), kicon: kindIconUri(n.kind) }, position: kept.get(n.id), classes: [n.id === center ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
     cy.add(p.edges.map(e => ({ group: "edges", data: { id: e.id, source: e.source, target: e.target, label: e.label }, classes: [e.status, e.mode, e.category, outsideTime(e) ? "outside" : "", S.edgeLabels ? "labels" : "", S.lens ? "lens" : ""].join(" ") })));
   });
 
@@ -806,7 +840,7 @@ function ring(items, r, offset = 0) {
 function drawHub() {
   const { n, groups, reads, year } = hubModel(S.focus);
   const fams = [...groups.keys()].sort((a, b) => HUB_ORDER.indexOf(a) - HUB_ORDER.indexOf(b));
-  const outer = fams.map(f => ({ id: "grp:" + f, data: { hub: "group", fam: f, label: `${f} · ${groups.get(f).members.size}${(k => k ? "\n" + k : "")(kindsLine(groups.get(f).members.values()))}` }, classes: "group" }));
+  const outer = fams.map(f => ({ id: "grp:" + f, data: { hub: "group", fam: f, label: `${famLabel(f, S.focus)} · ${groups.get(f).members.size}${f === PARTS && (PHASES[S.focus] || []).length ? `\nin ${PHASES[S.focus].length} phases` : (k => k ? "\n" + k : "")(kindsLine(groups.get(f).members.values()))}` }, classes: "group" }));
   if (year != null) outer.push({ id: "grp:elsewhere", data: { hub: "cmd", cmd: `elsewhere ${-year} BC`, label: `Elsewhere in ${yearText(year)}` }, classes: "group later" });
   outer.push({ id: "grp:unread", data: { hub: "cmd", cmd: "help", label: `Not yet read\n${MOCK.unread[S.focus] || "grow it"}` }, classes: "group later" });
   const inner = reads.map(([v, label]) => ({ id: "read:" + v, data: { hub: "read", view: v, label }, classes: "reading" + (v === "video" ? " later" : "") }));
@@ -814,7 +848,7 @@ function drawHub() {
   lastLayoutKey = "hub:" + S.focus;
   cy.batch(() => {
     cy.elements().remove();
-    cy.add({ group: "nodes", data: { id: S.focus, label: nameOf(n), kind: n.kind, img: canvasImage(n) }, position: { x: 0, y: 0 }, classes: "focus" });
+    cy.add({ group: "nodes", data: { id: S.focus, label: nameOf(n), kind: n.kind, img: canvasImage(n), kicon: kindIconUri(n.kind) }, position: { x: 0, y: 0 }, classes: "focus" });
     cy.add(outer.map((o, i) => ({ group: "nodes", data: { id: o.id, ...o.data }, position: po[i], classes: o.classes })));
     cy.add(inner.map((o, i) => ({ group: "nodes", data: { id: o.id, ...o.data }, position: pi[i], classes: o.classes })));
     cy.add([...outer, ...inner].map(o => ({ group: "edges", data: { id: "hub>" + o.id, source: S.focus, target: o.id }, classes: "hub" + (o.id.startsWith("read:") ? " hubread" : "") })));
@@ -825,11 +859,14 @@ function drawHub() {
 /* a group as the new centre: its members around it, each line still one fact */
 function openGroup(fam) {
   S.group = fam; S.sub = []; S.sel = null; S.view = "graph";
-  S.crumbs.push(`group:${S.focus}|${fam}`);
+  const key = `group:${S.focus}|${fam}`, at = S.crumbs.indexOf(key);
+  if (at >= 0) S.crumbs = S.crumbs.slice(0, at + 1); else S.crumbs.push(key);
   renderAll();
 }
 const PHASES = DATA.phases || {};
 const PARTS = "Part of, and its parts";
+/* a battle's parts are the sources' moments placed in its phases (D-070, D-091): sequence, not a relationship */
+function famLabel(f, id) { return f === PARTS && (PHASES[id] || []).length ? "Moments of the battle" : f; }
 const isPhase = id => id.startsWith("chr:entity:phase:");
 function placedIn(phaseId) { return canvasEdges.filter(e => e.label === "part of" && e.target === phaseId && edgePasses(e)).length; }
 function drawSpine(n, g) {
@@ -905,8 +942,80 @@ function subModel(g, focusKind) {
   if (!buckets) loose.push(...members);
   return { all, prefix, loose, buckets };
 }
+/* a battle's participants as an order of battle: the sides, their units, and who commanded them,
+   from the "commanded" claims set in the battle; what the claims do not say is inferred from names and marked */
+function orderModel(ev) {
+  const cmd = canvasEdges.filter(e => e.label === "commanded" && edgePasses(e) && e.voices.some(v => v.context === ev.fullLabel || v.context === nameOf(ev)));
+  if (!cmd.length) return null;
+  const units = new Set(cmd.map(e => e.target));
+  for (const e of adj.get(ev.id) || []) if (e.label === "participated in" && e.target === ev.id && nodeById.get(e.source).kind === "Group") units.add(e.source);
+  const side = new Map(), how = new Map(), pside = new Map();
+  const opp = canvasEdges.find(e => e.label === "opposed" && units.has(e.source) && units.has(e.target));
+  if (opp) { side.set(opp.source, 0); side.set(opp.target, 1); }
+  for (let changed = true; changed;) { changed = false; // a commander shares the side of the units they commanded
+    for (const e of cmd) {
+      if (side.has(e.target) && !pside.has(e.source)) { pside.set(e.source, side.get(e.target)); changed = true; }
+      if (pside.has(e.source) && !side.has(e.target)) { side.set(e.target, pside.get(e.source)); how.set(e.target, "claims"); changed = true; }
+    }
+  }
+  for (const e of canvasEdges) if (e.label === "opposed") { // a commander opposed to someone on a side is on the other
+    for (const [a, b] of [[e.source, e.target], [e.target, e.source]]) if (!pside.has(a) && pside.has(b)) { pside.set(a, 1 - pside.get(b)); for (const c of cmd) if (c.source === a && !side.has(c.target)) { side.set(c.target, pside.get(a)); how.set(c.target, "an opposed claim"); } }
+  }
+  const owner = id => (nodeById.get(id).fullLabel.match(/^([A-Z][\w-]+)'s /) || [])[1];
+  const owners = [0, 1].map(k => owner([...side].find(([, v]) => v === k)?.[0] || ""));
+  for (const u of units) if (!side.has(u)) { const k = owners.findIndex(o => o && nodeById.get(u).fullLabel.includes(o + "'s")); if (k >= 0) { side.set(u, k); how.set(u, "name"); } }
+  const parent = new Map(); // "Left wing of X" under X, by name: the graph has no claim for it yet
+  for (const u of units) { const m = nodeById.get(u).fullLabel.match(/^(?:Left wing|Right wing|Centre|Center) of (.+)$/); if (m) { const par = [...units].find(v => nodeById.get(v).fullLabel === m[1]); if (par) parent.set(u, par); } }
+  const people = new Set(cmd.map(e => e.source));
+  const others = (adj.get(ev.id) || []).filter(e => e.label === "participated in" && e.target === ev.id && nodeById.get(e.source).kind === "Person" && !people.has(e.source)).map(e => e.source);
+  return { cmd, units, side, how, parent, owners, others: [...new Set(others)] };
+}
+function drawOrder(ev, m) {
+  const rowH = 50, X = [-230, 230], out = [-1, 1];
+  const nodes = [], edges = [], placed = new Map();
+  const tops = k => [...m.units].filter(u => m.side.get(u) === k && !m.parent.has(u)).sort((a, b) => /fleet/.test(nodeById.get(b).fullLabel) - /fleet/.test(nodeById.get(a).fullLabel));
+  const unsided = [...m.units].filter(u => !m.side.has(u));
+  nodes.push({ id: ev.id, label: nameOf(ev), kind: ev.kind, x: 0, y: -70, cls: "focus" });
+  [0, 1].forEach(k => {
+    nodes.push({ id: "side:" + k, label: `${m.owners[k] ? m.owners[k] + "'s side" : "One side"}`, x: X[k], y: -10, cls: "group" });
+    let y = 50;
+    for (const top of tops(k)) {
+      const fam = [top, ...[...m.parent].filter(([, par]) => par === top).map(([u]) => u)];
+      fam.forEach((u, i) => {
+        const nu = nodeById.get(u), inferred = m.how.get(u) === "name" || (i > 0 && m.parent.has(u));
+        nodes.push({ id: u, label: nameOf(nu).replace(/ at .*$/, ""), kind: nu.kind, x: X[k] + (i ? 40 * -out[k] * -1 : 0), y, cls: inferred ? "proposed" : "" });
+        edges.push({ id: `p>${u}`, source: i ? top : "side:" + k, target: u, cls: "hub" + (inferred ? " hubread" : "") });
+        let j = 0;
+        for (const c of m.cmd.filter(e => e.target === u)) {
+          if (!placed.has(c.source)) { const pn = nodeById.get(c.source); placed.set(c.source, true); nodes.push({ id: c.source, label: nameOf(pn), kind: pn.kind, x: X[k] + out[k] * (165 + 120 * j), y, img: canvasImage(pn) }); j++; }
+          edges.push({ id: c.id, source: c.source, target: u, label: "commanded", cls: [c.status, c.mode, c.category, "labels"].join(" ") });
+        }
+        y += rowH;
+      });
+    }
+  });
+  let y = 60;
+  for (const u of unsided) { const nu = nodeById.get(u); nodes.push({ id: u, label: nameOf(nu), kind: nu.kind, x: 0, y, cls: "proposed" }); y += rowH; }
+  m.others.forEach((id, i) => { const pn = nodeById.get(id); nodes.push({ id, label: nameOf(pn), kind: pn.kind, x: (i - (m.others.length - 1) / 2) * 130, y: Math.max(y, 60 + rowH * 5), img: canvasImage(pn) }); });
+  lastLayoutKey = "order:" + ev.id;
+  cy.batch(() => {
+    cy.elements().remove();
+    cy.add(nodes.map(q => ({ group: "nodes", data: { id: q.id, label: q.label, kind: q.kind, img: q.img || "", kicon: kindIconUri(q.kind), hub: q.id.startsWith("side:") ? "centre" : undefined }, position: { x: q.x, y: q.y }, classes: q.cls || "" })));
+    cy.add(edges.filter(e => cy.getElementById(e.source).length && cy.getElementById(e.target).length).map(e => ({ group: "edges", data: { id: e.id, source: e.source, target: e.target, label: e.label || "" }, classes: e.cls })));
+  });
+  const foot = $("#groupFoot"), named = [...m.how].filter(([, h]) => h === "name").map(([u]) => nameOf(nodeById.get(u)).replace(/ at .*$/, ""));
+  foot.hidden = S.view !== "graph";
+  foot.innerHTML = `<span class="label">Order of battle</span><ol>
+    <li>From ${m.cmd.length} "commanded" claims set in the battle; a side spreads through shared commanders and the one "opposed" claim.</li>
+    ${named.length ? `<li>Placed by name, not by a claim (dashed): ${esc(named.join(", "))}.</li>` : ""}
+    ${m.parent.size ? `<li>Wings and centres under their fleet by name: the graph has no claim for it yet.</li>` : ""}
+    ${m.others.length ? `<li>Took part, no command recorded: ${esc(m.others.map(id => nameOf(nodeById.get(id))).join(", "))}.</li>` : ""}
+    ${unsided.length ? `<li>No side found: ${esc(unsided.map(u => nameOf(nodeById.get(u))).join(", "))}.</li>` : ""}</ol>`;
+  cy.fit(undefined, 30);
+}
 function drawGroup() {
   const { n, groups } = hubModel(S.focus);
+  if (S.group === "Participants" && n.kind === "Event" && !S.sub.length) { const m = orderModel(n); if (m) return drawOrder(n, m); }
   if (S.group === PARTS && !S.sub.length && (groups.get(PARTS)?.members.size || 0) && [...groups.get(PARTS).members.keys()].some(isPhase)) return drawSpine(n, groups.get(PARTS));
   const g0 = groups.get(S.group) || { members: new Map(), edges: [] };
   const { all, prefix, loose, buckets } = subModel(g0, n.kind);
@@ -925,7 +1034,7 @@ function drawGroup() {
     cy.add({ group: "nodes", data: { id: centre, hub: "centre", label: `${S.group}${where ? " › " + where : ""} · ${all}\n${nameOf(n)}` }, classes: "group focus" });
     cy.add(subs.map(([k, ms]) => ({ group: "nodes", data: { id: "sub:" + k, hub: "sub", key: [...prefix, k].join("|"), label: `${splitLabel(k, markOf(k))} · ${ms.length}${(kl => kl ? "\n" + kl : "")(kindsLine(ms))}` }, classes: "group" })));
     cy.add(subs.map(([k]) => ({ group: "edges", data: { id: "hub>sub:" + k, source: centre, target: "sub:" + k }, classes: "hub" })));
-    cy.add([...g.members.values()].map(m => ({ group: "nodes", data: { id: m.id, label: m.label, kind: m.kind, img: canvasImage(m) }, classes: m.status === "proposed" ? "proposed" : "" })));
+    cy.add([...g.members.values()].map(m => ({ group: "nodes", data: { id: m.id, label: m.label, kind: m.kind, img: canvasImage(m), kicon: kindIconUri(m.kind) }, classes: m.status === "proposed" ? "proposed" : "" })));
     cy.add(g.edges.filter(e => { const o = other(e, S.focus); if (!g.members.has(o) || seen.has(o)) return false; seen.add(o); return true; }).map(e => {
       const out = e.source === S.focus;
       return { group: "edges", data: { id: e.id, source: out ? centre : e.source, target: out ? e.target : centre, label: e.label }, classes: [e.status, e.mode, e.category, outsideTime(e) ? "outside" : "", S.edgeLabels ? "labels" : "", S.lens ? "lens" : ""].join(" ") };
@@ -940,7 +1049,7 @@ function drawFamily() {
   lastLayoutKey = "family:" + S.focus;
   cy.batch(() => {
     cy.elements().remove();
-    cy.add(m.nodes.map(({ n, x, y }) => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: canvasImage(n) }, position: { x, y }, classes: [n.id === S.focus ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
+    cy.add(m.nodes.map(({ n, x, y }) => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: canvasImage(n), kicon: kindIconUri(n.kind) }, position: { x, y }, classes: [n.id === S.focus ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
     cy.add(m.edges.map(e => {
       const kid = e.label === "child of";
       return { group: "edges", data: { id: e.id, source: kid ? e.target : e.source, target: kid ? e.source : e.target, label: e.label }, classes: ["fam", kid ? "descent" : e.label === "spouse of" ? "spouse" : "sib", e.status].join(" ") };
@@ -1001,7 +1110,7 @@ function stand(id, { crumb = true } = {}) {
   if (S.view === "family" && nodeById.get(id).kind !== "Person") S.view = "graph";
   if (S.view === "account" && !ACCOUNT[id]) S.view = "graph";
   S.sel = { type: "node", id };
-  if (crumb && S.crumbs[S.crumbs.length - 1] !== id) S.crumbs.push(id);
+  if (crumb) { const at = S.crumbs.indexOf(id); if (at >= 0) S.crumbs = S.crumbs.slice(0, at + 1); else S.crumbs.push(id); } // back to a place already on the trail cuts the trail to it
   render();
 }
 function select(sel) { S.sel = sel; if (sel && L.right === "hide") setSide("right", "float"); renderCard(); if (cy && !sel) cy.elements().unselect(); }
@@ -1114,8 +1223,8 @@ function signposts(id) {
   const rows = order.filter(f => counts.get(f)).map(f => f === "Family" && n.kind === "Person"
     ? (here ? `<button class="signpost" data-view="family">Family tree<span class="n">${counts.get(f)}</span></button>` : `<button class="signpost" data-stand-view="${esc(id)}|family">Family tree<span class="n">${counts.get(f)}</span></button>`)
     : here
-    ? `<button class="signpost" data-family="${esc(f)}" aria-pressed="${S.group === f}">${esc(f)}<span class="n">${counts.get(f)}</span></button>`
-    : `<button class="signpost" data-stand-family="${esc(id)}|${esc(f)}">${esc(f)}<span class="n">${counts.get(f)}</span></button>`);
+    ? `<button class="signpost" data-family="${esc(f)}" aria-pressed="${S.group === f}">${esc(famLabel(f, id))}<span class="n">${counts.get(f)}</span></button>`
+    : `<button class="signpost" data-stand-family="${esc(id)}|${esc(f)}">${esc(famLabel(f, id))}<span class="n">${counts.get(f)}</span></button>`);
   if (y != null) rows.push(`<button class="signpost" data-cmd="elsewhere ${-y} BC">Elsewhere in ${esc(yearText(y))}<span class="n">empty</span></button>`);
   rows.push(`<button class="signpost unread" data-cmd="help">Not yet read: ${esc(MOCK.unread[id] || "no reader has read this yet")}<span class="n">grow</span></button>`);
   return rows.join("");
@@ -1126,7 +1235,7 @@ function sourcesBlock(n) {
   const cands = MOCK.candidates[n.id] || [];
   if (!works.size && !cands.length) return "";
   return `<div class="sec"><span class="label"><span>Sources</span><span>${works.size} read</span></span><div class="sources-list">
-    ${[...works.entries()].sort((a, b) => b[1] - a[1]).map(([w, c]) => `<div class="src"><button class="linkish" data-voice="${esc(w)}">${esc(w)}</button><span class="state">read · ${c} facts</span></div>`).join("")}
+    ${[...works.entries()].sort((a, b) => b[1] - a[1]).map(([w, c]) => `<div class="src"><span>${ext(WORK_URL.get(w), w)}</span><span class="state"><button class="linkish" data-voice="${esc(w)}" title="Show only what ${esc(w)} says">${c} facts</button></span></div>`).join("")}
     ${cands.map(([w, st]) => `<div class="src"><span>${esc(w)}</span><span class="state later">${esc(st)} <span class="mock">mock</span></span></div>`).join("")}
   </div></div>`;
 }
@@ -1153,7 +1262,7 @@ function nodeCard(n, stage = false) {
     ? `<span class="anno"><b>The card on the stage.</b> Where you stand, read like a page. Every name is a door; "Where to go from here" opens a group on the graph; a date opens its fact and voices in place. The navigator beside it keeps the network in view.</span>`
     : `<span class="anno"><b>Node card.</b> Compact: what it is, where to go, its sources, a count of its notes. Provenance is a quiet footer.</span>`;
   const head = `<div class="card-head">
-      <div class="pills"><span class="pill">${esc(n.kind)}</span><span class="pill ${n.status === "proposed" ? "dashed" : ""}">${esc(n.status)}</span>${n.id !== S.focus ? `<button class="btn primary" data-stand="${esc(n.id)}">Stand here</button>` : `<span class="pill solid">you are here</span>`}</div>
+      <div class="pills"><span class="pill">${kindIcon(n.kind)}${esc(n.kind)}</span><span class="pill ${n.status === "proposed" ? "dashed" : ""}">${esc(n.status)}</span>${n.id !== S.focus ? `<button class="btn primary" data-stand="${esc(n.id)}">Stand here</button>` : `<span class="pill solid">you are here</span>`}</div>
       ${im ? `<div class="who-row"><img class="${n.kind === "Person" ? "portrait" : "picture"}" src="${im.src}" alt="${im.mock ? "Mock portrait of " : "Image of "}${esc(nameOf(n))}"><div><h2>${esc(nameOf(n))}</h2><span class="credit">${esc(im.credit)}${im.mock ? ' <span class="mock">mock</span>' : ""}</span></div></div>` : `<h2>${esc(nameOf(n))}</h2>`}
       <span class="muted">${esc(n.description || "")}</span>
       ${buckets ? `<span class="small">In: ${buckets.map(b => `<button class="linkish" data-cmd="help">${esc(b)}</button>`).join(" · ")} <span class="mock">mock</span></span>` : ""}
@@ -1171,7 +1280,21 @@ function nodeCard(n, stage = false) {
     ${notesSummary(n)}
     ${p !== "browser" && bib.length ? `<details class="sec"><summary class="label">Read more (${bib.length})</summary><ul class="whenlist">${bib.map(w => `<li>${esc(w.fullLabel)}</li>`).join("")}</ul></details>` : ""}
     ${p !== "browser" && n.authority.length ? `<details class="footer"><summary class="label">Records (${n.authority.length})</summary><ul>${n.authority.map(a => `<li>${esc(a)}</li>`).join("")}</ul></details>` : ""}`;
-  return stage ? `${anno}<div class="cardgrid"><div>${head}${go}${when}</div><div>${side}</div></div>` : `${anno}${head}${go}${when}${side}`;
+  const read = readingsBlock(n, stage);
+  return stage ? `${anno}<div class="cardgrid"><div>${head}${read}${go}${when}</div><div>${side}</div></div>` : `${anno}${head}${read}${go}${when}${side}`;
+}
+function readingsBlock(n, stage) {
+  const facts = (adj.get(n.id) || []).filter(e => e.category === "interpretive" && edgePasses(e));
+  const notes = (n.notes || []).map(parseNote).filter(x => x.type === "interpretation");
+  if (!facts.length && !notes.length) return "";
+  const byAuthor = new Map(); // one reading per author first, so the voices differ
+  for (const x of notes.sort((a, b) => a.locator.localeCompare(b.locator, undefined, { numeric: true }))) { const a = authorOfLocator(x.locator); if (!byAuthor.has(a)) byAuthor.set(a, x); }
+  const picks = [...byAuthor.values()].slice(0, stage ? 3 : 2);
+  const factItem = e => { const who = voicesOf(e).map(w => w.split(",")[0]); const q = e.voices.flatMap(v => v.quotes).find(q => q.quotation);
+    return `<div class="reading-item"><button class="linkish gist" data-open-edge="${esc(e.id)}">${esc(e.sentence)}</button>${q ? `<q>${esc(q.quotation)}</q>` : ""}<span class="whose">${esc(who.length ? "a reading of " + who.join(", ") : "our reading")} · ${esc(e.attestation)}${q ? " · " + ext(q.url, q.locator) : ""}</span></div>`; };
+  const noteItem = x => `<div class="reading-item"><span class="gist">${esc(x.text)}</span><span class="whose">${ext(passageUrl(x.locator), x.locator)} · the reader's summary, not the author's words</span></div>`;
+  return `<div class="sec"><span class="label"><span>How it is read</span><span>${facts.length + notes.length}</span></span><div class="readings">${facts.map(factItem).join("")}${picks.map(noteItem).join("")}</div>
+    ${notes.length > picks.length ? `<button class="btn" data-readings="${esc(n.id)}">All ${notes.length} readings</button>` : ""}</div>`;
 }
 function renderCardStage() {
   const el = $("#cardStage");
@@ -1188,7 +1311,8 @@ function passageCard(loc) {
     ${facts.length ? `<div class="sec"><span class="label"><span>The source's words, and the facts they support</span><span>${facts.length}</span></span>${facts.map(f => `<figure class="quote"><q>${esc(f.quotation)}</q><span class="loc"><button class="linkish" data-open-edge="${esc(f.fact.id)}">${esc(f.fact.sentence)}</button>${p === "student" ? ` <button class="cite" data-cite="${esc(f.source + ", " + loc.split(" ").pop() + ".")}" aria-pressed="${S.cites.includes(f.source + ", " + loc.split(" ").pop() + ".")}">Cite</button>` : ""}</span></figure>`).join("")}</div>` : ""}
     ${ps.notes.length ? `<div class="sec"><span class="label"><span>Notes on this passage</span><span>${ps.notes.length}</span></span>${ps.notes.map(x => `<div class="note"><span>${esc(x.text)}</span><span class="who">${esc(x.type)} · on ${esc(x.node.label)} · ${esc(x.state)}</span></div>`).join("")}</div>` : ""}
     ${!facts.length && !ps.notes.length ? `<span class="muted">Nothing in the graph cites this passage yet.</span>` : ""}
-    <span class="muted small">The full passage, with the quoted span marked, opens one tap away once the read API serves it.</span>`;
+    ${passageUrl(loc) ? `<span class="small">${ext(passageUrl(loc), "Read the passage at its source")}</span>` : ""}
+    <span class="muted small">The full passage, with the quoted span marked, opens here once the read API serves it.</span>`;
 }
 function voiceBlock(v) {
   const p = S.persona;
@@ -1200,7 +1324,7 @@ function voiceBlock(v) {
   const quote = q => {
     const long = q.quotation.length > 150;
     const body = long ? `<details><summary><q>${esc(q.quotation.slice(0, 150))}…</q></summary><q>${esc(q.quotation)}</q></details>` : `<q>${esc(q.quotation)}</q>`;
-    const loc = p === "browser" ? "" : `<span class="loc">${esc(q.locator)}${q.pending ? " · evidence not yet reviewed" : ""}${p === "student" ? ` <button class="cite" data-cite="${esc(citeLine(q))}" aria-pressed="${S.cites.includes(citeLine(q))}">Cite</button>` : ""}</span>`;
+    const loc = p === "browser" ? "" : `<span class="loc">${ext(q.url, q.locator)}${q.pending ? " · evidence not yet reviewed" : ""}${p === "student" ? ` <button class="cite" data-cite="${esc(citeLine(q))}" aria-pressed="${S.cites.includes(citeLine(q))}">Cite</button>` : ""}</span>`;
     return `<figure class="quote">${body}${loc}</figure>`;
   };
   return `<div class="voice ${v.status === "proposed" ? "proposed" : ""}">
@@ -1240,8 +1364,11 @@ function renderCard() {
 
 /* ---------- render: drawer ---------- */
 function renderDrawer() {
-  const crumbs = S.crumbs.map((c, i) => {
-    const label = c.startsWith("path:") ? c.slice(5) : c.startsWith("group:") ? splitLabel(c.split("|").pop()) : nameOf(nodeById.get(c));
+  const shown = S.crumbs.length > 6 ? [0, -1, ...S.crumbs.slice(-4).map((_, k) => S.crumbs.length - 4 + k)] : S.crumbs.map((_, i) => i);
+  const crumbs = shown.map(i => {
+    if (i === -1) return '<span class="sep">›</span><span class="muted">…</span>';
+    const c = S.crumbs[i];
+    const label = c.startsWith("path:") ? c.slice(5) : c.startsWith("group:") ? famLabel(splitLabel(c.split("|").pop()), c.slice(6).split("|")[0]) : nameOf(nodeById.get(c));
     const cur = i === S.crumbs.length - 1;
     return `${i ? '<span class="sep">›</span>' : ""}<button data-crumb="${i}" aria-current="${cur}">${esc(label)}</button>`;
   }).join("");
@@ -1403,7 +1530,7 @@ let ncy;
 function navStyle() {
   const ink = cssVar("--ink"), ink3 = cssVar("--ink-3"), surface = cssVar("--surface"), strong = cssVar("--strong"), onStrong = cssVar("--on-strong");
   return [
-    { selector: "node", style: { shape: "round-rectangle", label: "data(label)", "font-size": 7.5, "font-family": "Atkinson Hyperlegible, sans-serif", color: ink, "text-valign": "center", "text-halign": "center", "text-wrap": "wrap", "text-max-width": 78, width: "label", height: "label", padding: 4, "background-color": surface, "border-width": 1, "border-color": ink3 } },
+    { selector: "node", style: { shape: "round-rectangle", label: "data(label)", "font-size": 7.5, "font-family": "Atkinson Hyperlegible, sans-serif", color: ink, "text-valign": "center", "text-halign": "center", "text-wrap": "wrap", "text-max-width": 104, width: "label", height: "label", padding: 4, "background-color": surface, "border-width": 1, "border-color": ink3 } },
     { selector: "node.centre", style: { "background-color": strong, "border-color": strong, color: onStrong, "font-weight": "bold", "font-size": 8 } },
     { selector: "node.on", style: { "border-width": 2, "border-color": ink, "font-weight": "bold" } },
     { selector: "edge", style: { width: 1, "line-color": ink3, "curve-style": "straight" } },
@@ -1422,7 +1549,7 @@ function renderNav() {
   ncy.batch(() => {
     ncy.elements().remove();
     ncy.add({ group: "nodes", data: { id: "c", label: nameOf(n) }, position: { x: 0, y: 0 }, classes: "centre" });
-    ncy.add(fams.map((f, i) => ({ group: "nodes", data: { id: "f" + i, fam: f, label: `${f} · ${groups.get(f).members.size}` }, position: pos[i], classes: S.group === f ? "on" : "" })));
+    ncy.add(fams.map((f, i) => ({ group: "nodes", data: { id: "f" + i, fam: f, label: `${famLabel(f, S.focus)} · ${groups.get(f).members.size}` }, position: pos[i], classes: S.group === f ? "on" : "" })));
     ncy.add(fams.map((f, i) => ({ group: "edges", data: { id: "e" + i, source: "c", target: "f" + i } })));
   });
   ncy.resize(); ncy.fit(undefined, 6);
@@ -1492,7 +1619,7 @@ function renderNotes() {
     const who = p === "browser" ? authorOfLocator(x.locator) : x.locator;
     return `<div class="ncard ${x.state === "flagged" ? "flagged" : ""}">
       <span>${esc(x.text)}</span>
-      <span class="who mono small muted">${esc(who)}${p !== "browser" ? ` · ${esc(x.state)}` : ""}${p === "student" ? ` <button class="cite" data-cite="${esc(x.locator)}" aria-pressed="${S.cites.includes(x.locator)}">Cite</button>` : ""}</span>
+      <span class="who mono small muted">${ext(passageUrl(x.locator), who)}${p !== "browser" ? ` · ${esc(x.state)}` : ""}${p === "student" ? ` <button class="cite" data-cite="${esc(x.locator)}" aria-pressed="${S.cites.includes(x.locator)}">Cite</button>` : ""}</span>
       ${facts.length ? `<div class="from"><span class="label">From this passage</span>${facts.slice(0, 2).map(f => `<q class="small">${esc(f.quotation.length > 140 ? f.quotation.slice(0, 140) + "…" : f.quotation)}</q><button class="linkish" data-open-edge="${esc(f.fact.id)}">${esc(f.fact.sentence)}</button>`).join("")}</div>` : `<button class="linkish" data-passage="${esc(x.locator)}">Open the passage</button>`}
       <span class="small muted">Also concerns: <span class="mock">mock</span></span>
     </div>`;
@@ -1558,7 +1685,7 @@ function renderStanding() {
   const n = nodeById.get(S.focus);
   $("#standing").innerHTML = S.path
     ? `Tracing a path · <button class="linkish" data-stand="${esc(S.focus)}">back to ${esc(nameOf(n))}</button>`
-    : `Standing on <b>${esc(n.fullLabel)}</b> · ${projection().nodes.length - 1} nearby${S.group ? ` · showing ${esc(S.group)} <button class="linkish" data-family="${esc(S.group)}">show all</button>` : ""}${S.lens ? ` · lens: ${esc(S.lens)}` : ""}`;
+    : `Standing on <b>${esc(n.fullLabel)}</b> · ${projection().nodes.length - 1} nearby${S.group ? ` · showing ${esc(famLabel(S.group, S.focus))} <button class="linkish" data-family="${esc(S.group)}">show all</button>` : ""}${S.lens ? ` · lens: ${esc(S.lens)}` : ""}`;
 }
 function render() {
   renderFilters(); renderCard(); renderDrawer(); renderSuggest(); renderPath(); renderRoutes(); renderFlow(); renderMap(); renderCardStage(); renderAccount(); renderNotes(); renderStanding();
@@ -1600,7 +1727,7 @@ function showScreen(k) {
   S.path = null; S.highlight = null; S.group = null; S.sub = []; S.drawerOpen = false; S.sel = null; S.openFact = null; S.notesPage = 0; S.lens = "";
   S.focus = ACTIUM; S.view = "card";
   $("#homePop").hidden = true; applyTheme(L.theme);
-  if (S.crumbs[S.crumbs.length - 1] !== ACTIUM) S.crumbs.push(ACTIUM);
+  S.crumbs = [ACTIUM];
   if (k === 1) S.view = "graph";
   if (k === 2) { const n = nodeById.get(ACTIUM); const i = (n.facts || []).findIndex(f => f.predicate === "occurred"); S.openFact = i >= 0 ? i : null; }
   if (k === 3) { S.view = "account"; S.sel = { type: "passage", loc: "Plutarch Antony 66.5" }; }
@@ -1630,7 +1757,7 @@ document.addEventListener("click", ev => {
       L[d.layout] = v === "true" ? true : v === "false" ? false : /^\d+$/.test(v) ? +v : v;
       if ((d.layout === "left" || d.layout === "right") && v !== "hide") lastShown[d.layout] = v;
     }
-    saveLayout(); applyLayout(); renderDrawer(); return;
+    saveLayout(); applyLayout(); if (d.layout === "theme") renderAll(); else renderDrawer(); return;
   }
   if (t.id === "layoutBtn") { const pop = $("#layoutPop"); pop.hidden = !pop.hidden; t.setAttribute("aria-expanded", String(!pop.hidden)); return; }
   if (t.id === "routesToggle") { const r = $("#routes"); const c = r.classList.toggle("collapsed"); t.textContent = c ? "▾" : "▴"; t.setAttribute("aria-expanded", String(!c)); t.title = c ? "Show the routes as a graph" : "Show the routes as one line"; renderRoutes(); return; }
@@ -1641,6 +1768,7 @@ document.addEventListener("click", ev => {
   if (t.id === "lensBtn") { const lp = $("#lensPop"); lp.hidden = !lp.hidden; if (!lp.hidden) lp.innerHTML = `<button data-lens-pick="">any lens</button>${Object.keys(LENS_META).map(k => `<button data-lens-pick="${k}" style="--lens-c: var(--lens-${k})">${lensIcon(k)}${LENS_META[k][0]}</button>`).join("")}`; return; }
   if (d.lensPick != null) { S.lens = d.lensPick; $("#lensPop").hidden = true; renderAll(); if (S.lens && !LENSES[S.lens].length) addLog(`lens ${S.lens}`, `Nothing here falls under the ${esc(S.lens)} lens yet. Lenses filter claims by kind (25 §12); the enrichers that fill them are not built. <span class="mock">mock</span>`); return; }
   if (d.toggleFact != null) { S.openFact = S.openFact === +d.toggleFact ? null : +d.toggleFact; renderCardStage(); return; }
+  if (d.readings) { if (d.readings !== S.focus) stand(d.readings); S.view = "notes"; S.notesPage = 0; renderAll(); const el = document.getElementById("ng-interpretation"), book = $("#book"); if (el && book) { S.notesPage = Math.floor(el.offsetLeft / (book.clientWidth + BOOK_GAP)); paginate(); } return; }
   if (t.id === "pgPrev") return turnPage(-1);
   if (t.id === "pgNext") return turnPage(1);
   if (t.id === "keyBtn") { const lg = $("#legend"); lg.hidden = !lg.hidden; t.setAttribute("aria-expanded", String(!lg.hidden)); return; }
@@ -1703,7 +1831,7 @@ document.addEventListener("submit", ev => {
 document.addEventListener("keydown", ev => {
   if (ev.key === "Escape") { $("#layoutPop").hidden = true; $("#suggestPop").hidden = true; $("#homePop").hidden = true; $("#lensPop").hidden = true; if (S.drawerOpen) { S.drawerOpen = false; renderDrawer(); } }
   if (ev.target.matches("input, select, textarea")) return;
-  if (ev.key === "t") { L.theme = { system: "light", light: "dark", dark: "system" }[L.theme] || "light"; saveLayout(); applyLayout(); }
+  if (ev.key === "t") { L.theme = { system: "light", light: "dark", dark: "system" }[L.theme] || "light"; saveLayout(); applyLayout(); renderAll(); }
   if (S.view === "notes" && (ev.key === "ArrowRight" || ev.key === "ArrowLeft")) turnPage(ev.key === "ArrowRight" ? 1 : -1);
   if (ev.key === "[") setSide("left", L.left === "hide" ? "last" : "hide");
   if (ev.key === "]") setSide("right", L.right === "hide" ? "last" : "hide");

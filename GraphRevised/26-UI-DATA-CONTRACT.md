@@ -22,7 +22,7 @@ designs meet what the graph actually returns.
 ## 1. The screen
 
 **Revised 2026-10-19** to match wireframe v8 and the UI decisions D-101 to
-D-122 ([33](33-DECISIONS.md)). The earlier sketch, with a top bar, a top
+D-129 ([33](33-DECISIONS.md)). The earlier sketch, with a top bar, a top
 search box, and a chat panel, is replaced; so is v7's hub as the opening
 view (D-116).
 
@@ -54,6 +54,15 @@ view (D-116).
   place. "◎ Graph" shows the hub around where you stand; "▤ Card" returns.
   The right column is the **navigator**, a small live hub, so the network
   stays in view beside the card; below it, whatever is selected elsewhere.
+- **How it is read** (D-124): high on the card, the subject's readings:
+  its interpretive facts, each with whose reading it is, a quotation, and a
+  link to the passage; then one interpretation note per author, marked as
+  the reader's summary; "All N readings" opens the notes at interpretation.
+- **Order of battle** (D-128): a battle's participants open as its two sides,
+  each with its fleets, wings, land armies, and squadrons, and who
+  commanded them, from the "commanded" claims set in the battle; what the
+  claims do not say (a wing's fleet, some sides) is placed by name, dashed,
+  and listed in a footnote.
 - **Names** (D-115): the full name wherever you stand or navigate (card,
   breadcrumbs, routes, the centre of the hub or a group); short captions only
   on crowded rings.
@@ -159,7 +168,7 @@ collapsed by default.
 | `accordingTo` | The Work ("Plutarch, Life of Antony"), or `null` for our own statement |
 | `status` | This source's version: accepted or proposed |
 | `time`, `role`, `context` | This source's terms ("2 September 31 BCE", "as legate", "during Battle of Actium") |
-| `quotes[]` | `source`, `locator` ("Plutarch Antony 65.1"), verbatim `quotation`, `pending` (evidence not yet reviewed) |
+| `quotes[]` | `source`, `locator` ("Plutarch Antony 65.1"), `url` (where a reader can open the passage: the page and anchor at LacusCurtius, Gutenberg, or the Wikipedia revision; a Scaife reader link for Perseus; none for a curator's page number; built 2026-10-19), verbatim `quotation`, `pending` (evidence not yet reviewed) |
 | `review[]` | `operation`, `status`, `decidedBy`, `decidedAt`: the audit trail |
 
 Real example:

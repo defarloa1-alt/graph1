@@ -81,13 +81,13 @@ RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .tim
        COLLECT {{ MATCH (a)-[link:SUPPORTED_BY]->(ev:SourceObservation)
                  OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity)
                  RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem),
-                         locator: ev.shortLabel, quotation: link.quotation, pending: false}} AS source
+                         locator: ev.shortLabel, href: ev.locator, quotation: link.quotation, pending: false}} AS source
                  UNION
                  MATCH (p:Proposal)-[:PROPOSES]->(a) WHERE p.status IN $open
                  MATCH (p)-[link:PROPOSES_EVIDENCE]->(ev:SourceObservation)
                  OPTIONAL MATCH (ev)-[:IN_WORK]->(w:Entity)
                  RETURN {{key: coalesce(w.id, ev.sourceSystem), label: coalesce(w.label, ev.sourceSystem),
-                         locator: ev.shortLabel, quotation: link.quotation, pending: true}} AS source
+                         locator: ev.shortLabel, href: ev.locator, quotation: link.quotation, pending: true}} AS source
                }} AS sources,
        COLLECT {{ MATCH (p:Proposal)-[:PROPOSES]->(a)
                  RETURN p {{.status, .operation, .decidedBy, .decidedAt}} ORDER BY p.decidedAt }} AS proposals
@@ -162,11 +162,25 @@ def _time(claim: dict[str, Any]) -> str | None:
     return display_edtf(claim["timeEdtf"]) if claim.get("timeEdtf") else claim.get("timeSourceExpression")
 
 
+def passage_url(locator: str | None) -> str | None:
+    """Where a reader can open the passage: the locator when it is already a link (LacusCurtius,
+    Gutenberg, Wikipedia keep the page and anchor there), a Scaife reader link for a Perseus CTS
+    passage, otherwise none (a curator's page number)."""
+    if not locator:
+        return None
+    if locator.startswith(("https://", "http://")):
+        return locator.split(" (", 1)[0]
+    if locator.startswith("urn:cts:"):
+        return f"https://scaife.perseus.org/reader/{locator}/"
+    return None
+
+
 def _voice(row: dict[str, Any]) -> dict[str, Any]:
     """One claim behind a fact: who says it, in what terms, on what evidence, reviewed how."""
     claim = row["claim"]
-    quotes = sorted(({"source": s["label"], "locator": s["locator"], "quotation": s["quotation"],
-                      "pending": s["pending"]} for s in row["sources"]), key=lambda q: q["locator"] or "")
+    quotes = sorted(({"source": s["label"], "locator": s["locator"], "url": passage_url(s.get("href")),
+                      "quotation": s["quotation"], "pending": s["pending"]} for s in row["sources"]),
+                    key=lambda q: q["locator"] or "")
     return {
         "claimId": claim["id"], "status": claim["status"], "mode": claim.get("mode") or "asserted",
         "accordingTo": (row["work"] or {}).get("label"), "time": _time(claim),

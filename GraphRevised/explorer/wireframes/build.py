@@ -40,7 +40,7 @@ def trim_voice(voice: dict) -> dict:
         "role": voice.get("role"),
         "context": voice.get("context"),
         "quotes": [
-            {k: q.get(k) for k in ("source", "locator", "quotation", "pending")}
+            {k: q.get(k) for k in ("source", "locator", "url", "quotation", "pending")}
             for q in voice.get("quotes", [])
         ],
         "review": [
