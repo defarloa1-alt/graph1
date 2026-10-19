@@ -77,13 +77,30 @@ RETURN p, q;
 
 
 // 5. The sources: each Work behind the event, how many passages and claims it gives -----------------
-MATCH (w:Entity {kind: 'Work'})<-[:IN_WORK]-(o:SourceObservation)
-WHERE EXISTS { (o)<-[:SUPPORTED_BY|PROPOSES_EVIDENCE]-()-[:PROPOSES*0..1]->(a:Assertion)
-               WHERE EXISTS { (a)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT|ASSERTION_CONTEXT]->(:Entity {id: $event}) }
-                  OR EXISTS { (a)-[:ASSERTION_SUBJECT]->(:Entity)<-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})
-                              -[:ASSERTION_OBJECT]->(:Entity)-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})
-                              -[:ASSERTION_OBJECT]->(:Entity {id: $event}) } }
-   OR EXISTS { (o)<-[:ANNOTATES]-(:Annotation)-[:CONCERNS]->(:Entity {id: $event}) }
+// A passage counts when it supports a claim on the event, or on anything placed in one of its phases
+// (the placement's own evidence included), or when a note on the event marks it. Found from the event
+// outwards: the earlier pattern tested every passage, and Cypher's rule against reusing a relationship
+// in one pattern left the placements' evidence out (2026-10-18).
+MATCH (ev:Entity {id: $event})
+OPTIONAL MATCH (ph:Entity)-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ev)
+OPTIONAL MATCH (x:Entity)<-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ph)
+WITH ev, collect(DISTINCT x) AS placed
+CALL (ev, placed) {
+  CALL (ev, placed) {
+    MATCH (a:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT|ASSERTION_CONTEXT]->(ev) RETURN a
+    UNION
+    UNWIND placed AS x MATCH (a:Assertion)-[:ASSERTION_SUBJECT]->(x) RETURN a
+  }
+  CALL (a) {
+    MATCH (a)-[:SUPPORTED_BY|PROPOSES_EVIDENCE]->(o:SourceObservation) RETURN o
+    UNION
+    MATCH (a)<-[:PROPOSES]-(:Proposal)-[:SUPPORTED_BY|PROPOSES_EVIDENCE]->(o:SourceObservation) RETURN o
+  }
+  RETURN collect(o) AS observed
+}
+CALL (ev) { MATCH (ev)<-[:CONCERNS]-(:Annotation)-[:ANNOTATES]->(o:SourceObservation) RETURN collect(o) AS noted }
+UNWIND observed + noted AS o
+MATCH (o)-[:IN_WORK]->(w:Entity {kind: 'Work'})
 WITH w, count(DISTINCT o) AS passages
 OPTIONAL MATCH (a:Assertion)-[:ATTRIBUTED_TO]->(w)
 WHERE NOT a.status IN ['rejected', 'superseded']
@@ -92,17 +109,10 @@ RETURN w.label AS work, w.form AS form, w.status AS status, passages,
 ORDER BY passages DESC;
 
 
-// 6. The timeline: what is dated, in which year (the event and its parts and their sources) -----------
-MATCH (a:Assertion {predicate: 'occurred'})-[:ASSERTION_SUBJECT]->(e:Entity)
-WHERE NOT a.status IN ['rejected', 'superseded']
-  AND (e.id = $event OR EXISTS { (e)<-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT*1..1]->(x:Entity)
-                                  WHERE x.id = $event OR EXISTS { (x)<-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})
-                                                                 -[:ASSERTION_OBJECT]->(:Entity {id: $event}) } })
-OPTIONAL MATCH (a)-[y:IN_YEAR]->(yr:Year)
-OPTIONAL MATCH (a)-[:ATTRIBUTED_TO]->(w:Entity)
-RETURN min(yr.year) AS year, collect(DISTINCT yr.label)[0] AS label, e.label AS event,
-       a.timeSourceExpression AS inTheSourcesWords, coalesce(w.label, 'Chrystallum') AS voice, a.status AS status
-ORDER BY year, event;
+//// Browser style (paste once into the Browser command line) -----------------------------------------
+// :style node.Entity { caption: '{label}'; diameter: 55px; }
+//        node.Assertion { caption: '{predicate}'; diameter: 18px; color: #DDDDDD; border-color: #999999; }
+//        relationship { caption: ''; }
 
 
 // 7. Notes: every Annotation on the event or on anything linked to it by a claim ----------------------

@@ -56,8 +56,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .wf b { color: var(--ink); font-weight: 500; }
 .wf { font-size: 11px; gap: 6px; }
 .wf .screens { display: flex; flex-wrap: wrap; gap: 4px; }
-.flow { flex: 1 1 520px; min-width: 0; height: 84px; border: 1px dashed var(--ink-3); border-radius: 4px; background: var(--surface); position: relative; }
-.flow #flowCy { position: absolute; inset: 0; }
+.wf select { font: inherit; font-size: 11px; border: 1px dashed var(--ink-3); border-radius: 3px; background: transparent; color: var(--ink); padding: 1px 4px; }
 .wf button { border: 1px dashed var(--ink-3); background: transparent; border-radius: 3px; padding: 2px 8px; }
 .wf button[aria-pressed="true"] { background: var(--strong); color: var(--on-strong); border-style: solid; }
 .anno { display: none; font-family: var(--font-mono); font-size: 10.5px; line-height: 1.35; color: var(--ink-2); border: 1px dashed var(--ink-3); border-radius: 3px; padding: 3px 6px; background: var(--bg); }
@@ -312,9 +311,8 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 </style>
 
 <div class="wf annos-scope" id="wf">
-  <b>Chrystallum explorer · wireframe v6</b>
-  <span>Screens</span>
-  <div class="flow" aria-label="How the screens connect"><div id="flowCy"></div></div>
+  <b>Chrystallum explorer · wireframe v7</b>
+  <label>Screen <select id="screenSel" aria-label="Wireframe screen"></select></label>
   <button id="annoToggle" aria-pressed="false">Annotations off</button>
   <span class="muted">Real data from the graph export; <span class="mock">mock</span> marks what is designed but not built.</span>
 </div>
@@ -335,14 +333,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
         <nav class="rtext" id="pathbar" aria-label="Drill-down path"></nav>
       </div>
       <span class="standing" id="standing"></span>
-      <span class="seg" role="group" aria-label="Stage shows" id="modes">
-        <button data-view="graph" aria-pressed="true">Facts</button>
-        <button data-view="family" id="famBtn">Family</button>
-        <button data-view="notes">Notes</button>
-        <button data-view="account">Account</button>
-        <button data-view="map">Map</button>
-        <button class="later" data-later="video" title="Planned enhancement">Video</button>
-      </span>
+      <button class="btn" id="hubBtn" hidden title="Back to the hub: where you stand, its ways of reading, its groups">◎ Hub</button>
       <button class="btn" id="keyBtn" style="margin-left:auto" aria-expanded="false">Key</button>
       <span class="seg" role="group" aria-label="Who are you exploring as">
         <button data-persona="scholar" aria-pressed="true">Scholar</button>
@@ -635,6 +626,8 @@ function projection() {
   }
   const ids = [...near].slice(0, 70);
   const set = new Set(ids);
+  // the cap drops neighbours; their edges go with them
+  edges.splice(0, edges.length, ...edges.filter(e => set.has(e.source) && set.has(e.target)));
   for (const e of canvasEdges) {
     if (e.source !== f && e.target !== f && set.has(e.source) && set.has(e.target) && edgePasses(e)) edges.push(e);
   }
@@ -667,12 +660,28 @@ function cyStyle() {
     { selector: ".outside", style: { opacity: .15 } },
     { selector: ".dim", style: { opacity: .12 } },
     { selector: "edge.hl", style: { width: 2.6, "line-color": ink, "target-arrow-color": ink } },
+    /* the hub: ways of reading close in, relationship groups further out (display only, never stored) */
+    { selector: "node.group", style: { shape: "round-rectangle", width: "label", height: "label", padding: 7, "text-valign": "center", "text-halign": "center", "text-margin-y": 0, "text-wrap": "wrap", "text-max-width": 130, "font-size": 10, "background-color": surface, "background-opacity": 1, "border-width": 1.5, "border-color": ink2, "text-background-opacity": 0 } },
+    { selector: "node.reading", style: { shape: "round-rectangle", width: "label", height: 16, padding: 5, "text-valign": "center", "text-halign": "center", "text-margin-y": 0, "font-size": 9, "background-color": fill, "background-opacity": 1, "border-width": 1, "border-color": ink3, "text-background-opacity": 0 } },
+    { selector: "node.later", style: { "border-style": "dashed", color: ink2 } },
+    { selector: "node.group.focus", style: { "background-color": strong, color: surface, "border-color": strong, "font-size": 12, "font-weight": "bold", width: "label", height: "label", padding: 9 } },
+    { selector: "edge.hub", style: { "target-arrow-shape": "none", "source-arrow-shape": "none", width: 1, "line-color": ink3 } },
+    { selector: "edge.hubread", style: { "line-style": "dotted" } },
+    { selector: "edge.spine", style: { width: 2.4, "line-color": ink, "target-arrow-color": ink, "target-arrow-shape": "triangle", "curve-style": "straight" } },
   ];
 }
 function initCy() {
   cy = cytoscape({ container: $("#cy"), style: cyStyle(), wheelSensitivity: .25, minZoom: .2, maxZoom: 3 });
-  cy.on("tap", "node", ev => select({ type: "node", id: ev.target.id() }));
-  cy.on("dbltap", "node", ev => stand(ev.target.id()));
+  cy.on("tap", "node", ev => {
+    const d = ev.target.data();
+    if (d.hub === "group") return openGroup(d.fam);
+    if (d.hub === "read") return d.view === "video" ? addLog("video", "Video is a planned enhancement: a stage mode or media on a card, beside the account and the map. Not built.") : setView(d.view);
+    if (d.hub === "cmd") return runCommand(d.cmd);
+    if (d.hub === "centre") return;
+    if (S.group === PARTS && isPhase(ev.target.id())) return stand(ev.target.id());
+    select({ type: "node", id: ev.target.id() });
+  });
+  cy.on("dbltap", "node", ev => { if (!ev.target.data("hub")) stand(ev.target.id()); });
   cy.on("tap", "edge", ev => select({ type: "edge", id: ev.target.id() }));
   cy.on("tap", ev => { if (ev.target === cy) select(null); });
   cy.on("mouseover", "edge", ev => ev.target.addClass("hover"));
@@ -683,12 +692,16 @@ function initCy() {
 let lastLayoutKey = "";
 function drawCanvas() {
   if (S.view === "family" && nodeById.get(S.focus).kind === "Person") return drawFamily();
+  if (!S.path && S.group) return drawGroup();
+  if (!S.path) return drawHub();
   const p = projection();
   const key = p.nodes.map(n => n.id).join("|") + "#" + p.edges.length;
   const center = S.path ? null : S.focus;
+  // re-adding resets positions; keep them when the layout is not re-run
+  const kept = new Map(cy.nodes().map(n => [n.id(), { ...n.position() }]));
   cy.batch(() => {
     cy.elements().remove();
-    cy.add(p.nodes.map(n => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: imageFor(n)?.src || "" }, classes: [n.id === center ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
+    cy.add(p.nodes.map(n => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: imageFor(n)?.src || "" }, position: kept.get(n.id), classes: [n.id === center ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
     cy.add(p.edges.map(e => ({ group: "edges", data: { id: e.id, source: e.source, target: e.target, label: e.label }, classes: [e.status, e.mode, e.category, outsideTime(e) ? "outside" : "", S.edgeLabels ? "labels" : ""].join(" ") })));
   });
 
@@ -708,6 +721,109 @@ function drawCanvas() {
       cy.fit(undefined, 24);
     }
   }
+}
+/* the hub: where you stand at the centre, a node per relationship group around it */
+const HUB_ORDER = ["Participants", "Places", "Part of, and its parts", "Interpretations", ...FAMILIES.map(f => f[0]), "Other"];
+const KIND_WORDS = { Person: "people", Event: "events", Place: "places", Group: "groups", Office: "offices", Work: "works", Concept: "ideas", Period: "periods", Polity: "states", Type: "types" };
+function hubModel(id) {
+  const n = nodeById.get(id), groups = new Map();
+  for (const e of adj.get(id) || []) {
+    if (!edgePasses(e)) continue;
+    const o = nodeById.get(other(e, id));
+    if (!S.kinds.has(o.kind)) continue;
+    const fam = familyFor(e, id);
+    if (!groups.has(fam)) groups.set(fam, { members: new Map(), edges: [] });
+    groups.get(fam).members.set(o.id, o); groups.get(fam).edges.push(e);
+  }
+  const reads = [["account", "Account"], ["notes", "Notes"], ["map", "Map"], ["family", "Family tree"], ["video", "Video"]]
+    .filter(([v]) => v === "account" ? !!ACCOUNT[id] : v === "family" ? n.kind === "Person" : true);
+  const dated = [...(n.facts || []), ...(adj.get(id) || [])].map(e => e.years).filter(Boolean);
+  const year = dated.length ? Math.max(...dated.map(d => d[1])) : null;
+  return { n, groups, reads, year };
+}
+function kindsLine(members) {
+  const c = new Map(); for (const m of members) c.set(m.kind, (c.get(m.kind) || 0) + 1);
+  return [...c.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k, v]) => `${v} ${KIND_WORDS[k] || k}`).join(", ");
+}
+function ring(items, r, offset = 0) {
+  return items.map((_, i) => { const a = offset + (2 * Math.PI * i) / items.length - Math.PI / 2; return { x: r * Math.cos(a), y: r * Math.sin(a) }; });
+}
+function drawHub() {
+  const { n, groups, reads, year } = hubModel(S.focus);
+  const fams = [...groups.keys()].sort((a, b) => HUB_ORDER.indexOf(a) - HUB_ORDER.indexOf(b));
+  const outer = fams.map(f => ({ id: "grp:" + f, data: { hub: "group", fam: f, label: `${f} · ${groups.get(f).members.size}\n${kindsLine(groups.get(f).members.values())}` }, classes: "group" }));
+  if (year != null) outer.push({ id: "grp:elsewhere", data: { hub: "cmd", cmd: `elsewhere ${-year} BC`, label: `Elsewhere in ${yearText(year)}` }, classes: "group later" });
+  outer.push({ id: "grp:unread", data: { hub: "cmd", cmd: "help", label: `Not yet read\n${MOCK.unread[S.focus] || "grow it"}` }, classes: "group later" });
+  const inner = reads.map(([v, label]) => ({ id: "read:" + v, data: { hub: "read", view: v, label }, classes: "reading" + (v === "video" ? " later" : "") }));
+  const po = ring(outer, Math.max(260, outer.length * 34)), pi = ring(inner, 115, Math.PI / inner.length);
+  lastLayoutKey = "hub:" + S.focus;
+  cy.batch(() => {
+    cy.elements().remove();
+    cy.add({ group: "nodes", data: { id: S.focus, label: n.label, kind: n.kind, img: imageFor(n)?.src || "" }, position: { x: 0, y: 0 }, classes: "focus" });
+    cy.add(outer.map((o, i) => ({ group: "nodes", data: { id: o.id, ...o.data }, position: po[i], classes: o.classes })));
+    cy.add(inner.map((o, i) => ({ group: "nodes", data: { id: o.id, ...o.data }, position: pi[i], classes: o.classes })));
+    cy.add([...outer, ...inner].map(o => ({ group: "edges", data: { id: "hub>" + o.id, source: S.focus, target: o.id }, classes: "hub" + (o.id.startsWith("read:") ? " hubread" : "") })));
+  });
+  if (S.sel && S.sel.type === "node") cy.getElementById(S.sel.id).select();
+  cy.fit(undefined, 30);
+}
+/* a group as the new centre: its members around it, each line still one fact */
+function openGroup(fam) {
+  S.group = fam; S.sel = null; S.view = "graph";
+  S.crumbs.push(`group:${S.focus}|${fam}`);
+  renderAll();
+}
+const PHASES = DATA.phases || {};
+const PARTS = "Part of, and its parts";
+const isPhase = id => id.startsWith("chr:entity:phase:");
+function placedIn(phaseId) { return canvasEdges.filter(e => e.label === "part of" && e.target === phaseId && edgePasses(e)).length; }
+function drawSpine(n, g) {
+  const order = PHASES[S.focus] || [];
+  const members = [...g.members.values()];
+  const phases = members.filter(m => isPhase(m.id))
+    .sort((a, b) => order.indexOf(a.id.split(":").pop()) - order.indexOf(b.id.split(":").pop()));
+  const wholes = g.edges.filter(e => e.source === S.focus).map(e => nodeById.get(e.target)).filter(m => m && !isPhase(m.id));
+  const loose = members.filter(m => !isPhase(m.id) && !wholes.includes(m));
+  const centre = "grp-centre", gap = 150, x0 = -((phases.length - 1) * gap) / 2;
+  lastLayoutKey = "spine:" + S.focus;
+  cy.batch(() => {
+    cy.elements().remove();
+    cy.add({ group: "nodes", data: { id: centre, hub: "centre", label: `${n.label}\nits ${phases.length} phases` }, position: { x: 0, y: 0 }, classes: "group focus" });
+    wholes.forEach((w, i) => {
+      cy.add({ group: "nodes", data: { id: w.id, label: w.label, kind: w.kind }, position: { x: (i - (wholes.length - 1) / 2) * 220, y: -130 } });
+      cy.add({ group: "edges", data: { id: "whole>" + w.id, source: centre, target: w.id, label: "part of" }, classes: "labels" });
+    });
+    phases.forEach((ph, i) => {
+      const k = placedIn(ph.id);
+      cy.add({ group: "nodes", data: { id: ph.id, label: `${i + 1}. ${ph.label.replace(/ \(Chrystallum\)$/, "")}\n${k} events placed` }, position: { x: x0 + i * gap, y: 150 + (i % 2) * 70 }, classes: "group" + (ph.status === "proposed" ? " later" : "") });
+      cy.add({ group: "edges", data: { id: "phase>" + ph.id, source: centre, target: ph.id }, classes: "hub" });
+      if (i) cy.add({ group: "edges", data: { id: "next>" + ph.id, source: phases[i - 1].id, target: ph.id }, classes: "spine" });
+    });
+    if (loose.length) {
+      cy.add({ group: "nodes", data: { id: "grp:loose", hub: "cmd", cmd: "help", label: `Not in a phase · ${loose.length}\nparts placed on the battle itself` }, position: { x: 0, y: 360 }, classes: "group later" });
+      cy.add({ group: "edges", data: { id: "hub>loose", source: centre, target: "grp:loose" }, classes: "hub hubread" });
+    }
+  });
+  cy.fit(undefined, 30);
+}
+function drawGroup() {
+  const { n, groups } = hubModel(S.focus);
+  if (S.group === PARTS && (groups.get(PARTS)?.members.size || 0) && [...groups.get(PARTS).members.keys()].some(isPhase)) return drawSpine(n, groups.get(PARTS));
+  const g = groups.get(S.group) || { members: new Map(), edges: [] };
+  const centre = "grp-centre", seen = new Set();
+  lastLayoutKey = "group:" + S.focus + S.group;
+  cy.batch(() => {
+    cy.elements().remove();
+    cy.add({ group: "nodes", data: { id: centre, hub: "centre", label: `${S.group} · ${g.members.size}\n${n.label}` }, classes: "group focus" });
+    cy.add([...g.members.values()].map(m => ({ group: "nodes", data: { id: m.id, label: m.label, kind: m.kind, img: imageFor(m)?.src || "" }, classes: m.status === "proposed" ? "proposed" : "" })));
+    cy.add(g.edges.filter(e => { const o = other(e, S.focus); if (seen.has(o)) return false; seen.add(o); return true; }).map(e => {
+      const out = e.source === S.focus;
+      return { group: "edges", data: { id: e.id, source: out ? centre : e.source, target: out ? e.target : centre, label: e.label }, classes: [e.status, e.mode, e.category, outsideTime(e) ? "outside" : "", S.edgeLabels ? "labels" : ""].join(" ") };
+    }));
+  });
+  cy.layout({ name: "concentric", concentric: x => x.id() === centre ? 2 : 1, levelWidth: () => 1, minNodeSpacing: 16, animate: false, padding: 40 }).run();
+  if (S.sel && (S.sel.type === "node" || S.sel.type === "edge")) cy.getElementById(S.sel.id).select();
+  cy.fit(undefined, 30);
 }
 function drawFamily() {
   const m = familyModel(S.focus);
@@ -876,8 +992,9 @@ function renderFilters() {
 
 /* ---------- render: card ---------- */
 function signposts(id) {
-  const counts = new Map();
-  for (const e of adj.get(id) || []) { const fam = familyFor(e, id); counts.set(fam, (counts.get(fam) || 0) + 1); }
+  const members = new Map(); // distinct entities per group, as the hub counts them
+  for (const e of adj.get(id) || []) { const fam = familyFor(e, id); if (!members.has(fam)) members.set(fam, new Set()); members.get(fam).add(other(e, id)); }
+  const counts = new Map([...members].map(([fam, set]) => [fam, set.size]));
   const n = nodeById.get(id);
   const dated = [...(n.facts || []), ...(adj.get(id) || [])].map(e => e.years).filter(Boolean);
   const y = dated.length ? Math.max(...dated.map(d => d[1])) : null;
@@ -998,7 +1115,7 @@ function renderCard() {
 /* ---------- render: drawer ---------- */
 function renderDrawer() {
   const crumbs = S.crumbs.map((c, i) => {
-    const label = c.startsWith("path:") ? c.slice(5) : nodeById.get(c)?.label;
+    const label = c.startsWith("path:") ? c.slice(5) : c.startsWith("group:") ? c.split("|")[1] : nodeById.get(c)?.label;
     const cur = i === S.crumbs.length - 1;
     return `${i ? '<span class="sep">›</span>' : ""}<button data-crumb="${i}" aria-current="${cur}">${esc(label)}</button>`;
   }).join("");
@@ -1074,7 +1191,7 @@ function renderDoor() {
     <span class="muted">Type a person, place, event, or idea in the box at the bottom.</span>
     ${q ? `<div class="answers">${answersFor(q, true)}</div>` : ""}
     <div class="sec"><span class="label">Lives, in the order they act</span><div class="lives">${ACTORS.map(([name, label]) => { const n = label && DATA.nodes.find(x => x.fullLabel === label); return n ? `<button class="life" data-stand="${esc(n.id)}">${esc(name)}</button>` : `<button class="life absent" data-door-q="${esc(name)}" title="Not grown yet">${esc(name)}</button>`; }).join("")}</div><span class="muted small">Solid: in the graph. Dashed: not grown yet. Octavian is stored as "Augustus" for now (26 §7.4).</span></div>
-    ${S.crumbs.length > 1 ? `<div class="sec"><span class="label">Where you have been</span><div class="lives">${[...new Set(S.crumbs.filter(c => !c.startsWith("path:")))].map(c => `<button class="life" data-stand="${esc(c)}">${esc(nodeById.get(c).label)}</button>`).join("")}</div></div>` : ""}
+    ${S.crumbs.length > 1 ? `<div class="sec"><span class="label">Where you have been</span><div class="lives">${[...new Set(S.crumbs.filter(c => !c.startsWith("path:") && !c.startsWith("group:")))].map(c => `<button class="life" data-stand="${esc(c)}">${esc(nodeById.get(c).label)}</button>`).join("")}</div></div>` : ""}
   </div>`;
 }
 
@@ -1244,7 +1361,7 @@ function renderMap() {
   $("#cy").style.visibility = ["graph", "family"].includes(S.view) ? "visible" : "hidden";
   $("#zoom").hidden = !["graph", "map", "family"].includes(S.view);
   $("#keyBtn").hidden = S.view !== "graph";
-  $("#famBtn").hidden = nodeById.get(S.focus).kind !== "Person";
+  $("#hubBtn").hidden = S.view === "graph" && !S.group && !S.path;
   if (S.view !== "graph") $("#legend").hidden = true;
   $("#stageAnno").hidden = !["graph", "map", "family"].includes(S.view);
   $("#stageAnno").innerHTML = S.view === "family"
@@ -1295,6 +1412,7 @@ const FLOW = {
     ["s0", "0 Front door", 0, 1], ["s1", "1 Standing on Actium", 1, 1],
     ["s3", "3 Account", 2, 0], ["s4", "4 Notes", 2, 1], ["s6", "6 Map", 2, 2],
     ["s2", "2 A fact and its voices", 3, 0.5], ["s7", "7 A life: family tree", 4, 1], ["s5", "5 Commands", 3, 2],
+    ["s8", "8 Participants as the centre", 2, 3], ["s9", "9 Parts: the phase spine", 3, 3],
   ],
   edges: [
     ["s0", "s1", "stand here"], ["s1", "s3", "read the account"], ["s1", "s4", "show notes"], ["s1", "s6", "map"],
@@ -1302,31 +1420,13 @@ const FLOW = {
     ["s2", "s7", "stand on a person"], ["s1", "s5", "type a command"], ["s5", "s7", "jump Antony"], ["s7", "s1", "back on the trail"],
   ],
 };
-let fcy;
-function flowStyle() {
-  const ink = cssVar("--ink"), ink2 = cssVar("--ink-2"), ink3 = cssVar("--ink-3"), fill = cssVar("--fill"), strong = cssVar("--strong"), surface = cssVar("--surface"), on = cssVar("--on-strong");
-  return [
-    { selector: "node", style: { shape: "round-rectangle", width: "label", height: 16, padding: 4, label: "data(label)", "text-valign": "center", "font-size": 10.5, "font-family": "IBM Plex Mono, monospace", color: ink, "background-color": fill, "border-width": 1, "border-color": ink3 } },
-    { selector: "node.current", style: { "background-color": strong, color: on, "border-color": strong } },
-    { selector: "edge", style: { width: 1, "line-color": ink3, "target-arrow-shape": "triangle", "target-arrow-color": ink3, "arrow-scale": .5, "curve-style": "bezier", label: "data(label)", "font-size": 8.5, color: ink2, "text-rotation": "autorotate", "text-background-color": surface, "text-background-opacity": 1, "text-background-padding": 1 } },
-    { selector: "edge.from-current", style: { "line-color": ink, "target-arrow-color": ink, width: 1.6 } },
-  ];
-}
 function renderFlow() {
-  const box = $("#flowCy");
-  if (!fcy) {
-    fcy = cytoscape({ container: box, style: flowStyle(), userZoomingEnabled: false, userPanningEnabled: false, boxSelectionEnabled: false, autoungrabify: true });
-    fcy.on("tap", "node", ev => showScreen(+ev.target.id().slice(1)));
-    fcy.add(FLOW.nodes.map(([id, label, col, row]) => ({ group: "nodes", data: { id, label }, position: { x: col * 150, y: row * 30 } })));
-    fcy.add(FLOW.edges.map(([a, b, label]) => ({ group: "edges", data: { id: a + b, source: a, target: b, label } })));
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => fcy.style(flowStyle()));
-    new MutationObserver(() => fcy.style(flowStyle())).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    new ResizeObserver(() => { fcy.resize(); fcy.fit(undefined, 6); }).observe(box);
+  const sel = $("#screenSel");
+  if (!sel.options.length) {
+    sel.innerHTML = FLOW.nodes.slice().sort((a, b) => +a[0].slice(1) - +b[0].slice(1)).map(([id, label]) => `<option value="${id.slice(1)}">${esc(label)}</option>`).join("");
+    sel.addEventListener("change", () => showScreen(+sel.value));
   }
-  fcy.nodes().removeClass("current"); fcy.edges().removeClass("from-current");
-  const cur = fcy.getElementById("s" + S.screen);
-  cur.addClass("current"); cur.outgoers("edge").addClass("from-current");
-  fcy.fit(undefined, 6);
+  sel.value = String(S.screen);
 }
 
 /* ---------- screens (wireframe walkthrough) ---------- */
@@ -1342,6 +1442,8 @@ function showScreen(k) {
   if (k === 5) { if (!S.log.length) { runCommand("elsewhere 31 BC"); runCommand("note The flight looks planned"); runCommand("why Battle of Actium and Julius Caesar"); } S.drawerOpen = true; }
   if (k === 6) { S.view = "map"; }
   if (k === 7) { S.focus = ANTONY; S.view = "family"; if (S.crumbs[S.crumbs.length - 1] !== ANTONY) S.crumbs.push(ANTONY); }
+  if (k === 8) return openGroup("Participants");
+  if (k === 9) return openGroup(PARTS);
   renderAll();
 }
 
@@ -1364,6 +1466,7 @@ document.addEventListener("click", ev => {
   if (t.id === "layoutBtn") { const pop = $("#layoutPop"); pop.hidden = !pop.hidden; t.setAttribute("aria-expanded", String(!pop.hidden)); return; }
   if (t.id === "routesToggle") { const r = $("#routes"); const c = r.classList.toggle("collapsed"); t.textContent = c ? "▾" : "▴"; t.setAttribute("aria-expanded", String(!c)); t.title = c ? "Show the routes as a graph" : "Show the routes as one line"; renderRoutes(); return; }
   if (d.later) { addLog("video", `Video is a planned enhancement: a stage mode or media on a card, beside the account and the map. Not built.`); return; }
+  if (t.id === "hubBtn") { S.view = "graph"; S.group = null; S.path = null; S.sel = { type: "node", id: S.focus }; if (S.crumbs[S.crumbs.length - 1] !== S.focus) S.crumbs.push(S.focus); return renderAll(); }
   if (t.id === "keyBtn") { const lg = $("#legend"); lg.hidden = !lg.hidden; t.setAttribute("aria-expanded", String(!lg.hidden)); return; }
   if (d.persona) return setPersona(d.persona);
   if (d.view) return setView(d.view);
@@ -1371,7 +1474,7 @@ document.addEventListener("click", ev => {
   if (d.stand) { const i = $("#cmdInput"); if (i) i.value = ""; return stand(d.stand); }
   if (d.openEdge) { select({ type: "edge", id: d.openEdge }); if (cy) { cy.elements().unselect(); cy.getElementById(d.openEdge).select(); } return; }
   if (d.openFact) { const [node, i] = d.openFact.split("|"); return select({ type: "fact", node, index: +i }); }
-  if (d.family) { S.group = S.group === d.family ? null : d.family; S.view = "graph"; renderAll(); return; }
+  if (d.family) { if (S.group === d.family) { S.group = null; S.view = "graph"; renderAll(); } else openGroup(d.family); return; }
   if (d.standFamily) { const [id, fam] = d.standFamily.split("|"); stand(id); S.group = fam; renderAll(); return; }
   if (d.standView) { const [id, view] = d.standView.split("|"); if (id !== S.focus) stand(id); S.view = view; renderAll(); return; }
   if (d.passage) { select({ type: "passage", loc: d.passage }); return; }
@@ -1383,6 +1486,7 @@ document.addEventListener("click", ev => {
   if (d.crumb != null) {
     const c = S.crumbs[+d.crumb]; S.crumbs = S.crumbs.slice(0, +d.crumb + 1);
     if (c.startsWith("path:")) return;
+    if (c.startsWith("group:")) { const [id, fam] = c.slice(6).split("|"); stand(id, { crumb: false }); S.group = fam; S.sel = null; return renderAll(); }
     return stand(c, { crumb: false });
   }
   if (d.door != null) { S.door = true; S.query = d.door; renderDrawer(); renderDoor(); renderSuggest(); return; }

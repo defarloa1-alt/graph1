@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "chrystallum": {
+      "command": "python",
+      "args": ["-m", "GraphRevised.connector.server"]
+    }
+  }
+}

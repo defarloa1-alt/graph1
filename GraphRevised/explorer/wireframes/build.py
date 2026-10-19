@@ -93,6 +93,15 @@ def load_images() -> dict:
     return out
 
 
+def load_phases() -> dict:
+    """Each event's phase keys in the curator's order (curation/phases.json, D-091)."""
+    path = ROOT / "curation" / "phases.json"
+    if not path.exists():
+        return {}
+    events = json.loads(path.read_text(encoding="utf-8")).get("events", {})
+    return {event: [phase["key"] for phase in spec.get("phases", [])] for event, spec in events.items()}
+
+
 def build() -> Path:
     export = json.loads(EXPORT.read_text(encoding="utf-8"))
     nodes = []
@@ -111,7 +120,7 @@ def build() -> Path:
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]
     data = {"generatedBy": export.get("generated_by"), "nodes": nodes, "edges": edges,
-            "images": load_images()}
+            "images": load_images(), "phases": load_phases()}
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("__GRAPH_DATA__", payload)
     OUTPUT.write_text(page, encoding="utf-8")
