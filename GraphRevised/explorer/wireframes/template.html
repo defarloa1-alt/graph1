@@ -248,6 +248,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .routes.collapsed .rhead { position: static; float: left; }
 .routes.collapsed .rtools { top: 2px; }
 .portrait { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); object-fit: cover; }
+.picture { width: 88px; height: 60px; border-radius: 4px; border: 1px solid var(--line); object-fit: cover; flex: none; }
 .who-row { display: flex; gap: 10px; align-items: center; }
 .credit { font-size: 11px; color: var(--ink-3); }
 .seg button.later { border-style: dashed; color: var(--ink-3); }
@@ -572,10 +573,13 @@ function mockPortrait(n) {
   return uri;
 }
 function imageFor(n) {
-  if (IMAGES[n.id]) return { src: IMAGES[n.id].src, credit: IMAGES[n.id].credit, mock: false };
+  if (IMAGES[n.id]) return { src: IMAGES[n.id].src, credit: IMAGES[n.id].credit, klass: IMAGES[n.id].class, canvas: IMAGES[n.id].canvas !== false, mock: false };
   if (n.kind === "Person") return { src: mockPortrait(n), credit: "Mock portrait. Your image goes here, with what it depicts, who made it, and its licence.", mock: true };
   return null;
 }
+/* on the canvas a node shows only a picture of its time or of the place today, or a mock portrait;
+   a later imagining, a map, or an edition stays on the card with its caption */
+function canvasImage(n) { const im = imageFor(n); return im && (im.mock || im.canvas) ? im.src : ""; }
 
 /* ---------- passages: locator -> facts and notes ---------- */
 const NOTE_RE0 = /^([\w-]+):\s*([\s\S]*?)\s*\(([^()]*?),\s*(\w+)\)\s*$/;
@@ -709,7 +713,7 @@ function drawCanvas() {
   const kept = new Map(cy.nodes().map(n => [n.id(), { ...n.position() }]));
   cy.batch(() => {
     cy.elements().remove();
-    cy.add(p.nodes.map(n => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: imageFor(n)?.src || "" }, position: kept.get(n.id), classes: [n.id === center ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
+    cy.add(p.nodes.map(n => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: canvasImage(n) }, position: kept.get(n.id), classes: [n.id === center ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
     cy.add(p.edges.map(e => ({ group: "edges", data: { id: e.id, source: e.source, target: e.target, label: e.label }, classes: [e.status, e.mode, e.category, outsideTime(e) ? "outside" : "", S.edgeLabels ? "labels" : ""].join(" ") })));
   });
 
@@ -768,7 +772,7 @@ function drawHub() {
   lastLayoutKey = "hub:" + S.focus;
   cy.batch(() => {
     cy.elements().remove();
-    cy.add({ group: "nodes", data: { id: S.focus, label: n.label, kind: n.kind, img: imageFor(n)?.src || "" }, position: { x: 0, y: 0 }, classes: "focus" });
+    cy.add({ group: "nodes", data: { id: S.focus, label: n.label, kind: n.kind, img: canvasImage(n) }, position: { x: 0, y: 0 }, classes: "focus" });
     cy.add(outer.map((o, i) => ({ group: "nodes", data: { id: o.id, ...o.data }, position: po[i], classes: o.classes })));
     cy.add(inner.map((o, i) => ({ group: "nodes", data: { id: o.id, ...o.data }, position: pi[i], classes: o.classes })));
     cy.add([...outer, ...inner].map(o => ({ group: "edges", data: { id: "hub>" + o.id, source: S.focus, target: o.id }, classes: "hub" + (o.id.startsWith("read:") ? " hubread" : "") })));
@@ -879,7 +883,7 @@ function drawGroup() {
     cy.add({ group: "nodes", data: { id: centre, hub: "centre", label: `${S.group}${where ? " › " + where : ""} · ${all}\n${n.label}` }, classes: "group focus" });
     cy.add(subs.map(([k, ms]) => ({ group: "nodes", data: { id: "sub:" + k, hub: "sub", key: [...prefix, k].join("|"), label: `${splitLabel(k, markOf(k))} · ${ms.length}${(kl => kl ? "\n" + kl : "")(kindsLine(ms))}` }, classes: "group" })));
     cy.add(subs.map(([k]) => ({ group: "edges", data: { id: "hub>sub:" + k, source: centre, target: "sub:" + k }, classes: "hub" })));
-    cy.add([...g.members.values()].map(m => ({ group: "nodes", data: { id: m.id, label: m.label, kind: m.kind, img: imageFor(m)?.src || "" }, classes: m.status === "proposed" ? "proposed" : "" })));
+    cy.add([...g.members.values()].map(m => ({ group: "nodes", data: { id: m.id, label: m.label, kind: m.kind, img: canvasImage(m) }, classes: m.status === "proposed" ? "proposed" : "" })));
     cy.add(g.edges.filter(e => { const o = other(e, S.focus); if (!g.members.has(o) || seen.has(o)) return false; seen.add(o); return true; }).map(e => {
       const out = e.source === S.focus;
       return { group: "edges", data: { id: e.id, source: out ? centre : e.source, target: out ? e.target : centre, label: e.label }, classes: [e.status, e.mode, e.category, outsideTime(e) ? "outside" : "", S.edgeLabels ? "labels" : ""].join(" ") };
@@ -894,7 +898,7 @@ function drawFamily() {
   lastLayoutKey = "family:" + S.focus;
   cy.batch(() => {
     cy.elements().remove();
-    cy.add(m.nodes.map(({ n, x, y }) => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: imageFor(n)?.src || "" }, position: { x, y }, classes: [n.id === S.focus ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
+    cy.add(m.nodes.map(({ n, x, y }) => ({ group: "nodes", data: { id: n.id, label: n.label, kind: n.kind, img: canvasImage(n) }, position: { x, y }, classes: [n.id === S.focus ? "focus" : "", n.status === "proposed" ? "proposed" : ""].join(" ") })));
     cy.add(m.edges.map(e => {
       const kid = e.label === "child of";
       return { group: "edges", data: { id: e.id, source: kid ? e.target : e.source, target: kid ? e.source : e.target, label: e.label }, classes: ["fam", kid ? "descent" : e.label === "spouse of" ? "spouse" : "sib", e.status].join(" ") };
@@ -1105,7 +1109,7 @@ function nodeCard(n) {
     <span class="anno"><b>Node card.</b> Compact: what it is, where to go, its sources, a count of its notes. The account and the notes open on the stage. Provenance is a quiet footer.</span>
     <div class="card-head">
       <div class="pills"><span class="pill">${esc(n.kind)}</span><span class="pill ${n.status === "proposed" ? "dashed" : ""}">${esc(n.status)}</span>${n.id !== S.focus ? `<button class="btn primary" data-stand="${esc(n.id)}">Stand here</button>` : `<span class="pill solid">you are here</span>`}</div>
-      ${(() => { const im = imageFor(n); return im ? `<div class="who-row"><img class="portrait" src="${im.src}" alt="${im.mock ? "Mock portrait of " : "Image of "}${esc(n.fullLabel)}"><div><h2>${esc(n.fullLabel)}</h2><span class="credit">${esc(im.credit)}${im.mock ? ' <span class="mock">mock</span>' : ""}</span></div></div>` : `<h2>${esc(n.fullLabel)}</h2>`; })()}
+      ${(() => { const im = imageFor(n); return im ? `<div class="who-row"><img class="${n.kind === "Person" ? "portrait" : "picture"}" src="${im.src}" alt="${im.mock ? "Mock portrait of " : "Image of "}${esc(n.fullLabel)}"><div><h2>${esc(n.fullLabel)}</h2><span class="credit">${esc(im.credit)}${im.mock ? ' <span class="mock">mock</span>' : ""}</span></div></div>` : `<h2>${esc(n.fullLabel)}</h2>`; })()}
       <span class="muted">${esc(n.description || "")}</span>
       ${buckets ? `<span class="small">In: ${buckets.map(b => `<button class="linkish" data-cmd="help">${esc(b)}</button>`).join(" · ")} <span class="mock">mock</span></span>` : ""}
       ${chain ? `<span class="small mono">${esc(chain)} ${MOCK.chain[n.fullLabel] ? '<span class="mock">mock</span>' : ""}</span>` : ""}

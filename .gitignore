@@ -146,3 +146,9 @@ GraphRevised/obsidian_book_notes/
 GraphRevised/phase-5-source/wikidata-Q*
 # Library of Congress catalog records: research use, not republished (curation/sources.json loc-catalog).
 GraphRevised/phase-5-source/lc-*
+# Explorer images: Commons copies and their manifest (data, rebuilt by adapters/commons_images.py),
+# and the lens icon sheet until its IconScout licence is confirmed.
+GraphRevised/explorer/images/commons/
+GraphRevised/explorer/images/images.json
+GraphRevised/explorer/images/images-review.json
+GraphRevised/explorer/images/lenses/*.png

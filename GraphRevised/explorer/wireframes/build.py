@@ -89,6 +89,10 @@ def load_images() -> dict:
         out[entry["entity"]] = {
             "src": "data:image/jpeg;base64," + base64.b64encode(buffer.getvalue()).decode(),
             "credit": credit or "No credit recorded",
+            # what the picture is (adapters/commons_images.py); only images of the time or of the
+            # place today stand for an entity on the canvas, a later imagining only on its card
+            "class": entry.get("class"),
+            "canvas": entry.get("canvas", True),
         }
     return out
 
