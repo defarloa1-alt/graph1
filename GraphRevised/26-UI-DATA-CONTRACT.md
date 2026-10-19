@@ -4,7 +4,7 @@ authority: what the explorer receives (the shapes behind the read API)
 depends_on: [02-GRAPH-MODEL.md, 29-EVENT-CENTRED-INQUIRY.md, 32-RESEARCH-WORKSPACE.md]
 implemented_by: [export/cytoscape.py]
 superseded_by: null
-last_reviewed: 2026-10-17
+last_reviewed: 2026-10-19
 ---
 
 # 26 — UI Data Contract
@@ -21,29 +21,56 @@ designs meet what the graph actually returns.
 
 ## 1. The screen
 
+**Revised 2026-10-19** to match wireframe v7 (the hub, 2026-10-18) and the
+UI decisions D-101 to D-112 ([33](33-DECISIONS.md)). The earlier sketch,
+with a top bar, a top search box, and a chat panel, is replaced.
+
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
-│ top border: search · persona switch · lenses                          │
+│ stage row: routes ▾ · where you stand · ◎ Hub · Key · persona · Layout │
 ├───────────┬──────────────────────────────────────┬───────────────────┤
-│ left      │                                      │ right             │
-│ border:   │           CENTRE STAGE               │ border:           │
-│ filters   │   people, places, events, works      │ details of what   │
-│ (kind,    │   one line per fact                  │ is selected:      │
-│ category, │   (shape 2), styled by status,       │ node card (1)     │
-│ attest-   │   category, attestation              │ or fact card (2)  │
-│ ation,    │                                      │ with its voices   │
-│ source)   │                                      │ (3)               │
-├───────────┴──────────────────────────────────────┼───────────────────┤
-│ bottom border: time slider (shape 4)              │ CHAT: narrative   │
-│ breadcrumbs of where the user has been            │ and questions (5) │
-└───────────────────────────────────────────────────┴───────────────────┘
+│ filters   │            CENTRE STAGE              │ details of what   │
+│ (hidden   │                                      │ is selected:      │
+│ behind an │   the hub: where you stand at the    │ node card (4),    │
+│ edge tab  │   centre; an inner ring of ways of   │ fact card (2)     │
+│ by        │   reading it (Account, Notes, Map,   │ with its voices   │
+│ default;  │   Family tree, Video); an outer ring │ (3), or passage   │
+│ kind,     │   of relationship groups with counts │ (docked, 260px    │
+│ category, │   ("Participants · 15")              │ by default)       │
+│ attest-   │                                      │                   │
+│ ation,    │   or a stage mode: facts · notes ·   │                   │
+│ source)   │   account · map · family tree        │                   │
+├───────────┴──────────────────────────────────────┴───────────────────┤
+│ command drawer: breadcrumbs · ⌂ front door · the one input · results  │
+│ time slider (shape 6) · undated tray                                  │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
-Where the chat sits is a design choice; the contract does not depend on it.
+- **The hub** (D-106): clicking a relationship group makes it the new centre,
+  its members around it, with a breadcrumb step. For an event, "Part of, and
+  its parts" opens as the phase spine, the curator's phase order (D-091), each
+  phase with the number of events placed in it. Groups are computed for
+  display and never stored (D-039). A group over 20 members opens split by its
+  next key, never as a big ring (D-111): a person's events by the events they
+  are part of, then by source; an event's members by source ("according to
+  Weigall · 31"); otherwise by kind. `described by` is the group "Works about
+  it"; `happened before` orders members and is not a group (D-112).
+- **The command drawer** (D-102): one input for search, jump, and commands
+  (`jump`, `why A and B`, `elsewhere 31 BC`, `note`, `cite`, `as`, the
+  stage modes). Results pop up above it. The front door ("what is this?")
+  uses the same box. It is commands, not chat; the narrative is the Account
+  stage mode (shape 5), not a chat panel.
+- **The sidebars** (D-104): each is docked, floating over the stage, or
+  hidden behind an edge tab, set from the Layout menu and remembered per
+  user.
+- **The map** (D-103) and the **family tree** (D-108) are stage modes that
+  take the whole centre.
+
 Principles (25 §5, §7): the user stands at the centre with **signposts** out
 and **breadcrumbs** behind; provenance is sidebar text, never canvas nodes;
 voices ("according to Plutarch") are content, source systems (Wikidata) are
-quiet.
+quiet. Small type, and quiet chrome, so the stage stays as large as possible
+(D-105).
 
 ## 2. Fact edge — a line on the canvas (built)
 
@@ -177,7 +204,7 @@ Weigall 17.5 and 17.19 interpretation; Weigall 17.14 detail) beside three facts
 Cleopatra, according to Weigall). The query behind it is in
 [views/actium-annotations.cypher](views/actium-annotations.cypher).
 
-## 5. Narrative — the chat and the card's story (specified)
+## 5. Narrative — the Account stage and the card's story (specified)
 
 **Revised 2026-10-16.** For an event, the narrative starts from Chrystallum's
 account ([29](29-EVENT-CENTRED-INQUIRY.md) §4, §4a): one stored,
@@ -274,3 +301,13 @@ These are real, not hypothetical:
 The smoke view ([export/cytoscape.py](export/cytoscape.py), output in
 `exports/graph.html`) implements shapes 2 and 3 and this encoding, as a
 reference for the Figma work.
+
+**Tokens and components in Figma (2026-10-19).** The wireframe's greyscale is
+now the "Chrystallum Explorer" Figma file's foundations: a `Color` collection
+(Light and Dark, the nine wireframe colours, each with its CSS name as code
+syntax, `var(--ink)`), a `Size` collection (spacing and radii), text styles in
+Atkinson Hyperlegible and IBM Plex Mono, and a float shadow. The page
+"Components (2026-10-19)" holds Button, Segment, Chip, Pill, Attestation badge,
+Signpost, Command input, and the canvas set: Canvas node (kind × status), Focus
+node, Fact line (category × status × mode), Hub group, Reading node, drawn as
+the wireframe's Cytoscape stylesheet draws them. Colour by kind is not decided.

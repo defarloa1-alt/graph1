@@ -1,5 +1,15 @@
 # Explorer UI Direction
 
+> **History (2026-10-19).** This document is the first UI direction and is no
+> longer current. What the screen is now (the hub, the command drawer, stage
+> modes, configurable sidebars, no top bar, no chat panel) is in
+> [26](26-UI-DATA-CONTRACT.md) §1 and decisions D-101 to D-112 in
+> [33](33-DECISIONS.md); the drawing is wireframe v7
+> (`explorer/wireframes/`). Where this document disagrees with them, they win.
+> Still useful here: the cards (§3), charts (§4), visual encoding (§5), and the
+> read and write boundary (§6). The map's renderer is open (D-103): §4a's
+> Google Maps and deck.gl is one candidate, not a decision.
+
 **Status:** direction agreed 2026-10-11; design not started. Updated
 2026-10-13: the curator's layout adds a chat section, and the shapes the UI
 receives are fixed in [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md).

@@ -51,8 +51,20 @@ current state and next task are in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md
 19. [Review of the Chrystallum Subject Backbone Architecture.md](Review%20of%20the%20Chrystallum%20Subject%20Backbone%20Architecture.md) — architectural review and recommendations
 20. [docs/](docs) — model/API choice review, use cases, and the agreed responses
 21. [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md) — **current handoff: start here in a new session**
-22. [20-EXPLORER-UI.md](20-EXPLORER-UI.md) — explorer UI direction (React + Cytoscape.js, designed in Figma)
+22. [20-EXPLORER-UI.md](20-EXPLORER-UI.md) — first explorer UI direction (history; the screen now is 26 §1)
 23. [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md) — what Claude may decide when the curator delegates review
+24. [22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md) — claim qualifiers and claim mode
+25. [23-NARRATIVE-AND-NOTES.md](23-NARRATIVE-AND-NOTES.md) — depicted events and passages of note
+26. [24-PERIODS-AND-TRANSFORMATION.md](24-PERIODS-AND-TRANSFORMATION.md) — periods and transformation
+27. [25-LIVES-AND-PLAYGROUND.md](25-LIVES-AND-PLAYGROUND.md) — lives first, and a playground for exploration
+28. [26-UI-DATA-CONTRACT.md](26-UI-DATA-CONTRACT.md) — **governing:** what the explorer receives, and the screen (§1)
+29. [27-GAZETTEER.md](27-GAZETTEER.md) — the gazetteer, a geographic backbone
+30. [28-SUBJECT-BUCKETS.md](28-SUBJECT-BUCKETS.md) — subject buckets
+31. [29-EVENT-CENTRED-INQUIRY.md](29-EVENT-CENTRED-INQUIRY.md) — **governing:** event-centred inquiry and Chrystallum's account
+32. [30-LOGICAL-MODEL.md](30-LOGICAL-MODEL.md) — logical model (UML), descriptive of the graph as built
+33. [31-ONE-COMMAND.md](31-ONE-COMMAND.md) — **governing:** one command, a methodology for any subject
+34. [32-RESEARCH-WORKSPACE.md](32-RESEARCH-WORKSPACE.md) — **governing:** the research workspace (notes, overlays, saved paths, status)
+35. [33-DECISIONS.md](33-DECISIONS.md) — **governing:** the decision register, and which document governs what
 
 ## Clean-start rules
 

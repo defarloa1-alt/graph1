@@ -401,6 +401,7 @@ const FAMILIES = [
   ["Allies and opponents", ["opposed", "allied with", "served under", "member of"]],
   ["Ideas", ["exemplifies"]],
   ["Works", ["author of"]],
+  ["Works about it", ["described by"]],
 ];
 const familyOf = label => (FAMILIES.find(f => f[1].includes(label)) || ["Other"])[0];
 /* signposts read from where you stand: around an event, its participants and places */
@@ -581,7 +582,7 @@ for (const n of DATA.nodes) for (const raw of n.notes || []) { const m = raw.mat
 /* ---------- state ---------- */
 const S = {
   focus: ACTIUM, sel: null, persona: "scholar", view: "graph", door: false, screen: 1, query: "",
-  crumbs: [ACTIUM], path: null, highlight: null, edgeLabels: false, group: null, lens: "",
+  crumbs: [ACTIUM], path: null, highlight: null, edgeLabels: false, group: null, sub: [], lens: "",
   kinds: new Set(KINDS), status: new Set(["accepted", "proposed"]),
   cats: new Set(["factual", "interpretive", "imaginative"]), att: new Set(ATT.map(a => a[0])),
   voice: "", from: -100, to: 20, drawerOpen: false, log: [], cites: [], myNotes: {}, mapZoom: 1,
@@ -675,6 +676,7 @@ function initCy() {
   cy.on("tap", "node", ev => {
     const d = ev.target.data();
     if (d.hub === "group") return openGroup(d.fam);
+    if (d.hub === "sub") { S.sub.push(...d.key.split("|")); S.sel = null; S.crumbs.push(`group:${S.focus}|${S.group}|${S.sub.join("|")}`); return renderAll(); }
     if (d.hub === "read") return d.view === "video" ? addLog("video", "Video is a planned enhancement: a stage mode or media on a card, beside the account and the map. Not built.") : setView(d.view);
     if (d.hub === "cmd") return runCommand(d.cmd);
     if (d.hub === "centre") return;
@@ -728,7 +730,7 @@ const KIND_WORDS = { Person: "people", Event: "events", Place: "places", Group: 
 function hubModel(id) {
   const n = nodeById.get(id), groups = new Map();
   for (const e of adj.get(id) || []) {
-    if (!edgePasses(e)) continue;
+    if (!edgePasses(e) || e.label === "happened before") continue; // it orders members; it is not a group
     const o = nodeById.get(other(e, id));
     if (!S.kinds.has(o.kind)) continue;
     const fam = familyFor(e, id);
@@ -743,7 +745,7 @@ function hubModel(id) {
 }
 function kindsLine(members) {
   const c = new Map(); for (const m of members) c.set(m.kind, (c.get(m.kind) || 0) + 1);
-  return [...c.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k, v]) => `${v} ${KIND_WORDS[k] || k}`).join(", ");
+  return [...c.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k, v]) => `${v} ${v === 1 ? (KIND_WORDS[k] || k).replace(/^people$/, "person").replace(/ies$/, "y").replace(/s$/, "") : KIND_WORDS[k] || k}`).join(", ");
 }
 function ring(items, r, offset = 0) {
   return items.map((_, i) => { const a = offset + (2 * Math.PI * i) / items.length - Math.PI / 2; return { x: r * Math.cos(a), y: r * Math.sin(a) }; });
@@ -769,7 +771,7 @@ function drawHub() {
 }
 /* a group as the new centre: its members around it, each line still one fact */
 function openGroup(fam) {
-  S.group = fam; S.sel = null; S.view = "graph";
+  S.group = fam; S.sub = []; S.sel = null; S.view = "graph";
   S.crumbs.push(`group:${S.focus}|${fam}`);
   renderAll();
 }
@@ -806,17 +808,64 @@ function drawSpine(n, g) {
   });
   cy.fit(undefined, 30);
 }
+/* a group too big to ring opens split by its next key, never as a big ring (curator, 2026-10-19):
+   a person's events by the event they are part of, an event's members by voice, then by kind */
+const SPLIT_OVER = 20;
+function ancestry(id) { // the part-of chain above id, outermost first
+  const chain = [], seen = new Set([id]);
+  for (let cur = id, i = 0; i < 6; i++) { const up = partOfParents(cur).find(p => !seen.has(p)); if (!up) break; chain.unshift(up); seen.add(up); cur = up; }
+  return chain;
+}
+const KIND_GROUP = k => (KIND_WORDS[k] || k).replace(/^./, c => c.toUpperCase());
+const depictedIn = m => m.id.startsWith("chr:entity:depicted:") ? "chr:entity:" + m.id.split(":")[3] : null; // the Work whose telling it is
+function splitKey(m, e, depth, focusKind) {
+  if (focusKind !== "Event" && m.kind === "Event") { // the events above it, then whose telling it is
+    const a = ancestry(m.id).filter(x => x !== S.focus);
+    return depth < a.length ? a[depth] : depth === a.length ? depictedIn(m) : null;
+  }
+  if (focusKind === "Event" && depth === 0) return depictedIn(m) || (e?.voices || []).map(v => v.accordingTo).find(Boolean) || "Our own statement";
+  return depth <= 1 ? KIND_GROUP(m.kind) : null;
+}
+function splitLabel(k) {
+  const n = nodeById.get(k);
+  if (n?.kind === "Work") return "according to " + (n.fullLabel || n.label);
+  return n?.label?.replace(/ \(Chrystallum\)$/, "") || k;
+}
+function subModel(g, focusKind) {
+  const firstEdge = new Map(); for (const e of g.edges) { const o = other(e, S.focus); if (!firstEdge.has(o)) firstEdge.set(o, e); }
+  let members = [...g.members.values()];
+  S.sub.forEach((k, d) => { members = members.filter(m => splitKey(m, firstEdge.get(m.id), d, focusKind) === k); });
+  // a level with only one key is passed through: its key joins the prefix, its loose members stay
+  const prefix = [], loose = []; let depth = S.sub.length, buckets = null; const all = members.length;
+  for (let tries = 0; members.length > SPLIT_OVER && tries < 4; tries++) {
+    const b = new Map(); for (const m of members) { const k = splitKey(m, firstEdge.get(m.id), depth, focusKind); if (!b.has(k)) b.set(k, []); b.get(k).push(m); }
+    const keys = [...b.keys()].filter(k => k !== null);
+    if (keys.length === 1) { loose.push(...(b.get(null) || [])); prefix.push(keys[0]); members = b.get(keys[0]); depth++; continue; }
+    if (keys.length > 1) { loose.push(...(b.get(null) || [])); b.delete(null); buckets = b; }
+    break;
+  }
+  if (!buckets) loose.push(...members);
+  return { all, prefix, loose, buckets };
+}
 function drawGroup() {
   const { n, groups } = hubModel(S.focus);
-  if (S.group === PARTS && (groups.get(PARTS)?.members.size || 0) && [...groups.get(PARTS).members.keys()].some(isPhase)) return drawSpine(n, groups.get(PARTS));
-  const g = groups.get(S.group) || { members: new Map(), edges: [] };
+  if (S.group === PARTS && !S.sub.length && (groups.get(PARTS)?.members.size || 0) && [...groups.get(PARTS).members.keys()].some(isPhase)) return drawSpine(n, groups.get(PARTS));
+  const g0 = groups.get(S.group) || { members: new Map(), edges: [] };
+  const { all, prefix, loose, buckets } = subModel(g0, n.kind);
+  const g = { members: new Map(loose.map(m => [m.id, m])), edges: g0.edges };
+  const order = Object.values(PHASES).flat();
+  const subs = buckets ? [...buckets.entries()]
+    .sort((a, b) => isPhase(b[0]) - isPhase(a[0]) || (isPhase(a[0]) ? order.indexOf(a[0].split(":").pop()) - order.indexOf(b[0].split(":").pop()) : b[1].length - a[1].length)) : []; // phases first, in the spine's order
+  const path = [...S.sub, ...prefix], where = path.length ? splitLabel(path[path.length - 1]) : ""; // the breadcrumbs hold the rest
   const centre = "grp-centre", seen = new Set();
-  lastLayoutKey = "group:" + S.focus + S.group;
+  lastLayoutKey = "group:" + S.focus + S.group + S.sub.join("|");
   cy.batch(() => {
     cy.elements().remove();
-    cy.add({ group: "nodes", data: { id: centre, hub: "centre", label: `${S.group} · ${g.members.size}\n${n.label}` }, classes: "group focus" });
+    cy.add({ group: "nodes", data: { id: centre, hub: "centre", label: `${S.group}${where ? " › " + where : ""} · ${all}\n${n.label}` }, classes: "group focus" });
+    cy.add(subs.map(([k, ms]) => ({ group: "nodes", data: { id: "sub:" + k, hub: "sub", key: [...prefix, k].join("|"), label: `${splitLabel(k)} · ${ms.length}\n${kindsLine(ms)}` }, classes: "group" })));
+    cy.add(subs.map(([k]) => ({ group: "edges", data: { id: "hub>sub:" + k, source: centre, target: "sub:" + k }, classes: "hub" })));
     cy.add([...g.members.values()].map(m => ({ group: "nodes", data: { id: m.id, label: m.label, kind: m.kind, img: imageFor(m)?.src || "" }, classes: m.status === "proposed" ? "proposed" : "" })));
-    cy.add(g.edges.filter(e => { const o = other(e, S.focus); if (seen.has(o)) return false; seen.add(o); return true; }).map(e => {
+    cy.add(g.edges.filter(e => { const o = other(e, S.focus); if (!g.members.has(o) || seen.has(o)) return false; seen.add(o); return true; }).map(e => {
       const out = e.source === S.focus;
       return { group: "edges", data: { id: e.id, source: out ? centre : e.source, target: out ? e.target : centre, label: e.label }, classes: [e.status, e.mode, e.category, outsideTime(e) ? "outside" : "", S.edgeLabels ? "labels" : ""].join(" ") };
     }));
@@ -886,7 +935,7 @@ function familyModel(f) {
 
 /* ---------- actions ---------- */
 function stand(id, { crumb = true } = {}) {
-  S.focus = id; S.path = null; S.highlight = null; S.group = null; S.door = false; S.query = "";
+  S.focus = id; S.path = null; S.highlight = null; S.group = null; S.sub = []; S.door = false; S.query = "";
   if (S.view === "family" && nodeById.get(id).kind !== "Person") S.view = "graph";
   if (S.view === "account" && !ACCOUNT[id]) S.view = "graph";
   S.sel = { type: "node", id };
@@ -1115,7 +1164,7 @@ function renderCard() {
 /* ---------- render: drawer ---------- */
 function renderDrawer() {
   const crumbs = S.crumbs.map((c, i) => {
-    const label = c.startsWith("path:") ? c.slice(5) : c.startsWith("group:") ? c.split("|")[1] : nodeById.get(c)?.label;
+    const label = c.startsWith("path:") ? c.slice(5) : c.startsWith("group:") ? splitLabel(c.split("|").pop()) : nodeById.get(c)?.label;
     const cur = i === S.crumbs.length - 1;
     return `${i ? '<span class="sep">›</span>' : ""}<button data-crumb="${i}" aria-current="${cur}">${esc(label)}</button>`;
   }).join("");
@@ -1413,11 +1462,12 @@ const FLOW = {
     ["s3", "3 Account", 2, 0], ["s4", "4 Notes", 2, 1], ["s6", "6 Map", 2, 2],
     ["s2", "2 A fact and its voices", 3, 0.5], ["s7", "7 A life: family tree", 4, 1], ["s5", "5 Commands", 3, 2],
     ["s8", "8 Participants as the centre", 2, 3], ["s9", "9 Parts: the phase spine", 3, 3],
+    ["s10", "10 A big group, split", 4, 3],
   ],
   edges: [
     ["s0", "s1", "stand here"], ["s1", "s3", "read the account"], ["s1", "s4", "show notes"], ["s1", "s6", "map"],
     ["s1", "s2", "a line or a date"], ["s3", "s2", "a citation"], ["s4", "s2", "a fact from the passage"],
-    ["s2", "s7", "stand on a person"], ["s1", "s5", "type a command"], ["s5", "s7", "jump Antony"], ["s7", "s1", "back on the trail"],
+    ["s2", "s7", "stand on a person"], ["s1", "s5", "type a command"], ["s5", "s7", "jump Antony"], ["s7", "s1", "back on the trail"], ["s8", "s10", "a group too big to ring"],
   ],
 };
 function renderFlow() {
@@ -1444,6 +1494,7 @@ function showScreen(k) {
   if (k === 7) { S.focus = ANTONY; S.view = "family"; if (S.crumbs[S.crumbs.length - 1] !== ANTONY) S.crumbs.push(ANTONY); }
   if (k === 8) return openGroup("Participants");
   if (k === 9) return openGroup(PARTS);
+  if (k === 10) { S.focus = ANTONY; if (S.crumbs[S.crumbs.length - 1] !== ANTONY) S.crumbs.push(ANTONY); return openGroup("Battles and events"); }
   renderAll();
 }
 
@@ -1486,7 +1537,7 @@ document.addEventListener("click", ev => {
   if (d.crumb != null) {
     const c = S.crumbs[+d.crumb]; S.crumbs = S.crumbs.slice(0, +d.crumb + 1);
     if (c.startsWith("path:")) return;
-    if (c.startsWith("group:")) { const [id, fam] = c.slice(6).split("|"); stand(id, { crumb: false }); S.group = fam; S.sel = null; return renderAll(); }
+    if (c.startsWith("group:")) { const [id, fam, ...sub] = c.slice(6).split("|"); stand(id, { crumb: false }); S.group = fam; S.sub = sub; S.sel = null; return renderAll(); }
     return stand(c, { crumb: false });
   }
   if (d.door != null) { S.door = true; S.query = d.door; renderDrawer(); renderDoor(); renderSuggest(); return; }

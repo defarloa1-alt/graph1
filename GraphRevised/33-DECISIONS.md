@@ -3,7 +3,7 @@ status: governing
 authority: the record of decisions, and which document governs what
 depends_on: []
 superseded_by: null
-last_reviewed: 2026-10-17
+last_reviewed: 2026-10-19
 ---
 
 # 33 — Decisions
@@ -28,7 +28,7 @@ and governs nothing but the decisions it records, which belong here.
 | What the agents do: which runs, in what order, with what plan, review, and stopping | [31](31-ONE-COMMAND.md) |
 | How an event inquiry specializes 31 | [29](29-EVENT-CENTRED-INQUIRY.md) |
 | The curator's workspace: plans, notes, overlays, saved paths, status display | [32](32-RESEARCH-WORKSPACE.md) |
-| What the explorer receives | [26](26-UI-DATA-CONTRACT.md) |
+| What the explorer receives, and the screen it is shown on | [26](26-UI-DATA-CONTRACT.md) |
 
 Then, in order: the code and its data files, which must conform; the handoff
 ([19](19-SESSION-HANDOFF.md)); the inputs in `docs/`, which inform and never
@@ -148,6 +148,27 @@ marked.
 | D-099 | Direct lookup ("vertex jump"): every read and write starts from a node found by a unique, indexed key (the local ids, `Year.year`, `AuthorityRecord.(system, identifier)`), then walks a bounded number of relationships; external codes are found through their AuthorityRecord, never kept inside local ids; claim ids are content-addressed. The legacy three-tier cipher was reviewed (2026-10-18): its claim cipher survives as the claim id; its QID-based entity ids, BabelNet and synthetic cascade, and `FacetedEntity` hubs with stored confidence are dropped. Recorded at the curator's request | [02](02-GRAPH-MODEL.md) §6.1 |
 | D-100 | An MCP connector for the local graph (curator, 2026-10-18): read-only first, seven typed lookups (entities by name or authority code, an entity's card, a fact's voices, an event's overview, the review queue, graph status), no Cypher tool (05 §7). Facts come from the exploration projection (26). Reached from Claude Code over stdio (`.mcp.json`) and from claude.ai over HTTP through a Cloudflare quick tunnel, the access token in the path (claude.ai sends no key to a custom connector). Replaces the legacy Railway connector (D-034, Aura, general read-only Cypher), which can't reach a local database. Alternatives turned down: Claude Code only; proposal submission in the first version; ngrok or a named tunnel (a stable URL, but an account or a domain). With it, `battle-overview.cypher` query 5 now counts the passages behind phase placements, which its earlier pattern left out | [05](05-AGENT-BOUNDARIES.md) §7; `connector/` |
 | D-002 | A decision register (this file). Reverses the earlier recommendation not to keep ADRs ([direction-review response](docs/Response%20-%20Review%20of%20the%20GraphRevised%20Direction.md)): decisions had spread over too many documents to find | here |
+
+### 2026-10-19 (the explorer's decisions of 2026-10-14 to 2026-10-18, recorded)
+
+Made in UI sessions and kept until now only in the wireframe and session
+notes. Reasons are the curator's where they were given; "not recorded" where
+they were not.
+
+| ID | Decision | Recorded in |
+|---|---|---|
+| D-101 | The stack (2026-10-14): Figma for design only; a React app with Cytoscape.js as the graph canvas and a map widget as a second canvas; a FastAPI read and command API in front of Neo4j. The UI shows only words the server works out, and every write goes through the proposal path. Code in a fresh `GraphRevised/explorer/`. Alternative turned down: adapting the legacy `viewer/` (20 §1 had it as ADAPT) | [26](26-UI-DATA-CONTRACT.md) §1; [20](20-EXPLORER-UI.md) §6 |
+| D-102 | One input (2026-10-14, 2026-10-15): the bottom drawer takes search, jump, and commands in a single box, results popping up above it, with the breadcrumbs and the time slider; the front door uses the same box. No top bar and no separate search; persona and Layout sit on the stage row. Commands, not chat: the narrative is the Account stage mode. Alternative turned down: a chat panel (20, 26 §1 before 2026-10-19) | [26](26-UI-DATA-CONTRACT.md) §1; wireframe v7 |
+| D-103 | The map is a centre-stage mode, taking the whole centre, with zoom (2026-10-14). The renderer is open: MapLibre with CAWM terrain and our own ancient labels (`explorer/experiments/map-terrain.html`), or Google photorealistic 3D tiles (needs a Map Tiles API key). Coordinates come from Pleiades or Wikidata through the API, never stored from a map provider (20 §4a) | [26](26-UI-DATA-CONTRACT.md) §1 |
+| D-104 | Sidebars are compact and configurable (2026-10-14): each docked, floating over the stage, or hidden behind an edge tab, from a Layout menu, remembered per user. Defaults: Filters hidden, Details docked (260px in v7). Reason: the centre stage as large as possible | [26](26-UI-DATA-CONTRACT.md) §1; wireframe v7 |
+| D-105 | Quiet chrome (2026-10-15): small type everywhere; the in-stage routes graph collapsed by default; wireframe annotations off by default. Reason: the stage stays large and the sidebars don't distract | wireframe v7 |
+| D-106 | The hub (2026-10-18, wireframe v7): where you stand at the centre; an inner ring of ways of reading it (Account, Notes, Map, Family tree for a person, Video dashed); an outer ring of groups **by relationship**, not bare kind, with distinct-member counts ("Participants · 15"), plus dashed "Elsewhere in …" and "Not yet read". Clicking a group always makes it the new centre, with a breadcrumb step; an event's parts open as the phase spine (D-091). Display only, never stored (D-039). Replaces the screens strip and the stage tabs | [26](26-UI-DATA-CONTRACT.md) §1; wireframe v7 |
+| D-107 | The Battle of Actium is the default view for testing (2026-10-15); "people first" is how agents discover, not the opening screen. Anything not in the export yet is drawn as mock | [29](29-EVENT-CENTRED-INQUIRY.md); wireframe v7 |
+| D-108 | A family tree stage mode for people (2026-10-15), drawn top down: grandparents, parents, the person with siblings and spouses, children, a capped set of grandchildren | wireframe v7 (screen 7) |
+| D-109 | Three personas (2026-10-14): a scholar studying linkages, a student who needs citations, a casual browser who doesn't. A persona changes the telling, never the facts (26 §5). Screen zero is the front door, "what is this?", with three answers: in the graph, not read yet (grow it), a new subject | [26](26-UI-DATA-CONTRACT.md) §5; wireframe v7 (screen 0) |
+| D-110 | Wireframes are greyscale HTML built from the real export (`explorer/wireframes/build.py`, `template.html`), designed-but-not-built marked mock, imported into Figma as layers (`freeze_screens.py`). Video is a planned enhancement, shown dashed (2026-10-15) | `explorer/wireframes/` |
+| D-111 | A relationship group over 20 members never opens as a ring (curator, 2026-10-19): it opens split by its next key, each sub-group a breadcrumb step. A person's events split by the events they are part of (a level everyone shares is passed through), then by whose telling they are; an event's members split by voice (the Work a depicted event belongs to); otherwise by kind. Phases come first, in the spine's order. Reason: 28 groups had more than 15 members (Antony's events 164, a phase's parts up to 93). Alternatives turned down: a capped ring with the rest listed in the sidebar; a sequence strip | [26](26-UI-DATA-CONTRACT.md) §1; wireframe v7 (screen 10) |
+| D-112 | The hub's "Other" group split (curator, 2026-10-19): `described by` becomes the group "Works about it"; `happened before` is not a hub group, it orders members inside the spine and sequence views. Alternatives turned down: both as hub groups; keeping "Other" | [26](26-UI-DATA-CONTRACT.md) §1; wireframe v7 |
 
 ## 3. Open
 
