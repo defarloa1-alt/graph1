@@ -3,7 +3,7 @@
 > **History (2026-10-19).** This document is the first UI direction and is no
 > longer current. What the screen is now (the card on the stage, the command drawer, stage
 > modes, configurable sidebars, no top bar, no chat panel) is in
-> [26](26-UI-DATA-CONTRACT.md) §1 and decisions D-101 to D-129 in
+> [26](26-UI-DATA-CONTRACT.md) §1 and decisions D-101 to D-131 in
 > [33](33-DECISIONS.md); the drawing is wireframe v8
 > (`explorer/wireframes/`). Where this document disagrees with them, they win.
 > Still useful here: the cards (§3), charts (§4), visual encoding (§5), and the

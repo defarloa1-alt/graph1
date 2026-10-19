@@ -22,13 +22,13 @@ designs meet what the graph actually returns.
 ## 1. The screen
 
 **Revised 2026-10-19** to match wireframe v8 and the UI decisions D-101 to
-D-129 ([33](33-DECISIONS.md)). The earlier sketch, with a top bar, a top
+D-131 ([33](33-DECISIONS.md)). The earlier sketch, with a top bar, a top
 search box, and a chat panel, is replaced; so is v7's hub as the opening
 view (D-116).
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
-│ stage row: routes ▾ · lens · where you stand · ◎ Graph · persona · Layout │
+│ stage row: where you stand · ◎ Graph · lens · persona · Tour · Layout │
 ├───────────┬──────────────────────────────────────┬───────────────────┤
 │ filters   │            CENTRE STAGE              │ navigator: a      │
 │ (hidden   │                                      │ small live hub of │
@@ -43,8 +43,8 @@ view (D-116).
 │           │   spine, a family tree; or the       │                   │
 │           │   account, notes (as pages), the map │                   │
 ├───────────┴──────────────────────────────────────┴───────────────────┤
-│ command drawer: breadcrumbs · ⌂ lives and recent · the one input ·    │
-│ results (× Hide, Esc, or a click elsewhere) · time slider · undated   │
+│ command drawer: ← back · breadcrumbs · the one input (empty: lives  │
+│ and recent places) · results · time slider · undated                │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -63,6 +63,11 @@ view (D-116).
   commanded them, from the "commanded" claims set in the battle; what the
   claims do not say (a wing's fleet, some sides) is placed by name, dashed,
   and listed in a footnote.
+- **One control per job** (D-131): go on from the stage's links; see the
+  network in the navigator; go back with the breadcrumbs and ← Back (Alt+←);
+  find anything in the one box, which, empty, offers lives in order and
+  where you have been; switch reading and graph with ◎ Graph / ▤ Card. The
+  routes bar and the ⌂ menu are gone.
 - **Names** (D-115): the full name wherever you stand or navigate (card,
   breadcrumbs, routes, the centre of the hub or a group); short captions only
   on crowded rings.
@@ -82,7 +87,7 @@ view (D-116).
   the stage modes). Suggestions pop up above it and close on a click
   elsewhere; results close with × Hide, Escape, or a click elsewhere. There
   is no front door page (D-119): the app opens on the default card; ⌂ holds
-  lives in the order they act and where you have been. It is commands, not
+  the empty input offers lives in the order they act and where you have been (D-131). It is commands, not
   chat; the narrative is the Account stage mode (shape 5).
 - **Notes** (D-120): two columns a page, turned with ‹ ›, the arrow keys, or
   a swipe; the type chips jump to the page where a type starts.

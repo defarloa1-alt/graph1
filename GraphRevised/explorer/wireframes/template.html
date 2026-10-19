@@ -62,6 +62,8 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .wf b { color: var(--ink); font-weight: 500; }
 .wf { font-size: var(--fs-label); gap: 6px; }
 .wf .screens { display: flex; flex-wrap: wrap; gap: 4px; }
+.wf { border: 1px dashed var(--ink-3); border-radius: var(--r); padding: 3px 8px; background: var(--surface); }
+.wf .cap { color: var(--ink); font-family: var(--font-body); font-size: var(--fs-chrome); flex: 1 1 320px; }
 .wf select { font: inherit; font-size: var(--fs-label); border: 1px dashed var(--ink-3); border-radius: 3px; background: transparent; color: var(--ink); padding: 1px 4px; }
 .wf button { border: 1px dashed var(--ink-3); background: transparent; border-radius: 3px; padding: 2px 8px; }
 .wf button[aria-pressed="true"] { background: var(--strong); color: var(--on-strong); border-style: solid; }
@@ -158,7 +160,8 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .licon { width: 13px; height: 13px; vertical-align: -2px; }
 .lensbtn { border: 1px dashed var(--ink-3); background: var(--bg); border-radius: 4px; padding: 0 5px; font-size: var(--fs-chrome); color: var(--ink-2); display: inline-flex; gap: 4px; align-items: center; }
 .lensbtn.on { border-style: solid; color: var(--lens-c); border-color: var(--lens-c); font-weight: 700; }
-.lens-pop { position: absolute; left: 44px; top: 30px; z-index: 9; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 6px 24px var(--shadow); padding: 6px; display: grid; grid-template-columns: repeat(3, auto); gap: 4px; }
+.lens-menu { position: relative; display: inline-flex; align-items: center; }
+.lens-pop { position: absolute; left: 0; top: calc(100% + 4px); z-index: 9; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 6px 24px var(--shadow); padding: 6px; display: grid; grid-template-columns: repeat(3, auto); gap: 4px; }
 .lens-pop button { border: 1px solid var(--line); background: transparent; border-radius: 4px; padding: 3px 8px; display: inline-flex; gap: 5px; align-items: center; color: var(--lens-c, var(--ink-2)); font-size: var(--fs-chrome); }
 /* notes as a book: two columns a page, page flips instead of a long scroll (curator, 2026-10-19) */
 #notes { display: flex; flex-direction: column; overflow: hidden; padding-bottom: 8px; }
@@ -350,12 +353,7 @@ a.ext::after { content: " ↗"; font-size: .85em; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
-<div class="wf annos-scope" id="wf">
-  <b>Chrystallum explorer · wireframe v8</b>
-  <label>Screen <select id="screenSel" aria-label="Wireframe screen"></select></label>
-  <button id="annoToggle" aria-pressed="false">Annotations off</button>
-  <span class="muted">Real data from the graph export; <span class="mock">mock</span> marks what is designed but not built.</span>
-</div>
+<div class="wf annos-scope" id="wf" hidden></div>
 
 <div class="app" id="app">
   <aside class="left side panel" id="leftPanel" aria-label="Filters"><div class="side-head"><span class="label">Filters</span><button class="icon" data-side="left" data-mode="float" title="Float over the stage">⧉</button><button class="icon" data-side="left" data-mode="dock" title="Dock beside the stage">▥</button><button class="icon" data-side="left" data-mode="hide" title="Hide">×</button></div><div id="filters"></div></aside>
@@ -367,22 +365,17 @@ a.ext::after { content: " ↗"; font-size: .85em; }
     <div class="reading" id="account" hidden></div>
     <div class="reading" id="notes" hidden></div>
     <div class="stage-head">
-      <div class="routes collapsed" id="routes">
-        <div class="rhead"><span class="label">Routes</span><span class="mock">mock</span></div>
-        <div class="rtools"><button class="icon" id="routesToggle" title="Show the routes as a graph" aria-expanded="false">▾</button></div>
-        <div id="routesCy" aria-label="Routes to where you stand"></div>
-        <nav class="rtext" id="pathbar" aria-label="Drill-down path"></nav>
-      </div>
       <span class="standing" id="standing"></span>
       <button class="btn" id="hubBtn" title="Show the graph around where you stand">◎ Graph</button>
+      <span class="lens-menu"><span id="lensSlot"></span><div class="lens-pop" id="lensPop" hidden></div></span>
       <button class="btn" id="keyBtn" style="margin-left:auto" aria-expanded="false">Key</button>
       <span class="seg" role="group" aria-label="Who are you exploring as">
         <button data-persona="scholar" aria-pressed="true">Scholar</button>
         <button data-persona="student">Student</button>
         <button data-persona="browser">Browsing</button>
       </span>
+      <button class="btn" id="tourBtn" title="A tour of the screens, with what each shows">Tour</button>
       <span class="layout-menu"><button class="btn" id="layoutBtn" aria-expanded="false" aria-haspopup="true">Layout ▾</button><div class="layout-pop" id="layoutPop" hidden></div></span>
-      <div class="lens-pop" id="lensPop" hidden></div>
       <div class="legend" id="legend" aria-hidden="true" hidden>
         <span class="swatch"></span><span>accepted</span>
         <span class="swatch dashed"></span><span>proposed</span>
@@ -400,7 +393,6 @@ a.ext::after { content: " ↗"; font-size: .85em; }
     <span class="anno pos" id="stageAnno"><b>Centre stage.</b> You stand on one node; its neighbourhood rings it. One line is one fact, however many sources state it. Click a node or line for its card; double-click a node to stand on it. Provenance never appears as nodes here.</span>
     <div class="foot" id="groupFoot" hidden></div>
     <div class="suggest-pop" id="suggestPop" hidden></div>
-    <div class="home-pop" id="homePop" hidden></div>
   </main>
 
   <aside class="right side panel" id="rightPanel" aria-label="Navigator"><div class="side-head"><span class="label">Navigator</span><button class="icon" data-side="right" data-mode="float" title="Float over the stage">⧉</button><button class="icon" data-side="right" data-mode="dock" title="Dock beside the stage">▥</button><button class="icon" data-side="right" data-mode="hide" title="Hide">×</button></div><div id="navCy" aria-label="Where you stand, and its groups"></div><div id="cardBody"></div></aside>
@@ -663,7 +655,7 @@ const ext = (url, text) => url ? `<a class="ext" href="${esc(url)}" target="_bla
 
 /* ---------- state ---------- */
 const S = {
-  focus: ACTIUM, sel: null, persona: "scholar", view: "card", door: false, screen: 0, query: "", openFact: null, notesPage: 0,
+  focus: ACTIUM, sel: null, persona: "scholar", view: "card", door: false, screen: 0, tour: false, query: "", openFact: null, notesPage: 0,
   crumbs: [ACTIUM], path: null, highlight: null, edgeLabels: false, group: null, sub: [], lens: "",
   kinds: new Set(KINDS), status: new Set(["accepted", "proposed"]),
   cats: new Set(["factual", "interpretive", "imaginative"]), att: new Set(ATT.map(a => a[0])),
@@ -1390,7 +1382,7 @@ function renderDrawer() {
       <div class="suggest"><span class="label">Try</span>${["jump Cleopatra", "why Mark Antony and Julius Caesar", "elsewhere 31 BC", "note His flight looks planned", "map", "help"].map(c => `<button class="chip" data-cmd="${esc(c)}">${esc(c)}</button>`).join("")}</div></div>` : ""}
     <div class="drow">
       <nav class="crumbs" aria-label="Where you have been">${crumbs}</nav>
-      <button class="home" id="homeBtn" title="Start from a life, or where you have been">⌂</button>
+      <button class="home" id="backBtn" title="Back (Alt+←)" aria-label="Back" ${S.crumbs.length < 2 ? "disabled" : ""}>←</button>
       <form class="cmd" id="cmdForm"><span class="prompt">Chrystallum ›</span><input id="cmdInput" value="${esc(S.query)}" placeholder="What is this? Search, jump to, or a command (try: why Mark Antony and Julius Caesar)" autocomplete="off" aria-label="Search, jump, or command"></form>
       <button class="btn" id="drawerToggle" aria-expanded="${S.drawerOpen}">${S.drawerOpen ? "▾ Results" : "▴ Results"}${S.log.length ? ` ${S.log.length}` : ""}</button>
       <button class="btn" data-cmd="cite">Citations ${S.cites.length}</button>
@@ -1426,7 +1418,11 @@ function answersFor(q, big) {
 function renderSuggest() {
   const el = $("#suggestPop");
   const q = (S.query || "").trim();
-  if (!q) { el.hidden = true; return; }
+  if (!q) { // the empty box, when you are in it, offers where to start (replaces the ⌂ menu, curator 2026-10-19)
+    const inBox = document.activeElement?.id === "cmdInput";
+    el.hidden = !inBox; if (inBox) el.innerHTML = homeHtml();
+    return;
+  }
   const verb = q.split(/\s+/)[0].toLowerCase();
   el.hidden = false;
   el.innerHTML = VERBS.includes(verb)
@@ -1497,8 +1493,8 @@ function routesStyle() {
     { selector: "node.taken", style: { "border-color": ink, "border-width": 2 } },
   ];
 }
-function renderRoutes() {
-  const box = $("#routesCy");
+function renderRoutes() { // the routes bar is gone (curator, 2026-10-19): the breadcrumbs are the one way back
+  const box = $("#routesCy"); if (!box) return;
   if (!rcy) {
     rcy = cytoscape({ container: box, style: routesStyle(), userZoomingEnabled: false, userPanningEnabled: false, boxSelectionEnabled: false, autoungrabify: true });
     rcy.on("tap", "node", ev => {
@@ -1556,23 +1552,17 @@ function renderNav() {
 }
 
 /* ---------- home menu (⌂): start from a life, or where you have been; the front door page is gone ---------- */
-function renderHome() {
+function homeHtml() {
   const been = [...new Set(S.crumbs.filter(c => !c.startsWith("path:") && !c.startsWith("group:")))].reverse();
-  $("#homePop").innerHTML = `<div class="sec"><span class="label">Start from a life, in the order they act</span><div class="lives">${ACTORS.map(([name, label]) => { const n = label && DATA.nodes.find(x => x.fullLabel === label); return n ? `<button class="life" data-stand="${esc(n.id)}">${esc(name)}</button>` : `<button class="life absent" data-ask="${esc(name)}" title="Not grown yet">${esc(name)}</button>`; }).join("")}</div><span class="muted small">Solid: in the graph. Dashed: not grown yet; it opens the ways to grow it.</span></div>
-    ${been.length > 1 ? `<div class="sec"><span class="label">Where you have been</span><div class="lives">${been.map(c => `<button class="life" data-stand="${esc(c)}">${esc(nameOf(nodeById.get(c)))}</button>`).join("")}</div></div>` : ""}`;
+  return `<div class="sec" style="padding:6px 8px"><span class="label">Start from a life, in the order they act</span><div class="lives">${ACTORS.map(([name, label]) => { const n = label && DATA.nodes.find(x => x.fullLabel === label); return n ? `<button class="life" data-stand="${esc(n.id)}">${esc(name)}</button>` : `<button class="life absent" data-ask="${esc(name)}" title="Not grown yet">${esc(name)}</button>`; }).join("")}</div><span class="muted small">Solid: in the graph. Dashed: not grown yet; it opens the ways to grow it.</span></div>
+    ${been.length > 1 ? `<div class="sec" style="padding:0 8px 8px"><span class="label">Where you have been</span><div class="lives">${been.map(c => `<button class="life" data-stand="${esc(c)}">${esc(nameOf(nodeById.get(c)))}</button>`).join("")}</div></div>` : ""}`;
 }
 
 /* ---------- render: path bar ---------- */
-function renderPath() {
-  const n = nodeById.get(S.focus);
-  const buckets = MOCK.buckets[S.focus];
-  const top = ["Ancient history", "Roman Republic"];
-  const lens = S.lens
+function renderPath() { // the lens chooser, in the stage row
+  $("#lensSlot").innerHTML = S.lens
     ? `<button class="lensbtn on" id="lensBtn" style="--lens-c: var(--lens-${S.lens})" aria-haspopup="true">${lensIcon(S.lens)}${LENS_META[S.lens][0]} ▾</button>`
     : `<button class="lensbtn" id="lensBtn" aria-haspopup="true">any lens ▾</button>`;
-  const mid = buckets && n.kind === "Event" ? [buckets[1]] : buckets ? [buckets[0]] : [];
-  const sep = '<span class="sep">›</span>';
-  $("#pathbar").innerHTML = `${top.map(t => `<button class="step" data-cmd="help">${esc(t)}</button>`).join(sep)}${sep}${lens}${mid.map(t => `${sep}<button class="step" data-cmd="help">${esc(t)}</button>`).join("")}${sep}<span class="here">${esc(n.fullLabel)}</span> <span class="mock">mock</span>`;
 }
 
 /* ---------- render: account on the stage ---------- */
@@ -1704,21 +1694,40 @@ const FLOW = {
     ["s0", "0 Opening: the card", 0, 1], ["s1", "1 The graph around it (hub)", 1, 1], ["s2", "2 A fact opened in the card", 1, 0],
     ["s3", "3 Chrystallum's account", 2, 0], ["s4", "4 Notes, as pages", 2, 1], ["s5", "5 Commands", 2, 2], ["s6", "6 Map", 2, 3],
     ["s7", "7 A life: family tree", 3, 1], ["s8", "8 Participants as the centre", 3, 2], ["s9", "9 Parts: the phase spine", 3, 3],
-    ["s10", "10 A big group, split", 4, 2], ["s11", "11 ⌂ Start from a life", 1, 2], ["s12", "12 Dark, with the military lens", 1, 3],
+    ["s10", "10 A big group, split", 4, 2], ["s11", "11 The empty box: where to start", 1, 2], ["s12", "12 Dark, with the military lens", 1, 3],
   ],
   edges: [
     ["s0", "s1", "◎ Graph"], ["s0", "s2", "a date"], ["s0", "s3", "read the account"], ["s0", "s4", "show notes"], ["s0", "s6", "map"],
-    ["s0", "s5", "type a command"], ["s0", "s11", "⌂"], ["s1", "s8", "a group"], ["s1", "s9", "parts"], ["s8", "s10", "a group too big to ring"],
+    ["s0", "s5", "type a command"], ["s0", "s11", "click the box"], ["s1", "s8", "a group"], ["s1", "s9", "parts"], ["s8", "s10", "a group too big to ring"],
     ["s2", "s7", "stand on a person"], ["s5", "s7", "jump Antony"], ["s0", "s12", "theme and lens"],
   ],
 };
+/* the tour: the walkthrough screens, one at a time, each saying what it shows; closed by default */
+const TOUR_CAPTION = [
+  "Where you start: the card for the Battle of Actium. Its names and \"Where to go from here\" take you on; the navigator on the right keeps the network in view.",
+  "◎ Graph shows the graph around where you stand: its groups, each a door.",
+  "A date on the card opens its fact in place, with every source's own words and a link to the passage.",
+  "Chrystallum's own account of the battle; each citation opens its passage.",
+  "The notes on the battle as a book: two columns a page, turned with ‹ › or the arrow keys.",
+  "The one box takes commands: what else happened in 31 BC, a note of your own, the path between two things.",
+  "The map, with the places near where you stand.",
+  "A life: Mark Antony's family tree, top down.",
+  "The order of battle: the two sides and who commanded what, from the \"commanded\" claims; dashed means placed by name.",
+  "The battle's moments, as each source tells them, in the curator's eleven phases.",
+  "A group too big to ring opens split: Antony's events by battle, then by phase, then by source.",
+  "The empty box offers lives in the order they act, and where you have been.",
+  "The dark theme, with the military lens colouring its lines.",
+];
 function renderFlow() {
-  const sel = $("#screenSel");
-  if (!sel.options.length) {
-    sel.innerHTML = FLOW.nodes.slice().sort((a, b) => +a[0].slice(1) - +b[0].slice(1)).map(([id, label]) => `<option value="${id.slice(1)}">${esc(label)}</option>`).join("");
-    sel.addEventListener("change", () => showScreen(+sel.value));
-  }
-  sel.value = String(S.screen);
+  const wf = $("#wf");
+  wf.hidden = !S.tour;
+  if (!S.tour) return;
+  const names = FLOW.nodes.slice().sort((a, b) => +a[0].slice(1) - +b[0].slice(1)).map(x => x[1].replace(/^\d+ /, ""));
+  wf.innerHTML = `<b>Tour</b><button id="tourPrev" ${S.screen === 0 ? "disabled" : ""} aria-label="Previous">‹</button><span>${S.screen + 1} of ${names.length} · ${esc(names[S.screen])}</span><button id="tourNext" ${S.screen === names.length - 1 ? "disabled" : ""} aria-label="Next">›</button>
+    <span class="cap">${esc(TOUR_CAPTION[S.screen] || "")}</span>
+    <button id="annoToggle" aria-pressed="${$("#app").classList.contains("annos-on")}">${$("#app").classList.contains("annos-on") ? "Notes on" : "Notes off"}</button>
+    <span class="muted">Real data; <span class="mock">mock</span> marks what is designed but not built.</span>
+    <button id="tourClose" aria-label="Close the tour">×</button>`;
 }
 
 /* ---------- screens (wireframe walkthrough) ---------- */
@@ -1726,7 +1735,7 @@ function showScreen(k) {
   S.screen = k;
   S.path = null; S.highlight = null; S.group = null; S.sub = []; S.drawerOpen = false; S.sel = null; S.openFact = null; S.notesPage = 0; S.lens = "";
   S.focus = ACTIUM; S.view = "card";
-  $("#homePop").hidden = true; applyTheme(L.theme);
+  applyTheme(L.theme);
   S.crumbs = [ACTIUM];
   if (k === 1) S.view = "graph";
   if (k === 2) { const n = nodeById.get(ACTIUM); const i = (n.facts || []).findIndex(f => f.predicate === "occurred"); S.openFact = i >= 0 ? i : null; }
@@ -1738,9 +1747,18 @@ function showScreen(k) {
   if (k === 8) return openGroup("Participants");
   if (k === 9) return openGroup(PARTS);
   if (k === 10) { S.focus = ANTONY; if (S.crumbs[S.crumbs.length - 1] !== ANTONY) S.crumbs.push(ANTONY); return openGroup("Battles and events"); }
-  if (k === 11) { renderAll(); renderHome(); $("#homePop").hidden = false; return; }
+  if (k === 11) { renderAll(); $("#cmdInput").focus(); renderSuggest(); return; }
   if (k === 12) { applyTheme("dark"); S.lens = "military"; return openGroup("Participants"); }
   renderAll();
+}
+
+/* back along the trail to step i */
+function goCrumb(i) {
+  if (i < 0) return;
+  const c = S.crumbs[i]; S.crumbs = S.crumbs.slice(0, i + 1);
+  if (c.startsWith("path:")) return renderAll();
+  if (c.startsWith("group:")) { const [id, fam, ...sub] = c.slice(6).split("|"); stand(id, { crumb: false }); S.group = fam; S.sub = sub; S.sel = null; S.view = "graph"; return renderAll(); }
+  return stand(c, { crumb: false });
 }
 
 /* ---------- events ---------- */
@@ -1748,7 +1766,11 @@ document.addEventListener("click", ev => {
   const t = ev.target.closest("button, [data-pin], [data-tl]"); if (!t) return;
   const d = t.dataset;
   if (d.screen != null) return showScreen(+d.screen);
-  if (t.id === "annoToggle") { const on = $("#app").classList.toggle("annos-on"); t.setAttribute("aria-pressed", on); t.textContent = on ? "Annotations on" : "Annotations off"; return; }
+  if (t.id === "annoToggle") { $("#app").classList.toggle("annos-on"); renderFlow(); return; }
+  if (t.id === "tourBtn") { S.tour = !S.tour; if (S.tour) showScreen(S.screen); else renderFlow(); return; }
+  if (t.id === "tourClose") { S.tour = false; renderFlow(); return; }
+  if (t.id === "tourPrev") return showScreen(Math.max(0, S.screen - 1));
+  if (t.id === "tourNext") return showScreen(Math.min(TOUR_CAPTION.length - 1, S.screen + 1));
   if (d.side) return setSide(d.side, d.mode);
   if (d.layout) {
     if (d.layout === "reset") { L = { ...LAYOUT_DEFAULT }; lastShown.left = "float"; lastShown.right = "dock"; }
@@ -1764,7 +1786,6 @@ document.addEventListener("click", ev => {
   if (d.later) { addLog("video", `Video is a planned enhancement: a stage mode or media on a card, beside the account and the map. Not built.`); return; }
   if (t.id === "hubBtn") { S.view = S.view === "card" ? "graph" : "card"; S.group = null; S.path = null; S.sub = []; S.sel = null; if (S.crumbs[S.crumbs.length - 1] !== S.focus) S.crumbs.push(S.focus); return renderAll(); }
   if (t.id === "logHide") { S.drawerOpen = false; renderDrawer(); return; }
-  if (t.id === "homeBtn") { const h = $("#homePop"); h.hidden = !h.hidden; if (!h.hidden) renderHome(); return; }
   if (t.id === "lensBtn") { const lp = $("#lensPop"); lp.hidden = !lp.hidden; if (!lp.hidden) lp.innerHTML = `<button data-lens-pick="">any lens</button>${Object.keys(LENS_META).map(k => `<button data-lens-pick="${k}" style="--lens-c: var(--lens-${k})">${lensIcon(k)}${LENS_META[k][0]}</button>`).join("")}`; return; }
   if (d.lensPick != null) { S.lens = d.lensPick; $("#lensPop").hidden = true; renderAll(); if (S.lens && !LENSES[S.lens].length) addLog(`lens ${S.lens}`, `Nothing here falls under the ${esc(S.lens)} lens yet. Lenses filter claims by kind (25 §12); the enrichers that fill them are not built. <span class="mock">mock</span>`); return; }
   if (d.toggleFact != null) { S.openFact = S.openFact === +d.toggleFact ? null : +d.toggleFact; renderCardStage(); return; }
@@ -1775,7 +1796,7 @@ document.addEventListener("click", ev => {
   if (d.persona) return setPersona(d.persona);
   if (d.view) return setView(d.view);
   if (d.lens) { if (d.lens !== "none") addLog(`lens ${d.lens}`, `Lenses are facet filters on the same graph (25 §12). Designed, not built. <span class="mock">mock</span>`); return; }
-  if (d.stand) { const i = $("#cmdInput"); if (i) i.value = ""; $("#homePop").hidden = true; return stand(d.stand); }
+  if (d.stand) { const i = $("#cmdInput"); if (i) { i.value = ""; i.blur(); } $("#suggestPop").hidden = true; return stand(d.stand); }
   if (d.openEdge) { select({ type: "edge", id: d.openEdge }); if (cy) { cy.elements().unselect(); cy.getElementById(d.openEdge).select(); } return; }
   if (d.openFact) { const [node, i] = d.openFact.split("|"); return select({ type: "fact", node, index: +i }); }
   if (d.family) { if (S.group === d.family) { S.group = null; S.view = "graph"; renderAll(); } else openGroup(d.family); return; }
@@ -1787,13 +1808,9 @@ document.addEventListener("click", ev => {
   if (d.voice) { S.voice = d.voice; S.view = "graph"; renderAll(); return; }
   if (d.cmd) return runCommand(d.cmd);
   if (d.cite) return toggleCite(d.cite);
-  if (d.crumb != null) {
-    const c = S.crumbs[+d.crumb]; S.crumbs = S.crumbs.slice(0, +d.crumb + 1);
-    if (c.startsWith("path:")) return;
-    if (c.startsWith("group:")) { const [id, fam, ...sub] = c.slice(6).split("|"); stand(id, { crumb: false }); S.group = fam; S.sub = sub; S.sel = null; return renderAll(); }
-    return stand(c, { crumb: false });
-  }
-  if (d.ask != null) { $("#homePop").hidden = true; S.query = d.ask; const i = $("#cmdInput"); if (i) { i.value = d.ask; i.focus(); } renderSuggest(); return; }
+  if (d.crumb != null) return goCrumb(+d.crumb);
+  if (t.id === "backBtn") return goCrumb(S.crumbs.length - 2);
+  if (d.ask != null) { S.query = d.ask; const i = $("#cmdInput"); if (i) { i.value = d.ask; i.focus(); } renderSuggest(); return; }
   if (d.mock) return addLog(d.mock === "grow" ? "grow" : "new subject", d.mock === "grow" ? `The concierge would check Wikidata for a match, propose the entity, and run the first-contact harvest (25 §10). Not built. <span class="mock">mock</span>` : `The concierge would propose a subject bucket and anchor it to a library heading where one exists (28). Not built. <span class="mock">mock</span>`);
   if (d.undated) { const p = projection(); const u = p.edges.filter(e => !e.years); return addLog("undated", `${u.length} facts here have no date. They stay on the stage whatever the slider says.<ul>${u.slice(0, 8).map(e => `<li><button class="linkish" data-open-edge="${esc(e.id)}">${esc(e.sentence)}</button></li>`).join("")}</ul>`); }
   if (d.tl != null) { const e = window.__tl[+d.tl]; if (e?.id && edgeById.has(e.id)) select({ type: "edge", id: e.id }); return; }
@@ -1829,7 +1846,8 @@ document.addEventListener("submit", ev => {
   if (ev.target.id === "cmdForm") { const v = $("#cmdInput").value; S.query = ""; S.door = false; renderSuggest(); runCommand(v); $("#cmdInput").value = ""; $("#cmdInput")?.focus(); }
 });
 document.addEventListener("keydown", ev => {
-  if (ev.key === "Escape") { $("#layoutPop").hidden = true; $("#suggestPop").hidden = true; $("#homePop").hidden = true; $("#lensPop").hidden = true; if (S.drawerOpen) { S.drawerOpen = false; renderDrawer(); } }
+  if (ev.key === "Escape") { $("#layoutPop").hidden = true; $("#suggestPop").hidden = true; $("#lensPop").hidden = true; if (S.drawerOpen) { S.drawerOpen = false; renderDrawer(); } }
+  if (ev.altKey && ev.key === "ArrowLeft") { ev.preventDefault(); return goCrumb(S.crumbs.length - 2); }
   if (ev.target.matches("input, select, textarea")) return;
   if (ev.key === "t") { L.theme = { system: "light", light: "dark", dark: "system" }[L.theme] || "light"; saveLayout(); applyLayout(); renderAll(); }
   if (S.view === "notes" && (ev.key === "ArrowRight" || ev.key === "ArrowLeft")) turnPage(ev.key === "ArrowRight" ? 1 : -1);
@@ -1840,13 +1858,12 @@ document.addEventListener("pointerdown", ev => { // a click elsewhere closes wha
   const t = ev.target;
   if (!t.closest(".layout-menu")) $("#layoutPop").hidden = true;
   if (!t.closest("#lensPop, #lensBtn")) $("#lensPop").hidden = true;
-  if (!t.closest("#homePop, #homeBtn")) $("#homePop").hidden = true;
   if (!t.closest("#suggestPop, #cmdForm")) $("#suggestPop").hidden = true;
   if (S.drawerOpen && !t.closest("#drawer")) { S.drawerOpen = false; renderDrawer(); }
   window.__swipe = t.closest("#book") ? ev.clientX : null;
 });
 document.addEventListener("pointerup", ev => { if (window.__swipe != null) { const dx = ev.clientX - window.__swipe; window.__swipe = null; if (Math.abs(dx) > 50) turnPage(dx < 0 ? 1 : -1); } });
-document.addEventListener("focusin", ev => { if (ev.target.id === "cmdInput" && S.query) renderSuggest(); });
+document.addEventListener("focusin", ev => { if (ev.target.id === "cmdInput") renderSuggest(); });
 window.addEventListener("resize", () => paginate());
 narrow.addEventListener("change", applyLayout);
 
