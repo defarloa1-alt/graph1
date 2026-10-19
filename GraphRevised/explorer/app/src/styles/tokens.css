@@ -1,0 +1,50 @@
+/* Design tokens: the wireframe v8 greyscale, the same values as the Figma "Color" and "Size"
+   collections (each variable's code syntax is its CSS name here). Light by default; dark follows
+   the device unless the reader chose a theme (D-122). */
+:root {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --fill: #e7e9ec;
+  --line: #d2d6da;
+  --ink: #1c1f23;
+  --ink-2: #4d545b;
+  --ink-3: #868d94;
+  --strong: #24282d;
+  --on-strong: #f4f5f6;
+  --shadow: rgba(28, 31, 35, .14);
+
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+  --r: 6px; --pad: 10px;
+
+  /* type: the chrome small and quiet, long reading text kept comfortable (D-121) */
+  --fs-body: 10px; --fs-chrome: 9.5px; --fs-small: 10px; --fs-label: 9px; --fs-mono: 8.5px;
+  --fs-title: 12px; --fs-read: 13px; --fs-canvas: 7.5px;
+
+  /* lenses: colours from the icons' materials, shown only for the lens in use (D-118) */
+  --lens-military: #9B2C24; --lens-social: #B5653A; --lens-political: #6B2D5C;
+  --lens-economic: #9C7A1E; --lens-religious: #C77A12;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141719; --surface: #1c2023; --fill: #272c30; --line: #363c42;
+    --ink: #e6e8ea; --ink-2: #b1b7bd; --ink-3: #7d858c; --strong: #eef0f2; --on-strong: #141719;
+    --shadow: rgba(0, 0, 0, .5);
+    --lens-military: #E07A70; --lens-social: #E39A6E; --lens-political: #C08BB5;
+    --lens-economic: #D9B44E; --lens-religious: #EBA94A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141719; --surface: #1c2023; --fill: #272c30; --line: #363c42;
+  --ink: #e6e8ea; --ink-2: #b1b7bd; --ink-3: #7d858c; --strong: #eef0f2; --on-strong: #141719;
+  --shadow: rgba(0, 0, 0, .5);
+  --lens-military: #E07A70; --lens-social: #E39A6E; --lens-political: #C08BB5;
+  --lens-economic: #D9B44E; --lens-religious: #EBA94A;
+  color-scheme: dark;
+}

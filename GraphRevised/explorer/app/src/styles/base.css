@@ -1,0 +1,26 @@
+/* Base: what every screen shares. Small, quiet chrome; reading text set with --fs-read. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: var(--fs-body)/1.4 var(--font-body);
+}
+[hidden] { display: none !important; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .5; }
+:focus-visible { outline: 2px solid var(--strong); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--ink-3); }
+.label {
+  font-family: var(--font-mono); font-size: var(--fs-label);
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3);
+}
+.reading { font-size: var(--fs-read); line-height: 1.5; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
