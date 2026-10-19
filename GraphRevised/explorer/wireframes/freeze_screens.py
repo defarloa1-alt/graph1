@@ -7,7 +7,7 @@ page out again at its own width. So each screen is opened in Edge (Playwright,
 channel "msedge"), shown with showScreen(k), and frozen: canvases become images,
 every box keeps its drawn size, grid children are pinned where they were drawn,
 hidden elements and the narrow-screen and dark rules are dropped, placeholders
-become grey text. Writes screen0.html ... screen10.html and a screenshot of each.
+become grey text. Writes screen0.html ... screen12.html and a screenshot of each.
 Needs `pip install playwright`; uses the installed Edge, so no browser download.
 """
 import sys, pathlib
@@ -71,7 +71,7 @@ FREEZE = """() => {
 }"""
 with sync_playwright() as p:
     b = p.chromium.launch(channel="msedge")
-    for k in range(11):
+    for k in range(13):
         pg = b.new_page(viewport={"width": 1440, "height": 900})
         pg.on("pageerror", lambda e: print("pageerror:", str(e)[:300]))
         pg.goto(src.as_uri()); pg.wait_for_timeout(2500)
