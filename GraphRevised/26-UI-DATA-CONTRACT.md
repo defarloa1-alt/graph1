@@ -22,7 +22,7 @@ designs meet what the graph actually returns.
 ## 1. The screen
 
 **Revised 2026-10-19** to match wireframe v7 (the hub, 2026-10-18) and the
-UI decisions D-101 to D-112 ([33](33-DECISIONS.md)). The earlier sketch,
+UI decisions D-101 to D-113 ([33](33-DECISIONS.md)). The earlier sketch,
 with a top bar, a top search box, and a chat panel, is replaced.
 
 ```text
@@ -52,8 +52,9 @@ with a top bar, a top search box, and a chat panel, is replaced.
   phase with the number of events placed in it. Groups are computed for
   display and never stored (D-039). A group over 20 members opens split by its
   next key, never as a big ring (D-111): a person's events by the events they
-  are part of, then by source; an event's members by source ("according to
-  Weigall · 31"); otherwise by kind. `described by` is the group "Works about
+  are part of, then by source; an event's members by source, each a short
+  reference ("Weigall¹ · 31") with its title in a footnote on the stage
+  (D-113); otherwise by kind. `described by` is the group "Works about
   it"; `happened before` orders members and is not a group (D-112).
 - **The command drawer** (D-102): one input for search, jump, and commands
   (`jump`, `why A and B`, `elsewhere 31 BC`, `note`, `cite`, `as`, the

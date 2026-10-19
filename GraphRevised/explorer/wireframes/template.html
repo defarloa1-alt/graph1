@@ -133,6 +133,10 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .legend .hollow::before { content: ""; width: 7px; height: 7px; border: 1.5px solid var(--ink-2); border-radius: 50%; }
 .legend .hollow::after { content: ""; width: 18px; border-top: 2px solid var(--ink-2); }
 .stage .anno.pos { position: absolute; left: 34px; bottom: var(--s3); max-width: 340px; z-index: 2; }
+/* the sources of a split group, as footnotes rather than "according to" on every node */
+.foot { position: absolute; left: 34px; bottom: var(--s3); z-index: 2; max-width: 360px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 4px 8px; font-size: 11px; color: var(--ink-2); }
+.foot ol { margin: 2px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 1px; }
+.foot sup { font-family: var(--font-mono); color: var(--ink-3); margin-right: 4px; }
 .zoom { position: absolute; right: 34px; bottom: var(--s3); display: flex; flex-direction: column; gap: 4px; z-index: 2; }
 .zoom button { width: 30px; height: 30px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); }
 
@@ -356,6 +360,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
       <button id="zfit" aria-label="Fit">⤢</button>
     </div>
     <span class="anno pos" id="stageAnno"><b>Centre stage.</b> You stand on one node; its neighbourhood rings it. One line is one fact, however many sources state it. Click a node or line for its card; double-click a node to stand on it. Provenance never appears as nodes here.</span>
+    <div class="foot" id="groupFoot" hidden></div>
     <div class="suggest-pop" id="suggestPop" hidden></div>
     <div class="door" id="door" hidden></div>
   </main>
@@ -693,6 +698,7 @@ function initCy() {
 }
 let lastLayoutKey = "";
 function drawCanvas() {
+  $("#groupFoot").hidden = true; // drawGroup shows it again when the group is split by source
   if (S.view === "family" && nodeById.get(S.focus).kind === "Person") return drawFamily();
   if (!S.path && S.group) return drawGroup();
   if (!S.path) return drawHub();
@@ -743,8 +749,9 @@ function hubModel(id) {
   const year = dated.length ? Math.max(...dated.map(d => d[1])) : null;
   return { n, groups, reads, year };
 }
-function kindsLine(members) {
+function kindsLine(members) { // only when the group mixes kinds; "31 · 31 events" says it twice
   const c = new Map(); for (const m of members) c.set(m.kind, (c.get(m.kind) || 0) + 1);
+  if (c.size < 2) return "";
   return [...c.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k, v]) => `${v} ${v === 1 ? (KIND_WORDS[k] || k).replace(/^people$/, "person").replace(/ies$/, "y").replace(/s$/, "") : KIND_WORDS[k] || k}`).join(", ");
 }
 function ring(items, r, offset = 0) {
@@ -753,7 +760,7 @@ function ring(items, r, offset = 0) {
 function drawHub() {
   const { n, groups, reads, year } = hubModel(S.focus);
   const fams = [...groups.keys()].sort((a, b) => HUB_ORDER.indexOf(a) - HUB_ORDER.indexOf(b));
-  const outer = fams.map(f => ({ id: "grp:" + f, data: { hub: "group", fam: f, label: `${f} · ${groups.get(f).members.size}\n${kindsLine(groups.get(f).members.values())}` }, classes: "group" }));
+  const outer = fams.map(f => ({ id: "grp:" + f, data: { hub: "group", fam: f, label: `${f} · ${groups.get(f).members.size}${(k => k ? "\n" + k : "")(kindsLine(groups.get(f).members.values()))}` }, classes: "group" }));
   if (year != null) outer.push({ id: "grp:elsewhere", data: { hub: "cmd", cmd: `elsewhere ${-year} BC`, label: `Elsewhere in ${yearText(year)}` }, classes: "group later" });
   outer.push({ id: "grp:unread", data: { hub: "cmd", cmd: "help", label: `Not yet read\n${MOCK.unread[S.focus] || "grow it"}` }, classes: "group later" });
   const inner = reads.map(([v, label]) => ({ id: "read:" + v, data: { hub: "read", view: v, label }, classes: "reading" + (v === "video" ? " later" : "") }));
@@ -826,9 +833,10 @@ function splitKey(m, e, depth, focusKind) {
   if (focusKind === "Event" && depth === 0) return depictedIn(m) || (e?.voices || []).map(v => v.accordingTo).find(Boolean) || "Our own statement";
   return depth <= 1 ? KIND_GROUP(m.kind) : null;
 }
-function splitLabel(k) {
+const SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹", sup = i => String(i).split("").map(d => SUP[d]).join("");
+function splitLabel(k, mark) { // a Work is a short reference ("Weigall¹"); its full title goes in the footnote
   const n = nodeById.get(k);
-  if (n?.kind === "Work") return "according to " + (n.fullLabel || n.label);
+  if (n?.kind === "Work") return (n.fullLabel || n.label).split(",")[0] + (mark ? sup(mark) : "");
   return n?.label?.replace(/ \(Chrystallum\)$/, "") || k;
 }
 function subModel(g, focusKind) {
@@ -841,7 +849,11 @@ function subModel(g, focusKind) {
     const b = new Map(); for (const m of members) { const k = splitKey(m, firstEdge.get(m.id), depth, focusKind); if (!b.has(k)) b.set(k, []); b.get(k).push(m); }
     const keys = [...b.keys()].filter(k => k !== null);
     if (keys.length === 1) { loose.push(...(b.get(null) || [])); prefix.push(keys[0]); members = b.get(keys[0]); depth++; continue; }
-    if (keys.length > 1) { loose.push(...(b.get(null) || [])); b.delete(null); buckets = b; }
+    if (keys.length > 1) { // a one-member group is no group: its member sits on the ring itself
+      loose.push(...(b.get(null) || [])); b.delete(null);
+      for (const [k, ms] of b) if (ms.length === 1) { loose.push(ms[0]); b.delete(k); }
+      buckets = b;
+    }
     break;
   }
   if (!buckets) loose.push(...members);
@@ -857,12 +869,15 @@ function drawGroup() {
   const subs = buckets ? [...buckets.entries()]
     .sort((a, b) => isPhase(b[0]) - isPhase(a[0]) || (isPhase(a[0]) ? order.indexOf(a[0].split(":").pop()) - order.indexOf(b[0].split(":").pop()) : b[1].length - a[1].length)) : []; // phases first, in the spine's order
   const path = [...S.sub, ...prefix], where = path.length ? splitLabel(path[path.length - 1]) : ""; // the breadcrumbs hold the rest
+  const works = subs.map(([k]) => k).filter(k => nodeById.get(k)?.kind === "Work"), markOf = k => works.indexOf(k) + 1;
+  const foot = $("#groupFoot"); foot.hidden = !works.length || S.view !== "graph";
+  foot.innerHTML = works.length ? `<span class="label">Whose telling</span><ol>${works.map((k, i) => { const w = nodeById.get(k); return `<li><sup>${i + 1}</sup>${esc(w.fullLabel || w.label)}</li>`; }).join("")}</ol>` : "";
   const centre = "grp-centre", seen = new Set();
   lastLayoutKey = "group:" + S.focus + S.group + S.sub.join("|");
   cy.batch(() => {
     cy.elements().remove();
     cy.add({ group: "nodes", data: { id: centre, hub: "centre", label: `${S.group}${where ? " › " + where : ""} · ${all}\n${n.label}` }, classes: "group focus" });
-    cy.add(subs.map(([k, ms]) => ({ group: "nodes", data: { id: "sub:" + k, hub: "sub", key: [...prefix, k].join("|"), label: `${splitLabel(k)} · ${ms.length}\n${kindsLine(ms)}` }, classes: "group" })));
+    cy.add(subs.map(([k, ms]) => ({ group: "nodes", data: { id: "sub:" + k, hub: "sub", key: [...prefix, k].join("|"), label: `${splitLabel(k, markOf(k))} · ${ms.length}${(kl => kl ? "\n" + kl : "")(kindsLine(ms))}` }, classes: "group" })));
     cy.add(subs.map(([k]) => ({ group: "edges", data: { id: "hub>sub:" + k, source: centre, target: "sub:" + k }, classes: "hub" })));
     cy.add([...g.members.values()].map(m => ({ group: "nodes", data: { id: m.id, label: m.label, kind: m.kind, img: imageFor(m)?.src || "" }, classes: m.status === "proposed" ? "proposed" : "" })));
     cy.add(g.edges.filter(e => { const o = other(e, S.focus); if (!g.members.has(o) || seen.has(o)) return false; seen.add(o); return true; }).map(e => {
