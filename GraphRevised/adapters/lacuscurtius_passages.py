@@ -31,7 +31,7 @@ from .wikidata_statements import REPOSITORY_ROOT
 PATH_LANGUAGES = {"E": "en", "L": "la", "G": "grc"}
 
 REPRODUCES = re.compile(
-    r"This webpage reproduces (?:a|an|the) (?:Book|Part|Chapter)?\s*(?:of )?(?P<title>.+?) by (?P<author>.+?) "
+    r"This webpage reproduces (?:(?:a|an|the) (?:Book|Part|Chapter)?\s*(?:of )?|one of )(?P<title>.+?) by (?P<author>.+?) "
     r"published in (?P<publication>.+?\d{4})"
 )
 # Some works name no author in the statement ("a section of The Res Gestae ... as published in ...");
@@ -72,7 +72,7 @@ class Edition:
     pages: tuple[Page, ...] = field(default_factory=tuple)
 
     def all_refs(self) -> list[str]:
-        return [f"{page.book}.{ref}" for page in self.pages for ref in page.sections]
+        return [f"{page.book}.{ref}" if page.book else ref for page in self.pages for ref in page.sections]
 
 
 def preserve_page(url: str, directory: Path) -> Path:
@@ -143,10 +143,13 @@ def section_refs(edition: Edition, selection: str) -> list[str]:
 
 def passage_observation(edition: Edition, ref: str) -> dict[str, Any]:
     """Return parameters for the `upsert_passage_observation` operation."""
-    book, local = ref.split(".", 1)
-    page = next((p for p in edition.pages if p.book == book and local in p.sections), None)
-    if page is None:
+    matches = [(p, ref[len(p.book) + 1:] if p.book and ref.startswith(p.book + ".") else ref)
+               for p in edition.pages]
+    matches = [(p, local) for p, local in matches
+               if (not p.book or ref.startswith(p.book + ".")) and local in p.sections]
+    if len(matches) != 1:
         raise PassageNotFound(f"{edition.work_slug} {ref}")
+    page, local = matches[0]
     text = page.sections[local]
     return {
         "id": f"chr:observation:lacuscurtius:{edition.work_slug}:{ref}:{page.content_hash[:8]}",
@@ -185,7 +188,7 @@ def _load_page(path: Path) -> Page:
     # The book is the page's number; a book split over pages adds a letter (2A*.html ... 2D*.html).
     book = re.search(r"/(\d+)[A-Z]?\*\.html", metadata["sourceUri"])
     return Page(
-        book=book.group(1) if book else path.stem, path=path, source_uri=metadata["sourceUri"],
+        book=book.group(1) if book else "", path=path, source_uri=metadata["sourceUri"],
         retrieved_at=metadata["retrievedAt"], content_hash=metadata["contentHash"],
         page_updated=metadata.get("pageUpdated"), public_domain_statement=metadata.get("publicDomainStatement"),
         sections={k: v for k, v in sections.items() if v}, notes=notes,
@@ -280,4 +283,7 @@ def _slug(url: str) -> str:
 
 
 def _work_slug(url: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", url.split("/Texts/", 1)[-1].rsplit("/", 1)[0].lower()).strip("-")
+    work, filename = url.split("/Texts/", 1)[-1].rsplit("/", 1)
+    if not re.fullmatch(r"\d+[A-Z]?\*\.html", filename, re.IGNORECASE):
+        work += "/" + filename
+    return re.sub(r"[^a-z0-9]+", "-", work.lower()).strip("-")

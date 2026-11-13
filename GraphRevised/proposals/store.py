@@ -38,7 +38,8 @@ class Neo4jReader:
             MATCH (entity:Entity {id: $id})
             OPTIONAL MATCH (entity)-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord {system: "Wikidata"})
             WHERE link.role = "entity_identity" AND link.status = "accepted"
-            RETURN entity {.id, .label, .shortLabel, .kind, .description, .form} AS entity,
+            RETURN entity {.id, .label, .shortLabel, .description, .form,
+                           kind: head([label IN labels(entity) WHERE label <> "Entity"])} AS entity,
                    collect(record.identifier) AS wikidataIds
             """,
             id=entity_id,
@@ -49,7 +50,8 @@ class Neo4jReader:
 
     def entities(self) -> list[dict[str, Any]]:
         return self._tx.run(
-            "MATCH (entity:Entity) RETURN entity {.id, .label, .kind, .description} AS entity ORDER BY entity.id"
+            "MATCH (entity:Entity) RETURN entity {.id, .label, .description, "
+            "kind: head([label IN labels(entity) WHERE label <> 'Entity'])} AS entity ORDER BY entity.id"
         ).value("entity")
 
     def entity_ids_for_wikidata(self, qid: str) -> list[str]:

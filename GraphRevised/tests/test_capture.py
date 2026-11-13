@@ -2,7 +2,9 @@
 
 import os
 import unittest
+from unittest import mock
 
+from GraphRevised.capture import core as capture_module
 from GraphRevised.capture.core import CaptureError, annotation_label, capture
 from GraphRevised.capture.highlights import match_book, parse_kindle, parse_readwise
 from GraphRevised.operations import RefusedWrite, load_operations, run_write
@@ -70,6 +72,36 @@ class HighlightParserTests(unittest.TestCase):
         kindle = parse_kindle(KINDLE)
         self.assertEqual(match_book(kindle[0], BOOKS)["workId"], "chr:entity:test-history")
         self.assertIsNone(match_book(kindle[1], BOOKS))
+
+
+class CaptureWorkLookupTests(unittest.TestCase):
+    class Transaction:
+        def __init__(self, is_work):
+            self.is_work = is_work
+            self.query = None
+
+        def run(self, query, **_):
+            self.query = query
+            return self
+
+        def single(self):
+            return {"label": "A History"} if self.is_work else None
+
+    ITEM = {"workId": "chr:entity:test-history", "locator": "p. 12", "locatorType": "page",
+            "quote": "A line from the book."}
+
+    def test_a_subtype_labeled_work_is_recognized(self):
+        tx = self.Transaction(is_work=True)
+        with mock.patch.object(capture_module, "run_write"):
+            result = capture(tx, {}, self.ITEM)
+        self.assertIn("MATCH (w:Entity:Work {id: $id})", tx.query)
+        self.assertIsNotNone(result["observationId"])
+
+    def test_a_non_work_entity_is_refused(self):
+        tx = self.Transaction(is_work=False)
+        with self.assertRaises(CaptureError):
+            capture(tx, {}, self.ITEM)
+        self.assertIn("MATCH (w:Entity:Work {id: $id})", tx.query)
 
 
 @unittest.skipUnless(os.environ.get("NEO4J_PASSWORD"), "NEO4J_PASSWORD not set")

@@ -667,6 +667,41 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
                               "chr:entity:test-idea"}, scope)
         self.assertFalse({"chr:entity:test-bystander", "chr:entity:test-elsewhere"} & scope)
 
+    def test_graph_review_shows_assertion_status_and_other_event_groups(self):
+        inquiry = self.event_inquiry_fixture()
+        self.add_local("chr:entity:test-commander", "Person", "Test commander")
+        self.add_local("chr:entity:test-other-fleet", "Group", "Other battle fleet")
+        self.add_local("chr:entity:test-other-battle", "Event", "Other battle")
+        self.link("participatedIn", "chr:entity:test-commander", BATTLE[0], status="proposed")
+        self.link("commanded", "chr:entity:test-commander", "chr:entity:test-other-fleet", status="accepted")
+        self.link("participatedIn", "chr:entity:test-other-fleet", "chr:entity:test-other-battle", status="accepted")
+        self.link("participatedIn", "chr:entity:test-other-fleet", BATTLE[0], status="rejected")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            path.write_text(json.dumps(inquiry), encoding="utf-8")
+            from GraphRevised.discovery.inquiry_graph_review import build_review
+            review = build_review(self.tx, path)
+        context = review["graphContext"]
+        statuses = {(a["predicate"], a["status"]) for a in context["assertions"]}
+        self.assertIn(("participatedIn", "proposed"), statuses)
+        self.assertIn(("commanded", "accepted"), statuses)
+        self.assertNotIn(("participatedIn", "rejected"), statuses)
+        self.assertIn("chr:entity:test-other-fleet", {g["id"] for g in context["groupsToReview"]})
+        self.assertTrue(any(a["groupId"] == "chr:entity:test-other-fleet"
+                            and a["eventId"] == "chr:entity:test-other-battle" and a["status"] == "accepted"
+                            for a in context["otherEventParticipations"]))
+
+    def test_event_roles_join_the_scope_only_when_events_may_be_depicted(self):
+        from GraphRevised.proposals.passage_reader import load_inquiries
+        self.add_local("chr:entity:role-test-part", "Type", "test part")
+        inquiry = self.event_inquiry_fixture()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "inquiry.json"
+            for kinds, expected in (([], False), (["Event"], True)):
+                path.write_text(json.dumps(inquiry | {"proposableKinds": kinds}), encoding="utf-8")
+                scope = {e["id"] for e in load_inquiries(path, self.tx, briefs=None)[0].scope}
+                self.assertEqual("chr:entity:role-test-part" in scope, expected, kinds)
+
     def test_reading_rules_and_brief_are_composed_into_the_guidance(self):
         from GraphRevised.proposals.passage_reader import load_inquiries
         from GraphRevised.proposals.reading_rules import load_reading_rules

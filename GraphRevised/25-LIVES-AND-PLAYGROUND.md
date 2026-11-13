@@ -248,7 +248,7 @@ with a Nomisma ID to an economic one). Facets become enrichers run on what
 surfaces, demand-driven and budgeted, rather than standing agents per
 Subject: people first, facets after (decision 1).
 
-**Decided 2026-10-14: the SCA and SFA are retired** (curator). The subject
+**Decided 2026-10-14: the SCA and SFA are retired** (curator). *Superseded in part 2026-11-12 by D-137: standing lens specialists return, on today's guards ([39](39-LENS-SPECIALISTS.md)).* The subject
 concept agent has no successor: Subjects are created intentionally (02 §1),
 and the actors list (`curation/actors.json`) and the agent's source plan order
 the work. The subject facet agents become the enrichers by kind and, later,

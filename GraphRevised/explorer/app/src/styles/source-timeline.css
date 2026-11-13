@@ -1,0 +1,10 @@
+.timeline-view { margin-top: 24px; }
+.timeline-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 410px), 1fr)); gap: 20px; align-items: start; }
+.timeline-columns > section, .timeline-matches { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.timeline-select { display: flex; flex-direction: column; font-weight: 600; gap: 6px; }
+.timeline-select select { padding: 8px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.source-lane h3 { margin-top: 24px; font-size: 15px; }
+.source-lane summary, .timeline-matches summary { cursor: pointer; }
+.timeline-items { padding-left: 20px; }
+.timeline-items > li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.timeline-matches { margin-top: 20px; }

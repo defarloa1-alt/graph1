@@ -2,6 +2,10 @@
 
 # Chrystallum Clean-Start Handoff
 
+> This historical handoff predates the typed Entity ontology migration.
+> Current repository state and next work are in
+> [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md).
+
 ## Completed work
 
 - Phase 0: validated the local Neo4j Year backbone.
@@ -19,11 +23,12 @@ Local endpoint: `neo4j://127.0.0.1:7687`
 
 Database: `neo4j`
 
-Current verified counts after Phase 3 replay:
+Current verified counts after the Entity subtype migration:
 
 ```text
-4,033 nodes
-4,032 relationships
+516,873 nodes
+519,146 relationships
+702 Entity nodes, each with exactly one approved subtype label
 ```
 
 Credentials are in `Connections.txt`; do not display, copy, or commit them.
@@ -66,6 +71,10 @@ description preserves Wikidata's source wording.
 - [adapters/wikidata_identity.py](adapters/wikidata_identity.py) — bounded candidate-only adapter.
 - [15-PHASE-4-WIKIDATA-IDENTITY.md](15-PHASE-4-WIKIDATA-IDENTITY.md) — Phase 4 contract and validation.
 - [16-LEGACY-TRIAGE.md](16-LEGACY-TRIAGE.md) — active/legacy boundary.
+- [34-ENTITY-SUBTYPE-MIGRATION.cypher](34-ENTITY-SUBTYPE-MIGRATION.cypher) —
+  applied Entity subtype migration.
+- [35-ENTITY-SUBTYPE-RESULTS.md](35-ENTITY-SUBTYPE-RESULTS.md) — migration
+  counts and preservation checks.
 
 Phase 4 payloads are in [phase-4-source](phase-4-source). The current Actium
 lookup returned candidates `Q160387` (31 BCE) and `Q9173813` (435 BCE).

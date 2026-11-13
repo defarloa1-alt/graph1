@@ -1,0 +1,96 @@
+{
+  "description": "The lenses: ways of reading any object (a person, event, office, polity, place) from one dimension, by a specialist lens agent grounded per polity, or across all dimensions by the general lens. A lens is never stored in the graph (D-039, D-063): `predicates` says which registry predicates a lens highlights when it is on; `questions` and `relevance` are the analyst's brief (31 §3.3). Drafted by Claude acting as the agent, 2026-10-21, for the curator to review; the pilot on Actium decides which lenses are kept.",
+  "version": 1,
+  "status": "draft",
+  "lenses": [
+    {
+      "id": "general",
+      "label": "General",
+      "purpose": "Reads the object across every dimension at once: its significance, how the dimensions act on each other, and what the specialists missed or duplicated.",
+      "relevance": "Everything is in scope; the general lens judges what matters most and why.",
+      "questions": [
+        "Why does this object matter, and to whom: contemporaries, later Romans, modern historians?",
+        "Where do the dimensions act on each other (a military means to a political end, an economic cause of a social change)?",
+        "Which of the specialists' findings and gaps are the same question asked twice?",
+        "What does no specialist lens cover?",
+        "Where do the sources disagree in a way that changes the reading in more than one dimension?",
+        "What should be read next, overall, and in what order?"
+      ],
+      "predicates": ["ledTo", "triggeredBy", "resultedIn", "exemplifies"]
+    },
+    {
+      "id": "military",
+      "label": "Military",
+      "purpose": "Armed force: its organization, command, use, supply, and consequences.",
+      "relevance": "In scope when it concerns forces (land or sea), who held authority over them and who actually commanded, operations and tactics, manpower and recruitment, logistics, losses, and what became of soldiers and veterans.",
+      "questions": [
+        "Which forces took part, of what size and composition, according to whom?",
+        "Who held formal authority over each force, and who exercised command in the field or at sea?",
+        "What were the strategy, the operations, and the tactics, and how do the sources explain the outcome?",
+        "How were the forces raised, paid, supplied, and moved?",
+        "What were the losses, surrenders, and defections?",
+        "What happened to the forces afterwards: discharge, settlement, incorporation, garrisons?"
+      ],
+      "predicates": ["commanded", "heldAuthorityOver", "servedUnder", "opposed", "alliedWith"]
+    },
+    {
+      "id": "political",
+      "label": "Political",
+      "purpose": "Power and its legitimacy: offices, powers, factions, decisions, and the constitution.",
+      "relevance": "In scope when it concerns who held which office or power and by what right, alliances and oppositions, decisions and the body that made them, propaganda and declarations, diplomacy, and constitutional change.",
+      "questions": [
+        "Who held which offices and powers at the time, and how legitimate were they held to be, by whom?",
+        "Which factions, alliances, and oppositions were in play, and when did they shift?",
+        "Which decisions were taken, by which body (Senate, assemblies, magistrates, triumvirs, kings)?",
+        "How was the conflict framed in public: declarations, oaths, propaganda?",
+        "What diplomacy with client kings, allies, and foreign states was involved?",
+        "What changed in the constitution or the distribution of power because of it?"
+      ],
+      "predicates": ["heldPosition", "heldPower", "exercisedPower", "electedBy", "precedes", "alliedWith", "opposed"]
+    },
+    {
+      "id": "economic",
+      "label": "Economic",
+      "purpose": "Resources: money, land, supply, production, and trade.",
+      "relevance": "In scope when it concerns financing (taxes, levies, requisitions, treasuries, loans), coinage, land and property, supply of grain and materials, trade and its disruption, booty, indemnities, and confiscations.",
+      "questions": [
+        "How was it financed, and who paid?",
+        "What coinage was struck for it, by whom, and what does it show?",
+        "What land or property changed hands: confiscation, settlement, grants?",
+        "How were grain and materials supplied, and what disrupted supply?",
+        "What wealth was gained or lost: booty, treasuries, tribute, indemnities?",
+        "What lasting economic change followed?"
+      ],
+      "predicates": []
+    },
+    {
+      "id": "social",
+      "label": "Social",
+      "purpose": "People in relation: kinship, patronage, status, loyalty, and the experience of ordinary participants.",
+      "relevance": "In scope when it concerns family and marriage ties, patrons and clients, status groups (senators, equestrians, freedmen, slaves, provincials), loyalty and defection, gender, and how soldiers, rowers, and civilians lived through it.",
+      "questions": [
+        "Which kinship and marriage ties bound or divided the participants?",
+        "Which patrons and clients, friends and dependants, were involved?",
+        "Which status groups took part, and how did their position change?",
+        "Who changed sides, and what do the sources say moved them?",
+        "How did ordinary participants (soldiers, rowers, civilians) experience it?",
+        "How do the sources treat women and foreigners in it, and what does that show?"
+      ],
+      "predicates": ["childOf", "spouseOf", "siblingOf", "memberOf", "servedUnder"]
+    },
+    {
+      "id": "religious",
+      "label": "Religious",
+      "purpose": "The gods and their human side: omens, vows, priesthoods, rituals, dedications, and divine claims.",
+      "relevance": "In scope when it concerns omens and portents, vows and their fulfilment, priesthoods held, rituals (including the declaration of war), temples, dedications, games and festivals, divine associations claimed by the participants, and commemoration.",
+      "questions": [
+        "Which omens, portents, and prophecies do the sources report, and to what end?",
+        "Which vows, dedications, temples, or games are tied to it?",
+        "Which priesthoods did the participants hold, and did ritual frame the war or its end?",
+        "Which gods did the participants associate themselves with, and how was that used?",
+        "How was it commemorated in religious terms afterwards?"
+      ],
+      "predicates": []
+    }
+  ]
+}

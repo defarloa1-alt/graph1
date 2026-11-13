@@ -1,6 +1,8 @@
 """Identity-resolution queue: unresolved mentions -> Wikidata candidates -> curator choice.
 
     python -m GraphRevised.identity.queue build   <inquiry.json>
+    python -m GraphRevised.identity.queue local-review <inquiry.json> --run <reader.jsonl>
+                                                      [--run <reader.jsonl> ...] --output <new.json>
     python -m GraphRevised.identity.queue show    <inquiry.json> [--all]
     python -m GraphRevised.identity.queue resolve <inquiry.json> "<name>" --qid Q... --kind Person
                                                   [--id chr:entity:...] --by <name> --basis "<reason>"
@@ -14,12 +16,17 @@ the inquiry's scope; `skip` records that a mention will not be resolved.
 
 The queue is workflow state and lives in GraphRevised/queues/, not in Neo4j.
 Rebuilding keeps earlier decisions.
+
+`local-review` instead searches local names and available Wikidata aliases for
+unresolved mentions from explicitly selected runs. It is read-only, offline,
+does not update the queue or inquiry, and does not decide identities.
 """
 
 from __future__ import annotations
 
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
@@ -31,14 +38,16 @@ from pathlib import Path
 from typing import Any, Literal
 
 import requests
-from neo4j import GraphDatabase
+from neo4j import GraphDatabase, READ_ACCESS
 from pydantic import BaseModel
 
 from GraphRevised.adapters.wikidata_identity import USER_AGENT, WIKIDATA_API_URL
+from GraphRevised.identity.local_candidates import candidates as local_candidates
 from GraphRevised.operations import load_operations
 from GraphRevised.proposals.passage_reader import DEFAULT_MODEL, anthropic_client
 from GraphRevised.proposals.prompt_version import prompt_version
 from GraphRevised.slices.add_entity import ENTITY_KINDS, persist_identity, preserved_identity_payload
+from GraphRevised.subject_backbone import local_config
 
 GRAPH_REVISED = Path(__file__).resolve().parents[1]
 QUEUE_DIRECTORY = GRAPH_REVISED / "queues"
@@ -111,6 +120,90 @@ def gather_mentions(run: Path) -> dict[str, dict[str, Any]]:
                 entry = mentions.setdefault(mention["name"], {"name": mention["name"], "occurrences": []})
                 entry["occurrences"].append({"ref": record["ref"], "quotation": mention["quotation"]})
     return mentions
+
+
+def local_review(inquiry_path: Path, runs: list[Path], tx: Any, *, limit_per_kind: int = 10) -> dict[str, Any]:
+    """Match reader mentions against local entities without inferring kind or identity."""
+    if limit_per_kind < 1:
+        raise ValueError("The per-kind candidate limit must be positive.")
+    if not runs or len({path.resolve() for path in runs}) != len(runs):
+        raise ValueError("Provide at least one distinct reader run.")
+    inquiry = json.loads(inquiry_path.read_text(encoding="utf-8"))
+    sources = inquiry.get("sources") or [inquiry.get("source", {})]
+    source_ids = {source.get("workId") for source in sources}
+    mentions: dict[str, list[dict[str, Any]]] = {}
+    run_info = []
+    for path in runs:
+        raw = path.read_bytes()
+        lines = raw.decode("utf-8").splitlines()
+        if len(lines) < 2:
+            raise ValueError(f"Reader run has no passage records: {path}")
+        header = json.loads(lines[0])
+        if header.get("inquiry") != inquiry["id"] or header.get("workId") not in source_ids:
+            raise ValueError(f"Reader run has a different inquiry or unknown workId: {path}")
+        if header.get("inquiryVersion") != inquiry["version"]:
+            raise ValueError(f"Reader run has a different inquiry version: {path}")
+        run_info.append({"path": str(path.resolve()), "sha256": hashlib.sha256(raw).hexdigest(),
+                         "workId": header["workId"]})
+        for line in lines[1:]:
+            record = json.loads(line)
+            if record.get("error"):
+                raise ValueError(f"Reader run contains a failed passage: {path}: {record['error']}")
+            if not isinstance(record.get("unresolvedMentions"), list):
+                raise ValueError(f"Reader passage has no unresolvedMentions list: {path}")
+            for mention in record["unresolvedMentions"]:
+                name = mention["name"].strip()
+                if not name or not record.get("ref") or not record.get("observationId") or not mention.get("quotation"):
+                    raise ValueError(f"Malformed unresolved mention in {path}")
+                mentions.setdefault(name, []).append({
+                    "run": str(path.resolve()), "workId": header["workId"], "ref": record["ref"],
+                    "observationId": record["observationId"], "quotation": mention["quotation"],
+                    "readerNote": mention.get("note"),
+                })
+    entries = []
+    for name, occurrences in sorted(mentions.items()):
+        found = local_candidates(tx, name, threshold=0.5, limit=None)
+        # Source-specific depicted events are not identity candidates for the named referent.
+        found = [candidate for candidate in found if not candidate["id"].startswith("chr:entity:depicted:")]
+        selected = []
+        counts: dict[str, int] = {}
+        for candidate in found:
+            kind = candidate["kind"] or "unknown"
+            counts[kind] = counts.get(kind, 0) + 1
+            if counts[kind] <= limit_per_kind:
+                selected.append(candidate)
+        ids = [candidate["id"] for candidate in selected]
+        rows = tx.run(
+            """
+            MATCH (entity:Entity) WHERE entity.id IN $ids
+            OPTIONAL MATCH (entity)-[link:HAS_AUTHORITY_RECORD]->(authority:AuthorityRecord)
+            WHERE link.role = 'entity_identity'
+            RETURN entity.id AS id, entity.status AS status, entity.description AS description,
+                   collect(DISTINCT {system: authority.system, identifier: authority.identifier,
+                                     status: link.status}) AS authorities
+            """, ids=ids,
+        ).data()
+        details = {row["id"]: row for row in rows}
+        if set(ids) != set(details):
+            raise ValueError(f"A candidate disappeared while reviewing {name!r}; retry the review.")
+        for candidate in selected:
+            detail = details[candidate["id"]]
+            candidate.update({"status": detail["status"], "description": detail["description"],
+                              "authorities": [a for a in detail["authorities"] if a["identifier"]]})
+        entries.append({"name": name, "occurrences": occurrences, "candidates": selected,
+                        "candidateCountsByKind": counts,
+                        "truncatedKinds": sorted(kind for kind, count in counts.items() if count > limit_per_kind)})
+    return {
+        "status": "needs-review", "inquiryId": inquiry["id"], "inquiryVersion": inquiry["version"],
+        "runs": run_info, "entries": entries,
+        "limitations": [
+            "Mentions and quotations are reader output and have not been independently verified here.",
+            "Matches are lexical leads, not identity or participation decisions; review namesakes and statuses.",
+            "Only local labels, short labels and aliases in available Wikidata payloads were searched.",
+            "No match does not prove absence; source-specific depicted events are excluded.",
+            "No online authority lookup, model call, graph write or inquiry update was made.",
+        ],
+    }
 
 
 def wikidata_get(params: dict[str, Any], attempts: int = 5) -> dict[str, Any]:
@@ -345,9 +438,12 @@ def resolve(inquiry_path: Path, session, *, name: str, qid: str, kind: str, enti
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     commands = parser.add_subparsers(dest="command", required=True)
-    for name in ("build", "show", "resolve", "skip"):
+    for name in ("build", "show", "resolve", "skip", "local-review"):
         command = commands.add_parser(name)
         command.add_argument("inquiry", type=Path)
+        if name == "local-review":
+            command.add_argument("--run", type=Path, action="append", required=True)
+            command.add_argument("--output", type=Path, required=True)
         if name == "show":
             command.add_argument("--all", action="store_true")
         if name in ("resolve", "skip"):
@@ -359,6 +455,20 @@ def main(argv: list[str] | None = None) -> int:
             command.add_argument("--kind", required=True, choices=ENTITY_KINDS)
             command.add_argument("--id", dest="entity_id")
     args = parser.parse_args(argv)
+
+    if args.command == "local-review":
+        if args.output.exists():
+            raise FileExistsError(f"Review output already exists: {args.output}")
+        config = local_config()
+        with GraphDatabase.driver(config["uri"], auth=(config["user"], config["password"]),
+                                  notifications_min_severity="OFF") as driver:
+            with driver.session(database=config["database"], default_access_mode=READ_ACCESS) as session:
+                report = session.execute_read(lambda tx: local_review(args.inquiry, args.run, tx))
+        with args.output.open("x", encoding="utf-8") as file:
+            json.dump(report, file, ensure_ascii=False, indent=2)
+            file.write("\n")
+        print(f"Local identity review: {args.output} ({len(report['entries'])} unresolved names)")
+        return 0
 
     if args.command == "show":
         show(args.inquiry, args.all)

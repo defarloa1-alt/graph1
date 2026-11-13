@@ -11,12 +11,12 @@ import unittest
 from GraphRevised.export.cytoscape import projection
 
 FIXTURES = """
-CREATE (leader:Entity {id: "chr:entity:test-x-leader", kind: "Person", label: "Test leader", status: "provisional"})
-CREATE (battle:Entity {id: "chr:entity:test-x-battle", kind: "Event", label: "Test battle", status: "provisional"})
-CREATE (period:Entity {id: "chr:entity:test-x-period", kind: "Period", label: "Test era", status: "proposed"})
-CREATE (:Entity {id: "chr:entity:test-x-lonely", kind: "Work", label: "Test catalogue", status: "proposed"})
-CREATE (:Entity {id: "chr:entity:test-x-gone", kind: "Person", label: "Test duplicate", status: "deprecated"})
-CREATE (work:Entity {id: "chr:entity:test-x-work", kind: "Work", label: "Test author, Test history", status: "provisional"})
+CREATE (leader:Entity:Person {id: "chr:entity:test-x-leader", label: "Test leader", status: "provisional"})
+CREATE (battle:Entity:Event {id: "chr:entity:test-x-battle", label: "Test battle", status: "provisional"})
+CREATE (period:Entity:Period {id: "chr:entity:test-x-period", label: "Test era", status: "proposed"})
+CREATE (:Entity:Work {id: "chr:entity:test-x-lonely", label: "Test catalogue", status: "proposed"})
+CREATE (:Entity:Person {id: "chr:entity:test-x-gone", label: "Test duplicate", status: "deprecated"})
+CREATE (work:Entity:Work {id: "chr:entity:test-x-work", label: "Test author, Test history", status: "provisional"})
 CREATE (passage:SourceObservation {id: "chr:observation:test-x:1", shortLabel: "Test 1.1"})-[:IN_WORK]->(work)
 CREATE (fought:Assertion {id: "chr:assertion:test-x-fought", label: "Test leader fought at Test battle",
                           predicate: "participatedIn", status: "proposed", category: "factual"})
@@ -26,7 +26,7 @@ CREATE (proposal)-[:PROPOSES_EVIDENCE {quotation: "Test leader fought"}]->(passa
 CREATE (says:Assertion {id: "chr:assertion:test-x-fought:q0123456789", label: "According to the work: fought",
                         predicate: "participatedIn", status: "proposed", mode: "attributed", category: "factual"})
 CREATE (says)-[:ASSERTION_SUBJECT]->(leader), (says)-[:ASSERTION_OBJECT]->(battle), (says)-[:ATTRIBUTED_TO]->(work)
-CREATE (play:Entity {id: "chr:entity:test-x-play", kind: "Work", label: "Test playwright, Test play", form: "play"})
+CREATE (play:Entity:Work {id: "chr:entity:test-x-play", label: "Test playwright, Test play", form: "play"})
 CREATE (staged:Assertion {id: "chr:assertion:test-x-fought:qabcdefabcd", label: "In the play: fought",
                           predicate: "participatedIn", status: "proposed", mode: "attributed", category: "imaginative"})
 CREATE (staged)-[:ASSERTION_SUBJECT]->(leader), (staged)-[:ASSERTION_OBJECT]->(battle), (staged)-[:ATTRIBUTED_TO]->(play)

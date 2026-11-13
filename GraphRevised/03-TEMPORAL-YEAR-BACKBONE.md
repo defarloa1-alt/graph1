@@ -30,6 +30,10 @@ Year
   └─ provides temporal anchor for ─ Entity
 ```
 
+`Year` is a separate infrastructure node type, not `:Entity:Period`. A
+`Period` is a domain entity representing a historical interval or framework;
+`Year` is a precise coordinate in the ordered temporal backbone.
+
 ## 2. What the year backbone means
 
 A year node represents a temporal coordinate in the graph.

@@ -41,6 +41,7 @@ from typing import Any, Literal
 from neo4j import READ_ACCESS, GraphDatabase
 
 from GraphRevised.adapters.wikidata_context import entity_context
+from GraphRevised.connector import ontology
 from GraphRevised.export.cytoscape import projection
 from GraphRevised.identity.local_candidates import tokens
 
@@ -150,6 +151,28 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
     server = FastMCP("Chrystallum", instructions=INSTRUCTIONS, **settings)
 
     @server.tool()
+    def get_subject(subject_id: str) -> dict[str, Any]:
+        """Find a Subject by its local id and list its focus entities."""
+        rows = graph.rows(
+            """
+            MATCH (s:Subject {id: $id})
+            OPTIONAL MATCH (s)-[:HAS_SUBJECT_FOCUS]->(e:Entity)
+            RETURN s.id AS id, s.label AS label, s.status AS status,
+                   e.id AS focusId, e.label AS focusLabel, e.status AS focusStatus,
+                   head([kind IN labels(e) WHERE kind <> 'Entity']) AS focusKind
+            ORDER BY focusId
+            """,
+            id=subject_id,
+        )
+        if not rows:
+            return {"error": f"No Subject {subject_id}."}
+        return {
+            "id": rows[0]["id"], "label": rows[0]["label"], "status": rows[0]["status"],
+            "focus": [{"id": row["focusId"], "label": row["focusLabel"], "status": row["focusStatus"],
+                       "kind": row["focusKind"]} for row in rows if row["focusId"]],
+        }
+
+    @server.tool()
     def find_entities(name: str, kind: Kind | None = None, limit: int = 10) -> dict[str, Any]:
         """Find entities by name: label, short label, or Wikidata alias (so "Octavian" finds Augustus).
         Returns the best matches with their ids, for get_entity or event_overview."""
@@ -158,10 +181,13 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
             return {"error": "Give a name to search for."}
         rows = graph.rows(
             """
-            MATCH (e:Entity) WHERE e.status <> 'deprecated' AND ($kind IS NULL OR e.kind = $kind)
+            MATCH (e:Entity)
+            WHERE e.status <> 'deprecated'
+              AND ($kind IS NULL OR $kind IN labels(e))
             OPTIONAL MATCH (e)-[l:HAS_AUTHORITY_RECORD]->(r:AuthorityRecord {system: 'Wikidata'})
             WHERE l.role = 'entity_identity'
-            RETURN e.id AS id, e.label AS label, e.shortLabel AS shortLabel, e.kind AS kind,
+            RETURN e.id AS id, e.label AS label, e.shortLabel AS shortLabel,
+                   head([label IN labels(e) WHERE label <> 'Entity']) AS kind,
                    e.status AS status, e.description AS description,
                    head(collect(r.identifier)) AS qid, head(collect(r.rawPayloadUri)) AS payload
             """,
@@ -188,14 +214,16 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
             """
             MATCH (r:AuthorityRecord {system: $system, identifier: $identifier})
             OPTIONAL MATCH (e:Entity)-[l:HAS_AUTHORITY_RECORD]->(r)
-            RETURN r.label AS recordLabel, e.id AS id, e.label AS label, e.kind AS kind,
-                   e.status AS status, l.role AS role
+            RETURN r.label AS recordLabel, e.id AS id, e.label AS label,
+                   head([label IN labels(e) WHERE label <> 'Entity']) AS kind,
+                   e.status AS status, l.role AS role, l.status AS linkStatus
             """,
             system=system.strip(), identifier=identifier.strip(),
         )
         if rows:
             return {"record": f"{system} {identifier}: {rows[0]['recordLabel']}",
-                    "entities": [{k: r[k] for k in ("id", "label", "kind", "status", "role")} for r in rows if r["id"]]}
+                    "entities": [{k: r[k] for k in ("id", "label", "kind", "status", "role", "linkStatus")}
+                                 for r in rows if r["id"]]}
         systems = graph.rows("MATCH (r:AuthorityRecord) RETURN r.system AS system, count(*) AS records "
                              "ORDER BY records DESC")
         return {"record": None, "systems": systems}
@@ -222,10 +250,21 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
                           "direction": "out" if outgoing else "in", "other": _brief(other),
                           "status": fact["status"], "mode": fact["mode"], "category": fact["category"],
                           "attestation": fact["attestation"], "times": fact["times"], "voices": len(fact["voices"])})
+        authority_links = graph.rows(
+            """
+            MATCH (:Entity {id: $id})-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord)
+            RETURN record.system AS system, record.identifier AS identifier, record.label AS label,
+                   link.role AS role, link.status AS status, link.relation AS relation
+            ORDER BY system, identifier
+            LIMIT 101
+            """,
+            id=entity_id,
+        )
         return {
             **_brief(node), "description": node.get("description"),
             "authority": [{"system": a["system"], "identifier": a["identifier"], "label": a["label"],
                            "others": a["others"]} for a in node["authority"]],
+            "authorityLinks": authority_links[:100], "hasMoreAuthorityLinks": len(authority_links) > 100,
             "notes": node["notes"][:MAX_NOTES], "moreNotes": max(0, len(node["notes"]) - MAX_NOTES),
             "unaryFacts": [{"sentence": f["sentence"], "times": f["times"], "attestation": f["attestation"],
                             "status": f["status"], "category": f["category"], "voices": f["voiceLines"]}
@@ -249,7 +288,11 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
     def event_overview(event_id: str) -> dict[str, Any]:
         """What the graph holds about one event: counts by kind of thing, its phases, the Works
         that speak of it, and what awaits review (views/battle-overview.cypher, queries 1, 5, 10)."""
-        event = graph.rows("MATCH (e:Entity {id: $id}) RETURN e.label AS label, e.kind AS kind", id=event_id)
+        event = graph.rows(
+            "MATCH (e:Entity {id: $id}) RETURN e.label AS label, "
+            "head([label IN labels(e) WHERE label <> 'Entity']) AS kind",
+            id=event_id,
+        )
         if not event:
             return {"error": f"No entity {event_id}. Use find_entities with kind Event."}
         summary = graph.rows(EVENT_SUMMARY, event=event_id, dead=DEAD)
@@ -272,6 +315,21 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
             "claims": graph.rows("MATCH (a:Assertion) RETURN a.status AS status, count(*) AS n ORDER BY n DESC"),
             "proposals": graph.rows("MATCH (p:Proposal) RETURN p.status AS status, count(*) AS n ORDER BY n DESC"),
         }
+
+    @server.tool()
+    def describe_schema() -> dict[str, Any]:
+        """List bounded observed schema token names and the governed predicate registry."""
+        return graph.read(ontology.describe_schema)
+
+    @server.tool()
+    def get_predicate(predicate_id: str) -> dict[str, Any]:
+        """Describe one predicate from the active registry, including endpoint and qualifier rules."""
+        return ontology.get_predicate(predicate_id)
+
+    @server.tool()
+    def get_subgraph(entity_id: str, depth: int = 1, offset: int = 0, limit: int = 25) -> dict[str, Any]:
+        """Page through a bounded Entity neighborhood of proposed and accepted Assertions, depth 1 or 2."""
+        return graph.read(ontology.get_subgraph, entity_id, depth, offset, limit)
 
     return server
 
@@ -339,7 +397,7 @@ CALL (ev, placed) {
 }
 CALL (ev) { MATCH (ev)<-[:CONCERNS]-(:Annotation)-[:ANNOTATES]->(o:SourceObservation) RETURN collect(o) AS noted }
 UNWIND observed + noted AS o
-MATCH (o)-[:IN_WORK]->(w:Entity {kind: 'Work'})
+MATCH (o)-[:IN_WORK]->(w:Entity:Work)
 WITH w, count(DISTINCT o) AS passages
 OPTIONAL MATCH (a:Assertion)-[:ATTRIBUTED_TO]->(w) WHERE NOT a.status IN $dead
 RETURN w.id AS id, w.label AS work, w.form AS form, w.status AS status, passages, count(DISTINCT a) AS claimsAttributed

@@ -3,7 +3,7 @@
 import unittest
 
 from GraphRevised.adapters.lc_catalog import CatalogError, isbn_valid, normalize_lccn, parse_record
-from GraphRevised.harvest.lc_record import direct_order, record_lines
+from GraphRevised.harvest.lc_record import direct_order, record_lines, work_label
 
 # A synthetic record in LC's shape (an SRU response around one MARCXML record); not a real book.
 SRU = b"""<?xml version="1.0"?>
@@ -96,6 +96,30 @@ class RecordTests(unittest.TestCase):
     def test_a_record_without_an_lccn_is_refused(self):
         with self.assertRaises(CatalogError):
             parse_record(SRU.replace(b'<subfield code="a">  2099000001</subfield>', b""))
+
+
+class WorkLookupTests(unittest.TestCase):
+    class Transaction:
+        def __init__(self, label):
+            self.label = label
+            self.query = None
+
+        def run(self, query, **_):
+            self.query = query
+            return self
+
+        def single(self):
+            return {"label": self.label} if self.label else None
+
+    def test_work_lookup_uses_the_subtype_label(self):
+        tx = self.Transaction("A Book")
+        self.assertEqual(work_label(tx, "chr:entity:a-book"), "A Book")
+        self.assertIn("MATCH (w:Entity:Work {id: $id})", tx.query)
+
+    def test_non_work_is_not_returned_as_a_work(self):
+        tx = self.Transaction(None)
+        self.assertIsNone(work_label(tx, "chr:entity:a-battle"))
+        self.assertIn("MATCH (w:Entity:Work {id: $id})", tx.query)
 
 
 if __name__ == "__main__":

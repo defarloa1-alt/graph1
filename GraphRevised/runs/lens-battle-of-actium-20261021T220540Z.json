@@ -1,0 +1,2283 @@
+{
+  "entity": {
+    "description": "31 BCE decisive confrontation of the Final War of the Roman Republic",
+    "id": "chr:entity:battle-of-actium",
+    "kind": "Event",
+    "label": "Battle of Actium"
+  },
+  "polity": "roman-republic",
+  "createdAt": "2026-10-21T22:05:40.673017+00:00",
+  "promptVersion": "lens-analyst-v1-9fdb351c",
+  "model": "claude-opus-5-5",
+  "lensesVersion": 1,
+  "groundingVersion": 1,
+  "usage": {
+    "inputTokens": 337496,
+    "outputTokens": 38820
+  },
+  "calls": [
+    {
+      "model": "claude-opus-5-5",
+      "stopReason": "end_turn",
+      "inputTokens": 51579,
+      "outputTokens": 7698,
+      "lens": "military"
+    },
+    {
+      "model": "claude-opus-5-5",
+      "stopReason": "end_turn",
+      "inputTokens": 51487,
+      "outputTokens": 5750,
+      "lens": "political"
+    },
+    {
+      "model": "claude-opus-5-5",
+      "stopReason": "end_turn",
+      "inputTokens": 51319,
+      "outputTokens": 4786,
+      "lens": "economic"
+    },
+    {
+      "model": "claude-opus-5-5",
+      "stopReason": "end_turn",
+      "inputTokens": 51279,
+      "outputTokens": 6996,
+      "lens": "social"
+    },
+    {
+      "model": "claude-opus-5-5",
+      "stopReason": "end_turn",
+      "inputTokens": 51326,
+      "outputTokens": 5262,
+      "lens": "religious"
+    },
+    {
+      "model": "claude-opus-5-5",
+      "stopReason": "end_turn",
+      "inputTokens": 80506,
+      "outputTokens": 8328,
+      "lens": "general"
+    }
+  ],
+  "context": {
+    "claims": 635,
+    "phases": 11,
+    "works": [
+      {
+        "ref": "w1",
+        "id": "chr:entity:plutarch-life-of-antony"
+      },
+      {
+        "ref": "w2",
+        "id": "chr:entity:cassius-dio-roman-history"
+      },
+      {
+        "ref": "w3",
+        "id": "chr:entity:hale-famous-sea-fights"
+      },
+      {
+        "ref": "w4",
+        "id": "chr:entity:weigall-life-and-times-of-cleopatra"
+      },
+      {
+        "ref": "w5",
+        "id": "chr:entity:wikipedia-en-battle-of-actium"
+      },
+      {
+        "ref": "w6",
+        "id": "chr:entity:proposed-work-virgil-aeneid"
+      },
+      {
+        "ref": "w7",
+        "id": "chr:entity:proposed-work-strabo-geography"
+      },
+      {
+        "ref": "w8",
+        "id": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae"
+      },
+      {
+        "ref": "w9",
+        "id": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti"
+      }
+    ]
+  },
+  "summary": {
+    "military": {
+      "findings": 6,
+      "gaps": 10,
+      "unreadPassages": 4,
+      "alreadyRead": 0,
+      "sourcesNotHeld": 2,
+      "relationshipOrEntityMissing": 4,
+      "newPredicates": 6,
+      "invented": 0
+    },
+    "political": {
+      "findings": 6,
+      "gaps": 9,
+      "unreadPassages": 5,
+      "alreadyRead": 0,
+      "sourcesNotHeld": 2,
+      "relationshipOrEntityMissing": 2,
+      "newPredicates": 5,
+      "invented": 0
+    },
+    "economic": {
+      "findings": 6,
+      "gaps": 7,
+      "unreadPassages": 5,
+      "alreadyRead": 0,
+      "sourcesNotHeld": 2,
+      "relationshipOrEntityMissing": 0,
+      "newPredicates": 7,
+      "invented": 0
+    },
+    "social": {
+      "findings": 6,
+      "gaps": 10,
+      "unreadPassages": 4,
+      "alreadyRead": 4,
+      "sourcesNotHeld": 2,
+      "relationshipOrEntityMissing": 4,
+      "newPredicates": 5,
+      "invented": 0
+    },
+    "religious": {
+      "findings": 5,
+      "gaps": 10,
+      "unreadPassages": 4,
+      "alreadyRead": 0,
+      "sourcesNotHeld": 2,
+      "relationshipOrEntityMissing": 4,
+      "newPredicates": 6,
+      "invented": 0
+    },
+    "general": {
+      "findings": 6,
+      "gaps": 5,
+      "unreadPassages": 0,
+      "alreadyRead": 0,
+      "sourcesNotHeld": 2,
+      "relationshipOrEntityMissing": 3,
+      "newPredicates": 1,
+      "invented": 13
+    }
+  },
+  "overlaps": [],
+  "readings": {
+    "military": {
+      "lens": "military",
+      "note": "Ours: the graph presents Actium as a naval fight in which Octavian's lighter ships wore down Antony's towered ships by swarming, oar-breaking and finally fire. The decision is laid on Cleopatra's departure with sixty ships and Antony's following her, not on the line fighting itself. The sources give different reasons for that departure: Dio's indecisive battle, Weigall's wind, and Velleius' blame. Command is the weakest point. Authority and field command are blurred for Agrippa, and most of the named deputies are attached to no wing or unit. Nor is it settled who commanded Antony's fleet, since Velleius' Sosius and Poplicola stand beside Antony himself. Strength, logistics and the fate of the soldiers are almost unattested; Dio book 51 and the Res Gestae, both held, are the obvious next readings.",
+      "findings": [
+        {
+          "question": "Which forces took part, of what size and composition, according to whom?",
+          "answer": "The graph holds three naval groups on the battle day: Antony's fleet (c323–c326), Octavian's fleet (c547–c551) and Cleopatra's squadron (c428, c429). It also holds a sub-unit, the left wing of Antony's fleet (c455). Only one force size is held: Cleopatra's squadron is sixty ships in both Hale (c66, c205) and Plutarch (c221). No claim gives the size of either main fleet. On composition, the claims attest smaller ships on Octavian's side (Dio c203; Weigall c245) and towered ships on Antony's side (Hale c119; Weigall c170; Plutarch c182). Land armies were drawn up on shore and watched the fleets (Plutarch c287; Hale c109, c291), but no claim gives their size or units. Octavian embarked infantry (Dio c190) and Antony's ships carried soldiers (Plutarch c294), so both fleets fought with marines aboard.",
+          "claims": [
+            "chr:assertion:depicted:hale-famous-sea-fights:cleopatra-and-sixty-ships-sail-away:happened-before:depicted:hale-famous-sea-fights:withdrawal-of-sixty-ships-exposes-antony-s-fleet:q0eaaf6ef02",
+            "chr:assertion:depicted:hale-famous-sea-fights:cleopatra-and-sixty-ships-sail-away:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:plutarch-life-of-antony:cleopatra-s-sixty-ships-hoist-sails-and-flee:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:antony-fleet-at-actium:participated-in:battle-of-actium",
+            "chr:assertion:antony-fleet-at-actium:participated-in:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:antony-fleet-at-actium:participated-in:battle-of-actium:q2ca4231938",
+            "chr:assertion:antony-fleet-at-actium:participated-in:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:octavian-fleet-at-actium:participated-in:battle-of-actium",
+            "chr:assertion:octavian-fleet-at-actium:participated-in:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:octavian-fleet-at-actium:participated-in:battle-of-actium:q2ca4231938",
+            "chr:assertion:octavian-fleet-at-actium:participated-in:battle-of-actium:qa103b41198",
+            "chr:assertion:octavian-fleet-at-actium:participated-in:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:cleopatra-squadron-at-actium:participated-in:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:cleopatra-squadron-at-actium:participated-in:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:antony-fleet-at-actium-left-wing:participated-in:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-s-smaller-ships-dash-and-ram:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:octavian-s-little-ships-win-the-day:part-of:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:hale-famous-sea-fights:agrippa-captures-a-few-towered-warships:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:antony-s-men-hurl-missiles-from-towers:part-of:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-s-soldiers-shoot-from-towers:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:plutarch-life-of-antony:the-land-armies-drawn-up-by-the-sea:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:hale-famous-sea-fights:two-armies-watch-the-fleets:occurred-at:actium-promontory:q0eaaf6ef02",
+            "chr:assertion:depicted:hale-famous-sea-fights:two-armies-watch-the-fleets:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-embarks-infantry-places-friends-in-boats:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:antony-fleet-at-actium:participated-in:depicted:plutarch-life-of-antony:antony-exhorts-his-ships-soldiers:qc67b4f8f98"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "Who held formal authority over each force, and who exercised command?",
+          "answer": "Antony's fleet: Plutarch is the voice for Antony's authority (c86, c87; also Wikipedia c88), and three voices say he commanded it (c14, c15, c16). Velleius alone names Sosius (c6) and Gellius Poplicola (c9) as commanders of Antony's fleet. Weigall (c7) and Wikipedia (c8) narrow Sosius to the left wing. Plutarch has Publicola advancing and being cut off (c253), but no claim places Publicola on a particular wing. Octavian's fleet: Agrippa is said to have commanded it (Hale c10, c12; Velleius c11; Wikipedia c13), and Dio says Augustus commanded it (c3). Authority over Octavian's fleet is assigned both to Augustus (Hale c83) and to Agrippa (Hale c84; Dio c85). Read against the rule that imperium belongs to the magistrate, the Agrippa authority claims look like a conflation of command with authority. Cleopatra's command of her squadron rests on Weigall alone (c4, c5). Arruntius, Insteius, Lurius, Taurus and Eurycles appear only as participants (c457–c471, c591, c444–c447), with no command claims. Plutarch's Octavian 'posts Agrippa and himself' (c234) points to a division of command that the graph does not hold.",
+          "claims": [
+            "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:q35f4b6c879",
+            "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:qb288036321",
+            "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:qd8adeae771",
+            "chr:assertion:mark-antony:commanded:antony-fleet-at-actium",
+            "chr:assertion:mark-antony:commanded:antony-fleet-at-actium:q852dd6bc18",
+            "chr:assertion:mark-antony:commanded:antony-fleet-at-actium:qc67b4f8f98",
+            "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:lucius-gellius-poplicola:commanded:antony-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium-left-wing:q2ca4231938",
+            "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium-left-wing:q852dd6bc18",
+            "chr:assertion:depicted:plutarch-life-of-antony:publicola-advances-and-is-cut-off:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q0eaaf6ef02",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q3066649c00",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q852dd6bc18",
+            "chr:assertion:augustus:commanded:octavian-fleet-at-actium:qef0ce0aa37",
+            "chr:assertion:augustus:held-authority-over:octavian-fleet-at-actium:q3066649c00",
+            "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:q0eaaf6ef02",
+            "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:qa103b41198",
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q2ca4231938",
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q38b4636f8a",
+            "chr:assertion:depicted:plutarch-life-of-antony:octavian-posts-agrippa-and-himself:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:lucius-arruntius:participated-in:depicted:plutarch-life-of-antony:antony-s-centre-in-confusion-engages-arruntius:qc67b4f8f98",
+            "chr:assertion:marcus-insteius:participated-in:battle-of-actium",
+            "chr:assertion:marcus-lurius:participated-in:battle-of-actium",
+            "chr:assertion:titus-statilius-taurus:participated-in:battle-of-actium:qaebeac93d1",
+            "chr:assertion:gaius-julius-eurycles:participated-in:battle-of-actium"
+          ],
+          "strength": "contested"
+        },
+        {
+          "question": "What were the strategy, operations and tactics, and how do the sources explain the outcome?",
+          "answer": "Before the battle, Cleopatra's advice for a sea decision prevailed in Antony's council (Dio c217), and Antony burned his unmanned ships (Wikipedia c135). Octavian waited for the enemy to come out, and Dio says he abandoned a plan to let them slip past (c193, c186). Antony's fleet formed a line outside the strait and thickened it (Dio c158, c179); Weigall describes it as three squadrons (c159). Octavian's side either stayed out of range (Wikipedia c242) or rowed backward (Plutarch c246), drawing Antony's left wing forward (c168, c628; Sosius c255). Agrippa extended his wing to outflank (Plutarch c121; Weigall c125; Dio c204, c130). In the fighting, both sides largely avoided ramming (c254, c288, c152). Octavian's lighter ships swarmed single ships and shattered oars (Dio c200, c202; Hale c248, c247), while Antony's men shot from towers and grappled (c181, c182). Dio says the fight was decided by fire sent for from camp (c191, c198, c270); Hale has fire rafts and fire arrows (c127, c128). The sources explain the outcome differently. Dio says the battle stayed indecisive until Cleopatra fled (c593, c618). Weigall says a rising north wind led her to leave (c617). Plutarch, Dio and Wikipedia have Antony following her (c596, c601, c602), and Hale and Wikipedia add that the withdrawal exposed and discouraged his fleet (c624, c634). Velleius frames the flight as Cleopatra's initiative (c209) and Antony as deserting his soldiers (c136).",
+          "claims": [
+            "chr:assertion:depicted:cassius-dio-roman-history:cleopatra-s-advice-prevails-in-council:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-burns-unmanned-ships-clusters-the-rest:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-waits-for-the-enemy-to-sail-out:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-abandons-plan-to-let-them-slip:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-s-fleet-forms-line-outside-strait:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-s-ships-hold-and-thicken-their-line:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:antony-s-fleet-forms-three-squadrons:part-of:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-s-fleet-stays-out-of-range:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:plutarch-life-of-antony:octavian-s-right-wing-rows-backwards:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-s-left-wing-puts-in-motion:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:plutarch-life-of-antony:octavian-s-right-wing-rows-backwards:triggered-by:depicted:plutarch-life-of-antony:antony-s-left-wing-puts-in-motion:qc67b4f8f98",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:sosius-launches-the-initial-attack:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:plutarch-life-of-antony:agrippa-extends-left-wing-to-encircle:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:agrippa-tries-to-outflank-antony-s-left:part-of:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-s-wings-advance-in-crescent:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-advances-to-meet-the-flanking:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:ships-fight-without-ramming:part-of:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:plutarch-life-of-antony:the-ships-fight-without-ramming:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:hale-famous-sea-fights:antony-s-captains-abandon-ramming:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-s-ships-shatter-enemy-oar-blades:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-s-ships-swarm-single-enemy-ships:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:hale-famous-sea-fights:octavian-s-ships-shatter-enemy-oars:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:hale-famous-sea-fights:octavian-s-ships-concentrate-to-board-crippled-ship:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-s-side-shoots-and-grapples-attackers:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-s-soldiers-shoot-from-towers:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-sends-to-camp-for-fire:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-s-ships-attack-with-fire:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:fire-spreads-through-antony-s-ships:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:hale-famous-sea-fights:agrippa-s-men-send-fire-rafts:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:hale-famous-sea-fights:agrippa-s-men-shoot-fire-arrows:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:cassius-dio-roman-history:the-battle-stays-indecisive:resulted-in:depicted:cassius-dio-roman-history:cleopatra-flees-and-signals-her-ships:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:cleopatra-flees-and-signals-her-ships:triggered-by:depicted:cassius-dio-roman-history:cleopatra-waits-at-anchor-behind-the-fighting:qa103b41198",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:cleopatra-decides-to-leave-the-battle:triggered-by:depicted:weigall-life-and-times-of-cleopatra:north-wind-rises-sea-turns-rough:q2ca4231938",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-abandons-the-fight-follows-cleopatra:triggered-by:depicted:plutarch-life-of-antony:cleopatra-s-sixty-ships-hoist-sails-and-flee:qc67b4f8f98",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-follows-the-fleeing-ships:triggered-by:depicted:cassius-dio-roman-history:cleopatra-s-ships-sail-out-to-sea:qa103b41198",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-follows-the-fleeing-squadron:triggered-by:depicted:wikipedia-en-battle-of-actium:cleopatra-s-squadron-retreats-to-open-sea:qaebeac93d1",
+            "chr:assertion:depicted:hale-famous-sea-fights:egyptian-withdrawal-discourages-antony-s-fleet:triggered-by:depicted:hale-famous-sea-fights:withdrawal-of-sixty-ships-exposes-antony-s-fleet:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:panic-spreads-through-antony-s-fleet:triggered-by:depicted:wikipedia-en-battle-of-actium:antony-follows-the-fleeing-squadron:qaebeac93d1",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:cleopatra-initiates-the-flight:part-of:battle-of-actium:q98b5c04788",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:part-of:battle-of-actium:q98b5c04788"
+          ],
+          "strength": "contested"
+        },
+        {
+          "question": "How were the forces raised, paid, supplied, and moved?",
+          "answer": "Almost nothing on this is held as claims. Octavian embarked infantry and placed friends in boats (c190), and Antony burned the ships he could not man (c135). Several phase items ('Antony presses men into undermanned ships', 'Antony's crews filled with landsmen', the blockade cutting supplies) suggest material in the held sources, but none has been made into a claim.",
+          "claims": [
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-embarks-infantry-places-friends-in-boats:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-burns-unmanned-ships-clusters-the-rest:part-of:battle-of-actium:qaebeac93d1"
+          ],
+          "strength": "absent"
+        },
+        {
+          "question": "What were the losses, surrenders, and defections?",
+          "answer": "Plutarch says Octavian's side captured three hundred ships (c251). Hale has two Egyptian ships taken in the pursuit (c126) and a few towered warships captured (c119). Wikipedia says abandoned ships were captured or sunk (c151). Hale has burning ships abandoned or surrendered (c268, c337). Dio describes men dying by fire, by drowning and at each other's hands (c267, c171). Velleius says Antony's men fought on to the death (c169), and Wikipedia has Octavian rescuing crews (c235). No claim gives a figure for men lost. The land army's surrender and the pre-battle desertions exist only as our phase containers (c257, c183), with no defection claims for individuals.",
+          "claims": [
+            "chr:assertion:depicted:plutarch-life-of-antony:octavian-s-side-captures-three-hundred-ships:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:hale-famous-sea-fights:agrippa-s-cruisers-capture-two-egyptian-ships:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:hale-famous-sea-fights:agrippa-captures-a-few-towered-warships:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-s-abandoned-ships-captured-or-sunk:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:hale-famous-sea-fights:burning-ships-abandoned-or-surrendered:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:antony-fleet-at-actium:participated-in:depicted:hale-famous-sea-fights:burning-ships-abandoned-or-surrendered:q0eaaf6ef02",
+            "chr:assertion:depicted:cassius-dio-roman-history:burning-men-leap-into-sea-perish:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-s-men-kill-each-other-or-themselves:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-s-men-fight-on-to-death:part-of:battle-of-actium:q98b5c04788",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-rescues-crews-of-burning-ships:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:phase:battle-of-actium:army-surrender:part-of:battle-of-actium",
+            "chr:assertion:phase:battle-of-actium:attrition:part-of:battle-of-actium"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "What happened to the forces afterwards?",
+          "answer": "Octavian founded Nicopolis, on the camp site according to Hale (c59, c378; also c107, c625). Dio says captured ships were dedicated to Apollo (c56). Velleius reports clemency after the victory (c60, c387). Velleius and Dio record the pursuit to Alexandria and the flight via the Peloponnesus (c57, c54). No claim covers the discharge, settlement or incorporation of either side's soldiers, sailors or ships.",
+          "claims": [
+            "chr:assertion:battle-of-actium:happened-before:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+            "chr:assertion:augustus:participated-in:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:occurred-at:nicopolis:qaebeac93d1",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1",
+            "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+            "chr:assertion:augustus:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+            "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:caesar-pursues-antony-and-cleopatra-to-alexandria:q98b5c04788",
+            "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:antony-and-cleopatra-reach-the-peloponnesus:qa103b41198"
+          ],
+          "strength": "thin"
+        }
+      ],
+      "gaps": [
+        {
+          "question": "What fate did the soldiers of both sides meet after the battle: discharge, settlement, incorporation, garrisons?",
+          "why": "The veterans' fate is a core question for this lens, and no claim addresses it. Dio narrates Octavian's dismissal of soldiers and the veterans' unrest after Actium in the book already held.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "51.3.1-51.4.8",
+          "predicate": "settledAt",
+          "entities": [
+            "Octavian's fleet at Actium",
+            "Antony's fleet at Actium",
+            "Augustus"
+          ],
+          "ref": "military:g1",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "How many veterans were settled, and on what land?",
+          "why": "This is Augustus' own account of how his armies were demobilised; only 5.25.1 of the work has been read.",
+          "kind": "unread passage",
+          "work_ref": "w9",
+          "source": "Augustus, Res Gestae Divi Augusti",
+          "locator": "3.3; 16.1",
+          "predicate": "settledAt",
+          "entities": [
+            "Augustus"
+          ],
+          "ref": "military:g2",
+          "work": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What are the sizes and composition of the two main fleets and land armies, according to each source?",
+          "why": "No strength claim exists apart from Cleopatra's sixty ships. Ancient figures must be recorded voice by voice, and Antony's manning before the battle is not yet a claim.",
+          "kind": "unread passage",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "64.1-64.3",
+          "predicate": "hadStrength",
+          "entities": [
+            "Antony's fleet at Actium",
+            "Octavian's fleet at Actium"
+          ],
+          "ref": "military:g3",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "How do the two commanders' speeches characterise the ships and the tactics of each side?",
+          "why": "Dio's pre-battle speeches discuss the ship types and how each side expected to fight; these passages are unread.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "50.16.1-50.22.4; 50.24.1-50.30.4",
+          "predicate": null,
+          "entities": [
+            "Antony's fleet at Actium",
+            "Octavian's fleet at Actium"
+          ],
+          "ref": "military:g4",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Who commanded each wing and the centre of Octavian's line (Arruntius, Lurius) and of Antony's (Insteius, Poplicola)?",
+          "why": "These men appear only as participants. Wing commands are needed to keep delegated command apart from imperium.",
+          "kind": "relationship missing",
+          "work_ref": null,
+          "source": null,
+          "locator": null,
+          "predicate": "commanded",
+          "entities": [
+            "Lucius Arruntius",
+            "Marcus Lurius",
+            "Marcus Insteius",
+            "Lucius Gellius Poplicola",
+            "Marcus Vipsanius Agrippa"
+          ],
+          "ref": "military:g5",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "Who commanded the land armies (Canidius for Antony, Taurus for Octavian), and what became of those armies?",
+          "why": "The land forces have no group entity, so their command and their surrender cannot be recorded.",
+          "kind": "entity missing",
+          "work_ref": null,
+          "source": null,
+          "locator": null,
+          "predicate": "commanded",
+          "entities": [
+            "Titus Statilius Taurus",
+            "Antony's land army at Actium",
+            "Octavian's land army at Actium"
+          ],
+          "ref": "military:g6",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "On whose side was Cleopatra's squadron, and was it part of Antony's fleet?",
+          "why": "A unit's side must be its own claim. The squadron has no partOf, alliedWith or servedUnder claim tying it to Antony's force.",
+          "kind": "relationship missing",
+          "work_ref": null,
+          "source": null,
+          "locator": null,
+          "predicate": "alliedWith",
+          "entities": [
+            "Cleopatra's squadron at Actium",
+            "Antony's fleet at Actium"
+          ],
+          "ref": "military:g7",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "What office gave Octavian imperium in 31 BCE, and what was Antony's legal standing after being stripped of his consulship?",
+          "why": "Formal authority over each fleet cannot be distinguished from command without the office held. The heldAuthorityOver claims for Agrippa (c84, c85) need testing against it.",
+          "kind": "relationship missing",
+          "work_ref": null,
+          "source": null,
+          "locator": null,
+          "predicate": "heldPosition",
+          "entities": [
+            "Augustus",
+            "Mark Antony",
+            "Marcus Vipsanius Agrippa"
+          ],
+          "ref": "military:g8",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "What ship classes and ram sizes were in Antony's fleet, as shown by the dedicated rams at the campsite memorial?",
+          "why": "The archaeology offers a check on ancient claims about the size and composition of ships that is independent of the literary voices.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "William M. Murray and Photios M. Petsas, Octavian's Campsite Memorial for the Actian War (1989)",
+          "locator": null,
+          "predicate": "hadStrength",
+          "entities": [
+            "Antony's fleet at Actium"
+          ],
+          "ref": "military:g9",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What fleet totals do the other ancient voices give?",
+          "why": "These sources are independent voices on ship numbers, and no fleet totals are held.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "Orosius, Histories against the Pagans; Florus, Epitome",
+          "locator": "Orosius 6.19.8-12; Florus 2.21",
+          "predicate": "hadStrength",
+          "entities": [
+            "Octavian's fleet at Actium",
+            "Antony's fleet at Actium"
+          ],
+          "ref": "military:g10",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        }
+      ],
+      "predicate_needs": [
+        {
+          "name": "hadStrength",
+          "definition": "A force numbered a given count of ships or men at a given date, as stated by one source. It is reported per voice and never reconciled.",
+          "subject_kinds": [
+            "Group"
+          ],
+          "object_kinds": [
+            "Quantity"
+          ],
+          "example": "Cleopatra's squadron at Actium hadStrength 60 ships, 2 Sep 31 BCE (Plutarch; Hale)",
+          "exists": false
+        },
+        {
+          "name": "captured",
+          "definition": "A force took enemy vessels or men in a given engagement on a given date.",
+          "subject_kinds": [
+            "Group",
+            "Person"
+          ],
+          "object_kinds": [
+            "Group"
+          ],
+          "example": "Octavian's fleet at Actium captured 300 ships of Antony's fleet, 2 Sep 31 BCE (Plutarch)",
+          "exists": false
+        },
+        {
+          "name": "surrenderedTo",
+          "definition": "A force or person yielded to an enemy commander at a stated date.",
+          "subject_kinds": [
+            "Group",
+            "Person"
+          ],
+          "object_kinds": [
+            "Person",
+            "Group"
+          ],
+          "example": "Antony's land army surrenderedTo Augustus, September 31 BCE, some days after the battle",
+          "exists": false
+        },
+        {
+          "name": "defectedTo",
+          "definition": "A person or unit left one side for the opposing commander at a stated date.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Person"
+          ],
+          "example": "Dellius defectedTo Augustus, shortly before 2 Sep 31 BCE",
+          "exists": false
+        },
+        {
+          "name": "delegatedCommandTo",
+          "definition": "A holder of imperium assigned a deputy (legatus) to command a force or division for a stated period.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Person"
+          ],
+          "example": "Augustus delegatedCommandTo Marcus Vipsanius Agrippa for the left wing of Octavian's fleet, 2 Sep 31 BCE",
+          "exists": false
+        },
+        {
+          "name": "settledAt",
+          "definition": "Discharged soldiers of a force were settled on land at a place at a stated date.",
+          "subject_kinds": [
+            "Group"
+          ],
+          "object_kinds": [
+            "Place"
+          ],
+          "example": "veterans of Octavian's forces settledAt colonies in Italy, 30 BCE onward (to be grounded in Dio 51.3-4 or Res Gestae 3.3)",
+          "exists": false
+        }
+      ],
+      "invented": []
+    },
+    "political": {
+      "lens": "political",
+      "note": "Ours: read politically, the graph holds the Battle of Actium almost entirely as a naval engagement and scarcely as a struggle over legitimate power. No one is given an office or a power at the time, only command roles, and even the roles are contested between Augustus and Agrippa and between Antony, Sosius and Poplicola. The factional line is thin but clear: an alliance in 37 BCE turning to opposition by the end of 33 BCE, with Cleopatra on Antony's side. The only deciding body attested is Antony's own council, where Cleopatra's advice prevails. The framing we can see is the victor's, after the fact: Virgil's Italy against the East, clemency, Apollo's dedications and Nicopolis. The declaration of war, Antony's loss of his consulship, the oath of Italy and the client kings all remain outside the claims, so the constitutional meaning of the battle rests only on interpretive 'led to the Roman Empire' edges.",
+      "findings": [
+        {
+          "question": "Who held which offices and powers at Actium, and how legitimate were they held to be, by whom?",
+          "answer": "The graph holds no office or power claims for anyone at Actium. There is no heldPosition, heldPower or exercisedPower claim. What it does hold are command roles (commanded) and holding authority over fleets (heldAuthorityOver), which are roles, not offices or imperium. Even these are contested. For Octavian's fleet, Dio names Augustus (c3), while Hale, Dio and Wikipedia name Agrippa (c10–c13, c84, c85); Hale also has Augustus holding authority over the fleet (c83). For Antony's fleet, Velleius names both Sosius (c6) and Poplicola (c9), alongside Antony himself (c14–c16, c86–c88). Sosius is also given the left wing (c7, c8). Cleopatra commands her own squadron (c4, c5). No claim says by what right anyone held command, or who held it legal.",
+          "claims": [
+            "chr:assertion:augustus:commanded:octavian-fleet-at-actium:qef0ce0aa37",
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q2ca4231938",
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q38b4636f8a",
+            "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium-left-wing:q2ca4231938",
+            "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium-left-wing:q852dd6bc18",
+            "chr:assertion:lucius-gellius-poplicola:commanded:antony-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q0eaaf6ef02",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q3066649c00",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q852dd6bc18",
+            "chr:assertion:mark-antony:commanded:antony-fleet-at-actium",
+            "chr:assertion:mark-antony:commanded:antony-fleet-at-actium:q852dd6bc18",
+            "chr:assertion:mark-antony:commanded:antony-fleet-at-actium:qc67b4f8f98",
+            "chr:assertion:augustus:held-authority-over:octavian-fleet-at-actium:q3066649c00",
+            "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:q0eaaf6ef02",
+            "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:qa103b41198",
+            "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:q35f4b6c879",
+            "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:qb288036321",
+            "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:qd8adeae771"
+          ],
+          "strength": "absent"
+        },
+        {
+          "question": "Which factions, alliances and oppositions were in play, and when did they shift?",
+          "answer": "There are two dated edges on the alliance side. Augustus is allied with Antony at astronomical year -36 (37 BCE) (c1). Sosius is allied with Antony in -31 (c2). Augustus is opposed to Antony from -0032-12-31, the end of 33 BCE (c113), and in -31 (c118), with undated oppositions besides (c112, c114–c117). Augustus is also opposed to Cleopatra (c111). Cleopatra is recorded as Antony's spouse for -31 to -29, as our own assertion (c594). After the battle, Hale has Antony and Cleopatra failing to rally support (c599, c352, c389, c499). Almost all of these edges rest on a single voice, Wikipedia. The defections of Domitius, Dellius, Amyntas, Plancus and the client kings appear only as phase moments, not as claims.",
+          "claims": [
+            "chr:assertion:augustus:allied-with:mark-antony:q74ce4c01ba",
+            "chr:assertion:gaius-sosius:allied-with:mark-antony:qce22c47589",
+            "chr:assertion:augustus:opposed:cleopatra:qaebeac93d1",
+            "chr:assertion:augustus:opposed:mark-antony:q0eaaf6ef02",
+            "chr:assertion:augustus:opposed:mark-antony:q123f269c1e",
+            "chr:assertion:augustus:opposed:mark-antony:q283a33e060",
+            "chr:assertion:augustus:opposed:mark-antony:q9bdbe3a38d",
+            "chr:assertion:augustus:opposed:mark-antony:qa064a979fc",
+            "chr:assertion:augustus:opposed:mark-antony:qaebeac93d1",
+            "chr:assertion:augustus:opposed:mark-antony:qce22c47589",
+            "chr:assertion:cleopatra:spouse-of:mark-antony:qaecbf0fa8f",
+            "chr:assertion:depicted:hale-famous-sea-fights:antony-and-cleopatra-fail-to-rally-support:triggered-by:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:augustus:participated-in:depicted:hale-famous-sea-fights:antony-and-cleopatra-fail-to-rally-support:q0eaaf6ef02"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "Which decisions were taken, and by which body?",
+          "answer": "The only decision-making body the claims attest is Antony's council of war. There Cleopatra's advice prevails (c217, c417, c538), and the only voice for this is Dio. Octavian's tactical decisions also appear as events, for example abandoning the plan to let Antony slip (c186, c364) and clemency after the victory (c60, c387, from Velleius). No claim records a decision of the Senate, the assemblies or the magistrates. This includes the declaration of war and the removal of Antony's consulship, which appear only as phase moments.",
+          "claims": [
+            "chr:assertion:depicted:cassius-dio-roman-history:cleopatra-s-advice-prevails-in-council:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:cleopatra:participated-in:depicted:cassius-dio-roman-history:cleopatra-s-advice-prevails-in-council:qa103b41198",
+            "chr:assertion:mark-antony:participated-in:depicted:cassius-dio-roman-history:cleopatra-s-advice-prevails-in-council:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-abandons-plan-to-let-them-slip:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-abandons-plan-to-let-them-slip:qa103b41198",
+            "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+            "chr:assertion:augustus:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "How was the conflict framed in public: declarations, oaths, propaganda?",
+          "answer": "On the day itself, both sides exhort their fighters (c266, c138, c507), and Caesar calls out to Antony's men (c192, c372, from Velleius). Virgil's imaginative framing sets Caesar leading Italians against Antony's eastern forces (c185, c363, c133, c283). Modern voices echo this as an East–West contest (c25, c26). Commemoration is the victor's framing: the dedication of captured ships to Apollo (c56, c368) and the founding of Nicopolis (c59, c89–c91, c107, c625). There is no claim for the coniuratio Italiae, for the declaration of war, or for any hostis declaration.",
+          "claims": [
+            "chr:assertion:depicted:cassius-dio-roman-history:both-sides-exhort-their-fighters:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:caesar-shouts-to-antony-s-men:part-of:battle-of-actium:q98b5c04788",
+            "chr:assertion:augustus:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:caesar-shouts-to-antony-s-men:q98b5c04788",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:caesar-augustus-leads-italians-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:augustus:participated-in:depicted:proposed-work-virgil-aeneid:caesar-augustus-leads-italians-to-battle:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:antony-brings-eastern-forces-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-eastern-peoples-flee:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q02310b84a7",
+            "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q87abc58038",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:qaebeac93d1",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "What diplomacy with client kings, allies and foreign states was involved?",
+          "answer": "Cleopatra, a foreign queen, participates and commands her own squadron (c4, c5, c395–c403). Eurycles fights on Octavian's side (c444–c447), but no claim says what he was by status. There are no claims of client-king status (rex socius et amicus), treaties or defections of kings; those exist only as phase moments.",
+          "claims": [
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q2ca4231938",
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q38b4636f8a",
+            "chr:assertion:cleopatra:participated-in:battle-of-actium",
+            "chr:assertion:gaius-julius-eurycles:participated-in:battle-of-actium",
+            "chr:assertion:gaius-julius-eurycles:participated-in:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:gaius-julius-eurycles:participated-in:depicted:plutarch-life-of-antony:eurycles-attacks-antony-s-ship:qc67b4f8f98",
+            "chr:assertion:gaius-julius-eurycles:participated-in:depicted:plutarch-life-of-antony:eurycles-captures-the-other-admiral-s-ship:qc67b4f8f98"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "What changed in the constitution or the distribution of power because of it?",
+          "answer": "Only interpretive claims address this. Hale and Wikipedia say the battle led to the Roman Empire (c92, c93), and several voices call it a decisive battle (c27–c30). It is placed within the Final War of the Roman Republic (c184). No claim records any change of office, power or title that followed.",
+          "claims": [
+            "chr:assertion:battle-of-actium:led-to:roman-empire:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:led-to:roman-empire:qaebeac93d1",
+            "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:q02310b84a7",
+            "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:q98b5c04788",
+            "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:qaebeac93d1",
+            "chr:assertion:battle-of-actium:part-of:final-war-of-the-roman-republic"
+          ],
+          "strength": "thin"
+        }
+      ],
+      "gaps": [
+        {
+          "question": "What offices and powers did Octavian and Antony hold in 31 BCE (consulship, triumviral power, imperium), and on whose authority?",
+          "why": "The lens must keep office, role and power distinct. The graph has only command roles, so the legitimacy of each side cannot be assessed.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "T. R. S. Broughton, The Magistrates of the Roman Republic, vol. 2 (1952)",
+          "locator": "years 32 and 31 BCE",
+          "predicate": "heldPosition",
+          "entities": [
+            "Augustus",
+            "Mark Antony",
+            "Gaius Sosius"
+          ],
+          "ref": "political:g1",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "Was Antony deprived of his designated consulship and triumviral power, and by which body?",
+          "why": "This is the constitutional basis for treating Antony as without office, and the hinge of Octavian's claim to legitimacy. It is present as a phase moment but not as a claim.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "50.4.3",
+          "predicate": "deprivedOfPosition",
+          "entities": [
+            "Mark Antony",
+            "Roman Senate"
+          ],
+          "ref": "political:g2",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Did the consuls of 32 BCE and senators leave Rome to join Antony, so that the Senate itself was split?",
+          "why": "A senatorial faction around Antony bears on who could claim to speak for the res publica.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "50.2.5",
+          "predicate": "alliedWith",
+          "entities": [
+            "Gaius Sosius",
+            "Mark Antony"
+          ],
+          "ref": "political:g3",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "What does Augustus claim about the oath of Italy and the provinces choosing him as leader for the war that ended at Actium?",
+          "why": "The coniuratio Italiae is the victor's chief claim of legitimacy without office. Only 5.25.1 has been read.",
+          "kind": "unread passage",
+          "work_ref": "w9",
+          "source": "Augustus, Res Gestae Divi Augusti",
+          "locator": "5.25.2",
+          "predicate": "sworeAllegianceTo",
+          "entities": [
+            "Augustus"
+          ],
+          "ref": "political:g4",
+          "work": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "How did the reading of Antony's will and the defections of Plancus and Titius shape the public case for war?",
+          "why": "This was the propaganda that justified declaring war, and its sequel in which kings followed Antony.",
+          "kind": "unread passage",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "58.3",
+          "predicate": "defectedTo",
+          "entities": [
+            "Mark Antony",
+            "Augustus"
+          ],
+          "ref": "political:g5",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Which deserters and client kings changed sides before the battle, and when?",
+          "why": "Shifting factions must be dated edges. Domitius, Dellius, Amyntas and the Paphlagonian king appear only as phase moments.",
+          "kind": "relationship missing",
+          "work_ref": null,
+          "source": null,
+          "locator": null,
+          "predicate": "defectedTo",
+          "entities": [
+            "Mark Antony",
+            "Augustus"
+          ],
+          "ref": "political:g6",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What settlement of power and constitution followed the victory, in a near-contemporary pro-Augustan voice?",
+          "why": "This would record the constitutional change attributed to Actium as a dated claim, rather than the interpretive c92 and c93.",
+          "kind": "unread passage",
+          "work_ref": "w8",
+          "source": "Velleius Paterculus, Historiae Romanae",
+          "locator": "2.89.3",
+          "predicate": "heldPower",
+          "entities": [
+            "Augustus"
+          ],
+          "ref": "political:g7",
+          "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "Which client kings fought for Antony and what was their status toward Rome?",
+          "why": "Diplomacy with reges socii is in scope; the kings at Actium are not entities in the graph.",
+          "kind": "entity missing",
+          "work_ref": null,
+          "source": null,
+          "locator": null,
+          "predicate": "alliedWith",
+          "entities": [
+            "Amyntas",
+            "Mark Antony"
+          ],
+          "ref": "political:g8",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "How did Octavian use his powers after Actium (titles, honours, use of the name Caesar)?",
+          "why": "This concerns the use of power and its later legitimation.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "Suetonius, Life of Augustus",
+          "locator": "17",
+          "predicate": "exercisedPower",
+          "entities": [
+            "Augustus"
+          ],
+          "ref": "political:g9",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        }
+      ],
+      "predicate_needs": [
+        {
+          "name": "declaredWarOn",
+          "definition": "A body or magistrate formally declares war on a person or polity at a date.",
+          "subject_kinds": [
+            "Group",
+            "Person"
+          ],
+          "object_kinds": [
+            "Person",
+            "Polity"
+          ],
+          "example": "Roman Senate declaredWarOn Cleopatra, 32 BCE (phase: 'war declared on Cleopatra')",
+          "exists": false
+        },
+        {
+          "name": "deprivedOfPosition",
+          "definition": "A person is stripped of an office or designated office by a named body at a date.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Position"
+          ],
+          "example": "Mark Antony deprivedOfPosition consulship (designate for 31 BCE), 32 BCE",
+          "exists": false
+        },
+        {
+          "name": "defectedTo",
+          "definition": "A person or group leaves one side and goes over to another at a date.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Person",
+            "Group"
+          ],
+          "example": "Quintus Dellius defectedTo Augustus, before 2 Sept 31 BCE",
+          "exists": false
+        },
+        {
+          "name": "sworeAllegianceTo",
+          "definition": "A community or group takes an oath of loyalty to a person at a date.",
+          "subject_kinds": [
+            "Group",
+            "Place"
+          ],
+          "object_kinds": [
+            "Person"
+          ],
+          "example": "Italy sworeAllegianceTo Augustus (coniuratio Italiae), 32 BCE",
+          "exists": false
+        },
+        {
+          "name": "grantedClemencyTo",
+          "definition": "A victor spares a named opponent or group at a date.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Person",
+            "Group"
+          ],
+          "example": "Augustus grantedClemencyTo Gaius Sosius, after Sept 31 BCE",
+          "exists": false
+        }
+      ],
+      "invented": []
+    },
+    "economic": {
+      "lens": "economic",
+      "note": "Our reading: through the economic lens the graph's Actium is almost entirely a narrative of ships, and its economic content is thin. The clearest economic facts are losses of capital in hulls. Antony burned his own surplus ships, Octavian's side is credited by Plutarch with three hundred captures, and Dio has some of that booty dedicated to Apollo. Only Hale has the treasure escape with Cleopatra, so the decisive question of where the Ptolemaic money went is unanswered in the claims. Financing, coinage, requisition, veteran pay and land settlement are all absent apart from the bare foundation of Nicopolis. The first readings should be the unread passages of Dio on the levies and veterans' pay and Plutarch 68.4 on Greek grain, then Crawford for the coinage.",
+      "findings": [
+        {
+          "question": "How was it financed, and who paid?",
+          "answer": "No claim held addresses financing: there is nothing on tributum, levies on Italy, Antony's levies in the East, or Cleopatra's contribution to the war chest. The phase summaries mention Antony gathering Cleopatra's fleet and treasure at Ephesus, but that is our placement and not a claim.",
+          "claims": [],
+          "strength": "absent"
+        },
+        {
+          "question": "What coinage was struck for it, by whom, and what does it show?",
+          "answer": "No claim concerns coinage, whether Antony's legionary and fleet denarii or Octavian's victory issues.",
+          "claims": [],
+          "strength": "absent"
+        },
+        {
+          "question": "What land or property changed hands: confiscation, settlement, grants?",
+          "answer": "The only land claim is the foundation of Nicopolis on Octavian's camp site after the battle. Wikipedia, Hale and Strabo frame it as a consequence of the battle, and Augustus is recorded as founder. No claim says whose land it was, who was settled there, or whether land was confiscated from Antony's adherents or granted to veterans.",
+          "claims": [
+            "chr:assertion:battle-of-actium:happened-before:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q87abc58038",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:qaebeac93d1",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:occurred-at:nicopolis:qaebeac93d1",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1",
+            "chr:assertion:augustus:participated-in:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:qaebeac93d1",
+            "chr:assertion:augustus:participated-in:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "How were grain and materials supplied, and what disrupted supply?",
+          "answer": "The claims register only the frame. 'Antony's position isolated' (c175) and 'Attrition and desertion' (c183) are our asserted phases within the battle. Antony burning unmanned ships (c135, Wikipedia) implies a shortage of crews. The phase summaries describe blockade, hunger, capture of transports and the cutting of water, but no claim states how either side was supplied with grain, timber or crews, or who supplied them.",
+          "claims": [
+            "chr:assertion:phase:battle-of-actium:isolation:part-of:battle-of-actium",
+            "chr:assertion:phase:battle-of-actium:attrition:part-of:battle-of-actium",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-burns-unmanned-ships-clusters-the-rest:part-of:battle-of-actium:qaebeac93d1"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "What wealth was gained or lost: booty, treasuries, tribute, indemnities?",
+          "answer": "Losses of ships are the best attested item. Plutarch has Octavian's side capturing three hundred ships (c251, c45); that figure is a voice, not a fact. Dio has captured ships dedicated to Apollo (c56, c368), so booty was turned to votive use. Weigall has Antony's ships fired, sunk and captured (c177). Hale has Agrippa's cruisers taking two Egyptian ships (c126) and a few towered warships (c119). Antony burned his own surplus ships beforehand (c135). Only Hale has Cleopatra fleeing for Alexandria with the treasure (c208, c432), so the treasure's escape rests on a single modern voice, and no sum is given.",
+          "claims": [
+            "chr:assertion:depicted:plutarch-life-of-antony:octavian-s-side-captures-three-hundred-ships:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-s-fleet-gives-up-the-struggle:happened-before:depicted:plutarch-life-of-antony:octavian-s-side-captures-three-hundred-ships:qc67b4f8f98",
+            "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:antony-s-ships-fired-sunk-captured:part-of:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:hale-famous-sea-fights:agrippa-s-cruisers-capture-two-egyptian-ships:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:hale-famous-sea-fights:agrippa-captures-a-few-towered-warships:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-burns-unmanned-ships-clusters-the-rest:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:hale-famous-sea-fights:cleopatra-flees-for-alexandria-with-treasure:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:cleopatra-squadron-at-actium:participated-in:depicted:hale-famous-sea-fights:cleopatra-flees-for-alexandria-with-treasure:q0eaaf6ef02"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "What lasting economic change followed?",
+          "answer": "The claims offer only interpretive consequences: that the battle led to the Roman Empire (c92, c93) and to Nicopolis (c89-c91). Nothing addresses the transfer of Egypt's wealth, veteran settlement, or the end of civil-war taxation.",
+          "claims": [
+            "chr:assertion:battle-of-actium:led-to:roman-empire:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:led-to:roman-empire:qaebeac93d1",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q87abc58038",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:qaebeac93d1"
+          ],
+          "strength": "thin"
+        }
+      ],
+      "gaps": [
+        {
+          "question": "How did Octavian finance the campaign, and who in Italy paid?",
+          "why": "Our period knowledge suggests the burden of the extraordinary levies on Italy in 32-31 BCE is central to who paid for the Final War. Dio's account of those levies lies in an unread chapter.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "50.10.4",
+          "predicate": "leviedOn",
+          "entities": [
+            "Augustus",
+            "Final War of the Roman Republic"
+          ],
+          "ref": "economic:g1",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Was Greece stripped of grain and labour to supply Antony's army?",
+          "why": "This would show who bore the supply burden and how it was extracted. Plutarch's anecdote of Chaeronean citizens forced to carry grain to the coast follows the read portion of chapter 68.",
+          "kind": "unread passage",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "68.4",
+          "predicate": "requisitionedFrom",
+          "entities": [
+            "Mark Antony",
+            "Antony's fleet at Actium"
+          ],
+          "ref": "economic:g2",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "How were Octavian's victorious troops paid off, and with what money, after Actium?",
+          "why": "Donativa and veteran discharges are the main post-battle fiscal consequence. Dio narrates the troubles over veterans' pay and Octavian's lack of funds before Egypt was taken.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "51.4.3",
+          "predicate": "paidDonativumTo",
+          "entities": [
+            "Augustus",
+            "Octavian's fleet at Actium"
+          ],
+          "ref": "economic:g3",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What happened to the Ptolemaic treasure and to the wealth of Egypt?",
+          "why": "The treasure Cleopatra carried off rests on one voice (c208). The treasure's ultimate capture and its effect on Roman finances need an ancient account. Dio treats Octavian's seizure of the treasures after Alexandria.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "51.17.6",
+          "predicate": "seizedTreasury",
+          "entities": [
+            "Cleopatra",
+            "Augustus"
+          ],
+          "ref": "economic:g4",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Did Octavian buy or confiscate land for veterans discharged after Actium?",
+          "why": "This bears on whether land changed hands by purchase or by confiscation. Res Gestae records payments to municipalities for soldiers' land in 30 BCE.",
+          "kind": "unread passage",
+          "work_ref": "w9",
+          "source": "Augustus, Res Gestae Divi Augusti",
+          "locator": "16.1",
+          "predicate": "settledOn",
+          "entities": [
+            "Augustus"
+          ],
+          "ref": "economic:g5",
+          "work": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What coinage did Antony strike to pay his legions and fleet, and what did Octavian strike after the victory?",
+          "why": "Coins show who could strike and what each side chose to display. Our period knowledge points to Antony's legionary denarii as direct evidence of how his forces were paid. None of this is held.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "Michael H. Crawford, Roman Republican Coinage (1974)",
+          "locator": "RRC 544",
+          "predicate": "struckCoinage",
+          "entities": [
+            "Mark Antony",
+            "Augustus"
+          ],
+          "ref": "economic:g6",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Who was settled at Nicopolis and whose land did it take?",
+          "why": "The foundation is the only land claim held, but it lacks owners and settlers. Brunt treats colonial and veteran settlement after Actium.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "P. A. Brunt, Italian Manpower, 225 B.C.-A.D. 14 (1971)",
+          "locator": null,
+          "predicate": "settledOn",
+          "entities": [
+            "Nicopolis",
+            "Augustus"
+          ],
+          "ref": "economic:g7",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        }
+      ],
+      "predicate_needs": [
+        {
+          "name": "leviedOn",
+          "definition": "A person or authority imposed a tax, levy or contribution on a group or place at a given time.",
+          "subject_kinds": [
+            "Person",
+            "Polity"
+          ],
+          "object_kinds": [
+            "Group",
+            "Place",
+            "Polity"
+          ],
+          "example": "Augustus leviedOn citizens of Italy, time -0032 (Dio 50.10, to be read).",
+          "exists": false
+        },
+        {
+          "name": "requisitionedFrom",
+          "definition": "A commander or army compulsorily took grain, materials, animals or labour from a community at a given time.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Place",
+            "Group"
+          ],
+          "example": "Mark Antony requisitionedFrom Chaeronea, time -0031 (Plutarch 68.4, to be read).",
+          "exists": false
+        },
+        {
+          "name": "capturedAsBooty",
+          "definition": "A side took ships, treasure or goods from the enemy in an engagement at a given time.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Group",
+            "Object"
+          ],
+          "example": "Octavian's fleet at Actium capturedAsBooty ships of Antony's fleet at Actium, time -0030-09-02 (c251).",
+          "exists": false
+        },
+        {
+          "name": "transportedTreasure",
+          "definition": "A person or group carried a treasury or store of valuables from one place to another at a given time.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Place"
+          ],
+          "example": "Cleopatra's squadron at Actium transportedTreasure to Alexandria, time -0030-09-02 (c208).",
+          "exists": false
+        },
+        {
+          "name": "struckCoinage",
+          "definition": "A person or authority issued a coin type at a given time.",
+          "subject_kinds": [
+            "Person",
+            "Polity"
+          ],
+          "object_kinds": [
+            "Object"
+          ],
+          "example": "Mark Antony struckCoinage legionary denarii, time -0032/-0031 (RRC 544, not held).",
+          "exists": false
+        },
+        {
+          "name": "settledOn",
+          "definition": "A person or authority assigned land at a place to settlers or veterans at a given time.",
+          "subject_kinds": [
+            "Person",
+            "Polity"
+          ],
+          "object_kinds": [
+            "Place"
+          ],
+          "example": "Augustus settledOn Nicopolis, time -0030/-0029.",
+          "exists": false
+        },
+        {
+          "name": "dedicatedSpoils",
+          "definition": "A person consecrated captured goods or ships to a deity or sanctuary at a given time.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Place",
+            "Concept"
+          ],
+          "example": "Augustus dedicatedSpoils captured ships to Apollo at Actium, time -0030 (c56, c368).",
+          "exists": false
+        }
+      ],
+      "invented": []
+    },
+    "social": {
+      "lens": "social",
+      "note": "Our reading through the social lens: the graph holds Actium as a clash of commanders and fleets. The bonds that drove it are largely absent, above all the marriage to Octavia, the desertions of Domitius and Dellius, and the clemency shown to Sosius. The one marriage claim is our own unsourced assertion. The social bond the sources do make vivid is a man abandoning his dependants: Antony leaves his soldiers for Cleopatra, and Dio and Velleius have the men left behind die by fire, by the sea, or by their own hands, or fight on refusing surrender. The voices are contested on Cleopatra: Velleius and Virgil cast her as the foreign queen who began the flight, Dio lets her steer the council, and Weigall blames the wind. Together that framing turns a Roman civil war into a war against the East. Claims on defections, patronage and veteran loyalty are the most urgent work for this lens.",
+      "findings": [
+        {
+          "question": "Which kinship and marriage ties bound or divided the participants?",
+          "answer": "The only kinship or marriage tie the graph holds is Cleopatra spouseOf Mark Antony for 31–29 BCE (c594). It is our own assertion, still proposed, and no ancient voice is attached to it. No claim records the tie that most divided the two leaders: Antony's marriage to Octavia, Octavian's sister. There are no childOf or siblingOf claims for any participant. The earlier tie between Augustus and Antony appears only as alliedWith in 36 BCE (c1), against repeated opposed claims for 32–31 BCE (c112–c118). The claims cannot say whether that earlier bond was kinship, amicitia, or both.",
+          "claims": [
+            "chr:assertion:cleopatra:spouse-of:mark-antony:qaecbf0fa8f",
+            "chr:assertion:augustus:allied-with:mark-antony:q74ce4c01ba",
+            "chr:assertion:augustus:opposed:mark-antony:q0eaaf6ef02",
+            "chr:assertion:augustus:opposed:mark-antony:q123f269c1e",
+            "chr:assertion:augustus:opposed:mark-antony:qce22c47589"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "Which patrons and clients, friends and dependants, were involved?",
+          "answer": "The claims show friends (amici) clustered around both leaders. In Dio, Caesar embarks infantry and places his friends in boats to move along the line (c190, c369). In Plutarch, friends and transports gather about Antony after his flight (c33, c61, c420, c543). Sosius is recorded as allied with Antony in 31 BCE (c2). The subordinate commanders on each side are named: Sosius, Gellius Poplicola, Insteius and Lurius for Antony; Agrippa, Arruntius and Statilius Taurus for Octavian (c6–c9, c448–c471, c483–c493, c591). No claim names any patronus/cliens bond, nor the personal ties that put these men under each leader.",
+          "claims": [
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-embarks-infantry-places-friends-in-boats:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-embarks-infantry-places-friends-in-boats:qa103b41198",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-abandons-the-fight-follows-cleopatra:happened-before:depicted:plutarch-life-of-antony:friends-and-transports-gather-about-antony:qc67b4f8f98",
+            "chr:assertion:battle-of-actium:happened-before:depicted:plutarch-life-of-antony:friends-and-transports-gather-about-antony:qc67b4f8f98",
+            "chr:assertion:cleopatra:participated-in:depicted:plutarch-life-of-antony:friends-and-transports-gather-about-antony:qc67b4f8f98",
+            "chr:assertion:mark-antony:participated-in:depicted:plutarch-life-of-antony:friends-and-transports-gather-about-antony:qc67b4f8f98",
+            "chr:assertion:gaius-sosius:allied-with:mark-antony:qce22c47589",
+            "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:lucius-gellius-poplicola:commanded:antony-fleet-at-actium:q26e4c3030d",
+            "chr:assertion:lucius-arruntius:participated-in:depicted:plutarch-life-of-antony:antony-s-centre-in-confusion-engages-arruntius:qc67b4f8f98",
+            "chr:assertion:marcus-insteius:participated-in:battle-of-actium",
+            "chr:assertion:marcus-lurius:participated-in:battle-of-actium",
+            "chr:assertion:titus-statilius-taurus:participated-in:battle-of-actium:qaebeac93d1",
+            "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q26e4c3030d"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "Which status groups took part, and how did their position change?",
+          "answer": "Participation is recorded mostly at command level: Roman commanders on both sides, the queen Cleopatra (c395–c403), and the Greek Eurycles fighting for Octavian (c444–c447). The ranks appear only as collective groups (Antony's fleet, Octavian's fleet, Cleopatra's squadron). The army's surrender (c257) is marked as a phase, but no claim records how senators, equestrians, freedmen, or provincial dynasts on Antony's side fared afterward. The one such outcome in the graph is the general 'clemency shown after the victory' in Velleius (c60, c387).",
+          "claims": [
+            "chr:assertion:cleopatra:participated-in:battle-of-actium",
+            "chr:assertion:gaius-julius-eurycles:participated-in:battle-of-actium",
+            "chr:assertion:gaius-julius-eurycles:participated-in:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:phase:battle-of-actium:army-surrender:part-of:battle-of-actium",
+            "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+            "chr:assertion:augustus:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+            "chr:assertion:antony-fleet-at-actium:participated-in:battle-of-actium",
+            "chr:assertion:octavian-fleet-at-actium:participated-in:battle-of-actium"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "Who changed sides, and what do the sources say moved them?",
+          "answer": "The graph holds a desertion phase as our own placement (c183) and the army's surrender (c257). It holds no individual defectedTo claims, although the phase moments name Domitius, Dellius, Amyntas, Plancus and allied kings. The one personal abandonment the graph holds as claims runs from leader to men. Velleius has Antony desert his soldiers for Cleopatra (c136, c505). Plutarch, Dio, Weigall and Wikipedia have him follow her fleeing squadron (c129, c140, c141, c147). Plutarch makes his flight a response to her sixty ships hoisting sail (c596). No source-attributed motive for any Roman defector is held.",
+          "claims": [
+            "chr:assertion:phase:battle-of-actium:attrition:part-of:battle-of-actium",
+            "chr:assertion:phase:battle-of-actium:army-surrender:part-of:battle-of-actium",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:part-of:battle-of-actium:q98b5c04788",
+            "chr:assertion:mark-antony:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:q98b5c04788",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-abandons-the-fight-follows-cleopatra:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:plutarch-life-of-antony:antony-abandons-the-fight-follows-cleopatra:triggered-by:depicted:plutarch-life-of-antony:cleopatra-s-sixty-ships-hoist-sails-and-flee:qc67b4f8f98",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-follows-the-fleeing-squadron:part-of:battle-of-actium:qaebeac93d1"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "How did ordinary participants (soldiers, rowers, civilians) experience it?",
+          "answer": "Dio gives the fullest account of the experience of the men left behind. Fire spreads through Antony's ships, burning men leap into the sea, and men kill each other or themselves (c78, c80, c171, c267, c270). They repel boarders with grappling-irons and spears, then lighten their ships and flee (c172, c173, c176). Velleius has them fight on to death and has Caesar shouting to them to surrender (c169, c192). Wikipedia instead stresses Octavian rescuing crews from burning ships (c235). Hale and Wikipedia record discouragement and panic once the Egyptian squadron withdrew (c227, c276, c634). Hale and Plutarch have the land armies drawn up watching from shore (c109, c287). Rowers appear only indirectly, through the shattering of oar-blades (c200, c248). On the fate of the trapped men, the voices differ between death in the fire and rescue.",
+          "claims": [
+            "chr:assertion:depicted:cassius-dio-roman-history:burning-men-leap-into-sea-perish:happened-before:depicted:cassius-dio-roman-history:antony-s-men-kill-each-other-or-themselves:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:fire-spreads-through-antony-s-ships:happened-before:depicted:cassius-dio-roman-history:burning-men-leap-into-sea-perish:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-s-men-kill-each-other-or-themselves:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:burning-men-leap-into-sea-perish:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-s-men-repel-boarders:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:antony-s-remaining-men-lighten-ships-flee:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-s-men-fight-on-to-death:part-of:battle-of-actium:q98b5c04788",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:caesar-shouts-to-antony-s-men:part-of:battle-of-actium:q98b5c04788",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-rescues-crews-of-burning-ships:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:hale-famous-sea-fights:egyptian-withdrawal-discourages-antony-s-fleet:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:panic-spreads-through-antony-s-fleet:part-of:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:panic-spreads-through-antony-s-fleet:triggered-by:depicted:wikipedia-en-battle-of-actium:antony-follows-the-fleeing-squadron:qaebeac93d1",
+            "chr:assertion:depicted:hale-famous-sea-fights:two-armies-watch-the-fleets:occurred-at:actium-promontory:q0eaaf6ef02",
+            "chr:assertion:depicted:plutarch-life-of-antony:the-land-armies-drawn-up-by-the-sea:part-of:battle-of-actium:qc67b4f8f98",
+            "chr:assertion:depicted:cassius-dio-roman-history:caesar-s-ships-shatter-enemy-oar-blades:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:hale-famous-sea-fights:octavian-s-ships-shatter-enemy-oars:part-of:battle-of-actium:q0eaaf6ef02"
+          ],
+          "strength": "contested"
+        },
+        {
+          "question": "How do the sources treat women and foreigners in it, and what does that show?",
+          "answer": "Cleopatra is the only woman in the claims, and the voices disagree about her agency. She commands her own squadron (c4, c5). Dio has her advice prevail in council (c217) and her flight follow from an indecisive battle (c593). Velleius has her initiate the flight (c209). Weigall, sympathetic to her, moves her decision onto the rising north wind (c617). Weigall has her shun Antony aboard, where Hale has her welcome him (c212, c216). Virgil's Aeneid leaves her unnamed as 'the Queen' who calls her forces and flees (c279, c280). It sets Caesar leading Italians against Antony's eastern forces and fleeing eastern peoples (c185, c133, c283). The war is also given as declared on Cleopatra and fought against her (c111). The East-West reading (c25, c26) shows the sources casting a Roman civil war as a war against a foreign queen. The one named Greek, Eurycles, fights for Octavian (c446).",
+          "claims": [
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q2ca4231938",
+            "chr:assertion:cleopatra:commanded:cleopatra-squadron-at-actium:q38b4636f8a",
+            "chr:assertion:depicted:cassius-dio-roman-history:cleopatra-s-advice-prevails-in-council:part-of:battle-of-actium:qa103b41198",
+            "chr:assertion:depicted:cassius-dio-roman-history:the-battle-stays-indecisive:resulted-in:depicted:cassius-dio-roman-history:cleopatra-flees-and-signals-her-ships:qa103b41198",
+            "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:cleopatra-initiates-the-flight:part-of:battle-of-actium:q98b5c04788",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:cleopatra-decides-to-leave-the-battle:triggered-by:depicted:weigall-life-and-times-of-cleopatra:north-wind-rises-sea-turns-rough:q2ca4231938",
+            "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:cleopatra-signals-antony-aboard-shuns-him:part-of:battle-of-actium:q2ca4231938",
+            "chr:assertion:depicted:hale-famous-sea-fights:cleopatra-welcomes-antony-aboard-her-flagship:part-of:battle-of-actium:q0eaaf6ef02",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-queen-calls-her-forces-to-fight:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-queen-flees-under-full-sail:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:caesar-augustus-leads-italians-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:antony-brings-eastern-forces-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-eastern-peoples-flee:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:augustus:opposed:cleopatra:qaebeac93d1",
+            "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q02310b84a7",
+            "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q0eaaf6ef02",
+            "chr:assertion:gaius-julius-eurycles:participated-in:depicted:plutarch-life-of-antony:eurycles-attacks-antony-s-ship:qc67b4f8f98"
+          ],
+          "strength": "contested"
+        }
+      ],
+      "gaps": [
+        {
+          "question": "Was Antony's marriage to Octavia, Octavian's sister, and his divorce of her part of the break that led to Actium?",
+          "why": "Our 25 §11 rule asks for family ties from the persons' own records first. The marriage alliance between the two leaders, and its rupture, is the central kinship tie of this conflict, yet the graph holds neither spouseOf nor siblingOf for Octavia.",
+          "kind": "unread passage",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "57.2",
+          "predicate": "spouseOf",
+          "entities": [
+            "Mark Antony",
+            "Octavia",
+            "Augustus"
+          ],
+          "ref": "social:g1",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "What does Plutarch say moved Dellius and other officers to desert before the battle?",
+          "why": "A defection motive must be recorded as the source's own attribution. The graph names defectors only in phase moments and holds no source-attributed motive.",
+          "kind": "unread passage",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "59.2",
+          "predicate": "defectedTo",
+          "entities": [
+            "Quintus Dellius",
+            "Mark Antony",
+            "Augustus"
+          ],
+          "ref": "social:g2",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Domitius Ahenobarbus's desertion to Octavian, and Antony's sending his baggage after him, have no claim of their own.",
+          "why": "This is the most prominent elite defection, and it carries a personal gesture of amicitia. Plutarch 63.3 has already been read, but the relationship was never extracted.",
+          "kind": "relationship missing",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "63.3",
+          "predicate": "defectedTo",
+          "entities": [
+            "Gnaeus Domitius Ahenobarbus",
+            "Mark Antony",
+            "Augustus"
+          ],
+          "ref": "social:g3",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": true,
+          "predicateExists": false
+        },
+        {
+          "question": "Eurycles' family tie to a father put to death by Antony is held only as narrative, with no claim of its own.",
+          "why": "Taking a family tie one hop out from Eurycles explains a personal enmity that shaped his attack on Antony's ship. That passage of Plutarch has been read, but no childOf claim was made.",
+          "kind": "relationship missing",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "67.2",
+          "predicate": "childOf",
+          "entities": [
+            "Gaius Julius Eurycles",
+            "Lachares",
+            "Mark Antony"
+          ],
+          "ref": "social:g4",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": true,
+          "predicateExists": true
+        },
+        {
+          "question": "Arruntius's pledge saved Sosius, and Caesar preserved him; neither act is held as a claim.",
+          "why": "This intercession shows amicitia crossing the battle line and reveals how the victor treated defeated nobiles. The Velleius passage is read but unextracted.",
+          "kind": "relationship missing",
+          "work_ref": "w8",
+          "source": "Velleius Paterculus, Historiae Romanae",
+          "locator": "2.86.2",
+          "predicate": "intercededFor",
+          "entities": [
+            "Lucius Arruntius",
+            "Gaius Sosius",
+            "Augustus"
+          ],
+          "ref": "social:g5",
+          "work": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+          "alreadyRead": true,
+          "predicateExists": false
+        },
+        {
+          "question": "How did Octavian treat the senators, equestrians and cities who had backed Antony: fines, executions, pardons?",
+          "why": "This would show how each status group's position changed after the battle. The graph holds only a general claim of clemency.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "51.2",
+          "predicate": "sparedBy",
+          "entities": [
+            "Augustus",
+            "Antony's partisans"
+          ],
+          "ref": "social:g6",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What happened to the veterans and soldiers of both armies after Actium, including discharge, mutiny and land grants?",
+          "why": "This is the ordinary soldier's stake in the outcome, and loyalty bought with land is central to it.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "51.3",
+          "predicate": "servedUnder",
+          "entities": [
+            "Octavian's veterans",
+            "Antony's legions"
+          ],
+          "ref": "social:g7",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "How were veteran loyalty and land settlement after 31 BCE structured?",
+          "why": "This is the core modern analysis of soldiers' loyalty for this lens.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "P. A. Brunt, The Army and the Land in the Roman Revolution, JRS 52 (1962)",
+          "locator": null,
+          "predicate": "servedUnder",
+          "entities": [
+            "Antony's land army",
+            "Octavian's army"
+          ],
+          "ref": "social:g8",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "Antony pressing landsmen, muleteers and passers-by into his ships' crews is held only as a phase moment.",
+          "why": "This is the rowers' experience and how they came to serve. Without a claim, the crews remain an undifferentiated 'fleet'.",
+          "kind": "relationship missing",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "62.1",
+          "predicate": "conscriptedInto",
+          "entities": [
+            "Antony's fleet at Actium",
+            "Greek civilians"
+          ],
+          "ref": "social:g9",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": true,
+          "predicateExists": false
+        },
+        {
+          "question": "Was Antony's union with Cleopatra a marriage in Roman eyes, and how did it bear on his divorce of Octavia?",
+          "why": "Our spouseOf claim (c594) rests on our own assertion. Roman law did not recognise marriage with a foreigner, and Roman law on marriage is Treggiari's field.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "Susan Treggiari, Roman Marriage (1991)",
+          "locator": null,
+          "predicate": "spouseOf",
+          "entities": [
+            "Mark Antony",
+            "Cleopatra",
+            "Octavia"
+          ],
+          "ref": "social:g10",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": true
+        }
+      ],
+      "predicate_needs": [
+        {
+          "name": "defectedTo",
+          "definition": "A person or contingent abandons one side and goes over to the opposing leader at a given date.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Person",
+            "Group"
+          ],
+          "example": "Gnaeus Domitius Ahenobarbus defectedTo Augustus, 31 BCE (before September)",
+          "exists": false
+        },
+        {
+          "name": "sparedBy",
+          "definition": "A defeated person is pardoned or preserved unharmed by the victor at a given date.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Person"
+          ],
+          "example": "Gaius Sosius sparedBy Augustus, 31 BCE",
+          "exists": false
+        },
+        {
+          "name": "intercededFor",
+          "definition": "A person pledges himself or pleads with a third party on behalf of another at a given date.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Person"
+          ],
+          "example": "Lucius Arruntius intercededFor Gaius Sosius, 31 BCE",
+          "exists": false
+        },
+        {
+          "name": "abandonedCommand",
+          "definition": "A commander leaves the force under his command while it is still engaged, at a given date.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Group"
+          ],
+          "example": "Mark Antony abandonedCommand Antony's fleet at Actium, 2 September 31 BCE",
+          "exists": false
+        },
+        {
+          "name": "conscriptedInto",
+          "definition": "Persons are compelled into service in a force at a given date.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Group"
+          ],
+          "example": "Greek civilians conscriptedInto Antony's fleet at Actium, 31 BCE",
+          "exists": false
+        }
+      ],
+      "invented": []
+    },
+    "religious": {
+      "lens": "religious",
+      "note": "Ours: through the religious lens the graph holds almost nothing about Actium. Its 635 claims are overwhelmingly tactical. The one religious act attested is Octavian's dedication of captured ships to Apollo, which rests on Dio alone (c56, c368). Nicopolis is well voiced but recorded only as a foundation, while the temple, the Actian games and the Campsite Memorial survive only as phase moments without claims. No omen, vow, priesthood, fetial declaration or divine self-association by Antony or Cleopatra is captured, though several of the relevant passages of Plutarch, Dio and Strabo have already been read. The Aeneid's claims show Actium remembered as Italy against the East, but as held they omit the gods that make that memory religious.",
+      "findings": [
+        {
+          "question": "Which omens, portents, and prophecies do the sources report, and to what end?",
+          "answer": "None. No claim held for the battle or its neighbours records an omen, portent (prodigium) or prophecy. The phase lists contain no omen moments either.",
+          "claims": [],
+          "strength": "absent"
+        },
+        {
+          "question": "Which vows, dedications, temples, or games are tied to it?",
+          "answer": "One dedication is attested: after the battle Caesar (Octavian) dedicates captured ships to Apollo. Only Cassius Dio voices it, and it stands as proposed. The founding of Nicopolis on the camp site is well voiced (Hale, Wikipedia, Strabo via ledTo), but the claims record it only as a foundation, not as a religious act. The larger temple and shrine of Apollo, the Actian games (Actia) every September and the Campsite Memorial appear only as phase moments under 'Meaning and memory', with no claims behind them. No votum (vow) is recorded.",
+          "claims": [
+            "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:battle-of-actium:happened-before:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:occurred-at:nicopolis:qaebeac93d1",
+            "chr:assertion:augustus:participated-in:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:qaebeac93d1",
+            "chr:assertion:augustus:participated-in:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q0eaaf6ef02",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:q87abc58038",
+            "chr:assertion:battle-of-actium:led-to:nicopolis:qaebeac93d1",
+            "chr:assertion:phase:battle-of-actium:meaning-memory:part-of:battle-of-actium"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "Which priesthoods did the participants hold, and did ritual frame the war or its end?",
+          "answer": "No claim records a priesthood held by any participant. No claim records a ritual framing the war's opening or its end. 'War declared on Cleopatra' appears only as a phase moment, with no claim and no mention of the fetiales.",
+          "claims": [],
+          "strength": "absent"
+        },
+        {
+          "question": "Which gods did the participants associate themselves with, and how was that used?",
+          "answer": "Only Apollo appears, and only indirectly, as the recipient of Octavian's dedication of captured ships (Dio, a single voice). The Aeneid claims cast the battle as Caesar Augustus leading Italians against the Queen and the eastern peoples. That is an imaginative voice showing remembrance, not history. As held, these claims name no gods. No claim ties Antony or Cleopatra to any deity.",
+          "claims": [
+            "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:caesar-augustus-leads-italians-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:augustus:participated-in:depicted:proposed-work-virgil-aeneid:caesar-augustus-leads-italians-to-battle:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:antony-brings-eastern-forces-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-queen-calls-her-forces-to-fight:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-queen-flees-under-full-sail:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-eastern-peoples-flee:part-of:battle-of-actium:qc75d1f60cb"
+          ],
+          "strength": "thin"
+        },
+        {
+          "question": "How was it commemorated in religious terms afterwards?",
+          "answer": "The claims show commemoration through the founding of Nicopolis and the dedication of ships to Apollo. Apollo Actius, the Ludi Actiaci and any supplicatio at Rome are not captured as claims. The Aeneid's shield is a held imaginative voice of how Actium was remembered, but only its battle steps are recorded as claims.",
+          "claims": [
+            "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+            "chr:assertion:battle-of-actium:happened-before:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+            "chr:assertion:augustus:participated-in:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:qaebeac93d1",
+            "chr:assertion:augustus:participated-in:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+            "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:agrippa-leads-his-squadron-forth:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:missiles-and-fire-rain-on-the-sea:part-of:battle-of-actium:qc75d1f60cb",
+            "chr:assertion:depicted:proposed-work-virgil-aeneid:the-fleets-rush-together-and-clash:part-of:battle-of-actium:qc75d1f60cb"
+          ],
+          "strength": "thin"
+        }
+      ],
+      "gaps": [
+        {
+          "question": "Which prodigia did Dio report in the run-up to the war?",
+          "why": "Portents reported before Actium show how each side's cause was framed religiously. Each must be attributed to its source, not asserted.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "50.8.1-50.8.5",
+          "predicate": "reportsOmen",
+          "entities": [
+            "Battle of Actium",
+            "Mark Antony",
+            "Augustus"
+          ],
+          "ref": "religious:g1",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Which omens does Plutarch attach to Antony before and after Actium?",
+          "why": "These passages have already been read, yet no omen claims were extracted from them. The omens there concern Patrae, Athens, the Heracles and Dionysus statues, the ass Eutychus before the battle, and the god leaving Alexandria. They are central to how divine favour was narrated.",
+          "kind": "relationship missing",
+          "work_ref": "w1",
+          "source": "Plutarch, Life of Antony",
+          "locator": "60.2-60.3, 65.3, 75.4",
+          "predicate": "reportsOmen",
+          "entities": [
+            "Mark Antony",
+            "Augustus",
+            "Battle of Actium"
+          ],
+          "ref": "religious:g2",
+          "work": "chr:entity:plutarch-life-of-antony",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Was the war opened by fetial ritual against Cleopatra?",
+          "why": "Whether ritual framed the war as foreign rather than civil is a core religious question. Dio's passage has been read, but no claim records the ritual act.",
+          "kind": "relationship missing",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "50.4.4-50.4.5",
+          "predicate": "declaredWarByRitual",
+          "entities": [
+            "Augustus",
+            "Cleopatra"
+          ],
+          "ref": "religious:g3",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What temple, games and dedications did Octavian establish at Actium and Nicopolis?",
+          "why": "Strabo's account of the Actium sanctuary, the ship dedications and the games, and Dio's account of the temple and the Actia, have been read. Yet only the ship dedication exists as a claim; the games and temple remain phase moments only.",
+          "kind": "relationship missing",
+          "work_ref": "w7",
+          "source": "Strabo, Geography; Cassius Dio, Roman History",
+          "locator": "Strabo 7.7.6; Dio 51.1.1-51.1.3",
+          "predicate": "instituted / dedicatedTo",
+          "entities": [
+            "Augustus",
+            "Nicopolis",
+            "Apollo Actius",
+            "Ludi Actiaci"
+          ],
+          "ref": "religious:g4",
+          "work": "chr:entity:proposed-work-strabo-geography",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Which gods does the shield of Aeneas place at Actium, and on which side?",
+          "why": "Apollo Actius bending his bow, and the Roman gods set against the Egyptian gods, show how the battle was remembered religiously. As poetry, this evidences memory only, never event. Only 8.671 has been read.",
+          "kind": "unread passage",
+          "work_ref": "w6",
+          "source": "Virgil, Aeneid",
+          "locator": "8.675-8.713",
+          "predicate": "depictsDeityAt",
+          "entities": [
+            "Apollo Actius",
+            "Augustus",
+            "Cleopatra",
+            "Battle of Actium"
+          ],
+          "ref": "religious:g5",
+          "work": "chr:entity:proposed-work-virgil-aeneid",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "What thanksgivings and religious honours followed the victory at Rome?",
+          "why": "Supplicationes, honours voted, and the closing of Janus mark the religious ending of the war. Dio 51.19 has been read only partially.",
+          "kind": "unread passage",
+          "work_ref": "w2",
+          "source": "Cassius Dio, Roman History",
+          "locator": "51.19.5-51.19.7, 51.20.1-51.20.4",
+          "predicate": "decreedThanksgiving",
+          "entities": [
+            "Augustus",
+            "Battle of Actium"
+          ],
+          "ref": "religious:g6",
+          "work": "chr:entity:cassius-dio-roman-history",
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Which priesthoods did Octavian hold, and what thanksgivings and temples does he claim?",
+          "why": "The Res Gestae is the participant's own voice on priesthoods (including fetialis), supplicationes and the temple of Apollo. Only 25.1 has been read.",
+          "kind": "unread passage",
+          "work_ref": "w9",
+          "source": "Augustus, Res Gestae Divi Augusti",
+          "locator": "chapters 4, 7, 19, 25.2 (source numbering uncertain; read locator given as 5.25.1)",
+          "predicate": "heldPosition",
+          "entities": [
+            "Augustus"
+          ],
+          "ref": "religious:g7",
+          "work": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+          "alreadyRead": false,
+          "predicateExists": true
+        },
+        {
+          "question": "What omen did Octavian meet before the battle, and how did he found Nicopolis and the games?",
+          "why": "Suetonius preserves the Eutychus and Nikon omen from Octavian's side and the foundation of the games. It is not held.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "Suetonius, Divus Augustus",
+          "locator": "18.2, 96.2",
+          "predicate": "reportsOmen",
+          "entities": [
+            "Augustus",
+            "Nicopolis"
+          ],
+          "ref": "religious:g8",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "How was Actium commemorated religiously over time?",
+          "why": "This is the standard modern analysis of Apollo, the Actian monuments and their politics. It is not held.",
+          "kind": "source not held",
+          "work_ref": null,
+          "source": "Robert Alan Gurval, Actium and Augustus (1995)",
+          "locator": null,
+          "predicate": "commemorates",
+          "entities": [
+            "Battle of Actium",
+            "Apollo Actius"
+          ],
+          "ref": "religious:g9",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        },
+        {
+          "question": "Which deities did Antony and Cleopatra claim (Dionysus, Isis), and which did Octavian claim (Apollo)?",
+          "why": "Divine self-association is a lens question with no claims at all. Apollo, Dionysus and Isis are missing as entities.",
+          "kind": "entity missing",
+          "work_ref": null,
+          "source": "Paul Zanker, The Power of Images in the Age of Augustus (1988)",
+          "locator": null,
+          "predicate": "claimedDivineAssociation",
+          "entities": [
+            "Apollo",
+            "Dionysus",
+            "Isis",
+            "Mark Antony",
+            "Cleopatra",
+            "Augustus"
+          ],
+          "ref": "religious:g10",
+          "work": null,
+          "alreadyRead": false,
+          "predicateExists": false
+        }
+      ],
+      "predicate_needs": [
+        {
+          "name": "dedicatedTo",
+          "definition": "A person dedicates an object (spoils, ships, building) to a deity at a given date.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Deity"
+          ],
+          "example": "Augustus dedicatedTo Apollo (captured ships), -0030",
+          "exists": false
+        },
+        {
+          "name": "reportsOmen",
+          "definition": "A work reports an omen or portent concerning a person or event. The claim is attributed to the work, not asserted as having happened, and is time-boxed to the reported date.",
+          "subject_kinds": [
+            "Work"
+          ],
+          "object_kinds": [
+            "Event",
+            "Person"
+          ],
+          "example": "Life of Antony reportsOmen (ass Eutychus) concerning Augustus, -0031",
+          "exists": false
+        },
+        {
+          "name": "instituted",
+          "definition": "A person founds recurring games, a festival or a cult at a date.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Festival",
+            "Ritual"
+          ],
+          "example": "Augustus instituted Ludi Actiaci, c. -0029",
+          "exists": false
+        },
+        {
+          "name": "claimedDivineAssociation",
+          "definition": "A person publicly associates himself or herself with a deity during a time span.",
+          "subject_kinds": [
+            "Person"
+          ],
+          "object_kinds": [
+            "Deity"
+          ],
+          "example": "Augustus claimedDivineAssociation Apollo, -0036/-0027",
+          "exists": false
+        },
+        {
+          "name": "declaredWarByRitual",
+          "definition": "A person or priestly college performs the ritual declaration of war against a named enemy at a date.",
+          "subject_kinds": [
+            "Person",
+            "Group"
+          ],
+          "object_kinds": [
+            "Person",
+            "Polity"
+          ],
+          "example": "Augustus declaredWarByRitual Cleopatra, -0032",
+          "exists": false
+        },
+        {
+          "name": "decreedThanksgiving",
+          "definition": "The Senate or another body decrees a supplicatio for a victory at a date.",
+          "subject_kinds": [
+            "Group"
+          ],
+          "object_kinds": [
+            "Event"
+          ],
+          "example": "Senate decreedThanksgiving Battle of Actium, -0030",
+          "exists": false
+        }
+      ],
+      "invented": []
+    }
+  },
+  "general": {
+    "lens": "general",
+    "note": "Ours: across dimensions Actium is held as a richly narrated naval fight whose significance lies in what was lost off the battle line more than on it. The sources hinge the outcome on Cleopatra's departure and Antony's following, an act at once tactical, social and political, and they disagree on its cause (indecision, wind, or design), which changes the reading in every lens. The victor then turned booty and battlefield into legitimacy through Apollo's dedications, Nicopolis and the casting of a bellum civile as a war against a foreign queen. Yet the constitutional and Egyptian consequences that justify 'decisive' and 'led to the Roman Empire' sit only in interpretive edges, and the Res Gestae, Dio 50.2–50.10 and 51.1–51.4 are the readings that would ground them. The claims also call Octavian 'Augustus' before the title existed, and they fold the whole campaign into the battle, so both entity hygiene and scope need fixing first.",
+    "findings": [
+      {
+        "question": "Why does this object matter, and to whom: contemporaries, later Romans, modern historians?",
+        "answer": "Ours. The claims show three audiences. For contemporaries and the victor, the battle was marked at once by the dedication of captured ships to Apollo (Dio, c56, c368) and the founding of Nicopolis on Octavian's camp site (Hale c59, c378; Wikipedia c107, c625; Strabo via c90). For later Romans, Virgil's shield presents it as Caesar leading the Italians against Antony's eastern forces and an unnamed Queen (c185, c133, c279, c280, c283), and Velleius calls it decisive (c29). For modern historians it is a 'decisive battle' (c27, c28, c30), an East–West contest (c25, c26), and the event that led to the Roman Empire (c92, c93). All of these significance claims are interpretive and none is accepted on a fully ancient footing. The Res Gestae, the victor's own verdict, is held (w9), but no claim has been extracted from it. Significance therefore rests on modern voices and on the commemorative acts, not on contemporary statements of meaning.",
+        "claims": [
+          "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+          "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+          "chr:assertion:battle-of-actium:happened-before:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+          "chr:assertion:augustus:participated-in:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:occurred-at:nicopolis:qaebeac93d1",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1",
+          "chr:assertion:battle-of-actium:led-to:nicopolis:q87abc58038",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:caesar-augustus-leads-italians-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:antony-brings-eastern-forces-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:the-queen-calls-her-forces-to-fight:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:the-queen-flees-under-full-sail:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:the-eastern-peoples-flee:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:q98b5c04788",
+          "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:q02310b84a7",
+          "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:q0eaaf6ef02",
+          "chr:assertion:battle-of-actium:exemplifies:concept-decisive-battle:qaebeac93d1",
+          "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q02310b84a7",
+          "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q0eaaf6ef02",
+          "chr:assertion:battle-of-actium:led-to:roman-empire:q0eaaf6ef02",
+          "chr:assertion:battle-of-actium:led-to:roman-empire:qaebeac93d1"
+        ],
+        "strength": "thin"
+      },
+      {
+        "question": "Where do the dimensions act on each other?",
+        "answer": "Ours, set out under interactions. The main hinge runs from military to social to political. On the sources' account, an indecisive line battle (c281, c282, c593) was turned into total collapse by Cleopatra's departure and Antony following her (c596, c601, c602). That is an act of abandonment (c136), and the specialists show it was followed by the army's surrender and by Antony and Cleopatra failing to rally support (c257, c599). A second hinge runs from economic to religious to political: captured hulls became votive offerings and a camp became a city (c56, c625).",
+        "claims": [
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:the-battle-rages-indecisively-all-afternoon:part-of:battle-of-actium:qaebeac93d1",
+          "chr:assertion:depicted:cassius-dio-roman-history:the-battle-stays-indecisive:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:cassius-dio-roman-history:the-battle-stays-indecisive:resulted-in:depicted:cassius-dio-roman-history:cleopatra-flees-and-signals-her-ships:qa103b41198",
+          "chr:assertion:depicted:plutarch-life-of-antony:antony-abandons-the-fight-follows-cleopatra:triggered-by:depicted:plutarch-life-of-antony:cleopatra-s-sixty-ships-hoist-sails-and-flee:qc67b4f8f98",
+          "chr:assertion:depicted:cassius-dio-roman-history:antony-follows-the-fleeing-ships:triggered-by:depicted:cassius-dio-roman-history:cleopatra-s-ships-sail-out-to-sea:qa103b41198",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-follows-the-fleeing-squadron:triggered-by:depicted:wikipedia-en-battle-of-actium:cleopatra-s-squadron-retreats-to-open-sea:qaebeac93d1",
+          "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:part-of:battle-of-actium:q98b5c04788",
+          "chr:assertion:phase:battle-of-actium:army-surrender:part-of:battle-of-actium",
+          "chr:assertion:depicted:hale-famous-sea-fights:antony-and-cleopatra-fail-to-rally-support:triggered-by:battle-of-actium:q0eaaf6ef02",
+          "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1"
+        ],
+        "strength": "thin"
+      },
+      {
+        "question": "Which of the specialists' findings and gaps are the same question asked twice?",
+        "answer": "The overlaps are listed under duplicates. Five questions recur. (1) What happened to the soldiers and how they were paid, all pointing to Dio 51.3–51.4. (2) Veteran land, both pointing to Res Gestae 16.1. (3) The defections of Domitius, Dellius and the client kings. (4) Octavian's and Antony's offices in 31 BCE. (5) The oath of Italy and the Res Gestae 25 passage. At the level of findings, the military, political and social lenses each restate the same contested command claims for both fleets (c3, c6, c9, c10–c16, c83–c88), and the same split over Cleopatra's flight (c593, c617, c209).",
+        "claims": [
+          "chr:assertion:augustus:commanded:octavian-fleet-at-actium:qef0ce0aa37",
+          "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium:q26e4c3030d",
+          "chr:assertion:lucius-gellius-poplicola:commanded:antony-fleet-at-actium:q26e4c3030d",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q0eaaf6ef02",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q26e4c3030d",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q3066649c00",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q852dd6bc18",
+          "chr:assertion:mark-antony:commanded:antony-fleet-at-actium",
+          "chr:assertion:mark-antony:commanded:antony-fleet-at-actium:q852dd6bc18",
+          "chr:assertion:mark-antony:commanded:antony-fleet-at-actium:qc67b4f8f98",
+          "chr:assertion:augustus:held-authority-over:octavian-fleet-at-actium:q3066649c00",
+          "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:q0eaaf6ef02",
+          "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:qa103b41198",
+          "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:q35f4b6c879",
+          "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:qb288036321",
+          "chr:assertion:mark-antony:held-authority-over:antony-fleet-at-actium:qd8adeae771",
+          "chr:assertion:depicted:cassius-dio-roman-history:the-battle-stays-indecisive:resulted-in:depicted:cassius-dio-roman-history:cleopatra-flees-and-signals-her-ships:qa103b41198",
+          "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:cleopatra-decides-to-leave-the-battle:triggered-by:depicted:weigall-life-and-times-of-cleopatra:north-wind-rises-sea-turns-rough:q2ca4231938",
+          "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:cleopatra-initiates-the-flight:part-of:battle-of-actium:q98b5c04788"
+        ],
+        "strength": "well attested"
+      },
+      {
+        "question": "What does no specialist lens cover?",
+        "answer": "Seven things fall outside every lens. (1) The battle's consequences in Egypt: Alexandria, the deaths of Antony and Cleopatra, and annexation. Only the pursuit is held (c57, c370, c55, c516). (2) Dio's commentary in 51.1, which treats the day as the start of Caesar's sole rule. It has been read but yields no claim. (3) The scope of the object. Our phases place 'The road to war', 'Attrition' and 'The army surrenders' inside the battle (c262, c183, c257), and a self-referential distinctFrom (c23) suggests a duplicate entity. The battle needs separating from an Actian campaign. (4) The anachronistic label 'Augustus' for Octavian in 31 BCE throughout the claims (c3, c83, c111–c118). (5) Weather and environment as a cause (c265, c274, c617). (6) Augustan poetic memory beyond Virgil. (7) The modern historiography named in the grounding: Syme and CAH 10.",
+        "claims": [
+          "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:caesar-pursues-antony-and-cleopatra-to-alexandria:q98b5c04788",
+          "chr:assertion:augustus:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:caesar-pursues-antony-and-cleopatra-to-alexandria:q98b5c04788",
+          "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-strabo-geography:antony-retires-to-alexandreia:q87abc58038",
+          "chr:assertion:mark-antony:participated-in:depicted:proposed-work-strabo-geography:antony-retires-to-alexandreia:q87abc58038",
+          "chr:assertion:phase:battle-of-actium:road-to-war:part-of:battle-of-actium",
+          "chr:assertion:phase:battle-of-actium:attrition:part-of:battle-of-actium",
+          "chr:assertion:phase:battle-of-actium:army-surrender:part-of:battle-of-actium",
+          "chr:assertion:battle-of-actium:distinct-from:battle-of-actium-q9173813",
+          "chr:assertion:augustus:commanded:octavian-fleet-at-actium:qef0ce0aa37",
+          "chr:assertion:augustus:held-authority-over:octavian-fleet-at-actium:q3066649c00",
+          "chr:assertion:depicted:hale-famous-sea-fights:a-north-east-land-breeze-rises:part-of:battle-of-actium:q0eaaf6ef02",
+          "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:north-wind-rises-sea-turns-rough:part-of:battle-of-actium:q2ca4231938",
+          "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:cleopatra-decides-to-leave-the-battle:triggered-by:depicted:weigall-life-and-times-of-cleopatra:north-wind-rises-sea-turns-rough:q2ca4231938"
+        ],
+        "strength": "absent"
+      },
+      {
+        "question": "Where do the sources disagree in a way that changes the reading in more than one dimension?",
+        "answer": "Three disagreements change the reading in more than one dimension. (a) Why Cleopatra left. Dio says the battle had stayed indecisive (c593, c618). Weigall gives a rising north wind (c617). Velleius makes her the initiator (c209) and Antony a deserter of his soldiers (c136). Hale and Dio's council have the breakout and treasure planned in advance (c208, c217). The choice decides whether this was a planned breakout, a failure of nerve or an accident of weather. That changes the military explanation of the outcome, the social judgement of Antony as a leader who abandoned his men, and the political propaganda of the foreign queen. (b) The fate of the trapped crews. Dio has them die by fire, drowning or each other's hands (c267, c171), and Velleius has them fight on to death (c169). Wikipedia has Octavian rescue them (c235), and Velleius also records clemency (c60). This bears on casualties and on the political use of clementia. (c) Who commanded. Augustus (c3, c83) stands against Agrippa (c10–c13, c84, c85), and Antony stands against Sosius and Poplicola (c6, c9). This bears on both military command and political imperium. A smaller disagreement: Cleopatra shuns Antony in Weigall (c212) but welcomes him in Hale (c216), which colours how the alliance is read socially and politically.",
+        "claims": [
+          "chr:assertion:depicted:cassius-dio-roman-history:the-battle-stays-indecisive:resulted-in:depicted:cassius-dio-roman-history:cleopatra-flees-and-signals-her-ships:qa103b41198",
+          "chr:assertion:depicted:cassius-dio-roman-history:cleopatra-flees-and-signals-her-ships:triggered-by:depicted:cassius-dio-roman-history:cleopatra-waits-at-anchor-behind-the-fighting:qa103b41198",
+          "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:cleopatra-decides-to-leave-the-battle:triggered-by:depicted:weigall-life-and-times-of-cleopatra:north-wind-rises-sea-turns-rough:q2ca4231938",
+          "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:cleopatra-initiates-the-flight:part-of:battle-of-actium:q98b5c04788",
+          "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:part-of:battle-of-actium:q98b5c04788",
+          "chr:assertion:depicted:hale-famous-sea-fights:cleopatra-flees-for-alexandria-with-treasure:part-of:battle-of-actium:q0eaaf6ef02",
+          "chr:assertion:depicted:cassius-dio-roman-history:cleopatra-s-advice-prevails-in-council:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:cassius-dio-roman-history:burning-men-leap-into-sea-perish:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:cassius-dio-roman-history:antony-s-men-kill-each-other-or-themselves:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-s-men-fight-on-to-death:part-of:battle-of-actium:q98b5c04788",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-rescues-crews-of-burning-ships:part-of:battle-of-actium:qaebeac93d1",
+          "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+          "chr:assertion:augustus:commanded:octavian-fleet-at-actium:qef0ce0aa37",
+          "chr:assertion:augustus:held-authority-over:octavian-fleet-at-actium:q3066649c00",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q0eaaf6ef02",
+          "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:q0eaaf6ef02",
+          "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:qa103b41198",
+          "chr:assertion:gaius-sosius:commanded:antony-fleet-at-actium:q26e4c3030d",
+          "chr:assertion:lucius-gellius-poplicola:commanded:antony-fleet-at-actium:q26e4c3030d",
+          "chr:assertion:depicted:weigall-life-and-times-of-cleopatra:cleopatra-signals-antony-aboard-shuns-him:part-of:battle-of-actium:q2ca4231938",
+          "chr:assertion:depicted:hale-famous-sea-fights:cleopatra-welcomes-antony-aboard-her-flagship:part-of:battle-of-actium:q0eaaf6ef02"
+        ],
+        "strength": "contested"
+      },
+      {
+        "question": "What should be read next, overall, and in what order?",
+        "answer": "Ours. Read in this order. (1) Dio 50.2–50.10 on the split Senate, Antony's deposition, the declaration of war with its fetial rite, prodigies and Octavian's financing. This one block feeds the political, religious and economic gaps. (2) Dio 51.1–51.4 on the date and its significance, the memorials, clemency, and the soldiers' discharge and pay. (3) Res Gestae 3, 16 and 25 on veterans, land and the oath of Italy. (4) Plutarch 57–59, 62.1, 64 and 68.4 on Octavia, the defections, crews, fleet sizes and Greek grain. (5) Re-extract Strabo 7.7.6 and 17.1 and Aeneid 8.675–713, which are already partly read. (6) Acquire the sources not held: Broughton, then Murray & Petsas, Gurval, Syme and CAH 10.",
+        "claims": [],
+        "strength": "thin"
+      }
+    ],
+    "gaps": [
+      {
+        "question": "What did the battle lead to in Egypt: the fall of Alexandria, the deaths of Antony and Cleopatra, and Egypt's annexation and wealth passing to Octavian?",
+        "why": "Only the pursuit is held (c57, c55). Without these outcomes the 'ledTo Roman Empire' claims (c92, c93) have no intermediate events. Strabo 17.1 has been read but no claim was extracted.",
+        "kind": "relationship missing",
+        "work_ref": "chr:entity:proposed-work-strabo-geography",
+        "source": "Strabo, Geography",
+        "locator": "17.1.9; 17.1.11",
+        "predicate": "ledTo",
+        "entities": [
+          "chr:entity:battle-of-actium"
+        ],
+        "ref": "general:g1",
+        "work": null,
+        "alreadyRead": false,
+        "predicateExists": true
+      },
+      {
+        "question": "Does Dio treat the day of Actium as the beginning of Caesar's sole rule, and how does he date it?",
+        "why": "Dio's significance commentary in 51.1 has been read but yields no claim. It is the ancient basis for treating Actium as an epoch, and it underlies c92 and c93.",
+        "kind": "relationship missing",
+        "work_ref": "chr:entity:cassius-dio-roman-history",
+        "source": "Cassius Dio, Roman History",
+        "locator": "51.1.1-51.1.2",
+        "predicate": "ledTo",
+        "entities": [
+          "chr:entity:battle-of-actium"
+        ],
+        "ref": "general:g2",
+        "work": null,
+        "alreadyRead": false,
+        "predicateExists": true
+      },
+      {
+        "question": "Should the Actian campaign (road to war, blockade, attrition, surrender) be an event separate from the battle of 2 September?",
+        "why": "Our phases place a year-long campaign inside the battle (c262, c183, c257), and c23 records the battle as distinctFrom itself, which points to a duplicate entity.",
+        "kind": "entity missing",
+        "work_ref": null,
+        "source": null,
+        "locator": null,
+        "predicate": "partOf",
+        "entities": [
+          "chr:entity:battle-of-actium"
+        ],
+        "ref": "general:g3",
+        "work": null,
+        "alreadyRead": false,
+        "predicateExists": true
+      },
+      {
+        "question": "How did other Augustan poets remember Actium (Horace Epode 9 and Odes 1.37, Propertius 4.6)?",
+        "why": "Memory rests on a single imaginative voice, the Aeneid, so the contemporary framing of Cleopatra and Apollo cannot be cross-checked.",
+        "kind": "source not held",
+        "work_ref": null,
+        "source": "Horace, Epodes 9 and Odes 1.37; Propertius 4.6",
+        "locator": null,
+        "predicate": "describedBy",
+        "entities": [
+          "chr:entity:battle-of-actium"
+        ],
+        "ref": "general:g4",
+        "work": null,
+        "alreadyRead": false,
+        "predicateExists": true
+      },
+      {
+        "question": "How do the grounding's core modern readings place Actium in the rise of a faction and in the triumviral settlement?",
+        "why": "Syme and CAH 10 are named as core sources but are not held. The modern-significance claims come only from Hale, Wikipedia and a popular history.",
+        "kind": "source not held",
+        "work_ref": null,
+        "source": "Ronald Syme, The Roman Revolution (1939); Cambridge Ancient History vol. 10 (1996)",
+        "locator": null,
+        "predicate": "exemplifies",
+        "entities": [
+          "chr:entity:battle-of-actium"
+        ],
+        "ref": "general:g5",
+        "work": null,
+        "alreadyRead": false,
+        "predicateExists": true
+      }
+    ],
+    "predicate_needs": [
+      {
+        "name": "commemorates",
+        "definition": "A foundation, monument, rite or work was made in order to keep the memory of an event.",
+        "subject_kinds": [
+          "Place",
+          "Event",
+          "Work"
+        ],
+        "object_kinds": [
+          "Event"
+        ],
+        "example": "Nicopolis (Place) commemorates Battle of Actium (Event), voiced by Strabo 7.7.6",
+        "exists": false
+      }
+    ],
+    "invented": [
+      "chr:entity:proposed-work-strabo-geography",
+      "chr:entity:cassius-dio-roman-history",
+      "military: outcome finding",
+      "social: side-changing finding",
+      "religious: dedications finding",
+      "economic: land finding",
+      "political: framing finding",
+      "social: women and foreigners finding",
+      "economic: wealth finding",
+      "military: logistics finding",
+      "military: command finding",
+      "political: offices finding",
+      "social: ordinary participants finding"
+    ],
+    "interactions": [
+      {
+        "lenses": [
+          "military",
+          "social",
+          "political"
+        ],
+        "statement": "Ours. The decisive act was a social one inside a military frame: a commander leaving his dependants. Dio says the line fight had stayed indecisive (c281, c282). Antony's following of Cleopatra (c596, c601, c602; Velleius's 'deserts his soldiers', c136) produced panic and discouragement (c634, c227). In the phases, it is followed by the land army's surrender (c257) and by the failure to rally support afterwards (c599). On this reading the political outcome came from a breach of the commander–soldier bond more than from destruction at sea.",
+        "rests_on": [
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:the-battle-rages-indecisively-all-afternoon:part-of:battle-of-actium:qaebeac93d1",
+          "chr:assertion:depicted:cassius-dio-roman-history:the-battle-stays-indecisive:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:plutarch-life-of-antony:antony-abandons-the-fight-follows-cleopatra:triggered-by:depicted:plutarch-life-of-antony:cleopatra-s-sixty-ships-hoist-sails-and-flee:qc67b4f8f98",
+          "chr:assertion:depicted:cassius-dio-roman-history:antony-follows-the-fleeing-ships:triggered-by:depicted:cassius-dio-roman-history:cleopatra-s-ships-sail-out-to-sea:qa103b41198",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-follows-the-fleeing-squadron:triggered-by:depicted:wikipedia-en-battle-of-actium:cleopatra-s-squadron-retreats-to-open-sea:qaebeac93d1",
+          "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-deserts-his-soldiers-for-cleopatra:part-of:battle-of-actium:q98b5c04788",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:panic-spreads-through-antony-s-fleet:triggered-by:depicted:wikipedia-en-battle-of-actium:antony-follows-the-fleeing-squadron:qaebeac93d1",
+          "chr:assertion:depicted:hale-famous-sea-fights:egyptian-withdrawal-discourages-antony-s-fleet:part-of:battle-of-actium:q0eaaf6ef02",
+          "chr:assertion:phase:battle-of-actium:army-surrender:part-of:battle-of-actium",
+          "chr:assertion:depicted:hale-famous-sea-fights:antony-and-cleopatra-fail-to-rally-support:triggered-by:battle-of-actium:q0eaaf6ef02"
+        ]
+      },
+      {
+        "lenses": [
+          "economic",
+          "religious",
+          "political"
+        ],
+        "statement": "Ours. Military capital was converted into the victor's religious and civic legitimacy. Captured hulls (c251) were dedicated to Apollo (c56, c368). Octavian's camp site became Nicopolis (c59, c378, c625), and three voices treat the city as a consequence of the battle (c89–c91). Booty and the battlefield became permanent instruments of commemoration.",
+        "rests_on": [
+          "chr:assertion:depicted:plutarch-life-of-antony:octavian-s-side-captures-three-hundred-ships:part-of:battle-of-actium:qc67b4f8f98",
+          "chr:assertion:battle-of-actium:happened-before:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+          "chr:assertion:augustus:participated-in:depicted:cassius-dio-roman-history:caesar-dedicates-captured-ships-to-apollo:qa103b41198",
+          "chr:assertion:battle-of-actium:happened-before:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+          "chr:assertion:augustus:participated-in:depicted:hale-famous-sea-fights:octavian-founds-nicopolis-on-camp-site:q0eaaf6ef02",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-founds-nicopolis:triggered-by:battle-of-actium:qaebeac93d1",
+          "chr:assertion:battle-of-actium:led-to:nicopolis:q0eaaf6ef02",
+          "chr:assertion:battle-of-actium:led-to:nicopolis:q87abc58038",
+          "chr:assertion:battle-of-actium:led-to:nicopolis:qaebeac93d1"
+        ]
+      },
+      {
+        "lenses": [
+          "social",
+          "political",
+          "religious"
+        ],
+        "statement": "Ours, using the modern category 'propaganda'. Casting the enemy as a foreign queen turns a bellum civile into something presented as a bellum externum. Opposition is recorded against Cleopatra (c111), and Virgil sets Italians against eastern peoples (c185, c133, c283). Modern voices take up the same East–West frame (c25, c26). This framing is what made a Roman victory over Romans fit to commemorate and to claim legitimacy from.",
+        "rests_on": [
+          "chr:assertion:augustus:opposed:cleopatra:qaebeac93d1",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:caesar-augustus-leads-italians-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:antony-brings-eastern-forces-to-battle:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:depicted:proposed-work-virgil-aeneid:the-eastern-peoples-flee:part-of:battle-of-actium:qc75d1f60cb",
+          "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q02310b84a7",
+          "chr:assertion:battle-of-actium:exemplifies:concept-east-west-contest-for-the-roman-empire:q0eaaf6ef02"
+        ]
+      },
+      {
+        "lenses": [
+          "economic",
+          "military"
+        ],
+        "statement": "Ours. Shortage of manpower and the treasure shaped Antony's tactics. He burned the ships he could not man (c135). Cleopatra's advice for a sea decision prevailed in council (c217), and the treasure went with her squadron (c208, c432). These suggest that the naval engagement served a breakout that saved money and fleet, while blockade and attrition (c175, c183) had already worn down the land option.",
+        "rests_on": [
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:antony-burns-unmanned-ships-clusters-the-rest:part-of:battle-of-actium:qaebeac93d1",
+          "chr:assertion:depicted:cassius-dio-roman-history:cleopatra-s-advice-prevails-in-council:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:hale-famous-sea-fights:cleopatra-flees-for-alexandria-with-treasure:part-of:battle-of-actium:q0eaaf6ef02",
+          "chr:assertion:cleopatra-squadron-at-actium:participated-in:depicted:hale-famous-sea-fights:cleopatra-flees-for-alexandria-with-treasure:q0eaaf6ef02",
+          "chr:assertion:phase:battle-of-actium:isolation:part-of:battle-of-actium",
+          "chr:assertion:phase:battle-of-actium:attrition:part-of:battle-of-actium"
+        ]
+      },
+      {
+        "lenses": [
+          "military",
+          "political"
+        ],
+        "statement": "Ours. The blurring of field command with authority shows a political question underneath. Dio and Hale credit Octavian with commanding the fleet or holding authority over it (c3, c83), while the operational voices credit Agrippa (c10–c13, c84, c85). The victor's later monopoly of the credit cannot be read off the battle, so the gap over imperium in 31 BCE matters to both lenses.",
+        "rests_on": [
+          "chr:assertion:augustus:commanded:octavian-fleet-at-actium:qef0ce0aa37",
+          "chr:assertion:augustus:held-authority-over:octavian-fleet-at-actium:q3066649c00",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q0eaaf6ef02",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q26e4c3030d",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q3066649c00",
+          "chr:assertion:marcus-vipsanius-agrippa:commanded:octavian-fleet-at-actium:q852dd6bc18",
+          "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:q0eaaf6ef02",
+          "chr:assertion:marcus-vipsanius-agrippa:held-authority-over:octavian-fleet-at-actium:qa103b41198"
+        ]
+      },
+      {
+        "lenses": [
+          "social",
+          "political",
+          "military"
+        ],
+        "statement": "Ours. Treatment of the defeated was a political choice. Clemency (c60, c387) and the rescue of crews (c235) contrast with Dio's deaths by fire and drowning and Velleius's men fighting to the death (c267, c171, c169). Which picture the sources choose reflects how the victor's clementia was later presented.",
+        "rests_on": [
+          "chr:assertion:battle-of-actium:happened-before:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+          "chr:assertion:augustus:participated-in:depicted:proposed-work-velleius-paterculus-historiae-romanae:clemency-shown-after-the-victory:q98b5c04788",
+          "chr:assertion:depicted:wikipedia-en-battle-of-actium:octavian-rescues-crews-of-burning-ships:part-of:battle-of-actium:qaebeac93d1",
+          "chr:assertion:depicted:cassius-dio-roman-history:burning-men-leap-into-sea-perish:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:cassius-dio-roman-history:antony-s-men-kill-each-other-or-themselves:part-of:battle-of-actium:qa103b41198",
+          "chr:assertion:depicted:proposed-work-velleius-paterculus-historiae-romanae:antony-s-men-fight-on-to-death:part-of:battle-of-actium:q98b5c04788"
+        ]
+      }
+    ],
+    "duplicates": [
+      [
+        "military:g1",
+        "social:g7",
+        "economic:g3"
+      ],
+      [
+        "military:g2",
+        "economic:g5"
+      ],
+      [
+        "political:g6",
+        "social:g2",
+        "social:g3"
+      ],
+      [
+        "military:g8",
+        "political:g1"
+      ],
+      [
+        "political:g2",
+        "religious:g3"
+      ],
+      [
+        "political:g4",
+        "religious:g7"
+      ],
+      [
+        "military:g3",
+        "military:g10"
+      ]
+    ]
+  }
+}

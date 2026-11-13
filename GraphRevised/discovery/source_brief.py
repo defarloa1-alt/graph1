@@ -31,7 +31,7 @@ from neo4j import GraphDatabase
 from pydantic import BaseModel
 
 from GraphRevised.adapters.sources import PassageSource, open_source
-from GraphRevised.proposals.passage_reader import Inquiry, anthropic_client, load_inquiries
+from GraphRevised.proposals.passage_reader import Inquiry, anthropic_client, graph_context_text, load_inquiries
 from GraphRevised.proposals.prompt_version import prompt_version
 from GraphRevised.proposals.reading_rules import BRIEFS_DIRECTORY, brief_path, normalize, steering
 
@@ -169,7 +169,8 @@ def propose(client, model: str, inquiry: Inquiry, record: str, shared: list[str]
         f"Source record:\n{record}\n\n"
         f"Inquiry: {inquiry.label}\nSubject: {inquiry.subject['label']}\n\n"
         "In-scope entities:\n" + "\n".join(entity_line(e) for e in inquiry.focus + inquiry.scope) + "\n\n"
-        "Shared rules the reader already follows:\n" + "\n".join(f"- {line}" for line in shared) + "\n\n"
+        + (graph_context_text(inquiry.graph_context) + "\n\n" if inquiry.graph_context is not None else "")
+        + "Shared rules the reader already follows:\n" + "\n".join(f"- {line}" for line in shared) + "\n\n"
         "Sampled passages:\n" + "\n\n".join(f"[{ref}] {text}" for ref, text in sample)
     )
     response = client.beta.messages.parse(
@@ -181,7 +182,7 @@ def propose(client, model: str, inquiry: Inquiry, record: str, shared: list[str]
     return (None if response.stop_reason == "refusal" else response.parsed_output), meta
 
 
-PROMPT_VERSION = prompt_version("source-brief-v2", SYSTEM_PROMPT, propose, sample_passages, check)
+PROMPT_VERSION = prompt_version("source-brief-v3", SYSTEM_PROMPT, graph_context_text, propose, sample_passages, check)
 
 
 def main(argv: list[str] | None = None) -> int:

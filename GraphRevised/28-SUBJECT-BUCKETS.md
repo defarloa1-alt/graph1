@@ -22,7 +22,7 @@ A **Subject** node in our own hierarchy:
 - **Anchored** to a library heading where one exists: LCSH and FAST as
   AuthorityRecords with role `subject_access`, checked at the authority, the
   label read from the record, never typed (25 §8).
-- **Ordered** by `(:Subject)-[:BROADER]->(:Subject)`, read from the headings'
+- **Ordered** by `(:Subject)-[:NARROWER_THAN]->(:Subject)` from narrower to broader, read from the headings'
   broader terms where they exist, otherwise proposed by an agent with a
   reason. A bucket may have **several parents**: a graph is not a shelf.
 - **About something** through the existing
@@ -52,7 +52,7 @@ Punic wars                         LCSH sh85109114 · FAST fst01084102
    `heldAuthorityOver`, `servedUnder` (through its context), and `partOf`
    between Events.
 3. **The most specific bucket wins.** Hannibal is placed in the 2nd war, not
-   directly in *Punic wars*; he is under *Punic wars* through `BROADER`.
+   directly in *Punic wars*; he is under *Punic wars* through `NARROWER_THAN`.
 4. **Stored only where no claim can carry it.** An agent or the curator
    places the entity with a written reason; the placement is visible at once
    (25 decision 2) and the curator promotes it.

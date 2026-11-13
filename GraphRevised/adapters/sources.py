@@ -2,8 +2,10 @@
 
     perseus-tei        {"edition": <preserved TEI path>, "chapters": "61-68"}
     lacuscurtius-html  {"pages": [<preserved page paths>], "chapters": "50.11-50.15,50.31-51.2", "translator": ...,
-                        "author": ... (when the pages do not name one)}
+                        "author": ... (when the pages do not name one)}; named Lives use chapter.section refs
     gutenberg-html     {"book": <preserved book path>, "edition": "<printed edition>"}  (refs: chapter.paragraph)
+                       Optional section {"start": heading id, "end": heading id, "label": ...} uses
+                       1.paragraph refs within the reviewed, heading-delimited section, not classical line numbers.
     wikipedia-html     {"article": <preserved parse response path>}  (refs: section.paragraph; 0 is the lead)
 
 Paths are relative to the GraphRevised directory. `chapters` selects what a
@@ -89,7 +91,8 @@ def _lacuscurtius(config: dict[str, Any], base: Path) -> PassageSource:
 
 
 def _gutenberg(config: dict[str, Any], base: Path) -> PassageSource:
-    edition = gutenberg_passages.load_edition(base / config["book"], edition=config.get("edition"))
+    edition = gutenberg_passages.load_edition(base / config["book"], edition=config.get("edition"),
+                                              section=config.get("section"))
     return PassageSource(
         author=edition.author, title=edition.title, translator=edition.translator, citation=edition.citation,
         refs=lambda selection: gutenberg_passages.section_refs(edition, selection) if selection else edition.all_refs(),

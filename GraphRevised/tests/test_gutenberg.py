@@ -5,6 +5,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from GraphRevised.adapters import gutenberg_passages as gb
 from GraphRevised.adapters.sources import open_source
@@ -75,6 +76,41 @@ class GutenbergTests(unittest.TestCase):
                              self.directory)
         self.assertEqual(source.refs("2-2"), ["2.1"])
         self.assertEqual(len(source.refs(None)), 3)
+
+    def test_explicit_heading_section_has_distinct_unambiguous_locators(self):
+        html = ('<html lang="en"><h2 id="start">Epistle II</h2><h5>Title</h5>'
+                '<p>First line.<br>Second line.</p><p>Another verse.</p><h2 id="end">Next work</h2></html>')
+        payload = html.encode("utf-8")
+        self.path.write_bytes(payload)
+        metadata_path = self.path.with_suffix(".metadata.json")
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        metadata["contentHash"] = hashlib.sha256(payload).hexdigest()
+        metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+        section = {"start": "start", "end": "end", "label": "Book II, Epistle II"}
+        source = open_source({"type": "gutenberg-html", "book": self.path.name, "section": section}, self.directory)
+        self.assertEqual(source.refs(None), ["1.1", "1.2"])
+        obs = source.observation("1.1")
+        self.assertEqual(obs["passageText"], "First line. Second line.")
+        self.assertIn("#start (selected section Book II, Epistle II, para. 1)", obs["locator"])
+        self.assertNotEqual(obs["id"], f"chr:observation:gutenberg:99999:1.1:{metadata['contentHash'][:8]}")
+
+    def test_section_rejects_missing_end_intermediate_headings_and_notes(self):
+        section = {"start": "s", "end": "e", "label": "test"}
+        for html in ('<h2 id="s">S</h2><p>Text</p>', '<h2 id="s">S</h2><h2>Other</h2><p>Text</p><h2 id="e">E</h2>',
+                     '<h2 id="s">S</h2><p>Text <a class="fnanchor">1</a></p><h2 id="e">E</h2>',
+                     '<h2 id="s">S</h2><div class="footnotes"><p>Note</p></div><h2 id="e">E</h2>'):
+            with self.subTest(html=html), self.assertRaises(ValueError):
+                gb._section_passages(html, section)
+
+    def test_missing_legacy_html_uses_gutenberg_current_html(self):
+        old = mock.Mock(status_code=404)
+        current = mock.Mock(status_code=200, content=BOOK.encode("utf-8"))
+        current.raise_for_status.return_value = None
+        with mock.patch.object(gb.requests, "get", side_effect=[old, current]), \
+                mock.patch.object(gb, "_catalog", return_value={"copyrightStatus": "Public domain in the USA."}):
+            path = gb.preserve_book(1234, self.directory)
+        metadata = json.loads(path.with_suffix(".metadata.json").read_text(encoding="utf-8"))
+        self.assertEqual(metadata["sourceUri"], "https://www.gutenberg.org/cache/epub/1234/pg1234-images.html")
 
 
 if __name__ == "__main__":

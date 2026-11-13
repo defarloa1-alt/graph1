@@ -1,0 +1,29 @@
+.graph-view { margin-top: 24px; }
+.graph-heading { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; }
+.graph-heading p { color: var(--ink-2); margin: 6px 0; }
+.graph-controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.graph-controls button[aria-pressed="true"] { background: var(--strong); color: var(--on-strong); }
+.graph-key { color: var(--ink-2); }
+.graph-key span { display: inline-block; border: 1px solid var(--line); padding: 2px 8px; border-radius: 6px; margin-right: 6px; }
+.graph-key-subject { background: #dcebe5; color: #204c3b; }
+.graph-key-event { background: #e4e9f4; color: #263d65; }
+.graph-key-depiction { background: #f5e9d8; color: #66461d; border-style: dashed !important; }
+.graph-warning { padding: 12px 16px; border-left: 4px solid #aa7927; background: var(--surface); }
+.graph-scroll { overflow: auto; max-height: 740px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.graph-scroll svg { display: block; width: 100%; height: auto; min-width: 900px; }
+.graph-node rect { fill: #e4e9f4; stroke: #536b95; stroke-width: 1.5; }
+.graph-node.subject rect { fill: #dcebe5; stroke: #50806d; }
+.graph-node.depiction rect { fill: #f5e9d8; stroke: #a2753b; stroke-dasharray: 6 3; }
+.graph-node.phase rect { fill: #e4e9f4; stroke: #536b95; }
+.graph-node[role="button"] { cursor: pointer; }
+.graph-node[role="button"]:focus rect, .graph-node[role="button"]:hover rect { stroke: #111; stroke-width: 3; }
+.graph-label { fill: #1c1f23; font: 600 14px var(--font-body); }
+.graph-subtitle { fill: #4d545b; font: 11px var(--font-body); }
+.graph-edge { fill: none; stroke: #64707b; stroke-width: 1.5; }
+.graph-edge.phase-edge { stroke: #536b95; }
+.graph-edge.topical-edge { stroke: #a2753b; }
+.graph-edge-label { fill: var(--ink-2); font: 12px var(--font-body); }
+.graph-details { padding: 16px; margin-top: 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.graph-details h3 { font-size: 17px; }
+.graph-details h4 { margin-bottom: 4px; }
+@media (max-width: 700px) { .graph-heading { flex-direction: column; } }

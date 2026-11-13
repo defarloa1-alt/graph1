@@ -67,7 +67,7 @@ ORDER BY `#`;
 // 4. What is not in any phase ----------------------------------------------------------------
 // Depicted events of the battle's sources that no live placement puts in a phase: those the agent
 // judged outside the battle, and those of creative Works, which cannot be placed (handoff rule 15).
-MATCH (e:Entity {kind: 'Event'})
+MATCH (e:Entity:Event)
 WHERE e.id STARTS WITH 'chr:entity:depicted:' AND e.status <> 'deprecated'
   AND NOT EXISTS {
     MATCH (e)<-[:ASSERTION_SUBJECT]-(pl:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ph:Entity)

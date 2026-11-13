@@ -1,0 +1,1441 @@
+{
+  "description": "Predicates the lens specialists ask for, with precedents (proposals/predicate_needs.py; 39 §7). A request is a lead for the curator, never a registry change.",
+  "version": 1,
+  "requests": [
+    {
+      "name": "defectedTo",
+      "status": "open",
+      "definitions": [
+        "A person or unit left one side for the opposing commander at a stated date.",
+        "A person or group leaves one side and goes over to another at a date.",
+        "A person or contingent abandons one side and goes over to the opposing leader at a given date."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Group",
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:military/roman-republic",
+        "lens-analyst:political/roman-republic",
+        "lens-analyst:social/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Dellius defectedTo Augustus, shortly before 2 Sep 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        },
+        {
+          "example": "Quintus Dellius defectedTo Augustus, before 2 Sept 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        },
+        {
+          "example": "Gnaeus Domitius Ahenobarbus defectedTo Augustus, 31 BCE (before September)",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "OPPOSED",
+            "description": "Person/group opposed another",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.7
+          },
+          {
+            "name": "DEFECTED_FROM",
+            "description": "Defected from",
+            "category": "Military",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E86_Leaving",
+            "status": "implemented",
+            "score": 0.63
+          },
+          {
+            "name": "DEFECTED_TO",
+            "description": "Defected to join",
+            "category": "Military",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E85_Joining",
+            "status": "implemented",
+            "score": 0.63
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "abandonedCommand",
+        "surrenderedTo"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "The desertion is an act; the allegiance after it is a state (servedUnder, alliedWith with a start).",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "abandonedCommand",
+      "status": "open",
+      "definitions": [
+        "A commander leaves the force under his command while it is still engaged, at a given date."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Group"
+      ],
+      "requestedBy": [
+        "lens-analyst:social/roman-republic",
+        "lens-specialist:military/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Mark Antony abandonedCommand Antony's fleet at Actium, 2 September 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        },
+        {
+          "observationId": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:68.3:70427323",
+          "quotation": "Canidius their general had run away by night and forsaken the camp",
+          "ref": "68.3",
+          "run": "lens-reader-military-roman-republic-20261112T124241Z.jsonl"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:44:43+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "SERVED_UNDER",
+            "description": "Served under commander",
+            "category": "Military",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.68
+          },
+          {
+            "name": "COMMANDED_BY",
+            "description": "Was commanded by",
+            "category": "Military",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": [
+              "P4791 (commanded by, medium confidence, unreviewed)"
+            ],
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.58
+          },
+          {
+            "name": "COMMANDED",
+            "description": "Commanded forces",
+            "category": "Position",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.58
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "defectedTo",
+        "delegatedCommandTo",
+        "surrenderedTo"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "Leaving a force mid-battle is an act (already depicted: Antony follows Cleopatra).",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "captured",
+      "status": "open",
+      "definitions": [
+        "A force took enemy vessels or men in a given engagement on a given date."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Group"
+      ],
+      "requestedBy": [
+        "lens-analyst:military/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Octavian's fleet at Actium captured 300 ships of Antony's fleet, 2 Sep 31 BCE (Plutarch)",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "capturedAsBooty",
+        "hadStrength"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "A capture happens at a moment in an engagement, with captor and captured.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "capturedAsBooty",
+      "status": "open",
+      "definitions": [
+        "A side took ships, treasure or goods from the enemy in an engagement at a given time."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Group",
+        "Object"
+      ],
+      "requestedBy": [
+        "lens-analyst:economic/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Octavian's fleet at Actium capturedAsBooty ships of Antony's fleet at Actium, time -0030-09-02 (c251).",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "captured",
+        "dedicatedSpoils"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "Taking booty is an act within an engagement.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "claimedDivineAssociation",
+      "status": "open",
+      "definitions": [
+        "A person publicly associates himself or herself with a deity during a time span."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Deity"
+      ],
+      "requestedBy": [
+        "lens-analyst:religious/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus claimedDivineAssociation Apollo, -0036/-0027",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "An association with a deity is held over time.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "commemorates",
+      "status": "open",
+      "definitions": [
+        "A foundation, monument, rite or work was made in order to keep the memory of an event."
+      ],
+      "subjectKinds": [
+        "Event",
+        "Place",
+        "Work"
+      ],
+      "objectKinds": [
+        "Event"
+      ],
+      "requestedBy": [
+        "lens-analyst:general/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Nicopolis (Place) commemorates Battle of Actium (Event), voiced by Strabo 7.7.6",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "FOUNDED",
+            "description": "Established place",
+            "category": "Geographic",
+            "direction": "forward",
+            "wikidata": "P112 (founded by)",
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E63_Beginning_of_Existence",
+            "status": "implemented",
+            "score": 0.5
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "A monument or rite stands in a lasting relation to the event it recalls.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "conscriptedInto",
+      "status": "open",
+      "definitions": [
+        "Persons are compelled into service in a force at a given date."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Group"
+      ],
+      "requestedBy": [
+        "lens-analyst:social/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Greek civilians conscriptedInto Antony's fleet at Actium, 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "A levy is an act of raising men.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "declaredWarByRitual",
+      "status": "open",
+      "definitions": [
+        "A person or priestly college performs the ritual declaration of war against a named enemy at a date."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Person",
+        "Polity"
+      ],
+      "requestedBy": [
+        "lens-analyst:religious/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus declaredWarByRitual Cleopatra, -0032",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "OUTLAWED",
+            "description": "Declared person an outlaw/enemy",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E13_Attribute_Assignment",
+            "status": "implemented",
+            "score": 0.61
+          },
+          {
+            "name": "DECLARED_FOR",
+            "description": "Publicly declared support for",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.6
+          },
+          {
+            "name": "DECLARED_FOR_BY",
+            "description": "Received declaration of support from",
+            "category": "Political",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.6
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "declaredWarOn"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "The fetial declaration is a ritual act.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "declaredWarOn",
+      "status": "open",
+      "definitions": [
+        "A body or magistrate formally declares war on a person or polity at a date."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Person",
+        "Polity"
+      ],
+      "requestedBy": [
+        "lens-analyst:political/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Roman Senate declaredWarOn Cleopatra, 32 BCE (phase: 'war declared on Cleopatra')",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "DECLARED_FOR",
+            "description": "Publicly declared support for",
+            "category": "Political",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.6
+          },
+          {
+            "name": "DECLARED_FOR_BY",
+            "description": "Received declaration of support from",
+            "category": "Political",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.6
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "declaredWarByRitual"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "A declaration of war is a dated act by a body, often with a ritual and a place.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "decreedThanksgiving",
+      "status": "open",
+      "definitions": [
+        "The Senate or another body decrees a supplicatio for a victory at a date."
+      ],
+      "subjectKinds": [
+        "Group"
+      ],
+      "objectKinds": [
+        "Event"
+      ],
+      "requestedBy": [
+        "lens-analyst:religious/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Senate decreedThanksgiving Battle of Actium, -0030",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "A supplicatio is decreed on a date by a body.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "dedicatedSpoils",
+      "status": "open",
+      "definitions": [
+        "A person consecrated captured goods or ships to a deity or sanctuary at a given time."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Concept",
+        "Place"
+      ],
+      "requestedBy": [
+        "lens-analyst:economic/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus dedicatedSpoils captured ships to Apollo at Actium, time -0030 (c56, c368).",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "captured",
+        "capturedAsBooty",
+        "dedicatedTo"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "A dedication is a ceremony with a dedicator, an object, and a god.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "dedicatedTo",
+      "status": "open",
+      "definitions": [
+        "A person dedicates an object (spoils, ships, building) to a deity at a given date."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Deity"
+      ],
+      "requestedBy": [
+        "lens-analyst:religious/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus dedicatedTo Apollo (captured ships), -0030",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "dedicatedSpoils"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "A dedication is an act with a date and a dedicator.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "delegatedCommandTo",
+      "status": "open",
+      "definitions": [
+        "A holder of imperium assigned a deputy (legatus) to command a force or division for a stated period."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:military/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus delegatedCommandTo Marcus Vipsanius Agrippa for the left wing of Octavian's fleet, 2 Sep 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "COMMANDED_BY",
+            "description": "Was commanded by",
+            "category": "Military",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": [
+              "P4791 (commanded by, medium confidence, unreviewed)"
+            ],
+            "reifyAs": "EVENT",
+            "cidoc": "E7_Activity",
+            "status": "implemented",
+            "score": 0.58
+          },
+          {
+            "name": "COMMANDED",
+            "description": "Commanded forces",
+            "category": "Position",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.58
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "abandonedCommand"
+      ],
+      "shape": {
+        "value": "state",
+        "basis": "Delegated command holds between two people over a time.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "deprivedOfPosition",
+      "status": "open",
+      "definitions": [
+        "A person is stripped of an office or designated office by a named body at a date."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Position"
+      ],
+      "requestedBy": [
+        "lens-analyst:political/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Mark Antony deprivedOfPosition consulship (designate for 31 BCE), 32 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [
+          {
+            "id": "heldPosition",
+            "display": "held position",
+            "subjectKinds": [
+              "Person"
+            ],
+            "objectKinds": [
+              "Office"
+            ],
+            "score": 0.6
+          }
+        ],
+        "legacy": [
+          {
+            "name": "POSITION_HELD",
+            "description": "Person held a position or office",
+            "category": "Position",
+            "direction": "forward",
+            "wikidata": "P39 (position held)",
+            "wikidataSuggested": null,
+            "reifyAs": null,
+            "cidoc": null,
+            "status": "candidate",
+            "score": 0.85
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "qualifier",
+        "basis": "The end of a heldPosition claim, not a predicate of its own.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "grantedClemencyTo",
+      "status": "open",
+      "definitions": [
+        "A victor spares a named opponent or group at a date."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Group",
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:political/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus grantedClemencyTo Gaius Sosius, after Sept 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "GRANTED_TITLE",
+            "description": "Title was granted to person",
+            "category": "Honorific",
+            "direction": "forward",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E13_Attribute_Assignment",
+            "status": "implemented",
+            "score": 0.63
+          },
+          {
+            "name": "TITLE_GRANTED_BY",
+            "description": "Person was granted title by grantor",
+            "category": "Honorific",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E13_Attribute_Assignment",
+            "status": "implemented",
+            "score": 0.63
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "sparedBy"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "Clemency is granted in an act.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "hadStrength",
+      "status": "open",
+      "definitions": [
+        "A force numbered a given count of ships or men at a given date, as stated by one source. It is reported per voice and never reconciled."
+      ],
+      "subjectKinds": [
+        "Group"
+      ],
+      "objectKinds": [
+        "Quantity"
+      ],
+      "requestedBy": [
+        "lens-analyst:military/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Cleopatra's squadron at Actium hadStrength 60 ships, 2 Sep 31 BCE (Plutarch; Hale)",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "captured",
+        "surrenderedTo"
+      ],
+      "shape": {
+        "value": "quantity",
+        "basis": "A number on a claim (quantityMinimum, quantityMaximum).",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "informedBy",
+      "status": "open",
+      "definitions": [
+        "A source's account rests on a named person's report: the source says it had the story from them (an informant, often an eyewitness)."
+      ],
+      "subjectKinds": [
+        "Work"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-12; event-roles.json openQuestions.informant)"
+      ],
+      "evidence": [
+        {
+          "quotation": "my great-grandfather Nicarchus used to tell how all his fellow-citizens were compelled to carry on their shoulders a stipulated measure of wheat down to the sea at Anticyra",
+          "ref": "Plutarch, Life of Antony 68.4 (Perseus, perseus-eng2)"
+        }
+      ],
+      "firstRequested": "2026-11-12T15:06:23+00:00",
+      "lastRequested": "2026-11-12T15:06:23+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": [
+          {
+            "code": "E73_Information_Object",
+            "wikidata": "Q11028",
+            "mapping": "Approximate",
+            "note": "Information concept very broad in Wikidata",
+            "score": 0.5
+          }
+        ]
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "A standing relation between a source and the person its account rests on, not an act within the events it tells.",
+        "by": "curator, 2026-11-12",
+        "at": "2026-11-12T15:06:23+00:00"
+      }
+    },
+    {
+      "name": "instituted",
+      "status": "open",
+      "definitions": [
+        "A person founds recurring games, a festival or a cult at a date."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Festival",
+        "Ritual"
+      ],
+      "requestedBy": [
+        "lens-analyst:religious/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus instituted Ludi Actiaci, c. -0029",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "FOUNDED",
+            "description": "Established place",
+            "category": "Geographic",
+            "direction": "forward",
+            "wikidata": "P112 (founded by)",
+            "wikidataSuggested": null,
+            "reifyAs": "EVENT",
+            "cidoc": "E63_Beginning_of_Existence",
+            "status": "implemented",
+            "score": 0.5
+          }
+        ],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "Instituting a rite or games is a founding act.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "intercededFor",
+      "status": "open",
+      "definitions": [
+        "A person pledges himself or pleads with a third party on behalf of another at a given date."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:social/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Lucius Arruntius intercededFor Gaius Sosius, 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "An intercession is an act.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "leviedOn",
+      "status": "open",
+      "definitions": [
+        "A person or authority imposed a tax, levy or contribution on a group or place at a given time."
+      ],
+      "subjectKinds": [
+        "Person",
+        "Polity"
+      ],
+      "objectKinds": [
+        "Group",
+        "Place",
+        "Polity"
+      ],
+      "requestedBy": [
+        "lens-analyst:economic/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus leviedOn citizens of Italy, time -0032 (Dio 50.10, to be read).",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "A levy or tax imposed is an act with several parties.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "reportsOmen",
+      "status": "open",
+      "definitions": [
+        "A work reports an omen or portent concerning a person or event. The claim is attributed to the work, not asserted as having happened, and is time-boxed to the reported date."
+      ],
+      "subjectKinds": [
+        "Work"
+      ],
+      "objectKinds": [
+        "Event",
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:religious/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Life of Antony reportsOmen (ass Eutychus) concerning Augustus, -0031",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "An omen is an occurrence a Work reports.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "requisitionedFrom",
+      "status": "open",
+      "definitions": [
+        "A commander or army compulsorily took grain, materials, animals or labour from a community at a given time."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Group",
+        "Place"
+      ],
+      "requestedBy": [
+        "lens-analyst:economic/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Mark Antony requisitionedFrom Chaeronea, time -0031 (Plutarch 68.4, to be read).",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "A requisition is an act with several parties.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "settledAt",
+      "status": "open",
+      "definitions": [
+        "Discharged soldiers of a force were settled on land at a place at a stated date."
+      ],
+      "subjectKinds": [
+        "Group"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "requestedBy": [
+        "lens-analyst:military/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "veterans of Octavian's forces settledAt colonies in Italy, 30 BCE onward (to be grounded in Dio 51.3-4 or Res Gestae 3.3)",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "settledOn",
+        "surrenderedTo"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "Settling veterans is an act of distribution.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "settledOn",
+      "status": "open",
+      "definitions": [
+        "A person or authority assigned land at a place to settlers or veterans at a given time."
+      ],
+      "subjectKinds": [
+        "Person",
+        "Polity"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "requestedBy": [
+        "lens-analyst:economic/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Augustus settledOn Nicopolis, time -0030/-0029.",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "settledAt"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "Settling veterans on land is an act of distribution.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "sparedBy",
+      "status": "open",
+      "definitions": [
+        "A defeated person is pardoned or preserved unharmed by the victor at a given date."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:social/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Gaius Sosius sparedBy Augustus, 31 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "Sparing is an act (the same as clemency granted, seen from the other side).",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "struckCoinage",
+      "status": "open",
+      "definitions": [
+        "A person or authority issued a coin type at a given time."
+      ],
+      "subjectKinds": [
+        "Person",
+        "Polity"
+      ],
+      "objectKinds": [
+        "Object"
+      ],
+      "requestedBy": [
+        "lens-analyst:economic/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Mark Antony struckCoinage legionary denarii, time -0032/-0031 (RRC 544, not held).",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "An issue of coins is an act: who struck it, where, when (or a Work/Object claim).",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "surrenderedTo",
+      "status": "open",
+      "definitions": [
+        "A force or person yielded to an enemy commander at a stated date."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Group",
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:military/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Antony's land army surrenderedTo Augustus, September 31 BCE, some days after the battle",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "defectedTo",
+        "abandonedCommand",
+        "hadStrength",
+        "settledAt",
+        "wentOverTo"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "A surrender happens at a moment (the army's surrender is already a phase).",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "sworeAllegianceTo",
+      "status": "open",
+      "definitions": [
+        "A community or group takes an oath of loyalty to a person at a date."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Place"
+      ],
+      "objectKinds": [
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-analyst:political/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Italy sworeAllegianceTo Augustus (coniuratio Italiae), 32 BCE",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "An oath is sworn at a moment.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "transportedTreasure",
+      "status": "open",
+      "definitions": [
+        "A person or group carried a treasury or store of valuables from one place to another at a given time."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "requestedBy": [
+        "lens-analyst:economic/roman-republic"
+      ],
+      "evidence": [
+        {
+          "example": "Cleopatra's squadron at Actium transportedTreasure to Alexandria, time -0030-09-02 (c208).",
+          "run": "lens-battle-of-actium-20261021T220540Z.json"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:23:27+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "event",
+        "basis": "Moving treasure is an act with a time and route.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "wentOverTo",
+      "status": "open",
+      "definitions": [
+        "A force or its members defected or surrendered to another person or force."
+      ],
+      "subjectKinds": [
+        "Group",
+        "Person"
+      ],
+      "objectKinds": [
+        "Group",
+        "Person"
+      ],
+      "requestedBy": [
+        "lens-specialist:military/roman-republic"
+      ],
+      "evidence": [
+        {
+          "observationId": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:68.3:70427323",
+          "quotation": "they went over to the conqueror",
+          "ref": "68.3",
+          "run": "lens-reader-military-roman-republic-20261112T121910Z.jsonl"
+        },
+        {
+          "observationId": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:63.3:70427323",
+          "quotation": "Amyntas and Deiotarus went over to Caesar",
+          "ref": "63.3",
+          "run": "lens-reader-military-roman-republic-20261112T124241Z.jsonl"
+        },
+        {
+          "observationId": "chr:observation:perseus:tlg0007.tlg058.perseus-eng2:68.3:70427323",
+          "quotation": "they went over to the conqueror",
+          "ref": "68.3",
+          "run": "lens-reader-military-roman-republic-20261112T124241Z.jsonl"
+        }
+      ],
+      "firstRequested": "2026-11-12T12:23:27+00:00",
+      "lastRequested": "2026-11-12T12:44:43+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [],
+        "cidoc": []
+      },
+      "similarRequests": [
+        "defectedTo",
+        "surrenderedTo"
+      ],
+      "shape": {
+        "value": "event",
+        "basis": "The same act as defectedTo: a desertion is an event.",
+        "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
+        "at": "2026-11-12T12:44:44+00:00"
+      }
+    }
+  ]
+}

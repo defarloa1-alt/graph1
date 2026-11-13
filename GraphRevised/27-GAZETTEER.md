@@ -45,7 +45,7 @@ metadata file beside them, as the PeriodO cache does.
 (:Location)-[:WITHIN {tree: "modern"}]->(:Location)        one parent, by admin codes
 (:Location)-[:WITHIN {tree: "ancient", relation, periods}]->(:Location)   several allowed
 (:Location)-[:MODERN_LOCATION {how, distanceKm}]->(:Location)              ancient to modern
-(:Entity {kind: Place})-[:AT_LOCATION {status}]->(:Location)
+(:Entity:Place)-[:AT_LOCATION {status}]->(:Location)
 ```
 
 - **Location**: `id` (`chr:location:geonames:<id>`, `chr:location:pleiades:<id>`),

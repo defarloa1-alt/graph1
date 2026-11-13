@@ -1,0 +1,135 @@
+{
+  "description": "Grounding for the lens agents on the Roman Republic (Polity; D-040): for each lens, the native terms it reads in, its core sources, and rules carried over from the legacy facet methodologies (Facets/*_SFA_ONTOLOGY_METHODOLOGY.md). 'Trained' means grounded: this pack is put before the agent, with claims the curator has accepted as worked examples (none yet). Sources here are candidates for the source plan, not evidence and not a whitelist (D-064); modern works are consulted, not preserved, unless the registry's rights rule allows it. Drafted by Claude acting as the agent, 2026-10-21, for the curator to review.",
+  "version": 1,
+  "status": "draft",
+  "polity": "Roman Republic",
+  "lenses": {
+    "general": {
+      "nativeTerms": [
+        ["res publica", "the state as common property; the Republic's own name for itself"],
+        ["mos maiorum", "the custom of the ancestors, the unwritten norm against which change was judged"],
+        ["bellum civile", "civil war, as distinct from war against a foreign enemy (bellum externum)"]
+      ],
+      "coreSources": [
+        {"title": "The Roman Revolution", "author": "Ronald Syme", "year": 1939, "type": "modern", "why": "the classic reading of the end of the Republic as the rise of a faction"},
+        {"title": "The Cambridge Ancient History, vol. 10: The Augustan Empire, 43 B.C.-A.D. 69", "author": "Bowman, Champlin, Lintott (eds.)", "year": 1996, "type": "modern", "why": "standard reference for the triumviral period and Actium"}
+      ],
+      "rules": [
+        "A synthesis is ours and says so; it rests on claims and passages, never on the model's memory.",
+        "Prefer the sources' own terms to modern categories, and say when a modern category is used."
+      ]
+    },
+    "military": {
+      "nativeTerms": [
+        ["imperium", "the legal power to command, held by magistrates and promagistrates; distinct from command exercised"],
+        ["legatus", "a deputy to whom a holder of imperium delegated command"],
+        ["praefectus classis", "commander of a fleet"],
+        ["legio", "the legion, the citizen heavy-infantry unit"],
+        ["dilectus", "the levy of citizens for service"],
+        ["evocati", "veterans recalled to service"],
+        ["triumphus", "the triumph, the victory procession granted for a war against a foreign enemy"]
+      ],
+      "coreSources": [
+        {"title": "Histories, book 6", "author": "Polybius", "type": "ancient", "why": "the Republic's army and its levy, as of the Hannibalic war"},
+        {"title": "Civil War", "author": "Julius Caesar", "type": "ancient", "why": "a commander's own account of Roman civil war"},
+        {"title": "Civil Wars", "author": "Appian", "type": "ancient", "why": "the narrative of the civil wars to 35 BCE"},
+        {"title": "Roman History, books 50-51", "author": "Cassius Dio", "type": "ancient", "why": "the fullest narrative of the Actium campaign", "held": "chr:entity:cassius-dio-roman-history"},
+        {"title": "Stratagems", "author": "Frontinus", "type": "ancient", "why": "military anecdotes by type of stratagem"},
+        {"title": "The Making of the Roman Army: From Republic to Empire", "author": "Lawrence Keppie", "year": 1984, "type": "modern", "why": "the army's change from levy to standing force"},
+        {"title": "Octavian's Campsite Memorial for the Actian War", "author": "William M. Murray and Photios M. Petsas", "year": 1989, "type": "modern", "why": "the archaeology of the Actium monument and the warship rams"},
+        {"title": "Greek and Roman Oared Warships", "author": "J. S. Morrison and J. F. Coates", "year": 1996, "type": "modern", "why": "ship types and naval tactics"}
+      ],
+      "rules": [
+        "Keep authority and command apart: heldAuthorityOver for imperium over a force, commanded for command exercised.",
+        "Ancient numbers of ships and men are each a voice; report each with its source, never a reconciled figure.",
+        "Use the sources' role words; 'admiral' and other modern ranks are glosses, never claims.",
+        "A unit's side is a claim of its own; never infer it from its commander's side."
+      ]
+    },
+    "political": {
+      "nativeTerms": [
+        ["triumviri rei publicae constituendae", "the triumvirs for setting the state in order (Antony, Octavian, Lepidus), from 43 BCE"],
+        ["senatus consultum", "a decree of the Senate"],
+        ["tribunicia potestas", "the power of a tribune, held apart from the office"],
+        ["coniuratio Italiae", "the oath of Italy to Octavian in 32 BCE, as he reports it"],
+        ["rex socius et amicus", "a client king, 'ally and friend of the Roman people'"],
+        ["hostis", "public enemy, a status declared by the Senate"]
+      ],
+      "coreSources": [
+        {"title": "Res Gestae Divi Augusti", "author": "Augustus", "type": "ancient", "why": "the victor's own account of his powers and the oath of Italy", "held": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti"},
+        {"title": "Life of Antony", "author": "Plutarch", "type": "ancient", "why": "Antony's career and the breach with Octavian", "held": "chr:entity:plutarch-life-of-antony"},
+        {"title": "Life of Augustus", "author": "Suetonius", "type": "ancient", "why": "Octavian's career and use of power"},
+        {"title": "Roman History, book 2", "author": "Velleius Paterculus", "type": "ancient", "why": "a near-contemporary, pro-Augustan view", "held": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae"},
+        {"title": "The Magistrates of the Roman Republic", "author": "T. R. S. Broughton", "year": 1951, "type": "modern", "why": "who held which office in each year, with sources"},
+        {"title": "The Constitution of the Roman Republic", "author": "Andrew Lintott", "year": 1999, "type": "modern", "why": "offices, powers, and assemblies"}
+      ],
+      "rules": [
+        "An office (consul), a role (commander), and a power (imperium) are distinct; never collapse them.",
+        "Legitimacy is a claim with a voice: who held a power to be legal, and when.",
+        "Office counts, competences, and procedures are dated claims, not a timeless constitution."
+      ]
+    },
+    "economic": {
+      "nativeTerms": [
+        ["aerarium", "the public treasury"],
+        ["tributum", "the direct tax on citizens, suspended from 167 BCE and levied again in the civil wars"],
+        ["ager publicus", "public land"],
+        ["proscriptio", "the public listing of persons whose lives and property were forfeit"],
+        ["donativum", "a cash gift to soldiers"],
+        ["denarius", "the standard silver coin"]
+      ],
+      "coreSources": [
+        {"title": "Roman Republican Coinage", "author": "Michael H. Crawford", "year": 1974, "type": "modern", "why": "the catalogue of Republican issues, including the triumvirs' coinage"},
+        {"title": "Coinage of the Roman Republic Online (CRRO)", "author": "American Numismatic Society", "type": "database", "why": "Republican coin types with Nomisma identifiers"},
+        {"title": "Italian Manpower, 225 B.C.-A.D. 14", "author": "P. A. Brunt", "year": 1971, "type": "modern", "why": "population, land, and recruitment"},
+        {"title": "The Cambridge Economic History of the Greco-Roman World", "author": "Scheidel, Morris, Saller (eds.)", "year": 2007, "type": "modern", "why": "standard economic reference"},
+        {"title": "Life of Antony", "author": "Plutarch", "type": "ancient", "why": "Antony's levies in the East and Cleopatra's resources", "held": "chr:entity:plutarch-life-of-antony"}
+      ],
+      "rules": [
+        "A coin is evidence of what its issuer chose to show and of who could strike; read its legend and type as such.",
+        "Sums of money in ancient sources are voices, not facts; keep their units as the source gives them."
+      ]
+    },
+    "social": {
+      "nativeTerms": [
+        ["gens", "the clan, sharing a family name"],
+        ["patronus / cliens", "patron and client, a bond of obligation"],
+        ["amicitia", "political friendship among the elite"],
+        ["nobilis", "a man of a family that had held the consulship"],
+        ["eques", "an equestrian, the order below the senators"],
+        ["libertus", "a freedman"]
+      ],
+      "coreSources": [
+        {"title": "Roman Marriage", "author": "Susan Treggiari", "year": 1991, "type": "modern", "why": "marriage and its uses among the elite"},
+        {"title": "Patronage in Ancient Society", "author": "Andrew Wallace-Hadrill (ed.)", "year": 1989, "type": "modern", "why": "patronage as a social bond"},
+        {"title": "The Army and the Land in the Roman Revolution", "author": "P. A. Brunt", "year": 1962, "type": "modern", "why": "veterans, land, and loyalty (Journal of Roman Studies 52)"},
+        {"title": "Life of Antony", "author": "Plutarch", "type": "ancient", "why": "kinship, marriages, and defections around Antony", "held": "chr:entity:plutarch-life-of-antony"}
+      ],
+      "rules": [
+        "Family ties come from the person's own records first, then one and two hops out (25 §11).",
+        "A motive for a defection is the source's attribution, recorded as theirs."
+      ]
+    },
+    "religious": {
+      "nativeTerms": [
+        ["fetiales", "the priests who declared war by ritual"],
+        ["votum", "a vow to a god, fulfilled on success"],
+        ["prodigium", "a portent reported to the Senate"],
+        ["supplicatio", "public thanksgiving"],
+        ["Apollo Actius", "Apollo of Actium, whose sanctuary overlooked the battle"],
+        ["Ludi Actiaci", "the Actian games, refounded at Nicopolis"]
+      ],
+      "coreSources": [
+        {"title": "Religions of Rome", "author": "Mary Beard, John North, Simon Price", "year": 1998, "type": "modern", "why": "standard account of Roman religion"},
+        {"title": "Actium and Augustus: The Politics and Emotions of Civil War", "author": "Robert Alan Gurval", "year": 1995, "type": "modern", "why": "how Actium was commemorated"},
+        {"title": "The Power of Images in the Age of Augustus", "author": "Paul Zanker", "year": 1988, "type": "modern", "why": "divine imagery in Augustan politics"},
+        {"title": "Aeneid, book 8", "author": "Virgil", "type": "ancient (creative)", "why": "the gods at Actium on the shield of Aeneas: an imaginative voice, never history", "held": "chr:entity:proposed-work-virgil-aeneid"},
+        {"title": "Geography 7.7.6", "author": "Strabo", "type": "ancient", "why": "Nicopolis and the dedications at Actium", "held": "chr:entity:proposed-work-strabo-geography"}
+      ],
+      "rules": [
+        "An omen is a claim attributed to its source; never assert that it happened.",
+        "Poetry is imaginative: it can show how Actium was remembered, never what happened."
+      ]
+    }
+  }
+}

@@ -12,8 +12,8 @@
 //   - facts with no object (born, died, occurred) belong on the node's card, not on the canvas
 //
 // Captions: run the :style block at the end once (Browser), so an Entity shows its label and a
-// fact node shows its predicate. Browser colours by label, not by kind; in Explore (Bloom) add a
-// rule-based colour on Entity.kind.
+// fact node shows its predicate. Browser colours by label; in Explore (Bloom) add a
+// rule-based colour on the subtype label.
 //
 // Parameters: set before queries 2-4, for example
 //   :param focus => 'Mark Antony'
@@ -55,7 +55,8 @@ WITH focus, collect(DISTINCT CASE WHEN u IS NULL THEN null ELSE
        coalesce(', according to ' + work.label, '') + ')' END) AS facts
 OPTIONAL MATCH (note:Annotation)-[:CONCERNS]->(focus)
 WHERE coalesce(note.status, '') <> 'dismissed'
-RETURN focus.label AS label, focus.kind AS kind, focus.status AS status, focus.description AS description,
+RETURN focus.label AS label, head([label IN labels(focus) WHERE label <> 'Entity']) AS kind,
+       focus.status AS status, focus.description AS description,
        facts, collect(note.noteType + ': ' + note.note)[..15] AS notesOfPassages;
 
 

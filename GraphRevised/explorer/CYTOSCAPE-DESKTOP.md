@@ -1,7 +1,7 @@
 # Cytoscape Desktop and the Neo4j graph
 
 **For:** the curator, opening the local Neo4j graph in Cytoscape Desktop 3.10.4 (installed in `C:\Program Files\Cytoscape_v3.10.4`).
-**Status (2026-10-16):** the flatten step has been run on the current export (195 nodes, 337 fact edges). The import into Cytoscape itself (A, step 3) and routes B and C have not yet been run against a live Cytoscape.
+**Status (2026-10-18):** route B tested against Cytoscape 3.10.4: 702 entities and 1,881 fact edges load from the GraphML with the Chrystallum style. Cytoscape's JSON reader refuses list values, so the helper writes lists as text, an item per line. Route C has not been run.
 
 Cytoscape Desktop starts blank because nothing connects it to Neo4j. You load a network into it. There are three ways, from simplest to most flexible:
 
@@ -20,11 +20,12 @@ All three only **read** Neo4j. Nothing comes back from Cytoscape into the graph.
 1. **Neo4j is running locally**: Neo4j Desktop, database `neo4j`, at `neo4j://127.0.0.1:7687`.
 2. **The password is in your shell.** It lives in `GraphRevised/Connections.txt`. Load it without printing it.
 
-   Git Bash:
+   Git Bash (uses Python, so it doesn't depend on `sed`):
    ```bash
-   cd C:/Projects/Graph1
-   export NEO4J_PASSWORD="$(sed -n 's/^neo4j pw is //p' GraphRevised/Connections.txt | tr -d '\r')"
+   cd /c/Projects/Graph1
+   export NEO4J_PASSWORD="$(python -c "import re; print(re.search(r'^neo4j pw is (.*)$', open('GraphRevised/Connections.txt', encoding='utf-8').read(), re.M).group(1).strip())")"
    ```
+   VS Code's terminal opens PowerShell by default. If the prompt starts with `PS`, use the PowerShell lines below instead.
    PowerShell:
    ```powershell
    cd C:\Projects\Graph1
@@ -48,12 +49,12 @@ It prints something like `195 nodes, 337 fact edges` and writes `GraphRevised/ex
 ```bash
 python GraphRevised/explorer/cytoscape_desktop.py
 ```
-It writes `GraphRevised/exports/graph-desktop.cyjs`.
+It writes `GraphRevised/exports/graph-desktop.cyjs` and the same network as `graph-desktop.graphml`. Both carry a `name` column (the entity's label, or the fact's sentence), which Cytoscape uses for its default labels.
 
 **Step 3. Import into Cytoscape.**
 1. *File › Import › Network from File…*
-2. Choose `C:\Projects\Graph1\GraphRevised\exports\graph-desktop.cyjs`.
-3. The network appears in the *Network* panel on the left. If the canvas stays empty, see Troubleshooting.
+2. Choose `C:\Projects\Graph1\GraphRevised\exports\graph-desktop.graphml` (the most reliable), or the `.cyjs`.
+3. The network appears in the *Network* panel on the left, with its node and edge counts (702 and 1,881 on 2026-10-18). If the canvas stays empty, see Troubleshooting.
 
 **Step 4. Lay it out.** The export carries no positions, so everything starts in one spot.
 - *Layout › Prefuse Force Directed Layout* (or *Layout › yFiles Organic* if you have yFiles).
@@ -102,8 +103,10 @@ QUERY = """
 MATCH (a:Assertion)-[:ASSERTION_SUBJECT]->(s:Entity)
 MATCH (a)-[:ASSERTION_OBJECT]->(o:Entity)
 WHERE (s.id = $focus OR o.id = $focus) AND a.status IN ['accepted', 'proposed']
-RETURN s.id AS source, s.label AS source_label, s.kind AS source_kind,
-       o.id AS target, o.label AS target_label, o.kind AS target_kind,
+RETURN s.id AS source, s.label AS source_label,
+       head([label IN labels(s) WHERE label <> 'Entity']) AS source_kind,
+       o.id AS target, o.label AS target_label,
+       head([label IN labels(o) WHERE label <> 'Entity']) AS target_kind,
        a.predicate AS predicate, a.status AS status, a.mode AS mode
 """
 
@@ -139,6 +142,7 @@ Cytoscape keeps a copy and doesn't watch Neo4j. After new harvests or reader run
 | `KeyError: 'NEO4J_PASSWORD'` | The password isn't in this shell. Run step 0.2 again in the same window. |
 | `ServiceUnavailable` / connection refused | Neo4j isn't running, or not on port 7687. Start the database in Neo4j Desktop. |
 | Import error mentioning a column or a list | You imported `graph.cyjs` instead of `graph-desktop.cyjs`. Run step 2 and import the flat file. |
+| The Style tab's mapping lists no values | A discrete mapping lists values only for the network that's selected and has a view. Click the network in the *Network* panel, then choose the column (`kind`, `status`, `mode`) again. If the Node Table at the bottom is empty, the import failed: import the `.graphml` instead. |
 | The network is listed but the canvas is empty | No view was created, or everything sits at one point. Right-click the network › *Create View*, then run a layout and *View › Fit Content*. |
 | Everything is one blob | Expected before a layout. Use Prefuse Force Directed, then select a node and *Select › Nodes › First Neighbors of Selected Nodes* to study one neighbourhood. |
 | `py4cytoscape` cannot connect | Cytoscape must be open. Check *Help › Automation › CyREST API* opens; the port is 1234. |
@@ -151,3 +155,8 @@ Cytoscape keeps a copy and doesn't watch Neo4j. After new harvests or reader run
 - Never print or commit the password; `Connections.txt` stays git-ignored.
 - `GraphRevised/exports/` is git-ignored data; the scripts are what live in git.
 - Never show an identifier alone. The `authorityLines` column already pairs each code with its label.
+
+## To do
+
+- **One refresh command** (pinned 2026-10-18): `cytoscape_desktop.py --refresh` reads Neo4j directly (no separate export step) and replaces the network in a running Cytoscape. It keeps the Chrystallum style and the positions of nodes already there, so no `_1`, `_2` copies pile up. An optional `--every <minutes>` repeats it while you work.
+- Look into the two extra nodes in the push (704 against 702 entities): two facts point at entities that aren't in the export.

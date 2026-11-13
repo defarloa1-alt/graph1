@@ -59,6 +59,30 @@ class FakeReader:
         return ["chr:entity:a-book"] if lccn == "2099000001" else []
 
 
+class Neo4jNoteReaderTests(unittest.TestCase):
+    class Transaction:
+        def __init__(self, label):
+            self.label = label
+            self.query = None
+
+        def run(self, query, **_):
+            self.query = query
+            return self
+
+        def single(self):
+            return {"label": self.label} if self.label else None
+
+    def test_work_lookup_uses_the_subtype_label(self):
+        tx = self.Transaction("A Book")
+        self.assertEqual(notes_module.Neo4jNoteReader(tx).work("chr:entity:a-book"), "A Book")
+        self.assertIn("MATCH (w:Entity:Work {id: $id})", tx.query)
+
+    def test_non_work_is_not_returned_as_a_work(self):
+        tx = self.Transaction(None)
+        self.assertIsNone(notes_module.Neo4jNoteReader(tx).work("chr:entity:a-battle"))
+        self.assertIn("MATCH (w:Entity:Work {id: $id})", tx.query)
+
+
 class NoteTests(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()

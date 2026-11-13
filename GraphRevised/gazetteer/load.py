@@ -120,7 +120,7 @@ def build_rows(rules: dict[str, Any], places: list[dict[str, Any]], tree: Modern
 
 
 PLACE_ENTITIES = """
-MATCH (place:Entity {kind: "Place"}) WHERE place.status <> "deprecated"
+MATCH (place:Entity:Place) WHERE place.status <> "deprecated"
 OPTIONAL MATCH (place)-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord)
 RETURN place.id AS id, place.label AS label,
        collect({system: record.system, identifier: record.identifier, role: link.role}) AS records

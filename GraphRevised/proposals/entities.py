@@ -48,7 +48,7 @@ def propose_entity(
         entity_id, created = live[0]["id"], False
     else:
         entity_id = proposed_entity_id(kind, label)
-        existing = tx.run("MATCH (e:Entity {id: $id}) RETURN e.kind AS kind", id=entity_id).single()
+        existing = tx.run("MATCH (e:Entity {id: $id}) RETURN labels(e) AS labels", id=entity_id).single()
         created = existing is None
         if created:
             run_write(tx, operations, "upsert_entity", {
@@ -79,7 +79,7 @@ def depicted_events(tx: Any, work_id: str) -> list[dict[str, Any]]:
     """The events already depicted from one Work, for a reader continuing through it."""
     prefix = depicted_event_id(work_id, "x")[:-1]
     return tx.run(
-        "MATCH (e:Entity {kind: 'Event'}) WHERE e.id STARTS WITH $prefix AND e.status <> 'deprecated' "
+        "MATCH (e:Entity:Event) WHERE e.id STARTS WITH $prefix AND e.status <> 'deprecated' "
         "RETURN e.id AS id, e.label AS label ORDER BY e.id",
         prefix=prefix,
     ).data()
@@ -101,7 +101,7 @@ def propose_depicted_event(
     Identity across sources is never decided here: that is depictsSameAs, the curator's."""
     label = " ".join(label.split())
     entity_id = depicted_event_id(work_id, label)
-    existing = tx.run("MATCH (e:Entity {id: $id}) RETURN e.kind AS kind", id=entity_id).single()
+    existing = tx.run("MATCH (e:Entity {id: $id}) RETURN labels(e) AS labels", id=entity_id).single()
     created = existing is None
     if created:
         run_write(tx, operations, "upsert_entity", {
@@ -129,7 +129,9 @@ def proposed_entities(tx: Any) -> list[dict[str, Any]]:
         OPTIONAL MATCH (mention)-[link:ANNOTATES]->(observation:SourceObservation)
         OPTIONAL MATCH (observation)-[:IN_WORK]->(work:Entity)
         OPTIONAL MATCH (claim:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT]->(entity)
-        RETURN entity.id AS id, entity.kind AS kind, entity.label AS label,
+        RETURN entity.id AS id,
+               head([label IN labels(entity) WHERE label <> 'Entity']) AS kind,
+               entity.label AS label,
                collect(DISTINCT {work: work.label, locator: observation.locator, quotation: link.quotation}) AS mentions,
                collect(DISTINCT claim.label) AS claims
         ORDER BY kind, label

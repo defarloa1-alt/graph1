@@ -31,17 +31,17 @@ SCOPE = {ADMIRAL, QUEEN, CAPE, BATTLE}
 
 
 def event(key, label, quotation, **extra):
-    fields = dict(key=key, label=label, existing_id="", quotation=quotation, within_narrative_event=True,
+    fields = dict(key=key, label=label, existing_id="", quotation=quotation, within_narrative_event=True, objects=[],
                   participants=[], place_id="", place_quotation="", time_expression="", time_quotation="",
                   relative_offset="", links=[])
     return ReaderDepictedEvent(**(fields | extra))
 
 
 FLIGHT = event("e1", "The queen's flight", "the queen hoisted her sails and fled through the line",
-               participants=[ReaderParticipant(entity_id=QUEEN, quotation="the queen hoisted her sails")],
+               participants=[ReaderParticipant(entity_id=QUEEN, quotation="the queen hoisted her sails", role_id="", role_quotation="")],
                time_expression="At the sixth hour", time_quotation="At the sixth hour the queen", relative_offset="PT6H")
 PURSUIT = event("e2", "The admiral follows the queen", "he left his flagship and followed her",
-                participants=[ReaderParticipant(entity_id=ADMIRAL, quotation="When the admiral saw this")],
+                participants=[ReaderParticipant(entity_id=ADMIRAL, quotation="When the admiral saw this", role_id="", role_quotation="")],
                 links=[ReaderEventLink(relation="triggered_by", target="e1", quotation="When the admiral saw this")])
 FIGHTING_ON = event("e3", "The fleet fights on", "the fleet fought on near the cape until evening",
                     place_id=CAPE, place_quotation="fought on near the cape",
@@ -94,8 +94,8 @@ class DepictedEventTests(unittest.TestCase):
 
     def test_parts_the_passage_does_not_show_are_dropped(self):
         loose = event("e1", "The queen's flight", "the queen hoisted her sails and fled through the line",
-                      participants=[ReaderParticipant(entity_id="chr:entity:test-stranger", quotation="the queen hoisted her sails"),
-                                    ReaderParticipant(entity_id=QUEEN, quotation="the queen raised a banner high")],
+                      participants=[ReaderParticipant(entity_id="chr:entity:test-stranger", quotation="the queen hoisted her sails", role_id="", role_quotation=""),
+                                    ReaderParticipant(entity_id=QUEEN, quotation="the queen raised a banner high", role_id="", role_quotation="")],
                       links=[ReaderEventLink(relation="after", target="e9", quotation="When the admiral saw this")])
         (checked,), refused = to_depicted(output(loose), PASSAGE, INQUIRY, set(), SCOPE)
         self.assertEqual(refused, [])
@@ -127,7 +127,7 @@ class DepictedEventTests(unittest.TestCase):
         self.assertEqual((events, len(refused)), ([], 1))
 
     def test_registry_v11_dates_participation(self):
-        registry = load_registry()
+        registry = load_registry(REGISTRY_PATH.with_name("predicates.v11.json"))
         self.assertEqual(registry.version, "predicates-v11")
         self.assertEqual(registry.get("participatedIn").qualifiers.time, "optional")
 

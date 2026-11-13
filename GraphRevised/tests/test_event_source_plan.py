@@ -1,11 +1,14 @@
 """The event source plan's deterministic steps, without a model call, the network, or the graph."""
 
 import unittest
+from decimal import Decimal
+from types import SimpleNamespace
+from unittest.mock import Mock
 
 from GraphRevised.adapters.scaife_catalog import parse_catalog
 from GraphRevised.adapters.text_catalogues import (GutenbergCatalog, LacusCurtiusIndex, Snapshot,
                                                    parse_lacuscurtius_index, title_match)
-from GraphRevised.discovery.event_source_plan import EventCandidate, already_read, locate, rank_key
+from GraphRevised.discovery.event_source_plan import EstimatedBudget, EventCandidate, _call, already_read, locate, rank_key
 
 SNAPSHOT = Snapshot("test", "2026-10-15T00:00:00Z", "test", b"")
 SCAIFE = parse_catalog({
@@ -88,6 +91,36 @@ class LocateTests(unittest.TestCase):
                 for s, r, y in [("found", "contemporary", -30), ("chosen", "later", 120), ("chosen", "contemporary", -20)]]
         self.assertEqual([(r["status"], r["relation"]) for r in sorted(rows, key=rank_key)],
                          [("chosen", "contemporary"), ("chosen", "later"), ("found", "contemporary")])
+
+
+class BudgetTests(unittest.TestCase):
+    def test_budget_counts_structured_input_and_records_usage(self):
+        client = SimpleNamespace(
+            messages=SimpleNamespace(count_tokens=Mock(return_value=SimpleNamespace(input_tokens=1000))),
+            beta=SimpleNamespace(messages=SimpleNamespace(parse=Mock(return_value=SimpleNamespace(
+                model="model", stop_reason="end_turn", usage=SimpleNamespace(input_tokens=1100, output_tokens=500),
+                _request_id="id", parsed_output="result")))),
+        )
+        budget = EstimatedBudget(Decimal("3"), Decimal("4"), Decimal("20"))
+        output, _ = _call(client, "model", "system", "prompt", EventCandidate, budget)
+        self.assertEqual(output, "result")
+        self.assertEqual(client.messages.count_tokens.call_args.kwargs["output_format"], EventCandidate)
+        self.assertEqual(budget.spent, Decimal("0.0144"))
+        self.assertEqual(budget.calls[0]["inputTokens"], 1100)
+
+    def test_budget_refuses_before_model_call(self):
+        client = SimpleNamespace(
+            messages=SimpleNamespace(count_tokens=Mock(return_value=SimpleNamespace(input_tokens=1000))),
+            beta=SimpleNamespace(messages=SimpleNamespace(parse=Mock())),
+        )
+        with self.assertRaisesRegex(ValueError, "no model call made"):
+            _call(client, "model", "system", "prompt", EventCandidate,
+                  EstimatedBudget(Decimal("0.01"), Decimal("4"), Decimal("20")))
+        client.beta.messages.parse.assert_not_called()
+
+    def test_invalid_budget_values_are_rejected(self):
+        with self.assertRaises(ValueError):
+            EstimatedBudget(Decimal("NaN"), Decimal("4"), Decimal("20"))
 
 
 if __name__ == "__main__":

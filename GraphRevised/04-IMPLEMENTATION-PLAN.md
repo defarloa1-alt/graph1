@@ -143,6 +143,36 @@ clean-start contract, candidate areas for future adaptation, archive-only
 legacy areas, and excluded generated material. See
 [16-LEGACY-TRIAGE.md](16-LEGACY-TRIAGE.md).
 
+## 6.6 Typed Entity ontology
+
+The final clean-start ontology uses the shared `Entity` label plus one
+subtype label: `Person`, `Place`, `Event`, `Group`, `Work`, `Object`, `Period`,
+`Office`, `Concept`, `Polity`, `Type`, or `Other`. The transitional `kind`
+property is removed. `Year` remains a separate temporal backbone node and is
+not an `Entity:Period`.
+
+**Status: complete.** Existing Entity nodes were migrated idempotently; graph
+and temporal-backbone counts were unchanged. See
+[34-ENTITY-SUBTYPE-MIGRATION.cypher](34-ENTITY-SUBTYPE-MIGRATION.cypher) and
+[35-ENTITY-SUBTYPE-RESULTS.md](35-ENTITY-SUBTYPE-RESULTS.md).
+
+## 6.7 Architecture hardening
+
+The typed ontology is now the active contract. Clean-start readers, views, and
+gazetteer operations must query subtype labels; the word `kind` is retained
+only where it is an in-memory compatibility vocabulary or a discriminator for
+Annotations and other non-Entity records.
+
+External systems have distinct roles: Wikidata and bibliographic services may
+identify records, Pleiades and GeoNames provide Location backbones, and
+PeriodO provides sourced period definitions through SourceObservations and
+Works. See [02-GRAPH-MODEL.md](02-GRAPH-MODEL.md).
+
+**Status: in progress.** The active cleanup is implemented and covered by
+focused tests. The permanent read-only invariant command is
+`python -m GraphRevised.validate_ontology`; it requires a valid Neo4j
+environment at validation time.
+
 ## 7. Phase 5: proposal workflow
 
 Only after direct operations work should agents be introduced.
@@ -460,7 +490,7 @@ Discovery channels:
 3. CTS catalogues (Perseus/Scaife) by author, work, and date;
 4. scholarly bibliographies and the E9 research API.
 
-Model needs: source works as `Entity {kind: Work}` with authors and
+Model needs: source works as `Entity:Work` with authors and
 composition dates (temporal qualification, Phase 7); passage observations
 linked to their Work; a predicate for one source citing or deriving from
 another; and an inquiry-level source plan ranked by date, genre
@@ -528,7 +558,7 @@ precededBy, aimedAt.
 ### E11. Actor actions (IGAR) and causal context
 
 For an event inquiry, decompose each actor's part as Input (trigger), Goal,
-Action, and Result. Actions are sub-events (`Entity {kind: Event}`, such as
+Action, and Result. Actions are sub-events (`Entity:Event`, such as
 "Antony's flight from Actium") linked by claims: performed by an actor, part
 of the event, triggered by a prior event, resulted in an outcome. Goals are
 the most interpretive element and are always attributed to a source: Plutarch

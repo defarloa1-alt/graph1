@@ -92,12 +92,12 @@ context, or attribution is a different claim with its own evidence.
 not a translation or edition (*Life of Antony*, not Perrin's Loeb). The
 author is a Person linked by a new `authorOf` predicate (Person → Work, time
 optional: composition date). A passage observation links to its Work with a
-new `(:SourceObservation)-[:IN_WORK]->(:Entity {kind: Work})`; the edition
+new `(:SourceObservation)-[:IN_WORK]->(:Entity:Work)`; the edition
 stays on the observation, as now.
 
 ## 5. Context and role
 
-**Context** (`ASSERTION_CONTEXT → Entity {kind: Event}`): the event within
+**Context** (`ASSERTION_CONTEXT → Entity:Event`): the event within
 which the relationship holds. Most forces in the graph are already
 event-specific ("Octavian's fleet at Actium"), so context matters most for
 durable objects: a legion, a person's office, an alliance.

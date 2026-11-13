@@ -64,7 +64,7 @@ def capture(tx: Any, operations: dict[str, str], item: dict[str, Any]) -> dict[s
     note_type = item.get("noteType") or ("detail" if item.get("note") else None)
     if note_type is not None and note_type not in NOTE_TYPES:
         raise CaptureError(f"note type must be one of {list(NOTE_TYPES)}, not {note_type!r}")
-    work = tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN w.label AS label", id=item["workId"]).single()
+    work = tx.run("MATCH (w:Entity:Work {id: $id}) RETURN w.label AS label", id=item["workId"]).single()
     if work is None:
         raise CaptureError(f"{item['workId']} is not a Work entity; the curator adds Works first")
 

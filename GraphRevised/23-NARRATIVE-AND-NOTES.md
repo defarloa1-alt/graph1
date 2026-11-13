@@ -28,11 +28,11 @@ source.
 
 ### Model
 
-A depicted event is an `Entity {kind: Event}` that belongs to one source's
+A depicted event is an `Entity:Event` that belongs to one source's
 narrative:
 
 ```text
-(:Entity {kind: Event, id: chr:entity:depicted:<work>:<slug>,
+(:Entity:Event {id: chr:entity:depicted:<work>:<slug>,
           label: "Antony's flight (Plutarch)", status: proposed})
   ← claims, all attributed to the Work:
      <depicted event> partOf  Battle of Actium        (context: the battle)
@@ -181,8 +181,7 @@ Interpretive predicates (registry v5):
 ### Kinds: Office and Concept
 
 `Other` would otherwise hold offices, concepts, and leftovers, and queries
-could not tell them apart. Two kinds are added (values of `Entity.kind`, not
-labels):
+could not tell them apart. Two explicit Entity subtype labels are used:
 
 | Kind | Holds | Identity |
 |---|---|---|

@@ -40,6 +40,13 @@ class SourceRegistryTests(unittest.TestCase):
                     self.assertIn(f'"{source["adapter"]["type"]}"', known)
                     self.assertTrue((Path(sources.__file__).parents[1] / source["adapter"]["module"]).exists())
 
+    def test_registered_source_may_have_a_catalog_adapter(self):
+        source = next(s for s in REGISTRY["sources"] if s["id"] == "loc-catalog")
+        self.assertEqual(source["status"], "registered")
+        self.assertEqual(source["adapter"]["type"], "lc-catalog-marcxml")
+        self.assertTrue((Path(sources.__file__).parents[1] / source["adapter"]["module"]).exists())
+        self.assertIn("passage-reading adapter", REGISTRY["statuses"]["registered"])
+
 
 if __name__ == "__main__":
     unittest.main()

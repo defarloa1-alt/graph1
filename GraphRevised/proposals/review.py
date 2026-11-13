@@ -11,6 +11,8 @@
     python -m GraphRevised.proposals.review entities
     python -m GraphRevised.proposals.review entity-accept <entity-id> [--qid Q...] --by <name> --basis "<reason>"
     python -m GraphRevised.proposals.review entity-reject <entity-id> --by <name> --basis "<reason>"
+    python -m GraphRevised.proposals.review entity-kind <entity-id> --from Office --to Type --by <name> --basis "<reason>"
+    python -m GraphRevised.proposals.review entity-identity <entity-id> --from Q... --to Q... --by <name> --basis "<reason>"
 
 `reject` rejects a Proposal's evidence and leaves its claim open for better
 evidence; `reject --claim` also rejects the claim itself. `reopen` returns a
@@ -19,7 +21,10 @@ replaces a proposed or accepted claim with more precise claims, linked by
 SUPERSEDED_BY. `entities` lists entities an agent proposed (periods, depicted
 events) with their mentions and local and Wikidata candidates; `entity-accept`
 makes one provisional, linking a Wikidata identity with --qid, and
-`entity-reject` deprecates it. `retract` rejects an accepted claim found to be wrong, keeping
+`entity-reject` deprecates it. `entity-kind` moves an entity filed under the wrong kind to
+another, once no open claim names it. `entity-identity` retires a Wikidata identity that names the
+wrong thing (the link is kept, rejected, as history) and links the right one, keeping the entity's
+name, status, claims, and mentions. `retract` rejects an accepted claim found to be wrong, keeping
 its evidence as audit history. `promote` makes accepted "according to"
 claims Chrystallum's own asserted claim, citing their evidence; the basis
 names the corroboration. Reason codes: false, unsupported, malformed, underspecified,
@@ -39,7 +44,7 @@ from datetime import datetime, timezone
 
 from neo4j import GraphDatabase
 
-from GraphRevised.operations import load_operations
+from GraphRevised.operations import load_operations, run_write
 
 from .registry import load_registry
 from GraphRevised.identity.local_candidates import candidates
@@ -161,6 +166,50 @@ def decide_entity(tx, operations, entity_id: str, status: str, qid: str | None, 
     return tx.run("MATCH (e:Entity {id: $id}) RETURN e", id=entity_id).single()["e"]
 
 
+def set_entity_kind(tx, operations, entity_id: str, from_kind: str, to_kind: str, **decision) -> dict:
+    """Move an entity filed under the wrong kind; refused while an open claim names it."""
+    rows = tx.run(operations["set_entity_kind"], {
+        "id": entity_id, "from": from_kind, "kind": to_kind, "decidedAt": decision["decided_at"],
+        "decidedBy": decision["decided_by"], "decisionBasis": decision["decision_basis"],
+    }).data()
+    if not rows:
+        raise ReviewError(f"{entity_id} is not a {from_kind}, or a claim that is not rejected or superseded "
+                          f"still names it, or it is a Work that claims cite or observations come from")
+    return rows[0]["entity"]
+
+
+def set_entity_identity(tx, operations, entity_id: str, from_qid: str, to_qid: str, **decision) -> dict:
+    """Retire the Wikidata identity that names the wrong thing and link the right one."""
+    if from_qid == to_qid:
+        raise ReviewError("the new identity is the one being retired")
+    rows = tx.run(operations["retire_entity_identity"], {
+        "id": entity_id, "qid": from_qid, "decidedAt": decision["decided_at"],
+        "decidedBy": decision["decided_by"], "decisionBasis": decision["decision_basis"],
+    }).data()
+    if not rows:
+        raise ReviewError(f"{entity_id} has no accepted Wikidata identity {from_qid}")
+    from GraphRevised.slices.add_entity import REPOSITORY_ROOT, preserved_identity_payload
+
+    payload_path, metadata = preserved_identity_payload(to_qid)
+    label = metadata["entityLabel"]
+    run_write(tx, operations, "upsert_authority", {
+        "entityId": entity_id, "id": f"chr:authority:wikidata:{to_qid}", "system": "Wikidata",
+        "identifier": to_qid, "label": f"Wikidata record: {label} ({to_qid})", "shortLabel": f"Wikidata: {label}",
+        "description": metadata["entityDescription"], "retrievedAt": metadata["retrievedAt"],
+        "sourceUri": metadata["sourceUri"], "sourceRevision": metadata["revision"],
+        "contentHash": metadata["contentHash"],
+        "rawPayloadUri": payload_path.resolve().relative_to(REPOSITORY_ROOT).as_posix(),
+        "role": "entity_identity", "relation": "closeMatch", "linkStatus": "accepted",
+    })
+    kind = rows[0]["entity"].get("kind") or next(
+        k for k in tx.run("MATCH (e:Entity {id: $id}) RETURN labels(e) AS l", id=entity_id).single()["l"]
+        if k != "Entity")
+    # The name stays ours (the label a passage uses); the description follows the right identity.
+    run_write(tx, operations, "upsert_entity", {"id": entity_id, "kind": kind, "label": None, "status": None,
+                                                "description": metadata["entityDescription"], "shortLabel": None})
+    return tx.run("MATCH (e:Entity {id: $id}) RETURN e", id=entity_id).single()["e"]
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -174,6 +223,18 @@ def main(argv: list[str] | None = None) -> int:
         decision.add_argument("--basis", required=True)
         if name == "entity-accept":
             decision.add_argument("--qid", help="link this Wikidata identity")
+    kind = commands.add_parser("entity-kind")
+    kind.add_argument("entity_id")
+    kind.add_argument("--from", required=True, dest="from_kind")
+    kind.add_argument("--to", required=True, dest="to_kind")
+    kind.add_argument("--by", required=True)
+    kind.add_argument("--basis", required=True)
+    identity = commands.add_parser("entity-identity")
+    identity.add_argument("entity_id")
+    identity.add_argument("--from", required=True, dest="from_qid")
+    identity.add_argument("--to", required=True, dest="to_qid")
+    identity.add_argument("--by", required=True)
+    identity.add_argument("--basis", required=True)
     for name, target in (
         ("accept", "proposal_id"), ("reject", "proposal_id"), ("reopen", "assertion_id"),
         ("supersede", "assertion_id"), ("retract", "assertion_id"), ("promote", "assertion_ids"),
@@ -224,6 +285,16 @@ def main(argv: list[str] | None = None) -> int:
                 entity = session.execute_write(lambda tx: decide_entity(
                     tx, operations, args.entity_id, status, getattr(args, "qid", None), **decision))
                 print(f"{status}: {entity['label']} ({args.entity_id})")
+                return 0
+            if args.command == "entity-kind":
+                session.execute_write(lambda tx: set_entity_kind(
+                    tx, operations, args.entity_id, args.from_kind, args.to_kind, **decision))
+                print(f"{args.entity_id}: {args.from_kind} -> {args.to_kind}")
+                return 0
+            if args.command == "entity-identity":
+                session.execute_write(lambda tx: set_entity_identity(
+                    tx, operations, args.entity_id, args.from_qid, args.to_qid, **decision))
+                print(f"{args.entity_id}: Wikidata {args.from_qid} retired, {args.to_qid} linked")
                 return 0
             if args.command == "promote":
                 registry = load_registry()

@@ -21,7 +21,7 @@ CALL (ev) {
   WHERE ph.id STARTS WITH 'chr:entity:phase:'
   RETURN 'phases' AS what, count(DISTINCT ph) AS total, sum(CASE ph.status WHEN 'provisional' THEN 1 ELSE 0 END) AS accepted
   UNION ALL
-  MATCH (e:Entity {kind: 'Event'})<-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ph:Entity)
+  MATCH (e:Entity:Event)<-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ph:Entity)
         -[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ev)
   WHERE ph.id STARTS WITH 'chr:entity:phase:'
   RETURN 'depicted events placed in a phase' AS what, count(DISTINCT e) AS total, 0 AS accepted
@@ -31,7 +31,7 @@ CALL (ev) {
   RETURN 'entities linked to it by a claim' AS what, count(DISTINCT n) AS total,
          count(DISTINCT CASE WHEN n.status IN ['provisional', 'resolved'] THEN n END) AS accepted
   UNION ALL
-  MATCH (w:Entity {kind: 'Work'})<-[:ATTRIBUTED_TO]-(a:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT]->(x:Entity)
+  MATCH (w:Entity:Work)<-[:ATTRIBUTED_TO]-(a:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT]->(x:Entity)
   WHERE NOT a.status IN ['rejected', 'superseded']
     AND (x = ev OR EXISTS { (x)-[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ph:Entity)
                             -[:ASSERTION_SUBJECT]-(:Assertion {predicate: 'partOf'})-[:ASSERTION_OBJECT]->(ev) })
@@ -63,7 +63,7 @@ ORDER BY predicate, voice;
 // Claims are drawn as small Assertion nodes between Entities, as in explorer-view.cypher.
 MATCH p = (n:Entity)<-[:ASSERTION_SUBJECT|ASSERTION_OBJECT]-(a:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT]->(:Entity {id: $event})
 WHERE NOT a.status IN ['rejected', 'superseded']
-  AND (n.kind IN ['Person', 'Group', 'Place', 'Polity', 'Concept', 'Work'] OR n.id STARTS WITH 'chr:entity:phase:')
+  AND (any(entityKind IN labels(n) WHERE entityKind IN ['Person', 'Group', 'Place', 'Polity', 'Concept', 'Work']) OR n.id STARTS WITH 'chr:entity:phase:')
 RETURN p;
 
 
@@ -100,7 +100,7 @@ CALL (ev, placed) {
 }
 CALL (ev) { MATCH (ev)<-[:CONCERNS]-(:Annotation)-[:ANNOTATES]->(o:SourceObservation) RETURN collect(o) AS noted }
 UNWIND observed + noted AS o
-MATCH (o)-[:IN_WORK]->(w:Entity {kind: 'Work'})
+MATCH (o)-[:IN_WORK]->(w:Entity:Work)
 WITH w, count(DISTINCT o) AS passages
 OPTIONAL MATCH (a:Assertion)-[:ATTRIBUTED_TO]->(w)
 WHERE NOT a.status IN ['rejected', 'superseded']

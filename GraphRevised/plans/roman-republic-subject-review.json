@@ -1,0 +1,185 @@
+{
+  "title": "Roman Republic subject backbone: focused review",
+  "status": "approved",
+  "approvedBy": "curator",
+  "purpose": "Curator-approved local Subject candidates and hierarchy for the revised graph; authority references remain unapproved.",
+  "scope": "Only the disconnected economic and military branches, periodization branch, and collapsed slavery/labor branches are included. Other legacy subjects require separate review.",
+  "sources": [
+    "scripts/backbone/subject/load_roman_republic_ontology.py",
+    "output/subject_concepts/subject_concept_wikidata_anchors.json",
+    "output/subject_concepts/subject_concept_anchors_qid_canonical.json"
+  ],
+  "rules": [
+    "The curator approved these local IDs, labels, and parent links for import as candidate Subjects on 2026-11-09.",
+    "Legacy QIDs are unverified candidate references, not Subject identities or authority links.",
+    "Legacy facet assignments are not Subject properties; periodization is an inquiry topic, not a temporal coordinate.",
+    "NARROWER_THAN direction is child to parent. Parent links were proposed from the legacy ontology, not verified library headings."
+  ],
+  "authorityReview": {
+    "source": "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q17167%7CQ15265460%7CQ11019%7CQ952064%7CQ2862991%7CQ2916317%7CQ1392538%7CQ8464%7CQ1593880%7CQ186916%7CQ15800869%7CQ6106068%7CQ3952%7CQ2815472%7CQ2277&props=labels%7Cdescriptions&languages=en&format=json",
+    "checkedDate": "2026-11-09",
+    "method": "Compared English labels and descriptions with the proposed subject scope. Findings are review guidance, not verified equivalences or approved graph links.",
+    "findings": [
+      {"qid": "Q17167", "wikidataLabel": "Roman Republic", "assessment": "Relevant historical focus; a historical period is not itself the local subject."},
+      {"qid": "Q15265460", "wikidataLabel": "economy of Ancient Rome", "assessment": "Related but covers ancient Rome beyond the Republic."},
+      {"qid": "Q11019", "wikidataLabel": "machine", "assessment": "Mismatch: not trade routes or maritime networks."},
+      {"qid": "Q952064", "wikidataLabel": "Roman currency", "assessment": "Related but narrower than markets, money, and exchange."},
+      {"qid": "Q2862991", "wikidataLabel": "Roman army of the mid-Republic", "assessment": "Related but narrower than warfare and military systems across the Republic."},
+      {"qid": "Q2916317", "wikidataLabel": "structural history the Roman military", "assessment": "Related but not necessarily equivalent to military roles and command structure."},
+      {"qid": "Q1392538", "wikidataLabel": "social class in ancient Rome", "assessment": "Related but narrower than society and social structure."},
+      {"qid": "Q8464", "wikidataLabel": "2004 Afghan presidential election", "assessment": "Mismatch: not slavery, labor, and dependency."},
+      {"qid": "Q1593880", "wikidataLabel": "slavery in ancient Rome", "assessment": "Related to slavery and manumission, but narrower than labor systems including free labor; its use for either subject needs review."},
+      {"qid": "Q186916", "wikidataLabel": "timeline of ancient Rome", "assessment": "Related but covers a broader timespan and is not the same as the subject of periodization."},
+      {"qid": "Q15800869", "wikidataLabel": "Terinos bankanensis", "assessment": "Mismatch: an insect, not the Early Republic."},
+      {"qid": "Q6106068", "wikidataLabel": "Middle Roman Republic", "assessment": "Related period; not automatically equivalent to a subject about periodization."},
+      {"qid": "Q3952", "wikidataLabel": "Plauen", "assessment": "Mismatch: a German town, not the Late Republic."},
+      {"qid": "Q2815472", "wikidataLabel": "Late Roman Republic", "assessment": "Related period; not automatically equivalent to a subject about periodization."},
+      {"qid": "Q2277", "wikidataLabel": "Roman Empire", "assessment": "Related historical period, but not the same concept as the transition to empire."}
+    ]
+  },
+  "subjects": [
+    {
+      "id": "chr:subject:roman-republic",
+      "label": "Roman Republic",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_roman_republic_q17167",
+      "candidateQids": ["Q17167"]
+    },
+    {
+      "id": "chr:subject:roman-republic-economy",
+      "label": "Economy and Resource Systems",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_economy",
+      "candidateQids": ["Q15265460"]
+    },
+    {
+      "id": "chr:subject:roman-republic-trade-and-markets",
+      "label": "Trade, Markets, and Mediterranean Networks",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_econ_trade_markets",
+      "candidateQids": [],
+      "reviewNote": "Restored parent omitted by the QID-canonical migration because it had no QID."
+    },
+    {
+      "id": "chr:subject:roman-republic-trade-routes",
+      "label": "Trade routes and maritime networks",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_trade_routes",
+      "candidateQids": ["Q11019"]
+    },
+    {
+      "id": "chr:subject:roman-republic-markets-and-money",
+      "label": "Markets, money, and exchange",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_markets_money",
+      "candidateQids": ["Q952064"]
+    },
+    {
+      "id": "chr:subject:roman-republic-warfare",
+      "label": "Warfare and Military Systems",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_military",
+      "candidateQids": ["Q2862991"]
+    },
+    {
+      "id": "chr:subject:roman-republic-military-command",
+      "label": "Command, Leadership, and Military Roles",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_mil_command_roles",
+      "candidateQids": [],
+      "reviewNote": "Restored parent omitted by the QID-canonical migration because it had no QID."
+    },
+    {
+      "id": "chr:subject:roman-republic-military-roles",
+      "label": "Military roles & command structure",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_command_roles_registry",
+      "candidateQids": ["Q2916317"],
+      "reviewNote": "Review whether this is meaningfully distinct from its parent."
+    },
+    {
+      "id": "chr:subject:roman-republic-society",
+      "label": "Society and Social Structure",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_society",
+      "candidateQids": ["Q1392538"]
+    },
+    {
+      "id": "chr:subject:roman-republic-slavery-and-labor",
+      "label": "Slavery, Labor, and Dependency",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_soc_slavery_labor",
+      "candidateQids": ["Q8464"]
+    },
+    {
+      "id": "chr:subject:roman-republic-slavery-and-manumission",
+      "label": "Institutions of slavery and manumission",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_slavery_institutions",
+      "candidateQids": ["Q1593880"],
+      "reviewNote": "Distinct legacy concept sharing a QID with labor systems; the shared QID is not evidence that the concepts are identical."
+    },
+    {
+      "id": "chr:subject:roman-republic-labor-systems",
+      "label": "Labor systems (free/enslaved/dependent)",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_labor_economy",
+      "candidateQids": ["Q1593880"],
+      "reviewNote": "Distinct legacy concept sharing a QID with slavery and manumission; assess the scope and candidate reference separately."
+    },
+    {
+      "id": "chr:subject:roman-republic-periodization",
+      "label": "Chronology and Periodization",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_periodization",
+      "candidateQids": ["Q186916"]
+    },
+    {
+      "id": "chr:subject:roman-republic-early-periodization",
+      "label": "Early Republic (periodization)",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_time_early",
+      "candidateQids": ["Q15800869"]
+    },
+    {
+      "id": "chr:subject:roman-republic-middle-periodization",
+      "label": "Middle Republic (periodization)",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_time_middle",
+      "candidateQids": ["Q6106068"]
+    },
+    {
+      "id": "chr:subject:roman-republic-late-periodization",
+      "label": "Late Republic (periodization)",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_time_late",
+      "candidateQids": ["Q3952", "Q2815472"],
+      "reviewNote": "Legacy anchor and canonical files disagree; neither reference is approved."
+    },
+    {
+      "id": "chr:subject:roman-republic-transition-to-empire",
+      "label": "Transition to Empire",
+      "reviewStatus": "approved",
+      "legacySubjectId": "subj_rr_time_transition",
+      "candidateQids": ["Q2277"]
+    }
+  ],
+  "broader": [
+    {"subjectId": "chr:subject:roman-republic-economy", "broaderId": "chr:subject:roman-republic", "reviewStatus": "approved", "reason": "Economy is a thematic part of Roman Republic research."},
+    {"subjectId": "chr:subject:roman-republic-trade-and-markets", "broaderId": "chr:subject:roman-republic-economy", "reviewStatus": "approved", "reason": "Trade and markets are economic topics."},
+    {"subjectId": "chr:subject:roman-republic-trade-routes", "broaderId": "chr:subject:roman-republic-trade-and-markets", "reviewStatus": "approved", "reason": "Trade routes are part of trade networks."},
+    {"subjectId": "chr:subject:roman-republic-markets-and-money", "broaderId": "chr:subject:roman-republic-trade-and-markets", "reviewStatus": "approved", "reason": "Markets and exchange are part of trade and markets."},
+    {"subjectId": "chr:subject:roman-republic-warfare", "broaderId": "chr:subject:roman-republic", "reviewStatus": "approved", "reason": "Warfare is a thematic part of Roman Republic research."},
+    {"subjectId": "chr:subject:roman-republic-military-command", "broaderId": "chr:subject:roman-republic-warfare", "reviewStatus": "approved", "reason": "Military command and leadership are aspects of warfare and military systems."},
+    {"subjectId": "chr:subject:roman-republic-military-roles", "broaderId": "chr:subject:roman-republic-military-command", "reviewStatus": "approved", "reason": "Military roles and command structure are within military command and leadership."},
+    {"subjectId": "chr:subject:roman-republic-society", "broaderId": "chr:subject:roman-republic", "reviewStatus": "approved", "reason": "Society is a thematic part of Roman Republic research."},
+    {"subjectId": "chr:subject:roman-republic-slavery-and-labor", "broaderId": "chr:subject:roman-republic-society", "reviewStatus": "approved", "reason": "Slavery, labor and dependency are aspects of society."},
+    {"subjectId": "chr:subject:roman-republic-slavery-and-manumission", "broaderId": "chr:subject:roman-republic-slavery-and-labor", "reviewStatus": "approved", "reason": "Slavery and manumission are within the broader slavery and labor topic."},
+    {"subjectId": "chr:subject:roman-republic-labor-systems", "broaderId": "chr:subject:roman-republic-slavery-and-labor", "reviewStatus": "approved", "reason": "Labor systems are within the broader slavery and labor topic."},
+    {"subjectId": "chr:subject:roman-republic-periodization", "broaderId": "chr:subject:roman-republic", "reviewStatus": "approved", "reason": "Periodization is a line of inquiry about the Roman Republic."},
+    {"subjectId": "chr:subject:roman-republic-early-periodization", "broaderId": "chr:subject:roman-republic-periodization", "reviewStatus": "approved", "reason": "The Early Republic is a periodization topic."},
+    {"subjectId": "chr:subject:roman-republic-middle-periodization", "broaderId": "chr:subject:roman-republic-periodization", "reviewStatus": "approved", "reason": "The Middle Republic is a periodization topic."},
+    {"subjectId": "chr:subject:roman-republic-late-periodization", "broaderId": "chr:subject:roman-republic-periodization", "reviewStatus": "approved", "reason": "The Late Republic is a periodization topic."},
+    {"subjectId": "chr:subject:roman-republic-transition-to-empire", "broaderId": "chr:subject:roman-republic-periodization", "reviewStatus": "approved", "reason": "The transition to empire is a periodization topic."}
+  ]
+}

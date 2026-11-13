@@ -27,6 +27,7 @@ inquiry.
 from __future__ import annotations
 
 import argparse
+from decimal import Decimal
 import json
 import os
 import re
@@ -41,7 +42,7 @@ from GraphRevised.adapters.scaife_catalog import load_catalog
 from GraphRevised.adapters.text_catalogues import load_gutenberg, load_lacuscurtius, snapshot_record, title_match, title_stems
 from GraphRevised.adapters.wikidata_identity import polite_get
 from GraphRevised.adapters.wikidata_statements import REPOSITORY_ROOT
-from GraphRevised.adapters.wikipedia_passages import references
+from GraphRevised.adapters.wikipedia_passages import load_article, references
 from GraphRevised.discovery.source_plan import CITATION_PATTERNS, RELATION_ORDER, check_catalog, cited_sources
 from GraphRevised.proposals.passage_reader import Inquiry, anthropic_client, load_inquiries
 from GraphRevised.proposals.prompt_version import prompt_version
@@ -127,16 +128,53 @@ class ChooseOutput(BaseModel):
     left_out: list[LeftOut]
 
 
-def _call(client, model: str, system: str, user: str, output_format):
+class EstimatedBudget:
+    """Conservative per-run estimate, not a provider-side billing limit."""
+
+    def __init__(self, limit: Decimal, input_rate: Decimal, output_rate: Decimal):
+        if not all(value.is_finite() and value > 0 for value in (limit, input_rate, output_rate)):
+            raise ValueError("Budget and token prices must be finite positive numbers.")
+        self.limit, self.input_rate, self.output_rate = limit, input_rate, output_rate
+        self.spent = Decimal(0)
+        self.calls = []
+
+    def reserve(self, client, model, system, messages, output_format, max_tokens):
+        count = client.messages.count_tokens(model=model, system=system, messages=messages,
+                                             output_format=output_format).input_tokens
+        # Allow 25% plus 2,000 tokens for token-count estimation and formatting differences.
+        estimated_input = (count * 5 + 3) // 4 + 2000
+        ceiling = (Decimal(estimated_input) * self.input_rate + Decimal(max_tokens) * self.output_rate) / 1000000
+        if self.spent + ceiling > self.limit:
+            raise ValueError(f"Estimated call ceiling ${ceiling:.4f} exceeds remaining model budget "
+                             f"${self.limit - self.spent:.4f}; no model call made.")
+        return count, ceiling
+
+    def record(self, count, ceiling, usage):
+        cost = (Decimal(usage.input_tokens) * self.input_rate +
+                Decimal(usage.output_tokens) * self.output_rate) / 1000000
+        self.spent += cost
+        self.calls.append({"countedInputTokens": count, "estimatedMaximumUSD": str(ceiling),
+                           "inputTokens": usage.input_tokens, "outputTokens": usage.output_tokens,
+                           "estimatedActualUSD": str(cost)})
+        if self.spent > self.limit:
+            raise RuntimeError("Reported usage exceeded the estimated budget; stop and inspect provider billing.")
+
+
+def _call(client, model: str, system: str, user: str, output_format, budget: EstimatedBudget | None = None):
+    messages = [{"role": "user", "content": user}]
+    reservation = budget.reserve(client, model, system, messages, output_format, 16000) if budget else None
     response = client.beta.messages.parse(model=model, max_tokens=16000, system=system,
-                                          messages=[{"role": "user", "content": user}], output_format=output_format)
+                                          messages=messages, output_format=output_format)
+    if budget:
+        budget.record(*reservation, response.usage)
     meta = {"model": response.model, "stopReason": response.stop_reason, "inputTokens": response.usage.input_tokens,
             "outputTokens": response.usage.output_tokens, "requestId": response._request_id}
     return (None if response.stop_reason == "refusal" else response.parsed_output), meta
 
 
 def propose(client, model: str, event: dict[str, Any], read: list[dict[str, Any]], wiki_refs: list[str],
-            citations: list[dict[str, str]], described_by: list[str], forms: list[str]):
+            citations: list[dict[str, str]], described_by: list[str], forms: list[str],
+            budget: EstimatedBudget | None = None):
     user = (
         f"Event: {event['label']} ({event.get('description') or ''})\n\n"
         "Works already read:\n" + "\n".join(f"- {w['label']} (form {w.get('form') or 'unknown'})" for w in read) + "\n\n"
@@ -146,10 +184,11 @@ def propose(client, model: str, event: dict[str, Any], read: list[dict[str, Any]
         + ("\n".join(f"- [{c['work']} {c['locator']}] {c['context']}" for c in citations) or "- none") + "\n\n"
         "Wikidata, described by source:\n" + ("\n".join(f"- {d}" for d in described_by) or "- none")
     )
-    return _call(client, model, PROPOSE_PROMPT, user, ProposeOutput)
+    return _call(client, model, PROPOSE_PROMPT, user, ProposeOutput, budget)
 
 
-def choose(client, model: str, event: dict[str, Any], candidates: list[dict[str, Any]], budget: int):
+def choose(client, model: str, event: dict[str, Any], candidates: list[dict[str, Any]], budget: int,
+           spending: EstimatedBudget | None = None):
     lines = []
     for index, c in enumerate(candidates):
         copies = "; ".join(f"copy_index {i}: {copy['system']} {copy['label']} ({copy['language'] or 'language unknown'})"
@@ -157,7 +196,7 @@ def choose(client, model: str, event: dict[str, Any], candidates: list[dict[str,
         lines.append(f"[{index}] {c['status']}: {c['author']}, {c['work']} ({c['composition']}, {c['relation']}, "
                      f"form {c['form']}; {c['coverage']}) -- {copies}")
     user = f"Event: {event['label']}\nBudget: {budget} sources\n\nCandidates:\n" + "\n".join(lines)
-    return _call(client, model, CHOOSE_PROMPT, user, ChooseOutput)
+    return _call(client, model, CHOOSE_PROMPT, user, ChooseOutput, spending)
 
 
 PROMPT_VERSION = prompt_version("event-source-plan-v1", PROPOSE_PROMPT, CHOOSE_PROMPT, propose, choose)
@@ -246,7 +285,21 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("inquiry", type=Path)
     parser.add_argument("--budget", type=int, default=DEFAULT_BUDGET, help="how many new sources the agent may choose")
     parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--estimated-max-usd", type=Decimal, help="Best-effort per-run limit; not a billing cap")
+    parser.add_argument("--input-usd-per-million", type=Decimal)
+    parser.add_argument("--output-usd-per-million", type=Decimal)
+    parser.add_argument("--seed-unread", action="store_true", help="Treat inquiry sources as provisional, not read")
+    parser.add_argument("--wikipedia-article", type=Path, help="Preserved Wikipedia article JSON to inspect for references")
+    parser.add_argument("--output", type=Path, help="New plan path; existing files are not overwritten")
     args = parser.parse_args(argv)
+    if args.budget < 1:
+        raise ValueError("Source budget must be positive.")
+    rates = (args.estimated_max_usd, args.input_usd_per_million, args.output_usd_per_million)
+    if any(v is not None for v in rates) and not all(v is not None for v in rates):
+        raise ValueError("Estimated budget requires both input and output token prices.")
+    spending = EstimatedBudget(*rates) if all(v is not None for v in rates) else None
+    if args.output and args.output.exists():
+        raise FileExistsError(f"Plan already exists: {args.output}")
 
     driver = GraphDatabase.driver(
         os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
@@ -275,12 +328,20 @@ def main(argv: list[str] | None = None) -> int:
     citations = [{**c, "work": p["work"]} for p in passages for c in cited_sources([p])]
     wiki_refs = [r for i in inquiries if i.source.get("type") == "wikipedia-html"
                  for r in references(GRAPH_REVISED / i.source["article"])]
+    if args.wikipedia_article:
+        article = load_article(args.wikipedia_article)
+        wiki_refs = list(dict.fromkeys(wiki_refs + references(args.wikipedia_article)))
+    if args.seed_unread:
+        read = []
     record_path = REPOSITORY_ROOT / event["uri"] if event["uri"] else None
     described = described_by_labels(record_path)
     forms = sorted(load_registry().work_forms)
 
     client = anthropic_client()
-    proposed, propose_meta = propose(client, args.model, event["e"], read, wiki_refs, citations, described, forms)
+    if spending:
+        client = client.with_options(max_retries=0)
+    proposed, propose_meta = propose(client, args.model, event["e"], read, wiki_refs, citations, described, forms,
+                                     spending)
     if proposed is None:
         print(f"no plan: {propose_meta['stopReason']}")
         return 1
@@ -300,7 +361,9 @@ def main(argv: list[str] | None = None) -> int:
                                "depends_on": [], "coverage": "", "channels": [], "certainty": "", "status": "read",
                                "readAs": work["id"], "identifiedAt": [], "copies": [], "scaife": {}})
 
-    choice, choose_meta = choose(client, args.model, event["e"], candidates, args.budget)
+    choice, choose_meta = choose(client, args.model, event["e"], candidates, args.budget, spending)
+    if choice is None:
+        raise RuntimeError(f"No source selection produced: {choose_meta['stopReason']}")
     refused = []
     for pick in (choice.chosen if choice else [])[:args.budget]:
         if not (0 <= pick.candidate < len(candidates)) or candidates[pick.candidate]["status"] != "located" \
@@ -325,11 +388,21 @@ def main(argv: list[str] | None = None) -> int:
                      "citationsNotScanned": sorted({p["language"] for p in passages
                                                     if p.get("language") not in CITATION_PATTERNS} - {None})},
         "candidates": candidates, "refusedChoices": refused, "notes": proposed.notes,
+        "seedSourcesAreUnread": args.seed_unread,
+        "wikipediaArticle": ({"sourceUri": article.source_uri, "revision": article.revision,
+                              "rights": article.rights, "contentHash": article.content_hash}
+                             if args.wikipedia_article else None),
+        "estimatedBudget": ({"limitUSD": str(spending.limit), "inputUSDPerMillion": str(spending.input_rate),
+                             "outputUSDPerMillion": str(spending.output_rate), "calls": spending.calls,
+                             "estimatedActualUSD": str(spending.spent),
+                             "note": "Estimate only; not a provider billing cap."} if spending else None),
     }
     PLANS_DIRECTORY.mkdir(exist_ok=True)
     stem = inquiries[0].id.rsplit(":", 1)[-1]
-    path = PLANS_DIRECTORY / f"{stem}-event-sources-{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.json"
-    path.write_bytes((json.dumps(plan, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+    path = args.output or PLANS_DIRECTORY / f"{stem}-event-sources-{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.json"
+    with path.open("x", encoding="utf-8") as file:
+        json.dump(plan, file, ensure_ascii=False, indent=2)
+        file.write("\n")
 
     for c in candidates:
         copy = c["copies"][c["chosenCopy"]]["label"] if c["status"] == "chosen" else ""
@@ -339,7 +412,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{'':>11}why: {c['reason']}")
     print(f"\nreferences {len(wiki_refs)}, passage citations {len(citations)}, described by {len(described)}; "
           f"refused choices {len(refused)}")
-    print(f"plan: {path.relative_to(GRAPH_REVISED.parent).as_posix()}")
+    print(f"plan: {path}")
     print(json.dumps({"propose": {k: propose_meta[k] for k in ("inputTokens", "outputTokens")},
                       "choose": {k: choose_meta[k] for k in ("inputTokens", "outputTokens")}}))
     return 0

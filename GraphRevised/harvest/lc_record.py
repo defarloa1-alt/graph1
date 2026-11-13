@@ -74,9 +74,14 @@ def holders(tx: Any, system: str, identifier: str) -> list[str]:
 
 
 def persons_named(tx: Any, name: str) -> list[str]:
-    return tx.run("MATCH (e:Entity {kind: 'Person'}) WHERE e.status <> 'deprecated' "
+    return tx.run("MATCH (e:Entity:Person) WHERE e.status <> 'deprecated' "
                   "AND (toLower(e.label) = toLower($n) OR toLower(e.shortLabel) = toLower($n)) RETURN e.id AS id",
                   n=name).value()
+
+
+def work_label(tx: Any, work_id: str) -> str | None:
+    row = tx.run("MATCH (w:Entity:Work {id: $id}) RETURN w.label AS label", id=work_id).single()
+    return row["label"] if row else None
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -109,8 +114,8 @@ def main(argv: list[str] | None = None) -> int:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
             tx = session.begin_transaction()
             try:
-                book = tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN w.label AS label", id=args.work).single()
-                if book is None:
+                book_label = work_label(tx, args.work)
+                if book_label is None:
                     raise SystemExit(f"{args.work} is not a Work in the graph")
                 exists = tx.run("MATCH (e:Entity {id: $id}) RETURN e.id", id=CATALOG_WORK["id"]).single() is not None
                 run_write(tx, operations, "upsert_entity", {k: CATALOG_WORK[k] for k in ("id", "kind", "label", "shortLabel", "description")}

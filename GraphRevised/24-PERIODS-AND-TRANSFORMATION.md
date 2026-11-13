@@ -23,7 +23,7 @@ when, and who says it mattered, is the point.
 
 ## 2. A period with a fuzzy edge
 
-A Period is an `Entity {kind: Period}`, with a Wikidata identity where one
+A Period is an `Entity:Period`, with a Wikidata identity where one
 exists. **Periods are not seeded by hand: the reader discovers them** (§3a),
 which tests whether the sources' own periodization can be recovered; the
 Wikidata periods (Roman Kingdom Q201038, Roman Republic Q17167, Roman Empire
@@ -253,3 +253,54 @@ Proposed changes, not built:
 
 The reader's proposed period "Empire" was relabelled **Roman Empire** by the
 curator (2026-10-13); its mention keeps the source's word.
+
+## 10. Proposals from the February period work (2026-11-13, for the curator)
+
+The February 2026 period files (Aura era, archived in
+`Archive/Temporal-2026-02/`) were reviewed against this design. Most were
+superseded. Two ideas carry forward. Both are **proposed and not built**.
+
+### 10.1 Is it a period at all?
+
+Not everything Wikidata or a source calls a period is one. The February
+classification plan (`Temporal/PERIOD_CLASSIFICATION_PLAN.md`) sorted
+candidates into tiers. Recast with this design's kinds, the period survey
+and the entity review would flag a period candidate (never convert it) when
+it is:
+
+| Looks like | Example | Belongs as | Lead |
+|---|---|---|---|
+| an act or a crisis | Reign of Terror, Phoney War | Event (D-138) | a span under about 20 years, or a name with war, battle, crisis, invasion, rebellion, week |
+| an office's tenure | Rehnquist Court, a mayoralty | a person `heldPosition` an Office, with time | a name with court, mayoralty, reign of, tenure, administration |
+| a discipline or a field | "Classics" | Concept | no time span of its own |
+| a collection or an institution | an archive, a faculty | Work or Group | its Wikidata classes |
+| too broad to say anything | 1,000 years or more, outside archaeology | stays a Period, flagged | the span |
+
+These are leads for the review to weigh, as with the entity review (D-140).
+A long span is normal for an archaeological phase, so the last row applies
+only to historical periods. The curator decides each case.
+
+### 10.2 Where a period applies
+
+Membership is computed from dates alone (§2), so an event in Han China in
+100 BC would count as "in the Roman Republic". Each PeriodO definition
+states its spatial coverage (places, often with Wikidata QIDs, and a
+description). The survey keeps that only as text (`place_description`).
+
+- **Store the coverage on the definition, not on the Period.** Each definition
+  already rests on a preserved PeriodO observation. Its covered places
+  would be Locations or Places resolved from the coverage QIDs, recorded with
+  the observation and shown as "places covered" (§9 item 2). The Period
+  keeps no region of its own, because definitions differ (Italy, the
+  Mediterranean, Slovenia's pottery phase).
+- **Membership checks place as well as date.** An event is in a period
+  according to a source when its date falls in that source's span **and**
+  its place falls within one of that definition's covered places, along the
+  place chain (27, `views/place-chain.cypher`). An event with no place, or a
+  definition with no coverage, is shown as "date only".
+- Still computed in the read API, never stored (§2). The old
+  `VALID_IN_REGION` and `OCCURRED_DURING` edges are not revived.
+
+To decide: whether 10.1's leads join the period survey, the entity review,
+or both; and whether 10.2 resolves coverage to Locations (the gazetteer) or
+to Place entities.

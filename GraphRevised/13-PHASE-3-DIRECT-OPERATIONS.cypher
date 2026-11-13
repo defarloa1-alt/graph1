@@ -74,14 +74,18 @@ RETURN
 // Idempotent writes
 // ---------------------------------------------------------------------------
 
-// Create or reuse an Entity. `kind` is fixed at creation; a retry with a
-// different kind is refused.
+// Create or reuse a typed Entity. The `kind` parameter is the subtype name
+// supplied by callers; it is written as a Neo4j label and never stored as a
+// node property.
 OPTIONAL MATCH (existing:Entity {id: $id})
 WITH existing
-WHERE existing IS NULL OR existing.kind = $kind
+WHERE $kind IN [
+  "Person", "Place", "Event", "Group", "Work", "Object", "Period",
+  "Office", "Concept", "Polity", "Type", "Other"
+]
+AND (existing IS NULL OR $kind IN labels(existing))
 MERGE (node:Entity {id: $id})
 ON CREATE SET
-  node.kind = $kind,
   node.label = $label,
   node.description = $description,
   node.status = $status,
@@ -91,6 +95,18 @@ ON MATCH SET
   node.description = coalesce($description, node.description),
   node.status = coalesce($status, node.status),
   node.shortLabel = coalesce($shortLabel, node.shortLabel)
+FOREACH (_ IN CASE WHEN $kind = "Person" THEN [1] ELSE [] END | SET node:Person)
+FOREACH (_ IN CASE WHEN $kind = "Place" THEN [1] ELSE [] END | SET node:Place)
+FOREACH (_ IN CASE WHEN $kind = "Event" THEN [1] ELSE [] END | SET node:Event)
+FOREACH (_ IN CASE WHEN $kind = "Group" THEN [1] ELSE [] END | SET node:Group)
+FOREACH (_ IN CASE WHEN $kind = "Work" THEN [1] ELSE [] END | SET node:Work)
+FOREACH (_ IN CASE WHEN $kind = "Object" THEN [1] ELSE [] END | SET node:Object)
+FOREACH (_ IN CASE WHEN $kind = "Period" THEN [1] ELSE [] END | SET node:Period)
+FOREACH (_ IN CASE WHEN $kind = "Office" THEN [1] ELSE [] END | SET node:Office)
+FOREACH (_ IN CASE WHEN $kind = "Concept" THEN [1] ELSE [] END | SET node:Concept)
+FOREACH (_ IN CASE WHEN $kind = "Polity" THEN [1] ELSE [] END | SET node:Polity)
+FOREACH (_ IN CASE WHEN $kind = "Type" THEN [1] ELSE [] END | SET node:Type)
+FOREACH (_ IN CASE WHEN $kind = "Other" THEN [1] ELSE [] END | SET node:Other)
 RETURN node;
 
 // Create or reuse a Subject.
@@ -504,7 +520,7 @@ OPTIONAL MATCH (subjectNode:Entity {id: $subjectId})
 OPTIONAL MATCH (objectNode:Entity {id: $objectId})
 OPTIONAL MATCH (contextNode:Entity {id: $contextId})
 OPTIONAL MATCH (roleNode:Entity {id: $roleId})
-OPTIONAL MATCH (workNode:Entity {id: $attributedToId, kind: "Work"})
+OPTIONAL MATCH (workNode:Entity:Work {id: $attributedToId})
 WITH subjectNode, objectNode, contextNode, roleNode, workNode
 WHERE subjectNode IS NOT NULL
   AND ($objectId IS NULL OR objectNode IS NOT NULL)
@@ -583,7 +599,7 @@ RETURN assertion, [item IN found | item.year.year] AS years;
 // Link a passage observation to the Work it is a passage of. One Work per
 // observation: refused if it is already in another Work.
 MATCH (observation:SourceObservation {id: $observationId, observationKind: "passage"})
-MATCH (work:Entity {id: $workId, kind: "Work"})
+MATCH (work:Entity:Work {id: $workId})
 OPTIONAL MATCH (observation)-[:IN_WORK]->(other:Entity)
 WITH observation, work, collect(other.id) AS otherIds
 WHERE all(id IN otherIds WHERE id = $workId)
@@ -609,7 +625,7 @@ RETURN promoted, [source IN sources | source.id] AS sourceIds;
 // curator or a highlight import recorded it, with its edition and locator.
 // Linked IN_WORK to its Work, which must exist. Source facts are fixed at
 // creation; only display text and status may change.
-MATCH (work:Entity {id: $workId, kind: "Work"})
+MATCH (work:Entity:Work {id: $workId})
 MERGE (observation:SourceObservation {id: $id})
 ON CREATE SET
   observation.label = $label,
@@ -713,7 +729,7 @@ RETURN entity;
 // only the record's own wording, so quotations stay verbatim; the dataset's
 // editorial notes are kept apart. Linked IN_WORK to its Work, which must
 // exist. Source facts are fixed at creation.
-MATCH (work:Entity {id: $workId, kind: "Work"})
+MATCH (work:Entity:Work {id: $workId})
 MERGE (observation:SourceObservation {id: $id})
 ON CREATE SET
   observation.label = $label,
@@ -747,7 +763,7 @@ RETURN observation;
 // A claim attributed to a Work of a creative form is stored as imaginative,
 // so once any claim is attributed to the Work its form is fixed: a retry
 // with the same form succeeds, a different form is refused.
-MATCH (work:Entity {id: $workId, kind: "Work"})
+MATCH (work:Entity:Work {id: $workId})
 WHERE $form IN $allowedForms
   AND (work.form IS NULL OR work.form = $form OR NOT EXISTS { (:Assertion)-[:ATTRIBUTED_TO]->(work) })
 SET work.form = $form
@@ -936,7 +952,7 @@ RETURN written;
 // identifier the Entity already holds (`basis`). Refused unless every Entity
 // is of kind Place and every Location exists.
 UNWIND $rows AS row
-MATCH (place:Entity {id: row.entity, kind: "Place"}), (location:Location {id: row.location})
+MATCH (place:Entity:Place {id: row.entity}), (location:Location {id: row.location})
 MERGE (place)-[link:AT_LOCATION]->(location)
 ON CREATE SET link.status = row.status
 SET link.basis = row.basis
@@ -972,3 +988,68 @@ ON MATCH SET
   image.label = coalesce($label, image.label),
   image.shortLabel = coalesce($shortLabel, image.shortLabel)
 RETURN image;
+
+// set_entity_kind (2026-11-12): move an Entity from one subtype to another when it was filed under
+// the wrong kind (matrona, a status, filed as an Office). The caller names the kind it expects the
+// Entity to have now ($from), so a stale decision cannot move the wrong thing. Refused while any
+// claim that is not rejected or superseded names the Entity: settle those claims first, since a
+// predicate's allowed kinds were checked against the old kind; a cited Work cannot stop being a
+// Work (moving to Work is allowed). Records the previous kind and who
+// decided, with the basis. A retry with the same target kind changes nothing.
+MATCH (entity:Entity {id: $id})
+WHERE $kind IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Other"] AND $from IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Other"] AND $kind <> $from
+  AND ($from IN labels(entity) OR ($kind IN labels(entity) AND entity.previousKind = $from))
+  AND NOT EXISTS {
+    MATCH (claim:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT|ASSERTION_ROLE|ASSERTION_CONTEXT]->(entity)
+    WHERE NOT claim.status IN ["rejected", "superseded"]
+  }
+  // A Work that claims cite ("according to") or observations come from stays a Work.
+  AND ($kind = "Work" OR NOT EXISTS {
+    MATCH (claim:Assertion)-[:ATTRIBUTED_TO]->(entity) WHERE NOT claim.status IN ["rejected", "superseded"]
+  })
+  AND ($kind = "Work" OR NOT EXISTS { MATCH (:SourceObservation)-[:IN_WORK]->(entity) })
+WITH entity, ($kind IN labels(entity) AND NOT $from IN labels(entity)) AS isRetry
+SET entity.previousKind = CASE WHEN isRetry THEN entity.previousKind ELSE $from END,
+    entity.kindChangedAt = CASE WHEN isRetry THEN entity.kindChangedAt ELSE $decidedAt END,
+    entity.kindChangedBy = CASE WHEN isRetry THEN entity.kindChangedBy ELSE $decidedBy END,
+    entity.kindChangeBasis = CASE WHEN isRetry THEN entity.kindChangeBasis ELSE $decisionBasis END
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Person" THEN [1] ELSE [] END | REMOVE entity:Person)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Place" THEN [1] ELSE [] END | REMOVE entity:Place)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Event" THEN [1] ELSE [] END | REMOVE entity:Event)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Group" THEN [1] ELSE [] END | REMOVE entity:Group)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Work" THEN [1] ELSE [] END | REMOVE entity:Work)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Object" THEN [1] ELSE [] END | REMOVE entity:Object)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Period" THEN [1] ELSE [] END | REMOVE entity:Period)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Office" THEN [1] ELSE [] END | REMOVE entity:Office)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Concept" THEN [1] ELSE [] END | REMOVE entity:Concept)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Polity" THEN [1] ELSE [] END | REMOVE entity:Polity)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Type" THEN [1] ELSE [] END | REMOVE entity:Type)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Other" THEN [1] ELSE [] END | REMOVE entity:Other)
+FOREACH (_ IN CASE WHEN $kind = "Person" THEN [1] ELSE [] END | SET entity:Person)
+FOREACH (_ IN CASE WHEN $kind = "Place" THEN [1] ELSE [] END | SET entity:Place)
+FOREACH (_ IN CASE WHEN $kind = "Event" THEN [1] ELSE [] END | SET entity:Event)
+FOREACH (_ IN CASE WHEN $kind = "Group" THEN [1] ELSE [] END | SET entity:Group)
+FOREACH (_ IN CASE WHEN $kind = "Work" THEN [1] ELSE [] END | SET entity:Work)
+FOREACH (_ IN CASE WHEN $kind = "Object" THEN [1] ELSE [] END | SET entity:Object)
+FOREACH (_ IN CASE WHEN $kind = "Period" THEN [1] ELSE [] END | SET entity:Period)
+FOREACH (_ IN CASE WHEN $kind = "Office" THEN [1] ELSE [] END | SET entity:Office)
+FOREACH (_ IN CASE WHEN $kind = "Concept" THEN [1] ELSE [] END | SET entity:Concept)
+FOREACH (_ IN CASE WHEN $kind = "Polity" THEN [1] ELSE [] END | SET entity:Polity)
+FOREACH (_ IN CASE WHEN $kind = "Type" THEN [1] ELSE [] END | SET entity:Type)
+FOREACH (_ IN CASE WHEN $kind = "Other" THEN [1] ELSE [] END | SET entity:Other)
+RETURN entity;
+
+// retire_entity_identity (2026-11-12): an Entity's accepted Wikidata identity names the wrong thing
+// (Tarentum, the port city, linked to the Tarentum precinct in the Campus Martius). The link is kept
+// as history with status rejected and who decided, with the basis; readers follow accepted links
+// only. The Entity, its claims and its mentions are unchanged: the caller then links the right
+// identity. A retry changes nothing.
+MATCH (entity:Entity {id: $id})-[link:HAS_AUTHORITY_RECORD {role: "entity_identity"}]->
+      (record:AuthorityRecord {system: "Wikidata", identifier: $qid})
+WHERE link.status = "accepted" OR (link.status = "rejected" AND link.decidedAt IS NOT NULL)
+WITH entity, link, record, link.status = "rejected" AS isRetry
+SET link.decidedAt = CASE WHEN isRetry THEN link.decidedAt ELSE $decidedAt END,
+    link.decidedBy = CASE WHEN isRetry THEN link.decidedBy ELSE $decidedBy END,
+    link.decisionBasis = CASE WHEN isRetry THEN link.decisionBasis ELSE $decisionBasis END,
+    link.status = "rejected"
+RETURN entity, link, record;

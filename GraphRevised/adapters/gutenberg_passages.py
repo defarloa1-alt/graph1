@@ -21,6 +21,7 @@ from pathlib import Path
 from typing import Any
 
 import requests
+from bs4 import BeautifulSoup
 
 from .wikidata_identity import USER_AGENT
 from .wikidata_statements import REPOSITORY_ROOT
@@ -57,6 +58,7 @@ class Edition:
     content_hash: str
     rights: str
     passages: dict[str, Passage]
+    section: dict[str, str] | None = None
 
     def all_refs(self) -> list[str]:
         return list(self.passages)
@@ -69,6 +71,9 @@ def preserve_book(ebook: int, directory: Path) -> Path:
         return existing[-1]
     url = f"https://www.gutenberg.org/files/{ebook}/{ebook}-h/{ebook}-h.htm"
     response = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
+    if response.status_code == 404:
+        url = f"https://www.gutenberg.org/cache/epub/{ebook}/pg{ebook}-images.html"
+        response = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
     response.raise_for_status()
     payload = response.content
     digest = hashlib.sha256(payload).hexdigest()
@@ -97,20 +102,23 @@ def preserve_book(ebook: int, directory: Path) -> Path:
     return path
 
 
-def load_edition(path: Path, *, edition: str | None = None) -> Edition:
+def load_edition(path: Path, *, edition: str | None = None, section: dict[str, str] | None = None) -> Edition:
     payload = path.read_bytes()
     metadata = json.loads(path.with_suffix(".metadata.json").read_text(encoding="utf-8"))
     if hashlib.sha256(payload).hexdigest() != metadata["contentHash"]:
         raise ValueError(f"{path.name} does not match its recorded hash")
-    parser = _BookParser()
-    parser.feed(_decode(payload))
-    parser.close()
-    passages = {
-        ref: Passage(text=_normalize("".join(parts)), pages=tuple(parser.pages[ref]),
-                     notes=tuple(parser.note_texts[n] for n in parser.note_refs.get(ref, []) if n in parser.note_texts),
-                     chapter_title=parser.chapter_titles.get(ref.split(".")[0]))
-        for ref, parts in parser.paragraphs.items()
-    }
+    if section is None:
+        parser = _BookParser()
+        parser.feed(_decode(payload))
+        parser.close()
+        passages = {
+            ref: Passage(text=_normalize("".join(parts)), pages=tuple(parser.pages[ref]),
+                         notes=tuple(parser.note_texts[n] for n in parser.note_refs.get(ref, []) if n in parser.note_texts),
+                         chapter_title=parser.chapter_titles.get(ref.split(".")[0]))
+            for ref, parts in parser.paragraphs.items()
+        }
+    else:
+        passages = _section_passages(_decode(payload), section)
     passages = {ref: passage for ref, passage in passages.items() if passage.text}
     language = metadata.get("language")
     if not language:
@@ -122,8 +130,43 @@ def load_edition(path: Path, *, edition: str | None = None) -> Edition:
         path=path, ebook=metadata["ebook"], source_uri=metadata["sourceUri"], author=metadata.get("author") or "",
         title=metadata.get("title") or "", translator=metadata.get("translator"), citation=citation,
         language=language, retrieved_at=metadata["retrievedAt"], content_hash=metadata["contentHash"],
-        rights=metadata.get("rights") or "Rights not stated in the Gutenberg header.", passages=passages,
+        rights=metadata.get("rights") or "Rights not stated in the Gutenberg header.", passages=passages, section=section,
     )
+
+
+def _section_passages(html: str, section: dict[str, str]) -> dict[str, Passage]:
+    """Parse paragraphs between two explicitly reviewed heading anchors."""
+    if set(section) != {"start", "end", "label"} or not all(
+        isinstance(section[key], str) and section[key].strip() for key in ("start", "end", "label")
+    ):
+        raise ValueError("Gutenberg section requires non-empty start, end and label strings.")
+    soup = BeautifulSoup(html, "html.parser")
+    starts = soup.find_all(id=section["start"])
+    ends = soup.find_all(id=section["end"])
+    if len(starts) != 1 or len(ends) != 1 or starts[0].name not in {"h1", "h2", "h3", "h4"} \
+            or ends[0].name not in {"h1", "h2", "h3", "h4"}:
+        raise ValueError("Gutenberg section anchors must uniquely identify headings.")
+    start, end = starts[0], ends[0]
+    passages: dict[str, Passage] = {}
+    found_end = False
+    for element in start.find_all_next(["p", "h1", "h2", "h3", "h4"]):
+        if element is end:
+            found_end = True
+            break
+        if element.name != "p":
+            raise ValueError("Selected Gutenberg section contains another heading before its end.")
+        if (element.select(".footnote, .footnotes, .fnanchor, .pagenum")
+                or set(element.get("class", [])) & {"footnote", "footnotes", "pagenum"}
+                or element.find_parent(class_=lambda c: c and
+                                       ({"footnote", "footnotes"} & set(c.split())))):
+            raise ValueError("Selected Gutenberg section contains notes or page markers that require review.")
+        text = _normalize(element.get_text(" ", strip=True))
+        if text:
+            passages[f"1.{len(passages) + 1}"] = Passage(text=text, pages=(), notes=(),
+                                                         chapter_title=section["label"])
+    if not found_end or not passages:
+        raise ValueError("Gutenberg section is empty or its end heading does not follow its start.")
+    return passages
 
 
 def section_refs(edition: Edition, selection: str) -> list[str]:
@@ -140,9 +183,14 @@ def passage_observation(edition: Edition, ref: str) -> dict[str, Any]:
     chapter, paragraph = ref.split(".")
     pages = "-".join(dict.fromkeys((passage.pages[0], passage.pages[-1]))) if passage.pages else None
     anchor = f"#Page_{passage.pages[0]}" if passage.pages else ""
-    where = f"ch. {chapter}, para. {paragraph}" + (f", p. {pages}" if pages else "")
+    where = (f"selected section {edition.section['label']}, para. {paragraph}" if edition.section
+             else f"ch. {chapter}, para. {paragraph}" + (f", p. {pages}" if pages else ""))
+    if edition.section:
+        anchor = "#" + edition.section["start"]
+    section_id = (":" + hashlib.sha256(json.dumps(edition.section, sort_keys=True).encode("utf-8")).hexdigest()[:12]
+                  if edition.section else "")
     return {
-        "id": f"chr:observation:gutenberg:{edition.ebook}:{ref}:{edition.content_hash[:8]}",
+        "id": f"chr:observation:gutenberg:{edition.ebook}{section_id}:{ref}:{edition.content_hash[:8]}",
         "label": f"{edition.author}, {edition.title}, {where}",
         "shortLabel": f"{edition.author.split()[-1] if edition.author else 'Gutenberg'} {ref}",
         "sourceSystem": "Project Gutenberg",

@@ -1,9 +1,12 @@
 """Reader output to drafts (prompt v8), without a model call or a database."""
 
 import unittest
+from dataclasses import replace
+from types import SimpleNamespace
+from unittest.mock import Mock
 
 from GraphRevised.proposals.passage_reader import (
-    Inquiry, ReaderClaim, ReaderNote, ReaderOutput, ReaderPeriod, predicate_guide, to_drafts, to_notes,
+    Inquiry, ReaderClaim, ReaderNote, ReaderOutput, ReaderPeriod, graph_context_text, predicate_guide, read_passage, to_drafts, to_notes,
     to_periods,
 )
 from GraphRevised.proposals.registry import load_registry
@@ -31,6 +34,47 @@ def drafts(*claims):
 
 
 class ReaderDraftTests(unittest.TestCase):
+    def test_graph_context_distinguishes_status_and_warns_about_forces(self):
+        text = graph_context_text({
+            "assertions": [{"id": "a1", "predicate": "participatedIn", "status": "proposed",
+                            "subjectId": "p", "subjectLabel": "Person",
+                            "objectId": "b", "objectLabel": "Battle"}],
+            "groupsToReview": [{"id": "g", "label": "Other fleet"}],
+            "otherEventParticipations": [{"groupId": "g", "groupLabel": "Other fleet", "eventId": "e",
+                                          "eventLabel": "Other battle", "status": "accepted", "assertionId": "a2"}],
+        })
+        self.assertIn("not evidence from the target passage", text)
+        self.assertIn("Proposed assertions are not accepted facts", text)
+        self.assertIn("participatedIn | Battle (b) | proposed | a1", text)
+        self.assertIn("Other battle (e) | accepted | a2", text)
+        self.assertIn("shared commander does not make forces interchangeable", text)
+
+    def test_graph_context_is_in_reader_and_source_brief_packets(self):
+        from GraphRevised.discovery.source_brief import propose
+        context = {
+            "assertions": [{"id": "a1", "predicate": "participatedIn", "status": "proposed",
+                            "subjectId": "p", "subjectLabel": "Person",
+                            "objectId": "b", "objectLabel": "Battle"}],
+            "groupsToReview": [{"id": "g", "label": "Other fleet"}],
+            "otherEventParticipations": [],
+        }
+        inquiry = replace(INQUIRY, graph_context=context)
+        usage = SimpleNamespace(input_tokens=0, output_tokens=0, cache_read_input_tokens=0,
+                                cache_creation_input_tokens=0)
+        response = SimpleNamespace(model="test", stop_reason="end_turn", usage=usage, _request_id="test",
+                                   parsed_output=None)
+        parse = Mock(return_value=response)
+        client = SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(parse=parse)))
+        edition = SimpleNamespace(author="Author", title="Title", translator="Translator", citation="Citation")
+        read_passage(client, "test", inquiry, edition, "1", {"passageText": "A passage."}, [], load_registry())
+        reader_packet = parse.call_args.kwargs["system"][1]["text"]
+        self.assertIn("participatedIn | Battle (b) | proposed | a1", reader_packet)
+        self.assertIn("Other fleet (g)", reader_packet)
+        propose(client, "test", inquiry, "Record", [], [])
+        brief_packet = parse.call_args.kwargs["messages"][0]["content"]
+        self.assertIn("participatedIn | Battle (b) | proposed | a1", brief_packet)
+        self.assertIn("not evidence from the target passage", brief_packet)
+
     def test_claims_are_attributed_to_the_inquiry_work(self):
         (draft,), malformed = drafts(claim())
         self.assertEqual(malformed, [])

@@ -39,13 +39,16 @@ def similarity(a: str, b: str) -> float:
 
 
 def candidates(tx: Any, label: str, kind: str | None = None, *, exclude: str | None = None,
-               threshold: float = 0.5, limit: int = 5) -> list[dict[str, Any]]:
+               threshold: float = 0.5, limit: int | None = 5) -> list[dict[str, Any]]:
     rows = tx.run(
         """
-        MATCH (entity:Entity) WHERE ($kind IS NULL OR entity.kind = $kind) AND entity.id <> coalesce($exclude, '')
+        MATCH (entity:Entity)
+        WHERE ($kind IS NULL OR $kind IN labels(entity))
+          AND entity.id <> coalesce($exclude, '')
         OPTIONAL MATCH (entity)-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord {system: "Wikidata"})
         WHERE link.role = "entity_identity"
-        RETURN entity.id AS id, entity.label AS label, entity.shortLabel AS shortLabel, entity.kind AS kind,
+        RETURN entity.id AS id, entity.label AS label, entity.shortLabel AS shortLabel,
+               head([label IN labels(entity) WHERE label <> 'Entity']) AS kind,
                head(collect(record.identifier)) AS qid, head(collect(record.rawPayloadUri)) AS payloadUri
         """,
         kind=kind, exclude=exclude,

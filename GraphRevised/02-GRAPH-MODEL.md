@@ -1,6 +1,6 @@
 ---
 status: governing
-authority: what a thing means and how it is stored (labels, kinds, relationships, statuses, identity)
+authority: what a thing means and how it is stored (labels, subtype properties, relationships, statuses, identity)
 depends_on: []
 details_in: [22-CLAIM-QUALIFIERS.md, 23-NARRATIVE-AND-NOTES.md, 27-GAZETTEER.md, 28-SUBJECT-BUCKETS.md]
 superseded_by: null
@@ -12,7 +12,7 @@ last_reviewed: 2026-10-17
 This document defines the smallest useful graph contract for the clean start.
 It is a practical property-graph model, not a complete ontology.
 
-## 1. Core node types
+## 1. Domain entity hierarchy
 
 ### Entity
 
@@ -22,7 +22,6 @@ Required properties:
 
 ```yaml
 id: chr:entity:...
-kind: Person | Event | Place | Group | Object | Work | Period | Office | Concept | Polity | Type | Other
 label: ...
 status: proposed | provisional | resolved | deprecated
 ```
@@ -38,10 +37,52 @@ An Entity description is locally adopted display text. If it originates with
 an authority record, preserve the source wording and revision on the linked
 AuthorityRecord and SourceObservation.
 
-`Office` holds positions and posts (targets of `heldPosition` and role
-qualifiers); `Concept` holds analytical ideas and frames (targets of
-`exemplifies`); `Polity` holds states (the Ptolemaic Kingdom); `Type` holds
-unit types, organizational patterns, roles, and powers (*imperium*), registry v9. The list of kinds is data, in the predicate registry.
+Neo4j subtype labels make the finite ontology explicit:
+
+```text
+(:Entity:Person)
+(:Entity:Place)
+(:Entity:Event)
+(:Entity:Group)
+(:Entity:Work)
+(:Entity:Object)
+(:Entity:Period)
+(:Entity:Office)
+(:Entity:Concept)
+(:Entity:Polity)
+(:Entity:Type)
+(:Entity:Other)
+```
+
+`Person`, `Place`, `Event`, `Group`, `Work`, `Object`, `Period`, `Office`,
+`Concept`, `Polity`, `Type`, and `Other` are domain subtypes, not values of a
+generic `kind` property. `Office` holds positions and posts; `Concept` holds
+analytical ideas and frames; `Polity` holds states; and `Type` holds unit
+types, organizational patterns, roles, and powers.
+
+Subtype properties should remain small and type-specific:
+
+| Subtype | Initial properties |
+|---|---|
+| Person | `gender`, `birthName`, `nameVariants` |
+| Place | `placeType`, `latitude`, `longitude`, `coordinatePrecision`, `modernCountry` |
+| Event | `eventType` |
+| Group | `groupType` |
+| Work | `workType`, `language` |
+| Object | `objectType`, `material` |
+| Period | `periodType` |
+| Office | `officeType` |
+| Concept | `conceptType` |
+| Polity | `polityType` |
+| Type | `typeCategory` |
+| Other | `otherType` |
+
+Dates, membership, creators, ownership, locations, and other source-sensitive
+facts remain Assertions rather than unconstrained scalar fields.
+
+`Year` is deliberately not an Entity subtype. It is a temporal coordinate and
+the graph's ordered temporal backbone; see
+[03-TEMPORAL-YEAR-BACKBONE.md](03-TEMPORAL-YEAR-BACKBONE.md).
 
 ### Subject
 
@@ -51,7 +92,7 @@ A Subject is created intentionally: for an inquiry, a research scope, a body
 of literature, or a user's drill-down. It is never an automatic shadow of an
 Entity. **Since 2026-10-14 Subjects are also buckets** ([28](28-SUBJECT-BUCKETS.md)):
 every entity sits in at least one, mostly computed from its claims, and
-Subjects form a hierarchy (`BROADER`, several parents allowed) anchored to
+Subjects form a hierarchy (`NARROWER_THAN`, several parents allowed) anchored to
 library headings.
 
 Required properties:
@@ -79,6 +120,25 @@ An AuthorityRecord identifies the external record. It does not automatically
 assert that all data in the record is accepted locally.
 Its `description`, when present, preserves the authority's display wording;
 it is not a replacement for a locally adopted Entity description.
+
+### External-system roles
+
+External systems are selected by workflow, not treated as interchangeable
+identity providers:
+
+| System | Role | Durable key and storage |
+|---|---|---|
+| Wikidata | identity discovery and source statements | `AuthorityRecord(system, identifier)`; statement and identity-record `SourceObservation`s |
+| Pleiades | ancient-place gazetteer and location crosswalk | `Location(system, identifier)`; selected Place links may also carry a Pleiades `AuthorityRecord` |
+| GeoNames | modern gazetteer and administrative tree | `Location(system, identifier)` |
+| PeriodO | published period definitions, not local identity | `SourceObservation(sourceSystem, sourceEntityId)` with the PeriodO definition ID and ARK locator; the publication is a `Work` |
+| LCSH, FAST, LCNAF, VIAF, GND | bibliographic or name authority control | `AuthorityRecord(system, identifier)` when a local entity or subject is linked |
+
+An external identifier is a key to a preserved external record, not proof that
+the record's claims are accepted locally. A system that supplies evidence but
+does not identify a local entity belongs on `SourceObservation`; a system that
+identifies a local entity belongs on `AuthorityRecord`; a gazetteer location
+belongs on `Location`.
 
 ### SourceObservation
 
@@ -160,6 +220,11 @@ different Assertion. So are its qualifiers (time, role, context, quantity)
 and its mode: `asserted` is Chrystallum's own claim, `attributed` a source's
 depiction, linked `ATTRIBUTED_TO` its Work ([22](22-CLAIM-QUALIFIERS.md)).
 `contested` is reserved for evidence stance (backlog E8) and not yet used.
+
+`partOf` also relates a Work to a containing Work, such as a biography to a
+collection (D-136). The two Works remain distinct identities; containment is
+an evidence-bearing assertion subject to the normal proposal and review
+process, not an automatic consequence of naming or identity.
 
 The assertion points to its subject and object and may point to one or more
 source observations.
@@ -293,17 +358,17 @@ Relationship direction must be consistent in the stored graph.
 (:Assertion)-[:SUPERSEDED_BY]->(:Assertion)
 (:Assertion)-[:ASSERTION_CONTEXT]->(:Entity)   Event by default; per predicate (registry contextKinds)
 (:Assertion)-[:ASSERTION_ROLE]->(:Entity)      Office by default; per predicate (registry roleKinds)
-(:Assertion)-[:ATTRIBUTED_TO]->(:Entity {kind: Work})
+(:Assertion)-[:ATTRIBUTED_TO]->(:Entity:Work)
 (:Assertion)-[:PROMOTED_FROM]->(:Assertion)
 (:Assertion)-[:IN_YEAR]->(:Year)
-(:SourceObservation)-[:IN_WORK]->(:Entity {kind: Work})
+(:SourceObservation)-[:IN_WORK]->(:Entity:Work)
 (:Annotation)-[:ANNOTATES {quotation}]->(:SourceObservation)
 (:Annotation)-[:CONCERNS]->(:Entity)          built; designed (32 §2.1): also Assertion, Subject, Proposal, Annotation
 (:Entity)-[:IN_YEAR]->(:Year)
-(:Subject)-[:BROADER]->(:Subject)
+(:Subject)-[:NARROWER_THAN]->(:Subject)
 (:Location)-[:WITHIN]->(:Location)
 (:Location)-[:MODERN_LOCATION]->(:Location)
-(:Entity {kind: Place})-[:AT_LOCATION]->(:Location)
+(:Entity:Place)-[:AT_LOCATION]->(:Location)
 ```
 
 **Location** (the ninth core label, loaded 2026-10-15) is the gazetteer:
@@ -335,6 +400,24 @@ or another Annotation, so a note on a claim comments on it without becoming
 one. The visibility words are open (32 §3 item 1: `team` or `shared`).
 
 ### Our own units and the sources' units
+
+#### Historical phases and topical sections (D-134)
+
+A historical phase is a durable, curator-defined analytical sub-event, not
+an automatically inferred fact. It may be revised, disputed, incomplete, or
+overlap another phase; its existence, event membership, and ordering need
+separate provenance and review. A phase of a battle must be a portion of that
+battle: lead-up, aftermath, and later reception do not become battle parts
+merely because they belong in its history. A Subject answers what material is
+about; `IN_SUBJECT` is topical relevance, not `partOf`. Subjects may cover
+events before or after their focus, including meaning and memory.
+
+The existing phase `Event` and evidence-bearing `partOf` representation is
+unchanged. No new `Phase` label or `HAS_PARTITION` relationship is authorized
+by this decision. The accepted Meaning and memory phase-to-battle claim is a
+legacy claim requiring an explicit curator review; do not silently remove,
+relabel, or change it or infer a decision for individual placements. D-134
+qualifies D-091's interpretation, not its record of the earlier decision.
 
 Two kinds of Event are not historical identities from an authority but units
 of a reading:
@@ -476,7 +559,7 @@ accepted assertions.
 
 A retry must also not silently change what an existing node means. The direct
 operations therefore refuse (return zero rows and write nothing) when a retry
-would change an Entity's `kind`, an Assertion's predicate or endpoints, a
+would change an Entity's subtype label, an Assertion's predicate or endpoints, a
 Proposal's target, or an AuthorityRecord's local ID. A null optional display
 value never erases an existing value. Operations link only to existing `Year`
 nodes and never extend the backbone.
@@ -507,6 +590,26 @@ AuthorityRecord.(system, identifier)      an external code: LCNAF n50051933, LCC
 - **Never a key from mutable properties** (a label, a description), and no
   composite key that would decide identity silently: a new one needs a
   versioned canonicalization rule, as the claim digest has.
+
+**Cluster addresses are computed, not stored (D-138).** Because a claim id
+begins with its subject and predicate, a cluster is found by its prefix with
+one index range seek and no traversal (checked 2026-11-12: `STARTS WITH` on
+`Assertion.id` plans as `NodeUniqueIndexSeekByRange`):
+
+```text
+chr:assertion:<subject>:<predicate>:              one entity's claims of one predicate
+chr:assertion:depicted:<work>:<event>:            everything one depicted event stands for
+<subject> × the predicates of one lens            an entity through a lens (one seek per predicate)
+hash(entity id, lens, scope, claim ids read)      the cache key of a lens reading
+```
+
+This is what the legacy faceted cipher wanted (an entity seen from one facet),
+without hub nodes or stored scores. The key is the local id, never the QID:
+QIDs merge and redirect, and many entities (depicted events, phases) have none;
+a QID start is two seeks through its AuthorityRecord. A claim id does not begin
+with its object, so "who took part in this event" starts at the event and walks
+its incoming links; when a node passes about 10,000 claims, an
+object-and-predicate index on Assertion is added for that walk.
 
 Dropped from the legacy design of the same name (`docs/architecture/ENTITY_CIPHER_FOR_VERTEX_JUMPS.md`,
 February 2026, reference only), on purpose: ids built from the QID with a type

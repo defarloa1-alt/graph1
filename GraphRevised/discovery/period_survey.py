@@ -369,7 +369,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
             entities = args.entities or [row["id"] for row in session.run(
-                "MATCH (e:Entity {kind: 'Period'}) WHERE e.status IN ['proposed', 'provisional'] "
+                "MATCH (e:Entity:Period) WHERE e.status IN ['proposed', 'provisional'] "
                 "RETURN e.id AS id ORDER BY id")]
             print(f"PeriodO {dataset.version or dataset.content_hash[:12]}: {len(dataset.definitions)} definitions\n")
             for entity_id in entities:

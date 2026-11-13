@@ -106,7 +106,7 @@ def depicted_with_passages(tx: Any, work_ids: list[str]) -> list[dict[str, Any]]
     prefixes = [depicted_event_id(w, "x")[:-1] for w in work_ids]
     return tx.run(
         """
-        MATCH (e:Entity {kind: 'Event'})
+        MATCH (e:Entity:Event)
         WHERE any(p IN $prefixes WHERE e.id STARTS WITH p) AND e.status <> 'deprecated'
         MATCH (a:Annotation {kind: 'entity-mention'})-[:CONCERNS]->(e)
         MATCH (a)-[l:ANNOTATES]->(o:SourceObservation)-[:IN_WORK]->(w:Entity)

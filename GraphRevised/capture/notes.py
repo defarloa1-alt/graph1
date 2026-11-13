@@ -153,11 +153,11 @@ class Neo4jNoteReader:
         return {r["id"]: r["label"] for r in rows}
 
     def work(self, work_id: str) -> str | None:
-        row = self.tx.run("MATCH (w:Entity {id: $id, kind: 'Work'}) RETURN w.label AS label", id=work_id).single()
+        row = self.tx.run("MATCH (w:Entity:Work {id: $id}) RETURN w.label AS label", id=work_id).single()
         return row["label"] if row else None
 
     def work_for_lccn(self, lccn: str) -> list[str]:
-        return self.tx.run("MATCH (w:Entity {kind: 'Work'})-[:HAS_AUTHORITY_RECORD]->(:AuthorityRecord "
+        return self.tx.run("MATCH (w:Entity:Work)-[:HAS_AUTHORITY_RECORD]->(:AuthorityRecord "
                            "{system: 'LCCN', identifier: $lccn}) RETURN w.id AS id", lccn=lccn).value()
 
 

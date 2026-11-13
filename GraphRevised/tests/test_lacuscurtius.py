@@ -93,6 +93,21 @@ class LacusCurtiusTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             open_source({"type": "unknown"}, self.directory)
 
+    def test_named_life_has_stable_work_identity_and_section_locators(self):
+        url = "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Plutarch/Lives/Brutus*.html"
+        text = PAGE.replace("a Book of Test History by Test Author", "one of The Parallel Lives by Plutarch")
+        with mock.patch.object(lc.requests, "get", return_value=FakeResponse(text.encode("utf-8"))):
+            path = lc.preserve_page(url, self.directory)
+        edition = lc.load_edition([path])
+        self.assertEqual((edition.author, edition.title), ("Plutarch", "The Parallel Lives"))
+        self.assertEqual(edition.all_refs(), ["1.1", "1.2", "2.1"])
+        self.assertEqual(lc.section_refs(edition, "1.1-1.2"), ["1.1", "1.2"])
+        observation = lc.passage_observation(edition, "1.2")
+        self.assertEqual(observation["locator"], url + "#1.2")
+        self.assertTrue(observation["id"].startswith("chr:observation:lacuscurtius:plutarch-lives-brutus-html:1.2:"))
+        self.assertIn("public domain", observation["rights"])
+        self.assertNotEqual(lc._work_slug(url), lc._work_slug(url.replace("Brutus", "Antony")))
+
 
 if __name__ == "__main__":
     unittest.main()

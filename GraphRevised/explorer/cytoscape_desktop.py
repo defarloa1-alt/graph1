@@ -1,6 +1,6 @@
 """Hand the exploration view to Cytoscape Desktop.
 
-    python GraphRevised/explorer/cytoscape_desktop.py            # write exports/graph-desktop.cyjs
+    python GraphRevised/explorer/cytoscape_desktop.py            # write exports/graph-desktop.cyjs and .graphml
     python GraphRevised/explorer/cytoscape_desktop.py --push     # also load it into a running Cytoscape
 
 Reads exports/graph.cyjs (written by `python -m GraphRevised.export.cytoscape`,
@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "exports" / "graph.cyjs"
 TARGET = ROOT / "exports" / "graph-desktop.cyjs"
+GRAPHML = ROOT / "exports" / "graph-desktop.graphml"
 
 STYLE = "Chrystallum"
 SHAPES = {"Person": "ELLIPSE", "Event": "DIAMOND", "Place": "TRIANGLE", "Group": "ROUND_RECTANGLE",
@@ -27,13 +28,18 @@ SHAPES = {"Person": "ELLIPSE", "Event": "DIAMOND", "Place": "TRIANGLE", "Group":
 
 
 def flat(data: dict) -> dict:
-    """Keep what a Desktop column can hold: scalars and lists of scalars."""
+    """Keep what Cytoscape Desktop's JSON reader accepts: scalars only.
+
+    It refuses list values ("invalid type: class java.util.ArrayList"), so a
+    list of text (voiceLines, notes, times) becomes one text, an item per line.
+    Lists of objects (the voices themselves) are dropped.
+    """
     out = {}
     for key, value in data.items():
         if value is None or isinstance(value, (str, int, float, bool)):
             out[key] = value
         elif isinstance(value, list) and all(isinstance(v, (str, int, float, bool)) for v in value):
-            out[key] = value
+            out[key] = "\n".join(map(str, value))
     return out
 
 
@@ -45,13 +51,34 @@ def write_flat() -> Path:
         "generated_by": "GraphRevised.explorer.cytoscape_desktop",
         "data": {"name": "Chrystallum"},
         "elements": {
-            "nodes": [{"data": flat(n["data"])} for n in elements["nodes"]],
-            "edges": [{"data": flat(e["data"])} for e in elements["edges"]],
+            "nodes": [{"data": {**flat(n["data"]), "name": n["data"].get("label")}} for n in elements["nodes"]],
+            "edges": [{"data": {**flat(e["data"]), "name": e["data"].get("sentence"), "interaction": e["data"].get("label")}}
+                      for e in elements["edges"]],
         },
     }
     TARGET.write_text(json.dumps(desktop, ensure_ascii=False, indent=1), encoding="utf-8")
+    write_graphml(desktop)
     print(f"{len(elements['nodes'])} nodes, {len(elements['edges'])} fact edges -> {TARGET}")
+    print(f"  and {GRAPHML}")
     return TARGET
+
+
+def write_graphml(desktop: dict) -> None:
+    """The same network as GraphML, which every Cytoscape version imports; lists become text, one item per line."""
+    import networkx as nx
+
+    def cell(value):
+        return "\n".join(map(str, value)) if isinstance(value, list) else value
+
+    graph = nx.MultiDiGraph()
+    for n in desktop["elements"]["nodes"]:
+        d = n["data"]
+        graph.add_node(d["id"], **{k: cell(v) for k, v in d.items() if k != "id" and v is not None})
+    for e in desktop["elements"]["edges"]:
+        d = e["data"]
+        graph.add_edge(d["source"], d["target"], key=d["id"],
+                       **{k: cell(v) for k, v in d.items() if k not in ("source", "target") and v is not None})
+    nx.write_graphml(graph, GRAPHML)
 
 
 def push(path: Path) -> None:
@@ -59,7 +86,7 @@ def push(path: Path) -> None:
     import py4cytoscape as p4c
 
     p4c.cytoscape_ping()
-    p4c.import_network_from_file(str(path))
+    p4c.import_network_from_file(str(GRAPHML))  # GraphML: the reader every Cytoscape version accepts
     defaults = {
         "NETWORK_BACKGROUND_PAINT": "#FFFFFF",
         "NODE_FILL_COLOR": "#E7E9EC", "NODE_BORDER_PAINT": "#4D545B", "NODE_BORDER_WIDTH": 1.5,

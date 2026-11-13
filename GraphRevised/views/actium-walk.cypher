@@ -3,7 +3,7 @@
 // `passage` is where the source first narrates the event: narration order, shown
 // for orientation only; the order of events comes from `after` and `time`.
 MATCH (battle:Entity {id: 'chr:entity:battle-of-actium'})
-MATCH (e:Entity {kind: 'Event'})
+MATCH (e:Entity:Event)
 WHERE e.id STARTS WITH 'chr:entity:depicted:' AND e.status <> 'deprecated'
 // the Work is in the id: chr:entity:depicted:<work>:<event>
 WITH battle, e, 'chr:entity:' + split(e.id, ':')[3] AS workId

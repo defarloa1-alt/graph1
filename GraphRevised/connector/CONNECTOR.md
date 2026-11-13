@@ -1,19 +1,38 @@
 # The Chrystallum connector (MCP)
 
-**For:** the curator, asking Claude about the local graph from Claude Code or claude.ai.
+**For:** the curator, asking Claude about the local graph from Claude Code or claude.ai, and the graph exploration workflow.
 **Status (2026-10-18):** built and checked against the live graph over stdio and local HTTP. The claude.ai route through a Cloudflare quick tunnel has not been tried from claude.ai yet. It replaces the legacy Railway connector (`scripts/mcp/chrystallum_mcp_server.py`, D-034), which read the Aura graph and offered general read-only Cypher.
 
 The connector lets Claude look things up in the graph with a fixed set of tools. It only **reads**: every query runs in a read transaction on a read session. It has no tool that takes Cypher (05 §7). What it shows follows the explorer's contract (26): one fact per line, with its attestation in words and its voices. Proposed and accepted facts are shown together; rejected and superseded ones are left out.
 
 | Tool | Gives |
 |---|---|
+| `get_subject` | A Subject by local ID and its focus entities |
 | `find_entities` | Entities by name, short name, or Wikidata alias ("Octavian" finds Augustus), best first |
-| `lookup_authority` | The entity holding an external code (Wikidata Q1048, LCNAF n50051933, ...) |
-| `get_entity` | An entity's card: description, authority records, passages of note, its facts (paged) |
+| `lookup_authority` | The entity holding an external code (Wikidata Q1048, LCNAF n50051933, ...) and link status |
+| `get_entity` | An entity's card: description, authority links and their status, passages of note, its facts (paged) |
 | `get_fact` | One fact in full: every voice, its quotations and locators, its review history |
 | `event_overview` | One event: counts, phases, the Works that speak of it, what awaits review (as views/battle-overview.cypher) |
 | `review_queue` | Proposals by who made them, their status, and what they propose |
 | `graph_status` | Nodes per core label, claims and Proposals by status |
+| `describe_schema` | Observed label, relationship-type and property-key names plus active registry version |
+| `get_predicate` | Predicate endpoint kinds, direction, qualifiers, modes and Wikidata mappings |
+| `get_subgraph` | Bounded, paginated Entity neighborhood with assertion direction, status and evidence references |
+
+`describe_schema` reports observed Neo4j token names, not a complete schema,
+property types or constraints. `get_predicate` reads the current versioned
+registry. For `get_subgraph(entity_id, depth, offset, limit)`, depth is 1 or 2,
+page size is 1–50, and traversal is capped at 200 assertions, breadth-first
+and ordered by assertion ID within each depth. `nextOffset` pages through
+the collected assertions; `traversalTruncated` warns when more were reachable
+than the cap, including when a high-degree first hop prevents deeper expansion.
+Each assertion identifies its subject and optional object, status and evidence
+references; up to five evidence records are shown per assertion with
+`evidenceTruncated` if more exist. Proposed and accepted assertions remain
+separate; rejected and superseded assertions are excluded. Results are not a
+complete physical-relationship or Subject-hierarchy traversal, and pages can
+change if the graph changes between requests. Source quotations are not copied
+into this tool's results; use existing fact tools for details.
 
 Neo4j must be running locally (Neo4j Desktop, `neo4j://127.0.0.1:7687`). The connector reads the password from `NEO4J_PASSWORD` or, failing that, from `GraphRevised/Connections.txt`. Nothing has to be loaded into the shell first.
 

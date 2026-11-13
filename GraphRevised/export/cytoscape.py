@@ -50,11 +50,14 @@ VISIBLE = ["accepted", "proposed"]
 AUDIT = VISIBLE + ["rejected", "superseded"]
 OPEN_PROPOSALS = ["submitted", "validating", "deferred"]
 
-ENTITY = "{.id, .label, .shortLabel, .kind, .status, .description}"
+ENTITY = "{.id, .label, .shortLabel, .status, .description}"
+ENTITY_E = "{.id, .label, .shortLabel, .status, .description, kind: head([label IN labels(e) WHERE label <> 'Entity'])}"
+ENTITY_S = "{.id, .label, .shortLabel, .status, .description, kind: head([label IN labels(s) WHERE label <> 'Entity'])}"
+ENTITY_O = "{.id, .label, .shortLabel, .status, .description, kind: head([label IN labels(o) WHERE label <> 'Entity'])}"
 
 ENTITIES = f"""
 MATCH (e:Entity) WHERE $audit OR e.status <> "deprecated"
-RETURN e {ENTITY} AS entity,
+RETURN e {ENTITY_E} AS entity,
        COLLECT {{
          MATCH (n:Annotation)-[:CONCERNS]->(e) WHERE $audit OR n.status <> "dismissed"
          OPTIONAL MATCH (n)-[:ANNOTATES]->(o:SourceObservation)
@@ -74,7 +77,7 @@ OPTIONAL MATCH (a)-[:ASSERTION_OBJECT]->(o:Entity)
 RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .timeEdtf, .timeSourceExpression,
             .quantitySourceExpression, .quantityMinimum, .quantityMaximum, .quantityTypical,
             start: a.startEarliestJdn, end: a.endLatestJdn}} AS claim,
-       s {ENTITY} AS subject, o {ENTITY} AS object,
+       s {ENTITY_S} AS subject, o {ENTITY_O} AS object,
        COLLECT {{ MATCH (a)-[:ASSERTION_CONTEXT]->(c:Entity) RETURN c {{.id, .label}} }}[0] AS context,
        COLLECT {{ MATCH (a)-[:ASSERTION_ROLE]->(r:Entity) RETURN r {{.id, .label}} }}[0] AS role,
        COLLECT {{ MATCH (a)-[:ATTRIBUTED_TO]->(w:Entity) RETURN w {{.id, .label}} }}[0] AS work,

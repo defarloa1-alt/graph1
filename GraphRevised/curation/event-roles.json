@@ -1,0 +1,307 @@
+{
+  "description": "Roles a participant or object plays in a depicted event (D-138; registry v13 participatedIn and v14 involvedIn take a role of kind Type), approved by the curator on 2026-11-12 and applied as a curation manifest (python -m GraphRevised.slices.apply_curation GraphRevised/curation/event-roles.json): each is a local Entity:Type with status provisional. Aliases, origins and system terms stay here, not on the entity. Wikidata identities (closeMatch) were checked at Wikidata on 2026-11-12 and accepted by the curator the same day for ten roles where the item is the same concept; near matches (envoy/diplomat, seized/prize of war, fugitive from custody, desertion and surrender as acts) are deliberately left unlinked. Sources: the February 2026 role reference (../Relationships/role_qualifier_reference.json; its Wikidata properties and confidence numbers are not carried over) and the predicate requests ruled events (curation/predicate-needs.json). Offices (consul, praetor) stay Office entities; kinship stays predicates; occupations and status wait for the social and economic lenses.",
+  "version": 4,
+  "status": "approved",
+  "draftedBy": "Claude, 2026-11-12, for the curator to review; revised the same day after the curator split deserter from defector, kept captive for people, and added seized for objects",
+  "approvedBy": "curator, 2026-11-12",
+  "identities": [
+    {
+      "id": "chr:entity:role-combatant",
+      "kind": "Type",
+      "qid": "Q1414937",
+      "label": "combatant",
+      "shortLabel": "combatant"
+    },
+    {
+      "id": "chr:entity:role-captor",
+      "kind": "Type",
+      "qid": "Q28100981",
+      "label": "captor",
+      "shortLabel": "captor"
+    },
+    {
+      "id": "chr:entity:role-captive",
+      "kind": "Type",
+      "qid": "Q179637",
+      "label": "captive",
+      "shortLabel": "captive"
+    },
+    {
+      "id": "chr:entity:role-casualty",
+      "kind": "Type",
+      "qid": "Q1056901",
+      "label": "casualty",
+      "shortLabel": "casualty"
+    },
+    {
+      "id": "chr:entity:role-defector",
+      "kind": "Type",
+      "qid": "Q101007738",
+      "label": "defector",
+      "shortLabel": "defector"
+    },
+    {
+      "id": "chr:entity:role-negotiator",
+      "kind": "Type",
+      "qid": "Q10335982",
+      "label": "negotiator",
+      "shortLabel": "negotiator"
+    },
+    {
+      "id": "chr:entity:role-hostage",
+      "kind": "Type",
+      "qid": "Q192620",
+      "label": "hostage",
+      "shortLabel": "hostage"
+    },
+    {
+      "id": "chr:entity:role-witness",
+      "kind": "Type",
+      "qid": "Q196939",
+      "label": "witness",
+      "shortLabel": "witness"
+    },
+    {
+      "id": "chr:entity:role-onlooker",
+      "kind": "Type",
+      "qid": "Q63443976",
+      "label": "onlooker",
+      "shortLabel": "onlooker"
+    },
+    {
+      "id": "chr:entity:role-conscript",
+      "kind": "Type",
+      "qid": "Q47228496",
+      "label": "conscript",
+      "shortLabel": "conscript"
+    }
+  ],
+  "localEntities": [
+    {
+      "id": "chr:entity:role-combatant",
+      "kind": "Type",
+      "label": "combatant",
+      "description": "One who fights in the action.",
+      "aliases": [
+        "soldier",
+        "fighter",
+        "legionary"
+      ],
+      "from": "legacy: soldier"
+    },
+    {
+      "id": "chr:entity:role-captor",
+      "kind": "Type",
+      "label": "captor",
+      "description": "One who takes people, ships, or goods from the other side.",
+      "aliases": [],
+      "from": "requests: captured, capturedAsBooty"
+    },
+    {
+      "id": "chr:entity:role-captive",
+      "kind": "Type",
+      "label": "captive",
+      "description": "A person or force taken by the other side. Things taken are seized, not captive.",
+      "aliases": [
+        "prisoner",
+        "captured"
+      ],
+      "from": "requests: captured; legacy: casualty (captured)"
+    },
+    {
+      "id": "chr:entity:role-casualty",
+      "kind": "Type",
+      "label": "casualty",
+      "description": "One killed or wounded in the action.",
+      "aliases": [
+        "killed",
+        "wounded",
+        "fell"
+      ],
+      "from": "legacy: casualty"
+    },
+    {
+      "id": "chr:entity:role-deserter",
+      "kind": "Type",
+      "label": "deserter",
+      "description": "One who abandons their side, post, or command without going over to the other side.",
+      "aliases": [],
+      "from": "legacy: deserter; requests: abandonedCommand"
+    },
+    {
+      "id": "chr:entity:role-defector",
+      "kind": "Type",
+      "label": "defector",
+      "description": "One who goes over to the other side, during the action or the campaign.",
+      "aliases": [
+        "turncoat"
+      ],
+      "from": "curator, 2026-11-12 (split from deserter); requests: defectedTo, wentOverTo"
+    },
+    {
+      "id": "chr:entity:role-surrendering-party",
+      "kind": "Type",
+      "label": "surrendering party",
+      "description": "One who gives itself up to the other side.",
+      "aliases": [],
+      "from": "requests: surrenderedTo"
+    },
+    {
+      "id": "chr:entity:role-pursuer",
+      "kind": "Type",
+      "label": "pursuer",
+      "description": "One who chases a fleeing party.",
+      "aliases": [],
+      "from": "Actium sources (the Liburnians pursue Antony)"
+    },
+    {
+      "id": "chr:entity:role-fugitive",
+      "kind": "Type",
+      "label": "fugitive",
+      "description": "One who flees the action.",
+      "aliases": [
+        "the fleeing"
+      ],
+      "from": "Actium sources (Cleopatra's and Antony's flight)"
+    },
+    {
+      "id": "chr:entity:role-scout",
+      "kind": "Type",
+      "label": "scout",
+      "description": "One who reconnoitres for a side.",
+      "aliases": [
+        "spy"
+      ],
+      "from": "legacy: scout"
+    },
+    {
+      "id": "chr:entity:role-envoy",
+      "kind": "Type",
+      "label": "envoy",
+      "description": "One sent to speak for a ruler, commander, or state.",
+      "aliases": [
+        "ambassador",
+        "legatus (diplomatic)"
+      ],
+      "from": "legacy: ambassador"
+    },
+    {
+      "id": "chr:entity:role-negotiator",
+      "kind": "Type",
+      "label": "negotiator",
+      "description": "One who negotiates terms.",
+      "aliases": [],
+      "from": "legacy: negotiator"
+    },
+    {
+      "id": "chr:entity:role-hostage",
+      "kind": "Type",
+      "label": "hostage",
+      "description": "A person given or held as a guarantee.",
+      "aliases": [
+        "obses"
+      ],
+      "from": "legacy: hostage"
+    },
+    {
+      "id": "chr:entity:role-messenger",
+      "kind": "Type",
+      "label": "messenger",
+      "description": "One who carries a message or news.",
+      "aliases": [
+        "courier"
+      ],
+      "from": "legacy: messenger (Canidius brings Antony news of defeat)"
+    },
+    {
+      "id": "chr:entity:role-herald",
+      "kind": "Type",
+      "label": "herald",
+      "description": "One who proclaims publicly on behalf of another.",
+      "aliases": [],
+      "from": "legacy: herald"
+    },
+    {
+      "id": "chr:entity:role-onlooker",
+      "kind": "Type",
+      "label": "onlooker",
+      "description": "One the passage puts at the event watching it, who takes no action in it.",
+      "aliases": [
+        "spectator"
+      ],
+      "from": "legacy: witness (the land armies watch the fleets)",
+      "inSystemTerms": "participatedIn with role onlooker, the role quotation showing the watching. If the onlooker then acts, that act is its own depicted event with its own role. Watching alone says nothing about any later report."
+    },
+    {
+      "id": "chr:entity:role-witness",
+      "kind": "Type",
+      "label": "witness",
+      "description": "One whose seeing or attesting the passage makes count: a formal witness to an act (a will, a treaty) or an eyewitness whose report a source names.",
+      "aliases": [
+        "eyewitness"
+      ],
+      "from": "legacy: witness",
+      "inSystemTerms": "participatedIn with role witness, the role quotation showing the attesting or the seeing that is later told. The telling is not part of the event: where a source says its account rests on the witness (Plutarch, Antony 68: 'my great-grandfather Nicarchus used to tell'), that is provenance, recorded separately as informedBy (Work to Person), queued in curation/predicate-needs.json and shaped state (curator 2026-11-12)."
+    },
+    {
+      "id": "chr:entity:role-seized",
+      "kind": "Type",
+      "label": "seized",
+      "description": "An object taken by the other side: ships, standards, treasure, goods.",
+      "aliases": [
+        "spoils",
+        "booty",
+        "prize"
+      ],
+      "from": "curator, 2026-11-12; requests: captured, capturedAsBooty",
+      "inSystemTerms": "involvedIn (registry v14, curator 2026-11-12): an Object in an Event, with role seized. participatedIn stays for agents (Group, Person, Polity). Only a named object is an entity; 'three hundred ships' stays in the event's label and quotation."
+    },
+    {
+      "id": "chr:entity:role-dedicator",
+      "kind": "Type",
+      "label": "dedicator",
+      "description": "One who dedicates spoils, a building, or an object to a god.",
+      "aliases": [],
+      "from": "requests: dedicatedTo, dedicatedSpoils"
+    },
+    {
+      "id": "chr:entity:role-conscript",
+      "kind": "Type",
+      "label": "conscript",
+      "description": "One levied or compelled into service.",
+      "aliases": [
+        "levied"
+      ],
+      "from": "requests: conscriptedInto, leviedOn"
+    },
+    {
+      "id": "chr:entity:role-victor",
+      "kind": "Type",
+      "label": "victor",
+      "description": "The side or person the source gives the action to.",
+      "aliases": [],
+      "from": "added: outcome of an engagement"
+    },
+    {
+      "id": "chr:entity:role-defeated-party",
+      "kind": "Type",
+      "label": "defeated party",
+      "description": "The side or person the source says lost the action.",
+      "aliases": [
+        "vanquished"
+      ],
+      "from": "added: outcome of an engagement"
+    }
+  ],
+  "decided": {
+    "objects": "2026-11-12, curator: an Object takes part in an event through involvedIn (registry v14; role expected: seized, dedicated, destroyed), never participatedIn, so participation keeps meaning agency.",
+    "informant": "2026-11-12, curator: a source's account resting on a witness is informedBy (Work to Person), a state, queued for the registry with Plutarch, Antony 68.4 as its first evidence."
+  },
+  "notIncluded": {
+    "commander": "Covered by commanded and heldAuthorityOver, which keep command and authority apart.",
+    "general, officer, cavalry": "Ranks and unit types, not parts played in one action: Type entities of their own when a source needs them.",
+    "offices": "Consul, praetor, censor, aedile, dictator, augur, pontifex maximus: Office entities through heldPosition, proposed when a source names them.",
+    "kinship": "father, mother, child, spouse, sibling, ancestor: already childOf, spouseOf, siblingOf.",
+    "occupations and status": "orator, historian, poet, freedman, slave, merchant, patron, client: for the social and economic lenses."
+  }
+}

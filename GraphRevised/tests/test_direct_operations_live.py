@@ -179,7 +179,7 @@ class DirectOperationsLiveTests(unittest.TestCase):
         self.assertUnchanged()
 
     def test_reads_return_actium_slice(self) -> None:
-        self.assertEqual(self.run_op(GET_NODE, {"id": ACTIUM})[0]["nodeTypes"], ["Entity"])
+        self.assertCountEqual(self.run_op(GET_NODE, {"id": ACTIUM})[0]["nodeTypes"], ["Entity", "Event"])
         self.assertEqual(self.run_op(GET_SUBJECT, {"subjectId": SUBJECT})[0]["focus"]["id"], ACTIUM)
         neighborhood = self.run_op(GET_NEIGHBORHOOD, {"entityId": ACTIUM})
         self.assertIn(

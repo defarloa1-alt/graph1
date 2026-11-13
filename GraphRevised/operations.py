@@ -55,6 +55,8 @@ OPERATION_NAMES = (
     "link_modern_locations",
     "link_place_locations",
     "upsert_image_observation",
+    "set_entity_kind",
+    "retire_entity_identity",
 )
 
 

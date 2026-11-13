@@ -1,0 +1,3 @@
+Vision
+The goal is a system that allows a user to see connections not easily envisioned by the mind, but by graph navigation. in the end it allows the user to see for example the connection between a roman senator and a mollusk. It is not meant to be an encyclopedia per se, but it does have encyclopedia aspects.
+As a user if i click on a person, i see bio details, the family tree, the connections to other persons, the events they are participants of. relationship to wikidata, period0, pleiades, fast, lcc, lcsh etc. Agent driven reasoning aabout a subject based on facets/lenses

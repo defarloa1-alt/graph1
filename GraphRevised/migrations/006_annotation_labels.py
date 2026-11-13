@@ -29,7 +29,8 @@ OPTIONAL MATCH (n)-[link:ANNOTATES]->(o:SourceObservation)
 OPTIONAL MATCH (n)-[:CONCERNS]->(e:Entity)
 RETURN n {.id, .label, .kind, .noteType, .note, .author, .visibility, .createdAt} AS n,
        o.id AS observationId, link.quotation AS quotation,
-       collect(e.id) AS concerns, collect(e.label) AS labels, collect(e.kind) AS kinds
+       collect(e.id) AS concerns, collect(e.label) AS labels,
+       collect(head([label IN labels(e) WHERE label <> 'Entity'])) AS kinds
 ORDER BY n.id
 """
 SURVEY_SOURCES = {"period-survey": "PeriodO"}  # mentions with no passage name their source system
