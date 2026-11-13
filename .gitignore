@@ -135,6 +135,8 @@ Archive/docs-2026-07/sessions/Transcript of dev chat.md
 GraphRevised/cache/
 GraphRevised/exports/
 GraphRevised/private-sources/
+# Local read-only explorer snapshots can contain unpublished graph data.
+GraphRevised/explorer/snapshots/
 
 # The curator's book notes (Obsidian), read by the sync into the graph: private, and they quote
 # books in copyright, so never in this public repository (32 §2.1a).
@@ -152,3 +154,6 @@ GraphRevised/explorer/images/commons/
 GraphRevised/explorer/images/images.json
 GraphRevised/explorer/images/images-review.json
 GraphRevised/explorer/images/lenses/*.png
+
+# Old Aura credentials (instance deleted 2026-11-13); never track credential files
+Neo4j-*-Created-*.txt
