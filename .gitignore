@@ -157,3 +157,8 @@ GraphRevised/explorer/images/lenses/*.png
 
 # Old Aura credentials (instance deleted 2026-11-13); never track credential files
 Neo4j-*-Created-*.txt
+
+# Caches (2026-11-13): the reading-list enrichment cache stays on disk, out of git
+scripts/.enrich_cache/
+# Local archive of uncommitted work (2026-11-13); holds the curator's notes, never committed
+Archive/Uncommitted-*/
