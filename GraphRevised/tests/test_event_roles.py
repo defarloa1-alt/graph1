@@ -82,7 +82,7 @@ class ObjectInvolvementTests(unittest.TestCase):
     """Registry v14: an Object takes part in an event only through a role (seized, dedicated, destroyed)."""
 
     def setUp(self):
-        self.v14 = load_registry()
+        self.v14 = load_registry(REGISTRY_PATH.with_name("predicates.v14.json"))
         self.ship = entity("chr:entity:test-flagship", "Object")
 
     def involvement(self, role_id):
@@ -143,8 +143,9 @@ class ReaderObjectTests(unittest.TestCase):
 
     def test_the_curated_roles_carry_their_aliases(self):
         aliases = event_role_aliases()
-        self.assertEqual(len(aliases), 22)
+        self.assertEqual(len(aliases), 23)  # 22 of 2026-11-12, and dedicated (2026-11-13)
         self.assertIn("prisoner", aliases["chr:entity:role-captive"])
+        self.assertIn("votive", aliases["chr:entity:role-dedicated"])
 
 
 if __name__ == "__main__":

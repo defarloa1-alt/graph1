@@ -16,6 +16,7 @@ from .registry import (
     qualifier_signature,
 )
 from .schema import ProposalDraft
+from .wikidata_proposer import WIKIDATA_WORK
 from .temporal import TimeBounds, TimeValueError, parse_edtf, year_links
 
 
@@ -164,7 +165,7 @@ def validate(
             if passage.get("workForm") in registry.creative_forms:
                 reasons.append(f"{passage['id']} is from a creative Work ({passage['workForm']}): it can support "
                                "only a claim attributed to that Work, never an asserted one")
-    reasons.extend(_check_qualifier_evidence(draft, passages, statements))
+    reasons.extend(_check_qualifier_evidence(draft, passages, statements, _cited_works(reader, statements)))
 
     if subject is not None and (obj is not None or definition.unary):
         for observation in statements:
@@ -175,8 +176,18 @@ def validate(
                 )
     for observation in statements:
         stated = observation.get("statementTimeEdtf")
-        if draft.time is not None and stated is not None and (
-                draft.time.edtf, draft.time.calendar, draft.time.mode) != (
+        if draft.time is None or stated is None:
+            continue
+        bound = _bound(definition, observation)
+        if bound is not None:
+            # The statement dates one end of the claim's interval: compare that end only.
+            claimed = (draft.time.edtf or "").split("/")
+            claimed_end = claimed[0] if bound == "start" else claimed[-1]
+            stated_end = stated.split("/")[0] if bound == "start" else stated.split("/")[-1]
+            if (claimed_end, draft.time.calendar, draft.time.mode) != (
+                    stated_end, observation.get("statementTimeCalendar"), "during"):
+                reasons.append(f"the claim's {bound} is not the time {observation['id']} states ({stated})")
+        elif (draft.time.edtf, draft.time.calendar, draft.time.mode) != (
                 stated, observation.get("statementTimeCalendar"), observation.get("statementTimeMode") or "during"):
             reasons.append(f"the claim's time is not the time {observation['id']} states ({stated})")
 
@@ -318,15 +329,30 @@ def _check_qualifier_rules(draft: ProposalDraft, definition: PredicateDefinition
     return reasons
 
 
+def _cited_works(reader: Any, statements: list[dict[str, Any]]) -> list[set[str]]:
+    """For each Wikidata statement, the local Works its own references cite ("stated in", recorded on the
+    observation by harvest/wikidata_references.py), resolved through their accepted Wikidata identities."""
+    resolve = getattr(reader, "entity_ids_for_wikidata", None)
+    cited = []
+    for statement in statements:
+        stated = statement.get("statementStatedIn") or []
+        cited.append({entity for qid in stated for entity in (resolve(qid) if resolve else [])})
+    return cited
+
+
 def _check_qualifier_evidence(
-    draft: ProposalDraft, passages: list[dict[str, Any]], statements: list[dict[str, Any]]
+    draft: ProposalDraft, passages: list[dict[str, Any]], statements: list[dict[str, Any]],
+    cited_works: list[set[str]] | None = None,
 ) -> list[str]:
-    """Attributed claims cite their Work only; qualifiers drawn from passages
-    are shown by verbatim spans."""
+    """Attributed claims cite their Work only: Wikidata statements are the Wikidata Work's, or the Work every one
+    of them is stated in (a cited reference work as its own voice); qualifiers drawn from passages are shown by
+    verbatim spans."""
     reasons = []
     if draft.mode == "attributed":
-        if statements:
-            reasons.append("an attributed claim cites passages of its Work, not Wikidata statements")
+        cited_works = cited_works or [set() for _ in statements]
+        if statements and draft.attributed_to != WIKIDATA_WORK                 and not all(draft.attributed_to in cited for cited in cited_works):
+            reasons.append("an attributed claim cites passages of its Work; Wikidata statements support only "
+                           "a claim attributed to Wikidata, or to a Work each statement is stated in")
         for passage in passages:
             if passage.get("workId") != draft.attributed_to:
                 reasons.append(f"{passage['id']} is not a passage of {draft.attributed_to}")
@@ -434,6 +460,12 @@ def _check_passage(observation: dict[str, Any], quotation: str | None) -> list[s
     if any(quote in normalize(note) for note in observation.get("editorialNotes") or []):
         return [f"quotation from {observation['id']} is an editorial note, not the source text"]
     return [f"quotation does not appear verbatim in {observation['id']}"]
+
+
+def _bound(definition: PredicateDefinition, observation: dict[str, Any]) -> str | None:
+    """The end of the claim's interval a statement dates, when its property is mapped as a bound."""
+    return next((m.bound for m in definition.wikidata
+                 if m.pid == observation.get("predicateExternalId") and m.bound is not None), None)
 
 
 def _evidences(

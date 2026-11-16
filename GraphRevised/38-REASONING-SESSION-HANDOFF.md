@@ -1,10 +1,13 @@
 ---
-status: informational
+status: history
 authority: none; decisions remain in 33-DECISIONS.md
+superseded_by: CURRENT-STATE.md
 last_reviewed: 2026-11-11
 ---
 
 # Session handoff: reasoning-led graph review
+
+**History.** This handoff is superseded by [CURRENT-STATE.md](CURRENT-STATE.md) (2026-11-13), which carries what is still open. Read this one only for the record of its session.
 
 ## Start here
 

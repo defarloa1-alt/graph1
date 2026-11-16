@@ -32,7 +32,7 @@ existing one):
 
 ```powershell
 New-Item -ItemType Directory -Force GraphRevised\explorer\snapshots
-python -m GraphRevised.discovery.actium_subject_view --output GraphRevised\explorer\snapshots\actium-view-new.json
+python -m GraphRevised.discovery.event_subject_view GraphRevised\inquiries\actium-battle.json --section-id chr:subject:history-of-battle-of-actium-meaning-and-memory --output GraphRevised\explorer\snapshots\actium-view-new.json
 ```
 
 For an existing non-Actium event inquiry with a Subject-to-focus link, use

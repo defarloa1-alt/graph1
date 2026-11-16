@@ -542,14 +542,18 @@ def load_inquiries(path: Path, tx: Any, *, briefs: Path | None = BRIEFS_DIRECTOR
     ]
 
 
-def anthropic_client() -> anthropic.Anthropic:
-    """Use ANTHROPIC_API_KEY from the environment, else only that key from .env.
+def anthropic_client():
+    """A metered client: use ANTHROPIC_API_KEY from the environment, else only that key from .env.
 
     The rest of .env is deliberately not loaded: it holds legacy Neo4j
     settings that must not redirect the clean-start database connection.
+    Every call is priced and capped by the named budget (spend_meter, 41 §3.8);
+    with no budget named, this refuses before any client is made.
     """
+    from GraphRevised.spend_meter import Meter, MeteredClient
+    meter = Meter.from_environment()
     key = os.environ.get("ANTHROPIC_API_KEY") or dotenv_values(GRAPH_REVISED.parent / ".env").get("ANTHROPIC_API_KEY")
-    return anthropic.Anthropic(api_key=key) if key else anthropic.Anthropic()
+    return MeteredClient(anthropic.Anthropic(api_key=key) if key else anthropic.Anthropic(), meter)
 
 
 def predicate_guide(registry: PredicateRegistry) -> str:

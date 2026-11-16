@@ -10,9 +10,10 @@ from GraphRevised.proposals.lens import lens_text, load_lens
 from GraphRevised.proposals.predicate_needs import (
     load_queue, merge, needs_from_run, open_requests_text, precedents, set_shape, words,
 )
-from GraphRevised.proposals.registry import load_registry
+from GraphRevised.proposals.registry import REGISTRY_PATH, load_registry
 
-REGISTRY = load_registry()
+# Pinned to v15, where these examples (defectedTo, captured) were still requests; v16 adopted them.
+REGISTRY = load_registry(REGISTRY_PATH.with_name("predicates.v15.json"))
 
 
 def need(name="defectedTo", definition="A person changed sides, going over to the enemy.",

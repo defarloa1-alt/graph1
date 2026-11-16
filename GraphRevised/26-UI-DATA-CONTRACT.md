@@ -81,7 +81,11 @@ view (D-116).
   event's members by source, each a short reference ("Weigall¹ · 31") with
   its title in a footnote on the stage (D-113); otherwise by kind.
   `described by` is the group "Works about it"; `happened before` orders
-  members and is not a group (D-112).
+  members and is not a group (D-112). Its subject is the earlier event and
+  its object the later one, in that source's account, so it is shown as
+  order (earlier before later, "then" and "after"), never as the bare words
+  "happened before", which misread from the later event's side (curator,
+  2026-11-13).
 - **The command drawer** (D-102, D-117): one input for search, jump, and
   commands (`jump`, `why A and B`, `elsewhere 31 BC`, `note`, `cite`, `as`,
   the stage modes). Suggestions pop up above it and close on a click
@@ -125,10 +129,18 @@ their node).
 | `times` | Each source's own time words | "When" row; may disagree |
 | `voices` | Shape 3, one per source | The card's body |
 
-Attestation values: *well attested (N authors)*, *attested (1 author)*,
-*disputed (N authors)*, *one author's reading*, *a reading shared by N
-authors*, *imagined*, *no evidence yet*. Today the graph has 16 well
-attested, 16 attested, and 2 readings.
+Attestation values (D-148, 42: factual facts count independent lines of
+evidence, not authors): *well attested (N ancient sources)*, *attested (1
+ancient source)*, *a modern reconstruction (Author)*, *modern sources only (N
+works, not traced)*, *reference only (Work)*, *disputed (N authors)*, *one
+author's reading*, *a reading shared by N authors*, *imagined*, *no evidence
+yet*. A suffix names the modern and reference works that do not add a line:
+*"attested (1 ancient source); retold by Weigall; also in Wikipedia"*. The
+UI shows the base words as the badge and the suffix in the card. Each voice
+carries `basis` (reports, reconstructs, unknown, or none) and `restsOn` (the
+Works it retells), so the side panel can nest a modern retelling under the
+ancient passage it rests on. On 2026-11-15: 16 well attested, 649 attested,
+768 modern sources only, 575 reference only.
 
 Real example (trimmed):
 

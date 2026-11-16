@@ -1,0 +1,137 @@
+{
+  "_about": "Works that Wikidata statements cite as 'stated in' (P248), classed by the curator's rule (2026-11-16): scholarship, prosopography and encyclopedia become a voice on the claim (harvest/wikidata_references.py); authority file and not a source add none. Labels verified at Wikidata 2026-11-16. An unclassified work is listed by the harvest and never used.",
+  "works": {
+    "Q31350139": {
+      "class": "scholarship",
+      "label": "Broughton, The Magistrates of the Roman Republic",
+      "shortLabel": "Magistrates of the Roman Republic",
+      "work": "chr:entity:broughton-magistrates-of-the-roman-republic",
+      "form": "reference",
+      "standing": "secondary",
+      "description": "T. R. S. Broughton, The Magistrates of the Roman Republic (1951-1986): the standard register of Republican office-holders, with the ancient sources for each. Cited by Wikidata (Q31350139)."
+    },
+    "Q100166489": {
+      "class": "prosopography",
+      "label": "Digital Prosopography of the Roman Republic",
+      "shortLabel": "DPRR",
+      "work": "chr:entity:digital-prosopography-of-the-roman-republic",
+      "form": "dataset",
+      "standing": "tertiary",
+      "description": "Digital Prosopography of the Roman Republic (King's College London): persons, offices and relationships of the Republic, built largely on Broughton. Cited by Wikidata (Q100166489)."
+    },
+    "Q5375741": {
+      "class": "encyclopedia",
+      "label": "Encyclopaedia Britannica Online",
+      "shortLabel": "Britannica Online",
+      "work": "chr:entity:encyclopaedia-britannica-online",
+      "form": "reference",
+      "standing": "tertiary",
+      "description": "Encyclopaedia Britannica Online, the current edition. Cited by Wikidata (Q5375741)."
+    },
+    "Q65921422": {
+      "class": "encyclopedia",
+      "label": "Treccani's Enciclopedia on line",
+      "shortLabel": "Treccani on line",
+      "work": "chr:entity:treccani-enciclopedia-on-line",
+      "form": "reference",
+      "standing": "tertiary",
+      "description": "Enciclopedia on line of the Istituto della Enciclopedia Italiana (Treccani). Cited by Wikidata (Q65921422)."
+    },
+    "Q731361": {
+      "class": "encyclopedia",
+      "label": "Enciclopedia Treccani",
+      "shortLabel": "Enciclopedia Treccani",
+      "work": "chr:entity:enciclopedia-treccani",
+      "form": "reference",
+      "standing": "tertiary",
+      "description": "Enciclopedia Italiana (Treccani). Cited by Wikidata (Q731361)."
+    },
+    "Q54919": {
+      "class": "authority file",
+      "label": "Virtual International Authority File"
+    },
+    "Q36578": {
+      "class": "authority file",
+      "label": "Integrated Authority File (GND)"
+    },
+    "Q19938912": {
+      "class": "authority file",
+      "label": "BnF authorities"
+    },
+    "Q13550863": {
+      "class": "authority file",
+      "label": "Czech National Authority Database"
+    },
+    "Q106509962": {
+      "class": "authority file",
+      "label": "National Library of Israel Names and Subjects Authority File"
+    },
+    "Q188915": {
+      "class": "authority file",
+      "label": "National Library of Israel"
+    },
+    "Q16583225": {
+      "class": "authority file",
+      "label": "Nuovo soggettario"
+    },
+    "Q15241312": {
+      "class": "not a source",
+      "label": "Freebase Data Dumps"
+    },
+    "Q51711": {
+      "class": "not a source",
+      "label": "Quora"
+    },
+    "Q64139102": {
+      "class": "not a source",
+      "label": "KBpedia"
+    },
+    "Q4837690": {
+      "class": "not a source",
+      "label": "BabelNet"
+    },
+    "Q18336371": {
+      "class": "not a source",
+      "label": "BBC Things"
+    },
+    "Q104677700": {
+      "class": "scholarship",
+      "label": "Syme, The Augustan Aristocracy",
+      "shortLabel": "The Augustan Aristocracy",
+      "work": "chr:entity:syme-augustan-aristocracy",
+      "form": "history",
+      "standing": "secondary",
+      "description": "Ronald Syme, The Augustan Aristocracy (Oxford, 1986/1989). Cited by Wikidata (Q104677700)."
+    },
+    "Q28062424": {
+      "class": "scholarship",
+      "label": "Roller, The World of Juba II and Kleopatra Selene",
+      "shortLabel": "The World of Juba II and Kleopatra Selene",
+      "work": "chr:entity:roller-world-of-juba-ii-and-kleopatra-selene",
+      "form": "history",
+      "standing": "secondary",
+      "description": "Duane W. Roller, The World of Juba II and Kleopatra Selene (2003). Cited by Wikidata (Q28062424)."
+    },
+    "Q47757534": {
+      "class": "authority file",
+      "label": "IdRef"
+    },
+    "Q1420342": {
+      "class": "not a source",
+      "label": "JSTOR (a distributor; the source is the work it holds)"
+    },
+    "Q639661": {
+      "class": "not a source",
+      "label": "Perseus Digital Library (a distributor; the source is the text it holds)"
+    },
+    "Q19847326": {
+      "class": "not a source",
+      "label": "Genealogics"
+    },
+    "Q99194519": {
+      "class": "not a source",
+      "label": "Museum of New Zealand Te Papa Tongarewa Collections Online"
+    }
+  },
+  "_pending": "Single dictionary or encyclopedia entries (Octavii Q45262166, Marcelli Q45203767, Caesarion Q45267495, Germanicus Q24400143, Juba II Q24512252, an unlabelled article Q24511486): the voice should be the encyclopedia they are published in (P1433), to be resolved; until then unused."
+}

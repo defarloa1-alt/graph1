@@ -1,9 +1,18 @@
 import pytest
 
-from GraphRevised.discovery.actium_subject_view import (
-    ASSERTIONS_QUERY, EVIDENCE_QUERY, FOCUS_ID, FOCUS_QUERY, HIERARCHY_QUERY,
-    PHASE_PREFIX, PLACEMENTS_QUERY, TOPICAL_QUERY, build_view,
+from GraphRevised.discovery.subject_view import (
+    ASSERTIONS_QUERY, EVIDENCE_QUERY, FOCUS_QUERY, HIERARCHY_QUERY,
+    PLACEMENTS_QUERY, TOPICAL_QUERY, build_view, phase_prefix,
 )
+
+SUBJECT_ID = "chr:subject:history-of-test-battle"
+FOCUS_ID = "chr:entity:test-battle"
+PHASE_PREFIX = phase_prefix(FOCUS_ID)
+SECTION_ID = "chr:subject:history-of-test-battle-memory"
+
+
+def view_of(tx):
+    return build_view(tx, subject_id=SUBJECT_ID, focus_id=FOCUS_ID, section_id=SECTION_ID)
 
 
 def node(id, status="proposed"):
@@ -68,7 +77,7 @@ class FakeTx:
 
 
 def test_routes_retain_placement_status_evidence_and_subject_hierarchy():
-    view = build_view(FakeTx())
+    view = view_of(FakeTx())
     assert view["summary"] == {"eventsReached": 3, "assertions": 1,
                                "assertionsByStatus": {"proposed": 1}, "broaderPaths": 1}
     assert view["broaderSubjectPaths"][0][-1]["status"] == "candidate"
@@ -85,7 +94,7 @@ def test_routes_retain_placement_status_evidence_and_subject_hierarchy():
 
 def test_missing_focus_fails_explicitly():
     with pytest.raises(ValueError, match="exactly one"):
-        build_view(FakeTx(missing_focus=True))
+        view_of(FakeTx(missing_focus=True))
 
 
 def test_queries_scope_live_claims_without_identity_or_other_predicate_propagation():
@@ -109,7 +118,7 @@ def test_topical_route_shows_own_status_and_referenced_assertion_evidence():
                 }])
             return super().run(query, **params)
 
-    view = build_view(TopicalTx())
+    view = view_of(TopicalTx())
     route = next(r for r in view["assertions"][0]["routes"] if r["kind"] == "subjectPlacement")
     assert route["topicalPlacement"]["status"] == "proposed"
     assert route["section"]["status"] == "candidate"

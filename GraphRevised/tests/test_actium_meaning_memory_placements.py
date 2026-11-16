@@ -1,6 +1,6 @@
 import pytest
 
-from GraphRevised.discovery.meaning_memory_placements import decide_placement, submit_placements, validate_manifest
+from GraphRevised.pilots.actium_meaning_memory_placements import decide_placement, submit_placements, validate_manifest
 
 
 EVENT = "chr:entity:depicted:dio:nicopolis"

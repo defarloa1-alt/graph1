@@ -1,0 +1,13 @@
+{
+  "_about": "Modern articles held as licensed PDFs (git-ignored), whose ancient citations are parsed into leads (harvest/article_citations.py). firstPage is the printed number of the first article page; skipPages are PDF pages (0-based) that are not the article, such as a cover sheet.",
+  "articles": [
+    {
+      "id": "lange-2011",
+      "work": "chr:entity:lange-battle-of-actium-reconsideration",
+      "pdf": "GraphRevised/docs/actium/jstor-actium.pdf",
+      "skipPages": [0],
+      "firstPage": 608,
+      "citeAs": "Lange 2011"
+    }
+  ]
+}

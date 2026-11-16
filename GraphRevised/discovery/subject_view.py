@@ -1,29 +1,25 @@
-"""Read-only, evidence-aware assertion view for the Actium Subject.
+"""Read-only, evidence-aware assertion view for an event Subject.
 
-    python -m GraphRevised.discovery.actium_subject_view --output new-view.json
+Run it through ``python -m GraphRevised.discovery.event_subject_view``.
 
 Only direct focus references and one- or two-hop event partOf placements are
-included. The two-hop case requires an Actium phase as the intermediate event.
+included. The two-hop case requires a phase of the focus event as the
+intermediate event.
 """
 
 from __future__ import annotations
 
-import argparse
 from collections import Counter, defaultdict
-import json
-from pathlib import Path
-import sys
 
-from neo4j import GraphDatabase
-
-from GraphRevised.subject_backbone import local_config
-from GraphRevised.discovery.actium_evidence_report import INQUIRY, build_report
+from GraphRevised.discovery.event_evidence_report import build_report
 from GraphRevised.discovery.source_text import include_source_text
 from GraphRevised.proposals.entities import depicted_event_id
 
-SUBJECT_ID = "chr:subject:history-of-battle-of-actium"
-FOCUS_ID = "chr:entity:battle-of-actium"
-PHASE_PREFIX = f"chr:entity:phase:{FOCUS_ID.split(':', 2)[2]}:"
+
+def phase_prefix(focus_id: str) -> str:
+    """The id prefix of a focus event's phases (chr:entity:phase:<focus>:)."""
+    return f"chr:entity:phase:{focus_id.split(':', 2)[2]}:"
+
 
 FOCUS_QUERY = """
 MATCH (subject:Subject {id: $subjectId})-[:HAS_SUBJECT_FOCUS]->(focus:Entity:Event {id: $focusId})
@@ -99,15 +95,14 @@ ORDER BY workId, eventId
 """
 
 
-def build_view(tx, *, subject_id=SUBJECT_ID, focus_id=FOCUS_ID,
-               section_id="chr:subject:history-of-battle-of-actium-meaning-and-memory") -> dict:
-    phase_prefix = f"chr:entity:phase:{focus_id.split(':', 2)[2]}:"
+def build_view(tx, *, subject_id: str, focus_id: str, section_id: str | None = None) -> dict:
+    phases = phase_prefix(focus_id)
     focus_rows = tx.run(FOCUS_QUERY, subjectId=subject_id, focusId=focus_id).data()
     if len(focus_rows) != 1:
         raise ValueError(f"Expected exactly one Subject-to-focus link for {subject_id} and {focus_id}.")
     subject, focus = focus_rows[0]["subject"], focus_rows[0]["focus"]
     hierarchy = tx.run(HIERARCHY_QUERY, subjectId=subject_id).data()
-    placements = tx.run(PLACEMENTS_QUERY, focusId=focus_id, phasePrefix=phase_prefix).data()
+    placements = tx.run(PLACEMENTS_QUERY, focusId=focus_id, phasePrefix=phases).data()
 
     routes = defaultdict(list)
     routes[focus_id].append({"kind": "focus", "events": [focus], "placements": []})
@@ -118,7 +113,7 @@ def build_view(tx, *, subject_id=SUBJECT_ID, focus_id=FOCUS_ID,
             })
     for row in placements:
         parent_id, child_id = row["parent"]["id"], row["child"]["id"]
-        if not parent_id.startswith(phase_prefix) or child_id == focus_id:
+        if not parent_id.startswith(phases) or child_id == focus_id:
             continue
         for parent_route in routes.get(parent_id, []):
             if len(parent_route["placements"]) != 1:
@@ -245,11 +240,11 @@ def deduplicate_source_passages(view: dict) -> None:
     view["sourcePassages"] = passages
 
 
-def build_with_source_timeline(tx, inquiry: dict, *, subject_id=None, focus_id=None, section_id=None) -> dict:
-    if subject_id is None and focus_id is None:
-        view = build_view(tx)
-    else:
-        view = build_view(tx, subject_id=subject_id, focus_id=focus_id, section_id=section_id)
+def build_with_source_timeline(tx, inquiry: dict, *, subject_id: str | None = None,
+                               focus_id: str | None = None, section_id: str | None = None) -> dict:
+    """The Subject view plus the source timeline; ids default to the inquiry's own."""
+    view = build_view(tx, subject_id=subject_id or inquiry["subjectId"],
+                      focus_id=focus_id or inquiry["narrativeEventId"], section_id=section_id)
     scoped = {
         event["id"] for assertion in view["assertions"]
         for route in assertion["routes"] for event in route["events"]
@@ -266,27 +261,3 @@ def build_with_source_timeline(tx, inquiry: dict, *, subject_id=None, focus_id=N
     deduplicate_source_passages(view)
     return view
 
-
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True, help="New JSON path; existing files are not overwritten")
-    args = parser.parse_args(argv)
-    try:
-        config = local_config()
-        with GraphDatabase.driver(config["uri"], auth=(config["user"], config["password"])) as driver:
-            with driver.session(database=config["database"], default_access_mode="READ") as session:
-                inquiry = json.loads(INQUIRY.read_text(encoding="utf-8"))
-                view = session.execute_read(build_with_source_timeline, inquiry)
-        with args.output.open("x", encoding="utf-8") as file:
-            json.dump(view, file, ensure_ascii=False, indent=2)
-            file.write("\n")
-        print(f"View written to {args.output}")
-        print(json.dumps(view["summary"], indent=2))
-        return 0
-    except (OSError, ValueError, KeyError) as error:
-        print(f"View failed: {error}", file=sys.stderr)
-        return 1
-
-
-if __name__ == "__main__":
-    sys.exit(main())

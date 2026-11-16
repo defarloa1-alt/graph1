@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-DRAFT_SCHEMA_VERSION = "proposal-draft-v6"
+DRAFT_SCHEMA_VERSION = "proposal-draft-v7"
 LOCAL_ID_PATTERN = r"^chr:[a-z]+:[A-Za-z0-9._:-]+$"
 # An ISO 8601 duration from the context event: P4D (the fifth day), PT6H.
 DURATION_PATTERN = r"^P(\d+Y)?(\d+M)?(\d+W)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$"
@@ -62,7 +62,12 @@ class QuantityQualifier(BaseModel):
     """How many: of a component in its whole (thirty units in a larger unit) or
     of holders elected (two a year). An establishment or a count as a source
     gives it, never a headcount: `minimum` and `maximum` for a range,
-    `typical` for a usual figure, `source_expression` the source's words."""
+    `typical` for a usual figure, `source_expression` the source's words.
+
+    `precision` (draft v7, 43 §5): exact; approximate (the source says "about"); round (a figure
+    that is a multiple of 10, 100, or 1,000, set by code when the draft gives none, for review);
+    rhetorical (a reading that the figure is a literary device: interpretation, reviewed as
+    reasoning). It never makes a different claim: it is not in the signature."""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -70,6 +75,7 @@ class QuantityQualifier(BaseModel):
     minimum: int | None = Field(default=None, ge=0)
     maximum: int | None = Field(default=None, ge=0)
     typical: int | None = Field(default=None, ge=0)
+    precision: Literal["exact", "approximate", "round", "rhetorical"] | None = None
 
     @model_validator(mode="after")
     def _a_consistent_figure(self) -> "QuantityQualifier":
@@ -84,6 +90,13 @@ class QuantityQualifier(BaseModel):
                 and (self.maximum is None or self.typical <= self.maximum)):
             raise ValueError("a quantity's typical figure lies between its minimum and maximum")
         return self
+
+    def stored_precision(self) -> str | None:
+        """The precision to store: the draft's own, else `round` when every figure is round."""
+        if self.precision:
+            return self.precision
+        figures = [f for f in (self.minimum, self.maximum, self.typical) if f is not None]
+        return "round" if figures and all(f >= 10 and f % 10 == 0 for f in figures) else None
 
     def signature(self) -> dict[str, int]:
         """The figures that make a quantified claim a different claim; the wording does not."""
@@ -115,7 +128,7 @@ class ProposalDraft(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    schema_version: Literal["proposal-draft-v4", "proposal-draft-v5", "proposal-draft-v6"] = DRAFT_SCHEMA_VERSION
+    schema_version: Literal["proposal-draft-v4", "proposal-draft-v5", "proposal-draft-v6", "proposal-draft-v7"] = DRAFT_SCHEMA_VERSION
     predicate: str = Field(min_length=1)
     subject_id: str = Field(pattern=LOCAL_ID_PATTERN)
     object_id: str | None = Field(default=None, pattern=LOCAL_ID_PATTERN)

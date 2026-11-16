@@ -1,6 +1,9 @@
-"""Read-only report of Actium inquiry depictions, evidence and chronology.
+"""Read-only report of an event inquiry's depictions, evidence and chronology.
 
-    python -m GraphRevised.discovery.actium_evidence_report --output report.json
+    python -m GraphRevised.discovery.event_evidence_report inquiries/<inquiry>.json --output report.json
+
+An inquiry may list ``leadStopwords``: words too common in its sources (the main
+actors, the place) to count as shared terms between two depicted events.
 
 The candidate pairs are lexical leads for human review, never identity claims.
 The report includes proposed and rejected data with their statuses; it does not
@@ -23,12 +26,9 @@ from GraphRevised.proposals.entities import depicted_event_id
 from GraphRevised.discovery.source_text import include_source_text
 from GraphRevised.subject_backbone import local_config
 
-ROOT = Path(__file__).resolve().parents[1]
-INQUIRY = ROOT / "inquiries" / "actium-battle.json"
 STOPWORDS = frozenset({
-    "after", "antony", "battle", "before", "caesar", "cleopatra", "during", "fleet",
-    "from", "into", "octavian", "roman", "ships", "their", "they", "with",
-    "actium", "battle", "antony's", "cleopatra's",
+    "after", "battle", "before", "during", "fleet", "from", "into", "roman", "ships",
+    "their", "they", "with",
 })
 
 EVENTS_QUERY = """
@@ -90,21 +90,22 @@ ORDER BY assertionId, evidenceState, observationId
 """
 
 
-def lexical_tokens(label: str) -> set[str]:
+def lexical_tokens(label: str, stopwords: frozenset[str] = frozenset()) -> set[str]:
     words = re.findall(r"[a-z0-9]+", label.lower())
-    return {word for word in words if len(word) >= 4 and word not in STOPWORDS}
+    return {word for word in words if len(word) >= 4 and word not in STOPWORDS and word not in stopwords}
 
 
-def candidates(events: list[dict], limit: int = 30) -> tuple[list[dict], int]:
+def candidates(events: list[dict], limit: int = 30,
+               stopwords: frozenset[str] = frozenset()) -> tuple[list[dict], int]:
     """Produce bounded, explainable lexical leads; not identity determinations."""
     pairs = []
     usable = [e for e in events if e["status"] not in {"deprecated", "rejected"} and e.get("sourceWorkId")]
     for i, left in enumerate(usable):
-        a = lexical_tokens(left.get("shortLabel") or left.get("label") or "")
+        a = lexical_tokens(left.get("shortLabel") or left.get("label") or "", stopwords)
         for right in usable[i + 1:]:
             if left["sourceWorkId"] == right["sourceWorkId"]:
                 continue
-            b = lexical_tokens(right.get("shortLabel") or right.get("label") or "")
+            b = lexical_tokens(right.get("shortLabel") or right.get("label") or "", stopwords)
             overlap = a & b
             if len(overlap) < 2:
                 continue
@@ -158,7 +159,8 @@ def build_report(tx, inquiry: dict, candidate_limit: int = 30) -> dict:
     for item in tx.run(EVIDENCE_QUERY, ids=list(by_id)).data():
         by_id[item["assertionId"]]["evidence"].append(include_source_text(item))
 
-    leads, total = candidates(events, candidate_limit)
+    stopwords = frozenset(word.lower() for word in inquiry.get("leadStopwords", []))
+    leads, total = candidates(events, candidate_limit, stopwords)
     return {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "inquiryId": inquiry["id"],
@@ -195,13 +197,14 @@ def build_report(tx, inquiry: dict, candidate_limit: int = 30) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("inquiry", type=Path, help="Existing event inquiry JSON")
     parser.add_argument("--output", type=Path, required=True, help="New JSON report path; existing files are not overwritten")
     parser.add_argument("--candidate-limit", type=int, default=30)
     args = parser.parse_args(argv)
     if args.candidate_limit < 0:
         parser.error("--candidate-limit must be non-negative")
     try:
-        inquiry = json.loads(INQUIRY.read_text(encoding="utf-8"))
+        inquiry = json.loads(args.inquiry.read_text(encoding="utf-8"))
         config = local_config()
         with GraphDatabase.driver(config["uri"], auth=(config["user"], config["password"])) as driver:
             with driver.session(database=config["database"], default_access_mode="READ") as session:

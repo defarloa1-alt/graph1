@@ -12,8 +12,7 @@ import json
 from pathlib import Path
 import sys
 
-from GraphRevised.discovery.actium_meaning_memory_pilot import CHILD_ID, PHASE_ID
-from GraphRevised.discovery.actium_subject_view import SUBJECT_ID
+from GraphRevised.pilots.actium_meaning_memory_pilot import CHILD_ID, PHASE_ID, SUBJECT_ID
 from GraphRevised.subject_backbone import local_config, require_subject_constraint
 
 LABEL = "Meaning and memory of the Battle of Actium"

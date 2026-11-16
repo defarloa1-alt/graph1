@@ -1,0 +1,29 @@
+{
+  "_about": "Coin series read as sources (D-151): which CRRO types to take from the dump (crro/nomisma.rdf, ODbL 1.0), the Work that is the series' own voice, and the force its named units are proposed as part of (curator, 2026-11-15). Read by harvest/crro_coins.py.",
+  "series": [
+    {
+      "id": "rrc-544",
+      "work": {
+        "id": "chr:entity:antony-legionary-coinage-rrc-544",
+        "label": "Mark Antony, legionary coinage (RRC 544)",
+        "shortLabel": "Antony's legionary coinage",
+        "form": "coinage",
+        "standing": "primary",
+        "description": "Denarii and aurei struck for Mark Antony in 32–31 BC, each reverse naming a legion or cohort of his army; catalogued as Crawford, Roman Republican Coinage 544."
+      },
+      "force": {
+        "id": "chr:entity:antony-land-forces-32-31-bc",
+        "label": "Antony's land forces, 32–31 BC",
+        "shortLabel": "Antony's land forces",
+        "description": "The legions and cohorts of Mark Antony's army in the war of 32–30 BC, before and around Actium; not limited to the battle."
+      },
+      "unitLabel": "Antony's {unit}",
+      "unitDescription": "A {kind} of Mark Antony's army, named on his legionary coinage of 32–31 BC (RRC 544).",
+      "unitIdPrefix": "chr:entity:antony-",
+      "unitTypes": {
+        "legion": "chr:entity:type-legion",
+        "cohort": "chr:entity:type-cohort"
+      }
+    }
+  ]
+}

@@ -39,7 +39,7 @@ from typing import Any
 
 from neo4j import GraphDatabase
 
-from GraphRevised.export.confidence import LIVE, confidence, family_key
+from GraphRevised.export.confidence import LIVE, claim_lines, confidence, family_key
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.temporal import display_edtf
 from GraphRevised.proposals.validator import quantity_key
@@ -74,7 +74,7 @@ CLAIMS = f"""
 MATCH (a:Assertion) WHERE a.status IN $statuses
 MATCH (a)-[:ASSERTION_SUBJECT]->(s:Entity)
 OPTIONAL MATCH (a)-[:ASSERTION_OBJECT]->(o:Entity)
-RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .timeEdtf, .timeSourceExpression,
+RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .basis, .timeEdtf, .timeSourceExpression,
             .quantitySourceExpression, .quantityMinimum, .quantityMaximum, .quantityTypical,
             start: a.startEarliestJdn, end: a.endLatestJdn}} AS claim,
        s {ENTITY_S} AS subject, o {ENTITY_O} AS object,
@@ -93,7 +93,20 @@ RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .tim
                          locator: ev.shortLabel, href: ev.locator, quotation: link.quotation, pending: true}} AS source
                }} AS sources,
        COLLECT {{ MATCH (p:Proposal)-[:PROPOSES]->(a)
-                 RETURN p {{.status, .operation, .decidedBy, .decidedAt}} ORDER BY p.decidedAt }} AS proposals
+                 RETURN p {{.status, .operation, .decidedBy, .decidedAt}} ORDER BY p.decidedAt }} AS proposals,
+       COLLECT {{ MATCH (a)-[r:RESTS_ON]->(t) WHERE coalesce(r.status, "accepted") IN ["accepted", "proposed"]
+                 // Only text we hold counts: an ancient claim, or a passage; a Work alone does not (D-148).
+                 UNWIND CASE WHEN t:Assertion
+                        THEN [(t)-[:ATTRIBUTED_TO]->(tw:Entity) | tw.id]
+                             + [(t)-[:SUPPORTED_BY]->(:SourceObservation)-[:IN_WORK]->(ew:Entity) | ew.id]
+                        WHEN t:SourceObservation THEN [(t)-[:IN_WORK]->(pw:Entity) | pw.id]
+                        ELSE [] END AS target
+                 RETURN DISTINCT target }} AS restsOn
+"""
+
+WORKS = """
+MATCH (w:Work)
+RETURN w.id AS id, w.label AS label, w.shortLabel AS shortLabel, w.standing AS standing
 """
 
 AUTHORS = """
@@ -130,6 +143,11 @@ STYLE = [
     {"selector": "edge[category = 'imaginative']", "style": {"line-color": "#c2607f", "target-arrow-color": "#c2607f",
                                                               "line-style": "dotted", "color": "#a0506b"}},
 ]
+
+
+def work_short_name(label: str, short: str | None) -> str:
+    """How attestation names a source: the author of an "Author, Title" label, else its short label."""
+    return label.split(", ", 1)[0] if ", " in label else (short or label)
 
 
 def note_line(note: dict[str, Any]) -> str:
@@ -190,6 +208,7 @@ def _voice(row: dict[str, Any]) -> dict[str, Any]:
         "role": (row["role"] or {}).get("label"), "context": (row["context"] or {}).get("label"),
         "quantity": claim.get("quantitySourceExpression"),
         "quotes": quotes, "review": [p for p in row["proposals"] if p.get("status")],
+        "basis": claim.get("basis"), "restsOn": row.get("restsOn", []),
     }
 
 
@@ -226,6 +245,9 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
     for row in tx.run(ENTITIES, audit=audit):
         node(row["entity"], row["notes"], row["authority"])
     author_of = dict(tx.run(AUTHORS, live=list(LIVE)).values("work", "author"))
+    works = list(tx.run(WORKS))
+    standing = {w["id"]: w["standing"] for w in works if w["standing"]}
+    work_name = {w["id"]: work_short_name(w["label"], w["shortLabel"]) for w in works}
     rows = list(tx.run(CLAIMS, statuses=AUDIT if audit else VISIBLE, open=OPEN_PROPOSALS))
 
     # Attestation is judged over the whole family; a fact is the family's members of one category.
@@ -238,6 +260,7 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
         member = {
             "status": claim["status"], "category": claim.get("category") or "factual",
             "authors": {author_of.get(key, key) for key in keys},
+            "lines": claim_lines(keys, claim.get("basis"), row["restsOn"], standing, author_of, work_name),
             "context": (row["context"] or {}).get("id"), "role": (row["role"] or {}).get("id"),
             "quantity": quantity_key({key: claim.get("quantity" + key.capitalize())
                                       for key in ("minimum", "maximum", "typical")}),

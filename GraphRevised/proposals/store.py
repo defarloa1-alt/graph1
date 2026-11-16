@@ -278,6 +278,7 @@ def _qualified_assertion_params(result: ValidationResult, label: str, short_labe
         "quantityMaximum": draft.quantity.maximum if draft.quantity else None,
         "quantityTypical": draft.quantity.typical if draft.quantity else None,
         "quantitySourceExpression": draft.quantity.source_expression if draft.quantity else None,
+        "quantityPrecision": draft.quantity.stored_precision() if draft.quantity else None,
     }
 
 
@@ -317,7 +318,8 @@ def _draft_from_stored(stored: dict[str, Any], evidence: list[dict[str, Any]], *
     if stored.get("quantitySourceExpression") is not None:
         quantity = QuantityQualifier(
             source_expression=stored["quantitySourceExpression"], minimum=stored.get("quantityMinimum"),
-            maximum=stored.get("quantityMaximum"), typical=stored.get("quantityTypical"))
+            maximum=stored.get("quantityMaximum"), typical=stored.get("quantityTypical"),
+            precision=stored.get("quantityPrecision"))
     return ProposalDraft(
         predicate=stored["predicate"],
         subject_id=stored["subjectId"],
@@ -600,6 +602,7 @@ def _attributed_claim(tx: Any, assertion_id: str) -> dict[str, Any]:
                assertion.quantityMinimum AS quantityMinimum, assertion.quantityMaximum AS quantityMaximum,
                assertion.quantityTypical AS quantityTypical,
                assertion.quantitySourceExpression AS quantitySourceExpression,
+               assertion.quantityPrecision AS quantityPrecision,
                head([p IN collect(DISTINCT decided.inquiryId) WHERE p IS NOT NULL]) AS inquiryId,
                [item IN collect(DISTINCT {observationId: observation.id, quotation: support.quotation,
                                           qualifierQuotations: support.qualifierQuotations})
@@ -648,6 +651,7 @@ def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
                assertion.quantityMinimum AS quantityMinimum, assertion.quantityMaximum AS quantityMaximum,
                assertion.quantityTypical AS quantityTypical,
                assertion.quantitySourceExpression AS quantitySourceExpression,
+               assertion.quantityPrecision AS quantityPrecision,
                CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
         """,
         id=proposal_id,

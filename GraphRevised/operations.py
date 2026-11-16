@@ -57,6 +57,17 @@ OPERATION_NAMES = (
     "upsert_image_observation",
     "set_entity_kind",
     "retire_entity_identity",
+    "set_type_category",
+    "drop_unlabelled_year_links",
+    "set_work_standing",
+    "set_claim_basis",
+    "confirm_work_standing",
+    "link_rests_on",
+    "merge_unreviewed_entity",
+    "record_statement_references",
+    "upsert_heading_record",
+    "link_subject_heading",
+    "link_heading_relation",
 )
 
 

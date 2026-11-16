@@ -1,12 +1,14 @@
 ---
-status: informational
+status: history
 authority: none; state, rules, and next steps (its decisions are recorded in 33-DECISIONS.md)
 depends_on: [33-DECISIONS.md]
-superseded_by: null
+superseded_by: CURRENT-STATE.md
 last_reviewed: 2026-10-19
 ---
 
 # Session Handoff — 2026-10-16
+
+**History.** This handoff is superseded by [CURRENT-STATE.md](CURRENT-STATE.md) (2026-11-13), which carries what is still open. Read this one only for the record of its session.
 
 **New 2026-11-12:** For lens specialists, event roles (`involvedIn`, registry
 v14), and the entity review, start with

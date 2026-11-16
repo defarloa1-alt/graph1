@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:oa="http://www.w3.org/ns/oa#" xmlns:dcterms="http://purl.org/dc/terms/"
+         xmlns:nm="http://nomisma.org/id/"
+         xmlns:void="http://rdfs.org/ns/void#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <void:Dataset rdf:about="http://numismatics.org/crro/">
+        <dcterms:title>Coinage of the Roman Republic Online</dcterms:title>
+        <dcterms:description>An online type corpus based upon the numbering system defined in Michael Crawford's 1974 publication, Roman Republican Coinage (RRC).</dcterms:description>
+        <dcterms:publisher>American Numismatic Society</dcterms:publisher>
+        <dcterms:license rdf:resource="http://opendatacommons.org/licenses/odbl/"/>
+        <dcterms:rights rdf:resource="http://rightsstatements.org/vocab/NoC-US/1.0/"/>
+        <void:uriSpace>http://numismatics.org/crro/id/</void:uriSpace>
+        <void:documents/>
+        <void:dataDump rdf:resource="http://numismatics.org/crro/nomisma.rdf"/>
+    </void:Dataset>
+</rdf:RDF>

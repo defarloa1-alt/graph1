@@ -554,7 +554,8 @@ ON CREATE SET
   assertion.quantityMinimum = $quantityMinimum,
   assertion.quantityMaximum = $quantityMaximum,
   assertion.quantityTypical = $quantityTypical,
-  assertion.quantitySourceExpression = $quantitySourceExpression
+  assertion.quantitySourceExpression = $quantitySourceExpression,
+  assertion.quantityPrecision = $quantityPrecision
 ON MATCH SET
   assertion.label = coalesce($label, assertion.label),
   assertion.shortLabel = coalesce($shortLabel, assertion.shortLabel)
@@ -1053,3 +1054,145 @@ SET link.decidedAt = CASE WHEN isRetry THEN link.decidedAt ELSE $decidedAt END,
     link.decisionBasis = CASE WHEN isRetry THEN link.decisionBasis ELSE $decisionBasis END,
     link.status = "rejected"
 RETURN entity, link, record;
+
+// set_type_category (2026-11-13): a Type's category (D-039), one of the registry's typeCategories
+// (role, unit type, organizational pattern, power, status). Who set it, when, and why are kept on
+// the node, so a later change shows what it replaced. A retry with the same category changes nothing.
+MATCH (type:Entity:Type {id: $id})
+WHERE $category IN $allowedCategories
+WITH type, coalesce(type.typeCategory = $category, false) AS isRetry
+SET type.typeCategoryPrevious = CASE WHEN isRetry THEN type.typeCategoryPrevious ELSE type.typeCategory END,
+    type.typeCategorySetAt = CASE WHEN isRetry THEN type.typeCategorySetAt ELSE $decidedAt END,
+    type.typeCategorySetBy = CASE WHEN isRetry THEN type.typeCategorySetBy ELSE $decidedBy END,
+    type.typeCategoryBasis = CASE WHEN isRetry THEN type.typeCategoryBasis ELSE $decisionBasis END,
+    type.typeCategory = $category
+RETURN type;
+
+// drop_unlabelled_year_links (2026-11-13): Year links made before each link said how (as: start,
+// end, during, earliest, latest) are removed, so link_assertion_years can tether the claim again by
+// temporal.year_links. Only links without `as` go; labelled links and the claim are unchanged.
+// Refused when the claim has no unlabelled link.
+MATCH (assertion:Assertion {id: $assertionId})-[link:IN_YEAR]->(:Year)
+WHERE link.as IS NULL
+WITH assertion, collect(link) AS links
+FOREACH (link IN links | DELETE link)
+RETURN assertion.id AS id, size(links) AS removed;
+
+// set_work_standing (2026-11-15, D-148): a Work's standing for attestation (42): primary (an
+// ancient source), secondary (a modern study), or tertiary (a reference work). Who set it, when,
+// and why are kept on the node, so a later change shows what it replaced. A retry with the same
+// standing changes nothing.
+MATCH (work:Entity:Work {id: $id})
+WHERE $standing IN ["primary", "secondary", "tertiary"]
+WITH work, coalesce(work.standing = $standing, false) AS isRetry
+SET work.standingPrevious = CASE WHEN isRetry THEN work.standingPrevious ELSE work.standing END,
+    work.standingSetAt = CASE WHEN isRetry THEN work.standingSetAt ELSE $decidedAt END,
+    work.standingSetBy = CASE WHEN isRetry THEN work.standingSetBy ELSE $decidedBy END,
+    work.standingBasis = CASE WHEN isRetry THEN work.standingBasis ELSE $decisionBasis END,
+    work.standing = $standing
+RETURN work;
+
+// set_claim_basis (2026-11-15, D-148): what an attributed claim of a modern or reference Work is
+// doing (42 §3): reports (retells an ancient source, with a rests-on link), reconstructs (the
+// author's own argument), or unknown (not yet traced). Only an attributed claim; a retry with the
+// same basis changes nothing.
+MATCH (assertion:Assertion {id: $assertionId})-[:ATTRIBUTED_TO]->(:Entity:Work)
+WHERE $basis IN ["reports", "reconstructs", "unknown"]
+WITH assertion, coalesce(assertion.basis = $basis, false) AS isRetry
+SET assertion.basisSetAt = CASE WHEN isRetry THEN assertion.basisSetAt ELSE $decidedAt END,
+    assertion.basisSetBy = CASE WHEN isRetry THEN assertion.basisSetBy ELSE $decidedBy END,
+    assertion.basis = $basis
+RETURN assertion.id AS id, assertion.basis AS basis;
+
+// confirm_work_standing (2026-11-15, D-148): the curator confirms a Work's standing as set. The
+// standing itself is unchanged; refused when the Work has none or a different one. A retry keeps
+// the first confirmation.
+MATCH (work:Entity:Work {id: $id})
+WHERE work.standing = $standing
+SET work.standingConfirmedAt = coalesce(work.standingConfirmedAt, $decidedAt),
+    work.standingConfirmedBy = coalesce(work.standingConfirmedBy, $decidedBy)
+RETURN work.id AS id, work.standing AS standing;
+
+// link_rests_on (2026-11-15, D-148): a modern or reference claim rests on what it retells: an
+// ancient passage we hold (a SourceObservation) or, when the passage is not held, the ancient
+// Work. Made by code from a citation (a footnote): a code-made extraction, accepted by rule
+// (D-145), signed with the rule and the citation's words. A retry keeps the first link.
+MATCH (assertion:Assertion {id: $assertionId})
+MATCH (target) WHERE (target:SourceObservation OR target:Work) AND target.id = $targetId
+MERGE (assertion)-[link:RESTS_ON]->(target)
+ON CREATE SET link.status = "accepted", link.createdAt = $decidedAt, link.createdBy = $decidedBy,
+              link.decisionBasis = $decisionBasis, link.citation = $citation, link.quotation = $quotation
+RETURN assertion.id AS id, target.id AS target, link.status AS status;
+
+// merge_unreviewed_entity (2026-11-15, D-152): the curator merges a code-made duplicate into the
+// Entity that stays. Refused unless both exist, differ, and have the same labels; the duplicate has
+// no identity (no AuthorityRecord) and nothing but its claims and derived fact edges; and no
+// Proposal on its claims was decided by a person (rule acceptances only). Its claims and their
+// Proposals are removed: the code that made them re-derives the evidence onto the Entity that
+// stays. The merge is recorded there (mergedIds, alternativeNames, mergeLog). Rebuild the fact
+// layer afterwards. A retry after the merge finds no duplicate and returns zero rows.
+MATCH (duplicate:Entity {id: $duplicateId}), (survivor:Entity {id: $survivorId})
+WHERE duplicate <> survivor AND labels(duplicate) = labels(survivor)
+  AND NOT (duplicate)-[:HAS_AUTHORITY_RECORD]->()
+  AND NOT EXISTS { MATCH (duplicate)-[r]-(n) WHERE NOT n:Assertion AND r.derived IS NULL }
+  AND NOT EXISTS { MATCH (duplicate)<-[]-(:Assertion)<-[:PROPOSES]-(p:Proposal)
+                   WHERE p.decidedBy IS NOT NULL AND NOT p.decidedBy STARTS WITH "rule:" }
+OPTIONAL MATCH (duplicate)<-[]-(claim:Assertion)
+WITH duplicate, survivor, collect(DISTINCT claim) AS claims
+CALL (claims) { UNWIND claims AS claim OPTIONAL MATCH (claim)<-[:PROPOSES]-(p:Proposal) DETACH DELETE p }
+CALL (claims) { UNWIND claims AS claim DETACH DELETE claim }
+WITH duplicate, survivor, duplicate.id AS removedId, size(claims) AS removedClaims
+SET survivor.mergedIds = coalesce(survivor.mergedIds, []) + removedId,
+    survivor.alternativeNames = coalesce(survivor.alternativeNames, []) +
+      [name IN [$alternativeName] WHERE name IS NOT NULL AND NOT name IN coalesce(survivor.alternativeNames, [])],
+    survivor.mergeLog = coalesce(survivor.mergeLog, []) +
+      (removedId + " merged " + $decidedAt + " by " + $decidedBy + ": " + $decisionBasis)
+DETACH DELETE duplicate
+RETURN survivor.id AS id, removedId, removedClaims;
+
+// record_statement_references (2026-11-16): the works a Wikidata statement's own references cite
+// ("stated in", P248, as QIDs) and the references as the payload gives them (JSON), read from the
+// preserved payload. Fixed once set, like the statement's time: a retry keeps the first values.
+MATCH (observation:SourceObservation {id: $id})
+WHERE observation.sourceSystem = "Wikidata" AND observation.externalStatementId IS NOT NULL
+SET observation.statementStatedIn = coalesce(observation.statementStatedIn, $statedIn),
+    observation.statementReferences = coalesce(observation.statementReferences, $references)
+RETURN observation.id AS id, observation.statementStatedIn AS statedIn;
+
+// upsert_heading_record (2026-11-16): a library heading (LCSH, LCNAF) as an AuthorityRecord of its
+// own, not attached to an Entity: a book's subject, or a heading's broader or related one. Keyed by
+// (system, identifier); a retry under a different local ID is refused. Which Entity a heading is
+// stays the curator's (an Entity's HAS_AUTHORITY_RECORD).
+OPTIONAL MATCH (existing:AuthorityRecord {system: $system, identifier: $identifier})
+WITH existing WHERE existing IS NULL OR existing.id = $id
+MERGE (record:AuthorityRecord {system: $system, identifier: $identifier})
+ON CREATE SET record.id = $id, record.label = $label, record.shortLabel = $label, record.sourceUri = $sourceUri,
+              record.retrievedAt = $retrievedAt, record.contentHash = $contentHash, record.rawPayloadUri = $rawPayloadUri
+ON MATCH SET record.label = coalesce(record.label, $label)
+RETURN record.id AS id, record.label AS label;
+
+// link_subject_heading (2026-11-16): a book's catalog record assigns it a subject heading. Read from
+// the record by code: a code-made extraction, accepted by rule (D-145), signed with the rule and the
+// heading as the record words it. A retry keeps the first link.
+MATCH (work:Entity:Work {id: $workId})
+MATCH (record:AuthorityRecord {system: $system, identifier: $identifier})
+MERGE (work)-[link:HAS_SUBJECT_HEADING]->(record)
+ON CREATE SET link.status = "accepted", link.heading = $heading, link.observationId = $observationId,
+              link.createdAt = $decidedAt, link.createdBy = $decidedBy, link.decisionBasis = $decisionBasis
+RETURN work.id AS work, record.id AS record;
+
+// link_heading_relation (2026-11-16): a heading's record names a broader or a related heading
+// (skos:broader, skos:narrower read in reverse, skos:related). Code-made, accepted by rule (D-145).
+// Refused for any other relation. A retry keeps the first link.
+MATCH (from:AuthorityRecord {system: $system, identifier: $from})
+MATCH (to:AuthorityRecord {system: $system, identifier: $to})
+WHERE $relation IN ["broader", "related"] AND from <> to
+FOREACH (_ IN CASE WHEN $relation = "broader" THEN [1] ELSE [] END |
+  MERGE (from)-[link:BROADER_HEADING]->(to)
+  ON CREATE SET link.status = "accepted", link.createdAt = $decidedAt, link.createdBy = $decidedBy,
+                link.sourceIdentifier = $sourceIdentifier)
+FOREACH (_ IN CASE WHEN $relation = "related" THEN [1] ELSE [] END |
+  MERGE (from)-[link:RELATED_HEADING]->(to)
+  ON CREATE SET link.status = "accepted", link.createdAt = $decidedAt, link.createdBy = $decidedBy,
+                link.sourceIdentifier = $sourceIdentifier)
+RETURN from.id AS from, to.id AS to, $relation AS relation;

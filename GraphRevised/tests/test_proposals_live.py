@@ -19,7 +19,7 @@ from GraphRevised.proposals.store import (
     Neo4jReader, ReviewError, accept, list_proposals, promote, reject, reopen, retract, submit, supersede,
 )
 from GraphRevised.proposals.validator import Outcome
-from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
+from GraphRevised.proposals.wikidata_proposer import WIKIDATA_WORK, drafts_from_observation
 
 AGRIPPA_OBSERVATION = "chr:observation:wikidata:Q160387:P710:32bdfa2f:r2555342002"
 
@@ -119,7 +119,16 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         result = drafts_from_observation(observation, self.reader, self.registry)
         self.assertEqual(result.unresolved, ())
         self.assertEqual(len(result.drafts), 1)
-        return result.drafts[0]
+        # The proposer files Wikidata as a voice (D-145); these workflow tests need a claim of our own,
+        # so they take its asserted twin, which a Wikidata statement may still support.
+        self.assertEqual((result.drafts[0].mode, result.drafts[0].attributed_to), ("attributed", WIKIDATA_WORK))
+        return result.drafts[0].model_copy(update={"mode": "asserted", "attributed_to": None})
+
+    def add_wikidata_work(self):
+        self.write("upsert_entity", {"id": WIKIDATA_WORK, "kind": "Work", "label": "Wikidata", "description": None,
+                                     "status": None, "shortLabel": "Wikidata"})
+        self.write("set_work_form", {"workId": WIKIDATA_WORK, "form": "dataset",
+                                     "allowedForms": sorted(self.registry.work_forms)})
 
     def accepted_leader_claim(self):
         submission = submit(self.tx, self.battle_with_leader(), self.registry, self.operations)
@@ -146,7 +155,8 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         before = self.counts()
         observation = self.reader.observation(AGRIPPA_OBSERVATION)
         result = drafts_from_observation(observation, self.reader, self.registry)
-        submission = submit(self.tx, result.drafts[0], self.registry, self.operations)
+        ours = result.drafts[0].model_copy(update={"mode": "asserted", "attributed_to": None})
+        submission = submit(self.tx, ours, self.registry, self.operations)
         self.assertEqual(submission.validation.outcome, Outcome.DUPLICATE)
         self.assertTrue(submission.validation.already_supported)
         self.assertFalse(submission.stored)
@@ -161,6 +171,35 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         self.assertEqual(result.drafts, ())
         self.assertEqual(result.unresolved, (f"{UNLINKED_QID} has no local Entity",))
         self.assertEqual(self.counts(), before)
+
+    def test_wikidata_is_filed_as_a_voice_and_accepted_by_rule(self):
+        from GraphRevised.proposals.rule_accept import RULE, eligible
+        from GraphRevised.proposals.store import submit as store_submit
+
+        self.add_wikidata_work()
+        self.add_entity(BATTLE)
+        self.add_entity(LEADER)
+        observation = self.reader.observation(self.statement(LEADER[3])["id"])
+        [draft] = drafts_from_observation(observation, self.reader, self.registry).drafts
+        submission = store_submit(self.tx, draft, self.registry, self.operations)
+        self.assertEqual(submission.validation.outcome, Outcome.VALID, submission.validation.reasons)
+        stored = self.tx.run("MATCH (a:Assertion {id: $id}) RETURN a", id=submission.validation.assertion_id).single()["a"]
+        self.assertEqual(stored["mode"], "attributed")
+        self.assertEqual(stored["label"], "According to Wikidata: Test leader participated in Test battle")
+        self.assertIn(submission.validation.proposal_id, [row["id"] for row in eligible(self.tx)])
+        accept(self.tx, submission.validation.proposal_id, registry=self.registry, operations=self.operations,
+               decided_by=RULE, decision_basis="test", decided_at="2026-11-13T00:00:00Z")
+        self.assertNotIn(submission.validation.proposal_id, [row["id"] for row in eligible(self.tx)])
+
+    def test_reasoned_and_passage_proposals_are_never_accepted_by_rule(self):
+        from GraphRevised.proposals.rule_accept import eligible
+
+        self.add_entity(BATTLE)
+        self.add_entity(LEADER)
+        self.add_passage()
+        submission = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"),
+                            self.registry, self.operations)
+        self.assertNotIn(submission.validation.proposal_id, [row["id"] for row in eligible(self.tx)])
 
     def test_full_workflow(self):
         draft = self.battle_with_leader()
@@ -539,7 +578,7 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             "label", "shortLabel", "predicate", "category", "assertedBy", "mode", "contextBasis", "timeEdtf", "timeCalendar",
             "timePrecision", "timeApproximate", "timeUncertain", "timeSourceExpression", "timeNormalizationBasis",
             "timeRelativeOffset", "timeMode", "startEarliestJdn", "startLatestJdn", "endEarliestJdn", "endLatestJdn",
-            "quantityMinimum", "quantityMaximum", "quantityTypical", "quantitySourceExpression")}
+            "quantityMinimum", "quantityMaximum", "quantityTypical", "quantitySourceExpression", "quantityPrecision")}
         params |= {"id": stored["id"], "subjectId": ADMIRAL[0], "objectId": "chr:entity:test-wing",
                    "attributedToId": "chr:entity:test-work", "contextId": BATTLE[0], "roleId": "chr:entity:test-legatus"}
         self.assertEqual(len(self.write("upsert_qualified_assertion", params)), 1)

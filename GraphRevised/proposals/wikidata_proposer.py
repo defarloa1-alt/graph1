@@ -2,7 +2,10 @@
 
 It maps a statement through the predicate registry and resolves QIDs only to
 existing local Entities with an accepted Wikidata identity link. It never
-creates entities; unresolved QIDs are reported instead. When one property maps
+creates entities; unresolved QIDs are reported instead. Every draft is
+attributed to the Wikidata Work: Wikidata is a voice that can be trusted to
+some extent but is not golden, never our own statement (curator, 2026-11-13;
+D-145). When one property maps
 to several predicates (P361 "part of": partOf, subperiodOf, memberOf), only
 those whose kinds fit the endpoints are drafted.
 """
@@ -16,6 +19,7 @@ from .registry import PredicateRegistry
 from .schema import ProposalDraft, TimeQualifier
 
 PROPOSER_ID = "wikidata-statement-proposer-v1"
+WIKIDATA_WORK = "chr:entity:wikidata"  # the Work every Wikidata statement is attributed to (D-145)
 
 
 class IdentityReader(Protocol):
@@ -44,10 +48,12 @@ def drafts_from_observation(
     unresolved: list[str] = []
     misfits: list[str] = []
     mappings = registry.for_wikidata(pid)
-    if not mappings:
+    if not [mapping for _, mapping in mappings if mapping.bound is None]:
         unresolved.append(f"{pid} has no registered predicate")
 
     for definition, mapping in mappings:
+        if mapping.bound is not None:
+            continue  # one end of a span (an inception): never a claim on its own (registry v15)
         if definition.unary != (value_qid is None):
             continue  # a dated unary claim comes from a time statement, a link from an item statement
         holder_qid, target_qid = (source_qid, value_qid) if mapping.direction == "forward" else (value_qid, source_qid)
@@ -82,6 +88,8 @@ def drafts_from_observation(
                     f"{observation['sourceRevision']}: {source_qid} {pid} {value_qid or stated}."
                 ),
                 proposed_by=PROPOSER_ID,
+                mode="attributed",
+                attributed_to=WIKIDATA_WORK,
             )
         )
     if not drafts and misfits and not unresolved:

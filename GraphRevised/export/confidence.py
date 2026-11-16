@@ -5,17 +5,27 @@ judged with its family: every claim with the same predicate, subject, and
 object (the asserted claim and each source's attributed version share an ID
 up to the qualifier digest). Rejected and superseded members do not count.
 
-    imagined                 the claim is imaginative (attributed to a creative Work)
-    one author's reading     interpretive; "a reading shared by N authors" when more agree
-    well attested (N authors) factual, two or more distinct authors behind the family
-    attested (1 author)      factual, one author
-    disputed (N authors)     factual members state the same qualifier differently
-    no evidence yet          factual, nothing behind it
+    imagined                  the claim is imaginative (attributed to a creative Work)
+    one author's reading      interpretive; "a reading shared by N authors" when more agree
+    disputed (N authors)      factual members state the same qualifier differently
+    well attested (N ancient sources)   factual, two or more independent ancient lines
+    attested (1 ancient source)         factual, one ancient line
+    a modern reconstruction (Strauss)   no ancient line; a modern author's own argument
+    modern sources only (N works, not traced)   modern claims whose basis is not traced
+    reference only (Wikidata)           reference works only
+    no evidence yet           factual, nothing behind it
 
-An author is the Person a Work's `authorOf` claim names, or the Work itself
-when no author is recorded, or the source system (such as Wikidata) for
-evidence outside any Work. A modern author who builds on an ancient one
-still counts as a second author.
+Factual attestation counts independent lines of evidence, not authors
+(42-CORROBORATION-AND-CLAIM-KINDS.md, D-148). A line is an ancient source
+(a Work of standing `primary`, one line per author), or a modern
+reconstruction. A modern claim that reports an ancient source joins that
+source's line through its rests-on link; an untraced modern claim and a
+reference work add none. The modern and reference works are named in a
+suffix ("; retold by Weigall"; "; also in Wikipedia"), never hidden.
+
+Each member carries `lines`: (kind, identity, name) with kind one of
+witness, reconstruction, retold, untraced, reference; and `authors` for
+the interpretive and dispute counts.
 """
 
 from __future__ import annotations
@@ -82,6 +92,65 @@ def confidence(claim: dict[str, Any], family: list[dict[str, Any]]) -> str:
         return "one author's reading" if count <= 1 else f"a reading shared by {plural}"
     if disputed(same, once=claim.get("once", False)):
         return f"disputed ({plural})"
-    if count >= 2:
-        return f"well attested ({plural})"
-    return f"attested ({plural})" if count == 1 else "no evidence yet"
+    found: dict[str, dict[str, str]] = {kind: {} for kind in KINDS}
+    for m in same:
+        for kind, identity, name in m.get("lines", ()):
+            found[kind].setdefault(identity, name)
+    witnesses = len(found["witness"])
+    if witnesses:
+        base = (f"well attested ({witnesses} ancient sources)" if witnesses >= 2
+                else "attested (1 ancient source)")
+        tail = ("reconstruction", "retold", "untraced", "reference")
+    elif found["reconstruction"]:
+        base, tail = f"a modern reconstruction ({_names(found['reconstruction'])})", ("retold", "untraced", "reference")
+    elif found["untraced"] or found["retold"]:
+        works = len(found["untraced"]) + len(found["retold"])
+        base = f"modern sources only ({works} work{'' if works == 1 else 's'}, not traced)"
+        tail = ("reference",)
+    elif found["reference"]:
+        base, tail = f"reference only ({_names(found['reference'])})", ()
+    else:
+        return "no evidence yet"
+    seen = set(found["witness"]) | (set() if "reconstruction" in tail else set(found["reconstruction"]))
+    groups: dict[str, dict[str, str]] = {}
+    for kind in tail:
+        names = {i: n for i, n in found[kind].items() if i not in seen}
+        groups.setdefault(SUFFIX[kind], {}).update(names)
+        seen |= set(names)
+    return "; ".join([base, *(f"{words} {_names(names)}" for words, names in groups.items() if names)])
+
+
+KINDS = ("witness", "reconstruction", "retold", "untraced", "reference")
+SUFFIX = {"reconstruction": "reconstructed by", "retold": "retold by", "untraced": "also in", "reference": "also in"}
+
+
+def _names(found: dict[str, str], most: int = 4) -> str:
+    names = sorted(set(found.values()))
+    return ", ".join(names[:most]) + (f" and {len(names) - most} more" if len(names) > most else "")
+
+
+def claim_lines(keys: Iterable[str], basis: str | None, rests_on: Iterable[str], standing: dict[str, str],
+                identity: dict[str, str], name: dict[str, str]) -> list[tuple[str, str, str]]:
+    """One claim's lines of evidence from its source keys (its Work and its evidence's Works).
+
+    `standing` maps a Work id to primary, secondary, or tertiary; a key with no standing (a
+    source system such as Wikidata, or a Work not yet classified) is a reference. `identity`
+    maps a Work to the author who makes it one line (two Lives by one author are one line).
+    `basis` (reports, reconstructs, unknown) says what a modern claim is doing, and
+    `rests_on` names the Works a report retells."""
+    found = []
+    for key in dict.fromkeys(keys):
+        who, label = identity.get(key, key), name.get(key, key)
+        kind = standing.get(key)
+        if kind == "primary":
+            found.append(("witness", who, label))
+        elif basis == "reports" and rests_on and kind in ("secondary", "tertiary"):
+            # A retelling joins the ancient line it rests on (a passage we hold), never its own.
+            found.append(("retold", who, label))
+            found += [("witness", identity.get(t, t), name.get(t, t))
+                      for t in dict.fromkeys(rests_on) if standing.get(t) == "primary"]
+        elif kind == "secondary":
+            found.append(("reconstruction" if basis == "reconstructs" else "untraced", who, label))
+        else:
+            found.append(("reference", who, label))
+    return found

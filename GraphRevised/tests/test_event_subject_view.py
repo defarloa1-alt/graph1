@@ -1,7 +1,7 @@
 import pytest
 
 from GraphRevised.discovery import event_subject_view
-from GraphRevised.discovery.actium_subject_view import (
+from GraphRevised.discovery.subject_view import (
     ASSERTIONS_QUERY, EVIDENCE_QUERY, FOCUS_QUERY, HIERARCHY_QUERY,
     PLACEMENTS_QUERY, TOPICAL_QUERY, build_view,
 )

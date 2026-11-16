@@ -1,6 +1,6 @@
 """Preview the Meaning and memory Subject pilot without changing Neo4j.
 
-    python -m GraphRevised.discovery.actium_meaning_memory_pilot --output new-pilot.json
+    python -m GraphRevised.pilots.actium_meaning_memory_pilot --output new-pilot.json
 """
 
 from __future__ import annotations
@@ -12,11 +12,18 @@ import sys
 
 from neo4j import GraphDatabase
 
-from GraphRevised.discovery.actium_subject_view import PHASE_PREFIX, SUBJECT_ID, build_view
+from GraphRevised.discovery.subject_view import build_view, phase_prefix
 from GraphRevised.subject_backbone import local_config
 
-PHASE_ID = PHASE_PREFIX + "meaning-memory"
+SUBJECT_ID = "chr:subject:history-of-battle-of-actium"
+FOCUS_ID = "chr:entity:battle-of-actium"
+PHASE_ID = phase_prefix(FOCUS_ID) + "meaning-memory"
 CHILD_ID = "chr:subject:history-of-battle-of-actium-meaning-and-memory"
+
+
+def build_actium_view(tx) -> dict:
+    """The Subject view the pilot reads: the Actium history, with its Meaning and memory section."""
+    return build_view(tx, subject_id=SUBJECT_ID, focus_id=FOCUS_ID, section_id=CHILD_ID)
 
 
 def build_pilot(view: dict) -> dict:
@@ -72,7 +79,7 @@ def main(argv: list[str] | None = None) -> int:
         config = local_config()
         with GraphDatabase.driver(config["uri"], auth=(config["user"], config["password"])) as driver:
             with driver.session(database=config["database"], default_access_mode="READ") as session:
-                pilot = build_pilot(session.execute_read(build_view))
+                pilot = build_pilot(session.execute_read(build_actium_view))
         with args.output.open("x", encoding="utf-8") as file:
             json.dump(pilot, file, ensure_ascii=False, indent=2)
             file.write("\n")

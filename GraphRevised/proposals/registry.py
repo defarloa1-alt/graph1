@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v14.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v16.json"
 
 Requirement = Literal["none", "optional", "required"]
 TimeRequirement = Literal["none", "optional", "required", "withRole"]
@@ -21,6 +21,9 @@ TimeRequirement = Literal["none", "optional", "required", "withRole"]
 class WikidataMapping:
     pid: str
     direction: Literal["forward", "inverse"]
+    # A bound: the statement evidences only that end of the claim's interval (inception for the
+    # start of a span, dissolution for its end), never the whole claim (registry v15).
+    bound: Literal["start", "end"] | None = None
 
 
 @dataclass(frozen=True)
@@ -76,6 +79,7 @@ class PredicateRegistry:
     entity_kinds: tuple[str, ...] = ()
     role_kind: str = "Other"
     work_forms: frozenset[str] = frozenset()
+    type_categories: frozenset[str] = frozenset()  # a Type's typeCategory (D-039)
     creative_forms: frozenset[str] = frozenset()  # a claim attributed to a Work of one of these forms is imaginative
 
     def get(self, predicate_id: str) -> PredicateDefinition | None:
@@ -128,6 +132,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
         role_kind=data.get("roleKind", "Other"),
         work_forms=frozenset(data.get("workForms", ())),
         creative_forms=frozenset(data.get("creativeForms", ())),
+        type_categories=frozenset(data.get("typeCategories", ())),
     )
 
 

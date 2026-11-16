@@ -1,6 +1,6 @@
 import pytest
 
-from GraphRevised.discovery.actium_evidence_report import (
+from GraphRevised.discovery.event_evidence_report import (
     ASSERTIONS_QUERY, EVIDENCE_QUERY, EVENTS_QUERY, MENTIONS_QUERY, build_report, candidates,
 )
 

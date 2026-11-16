@@ -162,3 +162,9 @@ Neo4j-*-Created-*.txt
 scripts/.enrich_cache/
 # Local archive of uncommitted work (2026-11-13); holds the curator's notes, never committed
 Archive/Uncommitted-*/
+
+# CRRO full data dump (ODbL 1.0): only the series we use enters the graph (D-151); keep the dump out of git
+GraphRevised/crro/nomisma.rdf
+
+# Licensed downloads (JSTOR and the like): copyright, and each page carries the downloader's IP; never commit
+GraphRevised/docs/actium/*.pdf

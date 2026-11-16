@@ -1,4 +1,7 @@
-"""Generate a read-only event Subject snapshot from an existing inquiry."""
+"""Generate a read-only event Subject snapshot from an existing inquiry.
+
+    python -m GraphRevised.discovery.event_subject_view inquiries/<inquiry>.json --output view.json [--section-id chr:subject:...]
+"""
 
 import argparse
 import json
@@ -7,7 +10,7 @@ import sys
 
 from neo4j import GraphDatabase, READ_ACCESS
 
-from GraphRevised.discovery.actium_subject_view import build_with_source_timeline
+from GraphRevised.discovery.subject_view import build_with_source_timeline
 from GraphRevised.subject_backbone import local_config
 
 

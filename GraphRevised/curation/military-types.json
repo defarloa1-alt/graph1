@@ -1,0 +1,22 @@
+{
+  "_about": "Types of the military frame for Actium (43 §4, curator 2026-11-15): category, our label and description, and the Wikidata item checked at Wikidata on 2026-11-15 (null: none exists; a local Type). Wikidata is a voice (D-145): what a Type was, and when, comes from sources as dated claims. Seeded by slices/seed_types.py.",
+  "types": [
+    {"id": "chr:entity:type-trireme", "category": "ship type", "label": "trireme", "qid": "Q208420", "description": "Oared warship with three files of rowers on each side."},
+    {"id": "chr:entity:type-quadrireme", "category": "ship type", "label": "quadrireme", "qid": "Q340066", "description": "Oared warship rowed by files of four oarsmen (a 'four')."},
+    {"id": "chr:entity:type-quinquereme", "category": "ship type", "label": "quinquereme", "qid": "Q1129014", "description": "Oared warship rowed by files of five oarsmen (a 'five'), the main line warship of the Republic's fleets."},
+    {"id": "chr:entity:type-hexareme", "category": "ship type", "label": "hexareme", "qid": "Q3621914", "description": "Oared warship rowed by files of six oarsmen (a 'six')."},
+    {"id": "chr:entity:type-polyreme", "category": "ship type", "label": "large polyreme", "qid": "Q15249389", "description": "The larger Hellenistic oared warships, from the 'seven' upward; how they were rowed is a modern reconstruction."},
+    {"id": "chr:entity:type-deceres", "category": "ship type", "label": "'ten' (deceres)", "qid": null, "description": "The largest oared warships named at Actium, rowed by files of ten oarsmen; a modern reconstruction of an ancient name."},
+    {"id": "chr:entity:type-liburnian", "category": "ship type", "label": "Liburnian (liburna)", "qid": "Q18843", "description": "Small, fast galley of Illyrian origin, used by Octavian's fleet."},
+    {"id": "chr:entity:type-legion", "category": "unit type", "label": "legion", "qid": "Q163323", "description": "The Roman heavy infantry unit; by 31 BC organised in ten cohorts."},
+    {"id": "chr:entity:type-cohort", "category": "unit type", "label": "cohort", "qid": "Q202167", "description": "A tenth of a legion, of three maniples (six centuries), the legion's tactical unit by the late Republic; also a free-standing unit (a praetorian cohort)."},
+    {"id": "chr:entity:type-campaign-fleet", "category": "unit type", "label": "campaign fleet", "qid": null, "description": "A fleet raised for a campaign under a commander; the Republic had no standing fleets."},
+    {"id": "chr:entity:type-fleet-wing", "category": "unit type", "label": "fleet wing", "qid": null, "description": "A division of a fleet's battle line (left, centre, right) under its own commander."},
+    {"id": "chr:entity:type-trierarch", "category": "role", "label": "trierarch (trierarchus)", "qid": "Q134014453", "description": "Commander of a single warship."},
+    {"id": "chr:entity:type-fleet-prefect", "category": "role", "label": "fleet prefect (praefectus classis)", "qid": "Q2503372", "description": "Commander of a fleet or squadron; Wikidata describes the imperial office, so a Republican holder needs its own dated claim."},
+    {"id": "chr:entity:type-classiarius", "category": "role", "label": "fleet soldier or sailor (classiarius)", "qid": "Q3679607", "description": "A man serving in a fleet: rower, sailor, or soldier aboard."},
+    {"id": "chr:entity:type-naval-ram", "category": "naval fitting", "label": "naval ram", "qid": "Q778702", "description": "The bronze-sheathed beak at a warship's bow, below the waterline."},
+    {"id": "chr:entity:type-fighting-tower", "category": "naval fitting", "label": "fighting tower", "qid": null, "description": "A tower raised on a warship's deck for missile troops."},
+    {"id": "chr:entity:type-fire-missile", "category": "naval fitting", "label": "fire missile", "qid": null, "description": "Burning missiles or pots of fire thrown at enemy ships."}
+  ]
+}

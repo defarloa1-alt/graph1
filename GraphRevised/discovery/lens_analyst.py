@@ -232,7 +232,7 @@ def claim_line(ref: str, c: dict[str, Any]) -> str:
 
 
 def locator_of(short_label: str) -> str:
-    """The locator a reader's observation names: the last token of its short label (Plutarch Antony 65.3 -> 65.3)."""
+    """The locator a reader's observation names: the last token of its short label (Author Work 65.3 -> 65.3)."""
     return short_label.rsplit(" ", 1)[-1] if short_label else ""
 
 

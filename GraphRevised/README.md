@@ -25,9 +25,61 @@ Chrystallum is for exploring a network of historical relations and
 discovering connections, not an encyclopedia. The agreed roadmap (phases A–F)
 is in [docs/Response - Use Cases.md](docs/Response%20-%20Use%20Cases.md); the
 product surface is described in [20-EXPLORER-UI.md](20-EXPLORER-UI.md); the
-current state and next task are in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md).
+current state and next task are in [CURRENT-STATE.md](CURRENT-STATE.md).
+
+## Address first: the review of 2026-11-13
+
+At the end of the lens and roles session, the curator asked for a critical
+review and asked that the next session address it. Raise these items before
+starting new building. Progress on them is in
+[CURRENT-STATE.md](CURRENT-STATE.md): §3 for what is done (item 3, and
+the consolidation of item 5, on 2026-11-13), §5 for what is open.
+
+1. **The graph is growing faster than it is reviewed.** On 2026-11-12 there
+   were 2,098 proposed claims and 79 accepted, about 4%. Each new agent adds
+   proposals. Settle "review volume" (39 §10) first, before the dossier or
+   more specialists: which claims must come to the curator, and which may
+   stand as proposed.
+2. **Agent output needs vetoes, and the vetoes should be measured.** In one
+   session, the entity review called a Polity a duplicate of the Period with
+   the same name. An audit called two wrong identities duplicates. A kind
+   change moved a cited Work. Each sounded confident. Track the curator's
+   veto rate per agent before giving any agent more scope. When a write tool
+   is added, check what depends on the thing it changes. The kind guard
+   missed attributions, and only a later check found it.
+3. **Close the unfinished items.** None of these is big, but together they
+   mean the model the docs describe is not quite the graph that exists.
+   Spend one session on them:
+   - Polities have no dates.
+   - No Period has a consensus span.
+   - Types have no `typeCategory`.
+   - Two Year links lack their start, end, or during label.
+   - Three tests fail, and the pushed branch carries one of the failures.
+4. **Back up the graph on a schedule.** Neo4j is the authority (D-135), but
+   a backup is only a manual dump. The local archive
+   (`Archive/Uncommitted-2026-11-13/`) is not backed up either. Set up a
+   scheduled weekly dump kept in two places.
+5. **Consolidate the docs.** There are 40 numbered documents. Three handoffs
+   overlap (19 points to 38 and 40), and decision entries run to a
+   paragraph. Fold the handoffs into one current-state page, and mark the
+   documents that are now history.
+6. **Show the result to a reader.** The wireframe dates from 2026-10-19, and
+   the explorer app is a work in progress. Putting Actium in the explorer,
+   from live data, in front of one real reader will find model problems
+   faster than more graph building. Put it ahead of further building.
+7. **Two smaller checks.**
+   - The graph has 483 events and 97 people, though D-030 says people first.
+     The depicted events from each source explain most of the difference.
+     Confirm this is intended.
+   - Suggestions pasted from other AIs often arrive in the legacy vocabulary.
+     Check them against [02](02-GRAPH-MODEL.md) and [33](33-DECISIONS.md)
+     before discussing them.
 
 ## Read in this order
+
+**Start here in a new session:** [CURRENT-STATE.md](CURRENT-STATE.md), the one
+current-state page (it replaces the handoffs 19, 38, and 40, now history, and
+classifies every numbered document in §10).
 
 0. [00-NEO4J-SCHEMA-SNAPSHOT.md](00-NEO4J-SCHEMA-SNAPSHOT.md) — read-only baseline of the active local database
 1. [01-ARCHITECTURE.md](01-ARCHITECTURE.md) — the small conceptual model
@@ -50,7 +102,7 @@ current state and next task are in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md
 18. [18-PHASE-5-PROPOSALS.md](18-PHASE-5-PROPOSALS.md) — ProposalDraft, predicate registry, validator, review workflow
 19. [Review of the Chrystallum Subject Backbone Architecture.md](Review%20of%20the%20Chrystallum%20Subject%20Backbone%20Architecture.md) — architectural review and recommendations
 20. [docs/](docs) — model/API choice review, use cases, and the agreed responses
-21. [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md) — **current handoff: start here in a new session**
+21. [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md) — handoff of 2026-10-16 (history; superseded by CURRENT-STATE.md)
 22. [20-EXPLORER-UI.md](20-EXPLORER-UI.md) — first explorer UI direction (history; the screen now is 26 §1)
 23. [21-REVIEW-DELEGATION.md](21-REVIEW-DELEGATION.md) — what Claude may decide when the curator delegates review
 24. [22-CLAIM-QUALIFIERS.md](22-CLAIM-QUALIFIERS.md) — claim qualifiers and claim mode
@@ -71,7 +123,7 @@ current state and next task are in [19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md
 39. [36-DATA-DICTIONARY.md](36-DATA-DICTIONARY.md) — node, property, and relationship reference
 40. [37-CANONICAL-EXPORT-REQUIREMENTS.md](37-CANONICAL-EXPORT-REQUIREMENTS.md) — requirements for a future portable export; current snapshots are not backups
 41. [39-LENS-SPECIALISTS.md](39-LENS-SPECIALISTS.md) — **draft:** standing lens specialists (lens × scope), their dossiers, what they own, peer review (D-137)
-42. [40-LENS-SESSION-HANDOFF.md](40-LENS-SESSION-HANDOFF.md) — handoff of 2026-11-12: event roles, `involvedIn`, the entity review (D-138 to D-140)
+42. [40-LENS-SESSION-HANDOFF.md](40-LENS-SESSION-HANDOFF.md) — handoff of 2026-11-12: event roles, `involvedIn`, the entity review (D-138 to D-140) (history; superseded by CURRENT-STATE.md)
 
 ## Clean-start rules
 
@@ -105,7 +157,7 @@ The local Neo4j `neo4j` database began with only the temporal year backbone
 (Phase 0). It now also holds the Battle of Actium slice built in Phases 2–5:
 entities, identity links, Wikidata and Plutarch source observations,
 assertions, and proposals. Current counts are in
-[19-SESSION-HANDOFF.md](19-SESSION-HANDOFF.md). The separate local
+[CURRENT-STATE.md](CURRENT-STATE.md). The separate local
 `historical` database is empty and is not part of the clean-start plan.
 
 ## Inquiry graph-context review
@@ -170,10 +222,17 @@ proposal. Other-event forces are not evidence of participation.
 
 This mode makes up to five additional model calls and eight graph-tool calls
 per passage, sends graph and passage content to the configured model provider,
-and has **no spending cap**. Model retries are disabled in this mode. It is
+and is capped only by the spend meter's budget (below). Model retries are disabled in this mode. It is
 opt-in, currently supports claims only, and does not search online authorities
 or create missing people. Authorize data sharing and estimate cost before
 running it; a call limit is not a billing limit.
+
+**Spend meter (all model paths):** set `CHRYSTALLUM_BUDGET` to a budget in
+`curation/budgets.json`; each call's worst case (estimated input plus all of
+`max_tokens`) is checked against the cap before it is made, and its priced usage
+is appended to `runs/spend-ledger.jsonl`. `python -m GraphRevised.spend_meter`
+reports spend by budget, run and model. Unknown models and streaming calls are
+refused. This is our estimate, not a provider-side cap.
 
 The event source planner can use a preserved Wikipedia article via
 `--wikipedia-article`, and `--seed-unread` keeps provisional inquiry sources
@@ -205,7 +264,7 @@ run; it may contain unpublished graph details or source quotations. For a
 separately authorized run, repeat the selection with `--authorize-sharing`
 instead of `--prepare-only` and choose a different output file. This sends
 the packet to the configured model provider, incurs cost, makes one model call
-with retries disabled, and has **no spending cap**. The earlier packet is not
+with retries disabled, capped by the spend meter's budget. The earlier packet is not
 reused: graph data is read again for the model run and may have changed.
 
 The model compares every selected pair and provides a redundant, distinct or
@@ -222,7 +281,7 @@ passage mentions, phases and relevant temporal, causal, placement and identity
 assertions:
 
 ```powershell
-python -m GraphRevised.discovery.actium_evidence_report --output path\to\new-report.json
+python -m GraphRevised.discovery.event_evidence_report GraphRevised\inquiries\actium-battle.json --output path\to\new-report.json
 ```
 
 The report uses the local database settings and does not overwrite existing
@@ -254,7 +313,7 @@ Generate a read-only JSON view of assertions related to the Actium Subject:
 
 ```powershell
 New-Item -ItemType Directory -Force GraphRevised\explorer\snapshots
-python -m GraphRevised.discovery.actium_subject_view --output GraphRevised\explorer\snapshots\actium-view-new.json
+python -m GraphRevised.discovery.event_subject_view GraphRevised\inquiries\actium-battle.json --section-id chr:subject:history-of-battle-of-actium-meaning-and-memory --output GraphRevised\explorer\snapshots\actium-view-new.json
 ```
 
 Explorer snapshots are local, git-ignored files under
@@ -294,7 +353,7 @@ The curator chose a child Subject for this history section, piloted before
 the other sections. Preview the existing phase and its placement candidates:
 
 ```powershell
-python -m GraphRevised.discovery.actium_meaning_memory_pilot --output path\to\new-pilot.json
+python -m GraphRevised.pilots.actium_meaning_memory_pilot --output path\to\new-pilot.json
 ```
 
 The inventory carries the current phase-to-battle assertion and evidence and
@@ -330,8 +389,8 @@ Example manifest (replace the IDs with selected entries from the inventory):
 ```
 
 ```powershell
-python -m GraphRevised.discovery.meaning_memory_placements submit path\to\manifest.json
-python -m GraphRevised.discovery.meaning_memory_placements decide chr:entity:depicted:example:event --decision accepted --by TD --basis "Reviewed the source and topical relevance."
+python -m GraphRevised.pilots.actium_meaning_memory_placements submit path\to\manifest.json
+python -m GraphRevised.pilots.actium_meaning_memory_placements decide chr:entity:depicted:example:event --decision accepted --by TD --basis "Reviewed the source and topical relevance."
 ```
 
 Both commands default to offline preview. `--apply` explicitly writes to local

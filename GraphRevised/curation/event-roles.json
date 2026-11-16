@@ -257,6 +257,18 @@
       "inSystemTerms": "involvedIn (registry v14, curator 2026-11-12): an Object in an Event, with role seized. participatedIn stays for agents (Group, Person, Polity). Only a named object is an entity; 'three hundred ships' stays in the event's label and quotation."
     },
     {
+      "id": "chr:entity:role-dedicated",
+      "kind": "Type",
+      "label": "dedicated",
+      "description": "A thing an act dedicates, such as a monument, offering, or building given to a god or to the memory of an event.",
+      "aliases": [
+        "dedication",
+        "offering",
+        "votive"
+      ],
+      "from": "curator 2026-11-12 (decided.objects names dedicated); added 2026-11-13 for the Campsite Memorial of Augustus"
+    },
+    {
       "id": "chr:entity:role-dedicator",
       "kind": "Type",
       "label": "dedicator",

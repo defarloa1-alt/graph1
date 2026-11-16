@@ -1,0 +1,81 @@
+{
+  "_about": "How citations name the ancient Works we hold, for following a footnote such as 'Dio Cassius 50.31' to our passage (harvest/wikipedia_footnotes.py, D-148). Locators are the source's own book.chapter.section; a Roman-numeral book (ii.85) is read as 2.85.",
+  "works": {
+    "chr:entity:cassius-dio-roman-history": [
+      "Dio Cassius",
+      "Cassius Dio",
+      "Cass. Dio",
+      "Dio"
+    ],
+    "chr:entity:plutarch-life-of-antony": [
+      "Plutarch, Antony",
+      "Plutarch, Life of Antony",
+      "Plutarch, Ant.",
+      "Plut. Vit. Ant.",
+      "Plut. Fit. Ant.",
+      "Plut. Ant."
+    ],
+    "chr:entity:proposed-work-plutarch-life-of-brutus": [
+      "Plutarch, Brutus"
+    ],
+    "chr:entity:proposed-work-velleius-paterculus-historiae-romanae": [
+      "Velleius Paterculus, History of Rome",
+      "Velleius Paterculus",
+      "Vell. Pat.",
+      "Veil. Pat."
+    ],
+    "chr:entity:proposed-work-strabo-geography": [
+      "Strabo, Geography",
+      "Strabo"
+    ],
+    "chr:entity:proposed-work-augustus-res-gestae-divi-augusti": [
+      "Res Gestae Divi Augusti",
+      "Res Gestae",
+      "RG"
+    ],
+    "chr:entity:proposed-work-appian-civil-wars": [
+      "Appian, Civil Wars",
+      "Appian, BC",
+      "App. B Civ.",
+      "App. B Civ",
+      "App. BC"
+    ],
+    "chr:entity:proposed-work-virgil-aeneid": [
+      "Verg. Aen.",
+      "Virgil, Aeneid"
+    ]
+  },
+  "notHeld": [
+    "Suetonius, Augustus",
+    "Suetonius",
+    "Orosius",
+    "Florus",
+    "Livy",
+    "Periochae",
+    "Josephus",
+    "Eutropius",
+    "Chronicon of Jerome",
+    "Oros.",
+    "Flor.",
+    "Suet. Aug.",
+    "Hor. Epod.",
+    "Hor. Carm.",
+    "Serv. Aen.",
+    "Polyb.",
+    "Eutr.",
+    "Plut. Mor.",
+    "Mor.",
+    "Zon."
+  ],
+  "_locatorDepth": "How many parts a full locator of each held Work has (book.chapter.section is 3), so that in 'Cass. Dio 50.15, 30.3-4' the shorter second locator borrows the book: 50.30.3-4 (harvest/article_citations.py). OCR misreadings of an abbreviation (Veil. for Vell., Fit. for Vit.) are listed as aliases.",
+  "locatorDepth": {
+    "chr:entity:cassius-dio-roman-history": 3,
+    "chr:entity:plutarch-life-of-antony": 2,
+    "chr:entity:proposed-work-plutarch-life-of-brutus": 2,
+    "chr:entity:proposed-work-velleius-paterculus-historiae-romanae": 3,
+    "chr:entity:proposed-work-strabo-geography": 3,
+    "chr:entity:proposed-work-augustus-res-gestae-divi-augusti": 2,
+    "chr:entity:proposed-work-appian-civil-wars": 2,
+    "chr:entity:proposed-work-virgil-aeneid": 2
+  }
+}

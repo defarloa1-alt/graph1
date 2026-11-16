@@ -1,10 +1,13 @@
 ---
-status: informational
+status: history
 authority: none; decisions remain in 33-DECISIONS.md (D-137 to D-140)
+superseded_by: CURRENT-STATE.md
 last_reviewed: 2026-11-12
 ---
 
 # Session handoff: lens specialists, event roles, entity review (2026-11-12)
+
+**History.** This handoff is superseded by [CURRENT-STATE.md](CURRENT-STATE.md) (2026-11-13), which carries what is still open. Read this one only for the record of its session.
 
 ## Start here
 
@@ -22,7 +25,11 @@ Set the password without printing it:
 export NEO4J_PASSWORD=$(python -c 'from GraphRevised.connector.server import neo4j_password as p; print(p())' 2>/dev/null)
 ```
 
-**Next step (39 §9, step 2):** build the lens specialist's dossier, seeded
+**First:** the curator's review of 2026-11-13, in the
+[README](README.md) section "Address first". It puts review volume, the
+unfinished items, and backups ahead of new building.
+
+**Next build step (39 §9, step 2):** build the lens specialist's dossier, seeded
 from the grounding and the Actium lens run. Before that, or alongside it,
 the curator has three items to settle (see "Waiting for the curator").
 

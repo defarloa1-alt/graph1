@@ -1,0 +1,428 @@
+{
+  "event": {
+    "id": "chr:entity:battle-of-actium",
+    "label": "Battle of Actium"
+  },
+  "inquiry": "chr:inquiry:actium-battle",
+  "at": "2026-11-15T11:13:09+00:00",
+  "1 who what where when": {
+    "who": {
+      "predicate": "participatedIn",
+      "accepted": 40,
+      "proposed": 28,
+      "met": true
+    },
+    "what": {
+      "predicate": "partOf",
+      "accepted": 1,
+      "proposed": 0,
+      "met": true
+    },
+    "where": {
+      "predicate": "occurredAt",
+      "accepted": 2,
+      "proposed": 4,
+      "met": true
+    },
+    "when": {
+      "predicate": "occurred",
+      "accepted": 2,
+      "proposed": 3,
+      "acceptedDated": 1,
+      "met": true
+    }
+  },
+  "2 sources read": {
+    "sources": [
+      {
+        "workId": "chr:entity:plutarch-life-of-antony",
+        "voice": "Plutarch",
+        "assigned": 123,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 123,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 7
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:cassius-dio-roman-history",
+        "voice": "Dio",
+        "assigned": 141,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 141,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:hale-famous-sea-fights",
+        "voice": "Hale",
+        "assigned": 34,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 34,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:weigall-life-and-times-of-cleopatra",
+        "voice": "Weigall",
+        "assigned": 191,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 191,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:wikipedia-en-battle-of-actium",
+        "voice": "Wikipedia",
+        "assigned": 30,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 30,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:proposed-work-virgil-aeneid",
+        "voice": "Virgil",
+        "assigned": 5,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 5,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:proposed-work-strabo-geography",
+        "voice": "Strabo",
+        "assigned": 66,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 66,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:proposed-work-velleius-paterculus-historiae-romanae",
+        "voice": "Velleius Paterculus",
+        "assigned": 105,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 105,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      },
+      {
+        "workId": "chr:entity:proposed-work-augustus-res-gestae-divi-augusti",
+        "voice": "Augustus",
+        "assigned": 7,
+        "by": "passage finder",
+        "readers": {
+          "general": {
+            "read": 7,
+            "dryOnly": 0
+          },
+          "military": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "political": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "economic": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "social": {
+            "read": 0,
+            "dryOnly": 0
+          },
+          "religious": {
+            "read": 0,
+            "dryOnly": 0
+          }
+        },
+        "met": false
+      }
+    ],
+    "met": false
+  },
+  "3 lens questions": {
+    "analysis": "lens-battle-of-actium-20261021T220540Z.json",
+    "createdAt": "2026-10-21T22:05:40.673017+00:00",
+    "lenses": {
+      "general": {
+        "questions": 6,
+        "thin": 2,
+        "unmarked": 1,
+        "answered": 1,
+        "open": 1,
+        "contested": 1,
+        "gaps": 5
+      },
+      "military": {
+        "questions": 6,
+        "thin": 3,
+        "contested": 2,
+        "open": 1,
+        "gaps": 10
+      },
+      "political": {
+        "questions": 6,
+        "open": 1,
+        "thin": 5,
+        "gaps": 9
+      },
+      "economic": {
+        "questions": 6,
+        "open": 2,
+        "thin": 4,
+        "gaps": 7
+      },
+      "social": {
+        "questions": 6,
+        "thin": 4,
+        "contested": 2,
+        "gaps": 10
+      },
+      "religious": {
+        "questions": 5,
+        "open": 2,
+        "thin": 3,
+        "gaps": 10
+      }
+    },
+    "met": false
+  },
+  "4 phase spine": {
+    "submitted": 442,
+    "open": 442,
+    "met": false
+  },
+  "5 why as voices": {
+    "claims": {
+      "exemplifies accepted": 5,
+      "ledTo proposed": 5,
+      "exemplifies proposed": 1
+    },
+    "voices": [
+      "Hale, Famous Sea Fights",
+      "Strabo, Geography",
+      "Strauss, The War That Made the Roman Empire",
+      "Velleius Paterculus, Historiae Romanae",
+      "Wikipedia, Battle of Actium"
+    ],
+    "passagesOfNote": {
+      "endorsed": 39,
+      "flagged": 35
+    },
+    "met": true
+  },
+  "6 consistency": {
+    "met": null,
+    "note": "checks not built yet (41 §3.4)"
+  },
+  "7 corroboration": {
+    "facts": 1656,
+    "byAttestation": {
+      "modern sources only": 759,
+      "attested": 623,
+      "reference only": 232,
+      "imagined": 18,
+      "well attested": 14,
+      "a reading shared by 2 authors": 8,
+      "a reading shared by 4 authors": 1,
+      "a reading shared by 3 authors": 1
+    },
+    "untraced": 991,
+    "met": true,
+    "note": "met by construction (D-148): a retelling never counts as a second source"
+  }
+}

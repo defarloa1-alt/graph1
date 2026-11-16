@@ -37,16 +37,22 @@ layers, all made of existing parts:
 | Layer | Representation | Example (Republic) |
 |---|---|---|
 | **Definitions** | one attributed `occurred` claim per defining source, with a time span | according to the Epigraphische Datenbank Heidelberg, 509–27 BC; according to the British Museum, about 509–27 BC; according to Pleiades, ...–30 BC |
-| **Consensus** | one asserted `occurred` claim, promoted by the curator from the survey (§3), with earliest and latest bounds on each end | start `-0508`, end `-0048/-0026` (49–27 BC) |
-| **Transition span** | the end bounds of the consensus, where the definitions disagree | 49–27 BC, drawn as a fade on the timeline, not a line |
+| **Preferred definition** | one asserted `occurred` claim, promoted from the PeriodO definition whose edges are where the political structure formally changes (D-143) | 509 BC to 27 BC, from the Epigraphic Database Heidelberg |
+
+**Changed 2026-11-13 (D-143):** the counted consensus and the transition span
+are dropped. The curator chooses the criterion (a period ends where its
+political structure formally changes), and the PeriodO definition that meets
+it gives the dates. Other definitions stay as attributed voices on the card,
+never drawn as a dispute.
 
 - `occurred` (unary, time required) is extended to `subjectKinds: Event,
   Period`. A definition is attributed to its Work or authority, like any
   depiction; a PeriodO record is preserved as the SourceObservation behind it.
 - **Membership is computed, not asserted.** Whether Actium (31 BC) falls in
-  the Republic, the Empire, or the transition span follows from its date and
-  the period's bounds, in the read API. Storing "Actium during the Republic"
-  would freeze one definition as fact.
+  the Republic or the Empire follows from its date and the preferred
+  definition's bounds (D-143), in the read API: Actium falls in the Republic,
+  which ends in 27 BC. It is computed, never stored, so a change of preferred
+  definition moves it.
 - Period relations, two predicates: `subperiodOf` (Period → Period: the
   Principate within the Empire) and `followedBy` (Period → Period, the
   conventional sequence). Both are attributed or asserted like any claim.
@@ -67,10 +73,11 @@ consensus:
    `occurred` claim on the Period. Regional or archaeological phases
    ("Roman Republican" pottery in Slovenia from 350 BC) are kept but marked
    regional and excluded from the consensus for the city and state.
-3. **Consensus:** for each end, the most common year across general
-   (non-regional) definitions; the **transition span** runs from the
-   earliest to the latest year that more than one authority uses. The survey
-   proposes; the curator accepts or adjusts, with a recorded basis.
+3. ~~**Consensus:** the most common year per end across general definitions,
+   with a transition span.~~ **Superseded 2026-11-13 by D-143:** the preferred
+   definition is the PeriodO definition that meets the curator's criterion,
+   promoted as our claim. Check each bound's own wording before preferring a
+   definition: PeriodO converts "-25" and "-509" inconsistently.
 4. All years pass through `proposals/temporal.py`, since PeriodO and Wikidata
    number BCE years differently.
 
@@ -170,13 +177,14 @@ Hale).
 
 ## 6. In the explorer
 
-- The timeline shows each Period as a band whose edges fade across the
-  transition span; hovering shows the definitions and who holds each.
-- Selecting the transition span opens the transformation constellation: the
-  enactments, offices, and commands inside it, and the scholars' readings of
-  the turning point side by side.
-- An event's card says "in the transition from Republic to Principate"
-  rather than forcing one period.
+- The timeline shows each Period as a band with the preferred definition's
+  edges (D-143); its card lists the other definitions and who holds each.
+- Selecting the boundary between two periods opens the transformation
+  constellation: the enactments, offices, and commands around it, and the
+  scholars' readings of the turning point side by side.
+- An event's card names the one period its date falls in, by the preferred
+  definitions (D-143); the transformation is reached from the boundary, not
+  by blurring the period.
 
 ## 7. Order
 

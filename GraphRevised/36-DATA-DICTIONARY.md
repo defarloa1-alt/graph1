@@ -41,6 +41,7 @@ All domain entities carry:
 | `description` | String | Optional | Locally adopted description |
 | `sourceNote` | String | Optional | Local provenance note |
 | `decidedAt`, `decidedBy`, `decisionBasis` | String | Optional | Curator decision metadata |
+| `when`, `where`, `partOf` | String | Derived | Fact-layer display summaries (D-144): one answer with who says it. Display text only, never a date or a claim; rebuilt by `export.fact_layer` |
 
 Approved labels are:
 
@@ -50,13 +51,13 @@ Approved labels are:
 | `Entity:Place` | `placeType`, `latitude`, `longitude`, `coordinatePrecision`, `modernCountry` | Historical or geographic place |
 | `Entity:Event` | `eventType` | Event, including depicted events and phases |
 | `Entity:Group` | `groupType` | Fleet, army, faction, or other collective |
-| `Entity:Work` | `workType`, `language`, `form` | Source, text, creative work, or dataset |
+| `Entity:Work` | `workType`, `language`, `form`, `standing` (`primary`, `secondary`, `tertiary`; with `standingSetAt`, `standingSetBy`, `standingBasis`, `standingPrevious`, `standingConfirmedAt`, `standingConfirmedBy`) | Source, text, creative work, or dataset. `standing` (D-148, 42): ancient source, modern study, or reference work; a Work without one counts as reference |
 | `Entity:Object` | `objectType`, `material` | Material or physical object |
 | `Entity:Period` | `periodType` | Historical interval or framework |
 | `Entity:Office` | `officeType` | Position or institutional post |
 | `Entity:Concept` | `conceptType` | Analytical idea or frame |
 | `Entity:Polity` | `polityType` | State or political entity |
-| `Entity:Type` | `typeCategory` | Unit type, organizational pattern, role, or power |
+| `Entity:Type` | `typeCategory` | Role, unit type, organizational pattern, power, or status (registry v15 `typeCategories`; set with `set_type_category`, D-141) |
 | `Entity:Other` | `otherType` | Domain entity not otherwise classified |
 
 Type-specific properties are intentionally small. Dates, membership,
@@ -94,6 +95,7 @@ creation; a changed claim is a new Assertion.
 | `status` | Enum | Required | `proposed`, `accepted`, `rejected`, `contested`, `superseded` |
 | `category` | Enum | Required | `factual`, `interpretive`, `imaginative` |
 | `mode` | Enum | Optional | `asserted` or `attributed` |
+| `basis`, `basisSetAt`, `basisSetBy` | Enum | Optional | D-148 (42 §3): what an attributed claim of a modern or reference Work is doing: `reports` (retells an ancient source; carries `RESTS_ON`), `reconstructs` (the author's own argument), `unknown` (not traced; not counted) |
 | `assertedBy` | String | Required | Drafting agent or person |
 | `acceptedAt` | String | Optional | Acceptance time |
 | `contextBasis` | String | Optional | Why a context Event was attached |
@@ -103,6 +105,7 @@ creation; a changed claim is a new Assertion.
 | `startEarliestJdn`, `startLatestJdn`, `endEarliestJdn`, `endLatestJdn` | Integer | Optional | Julian Day uncertainty windows |
 | `quantityMinimum`, `quantityMaximum`, `quantityTypical` | Number | Optional/design | Quantity qualifiers |
 | `quantitySourceExpression` | String | Optional/design | Source wording for quantity |
+| `quantityPrecision` | Enum | Optional | Draft v7, registry v16 (43 §5): `exact`, `approximate`, `round` (set by code when every figure is a multiple of 10 and the draft gives none), `rhetorical` (a reading, reviewed as reasoning); never part of the claim's identity |
 | `supersededFrom`, `supersededAt`, `supersededBy`, `supersedeBasis`, `supersedeReason` | String | Optional | Supersession audit |
 | `reopenedAt`, `reopenedBy`, `reopenBasis` | String | Optional/design | Reopening audit |
 | `retractedAt`, `retractedBy`, `retractBasis`, `retractReason` | String | Optional/design | Retraction audit |
@@ -138,7 +141,7 @@ metadata. Source facts are immutable except for display text and status.
 | Identity and lifecycle | `id` (required, unique), `label` (required), `shortLabel`, `status` (required) |
 | Source provenance | `sourceSystem` (required), `observationKind`, `sourceRevision`, `retrievedAt` (required), `contentHash` (required), `rawPayloadUri`, `sourceUri` |
 | Access and capture | `visibility`, `capturedBy`, `capturedAt` |
-| Wikidata statements | `sourceEntityId`, `predicateExternalId`, `predicateExternalLabel`, `objectExternalId`, `externalStatementId`, `qualifierPropertyIds`, `statementQualifiers`, `statementTimeEdtf`, `statementTimeDisplay`, `statementTimeCalendar`, `statementTimeMode`, and renormalization metadata |
+| Wikidata statements | `sourceEntityId`, `predicateExternalId`, `predicateExternalLabel`, `objectExternalId`, `externalStatementId`, `qualifierPropertyIds`, `statementQualifiers`, `statementTimeEdtf`, `statementTimeDisplay`, `statementTimeCalendar`, `statementTimeMode`, `statementStatedIn` (the QIDs its references are "stated in", D-154), `statementReferences` (the references as JSON: stated in, page, URL, name used), and renormalization metadata |
 | Passages and transcriptions | `workTitle`, `author`, `translator`, `editionCitation`, `language`, `rights`, `locator`, `locatorType`, `passageText`, `editorialNotes`, `passageHash` |
 | Images | `depicts`, `madeBy`, `madeOn`, `collection`, `accession` |
 
@@ -229,8 +232,11 @@ Relationship properties are listed after the arrow.
 | `ASSERTION_CONTEXT` | Assertion → Entity/Event | — | Predicate context, normally an Event |
 | `ASSERTION_ROLE` | Assertion → Entity/Office | — | Predicate role, normally an Office; designed |
 | `ATTRIBUTED_TO` | Assertion → Entity/Work | — | Source Work voice for attributed claims |
+| `RESTS_ON` | Assertion → Assertion, SourceObservation, or Work | `status`, `createdAt`, `createdBy`, `decisionBasis`, `citation`, `quotation` | D-148: a modern or reference claim's link to the ancient claim or passage it retells. From a citation's own words (a Wikipedia footnote, `harvest.wikipedia_footnotes`), a code-made extraction accepted by rule (D-145, D-150); from an agent's reading, proposed and reviewed as reasoning. Attestation counts the ancient line only when the target is text we hold (a passage or claim); a link to a Work alone is shown, not counted |
 | `IN_YEAR` | Assertion → Year | `as` | Derived temporal projection |
 | `IN_YEAR` | Entity → Year | `as` | Legacy/initial direct entity-year link |
+| *predicate* (`OCCURRED_AT`, `PART_OF`, `PARTICIPATED_IN`, …) | Entity → Entity | `derived: "fact-layer"`, `predicate`, `status`, `mode`, `category`, `attestation`, `sentence`, `when`, `role`, `accordingTo`, `assertions` | Derived fact layer (D-144): one edge per live fact, named after its predicate; rebuilt from the Assertions by `export.fact_layer`, never edited |
+| `OCCURRED`, `BORN`, `DIED` | Entity → Year | `derived: "fact-layer"`, `predicate`, `as`, `status`, `accordingTo`, `assertions` | Derived fact layer: a dated unary fact's Year links, lifted to the entity |
 | `SUPERSEDED_BY` | Assertion → Assertion | — | Replacement claim(s) |
 | `PROMOTED_FROM` | Assertion → Assertion | — | Claim promotion lineage |
 | `SUPPORTED_BY` | Assertion → SourceObservation | `quotation`, `qualifierQuotations`, `addedByProposal` | Accepted claim evidence |
@@ -239,6 +245,9 @@ Relationship properties are listed after the arrow.
 | `IN_WORK` | SourceObservation → Entity/Work | — | Observation belongs to a Work |
 | `HAS_AUTHORITY_RECORD` | Entity/Subject → AuthorityRecord | `role`, `relation`, `status`, optional statement rank/reference counts | External identity or crosswalk |
 | `HAS_SUBJECT_FOCUS` | Subject → Entity | — | Entities covered by a Subject |
+| `HAS_SUBJECT_HEADING` | Work → AuthorityRecord (LCSH, LCNAF) | `status`, `heading` (as the record words it), `observationId`, `createdBy`, `createdAt`, `decisionBasis` | A subject heading the book's LC catalog record assigns (D-155) |
+| `BROADER_HEADING` | AuthorityRecord → AuthorityRecord | `status`, `createdBy`, `createdAt`, `sourceIdentifier` | A heading's broader heading, as its LCSH record states (skos broader, or narrower read in reverse; D-155) |
+| `RELATED_HEADING` | AuthorityRecord → AuthorityRecord | same | A heading's related heading (skos related; D-155) |
 | `NARROWER_THAN` | Subject → Subject | — | Subject hierarchy, narrower to broader |
 | `ANNOTATES` | Annotation → SourceObservation | `quotation` | Commentary on a passage, transcription, or image |
 | `CONCERNS` | Annotation → Entity | — | Annotation target; wider targets designed |

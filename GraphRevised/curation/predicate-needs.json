@@ -4,7 +4,7 @@
   "requests": [
     {
       "name": "defectedTo",
-      "status": "open",
+      "status": "adopted",
       "definitions": [
         "A person or unit left one side for the opposing commander at a stated date.",
         "A person or group leaves one side and goes over to another at a date.",
@@ -90,7 +90,10 @@
         "basis": "The desertion is an act; the allegiance after it is a state (servedUnder, alliedWith with a start).",
         "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
         "at": "2026-11-12T12:44:44+00:00"
-      }
+      },
+      "adoptedIn": "predicates-v16",
+      "adoptedAt": "2026-11-15",
+      "adoptedBy": "curator (43 §5)"
     },
     {
       "name": "abandonedCommand",
@@ -180,7 +183,7 @@
     },
     {
       "name": "captured",
-      "status": "open",
+      "status": "adopted",
       "definitions": [
         "A force took enemy vessels or men in a given engagement on a given date."
       ],
@@ -216,7 +219,10 @@
         "basis": "A capture happens at a moment in an engagement, with captor and captured.",
         "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
         "at": "2026-11-12T12:44:44+00:00"
-      }
+      },
+      "adoptedIn": "predicates-v16",
+      "adoptedAt": "2026-11-15",
+      "adoptedBy": "curator (43 §5)"
     },
     {
       "name": "capturedAsBooty",
@@ -831,8 +837,67 @@
       }
     },
     {
-      "name": "hadStrength",
+      "name": "hadStatus",
       "status": "open",
+      "definitions": [
+        "A person holds a recognised standing (a status Type such as matrona) over a time, not an office and not a part played in an event."
+      ],
+      "subjectKinds": [
+        "Person"
+      ],
+      "objectKinds": [
+        "Type"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-13; README review item 3, Type categories)"
+      ],
+      "evidence": [
+        {
+          "observationId": null,
+          "quotation": "Fulvia position held matrona",
+          "ref": "Wikidata observation of Fulvia's position held (P39): matrona; the heldPosition claim was rejected as malformed on 2026-11-12, because matrona is a status, not an office",
+          "assertionId": "chr:assertion:fulvia:held-position:matrona"
+        }
+      ],
+      "firstRequested": "2026-11-13T09:54:05+00:00",
+      "lastRequested": "2026-11-13T09:54:05+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "POLITICAL_STATUS",
+            "description": "Generic political status",
+            "category": "Political",
+            "direction": "unidirectional",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "PROPERTY",
+            "cidoc": "P2_has_type",
+            "status": "implemented",
+            "score": 0.65
+          }
+        ],
+        "cidoc": [
+          {
+            "code": "E55_Type",
+            "wikidata": "P31",
+            "mapping": "Direct",
+            "note": "Classification types - use P31 instance of NOT P279",
+            "score": 0.5
+          }
+        ]
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "A standing a person holds over time, between a person and a status Type; not an act.",
+        "by": "curator, 2026-11-13",
+        "at": "2026-11-13T09:54:06+00:00"
+      }
+    },
+    {
+      "name": "hadStrength",
+      "status": "adopted",
       "definitions": [
         "A force numbered a given count of ships or men at a given date, as stated by one source. It is reported per voice and never reconciled."
       ],
@@ -867,7 +932,10 @@
         "basis": "A number on a claim (quantityMinimum, quantityMaximum).",
         "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
         "at": "2026-11-12T12:44:44+00:00"
-      }
+      },
+      "adoptedIn": "predicates-v16",
+      "adoptedAt": "2026-11-15",
+      "adoptedBy": "curator (43 §5)"
     },
     {
       "name": "informedBy",
@@ -1036,6 +1104,95 @@
         "basis": "A levy or tax imposed is an act with several parties.",
         "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
         "at": "2026-11-12T12:44:44+00:00"
+      }
+    },
+    {
+      "name": "locatedAt",
+      "status": "open",
+      "definitions": [
+        "An object stands or is kept at a place (a monument on its site, an inscription in a city), over a time where known."
+      ],
+      "subjectKinds": [
+        "Object"
+      ],
+      "objectKinds": [
+        "Place"
+      ],
+      "requestedBy": [
+        "curator (with Claude, 2026-11-13; the Campsite Memorial of Augustus as an Object)"
+      ],
+      "evidence": [
+        {
+          "observationId": "chr:observation:transcription:strauss-war-that-made-the-roman-empire:e4c5516b254f",
+          "quotation": "he dedicated the monument on the site of his headquarters",
+          "ref": "Strauss, The War That Made the Roman Empire, p. 5 (the curator's transcription); the memorial's Wikidata record also gives coordinates (P625) near Nicopolis"
+        }
+      ],
+      "firstRequested": "2026-11-13T10:10:37+00:00",
+      "lastRequested": "2026-11-13T10:10:37+00:00",
+      "precedents": {
+        "registry": [],
+        "legacy": [
+          {
+            "name": "LOCATED_IN",
+            "description": "Entity is located in place",
+            "category": "Geographic",
+            "direction": "forward",
+            "wikidata": "P131 (located in the administrative territorial entity)",
+            "wikidataSuggested": null,
+            "reifyAs": "PROPERTY",
+            "cidoc": "P53_has_former_or_current_location",
+            "status": "implemented",
+            "score": 0.72
+          },
+          {
+            "name": "LOCATION_OF",
+            "description": "Place is location of entity",
+            "category": "Geographic",
+            "direction": "inverse",
+            "wikidata": null,
+            "wikidataSuggested": null,
+            "reifyAs": "PROPERTY",
+            "cidoc": "P53i_is_former_or_current_location_of",
+            "status": "implemented",
+            "score": 0.72
+          },
+          {
+            "name": "LOCATED_IN_CONTINENT",
+            "description": "Place is located in continent",
+            "category": "Geographic",
+            "direction": "forward",
+            "wikidata": "P30 (continent)",
+            "wikidataSuggested": null,
+            "reifyAs": "PROPERTY",
+            "cidoc": null,
+            "status": "implemented",
+            "score": 0.72
+          }
+        ],
+        "cidoc": [
+          {
+            "code": "P53_has_former_or_current_location",
+            "wikidata": "P276+P580/P582",
+            "mapping": "Composite",
+            "note": "Object location with temporal qualifiers",
+            "score": 0.59
+          },
+          {
+            "code": "P7_took_place_at",
+            "wikidata": "P276",
+            "mapping": "Direct",
+            "note": "Event location",
+            "score": 0.57
+          }
+        ]
+      },
+      "similarRequests": [],
+      "shape": {
+        "value": "state",
+        "basis": "Where an object stands is a standing relation between an Object and a Place, not an act.",
+        "by": "curator, 2026-11-13",
+        "at": "2026-11-13T10:10:37+00:00"
       }
     },
     {
@@ -1266,7 +1423,7 @@
     },
     {
       "name": "surrenderedTo",
-      "status": "open",
+      "status": "adopted",
       "definitions": [
         "A force or person yielded to an enemy commander at a stated date."
       ],
@@ -1306,7 +1463,10 @@
         "basis": "A surrender happens at a moment (the army's surrender is already a phase).",
         "by": "Claude (proposed under D-138, 2026-11-12; for the curator to confirm)",
         "at": "2026-11-12T12:44:44+00:00"
-      }
+      },
+      "adoptedIn": "predicates-v16",
+      "adoptedAt": "2026-11-15",
+      "adoptedBy": "curator (43 §5)"
     },
     {
       "name": "sworeAllegianceTo",

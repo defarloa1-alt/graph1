@@ -1,5 +1,5 @@
-from GraphRevised.discovery import actium_subject_view
-from GraphRevised.discovery.actium_subject_view import add_source_timeline
+from GraphRevised.discovery import subject_view
+from GraphRevised.discovery.subject_view import add_source_timeline
 from GraphRevised.proposals.entities import depicted_event_id
 
 
@@ -31,7 +31,8 @@ def test_timeline_discovers_scoped_works_outside_inquiry(monkeypatch):
     work_id = "chr:entity:additional-work"
     event_id = depicted_event_id(work_id, "action")
     view = {"assertions": [{"evidence": [], "routes": [{"events": [{"id": event_id}], "placements": []}]}]}
-    inquiry = {"sources": [{"workId": "chr:entity:known-work", "voice": "Known"}]}
+    inquiry = {"subjectId": "chr:subject:test", "narrativeEventId": "chr:entity:test-event",
+               "sources": [{"workId": "chr:entity:known-work", "voice": "Known"}]}
 
     class Result:
         def data(self):
@@ -47,8 +48,8 @@ def test_timeline_discovers_scoped_works_outside_inquiry(monkeypatch):
         assert expanded["sources"] == inquiry["sources"] + [{"workId": work_id, "voice": "Additional"}]
         return {"sources": expanded["sources"], "events": [{"id": event_id, "status": "proposed", "mentions": []}], "assertions": []}
 
-    monkeypatch.setattr(actium_subject_view, "build_view", lambda tx: view)
-    monkeypatch.setattr(actium_subject_view, "build_report", report)
-    result = actium_subject_view.build_with_source_timeline(Tx(), inquiry)
+    monkeypatch.setattr(subject_view, "build_view", lambda tx, **ids: view)
+    monkeypatch.setattr(subject_view, "build_report", report)
+    result = subject_view.build_with_source_timeline(Tx(), inquiry)
     assert result["sourceTimeline"]["events"][0]["id"] == event_id
     assert len(inquiry["sources"]) == 1

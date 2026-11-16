@@ -16,7 +16,7 @@ CREATE (battle:Entity:Event {id: "chr:entity:test-x-battle", label: "Test battle
 CREATE (period:Entity:Period {id: "chr:entity:test-x-period", label: "Test era", status: "proposed"})
 CREATE (:Entity:Work {id: "chr:entity:test-x-lonely", label: "Test catalogue", status: "proposed"})
 CREATE (:Entity:Person {id: "chr:entity:test-x-gone", label: "Test duplicate", status: "deprecated"})
-CREATE (work:Entity:Work {id: "chr:entity:test-x-work", label: "Test author, Test history", status: "provisional"})
+CREATE (work:Entity:Work {id: "chr:entity:test-x-work", label: "Test author, Test history", status: "provisional", standing: "primary"})
 CREATE (passage:SourceObservation {id: "chr:observation:test-x:1", shortLabel: "Test 1.1"})-[:IN_WORK]->(work)
 CREATE (fought:Assertion {id: "chr:assertion:test-x-fought", label: "Test leader fought at Test battle",
                           predicate: "participatedIn", status: "proposed", category: "factual"})
@@ -92,11 +92,12 @@ class ExplorationExportTests(unittest.TestCase):
         fought = edges["chr:assertion:test-x-fought#factual"]
         self.assertEqual(fought["sentence"], "Test leader participated in Test battle")
         self.assertEqual((fought["status"], fought["mode"]), ("proposed", "asserted"))
-        self.assertEqual(fought["attestation"], "attested (1 author)")  # the work twice is one author
+        self.assertEqual(fought["attestation"], "attested (1 ancient source)")  # the work twice is one line
         own, says = fought["voices"]
         self.assertIsNone(own["accordingTo"])
-        self.assertEqual(own["quotes"], [{"source": "Test author, Test history", "locator": "Test 1.1",
-                                          "quotation": "Test leader fought", "pending": True}])
+        self.assertEqual([{k: q[k] for k in ("source", "locator", "quotation", "pending")} for q in own["quotes"]],
+                         [{"source": "Test author, Test history", "locator": "Test 1.1",
+                           "quotation": "Test leader fought", "pending": True}])
         self.assertEqual(says["accordingTo"], "Test author, Test history")
         self.assertEqual([p["status"] for p in own["review"]], ["submitted"])
 
@@ -110,7 +111,7 @@ class ExplorationExportTests(unittest.TestCase):
         nodes, _ = self.view()
         period = nodes["chr:entity:test-x-period"]
         self.assertEqual(period["status"], "proposed")
-        self.assertEqual(period["factLines"], ["Test era occurred (undated) — attested (1 author)"])
+        self.assertEqual(period["factLines"], ["Test era occurred (undated) — attested (1 ancient source)"])
         self.assertEqual(period["facts"][0]["voices"][0]["accordingTo"], "Test author, Test history")
 
     def test_entities_without_claims_are_shown(self):

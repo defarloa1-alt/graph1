@@ -1,6 +1,6 @@
 import pytest
 
-from GraphRevised.discovery.actium_meaning_memory_pilot import CHILD_ID, PHASE_ID, build_pilot
+from GraphRevised.pilots.actium_meaning_memory_pilot import CHILD_ID, PHASE_ID, build_pilot
 
 
 def fixture():

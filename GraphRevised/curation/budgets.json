@@ -1,0 +1,11 @@
+{
+  "_about": "Model budgets (the curator's). A model call needs CHRYSTALLUM_BUDGET set to one of these names; the spend meter (spend_meter.py) refuses any call whose worst-case cost would pass capUSD. Spend is in runs/spend-ledger.jsonl.",
+  "budgets": {
+    "actium": {
+      "capUSD": "50",
+      "opened": "2026-11-13",
+      "openedBy": "curator",
+      "note": "Phase 1 of 41-ENDGAME-PLAN: Actium to done. The curator set $50-100; the cap starts at $50, to be raised to $100 by the curator after reviewing what the first $50 bought."
+    }
+  }
+}

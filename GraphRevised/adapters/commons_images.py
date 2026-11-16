@@ -1,7 +1,7 @@
 """Images for entities, from the Wikidata records already preserved, described by Wikimedia Commons.
 
 Wikidata's image (P18) names a Commons file; it does not say what the file is.
-A Roman bust of Agrippa, a 1672 painting of Actium, and a generic "Roman girl"
+A Roman portrait bust, a 17th-century painting of a battle, and a generic "Roman girl"
 standing in for Domitia are all P18. So each file's Commons description
 (author, licence, date, categories) is fetched, kept as a source payload
 outside version control, and the file is classed by rules a reader can check:

@@ -1,0 +1,15 @@
+{
+  "description": "The Campsite Memorial of Augustus as an Object at the site of Octavian's headquarters (curator, 2026-11-13). Applied with python -m GraphRevised.slices.apply_curation GraphRevised/curation/campsite-memorial.json; the claims are re-pointed by python -m GraphRevised.pilots.campsite_memorial.",
+  "version": 1,
+  "status": "approved",
+  "draftedBy": "Claude",
+  "approvedBy": "curator, 2026-11-13",
+  "localEntities": [
+    {
+      "id": "chr:entity:octavian-camp-at-actium",
+      "kind": "Place",
+      "label": "Octavian's camp at Actium",
+      "description": "The site of Octavian's headquarters in the Actium campaign, north of the Gulf of Ambracia, where he later dedicated the Campsite Memorial."
+    }
+  ]
+}

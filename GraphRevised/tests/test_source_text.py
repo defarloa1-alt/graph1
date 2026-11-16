@@ -1,7 +1,7 @@
 import pytest
 
 from GraphRevised.discovery.source_text import include_source_text
-from GraphRevised.discovery.actium_subject_view import deduplicate_source_passages
+from GraphRevised.discovery.subject_view import deduplicate_source_passages
 
 
 @pytest.mark.parametrize(("system", "rights"), [

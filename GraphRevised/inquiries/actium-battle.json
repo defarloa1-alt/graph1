@@ -122,5 +122,14 @@
   "proposableKinds": [
     "Event"
   ],
-  "scopeFromMentions": true
+  "scopeFromMentions": true,
+  "leadStopwords": [
+    "actium",
+    "antony",
+    "antony's",
+    "caesar",
+    "cleopatra",
+    "cleopatra's",
+    "octavian"
+  ]
 }

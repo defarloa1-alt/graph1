@@ -33,9 +33,13 @@ def observation(observation_id, source, pid, value, qualifiers=()):
     }
 
 
+WIKIDATA = {"id": "chr:entity:wikidata", "label": "Wikidata", "shortLabel": "Wikidata", "kind": "Work",
+            "form": "dataset", "wikidataIds": []}  # the Work every Wikidata statement is attributed to (D-145)
+
+
 class FakeReader:
     def __init__(self, entities=(), observations=(), assertions=()):
-        self.entities = {item["id"]: item for item in entities}
+        self.entities = {item["id"]: item for item in (WIKIDATA, *entities)}
         self.observations = {item["id"]: item for item in observations}
         self.assertions = {item["id"]: item for item in assertions}
 

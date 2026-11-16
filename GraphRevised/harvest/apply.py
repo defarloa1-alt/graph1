@@ -45,6 +45,7 @@ from GraphRevised.harvest.wikidata_harvest import Labels, Statement, classify, l
 from GraphRevised.operations import load_operations, run_write
 from GraphRevised.proposals.registry import PredicateRegistry, load_registry
 from GraphRevised.proposals.store import Neo4jReader, submit
+from GraphRevised.proposals.rule_accept import accept_by_rule
 from GraphRevised.proposals.wikidata_proposer import drafts_from_observation
 from GraphRevised.slices.add_entity import persist_identity, preserved_identity_payload
 
@@ -181,7 +182,8 @@ def harvest(tx: Any, qid: str, operations: dict[str, str], registry: PredicateRe
                                                     and s.value[:1] == "Q" and s.datatype.startswith("wikibase")})
 
     mapped = [s for s in statements if s.kind == "relationship" and s.predicates]
-    dated = [s for s in statements if s.kind == "dated" and registry.for_wikidata(s.pid)]
+    dated = [s for s in statements if s.kind == "dated"
+             and any(m.bound is None for _, m in registry.for_wikidata(s.pid))]  # a bound alone is no claim
     surfaced = {qid_: surface(tx, operations, qid_, rules, budget)
                 for qid_ in sorted({s.value for s in mapped if isinstance(s.value, str)})}
     claims: list[tuple[str, str, tuple[str, ...]]] = []
@@ -294,6 +296,7 @@ def main(argv: list[str] | None = None) -> int:
                 operations, registry, rules = load_operations(), load_registry(), load_rules()
                 results = (expand(tx, args.qid, operations, registry, rules, args.limit) if args.expand
                            else [harvest(tx, args.qid, operations, registry, rules)])
+                ruled = accept_by_rule(tx)  # code-made extractions need no curator (D-145)
                 tx.commit() if args.apply else tx.rollback()
             except BaseException:
                 if not tx.closed():
@@ -303,6 +306,8 @@ def main(argv: list[str] | None = None) -> int:
         driver.close()
     print("APPLIED." if args.apply else "DRY RUN (rolled back).")
     print("\n\n".join(summary(result) for result in results))
+    print(f"\nAccepted by rule (code-made extractions, D-145): {sum(ruled['accepted'].values())}; "
+          f"left open: {len(ruled['refused'])}")
     if args.expand:
         created = sum(1 for r in results for item in r["surfaced"].values() if item["state"].startswith("proposed"))
         waiting = sum(1 for r in results for item in r["surfaced"].values() if item["state"].startswith("waiting"))

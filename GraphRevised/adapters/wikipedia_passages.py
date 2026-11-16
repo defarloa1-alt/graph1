@@ -235,3 +235,62 @@ def resolve_qids(titles: list[str], directory: Path, stem: str, language: str = 
     path.write_bytes((json.dumps({"retrievedAt": datetime.now(timezone.utc).isoformat(), "qids": qids},
                                  ensure_ascii=False, indent=1) + "\n").encode("utf-8"))
     return qids
+
+
+OPEN, CLOSE = "", ""
+
+
+def footnotes(html: str) -> dict[str, str]:
+    """The article's footnotes as plain text, by note id ("cite_note-Kellum-2")."""
+    soup = BeautifulSoup(html, "html.parser")
+    for style in soup.find_all("style"):
+        style.decompose()
+    found = {}
+    for item in soup.select("ol.references > li[id]"):
+        body = item.select_one("span.reference-text")
+        if body is not None:
+            found[item["id"]] = re.sub(r"\s+", " ", body.get_text(" ")).strip()
+    return found
+
+
+def footnote_positions(html: str) -> dict[str, list[tuple[int, tuple[str, ...]]]]:
+    """Where each passage's footnote markers sat: {ref: [(offset in the passage text, note ids)]}.
+
+    Walks the article exactly as parse_html does, with each marker kept as a sentinel, so the
+    refs and the passage text (markers removed) are the same as parse_html's. Adjacent markers
+    ("[16][17]") form one cluster at one offset."""
+    soup = BeautifulSoup(html, "html.parser")
+    for marker in soup.select("sup.reference"):
+        link = marker.find("a")
+        note = (link.get("href") or "").lstrip("#") if link else ""
+        marker.replace_with(f"{OPEN}{note}{CLOSE}")
+    for marker in soup.select("sup.noprint, span.mw-editsection"):
+        marker.decompose()
+    found: dict[str, list[tuple[int, tuple[str, ...]]]] = {}
+    section, count = 0, 0
+    root = soup.find(class_="mw-parser-output") or soup
+    for element in root.find_all(["h2", "p", "li"]):
+        if element.name == "h2":
+            if element.get_text(" ", strip=True).lower() in END_SECTIONS:
+                break
+            section, count = section + 1, 0
+            continue
+        if _skipped(element) or (element.name == "li" and element.find_parent(["ol"], class_="references")):
+            continue
+        marked = re.sub(r"\s+", " ", element.get_text()).strip()
+        plain = re.sub(rf"{OPEN}[^{CLOSE}]*{CLOSE}", "", marked)
+        if len(re.sub(r"\s+", " ", plain).strip()) < 20:
+            continue
+        count += 1
+        clusters: list[tuple[int, tuple[str, ...]]] = []
+        text, last_end = [], 0
+        for match in re.finditer(rf"{OPEN}([^{CLOSE}]*){CLOSE}", marked):
+            text.append(marked[last_end:match.start()])
+            offset = len("".join(text))
+            if clusters and clusters[-1][0] == offset:
+                clusters[-1] = (offset, clusters[-1][1] + (match.group(1),))
+            else:
+                clusters.append((offset, (match.group(1),)))
+            last_end = match.end()
+        found[f"{section}.{count}"] = clusters
+    return found
