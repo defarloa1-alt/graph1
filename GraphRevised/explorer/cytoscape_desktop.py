@@ -24,7 +24,8 @@ GRAPHML = ROOT / "exports" / "graph-desktop.graphml"
 STYLE = "Chrystallum"
 SHAPES = {"Person": "ELLIPSE", "Event": "DIAMOND", "Place": "TRIANGLE", "Group": "ROUND_RECTANGLE",
           "Office": "HEXAGON", "Work": "RECTANGLE", "Concept": "OCTAGON", "Period": "PARALLELOGRAM",
-          "Polity": "PARALLELOGRAM", "Type": "VEE"}
+          "Polity": "PARALLELOGRAM", "Type": "VEE",
+          "Question": "STAR", "Position": "ROUND_DIAMOND"}
 
 
 def flat(data: dict) -> dict:

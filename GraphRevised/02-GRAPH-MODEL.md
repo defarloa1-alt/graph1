@@ -51,14 +51,18 @@ Neo4j subtype labels make the finite ontology explicit:
 (:Entity:Concept)
 (:Entity:Polity)
 (:Entity:Type)
+(:Entity:Question)
+(:Entity:Position)
 (:Entity:Other)
 ```
 
 `Person`, `Place`, `Event`, `Group`, `Work`, `Object`, `Period`, `Office`,
-`Concept`, `Polity`, `Type`, and `Other` are domain subtypes, not values of a
-generic `kind` property. `Office` holds positions and posts; `Concept` holds
-analytical ideas and frames; `Polity` holds states; and `Type` holds unit
-types, organizational patterns, roles, and powers.
+`Concept`, `Polity`, `Type`, `Question`, `Position`, and `Other` are domain
+subtypes, not values of a generic `kind` property. `Office` holds positions
+and posts; `Concept` holds analytical ideas and frames; `Polity` holds states;
+`Type` holds unit types, organizational patterns, roles, and powers; a
+`Question` is a historical question scholars answer differently, and a
+`Position` one answer to it, shared by the Works that hold it (D-153, 44).
 
 Subtype properties should remain small and type-specific:
 

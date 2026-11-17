@@ -336,6 +336,13 @@ through people, places, source identity matches, or narrative order. Other
 topical placements and other paths are not included. It neither writes to Neo4j
 nor overwrites an existing output file.
 
+Snapshots also carry `debates` (2026-11-17): Questions with an `about` claim on
+an event the view reaches, the Positions that answer them, the Works that hold
+or reject each Position (with stance), and its reception, each with its claim
+status and evidence, plus the Position's computed `history`. Licensed
+transcriptions keep their locator but not their words. The explorer app does
+not display this section yet.
+
 Newly generated snapshots also include source-specific timeline data for
 depicted events reached by this view. The explorer shows source-attributed
 `occurred` and `happenedBefore` claims and explicit `depictsSameAs` assertions;

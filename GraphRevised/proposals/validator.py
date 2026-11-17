@@ -322,6 +322,10 @@ def _check_qualifier_rules(draft: ProposalDraft, definition: PredicateDefinition
         reasons.append(f"{definition.id} takes no time qualifier")
     if draft.quantity is not None and allowed.quantity == "none":
         reasons.append(f"{definition.id} takes no quantity")
+    if draft.stance is not None and allowed.stance == "none":
+        reasons.append(f"{definition.id} takes no stance")
+    if draft.reception is not None and allowed.reception == "none":
+        reasons.append(f"{definition.id} takes no reception")
     if draft.context_basis == "inquiry" and not draft.inquiry_id:
         reasons.append("a context resting on the inquiry needs the draft's inquiry_id")
     if draft.time is not None and draft.time.relative_offset and not draft.context_id:
@@ -358,7 +362,8 @@ def _check_qualifier_evidence(
                 reasons.append(f"{passage['id']} is not a passage of {draft.attributed_to}")
 
     passage_texts = {passage["id"]: passage.get("passageText") or "" for passage in passages}
-    shown: dict[str, list[str]] = {"role": [], "time": [], "context": [], "quantity": []}
+    shown: dict[str, list[str]] = {"role": [], "time": [], "context": [], "quantity": [], "stance": [],
+                                   "reception": []}
     for quotation in draft.qualifier_quotations:
         if quotation.observation_id not in passage_texts:
             reasons.append(f"{quotation.supports} quotation cites {quotation.observation_id}, which is not a cited passage")
@@ -382,6 +387,10 @@ def _check_qualifier_evidence(
                 reasons.append("a quantity drawn from a passage needs a quantity quotation")
             elif not any(normalize(draft.quantity.source_expression) in text for text in shown["quantity"]):
                 reasons.append("the quantity's source expression must appear in its quantity quotation")
+        if draft.stance is not None and not shown["stance"]:
+            reasons.append("a stance drawn from a passage needs a stance quotation")
+        if draft.reception is not None and not shown["reception"]:
+            reasons.append("a reception drawn from a passage needs a reception quotation")
     return reasons
 
 
@@ -397,6 +406,8 @@ def _missing_qualifiers(draft: ProposalDraft, definition: PredicateDefinition) -
         missing.append(f"no role: {definition.id} expects one")
     if expected.quantity == "required" and draft.quantity is None:
         missing.append(f"no quantity: {definition.id} expects one")
+    if expected.reception == "required" and draft.reception is None:
+        missing.append(f"no reception: {definition.id} expects one")
     time_expected = expected.time == "required" or (expected.time == "withRole" and draft.role_id is not None)
     if time_expected and draft.time is None:
         missing.append(f"undated: {definition.id}{' with a role' if expected.time == 'withRole' else ''} expects a time")

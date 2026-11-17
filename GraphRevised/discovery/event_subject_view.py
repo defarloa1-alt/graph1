@@ -10,7 +10,7 @@ import sys
 
 from neo4j import GraphDatabase, READ_ACCESS
 
-from GraphRevised.discovery.subject_view import build_with_source_timeline
+from GraphRevised.discovery.subject_view import add_debates, build_with_source_timeline
 from GraphRevised.subject_backbone import local_config
 
 
@@ -23,10 +23,12 @@ def build_event_view(tx, inquiry: dict, section_id: str | None) -> dict:
         ).data()
         if len(rows) != 1:
             raise ValueError(f"Expected exactly one selected child Subject link for {section_id}.")
-    return build_with_source_timeline(
+    view = build_with_source_timeline(
         tx, inquiry, subject_id=inquiry["subjectId"],
         focus_id=inquiry["narrativeEventId"], section_id=section_id,
     )
+    add_debates(tx, view)
+    return view
 
 
 def validate_inquiry(inquiry: object) -> dict:

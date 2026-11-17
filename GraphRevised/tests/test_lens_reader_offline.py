@@ -128,8 +128,8 @@ class LensPacketTests(unittest.TestCase):
         self.assertIs(kwargs["output_format"], ReaderOutput)
 
     def test_a_lens_reading_returns_the_reader_output_and_its_needs(self):
-        need = LensPredicateNeed(name="defectedTo", definition="changed sides to", subject_kinds=["Person"],
-                                 object_kinds=["Person"], quotation="Dellius deserted to Caesar")
+        need = LensPredicateNeed(name="defectedTo", definition="changed sides to", kinds="Person/Group -> Person",
+                                 quotation="Dellius deserted to Caesar")
         event = ReaderDepictedEvent(key="e1", label="the admiral captures ships", existing_id="",
                                     quotation="Dellius deserted to Caesar", within_narrative_event=True,
                                     participants=[], objects=[], place_id="", place_quotation="", time_expression="",
@@ -145,6 +145,8 @@ class LensPacketTests(unittest.TestCase):
         self.assertEqual(result.periods, [])
         self.assertEqual([e.key for e in result.depicted_events], ["e1"])
         self.assertEqual(meta["predicateNeedsDrafted"][0]["name"], "defectedTo")
+        self.assertEqual((meta["predicateNeedsDrafted"][0]["subject_kinds"],
+                          meta["predicateNeedsDrafted"][0]["object_kinds"]), (["Person", "Group"], ["Person"]))
 
 
 class PredicateNeedTests(unittest.TestCase):

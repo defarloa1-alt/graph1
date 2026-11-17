@@ -230,6 +230,8 @@ def claim_labels(definition: PredicateDefinition, result: ValidationResult) -> t
         label += f" during {entities['context']['label']}"
     if draft.quantity is not None:
         label += f" (quantity {draft.quantity.display()})"
+    if draft.reception is not None:
+        label += f" ({draft.reception})"
     if draft.time is not None:
         label += f" ({display_edtf(draft.time.edtf) if draft.time.edtf else draft.time.source_expression})"
     if "attributedTo" in entities:
@@ -243,6 +245,7 @@ def _is_qualified(draft: ProposalDraft) -> bool:
     return (
         draft.mode != "asserted" or draft.object_id is None or draft.context_id is not None
         or draft.role_id is not None or draft.time is not None or draft.quantity is not None
+        or draft.stance is not None or draft.reception is not None
     )
 
 
@@ -279,6 +282,8 @@ def _qualified_assertion_params(result: ValidationResult, label: str, short_labe
         "quantityTypical": draft.quantity.typical if draft.quantity else None,
         "quantitySourceExpression": draft.quantity.source_expression if draft.quantity else None,
         "quantityPrecision": draft.quantity.stored_precision() if draft.quantity else None,
+        "stance": draft.stance,
+        "reception": draft.reception,
     }
 
 
@@ -340,6 +345,8 @@ def _draft_from_stored(stored: dict[str, Any], evidence: list[dict[str, Any]], *
         role_id=stored.get("roleId"),
         time=time,
         quantity=quantity,
+        stance=stored.get("stance"),
+        reception=stored.get("reception"),
         inquiry_id=stored.get("inquiryId"),
     )
 
@@ -603,6 +610,7 @@ def _attributed_claim(tx: Any, assertion_id: str) -> dict[str, Any]:
                assertion.quantityTypical AS quantityTypical,
                assertion.quantitySourceExpression AS quantitySourceExpression,
                assertion.quantityPrecision AS quantityPrecision,
+               assertion.stance AS stance, assertion.reception AS reception,
                head([p IN collect(DISTINCT decided.inquiryId) WHERE p IS NOT NULL]) AS inquiryId,
                [item IN collect(DISTINCT {observationId: observation.id, quotation: support.quotation,
                                           qualifierQuotations: support.qualifierQuotations})
@@ -652,6 +660,7 @@ def _stored_proposal(tx: Any, proposal_id: str) -> dict[str, Any]:
                assertion.quantityTypical AS quantityTypical,
                assertion.quantitySourceExpression AS quantitySourceExpression,
                assertion.quantityPrecision AS quantityPrecision,
+               assertion.stance AS stance, assertion.reception AS reception,
                CASE WHEN size(pendingEvidence) > 0 THEN pendingEvidence ELSE support END AS evidence
         """,
         id=proposal_id,

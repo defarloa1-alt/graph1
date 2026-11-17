@@ -40,7 +40,7 @@ BATCH = 12
 MAX_CLAIMS = 12
 MAX_MENTIONS = 5
 KINDS = ("Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type",
-         "Other")
+         "Question", "Position", "Other")
 VERDICTS = ("ok", "wrong-identity", "wrong-kind", "duplicate", "unsure")
 
 PROMPT = """\

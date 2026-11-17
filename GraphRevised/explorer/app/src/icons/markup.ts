@@ -12,6 +12,9 @@ export const KIND_SVG: Record<Kind, string> = {
   Period: '<path d="M4 2h8M4 14h8M5 2.5c0 3 6 2.5 6 5.5s-6 2.5-6 5.5M11 2.5c0 3-6 2.5-6 5.5s6 2.5 6 5.5"/>',
   Polity: '<path d="M4 14V2M4 3h8l-1.5 2.5L12 8H4"/>',
   Type: '<path d="M2.5 2.5h5l6 6-5 5-6-6zM5.3 5.3h.01"/>',
+  // Placeholders until the Figma pass (doc 44): a question mark; a speech bubble for one answer.
+  Question: '<path d="M5.8 5.8a2.2 2.2 0 1 1 3.2 2c-.7.4-1 .9-1 1.6v.6M8 12.3h.01"/><circle cx="8" cy="8" r="6"/>',
+  Position: '<path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2zM5 6.2h6M5 8.2h4"/>',
 };
 
 export const LENS_SVG: Record<Lens, string> = {

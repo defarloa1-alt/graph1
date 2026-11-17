@@ -578,13 +578,15 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
             "label", "shortLabel", "predicate", "category", "assertedBy", "mode", "contextBasis", "timeEdtf", "timeCalendar",
             "timePrecision", "timeApproximate", "timeUncertain", "timeSourceExpression", "timeNormalizationBasis",
             "timeRelativeOffset", "timeMode", "startEarliestJdn", "startLatestJdn", "endEarliestJdn", "endLatestJdn",
-            "quantityMinimum", "quantityMaximum", "quantityTypical", "quantitySourceExpression", "quantityPrecision")}
+            "quantityMinimum", "quantityMaximum", "quantityTypical", "quantitySourceExpression", "quantityPrecision",
+            "stance", "reception")}
         params |= {"id": stored["id"], "subjectId": ADMIRAL[0], "objectId": "chr:entity:test-wing",
                    "attributedToId": "chr:entity:test-work", "contextId": BATTLE[0], "roleId": "chr:entity:test-legatus"}
         self.assertEqual(len(self.write("upsert_qualified_assertion", params)), 1)
         before = self.counts()
         for change in ({"timeEdtf": "-0030-09-03"}, {"roleId": None}, {"contextId": None}, {"mode": "asserted",
-                       "attributedToId": None}, {"timeMode": "within"}, {"quantityTypical": 30}):
+                       "attributedToId": None}, {"timeMode": "within"}, {"quantityTypical": 30},
+                       {"reception": "dominant"}):
             with self.subTest(change=change):
                 self.assertEqual(self.tx.run(self.operations["upsert_qualified_assertion"], params | change).data(), [])
         self.assertEqual(self.counts(), before)

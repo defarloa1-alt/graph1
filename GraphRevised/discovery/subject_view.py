@@ -95,6 +95,117 @@ ORDER BY workId, eventId
 """
 
 
+LIVE = ["proposed", "accepted"]
+DEBATE_ASSERTION = """a {.id, .label, .status, .predicate, .mode, .stance, .reception, .timeEdtf,
+                       .timeSourceExpression}"""
+DEBATE_ENTITY = "{.id, .label, .status, .description, .history}"
+
+QUESTIONS_QUERY = f"""
+MATCH (q:Entity:Question)<-[:ASSERTION_SUBJECT]-(a:Assertion {{predicate: 'about'}})
+      -[:ASSERTION_OBJECT]->(e:Entity)
+WHERE e.id IN $eventIds AND a.status IN $live AND NOT q.status IN ['rejected', 'deprecated']
+OPTIONAL MATCH (a)-[:ATTRIBUTED_TO]->(work:Entity:Work)
+RETURN q {DEBATE_ENTITY} AS question, {DEBATE_ASSERTION} AS assertion, e {{.id, .label}} AS about,
+       work.id AS workId, work.label AS workLabel
+ORDER BY q.id, a.id
+"""
+
+POSITIONS_QUERY = f"""
+MATCH (p:Entity:Position)<-[:ASSERTION_SUBJECT]-(a:Assertion {{predicate: 'answers'}})
+      -[:ASSERTION_OBJECT]->(q:Entity:Question)
+WHERE q.id IN $questionIds AND a.status IN $live AND NOT p.status IN ['rejected', 'deprecated']
+OPTIONAL MATCH (a)-[:ATTRIBUTED_TO]->(work:Entity:Work)
+RETURN p {DEBATE_ENTITY} AS position, q.id AS questionId, {DEBATE_ASSERTION} AS assertion,
+       work.id AS workId, work.label AS workLabel
+ORDER BY p.id, a.id
+"""
+
+POSITION_LINKS_QUERY = f"""
+MATCH (a:Assertion)-[:ASSERTION_OBJECT]->(p:Entity:Position)
+WHERE a.predicate IN ['holds', 'rejects'] AND p.id IN $positionIds AND a.status IN $live
+MATCH (a)-[:ASSERTION_SUBJECT]->(holder:Entity)
+OPTIONAL MATCH (a)-[:ATTRIBUTED_TO]->(work:Entity:Work)
+RETURN p.id AS positionId, {DEBATE_ASSERTION} AS assertion, holder {{.id, .label, .status}} AS holder,
+       work.id AS workId, work.label AS workLabel
+UNION ALL
+MATCH (a:Assertion {{predicate: 'hadReception'}})-[:ASSERTION_SUBJECT]->(p:Entity:Position)
+WHERE p.id IN $positionIds AND a.status IN $live
+OPTIONAL MATCH (a)-[:ATTRIBUTED_TO]->(work:Entity:Work)
+RETURN p.id AS positionId, {DEBATE_ASSERTION} AS assertion, null AS holder,
+       work.id AS workId, work.label AS workLabel
+"""
+
+
+def add_debates(tx, view: dict) -> None:
+    """Questions about the events this view reaches, their Positions, and who holds or rejects them.
+
+    The debate is one more hop out than the claims above: a Question is linked to an event
+    by an `about` claim, a Position to the Question by `answers`, a Work to the Position by
+    `holds` or `rejects`, and `hadReception` gives a Position's standing according to a Work.
+    Statuses are kept as stored; nothing is promoted. Evidence follows the same text rule as
+    the rest of the view, so licensed transcriptions keep their locator but not their words.
+    """
+    event_ids = {view["focus"]["id"]} | {
+        event["id"] for assertion in view["assertions"]
+        for route in assertion["routes"] for event in route["events"]}
+
+    def claim(row: dict) -> dict:
+        return {**row["assertion"], "workId": row["workId"], "workLabel": row["workLabel"], "evidence": []}
+
+    questions: dict[str, dict] = {}
+    for row in tx.run(QUESTIONS_QUERY, eventIds=sorted(event_ids), live=LIVE).data():
+        q = questions.setdefault(row["question"]["id"], {**row["question"], "about": [], "positions": []})
+        q["about"].append({**claim(row), "event": row["about"]})
+
+    positions: dict[str, dict] = {}
+    rows = tx.run(POSITIONS_QUERY, questionIds=sorted(questions), live=LIVE).data() if questions else []
+    for row in rows:
+        p = positions.setdefault(row["position"]["id"], {**row["position"], "answers": [],
+                                                        "holders": [], "rejecters": [], "receptions": []})
+        p["answers"].append({**claim(row), "questionId": row["questionId"]})
+
+    rows = tx.run(POSITION_LINKS_QUERY, positionIds=sorted(positions), live=LIVE).data() if positions else []
+    for row in rows:
+        item, predicate = claim(row), row["assertion"]["predicate"]
+        if predicate == "hadReception":
+            positions[row["positionId"]]["receptions"].append(item)
+        else:
+            positions[row["positionId"]]["holders" if predicate == "holds" else "rejecters"].append(
+                {**item, "holder": row["holder"]})
+
+    claims = {}
+    for q in questions.values():
+        claims.update((c["id"], c) for c in q["about"])
+    for p in positions.values():
+        for key in ("answers", "holders", "rejecters", "receptions"):
+            claims.update((c["id"], c) for c in p[key])
+    passages = view.setdefault("sourcePassages", {})
+    if claims:
+        for item in tx.run(EVIDENCE_QUERY, assertionIds=sorted(claims)).data():
+            item = include_source_text(item)
+            text = item.pop("passageText", None)
+            if text:
+                if passages.get(item["observationId"], text) != text:
+                    raise ValueError(f"Conflicting source text for observation {item['observationId']}")
+                passages[item["observationId"]] = text
+            claims[item["assertionId"]]["evidence"].append(item)
+
+    for p in positions.values():
+        for c in p["answers"]:
+            questions[c["questionId"]]["positions"].append(p)
+    view["debates"] = [
+        {**q, "positions": sorted({p["id"]: p for p in q["positions"]}.values(), key=lambda p: p["id"])}
+        for q in sorted(questions.values(), key=lambda q: q["id"])]
+    view["limitations"].append(
+        "Debates include only Questions with an `about` claim on an event this view reaches; a Question "
+        "about a person or place alone is not included.")
+    view["summary"]["debates"] = {
+        "questions": len(questions), "positions": len(positions),
+        "claims": len(claims),
+        "claimsByStatus": dict(sorted(Counter(str(c["status"]) for c in claims.values()).items())),
+    }
+
+
 def build_view(tx, *, subject_id: str, focus_id: str, section_id: str | None = None) -> dict:
     phases = phase_prefix(focus_id)
     focus_rows = tx.run(FOCUS_QUERY, subjectId=subject_id, focusId=focus_id).data()

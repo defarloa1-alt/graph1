@@ -39,7 +39,8 @@ from typing import Any
 
 from neo4j import GraphDatabase
 
-from GraphRevised.export.confidence import LIVE, claim_lines, confidence, family_key
+from GraphRevised.export.confidence import (LIVE, POSITION_LINKS, claim_lines, confidence, family_key,
+                                             position_history, position_link_wording)
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.temporal import display_edtf
 from GraphRevised.proposals.validator import quantity_key
@@ -75,7 +76,7 @@ MATCH (a:Assertion) WHERE a.status IN $statuses
 MATCH (a)-[:ASSERTION_SUBJECT]->(s:Entity)
 OPTIONAL MATCH (a)-[:ASSERTION_OBJECT]->(o:Entity)
 RETURN a {{.id, .label, .shortLabel, .predicate, .status, .mode, .category, .basis, .timeEdtf, .timeSourceExpression,
-            .quantitySourceExpression, .quantityMinimum, .quantityMaximum, .quantityTypical,
+            .quantitySourceExpression, .quantityMinimum, .quantityMaximum, .quantityTypical, .stance, .reception,
             start: a.startEarliestJdn, end: a.endLatestJdn}} AS claim,
        s {ENTITY_S} AS subject, o {ENTITY_O} AS object,
        COLLECT {{ MATCH (a)-[:ASSERTION_CONTEXT]->(c:Entity) RETURN c {{.id, .label}} }}[0] AS context,
@@ -128,6 +129,8 @@ STYLE = [
     {"selector": "node[kind = 'Concept']", "style": {"background-color": "#c2607f", "shape": "hexagon"}},
     {"selector": "node[kind = 'Polity']", "style": {"background-color": "#7a5c3a", "shape": "octagon", "width": 30, "height": 30}},
     {"selector": "node[kind = 'Type']", "style": {"background-color": "#5c6b7a", "shape": "tag"}},
+    {"selector": "node[kind = 'Question']", "style": {"background-color": "#6a5acd", "shape": "star", "width": 28, "height": 28}},
+    {"selector": "node[kind = 'Position']", "style": {"background-color": "#8f7fe0", "shape": "round-diamond"}},
     {"selector": "node[status = 'proposed']", "style": {"background-opacity": 0.35, "border-width": 2,
                                                          "border-style": "dashed", "border-color": "#777"}},
     {"selector": "node[status = 'deprecated']", "style": {"opacity": 0.35}},
@@ -179,6 +182,9 @@ def authority_line(entry: dict[str, Any]) -> str:
     return entry["label"] + (f" and {entry['others']} more" if entry["others"] else "")
 
 
+OUR_OWN = "our own statement"
+
+
 def _time(claim: dict[str, Any]) -> str | None:
     return display_edtf(claim["timeEdtf"]) if claim.get("timeEdtf") else claim.get("timeSourceExpression")
 
@@ -207,6 +213,7 @@ def _voice(row: dict[str, Any]) -> dict[str, Any]:
         "accordingTo": (row["work"] or {}).get("label"), "time": _time(claim),
         "role": (row["role"] or {}).get("label"), "context": (row["context"] or {}).get("label"),
         "quantity": claim.get("quantitySourceExpression"),
+        "stance": claim.get("stance"), "reception": claim.get("reception"),
         "quotes": quotes, "review": [p for p in row["proposals"] if p.get("status")],
         "basis": claim.get("basis"), "restsOn": row.get("restsOn", []),
     }
@@ -216,7 +223,9 @@ def voice_line(voice: dict[str, Any]) -> str:
     who = f"according to {voice['accordingTo']}" if voice["accordingTo"] else "our own statement"
     terms = "; ".join(part for part in (voice["time"], voice["role"] and f"as {voice['role']}",
                                         voice["context"] and f"during {voice['context']}",
-                                        voice.get("quantity") and f"quantity: {voice['quantity']}") if part)
+                                        voice.get("quantity") and f"quantity: {voice['quantity']}",
+                                        voice.get("stance") and f"stance: {voice['stance']}",
+                                        voice.get("reception")) if part)
     quotes = " ".join(f"{q['locator']}: “{q['quotation']}”" + (" (pending)" if q["pending"] else "")
                       for q in voice["quotes"] if q["quotation"]) or "no evidence of its own"
     return f"{who} [{voice['status']}]" + (f" ({terms})" if terms else "") + f" — {quotes}"
@@ -250,6 +259,14 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
     work_name = {w["id"]: work_short_name(w["label"], w["shortLabel"]) for w in works}
     rows = list(tx.run(CLAIMS, statuses=AUDIT if audit else VISIBLE, open=OPEN_PROPOSALS))
 
+    def holder_name(work: dict[str, Any]) -> str:
+        """A Work as a historiography names it: by its author when an authorOf claim gives one."""
+        author = nodes.get(author_of.get(work["id"], ""))
+        return author["data"]["label"] if author else work_name.get(work["id"], work["label"])
+
+    position_links: dict[str, list[dict[str, Any]]] = {}
+    receptions: dict[str, list[dict[str, Any]]] = {}
+
     # Attestation is judged over the whole family; a fact is the family's members of one category.
     families: dict[str, list[dict[str, Any]]] = {}
     facts: dict[tuple[str, str], list[Any]] = {}
@@ -280,12 +297,31 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
         live_modes = {row["claim"].get("mode") or "asserted" for row in members if row["claim"]["status"] in LIVE}
         voices = sorted((_voice(row) for row in members),
                         key=lambda v: (v["accordingTo"] is not None, v["accordingTo"] or "", v["claimId"]))
+        attestation = confidence({"category": category, "once": bool(definition and definition.once)},
+                                 families[family])
+        if predicate in POSITION_LINKS and obj is not None:  # 44: a history, never a count of evidence
+            attestation = position_link_wording(subject["id"], (
+                {"status": row["claim"]["status"], "work": (row["work"] or {}).get("id"),
+                 "name": holder_name(row["work"]) if row["work"] else OUR_OWN} for row in members))
+            for row in members:
+                work = row["work"] or {}
+                position_links.setdefault(obj["id"], []).append({
+                    "verb": predicate, "holder": subject["id"], "name": holder_name(subject),
+                    "time": _time(row["claim"]), "start": row["claim"].get("start"),
+                    "ancient": standing.get(subject["id"]) == "primary", "stance": row["claim"].get("stance"),
+                    "reporter": holder_name(work) if work and work["id"] != subject["id"] else None,
+                    "status": row["claim"]["status"], "claimId": row["claim"]["id"]})
+        if predicate == "hadReception":
+            for row in members:
+                receptions.setdefault(subject["id"], []).append({
+                    "reception": row["claim"].get("reception") or "reception not given",
+                    "time": _time(row["claim"]), "according": holder_name(row["work"]) if row["work"] else None,
+                    "status": row["claim"]["status"], "claimId": row["claim"]["id"]})
         fact = {
             "sentence": f"{subject['label']} {display}" + (f" {obj['label']}" if obj else ""),
             "predicate": predicate, "category": category, "status": status,
             "mode": "asserted" if "asserted" in live_modes else "attributed",
-            "attestation": confidence({"category": category, "once": bool(definition and definition.once)},
-                                      families[family]),
+            "attestation": attestation,
             "times": sorted({v["time"] for v in voices if v["time"]}),
             "voices": voices,
             "voiceLines": [voice_line(v) for v in voices],
@@ -300,6 +336,17 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
         node(obj)
         edges.append({"data": {"id": f"{family}#{category}", "source": subject["id"], "target": obj["id"],
                                "label": display, **fact}})
+
+    # A Position's history and timeline (44 §3): who held and rejected it, when, and its reception.
+    for position in set(position_links) | set(receptions):
+        data = nodes[position]["data"]
+        links, received = position_links.get(position, []), receptions.get(position, [])
+        data["history"] = position_history(links, received)
+        data["timeline"] = sorted(
+            ({key: link[key] for key in ("verb", "holder", "name", "time", "start", "ancient", "stance",
+                                         "reporter", "status", "claimId")} for link in links),
+            key=lambda link: (not link["ancient"], link["start"] is None, link["start"] or 0, link["name"]))
+        data["receptions"] = received
     return {"elements": {"nodes": list(nodes.values()), "edges": edges}}
 
 
@@ -333,7 +380,7 @@ function show(title, fields) {{
     "<ul>" + v.map(item => `<li>${{esc(item)}}</li>`).join("") + "</ul>" : esc(v)}}</dd>`).join("") + "</dl>";
 }}
 cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["kind", d.kind], ["status", d.status],
-  ["description", d.description], ["facts", d.factLines], ["passages of note and mentions", d.notes],
+  ["description", d.description], ["history", d.history], ["facts", d.factLines], ["passages of note and mentions", d.notes],
   ["authority records", d.authorityLines], ["id", d.id]]); }});
 cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.sentence, [["attestation", d.attestation],
   ["status", d.status], ["category", d.category], ["when", d.times.join("; ")], ["voices", d.voiceLines],

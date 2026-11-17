@@ -17,7 +17,8 @@ little on it. This layer is a derived, rebuildable view on top of it:
   from the entity to each Year it is tied to (OCCURRED, BORN, DIED), with
   `as` (during, start, end, earliest, latest).
 - Short summary properties on the node: `when` (from `occurred`), `where`
-  (from `occurredAt`) and `partOf`. One answer, not a survey: our own
+  (from `occurredAt`) and `partOf`; on a Position, `history` (44): who held
+  and rejected it, when, and its reception, in words. One answer, not a survey: our own
   statement if there is one, else the accepted voices, else the proposed
   ones (a normalised date before a source's wording), each followed by who
   says it. Every voice stays on the edges and the claims.
@@ -46,7 +47,7 @@ OURS = "Chrystallum"
 
 CLEAR_EDGES = "MATCH (:Entity)-[r {derived: $mark}]->() DELETE r RETURN count(r) AS removed"
 CLEAR_SUMMARY = ("MATCH (e:Entity) WHERE e.when IS NOT NULL OR e.where IS NOT NULL OR e.partOf IS NOT NULL "
-                 "REMOVE e.when, e.where, e.partOf RETURN count(e) AS cleared")
+                 "OR e.history IS NOT NULL REMOVE e.when, e.where, e.partOf, e.history RETURN count(e) AS cleared")
 DRAW_EDGES = """
 UNWIND $rows AS row
 MATCH (s:Entity {id: row.source}), (o:Entity {id: row.target})
@@ -185,9 +186,13 @@ def plan(view: dict[str, Any], year_links: list[dict[str, Any]],
         row["properties"] = _clean(row["properties"])
         row["properties"]["accordingTo"] = sorted(row["properties"]["accordingTo"])
 
+    properties = {entity: {key: summarise(entries) for key, entries in fields.items()}
+                  for entity, fields in summary.items()}
+    for data in nodes.values():  # a Position's history (44): who held and rejected it, when
+        if data.get("history"):
+            properties.setdefault(data["id"], {})["history"] = data["history"]
     return {"edges": edges, "years": list(years.values()),
-            "summary": [{"id": entity, "properties": {key: summarise(entries) for key, entries in fields.items()}}
-                        for entity, fields in summary.items()]}
+            "summary": [{"id": entity, "properties": fields} for entity, fields in properties.items()]}
 
 
 def rebuild(tx: Any) -> dict[str, int]:

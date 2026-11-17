@@ -34,7 +34,7 @@ the predicate registry `proposals/predicates.v11.json`.
   the rule the design states; §4 sets it beside what the live graph shows.
 - **Dashed** associations are designed but not yet in the graph.
 - `Entity` is the shared label and `Person`, `Place`, `Event`, `Group`, `Work`,
-  `Object`, `Period`, `Office`, `Concept`, `Polity`, `Type`, or `Other` is the
+  `Object`, `Period`, `Office`, `Concept`, `Polity`, `Type`, `Question`, `Position`, or `Other` is the
   subtype label. The subtype is the graph's discriminator; it is not stored as
   a `kind` property.
 - `Assertion` is a **reified association**: a claim between Entities that
@@ -595,7 +595,7 @@ the Battle of Actium (accepted) and 442 depicted events `partOf` a phase
 
 | Enumeration | Values | Live |
 |---|---|---|
-| EntityKind | Person, Event, Place, Group, Object, Work, Period, Office, Concept, Polity, Type, Other | 9 used |
+| EntityKind | Person, Event, Place, Group, Object, Work, Period, Office, Concept, Polity, Type, Question, Position, Other | 9 used (Question and Position from registry v17, none yet) |
 | EntityStatus | proposed, provisional, resolved, deprecated | proposed 653, provisional 48, resolved 1 |
 | SubjectStatus | candidate, provisional, validated, deprecated, merged | provisional 1 |
 | AssertionStatus | proposed, accepted, rejected, contested (reserved, E8), superseded | proposed 2093, accepted 79, superseded 8, rejected 1 |

@@ -44,6 +44,8 @@ from GraphRevised.adapters.sources import PassageSource, open_source
 from GraphRevised.capture.core import NOTE_TYPES, annotation_id, annotation_label
 from GraphRevised.operations import load_operations, run_write
 
+from .historiography import (HISTORIOGRAPHY_PREDICATES, HISTORIOGRAPHY_RULES, HistoriographyOutput,
+                             historiography_text)
 from .lens import Lens, lens_registry, lens_text, load_lens
 from .prompt_version import prompt_version
 from .reading_rules import BRIEFS_DIRECTORY, ReadingRules, brief_guidance, load_brief, load_reading_rules
@@ -162,7 +164,8 @@ proposals; reuse an event already depicted from this source rather than depictin
 17. Predicate needs. An act (a capture, a levy, a declaration, a dedication, a surrender) is a \
 depicted event, never a predicate. Ask for a predicate only for a state that holds between two \
 entities over time and that no listed predicate fits: report it under predicate_needs with a \
-camelCase name, a one-line definition, the subject and object kinds it joins, and the exact \
+camelCase name, a one-line definition, the kinds it joins written as "Subject/Kinds -> Object/Kinds", \
+and the exact \
 quotation that shows it (rules as in 5). A need asserts nothing; it asks for the registry to grow.
 """
 
@@ -265,9 +268,19 @@ class ReaderOutput(BaseModel):
 class LensPredicateNeed(BaseModel):
     name: str
     definition: str
-    subject_kinds: list[str]
-    object_kinds: list[str]
+    # "Person/Group -> Office": one text field, not two lists, keeps the lens output's grammar under
+    # the API's limit (2026-11-16); split by need_kinds.
+    kinds: str
     quotation: str
+
+
+def need_kinds(kinds: str) -> tuple[list[str], list[str]]:
+    """"Person/Group -> Office" as (["Person", "Group"], ["Office"]); no arrow: no object kinds."""
+    subject, _, obj = kinds.partition("->")
+
+    def split(side: str) -> list[str]:
+        return [kind.strip() for kind in re.split(r"[/,]| or ", side) if kind.strip()]
+    return split(subject), split(obj)
 
 
 class LensReaderOutput(BaseModel):
@@ -277,6 +290,15 @@ class LensReaderOutput(BaseModel):
     notes: list[ReaderNote]
     depicted_events: list[ReaderDepictedEvent]
     predicate_needs: list[LensPredicateNeed]
+
+
+class HistoriographyLensOutput(BaseModel):
+    """A lens reading of modern scholarship also reports its historiography (44, rule 18): claims and
+    historiography only. Notes, mentions, depicted events and predicate needs are left out: on a
+    licensed page they would not be stored (D-156), and with any of them the output grammar passed
+    the API's limit (probed 2026-11-16)."""
+    claims: list[ReaderClaim]
+    historiography: HistoriographyOutput
 
 
 @dataclass(frozen=True)
@@ -301,6 +323,9 @@ class Inquiry:
     brief: dict[str, Any] | None = None  # the source brief whose conventions the guidance includes
     graph_context: dict[str, Any] | None = None  # reviewable graph context, not passage evidence
     lens: Lens | None = None  # read through one lens in one scope (proposals/lens.py); None: the general reader
+    # A lens reading of modern scholarship (44): the Questions, Positions, and holder Works already
+    # known, for historiography_text; None: no historiography section.
+    historiography: dict[str, Any] | None = None
 
 
 EVENT_ROLES_PATH = GRAPH_REVISED / "curation" / "event-roles.json"
@@ -571,7 +596,8 @@ def predicate_guide(registry: PredicateRegistry) -> str:
         + qualifiers(d)
         + (f" -- {d.definition}" if d.definition else "")
         for d in registry.predicates.values()
-        if "attributed" in d.modes
+        # The historiography predicates are drafted through their own section (rule 18), never as claims.
+        if "attributed" in d.modes and d.id not in HISTORIOGRAPHY_PREDICATES
     )
 
 
@@ -586,55 +612,8 @@ def read_passage(
     registry: PredicateRegistry,
     depicted: list[dict[str, Any]] = (),
 ) -> tuple[ReaderOutput | None, dict[str, Any]]:
-    def entity_line(entity: dict[str, Any]) -> str:
-        line = f"- {entity['id']} | {entity['label']} | {entity['kind']} | {entity.get('description') or ''}"
-        if entity.get("aliases"):
-            line += f" | aliases: {'; '.join(entity['aliases'])}"
-        if entity.get("dates"):
-            line += " | " + ", ".join(f"{name} {year}" for name, year in entity["dates"].items())
-        return line
-
-    lens = inquiry.lens
-    if lens is not None:
-        registry = lens_registry(registry, lens)
-    # Everything that is the same for every passage of a run comes first and is
-    # cached; only the surrounding sections and the target passage vary.
-    packet = (
-        (lens_text(lens) + "\n\n" if lens is not None else "") +
-        f"Inquiry: {inquiry.label}\n"
-        f"Subject: {inquiry.subject['label']}\n"
-        f"Subject focus:\n" + "\n".join(entity_line(e) for e in inquiry.focus) + "\n\n"
-        f"Inquiry guidance:\n" + "\n".join(f"- {line}" for line in inquiry.guidance) + "\n\n"
-        f"Source: {edition.author}, {edition.title}, trans. {edition.translator} ({edition.citation}).\n"
-        f"Narrative event: {inquiry.narrative_event_id or 'none declared'}\n"
-        f"Entity kinds you may propose: {', '.join(inquiry.proposable_kinds) or 'none'}\n\n"
-        f"Predicates:\n{predicate_guide(registry)}\n\n"
-        f"In-scope entities (id | label | kind | description):\n"
-        + "\n".join(entity_line(e) for e in inquiry.scope)
-        + ("\n\n" + graph_context_text(inquiry.graph_context) if inquiry.graph_context is not None else "")
-    )
-    already = ""
-    if "Event" in inquiry.proposable_kinds:
-        already = ("Events already depicted from this source (id | label):\n"
-                   + ("\n".join(f"- {e['id']} | {e['label']}" for e in depicted) or "- none yet") + "\n\n")
-    user = (
-        already
-        + f"Surrounding sections (context only, not evidence):\n"
-        + "\n\n".join(f"[{r}] {text}" for r, text in context) + "\n\n"
-        f"Target passage [{ref}]:\n{passage['passageText']}"
-    )
-    response = client.beta.messages.parse(
-        model=model,
-        max_tokens=16000,
-        betas=["server-side-fallback-2026-07-01"],
-        extra_body={"fallbacks": "default"},
-        system=[
-            {"type": "text", "text": SYSTEM_PROMPT + (LENS_RULES if lens is not None else "")},
-            {"type": "text", "text": packet, "cache_control": {"type": "ephemeral"}},
-        ],
-        messages=[{"role": "user", "content": user}],
-        output_format=LensReaderOutput if lens is not None else ReaderOutput,
-    )
+    request = reader_request(model, inquiry, edition, ref, passage, context, registry, depicted)
+    response = client.beta.messages.parse(**request)
     meta = {
         "model": response.model,
         "stopReason": response.stop_reason,
@@ -646,21 +625,99 @@ def read_passage(
     }
     if response.stop_reason == "refusal":
         return None, meta
-    return from_lens_output(response.parsed_output, meta) if lens is not None else response.parsed_output, meta
+    return (from_lens_output(response.parsed_output, meta) if inquiry.lens is not None
+            else response.parsed_output), meta
+
+
+def reader_request(
+    model: str,
+    inquiry: Inquiry,
+    edition: PassageSource,
+    ref: str,
+    passage: dict[str, Any],
+    context: list[tuple[str, str]],
+    registry: PredicateRegistry,
+    depicted: list[dict[str, Any]] = (),
+) -> dict[str, Any]:
+    """The request a reading sends for one passage, built without calling anything (a dry run shows it)."""
+    def entity_line(entity: dict[str, Any]) -> str:
+        line = f"- {entity['id']} | {entity['label']} | {entity['kind']} | {entity.get('description') or ''}"
+        if entity.get("aliases"):
+            line += f" | aliases: {'; '.join(entity['aliases'])}"
+        if entity.get("dates"):
+            line += " | " + ", ".join(f"{name} {year}" for name, year in entity["dates"].items())
+        return line
+
+    lens = inquiry.lens
+    historiography = lens is not None and inquiry.historiography is not None
+    if lens is not None:
+        registry = lens_registry(registry, lens)
+    # Everything that is the same for every passage of a run comes first and is
+    # cached; only the surrounding sections and the target passage vary.
+    packet = (
+        (lens_text(lens) + "\n\n" if lens is not None else "") +
+        f"Inquiry: {inquiry.label}\n"
+        f"Subject: {inquiry.subject['label']}\n"
+        f"Subject focus:\n" + "\n".join(entity_line(e) for e in inquiry.focus) + "\n\n"
+        f"Inquiry guidance:\n" + "\n".join(f"- {line}" for line in inquiry.guidance) + "\n\n"
+        f"Source: {edition.author}, {edition.title}"
+        + (f", trans. {edition.translator}" if edition.translator else "") + f" ({edition.citation}).\n"
+        f"Narrative event: {inquiry.narrative_event_id or 'none declared'}\n"
+        f"Entity kinds you may propose: {', '.join(inquiry.proposable_kinds) or 'none'}\n\n"
+        f"Predicates:\n{predicate_guide(registry)}\n\n"
+        f"In-scope entities (id | label | kind | description):\n"
+        + "\n".join(entity_line(e) for e in inquiry.scope)
+        + ("\n\n" + graph_context_text(inquiry.graph_context) if inquiry.graph_context is not None else "")
+    )
+    already = ""
+    if "Event" in inquiry.proposable_kinds:
+        already = ("Events already depicted from this source (id | label):\n"
+                   + ("\n".join(f"- {e['id']} | {e['label']}" for e in depicted) or "- none yet") + "\n\n")
+    if historiography:
+        # Per passage, not cached: the Questions and Positions grow as the reading goes (44).
+        already += historiography_text(**inquiry.historiography) + "\n\n"
+    user = (
+        already
+        + f"Surrounding sections (context only, not evidence):\n"
+        + "\n\n".join(f"[{r}] {text}" for r, text in context) + "\n\n"
+        f"Target passage [{ref}]:\n{passage['passageText']}"
+    )
+    return {
+        "model": model,
+        "max_tokens": 16000,
+        "betas": ["server-side-fallback-2026-07-01"],
+        "extra_body": {"fallbacks": "default"},
+        "system": [
+            {"type": "text", "text": SYSTEM_PROMPT + (LENS_RULES if lens is not None else "")
+                                     + (HISTORIOGRAPHY_RULES if historiography else "")},
+            {"type": "text", "text": packet, "cache_control": {"type": "ephemeral"}},
+        ],
+        "messages": [{"role": "user", "content": user}],
+        "output_format": (HistoriographyLensOutput if historiography
+                          else LensReaderOutput if lens is not None else ReaderOutput),
+    }
 
 
 def from_lens_output(output: LensReaderOutput | None, meta: dict[str, Any]) -> ReaderOutput | None:
     """A lens reading as the reader's own output; its predicate needs travel in meta, checked later."""
     if output is None:
         return None
-    meta["predicateNeedsDrafted"] = [need.model_dump() for need in output.predicate_needs]
-    return ReaderOutput(claims=output.claims, unresolved_mentions=output.unresolved_mentions,
-                        notes=output.notes, periods=[], depicted_events=output.depicted_events)
+    meta["predicateNeedsDrafted"] = [
+        {"name": need.name, "definition": need.definition, "quotation": need.quotation,
+         "subject_kinds": need_kinds(need.kinds)[0], "object_kinds": need_kinds(need.kinds)[1]}
+        for need in getattr(output, "predicate_needs", [])]
+    if isinstance(output, HistoriographyLensOutput):  # converted by proposals/historiography.py (44)
+        meta["historiographyDrafted"] = output.historiography.model_dump()
+    return ReaderOutput(claims=output.claims, unresolved_mentions=getattr(output, "unresolved_mentions", []),
+                        notes=getattr(output, "notes", []), periods=[],
+                        depicted_events=getattr(output, "depicted_events", []))
 
 
-PROMPT_VERSION = prompt_version("passage-reader-v14", SYSTEM_PROMPT, predicate_guide, graph_context_text, read_passage)
-LENS_PROMPT_VERSION = prompt_version("lens-reader-v1", SYSTEM_PROMPT, LENS_RULES, lens_text, predicate_guide,
-                                     graph_context_text, read_passage)
+PROMPT_VERSION = prompt_version("passage-reader-v14", SYSTEM_PROMPT, predicate_guide, graph_context_text,
+                                read_passage, reader_request)
+LENS_PROMPT_VERSION = prompt_version("lens-reader-v1", SYSTEM_PROMPT, LENS_RULES, HISTORIOGRAPHY_RULES, lens_text,
+                                     historiography_text, predicate_guide,
+                                     graph_context_text, read_passage, reader_request)
 
 
 def proposer(inquiry: Inquiry) -> str:

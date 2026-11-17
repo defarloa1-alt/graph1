@@ -54,11 +54,60 @@ python -m pytest GraphRevised/tests -q   # about 7 minutes; see §6 for the expe
 - **59 guarded operations** in
   [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher),
   loaded by name through [operations.py](operations.py).
-- **Predicate registry v16**
-  ([proposals/predicates.v16.json](proposals/predicates.v16.json)); draft schema v7.
+- **Predicate registry v17**
+  ([proposals/predicates.v17.json](proposals/predicates.v17.json)); draft schema v8
+  (2026-11-16: Question, Position and the historiography predicates; no Question or
+  Position in the graph yet).
 - 483 events against 97 people, though D-030 says people first: most of the
   difference is depicted events, one set per source. The curator is reviewing
   whether this is intended (2026-11-13).
+
+## 3b. What changed later on 2026-11-16: historiography built (D-156)
+
+Doc 44 steps 1 to 4, from the curator's go-ahead; details in [44](44-HISTORIOGRAPHY-AND-DEBATES.md) §7.
+Nothing was written to the graph and no model was called.
+
+- **Registry v17, draft v8:** kinds `Question`, `Position` (also in the operations'
+  kind lists, the connector, entity review, contracts, explorer and Cytoscape styles);
+  `about`, `answers`, `holds` (stance), `rejects`, `hadReception` (reception), all
+  interpretive. Choices for the curator to check are in D-156.
+- **Wording:** a Position's `history` (held by, rejected by, when, reception, whose
+  report) in `export/confidence.py`; a `holds` line says "in its own words" or
+  "reported by". The fact layer writes `history` on Position nodes; a Question is
+  one hop from its event by its ABOUT edge. The explorer has the data shapes only.
+- **Lens prompt and storing:** rule 18 and `proposals/historiography.py` (output
+  section, conversion, `store_historiography`). Runner:
+  `python -m GraphRevised.proposals.article_reader lange-2011 --inquiry
+  GraphRevised/inquiries/actium-battle.json --pages 608-609 [--show] [--read [--submit]]`.
+  The default is a dry run: worst case $0.90 for two pages (Sonnet, before caching).
+  Licensed pages are cited by transcriptions of at most 600 characters (curator: fine).
+- **First paid reading, Lange p. 608** (curator's go-ahead; `--read`, rolled back,
+  nothing stored; $0.30, almost all the cache write): 1 Question (Antony's aim), 2
+  Positions (fought to win until Cleopatra fled; meant to break out), Dio `holds` the
+  breakout view, both receptions "dominant" over their spans; 6 holders not held as
+  Works (Kromayer 1899, "Gilles" (doc 44 has Gillies; check the page), Leake, Merivale, Gravière, "the
+  ancient writers"); no lens claims. Log in `runs/article-reader-lange-2011-*`.
+- **Stored: Lange pp. 608-609** (`--read --submit`, curator's go-ahead; $0.35; $0.65 in
+  all on budget `actium`). 15 claims, all proposed, attributed to Lange; 3 Questions
+  and 5 Positions, proposed; fact layer rebuilt. **Near-duplicates to review** (a bug,
+  since fixed: page 609 was not shown page 608's entities): two Questions on Antony's
+  aim; "Antony fought for victory until Cleopatra fled" / "Antonius was fighting to
+  win"; "Antony aimed to withdraw by sea, not to win" / "Antonius aimed to withdraw
+  with much of his force". Merges are the curator's (D-152). Holders not held as Works,
+  in the run log: Kromayer (1899), Ferrabino (1924), Tarn (two positions), Leake,
+  Merivale, Gravière, "Gilles", "the ancient writers apart from Dio". Lange's own
+  position is not on these pages.
+- **Fix: known Questions and Positions per page.** They are now in the per-passage
+  message (not the cached packet), refreshed after each page.
+- **Output grammar limit** (found 2026-11-16): the API refuses an output schema whose
+  compiled grammar is too large (a 400, not billed). `LensReaderOutput` had passed it;
+  fixed by giving a predicate need its kinds as one text field ("Person/Group ->
+  Office", split by code), probed to compile. The article reading asks for claims and
+  historiography only. The general reader's output was probed and compiles.
+- **Spend meter:** a billed reply that fails to parse is now logged at its ceiling,
+  marked `estimated` (two earlier 16-token probes went unlogged, negligible).
+- **`.gitignore`:** `data/` had hidden `explorer/app/src/data/types.ts` (never
+  committed); the folder is now excepted.
 
 ## 3a. What changed 2026-11-14 to 2026-11-16
 
@@ -352,16 +401,20 @@ deleted (its password in pushed history is dead).
 
 ## 6. Tests
 
-Last full run, 2026-11-16, at the end of the session: **550 passed**, about
-8.5 minutes. The cytoscape export test was brought up to date (D-148).
+Last full run, 2026-11-16, after the historiography build: **576 passed**, about
+8 minutes (550 before; the new ones in test_registry_v17 and test_historiography,
+including a rolled-back store of a page's historiography).
 
 If many live tests fail at once, check that Neo4j is running before reading
 the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 
 ## 7. Next steps
 
-**Start here next session (curator's go-ahead given 2026-11-16):** build the
-historiography design, [44](44-HISTORIOGRAPHY-AND-DEBATES.md), steps 1 to 4:
+**Start here next session:** historiography is built and stored (§3b, D-156). Next is
+the paid Lange reading, **only with the curator's go-ahead for that run**:
+`CHRYSTALLUM_BUDGET=actium python -m GraphRevised.proposals.article_reader lange-2011
+--inquiry GraphRevised/inquiries/actium-battle.json --pages 608-609 --read` first
+(validated, rolled back), then `--submit`. The steps as planned, for reference:
 
 1. registry v17: kinds `Question` and `Position`; predicates `about`, `answers`,
    `holds` (with stance), `rejects`, `hadReception` (time span, reception value);

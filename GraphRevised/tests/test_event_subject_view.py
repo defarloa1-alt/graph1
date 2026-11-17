@@ -76,6 +76,7 @@ def test_selected_child_must_be_linked_and_is_passed_through(monkeypatch):
     captured = []
     monkeypatch.setattr(event_subject_view, "build_with_source_timeline",
                         lambda tx, inquiry, **kwargs: captured.append(kwargs) or {})
+    monkeypatch.setattr(event_subject_view, "add_debates", lambda tx, view: None)
 
     class ChildTx:
         def __init__(self, rows):

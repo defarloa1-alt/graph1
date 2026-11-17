@@ -42,23 +42,26 @@ All domain entities carry:
 | `sourceNote` | String | Optional | Local provenance note |
 | `decidedAt`, `decidedBy`, `decisionBasis` | String | Optional | Curator decision metadata |
 | `when`, `where`, `partOf` | String | Derived | Fact-layer display summaries (D-144): one answer with who says it. Display text only, never a date or a claim; rebuilt by `export.fact_layer` |
+| `history` | String | Derived | On a Position only (44): who held and rejected it, when, its reception, and whose report it is, in words; never a count of evidence. Rebuilt by `export.fact_layer` |
 
 Approved labels are:
 
-| Node label | Type-specific properties | Meaning |
-|---|---|---|
-| `Entity:Person` | `gender`, `birthName`, `nameVariants` | Individual person |
-| `Entity:Place` | `placeType`, `latitude`, `longitude`, `coordinatePrecision`, `modernCountry` | Historical or geographic place |
-| `Entity:Event` | `eventType` | Event, including depicted events and phases |
-| `Entity:Group` | `groupType` | Fleet, army, faction, or other collective |
-| `Entity:Work` | `workType`, `language`, `form`, `standing` (`primary`, `secondary`, `tertiary`; with `standingSetAt`, `standingSetBy`, `standingBasis`, `standingPrevious`, `standingConfirmedAt`, `standingConfirmedBy`) | Source, text, creative work, or dataset. `standing` (D-148, 42): ancient source, modern study, or reference work; a Work without one counts as reference |
-| `Entity:Object` | `objectType`, `material` | Material or physical object |
-| `Entity:Period` | `periodType` | Historical interval or framework |
-| `Entity:Office` | `officeType` | Position or institutional post |
-| `Entity:Concept` | `conceptType` | Analytical idea or frame |
-| `Entity:Polity` | `polityType` | State or political entity |
-| `Entity:Type` | `typeCategory` | Role, unit type, organizational pattern, power, or status (registry v15 `typeCategories`; set with `set_type_category`, D-141) |
-| `Entity:Other` | `otherType` | Domain entity not otherwise classified |
+| Node label        | Type-specific properties                                                                                                                                                                                  | Meaning                                                                                                                                                  |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Entity:Person`   | `gender`, `birthName`, `nameVariants`                                                                                                                                                                     | Individual person                                                                                                                                        |
+| `Entity:Place`    | `placeType`, `latitude`, `longitude`, `coordinatePrecision`, `modernCountry`                                                                                                                              | Historical or geographic place                                                                                                                           |
+| `Entity:Event`    | `eventType`                                                                                                                                                                                               | Event, including depicted events and phases                                                                                                              |
+| `Entity:Group`    | `groupType`                                                                                                                                                                                               | Fleet, army, faction, or other collective                                                                                                                |
+| `Entity:Work`     | `workType`, `language`, `form`, `standing` (`primary`, `secondary`, `tertiary`; with `standingSetAt`, `standingSetBy`, `standingBasis`, `standingPrevious`, `standingConfirmedAt`, `standingConfirmedBy`) | Source, text, creative work, or dataset. `standing` (D-148, 42): ancient source, modern study, or reference work; a Work without one counts as reference |
+| `Entity:Object`   | `objectType`, `material`                                                                                                                                                                                  | Material or physical object                                                                                                                              |
+| `Entity:Period`   | `periodType`                                                                                                                                                                                              | Historical interval or framework                                                                                                                         |
+| `Entity:Office`   | `officeType`                                                                                                                                                                                              | Position or institutional post                                                                                                                           |
+| `Entity:Concept`  | `conceptType`                                                                                                                                                                                             | Analytical idea or frame                                                                                                                                 |
+| `Entity:Polity`   | `polityType`                                                                                                                                                                                              | State or political entity                                                                                                                                |
+| `Entity:Question` | none                                                                                                                                                                                                      | A historical question scholars answer differently, `about` an Event, Person, Group, Polity or Period (registry v17, D-153)                               |
+| `Entity:Position` | none                                                                                                                                                                                                      | One answer to a Question (`answers`), shared by the Works that `holds` or `rejects` it; its reception is `hadReception` (registry v17, D-153)            |
+| `Entity:Type`     | `typeCategory`                                                                                                                                                                                            | Role, unit type, organizational pattern, power, or status (registry v15 `typeCategories`; set with `set_type_category`, D-141)                           |
+| `Entity:Other`    | `otherType`                                                                                                                                                                                               | Domain entity not otherwise classified                                                                                                                   |
 
 Type-specific properties are intentionally small. Dates, membership,
 authorship, ownership, locations, and other source-sensitive facts belong in
@@ -106,6 +109,8 @@ creation; a changed claim is a new Assertion.
 | `quantityMinimum`, `quantityMaximum`, `quantityTypical` | Number | Optional/design | Quantity qualifiers |
 | `quantitySourceExpression` | String | Optional/design | Source wording for quantity |
 | `quantityPrecision` | Enum | Optional | Draft v7, registry v16 (43 §5): `exact`, `approximate`, `round` (set by code when every figure is a multiple of 10 and the draft gives none), `rhetorical` (a reading, reviewed as reasoning); never part of the claim's identity |
+| `stance` | Enum | Optional | Draft v8, registry v17 (44): on `holds` only, `originates`, `adopts`, `modifies`; kept as first given, never part of the claim's identity |
+| `reception` | Enum | Optional | Draft v8, registry v17 (44): on `hadReception`, `dominant`, `contested`, `minority`, `abandoned`; part of the claim's identity (the claim's content) |
 | `supersededFrom`, `supersededAt`, `supersededBy`, `supersedeBasis`, `supersedeReason` | String | Optional | Supersession audit |
 | `reopenedAt`, `reopenedBy`, `reopenBasis` | String | Optional/design | Reopening audit |
 | `retractedAt`, `retractedBy`, `retractBasis`, `retractReason` | String | Optional/design | Retraction audit |

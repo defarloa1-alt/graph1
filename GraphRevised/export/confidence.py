@@ -23,6 +23,10 @@ source's line through its rests-on link; an untraced modern claim and a
 reference work add none. The modern and reference works are named in a
 suffix ("; retold by Weigall"; "; also in Wikipedia"), never hidden.
 
+Positions (44, D-153) are worded apart: `position_history` gives who held and rejected a
+Position, when, and its reception, never a count of evidence; `position_link_wording` says
+whether a `holds` or `rejects` link is the Work's own words or another's report.
+
 Each member carries `lines`: (kind, identity, name) with kind one of
 witness, reconstruction, retold, untraced, reference; and `authors` for
 the interpretive and dispute counts.
@@ -154,3 +158,77 @@ def claim_lines(keys: Iterable[str], basis: str | None, rests_on: Iterable[str],
         else:
             found.append(("reference", who, label))
     return found
+
+
+# --- Positions (44-HISTORIOGRAPHY-AND-DEBATES.md, D-153) ------------------------------------------
+# A Position is never "well attested": how many held a view is not evidence that it is true. Its
+# wording is a history, who held it and who rejected it, when, and how it was received, each part
+# saying whose account it is. A `holds` or `rejects` link says whether the Work states it in its own
+# words or another Work reports it.
+
+POSITION_LINKS = ("holds", "rejects")
+
+
+def position_link_wording(holder: str, voices: Iterable[dict[str, Any]]) -> str:
+    """How a `holds` or `rejects` link is known: `holder` is the Work's id; each live voice gives
+    `work` (the id of the Work it is attributed to) and `name` (how to name that Work)."""
+    own, reporters = False, {}
+    for voice in voices:
+        if voice["status"] not in LIVE:
+            continue
+        if voice["work"] == holder:
+            own = True
+        else:
+            reporters.setdefault(voice["work"], voice["name"])
+    reported = f"reported by {_names(reporters)}" if reporters else ""
+    if own:
+        return "in its own words" + (f"; also {reported}" if reported else "")
+    return reported or "no voice yet"
+
+
+def _year(time: str | None) -> str | None:
+    """"1899 CE" -> "1899"; a BCE year keeps its era."""
+    return time.replace(" CE", "") if time else None
+
+
+_LEADING = {"until", "from", "since", "after", "before", "by", "in", "during", "ever", "throughout", "till"}
+
+
+def _in_sentence(time: str) -> str:
+    """A source's time words inside a sentence: "Until the end ..." -> "until the end ...".
+    Only a leading preposition is lowered, so a proper name ("Augustan times") keeps its capital."""
+    first, _, rest = time.partition(" ")
+    return (first.lower() + (" " + rest if rest else "")) if first.lower() in _LEADING else time
+
+
+def position_history(links: Iterable[dict[str, Any]], receptions: Iterable[dict[str, Any]] = ()) -> str:
+    """A Position's history in words, from its live links and reception claims.
+
+    Each link: {verb: holds|rejects, holder: the Work's id, name: how to name it (its author),
+    time: the claim's time in words or None, start: its start (a day number) or None,
+    ancient: whether the Work is a primary source, reporter: the name of the Work that says so when
+    it is not the holder itself, else None, status}. Each reception: {reception, time, according, status}.
+
+        held by an ancient historian; Scholar A (1807), Scholar B (1899); rejected by Scholar C (1931);
+        dominant from 1899 (according to Scholar D); as reported by Scholar D
+    """
+    live = [link for link in links if link["status"] in LIVE]
+    parts = []
+    for verb, words in (("holds", "held by"), ("rejects", "rejected by")):
+        chosen = sorted({(link["holder"], link["verb"]): link for link in live if link["verb"] == verb}.values(),
+                        key=lambda link: (not link.get("ancient"), link.get("start") is None,
+                                          link.get("start") or 0, link["name"]))
+        if not chosen:
+            continue
+        ancient = [link["name"] for link in chosen if link.get("ancient")]
+        modern = [link["name"] + (f" ({_year(link['time'])})" if link.get("time") else "")
+                  for link in chosen if not link.get("ancient")]
+        parts.append(f"{words} " + "; ".join(group for group in (", ".join(ancient), ", ".join(modern)) if group))
+    for reception in receptions:
+        if reception["status"] in LIVE:
+            parts.append(reception["reception"] + (f" {_in_sentence(_year(reception['time']))}" if reception.get("time") else "")
+                         + (f" (according to {reception['according']})" if reception.get("according") else ""))
+    reporters = sorted({link["reporter"] for link in live if link.get("reporter")})
+    if reporters:
+        parts.append("as reported by " + ", ".join(reporters))
+    return "; ".join(parts) if parts else "no holder recorded yet"

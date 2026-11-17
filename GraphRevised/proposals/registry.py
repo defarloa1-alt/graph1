@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v16.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v17.json"
 
 Requirement = Literal["none", "optional", "required"]
 TimeRequirement = Literal["none", "optional", "required", "withRole"]
@@ -35,6 +35,8 @@ class Qualifiers:
     role: Requirement = "none"
     time: TimeRequirement = "none"
     quantity: Requirement = "none"
+    stance: Requirement = "none"  # holds: originates, adopts, modifies (registry v17)
+    reception: Requirement = "none"  # hadReception: dominant, contested, minority, abandoned (registry v17)
 
 
 @dataclass(frozen=True)
@@ -81,6 +83,8 @@ class PredicateRegistry:
     work_forms: frozenset[str] = frozenset()
     type_categories: frozenset[str] = frozenset()  # a Type's typeCategory (D-039)
     creative_forms: frozenset[str] = frozenset()  # a claim attributed to a Work of one of these forms is imaginative
+    stances: tuple[str, ...] = ()  # how a Work holds a Position (v17)
+    receptions: tuple[str, ...] = ()  # how a Position stood in scholarship over a span (v17)
 
     def get(self, predicate_id: str) -> PredicateDefinition | None:
         return self.predicates.get(predicate_id)
@@ -133,6 +137,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
         work_forms=frozenset(data.get("workForms", ())),
         creative_forms=frozenset(data.get("creativeForms", ())),
         type_categories=frozenset(data.get("typeCategories", ())),
+        stances=tuple(data.get("stances", ())),
+        receptions=tuple(data.get("receptions", ())),
     )
 
 
@@ -168,6 +174,8 @@ def qualifier_signature(draft: ProposalDraft) -> dict[str, Any]:
             signature["time"] = {"sourceExpression": time.source_expression}
     if draft.quantity is not None:
         signature["quantity"] = draft.quantity.signature()
+    if draft.reception is not None:  # the stance is not: it never makes a different claim
+        signature["reception"] = draft.reception
     return signature
 
 

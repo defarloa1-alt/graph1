@@ -51,6 +51,8 @@ GraphRevised/Connections.txt
 *.sqlite
 *.sqlite3
 data/
+# ...but not the explorer's data contract (TypeScript types, not data)
+!GraphRevised/explorer/app/src/data/
 
 # Large data dumps
 FAST/*.marcxml

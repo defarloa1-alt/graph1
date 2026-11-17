@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-DRAFT_SCHEMA_VERSION = "proposal-draft-v7"
+DRAFT_SCHEMA_VERSION = "proposal-draft-v8"
 LOCAL_ID_PATTERN = r"^chr:[a-z]+:[A-Za-z0-9._:-]+$"
 # An ISO 8601 duration from the context event: P4D (the fifth day), PT6H.
 DURATION_PATTERN = r"^P(\d+Y)?(\d+M)?(\d+W)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$"
@@ -23,12 +23,13 @@ class Quotation(BaseModel):
 
 class QualifierQuotation(BaseModel):
     """The verbatim span that shows one qualifier: the role, the time, the
-    context event, or the quantity. Shorter spans are allowed ("cos. 32")."""
+    context event, the quantity, the stance, or the reception. Shorter spans
+    are allowed ("cos. 32")."""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     observation_id: str = Field(pattern=LOCAL_ID_PATTERN)
-    supports: Literal["role", "time", "context", "quantity"]
+    supports: Literal["role", "time", "context", "quantity", "stance", "reception"]
     text: str = Field(min_length=3, max_length=1500)
 
 
@@ -128,7 +129,8 @@ class ProposalDraft(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    schema_version: Literal["proposal-draft-v4", "proposal-draft-v5", "proposal-draft-v6", "proposal-draft-v7"] = DRAFT_SCHEMA_VERSION
+    schema_version: Literal["proposal-draft-v4", "proposal-draft-v5", "proposal-draft-v6", "proposal-draft-v7",
+                            "proposal-draft-v8"] = DRAFT_SCHEMA_VERSION
     predicate: str = Field(min_length=1)
     subject_id: str = Field(pattern=LOCAL_ID_PATTERN)
     object_id: str | None = Field(default=None, pattern=LOCAL_ID_PATTERN)
@@ -148,6 +150,10 @@ class ProposalDraft(BaseModel):
     role_id: str | None = Field(default=None, pattern=LOCAL_ID_PATTERN)
     time: TimeQualifier | None = None
     quantity: QuantityQualifier | None = None
+    # Draft v8 (registry v17, 44): how a Work holds a Position, which never makes a different claim;
+    # and how a Position stood in scholarship over the claim's span, which is the claim's content.
+    stance: Literal["originates", "adopts", "modifies"] | None = None
+    reception: Literal["dominant", "contested", "minority", "abandoned"] | None = None
     qualifier_quotations: tuple[QualifierQuotation, ...] = ()
 
     @model_validator(mode="after")

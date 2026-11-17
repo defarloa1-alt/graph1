@@ -70,6 +70,32 @@ class SpendMeterTests(unittest.TestCase):
         self.assertEqual(Decimal(entry["costUSD"]), Decimal("0.014"))
         self.assertEqual(self.meter().spent, Decimal("0.014"))
 
+    def test_a_billed_reply_that_fails_to_parse_is_logged_at_its_ceiling(self):
+        client = FakeClient()
+
+        def unparsable(**kwargs):
+            client.calls += 1
+            raise ValueError("Invalid JSON: EOF while parsing")
+        client.beta = SimpleNamespace(messages=SimpleNamespace(parse=unparsable))
+        with self.assertRaises(ValueError):
+            MeteredClient(client, self.meter()).beta.messages.parse(**REQUEST)
+        [entry] = read_ledger(self.ledger)
+        self.assertTrue(entry["estimated"])
+        self.assertEqual(Decimal(entry["costUSD"]), ceiling("claude-opus-5-5", REQUEST))
+
+    def test_a_refused_request_is_not_logged(self):
+        import anthropic
+        import httpx
+        client = FakeClient()
+        response = httpx.Response(400, request=httpx.Request("POST", "https://example.invalid"))
+
+        def refused(**kwargs):
+            raise anthropic.BadRequestError("grammar too large", response=response, body=None)
+        client.beta = SimpleNamespace(messages=SimpleNamespace(parse=refused))
+        with self.assertRaises(anthropic.BadRequestError):
+            MeteredClient(client, self.meter()).beta.messages.parse(**REQUEST)
+        self.assertEqual(read_ledger(self.ledger), [])
+
     def test_refuses_when_the_ceiling_would_pass_the_cap(self):
         client = FakeClient()
         metered = MeteredClient(client, self.meter(cap="0.03"))

@@ -156,6 +156,25 @@ class Meter:
             f.write(json.dumps(entry) + "\n")
         return cost
 
+    def record_estimate(self, request: dict[str, Any], top: Decimal, reason: str) -> Decimal:
+        """A billed call whose usage is unknown: logged at its ceiling, marked estimated."""
+        self.spent += top
+        entry = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "budget": self.budget,
+                 "run": self.run, "model": request["model"], "costUSD": str(top.quantize(Decimal("0.000001"))),
+                 "ceilingUSD": str(top.quantize(Decimal("0.000001"))), "estimated": True, "failure": reason}
+        self.ledger.parent.mkdir(parents=True, exist_ok=True)
+        with self.ledger.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(entry) + "\n")
+        return top
+
+
+def _is_api_status_error(error: Exception) -> bool:
+    try:
+        import anthropic
+    except ImportError:  # pragma: no cover
+        return False
+    return isinstance(error, (anthropic.APIStatusError, anthropic.APIConnectionError))
+
 
 class _Messages:
     def __init__(self, inner: Any, meter: Meter):
@@ -165,7 +184,15 @@ class _Messages:
         if kwargs.get("stream"):
             raise BudgetRefused("Streaming calls are not metered yet; no model call made.")
         top = self._meter.reserve(kwargs)
-        response = getattr(self._inner, method)(**kwargs)
+        try:
+            response = getattr(self._inner, method)(**kwargs)
+        except Exception as error:
+            # A refused request (an API status error, such as a 400) is not billed. Any other failure
+            # came after the model answered (a reply that does not parse): billed, usage unknown, so it
+            # is logged at its ceiling, marked estimated, to overstate rather than miss it (2026-11-16).
+            if not _is_api_status_error(error):
+                self._meter.record_estimate(kwargs, top, type(error).__name__)
+            raise
         self._meter.record(kwargs, response, top)
         return response
 

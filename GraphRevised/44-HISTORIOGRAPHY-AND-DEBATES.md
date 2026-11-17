@@ -1,9 +1,9 @@
 ---
-status: decided 2026-11-15 (D-153; §5 answers recorded); nothing built
+status: decided 2026-11-15 (D-153; §5 answers recorded); steps 1-4 and storing built 2026-11-16 (§7), not yet run
 authority: curator, 2026-11-15: "the focus is not only on classic texts, but in historical thinking about it"
 depends_on: [42-CORROBORATION-AND-CLAIM-KINDS.md, 39-LENS-SPECIALISTS.md, 43-ACTIUM-MILITARY-FRAME.md]
 superseded_by: null
-last_reviewed: 2026-11-15
+last_reviewed: 2026-11-16
 ---
 
 # 44 — Historical Thinking: Questions, Positions, and Who Held Them
@@ -147,3 +147,46 @@ reception values); the lens prompt's historiography section; the attestation
 wording for positions in export/confidence.py; Question and Position in the
 fact layer and the explorer; the seeding of cited scholars and their works. Then
 the Lange reading (paid, small, with the curator's go-ahead).
+
+## 7. Built (2026-11-16, D-156)
+
+1. **Registry v17, draft v8.** Kinds `Question`, `Position`; predicates `about`,
+   `answers` (asserted or attributed), `holds`, `rejects`, `hadReception`
+   (attributed only), all interpretive. `stance` and `reception` are draft
+   qualifiers: the reception is part of the claim's identity, the stance is not
+   (like a quantity's precision). A stance or reception drawn from a passage needs
+   its own quotation. Tests: `tests/test_registry_v17.py`.
+2. **Wording.** `export/confidence.py`: `position_history` (a Position's history:
+   held by, rejected by, with years; its reception; "as reported by" the reporting
+   Works; never "attested") and `position_link_wording` (a `holds` or `rejects`
+   line is "in its own words" or "reported by" a Work). Works are named by author.
+3. **Fact layer and explorer.** A Question is `ABOUT` its event, one hop. A
+   Position carries `history` (fact layer) and `timeline` and `receptions` (the
+   export); ancient holders first, then by date. The explorer's data contract
+   (`explorer/app/src/data/types.ts`) has the shapes; the timeline's design waits
+   for Figma.
+4. **Lens prompt.** Rule 18 and a packet block (the Questions, Positions and holder
+   Works already known) in `proposals/historiography.py`, used by the reader when
+   an inquiry carries `historiography`; the output gains a `historiography`
+   section. The five predicates are left out of the general predicate guide.
+   `to_historiography` turns the output into proposed Questions and Positions and
+   drafts attributed to the Work read. A holder not held as a Work is listed for
+   the curator, never invented. Licensed pages are never stored: each draft cites
+   a transcription, the shortest span of the page holding its quotations (at most
+   600 characters), checked verbatim against the page at reading time.
+5. **Storing and the runner** (curator: 600 characters is fine, 2026-11-16).
+   `store_historiography` writes the transcriptions (private, with a rights note),
+   proposes each Question and Position through `propose_entity` (a same-named one is
+   reused), and submits the drafts through `proposals/store`: everything proposed.
+   [proposals/article_reader.py](proposals/article_reader.py) reads a licensed
+   article page by page:
+
+       python -m GraphRevised.proposals.article_reader lange-2011 \
+           --inquiry GraphRevised/inquiries/actium-battle.json --pages 608-609 [--read [--submit]]
+
+   Without `--read`, a dry run (no call; worst case $0.90 for the two pages with
+   Sonnet, before caching). `--read` calls the model through the spend meter (a
+   budget must be named) and validates in a rolled-back transaction; `--submit`
+   stores and rebuilds the fact layer. The lens's own claims are stored the same way,
+   each on a transcription; notes, depicted events and unresolved mentions are logged
+   to `runs/`, not stored. The log holds quotations, never the page.

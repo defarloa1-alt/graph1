@@ -81,7 +81,7 @@ OPTIONAL MATCH (existing:Entity {id: $id})
 WITH existing
 WHERE $kind IN [
   "Person", "Place", "Event", "Group", "Work", "Object", "Period",
-  "Office", "Concept", "Polity", "Type", "Other"
+  "Office", "Concept", "Polity", "Type", "Question", "Position", "Other"
 ]
 AND (existing IS NULL OR $kind IN labels(existing))
 MERGE (node:Entity {id: $id})
@@ -106,6 +106,8 @@ FOREACH (_ IN CASE WHEN $kind = "Office" THEN [1] ELSE [] END | SET node:Office)
 FOREACH (_ IN CASE WHEN $kind = "Concept" THEN [1] ELSE [] END | SET node:Concept)
 FOREACH (_ IN CASE WHEN $kind = "Polity" THEN [1] ELSE [] END | SET node:Polity)
 FOREACH (_ IN CASE WHEN $kind = "Type" THEN [1] ELSE [] END | SET node:Type)
+FOREACH (_ IN CASE WHEN $kind = "Question" THEN [1] ELSE [] END | SET node:Question)
+FOREACH (_ IN CASE WHEN $kind = "Position" THEN [1] ELSE [] END | SET node:Position)
 FOREACH (_ IN CASE WHEN $kind = "Other" THEN [1] ELSE [] END | SET node:Other)
 RETURN node;
 
@@ -482,7 +484,10 @@ RETURN assertion;
 // ---------------------------------------------------------------------------
 
 // Create or reuse a qualified Assertion: one with a mode other than asserted,
-// a context, a role, a time, a quantity, or no object (a unary predicate).
+// a context, a role, a time, a quantity, a stance or reception (registry v17),
+// or no object (a unary predicate). The reception is part of what the claim
+// says, so a retry cannot change it; the stance, like a quantity's precision,
+// is kept as first given.
 // Like upsert_assertion, it is created `proposed`, and its predicate,
 // endpoints, mode, qualifier links, normalized time, and quantity are fixed at
 // creation: a retry that changes any of them is refused. Every named node must
@@ -515,7 +520,8 @@ WHERE existing IS NULL
        AND coalesce(existing.timeMode, "") = coalesce($timeMode, "")
        AND coalesce(existing.quantityMinimum, -1) = coalesce($quantityMinimum, -1)
        AND coalesce(existing.quantityMaximum, -1) = coalesce($quantityMaximum, -1)
-       AND coalesce(existing.quantityTypical, -1) = coalesce($quantityTypical, -1))
+       AND coalesce(existing.quantityTypical, -1) = coalesce($quantityTypical, -1)
+       AND coalesce(existing.reception, "") = coalesce($reception, ""))
 OPTIONAL MATCH (subjectNode:Entity {id: $subjectId})
 OPTIONAL MATCH (objectNode:Entity {id: $objectId})
 OPTIONAL MATCH (contextNode:Entity {id: $contextId})
@@ -555,7 +561,9 @@ ON CREATE SET
   assertion.quantityMaximum = $quantityMaximum,
   assertion.quantityTypical = $quantityTypical,
   assertion.quantitySourceExpression = $quantitySourceExpression,
-  assertion.quantityPrecision = $quantityPrecision
+  assertion.quantityPrecision = $quantityPrecision,
+  assertion.stance = $stance,
+  assertion.reception = $reception
 ON MATCH SET
   assertion.label = coalesce($label, assertion.label),
   assertion.shortLabel = coalesce($shortLabel, assertion.shortLabel)
@@ -998,7 +1006,7 @@ RETURN image;
 // Work (moving to Work is allowed). Records the previous kind and who
 // decided, with the basis. A retry with the same target kind changes nothing.
 MATCH (entity:Entity {id: $id})
-WHERE $kind IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Other"] AND $from IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Other"] AND $kind <> $from
+WHERE $kind IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Question", "Position", "Other"] AND $from IN ["Person", "Place", "Event", "Group", "Work", "Object", "Period", "Office", "Concept", "Polity", "Type", "Question", "Position", "Other"] AND $kind <> $from
   AND ($from IN labels(entity) OR ($kind IN labels(entity) AND entity.previousKind = $from))
   AND NOT EXISTS {
     MATCH (claim:Assertion)-[:ASSERTION_SUBJECT|ASSERTION_OBJECT|ASSERTION_ROLE|ASSERTION_CONTEXT]->(entity)
@@ -1025,6 +1033,8 @@ FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Office" THEN [1] ELSE [] END | 
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Concept" THEN [1] ELSE [] END | REMOVE entity:Concept)
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Polity" THEN [1] ELSE [] END | REMOVE entity:Polity)
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Type" THEN [1] ELSE [] END | REMOVE entity:Type)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Question" THEN [1] ELSE [] END | REMOVE entity:Question)
+FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Position" THEN [1] ELSE [] END | REMOVE entity:Position)
 FOREACH (_ IN CASE WHEN NOT isRetry AND $from = "Other" THEN [1] ELSE [] END | REMOVE entity:Other)
 FOREACH (_ IN CASE WHEN $kind = "Person" THEN [1] ELSE [] END | SET entity:Person)
 FOREACH (_ IN CASE WHEN $kind = "Place" THEN [1] ELSE [] END | SET entity:Place)
@@ -1037,6 +1047,8 @@ FOREACH (_ IN CASE WHEN $kind = "Office" THEN [1] ELSE [] END | SET entity:Offic
 FOREACH (_ IN CASE WHEN $kind = "Concept" THEN [1] ELSE [] END | SET entity:Concept)
 FOREACH (_ IN CASE WHEN $kind = "Polity" THEN [1] ELSE [] END | SET entity:Polity)
 FOREACH (_ IN CASE WHEN $kind = "Type" THEN [1] ELSE [] END | SET entity:Type)
+FOREACH (_ IN CASE WHEN $kind = "Question" THEN [1] ELSE [] END | SET entity:Question)
+FOREACH (_ IN CASE WHEN $kind = "Position" THEN [1] ELSE [] END | SET entity:Position)
 FOREACH (_ IN CASE WHEN $kind = "Other" THEN [1] ELSE [] END | SET entity:Other)
 RETURN entity;
 
