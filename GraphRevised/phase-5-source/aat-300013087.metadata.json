@@ -1,0 +1,8 @@
+{
+ "aat": "300013087",
+ "sourceUri": "https://vocab.getty.edu/sparql.json",
+ "query": "\nSELECT ?c ?label ?type ?parent ?note WHERE {\n  aat:300013087 gvp:broaderPreferred* ?c .\n  ?c gvp:prefLabelGVP/xl:literalForm ?label ; a ?type .\n  FILTER(?type IN (gvp:Concept, gvp:GuideTerm, gvp:Hierarchy, gvp:Facet))\n  OPTIONAL { ?c gvp:broaderPreferred ?parent }\n  OPTIONAL { ?c skos:scopeNote/rdf:value ?note . FILTER(lang(?note) = \"en\") }\n}",
+ "retrievedAt": "2026-11-18T20:02:22+00:00",
+ "contentHash": "b4240fdcc369f12eaea4332fb126ababe2d062c5e99f1c49600c87b05f3655f8",
+ "rights": "Open Data Commons Attribution License 1.0 (http://opendatacommons.org/licenses/by/1.0/), as each AAT record states; attribution: The J. Paul Getty Trust, Art & Architecture Thesaurus"
+}

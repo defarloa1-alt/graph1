@@ -1,0 +1,142 @@
+{
+  "head" : {
+    "vars" : [ "c", "label", "type", "parent", "note" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300130257"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "purple (color)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300311120"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Hue name for the colors intermediate between red and blue, originally the colors derived from a crimson mollusk dye."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300311120"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "purple colors"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300131648"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "A range of purple colors resembling the color of purple pigment."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300131648"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "chromatic colors"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300080438"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Colors which have hue. All colors have hue except for black, white, and shades of grey. "
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300080438"
+      },
+      "label" : {
+        "xml:lang" : "en-us",
+        "type" : "literal",
+        "value" : "colors (hues or tints)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300131647"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Refers to individual hues or tints, particularly the chromatic colors in the spectrum and the achromatic colors or neutrals. With reference to color in theory and the science of perception, see \"color (perceived attribute).\""
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300131647"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Color (hierarchy name)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Hierarchy"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264087"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "The Color hierarchy contains terms for the names of colors, and for color in the sense of qualities perceived through vision responding to different wavelengths of light. Also included are terms for types of color (e.g., \"cool colors\") and color-related phenomena (e.g., \"color mixture\"). Descriptors for color names are drawn from the Universal Color Language (UCL), U.S. Department of Commerce, National Bureau of Standards. Centroid color numbers, which refer the user to the appropriate color-blocks on the Inter-Society Color Council and National Bureau of Standards color name charts, are also provided. Color designations that are near-synonyms, but not true synonyms, are placed in a separate concept record and linked as Associative Relationships. Relation to other hierarchies: Terms for inherent physical characteristics other than color but which may relate to color (e.g., permanence) are in the Attributes and Properties hierarchy. Terms for physical phenomena perceptible in color (e.g., \"abrash,\" \"color shift\") are in the Conditions and Effects hierarchy. Terms for individual and repeating design elements such as signs and symbols, motifs, patterns, and areas of decoration are in the Design Elements hierarchy (e.g., \"crosses,\" \"Tudor roses,\" \"frets\"). Terms for materials used to impart color to physical things (e.g., \"dye,\" \"pigment\") are found in the Materials hierarchy."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264087"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Physical Attributes Facet"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Facet"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Includes terms for the perceptible or measurable characteristics of materials and artifacts as well as features of materials and artifacts that are not separable as components, and needed to catalog visual works. Included are characteristics such as size and shape, chemical properties of materials, qualities of texture and hardness, and features such as surface ornament. Examples borders, round, waterlogged, brittleness."
+      }
+    } ]
+  }
+}

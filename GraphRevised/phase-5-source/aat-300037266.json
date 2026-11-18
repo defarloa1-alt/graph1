@@ -1,0 +1,265 @@
+{
+  "head" : {
+    "vars" : [ "c", "label", "type", "parent", "note" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037266"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "denarii"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300194586"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Roman silver coins originally valued at ten asses, later debased in value and purity; in use from the late 3rd century BCE until the mid-3rd century CE."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300194586"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "as coins"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300204073"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Early Roman copper coins. "
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300204073"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "<Early Western World coins by denomination name>"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#GuideTerm"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300194572"
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300194572"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Early Western World coins"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037223"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Coins of the ancient Western world from the 6th century BCE until the financial restructuring undertaken by the Franks and Arabs in the 7th and 8th centuries CE; includes Greece, Rome, and the Near East through the Sassanians."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037223"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "<coins by origin>"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#GuideTerm"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037222"
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037222"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "coins (money)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264712"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Pieces of metal stamped by government authority for use as money."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264712"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "<money by form>"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#GuideTerm"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037316"
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037316"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "money (objects)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300387350"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Objects that serve as media of exchange and are in general circulation, and by common agreement used as payment for goods and services and for the settlement of debts."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300387350"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "exchange media (objects)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037221"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Objects that are used in the exchange of goods and services and in the settlement of debts, and typically assigned a specific value."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300037221"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Exchange Media (hierarchy name)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Hierarchy"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264552"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "The Exchange Media hierarchy contains terms for objects given a specific value to be used in the exchange of goods and services and in the settlement of debts. This includes items usable in a variety of circumstances, whether in general circulation (e.g., \"coins\") or items with a more restricted use, often designated for the exchange of specific goods and services (e.g., \"tickets,\" \"tokens (exchange media)\"). Relation to other hierarchies: Terms for sets of exchange media (e.g., \"plate number blocks\") are found in the Object Groupings and Systems hierarchy. Terms that designate the materials used in fabricating exchange media (e.g., \"cupronickel\") are in the Materials hierarchy, and those describing the ways exchange media are manufactured (e.g., \"minting\") are in the Processes and Techniques hierarchy. In the Information Forms hierarchy are terms for the various identifying symbols or abbreviations found on various types of exchange medium (e.g., \"mintmarks\"), as well as terms for business and financial records (e.g., \"stock certificates\")."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264552"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Visual and Verbal Communication (hierarchy name)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Hierarchy"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264092"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "The Visual and Verbal Communication hierarchy contains terms for works, including images and written documents, having the primary and original function to communicate ideas, concepts, or aesthetic experience through visual, verbal, or performance-based media (e.g., \"books,\" \"diptychs,\" \"symphonies (musical works)\"). Although almost any artifact can be considered to communicate visually something about its maker, its origin, or its use, this section concerns those items originally produced with the purpose of transmitting an informational, symbolic, or aesthetic message."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264092"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Objects Facet"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Facet"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Includes terms for discrete tangible or visible things that are inanimate and produced by human endeavor; that is, that are either fabricated or given form by human activity. These range, in physical form, from built works to images and written documents. They range in purpose from utilitarian to the aesthetic. Also included are landscape features that provide the context for the built environment  paintings, amphorae, facades, cathedrals, Brewster chairs, gardens."
+      }
+    } ]
+  }
+}

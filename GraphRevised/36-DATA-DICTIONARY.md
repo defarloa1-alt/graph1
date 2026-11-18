@@ -173,11 +173,11 @@ Represents an external identifier record, not accepted local truth.
 | `label` | String | Required | External record caption |
 | `shortLabel` | String | Optional | Compact caption |
 | `description` | String | Optional | Preserved authority wording |
-| `retrievedAt` | String | Required | Retrieval time |
+| `retrievedAt` | String | Optional | Retrieval time; absent on an LC heading stub until fetched (D-161) |
 | `sourceRevision` | Integer | Optional | External revision |
 | `sourceUri` | String | Optional | External record URI |
-| `contentHash` | String | Required | Preserved-content hash |
-| `rawPayloadUri` | String | Required | Raw payload location |
+| `contentHash` | String | Optional | Preserved-content hash; as `retrievedAt` |
+| `rawPayloadUri` | String | Optional | Raw payload location; as `retrievedAt` |
 | `license` | String | Optional | Source license |
 | `formerId` | String | Optional | Previous identifier |
 | `mergedIds` | List<String> | Optional | Merged identifiers |
@@ -233,6 +233,20 @@ The off-canvas Pleiades and GeoNames geographic backbone.
 | `placeTypes` | List<String> | Optional | Pleiades types |
 | `population` | Integer | Optional | GeoNames population |
 
+### 2.10 Predicate registry nodes (D-159)
+
+A copy of the predicate registry, drawn by `proposals/registry_graph.py`; the
+file is the source ([30](30-LOGICAL-MODEL.md) §3.3).
+
+| Label | Property | Type | Required | Meaning |
+|---|---|---|---|---|
+| PredicateRegistry | `id`, `version`, `label`, `current`, `contentHash`, `sourcePath`, `loadedAt` | String; `current` Boolean | Required | One registry version: `chr:registry:<version>`; `current` on the newest; the file's hash and path |
+| PredicateRegistry | `shortLabel`, `roleKind`, `predicateCount`, `kindCount` | String; Integer | Optional | The default role kind; counts |
+| Predicate | `id`, `name`, `label`, `category`, `modes`, `symmetric`, `once`, `unary`, `factLayerType`, `registryVersion`, `status` | String; `modes` List; Booleans | Required | `chr:predicate:<name>`; `name` = `Assertion.predicate`; `label` the display phrase; `factLayerType` its fact-layer edge; `status` current or retired |
+| Predicate | `context`, `role`, `time`, `quantity`, `stance`, `reception` | Enum | Required | The qualifier rules: none, optional, required, withRole (time) |
+| Predicate | `definition`, `kindPairs`, `wikidata`, `retiredIn`, `shortLabel` | String; Lists | Optional | `kindPairs` as "Event -> Event"; `wikidata` as "P361 forward" (with a bound) |
+| EntityKind | `id`, `name`, `label`, `status`, `registryVersion` | String | Required | `chr:kind:<name>`; `name` = the Neo4j subtype label |
+
 ## 3. Stored relationships
 
 Relationship properties are listed after the arrow.
@@ -268,6 +282,8 @@ Relationship properties are listed after the arrow.
 | `AT_LOCATION` | Entity/Place → Location | `status`, `basis` | Place-to-gazetteer crosswalk |
 | `WITHIN` | Location → Location | `tree`, `relation`, optional `periods` | Ancient or modern containment |
 | `MODERN_LOCATION` | Location → Location | `how`, optional `viaId`, `viaLabel`, `distanceKm` | Ancient-to-modern bridge |
+| `DEFINES_PREDICATE`, `DEFINES_KIND` | PredicateRegistry → Predicate, EntityKind | — | The registry version defines it (D-159) |
+| `SUBJECT_KIND`, `OBJECT_KIND`, `CONTEXT_KIND`, `ROLE_KIND` | Predicate → EntityKind | — | The kinds a predicate may take at each end, as context, or as role; context and role drawn only when the predicate allows them |
 
 ## 4. Invariants and constraints
 

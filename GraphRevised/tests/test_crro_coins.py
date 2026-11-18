@@ -1,7 +1,7 @@
 """Reading a coin series' named units from CRRO legends (D-151). Offline."""
 import unittest
 
-from GraphRevised.harvest.crro_coins import edtf_year, roman, unit
+from GraphRevised.harvest.crro_coins import edtf_year, physical_text, roman, unit
 
 
 class CoinLegendTests(unittest.TestCase):
@@ -24,6 +24,13 @@ class CoinLegendTests(unittest.TestCase):
         self.assertIsNone(unit("ANT AVG"))
         self.assertEqual(unit("SCARPVS IMP LEG VIII")["key"], "legion-8")  # a legate's name before the unit
         self.assertIsNone(unit("SCARPVS IMP"))
+
+    def test_a_physical_record_quotes_denomination_and_metal(self):
+        text, denomination, material = physical_text(
+            {"label": "RRC 544/14", "denomination": "denarius", "material": "ar"}, {"denarius": "denarius", "ar": "silver"})
+        self.assertEqual(denomination, "Denomination: denarius (nomisma.org/id/denarius)")
+        self.assertEqual(material, "Material: silver (nomisma.org/id/ar)")
+        self.assertTrue(denomination in text and material in text)
 
     def test_bc_years_to_edtf(self):
         self.assertEqual(edtf_year(32), "-0031")

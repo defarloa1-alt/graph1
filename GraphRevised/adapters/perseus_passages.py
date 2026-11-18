@@ -199,6 +199,60 @@ MARKUP_RIGHTS = ("TEI markup CC BY-SA 4.0, Perseus Digital Library, Tufts Univer
                  "file requires attribution and the same licence.")
 
 
+XML_ENTITIES = {"amp", "lt", "gt", "quot", "apos"}
+# Perseus's own use where it differs from HTML5: &cdot; is a decimal point (Pliny's tables, "87&cdot;9705"),
+# not HTML5's c with a dot above.
+PERSEUS_ENTITIES = {"cdot": "·"}
+
+
+def resolve_entities(payload: bytes) -> tuple[bytes, list[str]]:
+    """Replace HTML named entities an edition uses without declaring them (&mdash;) with their characters.
+
+    Returns the payload and the entity names replaced. XML's own five are left alone."""
+    import html.entities
+
+    text, replaced = payload.decode("utf-8"), set()
+
+    def swap(match: re.Match) -> str:
+        name = match.group(1)
+        character = PERSEUS_ENTITIES.get(name) or html.entities.html5.get(name + ";")
+        if name in XML_ENTITIES or character is None:
+            return match.group(0)
+        replaced.add(name)
+        return character
+
+    text = re.sub(r"&([A-Za-z][A-Za-z0-9]*);", swap, text)
+    return text.encode("utf-8"), sorted(replaced)
+
+
+def from_tei_p4(payload: bytes, edition_urn: str) -> bytes | None:
+    """An older Perseus file (TEI P4: no namespace, div1/div2 divisions) as the P5 shape the reader expects.
+
+    Every element moves into the TEI namespace, numbered divisions become `div`, the text's `lang` becomes
+    `xml:lang`, and the body's divisions are wrapped in an edition `div` named by the edition's URN.
+    Returns None for a file already in the TEI namespace. The words are not touched."""
+    root = ET.fromstring(payload)
+    if root.tag.startswith("{"):
+        return None
+    for element in root.iter():
+        name = element.tag
+        element.tag = TEI + ("div" if re.fullmatch(r"div\d", name) else name)
+    text = root.find(f".//{TEI}text")
+    if text is not None and text.get(XML_LANG) is None:
+        text.set(XML_LANG, text.get("lang") or "en")
+    if "-eng" in edition_urn:  # an English edition of a Latin or Greek work: its unroled editors translated it
+        for editor in root.findall(f".//{TEI}titleStmt/{TEI}editor"):
+            editor.set("role", editor.get("role") or "translator")
+    body = root.find(f".//{TEI}body")
+    edition = ET.Element(f"{TEI}div", {"type": "edition", "n": edition_urn})
+    for child in list(body):
+        body.remove(child)
+        edition.append(child)
+    body.append(edition)
+    ET.register_namespace("", TEI[1:-1])
+    return ET.tostring(root, encoding="utf-8", xml_declaration=True)
+
+
 def public_domain_in_us(year: int, today: datetime | None = None) -> bool:
     """Published more than 95 years before this year (US term for works published 1929 and later)."""
     return year <= (today or datetime.now(timezone.utc)).year - 96
@@ -223,7 +277,9 @@ def preserve_edition(edition_urn: str, directory: Path) -> Path:
     source_uri = f"https://raw.githubusercontent.com/{repository}/{commit}/{file_path}"
     response = requests.get(source_uri, headers={"User-Agent": USER_AGENT}, timeout=120)
     response.raise_for_status()
-    payload = response.content
+    payload, replaced = resolve_entities(response.content)
+    converted = from_tei_p4(payload, edition_urn)
+    payload = converted or payload
     root = ET.fromstring(payload)
     imprint_date = root.find(".//t:sourceDesc//t:imprint/t:date", NS)
     years = [int(y) for y in re.findall(r"\b(1[5-9]\d\d|20\d\d)\b", _text(imprint_date))]
@@ -247,5 +303,12 @@ def preserve_edition(edition_urn: str, directory: Path) -> Path:
         "retrievedAt": datetime.now(timezone.utc).isoformat(),
         "contentHash": hashlib.sha256(payload).hexdigest(),
     }
+    if converted:  # the file kept is the source in the P5 shape, and says so
+        metadata["convertedFrom"] = "TEI P4 (no namespace, div1/div2): elements moved into the TEI namespace, "                                     "divisions renamed div, wrapped in an edition div; an English edition's unroled editors marked translators; "                                     "words untouched"
+    if replaced or converted:
+        metadata["sourceContentHash"] = hashlib.sha256(response.content).hexdigest()
+    if replaced:  # the file kept is the source with undeclared HTML entities resolved, and says so
+        metadata["entitiesResolved"] = replaced
+        metadata["sourceContentHash"] = hashlib.sha256(response.content).hexdigest()
     path.with_suffix(".metadata.json").write_bytes((json.dumps(metadata, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
     return path

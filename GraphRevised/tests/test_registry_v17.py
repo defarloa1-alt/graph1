@@ -2,7 +2,7 @@
 import typing
 import unittest
 
-from GraphRevised.proposals.registry import assertion_id, load_registry, qualifier_signature
+from GraphRevised.proposals.registry import REGISTRY_PATH, assertion_id, load_registry, qualifier_signature
 from GraphRevised.proposals.schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from GraphRevised.proposals.validator import Outcome, validate
 from GraphRevised.tests.test_proposals_offline import FakeReader, entity
@@ -35,7 +35,7 @@ SINCE_1899 = TimeQualifier(source_expression="1899", edtf="1899/..", calendar="g
 
 class RegistryV17Tests(unittest.TestCase):
     def setUp(self):
-        self.registry = load_registry()
+        self.registry = load_registry(REGISTRY_PATH.with_name("predicates.v17.json"))
         self.reader = FakeReader([QUESTION, POSITION, BATTLE, REPORTER, HOLDER], [PASSAGE])
 
     def check(self, d):

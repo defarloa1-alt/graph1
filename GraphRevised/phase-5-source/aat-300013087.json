@@ -1,0 +1,201 @@
+{
+  "head" : {
+    "vars" : [ "c", "label", "type", "parent", "note" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013087"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Tyrian purple (colorant)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013032"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Purple or reddish dye historically made by the ancient Phoenicians using mucus from the hypobranchial gland of either of two species of sea snails.This dye is a rare animal-produced organobromine compound, which the snails make using a specific bromoperoxidase enzyme that operates on dissolved bromide in sea water. Used in Greek and Roman times for dyeing togas and in the Middle Ages for decorating manuscripts. The mollusks secrete a yellowish liquid that oxidizes to a purplish red in bright sunlight; each mollusk only produces one drop of colorant so large numbers were needed to produce enough dye for an entire cloth, making the dye was very expensive."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013032"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "natural dye"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013031"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "A class of dyes extracted from plant and animal sources. Natural dyes can be derived from leaves, branches, fruits, flowers, or roots of some plants, as distinguished from dyes manufactured from artificial chemical processes."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013031"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "<dye by composition or origin>"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#GuideTerm"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013029"
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013029"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "dye"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013026"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Compounds generally made up of complex organic materials that dissolve or are suspended in a liquid that absorbs into and colors another material. Distinguished from pigments, which are insoluble in the vehicle, but instead are held in a suspension."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300013026"
+      },
+      "label" : {
+        "xml:lang" : "en-us",
+        "type" : "literal",
+        "value" : "colorant (material)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300014692"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Any substance capable of or used for coloring another material. A colorant may be a dye or a pigment."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300014692"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "<materials by function>"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#GuideTerm"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300010358"
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300010358"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "materials (substances)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Concept"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300010357"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "The matter or substance from which a thing is or may be made; the tangible substance that goes into the makeup of an art work or other physical object. Physical substances, either naturally or synthetically derived, range from specific materials to types of material. Materials may be designated by their properties, or by function or form. Included are raw materials and processed materials."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300010357"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Materials (hierarchy name)"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Hierarchy"
+      },
+      "parent" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264091"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "The Materials hierarchy contains terms for a broad range of substances, from natural and synthetic raw materials to material products. Material products are included here rather than in the Objects facet because they can be used in the construction of various objects (e.g., \"plank\" for floors or walls), and because they are not necessary constituent  parts of objects (e.g., \"shingle\" is not essential to roofs in  the same way as  roof ridges or eaves). Relation to Other Hierarchies: Terms denoting activities performed on or with materials are found in the Processes and Techniques hierarchy (e.g., \"glassworking\"). Terms for generic object types are found in the Object Genres hierarchy (e.g., \"artifacts (object genres),\" \"images (object genres)\"), while terms for materials themselves are found here (e.g., \"metal,\" \"textile\"). Terms for tools used in  the creation of images (e.g., \"charcoal sticks,\" \"pens\") are in the Tools and Equipment hierarchy, while terms for the materials of which they are made or which they use are found here (e.g., \"charcoal,\" \"ink\")."
+      }
+    }, {
+      "c" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/aat/300264091"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Materials Facet"
+      },
+      "type" : {
+        "type" : "uri",
+        "value" : "http://vocab.getty.edu/ontology#Facet"
+      },
+      "note" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Includes terms for physical substances, whether naturally or synthetically derived. These range from specific materials to types of materials designed by their function, such as colorants, and from raw materials to those that have been formed or processed into products that are used in fabricating structures or objects. Examples: iron, clay, adhesive, emulsifier, artificial ivory, millwork."
+      }
+    } ]
+  }
+}

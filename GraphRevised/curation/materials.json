@@ -1,0 +1,72 @@
+{
+  "_about": "Metals, materials, products and coin denominations to take from the Getty Art & Architecture Thesaurus (AAT, ODC-By 1.0), each with its chain of broader concepts (45, D-160). On demand: a seed is here because a source we hold names it. `label` is our wording; `labels` gives our wording for a concept above a seed where the AAT's, without its qualifier, would mislead; `category` is the seed's typeCategory and `ancestorCategory` that of the concepts above it, unless `categories` names one by AAT id. `nomisma` is the coin records' own id for the seed (a crosswalk). Read by harvest/getty_aat.py.",
+  "seeds": [
+    {
+      "aat": "300011029",
+      "label": "silver",
+      "category": "material",
+      "ancestorCategory": "material",
+      "nomisma": "ar",
+      "why": "the metal of Antony's and Scarpus's denarii and Scarpus's quinarius (CRRO, RRC 544 and 546)"
+    },
+    {
+      "aat": "300011021",
+      "label": "gold",
+      "category": "material",
+      "ancestorCategory": "material",
+      "nomisma": "av",
+      "why": "the metal of Antony's and Scarpus's aurei (CRRO, RRC 544 and 546)"
+    },
+    {
+      "aat": "300037266",
+      "label": "denarius",
+      "category": "denomination",
+      "ancestorCategory": "product",
+      "nomisma": "denarius",
+      "why": "a denomination of RRC 544 and 546"
+    },
+    {
+      "aat": "300192871",
+      "label": "aureus",
+      "category": "denomination",
+      "ancestorCategory": "product",
+      "nomisma": "aureus",
+      "why": "a denomination of RRC 544 and 546"
+    },
+    {
+      "aat": "300037269",
+      "label": "quinarius",
+      "category": "denomination",
+      "ancestorCategory": "product",
+      "nomisma": "quinarius",
+      "why": "a denomination of RRC 546"
+    },
+    {
+      "aat": "300013087",
+      "label": "Tyrian purple",
+      "category": "product",
+      "ancestorCategory": "material",
+      "why": "the dye Pliny describes (Natural History 9.60-9.64, Bostock 1855), made from the purpura and the buccinum"
+    },
+    {
+      "aat": "300014069",
+      "label": "linen",
+      "category": "material",
+      "ancestorCategory": "material",
+      "why": "Pliny's dyed linen (Natural History 19.5, Bostock 1855): the sails of Cleopatra's royal ship at Actium"
+    },
+    {
+      "aat": "300130257",
+      "label": "purple",
+      "category": "colour",
+      "ancestorCategory": "colour",
+      "why": "the colour of Cleopatra's sails at Actium (Pliny, Natural History 19.5)"
+    }
+  ],
+  "labels": {
+    "300194586": "as (coin)"
+  },
+  "categories": {
+    "300194586": "denomination"
+  }
+}

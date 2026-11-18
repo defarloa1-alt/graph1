@@ -38,7 +38,9 @@ from .store import accept
 RULE = "rule: code-made extraction (D-145)"
 RULE_PROPOSERS = ("wikidata-statement-proposer-v1", "period-survey", "polity-span-proposer-v1",
                   "crro-coin-legend",  # what a coin legend literally names (D-151); not the unit's service
-                  "wikidata-reference-proposer-v1")  # a claim as the work a Wikidata statement cites (2026-11-16)
+                  "wikidata-reference-proposer-v1",  # a claim as the work a Wikidata statement cites (2026-11-16)
+                  "getty-aat-hierarchy",  # the AAT's broader concept, from its record (45 §4.3, D-160)
+                  "crro-coin-record")  # a coin record's denomination and metal (45 §5.1, D-160)
 BASIS = ("Accepted by rule: a deterministic proposer drew this claim from structured records alone, "
          "attributed to its source, with no model or agent reasoning to review (D-145).")
 

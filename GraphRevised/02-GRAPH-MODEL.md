@@ -4,7 +4,7 @@ authority: what a thing means and how it is stored (labels, subtype properties, 
 depends_on: []
 details_in: [22-CLAIM-QUALIFIERS.md, 23-NARRATIVE-AND-NOTES.md, 27-GAZETTEER.md, 28-SUBJECT-BUCKETS.md]
 superseded_by: null
-last_reviewed: 2026-10-17
+last_reviewed: 2026-11-18
 ---
 
 # Revised Graph Model
@@ -124,6 +124,9 @@ An AuthorityRecord identifies the external record. It does not automatically
 assert that all data in the record is accepted locally.
 Its `description`, when present, preserves the authority's display wording;
 it is not a replacement for a locally adopted Entity description.
+`retrievedAt`, `contentHash`, and `rawPayloadUri` describe the fetched record
+and are absent until it is fetched: an LC neighbour heading (D-155) is stored
+before its record is read (D-161).
 
 ### External-system roles
 
@@ -334,6 +337,19 @@ Proposal is workflow/audit history that records how an Assertion entered the
 graph; it is not a second historical claim and should be hidden from ordinary
 navigation views unless review history is requested.
 
+### Predicate registry nodes (D-159)
+
+The predicate registry (`proposals/predicates.v19.json`) is the type-level
+model: which entity kinds each predicate joins. The file is its source.
+`proposals/registry_graph.py` also draws the current version into the graph,
+off the canvas: a `PredicateRegistry` node per version loaded (`current: true`
+on the newest), a `Predicate` per predicate (`name` = `Assertion.predicate`),
+and an `EntityKind` per subtype (`name` = the subtype label), joined by
+`SUBJECT_KIND`, `OBJECT_KIND`, `CONTEXT_KIND`, and `ROLE_KIND`. The nodes are a
+copy, rewritten on each sync after a registry bump; a predicate or kind the
+current version drops is marked retired, never deleted. They are never
+evidence, never a claim, and never joined to an Assertion by a relationship.
+
 ## 1.1 Display-label rule
 
 Every first-class node that may appear in a visual graph projection must have
@@ -354,8 +370,8 @@ Relationship direction must be consistent in the stored graph.
 ```text
 (:Subject)-[:HAS_SUBJECT_FOCUS]->(:Entity)
 (:Entity)-[:HAS_AUTHORITY_RECORD]->(:AuthorityRecord)
-(:Assertion)-[:ASSERTION_SUBJECT]->(:Entity|:Subject)
-(:Assertion)-[:ASSERTION_OBJECT]->(:Entity|:Subject|:AuthorityRecord)
+(:Assertion)-[:ASSERTION_SUBJECT]->(:Entity)
+(:Assertion)-[:ASSERTION_OBJECT]->(:Entity)
 (:Assertion)-[:SUPPORTED_BY]->(:SourceObservation)
 (:Proposal)-[:PROPOSES]->(:Assertion)
 (:Proposal)-[:PROPOSES_EVIDENCE]->(:SourceObservation)
@@ -373,6 +389,9 @@ Relationship direction must be consistent in the stored graph.
 (:Location)-[:WITHIN]->(:Location)
 (:Location)-[:MODERN_LOCATION]->(:Location)
 (:Entity:Place)-[:AT_LOCATION]->(:Location)
+(:PredicateRegistry)-[:DEFINES_PREDICATE]->(:Predicate)
+(:PredicateRegistry)-[:DEFINES_KIND]->(:EntityKind)
+(:Predicate)-[:SUBJECT_KIND|OBJECT_KIND|CONTEXT_KIND|ROLE_KIND]->(:EntityKind)
 ```
 
 **Location** (the ninth core label, loaded 2026-10-15) is the gazetteer:
@@ -516,10 +535,42 @@ object_type
 Do not use `exactMatch` merely because two labels are equal. Scope, type, and
 source evidence must support the mapping.
 
-## 5. Minimal constraints
+## 5. Constraints: the graph type
 
-The first database schema should enforce only constraints that prevent obvious
-corruption:
+Since 2026-11-18 (D-158) the database holds the logical model as a Cypher 25
+**graph type**, set by [migration 018](migrations/018_graph_type.py) and
+described in [30](30-LOGICAL-MODEL.md) §7.2:
+
+- each Entity subtype label implies `Entity`;
+- each core label's required properties are present, and its properties are
+  typed;
+- 19 relationship types are pinned to one source label and one target label
+  (`ATTRIBUTED_TO` and `IN_WORK` reach a Work, `AT_LOCATION` starts at a Place,
+  and so on), with their required properties;
+- the fact layer's edge types (D-144): one whose predicate joins one kind to
+  one kind is pinned to them (`BORN_AT` from a Person to a Place), generated
+  from the registry; every fact edge requires `derived`, `predicate`, and
+  `status`;
+- the registry nodes (D-159) and their links;
+- the eleven unique identifiers below, and six for the registry nodes.
+
+Migration 018 is the database schema. `ALTER CURRENT GRAPH TYPE SET`
+replaces the whole graph type, so a constraint is added or changed in the
+migration's tables and the migration re-run, never created by hand. Its dry
+run counts the live items each rule would break; `--apply` refuses while any
+is broken. A new label, property, or relationship type that a write path
+introduces is added to 018 in the same change. After a registry bump, run
+the registry sync, then 018, then the fact layer.
+
+The graph type cannot say everything this document requires. The guarded
+operations ([13](13-PHASE-3-DIRECT-OPERATIONS.cypher)) and the validator still
+hold: exactly one subtype label per Entity; relationships with more than one
+allowed source or target label (§2: `CONCERNS`, `HAS_AUTHORITY_RECORD`,
+`IN_YEAR`, `RESTS_ON`); the predicate
+registry's kinds at each end of a claim; multiplicities; status transitions;
+immutability; no image as evidence.
+
+The unique identifiers, kept from the first schema:
 
 ```text
 Entity.id is unique
@@ -535,8 +586,10 @@ Location.id is unique                           (27, with a point index on Locat
 Location.(system, identifier) is unique
 ```
 
-These eleven are the live constraints (30 §7). Additional constraints should be added only after a real query or write
-pattern demonstrates the need.
+These eleven are also the direct-lookup keys (§6.1). They were the only
+constraints until D-158, when the rule that more should wait for a
+demonstrated need gave way: the guarded operations already held the model's
+rules, and the graph type makes the database refuse what they would refuse.
 
 `Year.year` is canonical because the existing local temporal backbone has a
 complete, unique integer value in that property. `year_value` is identical in

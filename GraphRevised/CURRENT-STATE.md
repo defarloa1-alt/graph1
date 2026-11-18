@@ -54,6 +54,17 @@ python -m pytest GraphRevised/tests -q   # about 7 minutes; see §6 for the expe
 - **59 guarded operations** in
   [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher),
   loaded by name through [operations.py](operations.py).
+- **The database enforces the logical model** (D-158, D-159, D-161, 2026-11-18): a
+  Cypher 25 graph type set by
+  [migrations/018_graph_type.py](migrations/018_graph_type.py), 694
+  constraints. A write that breaks the model (a Person without `Entity`, an
+  `ATTRIBUTED_TO` to a non-Work, a `BORN_AT` from an Event) now fails at
+  commit. 018 is the schema: change its tables and re-run it, never add a
+  constraint by hand. The registry is also in the graph (`Predicate`,
+  `EntityKind`, `PredicateRegistry`; [proposals/registry_graph.py](proposals/registry_graph.py)).
+  **After a registry bump:** `python -m GraphRevised.proposals.registry_graph --apply`,
+  then `python -m GraphRevised.migrations.018_graph_type --apply`, then
+  `python -m GraphRevised.export.fact_layer --apply`.
 - **Predicate registry v17**
   ([proposals/predicates.v17.json](proposals/predicates.v17.json)); draft schema v8
   (2026-11-16: Question, Position and the historiography predicates; no Question or
@@ -487,6 +498,34 @@ from Works we hold (free).
 Also open (offered, not chosen): the consistency checks (41 §3.4), the merge
 proposer (D-152), the lens run (ancient sources first), resolving the six
 Wikidata encyclopedia entries, committing (only when asked).
+
+**Designed, waiting on the curator (2026-11-18): animals, plants, metals and materials**
+([45](45-NATURAL-KINDS-AND-MATERIALS.md), D-160). Scope, authorities (GBIF, Getty AAT)
+and the first slice (coin metals, then Pliny's purple and the murex) are decided, and
+so is the model (45 §6: Types by category, authority hierarchy accepted by rule,
+denominations made of their metal, colour as `hadColour`). **Built 2026-11-18:** registry
+v18 (synced, graph type re-applied), the Getty AAT harvest (14 Types, 12 parent links
+accepted by rule), the coin metals (denominations made of silver and gold, the two series
+struck in them, accepted by rule); Pliny's purple (migration 020: five passages, Tyrian
+purple from AAT, Tyre, Pliny's purpura and buccinum; three claims for the desk). Registry v19
+(colour, `hadColour`, `about` a Type); migration 021: the purple sails at Actium (involved
+in, purple, linen) and the Question "which species are Pliny's purpura and buccinum?".
+Eight claims for the desk (020, 021); the new role "distinguishing mark" to review. The chrystallum connector must be restarted to word the v18 predicates.
+
+**Queued (curator agreed 2026-11-18, not started): an Obsidian plugin**, after the
+review queue and the explorer's graph navigation. Terms:
+
+- read-only, local, against the curator's own Neo4j; database credentials never in the
+  plugin (it calls the connector's queries, or a thin local API over them);
+- first: hover cards (description, attestation, voices; codes shown with labels) and
+  "create note from entity" (frontmatter with the `chr:entity:` id; the plugin refreshes
+  only a fenced "from Chrystallum" block, never the curator's text);
+- then a sidebar with the current note's entities and their neighbourhood;
+- later a path finder showing each step's voices and attestation, with imaginative facts
+  marked as such; a plain shortest-path query, not Neo4j's Graph Data Science library;
+- not wanted: credits, public writes, automatic promotion. Any expansion makes proposals
+  for the desk. The Perplexity design's facets, DPRR ids and decision tables are the
+  Aura-era model, not this one.
 
 Older items:
 

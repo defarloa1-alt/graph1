@@ -1,6 +1,7 @@
 """Coin types as evidence: a series' named units, from the CRRO data dump (D-151, 43 §2).
 
     python -m GraphRevised.harvest.crro_coins <series id> [--apply]
+    python -m GraphRevised.harvest.crro_coins <series id> --metals [--apply]
 
 Reads the series named in curation/coin-series.json from the Coinage of the
 Roman Republic Online dump (crro/nomisma.rdf, Open Database License 1.0; only
@@ -20,6 +21,15 @@ the series' own types are taken). Then:
    series, dated by the type's dates, with the legend quoted. That a named unit
    served in the force is a reading of the coin, so these Proposals wait for the
    curator (they are not accepted by rule).
+
+With --metals (45 §5.1, D-160), instead: each coin type gets a second record
+observation, its physical record (denomination and material, with Nomisma's
+ids; the first is immutable and has no material line). From these, each
+denomination is proposed `madeOf` its metal and the series `struckIn` each
+denomination, attributed to the series, quoting the records. These are
+code-made extractions from structured records, accepted by rule (proposer
+crro-coin-record). The denomination and metal Types come from the Getty AAT
+harvest (harvest/getty_aat.py, curation/materials.json), which must run first.
 
 CRRO writes years before Christ as negative historical years (-0032 for 32 BC);
 EDTF counts a year 0, so 32 BC is -0031. Without --apply it reports and rolls
@@ -52,6 +62,7 @@ DUMP = GRAPH_REVISED / "crro" / "nomisma.rdf"
 SERIES = GRAPH_REVISED / "curation" / "coin-series.json"
 RUNS = GRAPH_REVISED / "runs"
 PROPOSER = "crro-coin-series"
+RECORD_PROPOSER = "crro-coin-record"  # a type's denomination and metal, from its record; accepted by rule (D-160)
 LEGEND_PROPOSER = "crro-coin-legend"  # what a legend literally says (LEG: a legion); accepted by rule (D-145)
 VERSION = "crro-coins-v1"
 RIGHTS = ("Open Database License 1.0 (https://opendatacommons.org/licenses/odbl/1-0/); "
@@ -135,7 +146,7 @@ def read_series(path: Path, series: str) -> list[dict[str, Any]]:
         if text(obverse, "nmo:hasLegend") is None and text(reverse, "nmo:hasLegend") is None:
             continue  # a type heading its variants (RRC 546/2 over 546/2a-d), with nothing of its own to quote
         types.append({"uri": uri, "label": text(el, "skos:prefLabel"), "denomination": resource(el, "nmo:hasDenomination"),
-                      "issuer": resource(el, "nmo:hasIssuer"), "mint": resource(el, "nmo:hasMint"),
+                      "material": resource(el, "nmo:hasMaterial"), "issuer": resource(el, "nmo:hasIssuer"), "mint": resource(el, "nmo:hasMint"),
                       "start": text(el, "nmo:hasStartDate"), "end": text(el, "nmo:hasEndDate"),
                       "obverseLegend": text(obverse, "nmo:hasLegend"), "obverse": text(obverse, "dcterms:description"),
                       "reverseLegend": text(reverse, "nmo:hasLegend"), "reverse": text(reverse, "dcterms:description")})
@@ -234,9 +245,74 @@ def harvest(tx, operations, registry, config: dict[str, Any], types: list[dict[s
     return {"types": len(types), "units": len(by_unit), "skipped": skipped, "outcomes": outcomes}
 
 
+def physical_text(t: dict[str, Any], names: dict[str, str]) -> tuple[str, str, str]:
+    """A coin type's physical record, its denomination line and its material line (quoted as evidence)."""
+    denomination = f"Denomination: {names[t['denomination']]} (nomisma.org/id/{t['denomination']})"
+    material = f"Material: {names[t['material']]} (nomisma.org/id/{t['material']})"
+    lines = [f"{t['label']} (Coinage of the Roman Republic Online), physical record", denomination, material]
+    return "\n".join(lines), denomination, material
+
+
+def harvest_metals(tx, operations, registry, config: dict[str, Any], types: list[dict[str, Any]], at: str) -> dict:
+    """Each type's physical record; each denomination madeOf its metal; the series struckIn its denominations."""
+    from GraphRevised.harvest.getty_aat import SEEDS, type_id  # the Types the AAT harvest made
+
+    seeds = [s for s in json.loads(SEEDS.read_text(encoding="utf-8"))["seeds"] if s.get("nomisma")]
+    names = {s["nomisma"]: s["label"] for s in seeds}
+    type_ids = {s["nomisma"]: type_id(s["label"]) for s in seeds}
+    missing = sorted({t[k] for t in types for k in ("denomination", "material")} - set(names))
+    if missing:
+        raise SystemExit(f"no Type for Nomisma {', '.join(missing)}: add it to {SEEDS.name} and run harvest/getty_aat.py")
+    work = config["work"]
+    dump_hash = hashlib.sha256(DUMP.read_bytes()).hexdigest()
+    by_denomination: dict[str, list] = defaultdict(list)
+    by_pair: dict[tuple[str, str], list] = defaultdict(list)
+    for t in types:
+        text, denomination_line, material_line = physical_text(t, names)
+        observation_id = f"chr:observation:crro:{t['uri'].rsplit('/', 1)[-1]}:physical:{dump_hash[:12]}"
+        run_write(tx, operations, "upsert_record_observation", {
+            "id": observation_id, "label": f"{t['label']}, physical record (CRRO)", "shortLabel": f"{t['label']} (physical)",
+            "sourceSystem": "Coinage of the Roman Republic Online", "sourceEntityId": t["uri"], "locator": t["uri"],
+            "passageText": text, "passageHash": hashlib.sha256(text.encode("utf-8")).hexdigest(), "editorialNotes": [],
+            "language": "en", "workTitle": work["label"], "author": t["issuer"],
+            "editionCitation": "M. H. Crawford, Roman Republican Coinage (1974), as Coinage of the Roman Republic Online",
+            "rights": RIGHTS, "sourceUri": "http://numismatics.org/crro/nomisma.rdf", "sourceRevision": None,
+            "retrievedAt": datetime.fromtimestamp(DUMP.stat().st_mtime, timezone.utc).isoformat(timespec="seconds"),
+            "contentHash": dump_hash, "rawPayloadUri": DUMP.relative_to(GRAPH_REVISED.parent).as_posix(),
+            "workId": work["id"]})
+        by_denomination[t["denomination"]].append((observation_id, denomination_line, t["label"]))
+        by_pair[(t["denomination"], t["material"])].append((observation_id, denomination_line, material_line, t["label"]))
+    drafts = []
+    for (denomination, material), found in sorted(by_pair.items()):
+        drafts.append(ProposalDraft(
+            predicate="madeOf", subject_id=type_ids[denomination], object_id=type_ids[material], mode="attributed",
+            attributed_to=work["id"], observation_ids=tuple(f[0] for f in found),
+            quotations=tuple(Quotation(observation_id=f[0], text=line) for f in found for line in (f[1], f[2])),
+            rationale=(f"The {names[denomination]} types of {work['shortLabel']} ({', '.join(f[3] for f in found)}) "
+                       f"are recorded as {names[material]}."),
+            proposed_by=RECORD_PROPOSER, prompt_version=VERSION,
+            relevance="What the coins were made of, from their records (45 §5.1)."))
+    for denomination, found in sorted(by_denomination.items()):
+        drafts.append(ProposalDraft(
+            predicate="struckIn", subject_id=work["id"], object_id=type_ids[denomination], mode="attributed",
+            attributed_to=work["id"], observation_ids=tuple(f[0] for f in found),
+            quotations=tuple(Quotation(observation_id=f[0], text=f[1]) for f in found),
+            rationale=f"{work['shortLabel']} has {len(found)} {names[denomination]} type{'s' if len(found) > 1 else ''}.",
+            proposed_by=RECORD_PROPOSER, prompt_version=VERSION,
+            relevance="Which denominations the series was struck in, from its records (45 §5.1)."))
+    outcomes = []
+    for draft in drafts:
+        result = submit(tx, draft, registry, operations)
+        outcomes.append({"predicate": draft.predicate, "subject": draft.subject_id, "object": draft.object_id,
+                         "outcome": result.validation.outcome.value, "reasons": list(result.validation.reasons),
+                         "stored": result.stored})
+    return {"types": len(types), "outcomes": outcomes}
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("series", help="a series id in curation/coin-series.json, such as rrc-544")
+    parser.add_argument("--metals", action="store_true", help="the physical records, denominations and metals (45 §5.1)")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
@@ -252,7 +328,8 @@ def main(argv: list[str] | None = None) -> int:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
             tx = session.begin_transaction()
             try:
-                report = harvest(tx, load_operations(), load_registry(), config, types, at)
+                run = harvest_metals if args.metals else harvest
+                report = run(tx, load_operations(), load_registry(), config, types, at)
                 tx.commit() if args.apply else tx.rollback()
             except BaseException:
                 if not tx.closed():
@@ -260,6 +337,11 @@ def main(argv: list[str] | None = None) -> int:
                 raise
     finally:
         driver.close()
+    if args.metals:
+        print(f"{report['types']} coin types ({'applied' if args.apply else 'dry run, rolled back'})")
+        for o in report["outcomes"]:
+            print(f"  {o['outcome']:10} {o['subject']} {o['predicate']} {o['object']}" + (f"  {o['reasons']}" if o["reasons"] else ""))
+        return 0
     print(f"{report['types']} coin types -> {report['units']} units ({'applied' if args.apply else 'dry run, rolled back'})")
     for o in report["outcomes"]:
         print(f"  {o['outcome']:10} {o['unit']} <- {', '.join(o['types'])}" + (f"  {o['reasons']}" if o["reasons"] else ""))
