@@ -37,6 +37,7 @@ OPERATION_NAMES = (
     "link_observation_work",
     "link_promoted_from",
     "upsert_transcription_observation",
+    "add_transcription_footnotes",
     "upsert_annotation",
     "set_annotation_status",
     "delete_annotation",

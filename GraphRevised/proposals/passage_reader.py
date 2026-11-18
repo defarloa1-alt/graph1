@@ -326,6 +326,9 @@ class Inquiry:
     # A lens reading of modern scholarship (44): the Questions, Positions, and holder Works already
     # known, for historiography_text; None: no historiography section.
     historiography: dict[str, Any] | None = None
+    # The curator's own note on the passage (capture/note_reader.py): a prompt for Questions and
+    # lenses, never a source, evidence, or quotation. None: no note.
+    curator_note: str | None = None
 
 
 EVENT_ROLES_PATH = GRAPH_REVISED / "curation" / "event-roles.json"
@@ -676,6 +679,12 @@ def reader_request(
     if historiography:
         # Per passage, not cached: the Questions and Positions grow as the reading goes (44).
         already += historiography_text(**inquiry.historiography) + "\n\n"
+    if inquiry.curator_note:
+        already += (
+            "The curator's own note on the target passage. It is not a source: never quote it, never "
+            "draft a claim from it, never attribute it to anyone. Use it only to notice what the "
+            "passage itself says that bears on it, and, when historiography is asked for, a Question "
+            "it raises that the passage's author answers:\n" + inquiry.curator_note + "\n\n")
     user = (
         already
         + f"Surrounding sections (context only, not evidence):\n"

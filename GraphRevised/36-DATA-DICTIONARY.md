@@ -3,7 +3,7 @@ status: descriptive
 authority: 02-GRAPH-MODEL.md
 depends_on: [02-GRAPH-MODEL.md, 03-TEMPORAL-YEAR-BACKBONE.md, 27-GAZETTEER.md, 30-LOGICAL-MODEL.md]
 superseded_by: null
-last_reviewed: 2026-11-03
+last_reviewed: 2026-11-17
 ---
 
 # 36 — Graph Data Dictionary
@@ -41,6 +41,8 @@ All domain entities carry:
 | `description` | String | Optional | Locally adopted description |
 | `sourceNote` | String | Optional | Local provenance note |
 | `decidedAt`, `decidedBy`, `decisionBasis` | String | Optional | Curator decision metadata |
+| `previousKind`, `kindChangedAt`, `kindChangedBy`, `kindChangeBasis` | String | Audit | Set by `set_entity_kind` when an entity's kind is corrected: the kind before, when, by whom, and why |
+| `mergedIds`, `alternativeNames`, `mergeLog` | List | Audit | On the survivor of a merge (`merge_entities`): the ids and names merged into it, and one log line per merge |
 | `when`, `where`, `partOf` | String | Derived | Fact-layer display summaries (D-144): one answer with who says it. Display text only, never a date or a claim; rebuilt by `export.fact_layer` |
 | `history` | String | Derived | On a Position only (44): who held and rejected it, when, its reception, and whose report it is, in words; never a count of evidence. Rebuilt by `export.fact_layer` |
 
@@ -60,8 +62,13 @@ Approved labels are:
 | `Entity:Polity`   | `polityType`                                                                                                                                                                                              | State or political entity                                                                                                                                |
 | `Entity:Question` | none                                                                                                                                                                                                      | A historical question scholars answer differently, `about` an Event, Person, Group, Polity or Period (registry v17, D-153)                               |
 | `Entity:Position` | none                                                                                                                                                                                                      | One answer to a Question (`answers`), shared by the Works that `holds` or `rejects` it; its reception is `hadReception` (registry v17, D-153)            |
-| `Entity:Type`     | `typeCategory`                                                                                                                                                                                            | Role, unit type, organizational pattern, power, or status (registry v15 `typeCategories`; set with `set_type_category`, D-141)                           |
+| `Entity:Type`     | `typeCategory`                                                                                                                                                                                            | Role, unit type, organizational pattern, power, status, ship type, or naval fitting (registry v17 `typeCategories`; set with `set_type_category`, D-141, audited by `typeCategorySetAt`, `typeCategorySetBy`, `typeCategoryBasis`, `typeCategoryPrevious`)                           |
 | `Entity:Other`    | `otherType`                                                                                                                                                                                               | Domain entity not otherwise classified                                                                                                                   |
+
+**Built and designed (checked against the graph 2026-11-17).** Only `form` and `standing` (Work),
+`typeCategory` (Type) and one `eventType` are held today. The other type-specific properties in the
+table are **designed, not built**: none is set on any entity. Coordinates are not kept on a Place: a
+Place is linked `AT_LOCATION` to a gazetteer Location (27), which holds them.
 
 Type-specific properties are intentionally small. Dates, membership,
 authorship, ownership, locations, and other source-sensitive facts belong in
@@ -147,7 +154,7 @@ metadata. Source facts are immutable except for display text and status.
 | Source provenance | `sourceSystem` (required), `observationKind`, `sourceRevision`, `retrievedAt` (required), `contentHash` (required), `rawPayloadUri`, `sourceUri` |
 | Access and capture | `visibility`, `capturedBy`, `capturedAt` |
 | Wikidata statements | `sourceEntityId`, `predicateExternalId`, `predicateExternalLabel`, `objectExternalId`, `externalStatementId`, `qualifierPropertyIds`, `statementQualifiers`, `statementTimeEdtf`, `statementTimeDisplay`, `statementTimeCalendar`, `statementTimeMode`, `statementStatedIn` (the QIDs its references are "stated in", D-154), `statementReferences` (the references as JSON: stated in, page, URL, name used), and renormalization metadata |
-| Passages and transcriptions | `workTitle`, `author`, `translator`, `editionCitation`, `language`, `rights`, `locator`, `locatorType`, `passageText`, `editorialNotes`, `passageHash` |
+| Passages and transcriptions | `workTitle`, `author`, `translator`, `editionCitation`, `language`, `rights`, `locator`, `locatorType`, `passageText`, `editorialNotes`, `passageHash`, `footnotes` (a transcription only: the book's footnotes to it, each a JSON string of mark, sentence and words as printed; 2026-11-17) |
 | Images | `depicts`, `madeBy`, `madeOn`, `collection`, `accession` |
 
 `observationKind` values are `passage`, `record`, `transcription`, and
@@ -240,7 +247,7 @@ Relationship properties are listed after the arrow.
 | `RESTS_ON` | Assertion → Assertion, SourceObservation, or Work | `status`, `createdAt`, `createdBy`, `decisionBasis`, `citation`, `quotation` | D-148: a modern or reference claim's link to the ancient claim or passage it retells. From a citation's own words (a Wikipedia footnote, `harvest.wikipedia_footnotes`), a code-made extraction accepted by rule (D-145, D-150); from an agent's reading, proposed and reviewed as reasoning. Attestation counts the ancient line only when the target is text we hold (a passage or claim); a link to a Work alone is shown, not counted |
 | `IN_YEAR` | Assertion → Year | `as` | Derived temporal projection |
 | `IN_YEAR` | Entity → Year | `as` | Legacy/initial direct entity-year link |
-| *predicate* (`OCCURRED_AT`, `PART_OF`, `PARTICIPATED_IN`, …) | Entity → Entity | `derived: "fact-layer"`, `predicate`, `status`, `mode`, `category`, `attestation`, `sentence`, `when`, `role`, `accordingTo`, `assertions` | Derived fact layer (D-144): one edge per live fact, named after its predicate; rebuilt from the Assertions by `export.fact_layer`, never edited |
+| *predicate* (`OCCURRED_AT`, `PART_OF`, `PARTICIPATED_IN`, …; `followedBy` is drawn as `SUCCEEDED_BY`, so it never shares the Year chain's `FOLLOWED_BY`) | Entity → Entity | `derived: "fact-layer"`, `predicate`, `status`, `mode`, `category`, `attestation`, `sentence`, `when`, `role`, `accordingTo`, `assertions` | Derived fact layer (D-144): one edge per live fact, named after its predicate; rebuilt from the Assertions by `export.fact_layer`, never edited |
 | `OCCURRED`, `BORN`, `DIED` | Entity → Year | `derived: "fact-layer"`, `predicate`, `as`, `status`, `accordingTo`, `assertions` | Derived fact layer: a dated unary fact's Year links, lifted to the entity |
 | `SUPERSEDED_BY` | Assertion → Assertion | — | Replacement claim(s) |
 | `PROMOTED_FROM` | Assertion → Assertion | — | Claim promotion lineage |
@@ -248,12 +255,13 @@ Relationship properties are listed after the arrow.
 | `PROPOSES` | Proposal → Assertion | — | Claim governed by the proposal |
 | `PROPOSES_EVIDENCE` | Proposal → SourceObservation | `quotation`, `qualifierQuotations`, `migratedBy` | Pending proposal evidence |
 | `IN_WORK` | SourceObservation → Entity/Work | — | Observation belongs to a Work |
-| `HAS_AUTHORITY_RECORD` | Entity/Subject → AuthorityRecord | `role`, `relation`, `status`, optional statement rank/reference counts | External identity or crosswalk |
+| `HAS_AUTHORITY_RECORD` | Entity/Subject → AuthorityRecord | `role`, `relation`, `status`, optional `statementRank`, `statementReferences` | External identity or crosswalk |
 | `HAS_SUBJECT_FOCUS` | Subject → Entity | — | Entities covered by a Subject |
 | `HAS_SUBJECT_HEADING` | Work → AuthorityRecord (LCSH, LCNAF) | `status`, `heading` (as the record words it), `observationId`, `createdBy`, `createdAt`, `decisionBasis` | A subject heading the book's LC catalog record assigns (D-155) |
 | `BROADER_HEADING` | AuthorityRecord → AuthorityRecord | `status`, `createdBy`, `createdAt`, `sourceIdentifier` | A heading's broader heading, as its LCSH record states (skos broader, or narrower read in reverse; D-155) |
 | `RELATED_HEADING` | AuthorityRecord → AuthorityRecord | same | A heading's related heading (skos related; D-155) |
-| `NARROWER_THAN` | Subject → Subject | — | Subject hierarchy, narrower to broader |
+| `NARROWER_THAN` | Subject → Subject | `reason`, `approvedBy` (on curator-approved links) | Subject hierarchy, narrower to broader |
+| `IN_SUBJECT` | Event → Subject | `status`, `reason`, `proposedBy`, `proposedAt`, `sourceAssertionId`, `decidedBy`, `decidedAt`, `decisionBasis` | A topical placement of an event in a child Subject section ("Meaning and memory"), resting on the claim named by `sourceAssertionId`; never implies `partOf` (`discovery/subject_view.py`) |
 | `ANNOTATES` | Annotation → SourceObservation | `quotation` | Commentary on a passage, transcription, or image |
 | `CONCERNS` | Annotation → Entity | — | Annotation target; wider targets designed |
 | `FOLLOWED_BY` | Year → Year | — | Ordered temporal chain |
@@ -280,3 +288,10 @@ The read-only integrity check is:
 ```powershell
 python -m GraphRevised.validate_ontology
 ```
+
+## 5. Property names with no data
+
+Neo4j keeps a property name in its catalogue after the last value is deleted. `data`, `nodes`,
+`relationships`, `style`, `visualisation`, `name` and `revision` are such names (checked 2026-11-17: on
+no node or relationship), left by tools long ago. They are not part of the model; ignore them in
+`db.propertyKeys()`.

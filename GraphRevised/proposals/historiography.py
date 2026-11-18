@@ -280,7 +280,8 @@ RIGHTS = "Short quotation of a work in copyright, kept for study; the page itsel
 
 def store_historiography(tx: Any, operations: dict[str, str], registry: Any, plan: HistoriographyPlan, *,
                          work_label: str, edition_citation: str, proposed_by: str, at: str,
-                         submit_drafts: bool = True) -> dict[str, Any]:
+                         submit_drafts: bool = True, source_system: str = "licensed-pdf",
+                         rights: str | None = None) -> dict[str, Any]:
     """Write a plan: its transcriptions, its Questions and Positions (proposed, or an existing entity
     of the same name and kind reused), and its drafts, validated and stored as Proposals. Agents never
     accept: everything stays proposed for the curator. With submit_drafts False the drafts are only
@@ -295,12 +296,13 @@ def store_historiography(tx: Any, operations: dict[str, str], registry: Any, pla
         run_write(tx, operations, "upsert_transcription_observation", {
             "id": item["id"], "workId": item["workId"],
             "label": f"{work_label}, {item['locator']} (transcription)",
-            "shortLabel": f"{work_label} {item['locator']}", "sourceSystem": "licensed-pdf",
+            "shortLabel": f"{work_label} {item['locator']}", "sourceSystem": source_system,
             "locator": item["locator"], "locatorType": "page", "passageText": item["quote"],
             "passageHash": hashlib.sha256(item["quote"].encode("utf-8")).hexdigest(), "language": "en",
-            "workTitle": work_label, "author": None, "editionCitation": edition_citation, "rights": RIGHTS,
+            "workTitle": work_label, "author": None, "editionCitation": edition_citation, "rights": rights or RIGHTS,
             "visibility": "private", "capturedBy": proposed_by, "capturedAt": at,
             "contentHash": hashlib.sha256(item["quote"].encode("utf-8")).hexdigest(), "rawPayloadUri": None,
+            "footnotes": None,
         })
     ids: dict[str, str] = {}
     entities = []

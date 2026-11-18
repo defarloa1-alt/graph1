@@ -84,7 +84,10 @@ def roman(text: str) -> int | None:
 def unit(legend: str) -> dict[str, Any] | None:
     """The unit a reverse legend names: {key, name, kind, title}, or None. A title does not make another unit."""
     words = [w for w in re.split(r"[\s·.\u00b7]+", legend.replace(" or ", " | ").split(" | ")[0]) if w]
-    if words and words[0].upper() == "LEG" and len(words) >= 2:
+    # LEG may follow other words (a legate's SCARPVS IMP LEG VIII): the unit is what comes after it.
+    at = next((i for i, w in enumerate(words) if w.upper() == "LEG"), None)
+    if at is not None and len(words) >= at + 2:
+        words = words[at:]
         number = roman(words[1])
         if number is None:
             return None
@@ -129,6 +132,8 @@ def read_series(path: Path, series: str) -> list[dict[str, Any]]:
         if el.find("nmo:hasReverse", NS) is None:
             continue  # a parent grouping, not a type
         obverse, reverse = sides.get(uri + "#obverse"), sides.get(uri + "#reverse")
+        if text(obverse, "nmo:hasLegend") is None and text(reverse, "nmo:hasLegend") is None:
+            continue  # a type heading its variants (RRC 546/2 over 546/2a-d), with nothing of its own to quote
         types.append({"uri": uri, "label": text(el, "skos:prefLabel"), "denomination": resource(el, "nmo:hasDenomination"),
                       "issuer": resource(el, "nmo:hasIssuer"), "mint": resource(el, "nmo:hasMint"),
                       "start": text(el, "nmo:hasStartDate"), "end": text(el, "nmo:hasEndDate"),
@@ -192,12 +197,14 @@ def harvest(tx, operations, registry, config: dict[str, Any], types: list[dict[s
         if titles:
             also = ", ".join(f"{named['name']} {t}" for t in titles)
             description += f" Named on the coins as {' and '.join(legends)}; also called {also}."
+        # A unit another series already named keeps its label and description (a second series is a second voice).
         run_write(tx, operations, "upsert_entity", {
-            "id": unit_id, "kind": "Group", "label": config["unitLabel"].format(unit=named["name"]),
-            "shortLabel": named["name"].capitalize(), "description": description,
+            "id": unit_id, "kind": "Group", "label": None if exists else config["unitLabel"].format(unit=named["name"]),
+            "shortLabel": None if exists else named["name"].capitalize(), "description": None if exists else description,
             "status": None if exists else "proposed"})
         starts, ends = [bc(f[4]["start"]) for f in found], [bc(f[4]["end"]) for f in found]
         first, last = max(starts), min(ends)
+        years = f"{first}" if first == last else f"{first}–{last}"
         draft = ProposalDraft(
             predicate="partOf", subject_id=unit_id, object_id=force["id"], mode="attributed", attributed_to=work["id"],
             observation_ids=tuple(f[1] for f in found),
@@ -205,7 +212,7 @@ def harvest(tx, operations, registry, config: dict[str, Any], types: list[dict[s
             time=TimeQualifier(source_expression=found[0][3], edtf=f"{edtf_year(first)}/{edtf_year(last)}",
                                calendar="julian", normalization_basis="scholarship"),
             qualifier_quotations=(QualifierQuotation(observation_id=found[0][1], supports="time", text=found[0][3]),),
-            rationale=(f"{work['shortLabel']} of {first}\u2013{last} BC names the {named['name']} on "
+            rationale=(f"{work['shortLabel']} of {years} BC names the {named['name']} on "
                        f"{len(found)} type{'s' if len(found) > 1 else ''} ({', '.join(f[4]['label'] for f in found)}), "
                        f"so the unit served in his forces in those years. A reading of the coin: whether the series "
                        f"names every unit, or only some, is debated, and it does not place the unit at any one battle."),

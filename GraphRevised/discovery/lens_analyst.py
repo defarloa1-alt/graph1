@@ -420,7 +420,8 @@ def main(argv: list[str] | None = None) -> int:
 
     lenses, grounding, registry = load_lenses(), load_grounding(args.polity), load_registry()
     registry_ids = sorted(registry.predicates)
-    specialists = args.lens or [k for k in lenses if k != GENERAL]
+    # A catalogued lens (lenses.json) has no grounding yet: it is not read until one is drafted and reviewed.
+    specialists = args.lens or [k for k, v in lenses.items() if k != GENERAL and v.get("status") != "catalogued"]
     unknown = [k for k in specialists if k not in lenses or k == GENERAL]
     if unknown:
         raise SystemExit(f"not specialist lenses: {unknown}")

@@ -1,6 +1,6 @@
 {
   "description": "The lenses: ways of reading any object (a person, event, office, polity, place) from one dimension, by a specialist lens agent grounded per polity, or across all dimensions by the general lens. A lens is never stored in the graph (D-039, D-063): `predicates` says which registry predicates a lens highlights when it is on; `questions` and `relevance` are the analyst's brief (31 §3.3). Drafted by Claude acting as the agent, 2026-10-21, for the curator to review; the pilot on Actium decides which lenses are kept.",
-  "version": 1,
+  "version": 2,
   "status": "draft",
   "lenses": [
     {
@@ -16,7 +16,12 @@
         "Where do the sources disagree in a way that changes the reading in more than one dimension?",
         "What should be read next, overall, and in what order?"
       ],
-      "predicates": ["ledTo", "triggeredBy", "resultedIn", "exemplifies"]
+      "predicates": [
+        "ledTo",
+        "triggeredBy",
+        "resultedIn",
+        "exemplifies"
+      ]
     },
     {
       "id": "military",
@@ -31,7 +36,13 @@
         "What were the losses, surrenders, and defections?",
         "What happened to the forces afterwards: discharge, settlement, incorporation, garrisons?"
       ],
-      "predicates": ["commanded", "heldAuthorityOver", "servedUnder", "opposed", "alliedWith"]
+      "predicates": [
+        "commanded",
+        "heldAuthorityOver",
+        "servedUnder",
+        "opposed",
+        "alliedWith"
+      ]
     },
     {
       "id": "political",
@@ -46,7 +57,15 @@
         "What diplomacy with client kings, allies, and foreign states was involved?",
         "What changed in the constitution or the distribution of power because of it?"
       ],
-      "predicates": ["heldPosition", "heldPower", "exercisedPower", "electedBy", "precedes", "alliedWith", "opposed"]
+      "predicates": [
+        "heldPosition",
+        "heldPower",
+        "exercisedPower",
+        "electedBy",
+        "precedes",
+        "alliedWith",
+        "opposed"
+      ]
     },
     {
       "id": "economic",
@@ -76,7 +95,13 @@
         "How did ordinary participants (soldiers, rowers, civilians) experience it?",
         "How do the sources treat women and foreigners in it, and what does that show?"
       ],
-      "predicates": ["childOf", "spouseOf", "siblingOf", "memberOf", "servedUnder"]
+      "predicates": [
+        "childOf",
+        "spouseOf",
+        "siblingOf",
+        "memberOf",
+        "servedUnder"
+      ]
     },
     {
       "id": "religious",
@@ -91,6 +116,186 @@
         "How was it commemorated in religious terms afterwards?"
       ],
       "predicates": []
+    },
+    {
+      "id": "archaeological",
+      "label": "Archaeological",
+      "purpose": "Material remains: sites, finds, stratigraphy, and what excavation shows.",
+      "relevance": "In scope when it concerns a site, excavation, finds (wrecks, rams, inscriptions on stone, coins as objects), building remains, or a phase dated by material evidence.",
+      "questions": [
+        "What material remains bear on it, and where are they?",
+        "What has excavation or survey found, and when?",
+        "Does the material evidence confirm, correct, or contradict the texts?",
+        "How are the remains dated?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "artistic",
+      "label": "Artistic",
+      "purpose": "Art and architecture: images, monuments, styles, and what they were made to say.",
+      "relevance": "In scope when it concerns a monument, statue, relief, painting, coin type as image, building programme, or the artistic representation of a person or event.",
+      "questions": [
+        "What monuments or images commemorate or depict it?",
+        "Who commissioned them, and to what end?",
+        "How did the representation change over time?",
+        "What style or programme do they belong to?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "biographic",
+      "label": "Biographic",
+      "purpose": "Lives: birth, family, careers, offices held, and death.",
+      "relevance": "In scope when it concerns a person's life events, family and marriages, offices and commands held, honours, exile, or death.",
+      "questions": [
+        "Who took part, and what were their careers to that point?",
+        "What family ties or marriages bear on it?",
+        "What offices, commands, or honours did they hold?",
+        "What became of them afterwards?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "cultural",
+      "label": "Cultural",
+      "purpose": "Identity and symbols: customs, values, and how a people saw itself and others.",
+      "relevance": "In scope when it concerns identity (Roman, Greek, Egyptian, eastern), customs, values, symbols, festivals, or cultural contrast and stereotype.",
+      "questions": [
+        "What identities or values were invoked?",
+        "How were outsiders portrayed?",
+        "What customs or symbols were at stake?",
+        "What cultural change followed?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "demographic",
+      "label": "Demographic",
+      "purpose": "People in numbers: population, manpower, migration, and settlement.",
+      "relevance": "In scope when it concerns numbers of people (armies, crews, casualties, populations), recruitment pools, colonists and veterans settled, migration, or urban growth.",
+      "questions": [
+        "How many people were involved, and on what evidence?",
+        "Where did the manpower come from?",
+        "Who was settled or displaced, and where?",
+        "What did losses or settlement do to populations?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "diplomatic",
+      "label": "Diplomatic",
+      "purpose": "Relations between powers: alliances, client kings, treaties, embassies.",
+      "relevance": "In scope when it concerns allies and client rulers, treaties, embassies, defections between sides, or the settlement of kingdoms and cities after a conflict.",
+      "questions": [
+        "Which powers and rulers were allied with whom?",
+        "Who defected, and on what terms?",
+        "What treaties or settlements followed?",
+        "How did relations with client kingdoms change?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "environmental",
+      "label": "Environmental",
+      "purpose": "Nature's part: climate, season, weather, disease, and the land itself.",
+      "relevance": "In scope when it concerns season, weather, wind and sea state, water supply, marsh and disease, harvests, or environmental change.",
+      "questions": [
+        "What season and weather bore on it?",
+        "Did water, disease, or terrain affect the outcome?",
+        "What did the environment allow or forbid?",
+        "Did it change the landscape?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "geographic",
+      "label": "Geographic",
+      "purpose": "Place and space: terrain, routes, regions, and territorial extent.",
+      "relevance": "In scope when it concerns where things happened, terrain and coastline, harbours and straits, routes and distances, regions, or the territory a power held.",
+      "questions": [
+        "Where exactly did it happen, and what was the terrain?",
+        "What routes, harbours, or chokepoints mattered?",
+        "How did geography shape strategy and supply?",
+        "What territory changed hands?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "intellectual",
+      "label": "Intellectual",
+      "purpose": "Ideas and learning: philosophy, scholarship, and how thinkers explained events.",
+      "relevance": "In scope when it concerns philosophical or scholarly ideas, schools, education, historiographical method, or how ancient and modern thinkers explained an event.",
+      "questions": [
+        "What ideas or schools of thought bear on it?",
+        "How did contemporary or later thinkers explain it?",
+        "What intellectual change followed?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "linguistic",
+      "label": "Linguistic",
+      "purpose": "Language and script: the words used, names, translations, and inscriptions' language.",
+      "relevance": "In scope when it concerns the language of sources or inscriptions, names and their forms, terms of art (Latin, Greek), translation, or bilingualism.",
+      "questions": [
+        "In what language is the evidence, and what do its key terms mean?",
+        "How are names given and varied?",
+        "Does translation change the sense?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "scientific",
+      "label": "Scientific",
+      "purpose": "Knowledge of nature: astronomy, medicine, calendars, and engineering knowledge.",
+      "relevance": "In scope when it concerns calendars and dating, astronomy and omens read astronomically, medicine, or technical knowledge as knowledge.",
+      "questions": [
+        "What scientific knowledge bears on it (calendar, astronomy, medicine)?",
+        "How do calendars fix its date?",
+        "What did contemporaries know that shaped it?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "technological",
+      "label": "Technological",
+      "purpose": "Tools and techniques: ships, weapons, engineering, and their capabilities.",
+      "relevance": "In scope when it concerns ship types and sizes, rams and artillery, fortifications and siege works, roads and bridges, or a technique's capability and limits.",
+      "questions": [
+        "What ships, weapons, or engineering were used?",
+        "What could they do, and what were their limits?",
+        "Did technology decide the outcome?",
+        "What technical change followed?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
+    },
+    {
+      "id": "communication",
+      "label": "Communication",
+      "purpose": "Messages and narratives: propaganda, ceremony, rumour, and how events were told and transmitted.",
+      "relevance": "In scope when it concerns propaganda, speeches, letters, ceremonies and triumphs, rumours, oaths, or how a claim or event was transmitted and reshaped.",
+      "questions": [
+        "How was it announced, celebrated, or justified?",
+        "Whose narrative prevailed, and how was it spread?",
+        "What rumours, speeches, or letters shaped it?",
+        "How was the story transmitted to later writers?"
+      ],
+      "predicates": [],
+      "status": "catalogued"
     }
-  ]
+  ],
+  "catalogued": "Lenses with status 'catalogued' (2026-11-17, Claude, from Facets/facet_registry_master.json, for the curator to review) tag notes and are named in triage; they read nothing until a grounding for the scope exists, and coverage does not count them."
 }

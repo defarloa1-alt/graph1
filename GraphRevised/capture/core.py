@@ -91,6 +91,7 @@ def capture(tx: Any, operations: dict[str, str], item: dict[str, Any]) -> dict[s
         "capturedAt": captured_at,
         "contentHash": item.get("contentHash") or hashlib.sha256(quote.encode("utf-8")).hexdigest(),
         "rawPayloadUri": item.get("rawPayloadUri"),
+        "footnotes": None,
     })
 
     result: dict[str, Any] = {"observationId": observation_id, "annotationId": None}

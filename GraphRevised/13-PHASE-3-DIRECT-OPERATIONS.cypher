@@ -657,11 +657,20 @@ ON CREATE SET
   observation.retrievedAt = $capturedAt,
   observation.contentHash = $contentHash,
   observation.rawPayloadUri = $rawPayloadUri,
+  observation.footnotes = coalesce($footnotes, []),
   observation.status = "observed"
 ON MATCH SET
   observation.label = coalesce($label, observation.label),
   observation.shortLabel = coalesce($shortLabel, observation.shortLabel)
 MERGE (observation)-[:IN_WORK]->(work)
+RETURN observation;
+
+// Add the book's footnotes to a transcription made before they were typed: each
+// is a JSON string of the footnote's mark, the sentence it belongs to, and its
+// words as printed. Footnotes already held are kept; a new one is appended.
+MATCH (observation:SourceObservation {id: $id, observationKind: "transcription"})
+WITH observation, coalesce(observation.footnotes, []) AS held
+SET observation.footnotes = held + [f IN $footnotes WHERE NOT f IN held]
 RETURN observation;
 
 // Create or reuse an Annotation: commentary, never a claim. It may annotate a

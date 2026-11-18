@@ -63,9 +63,15 @@ class LensTests(unittest.TestCase):
     def test_every_lens_has_grounding_for_the_roman_republic(self):
         lenses, grounding = load_lenses(), load_grounding("roman-republic")
         self.assertIn("general", lenses)
-        self.assertEqual(set(lenses), set(grounding["lenses"]))
+        read = {k for k, v in lenses.items() if v.get("status") != "catalogued"}
+        self.assertEqual(read, set(grounding["lenses"]))  # a catalogued lens is grounded before it reads
         for lens in lenses.values():
             self.assertTrue(lens["questions"], lens["id"])
+
+    def test_the_lens_catalogue_holds_the_eighteen_facets(self):
+        lenses = load_lenses()
+        self.assertEqual(len(set(lenses) - {"general"}), 18)
+        self.assertIn("geographic", lenses)
 
 
 if __name__ == "__main__":

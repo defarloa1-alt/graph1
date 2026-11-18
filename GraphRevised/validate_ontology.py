@@ -29,6 +29,8 @@ SUBTYPES = (
     "Concept",
     "Polity",
     "Type",
+    "Question",
+    "Position",
     "Other",
 )
 

@@ -186,6 +186,12 @@ What a run does with one note:
    passage as the author's reading. Until nested attribution exists (29 §10
    item 4: "Strauss reports that Plutarch says"), such a passage's claims wait
    for the curator.
+   **Footnotes** (2026-11-17): the book's footnote is typed the Obsidian way, the mark
+   where the book has it in the quote (`fresh water[^34]`) and its words as printed
+   below (`[^34]: Dio 50.12.7`). It is the book's, not the curator's: kept on the
+   transcription (`footnotes`), never in the Annotation; `check` reports a mark with no
+   footnote and a footnote with no mark. Following it to the passages it cites
+   (`RESTS_ON`, as for Wikipedia, D-150) is the next step.
 5. **Remembered.** A hash of the note, so the next run knows what changed.
 
 Edits and deletions:

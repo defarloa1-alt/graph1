@@ -162,6 +162,8 @@ def lens_questions(event: str) -> dict[str, Any]:
         readings["general"] = data["general"]
     out = {}
     for lens in lenses:
+        if lens.get("status") == "catalogued":  # not read by any analysis yet: not counted
+            continue
         questions = lens.get("questions", [])
         marks = {}
         for f in readings.get(lens["id"], {}).get("findings", []):
@@ -205,7 +207,8 @@ def corroboration(tx, event: str) -> dict[str, Any]:
 
 def report(tx, inquiry: dict[str, Any]) -> dict[str, Any]:
     event = inquiry["narrativeEventId"]
-    lenses = [lens["id"] for lens in json.loads(LENSES.read_text(encoding="utf-8"))["lenses"] if lens["id"] != "general"]
+    lenses = [lens["id"] for lens in json.loads(LENSES.read_text(encoding="utf-8"))["lenses"]
+              if lens["id"] != "general" and lens.get("status") != "catalogued"]  # catalogued: not read yet
     label = tx.run("MATCH (e:Entity {id: $id}) RETURN e.label AS l", id=event).single()["l"]
     return {"event": {"id": event, "label": label}, "inquiry": inquiry["id"],
             "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),

@@ -77,11 +77,16 @@ RETURN count(e) AS summarised
 """
 
 
+# A fact line whose plain name would collide with a structural relationship: `followedBy` between
+# Periods would be FOLLOWED_BY, the Year chain's own line (2026-11-17).
+RENAMED = {"followedBy": "SUCCEEDED_BY"}
+
+
 def relationship_type(predicate: str) -> str:
     """`occurredAt` -> OCCURRED_AT. Registry predicates are camelCase words; anything else is refused."""
     if not re.fullmatch(r"[a-z][A-Za-z]*", predicate):
         raise ValueError(f"not a predicate name: {predicate!r}")
-    return re.sub(r"(?<!^)(?=[A-Z])", "_", predicate).upper()
+    return RENAMED.get(predicate) or re.sub(r"(?<!^)(?=[A-Z])", "_", predicate).upper()
 
 
 def _short(labels: dict[str, str], according: str | None) -> str:

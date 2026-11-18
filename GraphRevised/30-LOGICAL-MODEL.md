@@ -3,7 +3,7 @@ status: descriptive
 authority: none; describes the graph as built (where it and 02 disagree, 02 governs)
 depends_on: [02-GRAPH-MODEL.md]
 superseded_by: null
-last_reviewed: 2026-10-18
+last_reviewed: 2026-11-17
 ---
 
 # 30 — Logical Model (UML)
@@ -163,9 +163,12 @@ Each table lists every property the live graph holds on that label, plus the
 properties the operations or the designs write that no node yet carries
 (marked *designed*). **Mult.** is the property's multiplicity: `[1]`
 required, `[0..1]` optional. **Live** is how many nodes carry it on
-2026-10-18.
+2026-10-18: a dated snapshot, not kept current (on 2026-11-17 the graph held 824
+entities, 20 Subjects, 2,762 claims). For today's numbers run
+`python -m GraphRevised.validate_ontology` or the Cypher in §7; counts are no
+longer kept in the headings.
 
-### 2.1 Entity (702)
+### 2.1 Entity
 
 A real-world or analytical thing, or one of our own units of a reading (§3.1).
 Unique: `id`.
@@ -182,7 +185,7 @@ Unique: `id`.
 | sourceNote | String | [0..1] | 2 | |
 | decidedAt, decidedBy, decisionBasis | String | [0..1] | 11 | the curator's decision on a proposed Entity (the 11 phases) |
 
-### 2.2 Subject (1)
+### 2.2 Subject
 
 A body of knowledge or inquiry; since [28](28-SUBJECT-BUCKETS.md), also a
 bucket. Created intentionally, never a shadow of an Entity. Unique: `id`.
@@ -194,7 +197,7 @@ bucket. Created intentionally, never a shadow of an Entity. Unique: `id`.
 | shortLabel | String | [0..1] | 1 | |
 | status | SubjectStatus | [1] | 1 | |
 
-### 2.3 Assertion (2,181)
+### 2.3 Assertion
 
 A local claim. Predicate, endpoints, qualifiers, and mode are fixed at
 creation; a change to any is a different Assertion. The id is
@@ -232,7 +235,7 @@ attribution, context, role, time, and quantity. Unique: `id`.
 | reopenedAt, reopenedBy, reopenBasis | String | [0..1] | 0 | *designed*: reopen |
 | retractedAt, retractedBy, retractBasis, retractReason | String | [0..1] | 0 | *designed*: retraction |
 
-### 2.4 Proposal (2,392)
+### 2.4 Proposal
 
 A requested graph change; durable editorial history. Proposes exactly one
 Assertion. Provenance fields are fixed at creation. Unique: `id`.
@@ -257,7 +260,7 @@ Assertion. Provenance fields are fixed at creation. Unique: `id`.
 | decisionReason | ReasonCode | [0..1] | 22 | rejections |
 | rejectedClaim | Boolean | [0..1] | 23 | the decision also rejected the claim |
 
-### 2.5 SourceObservation (811)
+### 2.5 SourceObservation
 
 A preserved statement, passage, record, transcription, or image record. Source
 facts are immutable; only display text and status change. Unique: `id`.
@@ -313,7 +316,7 @@ facts are immutable; only display text and status change. Unique: `id`.
 | madeOn | String | [0..1] | 0 | from the photo's own date when not given |
 | collection, accession | String | [0..1] | 1 / 0 | the museum, archive, or site, and its number there |
 
-### 2.6 AuthorityRecord (289)
+### 2.6 AuthorityRecord
 
 An external record or identifier. It identifies the record; it does not
 accept the record's data locally. External codes are reached only through
@@ -337,7 +340,7 @@ unique: `(system, identifier)`.
 | formerId | String | [0..1] | 10 | before a system rename (migration 007) |
 | mergedIds | List<String> | [0..1] | 1 | records merged into this one |
 
-### 2.7 Annotation (926)
+### 2.7 Annotation
 
 Commentary, never a claim. Freely deletable. Unique: `id` (migration 003).
 
@@ -365,7 +368,7 @@ Commentary, never a claim. Freely deletable. Unique: `id` (migration 003).
 | quotationStatus | QuotationStatus | [0..1] | 0 | *designed*: set by the curator, never by a model |
 | generatedBy, pathIds | String; List of String | [0..1] | 0 | *designed*: saved paths |
 
-### 2.8 Year (4,025)
+### 2.8 Year
 
 The temporal backbone, −2000 to 2025, no year zero. Unique: `year`.
 
@@ -378,7 +381,7 @@ The temporal backbone, −2000 to 2025, no year zero. Unique: `year`.
 | year_value | Integer | [1] | 4025 | legacy; equals `year`; new writes must not use it |
 | created | DateTime | [1] | 4025 | legacy operational metadata |
 
-### 2.9 Location (505,546)
+### 2.9 Location
 
 The gazetteer: Pleiades (42,399) and GeoNames (463,147), loaded 2026-10-14/15.
 Unique: `id`; unique: `(system, identifier)`; point index on `location`.
@@ -595,7 +598,7 @@ the Battle of Actium (accepted) and 442 depicted events `partOf` a phase
 
 | Enumeration | Values | Live |
 |---|---|---|
-| EntityKind | Person, Event, Place, Group, Object, Work, Period, Office, Concept, Polity, Type, Question, Position, Other | 9 used (Question and Position from registry v17, none yet) |
+| EntityKind | Person, Event, Place, Group, Object, Work, Period, Office, Concept, Polity, Type, Question, Position, Other | 13 in use on 2026-11-17, all but Other (Question 13 and Position 27 since registry v17, from the Lange reading) |
 | EntityStatus | proposed, provisional, resolved, deprecated | proposed 653, provisional 48, resolved 1 |
 | SubjectStatus | candidate, provisional, validated, deprecated, merged | provisional 1 |
 | AssertionStatus | proposed, accepted, rejected, contested (reserved, E8), superseded | proposed 2093, accepted 79, superseded 8, rejected 1 |

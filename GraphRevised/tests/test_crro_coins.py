@@ -22,6 +22,8 @@ class CoinLegendTests(unittest.TestCase):
         self.assertEqual(unit("CHORTIVM·PRAETORIARVM")["key"], "praetorian-cohorts")
         self.assertEqual(unit("CHORTIS·SPECVLATORVM")["kind"], "cohort")
         self.assertIsNone(unit("ANT AVG"))
+        self.assertEqual(unit("SCARPVS IMP LEG VIII")["key"], "legion-8")  # a legate's name before the unit
+        self.assertIsNone(unit("SCARPVS IMP"))
 
     def test_bc_years_to_edtf(self):
         self.assertEqual(edtf_year(32), "-0031")

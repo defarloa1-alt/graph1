@@ -112,6 +112,40 @@ class NoteTests(unittest.TestCase):
         self.assertEqual(self.problems(IMAGE, "Image"), [])
         self.assertEqual(read_note(self.folder / "Other.md").text, "What I think of it.")
 
+    def test_the_books_footnote_is_kept_apart_from_the_curators_text(self):
+        text = BOOK.replace("> and its second line.", "> and its second line.[^34] A third sentence.") + (
+            "\n[^34]: Dio 50.12.7; Plut. Ant. 63.3;\n    Kromayer 1899, 21.\n\nWhat I think of it.\n")
+        note = read_note(self.write("Note", text))
+        self.assertEqual(note.quote, "The first line of the passage, and its second line. A third sentence.")
+        self.assertEqual(note.text, "What I think of it.")
+        [footnote] = note.footnotes
+        self.assertEqual((footnote.mark, footnote.text), ("34", "Dio 50.12.7; Plut. Ant. 63.3; Kromayer 1899, 21."))
+        self.assertEqual(footnote.sentence, "The first line of the passage, and its second line.")
+        self.assertIn('"mark": "34"', footnote.stored())
+        self.assertEqual(self.problems(text), [])
+
+    def test_a_footnote_and_its_mark_must_match(self):
+        no_note = BOOK.replace("second line.", "second line.[^2]")
+        self.assertIn("footnote mark [^2] in the quote has no footnote written below it", self.problems(no_note))
+        no_mark = BOOK + "\n[^3]: Dio 50.1.\n"
+        self.assertIn("footnote [^3] has no mark in the quote: put [^3] where the book has it", self.problems(no_mark))
+
+    def test_suggestions_rank_a_whole_label_first_and_skip_common_words(self):
+        from GraphRevised.capture.notes import significant_words, suggest_concerns
+        text = BOOK.replace("The first line of the passage,", "The Actium promontory was sandy; Antony's army").replace(
+            "and its second line.", "camped there.")
+        note = read_note(self.write("Note", text))
+        self.assertNotIn("there", significant_words(note.quote))
+        self.assertIn("antony", significant_words(note.quote))
+        rows = [{"id": "a", "label": "Battle of Actium", "kind": "Event", "status": "resolved"},
+                {"id": "b", "label": "Actium promontory", "kind": "Place", "status": "provisional"},
+                {"id": "c", "label": "Antony's land army at Actium", "kind": "Group", "status": "provisional"},
+                {"id": "d", "label": "Ionian Sea", "kind": "Place", "status": "proposed"}]
+        ranked = suggest_concerns(note, rows)
+        self.assertEqual([r["id"] for r in ranked], ["b", "a", "c"])
+        self.assertTrue(ranked[0]["whole"])
+        self.assertEqual(ranked[2]["matched"], ["antony", "army", "actium"])
+
     def test_templates_are_skipped(self):
         self.assertNotIn("note", notes_in(self.folder))
         self.assertIn("Other", notes_in(self.folder))

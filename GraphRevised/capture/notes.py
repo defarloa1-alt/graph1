@@ -2,6 +2,10 @@
 
     python -m GraphRevised.capture.notes check [--folder <dir>]
     python -m GraphRevised.capture.notes apply [--folder <dir>] [--note <name>] [--apply]
+    python -m GraphRevised.capture.notes suggest [--folder <dir>] [--note <name>]
+
+`suggest` lists, for each note whose `concerns` is unfilled, the entities whose labels the note's
+words cover, ready to paste (code only, no model; it never changes the note).
 
 This is the sync without its watcher: what it does when a note is saved. A note is a Markdown file
 in the folder (subfolders and files whose name starts with "_" are skipped: templates live there)
@@ -20,6 +24,12 @@ in the graph, a `related` link to no note, a missing quote block or image, a tem
                   where from, its rights; never evidence for a claim), and an Annotation of kind
                   `image-note` CONCERNS its targets
 
+The book's footnote to the quote is written the Obsidian way: the mark where the book has it in
+the quote (`the camp[^34]`) and the footnote's words, as printed, below (`[^34]: Author 12.3.4`).
+It is the book's, not the curator's: the mark is taken out of the quote, and the footnote is kept
+on the transcription (its mark, the sentence the mark is in, its words), never in the Annotation.
+Following it to the passages it cites is a later step (2026-11-17).
+
 The book is the note's `work`, or the Work whose LCCN record lists the note's ISBN (found among the
 LC records already preserved). It writes the note's `id` back into the file, the only change it
 makes there. Claims are never drafted here: that is a separate step the curator reviews.
@@ -32,6 +42,7 @@ import argparse
 import hashlib
 import os
 import re
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -61,13 +72,43 @@ class NoteError(ValueError):
     """A file that is not a note at all (no frontmatter, or frontmatter that does not parse)."""
 
 
+FOOTNOTE_MARK = re.compile(r"\[\^([^\]\s]+)\]")
+FOOTNOTE_DEFINITION = re.compile(r"^\[\^([^\]\s]+)\]:\s*(.*)$")
+SENTENCE_END = re.compile(r"([.!?](?:\[\^[^\]\s]+\])*)\s+")  # a mark may follow the full stop
+
+
+@dataclass(frozen=True)
+class Footnote:
+    """The book's footnote to the quote: its mark, the sentence the mark sits in, its words as printed."""
+    mark: str
+    sentence: str | None  # None when the mark is not in the quote (check reports it)
+    text: str
+
+    def stored(self) -> str:
+        import json
+        return json.dumps({"mark": self.mark, "sentence": self.sentence, "text": self.text}, ensure_ascii=False)
+
+
+def footnote_sentences(quote_with_marks: str) -> dict[str, str]:
+    """Each mark's sentence in the quote, the marks themselves taken out."""
+    found = {}
+    pieces = SENTENCE_END.split(quote_with_marks)  # text, end, text, end, ..., text
+    sentences = [pieces[i] + (pieces[i + 1] if i + 1 < len(pieces) else "") for i in range(0, len(pieces), 2)]
+    for sentence in sentences:
+        for mark in FOOTNOTE_MARK.findall(sentence):
+            found.setdefault(mark, " ".join(FOOTNOTE_MARK.sub("", sentence).split()))
+    return found
+
+
 @dataclass
 class Note:
     path: Path
     frontmatter: dict[str, Any]
-    quote: str  # the quote block's words, one space between lines
-    text: str  # the curator's own text: what is neither the quote block nor an embedded image
+    quote: str  # the quote block's words, one space between lines, footnote marks taken out
+    text: str  # the curator's own text: not the quote block, an embedded image, or the book's footnotes
     embeds: list[str] = field(default_factory=list)
+    footnotes: list[Footnote] = field(default_factory=list)
+    unmarked: list[str] = field(default_factory=list)  # marks in the quote with no footnote written
 
     @property
     def kind(self) -> str | None:
@@ -106,8 +147,19 @@ def read_note(path: Path) -> Note:
     if not isinstance(frontmatter, dict):
         raise NoteError("the frontmatter is not a set of keys")
     quote_lines, own, embeds = [], [], []
+    definitions: dict[str, list[str]] = {}
+    current = None  # the footnote being written: an indented line after it continues it
     for line in body.splitlines():
         stripped = line.strip()
+        definition = FOOTNOTE_DEFINITION.match(stripped)
+        if definition:
+            current = definition.group(1)
+            definitions.setdefault(current, []).append(definition.group(2))
+            continue
+        if current and stripped and line[:1] in (" ", "\t"):
+            definitions[current].append(stripped)
+            continue
+        current = None
         if stripped.startswith(">"):
             content = stripped[1:].strip()
             if not content.lower().startswith("[!quote]"):
@@ -116,8 +168,13 @@ def read_note(path: Path) -> Note:
             embeds.append(stripped[3:].split("]]")[0].split("|")[0])
         elif stripped:
             own.append(line.rstrip())
-    return Note(path=path, frontmatter=frontmatter, quote=" ".join(" ".join(quote_lines).split()),
-                text="\n".join(own).strip(), embeds=embeds)
+    marked = " ".join(" ".join(quote_lines).split())
+    sentences = footnote_sentences(marked)
+    footnotes = [Footnote(mark, sentences.get(mark), " ".join(" ".join(parts).split()))
+                 for mark, parts in definitions.items()]
+    return Note(path=path, frontmatter=frontmatter, quote=" ".join(FOOTNOTE_MARK.sub("", marked).split()),
+                text="\n".join(own).strip(), embeds=embeds, footnotes=footnotes,
+                unmarked=[m for m in sentences if m not in definitions])
 
 
 def notes_in(folder: Path) -> dict[str, Path]:
@@ -159,6 +216,54 @@ class Neo4jNoteReader:
     def work_for_lccn(self, lccn: str) -> list[str]:
         return self.tx.run("MATCH (w:Entity:Work)-[:HAS_AUTHORITY_RECORD]->(:AuthorityRecord "
                            "{system: 'LCCN', identifier: $lccn}) RETURN w.id AS id", lccn=lccn).value()
+
+
+    def candidates(self, words: list[str]) -> list[dict[str, Any]]:
+        """Live entities (not Works, not one source's depicted event) whose label holds one of the words."""
+        return self.tx.run(
+            "MATCH (e:Entity) WHERE NOT e.status IN ['rejected', 'deprecated'] AND NOT e:Work "
+            "AND NOT e.id STARTS WITH 'chr:entity:depicted:' "
+            "AND any(w IN $words WHERE toLower(e.label) CONTAINS w) "
+            "RETURN e.id AS id, e.label AS label, [l IN labels(e) WHERE l <> 'Entity'][0] AS kind, "
+            "e.status AS status", words=words).data()
+
+
+# --- Suggesting what a note concerns ---------------------------------------------------------------
+
+STOPWORDS = {"about", "after", "again", "against", "also", "among", "and", "battle", "been", "before", "being",
+             "between", "both", "could", "despite", "does", "during", "each", "even", "from", "have", "having",
+             "into", "itself", "large", "lacked", "might", "more", "most", "much", "only", "other", "over",
+             "same", "should", "since", "some", "spell", "still", "such", "than", "that", "their", "them",
+             "then", "there", "these", "they", "this", "those", "through", "under", "until", "very", "were",
+             "what", "when", "where", "which", "while", "with", "would", "your", "chrystallum"}
+WORD = re.compile(r"[a-z]+")
+
+
+def significant_words(text: str) -> list[str]:
+    """Lowercase words of four letters or more that are not common words; a possessive 's is dropped."""
+    words = WORD.findall(re.sub(r"['’]s\b", "", text.lower()))
+    return [w for w in dict.fromkeys(words) if len(w) >= 4 and w not in STOPWORDS]
+
+
+def suggest_concerns(note: Note, rows: list[dict[str, Any]], limit: int = 10) -> list[dict[str, Any]]:
+    """Rank entities by how much of their label the note's words cover; a whole label first.
+
+    Code only, no model: a label word counts when it is one of the note's significant words.
+    Suggestions are printed for the curator, never written into the note."""
+    text = " ".join([note.quote, note.text]).lower()
+    words = set(significant_words(text))
+    ranked = []
+    for row in rows:
+        label_words = significant_words(row["label"] or "")
+        if not label_words:
+            continue
+        matched = [w for w in label_words if w in words]
+        if not matched:
+            continue
+        whole = (row["label"] or "").lower().replace("’", "'") in text.replace("’", "'")
+        ranked.append({**row, "matched": matched, "whole": whole, "share": len(matched) / len(label_words)})
+    ranked.sort(key=lambda r: (not r["whole"], -r["share"], -len(r["matched"]), r["label"]))
+    return ranked[:limit]
 
 
 def lccn_for_isbn(isbn: str, directory: Path = SOURCE_DIRECTORY) -> list[str]:
@@ -226,6 +331,10 @@ def check(note: Note, reader: NoteReader, names: set[str], folder: Path = DEFAUL
             problems.append("no page or location")
         if note.get("noteType") != "excerpt" and not note.text:
             problems.append("no text of the curator's: write it, or make the noteType excerpt")
+        problems += [f"footnote mark [^{m}] in the quote has no footnote written below it" for m in note.unmarked]
+        problems += [f"footnote [^{f.mark}] has no mark in the quote: put [^{f.mark}] where the book has it"
+                     for f in note.footnotes if f.sentence is None]
+        problems += [f"footnote [^{f.mark}] is empty" for f in note.footnotes if not f.text]
         work, why = book_of(note, reader)
         if work is None:
             problems.append(why)
@@ -283,7 +392,11 @@ def apply_note(tx: Any, operations: dict[str, str], note: Note, reader: NoteRead
                 "rights": "Short quotation transcribed for study; the work may be in copyright.",
                 "visibility": visibility, "capturedBy": author, "capturedAt": now,
                 "contentHash": hashlib.sha256(note.quote.encode("utf-8")).hexdigest(),
-                "rawPayloadUri": f"obsidian:{note.path.relative_to(folder).as_posix()}"})
+                "rawPayloadUri": f"obsidian:{note.path.relative_to(folder).as_posix()}",
+                "footnotes": [f.stored() for f in note.footnotes]})
+        elif note.footnotes:
+            run_write(tx, operations, "add_transcription_footnotes", {
+                "id": observation_id, "footnotes": [f.stored() for f in note.footnotes]})
         kind, quotation, note_type = "note", note.quote, note.get("noteType")
     else:
         target = link_target(note.get("image"))
@@ -311,17 +424,37 @@ def apply_note(tx: Any, operations: dict[str, str], note: Note, reader: NoteRead
             "reusedTranscription": note.kind == "note" and existing is not None}
 
 
+def print_suggestions(note: Note, reader: Any, *, every: bool = False) -> None:
+    """For a note whose `concerns` is unfilled (or any note named with --note): candidates to paste."""
+    concerns = note.ids("concerns")
+    unfilled = not concerns or any("replace-me" in c for c in concerns)
+    if not (unfilled or every):
+        return
+    words = significant_words(" ".join([note.quote, note.text]))
+    found = suggest_concerns(note, reader.candidates(words) if words else [])
+    print(f"{note.name}" + ("" if unfilled else "  (concerns already filled)"))
+    if not found:
+        print("    no entity's label matches the note's words; use the Cypher lookup or name a new entity")
+        return
+    print("    concerns:")
+    for row in found:
+        why = "whole label in the note" if row["whole"] else "words: " + ", ".join(row["matched"])
+        print(f"      - {row['id']:<55} # {row['label']} ({row['kind']}, {row['status']}; {why})")
+
+
 def main(argv: list[str] | None = None) -> int:
     from neo4j import GraphDatabase
     from GraphRevised.operations import load_operations
 
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=("check", "apply"))
+    parser.add_argument("command", choices=("check", "apply", "suggest"))
     parser.add_argument("--folder", type=Path, default=DEFAULT_FOLDER)
     parser.add_argument("--note", help="only the note of this name")
     parser.add_argument("--author", default=os.environ.get("CHRYSTALLUM_CURATOR", "Tony DeFarlo"))
     parser.add_argument("--apply", action="store_true", help="commit (default: dry run)")
     args = parser.parse_args(argv)
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # ✓ and ✗ on a Windows console
 
     paths = notes_in(args.folder)
     chosen = {n: p for n, p in paths.items() if args.note in (None, n)}
@@ -344,6 +477,9 @@ def main(argv: list[str] | None = None) -> int:
                         continue
                     if note.kind is None:
                         continue  # not marked for the sync
+                    if args.command == "suggest":
+                        print_suggestions(note, reader, every=args.note is not None)
+                        continue
                     problems = check(note, reader, set(paths), args.folder)
                     if problems:
                         failed += 1

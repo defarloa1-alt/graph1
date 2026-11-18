@@ -52,6 +52,7 @@ class FactLayerTests(unittest.TestCase):
         self.assertEqual(relationship_type("occurredAt"), "OCCURRED_AT")
         self.assertEqual(relationship_type("partOf"), "PART_OF")
         self.assertEqual(relationship_type("occurred"), "OCCURRED")
+        self.assertEqual(relationship_type("followedBy"), "SUCCEEDED_BY")  # not the Year chain's FOLLOWED_BY
         with self.assertRaises(ValueError):
             relationship_type("x]->(y) DELETE y //")
 

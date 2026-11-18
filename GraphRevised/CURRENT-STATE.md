@@ -106,6 +106,35 @@ Nothing was written to the graph and no model was called.
   historiography only. The general reader's output was probed and compiles.
 - **Spend meter:** a billed reply that fails to parse is now logged at its ceiling,
   marked `estimated` (two earlier 16-token probes went unlogged, negligible).
+- **Stored: Lange pp. 610-623** (2026-11-17, `--read --submit`, curator's go-ahead;
+  $1.14; $1.79 in all on `actium`). 155 drafts, 152 stored, all proposed; 1 refused (a
+  Position on a Question not proposed: did Cleopatra plan the flight beforehand). The
+  graph now has 13 Questions and 27 Positions for Actium, Lange's own thesis among them
+  (Antony fought to win until Cleopatra fled; a hard-fought, well-matched battle;
+  Cleopatra's flight, not defection, decided it). **To review:** "Antonius was fighting
+  to win" and "Antonius had 500 warships" are each both held and rejected by Lange
+  (likely a misread); the ships Question has 7 overlapping Positions; "Antony aimed to
+  withdraw by sea" answers both duplicate aim Questions. **Unresolved holders** (in the
+  run log, not stored): Kromayer, Tarn, Pelling, Carter, Murray, Mommsen, Syme (The
+  Roman Revolution, not the Work held), Orosius, Florus, Livy, Augustus' lost
+  autobiography.
+- **Book footnotes in notes** (2026-11-17): `capture/notes.py` reads `[^n]` marks and
+  footnotes, keeps them on the transcription (`footnotes`; new operation
+  `add_transcription_footnotes`), never in the curator's text (32 §2.1a). `check` no longer
+  crashes on a Windows console. `notes suggest` lists candidate `concerns` for an unfilled
+  note (label words matched, code only; it cannot tell two Cleopatras apart).
+- **Note reader built** (D-157; `capture/note_reader.py`; not yet run for pay). `triage`:
+  one small call per unfilled note (~$0.03) picks `concerns` from the code's candidates and
+  lens tags from `curation/lenses.json`, and writes them into the note, marked
+  `# suggested`. `read`: the lens reader on an applied note's transcription, the curator's
+  text as a prompt only (`Inquiry.curator_note`); `--submit` stores, all proposed. Both are
+  dry runs by default. The lens catalogue has six lenses (general, military, political,
+  economic, social, religious): no geography lens, which the triage reports as missing. Next: follow footnotes to held passages (`RESTS_ON`), and
+  a paid, metered note reader (claims from the quote, suggested `concerns`, links to held
+  events, lens tags and Questions from the curator's thought; all proposed).
+- **Debates in the event snapshot** (2026-11-17): `add_debates` in
+  `discovery/subject_view.py` (Question -> Position -> holders, receptions, history);
+  explorer does not display it yet.
 - **`.gitignore`:** `data/` had hidden `explorer/app/src/data/types.ts` (never
   committed); the folder is now excepted.
 
@@ -337,9 +366,35 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
 
 ## 5. Waiting for the curator
 
-- **In the review desk:** 24 of Antony's coin units still open (`partOf` his land
-  forces), with "+evidence" proposals on legions 12, 17 and 18 from the merge;
-  the 442 phase placements on the Battle of Actium.
+- **In the review desk:** the 442 phase placements on the Battle of Actium. (The 24
+  coin units were accepted 2026-11-18 on the curator's instruction; legion 12's RRC 544/9
+  evidence link had lost its time quotation in migration 013 and was repaired from the
+  coin's own date line first.)
+- **López Sánchez 2010** (INR 5, 123-138; migration 015, secondary, for the curator to
+  check; PDF in docs/Actium/, git-ignored): pp. 123-131 read by the military lens
+  2026-11-18 ($0.67). Proposed: 7 Questions (coin series as evidence; Imp IIII; a Corcyra
+  squadron; Antony's praetorians at Actium; Scarpus's forces; why Scarpus went to
+  Cyrenaica; Corcyra as the turning point) and 10 Positions. To check: López Sánchez's
+  holdings on the two Scarpus Positions were refused (unknown position), and two p. 129
+  quotations ran across the page break; `about` Corcyra is refused (a Place); "Lucius
+  Pinarius" is taken to be Pinarius Scarpus. Unresolved holders: Schmitthenner 1958,
+  Keppie 2000, Southern 1998. The paper swaps Classica/Lybica twice on p. 130; the
+  coins (RRC 544/10, 544/11) settle it.
+- **Imp IIII** (2026-11-18, curator's request): RRC 546 (Scarpus's coins of 31 BC)
+  harvested as a primary coinage Work, 13 types (legion 8 gains a second voice from
+  546/1). Migration 016 proposed the Events "Antony hailed imperator for the fourth
+  time" and "Pinarius Scarpus hailed imperator" (participatedIn, from the legends, no
+  time: the coin is a date by which), the Question `about` Antony's acclamation, and
+  Sear's Position "the occasion ... is unknown" (via López Sánchez p. 126 n. 5; Sear 1998
+  unresolved). Reject "Imp IIII victory was earlier and elsewhere than Southern
+  proposed" as underspecified. 546/4-8, Scarpus striking for Octavian, are evidence for
+  his defection, not yet used.
+- **Scarpus's refusal** (2026-11-18): Dio 51.5.6 gives no date and "autumn 31 BC" is a
+  modern inference, so no time is stored. Migration 017 proposed the refusal `partOf`
+  "Antony follows Cleopatra" (beside the Dio events either side of it) and `triggeredBy`
+  "Antony sails to Scarpus" (according to Dio): its place is its order, after the battle
+  and before Alexandria. A season needs a modern voice we hold (CAH 10, if acquired).
+  Gallus at Paraetonium (30 BC) is a separate episode, not linked.
 - **Standings set by Claude, to check:** Lange 2011 (secondary); the Works the
   Wikidata references created (Broughton, Syme, Roller secondary; DPRR,
   Britannica Online, Treccani tertiary).
@@ -401,20 +456,20 @@ deleted (its password in pushed history is dead).
 
 ## 6. Tests
 
-Last full run, 2026-11-16, after the historiography build: **576 passed**, about
-8 minutes (550 before; the new ones in test_registry_v17 and test_historiography,
-including a rolled-back store of a page's historiography).
+Last full run, 2026-11-17, after footnotes, the note reader, the 18-lens catalogue and the
+architecture-review fixes: **587 passed** (580 before; 28 minutes this time, against about 9
+usually, the machine being busy).
 
 If many live tests fail at once, check that Neo4j is running before reading
 the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 
 ## 7. Next steps
 
-**Start here next session:** historiography is built and stored (§3b, D-156). Next is
-the paid Lange reading, **only with the curator's go-ahead for that run**:
-`CHRYSTALLUM_BUDGET=actium python -m GraphRevised.proposals.article_reader lange-2011
---inquiry GraphRevised/inquiries/actium-battle.json --pages 608-609 --read` first
-(validated, rolled back), then `--submit`. The steps as planned, for reference:
+**Start here next session:** all of Lange (pp. 608-623) is read and stored (§3b). Next:
+(a) propose the unresolved holders as Works, from Lange's footnotes, and attach the
+logged `holds` links; (b) a debate panel in the explorer from the snapshot's `debates`;
+(c) the curator's review of the Lange Positions (§3b "To review"). The historiography
+steps as planned, for reference:
 
 1. registry v17: kinds `Question` and `Position`; predicates `about`, `answers`,
    `holds` (with stance), `rejects`, `hadReception` (time span, reception value);

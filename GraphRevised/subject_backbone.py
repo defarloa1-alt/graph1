@@ -93,8 +93,6 @@ def local_config() -> dict:
 def apply_manifest(tx, manifest: dict) -> dict:
     """Apply in one transaction; refuse conflicting subjects or cyclic links."""
     validate_manifest(manifest, apply=True)
-    if tx.run("MATCH (:Subject)-[r:BROADER]->(:Subject) RETURN count(r) AS count").single(strict=True)["count"]:
-        raise ValueError("Legacy Subject BROADER links exist; migrate them before importing.")
     rows = [{"id": row["id"], "label": row["label"]} for row in manifest["subjects"]]
     existing = tx.run(
         "UNWIND $rows AS row MATCH (s:Subject {id: row.id}) "
