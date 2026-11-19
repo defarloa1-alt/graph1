@@ -89,12 +89,14 @@ class Graph:
     """One driver, read sessions only, and the exploration projection cached for a minute."""
 
     def __init__(self) -> None:
+        from scripts import config_loader
+
         self.driver = GraphDatabase.driver(
-            os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687"),
-            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"), neo4j_password()),
+            os.environ.get("NEO4J_URI", config_loader.NEO4J_URI),
+            auth=(os.environ.get("NEO4J_USERNAME", config_loader.NEO4J_USERNAME), neo4j_password()),
             notifications_min_severity="OFF",
         )
-        self.database = os.environ.get("NEO4J_DATABASE", "neo4j")
+        self.database = os.environ.get("NEO4J_DATABASE", config_loader.NEO4J_DATABASE)
         self._lock = threading.Lock()
         self._built = 0.0
         self._index: dict[str, Any] = {}
@@ -143,7 +145,10 @@ def name_score(query: str, name: str) -> float:
 
 
 def _brief(node: dict[str, Any]) -> dict[str, Any]:
-    return {"id": node["id"], "label": node["fullLabel"], "kind": node["kind"], "status": node.get("status")}
+    brief = {"id": node["id"], "label": node["fullLabel"], "kind": node["kind"], "status": node.get("status")}
+    if node.get("hint"):  # another entity shares the name (export/display.py, rule 3)
+        brief["hint"] = node["hint"]
+    return brief
 
 
 def build_server(graph: Graph, **settings) -> "FastMCP":
@@ -230,9 +235,11 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
         return {"record": None, "systems": systems}
 
     @server.tool()
-    def get_entity(entity_id: str, offset: int = 0, limit: int = 50) -> dict[str, Any]:
+    def get_entity(entity_id: str, offset: int = 0, limit: int = 50, include_folded: bool = False) -> dict[str, Any]:
         """An entity's card: description, authority records, passages of note, and its facts
-        (one line each, with attestation and how many voices). Page with offset and limit."""
+        (one line each, with attestation and how many voices). Page with offset and limit.
+        Lines another route already says are folded and only counted (a battle's moments sit in
+        its phases; reference works become "also in N reference works"); include_folded lists them."""
         index = graph.index()
         node = index["nodes"].get(entity_id)
         if node is None:
@@ -241,7 +248,8 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
                 return {"error": f"{rows[0]['label']} is {rows[0]['status']} and left out of the exploration view."}
             return {"error": f"No entity {entity_id}. Use find_entities to get an id."}
         limit, offset = max(1, min(limit, MAX_FACTS)), max(0, offset)
-        fact_ids = index["by_entity"].get(entity_id, [])
+        fact_ids = [f for f in index["by_entity"].get(entity_id, [])
+                    if include_folded or not index["facts"][f].get("fold")]
         facts = []
         for fact_id in fact_ids[offset:offset + limit]:
             fact = index["facts"][fact_id]
@@ -250,7 +258,8 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
             facts.append({"factId": fact_id, "sentence": fact["sentence"], "predicate": fact["predicate"],
                           "direction": "out" if outgoing else "in", "other": _brief(other),
                           "status": fact["status"], "mode": fact["mode"], "category": fact["category"],
-                          "attestation": fact["attestation"], "times": fact["times"], "voices": len(fact["voices"])})
+                          "attestation": fact["attestation"], "times": fact["times"], "voices": len(fact["voices"]),
+                          **({"fold": fact["fold"]} if fact.get("fold") else {})})
         authority_links = graph.rows(
             """
             MATCH (:Entity {id: $id})-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord)
@@ -271,6 +280,8 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
                             "status": f["status"], "category": f["category"], "voices": f["voiceLines"]}
                            for f in node["facts"]],
             "facts": facts, "totalFacts": len(fact_ids), "offset": offset,
+            "folded": node.get("folded") or {}, "standing": node.get("standingWords"),
+            "referenceWorks": node.get("referenceWorks", 0),
         }
 
     @server.tool()

@@ -56,6 +56,7 @@ def trim_fact(fact: dict) -> dict:
         for k in ("id", "source", "target", "label", "sentence", "predicate",
                   "category", "status", "mode", "attestation", "times")
     }
+    out.update({k: fact[k] for k in ("fold", "foldVia") if fact.get(k)})  # a display fold (export/display.py)
     out["voices"] = [trim_voice(v) for v in fact.get("voices", [])]
     span = years(fact.get("times") or [])
     out["years"] = [min(span), max(span)] if span else None
@@ -121,6 +122,9 @@ def build() -> Path:
             "notes": n.get("notes") or [],
             "facts": [trim_fact(f) for f in n.get("facts") or []],
             "authority": n.get("authorityLines") or [],
+            # display rules from the projection (export/display.py)
+            **{k: n[k] for k in ("hint", "standing", "standingWords", "referenceWorks", "imaginedOnly", "folded")
+               if n.get(k)},
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]
     data = {"generatedBy": export.get("generated_by"), "nodes": nodes, "edges": edges,

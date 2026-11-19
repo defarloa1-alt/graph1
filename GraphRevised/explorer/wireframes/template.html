@@ -81,7 +81,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); min-width: 0; min-height: 0; }
 /* sidebars: docked in a column, floating over the stage, or hidden behind an edge tab */
-.side.float { grid-area: stage; align-self: start; max-height: calc(100% - 52px); margin: 44px 8px 8px; z-index: 6; box-shadow: 0 4px 18px var(--shadow); }
+.side.float { grid-area: stage; align-self: start; max-height: calc(100% - var(--headH, 78px) - 8px); margin: var(--headH, 78px) 8px 8px; z-index: 6; box-shadow: 0 4px 18px var(--shadow); }
 .left.float { justify-self: start; width: 210px; }
 .right.float { justify-self: end; width: 260px; }
 .side-head { display: flex; align-items: center; gap: 2px; position: sticky; top: calc(-1 * var(--pad)); margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 0; padding: 4px 6px 4px var(--pad); background: var(--surface); border-bottom: 1px solid var(--line); z-index: 1; }
@@ -338,7 +338,73 @@ a.ext::after { content: " ↗"; font-size: .85em; }
 .state { font-family: var(--font-mono); font-size: var(--fs-mono); text-transform: uppercase; letter-spacing: .04em; color: var(--ink-2); }
 .state.later { color: var(--ink-3); }
 
+/* stage design, 18 Nov: the stage takes the screen; seven views; filters shown as chips; full screen */
+.viewseg { flex-wrap: wrap; }
+.viewseg button[disabled] { color: var(--ink-3); cursor: default; }
+.chips { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.fchip { border: 1px solid var(--ink-3); background: var(--surface); border-radius: 999px; padding: 0 9px; font-size: var(--fs-chrome); color: var(--ink); }
+.fchip.off { border-style: dashed; color: var(--ink-2); }
+.chips .hint { font-size: var(--fs-label); color: var(--ink-3); margin-left: 4px; }
+body.fs { padding: 0; }
+body.fs .app { grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: minmax(0, 1fr) !important; grid-template-areas: "stage" !important; gap: 0; }
+body.fs #drawer, body.fs .side:not(.float), body.fs .edge-tab, body.fs #wf, body.fs .fs-hide { display: none !important; }
+body.fs .stage { border: 0; border-radius: 0; }
+body.fs #fsBtn { margin-left: auto; }
+.view-head { display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 12px; }
+.view-head h2 { font-size: 15px; }
+/* timeline on the stage */
+.tlv { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 6px; }
+.tlv-axis, .tlv-row { display: grid; grid-template-columns: minmax(160px, 34%) minmax(0, 1fr); gap: 12px; align-items: center; }
+.tlv-ticks { position: relative; height: 16px; border-bottom: 1px solid var(--ink-3); }
+.tlv-ticks span { position: absolute; bottom: 3px; transform: translateX(-50%); font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-3); white-space: nowrap; }
+.tlv-row { border-bottom: 1px solid var(--line); padding: 2px 0; }
+.tlv-row.out { opacity: .35; }
+.tlv-row .what { text-align: left; font-size: var(--fs-body); color: var(--ink); }
+.tlv-row .when { color: var(--ink-3); font-family: var(--font-mono); font-size: var(--fs-label); }
+.tlv-track { position: relative; height: 14px; }
+.tlv-mark { position: absolute; top: 3px; height: 8px; min-width: 8px; border-radius: 4px; background: var(--ink-2); }
+.phase-lane { display: flex; flex-wrap: wrap; gap: 6px; }
+.phase-chip { border: 1px solid var(--ink-3); border-radius: var(--r); padding: 4px 8px; background: transparent; text-align: left; font-size: var(--fs-chrome); display: flex; flex-direction: column; gap: 1px; max-width: 170px; }
+.phase-chip .no { font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-3); }
+.tlv-sec { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+/* chart on the stage */
+.chv { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; max-width: 1200px; margin: 0 auto; }
+.chcard { border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+.chcard.later { border-style: dashed; color: var(--ink-2); }
+.chcard h3 { font-size: var(--fs-read); display: flex; justify-content: space-between; gap: 8px; }
+.chcard p { margin: 0; font-size: var(--fs-body); }
+.bar { display: grid; grid-template-columns: minmax(110px, 42%) minmax(0, 1fr) 34px; gap: 8px; align-items: center; border: 0; background: transparent; padding: 2px 0; text-align: left; font-size: var(--fs-chrome); color: var(--ink); }
+.bar:hover .track { outline: 1px solid var(--ink-3); }
+.bar .track { height: 10px; background: var(--fill); border-radius: 2px; position: relative; }
+.bar .fillbar { position: absolute; inset: 0 auto 0 0; background: var(--ink-2); border-radius: 2px; }
+.bar.hiddenby { color: var(--ink-3); }
+.bar.hiddenby .fillbar { background: repeating-linear-gradient(45deg, var(--ink-3) 0 2px, transparent 2px 5px); }
+.bar .n { font-family: var(--font-mono); text-align: right; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.bar .tag { font-family: var(--font-mono); font-size: var(--fs-label); color: var(--ink-3); margin-left: 4px; }
+.chfoot { font-size: var(--fs-label); color: var(--ink-3); margin-top: 4px; }
+/* animation on the stage */
+.reading.animstage { padding: 0; overflow: hidden; }
+.anv { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr) 270px; grid-template-rows: auto minmax(0, 1fr) auto auto; gap: 8px; padding: 6px 12px 10px; }
+.anv-head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.anv-head h2 { font-size: 15px; }
+.anv-map { background: var(--fill); border-radius: var(--r); min-height: 0; position: relative; overflow: hidden; }
+.anv-map svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.anv-side { overflow: auto; display: flex; flex-direction: column; gap: 8px; font-size: var(--fs-chrome); min-height: 0; }
+.anv-side .linkish { text-align: left; font-size: var(--fs-chrome); }
+.anv-ctl { grid-column: 1 / -1; display: flex; gap: 6px; align-items: center; }
+.anv-ctl input[type=range] { flex: 1; }
+.anv-ctl .btn { min-width: 30px; }
+.anv-strip { grid-column: 1 / -1; display: grid; gap: 3px; }
+.anv-strip button { border: 1px solid var(--line); background: transparent; border-radius: 3px; padding: 3px 5px; font-size: var(--fs-label); text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink-2); }
+.anv-strip button.done { background: var(--fill); }
+.anv-strip button.now { background: var(--strong); color: var(--on-strong); border-color: var(--strong); }
+.tray { border: 1px dashed var(--ink-3); border-radius: var(--r); padding: 5px 8px; display: flex; flex-direction: column; gap: 2px; }
+
 @media (max-width: 860px) {
+  .anv { position: static; grid-template-columns: minmax(0, 1fr); }
+  .anv-map { height: 46vh; }
+  .reading.animstage { overflow: auto; }
+  .tlv-axis, .tlv-row { grid-template-columns: minmax(0, 1fr); }
   .account { grid-template-columns: minmax(0, 1fr); }
   .toc { position: static; flex-direction: row; flex-wrap: wrap; gap: 6px; }
   .reading { padding: 8px 14px 20px; }
@@ -364,24 +430,29 @@ a.ext::after { content: " ↗"; font-size: .85em; }
     <div class="reading cardstage" id="cardStage" hidden></div>
     <div class="reading" id="account" hidden></div>
     <div class="reading" id="notes" hidden></div>
+    <div class="reading" id="timelineStage" hidden></div>
+    <div class="reading" id="chartStage" hidden></div>
+    <div class="reading animstage" id="animStage" hidden></div>
     <div class="stage-head">
-      <span class="standing" id="standing"></span>
-      <button class="btn" id="hubBtn" title="Show the graph around where you stand">◎ Graph</button>
-      <span class="lens-menu"><span id="lensSlot"></span><div class="lens-pop" id="lensPop" hidden></div></span>
-      <button class="btn" id="keyBtn" style="margin-left:auto" aria-expanded="false">Key</button>
-      <span class="seg" role="group" aria-label="Who are you exploring as">
+      <span class="standing fs-hide" id="standing"></span>
+      <span class="seg viewseg" role="group" aria-label="What the stage shows" id="viewSeg"></span>
+      <span class="lens-menu fs-hide"><span id="lensSlot"></span><div class="lens-pop" id="lensPop" hidden></div></span>
+      <button class="btn fs-hide" id="keyBtn" style="margin-left:auto" aria-expanded="false">Key</button>
+      <span class="seg fs-hide" role="group" aria-label="Who are you exploring as">
         <button data-persona="scholar" aria-pressed="true">Scholar</button>
         <button data-persona="student">Student</button>
         <button data-persona="browser">Browsing</button>
       </span>
-      <button class="btn" id="tourBtn" title="A tour of the screens, with what each shows">Tour</button>
-      <span class="layout-menu"><button class="btn" id="layoutBtn" aria-expanded="false" aria-haspopup="true">Layout ▾</button><div class="layout-pop" id="layoutPop" hidden></div></span>
+      <button class="btn fs-hide" id="tourBtn" title="A tour of the screens, with what each shows">Tour</button>
+      <span class="layout-menu fs-hide"><button class="btn" id="layoutBtn" aria-expanded="false" aria-haspopup="true">Layout ▾</button><div class="layout-pop" id="layoutPop" hidden></div></span>
+      <button class="btn" id="fsBtn" aria-pressed="false" title="Give the stage the whole screen (Esc leaves)">⛶ Full screen</button>
       <div class="legend" id="legend" aria-hidden="true" hidden>
         <span class="swatch"></span><span>accepted</span>
         <span class="swatch dashed"></span><span>proposed</span>
         <span class="swatch dotted"></span><span>interpretive</span>
         <span class="hollow"></span><span>only sources say it</span>
       </div>
+      <div class="chips" id="chips"></div>
     </div>
     <button class="edge-tab l" id="tabLeft" data-side="left" data-mode="last" hidden>Filters</button>
     <button class="edge-tab r" id="tabRight" data-side="right" data-mode="last" hidden>Navigator</button>
@@ -407,11 +478,18 @@ const DATA = __GRAPH_DATA__;
 /* ---------- indexes ---------- */
 const nodeById = new Map(DATA.nodes.map(n => [n.id, n]));
 const isBib = e => e.label === "described by";
-const canvasEdges = DATA.edges.filter(e => !isBib(e) && nodeById.has(e.source) && nodeById.has(e.target));
+/* a folded line (export/display.py) is already said by another route: a moment through its phase,
+   "distinct from" by "part of". It stays in the data and in its counts; the views leave it out. */
+const canvasEdges = DATA.edges.filter(e => !isBib(e) && !e.fold && nodeById.has(e.source) && nodeById.has(e.target));
 const edgeById = new Map(DATA.edges.map(e => [e.id, e]));
 const adj = new Map();
 for (const e of canvasEdges) {
   for (const id of [e.source, e.target]) { if (!adj.has(id)) adj.set(id, []); adj.get(id).push(e); }
+}
+/* every line said about an entity, folded or not: what the counts count. A fold changes what is drawn, not what is said. */
+const saidOf = new Map();
+for (const e of DATA.edges.filter(e => !isBib(e) && nodeById.has(e.source) && nodeById.has(e.target))) {
+  for (const id of [e.source, e.target]) { if (!saidOf.has(id)) saidOf.set(id, []); saidOf.get(id).push(e); }
 }
 const bibOf = id => DATA.edges.filter(e => isBib(e) && e.source === id).map(e => nodeById.get(e.target)).filter(Boolean);
 const KINDS = ["Person", "Event", "Place", "Group", "Office", "Work", "Concept", "Period", "Polity", "Type"];
@@ -558,6 +636,9 @@ const PLACE_XY = { // placed by hand for the wireframe; the gazetteer (27) will 
   "Actium promontory": [38.95, 20.75], "Rome": [41.89, 12.49], "Alexandria": [31.2, 29.92], "İzmir": [38.42, 27.14],
   "Athens": [37.98, 23.73], "Sicyon": [37.98, 22.72], "Cherchell": [36.6, 2.2], "Crete": [35.2, 24.9], "Nola": [40.93, 14.53],
   "Antioch": [36.2, 36.16], "Ionian Sea": [38.3, 19.2], "Farsala": [39.3, 22.38], "Philippi": [41.01, 24.29],
+  "Corfu": [39.62, 19.92], "Patras": [38.25, 21.73], "Ancient Corinth": [37.91, 22.88], "Peloponnese": [37.5, 22.2], "Adriatic Sea": [42.6, 16.2], "Epirus": [39.6, 20.6],
+  "Tarentum": [40.47, 17.24], "Ephesus": [37.94, 27.34], "Samos": [37.75, 26.97],
+  // Nicopolis and the Campsite Memorial are left out on purpose: they wait in the "Not on the map" tray (fix 4b)
 };
 const ACTORS = [ // 25 §13, in order; the graph name where one exists
   ["Hannibal", null], ["Scipio Africanus", null], ["Tiberius Gracchus", null], ["Gaius Gracchus", null],
@@ -568,12 +649,14 @@ const ACTORS = [ // 25 §13, in order; the graph name where one exists
 
 
 /* ---------- layout (per user, remembered) ---------- */
-const LAYOUT_DEFAULT = { left: "hide", right: "dock", rightWidth: 260, timeline: true, theme: "system" };
+/* the stage gets the screen (curator, 2026-11-18): both panels rest as edge tabs and open over the stage */
+const LAYOUT_DEFAULT = { left: "hide", right: "hide", rightWidth: 260, timeline: true, theme: "system" };
+const LAYOUT_KEY = "chr-layout-v2"; // a new key, so the new defaults reach readers who saved the old layout
 let L = { ...LAYOUT_DEFAULT };
-try { Object.assign(L, JSON.parse(localStorage.getItem("chr-layout") || "{}")); } catch (e) {}
-const lastShown = { left: L.left === "hide" ? "float" : L.left, right: L.right === "hide" ? "dock" : L.right };
+try { Object.assign(L, JSON.parse(localStorage.getItem(LAYOUT_KEY) || "{}")); } catch (e) {}
+const lastShown = { left: L.left === "hide" ? "float" : L.left, right: L.right === "hide" ? "float" : L.right };
 const narrow = window.matchMedia("(max-width: 860px)");
-function saveLayout() { try { localStorage.setItem("chr-layout", JSON.stringify(L)); } catch (e) {} }
+function saveLayout() { try { localStorage.setItem(LAYOUT_KEY, JSON.stringify(L)); } catch (e) {} }
 function applyTheme(theme) { // system follows the device; light and dark are the reader's choice
   if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
   else delete document.documentElement.dataset.theme;
@@ -598,7 +681,7 @@ function applyLayout() {
     app.style.gridTemplateAreas = `"${mid.join(" ")}" "${span("drawer")}"`;
   }
   renderLayoutPop();
-  if (cy) requestAnimationFrame(() => cy.resize());
+  if (cy) requestAnimationFrame(() => { cy.resize(); if (ncy) renderNav(); });
 }
 function setSide(side, mode) {
   if (mode === "last") mode = lastShown[side];
@@ -658,8 +741,9 @@ const S = {
   focus: ACTIUM, sel: null, persona: "scholar", view: "card", door: false, screen: 0, tour: false, query: "", openFact: null, notesPage: 0,
   crumbs: [ACTIUM], path: null, highlight: null, edgeLabels: false, group: null, sub: [], lens: "",
   kinds: new Set(KINDS), status: new Set(["accepted", "proposed"]),
-  cats: new Set(["factual", "interpretive", "imaginative"]), att: new Set(ATT.map(a => a[0])),
+  cats: new Set(["factual", "interpretive"]), att: new Set(ATT.map(a => a[0])), // fiction off by default (fix 2, curator 2026-11-18)
   voice: "", from: -100, to: 20, drawerOpen: false, log: [], cites: [], myNotes: {}, mapZoom: 1,
+  fs: false, anim: { i: 0, playing: false },
 };
 
 /* ---------- helpers ---------- */
@@ -668,7 +752,8 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": 
 const yearText = y => y < 0 ? `${-y} BCE` : `${y} CE`;
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const other = (e, id) => e.source === id ? e.target : e.source;
-const nameOf = n => (n.fullLabel || n.label || "").replace(/ \(Chrystallum\)$/, ""); // the full name; short captions only on crowded rings
+const plainName = n => (n.fullLabel || n.label || "").replace(/ \(Chrystallum\)$/, ""); // the full name; short captions only on crowded rings
+const nameOf = n => n.hint ? `${plainName(n)} · ${n.hint}` : plainName(n); // a hint tells apart two of one name (fix 3)
 const NOTE_RE = /^([\w-]+):\s*([\s\S]*?)\s*\(([^()]*?),\s*(\w+)\)\s*$/;
 function parseNote(raw) {
   const m = raw.match(NOTE_RE);
@@ -677,12 +762,20 @@ function parseNote(raw) {
 }
 const authorOfLocator = loc => (loc || "").split(" ")[0];
 function voicesOf(e) { return e.voices.map(v => v.accordingTo).filter(Boolean); }
-function edgePasses(e) {
+/* the works that state a line: a voice's "according to", or the source of a quote behind our own claim.
+   One rule for the Sources list, the chart, the voice filter and its menu, so their counts agree. */
+function worksOfEdge(e) { const ws = new Set(); for (const v of e.voices) { if (v.accordingTo) ws.add(v.accordingTo); for (const q of v.quotes) if (q.source) ws.add(q.source); } return ws; }
+function worksTally(id) {
+  const works = new Map();
+  for (const e of saidOf.get(id) || []) { if (!edgePasses(e)) continue; for (const w of worksOfEdge(e)) works.set(w, (works.get(w) || 0) + 1); }
+  return works;
+}
+function edgePasses(e, ignoreCats = false) {
   if (!S.status.has(e.status)) return false;
-  if (!S.cats.has(e.category)) return false;
+  if (!ignoreCats && !S.cats.has(e.category)) return false;
   if (!S.att.has(attKey(e.attestation))) return false;
   if (S.lens && !LENSES[S.lens].includes(e.label)) return false;
-  if (S.voice && !e.voices.some(v => v.accordingTo === S.voice || v.quotes.some(q => q.source === S.voice))) return false;
+  if (S.voice && !worksOfEdge(e).has(S.voice)) return false;
   return true;
 }
 const outsideTime = e => e.years && (e.years[1] < S.from || e.years[0] > S.to);
@@ -815,8 +908,8 @@ function hubModel(id) {
     if (!groups.has(fam)) groups.set(fam, { members: new Map(), edges: [] });
     groups.get(fam).members.set(o.id, o); groups.get(fam).edges.push(e);
   }
-  const reads = [["account", "Account"], ["notes", "Notes"], ["map", "Map"], ["family", "Family tree"], ["video", "Video"]]
-    .filter(([v]) => v === "account" ? !!ACCOUNT[id] : v === "family" ? n.kind === "Person" : true);
+  const reads = [["account", "Account"], ["notes", "Notes"], ["map", "Map"], ["family", "Family tree"], ["animation", "Animation"], ["chart", "Chart"]]
+    .filter(([v]) => v === "account" ? !!ACCOUNT[id] : v === "family" ? n.kind === "Person" : v === "animation" ? phaseList(id).length > 0 : true);
   const dated = [...(n.facts || []), ...(adj.get(id) || [])].map(e => e.years).filter(Boolean);
   const year = dated.length ? Math.max(...dated.map(d => d[1])) : null;
   return { n, groups, reads, year };
@@ -832,7 +925,7 @@ function ring(items, r, offset = 0) {
 function drawHub() {
   const { n, groups, reads, year } = hubModel(S.focus);
   const fams = [...groups.keys()].sort((a, b) => HUB_ORDER.indexOf(a) - HUB_ORDER.indexOf(b));
-  const outer = fams.map(f => ({ id: "grp:" + f, data: { hub: "group", fam: f, label: `${famLabel(f, S.focus)} · ${groups.get(f).members.size}${f === PARTS && (PHASES[S.focus] || []).length ? `\nin ${PHASES[S.focus].length} phases` : (k => k ? "\n" + k : "")(kindsLine(groups.get(f).members.values()))}` }, classes: "group" }));
+  const outer = fams.map(f => ({ id: "grp:" + f, data: { hub: "group", fam: f, label: `${famLabel(f, S.focus)} · ${groupCount(S.focus, f, groups.get(f))}${f === PARTS && (PHASES[S.focus] || []).length ? `\nin ${PHASES[S.focus].length} phases` : (k => k ? "\n" + k : "")(kindsLine(groups.get(f).members.values()))}` }, classes: "group" }));
   if (year != null) outer.push({ id: "grp:elsewhere", data: { hub: "cmd", cmd: `elsewhere ${-year} BC`, label: `Elsewhere in ${yearText(year)}` }, classes: "group later" });
   outer.push({ id: "grp:unread", data: { hub: "cmd", cmd: "help", label: `Not yet read\n${MOCK.unread[S.focus] || "grow it"}` }, classes: "group later" });
   const inner = reads.map(([v, label]) => ({ id: "read:" + v, data: { hub: "read", view: v, label }, classes: "reading" + (v === "video" ? " later" : "") }));
@@ -860,6 +953,19 @@ const PARTS = "Part of, and its parts";
 /* a battle's parts are the sources' moments placed in its phases (D-070, D-091): sequence, not a relationship */
 function famLabel(f, id) { return f === PARTS && (PHASES[id] || []).length ? "Moments of the battle" : f; }
 const isPhase = id => id.startsWith("chr:entity:phase:");
+/* every moment of a battle: those placed in a phase plus those still loose on the battle itself.
+   A moment in a phase is part of the battle through it (fix 1), so it counts once, here. */
+/* the battle's own parts that are moments, not phases, after the filters */
+function loosePartsOf(id) {
+  return canvasEdges.filter(e => e.label === "part of" && e.target === id && !isPhase(e.source) && edgePasses(e))
+    .map(e => nodeById.get(e.source)).filter(m => m && S.kinds.has(m.kind));
+}
+function momentsOf(id, g) {
+  const ids = new Set(g.edges.filter(e => e.target === id && !isPhase(e.source)).map(e => e.source));
+  for (const ph of phaseList(id)) for (const m of phaseData(ph).moments) ids.add(m.id);
+  return ids.size;
+}
+const groupCount = (id, f, g) => f === PARTS && (PHASES[id] || []).length ? momentsOf(id, g) : g.members.size;
 function placedIn(phaseId) { return canvasEdges.filter(e => e.label === "part of" && e.target === phaseId && edgePasses(e)).length; }
 function drawSpine(n, g) {
   const order = PHASES[S.focus] || [];
@@ -1097,6 +1203,7 @@ function familyModel(f) {
 
 /* ---------- actions ---------- */
 function stand(id, { crumb = true } = {}) {
+  if (id !== S.focus) { clearInterval(animTimer); S.anim = { i: 0, playing: false }; }
   S.focus = id; S.path = null; S.highlight = null; S.group = null; S.sub = []; S.door = false; S.query = ""; S.openFact = null; S.notesPage = 0;
   if (S.view === "graph") S.view = "card"; // standing on something opens its card; the graph is one click away
   if (S.view === "family" && nodeById.get(id).kind !== "Person") S.view = "graph";
@@ -1151,9 +1258,9 @@ function runCommand(raw) {
   const text = raw.trim(); if (!text) return;
   const [verb, ...rest] = text.split(/\s+/); const arg = rest.join(" ");
   const v = verb.toLowerCase();
-  if (v === "help") return addLog(text, `<ul><li><b>jump</b> <i>name</i> — stand on something</li><li><b>why</b> <i>A</i> and <i>B</i> — trace how two things connect</li><li><b>elsewhere</b> <i>31 BC</i> — what else was happening in the world</li><li><b>note</b> <i>text</i> — keep a private note on where you stand</li><li><b>facts</b>, <b>notes</b>, <b>account</b>, <b>map</b> — change what the stage shows</li><li><b>cite</b> — show the citations you have collected</li><li><b>as</b> scholar | student | browsing</li></ul>`);
+  if (v === "help") return addLog(text, `<ul><li><b>jump</b> <i>name</i> — stand on something</li><li><b>why</b> <i>A</i> and <i>B</i> — trace how two things connect</li><li><b>elsewhere</b> <i>31 BC</i> — what else was happening in the world</li><li><b>note</b> <i>text</i> — keep a private note on where you stand</li><li><b>card</b>, <b>graph</b>, <b>timeline</b>, <b>map</b>, <b>chart</b>, <b>animation</b>, <b>account</b>, <b>notes</b> — change what the stage shows</li><li><b>cite</b> — show the citations you have collected</li><li><b>as</b> scholar | student | browsing</li></ul>`);
   if (v === "family" && nodeById.get(S.focus).kind !== "Person") return addLog(text, "Family trees are for people. Stand on a person first.");
-  if (["map", "graph", "facts", "notes", "account", "family", "card"].includes(v)) { const m = v === "facts" ? "graph" : v; setView(m); return addLog(text, `The stage shows ${m === "graph" ? "the facts" : "the " + m}.`); }
+  if (["map", "graph", "facts", "notes", "account", "family", "card", "timeline", "chart", "animation"].includes(v)) { const m = v === "facts" ? "graph" : v; setView(m); return addLog(text, `The stage shows ${m === "graph" ? "the facts" : "the " + m}.`); }
   if (v === "as") { const p = { scholar: "scholar", student: "student", browsing: "browser", browser: "browser" }[arg.toLowerCase()]; if (p) { setPersona(p); return addLog(text, `Now exploring as ${arg}. The facts stay the same; the telling changes.`); } }
   if (v === "cite") return addLog(text, S.cites.length ? `<ol>${S.cites.map(c => `<li>${esc(c)}</li>`).join("")}</ol><div><button class="btn" data-copy-cites>Copy all</button> <span class="muted small">Style: plain locator <span class="mock">mock</span>. A real citation style (Chicago, MLA) comes from each Work's edition record.</span></div>` : "No citations yet. Use the Cite buttons on a card (Student persona).");
   if (v === "note") {
@@ -1189,24 +1296,22 @@ function renderFilters() {
   const f = S.focus;
   const near = (adj.get(f) || []);
   const kindCount = k => near.filter(e => nodeById.get(other(e, f)).kind === k).length;
-  const works = [...new Set(DATA.edges.flatMap(e => e.voices.map(v => v.accordingTo)).filter(Boolean))].sort();
+  const works = [...new Set(DATA.edges.flatMap(e => [...worksOfEdge(e)]))].sort();
   const check = (name, value, on, text, n, swatch = "") => `<label><input type="checkbox" data-f="${name}" value="${esc(value)}" ${on ? "checked" : ""}>${swatch}${esc(text)}${n != null ? `<span class="n">${n}</span>` : ""}</label>`;
   $("#filters").innerHTML = `
     <span class="anno"><b>Filters.</b> Narrow what the stage shows; counts are for where you stand. Groups fold shut to stay compact.</span>
-    <details class="fgroup" open><summary class="label">Kind</summary>${KINDS.filter(k => kindCount(k) || ["Person", "Event", "Place"].includes(k)).map(k => check("kinds", k, S.kinds.has(k), k, kindCount(k))).join("")}</details>
-    <details class="fgroup" open><summary class="label">Status</summary>${check("status", "accepted", S.status.has("accepted"), "accepted", null, '<span class="swatch"></span>')}${check("status", "proposed", S.status.has("proposed"), "proposed", null, '<span class="swatch dashed"></span>')}</details>
-    <details class="fgroup"><summary class="label">Kind of statement</summary>${check("cats", "factual", S.cats.has("factual"), "fact")}${check("cats", "interpretive", S.cats.has("interpretive"), "interpretation")}${check("cats", "imaginative", S.cats.has("imaginative"), "imagined (novels, films, art)")}</details>
-    <details class="fgroup"><summary class="label">Attestation</summary>${ATT.map(([k, t]) => check("att", k, S.att.has(k), t)).join("")}</details>
-    <div class="fgroup"><label for="voiceSel" class="label">Voice</label><select id="voiceSel"><option value="">Any voice</option>${works.map(w => `<option ${S.voice === w ? "selected" : ""}>${esc(w)}</option>`).join("")}</select></div>
+    <details class="fgroup" id="fg-cats" open><summary class="label">Kind of statement</summary>${check("cats", "factual", S.cats.has("factual"), "history")}${check("cats", "interpretive", S.cats.has("interpretive"), "readings")}${check("cats", "imaginative", S.cats.has("imaginative"), "fiction (novels, films, art)")}<span class="muted small">Fiction is off until you turn it on.</span></details>
+    <details class="fgroup" id="fg-kinds" open><summary class="label">Kind</summary>${KINDS.filter(k => kindCount(k) || ["Person", "Event", "Place"].includes(k)).map(k => check("kinds", k, S.kinds.has(k), k, kindCount(k))).join("")}</details>
+    <details class="fgroup" id="fg-status" open><summary class="label">Status</summary>${check("status", "accepted", S.status.has("accepted"), "accepted", null, '<span class="swatch"></span>')}${check("status", "proposed", S.status.has("proposed"), "proposed", null, '<span class="swatch dashed"></span>')}</details>
+    <details class="fgroup" id="fg-att"><summary class="label">Attestation</summary>${ATT.map(([k, t]) => check("att", k, S.att.has(k), t)).join("")}</details>
+    <div class="fgroup" id="fg-voice"><label for="voiceSel" class="label">Voice</label><select id="voiceSel"><option value="">Any voice</option>${works.map(w => `<option ${S.voice === w ? "selected" : ""}>${esc(w)}</option>`).join("")}</select></div>
     <details class="fgroup"><summary class="label">Subject <span class="mock">mock</span></summary>${(MOCK.buckets[f] || ["No bucket yet (28)"]).map(b => `<label><input type="checkbox" disabled checked>${esc(b)}</label>`).join("")}</details>
     <label class="small"><input type="checkbox" id="edgeLabels" ${S.edgeLabels ? "checked" : ""}> Show line labels</label>`;
 }
 
 /* ---------- render: card ---------- */
 function signposts(id) {
-  const members = new Map(); // distinct entities per group, as the hub counts them
-  for (const e of adj.get(id) || []) { const fam = familyFor(e, id); if (!members.has(fam)) members.set(fam, new Set()); members.get(fam).add(other(e, id)); }
-  const counts = new Map([...members].map(([fam, set]) => [fam, set.size]));
+  const counts = new Map([...hubModel(id).groups].map(([fam, g]) => [fam, groupCount(id, fam, g)])); // as the hub counts them
   const n = nodeById.get(id);
   const dated = [...(n.facts || []), ...(adj.get(id) || [])].map(e => e.years).filter(Boolean);
   const y = dated.length ? Math.max(...dated.map(d => d[1])) : null;
@@ -1222,8 +1327,7 @@ function signposts(id) {
   return rows.join("");
 }
 function sourcesBlock(n) {
-  const works = new Map();
-  for (const e of adj.get(n.id) || []) for (const v of e.voices) if (v.accordingTo) works.set(v.accordingTo, (works.get(v.accordingTo) || 0) + 1);
+  const works = worksTally(n.id);
   const cands = MOCK.candidates[n.id] || [];
   if (!works.size && !cands.length) return "";
   return `<div class="sec"><span class="label"><span>Sources</span><span>${works.size} read</span></span><div class="sources-list">
@@ -1245,7 +1349,7 @@ function notesSummary(n) {
 function nodeCard(n, stage = false) {
   const p = S.persona;
   const buckets = MOCK.buckets[n.id];
-  const bib = bibOf(n.id);
+  const bib = bibOf(n.id), readMore = bib.filter(w => w.standing !== "tertiary"); // reference works fold into a count (fix 5a)
   const factsNoObj = n.facts || [];
   const wiki = MOCK.wikipedia[n.id];
   const chain = n.kind === "Place" ? (MOCK.chain[n.fullLabel] || "Its chain, ancient and modern, appears here once the gazetteer is loaded (27).") : null;
@@ -1255,7 +1359,7 @@ function nodeCard(n, stage = false) {
     : `<span class="anno"><b>Node card.</b> Compact: what it is, where to go, its sources, a count of its notes. Provenance is a quiet footer.</span>`;
   const head = `<div class="card-head">
       <div class="pills"><span class="pill">${kindIcon(n.kind)}${esc(n.kind)}</span><span class="pill ${n.status === "proposed" ? "dashed" : ""}">${esc(n.status)}</span>${n.id !== S.focus ? `<button class="btn primary" data-stand="${esc(n.id)}">Stand here</button>` : `<span class="pill solid">you are here</span>`}</div>
-      ${im ? `<div class="who-row"><img class="${n.kind === "Person" ? "portrait" : "picture"}" src="${im.src}" alt="${im.mock ? "Mock portrait of " : "Image of "}${esc(nameOf(n))}"><div><h2>${esc(nameOf(n))}</h2><span class="credit">${esc(im.credit)}${im.mock ? ' <span class="mock">mock</span>' : ""}</span></div></div>` : `<h2>${esc(nameOf(n))}</h2>`}
+      ${im ? `<div class="who-row"><img class="${n.kind === "Person" ? "portrait" : "picture"}" src="${im.src}" alt="${im.mock ? "Mock portrait of " : "Image of "}${esc(nameOf(n))}"><div><h2>${esc(plainName(n))}</h2>${n.hint ? `<span class="muted small" style="display:block">not to be confused with others named so: ${esc(n.hint)}</span>` : ""}<span class="credit">${esc(im.credit)}${im.mock ? ' <span class="mock">mock</span>' : ""}</span></div></div>` : `<h2>${esc(plainName(n))}</h2>${n.hint ? `<span class="muted">not to be confused with others named so: ${esc(n.hint)}</span>` : ""}`}
       <span class="muted">${esc(n.description || "")}</span>
       ${buckets ? `<span class="small">In: ${buckets.map(b => `<button class="linkish" data-cmd="help">${esc(b)}</button>`).join(" · ")} <span class="mock">mock</span></span>` : ""}
       ${chain ? `<span class="small mono">${esc(chain)} ${MOCK.chain[n.fullLabel] ? '<span class="mock">mock</span>' : ""}</span>` : ""}
@@ -1270,7 +1374,8 @@ function nodeCard(n, stage = false) {
   }).join("")}</div>` : "";
   const side = `${p !== "browser" ? sourcesBlock(n) : ""}
     ${notesSummary(n)}
-    ${p !== "browser" && bib.length ? `<details class="sec"><summary class="label">Read more (${bib.length})</summary><ul class="whenlist">${bib.map(w => `<li>${esc(w.fullLabel)}</li>`).join("")}</ul></details>` : ""}
+    ${p !== "browser" && readMore.length ? `<details class="sec"><summary class="label">Read more (${readMore.length})</summary><ul class="whenlist">${readMore.map(w => `<li>${esc(w.fullLabel)}${w.standingWords ? ` <span class="muted">${esc(w.standingWords)}</span>` : ""}</li>`).join("")}</ul></details>` : ""}
+    ${p !== "browser" && n.referenceWorks ? `<span class="small muted">Also in ${n.referenceWorks} reference work${n.referenceWorks === 1 ? "" : "s"}</span>` : ""}
     ${p !== "browser" && n.authority.length ? `<details class="footer"><summary class="label">Records (${n.authority.length})</summary><ul>${n.authority.map(a => `<li>${esc(a)}</li>`).join("")}</ul></details>` : ""}`;
   const read = readingsBlock(n, stage);
   return stage ? `${anno}<div class="cardgrid"><div>${head}${read}${go}${when}</div><div>${side}</div></div>` : `${anno}${head}${read}${go}${when}${side}`;
@@ -1286,7 +1391,7 @@ function readingsBlock(n, stage) {
     return `<div class="reading-item"><button class="linkish gist" data-open-edge="${esc(e.id)}">${esc(e.sentence)}</button>${q ? `<q>${esc(q.quotation)}</q>` : ""}<span class="whose">${esc(who.length ? "a reading of " + who.join(", ") : "our reading")} · ${esc(e.attestation)}${q ? " · " + ext(q.url, q.locator) : ""}</span></div>`; };
   const noteItem = x => `<div class="reading-item"><span class="gist">${esc(x.text)}</span><span class="whose">${ext(passageUrl(x.locator), x.locator)} · the reader's summary, not the author's words</span></div>`;
   return `<div class="sec"><span class="label"><span>How it is read</span><span>${facts.length + notes.length}</span></span><div class="readings">${facts.map(factItem).join("")}${picks.map(noteItem).join("")}</div>
-    ${notes.length > picks.length ? `<button class="btn" data-readings="${esc(n.id)}">All ${notes.length} readings</button>` : ""}</div>`;
+    ${notes.length > picks.length ? `<button class="btn" data-readings="${esc(n.id)}">All ${notes.length} interpretation notes</button>` : ""}</div>`;
 }
 function renderCardStage() {
   const el = $("#cardStage");
@@ -1407,7 +1512,7 @@ function renderDrawer() {
 }
 
 /* ---------- render: front door ---------- */
-const VERBS = ["why", "path", "elsewhere", "note", "map", "graph", "card", "facts", "notes", "account", "family", "cite", "help", "as", "jump", "go"];
+const VERBS = ["why", "path", "elsewhere", "note", "map", "graph", "card", "facts", "notes", "account", "family", "timeline", "chart", "animation", "cite", "help", "as", "jump", "go"];
 function answersFor(q, big) {
   const hits = findNodes(q).slice(0, big ? 8 : 5);
   const row = big ? "answer" : "row";
@@ -1545,7 +1650,7 @@ function renderNav() {
   ncy.batch(() => {
     ncy.elements().remove();
     ncy.add({ group: "nodes", data: { id: "c", label: nameOf(n) }, position: { x: 0, y: 0 }, classes: "centre" });
-    ncy.add(fams.map((f, i) => ({ group: "nodes", data: { id: "f" + i, fam: f, label: `${famLabel(f, S.focus)} · ${groups.get(f).members.size}` }, position: pos[i], classes: S.group === f ? "on" : "" })));
+    ncy.add(fams.map((f, i) => ({ group: "nodes", data: { id: "f" + i, fam: f, label: `${famLabel(f, S.focus)} · ${groupCount(S.focus, f, groups.get(f))}` }, position: pos[i], classes: S.group === f ? "on" : "" })));
     ncy.add(fams.map((f, i) => ({ group: "edges", data: { id: "e" + i, source: "c", target: "f" + i } })));
   });
   ncy.resize(); ncy.fit(undefined, 6);
@@ -1642,7 +1747,6 @@ function renderMap() {
   $("#cy").style.visibility = ["graph", "family"].includes(S.view) ? "visible" : "hidden";
   $("#zoom").hidden = !["graph", "map", "family"].includes(S.view);
   $("#keyBtn").hidden = S.view !== "graph";
-  { const hb = $("#hubBtn"); hb.textContent = S.view === "card" ? "◎ Graph" : "▤ Card"; hb.title = S.view === "card" ? "Show the graph around where you stand" : "Back to the card for where you stand"; }
   if (S.view !== "graph") $("#legend").hidden = true;
   $("#stageAnno").hidden = !["graph", "map", "family"].includes(S.view);
   $("#stageAnno").innerHTML = S.view === "family"
@@ -1670,6 +1774,198 @@ function renderMap() {
     <svg viewBox="${vx} ${vy} ${vw} ${vh}" role="img" aria-label="Map of places in the graph">${grat.join("")}${pins}</svg>`;
 }
 
+/* ---------- the view switch and the filter chips (stage design, 18 Nov) ---------- */
+const VIEWS = [["card", "Card"], ["graph", "Graph"], ["timeline", "Timeline"], ["map", "Map"], ["chart", "Chart"], ["animation", "Animation"], ["account", "Account"]];
+function renderViewSeg() {
+  $("#viewSeg").innerHTML = VIEWS.map(([v, t]) => {
+    const off = v === "account" && !ACCOUNT[S.focus];
+    const on = S.view === v || (v === "graph" && S.view === "family");
+    return `<button data-view="${v}" aria-pressed="${on}" ${off ? 'disabled title="No account written for this yet"' : ""}>${t}</button>`;
+  }).join("");
+}
+function renderChips() {
+  const c = [];
+  const cat = (k, t) => `<button class="fchip ${S.cats.has(k) ? "" : "off"}" data-chip="cats">${t}${S.cats.has(k) ? "" : " off"}</button>`;
+  c.push(cat("factual", "History"), cat("interpretive", "Interpretations"), cat("imaginative", "Fiction"));
+  if (S.status.size < 2) c.push(`<button class="fchip" data-chip="status">${esc([...S.status].join(", ") || "no status")} only</button>`);
+  if (S.kinds.size < KINDS.length) c.push(`<button class="fchip" data-chip="kinds">Kinds: ${S.kinds.size} of ${KINDS.length}</button>`);
+  if (S.att.size < ATT.length) c.push(`<button class="fchip" data-chip="att">Attestation: ${S.att.size} of ${ATT.length}</button>`);
+  if (S.voice) c.push(`<button class="fchip" data-chip="voice">Voice: ${esc(S.voice.split(",")[0])}</button>`);
+  if (S.from > -100 || S.to < 20) c.push(`<button class="fchip" data-chip="time">${esc(yearText(S.from))} to ${esc(yearText(S.to))}</button>`);
+  $("#chips").innerHTML = c.join("") + `<span class="hint">active filters · click one to open Filters</span>`;
+}
+function openFilterAt(key) {
+  if (L.left === "hide") setSide("left", "float");
+  const det = document.getElementById("fg-" + key);
+  if (det) { if (det.tagName === "DETAILS") det.open = true; det.scrollIntoView({ block: "nearest" }); }
+}
+function setFs(on) {
+  S.fs = on;
+  document.body.classList.toggle("fs", on);
+  const b = $("#fsBtn"); b.textContent = on ? "Exit full screen" : "⛶ Full screen"; b.setAttribute("aria-pressed", String(on));
+  if (on) { try { document.documentElement.requestFullscreen?.().catch(() => {}); } catch (e) {} }
+  else if (document.fullscreenElement) { try { document.exitFullscreen?.().catch(() => {}); } catch (e) {} }
+  requestAnimationFrame(() => { if (cy) { cy.resize(); if (["graph", "family"].includes(S.view)) cy.fit(undefined, 30); } paginate(); });
+}
+
+/* ---------- phases: a battle's parts in the curator's order ---------- */
+function phaseList(id) {
+  const slug = id.split(":").pop();
+  return (PHASES[id] || []).map(p => nodeById.get(`chr:entity:phase:${slug}:${p}`)).filter(Boolean);
+}
+const phaseName = ph => ph.label.replace(/ \(Chrystallum\)$/, "");
+function phaseData(ph) {
+  const moments = canvasEdges.filter(e => e.label === "part of" && e.target === ph.id && edgePasses(e)).map(e => nodeById.get(e.source)).filter(m => S.kinds.has(m.kind));
+  const ids = new Set(moments.map(m => m.id));
+  const places = [...new Set(canvasEdges.filter(e => e.label === "occurred at" && ids.has(e.source) && edgePasses(e)).map(e => e.target))].map(id => nodeById.get(id));
+  return { moments, on: places.filter(p => PLACE_XY[p.fullLabel]), off: places.filter(p => !PLACE_XY[p.fullLabel]) };
+}
+function battleYear(n) {
+  const occ = (n.facts || []).find(f => f.predicate === "occurred" && f.years);
+  return occ ? occ.years[0] : hubModel(n.id).year;
+}
+
+/* ---------- render: timeline on the stage ---------- */
+function renderTimeline() {
+  const el = $("#timelineStage");
+  el.hidden = S.view !== "timeline";
+  if (el.hidden) return;
+  const n = nodeById.get(S.focus), seen = new Set(), rows = [];
+  (adj.get(S.focus) || []).filter(e => edgePasses(e) && e.years).forEach(e => { if (!seen.has(e.sentence)) { seen.add(e.sentence); rows.push({ e, open: `data-open-edge="${esc(e.id)}"` }); } });
+  (n.facts || []).forEach((f, i) => { if (f.years && !seen.has(f.sentence)) { seen.add(f.sentence); rows.push({ e: f, open: `data-open-fact="${esc(n.id)}|${i}"` }); } });
+  rows.sort((a, b) => a.e.years[0] - b.e.years[0] || a.e.years[1] - b.e.years[1]);
+  const pj = projection(), undated = pj.edges.length - pj.edges.filter(e => e.years).length; // the same count as the drawer's tray
+  let body = "";
+  if (rows.length) {
+    const lo = Math.floor((Math.min(...rows.map(r => r.e.years[0])) - 2) / 5) * 5, hi = Math.ceil((Math.max(...rows.map(r => r.e.years[1])) + 2) / 5) * 5;
+    const pct = y => ((y - lo) / Math.max(1, hi - lo)) * 100, step = hi - lo > 60 ? 10 : 5;
+    const ticks = []; for (let y = lo; y <= hi; y += step) ticks.push(y);
+    body += `<div class="tlv-axis"><span class="label">Dated facts · ${rows.length}</span><div class="tlv-ticks">${ticks.map(y => `<span style="left:${pct(y)}%">${esc(yearText(y))}</span>`).join("")}</div></div>`;
+    body += rows.map(({ e, open }) => {
+      const [a, b] = e.years, out = b < S.from || a > S.to;
+      return `<div class="tlv-row ${out ? "out" : ""}"><button class="linkish what" ${open}>${esc(e.sentence)} <span class="when">${esc((e.times || []).join("; ") || (a === b ? yearText(a) : `${yearText(a)} to ${yearText(b)}`))}</span></button><div class="tlv-track"><span class="tlv-mark" style="left:${pct(a)}%;width:max(8px, ${pct(b) - pct(a)}%)"></span></div></div>`;
+    }).join("");
+  } else body += `<p class="muted">Nothing here carries a date yet.</p>`;
+  const phs = phaseList(S.focus);
+  if (phs.length) {
+    const y = battleYear(n);
+    body += `<div class="tlv-sec"><span class="label">Within ${y != null ? esc(yearText(y)) : "the battle"}, in order · ${phs.length} phases</span>
+      <div class="phase-lane">${phs.map((ph, i) => `<button class="phase-chip" data-anim-i="${i}" title="Play from here in Animation"><span class="no">${i + 1}</span>${esc(phaseName(ph))}<span class="muted">${phaseData(ph).moments.length} moments</span></button>`).join("")}</div>
+      <span class="muted small">No phase or moment carries a date of its own, so each sits inside the battle's year, inherited from the battle (fix 4c).</span></div>`;
+  }
+  body += `<div class="tlv-sec"><span class="label">Undated tray</span><span><button class="btn" data-undated="1">${undated} facts with no date</button> <span class="muted small">They stay on the stage whatever the slider says.</span></span></div>`;
+  el.innerHTML = `<span class="anno"><b>Timeline on the stage.</b> Every dated fact around where you stand, laid out along the years at once. The drawer's slider dims what falls outside its window. Phases follow, in order, inside the battle's year.</span>
+    <div class="tlv"><div class="view-head"><span class="label">Timeline</span><h2>${esc(nameOf(n))}</h2></div>${body}</div>`;
+}
+
+/* ---------- render: chart on the stage ---------- */
+const STANDING = new Map(DATA.nodes.filter(n => n.kind === "Work" && n.standingWords).map(n => [n.fullLabel, n.standingWords])); // each Work's standing in the graph
+const standingOf = w => STANDING.get(w) || "";
+function barRow(label, k, max, attrs, extra = "", cls = "") {
+  return `<button class="bar ${cls}" ${attrs}><span>${label}${extra}</span><span class="track"><span class="fillbar" style="width:${max ? (k / max) * 100 : 0}%"></span></span><span class="n">${k}</span></button>`;
+}
+function renderChart() {
+  const el = $("#chartStage");
+  el.hidden = S.view !== "chart";
+  if (el.hidden) return;
+  const n = nodeById.get(S.focus), near = saidOf.get(S.focus) || [], cards = [];
+  const phs = phaseList(S.focus);
+  if (phs.length) {
+    const ks = phs.map(ph => phaseData(ph).moments.length);
+    const placed = new Set(phs.flatMap(ph => phaseData(ph).moments.map(m => m.id)));
+    const loose = loosePartsOf(S.focus).filter(m => !placed.has(m.id)), max = Math.max(...ks, loose.length);
+    cards.push(`<div class="chcard"><h3><span>Moments per phase</span><span class="muted">${ks.reduce((a, b) => a + b, 0) + loose.length}</span></h3>
+      ${phs.map((ph, i) => barRow(`${i + 1}. ${esc(phaseName(ph))}`, ks[i], max, `data-sel-node="${esc(ph.id)}"`)).join("")}
+      ${loose.length ? barRow("In no single phase", loose.length, max, `data-sel-node="${esc(loose[0].id)}" title="${esc(loose.map(m => m.label).join("; "))}"`, "", "later") : ""}
+      <span class="chfoot">Each moment counted once, in its phase (fix 1); the total matches the hub. A moment that spans two phases, or fits none, stays on the battle itself.</span></div>`);
+  }
+  const CATS = [["factual", "History"], ["interpretive", "Interpretations"], ["imaginative", "Fiction"]];
+  const catN = CATS.map(([k]) => near.filter(e => e.category === k && edgePasses(e, true)).length), cmax = Math.max(1, ...catN);
+  cards.push(`<div class="chcard"><h3><span>Statements by kind</span><span class="muted">${catN.reduce((a, b) => a + b, 0)}</span></h3>
+    ${CATS.map(([k, t], i) => barRow(t, catN[i], cmax, `data-chip="cats"`, S.cats.has(k) ? "" : `<span class="tag">hidden by a filter</span>`, S.cats.has(k) ? "" : "hiddenby")).join("")}
+    <span class="chfoot">Counts every statement here, shown or not. Click a kind to change it in Filters.</span></div>`);
+  const works = worksTally(S.focus);
+  const wl = [...works.entries()].sort((a, b) => b[1] - a[1]), wmax = Math.max(1, ...wl.map(x => x[1])), refs = nodeById.get(S.focus).referenceWorks || 0;
+  cards.push(`<div class="chcard"><h3><span>Who says it</span><span class="muted">${wl.length} works</span></h3>
+    ${wl.length ? wl.map(([w, k]) => barRow(esc(w.split(",")[0]), k, wmax, `data-voice="${esc(w)}" title="Show only what ${esc(w)} says"`, standingOf(w) ? `<span class="tag">${standingOf(w)}</span>` : "")).join("") : `<span class="muted small">No voices pass the filters.</span>`}
+    <span class="chfoot">Facts each work states, after the filters. Standing (ancient, modern, reference) is each Work's standing in the graph.${refs ? ` Also in ${refs} reference works (fix 5a).` : ""}</span></div>`);
+  cards.push(`<div class="chcard later"><h3><span>Debate grid</span><span class="mock">mock</span></h3>
+    <p>On a Question, the chart is a grid: positions down, works across, each cell the work's stance. This snapshot holds no Questions or Positions, so there is nothing to draw yet.</p>
+    <span class="chfoot">Needs a holder on every Position (fix 4a) and one Question per issue (fix 6).</span></div>`);
+  el.innerHTML = `<span class="anno"><b>Chart on the stage.</b> The same projection as numbers. What is on the stage picks the charts: a battle gets its phases, kinds and voices; a Question gets its debate grid. Every bar opens what it counts.</span>
+    <div class="view-head" style="max-width:1200px;margin:0 auto 12px"><span class="label">Chart</span><h2>${esc(nameOf(n))}</h2></div><div class="chv">${cards.join("")}</div>`;
+}
+
+/* ---------- render: animation on the stage ---------- */
+let animTimer = null;
+const LABEL_LEFT = new Set(["Corfu", "Ancient Corinth", "Samos"]); // labels drawn to the left, so close pins do not collide
+const LABEL_BELOW = new Set(["Samos"]); // Samos sits just off Ephesus; its name goes under its pin
+const isWater = name => /\b(Sea|Gulf|Strait|Bay)\b/.test(name);
+function animPlay(on) {
+  const len = phaseList(S.focus).length;
+  clearInterval(animTimer); animTimer = null; S.anim.playing = on && len > 0;
+  if (S.anim.playing) {
+    if (S.anim.i >= len - 1) S.anim.i = 0;
+    animTimer = setInterval(() => { if (S.anim.i >= len - 1) return animPlay(false); S.anim.i++; renderAnim(); }, 1700);
+  }
+  renderAnim();
+}
+function renderAnim() {
+  const el = $("#animStage");
+  el.hidden = S.view !== "animation";
+  if (el.hidden) { if (S.anim.playing) { clearInterval(animTimer); S.anim.playing = false; } return; }
+  const n = nodeById.get(S.focus), phs = phaseList(S.focus);
+  if (!phs.length) {
+    el.innerHTML = `<div style="padding:24px 40px" class="muted">Animation plays an event's phases in order. ${esc(nameOf(n))} has no phases yet. <button class="linkish" data-stand-view="${esc(ACTIUM)}|animation">Play the Battle of Actium</button></div>`;
+    return;
+  }
+  S.anim.i = Math.min(Math.max(0, S.anim.i), phs.length - 1);
+  const i = S.anim.i, ph = phs[i], d = phaseData(ph), y = battleYear(n);
+  const trail = new Set(); phs.slice(0, i).forEach(p => phaseData(p).on.forEach(x => trail.add(x.id)));
+  const now = new Set(d.on.map(x => x.id));
+  const lon0 = 11, lon1 = 33, lat0 = 29.5, lat1 = 44, W = 1000, H = 680;
+  const px = lon => ((lon - lon0) / (lon1 - lon0)) * W, py = lat => H - ((lat - lat0) / (lat1 - lat0)) * H;
+  const grat = [];
+  for (let lo = 15; lo <= 30; lo += 5) grat.push(`<line x1="${px(lo)}" x2="${px(lo)}" y1="0" y2="${H}" stroke="var(--line)"/><text x="${px(lo) + 4}" y="${H - 8}" font-size="13" fill="var(--ink-3)">${lo}°E</text>`);
+  for (let la = 30; la <= 40; la += 5) grat.push(`<line y1="${py(la)}" y2="${py(la)}" x1="0" x2="${W}" stroke="var(--line)"/><text x="6" y="${py(la) - 4}" font-size="13" fill="var(--ink-3)">${la}°N</text>`);
+  const HALO = `paint-order="stroke" stroke="var(--fill)" stroke-width="5" stroke-linejoin="round"`;
+  const dots = [], names = []; // every name drawn after every dot, on a halo, so no pin covers a name
+  for (const p of DATA.nodes.filter(p => p.kind === "Place" && PLACE_XY[p.fullLabel])) {
+    const [la, lo] = PLACE_XY[p.fullLabel]; if (lo < lon0 || lo > lon1 || la < lat0 || la > lat1) continue;
+    const isNow = now.has(p.id), was = trail.has(p.id);
+    if (isWater(p.fullLabel)) { // a sea is an area, not a point: an italic name across it, no pin
+      names.push(`<text data-pin="${esc(p.id)}" style="cursor:pointer" x="${px(lo)}" y="${py(la)}" text-anchor="middle" font-style="italic" letter-spacing="3" font-size="${isNow ? 16 : 13}" font-weight="${isNow ? 700 : 400}" fill="${isNow ? "var(--ink)" : was ? "var(--ink-2)" : "var(--ink-3)"}" ${HALO}>${esc(p.fullLabel)}</text>`);
+      continue;
+    }
+    const r = isNow ? 9 : was ? 6 : 4, below = LABEL_BELOW.has(p.fullLabel), left = LABEL_LEFT.has(p.fullLabel);
+    const lx = below ? px(lo) : left ? px(lo) - r - 5 : px(lo) + r + 5, ly = below ? py(la) + r + 15 : py(la) + 5;
+    dots.push(`<circle data-pin="${esc(p.id)}" style="cursor:pointer" cx="${px(lo)}" cy="${py(la)}" r="${r}" fill="${isNow ? "var(--ink)" : "var(--surface)"}" stroke="${isNow || was ? "var(--ink)" : "var(--ink-3)"}" stroke-width="${was && !isNow ? 2.5 : 1.5}"/>`);
+    if (isNow || was) names.push(`<text data-pin="${esc(p.id)}" style="cursor:pointer" x="${lx}" y="${ly}" text-anchor="${below ? "middle" : left ? "end" : "start"}" font-size="${isNow ? 15 : 12}" font-weight="${isNow ? 700 : 400}" fill="${isNow ? "var(--ink)" : "var(--ink-2)"}" ${HALO}>${esc(p.fullLabel)}</text>`);
+  }
+  const pins = dots.join("") + names.join("");
+  el.innerHTML = `<div class="anv">
+    <div class="anv-head"><span class="label">Animation</span><h2>${esc(nameOf(n))}</h2><span class="muted">Phase ${i + 1} of ${phs.length}: <b style="color:var(--ink)">${esc(phaseName(ph))}</b></span><span class="mono muted small">${y != null ? esc(yearText(y)) + " · " : ""}date inherited from the battle (fix 4c)</span></div>
+    <div class="anv-map"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Places of phase ${i + 1}: ${esc(phaseName(ph))}">${grat.join("")}${pins}</svg></div>
+    <div class="anv-side">
+      <span class="anno"><b>Animation on the stage.</b> The battle played phase by phase. Each phase lights the places its moments name; earlier places stay ringed. Places with no coordinates wait in the tray and do not move.</span>
+      <div class="sec"><span class="label"><span>This phase</span><span>${d.moments.length} moments · ${d.on.length + d.off.length} places</span></span>
+        ${d.moments.slice(0, 8).map(m => `<button class="linkish" data-sel-node="${esc(m.id)}">${esc(m.label)}</button>`).join("")}
+        ${d.moments.length > 8 ? `<button class="linkish" data-sel-node="${esc(ph.id)}">and ${d.moments.length - 8} more in the phase</button>` : ""}</div>
+      ${d.off.length ? `<div class="tray"><span class="label">Not on the map · ${d.off.length}</span>${d.off.map(p => `<button class="linkish" data-sel-node="${esc(p.id)}">${esc(p.fullLabel)}</button>`).join("")}<span class="muted small">No coordinates yet (fix 4b).</span></div>` : ""}
+      <span class="muted small">Pins placed by hand for this wireframe; the gazetteer (27) supplies them. <span class="mock">mock</span></span>
+    </div>
+    <div class="anv-ctl" role="group" aria-label="Play controls">
+      <button class="btn" data-anim="first" aria-label="First phase">⏮</button><button class="btn" data-anim="prev" aria-label="Previous phase">‹</button>
+      <button class="btn primary" data-anim="play" aria-label="${S.anim.playing ? "Pause" : "Play"}">${S.anim.playing ? "❚❚ Pause" : "▶ Play"}</button>
+      <button class="btn" data-anim="next" aria-label="Next phase">›</button>
+      <input type="range" id="animRange" min="1" max="${phs.length}" step="1" value="${i + 1}" aria-label="Phase">
+      <span class="mono small">${i + 1} / ${phs.length}</span>
+    </div>
+    <div class="anv-strip" style="grid-template-columns:repeat(${phs.length}, minmax(0, 1fr))">${phs.map((p, k) => `<button data-anim-i="${k}" class="${k === i ? "now" : k < i ? "done" : ""}" title="${esc(phaseName(p))}">${k + 1}. ${esc(phaseName(p))}</button>`).join("")}</div>
+  </div>`;
+}
+function renderStageViews() { renderTimeline(); renderChart(); renderAnim(); }
+
 /* ---------- render: all ---------- */
 function renderStanding() {
   const n = nodeById.get(S.focus);
@@ -1679,6 +1975,7 @@ function renderStanding() {
 }
 function render() {
   renderFilters(); renderCard(); renderDrawer(); renderSuggest(); renderPath(); renderRoutes(); renderFlow(); renderMap(); renderCardStage(); renderAccount(); renderNotes(); renderStanding();
+  renderViewSeg(); renderChips(); renderStageViews();
   if (cy) { cy.style(cyStyle()); drawCanvas(); }
   renderNav();
 }
@@ -1695,6 +1992,7 @@ const FLOW = {
     ["s3", "3 Chrystallum's account", 2, 0], ["s4", "4 Notes, as pages", 2, 1], ["s5", "5 Commands", 2, 2], ["s6", "6 Map", 2, 3],
     ["s7", "7 A life: family tree", 3, 1], ["s8", "8 Participants as the centre", 3, 2], ["s9", "9 Parts: the phase spine", 3, 3],
     ["s10", "10 A big group, split", 4, 2], ["s11", "11 The empty box: where to start", 1, 2], ["s12", "12 Dark, with the military lens", 1, 3],
+    ["s13", "13 Timeline", 2, 4], ["s14", "14 Chart", 2, 5], ["s15", "15 Animation", 2, 6],
   ],
   edges: [
     ["s0", "s1", "◎ Graph"], ["s0", "s2", "a date"], ["s0", "s3", "read the account"], ["s0", "s4", "show notes"], ["s0", "s6", "map"],
@@ -1704,8 +2002,8 @@ const FLOW = {
 };
 /* the tour: the walkthrough screens, one at a time, each saying what it shows; closed by default */
 const TOUR_CAPTION = [
-  "Where you start: the card for the Battle of Actium. Its names and \"Where to go from here\" take you on; the navigator on the right keeps the network in view.",
-  "◎ Graph shows the graph around where you stand: its groups, each a door.",
+  "Where you start: the card for the Battle of Actium, with the stage at full width. Filters and Navigator wait as tabs on the edges and open over the stage; the chips show what is filtered (fiction is off).",
+  "Graph, in the view switch, shows the graph around where you stand: its groups, each a door.",
   "A date on the card opens its fact in place, with every source's own words and a link to the passage.",
   "Chrystallum's own account of the battle; each citation opens its passage.",
   "The notes on the battle as a book: two columns a page, turned with ‹ › or the arrow keys.",
@@ -1717,6 +2015,9 @@ const TOUR_CAPTION = [
   "A group too big to ring opens split: Antony's events by battle, then by phase, then by source.",
   "The empty box offers lives in the order they act, and where you have been.",
   "The dark theme, with the military lens colouring its lines.",
+  "Timeline: every dated fact along the years at once, then the eleven phases in order inside 31 BCE, with their dates inherited from the battle (4c).",
+  "Chart: the same projection as numbers. Moments per phase, statements by kind (fiction counted but hidden), and who says it. Every bar opens what it counts.",
+  "Animation: the battle played phase by phase on the map. Play, step or drag; places with no coordinates wait in the tray (4b). Try Full screen here.",
 ];
 function renderFlow() {
   const wf = $("#wf");
@@ -1733,6 +2034,7 @@ function renderFlow() {
 /* ---------- screens (wireframe walkthrough) ---------- */
 function showScreen(k) {
   S.screen = k;
+  clearInterval(animTimer); S.anim = { i: 0, playing: false };
   S.path = null; S.highlight = null; S.group = null; S.sub = []; S.drawerOpen = false; S.sel = null; S.openFact = null; S.notesPage = 0; S.lens = "";
   S.focus = ACTIUM; S.view = "card";
   applyTheme(L.theme);
@@ -1749,6 +2051,9 @@ function showScreen(k) {
   if (k === 10) { S.focus = ANTONY; if (S.crumbs[S.crumbs.length - 1] !== ANTONY) S.crumbs.push(ANTONY); return openGroup("Battles and events"); }
   if (k === 11) { renderAll(); $("#cmdInput").focus(); renderSuggest(); return; }
   if (k === 12) { applyTheme("dark"); S.lens = "military"; return openGroup("Participants"); }
+  if (k === 13) S.view = "timeline";
+  if (k === 14) S.view = "chart";
+  if (k === 15) { S.view = "animation"; S.anim = { i: 5, playing: false }; }
   renderAll();
 }
 
@@ -1772,8 +2077,19 @@ document.addEventListener("click", ev => {
   if (t.id === "tourPrev") return showScreen(Math.max(0, S.screen - 1));
   if (t.id === "tourNext") return showScreen(Math.min(TOUR_CAPTION.length - 1, S.screen + 1));
   if (d.side) return setSide(d.side, d.mode);
+  if (t.id === "fsBtn") return setFs(!S.fs);
+  if (d.chip) return openFilterAt(d.chip === "time" ? "cats" : d.chip);
+  if (d.selNode) { select({ type: "node", id: d.selNode }); return; }
+  if (d.animI != null) { S.anim.i = +d.animI; if (S.view !== "animation") { animPlay(false); return setView("animation"); } return renderAnim(); }
+  if (d.anim) {
+    const len = phaseList(S.focus).length;
+    if (d.anim === "play") return animPlay(!S.anim.playing);
+    animPlay(false);
+    S.anim.i = d.anim === "first" ? 0 : d.anim === "prev" ? Math.max(0, S.anim.i - 1) : Math.min(len - 1, S.anim.i + 1);
+    return renderAnim();
+  }
   if (d.layout) {
-    if (d.layout === "reset") { L = { ...LAYOUT_DEFAULT }; lastShown.left = "float"; lastShown.right = "dock"; }
+    if (d.layout === "reset") { L = { ...LAYOUT_DEFAULT }; lastShown.left = "float"; lastShown.right = "float"; }
     else {
       const v = d.value;
       L[d.layout] = v === "true" ? true : v === "false" ? false : /^\d+$/.test(v) ? +v : v;
@@ -1814,7 +2130,7 @@ document.addEventListener("click", ev => {
   if (d.mock) return addLog(d.mock === "grow" ? "grow" : "new subject", d.mock === "grow" ? `The concierge would check Wikidata for a match, propose the entity, and run the first-contact harvest (25 §10). Not built. <span class="mock">mock</span>` : `The concierge would propose a subject bucket and anchor it to a library heading where one exists (28). Not built. <span class="mock">mock</span>`);
   if (d.undated) { const p = projection(); const u = p.edges.filter(e => !e.years); return addLog("undated", `${u.length} facts here have no date. They stay on the stage whatever the slider says.<ul>${u.slice(0, 8).map(e => `<li><button class="linkish" data-open-edge="${esc(e.id)}">${esc(e.sentence)}</button></li>`).join("")}</ul>`); }
   if (d.tl != null) { const e = window.__tl[+d.tl]; if (e?.id && edgeById.has(e.id)) select({ type: "edge", id: e.id }); return; }
-  if (d.pin) { S.sel = { type: "node", id: d.pin }; renderCard(); renderMap(); return; }
+  if (d.pin) { select({ type: "node", id: d.pin }); renderMap(); return; }
   if (d.copyCites != null) { const text = S.cites.join("\n"); navigator.clipboard?.writeText(text).then(() => { t.textContent = "Copied"; }, () => { t.textContent = "Select and copy the list above"; }); return; }
   if (t.id === "drawerToggle") { S.drawerOpen = !S.drawerOpen; renderDrawer(); return; }
   if (t.id === "zin") { if (S.view === "map") { S.mapZoom = Math.min(6, S.mapZoom * 1.5); renderMap(); } else cy.zoom({ level: cy.zoom() * 1.25, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } }); return; }
@@ -1823,8 +2139,8 @@ document.addEventListener("click", ev => {
 });
 document.addEventListener("change", ev => {
   const t = ev.target;
-  if (t.dataset.f) { const set = S[t.dataset.f]; t.checked ? set.add(t.value) : set.delete(t.value); renderStanding(); drawCanvas(); renderDrawer(); return; }
-  if (t.id === "voiceSel") { S.voice = t.value; renderStanding(); drawCanvas(); renderDrawer(); return; }
+  if (t.dataset.f) { const set = S[t.dataset.f]; t.checked ? set.add(t.value) : set.delete(t.value); renderStanding(); drawCanvas(); renderDrawer(); renderChips(); renderStageViews(); renderNav(); return; }
+  if (t.id === "voiceSel") { S.voice = t.value; renderStanding(); drawCanvas(); renderDrawer(); renderChips(); renderStageViews(); return; }
   if (t.id === "edgeLabels") { S.edgeLabels = t.checked; drawCanvas(); return; }
   if (t.id === "lensSel") { S.lens = t.value; renderAll(); if (S.lens && !LENSES[S.lens].length) addLog(`lens ${S.lens}`, `Nothing here falls under the ${esc(S.lens)} lens yet. Lenses filter claims by kind (25 §12); the enrichers that fill them are not built. <span class="mock">mock</span>`); return; }
 });
@@ -1837,8 +2153,10 @@ document.addEventListener("input", ev => {
     cy.edges().forEach(ed => { const e = edgeById.get(ed.id()); ed.toggleClass("outside", !!(e && outsideTime(e))); });
     const x = y => ((y + 100) / 120) * 1000; const r = document.querySelector(".tl-track svg rect");
     if (r) { r.setAttribute("x", x(S.from)); r.setAttribute("width", Math.max(0, x(S.to) - x(S.from))); }
+    renderChips(); renderTimeline();
     return;
   }
+  if (t.id === "animRange") { animPlay(false); S.anim.i = +t.value - 1; renderAnim(); return; }
   if (t.id === "cmdInput") { S.query = t.value; renderSuggest(); }
 });
 document.addEventListener("submit", ev => {
@@ -1846,6 +2164,7 @@ document.addEventListener("submit", ev => {
   if (ev.target.id === "cmdForm") { const v = $("#cmdInput").value; S.query = ""; S.door = false; renderSuggest(); runCommand(v); $("#cmdInput").value = ""; $("#cmdInput")?.focus(); }
 });
 document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape" && S.fs) setFs(false);
   if (ev.key === "Escape") { $("#layoutPop").hidden = true; $("#suggestPop").hidden = true; $("#lensPop").hidden = true; if (S.drawerOpen) { S.drawerOpen = false; renderDrawer(); } }
   if (ev.altKey && ev.key === "ArrowLeft") { ev.preventDefault(); return goCrumb(S.crumbs.length - 2); }
   if (ev.target.matches("input, select, textarea")) return;
@@ -1865,6 +2184,7 @@ document.addEventListener("pointerdown", ev => { // a click elsewhere closes wha
 document.addEventListener("pointerup", ev => { if (window.__swipe != null) { const dx = ev.clientX - window.__swipe; window.__swipe = null; if (Math.abs(dx) > 50) turnPage(dx < 0 ? 1 : -1); } });
 document.addEventListener("focusin", ev => { if (ev.target.id === "cmdInput") renderSuggest(); });
 window.addEventListener("resize", () => paginate());
+document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && S.fs) setFs(false); }); // Esc in the browser's own full screen
 narrow.addEventListener("change", applyLayout);
 
 /* ---------- boot ---------- */

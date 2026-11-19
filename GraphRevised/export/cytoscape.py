@@ -39,6 +39,7 @@ from typing import Any
 
 from neo4j import GraphDatabase
 
+from GraphRevised.export import display as display_rules
 from GraphRevised.export.confidence import (LIVE, POSITION_LINKS, claim_lines, confidence, family_key,
                                              position_history, position_link_wording)
 from GraphRevised.proposals.registry import load_registry
@@ -145,6 +146,8 @@ STYLE = [
     {"selector": "edge[mode = 'attributed']", "style": {"source-arrow-shape": "circle", "source-arrow-fill": "hollow"}},
     {"selector": "edge[category = 'imaginative']", "style": {"line-color": "#c2607f", "target-arrow-color": "#c2607f",
                                                               "line-style": "dotted", "color": "#a0506b"}},
+    # a folded line (export/display.py) stays on its card and in the data; the canvas leaves it out
+    {"selector": "edge[fold]", "style": {"display": "none"}},
 ]
 
 
@@ -347,7 +350,8 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
                                          "reporter", "status", "claimId")} for link in links),
             key=lambda link: (not link["ancient"], link["start"] is None, link["start"] or 0, link["name"]))
         data["receptions"] = received
-    return {"elements": {"nodes": list(nodes.values()), "edges": edges}}
+    # What each view shows is decided here, once: folds and hints that mark, never remove (export/display.py).
+    return {"elements": display_rules.apply({"nodes": list(nodes.values()), "edges": edges}, standing)}
 
 
 HTML = """<!doctype html>
@@ -366,7 +370,7 @@ HTML = """<!doctype html>
 </style></head>
 <body><div id="cy"></div><aside id="card"><h2>Click a node or claim</h2>
 <p>One line per fact. Solid: accepted. Dashed: proposed. Hollow circle at the start: only "according to" its sources. Pink dotted: imagined.
-Faded with a dashed border: a proposed entity. Nothing here is hidden for being unreviewed.</p></aside>
+Faded with a dashed border: a proposed entity. Nothing here is hidden for being unreviewed. A line another route already says (a moment in a phase, a reference work) is folded: its node card counts it.</p></aside>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
 <script>
 const graph = {graph};
@@ -379,12 +383,15 @@ function show(title, fields) {{
     !(Array.isArray(v) && !v.length)).map(([k, v]) => `<dt>${{esc(k)}}</dt><dd>${{Array.isArray(v) ?
     "<ul>" + v.map(item => `<li>${{esc(item)}}</li>`).join("") + "</ul>" : esc(v)}}</dd>`).join("") + "</dl>";
 }}
-cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["kind", d.kind], ["status", d.status],
+cy.on("tap", "node", e => {{ const d = e.target.data(); show(d.fullLabel, [["not to be confused with others named so", d.hint],
+  ["kind", d.kind], ["status", d.status], ["standing", d.standingWords],
+  ["lines folded on the canvas", Object.entries(d.folded || {{}}).map(([why, n]) => `${{n}} ${{why}}`)],
   ["description", d.description], ["history", d.history], ["facts", d.factLines], ["passages of note and mentions", d.notes],
   ["authority records", d.authorityLines], ["id", d.id]]); }});
 cy.on("tap", "edge", e => {{ const d = e.target.data(); show(d.sentence, [["attestation", d.attestation],
   ["status", d.status], ["category", d.category], ["when", d.times.join("; ")], ["voices", d.voiceLines],
-  ["review history", d.reviewLines], ["fact id", d.id]]); }});
+  ["review history", d.reviewLines], ["folded on the canvas", d.fold && (d.fold + (d.foldVia ? " (via " + d.foldVia + ")" : ""))],
+  ["fact id", d.id]]); }});
 </script></body></html>
 """
 

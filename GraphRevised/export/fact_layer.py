@@ -159,7 +159,9 @@ def plan(view: dict[str, Any], year_links: list[dict[str, Any]],
                           "when": "; ".join(fact["times"]),
                           "role": sorted({v["role"] for v in live if v["role"]}),
                           "accordingTo": sorted({_short(short, v["accordingTo"]) for v in live}),
-                          "assertions": [v["claimId"] for v in voices]})})
+                          "assertions": [v["claimId"] for v in voices],
+                          # a display fold (export/display.py), so a Browser or Bloom style can hide the line
+                          "fold": fact.get("fold"), "foldVia": fact.get("foldVia")})})
         key = SUMMARY.get(fact["predicate"])
         if key:
             target = nodes[fact["target"]]["label"]
