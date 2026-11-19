@@ -39,6 +39,7 @@ class Neo4jReader:
             OPTIONAL MATCH (entity)-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord {system: "Wikidata"})
             WHERE link.role = "entity_identity" AND link.status = "accepted"
             RETURN entity {.id, .label, .shortLabel, .description, .form,
+                           category: coalesce(entity.typeCategory, entity.groupCategory),
                            kind: head([label IN labels(entity) WHERE label <> "Entity"])} AS entity,
                    collect(record.identifier) AS wikidataIds
             """,
@@ -221,23 +222,40 @@ def submit(
 
 def claim_labels(definition: PredicateDefinition, result: ValidationResult) -> tuple[str, str]:
     """The reader-facing label and short caption of a claim, qualifiers included."""
-    subject, obj, draft = result.subject, result.object, result.draft
+    draft = result.draft
     entities = result.qualifier_entities or {}
-    label = f"{subject['label']} {definition.display}" + (f" {obj['label']}" if obj else "")
-    if "role" in entities:
-        label += f" as {entities['role']['label']}"
-    if "context" in entities:
-        label += f" during {entities['context']['label']}"
-    if draft.quantity is not None:
-        label += f" (quantity {draft.quantity.display()})"
-    if draft.reception is not None:
-        label += f" ({draft.reception})"
-    if draft.time is not None:
-        label += f" ({display_edtf(draft.time.edtf) if draft.time.edtf else draft.time.source_expression})"
-    if "attributedTo" in entities:
-        label = f"According to {entities['attributedTo']['label']}: {label}"
+    return format_claim_labels(
+        definition.display, result.subject, result.object,
+        role=entities.get("role"), context=entities.get("context"), work=entities.get("attributedTo"),
+        quantity=draft.quantity.display() if draft.quantity is not None else None,
+        reception=draft.reception,
+        time=(display_edtf(draft.time.edtf) if draft.time.edtf else draft.time.source_expression)
+        if draft.time is not None else None,
+    )
+
+
+def format_claim_labels(
+    display: str, subject: dict[str, Any], obj: dict[str, Any] | None, *,
+    role: dict[str, Any] | None = None, context: dict[str, Any] | None = None, work: dict[str, Any] | None = None,
+    quantity: str | None = None, reception: str | None = None, time: str | None = None,
+) -> tuple[str, str]:
+    """A claim's label and short caption from its parts: the entities as {label, shortLabel}, the
+    qualifiers as display text. Used when a claim is stored and when an entity it names is renamed."""
+    label = f"{subject['label']} {display}" + (f" {obj['label']}" if obj else "")
+    if role:
+        label += f" as {role['label']}"
+    if context:
+        label += f" during {context['label']}"
+    if quantity is not None:
+        label += f" (quantity {quantity})"
+    if reception is not None:
+        label += f" ({reception})"
+    if time:
+        label += f" ({time})"
+    if work:
+        label = f"According to {work['label']}: {label}"
     short = subject.get("shortLabel") or subject["label"]
-    short += f" -> {obj.get('shortLabel') or obj['label']}" if obj else f" {definition.display}"
+    short += f" -> {obj.get('shortLabel') or obj['label']}" if obj else f" {display}"
     return label, short
 
 
@@ -514,6 +532,29 @@ def supersede(
             f"proposals, and every replacement must be a different proposed or accepted claim "
             f"(a retry must name the same replacements)"
         )
+    return rows[0]
+
+
+def restore(
+    tx: Any,
+    assertion_id: str,
+    *,
+    decided_by: str,
+    decision_basis: str,
+    decided_at: str,
+    operations: dict[str, str],
+) -> dict[str, Any]:
+    """Undo a supersession: the claim returns to the status it had, its SUPERSEDED_BY links are
+    removed (their targets kept in formerReplacementIds), and its supersede fields stay as history.
+    The replacements are untouched."""
+    rows = tx.run(operations["restore_superseded_assertion"], {
+        "assertionId": assertion_id,
+        "decidedAt": decided_at,
+        "decidedBy": decided_by,
+        "decisionBasis": decision_basis,
+    }).data()
+    if not rows:
+        raise ReviewError(f"{assertion_id} is not a claim superseded from proposed or accepted")
     return rows[0]
 
 

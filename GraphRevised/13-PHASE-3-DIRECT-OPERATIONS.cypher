@@ -1217,3 +1217,126 @@ FOREACH (_ IN CASE WHEN $relation = "related" THEN [1] ELSE [] END |
   ON CREATE SET link.status = "accepted", link.createdAt = $decidedAt, link.createdBy = $decidedBy,
                 link.sourceIdentifier = $sourceIdentifier)
 RETURN from.id AS from, to.id AS to, $relation AS relation;
+
+// restore_superseded_assertion (2026-11-19): undo a supersession the curator finds was wrong
+// (a Question keeps every link its source evidences). An explicit, recorded curator act: the claim
+// returns to the status it had (supersededFrom), its SUPERSEDED_BY links are removed and their
+// targets kept in formerReplacementIds, and the supersede fields stay as history. Refused unless
+// the claim is superseded from proposed or accepted. A retry is a no-op that keeps the first
+// restoration's metadata.
+MATCH (assertion:Assertion {id: $assertionId})
+WITH assertion,
+     assertion.status IN ["proposed", "accepted"] AND assertion.restoredAt IS NOT NULL
+       AND coalesce(assertion.restoredAt, "") >= coalesce(assertion.supersededAt, "") AS isRetry
+WHERE isRetry OR (assertion.status = "superseded" AND assertion.supersededFrom IN ["proposed", "accepted"])
+OPTIONAL MATCH (assertion)-[link:SUPERSEDED_BY]->(replacement:Assertion)
+WITH assertion, isRetry, collect(link) AS links, collect(replacement.id) AS replacementIds
+SET
+  assertion.formerReplacementIds = CASE WHEN isRetry THEN assertion.formerReplacementIds ELSE replacementIds END,
+  assertion.restoredAt = CASE WHEN isRetry THEN assertion.restoredAt ELSE $decidedAt END,
+  assertion.restoredBy = CASE WHEN isRetry THEN assertion.restoredBy ELSE $decidedBy END,
+  assertion.restoreBasis = CASE WHEN isRetry THEN assertion.restoreBasis ELSE $decisionBasis END,
+  assertion.status = CASE WHEN isRetry THEN assertion.status ELSE assertion.supersededFrom END
+FOREACH (link IN links | DELETE link)
+RETURN assertion, assertion.formerReplacementIds AS formerReplacementIds;
+
+// relabel_entity (2026-11-19): rename an Entity, with a decision trail (closes the gap that an
+// upsert_entity label change records nothing). A null label or shortLabel keeps the current one.
+// Each change appends one line to labelHistory: when, who, the old and new label and short label,
+// and why. Refused unless the Entity exists and the curator gives a basis. A retry that changes
+// nothing writes nothing. The claims that name the Entity are relabelled by set_claim_labels.
+MATCH (entity:Entity {id: $id})
+WHERE $decisionBasis IS NOT NULL AND trim($decisionBasis) <> ""
+WITH entity, coalesce($label, entity.label) AS newLabel, coalesce($shortLabel, entity.shortLabel) AS newShort
+WITH entity, newLabel, newShort,
+     newLabel <> entity.label OR coalesce(newShort, "") <> coalesce(entity.shortLabel, "") AS changes
+FOREACH (_ IN CASE WHEN changes THEN [1] ELSE [] END |
+  SET entity.labelHistory = coalesce(entity.labelHistory, []) +
+        [$decidedAt + " | " + $decidedBy + " | " + entity.label + " (" + coalesce(entity.shortLabel, "-") + ") -> "
+         + newLabel + " (" + coalesce(newShort, "-") + ") | " + $decisionBasis],
+      entity.label = newLabel,
+      entity.shortLabel = newShort,
+      entity.relabeledAt = $decidedAt,
+      entity.relabeledBy = $decidedBy)
+RETURN entity, changes;
+
+// set_claim_labels (2026-11-19): write a claim's label and short caption, rebuilt by code from its
+// stored parts after an entity it names is renamed, and the labels of its Proposals with them.
+// Display text only: never the claim's meaning, its id, or its evidence. Refused for an unknown claim.
+MATCH (assertion:Assertion {id: $assertionId})
+SET assertion.label = $label, assertion.shortLabel = $shortLabel
+WITH assertion
+OPTIONAL MATCH (proposal:Proposal)-[:PROPOSES]->(assertion)
+FOREACH (_ IN CASE WHEN proposal IS NULL THEN [] ELSE [1] END |
+  SET proposal.label = CASE WHEN proposal.operation = "addEvidence"
+                            THEN "Proposal to add evidence: " + $label ELSE "Proposal to accept: " + $label END,
+      proposal.shortLabel = CASE WHEN proposal.operation = "addEvidence"
+                                 THEN "+evidence: " + $shortLabel ELSE $shortLabel END)
+RETURN assertion.id AS id, count(proposal) AS proposals;
+
+// set_group_category (2026-11-19, registry v20): a Group's groupCategory (gens), with who set it
+// and why, like set_type_category. Refused for a category the registry does not list, or a
+// non-Group. A retry with the same category keeps the first decision.
+MATCH (group:Entity:Group {id: $id})
+WHERE $category IN $allowedCategories
+WITH group, coalesce(group.groupCategory = $category, false) AS isRetry
+SET group.groupCategoryPrevious = CASE WHEN isRetry THEN group.groupCategoryPrevious ELSE group.groupCategory END,
+    group.groupCategorySetAt = CASE WHEN isRetry THEN group.groupCategorySetAt ELSE $decidedAt END,
+    group.groupCategorySetBy = CASE WHEN isRetry THEN group.groupCategorySetBy ELSE $decidedBy END,
+    group.groupCategoryBasis = CASE WHEN isRetry THEN group.groupCategoryBasis ELSE $decisionBasis END,
+    group.groupCategory = $category
+RETURN group;
+
+// set_name_parts (2026-11-19, 46 §4.3): a Person's praenomen, nomen, cognomen and agnomen, as words
+// read by code from an authority record (Wikidata P2358, P2359, P2365, P2366) or from a source's
+// entry heading (a SourceObservation: "Scarpus, L. Pinarius"): a code-made extraction, accepted by
+// rule (D-145). Display only, never evidence. nameSource names the record or passage (and a
+// record's revision). A null part is left unset. Refused for a non-Person or an unknown source.
+MATCH (person:Entity:Person {id: $id})
+MATCH (source {id: $sourceId}) WHERE source:AuthorityRecord OR source:SourceObservation
+SET person.praenomen = $praenomen, person.nomen = $nomen, person.cognomen = $cognomen,
+    person.agnomen = $agnomen,
+    person.nameSource = source.label + CASE WHEN source:AuthorityRecord
+                          THEN " revision " + coalesce(toString(source.sourceRevision), "unknown") ELSE "" END,
+    person.nameSetAt = $decidedAt, person.nameSetBy = $decidedBy
+RETURN person;
+
+// upsert_alias_proposal (2026-11-19, 46 §4.5): an agent suggests an alias for an Entity, with its
+// kind (convention, attested), reason, the other entities that bear the name (sharedWith), and,
+// when attested, the passage that writes it (PROPOSES_EVIDENCE). Only the curator decides it
+// (decide_alias_proposal). Refused when the Entity already bears the name, or a named passage does
+// not exist. A retry keeps the first proposal.
+MATCH (entity:Entity {id: $entityId})
+WHERE NOT toLower($alias) IN [name IN [entity.label, entity.shortLabel] + coalesce(entity.alternativeNames, [])
+                              WHERE name IS NOT NULL | toLower(name)]
+  AND ($observationId IS NULL OR EXISTS { MATCH (:SourceObservation {id: $observationId}) })
+MERGE (proposal:Proposal {id: $id})
+ON CREATE SET proposal.operation = "addAlias", proposal.alias = $alias, proposal.aliasKind = $aliasKind,
+              proposal.sharedWith = $sharedWith, proposal.label = $label, proposal.shortLabel = $shortLabel,
+              proposal.status = "submitted", proposal.createdBy = $createdBy, proposal.createdAt = $createdAt,
+              proposal.rationale = $rationale, proposal.draftSchemaVersion = $draftSchemaVersion,
+              proposal.predicateRegistryVersion = $predicateRegistryVersion
+MERGE (proposal)-[:PROPOSES_ALIAS]->(entity)
+WITH proposal
+OPTIONAL MATCH (observation:SourceObservation {id: $observationId})
+FOREACH (_ IN CASE WHEN observation IS NULL THEN [] ELSE [1] END |
+  MERGE (proposal)-[evidence:PROPOSES_EVIDENCE]->(observation) ON CREATE SET evidence.quotation = $quotation)
+RETURN proposal;
+
+// decide_alias_proposal (2026-11-19): the curator accepts an alias (it joins the Entity's
+// alternativeNames) or rejects it with a reason code. Refused for anything but an open alias
+// proposal, or a rejection without a known reason. A retry with the same decision is a no-op.
+MATCH (proposal:Proposal {id: $proposalId, operation: "addAlias"})-[:PROPOSES_ALIAS]->(entity:Entity)
+WHERE $status IN ["accepted", "rejected"]
+  AND (proposal.status = "submitted" OR proposal.status = $status)
+  AND ($status = "accepted" OR $reason IN ["false", "unsupported", "malformed", "underspecified", "superseded-by-model"])
+WITH proposal, entity, proposal.status = $status AS isRetry
+SET proposal.decidedAt = CASE WHEN isRetry THEN proposal.decidedAt ELSE $decidedAt END,
+    proposal.decidedBy = CASE WHEN isRetry THEN proposal.decidedBy ELSE $decidedBy END,
+    proposal.decisionBasis = CASE WHEN isRetry THEN proposal.decisionBasis ELSE $decisionBasis END,
+    proposal.decisionReason = CASE WHEN isRetry THEN proposal.decisionReason ELSE $reason END,
+    proposal.status = $status
+FOREACH (_ IN CASE WHEN $status = "accepted" AND NOT proposal.alias IN coalesce(entity.alternativeNames, [])
+                   THEN [1] ELSE [] END |
+  SET entity.alternativeNames = coalesce(entity.alternativeNames, []) + [proposal.alias])
+RETURN proposal, entity;

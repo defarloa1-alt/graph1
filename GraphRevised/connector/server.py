@@ -193,6 +193,7 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
             OPTIONAL MATCH (e)-[l:HAS_AUTHORITY_RECORD]->(r:AuthorityRecord {system: 'Wikidata'})
             WHERE l.role = 'entity_identity'
             RETURN e.id AS id, e.label AS label, e.shortLabel AS shortLabel,
+                   coalesce(e.alternativeNames, []) AS alternativeNames,
                    head([label IN labels(e) WHERE label <> 'Entity']) AS kind,
                    e.status AS status, e.description AS description,
                    head(collect(r.identifier)) AS qid, head(collect(r.rawPayloadUri)) AS payload
@@ -201,7 +202,8 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
         )
         found = []
         for row in rows:
-            names = [n for n in (row["label"], row["shortLabel"], *aliases(row["payload"], row["qid"])) if n]
+            names = [n for n in (row["label"], row["shortLabel"], *row["alternativeNames"],
+                                 *aliases(row["payload"], row["qid"])) if n]
             scored = [(name_score(name, n), n) for n in names]
             score, matched = max(scored, default=(0.0, None))
             if score >= 0.3:

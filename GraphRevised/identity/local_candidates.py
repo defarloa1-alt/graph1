@@ -48,6 +48,7 @@ def candidates(tx: Any, label: str, kind: str | None = None, *, exclude: str | N
         OPTIONAL MATCH (entity)-[link:HAS_AUTHORITY_RECORD]->(record:AuthorityRecord {system: "Wikidata"})
         WHERE link.role = "entity_identity"
         RETURN entity.id AS id, entity.label AS label, entity.shortLabel AS shortLabel,
+               coalesce(entity.alternativeNames, []) AS alternativeNames,
                head([label IN labels(entity) WHERE label <> 'Entity']) AS kind,
                head(collect(record.identifier)) AS qid, head(collect(record.rawPayloadUri)) AS payloadUri
         """,
@@ -55,7 +56,7 @@ def candidates(tx: Any, label: str, kind: str | None = None, *, exclude: str | N
     ).data()
     found = []
     for row in rows:
-        names = [row["label"], row["shortLabel"]]
+        names = [row["label"], row["shortLabel"], *row["alternativeNames"]]  # accepted aliases (46 §4.5)
         if row["payloadUri"]:
             names += entity_context(row["payloadUri"], row["qid"]).get("aliases", [])
         scored = [(similarity(label, name), name) for name in names if name]

@@ -74,6 +74,11 @@ ENTITY: dict[str, tuple[str, bool]] = {
     "when": (S, False), "where": (S, False), "partOf": (S, False), "history": (S, False),
     "eventType": (S, False),
     "alternativeNames": (LS, False), "mergedIds": (LS, False), "mergeLog": (LS, False),
+    # 2026-11-19: renames with a trail (relabel_entity); a Group's category and a Person's name
+    # parts (registry v20, 46)
+    "labelHistory": (LS, False), "relabeledAt": (S, False), "relabeledBy": (S, False),
+    "groupCategory": (S, False), "praenomen": (S, False), "nomen": (S, False), "cognomen": (S, False),
+    "agnomen": (S, False), "nameSource": (S, False),
 }
 
 NODES: dict[str, dict[str, tuple[str, bool]]] = {
@@ -99,6 +104,7 @@ NODES: dict[str, dict[str, tuple[str, bool]]] = {
         "promptVersion": (S, False), "modelId": (S, False), "inquiryId": (S, False),
         "relevance": (S, False), "ambiguities": (LS, False), "decisionReason": (S, False),
         "rejectedClaim": (B, False),
+        "alias": (S, False), "aliasKind": (S, False), "sharedWith": (LS, False),  # addAlias (46 §4.5)
     },
     "SourceObservation": {
         "id": (S, REQ), "label": (S, REQ), "status": (S, REQ), "sourceSystem": (S, REQ),
@@ -163,6 +169,7 @@ RELATIONSHIPS: list[tuple[str, str, str, dict[str, tuple[str, bool]]]] = [
     ("SUPPORTED_BY", "Assertion", "SourceObservation",
      {"quotation": (S, False), "qualifierQuotations": (LS, False), "addedByProposal": (S, False)}),
     ("PROPOSES", "Proposal", "Assertion", {}),
+    ("PROPOSES_ALIAS", "Proposal", "Entity", {}),  # an addAlias Proposal (46 §4.5)
     ("PROPOSES_EVIDENCE", "Proposal", "SourceObservation",
      {"quotation": (S, False), "qualifierQuotations": (LS, False), "migratedBy": (S, False)}),
     ("IN_WORK", "SourceObservation", "Work", {}),

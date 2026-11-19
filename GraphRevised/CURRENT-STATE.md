@@ -3,7 +3,7 @@ status: informational
 authority: none; the one current-state page. Decisions are in 33-DECISIONS.md; meaning and storage in 02
 depends_on: [33-DECISIONS.md, 02-GRAPH-MODEL.md]
 supersedes: [19-SESSION-HANDOFF.md, 38-REASONING-SESSION-HANDOFF.md, 40-LENS-SESSION-HANDOFF.md]
-last_reviewed: 2026-11-16
+last_reviewed: 2026-11-19
 ---
 
 # Current state
@@ -37,26 +37,26 @@ python -m pytest GraphRevised/tests -q   # about 7 minutes; see §6 for the expe
   local disk holds the only copy of the graph and its payloads. There is no
   scheduled backup yet (§5).
 
-## 2. Graph state (counted 2026-11-16)
+## 2. Graph state (counted 2026-11-19)
 
 | Label | Count | Notes |
 |---|---:|---|
-| Entity | 784 | Event 483, Person 97, Work 65, Group 45, Type 41, Place 25, Office 18, Concept 3, Period 3, Polity 3, Object 1 |
-| Assertion | 2,662 | proposed 1,754, accepted 544, superseded 362, rejected 2 |
-| Proposal | 2,963 | submitted 1,820, accepted 688, rejected 455 |
-| SourceObservation | 856 | passages, PeriodO records, Wikidata statements, 39 coin records (CRRO) |
-| AuthorityRecord | 325 | Wikidata identities, the crosswalk, LCSH and LCNAF headings, FAST |
-| Annotation | 928 | passages of note, entity mentions |
-| Subject | 20 | |
-| Fact-layer edges | 2,126 | derived (D-144) |
+| Entity | 894 | Event 487, Person 102, Work 74, Type 68, Group 46, Position 41, Place 26, Question 21, Office 18, Concept 3, Period 3, Polity 3, Object 2 |
+| Assertion | 2,867 | proposed 1,815, accepted 677, superseded 363, rejected 12 |
+| Proposal | 3,232 | submitted 1,933, accepted 830, rejected 469 (3 of the submitted are `addAlias`) |
+| SourceObservation | 1,073 | passages, transcriptions (articles, Smith via Wikisource, a Wikidata record), PeriodO records, Wikidata statements, coin records (CRRO) |
+| AuthorityRecord | 550 | Wikidata identities, the crosswalk, LCSH and LCNAF headings, FAST |
+| Annotation | 1,007 | passages of note, entity mentions |
+| Subject | 24 | |
+| Fact-layer edges | 2,307 | derived (D-144) |
 | Year, Location | 4,025, 505,546 | the backbones, off the canvas |
 
-- **59 guarded operations** in
+- **67 guarded operations** in
   [13-PHASE-3-DIRECT-OPERATIONS.cypher](13-PHASE-3-DIRECT-OPERATIONS.cypher),
   loaded by name through [operations.py](operations.py).
 - **The database enforces the logical model** (D-158, D-159, D-161, 2026-11-18): a
   Cypher 25 graph type set by
-  [migrations/018_graph_type.py](migrations/018_graph_type.py), 694
+  [migrations/018_graph_type.py](migrations/018_graph_type.py), 762
   constraints. A write that breaks the model (a Person without `Entity`, an
   `ATTRIBUTED_TO` to a non-Work, a `BORN_AT` from an Event) now fails at
   commit. 018 is the schema: change its tables and re-run it, never add a
@@ -65,10 +65,10 @@ python -m pytest GraphRevised/tests -q   # about 7 minutes; see §6 for the expe
   **After a registry bump:** `python -m GraphRevised.proposals.registry_graph --apply`,
   then `python -m GraphRevised.migrations.018_graph_type --apply`, then
   `python -m GraphRevised.export.fact_layer --apply`.
-- **Predicate registry v17**
-  ([proposals/predicates.v17.json](proposals/predicates.v17.json)); draft schema v8
-  (2026-11-16: Question, Position and the historiography predicates; no Question or
-  Position in the graph yet).
+- **Predicate registry v20**
+  ([proposals/predicates.v20.json](proposals/predicates.v20.json), 2026-11-19: the gens as a
+  Group category, `ofGens`, and `objectCategories`, a predicate requiring its object's
+  category); draft schema v8.
 - 483 events against 97 people, though D-030 says people first: most of the
   difference is depicted events, one set per source. The curator is reviewing
   whether this is intended (2026-11-13).
@@ -321,7 +321,13 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
    `upsert_entity` refuses a kind not already on the node.
 7. **Wikidata identities:** `persist_identity` overwrites an entity's label
    and shortLabel with Wikidata's. To keep our name, pass label and
-   shortLabel, or use `entity-identity`.
+   shortLabel, or use `entity-identity`. Never link an identity that answers an
+   open identity Question (Scarpus and Q382127, D-167).
+7a. **Renaming an entity:** `python -m GraphRevised.proposals.relabel <id> --label/--short-label
+   --by --basis`, never `upsert_entity`: it records the change in `labelHistory` and rebuilds the
+   stored labels of the claims naming the entity. `relabel --all` refreshes any stale claim label.
+7b. **Aliases are the curator's:** the suggester (`proposals/aliases.py`) proposes `addAlias`;
+   only an accepted one joins `alternativeNames`, which name search reads.
 8. **Reusable code names no source or subject** (`proposals/`, `identity/`,
    `adapters/`, `discovery/`, `slices/`, `export/`, `harvest/`,
    `orchestration/`, `capture/`, `narrative/`). A test enforces it. Code tied
@@ -467,57 +473,63 @@ deleted (its password in pushed history is dead).
 
 ## 6. Tests
 
-Last full run, 2026-11-17, after footnotes, the note reader, the 18-lens catalogue and the
-architecture-review fixes: **587 passed** (580 before; 28 minutes this time, against about 9
-usually, the machine being busy).
+Last full run, 2026-11-19, after registry v20, rename, restore and aliases: **638 passed**
+(12 minutes). A live test that counts the whole graph fails if a migration is applied while
+the suite runs: never write to the graph during a run.
 
 If many live tests fail at once, check that Neo4j is running before reading
 the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 
 ## 7. Next steps
 
-**Start here next session (handoff, 2026-11-19 evening).**
+**Start here next session (handoff, 2026-11-19, late; D-167).**
 
-*Done 2026-11-19, in chat with the curator (review by bucket):* the open proposals
-were grouped into buckets (A your own entries, B Pliny's purple, C LC catalogue,
-D historiography, E event phases, F passage readings, G Wikidata) and reviewed one
-bucket at a time, decisions recorded as TD. Accepted: B (8; its five new entities made
-provisional), A (20), C (14), G (3), and López Sánchez in D (30 of 32 accepted, plus 1
-added by migration 027; rejected as malformed: "Imp IIII victory was earlier and
-elsewhere than Southern proposed" and its holding). Migration 026 superseded Q7's
-("Why was Scarpus sent to Cyrenaica?") `about` Battle of Actium link; 027 reopened and
-accepted Q6 ("What forces did Scarpus command?") `about` Scarpus. Curator rule (saved
-in memory): **a Question keeps every link to a person, place or event the source
-evidences; re-pointing adds, not replaces.** Fact layer rebuilt after each step.
+*Done 2026-11-19, second session (Claude as dev and architect):*
+- **Clean baseline:** two stale tests fixed (a source name in `export/display.py` and
+  `harvest/lc_identities.py` docstrings; the type categories of registry v18-v19).
+- **Restore (028):** `restore_superseded_assertion`; Q7 ("Why was Scarpus sent to
+  Cyrenaica?") is `about` the Battle of Actium again, beside Scarpus. The Imp IIII Question
+  is `about` Scarpus as our own claim on the coin RRC 546/1 (IMP IIII on the obverse, SCARPVS
+  IMP on the reverse), accepted on the curator's word; the evidence-less López Sánchez claim
+  is superseded by it.
+- **Rename (`proposals/relabel.py`):** `relabel_entity` (a `labelHistory` trail) and
+  `set_claim_labels`; claim labels are rebuilt from their parts, never text-replaced. All 288
+  stale claim labels in the graph refreshed (2,857 now match their entities). Scarpus's short
+  label is "Pinarius Scarpus".
+- **Sweep (029):** 71 Questions, Positions and Works named by an accepted claim made
+  provisional by rule; persons, places, groups, offices and depicted events left proposed.
+- **Registry v20:** groupCategory `gens`, `ofGens` (Person to a gens Group, no time, Wikidata
+  P5025), `objectCategories` checked by the validator; `set_group_category`, `set_name_parts`.
+- **Scarpus and Caesar's heir (030):** Smith's Dictionary (Wikisource, unproofread OCR;
+  `adapters/wikisource_pages.py`) gives the heir (Pinarius no. 5) and the commander separate
+  entries; Wikidata Q382127 merges them. **Curator: do not link Scarpus to Q382127 while the
+  Question is open.** So: a new Person "Lucius Pinarius" (the heir, Suetonius *Julius* 83.2);
+  the Question "Is the Lucius Pinarius of Caesar's will the Pinarius Scarpus who commanded in
+  Cyrenaica?" `about` both; Wikidata's Position "one man" (answers, holds); gens Pinaria with
+  both men `ofGens` it per Smith; Gaius Cornelius Gallus and Dio's "Gallus takes over Scarpus's
+  army" (51.9.1) in "Antony follows Cleopatra"; Plutarch's "Antony's forces in Libya defect"
+  (69.2, names no general). Scarpus's description (Wikidata's, the heir's) replaced by Smith's.
+- **Aliases (031, `proposals/aliases.py`):** `addAlias` Proposals, reasoned from the name parts
+  (conventions, attestation in passages held, the coins' V for U); Scarpus's name parts from
+  Smith's heading. Proposed: "L. Pinarius Scarpus", "Scarpus" (Dio), "SCARPVS" (RRC 546).
+  Refused: "Lucius Pinarius" (the heir's name, open Question). Name search reads
+  `alternativeNames`.
 
 *Waiting on the curator:*
-- Q7's `about` Battle of Actium link, superseded by 026 before the rule above: restore
-  it? López Sánchez's answer names Actium ("provisioning of Antony's army from Egypt
-  to Actium"). A superseded claim cannot be reopened through the review CLI; it needs
-  a migration.
-- "Imp IIII is about Scarpus": the claim is proposed with no evidence (its proposal
-  rejected, "no clear evidence"); reject the claim or give it new evidence.
-- The entities of accepted claims mostly stay `proposed` (all 460 depicted events, 40
-  Positions); a sweep making them provisional was offered, not chosen.
-- Our Scarpus (`chr:entity:lucius-pinarius`) is labelled "Lucius Pinarius" in some
-  claims and "Lucius Pinarius Scarpus" in others, and has no Wikidata identity.
+- **Migration 030's readings** (all proposed): the Question's two `about` links; Wikidata
+  `holds` "one man" (our reading of a merged item: Wikidata states no argument); the two
+  `ofGens` per Smith; the Gallus event and its three links; Scarpus in Plutarch's defection
+  (Plutarch names no general). Smith takes no position: separate entries are not an argument.
+- **The three aliases** (`python -m GraphRevised.proposals.aliases list`).
+- **Standings set by Claude:** Smith's Dictionary (tertiary, reference), Suetonius *Julius*
+  (primary, biography).
+- Gallus and the heir have no Wikidata identity yet; Gallus can be linked (no open Question).
+- Smith's OCR on Wikisource is unproofread ("Avho", "Plut. Ant. QQ"); quotations avoid the
+  errors. Smith cites Dio 51.5 and 51.9 and Orosius 6.19 for Scarpus.
 
-*Next to build (curator agreed): Roman names and the gens, first case Scarpus*
-([46](46-ROMAN-NAMES-AND-GENS.md), D-166). Registry v20: groupCategory `gens`;
-predicate `ofGens` (Person → Group, no time; `memberOf` requires a time); properties
-praenomen, nomen, cognomen, agnomen on the Person. Sources: Wikidata (CC0; P2358,
-P2359, P2365, P2366, P5025, checked) and Smith's *Dictionary of Greek and Roman
-Biography* (1849, public domain) as the quoted text. DPRR (CC BY-NC 4.0) is a switch,
-**on by default for now** (curator), its records carrying their rights; off before any
-commercial use. Then, all free and public domain:
-1. Fetch Smith's entry for Pinarius Scarpus, Suetonius *Julius* 83, Dio 51.9.1,
-   Plutarch *Antony* 69.
-2. Link Scarpus to Wikidata Q382127 ("Lucius Pinarius", "nephew or grandnephew of
-   Julius Caesar", alias "Lucius Pinarius Scarpus"; gens Pinaria Q1453261): Wikidata
-   already merges the heir and the commander.
-3. The Question "Is the Lucius Pinarius of Caesar's will the Scarpus who commanded in
-   Cyrenaica?", about Scarpus; Wikidata's identification one voice, Smith's another.
-4. Add Gaius Cornelius Gallus and "Scarpus hands his army to Gallus" (Dio 51.9.1).
+*Next to build:* alias proposals in the review desk; the Octavian adoption test of `ofGens`
+(two gentes, each sourced); name parts from Wikidata by rule for persons whose identity is
+settled; DPRR behind its switch.
 
 *Remaining review buckets:* D Lange (153, best split by Question), E event phases
 (442), F passage readings (1,325, by source). Copilot's Scarpus summary was checked
@@ -598,9 +610,10 @@ Older items:
 
 ## 8. Known gaps
 
-- **The Augustus relabel has no decision record**, because `upsert_entity`
-  stores none for a label change. Either record its basis, or give label
-  changes a decision trail.
+- **The Augustus relabel has no decision record**: it predates `relabel_entity`
+  (2026-11-19), which now gives every rename a trail. Its basis is still to be recorded.
+- **Alias proposals are not in the review desk** (`review_desk/app.py` reads only
+  `PROPOSES`): review them with `python -m GraphRevised.proposals.aliases list|accept|reject`.
 - **Types made later get no category automatically.** `apply_curation` and
   the reader create Types without one. Set it with `set_type_category`, or
   rerun migration 009 for roles.

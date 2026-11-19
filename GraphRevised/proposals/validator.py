@@ -112,6 +112,9 @@ def validate(
     elif subject is not None and subject["kind"] in definition.subject_kinds             and not definition.allows_kinds(subject["kind"], obj["kind"]):
         pairs = ", ".join(f"{s} to {o}" for s, o in sorted(definition.kind_pairs or ()))
         reasons.append(f"{definition.id} relates {pairs}, not {subject['kind']} to {obj['kind']}")
+    elif definition.object_categories is not None and obj.get("category") not in definition.object_categories:
+        reasons.append(f"{definition.id} object must be of category {sorted(definition.object_categories)}, "
+                       f"not {obj.get('category') or 'none'}")
     if subject_id == object_id:
         reasons.append("subject and object must differ")
 

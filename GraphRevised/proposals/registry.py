@@ -11,7 +11,7 @@ from typing import Any, Literal
 
 from .schema import ProposalDraft
 
-REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v19.json"
+REGISTRY_PATH = Path(__file__).resolve().parent / "predicates.v20.json"
 
 Requirement = Literal["none", "optional", "required"]
 TimeRequirement = Literal["none", "optional", "required", "withRole"]
@@ -55,6 +55,8 @@ class PredicateDefinition:
     role_kinds: frozenset[str] | None = None  # None: the registry's roleKind
     kind_pairs: frozenset[tuple[str, str]] | None = None  # None: any subject kind with any object kind
     once: bool = False  # a fact that happens once (born, occurred): differing sources dispute it
+    # v20: the object's category (a Type's typeCategory or a Group's groupCategory) must be one of these
+    object_categories: frozenset[str] | None = None
 
     def allows_kinds(self, subject_kind: str, object_kind: str | None) -> bool:
         """Whether a subject of one kind may take an object of the other (kindPairs, when declared)."""
@@ -82,6 +84,7 @@ class PredicateRegistry:
     role_kind: str = "Other"
     work_forms: frozenset[str] = frozenset()
     type_categories: frozenset[str] = frozenset()  # a Type's typeCategory (D-039)
+    group_categories: frozenset[str] = frozenset()  # a Group's groupCategory (v20: gens)
     creative_forms: frozenset[str] = frozenset()  # a claim attributed to a Work of one of these forms is imaginative
     stances: tuple[str, ...] = ()  # how a Work holds a Position (v17)
     receptions: tuple[str, ...] = ()  # how a Position stood in scholarship over a span (v17)
@@ -124,6 +127,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
             role_kinds=frozenset(item["roleKinds"]) if "roleKinds" in item else None,
             kind_pairs=frozenset(tuple(pair) for pair in item["kindPairs"]) if "kindPairs" in item else None,
             once=item.get("once", False),
+            object_categories=frozenset(item["objectCategories"]) if "objectCategories" in item else None,
         )
         for item in data["predicates"]
     }
@@ -137,6 +141,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> PredicateRegistry:
         work_forms=frozenset(data.get("workForms", ())),
         creative_forms=frozenset(data.get("creativeForms", ())),
         type_categories=frozenset(data.get("typeCategories", ())),
+        group_categories=frozenset(data.get("groupCategories", ())),
         stances=tuple(data.get("stances", ())),
         receptions=tuple(data.get("receptions", ())),
     )

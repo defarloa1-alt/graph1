@@ -40,7 +40,9 @@ class TypeCategoryLiveTests(unittest.TestCase):
 
     def test_the_registry_lists_the_categories(self):
         self.assertEqual(self.registry.type_categories,
-                         {"role", "unit type", "organizational pattern", "power", "status", "ship type", "naval fitting"})
+                         {"role", "unit type", "organizational pattern", "power", "status", "ship type", "naval fitting",
+                          # registry v18-v19 (45, D-160): natural kinds and materials
+                          "material", "denomination", "product", "taxon", "colour"})
 
     def test_an_unknown_category_or_a_non_type_is_refused(self):
         with self.assertRaises(RefusedWrite):

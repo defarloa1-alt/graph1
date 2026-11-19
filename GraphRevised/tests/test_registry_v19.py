@@ -6,7 +6,7 @@ from GraphRevised.proposals.registry import REGISTRY_PATH, load_registry
 
 class RegistryV19Tests(unittest.TestCase):
     def setUp(self):
-        self.registry = load_registry()
+        self.registry = load_registry(REGISTRY_PATH.with_name("predicates.v19.json"))
         self.old = load_registry(REGISTRY_PATH.with_name("predicates.v18.json"))
 
     def test_colour(self):

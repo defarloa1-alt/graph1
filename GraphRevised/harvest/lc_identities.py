@@ -3,11 +3,11 @@
     python -m GraphRevised.harvest.lc_identities [--apply]
 
 Curator, 2026-11-19: an entity the Library of Congress or OCLC holds a record for should carry
-it, so a book about Antony or Nicopolis is one hop from them. For every Entity with a preserved
+it, so a book about a person or a place is one hop from them. For every Entity with a preserved
 Wikidata identity payload, its Library of Congress (P244: `sh...` is LCSH, `n...` is LCNAF) and
 FAST (P2163) identifiers become AuthorityRecords, matched by identifier, never by name. Each
 record is fetched once from id.loc.gov or OCLC and preserved (adapters/library_headings.py), and
-its label is the authority's own heading ("Antony, Mark, 83 B.C.-30 B.C. (LCNAF n50051933)"), so
+its label is the authority's own heading (the LCNAF heading's name and dates, with its code beside it), so
 a code is never shown without its words.
 
 Records already in the graph whose label was composed from our name ("Battle of Philippi in

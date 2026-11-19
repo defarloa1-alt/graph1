@@ -16,7 +16,7 @@ from GraphRevised.proposals.passage_reader import load_inquiry
 from GraphRevised.proposals.registry import load_registry
 from GraphRevised.proposals.schema import ProposalDraft, QualifierQuotation, Quotation, TimeQualifier
 from GraphRevised.proposals.store import (
-    Neo4jReader, ReviewError, accept, list_proposals, promote, reject, reopen, retract, submit, supersede,
+    Neo4jReader, ReviewError, accept, list_proposals, promote, reject, reopen, restore, retract, submit, supersede,
 )
 from GraphRevised.proposals.validator import Outcome
 from GraphRevised.proposals.wikidata_proposer import WIKIDATA_WORK, drafts_from_observation
@@ -420,6 +420,30 @@ class ProposalWorkflowLiveTests(unittest.TestCase):
         evidence = submit(self.tx, self.passage_draft(LEADER, "The leader had the right wing"), self.registry, self.operations)
         self.assertEqual(evidence.validation.outcome, Outcome.DUPLICATE)
         self.assertFalse(evidence.stored)
+
+    def test_a_superseded_claim_can_be_restored(self):
+        old = self.accepted_leader_claim()
+        new, _ = self.proposed_admiral_claim()
+        with self.assertRaises(ReviewError):
+            restore(self.tx, old, operations=self.operations, **DECISION)  # not superseded
+        supersede(self.tx, old, [new], reason="underspecified", operations=self.operations, **DECISION)
+        later = DECISION | {"decided_at": "2026-12-01T00:00:00Z"}
+        result = restore(self.tx, old, operations=self.operations, **later)
+        self.assertEqual(result["assertion"]["status"], "accepted")
+        self.assertEqual(result["formerReplacementIds"], [new])
+        self.assertEqual(result["assertion"]["supersedeReason"], "underspecified")  # kept as history
+        links = self.tx.run("MATCH (:Assertion {id: $old})-[r:SUPERSEDED_BY]->() RETURN count(r) AS n", old=old).single()["n"]
+        self.assertEqual(links, 0)
+        replacement = self.tx.run("MATCH (a:Assertion {id: $id}) RETURN a.status AS s", id=new).single()["s"]
+        self.assertEqual(replacement, "proposed")  # the replacement is untouched
+
+        retry = restore(self.tx, old, operations=self.operations, **(DECISION | {"decided_at": "2099-01-01T00:00:00Z"}))
+        self.assertEqual(retry["assertion"]["restoredAt"], later["decided_at"])
+        # Superseded again later, it can be restored again.
+        supersede(self.tx, old, [new], reason="underspecified", operations=self.operations,
+                  **(DECISION | {"decided_at": "2026-12-02T00:00:00Z"}))
+        self.assertEqual(restore(self.tx, old, operations=self.operations,
+                                 **(DECISION | {"decided_at": "2026-12-03T00:00:00Z"}))["assertion"]["status"], "accepted")
 
     def test_superseding_a_proposed_claim_requires_its_proposals_decided(self):
         replacement = self.accepted_leader_claim()

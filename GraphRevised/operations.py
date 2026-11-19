@@ -69,6 +69,13 @@ OPERATION_NAMES = (
     "upsert_heading_record",
     "link_subject_heading",
     "link_heading_relation",
+    "restore_superseded_assertion",
+    "relabel_entity",
+    "set_claim_labels",
+    "set_group_category",
+    "set_name_parts",
+    "upsert_alias_proposal",
+    "decide_alias_proposal",
 )
 
 

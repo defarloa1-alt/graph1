@@ -17,8 +17,8 @@ the same projection. A view hides a line with a `fold` reason, and says how many
    works" ("reference-work"). Each Work carries its standing, as ancient, modern or reference.
 5b. A description that is only a web address is not shown.
 6. Subject access (curator, 2026-11-19): an entity with no library heading of its own (LCSH, LCNAF,
-   FAST) is reached through the nearest whole it is part of that has one: a moment of the battle
-   shows "Actium, Battle of, 31 B.C." via the battle. Derived here, never stored on the moment, so
+   FAST) is reached through the nearest whole it is part of that has one: a moment of a battle
+   shows the battle's own heading via the battle. Derived here, never stored on the moment, so
    it follows the part-of chain if a moment moves. Imagined parts inherit nothing.
 """
 
