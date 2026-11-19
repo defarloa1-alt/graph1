@@ -1,6 +1,6 @@
 # 28 — Subject Buckets
 
-**Date:** 2026-10-14. **Status:** agreed with the curator; nothing built yet.
+**Date:** 2026-10-14. **Status:** agreed with the curator. First buckets built 2026-11-19 (D-165, migration 025, [plans/lc-heading-buckets.json](plans/lc-heading-buckets.json)): Civil War, 43-31 B.C. (over the Actium and Philippi Subjects), Rome under Augustus, Roman magistrates, Roman nobility, each anchored to its LCSH record. Membership (§3) is not computed yet.
 **Changes:** [02](02-GRAPH-MODEL.md) §1 (Subject), which said most Entities have no Subject of their own.
 **Builds on:** [25](25-LIVES-AND-PLAYGROUND.md) §8 (Subjects and library headings), [24](24-PERIODS-AND-TRANSFORMATION.md) §2 (membership computed, not asserted), the curator's vision note of 2026-10-14 (the subject backbone; not kept).
 **Order:** after the gazetteer ([27](27-GAZETTEER.md)).
