@@ -1371,6 +1371,7 @@ function nodeCard(n, stage = false) {
     ${notesSummary(n)}
     ${p !== "browser" && readMore.length ? `<details class="sec"><summary class="label">Read more (${readMore.length})</summary><ul class="whenlist">${readMore.map(w => `<li>${esc(w.fullLabel)}${w.standingWords ? ` <span class="muted">${esc(w.standingWords)}</span>` : ""}</li>`).join("")}</ul></details>` : ""}
     ${p !== "browser" && n.referenceWorks ? `<span class="small muted">Also in ${n.referenceWorks} reference work${n.referenceWorks === 1 ? "" : "s"}</span>` : ""}
+    ${p !== "browser" && (n.subjectAccess || []).length ? `<div class="sec"><span class="label"><span>Subject access</span></span>${n.subjectAccess.map(x => `<span class="small">${esc(x.heading)} <span class="muted">via</span> <button class="linkish" data-stand="${esc(x.via)}">${esc(x.viaLabel)}</button></span>`).join("")}<span class="muted small">Library headings of the whole it is part of: how a catalogue finds it.</span></div>` : ""}
     ${p !== "browser" && n.authority.length ? `<details class="footer"><summary class="label">Records (${n.authority.length})</summary><ul>${n.authority.map(a => `<li>${esc(a)}</li>`).join("")}</ul></details>` : ""}`;
   const read = readingsBlock(n, stage);
   return stage ? `${anno}<div class="cardgrid"><div>${head}${read}${go}${when}</div><div>${side}</div></div>` : `${anno}${head}${read}${go}${when}${side}`;

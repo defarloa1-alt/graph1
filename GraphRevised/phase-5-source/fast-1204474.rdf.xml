@@ -1,0 +1,74 @@
+<rdf:RDF xmlns:norm="http://whatever/java/org.oclc.marc.NormalFormC" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:dct="http://purl.org/dc/terms/" xmlns:schema="http://schema.org/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:void="http://rdfs.org/ns/void#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:coord="http://whatever/java/org.oclc.marc.CoordToDecimal" xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:mx="http://www.loc.gov/MARC21/slim" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="http://id.worldcat.org/fast/">
+    <rdf:Description rdf:about="1204474">
+        <dct:identifier>1204474</dct:identifier>
+        <skos:inScheme rdf:resource="ontology/1.0/#fast"/>
+        <rdf:type rdf:resource="http://schema.org/Place"/>
+        <skos:inScheme rdf:resource="ontology/1.0/#facet-Geographic"/>
+        <skos:prefLabel>Greece--Athens</skos:prefLabel>
+        <schema:name>Greece--Athens</schema:name>
+        <skos:altLabel>Greece--Aḟiny</skos:altLabel>
+        <schema:name>Greece--Aḟiny</schema:name>
+        <skos:altLabel>Greece--Atene</skos:altLabel>
+        <schema:name>Greece--Atene</schema:name>
+        <skos:altLabel>Greece--Atʻēnkʻ</skos:altLabel>
+        <schema:name>Greece--Atʻēnkʻ</schema:name>
+        <skos:altLabel>Greece--Ateny</skos:altLabel>
+        <schema:name>Greece--Ateny</schema:name>
+        <skos:altLabel>Greece--Athen</skos:altLabel>
+        <schema:name>Greece--Athen</schema:name>
+        <skos:altLabel>Greece--Athēna</skos:altLabel>
+        <schema:name>Greece--Athēna</schema:name>
+        <skos:altLabel>Greece--Athēnai</skos:altLabel>
+        <schema:name>Greece--Athēnai</schema:name>
+        <skos:altLabel>Greece--Athènes</skos:altLabel>
+        <schema:name>Greece--Athènes</schema:name>
+        <skos:altLabel>Greece--Athīnā</skos:altLabel>
+        <schema:name>Greece--Athīnā</schema:name>
+        <skos:altLabel>Greece--Athinai</skos:altLabel>
+        <schema:name>Greece--Athinai</schema:name>
+        <schema:sameAs>
+            <rdf:Description rdf:about="http://id.loc.gov/authorities/names/n79018143">
+                <rdfs:label>Athens (Greece)</rdfs:label>
+            </rdf:Description>
+        </schema:sameAs>
+        <schema:sameAs>
+            <rdf:Description rdf:about="http://www.geonames.org/264371">
+                <rdfs:label>Athens</rdfs:label>
+            </rdf:Description>
+        </schema:sameAs>
+        <schema:sameAs>
+            <rdf:Description rdf:about="https://viaf.org/viaf/131280462"/>
+        </schema:sameAs>
+        <schema:geo>
+            <schema:GeoCoordinates>
+                <schema:latitude>?</schema:latitude>
+                <schema:longitude>?</schema:longitude>
+            </schema:GeoCoordinates>
+        </schema:geo>
+    </rdf:Description>
+    <rdf:Description rdf:about="fst01204474">
+        <rdfs:comment>This identifier is deprecated. See the rdfs:seeAlso link for the new identifier.</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="1204474"/>
+    </rdf:Description>
+    <foaf:Document rdf:about="1204474/rdf.xml">
+        <void:inDataset rdf:resource="http://id.worldcat.org/fast/void/0.1"/>
+        <foaf:primaryTopic rdf:resource="1204474"/>
+        <dc:format>application/rdf+xml</dc:format>
+        <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2006-06-20T00:00:00.0</dct:created>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-11-04T16:18:55.0</dct:modified>
+        <dct:language rdf:resource="http://lexvo.org/id/iso639-3/eng"/>
+        <skos:changeNote xml:lang="en">Cataloged by agency: OCoLC</skos:changeNote>
+        <skos:changeNote xml:lang="en">Transcribed by agency: OCoLC</skos:changeNote>
+    </foaf:Document>
+    <void:Dataset rdf:about="http://id.worldcat.org/fast/void/0.1">
+        <dct:title>FAST (Faceted Application of Subject Terminology) Data</dct:title>
+        <dct:license>
+            <rdf:Description rdf:about="http://www.oclc.org/research/activities/fast/odcby.htm">
+                <dct:title>Open Data Commons Attribution License (ODC-By) v1.0</dct:title>
+                <rdfs:comment>This is OCLC's "local copy" of the ODC-By license</rdfs:comment>
+                <rdfs:seeAlso rdf:resource="http://opendatacommons.org/licenses/by/#toc-anchor-337-3"/>
+                <owl:sameAs rdf:resource="http://opendatacommons.org/licenses/by/1-0/"/>
+            </rdf:Description>
+        </dct:license>
+    </void:Dataset>
+</rdf:RDF>

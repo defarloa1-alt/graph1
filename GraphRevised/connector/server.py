@@ -282,6 +282,8 @@ def build_server(graph: Graph, **settings) -> "FastMCP":
             "facts": facts, "totalFacts": len(fact_ids), "offset": offset,
             "folded": node.get("folded") or {}, "standing": node.get("standingWords"),
             "referenceWorks": node.get("referenceWorks", 0),
+            # library headings reached through the whole it is part of, when it has none of its own
+            "subjectAccess": node.get("subjectAccess") or [],
         }
 
     @server.tool()

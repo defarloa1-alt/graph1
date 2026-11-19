@@ -223,6 +223,7 @@ the authority line.
 | `hint` | Set only when another entity has the same name (D-162): a date for an event or period, the gist of the description otherwise, the kind when the kinds differ; never a code | built (2026-11-19) |
 | `standing`, `standingWords` | A Work's standing: primary, secondary, tertiary, shown as ancient, modern, reference | built (2026-11-19) |
 | `coordinates` | A Place's `{lat, lon, source}` from its gazetteer Location, Pleiades first (27, fix 4b); absent when the Place has none, and the map shows it in the "Not on the map" tray | built (2026-11-19) |
+| `subjectAccess[]` | For an entity with no library heading of its own: `{heading, via, viaLabel}`, the LCSH, LCNAF or FAST headings of the nearest whole it is part of ("Actium, Battle of, 31 B.C. via Battle of Actium"); derived, never stored (D-164) | built (2026-11-19) |
 | `referenceWorks` | How many reference works describe it: "Also in 5 reference works" | built (2026-11-19) |
 | `lines`, `imaginedOnly`, `folded` | Its lines by category; true when every line is imaginative (fiction off hides it); how many of its lines each rule folds | built (2026-11-19) |
 | `authority[]` | Quiet footer: one record per system, the identity first, the best-supported identifier shown and the rest counted ("Cleopatra in VIAF (VIAF 67762941) and 7 more"); never a code alone | built (2026-10-14) |

@@ -7,6 +7,8 @@ phase-5-source/ beside the Wikidata identity payloads, hashed as bytes, and
 reused on later runs.
 
     LCSH  identifier sh85000736  record https://id.loc.gov/authorities/subjects/<id>.json
+    LCNAF identifier n50051933   record https://id.loc.gov/authorities/names/<id>.json (a person's or a
+          place's name heading; read like LCSH)
     FAST  identifier 796265      record https://id.worldcat.org/fast/<id>.rdf.xml
           (the fst00796265 form is deprecated by OCLC; FAST data is ODC-By, attribution required)
 """
@@ -27,6 +29,7 @@ from GraphRevised.adapters.wikidata_identity import USER_AGENT
 
 SOURCE_DIRECTORY = Path(__file__).resolve().parents[1] / "phase-5-source"
 LCSH_URI = "http://id.loc.gov/authorities/subjects/{identifier}"
+LCNAF_URI = "http://id.loc.gov/authorities/names/{identifier}"
 FAST_URI = "http://id.worldcat.org/fast/{identifier}"
 SKOS = "{http://www.w3.org/2004/02/skos/core#}"
 RDF = "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}"
@@ -43,6 +46,12 @@ SYSTEMS: dict[str, dict[str, Any]] = {
         "suffix": "json",
         "license": None,
     },
+    "LCNAF": {
+        "pattern": re.compile(r"^n[a-z]?\d{8,10}$"),
+        "fetch": "https://id.loc.gov/authorities/names/{identifier}.json",
+        "suffix": "json",
+        "license": None,
+    },
     "FAST": {
         "pattern": re.compile(r"^\d{1,8}$"),
         "fetch": "https://id.worldcat.org/fast/{identifier}.rdf.xml",
@@ -52,14 +61,22 @@ SYSTEMS: dict[str, dict[str, Any]] = {
 }
 
 
-def lcsh_label(payload: bytes, identifier: str) -> str:
-    uri = LCSH_URI.format(identifier=identifier)
+def _mads_label(payload: bytes, identifier: str, system: str, uri_template: str) -> str:
+    uri = uri_template.format(identifier=identifier)
     for node in json.loads(payload):
         if node.get("@id") == uri:
             for value in node.get("http://www.loc.gov/mads/rdf/v1#authoritativeLabel", []):
                 if value.get("@language", "en") == "en":
                     return value["@value"]
-    raise HeadingError(f"LCSH {identifier}: no authoritative label in the record")
+    raise HeadingError(f"{system} {identifier}: no authoritative label in the record")
+
+
+def lcsh_label(payload: bytes, identifier: str) -> str:
+    return _mads_label(payload, identifier, "LCSH", LCSH_URI)
+
+
+def lcnaf_label(payload: bytes, identifier: str) -> str:
+    return _mads_label(payload, identifier, "LCNAF", LCNAF_URI)
 
 
 def fast_label(payload: bytes, identifier: str) -> str:
@@ -72,7 +89,8 @@ def fast_label(payload: bytes, identifier: str) -> str:
     raise HeadingError(f"FAST {identifier}: no preferred label in the record")
 
 
-LABEL_READERS = {"LCSH": lcsh_label, "FAST": fast_label}
+LABEL_READERS = {"LCSH": lcsh_label, "LCNAF": lcnaf_label, "FAST": fast_label}
+RECORD_URIS = {"LCSH": LCSH_URI, "LCNAF": LCNAF_URI, "FAST": FAST_URI}
 
 
 def display(system: str, identifier: str, label: str) -> str:
@@ -100,7 +118,7 @@ def preserved_heading(system: str, identifier: str) -> tuple[Path, dict[str, Any
         "sourceSystem": system,
         "sourceUri": source_uri,
         "identifier": identifier,
-        "uri": (LCSH_URI if system == "LCSH" else FAST_URI).format(identifier=identifier),
+        "uri": RECORD_URIS[system].format(identifier=identifier),
         "label": LABEL_READERS[system](payload, identifier),
         "license": config["license"],
         "retrievedAt": datetime.now(timezone.utc).isoformat(),

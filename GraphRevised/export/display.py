@@ -16,6 +16,10 @@ the same projection. A view hides a line with a `fold` reason, and says how many
 5a. Reference works: describedBy lines to tertiary Works fold into a count, "Also in 5 reference
    works" ("reference-work"). Each Work carries its standing, as ancient, modern or reference.
 5b. A description that is only a web address is not shown.
+6. Subject access (curator, 2026-11-19): an entity with no library heading of its own (LCSH, LCNAF,
+   FAST) is reached through the nearest whole it is part of that has one: a moment of the battle
+   shows "Actium, Battle of, 31 B.C." via the battle. Derived here, never stored on the moment, so
+   it follows the part-of chain if a moment moves. Imagined parts inherit nothing.
 """
 
 from __future__ import annotations
@@ -137,6 +141,36 @@ def name_hints(nodes: dict[str, dict[str, Any]]) -> None:
                 data["hint"] = _gist(data.get("description")) or data["hint"]
 
 
+LIBRARY_SYSTEMS = ("LCSH", "LCNAF", "FAST")
+MAX_DEPTH = 4  # a moment, its phase, the battle, the war: far enough
+
+
+def subject_access(edges: list[dict[str, Any]], nodes: dict[str, dict[str, Any]]) -> None:
+    """Rule 6: headings inherited through live, non-imaginative part-of links, from the nearest whole."""
+    wholes: dict[str, list[str]] = {}
+    for edge in edges:
+        if edge["predicate"] == "partOf" and _live(edge) and edge["category"] != "imaginative":
+            wholes.setdefault(edge["source"], []).append(edge["target"])
+
+    def headings(data: dict[str, Any]) -> list[str]:
+        return [a["label"] for a in data.get("authority") or [] if a.get("system") in LIBRARY_SYSTEMS]
+
+    for data in nodes.values():
+        if headings(data) or data["id"] not in wholes:
+            continue
+        seen, level = {data["id"]}, wholes[data["id"]]
+        for _ in range(MAX_DEPTH):
+            found = [(w, headings(nodes[w])) for w in sorted(set(level)) if w in nodes and headings(nodes[w])]
+            if found:
+                data["subjectAccess"] = [{"heading": h, "via": w, "viaLabel": nodes[w]["fullLabel"]}
+                                         for w, hs in found for h in hs]
+                break
+            seen |= set(level)
+            level = [p for w in level for p in wholes.get(w, []) if p not in seen]
+            if not level:
+                break
+
+
 def apply(elements: dict[str, Any], standing: dict[str, str]) -> dict[str, Any]:
     """Mark the projection's elements in place with every display rule, and return them."""
     nodes = {n["data"]["id"]: n["data"] for n in elements["nodes"]}
@@ -152,6 +186,7 @@ def apply(elements: dict[str, Any], standing: dict[str, str]) -> dict[str, Any]:
     fold_reference_works(edges, nodes)
     count_lines(edges, nodes)
     name_hints(nodes)
+    subject_access(edges, nodes)
     for edge in edges:  # each end says how many of its lines a view folds, and why
         if edge.get("fold"):
             for end in {edge["source"], edge["target"]}:

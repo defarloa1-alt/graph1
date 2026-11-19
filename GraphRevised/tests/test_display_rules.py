@@ -107,6 +107,24 @@ class NameHints(unittest.TestCase):
         self.assertEqual(data["fulvia-q2"]["hint"], "another person")
 
 
+class SubjectAccess(unittest.TestCase):
+    def test_a_moment_reaches_the_battle_heading_through_its_phase(self):
+        battle = node("battle", "Battle of Actium")
+        battle["data"]["authority"] = [{"system": "LCSH", "identifier": "sh85000736",
+                                        "label": "Actium, Battle of, 31 B.C. (LCSH sh85000736)"},
+                                       {"system": "Wikidata", "identifier": "Q1", "label": "Battle of Actium in Wikidata"}]
+        nodes = [battle, node("phase", "The fleets deploy"), node("moment", "Agrippa restrains Caesar"),
+                 node("verse", "The fleets clash")]
+        data, _ = run(nodes, [edge("moment", "phase", "partOf"), edge("phase", "battle", "partOf"),
+                              edge("verse", "battle", "partOf", "imaginative")])
+        self.assertEqual(data["moment"]["subjectAccess"],
+                         [{"heading": "Actium, Battle of, 31 B.C. (LCSH sh85000736)", "via": "battle",
+                           "viaLabel": "Battle of Actium"}])
+        self.assertEqual(data["phase"]["subjectAccess"][0]["via"], "battle")
+        self.assertNotIn("subjectAccess", data["battle"], "its own heading is not inherited")
+        self.assertNotIn("subjectAccess", data["verse"], "an imagined part inherits nothing")
+
+
 class Descriptions(unittest.TestCase):
     def test_a_description_that_is_only_a_link_is_not_shown(self):
         data, _ = run([node("s", "Actium, Battle of", "Concept", "http://id.loc.gov/authorities/subjects/sh85000631"),

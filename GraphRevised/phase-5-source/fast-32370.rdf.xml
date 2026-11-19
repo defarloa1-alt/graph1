@@ -1,0 +1,68 @@
+<rdf:RDF xmlns:norm="http://whatever/java/org.oclc.marc.NormalFormC" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:dct="http://purl.org/dc/terms/" xmlns:schema="http://schema.org/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:void="http://rdfs.org/ns/void#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:coord="http://whatever/java/org.oclc.marc.CoordToDecimal" xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:mx="http://www.loc.gov/MARC21/slim" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="http://id.worldcat.org/fast/">
+    <rdf:Description rdf:about="32370">
+        <dct:identifier>32370</dct:identifier>
+        <skos:inScheme rdf:resource="ontology/1.0/#fast"/>
+        <rdf:type rdf:resource="http://schema.org/Person"/>
+        <skos:inScheme rdf:resource="ontology/1.0/#facet-Personal"/>
+        <skos:prefLabel>Plutarch</skos:prefLabel>
+        <schema:name>Plutarch</schema:name>
+        <skos:altLabel>Blūtārkhūs</skos:altLabel>
+        <schema:name>Blūtārkhūs</schema:name>
+        <skos:altLabel>Ploutarchos</skos:altLabel>
+        <schema:name>Ploutarchos</schema:name>
+        <skos:altLabel>Plutarch, of Chaeronea</skos:altLabel>
+        <schema:name>Plutarch, of Chaeronea</schema:name>
+        <skos:altLabel>Plutarchus</skos:altLabel>
+        <schema:name>Plutarchus</schema:name>
+        <skos:altLabel>Plutarchus, van Chaeronea</skos:altLabel>
+        <schema:name>Plutarchus, van Chaeronea</schema:name>
+        <skos:altLabel>Plutarco</skos:altLabel>
+        <schema:name>Plutarco</schema:name>
+        <skos:altLabel>Plutarh</skos:altLabel>
+        <schema:name>Plutarh</schema:name>
+        <skos:altLabel>Plutarkh</skos:altLabel>
+        <schema:name>Plutarkh</schema:name>
+        <skos:altLabel>Plutarkhosz</skos:altLabel>
+        <schema:name>Plutarkhosz</schema:name>
+        <skos:altLabel>Plutarkhus</skos:altLabel>
+        <schema:name>Plutarkhus</schema:name>
+        <skos:altLabel>Plutarque</skos:altLabel>
+        <schema:name>Plutarque</schema:name>
+        <skos:altLabel>Pseudo-Plutarch</skos:altLabel>
+        <schema:name>Pseudo-Plutarch</schema:name>
+        <schema:sameAs>
+            <rdf:Description rdf:about="http://id.loc.gov/authorities/names/n79026763">
+                <rdfs:label>Plutarch</rdfs:label>
+            </rdf:Description>
+        </schema:sameAs>
+        <schema:sameAs>
+            <rdf:Description rdf:about="https://viaf.org/viaf/165182489"/>
+        </schema:sameAs>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/Plutarch</rdfs:seeAlso>
+    </rdf:Description>
+    <rdf:Description rdf:about="fst00032370">
+        <rdfs:comment>This identifier is deprecated. See the rdfs:seeAlso link for the new identifier.</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="32370"/>
+    </rdf:Description>
+    <foaf:Document rdf:about="32370/rdf.xml">
+        <void:inDataset rdf:resource="http://id.worldcat.org/fast/void/0.1"/>
+        <foaf:primaryTopic rdf:resource="32370"/>
+        <dc:format>application/rdf+xml</dc:format>
+        <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-24T00:00:00.0</dct:created>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-27T12:28:10.0</dct:modified>
+        <dct:language rdf:resource="http://lexvo.org/id/iso639-3/eng"/>
+        <skos:changeNote xml:lang="en">Cataloged by agency: OCoLC</skos:changeNote>
+        <skos:changeNote xml:lang="en">Transcribed by agency: OCoLC</skos:changeNote>
+    </foaf:Document>
+    <void:Dataset rdf:about="http://id.worldcat.org/fast/void/0.1">
+        <dct:title>FAST (Faceted Application of Subject Terminology) Data</dct:title>
+        <dct:license>
+            <rdf:Description rdf:about="http://www.oclc.org/research/activities/fast/odcby.htm">
+                <dct:title>Open Data Commons Attribution License (ODC-By) v1.0</dct:title>
+                <rdfs:comment>This is OCLC's "local copy" of the ODC-By license</rdfs:comment>
+                <rdfs:seeAlso rdf:resource="http://opendatacommons.org/licenses/by/#toc-anchor-337-3"/>
+                <owl:sameAs rdf:resource="http://opendatacommons.org/licenses/by/1-0/"/>
+            </rdf:Description>
+        </dct:license>
+    </void:Dataset>
+</rdf:RDF>
