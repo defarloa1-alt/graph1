@@ -66,6 +66,12 @@ RETURN e {ENTITY_E} AS entity,
          RETURN n {{.id, .kind, .noteType, .note, .status, source: o.shortLabel}} ORDER BY o.shortLabel, n.id
        }} AS notes,
        COLLECT {{
+         // where a Place lies, from its gazetteer Location (27): Pleiades first, then GeoNames
+         MATCH (e)-[:AT_LOCATION]->(l:Location) WHERE l.location IS NOT NULL
+         RETURN {{lat: l.location.y, lon: l.location.x, source: l.system + " " + l.identifier}}
+         ORDER BY l.system = "Pleiades" DESC, l.identifier
+       }}[0] AS coordinates,
+       COLLECT {{
          MATCH (e)-[link:HAS_AUTHORITY_RECORD]->(a:AuthorityRecord)
          RETURN {{system: a.system, identifier: a.identifier, label: a.label, role: link.role,
                  rank: link.statementRank, references: link.statementReferences}}
@@ -245,17 +251,19 @@ def projection(tx: Any, audit: bool = False) -> dict[str, Any]:
     registry = load_registry()
     nodes: dict[str, dict[str, Any]] = {}
 
-    def node(entity: dict[str, Any], notes: list[dict[str, Any]] = (), authority: list[dict[str, Any]] = ()) -> None:
+    def node(entity: dict[str, Any], notes: list[dict[str, Any]] = (), authority: list[dict[str, Any]] = (),
+             coordinates: dict[str, Any] | None = None) -> None:
         footer = authority_footer(list(authority))
         nodes.setdefault(entity["id"], {"data": {
             "id": entity["id"], "label": entity.get("shortLabel") or entity["label"], "fullLabel": entity["label"],
             "kind": entity["kind"], "status": entity.get("status"), "description": entity.get("description"),
             "notes": [note_line(n) for n in notes], "facts": [], "factLines": [],
             "authority": footer, "authorityLines": [authority_line(entry) for entry in footer],
+            **({"coordinates": coordinates} if coordinates else {}),
         }})
 
     for row in tx.run(ENTITIES, audit=audit):
-        node(row["entity"], row["notes"], row["authority"])
+        node(row["entity"], row["notes"], row["authority"], row["coordinates"])
     author_of = dict(tx.run(AUTHORS, live=list(LIVE)).values("work", "author"))
     works = list(tx.run(WORKS))
     standing = {w["id"]: w["standing"] for w in works if w["standing"]}

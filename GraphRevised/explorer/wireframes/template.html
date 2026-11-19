@@ -632,14 +632,9 @@ const ACCOUNT = {
     ],
   },
 };
-const PLACE_XY = { // placed by hand for the wireframe; the gazetteer (27) will supply these
-  "Actium promontory": [38.95, 20.75], "Rome": [41.89, 12.49], "Alexandria": [31.2, 29.92], "İzmir": [38.42, 27.14],
-  "Athens": [37.98, 23.73], "Sicyon": [37.98, 22.72], "Cherchell": [36.6, 2.2], "Crete": [35.2, 24.9], "Nola": [40.93, 14.53],
-  "Antioch": [36.2, 36.16], "Ionian Sea": [38.3, 19.2], "Farsala": [39.3, 22.38], "Philippi": [41.01, 24.29],
-  "Corfu": [39.62, 19.92], "Patras": [38.25, 21.73], "Ancient Corinth": [37.91, 22.88], "Peloponnese": [37.5, 22.2], "Adriatic Sea": [42.6, 16.2], "Epirus": [39.6, 20.6],
-  "Tarentum": [40.47, 17.24], "Ephesus": [37.94, 27.34], "Samos": [37.75, 26.97],
-  // Nicopolis and the Campsite Memorial are left out on purpose: they wait in the "Not on the map" tray (fix 4b)
-};
+/* where each Place lies, from its gazetteer Location (Pleiades first; 27, fix 4b). A Place without coordinates
+   waits in the "Not on the map" tray; nothing is placed by hand. */
+const PLACE_XY = Object.fromEntries(DATA.nodes.filter(n => n.kind === "Place" && n.coordinates).map(n => [n.fullLabel, [n.coordinates.lat, n.coordinates.lon]]));
 const ACTORS = [ // 25 §13, in order; the graph name where one exists
   ["Hannibal", null], ["Scipio Africanus", null], ["Tiberius Gracchus", null], ["Gaius Gracchus", null],
   ["Marius", null], ["Sulla", null], ["Crassus", null], ["Pompey", null], ["Cicero", null],
@@ -1770,7 +1765,7 @@ function renderMap() {
     const r = (on ? 7 : 4) / z;
     return `<g data-pin="${esc(n.id)}" style="cursor:pointer"><circle cx="${px(c[1])}" cy="${py(c[0])}" r="${r}" fill="${on ? "var(--ink)" : "var(--surface)"}" stroke="var(--ink-2)" stroke-width="${1.5 / z}"/><text x="${px(c[1]) + 9 / z}" y="${py(c[0]) + 4 / z}" font-size="${(on ? 13 : 11) / z}" fill="${on ? "var(--ink)" : "var(--ink-3)"}" font-weight="${on ? 700 : 400}">${esc(n.fullLabel)}</text></g>`;
   }).join("");
-  el.innerHTML = `<div class="placeholder">Base map goes here: MapLibre, or Google Earth for terrain. Pins placed by hand for this wireframe; the gazetteer (27) supplies them. <span class="mock">mock</span></div>
+  el.innerHTML = `<div class="placeholder">Base map goes here: MapLibre, or Google Earth for terrain. Places from the gazetteer (Pleiades, 27).</div>
     <svg viewBox="${vx} ${vy} ${vw} ${vh}" role="img" aria-label="Map of places in the graph">${grat.join("")}${pins}</svg>`;
 }
 
@@ -1898,7 +1893,7 @@ function renderChart() {
 
 /* ---------- render: animation on the stage ---------- */
 let animTimer = null;
-const LABEL_LEFT = new Set(["Corfu", "Ancient Corinth", "Samos"]); // labels drawn to the left, so close pins do not collide
+const LABEL_LEFT = new Set(["Corfu", "Ancient Corinth", "Samos", "Nicopolis"]); // labels drawn to the left, so close pins do not collide
 const LABEL_BELOW = new Set(["Samos"]); // Samos sits just off Ephesus; its name goes under its pin
 const isWater = name => /\b(Sea|Gulf|Strait|Bay)\b/.test(name);
 function animPlay(on) {
@@ -1952,7 +1947,7 @@ function renderAnim() {
         ${d.moments.slice(0, 8).map(m => `<button class="linkish" data-sel-node="${esc(m.id)}">${esc(m.label)}</button>`).join("")}
         ${d.moments.length > 8 ? `<button class="linkish" data-sel-node="${esc(ph.id)}">and ${d.moments.length - 8} more in the phase</button>` : ""}</div>
       ${d.off.length ? `<div class="tray"><span class="label">Not on the map · ${d.off.length}</span>${d.off.map(p => `<button class="linkish" data-sel-node="${esc(p.id)}">${esc(p.fullLabel)}</button>`).join("")}<span class="muted small">No coordinates yet (fix 4b).</span></div>` : ""}
-      <span class="muted small">Pins placed by hand for this wireframe; the gazetteer (27) supplies them. <span class="mock">mock</span></span>
+      <span class="muted small">Places from the gazetteer (Pleiades, 27).</span>
     </div>
     <div class="anv-ctl" role="group" aria-label="Play controls">
       <button class="btn" data-anim="first" aria-label="First phase">⏮</button><button class="btn" data-anim="prev" aria-label="Previous phase">‹</button>

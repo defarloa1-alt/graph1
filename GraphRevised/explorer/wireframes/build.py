@@ -123,7 +123,8 @@ def build() -> Path:
             "facts": [trim_fact(f) for f in n.get("facts") or []],
             "authority": n.get("authorityLines") or [],
             # display rules from the projection (export/display.py)
-            **{k: n[k] for k in ("hint", "standing", "standingWords", "referenceWorks", "imaginedOnly", "folded")
+            **{k: n[k] for k in ("hint", "standing", "standingWords", "referenceWorks", "imaginedOnly", "folded",
+                                 "coordinates")
                if n.get(k)},
         })
     edges = [trim_fact(e["data"]) for e in export["elements"]["edges"]]

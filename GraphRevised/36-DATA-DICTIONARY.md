@@ -3,7 +3,7 @@ status: descriptive
 authority: 02-GRAPH-MODEL.md
 depends_on: [02-GRAPH-MODEL.md, 03-TEMPORAL-YEAR-BACKBONE.md, 27-GAZETTEER.md, 30-LOGICAL-MODEL.md]
 superseded_by: null
-last_reviewed: 2026-11-17
+last_reviewed: 2026-11-19
 ---
 
 # 36 — Graph Data Dictionary
@@ -62,7 +62,7 @@ Approved labels are:
 | `Entity:Polity`   | `polityType`                                                                                                                                                                                              | State or political entity                                                                                                                                |
 | `Entity:Question` | none                                                                                                                                                                                                      | A historical question scholars answer differently, `about` an Event, Person, Group, Polity or Period (registry v17, D-153)                               |
 | `Entity:Position` | none                                                                                                                                                                                                      | One answer to a Question (`answers`), shared by the Works that `holds` or `rejects` it; its reception is `hadReception` (registry v17, D-153)            |
-| `Entity:Type`     | `typeCategory`                                                                                                                                                                                            | Role, unit type, organizational pattern, power, status, ship type, or naval fitting (registry v17 `typeCategories`; set with `set_type_category`, D-141, audited by `typeCategorySetAt`, `typeCategorySetBy`, `typeCategoryBasis`, `typeCategoryPrevious`)                           |
+| `Entity:Type`     | `typeCategory`                                                                                                                                                                                            | Role, unit type, organizational pattern, power, status, ship type, naval fitting, taxon, material, product, denomination, or colour (registry v19 `typeCategories`; the last five for natural kinds and materials, D-160; set with `set_type_category`, D-141, audited by `typeCategorySetAt`, `typeCategorySetBy`, `typeCategoryBasis`, `typeCategoryPrevious`)                           |
 | `Entity:Other`    | `otherType`                                                                                                                                                                                               | Domain entity not otherwise classified                                                                                                                   |
 
 **Built and designed (checked against the graph 2026-11-17).** Only `form` and `standing` (Work),
@@ -73,6 +73,17 @@ Place is linked `AT_LOCATION` to a gazetteer Location (27), which holds them.
 Type-specific properties are intentionally small. Dates, membership,
 authorship, ownership, locations, and other source-sensitive facts belong in
 Assertions.
+
+**Natural kinds, materials and colours (D-160, registry v18 and v19; [45](45-NATURAL-KINDS-AND-MATERIALS.md)).**
+A taxon, material, product, coin denomination or colour is a `Type`, told apart by `typeCategory`.
+What joins them are claims, not properties: `subtypeOf` ("is a kind of": a species under its genus,
+silver under nonferrous metal, always the authority's attributed voice, from GBIF or Getty AAT);
+`madeOf` (an Object or Type is made of a material or product: a denarius of silver, a sail of linen);
+`madeFrom` (a product from its source: Tyrian purple from the murex); `producedAt` (a product or
+material at a Place); `struckIn` (a coinage Work in a denomination); and `hadColour` (an Object's
+colour, a link to a colour Type: the sails at Actium were purple, per Pliny). A colour is never a
+material, and `hadColour` never says what an object was dyed with. The Object properties
+`objectType` and `material` above stay designed, not built: an object's material is a `madeOf` claim.
 
 Special Event units:
 
