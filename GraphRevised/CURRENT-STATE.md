@@ -388,30 +388,27 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
   evidence link had lost its time quotation in migration 013 and was repaired from the
   coin's own date line first.)
 - **López Sánchez 2010** (INR 5, 123-138; migration 015, secondary, for the curator to
-  check; PDF in docs/Actium/, git-ignored): pp. 123-131 read by the military lens
-  2026-11-18 ($0.67). Proposed: 7 Questions (coin series as evidence; Imp IIII; a Corcyra
-  squadron; Antony's praetorians at Actium; Scarpus's forces; why Scarpus went to
-  Cyrenaica; Corcyra as the turning point) and 10 Positions. To check: López Sánchez's
-  holdings on the two Scarpus Positions were refused (unknown position), and two p. 129
-  quotations ran across the page break; `about` Corcyra is refused (a Place); "Lucius
-  Pinarius" is taken to be Pinarius Scarpus. Unresolved holders: Schmitthenner 1958,
-  Keppie 2000, Southern 1998. The paper swaps Classica/Lybica twice on p. 130; the
-  coins (RRC 544/10, 544/11) settle it.
+  check; PDF in docs/Actium/, git-ignored): reviewed in bucket D 2026-11-19 (30 of 32
+  accepted; §7). Still open: López Sánchez's holdings on the two Scarpus Positions were
+  refused (unknown position); `about` Corcyra is refused (a Place). Unresolved holders:
+  Schmitthenner 1958, Keppie 2000, Southern 1998. The paper swaps Classica/Lybica twice on
+  p. 130; the coins (RRC 544/10, 544/11) settle it.
 - **Imp IIII** (2026-11-18, curator's request): RRC 546 (Scarpus's coins of 31 BC)
   harvested as a primary coinage Work, 13 types (legion 8 gains a second voice from
   546/1). Migration 016 proposed the Events "Antony hailed imperator for the fourth
   time" and "Pinarius Scarpus hailed imperator" (participatedIn, from the legends, no
   time: the coin is a date by which), the Question `about` Antony's acclamation, and
   Sear's Position "the occasion ... is unknown" (via López Sánchez p. 126 n. 5; Sear 1998
-  unresolved). Reject "Imp IIII victory was earlier and elsewhere than Southern
-  proposed" as underspecified. 546/4-8, Scarpus striking for Octavian, are evidence for
-  his defection, not yet used.
+  unresolved). "Imp IIII victory was earlier and elsewhere than Southern proposed" was
+  rejected 2026-11-19; the Question is `about` Scarpus on the coin (028). 546/4-8, Scarpus
+  striking for Octavian, are evidence for his defection, not yet used.
 - **Scarpus's refusal** (2026-11-18): Dio 51.5.6 gives no date and "autumn 31 BC" is a
   modern inference, so no time is stored. Migration 017 proposed the refusal `partOf`
   "Antony follows Cleopatra" (beside the Dio events either side of it) and `triggeredBy`
   "Antony sails to Scarpus" (according to Dio): its place is its order, after the battle
   and before Alexandria. A season needs a modern voice we hold (CAH 10, if acquired).
-  Gallus at Paraetonium (30 BC) is a separate episode, not linked.
+  Gallus taking over Scarpus's army (Dio 51.9.1) is now drawn in the same phase (030);
+  Gallus occupying Paraetonium is in the same passage, not yet its own event.
 - **Standings set by Claude, to check:** Lange 2011 (secondary); the Works the
   Wikidata references created (Broughton, Syme, Roller secondary; DPRR,
   Britannica Online, Treccani tertiary).
@@ -419,7 +416,7 @@ The README's review of 2026-11-13, item 3 (close the unfinished items):
   aim and what decided the battle; the lens may propose more.
 - **Still pinned:** acquiring the cited sources (Shuckburgh 1917, Eck and Takacs,
   Pelling 1988, Murray and Petsas 1989, Zachos 2003, Orosius, Florus, Horace,
-  Suetonius; and the debate's modern works: Kromayer 1899 and 1933, Tarn 1931 and
+  Suetonius beyond *Julius* (held since 030); and the debate's modern works: Kromayer 1899 and 1933, Tarn 1931 and
   1938, Richardson 1937); AI synthesis as a Work (D-149), not built.
 
 - **Pinned (2026-11-13): Velleius 2.84.1 is under-read.** Only its first
@@ -645,7 +642,7 @@ connector (`.mcp.json`) is unaffected.
 |---|---|
 | **Governing** | [02](02-GRAPH-MODEL.md) meaning and storage; [31](31-ONE-COMMAND.md) behaviour; [29](29-EVENT-CENTRED-INQUIRY.md), [32](32-RESEARCH-WORKSPACE.md), [26](26-UI-DATA-CONTRACT.md); [33](33-DECISIONS.md), the decision register |
 | **Descriptive** | [30](30-LOGICAL-MODEL.md) the model in UML; [36](36-DATA-DICTIONARY.md) the data dictionary; [37](37-CANONICAL-EXPORT-REQUIREMENTS.md) export requirements |
-| **Draft or decided plans** | [39](39-LENS-SPECIALISTS.md) lens specialists; [41](41-ENDGAME-PLAN.md) end game; [42](42-CORROBORATION-AND-CLAIM-KINDS.md) corroboration (built); [43](43-ACTIUM-MILITARY-FRAME.md) military frame; [44](44-HISTORIOGRAPHY-AND-DEBATES.md) historiography (decided, not built) |
+| **Draft or decided plans** | [39](39-LENS-SPECIALISTS.md) lens specialists; [41](41-ENDGAME-PLAN.md) end game; [42](42-CORROBORATION-AND-CLAIM-KINDS.md) corroboration (built); [43](43-ACTIUM-MILITARY-FRAME.md) military frame; [44](44-HISTORIOGRAPHY-AND-DEBATES.md) historiography (built 2026-11-16); [45](45-NATURAL-KINDS-AND-MATERIALS.md) natural kinds (built in part); [46](46-ROMAN-NAMES-AND-GENS.md) Roman names and the gens (built 2026-11-19) |
 | **Reference** (design reasoning that decisions cite) | 01, 03, 05 to 09, 16, 21 to 25, 27, 28 |
 | **Executable** | [10](10-PHASE-1-SCHEMA.cypher), [13](13-PHASE-3-DIRECT-OPERATIONS.cypher) (the operations), [34](34-ENTITY-SUBTYPE-MIGRATION.cypher) |
 | **History** (as of their date; do not act on them) | 00 (the Phase 0 snapshot), 04, 11, 12, 14, 15, 17, 18, [19](19-SESSION-HANDOFF.md), 20, 35, [38](38-REASONING-SESSION-HANDOFF.md), [40](40-LENS-SESSION-HANDOFF.md) |
