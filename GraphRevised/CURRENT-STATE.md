@@ -476,7 +476,55 @@ the failures: a stopped Neo4j looked like 92 failures on 2026-11-15.
 
 ## 7. Next steps
 
-**Start here next session:** all of Lange (pp. 608-623) is read and stored (§3b). Next:
+**Start here next session (handoff, 2026-11-19 evening).**
+
+*Done 2026-11-19, in chat with the curator (review by bucket):* the open proposals
+were grouped into buckets (A your own entries, B Pliny's purple, C LC catalogue,
+D historiography, E event phases, F passage readings, G Wikidata) and reviewed one
+bucket at a time, decisions recorded as TD. Accepted: B (8; its five new entities made
+provisional), A (20), C (14), G (3), and López Sánchez in D (30 of 32 accepted, plus 1
+added by migration 027; rejected as malformed: "Imp IIII victory was earlier and
+elsewhere than Southern proposed" and its holding). Migration 026 superseded Q7's
+("Why was Scarpus sent to Cyrenaica?") `about` Battle of Actium link; 027 reopened and
+accepted Q6 ("What forces did Scarpus command?") `about` Scarpus. Curator rule (saved
+in memory): **a Question keeps every link to a person, place or event the source
+evidences; re-pointing adds, not replaces.** Fact layer rebuilt after each step.
+
+*Waiting on the curator:*
+- Q7's `about` Battle of Actium link, superseded by 026 before the rule above: restore
+  it? López Sánchez's answer names Actium ("provisioning of Antony's army from Egypt
+  to Actium"). A superseded claim cannot be reopened through the review CLI; it needs
+  a migration.
+- "Imp IIII is about Scarpus": the claim is proposed with no evidence (its proposal
+  rejected, "no clear evidence"); reject the claim or give it new evidence.
+- The entities of accepted claims mostly stay `proposed` (all 460 depicted events, 40
+  Positions); a sweep making them provisional was offered, not chosen.
+- Our Scarpus (`chr:entity:lucius-pinarius`) is labelled "Lucius Pinarius" in some
+  claims and "Lucius Pinarius Scarpus" in others, and has no Wikidata identity.
+
+*Next to build (curator agreed): Roman names and the gens, first case Scarpus*
+([46](46-ROMAN-NAMES-AND-GENS.md), D-166). Registry v20: groupCategory `gens`;
+predicate `ofGens` (Person → Group, no time; `memberOf` requires a time); properties
+praenomen, nomen, cognomen, agnomen on the Person. Sources: Wikidata (CC0; P2358,
+P2359, P2365, P2366, P5025, checked) and Smith's *Dictionary of Greek and Roman
+Biography* (1849, public domain) as the quoted text. DPRR (CC BY-NC 4.0) is a switch,
+**on by default for now** (curator), its records carrying their rights; off before any
+commercial use. Then, all free and public domain:
+1. Fetch Smith's entry for Pinarius Scarpus, Suetonius *Julius* 83, Dio 51.9.1,
+   Plutarch *Antony* 69.
+2. Link Scarpus to Wikidata Q382127 ("Lucius Pinarius", "nephew or grandnephew of
+   Julius Caesar", alias "Lucius Pinarius Scarpus"; gens Pinaria Q1453261): Wikidata
+   already merges the heir and the commander.
+3. The Question "Is the Lucius Pinarius of Caesar's will the Scarpus who commanded in
+   Cyrenaica?", about Scarpus; Wikidata's identification one voice, Smith's another.
+4. Add Gaius Cornelius Gallus and "Scarpus hands his army to Gallus" (Dio 51.9.1).
+
+*Remaining review buckets:* D Lange (153, best split by Question), E event phases
+(442), F passage readings (1,325, by source). Copilot's Scarpus summary was checked
+against the graph (chat, 2026-11-19): its "four legions in Cyrenaica, not at Actium"
+is one side of the Q6 debate, not a fact.
+
+**Earlier (2026-11-16):** all of Lange (pp. 608-623) is read and stored (§3b). Next:
 (a) propose the unresolved holders as Works, from Lange's footnotes, and attach the
 logged `holds` links; (b) a debate panel in the explorer from the snapshot's `debates`;
 (c) the curator's review of the Lange Positions (§3b "To review"). The historiography
@@ -510,7 +558,9 @@ struck in them, accepted by rule); Pliny's purple (migration 020: five passages,
 purple from AAT, Tyre, Pliny's purpura and buccinum; three claims for the desk). Registry v19
 (colour, `hadColour`, `about` a Type); migration 021: the purple sails at Actium (involved
 in, purple, linen) and the Question "which species are Pliny's purpura and buccinum?".
-Eight claims for the desk (020, 021); the new role "distinguishing mark" to review. The chrystallum connector must be restarted to word the v18 predicates.
+**Accepted by the curator in chat (2026-11-19):** all eight claims (020, 021), including the
+linen reading, and the five new entities (the role "distinguishing mark", the sails, purpura,
+buccinum, the Question) made provisional; fact layer rebuilt. The chrystallum connector must be restarted to word the v18 predicates.
 
 **Queued (curator agreed 2026-11-18, not started): an Obsidian plugin**, after the
 review queue and the explorer's graph navigation. Terms:
